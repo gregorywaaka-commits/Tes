@@ -1,0 +1,114 @@
+ # Encoding: UTF-8-BOM
+l_english:
+
+ # ===================== Invasion Start =====================
+ daedric_invasion.000.t: "The Veil Tears"
+ daedric_invasion.000.desc: "Tremors shake the earth and the sky turns crimson. Oblivion itself bleeds into Mundus — a Daedric Prince has chosen this age to unleash their armies upon the mortal realm."
+
+ daedric_invasion.001.t: "Darkness Descends"
+ daedric_invasion.001.desc_dagon: "Mehrunes Dagon, Prince of Destruction and Change, has opened the Gates of Oblivion. His Daedric armies pour into the mortal world to raze every kingdom that stands before them."
+ daedric_invasion.001.desc_molag: "Molag Bal, the King of Rape and Prince of Domination, seeks to drag Nirn into Coldharbour. His soul husks and vampiric forces march upon the living."
+ daedric_invasion.001.desc_boethiah: "Boethiah, Prince of Plots and Assassination, has seeded treachery across the courts of Tamriel. Her cultists and Daedric warriors advance from the shadows."
+ daedric_invasion.001.desc_hircine: "Hircine, the Huntsman of the Princes, has opened his Hunting Grounds to Nirn. Werewolves, werebears, and Daedric hunters stalk every forest and vale."
+ daedric_invasion.001.desc_namira: "Namira, the Lady of Decay, spreads corruption across the land. Her children — the ancient and repulsive — crawl forth to devour civilization."
+ daedric_invasion.001.desc_generic: "A Daedric Prince has opened the Gates of Oblivion. The mortal world trembles."
+ daedric_invasion.001.a: "We must stand against this threat!"
+ daedric_invasion.001.b: "Perhaps we can negotiate..."
+
+ # ===================== War Declaration =====================
+ daedric_invasion.002.t: "War Declared from Oblivion"
+ daedric_invasion.002.desc: "The Daedric armies march openly now, the Prince's herald proclaiming dominion over all mortal lands. There can be no peace until one side is broken."
+ daedric_invasion.002.a: "Prepare for war!"
+
+ # ===================== Escalation =====================
+ daedric_invasion.005.t: "The Gates Multiply"
+ daedric_invasion.005.desc: "New Oblivion Gates crack open across the land. The Daedric forces swell in number; the invasion has entered a deadlier phase."
+ daedric_invasion.005.a: "The situation grows dire."
+
+ # ===================== Invasion Ends =====================
+ daedric_invasion.020.t: "The Gates are Sealed"
+ daedric_invasion.020.desc: "The last Oblivion Gate collapses in on itself. The Daedric Prince, denied a foothold in Mundus, retreats to their realm. Tamriel — battered but unbroken — draws breath once more."
+ daedric_invasion.020.a: "Tamriel is safe — for now."
+
+ # ===================== Rally Decision =====================
+ daedric_invasion.030.t: "A Call to Arms Against Oblivion"
+ daedric_invasion.030.desc: "[scope:liege.GetFirstName] calls upon every loyal vassal to take up arms against the Daedric invaders. The realm must stand united or fall divided."
+ daedric_invasion.030.a: "We answer the call!"
+ daedric_invasion.030.b: "We have our own problems..."
+
+ # ===================== Submission =====================
+ daedric_invasion.040.t: "Kneeling Before Oblivion"
+ daedric_invasion.040.desc: "[ROOT.GetFirstName] has bent the knee before the Daedric Prince, pledging mortal service in exchange for protection. Word spreads swiftly — and with it, contempt."
+ daedric_invasion.040.a: "So be it."
+
+ # ===================== Banishment Attempt =====================
+ daedric_invasion.045.t: "A Champion Steps Forward"
+ daedric_invasion.045.desc: "[ROOT.GetFirstName] draws [ROOT.GetPossessivePronoun] blade and marches upon the Daedric Prince. Only one will walk away from this confrontation."
+ daedric_invasion.045.a: "Press the advantage — banish this Prince!"
+ daedric_invasion.045.b: "Fall back — the Prince is too powerful."
+
+ # ===================== Decisions =====================
+ rally_against_daedric_invasion: "Rally Against the Daedric Invasion"
+ rally_against_daedric_invasion_desc: "Call upon your vassals and allies to stand together against the Daedric invaders. A united front is our best hope of repelling the forces of Oblivion."
+ rally_against_daedric_invasion_effect_tt: "Sends a rally event to all direct vassals."
+
+ submit_to_daedric_prince: "Submit to the Daedric Prince"
+ submit_to_daedric_prince_desc: "Surrender your realm's independence to the Daedric Prince, in the hope that submission buys your survival."
+
+ attempt_to_banish_daedric_prince: "Attempt to Banish the Daedric Prince"
+ attempt_to_banish_daedric_prince_desc: "Steel yourself and face the Prince directly. If you succeed, the invasion ends. If you fail, the consequences will be severe."
+
+ # ===================== Oblivion Gate Events =====================
+ oblivion_gate.001.t: "An Oblivion Gate Opens!"
+ oblivion_gate.001.desc: "A crack in reality tears open in one of your counties. A swirling portal to Oblivion stands before you, bleeding Daedra into the mortal world."
+ oblivion_gate.001.a: "Muster troops to contain it!"
+ oblivion_gate.001.b: "We cannot afford soldiers — defend the walls."
+
+ oblivion_gate.003.t: "Closing the Gate"
+ oblivion_gate.003.desc: "The Oblivion Gate roars before you, a cascade of fire and shadow. To close it, someone must enter and destroy the Sigil Stone at its heart."
+ oblivion_gate.003.a: "Enter the Gate and destroy it from within!"
+ oblivion_gate.003.b: "We could not close it — fall back."
+
+ oblivion_gate.010.t: "The Gate is Sealed!"
+ oblivion_gate.010.desc: "The Sigil Stone shatters and the Gate implodes, taking a torrent of Daedra with it. The land is scarred, but the portal to Oblivion is closed."
+ oblivion_gate.010.a: "Tamriel stands a little safer."
+
+ # ===================== Traits =====================
+ daedric_prince: "Daedric Prince"
+ daedric_prince_desc: "A being of immense power from the realm of Oblivion. Immortal and relentless, they cannot be permanently slain — only banished."
+
+ mehrunes_dagon_aspect: "Aspect of Mehrunes Dagon"
+ mehrunes_dagon_aspect_desc: "Channelling the Prince of Destruction, this entity embodies change through violence."
+
+ molag_bal_aspect: "Aspect of Molag Bal"
+ molag_bal_aspect_desc: "Infused with the will of the King of Rape, this entity breaks others to serve."
+
+ boethiah_aspect: "Aspect of Boethiah"
+ boethiah_aspect_desc: "Shaped by the Prince of Plots, this entity achieves dominance through cunning."
+
+ hircine_aspect: "Aspect of Hircine"
+ hircine_aspect_desc: "Driven by the Huntsman's spirit, this entity is an apex predator given purpose."
+
+ namira_aspect: "Aspect of Namira"
+ namira_aspect_desc: "Wrapped in ancient darkness, this entity spreads rot and despair."
+
+ oblivion_touched: "Oblivion-Touched"
+ oblivion_touched_desc: "Prolonged exposure to open Oblivion Gates has left a mark on this ruler's spirit."
+
+ oblivion_slayer: "Oblivion Slayer"
+ oblivion_slayer_desc: "This warrior has personally closed an Oblivion Gate, earning both honour and a hardened soul."
+
+ daedric_vassal: "Daedric Vassal"
+ daedric_vassal_desc: "This ruler has bent the knee before a Daedric Prince, trading honour for survival."
+
+ daedric_champion: "Daedric Champion"
+ daedric_champion_desc: "Chosen by fate (or stubbornness), this champion has faced a Daedric Prince and prevailed."
+
+ # ===================== CB =====================
+ daedric_invasion_cb_victory_prince_desc: "The Daedric forces overwhelm the defenders. Another realm falls under the shadow of Oblivion."
+ daedric_invasion_cb_defeat_prince_desc: "The mortal realm holds firm, turning back the tide of Daedra. The Prince retreats — but only for now."
+ daedric_invasion_cb_white_peace_desc: "A temporary cessation of hostilities. Neither side has achieved its goals."
+
+ # ===================== Tooltip =====================
+ daedric_invasion_started_tt: "A Daedric Invasion is now underway. Oblivion Gates will open across the realm."
+ submit_to_daedric_prince_effect_tt: "You become a Daedric Vassal, receiving protection at the cost of prestige and piety."

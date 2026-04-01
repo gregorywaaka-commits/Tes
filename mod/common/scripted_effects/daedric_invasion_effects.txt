@@ -1,0 +1,122 @@
+# =============================================================
+#  Daedric Invasion — Scripted Effects
+# =============================================================
+
+# ----- Begin an invasion by a specific Prince -----
+# Caller must set scope:chosen_prince_key before calling.
+begin_daedric_invasion = {
+    # Record invasion state
+    set_global_variable = { name = active_daedric_prince value = scope:chosen_prince_key }
+    set_global_variable = { name = daedric_invasion_phase value = 1 }
+    set_global_variable = { name = daedric_invasion_started_days value = 0 }
+
+    # Spawn the Prince character in a suitably remote / inhospitable title
+    # (actual title_id must match your EK2 setup — adjust as needed)
+    create_character = {
+        template = scope:chosen_prince_key
+        location = title:d_deadlands         # Mehrunes Dagon's realm
+        save_scope_as = daedric_prince_char
+    }
+
+    # Give the Prince a powerful starting army
+    scope:daedric_prince_char = {
+        create_army = {
+            name = "Daedra Horde"
+            men_at_arms = { type = daedra_footsoldiers  stack = 500 }
+            men_at_arms = { type = daedra_cavalry       stack = 200 }
+            men_at_arms = { type = clannfear            stack = 100 }
+            men_at_arms = { type = golden_saint         stack =  50 }
+        }
+    }
+
+    # Open 3 initial Oblivion Gates in random border counties
+    random_county = {
+        limit = { is_coastal = no }
+        open_oblivion_gate_effect = yes
+    }
+    random_county = {
+        limit = { is_coastal = no }
+        open_oblivion_gate_effect = yes
+    }
+    random_county = {
+        limit = { is_coastal = yes }
+        open_oblivion_gate_effect = yes
+    }
+
+    # Notify all rulers
+    every_ruler = {
+        limit = { is_alive = yes }
+        trigger_event = { id = daedric_invasion.001 }
+    }
+}
+
+# ----- Open an Oblivion Gate in the current county scope -----
+open_oblivion_gate_effect = {
+    set_variable = { name = oblivion_gate_active value = yes }
+    add_province_modifier = {
+        modifier = oblivion_gate_province_modifier
+        days = -1                            # permanent until closed
+    }
+    trigger_event = { id = oblivion_gate.001 }
+}
+
+# ----- Close an Oblivion Gate (called from closing event) -----
+close_oblivion_gate_effect = {
+    remove_variable = oblivion_gate_active
+    remove_province_modifier = oblivion_gate_province_modifier
+    # Reward the champion
+    scope:gate_closer = {
+        add_trait = oblivion_slayer
+        add_prestige = 500
+        add_piety = 300
+        trigger_event = { id = oblivion_gate.010 }
+    }
+}
+
+# ----- Escalate the invasion to the next phase -----
+escalate_daedric_invasion = {
+    change_global_variable = { name = daedric_invasion_phase add = 1 }
+
+    # Open additional gates
+    random_county = { open_oblivion_gate_effect = yes }
+    random_county = { open_oblivion_gate_effect = yes }
+
+    # Reinforce the Prince's army
+    scope:daedric_prince_char = {
+        create_army = {
+            name = "Daedric Reinforcements"
+            men_at_arms = { type = daedra_footsoldiers  stack = 300 }
+            men_at_arms = { type = dremora             stack = 150 }
+        }
+    }
+
+    every_ruler = {
+        limit = { is_alive = yes }
+        trigger_event = { id = daedric_invasion.005 }
+    }
+}
+
+# ----- End and clean up the invasion -----
+end_daedric_invasion = {
+    # Close all remaining gates
+    every_county = {
+        limit = { has_variable = oblivion_gate_active }
+        remove_variable = oblivion_gate_active
+        remove_province_modifier = oblivion_gate_province_modifier
+    }
+
+    # Remove global state
+    remove_global_variable = active_daedric_prince
+    remove_global_variable = daedric_invasion_phase
+    remove_global_variable = daedric_invasion_started_days
+
+    # Kill or banish the Prince character
+    scope:daedric_prince_char = {
+        death = { death_reason = death_banished }
+    }
+
+    every_ruler = {
+        limit = { is_alive = yes }
+        trigger_event = { id = daedric_invasion.020 }
+    }
+}

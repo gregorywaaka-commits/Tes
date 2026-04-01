@@ -1,0 +1,101 @@
+# =============================================================
+#  Daedric Prince character templates
+#  Each Daedric Prince is created as a non-playable, immortal
+#  NPC ruler who leads the invasion forces.
+#  These are spawned by scripted effects when an invasion begins.
+# =============================================================
+
+mehrunes_dagon_template = {
+    name = "Mehrunes_Dagon"
+    dynasty = daedric_dynasty
+    religion = mehrunes_dagon_faith       # defined in EK2
+    culture = daedra_culture              # defined in EK2
+    trait = daedric_prince
+    trait = mehrunes_dagon_aspect
+    trait = brilliant_strategist
+    trait = callous
+    trait = implacable
+    martial = 30
+    diplomacy = 8
+    stewardship = 12
+    intrigue = 15
+    learning = 18
+    prowess = 35
+    immortal_age = 0                      # eternal
+}
+
+molag_bal_template = {
+    name = "Molag_Bal"
+    dynasty = daedric_dynasty
+    religion = molag_bal_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = molag_bal_aspect
+    trait = brutal
+    trait = sadistic
+    trait = callous
+    martial = 28
+    diplomacy = 20
+    stewardship = 10
+    intrigue = 30
+    learning = 20
+    prowess = 30
+    immortal_age = 0
+}
+
+boethiah_template = {
+    name = "Boethiah"
+    dynasty = daedric_dynasty
+    religion = boethiah_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = boethiah_aspect
+    trait = schemer
+    trait = deceitful
+    trait = ambitious
+    martial = 25
+    diplomacy = 22
+    stewardship = 14
+    intrigue = 35
+    learning = 22
+    prowess = 28
+    immortal_age = 0
+}
+
+hircine_template = {
+    name = "Hircine"
+    dynasty = daedric_dynasty
+    religion = hircine_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = hircine_aspect
+    trait = hunter
+    trait = gregarious
+    trait = brave
+    martial = 32
+    diplomacy = 10
+    stewardship = 8
+    intrigue = 20
+    learning = 12
+    prowess = 40
+    immortal_age = 0
+}
+
+namira_template = {
+    name = "Namira"
+    dynasty = daedric_dynasty
+    religion = namira_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = namira_aspect
+    trait = cannibal
+    trait = repulsive
+    trait = callous
+    martial = 24
+    diplomacy = 5
+    stewardship = 6
+    intrigue = 28
+    learning = 25
+    prowess = 26
+    immortal_age = 0
+}

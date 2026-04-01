@@ -1,0 +1,49 @@
+# =============================================================
+#  Daedric Invasion — Scripted Triggers
+# =============================================================
+
+# True while any active Daedric invasion is running
+is_daedric_invasion_active = {
+    exists = global_var:active_daedric_prince
+}
+
+# True for the character who is the current Daedric Prince invader
+is_daedric_prince_invader = {
+    has_trait = daedric_prince
+    is_ai = yes
+}
+
+# True when a province has an open Oblivion Gate
+province_has_oblivion_gate = {
+    has_variable = oblivion_gate_active
+}
+
+# True when a ruler's capital county has an Oblivion Gate nearby
+ruler_threatened_by_oblivion_gate = {
+    any_held_county = {
+        has_variable = oblivion_gate_active
+    }
+}
+
+# Check whether enough time has passed for the invasion to escalate
+daedric_invasion_can_escalate = {
+    exists = global_var:daedric_invasion_phase
+    global_var:daedric_invasion_phase < 3
+    global_var:daedric_invasion_started_days >= 1825   # ~5 in-game years
+}
+
+# True once the invasion has reached max escalation
+daedric_invasion_at_full_power = {
+    exists = global_var:daedric_invasion_phase
+    global_var:daedric_invasion_phase >= 3
+}
+
+# Conditions under which the invasion can be triggered
+daedric_invasion_trigger_conditions = {
+    NOT = { is_daedric_invasion_active = yes }
+    current_date >= 2E.100                              # minimum date guard
+    any_ruler = {
+        realm_size >= 30
+        NOT = { has_trait = daedric_champion }
+    }
+}

@@ -1,0 +1,107 @@
+# =============================================================
+#  Daedric Invasion Traits
+# =============================================================
+
+# ---- Prince marker ----
+daedric_prince = {
+    category = special
+    is_immortal = yes
+    can_have_children = no
+    opposites = { }
+    monthly_prestige = 5
+    monthly_piety = 5
+    command_modifier = {
+        advantage = 15
+        max_morale = 0.5
+        damage = 0.25
+    }
+    flag = daedric_prince
+}
+
+# ---- Per-prince aspects (flavour + modifiers) ----
+mehrunes_dagon_aspect = {
+    category = special
+    opposites = { molag_bal_aspect boethiah_aspect hircine_aspect namira_aspect }
+    monthly_prestige = 2
+    command_modifier = {
+        advantage = 5
+        damage = 0.2
+    }
+    flag = mehrunes_dagon_aspect
+}
+
+molag_bal_aspect = {
+    category = special
+    opposites = { mehrunes_dagon_aspect boethiah_aspect hircine_aspect namira_aspect }
+    monthly_prestige = 2
+    dread_gain_mult = 0.5
+    max_dread = 50
+    flag = molag_bal_aspect
+}
+
+boethiah_aspect = {
+    category = special
+    opposites = { mehrunes_dagon_aspect molag_bal_aspect hircine_aspect namira_aspect }
+    monthly_prestige = 2
+    intrigue = 5
+    flag = boethiah_aspect
+}
+
+hircine_aspect = {
+    category = special
+    opposites = { mehrunes_dagon_aspect molag_bal_aspect boethiah_aspect namira_aspect }
+    monthly_prestige = 2
+    prowess = 8
+    flag = hircine_aspect
+}
+
+namira_aspect = {
+    category = special
+    opposites = { mehrunes_dagon_aspect molag_bal_aspect boethiah_aspect hircine_aspect }
+    monthly_prestige = 2
+    monthly_piety = 3
+    flag = namira_aspect
+}
+
+# ---- Mortal traits granted during the invasion ----
+
+# Branded by the invasion — given to rulers whose realm borders an active Oblivion Gate
+oblivion_touched = {
+    category = lifestyle
+    monthly_prestige = -1
+    stress_gain_mult = 0.1
+    flag = oblivion_touched
+}
+
+# Rewarded to a champion who personally closes an Oblivion Gate
+oblivion_slayer = {
+    category = fame
+    opposites = { oblivion_touched }
+    monthly_prestige = 2
+    command_modifier = {
+        advantage = 3
+        morale_attack = 0.1
+    }
+    flag = oblivion_slayer
+}
+
+# Gained by a ruler who swears fealty to a Daedric Prince
+daedric_vassal = {
+    category = lifestyle
+    monthly_piety = -2
+    monthly_prestige = 1
+    stress_gain_mult = -0.1
+    flag = daedric_vassal
+}
+
+# Granted to the mortal champion chosen by the Prince to lead mortal forces
+daedric_champion = {
+    category = fame
+    monthly_prestige = 3
+    monthly_piety = 2
+    command_modifier = {
+        advantage = 5
+        damage = 0.15
+    }
+    flag = daedric_champion
+}

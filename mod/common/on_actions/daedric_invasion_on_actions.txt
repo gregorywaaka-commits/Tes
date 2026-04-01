@@ -1,0 +1,34 @@
+# =============================================================
+#  Daedric Invasion On-Actions
+#  Hooks into the CK3 on-action system to drive the invasion
+#  tick, escalation, and cleanup.
+# =============================================================
+
+# Fires every month for every living ruler
+on_monthly_pulse = {
+    events = {
+        daedric_invasion.050   # phase tick / escalation check
+    }
+}
+
+# Fires when a county is occupied (used to open Gates)
+on_county_occupied = {
+    events = {
+        oblivion_gate.002     # chance to open a new Gate on occupation
+    }
+}
+
+# Fires on character death — clean up champion / vassal traits
+on_character_death = {
+    events = {
+        daedric_invasion.060  # remove daedric_champion / daedric_vassal if bearer dies
+    }
+}
+
+# Random yearly world event — small chance to kick off an invasion if none is active
+on_yearly_pulse = {
+    random_events = {
+        100 = 0               # no-op weight
+        5   = daedric_invasion.000   # attempt to trigger a new invasion
+    }
+}
