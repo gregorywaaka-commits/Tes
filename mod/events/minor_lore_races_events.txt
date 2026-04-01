@@ -12,8 +12,9 @@
 #  WHAT THIS FILE DOES:
 #  Flavour and lore events for minor playable / encountered
 #  races: Dreugh (aquatic life cycle), Imga (Valenwood ape-men),
-#  Tang Mo (Akaviri monkey-folk), Keptu (ancient proto-Redguard
-#  smiths), and Nedes (proto-human ancestors).
+#  Tang Mo (Akaviri monkey-folk), Keptu (ancient High Rock proto-
+#  humans and Bloodroot Forge smiths — NOT Redguard ancestors),
+#  and Nedes (proto-human ancestors of most Tamrielic humans).
 #
 #  EVENT INDEX (by namespace):
 #  dreugh.001  — Dreugh Life-Cycle Transition (land phase ↔ sea phase)
@@ -44,7 +45,11 @@
 #    their prophet Marukh later triggered the Alessian Doctrines.
 #  Tang Mo: monkey-folk of Akavir who repelled the Kamal with
 #    Ka Po' Tun; sources: Mysterious Akavir.
-#  Keptu: proto-Redguard (Yokudan) people of High Rock;
+#  Keptu: ancient proto-human inhabitants of High Rock, distinct
+#    from the Yokudans/Redguards (who arrived c. 1E 808, millennia
+#    later).  The Keptu predated Aldmeri settlement of Tamriel and
+#    maintained their own smithing tradition centred on the
+#    Bloodroot Forge (a Hircine-adjacent Daedric artifact).
 #    Bloodroot Forge is attested in ESO: Horns of the Reach.
 #  Nedes: proto-human ancestors of most Tamrielic human races;
 #    sources: Frontier, Conquest, and Accommodations of the

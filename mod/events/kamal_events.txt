@@ -133,8 +133,17 @@ kamal.010 = {
 
     trigger = {
         exists = global_var:kamal_invasion_active
+        # Lore: Dir-Kamal was killed at the Battle of Vivec (2E 572) by the full
+        # Ebonheart Pact coalition — Dunmer, Nords, AND the An-Xileel Argonian army
+        # that emerged from Black Marsh to deliver the killing blow.  The Tribunal
+        # (Almalexia, Vivec, Sotha Sil collectively) also intervened.
+        # This trigger requires EITHER a kingdom-tier Dunmer OR Argonian ruler to be
+        # present, reflecting both halves of the Pact's decisive contribution.
         any_ruler = {
-            has_culture = dunmer_culture       # Tribunal devotees present
+            OR = {
+                has_culture = dunmer_culture        # Tribunal devotees; Morrowind forces
+                has_culture = argonian_culture      # An-Xileel; delivered the killing blow
+            }
             primary_title = { tier >= tier_kingdom }
         }
         global_var:daedric_invasion_phase < 1   # no daedric invasion active
@@ -180,8 +189,13 @@ kamal.050 = {
     immediate = {
         # Track summer (months 3-9) and winter (months 10-2) via a global variable.
         # CK3 date scripting: use game_start_date offset or on_action year/month flags.
-        # For now, the Kamal invasion is triggered via on_yearly_pulse and Dir-Kamal
-        # is spawned without a hard seasonal guard; balance via on_yearly_pulse weight.
+        # TODO: Implement a proper seasonal guard using the get_date scripting function.
+        # A working approach: use a yearly on_action that reads current_date arithmetic
+        # via set_variable = { name = month_num value = current_date.month } and then
+        # if = { limit = { scope:month_num >= 3 scope:month_num <= 9 } ... }.
+        # Until then, the Kamal invasion is triggered via on_yearly_pulse weight alone;
+        # Dir-Kamal is spawned without a hard seasonal guard — adjust on_yearly_pulse
+        # weights in daedric_invasion_on_actions.txt to compensate.
         if = {
             limit = {
                 NOT = { exists = global_var:current_season_summer }

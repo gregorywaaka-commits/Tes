@@ -284,6 +284,27 @@ bargain_with_clavicus_vile = {
 
 # ============================================================
 #  ELDER TOWERS
+#  MOD NOTE — THRAS / CORAL TOWER:
+#  Thras, the Sload coral island chain, was sunk to the bottom
+#  of the Abecean Sea in 1E 2260 by the All-Flags Navy as
+#  punishment for the Thrassian Plague.  It was gone more than
+#  1,100 years before the 2E 440 mod start.
+#  Mod choice: in this timeline, Thras partially re-emerged
+#  from the sea floor in the early Second Era — this is NOT
+#  canonical, but allows the Sload / All-Flags Navy content
+#  to function meaningfully.  The in-game text should always
+#  refer to it as "the re-emerged Thras" or "Thras Reborn."
+#
+#  TOWERS NOT YET IMPLEMENTED AS KEEPER SITES:
+#    Crystal Tower (c_alinor, Summerset) — extant in 2E; destroyed 4E 29.
+#      Add as a claimable site using title:c_alinor once that county
+#      is verified in EK2.  Its Stone is "Crystal" (nullity / Aldmeri order).
+#    Snow Throat / Throat of the World (c_whiterun or c_throat_of_world)
+#      — Paarthurnax's home; its Stone is an ancient Aldmeri artifact.
+#    Green-Sap (Falinesti, Valenwood) — the walking city is the Tower;
+#      Stone = a seed.  Add when title:c_falinesti is confirmed in EK2.
+#    Orichalc Tower (Yokuda / Sea of Ghosts) — destroyed along with Yokuda
+#      c. 1E 792; not available in 2E; skip.
 # ============================================================
 
 # A ruler claims a Tower Stone and becomes its Keeper

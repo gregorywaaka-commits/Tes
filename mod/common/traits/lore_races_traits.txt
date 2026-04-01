@@ -268,7 +268,15 @@ crimson_ship_survivor = {
     flag = crimson_ship_survivor
 }
 
-# Bargained with Clavicus Vile for survival (Stillrise Village fate)
+# Bargained with Clavicus Vile for survival — the Stillrise Village fate.
+# LORE NOTE: The Kothringi of Stillrise Village (Black Marsh, c. 2E 560) made
+# a pact with Clavicus Vile to gain immunity to the Knahaten Flu.  Vile granted
+# it — at the cost of their mortality.  They became permanently undead: immune
+# to the Flu, immune to disease, immune to death by natural means, but cut off
+# from the Divines and from any normal mortal life.  They are neither truly alive
+# nor truly dead.  The stress_gain_mult reflects the psychological weight of
+# existing as undead; the piety penalty reflects how faith communities
+# (and the characters themselves) regard the Daedric bargain that made them so.
 clavicus_bargain_made = {
     category = lifestyle
     monthly_piety    = -3   # faith communities distrust Daedric bargains
@@ -414,9 +422,26 @@ altmer_imitator = {
 
 # =============================================================
 #  Keptu / Nedic Tribe Traits
+#
+#  LORE NOTE — KEPTU:
+#  The Keptu were an ancient proto-human people of High Rock
+#  (not Yokudan / Redguard ancestors — that is a common
+#  conflation).  They predated Aldmeri settlement of Tamriel and
+#  inhabited the Breton heartland.  Their smithing tradition
+#  centred on the Bloodroot Forge — a Daedric artifact of
+#  Hircine associated with bestial enhancements — as attested
+#  in ESO: Horns of the Reach.  keptu_lineage represents a
+#  character who traces direct descent from Keptu smithing
+#  masters; the stewardship bonus reflects mastery of craft.
+#
+#  NOTE: The event file (minor_lore_races_events.txt) previously
+#  described the Keptu as "proto-Redguard" — this is incorrect.
+#  The Keptu are a distinct High Rock culture; the Redguard
+#  (Yokudans) arrived on Tamriel c. 1E 808, millennia after
+#  the Keptu's decline.
 # =============================================================
 
-# A ruler who traces direct Keptu lineage (Bloodroot Forge smiths)
+# A ruler who traces direct Keptu lineage (Bloodroot Forge smiths of High Rock)
 keptu_lineage = {
     category = special
     stewardship = 2

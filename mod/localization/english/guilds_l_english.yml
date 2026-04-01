@@ -33,6 +33,19 @@
 #  — Dark Brotherhood: Five Tenets are canonical from TES lore;
 #    the Night Mother is the spiritual head; Speakers are her
 #    voice to the Black Hand council.
+#    CONTESTED LORE — NIGHT MOTHER = MEPHALA?
+#    *The Brothers of Darkness* (Pellarne Assi) argues that both
+#    the Morag Tong (openly Mephala's guild) and the Dark
+#    Brotherhood (the Night Mother's guild) ultimately serve the
+#    same patron — Mephala — with the Night Mother being
+#    Mephala's mortal-world avatar or bride-of-Sithis persona.
+#    This connection is not explicit canon but is the dominant
+#    scholarly interpretation within TES lore.  The shared
+#    divine origin explains why the two guilds practise the same
+#    craft but are bitter theological rivals: the Brotherhood
+#    refuses to name Mephala as their patron directly.
+#    This connection is flagged in guild_traits.txt (DB + Tong
+#    section headers) for mod authors adding related content.
 #  — Morag Tong: predates the Dark Brotherhood; operates under
 #    legal writs of execution within Dunmer/Morrowind jurisdiction.
 #    Operates primarily in Morrowind and House territories.

@@ -47,6 +47,21 @@
 #  Sources: The Arcturian Heresy, Mysterious Akavir, 36 Lessons,
 #           The Monomyth, ESO lore notes.
 #
+#  TOWERS EXTANT IN 2E BUT NOT YET IMPLEMENTED AS KEEPER SITES:
+#    Crystal Tower (c_alinor, Summerset Isle) — extant and intact
+#      throughout the 2E Interregnum; destroyed only in 4E 29 during
+#      the Aldmeri Dominion collapse.  Its Stone is named "Crystal"
+#      (principle of nullity / Aldmeri magical order).  To add:
+#      use title:c_alinor (verify in EK2) and add crystal_tower_keeper_modifier.
+#    Snow Throat / Throat of the World (Paarthurnax's eyrie) — the
+#      Tower itself is the mountain; the Stone predates the current era.
+#      To add: use title:c_whiterun or a dedicated c_throat_of_world county.
+#    Green-Sap (Falinesti, Valenwood) — the walking tree-city is the
+#      Tower; its Stone is a living seed.
+#      To add: use title:c_falinesti (confirm in EK2).
+#    Orichalc Tower (Yokuda) — destroyed when Yokuda sank c. 1E 792;
+#      not available in 2E; omit.
+#
 #  HOW TO ADD A NEW EVENT:
 #  1. Add towers.NNN = { ... } following the pattern below
 #  2. Tower-specific events (like .002–.004) must be called from

@@ -176,7 +176,11 @@ azura_template = {
 }
 
 # Mephala — Webspinner, Prince of Plots, Murder, Secrets
-# Morag Tong patron; weaves webs of assassination
+# Explicit patron of the Morag Tong; likely patron of the Dark Brotherhood
+# through the Night Mother (see guild_traits.txt DB + Tong section headers).
+# *The Brothers of Darkness* (Pellarne Assi) presents the Night Mother as
+# Mephala's mortal-world avatar — making Mephala the ultimate divine patron
+# of ALL sanctioned and unsanctioned assassination in Tamriel.
 mephala_template = {
     name = "Mephala"
     dynasty = daedric_dynasty
@@ -361,6 +365,9 @@ nocturnal_template = {
 
 # Hermaeus Mora — Prince of Knowledge, Fate, Forbidden Secrets
 # The Gardener of Men; appears as a mass of tentacles and eyes; seeks all knowledge
+# LORE NOTE: Mora is omniscient by definition — 'paranoid' would be a flat contradiction.
+# 'arbitrary' is used instead: his decisions appear random to mortals because his
+# frame of reference spans all knowledge and all time simultaneously.
 hermaeus_mora_template = {
     name = "Hermaeus_Mora"
     dynasty = daedric_dynasty
@@ -369,7 +376,7 @@ hermaeus_mora_template = {
     trait = daedric_prince
     trait = hermaeus_mora_aspect
     trait = patient
-    trait = paranoid
+    trait = arbitrary               # omniscience cannot be paranoia; see comment above
     martial    = 16
     diplomacy  = 20
     stewardship = 22

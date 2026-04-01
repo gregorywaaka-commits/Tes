@@ -124,4 +124,27 @@ on_character_death = {
         # Dragon soul counter (dragon_souls_absorbed_count) is a character variable — auto-cleared on death.
         # Greybeard_rank and thuumvoi_rank variables are also character-scoped — auto-cleared.
     }
+
+    # Tower Stone Keeper cleanup:
+    # When the Keeper dies their tower_stone_keeper trait dies with them automatically
+    # (traits are character-scoped), but the county-scope variable tower_stone_present
+    # must be cleared so the Tower Stone becomes re-claimable.
+    effect = {
+        if = {
+            limit = { has_trait = tower_stone_keeper }
+            every_held_county = {
+                limit = { has_variable = tower_stone_present }
+                remove_variable = tower_stone_present
+            }
+        }
+        # Amulet of Kings cleanup:
+        # The amulet_of_kings_dragonborn_modifier and amulet_of_kings_claimed flag
+        # are character-scoped and auto-cleared on death.  The has_amulet_of_kings
+        # scripted trigger (EK2) must handle physical removal; clear the flag here
+        # in case EK2's cleanup does not fire.
+        if = {
+            limit = { has_character_flag = amulet_of_kings_claimed }
+            remove_character_flag = amulet_of_kings_claimed
+        }
+    }
 }
