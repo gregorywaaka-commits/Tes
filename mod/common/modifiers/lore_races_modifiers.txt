@@ -590,6 +590,12 @@ sword_of_jyggalag_modifier = {
 # Duration: 1825 days (5 years) — after completing one quest, must wait 5 years.
 daedric_quest_cooldown = { }
 
+# Applied when a ruler refuses to submit to a Daedric Prince's demands during
+# an active invasion.  Gates the "submit_to_daedric_prince" decision so the
+# same choice is not repeatedly offered and rejected.
+# Duration: applied via the decision's effect block with an appropriate duration.
+rejected_daedric_submission = { }
+
 # =============================================================
 #  GUILD MODIFIERS — All 9 Guilds
 #  Context: The nine guilds are: Mages Guild, Fighters Guild,

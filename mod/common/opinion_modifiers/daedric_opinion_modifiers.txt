@@ -57,3 +57,12 @@ guild_betrayed_opinion = {
     opinion = -30
     decay_rate = 1
 }
+
+# ---- Sload / necromancer opinion modifier ----
+# Applied to Sload necromancers in a ruler's court who are tolerated rather
+# than expelled (sload.000 option b).  The Sload are reviled but their
+# knowledge is too valuable to ignore.  A small lasting favour offset.
+tolerated_necromancer = {
+    opinion = 10
+    decay_rate = 0
+}
