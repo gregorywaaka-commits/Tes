@@ -1,0 +1,150 @@
+# =============================================================
+#  Province / Character Modifiers — Obscure Lore Races & Towers
+# =============================================================
+
+# ---- Maormer ----
+maormer_raided_modifier = {
+    monthly_income = -0.2
+    supply_limit_mult = -0.1
+}
+
+maormer_truce_modifier = {
+    build_speed_mult = 0.0   # no-op; just prevents raid events
+}
+
+maormer_tempest_modifier = {
+    monthly_income = -0.15
+    supply_limit_mult = -0.2
+}
+
+repelled_maormer_modifier = {
+    monthly_prestige_gain_mult = 0.1
+}
+
+maormer_hatred_modifier = {
+    levy_size = 0.1
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---- Sload / Thrassian Plague ----
+thrassian_plague_modifier = {
+    monthly_income    = -0.4
+    supply_limit_mult = -0.3
+    development_growth_factor = -0.5
+}
+
+quarantine_modifier = {
+    monthly_income    = -0.1
+    supply_limit_mult = -0.1
+}
+
+# ---- Kothringi / Knahaten Flu ----
+knahaten_flu_modifier = {
+    monthly_income    = -0.3
+    supply_limit_mult = -0.2
+    development_growth_factor = -0.4
+}
+
+knahaten_flu_fear_modifier = {
+    monthly_prestige_gain_mult = -0.1
+}
+
+# ---- Kamal ----
+kamal_ice_curse_modifier = {
+    supply_limit_mult = -0.3
+    monthly_income    = -0.2
+    development_growth_factor = -0.3
+}
+
+# ---- Elder Towers ----
+tower_stone_active_modifier = {
+    monthly_income    = 0.2
+    development_growth_factor = 0.3
+    supply_limit_mult = 0.15
+}
+
+tower_fallen_modifier = {
+    monthly_income    = -0.2
+    development_growth_factor = -0.2
+}
+
+white_gold_keeper_modifier = {
+    monthly_prestige_gain_mult = 0.3
+    monthly_income = 0.2
+    diplomacy = 3
+}
+
+red_mountain_keeper_modifier = {
+    monthly_piety_gain_mult = 0.3
+    martial = 3
+    prowess = 4
+}
+
+reality_fracturing_modifier = {
+    monthly_prestige_gain_mult = -0.2
+    development_growth_factor  = -0.5
+    monthly_income = -0.3
+}
+
+tower_sabotage_cooldown = {
+    # Prevents repeated sabotage — no bonus/penalty, just a flag
+}
+
+# ---- Dreugh ----
+old_knocker_blessing_modifier = {
+    monthly_piety_gain_mult = 0.15
+    prowess = 3
+}
+
+# ---- Imga ----
+imga_favor_modifier = {
+    monthly_prestige_gain_mult = 0.05
+    diplomacy = 1
+}
+
+# ---- Tang Mo ----
+tang_mo_unity_modifier = {
+    levy_size = 0.15
+    supply_limit_mult = 0.1
+}
+
+ka_po_tun_alliance_modifier = {
+    monthly_prestige_gain_mult = 0.1
+    levy_size = 0.1
+}
+
+# ---- Keptu ----
+bloodroot_forge_modifier = {
+    men_at_arms_maintenance_mult = -0.1
+    monthly_income = 0.15
+}
+
+# ---- Plague cooldown ----
+plague_cooldown_modifier = {
+    # Prevents repeated unleashing — no-op flag
+}
+
+# ---- Misc ----
+rallied_against_daedra = {
+    # referenced by existing daedric invasion
+    levy_size = 0.1
+}
+
+rejected_daedric_bargain = {
+    monthly_piety_gain_mult = 0.1
+}
+
+oblivion_gate_province_modifier = {
+    monthly_income    = -0.5
+    supply_limit_mult = -0.4
+    development_growth_factor = -0.6
+}
+
+oblivion_gate_unchecked = {
+    monthly_income    = -0.3
+    supply_limit_mult = -0.2
+}
+
+oblivion_gate_daedra_surge = {
+    supply_limit_mult = -0.2
+}

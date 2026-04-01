@@ -1,0 +1,122 @@
+# =============================================================
+#  Lore Races — Scripted Triggers
+# =============================================================
+
+# ---- Echmer ----
+is_echmer = {
+    has_trait = echmer_heritage
+}
+
+echmer_invasion_possible = {
+    NOT = { is_echmer_active_contact = yes }
+    exists = title:k_yneslea
+    current_date >= 2E.150
+}
+
+is_echmer_active_contact = {
+    exists = global_var:echmer_contact_established
+}
+
+# ---- Maormer ----
+is_maormer = {
+    has_trait = maormer_heritage
+}
+
+maormer_raid_possible = {
+    is_coastal = yes
+    NOT = { is_maormer = yes }
+    NOT = { has_modifier = maormer_truce_modifier }
+}
+
+orgnum_is_alive = {
+    exists = global_var:orgnum_alive
+}
+
+# ---- Sload ----
+is_sload = {
+    has_trait = sload_heritage
+}
+
+thrassian_plague_active = {
+    exists = global_var:thrassian_plague_active
+}
+
+sload_plague_can_trigger = {
+    NOT = { thrassian_plague_active = yes }
+    is_sload = yes
+    has_trait = sload_necromancer
+    stewardship >= 16
+}
+
+# ---- Kothringi ----
+is_kothringi = {
+    has_trait = kothringi_heritage
+}
+
+knahaten_flu_active = {
+    exists = global_var:knahaten_flu_active
+}
+
+knahaten_can_trigger = {
+    NOT = { knahaten_flu_active = yes }
+    NOT = { thrassian_plague_active = yes }   # only one mega-plague at a time
+    current_date >= 2E.550
+    current_date <= 2E.600
+    any_ruler = {
+        primary_title = { tier >= tier_kingdom }
+        government_has_flag = argonian_government   # Argonian rulers present
+    }
+}
+
+# ---- Kamal ----
+is_kamal = {
+    has_trait = kamal_heritage
+}
+
+kamal_summer_active = {
+    # CK3 uses month numbers; Kamal are active in months 3-9 (spring-autumn)
+    NOT = { current_date < 2E.100 }
+    exists = global_var:current_season_summer
+}
+
+kamal_invasion_possible = {
+    NOT = { exists = global_var:kamal_invasion_active }
+    current_date >= 2E.572    # historical: dir-Kamal invasion ~2E 572
+}
+
+# ---- Elder Towers ----
+tower_white_gold_active = {
+    title:c_imperial_city = {
+        has_variable = tower_stone_present
+    }
+}
+
+tower_adamantine_active = {
+    title:c_balfiera = {
+        has_variable = tower_stone_present
+    }
+}
+
+tower_red_mountain_active = {
+    title:c_red_mountain = {
+        has_variable = tower_stone_present
+    }
+}
+
+tower_coral_active = {
+    title:c_thras = {
+        has_variable = tower_stone_present
+    }
+}
+
+# Count of active towers (used for world stability)
+count_active_towers = {
+    # CK3 doesn't natively support counting booleans in a trigger,
+    # so we track this via global_var:active_tower_count instead
+    exists = global_var:active_tower_count
+}
+
+world_stability_critical = {
+    exists = global_var:active_tower_count
+    global_var:active_tower_count <= 1
+}

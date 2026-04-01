@@ -1,0 +1,196 @@
+# =============================================================
+#  Character Templates — Obscure Lore Races & Key NPCs
+# =============================================================
+
+# ---- Echmer ----
+
+echmer_warlord_template = {
+    name = "Echmer_Warlord"
+    dynasty = echmer_dynasty
+    religion = yneslea_echo_faith
+    culture = echmer_culture
+    trait = echmer_heritage
+    trait = echolalia_adept
+    trait = brave
+    trait = gregarious
+    martial    = 20
+    diplomacy  = 8
+    stewardship = 10
+    intrigue   = 14
+    learning   = 18
+    prowess    = 22
+    immortal_age = 0
+}
+
+echmer_scholar_template = {
+    name = "Echmer_Scholar"
+    dynasty = echmer_dynasty
+    religion = yneslea_echo_faith
+    culture = echmer_culture
+    trait = echmer_heritage
+    trait = echolalia_master
+    trait = yneslea_scholar
+    trait = dwemer_uplifted_lineage
+    martial    = 8
+    diplomacy  = 14
+    stewardship = 16
+    intrigue   = 12
+    learning   = 30
+    prowess    = 6
+}
+
+# ---- Maormer ----
+
+# King Orgnum — immortal, grows younger with age, leads Pyandonea
+king_orgnum_template = {
+    name = "Orgnum"
+    dynasty = pyandonea_dynasty
+    religion = maormer_serpent_faith
+    culture = maormer_culture
+    trait = maormer_heritage
+    trait = snake_magic_adept
+    trait = orgnum_blessed             # immortal
+    trait = brilliant_strategist
+    trait = ambitious
+    trait = arrogant
+    martial    = 22
+    diplomacy  = 18
+    stewardship = 20
+    intrigue   = 28
+    learning   = 24
+    prowess    = 18
+    immortal_age = 0
+}
+
+maormer_sea_witch_template = {
+    name = "Maormer_Sea_Witch"
+    dynasty = pyandonea_dynasty
+    religion = maormer_serpent_faith
+    culture = maormer_culture
+    trait = maormer_heritage
+    trait = pyandonean_sea_witch
+    trait = snake_magic_adept
+    trait = patient
+    martial    = 14
+    diplomacy  = 16
+    stewardship = 12
+    intrigue   = 20
+    learning   = 26
+    prowess    = 12
+}
+
+# ---- Sload ----
+
+sload_archmaster_template = {
+    name = "Sload_Archmaster"
+    dynasty = thras_dynasty
+    religion = sload_death_faith
+    culture = sload_culture
+    trait = sload_heritage
+    trait = sload_high_necromancer
+    trait = plague_bearer
+    trait = patient
+    trait = callous
+    martial    = 10
+    diplomacy  = 5
+    stewardship = 18
+    intrigue   = 22
+    learning   = 32
+    prowess    = 4
+}
+
+# ---- Kothringi ----
+
+kothringi_chief_template = {
+    name = "Kothringi_Chief"
+    dynasty = black_marsh_dynasty
+    religion = kothringi_pantheon_faith
+    culture = kothringi_culture
+    trait = kothringi_heritage
+    trait = gregarious
+    trait = brave
+    martial    = 16
+    diplomacy  = 18
+    stewardship = 12
+    intrigue   = 10
+    learning   = 12
+    prowess    = 18
+}
+
+# ---- Kamal ----
+
+# Ada'Soom Dir-Kamal — the greatest Kamal warlord, led the 2E invasion of Tamriel
+dir_kamal_template = {
+    name = "AdaSoom_Dir_Kamal"
+    dynasty = kamal_dynasty
+    religion = kamal_war_faith
+    culture = kamal_culture
+    trait = kamal_heritage
+    trait = kamal_thawed
+    trait = dir_kamal_herald
+    trait = brilliant_strategist
+    trait = ambitious
+    trait = wrathful
+    martial    = 35
+    diplomacy  = 6
+    stewardship = 14
+    intrigue   = 16
+    learning   = 10
+    prowess    = 38
+    immortal_age = 0
+}
+
+# ---- Tang Mo ----
+
+tang_mo_hero_template = {
+    name = "Tang_Mo_Hero"
+    dynasty = tang_mo_dynasty
+    religion = tang_mo_communal_faith
+    culture = tang_mo_culture
+    trait = tang_mo_heritage
+    trait = brave
+    trait = gregarious
+    trait = diligent
+    martial    = 22
+    diplomacy  = 16
+    stewardship = 10
+    intrigue   = 8
+    learning   = 14
+    prowess    = 26
+}
+
+# ---- Dreugh ----
+
+dreugh_elder_template = {
+    name = "Dreugh_Elder"
+    dynasty = dreugh_dynasty
+    religion = dreugh_old_knocker_faith
+    culture = dreugh_culture
+    trait = dreugh_heritage
+    trait = dreugh_land_phase
+    trait = patient
+    martial    = 20
+    diplomacy  = 6
+    stewardship = 8
+    intrigue   = 12
+    learning   = 16
+    prowess    = 28
+}
+
+# ---- Imga ----
+
+imga_aristocrat_template = {
+    name = "Imga_Aristocrat"
+    dynasty = valenwood_imga_dynasty
+    religion = green_pact_faith          # shares Bosmer religion
+    culture = imga_culture
+    trait = imga_heritage
+    trait = altmer_imitator
+    trait = gregarious
+    martial    = 14
+    diplomacy  = 20
+    stewardship = 12
+    intrigue   = 10
+    learning   = 14
+    prowess    = 18
+}

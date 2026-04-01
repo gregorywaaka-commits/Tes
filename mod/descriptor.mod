@@ -4,9 +4,9 @@ tags={
     "Gameplay"
     "Total Conversion"
 }
-name="EK2 - Daedric Invasion"
+name="EK2 - Lore Races & Daedric Invasion"
 supported_version="1.12.*"
-path="mod/daedric_invasion"
+path="mod/lore_expansion"
 dependencies={
     "Elder Kings 2"
 }

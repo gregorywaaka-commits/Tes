@@ -1,0 +1,182 @@
+# =============================================================
+#  Kothringi Events  (Silver-Skinned Humans of Black Marsh)
+#  Namespace: kothringi
+# =============================================================
+
+namespace = kothringi
+
+# ---------------------------------------------------------------
+# kothringi.001  The Knahaten Flu Erupts in Black Marsh
+# ---------------------------------------------------------------
+kothringi.001 = {
+    type = character_event
+    title = kothringi.001.t
+    desc = kothringi.001.desc
+    theme = plague
+
+    option = {
+        name = kothringi.001.a   # "Seal the borders — no one leaves the marsh!"
+        add_modifier = { modifier = quarantine_modifier days = 730 }
+        add_prestige = 50
+    }
+
+    option = {
+        name = kothringi.001.b   # "Flee while we can — this sickness will consume us all."
+        trigger = { is_kothringi = yes }
+        add_prestige = -200
+        add_piety    = -100
+        depart_crimson_ship = yes
+    }
+}
+
+# ---------------------------------------------------------------
+# kothringi.002  The Flu Spreads — a neighbouring ruler is hit
+# ---------------------------------------------------------------
+kothringi.002 = {
+    type = character_event
+    title = kothringi.002.t
+    desc = kothringi.002.desc
+    theme = plague
+
+    trigger = {
+        is_alive = yes
+        any_held_county = {
+            any_neighboring_county = {
+                has_modifier = knahaten_flu_modifier
+            }
+        }
+        NOT = { has_trait = knahaten_immune }
+        NOT = { has_trait = kothringi_heritage }   # Argonians immune; Kothringi not
+        NOT = { is_kothringi = yes }
+    }
+
+    option = {
+        name = kothringi.002.a   # "Pray this passes us by."
+        add_stress = 10
+        add_modifier = { modifier = knahaten_flu_fear_modifier days = 365 }
+    }
+
+    option = {
+        name = kothringi.002.b   # "Burn the infected villages — harsh but necessary."
+        add_piety    = -300
+        add_prestige = -100
+        add_modifier = { modifier = quarantine_modifier days = 365 }
+    }
+}
+
+# ---------------------------------------------------------------
+# kothringi.010  Boarding the Crimson Ship
+# ---------------------------------------------------------------
+kothringi.010 = {
+    type = character_event
+    title = kothringi.010.t
+    desc = kothringi.010.desc
+    theme = diplomacy
+    left_portrait = {
+        character = root
+        animation = personality_melancholic
+    }
+
+    option = {
+        name = kothringi.010.a   # "We sail west — perhaps we will find safe harbour."
+        add_prestige = 100
+        add_stress   = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# kothringi.011  The Crimson Ship is Turned Away
+# (Fires after kothringi.010 — every port rejects them)
+# ---------------------------------------------------------------
+kothringi.011 = {
+    type = character_event
+    title = kothringi.011.t
+    desc = kothringi.011.desc
+    theme = diplomacy
+
+    trigger = {
+        has_trait = crimson_ship_survivor
+        NOT = { has_variable = crimson_ship_resolved }
+    }
+
+    option = {
+        name = kothringi.011.a   # "We sail on. There must be safe land somewhere."
+        add_stress   = 20
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# kothringi.020  Bargaining with Clavicus Vile — Stillrise Village
+# ---------------------------------------------------------------
+kothringi.020 = {
+    type = character_event
+    title = kothringi.020.t
+    desc = kothringi.020.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    option = {
+        name = kothringi.020.a   # "We accept — survival above all."
+        add_trait    = clavicus_bargain_made
+        add_trait    = knahaten_immune
+        add_piety    = -1000
+        add_prestige = -200
+        add_stress   = 30          # the weight of what you've become
+    }
+
+    option = {
+        name = kothringi.020.b   # "We refuse — better true death than Vile's mercy."
+        add_piety    = 500
+        add_prestige = 200
+        # Character may still die from the flu later
+    }
+}
+
+# ---------------------------------------------------------------
+# kothringi.050  Monthly flu spread tick (hidden)
+# ---------------------------------------------------------------
+kothringi.050 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        knahaten_flu_active = yes
+    }
+
+    immediate = {
+        # Spread the flu to one random neighboring county
+        random_county = {
+            limit = {
+                any_neighboring_county = {
+                    has_modifier = knahaten_flu_modifier
+                }
+                NOT = { has_modifier = knahaten_flu_modifier }
+                NOT = { title_province = { geographical_region = world_argonia_deep } } # Argonian heartland immune
+            }
+            add_province_modifier = {
+                modifier = knahaten_flu_modifier
+                days = -1
+            }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# kothringi.060  On-death cleanup
+# ---------------------------------------------------------------
+kothringi.060 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_trait = knahaten_immune
+    }
+
+    immediate = {
+        # trait stays — it is a permanent immunity
+    }
+}

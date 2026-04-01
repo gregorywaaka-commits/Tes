@@ -1,0 +1,39 @@
+# =============================================================
+#  Lore Races — On-Actions
+# =============================================================
+
+# Yearly random pulse — trigger obscure lore events
+on_yearly_pulse = {
+    random_events = {
+        200 = 0                      # no-op weight
+        3   = echmer.000             # expedition opportunity
+        4   = maormer.002            # Maormer raid on random coastal county
+        2   = sload.000              # Sload necromantic scheme discovered
+        5   = kamal.000              # Kamal thaw check
+        3   = dreugh.001             # Dreugh life-cycle event
+        2   = imga.001               # Imga aristocrat arrives at court
+        2   = towers.000             # Tower stability check
+    }
+}
+
+# Monthly pulse — Knahaten flu spread tick, Kamal seasonal check, Tower stability
+on_monthly_pulse = {
+    events = {
+        kothringi.050                # Knahaten flu spread tick
+        kamal.050                    # Kamal seasonal freeze / thaw tick
+    }
+}
+
+# On county occupied — chance for Kamal to freeze a province
+on_county_occupied = {
+    events = {
+        kamal.002                    # Kamal ice-curse on occupied county
+    }
+}
+
+# On character death — clean up lore race trait flags
+on_character_death = {
+    events = {
+        kothringi.060                # remove Knahaten immune flag if relevant
+    }
+}

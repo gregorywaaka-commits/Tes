@@ -1,0 +1,383 @@
+# =============================================================
+#  Lore Races — Decisions
+# =============================================================
+
+# ============================================================
+#  ECHMER
+# ============================================================
+
+# Send an expedition to Yneslea to make contact with the Echmer
+send_yneslea_expedition = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = send_yneslea_expedition_desc
+
+    is_shown = {
+        is_ruler = yes
+        NOT = { is_echmer_active_contact = yes }
+        stewardship >= 12
+        learning   >= 10
+    }
+
+    is_valid = {
+        prestige  >= 500
+        gold      >= 200
+        any_held_county = { is_coastal = yes }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -500
+        add_gold     = -200
+        trigger_event = { id = echmer.000 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 10
+            has_trait = curious
+        }
+        modifier = {
+            add = 10
+            learning >= 20
+        }
+    }
+}
+
+# A Echmer scholar in your court teaches Echolalia Fantasia
+study_echolalia_fantasia = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = study_echolalia_fantasia_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_echmer_active_contact = yes
+        NOT = { has_trait = echolalia_adept }
+        NOT = { has_trait = echolalia_master }
+    }
+
+    is_valid = {
+        learning >= 12
+        gold     >= 100
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_gold = -100
+        trigger_event = { id = echmer.005 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = {
+            add = 15
+            learning >= 18
+        }
+    }
+}
+
+# ============================================================
+#  MAORMER
+# ============================================================
+
+# Attempt to tame a Pyandonean sea serpent
+tame_pyandonean_sea_serpent = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = tame_pyandonean_sea_serpent_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_maormer = yes
+        NOT = { has_trait = sea_serpent_master }
+    }
+
+    is_valid = {
+        martial  >= 16
+        prowess  >= 14
+        prestige >= 800
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_alive = yes
+    }
+
+    effect = {
+        add_prestige = -800
+        trigger_event = { id = maormer.005 }
+    }
+
+    ai_will_do = {
+        base = 15
+        modifier = {
+            add = 20
+            has_trait = brave
+        }
+    }
+}
+
+# Call upon Orgnum's Blessing (Maormer ruler only, once per lifetime)
+seek_orgnum_blessing = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_orgnum_blessing_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_maormer = yes
+        orgnum_is_alive = yes
+        NOT = { has_trait = orgnum_blessed }
+    }
+
+    is_valid = {
+        piety    >= 1500
+        prestige >= 1000
+        diplomacy >= 16
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_piety    = -1500
+        add_prestige = -1000
+        trigger_event = { id = maormer.015 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 20
+            age >= 50
+        }
+        modifier = {
+            add = 10
+            has_trait = ambitious
+        }
+    }
+}
+
+# ============================================================
+#  SLOAD
+# ============================================================
+
+# Unleash an engineered plague upon your enemies
+unleash_sload_plague = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = unleash_sload_plague_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_sload  = yes
+        sload_plague_can_trigger = yes
+    }
+
+    is_valid = {
+        learning >= 20
+        gold     >= 500
+        NOT = { has_modifier = plague_cooldown_modifier }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_gold     = -500
+        add_piety    = -500
+        unleash_thrassian_plague = yes
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 20
+            any_neighboring_realm = {
+                realm_size >= 50
+            }
+        }
+    }
+}
+
+# ============================================================
+#  KOTHRINGI
+# ============================================================
+
+# Board the Crimson Ship and sail away from the Knahaten Flu
+board_crimson_ship = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = board_crimson_ship_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_kothringi = yes
+        knahaten_flu_active = yes
+        NOT = { has_trait = crimson_ship_survivor }
+        NOT = { has_trait = knahaten_immune }
+    }
+
+    is_valid = {
+        any_held_county = { is_coastal = yes }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        depart_crimson_ship = yes
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = {
+            add = 25
+            has_trait = craven
+        }
+    }
+}
+
+# Bargain with Clavicus Vile for immunity to the Flu
+bargain_with_clavicus_vile = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = bargain_with_clavicus_vile_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_kothringi = yes
+        knahaten_flu_active = yes
+        NOT = { has_trait = knahaten_immune }
+        NOT = { has_trait = clavicus_bargain_made }
+    }
+
+    is_valid = {
+        piety >= 500
+        NOT = { has_modifier = rejected_daedric_bargain }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        accept_clavicus_bargain = yes
+    }
+
+    ai_will_do = {
+        base = 0
+        modifier = {
+            add = 15
+            has_trait = craven
+        }
+        modifier = {
+            add = 10
+            health <= 3
+        }
+    }
+}
+
+# ============================================================
+#  ELDER TOWERS
+# ============================================================
+
+# A ruler claims a Tower Stone and becomes its Keeper
+claim_tower_stone = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = claim_tower_stone_desc
+
+    is_shown = {
+        is_ruler = yes
+        NOT = { has_trait = tower_stone_keeper }
+        # Must hold the county that contains a Tower
+        any_held_county = {
+            OR = {
+                this = title:c_imperial_city
+                this = title:c_balfiera
+                this = title:c_red_mountain
+                this = title:c_thras
+            }
+        }
+    }
+
+    is_valid = {
+        prestige  >= 1000
+        piety     >= 500
+        learning  >= 14
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -1000
+        add_piety    = -500
+        random_held_county = {
+            limit = {
+                OR = {
+                    this = title:c_imperial_city
+                    this = title:c_balfiera
+                    this = title:c_red_mountain
+                    this = title:c_thras
+                }
+            }
+            save_scope_as = tower_county
+        }
+        activate_tower_stone_effect = yes
+        trigger_event = { id = towers.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = {
+            add = 20
+            learning >= 20
+        }
+    }
+}
+
+# Attempt to destroy a rival's Tower Stone (destabilise their tower)
+sabotage_tower_stone = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = sabotage_tower_stone_desc
+
+    is_shown = {
+        is_ruler = yes
+        any_neighboring_realm = {
+            any_held_county = {
+                has_variable = tower_stone_present
+            }
+        }
+    }
+
+    is_valid = {
+        intrigue  >= 18
+        prestige  >= 1500
+        gold      >= 800
+        NOT = { has_modifier = tower_sabotage_cooldown }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -1500
+        add_gold     = -800
+        trigger_event = { id = towers.005 }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = {
+            add = 10
+            has_trait = schemer
+        }
+    }
+}

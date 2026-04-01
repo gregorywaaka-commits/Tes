@@ -1,0 +1,187 @@
+# =============================================================
+#  Sload Events  (Slug Necromancers of Thras / Coral Tower)
+#  Namespace: sload
+# =============================================================
+
+namespace = sload
+
+# ---------------------------------------------------------------
+# sload.000  A Sload Necromantic Scheme Uncovered
+# ---------------------------------------------------------------
+sload.000 = {
+    type = character_event
+    title = sload.000.t
+    desc = sload.000.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        NOT = { is_sload = yes }
+        any_courtier = {
+            has_trait = sload_necromancer
+        }
+    }
+
+    option = {
+        name = sload.000.a   # "Expel this creature from our court!"
+        every_courtier = {
+            limit = { has_trait = sload_necromancer }
+            banish = yes
+        }
+        add_prestige = 100
+    }
+
+    option = {
+        name = sload.000.b   # "Their knowledge is too valuable to waste."
+        add_stress   = 20
+        add_piety    = -200
+        # Keep them — gain a learning bonus
+        every_courtier = {
+            limit = { has_trait = sload_necromancer }
+            add_opinion = { target = root modifier = tolerated_necromancer }
+        }
+        add_learning = 3
+    }
+}
+
+# ---------------------------------------------------------------
+# sload.001  The Thrassian Plague Begins — global notification
+# ---------------------------------------------------------------
+sload.001 = {
+    type = character_event
+    title = sload.001.t
+    desc = sload.001.desc
+    theme = plague
+
+    option = {
+        name = sload.001.a   # "Close the ports — let nothing in or out."
+        add_modifier = { modifier = quarantine_modifier days = 365 }
+        add_prestige = 50
+    }
+
+    option = {
+        name = sload.001.b   # "The Sload will pay for this."
+        add_stress   = -10
+        add_prestige = 100
+        trigger_event = { id = sload.005 days = 90 }
+    }
+}
+
+# ---------------------------------------------------------------
+# sload.005  Rulers Call for an All-Flags Navy
+# ---------------------------------------------------------------
+sload.005 = {
+    type = character_event
+    title = sload.005.t
+    desc = sload.005.desc
+    theme = war
+
+    trigger = {
+        is_alive = yes
+        any_held_county = { is_coastal = yes }
+        thrassian_plague_active = yes
+    }
+
+    option = {
+        name = sload.005.a   # "We will join the fleet!"
+        form_all_flags_navy_effect = yes
+        add_prestige = 300
+        add_piety    = 200
+    }
+
+    option = {
+        name = sload.005.b   # "Let others deal with Thras."
+        add_prestige = -100
+        add_piety    = -100
+    }
+}
+
+# ---------------------------------------------------------------
+# sload.010  All-Flags Navy Assembles
+# ---------------------------------------------------------------
+sload.010 = {
+    type = character_event
+    title = sload.010.t
+    desc = sload.010.desc
+    theme = war
+
+    option = {
+        name = sload.010.a   # "Sail for Thras — let us end this."
+        add_prestige = 200
+        trigger_event = { id = sload.015 days = 365 }
+    }
+}
+
+# ---------------------------------------------------------------
+# sload.015  The Siege of Thras — Coral Tower Confrontation
+# ---------------------------------------------------------------
+sload.015 = {
+    type = character_event
+    title = sload.015.t
+    desc = sload.015.desc
+    theme = war
+
+    trigger = {
+        exists = global_var:all_flags_navy_active
+    }
+
+    option = {
+        name = sload.015.a   # "Attack the Coral Tower directly!"
+        trigger = {
+            martial >= 16
+            prestige >= 500
+        }
+        # Success: Thras is destroyed, plague ends
+        destroy_thras_effect = yes
+        add_prestige = 2000
+        add_piety    = 1000
+        trigger_event = { id = sload.020 }
+    }
+
+    option = {
+        name = sload.015.b   # "Pull back — the tower's magic is too powerful."
+        add_prestige = -500
+        add_stress   = 25
+        # Plague continues one more year
+        trigger_event = { id = sload.015 days = 365 }
+    }
+}
+
+# ---------------------------------------------------------------
+# sload.020  Thras Sinks — The Plague Ends
+# ---------------------------------------------------------------
+sload.020 = {
+    type = character_event
+    title = sload.020.t
+    desc = sload.020.desc
+    theme = feast
+
+    option = {
+        name = sload.020.a   # "Thras is no more. Let the healing begin."
+        add_prestige = 500
+        add_piety    = 300
+    }
+}
+
+# ---------------------------------------------------------------
+# sload.025  Coral Tower Whispers — a living Tower Stone?
+# ---------------------------------------------------------------
+sload.025 = {
+    type = character_event
+    title = sload.025.t
+    desc = sload.025.desc
+    theme = learning
+
+    trigger = {
+        is_sload = yes
+        has_trait = sload_high_necromancer
+        title:c_thras = { has_variable = tower_stone_present }
+    }
+
+    option = {
+        name = sload.025.a   # "Channel the Coral Tower's power."
+        add_piety    = 500
+        add_prestige = 300
+        add_learning = 3
+    }
+}
