@@ -429,3 +429,76 @@ vile_curse_modifier = {
     diplomacy = -3
     monthly_income = -0.1
 }
+
+# =============================================================
+#  Guild Leadership Modifiers  — permanent bonuses for leaders
+#  Applied when the leadership trait is gained; days = -1 (permanent)
+# =============================================================
+
+guild_leader_mages_modifier = {
+    learning   = 4
+    monthly_prestige_gain_mult = 0.15
+    monthly_piety_gain_mult    = 0.15
+    # Grants access to the Guild's full magical resources
+}
+
+guild_leader_fighters_modifier = {
+    martial    = 4
+    prowess    = 4
+    levy_size  = 0.10
+    monthly_prestige_gain_mult = 0.12
+    command_modifier = { advantage = 4 damage = 0.1 max_morale = 0.25 }
+}
+
+guild_leader_thieves_modifier = {
+    intrigue   = 5
+    stewardship = 3
+    monthly_income = 0.15
+    dread_gain_mult = 0.2
+}
+
+guild_leader_db_modifier = {
+    intrigue   = 6
+    dread_gain_mult = 0.35
+    monthly_prestige_gain_mult = 0.1
+    # The Listener's dread precedes them across Tamriel
+}
+
+guild_leader_tong_modifier = {
+    intrigue   = 5
+    prowess    = 4
+    monthly_piety_gain_mult    = 0.2
+    dread_gain_mult            = 0.3
+    monthly_prestige_gain_mult = 0.12
+}
+
+guild_leader_companions_modifier = {
+    prowess    = 5
+    martial    = 4
+    monthly_prestige_gain_mult = 0.20
+    command_modifier = { advantage = 5 damage = 0.15 max_morale = 0.3 }
+}
+
+guild_leader_psijic_modifier = {
+    learning   = 6
+    diplomacy  = 4
+    monthly_piety_gain_mult    = 0.25
+    monthly_prestige_gain_mult = 0.15
+}
+
+guild_leader_bards_modifier = {
+    diplomacy  = 5
+    learning   = 3
+    monthly_prestige_gain_mult = 0.25
+    stress_loss_mult = 0.15
+}
+
+guild_leader_undaunted_modifier = {
+    prowess    = 5
+    martial    = 4
+    monthly_prestige_gain_mult = 0.18
+    command_modifier = { advantage = 5 damage = 0.12 }
+}
+
+# Post-quest cooldown (shared across all leader post-events)
+guild_leader_postquest_cooldown = { }

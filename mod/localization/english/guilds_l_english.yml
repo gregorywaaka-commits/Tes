@@ -1,3 +1,4 @@
+# Encoding: UTF-8-BOM
 l_english:
  # ============================================================
  #  Guild System — Full Localization
@@ -386,3 +387,256 @@ l_english:
  guild.undaunted.delve.a: "Into the ruins."
  guild.undaunted.delve.b: "Turn back — the ruins are too dangerous."
  undaunted_delve_success_tt: "A magnificent haul — an ancient artefact, rare materials, and the kind of story that will buy drinks for a decade."
+
+ # ============================================================
+ #  Guild Leadership Questline Localization
+ # ============================================================
+
+ # ---- Decision Names ----
+ begin_mages_guild_leadership_quest: "Uncover the Guild's Dark Secret"
+ begin_mages_guild_leadership_quest_desc: "Something is wrong within the Mages Guild's highest ranks. Strange readings in the vault, whispered rumours among the Associates, a Magister who will not meet your eyes. It is time to find out what the Arch-Magister is hiding."
+ claim_mages_guild_leadership: "Claim the Title of Arch-Magister"
+ claim_mages_guild_leadership_desc: "The Council is ready to vote. The old Arch-Magister is discredited. The Mages Guild needs a new head, and the evidence — and the votes — are in our hands."
+
+ begin_fighters_guild_leadership_quest: "Investigate the Guild Corruption"
+ begin_fighters_guild_leadership_quest_desc: "There are rumours — contracts going wrong in suspicious ways, arrested Guild members who should have been untouchable, gold flowing from the wrong direction. Someone in the Guild's senior ranks is compromised. Find them."
+ claim_fighters_guild_leadership: "Claim the Guildmaster's Seal"
+ claim_fighters_guild_leadership_desc: "The corruption has been exposed and the old Guildmaster has named a successor. The seal is ready to be passed on."
+
+ begin_thieves_guild_leadership_quest: "Find the Rat in the Walls"
+ begin_thieves_guild_leadership_quest_desc: "Footpads are being arrested. Operations are being ambushed before they begin. Someone is feeding the city guard our routes and our names. Find the informant before there is no Guild left to protect."
+ claim_thieves_guild_leadership: "Take the Guild Master's Mark"
+ claim_thieves_guild_leadership_desc: "The traitor has been dealt with. The Guild Master's mark and chain of authority are ours to take."
+
+ begin_dark_brotherhood_leadership_quest: "Answer the Night Mother's Silence"
+ begin_dark_brotherhood_leadership_quest_desc: "The Night Mother has gone silent. No contracts reach the Black Hand. A schism within the Brotherhood threatens to tear the Family apart. The covenant with Sithis must be restored — and it falls to us to do it."
+ claim_dark_brotherhood_listener: "Become the Listener"
+ claim_dark_brotherhood_listener_desc: "The Night Mother has spoken. The Brotherhood looks to us. The time has come to formally accept the title of Listener and take the Family's guiding hand."
+
+ begin_morag_tong_leadership_quest: "Carry Out the Impossible Writ"
+ begin_morag_tong_leadership_quest_desc: "A writ has arrived for the most heavily protected target in Morrowind. Simultaneously, a rogue cadre within the Tong is conducting unsanctioned killings, threatening the Guild's legal standing. Both must be resolved — for Mephala."
+ claim_morag_tong_grandmaster: "Claim the Grandmaster's Seal"
+ claim_morag_tong_grandmaster_desc: "The Grandmaster is dead. The Seal is in our hands. The Tong needs a new Grandmaster, and Mephala's web has chosen us."
+
+ begin_companions_harbinger_quest: "Honour the Old Wolf's Last Request"
+ begin_companions_harbinger_quest_desc: "Kodlak Whitemane lies dying. He has one final request — one last hunt, one last act of honour for the Companions and for Ysgramor's memory. It falls to us to carry it out."
+ claim_companions_harbinger: "Accept the Harbinger's Mantle"
+ claim_companions_harbinger_desc: "The Circle is assembled. Kodlak's final wish has been honoured. The Companions need a Harbinger, and our name has been spoken."
+
+ begin_psijic_master_quest: "Face the Rift in the Aether"
+ begin_psijic_master_quest_desc: "A tear in Aetherius is spreading wild magic across the region. The Order is divided on whether to act. In the debate, the Master of the Order is drawn into the Rift itself. The burden falls to us."
+ claim_psijic_master: "Accept Mastery of the Psijic Order"
+ claim_psijic_master_desc: "The Order meditates together and reaches the same conclusion. In the Master's absence — and by his final projected thought — we are named to lead the Order."
+
+ begin_bards_master_quest: "Recover the Lost Canticle of Shor"
+ begin_bards_master_quest_desc: "The oldest song in the world — the Canticle of Shor, believed lost since the Dawn Era — has been found in a crumbling ruin. The College's current Head is ill. A rival wants it for themselves. The Canticle must be recovered, decoded, and performed."
+ claim_bards_master: "Accept Headship of the Bards College"
+ claim_bards_master_desc: "The current Head has named their successor before the entire College. The title of Master Bard is ours."
+
+ begin_undaunted_elite_quest: "Attempt the Vault of Endless Dark"
+ begin_undaunted_elite_quest_desc: "No expedition has ever returned from the ruin the locals call the Vault of Endless Dark. An Ayleid structure sealed with a Daedric lock, containing something that even the Daedra do not want disturbed. We volunteer to go in."
+ claim_undaunted_elite: "Claim Undaunted Elite Status"
+ claim_undaunted_elite_desc: "We came back. The Vault was delved, the prize secured, the darkness faced and survived. The Undaunted have only one name for that."
+
+ # ---- Mages Guild Leadership Events ----
+ guild_leader.mages.001.t: "Whispers in the Vault"
+ guild_leader.mages.001.desc: "A nervous junior mage pulls us aside after the evening lecture, glancing left and right like someone who expects to be stabbed. 'The restricted vault,' they whisper. 'I've been checking the catalogues and there are entries that don't match the shelves. Soul gems — large ones — are missing. And there are stains on the floor that weren't there last month.' The Arch-Magister has been spending a lot of time in that vault lately."
+ guild_leader.mages.001.a: "Investigate further — discreetly."
+ guild_leader.mages.001.b: "Report to the Arch-Magister at once."
+
+ guild_leader.mages.002.t: "The Forbidden Study"
+ guild_leader.mages.002.desc: "The evidence is damning. A laboratory hidden behind an illusionary wall. Tubes of soporific gas. Soul gems containing trapped mortals — not monsters, not criminals. Guild Associates, by the look of their Initiate medallions. And a research journal, written in the Arch-Magister's unmistakable hand, recording the results of Daedric soul-trapping experiments. They have been selling the knowledge to an unnamed 'patron' — someone with Oblivion's interests at heart."
+ guild_leader.mages.002.a: "Gather the evidence. We take this to the Council."
+ guild_leader.mages.002.b: "Destroy the evidence — the Guild's reputation must come first."
+
+ guild_leader.mages.003.t: "Before the Arcane Council"
+ guild_leader.mages.003.desc: "The Council Chamber. Seven senior Magisters, several of whom look as though they already suspect what is coming. The Arch-Magister stands at the far end of the table, face unreadable. We have the journal. We have the trapped souls. We have the testimony of a dozen junior mages. The Arch-Magister looks at us with something between contempt and exhausted resignation. 'You would really do this,' they say. It isn't a question."
+ guild_leader.mages.003.a: "Confront the Arch-Magister openly — let the Council judge."
+ guild_leader.mages.003.b: "Challenge the Arch-Magister privately — give them a chance to resign."
+
+ guild_leader.mages.lead.t: "Arch-Magister"
+ guild_leader.mages.lead.desc: "The vote is unanimous — or near enough. The previous Arch-Magister has been stripped of rank and expelled from the Guild pending further proceedings. The Council looks to us. 'The Guild needs a new head immediately,' the eldest Magister says. 'The nomination has already been discussed. There was not much disagreement.' They place the Arch-Magister's seal on the table in front of us."
+ guild_leader.mages.lead.a: "I accept the burden of Arch-Magister."
+
+ # ---- Fighters Guild Leadership Events ----
+ guild_leader.fighters.001.t: "Swords for Hire — or for Sale"
+ guild_leader.fighters.001.desc: "The rumours have a pattern. Three separate contracts in the past month have gone wrong in the same way — the targets knew we were coming. Two of our Journeymen are in prison under circumstances that make no sense unless someone warned the city watch. And there is a name that keeps surfacing: a bandit lord called the Ironed Hand, who has been active in an area the Guild has supposedly been clearing for six months."
+ guild_leader.fighters.001.a: "Look into the rumours."
+ guild_leader.fighters.001.b: "Report it to the Guildmaster."
+
+ guild_leader.fighters.002.t: "The Ironed Hand's Payroll"
+ guild_leader.fighters.002.desc: "The ledger is found in a locked box in a senior Guardian's quarters — names, dates, amounts. Five senior Guardians on the Ironed Hand's payroll. They have been selling contract intelligence for three years. The Guildmaster is shown the ledger and stares at it for a very long time before saying, quietly, 'I trusted them.' The Ironed Hand himself is two hours' ride away, celebrating what he thinks is our imminent collapse."
+ guild_leader.fighters.002.a: "Ambush the corrupt guardians and the bandit lord together."
+ guild_leader.fighters.002.b: "Expose them through proper channels — formal tribunal."
+
+ guild_leader.fighters.003.t: "The Last Reckoning"
+ guild_leader.fighters.003.desc: "The Ironed Hand's stronghold. His corrupted Guardians have fled there — along with about two hundred sell-swords paid for with Guild money. The Guildmaster is too old for this fight. He says so plainly, leaning on his sword-cane in the Guild hall, and then he looks at us with the measuring eye of someone who has spent forty years judging fighters. 'This is yours to finish. Not because I cannot, but because when it's done, the Guild needs someone to come through that gate first. Someone they will follow.'"
+ guild_leader.fighters.003.a: "Accept — lead the assault yourself."
+ guild_leader.fighters.003.b: "Send your best fighters while you coordinate."
+
+ guild_leader.fighters.lead.t: "The Guildmaster's Seal"
+ guild_leader.fighters.lead.desc: "The Ironed Hand is dead. His stronghold is cleared. The corrupt Guardians face Guild justice. The Guildmaster places the Seal on the table between us, next to a cup of cold ale. 'I've been holding this too long,' he says. 'I should have seen what was under my nose. But you did.' He pushes the Seal toward us. 'Don't let it collect dust.'"
+ guild_leader.fighters.lead.a: "I accept the Guildmaster's seal."
+
+ # ---- Thieves Guild Leadership Events ----
+ guild_leader.thieves.001.t: "Someone Is Talking"
+ guild_leader.thieves.001.desc: "Fourteen Footpads arrested in six weeks. An ambush laid for a Prowler who only knew her assignment an hour before the patrol arrived. Someone is feeding the guard information that could only come from inside the Guild's senior leadership — only a handful of people know what we know. The other Shadowfoots are scared. One has already disappeared, which could mean flight or worse."
+ guild_leader.thieves.001.a: "Set a trap — leak false information and see who bites."
+ guild_leader.thieves.001.b: "Work backwards from the arrests — which jobs were only known to seniors?"
+
+ guild_leader.thieves.002.t: "A Chain of Trust, Broken"
+ guild_leader.thieves.002.desc: "The false ledger entry triggers exactly the response we needed — a patrol deployed to a location only the Guild Master and two others knew about. The circle narrows to one. The Guild Master. The one we trusted above everyone else. It is not rage that settles in our chest as we understand. It is something colder than that."
+ guild_leader.thieves.002.a: "Confront them alone — give them a chance to explain."
+ guild_leader.thieves.002.b: "Bring other senior members as witnesses."
+
+ guild_leader.thieves.003.t: "The Master's Bargain"
+ guild_leader.thieves.003.desc: "The Guild Master does not deny it. They sold us for immunity from prosecution — a private arrangement with a city magistrate who wanted the Guild neutered. 'I am getting old,' they say, voice flat. 'I wanted out. I wanted to stop looking over my shoulder.' They spread their hands. 'So. What now?' The other Shadowfoots — those who came as witnesses, those who came for answers — are very quiet."
+ guild_leader.thieves.003.a: "Show them mercy — exile from the Guild."
+ guild_leader.thieves.003.b: "The Guild's law is clear. They chose their fate."
+
+ guild_leader.thieves.lead.t: "The Guild Master's Mark"
+ guild_leader.thieves.lead.desc: "The Guild Master's chain and the mark of authority — a carved bone ring, ancient and unimpressive-looking, that every Footpad in the organisation would recognise — are placed in our hands by the assembled Shadowfoots. No ceremony. No speech. One of them says, 'Don't sell us,' and that seems to cover it."
+ guild_leader.thieves.lead.a: "I take the Guild Master's mark."
+
+ # ---- Dark Brotherhood Leadership Events ----
+ guild_leader.db.001.t: "The Night Mother's Silence"
+ guild_leader.db.001.desc: "Six weeks without a contract. The sanctuaries are uneasy — the Family is not supposed to sit idle. And then word reaches us of a faction calling themselves the Dread Father's Own: Brothers and Sisters who believe the Night Mother is a false idol and that Sithis requires nothing but death, unordered, unsanctioned. They have already killed three Brothers who disagreed with them. The Black Hand is meeting tonight."
+ guild_leader.db.001.a: "Perform the Rite of Seeking — force the Night Mother's attention."
+ guild_leader.db.001.b: "Root out the Dread Father cultists first."
+
+ guild_leader.db.002.t: "Purification"
+ guild_leader.db.002.desc: "The cultists are seven in number, including two speakers who should have known better. They have barricaded a secondary sanctuary and are performing their own rituals — unsanctioned killings, bodies left in plain sight, the Five Tenets written in blood on the walls and crossed out. The Black Hand is unanimous: this cannot stand. Someone must go in."
+ guild_leader.db.002.a: "Purge the sanctuary. The Five Tenets are absolute."
+ guild_leader.db.002.b: "Offer the cultists one chance to recant."
+
+ guild_leader.db.003.t: "A Voice in the Dark"
+ guild_leader.db.003.desc: "The sanctuary is quiet. Seven bodies in various states, none of them ours. The air is still. And then — in the absolute silence of the aftermath, in the way that only happens when everything else is gone and the world is holding its breath — a voice. Calm. Old. Utterly certain of itself. Speaking a name. Our name. The Night Mother has decided who should listen to her."
+ guild_leader.db.003.a: "Sithis has judged them. I hear the Night Mother."
+
+ guild_leader.db.lead.t: "The Listener"
+ guild_leader.db.lead.desc: "The Black Hand assembles in the sanctuary. The Night Mother's coffin is at the end of the room, as it always is. The remaining Speakers look at us with something between awe and gratitude. The eldest says: 'The Night Mother has spoken. It is not our place to argue with her.' They kneel. Every member of the Family in the room kneels. In the quiet that follows, we hear her voice again — patient, certain, ready to begin."
+ guild_leader.db.lead.a: "I am the Listener. The Night Mother's will is mine to carry."
+
+ # ---- Morag Tong Leadership Events ----
+ guild_leader.tong.001.t: "The Impossible Writ"
+ guild_leader.tong.001.desc: "The writ arrives on sealed parchment bearing the Tribunal's mark — a commissioning we have never seen before. The target: Grandmaster Etreves Draleth, head of a Hlaalu criminal network so powerful that he has bought the silence of three Tribunal magistrates and employs more personal guards than some petty lords. The fee attached to the writ is extraordinary. And at the same time, word comes that a rogue cadre within our own ranks has been killing without writs — threatening the Tong's precious legal standing."
+ guild_leader.tong.001.a: "Accept the writ. Mephala has set this in motion."
+ guild_leader.tong.001.b: "Investigate the rogues first — an illegal killing could end us all."
+
+ guild_leader.tong.002.t: "The Rogue Thread"
+ guild_leader.tong.002.desc: "The rogue cadre numbers eleven — all trained by a Master who has since been expelled for attempting to sell writs privately. They believe the Tong has grown too political, too bound by Tribunal oversight. Their kills are messy: public, conspicuous, the work of people who want to make a point rather than carry out Mephala's subtle design. Our own Grandmaster has been making excuses for them, which is why the Tribunal placed their writ. The old man has lost his judgement."
+ guild_leader.tong.002.a: "Hunt the rogues down. The Tong cannot be tainted."
+ guild_leader.tong.002.b: "Bring them before the Grandmaster."
+
+ guild_leader.tong.003.t: "The Seal in a Dead Hand"
+ guild_leader.tong.003.desc: "The rogue cadre is dealt with. And the writ — the impossible writ — we understand it now. Grandmaster Draleth was ours all along. The Tribunal placed the writ not to eliminate a criminal but to remove a Grandmaster who had allowed the Tong to drift from Mephala's design. His body is calm. His hand still loosely holds the Tong's Grand Seal. It was always going to end here."
+ guild_leader.tong.003.a: "The writ was just. I carry out Mephala's will."
+ guild_leader.tong.003.b: "The Tribunal's reach is long. I must be careful."
+
+ guild_leader.tong.lead.t: "Grandmaster of the Morag Tong"
+ guild_leader.tong.lead.desc: "The Tong's surviving Masters assemble in the old hall of carved stone. They look at us without obvious emotion, which from Morag Tong members is practically a standing ovation. One of them holds out the Grand Seal — simple, heavy, older than the current era. 'The writ is complete,' she says. 'The Tong requires a Grandmaster. Mephala's design is clear.' No one disagrees."
+ guild_leader.tong.lead.a: "I accept the Grandmaster's Seal."
+
+ # ---- Companions Leadership Events ----
+ guild_leader.comp.001.t: "The Old Wolf Lies Down"
+ guild_leader.comp.001.desc: "Kodlak Whitemane — or the elder Harbinger who holds his legacy in this age — was brought back from the last hunt on a stretcher. The wound is deep and in the wrong place, and the healers do not meet anyone's eyes when asked for a prognosis. He is propped up in Jorrvaskr's great hall, drinking mead with the careful deliberateness of someone who knows they will not finish many more cups, and he is asking for the Circle."
+ guild_leader.comp.001.a: "Stay at his side. His wisdom is not spent yet."
+ guild_leader.comp.001.b: "Begin preparing the final hunt immediately."
+
+ guild_leader.comp.002.t: "The Last Request"
+ guild_leader.comp.002.desc: "He does not ask for a healer, or for glory, or for revenge. He asks for the Glenmoril Witch-heads — a specific ritual item that can, according to the oldest Companions lore, break the beast-blood covenant and free a soul from Hircine's Hunting Grounds. 'I have run with the beast long enough,' he says. 'I do not want to spend eternity in Hircine's Hunt. I want the mead-hall of Sovngarde.' He looks at us steadily. 'Can you do this?'"
+ guild_leader.comp.002.a: "Lead the hunt. We will bring back what is needed."
+ guild_leader.comp.002.b: "The hunt is for you — but I will avenge if you fall."
+
+ guild_leader.comp.003.t: "Sovngarde Awaits"
+ guild_leader.comp.003.desc: "The Witch-heads are brought. The ritual is performed. Whether it works — whether Hircine releases a soul who was brought to him willingly, who served him in life — is a question that cannot be answered this side of death. Kodlak seems satisfied. In his last hour, with the Circle around him and the fire burning low, he speaks of Ysgramor. He speaks of what the Companions are for. And he says our name. Just our name. The Circle understand what it means."
+ guild_leader.comp.003.a: "We honour his memory — and carry his legacy forward."
+ guild_leader.comp.003.b: "Weep for him. Then rise. The Companions need a Harbinger."
+
+ guild_leader.comp.lead.t: "Harbinger"
+ guild_leader.comp.lead.desc: "The Circle assembles in the understreets of Jorrvaskr. They have debated — probably for all of two minutes. The eldest speaks: 'Harbinger is not a leader. We don't have a leader. But we have a guide, a first-among-equals, someone who speaks for what we are and what we do. Kodlak named you. We agree.' A round of mead is poured. Someone starts a song. It is, by all accounts, a very good song."
+ guild_leader.comp.lead.a: "I accept. For Ysgramor. For Kodlak."
+
+ # ---- Psijic Order Leadership Events ----
+ guild_leader.psijic.001.t: "A Wound in the World"
+ guild_leader.psijic.001.desc: "Something has torn the fabric of Aetherius open approximately three hundred leagues to the south. The Psijic archives have recordings of similar events — none closer than the Mythic Era. Wild magic is spreading outward from the tear in waves: animals transformed, crops withered, madness reported in villages near the epicentre. The Order gathers to debate. The Elder Way says: observe. Record. Do not intervene in the affairs of the mortal world. And yet the mortal world is burning."
+ guild_leader.psijic.001.a: "Advocate for intervention — the Rift endangers all life."
+ guild_leader.psijic.001.b: "Observe and record — the Elder Way demands restraint."
+
+ guild_leader.psijic.002.t: "Into the Rift"
+ guild_leader.psijic.002.desc: "During the debate — not a heated debate, Psijics don't do heated debates, it is a series of very calm statements of increasingly incompatible positions — the Master of the Order steps forward to demonstrate the Rift's exact properties by observing it at closer range through the Order's long-sight. There is a sound like silence made solid. And then he is simply gone. The Rift has him. The Order looks at us."
+ guild_leader.psijic.002.a: "Enter the Rift — bring him back."
+ guild_leader.psijic.002.b: "Seal the Rift. If the Master is lost, his will was done."
+
+ guild_leader.psijic.003.t: "What the Rift Taught Us"
+ guild_leader.psijic.003.desc: "The Rift is sealed. The wild magic disperses over the following weeks. Of the Master — gone. Whether to a higher plane of existence, to the Aetherial realm beyond the tear, or simply to Aetherius itself, the Order cannot determine. Through the seal, in the last second before it closed, something was felt: a sense of approval. And a thought, projected with the precision of a lifetime of Elder Way discipline, carrying exactly one piece of information — our name."
+ guild_leader.psijic.003.a: "Accept what the Rift taught us. Record it all."
+
+ guild_leader.psijic.lead.t: "Master of the Psijic Order"
+ guild_leader.psijic.lead.desc: "The Order meditates together on Artaeum for three days. On the fourth day, the most senior remaining member speaks: 'The Master chose his successor long before the Rift. He simply waited for the right moment to make it known. We are agreed.' There is no ceremony. There is no vote. There is a shift in the quality of the light on the island, which Artaeum sometimes does when something significant has happened, and then they all go back to their studies."
+ guild_leader.psijic.lead.a: "I accept the burden of the Old Ways."
+
+ # ---- Bards College Leadership Events ----
+ guild_leader.bards.001.t: "The Canticle Fragment"
+ guild_leader.bards.001.desc: "The letter from a colleague in the field is unprepossessing in appearance — bad handwriting, ink smeared in one corner, the seal already half-broken. But the contents: a fragment of carved stone recovered from a collapsed Nedic barrow, bearing text that pre-dates the conventional written records of any known language, and which two separate translators independently identified as a section of the Canticle of Shor — the song sung at the beginning of the world, before any mortal wrote down any word. Believed utterly lost. Present in a box on our desk."
+ guild_leader.bards.001.a: "Go to the ruin personally — such a discovery demands a true scholar."
+ guild_leader.bards.001.b: "Send trusted students with instructions."
+
+ guild_leader.bards.002.t: "The Rival's Gambit"
+ guild_leader.bards.002.desc: "A bard of considerable reputation and considerably less scruples — one Herevyn of Farrun, who has spent a career claiming other people's compositions as his own — has heard about the Canticle. Specifically, he has heard that someone has a fragment of it. And he has arrived at the College with a delegation of wealthy patrons and a very detailed legal argument about prior research rights. The current Head of the College is too ill to receive him. We are not."
+ guild_leader.bards.002.a: "Expose them publicly — let the College judge."
+ guild_leader.bards.002.b: "Recover the fragment privately — the song is more important."
+
+ guild_leader.bards.003.t: "The Grand Recital"
+ guild_leader.bards.003.desc: "The Canticle is decoded — most of it. A few words remain uncertain, but the melody is clear, and what words survive are extraordinary: a song about the making of the world that somehow also describes, with perfect accuracy, the feeling of coming home after a very long journey. The Head of the College is brought to the recital in a chair. They are very pale and breathing with effort. The audience includes, by coincidence or design, two lords who have been at war for eleven years. The performance begins."
+ guild_leader.bards.003.a: "Perform the Canticle. Let the music speak."
+
+ guild_leader.bards.lead.t: "Master Bard"
+ guild_leader.bards.lead.desc: "The two lords are speaking for the first time in eleven years. One of them is crying, which they will later deny. The Canticle hangs in the air of the Hall as audiences sometimes hold their breath after a performance that they do not want to end. The Head of the College, from their chair at the front, reaches out a hand. Their voice is very quiet but very clear: 'Come here.' They take our hand in both of theirs and say, so that the whole Hall can hear: 'The College has its new head. I name them freely, and I am proud.'"
+ guild_leader.bards.lead.a: "I accept the headship of the Bards College."
+
+ # ---- Undaunted Leadership Events ----
+ guild_leader.undaunted.001.t: "The Vault of Endless Dark"
+ guild_leader.undaunted.001.desc: "The Undaunted's information network has been trading stories about this place for fifteen years. Six expeditions attempted. Six expeditions — nothing. No survivors, no bodies, no equipment left at the entrance. A structure of Ayleid design built into a hillside that the locals won't go within half a mile of, sealed with a lock that three expert enchanters couldn't identify, let alone open. Someone has apparently found a way through. They left a note on the tavern board. 'The lock is Daedric. Good luck.' We are apparently going."
+ guild_leader.undaunted.001.a: "We go in. All of us, together."
+ guild_leader.undaunted.001.b: "Scout it first. Small team, careful approach."
+
+ guild_leader.undaunted.002.t: "Things That Should Not Still Move"
+ guild_leader.undaunted.002.desc: "Soul constructs. Dozens of them — Ayleid in design, bound to the Vault's defence by enchantments that are still perfectly functional after however many centuries. They don't tire. They don't stop. They repair themselves when damaged, drawing on the Varla Stones embedded in the ceiling. We've lost two Undaunted already and we're approximately one third of the way in. The constructs don't seem angry. They just seem absolutely certain that we should leave. We are not leaving."
+ guild_leader.undaunted.002.a: "Fight through — for glory, for the Guild."
+ guild_leader.undaunted.002.b: "Find another way — collapse the entrance above them."
+
+ guild_leader.undaunted.003.t: "The Voice at the Centre"
+ guild_leader.undaunted.003.desc: "The heart of the Vault. A single enormous Varla Stone, larger than any in the Guild's records, suspended above the floor on a column of solidified Aetherial light. And a voice — calm, cold, neither hostile nor welcoming — that fills the room without apparent source. 'You have come for it. Others have come for it. None have taken it. I do not prevent you. I merely ask: do you understand what you carry if you leave with it? Power, yes. But power is a debt, and debts require payment. Or you may leave with nothing but your lives, which is not nothing.'"
+ guild_leader.undaunted.003.a: "Take the Stone. Leave the Daedra nothing."
+ guild_leader.undaunted.003.b: "Accept the power. Dangerous, but we're already here."
+
+ guild_leader.undaunted.lead.t: "Undaunted Elite"
+ guild_leader.undaunted.lead.desc: "Sunlight again. The entrance collapses behind us — or we collapse it, depending on the option chosen — and we are standing outside the Vault of Endless Dark in the middle of an extremely normal afternoon. Our Undaunted companions stare at us for a moment. Then the eldest one, who has been doing this for thirty years and has survived things that should have killed her seven times over, starts to laugh. 'You magnificent idiots,' she says. 'You actually came back.' The song they write about this will be sung in Undaunted taverns for a generation."
+ guild_leader.undaunted.lead.a: "We're the Undaunted. We came back."
+
+ # ---- Post-Leadership Events ----
+ guild_leader.mages.post_001.t: "The Arch-Magister's Council"
+ guild_leader.mages.post_001.desc: "A petition arrives from a distant city — a community of mages operating without Guild sanction, too far from any established chapter to receive formal instruction. They are requesting recognition and resources: a proper chapter-house, access to the Guild's catalogue, a senior Wizard to oversee their work. The Guild Council is divided on the cost."
+ guild_leader.mages.post_001.a: "Grant the petition — expand the chapter."
+ guild_leader.mages.post_001.b: "Refuse — the Guild's resources are stretched."
+
+ guild_leader.fighters.post_001.t: "The Contract That Cannot Be Refused"
+ guild_leader.fighters.post_001.desc: "A contract arrives for the Fighters Guild that is, technically, absurd: clear a fortress held by three hundred armed men, recover a stolen treasury, and guarantee zero civilian casualties. The fee is enormous. The client is desperate. The Guild's reputation says we can do impossible things. As Guildmaster, the decision is ours."
+ guild_leader.fighters.post_001.a: "Take the contract personally."
+ guild_leader.fighters.post_001.b: "Assign your best Guardian."
+
+ guild_leader.db.post_001.t: "The Night Mother Speaks Again"
+ guild_leader.db.post_001.desc: "In the quiet before dawn, the voice comes — the Night Mother's instructions for the Family's next contract. The target is not a criminal. Not a tyrant. Someone beloved. Someone whose death will cause genuine grief. The Night Mother's logic is, as always, beyond our moral framework. But we are the Listener. We hear. We obey."
+ guild_leader.db.post_001.a: "The Night Mother commands. We obey."
+ guild_leader.db.post_001.b: "This contract... troubles me. But so be it."
+
+ guild_leader.comp.post_001.t: "The Circle's Question"
+ guild_leader.comp.post_001.desc: "The Circle brings us a question that has divided them for weeks: a young Shield-Brother has completed every task put before them with exceptional skill, but has also shown a streak of ruthlessness that worries the older members. They are talented. They may also be dangerous. The Circle defers to the Harbinger."
+ guild_leader.comp.post_001.a: "Guide them toward the fight — the Companions exist to test themselves."
+ guild_leader.comp.post_001.b: "Counsel patience — not every test is fought with a sword."
+
+ guild_leader.bards.post_001.t: "The Song of the Age"
+ guild_leader.bards.post_001.desc: "A delegation of noble patrons arrives at the College with an unusual commission: they want a composition that will define this era — the Interregnum, the chaos, the slow recovery of civilisation, the courage of those who persist. Something that will be sung a thousand years from now and make whoever hears it understand what it was like to be alive in this time. The commission is extraordinary. The challenge is greater."
+ guild_leader.bards.post_001.a: "Write it yourself — the age deserves the best."
+ guild_leader.bards.post_001.b: "Invite every Master Bard in Tamriel — make it a collaboration."

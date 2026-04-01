@@ -1,0 +1,1170 @@
+# =============================================================
+#  Guild Leadership Questlines — All 9 Guilds
+#  Namespace: guild_leader
+#
+#  Each guild has a 3-event story chain + a climactic leadership
+#  event.  Events are triggered by the quest-start decision and
+#  fire sequentially via character flags.
+#
+#  Flag convention:
+#    guild_X_quest_1    — first chapter seen
+#    guild_X_quest_2    — second chapter seen
+#    guild_X_quest_done — questline complete; claim decision unlocked
+# =============================================================
+
+namespace = guild_leader
+
+# ================================================================
+#  MAGES GUILD  — "The Stolen Flame"
+#  Trigger: at Wizard rank, "Begin Leadership Quest" decision
+#  Story:   A forbidden Daedric study is spreading inside the
+#           Guild; the Arch-Magister is hiding it to save face.
+#           You must expose the rot and take control.
+# ================================================================
+
+# Chapter 1 — A junior mage shows you anomalous readings in the
+# library vault.  Something is very wrong.
+guild_leader.mages.001 = {
+    type = character_event
+    title = guild_leader.mages.001.t
+    desc = guild_leader.mages.001.desc
+    theme = realm
+
+    trigger = {
+        is_mages_guild_member = yes
+        has_trait = mages_guild_wizard
+        NOT = { has_character_flag = guild_mages_quest_1 }
+    }
+
+    option = {
+        name = guild_leader.mages.001.a  # "Investigate further — discreetly."
+        add_character_flag = guild_mages_quest_1
+        add_stress = 5
+        trigger_event = { id = guild_leader.mages.002 days = 30 }
+    }
+    option = {
+        name = guild_leader.mages.001.b  # "Report to the Arch-Magister at once."
+        add_character_flag = guild_mages_quest_1
+        add_prestige = -50    # The Arch-Magister thanks you — and buries the report
+        add_modifier = { modifier = guild_recently_rejected days = 365 }
+        # Quest is delayed but not ended
+        trigger_event = { id = guild_leader.mages.002 days = 90 }
+    }
+}
+
+# Chapter 2 — The forbidden study is confirmed: Daedric soul-trap
+# experiments on unwilling subjects.  The Arch-Magister is implicated.
+guild_leader.mages.002 = {
+    type = character_event
+    title = guild_leader.mages.002.t
+    desc = guild_leader.mages.002.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = guild_mages_quest_1
+        NOT = { has_character_flag = guild_mages_quest_2 }
+    }
+
+    option = {
+        name = guild_leader.mages.002.a  # "Gather the evidence.  We take this to the Council."
+        add_character_flag = guild_mages_quest_2
+        add_learning = 1
+        trigger_event = { id = guild_leader.mages.003 days = 30 }
+    }
+    option = {
+        name = guild_leader.mages.002.b  # "Destroy the evidence — the Guild's reputation must come first."
+        add_character_flag = guild_mages_quest_2
+        add_prestige = -100   # Reputation hit for suppressing the truth
+        add_piety    = -50    # Modest spiritual cost; greater than Fighters Guild case due to Daedric nature
+        trigger_event = { id = guild_leader.mages.003 days = 30 }
+    }
+}
+
+# Chapter 3 — Confrontation with the Arch-Magister before the
+# assembled Council.  The truth comes out.
+guild_leader.mages.003 = {
+    type = character_event
+    title = guild_leader.mages.003.t
+    desc = guild_leader.mages.003.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = guild_mages_quest_2
+        NOT = { has_character_flag = guild_mages_quest_done }
+    }
+
+    option = {
+        name = guild_leader.mages.003.a  # "Confront the Arch-Magister openly — let the Council judge."
+        add_character_flag = guild_mages_quest_done
+        add_prestige = 300
+        add_piety    = 150
+    }
+    option = {
+        name = guild_leader.mages.003.b  # "Challenge the Arch-Magister privately — give them a chance to resign."
+        add_character_flag = guild_mages_quest_done
+        add_prestige = 150
+        add_piety    =  75
+        add_diplomacy =  1
+    }
+}
+
+# Leadership Event — The Council names you Arch-Magister
+guild_leader.mages.lead = {
+    type = character_event
+    title = guild_leader.mages.lead.t
+    desc = guild_leader.mages.lead.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = guild_mages_quest_done
+        NOT = { has_trait = mages_guild_archmagister }
+    }
+
+    option = {
+        name = guild_leader.mages.lead.a  # "I accept the burden of Arch-Magister."
+        remove_trait    = mages_guild_wizard
+        add_trait       = mages_guild_archmagister
+        change_variable = { name = guild_mages_rank add = 1 }
+        add_modifier = { modifier = guild_leader_mages_modifier days = -1 }
+        add_prestige = 600
+        add_piety    = 200
+        remove_character_flag = guild_mages_quest_done
+        add_character_flag    = guild_mages_is_leader
+    }
+}
+
+# ================================================================
+#  FIGHTERS GUILD  — "Blood on the Charter"
+#  Trigger: at Guardian rank
+#  Story:   A corruption scandal — senior guardians are taking
+#           bribes from a local bandit lord.  The Guildmaster
+#           is too old and blind to see it.  You must clean
+#           the house and succeed him.
+# ================================================================
+
+guild_leader.fighters.001 = {
+    type = character_event
+    title = guild_leader.fighters.001.t
+    desc = guild_leader.fighters.001.desc
+    theme = war
+
+    trigger = {
+        is_fighters_guild_member = yes
+        has_trait = fighters_guild_guardian
+        NOT = { has_character_flag = guild_fighters_quest_1 }
+    }
+
+    option = {
+        name = guild_leader.fighters.001.a  # "Look into the rumours."
+        add_character_flag = guild_fighters_quest_1
+        trigger_event = { id = guild_leader.fighters.002 days = 45 }
+    }
+    option = {
+        name = guild_leader.fighters.001.b  # "Report it to the Guildmaster."
+        add_character_flag = guild_fighters_quest_1
+        add_prestige = -50   # Guildmaster dismisses it
+        trigger_event = { id = guild_leader.fighters.002 days = 60 }
+    }
+}
+
+guild_leader.fighters.002 = {
+    type = character_event
+    title = guild_leader.fighters.002.t
+    desc = guild_leader.fighters.002.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = guild_fighters_quest_1
+        NOT = { has_character_flag = guild_fighters_quest_2 }
+    }
+
+    option = {
+        name = guild_leader.fighters.002.a  # "Ambush the corrupt guardians and the bandit lord together."
+        add_character_flag = guild_fighters_quest_2
+        add_martial  = 1
+        add_prestige = 200
+        trigger_event = { id = guild_leader.fighters.003 days = 30 }
+    }
+    option = {
+        name = guild_leader.fighters.002.b  # "Expose them through proper channels — formal tribunal."
+        add_character_flag = guild_fighters_quest_2
+        add_diplomacy = 1
+        trigger_event = { id = guild_leader.fighters.003 days = 45 }
+    }
+}
+
+guild_leader.fighters.003 = {
+    type = character_event
+    title = guild_leader.fighters.003.t
+    desc = guild_leader.fighters.003.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = guild_fighters_quest_2
+        NOT = { has_character_flag = guild_fighters_quest_done }
+    }
+
+    option = {
+        name = guild_leader.fighters.003.a  # "Accept — lead the assault yourself."
+        add_character_flag = guild_fighters_quest_done
+        add_prestige  = 400
+        add_prowess   = 1
+        trigger_event = { id = guild_leader.fighters.lead days = 30 }
+    }
+    option = {
+        name = guild_leader.fighters.003.b  # "Send your best fighters while you coordinate."
+        add_character_flag = guild_fighters_quest_done
+        add_prestige  = 250
+        add_martial   = 1
+        trigger_event = { id = guild_leader.fighters.lead days = 30 }
+    }
+}
+
+guild_leader.fighters.lead = {
+    type = character_event
+    title = guild_leader.fighters.lead.t
+    desc = guild_leader.fighters.lead.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = guild_fighters_quest_done
+        NOT = { has_trait = fighters_guild_guildmaster }
+    }
+
+    option = {
+        name = guild_leader.fighters.lead.a  # "I accept the Guildmaster's seal."
+        remove_trait    = fighters_guild_guardian
+        add_trait       = fighters_guild_guildmaster
+        change_variable = { name = guild_fighters_rank add = 1 }
+        add_modifier = { modifier = guild_leader_fighters_modifier days = -1 }
+        add_prestige = 500
+        remove_character_flag = guild_fighters_quest_done
+        add_character_flag    = guild_fighters_is_leader
+    }
+}
+
+# ================================================================
+#  THIEVES GUILD  — "The Rat in the Walls"
+#  Trigger: at Shadowfoot rank
+#  Story:   Someone is leaking Guild operations to city guards.
+#           Dozens of footpads have been arrested.  You must find
+#           the informant — and they turn out to be the Guild
+#           Master themselves, trying to negotiate immunity.
+# ================================================================
+
+guild_leader.thieves.001 = {
+    type = character_event
+    title = guild_leader.thieves.001.t
+    desc = guild_leader.thieves.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_thieves_guild_member = yes
+        has_trait = thieves_guild_shadowfoot
+        NOT = { has_character_flag = guild_thieves_quest_1 }
+    }
+
+    option = {
+        name = guild_leader.thieves.001.a  # "Set a trap — leak false information and see who bites."
+        add_character_flag = guild_thieves_quest_1
+        add_intrigue = 1
+        trigger_event = { id = guild_leader.thieves.002 days = 45 }
+    }
+    option = {
+        name = guild_leader.thieves.001.b  # "Work backwards from the arrests — which jobs were only known to seniors?"
+        add_character_flag = guild_thieves_quest_1
+        trigger_event = { id = guild_leader.thieves.002 days = 30 }
+    }
+}
+
+guild_leader.thieves.002 = {
+    type = character_event
+    title = guild_leader.thieves.002.t
+    desc = guild_leader.thieves.002.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = guild_thieves_quest_1
+        NOT = { has_character_flag = guild_thieves_quest_2 }
+    }
+
+    option = {
+        name = guild_leader.thieves.002.a  # "Confront them alone — give them a chance to explain."
+        add_character_flag = guild_thieves_quest_2
+        add_intrigue = 1
+        trigger_event = { id = guild_leader.thieves.003 days = 20 }
+    }
+    option = {
+        name = guild_leader.thieves.002.b  # "Bring other senior members as witnesses."
+        add_character_flag = guild_thieves_quest_2
+        add_prestige = 100
+        trigger_event = { id = guild_leader.thieves.003 days = 20 }
+    }
+}
+
+guild_leader.thieves.003 = {
+    type = character_event
+    title = guild_leader.thieves.003.t
+    desc = guild_leader.thieves.003.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = guild_thieves_quest_2
+        NOT = { has_character_flag = guild_thieves_quest_done }
+    }
+
+    option = {
+        name = guild_leader.thieves.003.a  # "Show them mercy — exile from the Guild."
+        add_character_flag = guild_thieves_quest_done
+        add_prestige  = 300
+        add_diplomacy = 1
+        trigger_event = { id = guild_leader.thieves.lead days = 14 }
+    }
+    option = {
+        name = guild_leader.thieves.003.b  # "The Guild's law is clear. They chose their fate."
+        add_character_flag = guild_thieves_quest_done
+        add_prestige  = 200
+        add_dread     = 15
+        trigger_event = { id = guild_leader.thieves.lead days = 14 }
+    }
+}
+
+guild_leader.thieves.lead = {
+    type = character_event
+    title = guild_leader.thieves.lead.t
+    desc = guild_leader.thieves.lead.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = guild_thieves_quest_done
+        NOT = { has_trait = thieves_guild_guildmaster_thief }
+    }
+
+    option = {
+        name = guild_leader.thieves.lead.a  # "I take the Guild Master's mark."
+        remove_trait    = thieves_guild_shadowfoot
+        add_trait       = thieves_guild_guildmaster_thief
+        change_variable = { name = guild_thieves_rank add = 1 }
+        add_modifier = { modifier = guild_leader_thieves_modifier days = -1 }
+        add_prestige = 500
+        add_intrigue = 2
+        remove_character_flag = guild_thieves_quest_done
+        add_character_flag    = guild_thieves_is_leader
+    }
+}
+
+# ================================================================
+#  DARK BROTHERHOOD  — "The Night Mother Weeps"
+#  Trigger: at Speaker rank
+#  Story:   The Night Mother has gone silent — no contracts reach
+#           the Black Hand.  A Dread Father cult within the
+#           Brotherhood rejects the Night Mother entirely.  The
+#           Family is fracturing.  You must restore the covenant.
+# ================================================================
+
+guild_leader.db.001 = {
+    type = character_event
+    title = guild_leader.db.001.t
+    desc = guild_leader.db.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_dark_brotherhood_member = yes
+        has_trait = dark_brotherhood_speaker
+        NOT = { has_character_flag = guild_db_quest_1 }
+    }
+
+    option = {
+        name = guild_leader.db.001.a  # "Perform the Rite of Seeking — force the Night Mother's attention."
+        add_character_flag = guild_db_quest_1
+        add_piety    = -100
+        trigger_event = { id = guild_leader.db.002 days = 30 }
+    }
+    option = {
+        name = guild_leader.db.001.b  # "Root out the Dread Father cultists first."
+        add_character_flag = guild_db_quest_1
+        add_intrigue = 1
+        trigger_event = { id = guild_leader.db.002 days = 30 }
+    }
+}
+
+guild_leader.db.002 = {
+    type = character_event
+    title = guild_leader.db.002.t
+    desc = guild_leader.db.002.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = guild_db_quest_1
+        NOT = { has_character_flag = guild_db_quest_2 }
+    }
+
+    option = {
+        name = guild_leader.db.002.a  # "Purge the sanctuary.  The Five Tenets are absolute."
+        add_character_flag = guild_db_quest_2
+        add_dread   = 20
+        add_piety   = 100   # Sithis approves
+        trigger_event = { id = guild_leader.db.003 days = 30 }
+    }
+    option = {
+        name = guild_leader.db.002.b  # "Offer the cultists one chance to recant."
+        add_character_flag = guild_db_quest_2
+        add_prestige = 100
+        trigger_event = { id = guild_leader.db.003 days = 30 }
+    }
+}
+
+guild_leader.db.003 = {
+    type = character_event
+    title = guild_leader.db.003.t
+    desc = guild_leader.db.003.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = guild_db_quest_2
+        NOT = { has_character_flag = guild_db_quest_done }
+    }
+
+    # The Night Mother speaks at last — whispering a single name:
+    # the next Listener.
+
+    option = {
+        name = guild_leader.db.003.a  # "Sithis has judged them.  I hear the Night Mother."
+        add_character_flag = guild_db_quest_done
+        add_dread    = 30
+        add_piety    = 200
+        add_prestige = 300
+    }
+}
+
+guild_leader.db.lead = {
+    type = character_event
+    title = guild_leader.db.lead.t
+    desc = guild_leader.db.lead.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = guild_db_quest_done
+        NOT = { has_trait = dark_brotherhood_listener }
+    }
+
+    option = {
+        name = guild_leader.db.lead.a  # "I am the Listener.  The Night Mother's will is mine to carry."
+        remove_trait    = dark_brotherhood_speaker
+        add_trait       = dark_brotherhood_listener
+        change_variable = { name = guild_dark_brotherhood_rank add = 1 }
+        add_modifier = { modifier = guild_leader_db_modifier days = -1 }
+        add_dread    = 40
+        add_prestige = 600
+        remove_character_flag = guild_db_quest_done
+        add_character_flag    = guild_db_is_listener
+    }
+}
+
+# ================================================================
+#  MORAG TONG  — "The Rogue Thread"
+#  Trigger: at Master Assassin rank
+#  Story:   A writ arrives for the most heavily guarded target
+#           in Morrowind history.  Meanwhile a rogue cadre
+#           within the Tong has begun unsanctioned killings —
+#           threatening the Guild's legal status.  Both must
+#           be resolved, and the Grandmaster's seal reclaimed
+#           from a dead man's cold hand.
+# ================================================================
+
+guild_leader.tong.001 = {
+    type = character_event
+    title = guild_leader.tong.001.t
+    desc = guild_leader.tong.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_morag_tong_member = yes
+        has_trait = morag_tong_master
+        NOT = { has_character_flag = guild_tong_quest_1 }
+    }
+
+    option = {
+        name = guild_leader.tong.001.a  # "Accept the writ.  Mephala has set this in motion."
+        add_character_flag = guild_tong_quest_1
+        add_piety = 50
+        trigger_event = { id = guild_leader.tong.002 days = 45 }
+    }
+    option = {
+        name = guild_leader.tong.001.b  # "Investigate the rogues first — an illegal killing could end us all."
+        add_character_flag = guild_tong_quest_1
+        add_intrigue = 1
+        trigger_event = { id = guild_leader.tong.002 days = 30 }
+    }
+}
+
+guild_leader.tong.002 = {
+    type = character_event
+    title = guild_leader.tong.002.t
+    desc = guild_leader.tong.002.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = guild_tong_quest_1
+        NOT = { has_character_flag = guild_tong_quest_2 }
+    }
+
+    option = {
+        name = guild_leader.tong.002.a  # "Hunt the rogues down.  The Tong cannot be tainted."
+        add_character_flag = guild_tong_quest_2
+        add_intrigue = 1
+        add_prestige = 200
+        trigger_event = { id = guild_leader.tong.003 days = 30 }
+    }
+    option = {
+        name = guild_leader.tong.002.b  # "Bring them before the Grandmaster."
+        add_character_flag = guild_tong_quest_2
+        add_piety = 100
+        trigger_event = { id = guild_leader.tong.003 days = 30 }
+    }
+}
+
+guild_leader.tong.003 = {
+    type = character_event
+    title = guild_leader.tong.003.t
+    desc = guild_leader.tong.003.desc
+    theme = intrigue
+
+    # The Grandmaster was the target on the impossible writ all along —
+    # placed by the Tribunal to remove a man gone too dangerous.
+    # He is dead.  The Seal is in your hands.
+
+    trigger = {
+        has_character_flag = guild_tong_quest_2
+        NOT = { has_character_flag = guild_tong_quest_done }
+    }
+
+    option = {
+        name = guild_leader.tong.003.a  # "The writ was just.  I carry out Mephala's will."
+        add_character_flag = guild_tong_quest_done
+        add_piety    = 300
+        add_prestige = 300
+        add_dread    = 20
+    }
+    option = {
+        name = guild_leader.tong.003.b  # "The Tribunal's reach is long.  I must be careful."
+        add_character_flag = guild_tong_quest_done
+        add_piety    = 150
+        add_prestige = 150
+        add_intrigue = 1
+    }
+}
+
+guild_leader.tong.lead = {
+    type = character_event
+    title = guild_leader.tong.lead.t
+    desc = guild_leader.tong.lead.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = guild_tong_quest_done
+        NOT = { has_trait = morag_tong_grandmaster }
+    }
+
+    option = {
+        name = guild_leader.tong.lead.a  # "I accept the Grandmaster's Seal."
+        remove_trait    = morag_tong_master
+        add_trait       = morag_tong_grandmaster
+        change_variable = { name = guild_morag_tong_rank add = 1 }
+        add_modifier = { modifier = guild_leader_tong_modifier days = -1 }
+        add_prestige = 500
+        add_piety    = 300
+        remove_character_flag = guild_tong_quest_done
+        add_character_flag    = guild_tong_is_grandmaster
+    }
+}
+
+# ================================================================
+#  COMPANIONS  — "The Old Wolf's Last Hunt"
+#  Trigger: at Circle rank
+#  Story:   Kodlak Whitemane (or the era's elder Harbinger) is
+#           gravely wounded.  On his deathbed he asks the Circle
+#           to lead one final hunt — to find the Witch-heads of
+#           Glenmoril and free his soul from Hircine's Hunting
+#           Grounds.  You carry out his last wish.
+# ================================================================
+
+guild_leader.comp.001 = {
+    type = character_event
+    title = guild_leader.comp.001.t
+    desc = guild_leader.comp.001.desc
+    theme = war
+
+    trigger = {
+        is_companions_member = yes
+        has_trait = companions_circle
+        NOT = { has_character_flag = guild_comp_quest_1 }
+    }
+
+    option = {
+        name = guild_leader.comp.001.a  # "Stay at his side.  His wisdom is not spent yet."
+        add_character_flag = guild_comp_quest_1
+        add_prestige = 100
+        trigger_event = { id = guild_leader.comp.002 days = 20 }
+    }
+    option = {
+        name = guild_leader.comp.001.b  # "Begin preparing the final hunt immediately."
+        add_character_flag = guild_comp_quest_1
+        add_prowess = 1
+        trigger_event = { id = guild_leader.comp.002 days = 14 }
+    }
+}
+
+guild_leader.comp.002 = {
+    type = character_event
+    title = guild_leader.comp.002.t
+    desc = guild_leader.comp.002.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = guild_comp_quest_1
+        NOT = { has_character_flag = guild_comp_quest_2 }
+    }
+
+    option = {
+        name = guild_leader.comp.002.a  # "Lead the hunt.  We will bring back what is needed."
+        add_character_flag = guild_comp_quest_2
+        add_prowess  = 1
+        add_prestige = 200
+        trigger_event = { id = guild_leader.comp.003 days = 45 }
+    }
+    option = {
+        name = guild_leader.comp.002.b  # "The hunt is for you — but I will avenge if you fall."
+        add_character_flag = guild_comp_quest_2
+        add_prestige = 150
+        trigger_event = { id = guild_leader.comp.003 days = 45 }
+    }
+}
+
+guild_leader.comp.003 = {
+    type = character_event
+    title = guild_leader.comp.003.t
+    desc = guild_leader.comp.003.desc
+    theme = war
+
+    # Kodlak's soul is freed.  With his dying breath he names you
+    # the next Harbinger.
+
+    trigger = {
+        has_character_flag = guild_comp_quest_2
+        NOT = { has_character_flag = guild_comp_quest_done }
+    }
+
+    option = {
+        name = guild_leader.comp.003.a  # "We honour his memory — and carry his legacy forward."
+        add_character_flag = guild_comp_quest_done
+        add_prestige = 400
+        add_prowess  = 1
+    }
+    option = {
+        name = guild_leader.comp.003.b  # "Weep for him.  Then rise.  The Companions need a Harbinger."
+        add_character_flag = guild_comp_quest_done
+        add_prestige = 300
+        add_stress   = -10   # Grief resolved
+    }
+}
+
+guild_leader.comp.lead = {
+    type = character_event
+    title = guild_leader.comp.lead.t
+    desc = guild_leader.comp.lead.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = guild_comp_quest_done
+        NOT = { has_trait = companions_harbinger }
+    }
+
+    option = {
+        name = guild_leader.comp.lead.a  # "I accept.  For Ysgramor.  For Kodlak."
+        remove_trait    = companions_circle
+        add_trait       = companions_harbinger
+        change_variable = { name = guild_companions_rank add = 1 }
+        add_modifier = { modifier = guild_leader_companions_modifier days = -1 }
+        add_prestige = 600
+        remove_character_flag = guild_comp_quest_done
+        add_character_flag    = guild_comp_is_harbinger
+    }
+}
+
+# ================================================================
+#  PSIJIC ORDER  — "The Rift in the Old Ways"
+#  Trigger: at Adept rank
+#  Story:   A tear in Aetherius is spreading wild magic across
+#           the region.  The Order is divided: intervene and
+#           violate the Elder Way's non-interference principle,
+#           or watch and record.  The previous Master is drawn
+#           into the Rift during the debate.  The Order looks
+#           to you.
+# ================================================================
+
+guild_leader.psijic.001 = {
+    type = character_event
+    title = guild_leader.psijic.001.t
+    desc = guild_leader.psijic.001.desc
+    theme = realm
+
+    trigger = {
+        is_psijic_member = yes
+        has_trait = psijic_adept
+        NOT = { has_character_flag = guild_psijic_quest_1 }
+    }
+
+    option = {
+        name = guild_leader.psijic.001.a  # "Advocate for intervention — the Rift endangers all life."
+        add_character_flag = guild_psijic_quest_1
+        add_learning = 1
+        add_piety    = -100   # Breaks tradition
+        trigger_event = { id = guild_leader.psijic.002 days = 30 }
+    }
+    option = {
+        name = guild_leader.psijic.001.b  # "Observe and record — the Elder Way demands restraint."
+        add_character_flag = guild_psijic_quest_1
+        add_piety    = 150
+        add_learning =  1
+        trigger_event = { id = guild_leader.psijic.002 days = 30 }
+    }
+}
+
+guild_leader.psijic.002 = {
+    type = character_event
+    title = guild_leader.psijic.002.t
+    desc = guild_leader.psijic.002.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = guild_psijic_quest_1
+        NOT = { has_character_flag = guild_psijic_quest_2 }
+    }
+
+    option = {
+        name = guild_leader.psijic.002.a  # "Enter the Rift — bring him back."
+        add_character_flag = guild_psijic_quest_2
+        add_learning = 2
+        add_stress   = 10
+        trigger_event = { id = guild_leader.psijic.003 days = 45 }
+    }
+    option = {
+        name = guild_leader.psijic.002.b  # "Seal the Rift.  If the Master is lost, his will was done."
+        add_character_flag = guild_psijic_quest_2
+        add_piety    = 200
+        add_prestige = 100
+        trigger_event = { id = guild_leader.psijic.003 days = 30 }
+    }
+}
+
+guild_leader.psijic.003 = {
+    type = character_event
+    title = guild_leader.psijic.003.t
+    desc = guild_leader.psijic.003.desc
+    theme = realm
+
+    # The Rift is sealed.  The Master is gone.  In his final moment
+    # he projected one thought through the seal — your name.
+
+    trigger = {
+        has_character_flag = guild_psijic_quest_2
+        NOT = { has_character_flag = guild_psijic_quest_done }
+    }
+
+    option = {
+        name = guild_leader.psijic.003.a  # "Accept what the Rift taught us.  Record it all."
+        add_character_flag = guild_psijic_quest_done
+        add_learning = 3
+        add_piety    = 300
+    }
+}
+
+guild_leader.psijic.lead = {
+    type = character_event
+    title = guild_leader.psijic.lead.t
+    desc = guild_leader.psijic.lead.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = guild_psijic_quest_done
+        NOT = { has_trait = psijic_master }
+    }
+
+    option = {
+        name = guild_leader.psijic.lead.a  # "I accept the burden of the Old Ways."
+        remove_trait    = psijic_adept
+        add_trait       = psijic_master
+        change_variable = { name = guild_psijic_rank add = 1 }
+        add_modifier = { modifier = guild_leader_psijic_modifier days = -1 }
+        add_prestige = 600
+        add_piety    = 400
+        remove_character_flag = guild_psijic_quest_done
+        add_character_flag    = guild_psijic_is_master
+    }
+}
+
+# ================================================================
+#  BARDS COLLEGE  — "The Lost Canticle of Shor"
+#  Trigger: at Bard rank
+#  Story:   A fragment of the oldest song in the world is found
+#           in a crumbling Nedic ruin — the Canticle of Shor,
+#           believed lost since the Dawn Era.  A rival bard
+#           attempts to steal it.  The current Head of the
+#           College falls ill.  The task of decoding and
+#           performing the Canticle falls to you.
+# ================================================================
+
+guild_leader.bards.001 = {
+    type = character_event
+    title = guild_leader.bards.001.t
+    desc = guild_leader.bards.001.desc
+    theme = feast
+
+    trigger = {
+        is_bards_college_member = yes
+        has_trait = bards_college_bard
+        NOT = { has_character_flag = guild_bards_quest_1 }
+    }
+
+    option = {
+        name = guild_leader.bards.001.a  # "Go to the ruin personally — such a discovery demands a true scholar."
+        add_character_flag = guild_bards_quest_1
+        add_learning  = 1
+        add_prestige  = 100
+        trigger_event = { id = guild_leader.bards.002 days = 30 }
+    }
+    option = {
+        name = guild_leader.bards.001.b  # "Send trusted students with instructions."
+        add_character_flag = guild_bards_quest_1
+        trigger_event = { id = guild_leader.bards.002 days = 45 }
+    }
+}
+
+guild_leader.bards.002 = {
+    type = character_event
+    title = guild_leader.bards.002.t
+    desc = guild_leader.bards.002.desc
+    theme = feast
+
+    trigger = {
+        has_character_flag = guild_bards_quest_1
+        NOT = { has_character_flag = guild_bards_quest_2 }
+    }
+
+    option = {
+        name = guild_leader.bards.002.a  # "Expose them publicly — let the College judge."
+        add_character_flag = guild_bards_quest_2
+        add_prestige  = 200
+        add_diplomacy = 1
+        trigger_event = { id = guild_leader.bards.003 days = 20 }
+    }
+    option = {
+        name = guild_leader.bards.002.b  # "Recover the fragment privately — the song is more important."
+        add_character_flag = guild_bards_quest_2
+        add_learning  = 1
+        trigger_event = { id = guild_leader.bards.003 days = 20 }
+    }
+}
+
+guild_leader.bards.003 = {
+    type = character_event
+    title = guild_leader.bards.003.t
+    desc = guild_leader.bards.003.desc
+    theme = feast
+
+    # The Canticle is performed at the College's Grand Recital.
+    # Feuding lords weep.  The current Head, weak with illness
+    # but present, names you their successor before the audience.
+
+    trigger = {
+        has_character_flag = guild_bards_quest_2
+        NOT = { has_character_flag = guild_bards_quest_done }
+    }
+
+    option = {
+        name = guild_leader.bards.003.a  # "Perform the Canticle.  Let the music speak."
+        add_character_flag = guild_bards_quest_done
+        add_prestige  = 500
+        add_diplomacy = 2
+        add_stress    = -15
+    }
+}
+
+guild_leader.bards.lead = {
+    type = character_event
+    title = guild_leader.bards.lead.t
+    desc = guild_leader.bards.lead.desc
+    theme = feast
+
+    trigger = {
+        has_character_flag = guild_bards_quest_done
+        NOT = { has_trait = bards_college_master_bard }
+    }
+
+    option = {
+        name = guild_leader.bards.lead.a  # "I accept the headship of the Bards College."
+        remove_trait    = bards_college_bard
+        add_trait       = bards_college_master_bard
+        change_variable = { name = guild_bards_rank add = 1 }
+        add_modifier = { modifier = guild_leader_bards_modifier days = -1 }
+        add_prestige = 600
+        remove_character_flag = guild_bards_quest_done
+        add_character_flag    = guild_bards_is_master
+    }
+}
+
+# ================================================================
+#  UNDAUNTED  — "The Vault of Endless Dark"
+#  Trigger: at Veteran rank
+#  Story:   Whispers reach the Undaunted of a ruin no expedition
+#           has ever returned from — an ancient Ayleid vault
+#           sealed with a Daedric lock.  You volunteer to lead
+#           the attempt.  Inside: an army of soul-bound constructs,
+#           a fragment of a Varla Stone of immense power, and a
+#           Daedric presence warning you to leave.
+#           You don't leave.
+# ================================================================
+
+guild_leader.undaunted.001 = {
+    type = character_event
+    title = guild_leader.undaunted.001.t
+    desc = guild_leader.undaunted.001.desc
+    theme = war
+
+    trigger = {
+        is_undaunted_member_trigger = yes
+        has_trait = undaunted_veteran
+        NOT = { has_character_flag = guild_undaunted_quest_1 }
+    }
+
+    option = {
+        name = guild_leader.undaunted.001.a  # "We go in.  All of us, together."
+        add_character_flag = guild_undaunted_quest_1
+        add_martial  = 1
+        trigger_event = { id = guild_leader.undaunted.002 days = 30 }
+    }
+    option = {
+        name = guild_leader.undaunted.001.b  # "Scout it first.  Small team, careful approach."
+        add_character_flag = guild_undaunted_quest_1
+        add_intrigue = 1
+        add_prestige = 100
+        trigger_event = { id = guild_leader.undaunted.002 days = 45 }
+    }
+}
+
+guild_leader.undaunted.002 = {
+    type = character_event
+    title = guild_leader.undaunted.002.t
+    desc = guild_leader.undaunted.002.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = guild_undaunted_quest_1
+        NOT = { has_character_flag = guild_undaunted_quest_2 }
+    }
+
+    option = {
+        name = guild_leader.undaunted.002.a  # "Fight through — for glory, for the Guild."
+        add_character_flag = guild_undaunted_quest_2
+        add_prowess  = 1
+        add_prestige = 200
+        trigger_event = { id = guild_leader.undaunted.003 days = 30 }
+    }
+    option = {
+        name = guild_leader.undaunted.002.b  # "Find another way — collapse the entrance above them."
+        add_character_flag = guild_undaunted_quest_2
+        add_martial  = 1
+        trigger_event = { id = guild_leader.undaunted.003 days = 30 }
+    }
+}
+
+guild_leader.undaunted.003 = {
+    type = character_event
+    title = guild_leader.undaunted.003.t
+    desc = guild_leader.undaunted.003.desc
+    theme = war
+
+    # The Daedric presence offers power in exchange for the Varla
+    # Stone.  The choice: take the power, or take the Stone.
+
+    trigger = {
+        has_character_flag = guild_undaunted_quest_2
+        NOT = { has_character_flag = guild_undaunted_quest_done }
+    }
+
+    option = {
+        name = guild_leader.undaunted.003.a  # "Take the Stone.  Leave the Daedra nothing."
+        add_character_flag = guild_undaunted_quest_done
+        add_gold     = 1000
+        add_prestige = 400
+        add_piety    = 100
+    }
+    option = {
+        name = guild_leader.undaunted.003.b  # "Accept the power.  Dangerous, but we're already here."
+        add_character_flag = guild_undaunted_quest_done
+        add_prowess  = 2
+        add_martial  = 2
+        add_prestige = 200
+        add_piety    = -200    # Daedric bargain
+    }
+}
+
+guild_leader.undaunted.lead = {
+    type = character_event
+    title = guild_leader.undaunted.lead.t
+    desc = guild_leader.undaunted.lead.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = guild_undaunted_quest_done
+        NOT = { has_trait = undaunted_elite }
+    }
+
+    option = {
+        name = guild_leader.undaunted.lead.a  # "We're the Undaunted.  We came back."
+        remove_trait    = undaunted_veteran
+        add_trait       = undaunted_elite
+        change_variable = { name = guild_undaunted_rank add = 1 }
+        add_modifier = { modifier = guild_leader_undaunted_modifier days = -1 }
+        add_prestige = 600
+        add_prowess  = 1
+        remove_character_flag = guild_undaunted_quest_done
+        add_character_flag    = guild_undaunted_is_elite
+    }
+}
+
+# ================================================================
+#  POST-LEADERSHIP EVENTS  — periodic events for leaders only
+# ================================================================
+
+# Mages Guild — Arch-Magister receives a desperate petition
+guild_leader.mages.post_001 = {
+    type = character_event
+    title = guild_leader.mages.post_001.t
+    desc = guild_leader.mages.post_001.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = guild_mages_is_leader
+        NOT = { has_modifier = guild_leader_postquest_cooldown }
+    }
+
+    option = {
+        name = guild_leader.mages.post_001.a  # "Grant the petition — expand the chapter."
+        add_prestige = 200
+        add_gold     = -300
+        add_modifier = { modifier = guild_leader_postquest_cooldown days = 1825 }
+    }
+    option = {
+        name = guild_leader.mages.post_001.b  # "Refuse — the Guild's resources are stretched."
+        add_prestige = -50
+        add_gold     = 100
+        add_modifier = { modifier = guild_leader_postquest_cooldown days = 1825 }
+    }
+}
+
+# Fighters Guild — Guildmaster is tested by an impossible contract
+guild_leader.fighters.post_001 = {
+    type = character_event
+    title = guild_leader.fighters.post_001.t
+    desc = guild_leader.fighters.post_001.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = guild_fighters_is_leader
+        NOT = { has_modifier = guild_leader_postquest_cooldown }
+    }
+
+    option = {
+        name = guild_leader.fighters.post_001.a  # "Take the contract personally."
+        add_prestige  = 400
+        add_prowess   = 1
+        add_modifier = { modifier = guild_leader_postquest_cooldown days = 1825 }
+    }
+    option = {
+        name = guild_leader.fighters.post_001.b  # "Assign your best Guardian."
+        add_prestige  = 200
+        add_modifier = { modifier = guild_leader_postquest_cooldown days = 1825 }
+    }
+}
+
+# Dark Brotherhood — Listener receives the Night Mother's newest contract
+guild_leader.db.post_001 = {
+    type = character_event
+    title = guild_leader.db.post_001.t
+    desc = guild_leader.db.post_001.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = guild_db_is_listener
+        NOT = { has_modifier = guild_leader_postquest_cooldown }
+    }
+
+    option = {
+        name = guild_leader.db.post_001.a  # "The Night Mother commands.  We obey."
+        add_dread    = 20
+        add_prestige = 300
+        add_modifier = { modifier = guild_leader_postquest_cooldown days = 1825 }
+    }
+    option = {
+        name = guild_leader.db.post_001.b  # "This contract... troubles me.  But so be it."
+        add_stress   = 10
+        add_dread    = 10
+        add_prestige = 150
+        add_modifier = { modifier = guild_leader_postquest_cooldown days = 1825 }
+    }
+}
+
+# Companions Harbinger — the Circle asks for guidance
+guild_leader.comp.post_001 = {
+    type = character_event
+    title = guild_leader.comp.post_001.t
+    desc = guild_leader.comp.post_001.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = guild_comp_is_harbinger
+        NOT = { has_modifier = guild_leader_postquest_cooldown }
+    }
+
+    option = {
+        name = guild_leader.comp.post_001.a  # "Guide them toward the fight — the Companions exist to test themselves."
+        add_prestige  = 300
+        add_prowess   = 1
+        add_modifier = { modifier = guild_leader_postquest_cooldown days = 1825 }
+    }
+    option = {
+        name = guild_leader.comp.post_001.b  # "Counsel patience — not every test is fought with a sword."
+        add_prestige  = 200
+        add_diplomacy = 1
+        add_modifier = { modifier = guild_leader_postquest_cooldown days = 1825 }
+    }
+}
+
+# Bards College — Master Bard is asked to compose the age's defining song
+guild_leader.bards.post_001 = {
+    type = character_event
+    title = guild_leader.bards.post_001.t
+    desc = guild_leader.bards.post_001.desc
+    theme = feast
+
+    trigger = {
+        has_character_flag = guild_bards_is_master
+        NOT = { has_modifier = guild_leader_postquest_cooldown }
+    }
+
+    option = {
+        name = guild_leader.bards.post_001.a  # "Write it yourself — the age deserves the best."
+        add_prestige  = 500
+        add_diplomacy = 2
+        add_stress    = -10
+        add_modifier = { modifier = guild_leader_postquest_cooldown days = 1825 }
+    }
+    option = {
+        name = guild_leader.bards.post_001.b  # "Invite every Master Bard in Tamriel — make it a collaboration."
+        add_prestige  = 300
+        add_diplomacy = 3
+        add_modifier = { modifier = guild_leader_postquest_cooldown days = 1825 }
+    }
+}
