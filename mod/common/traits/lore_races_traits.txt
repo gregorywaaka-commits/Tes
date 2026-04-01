@@ -1,4 +1,87 @@
 # =============================================================
+#  lore_races_traits.txt
+#  Elder Kings 2 Extension — Obscure Lore Races & Cultures
+# -------------------------------------------------------------
+#  CONTENTS:
+#    Echmer section     : echmer_heritage, echolalia_adept,
+#                         echolalia_master, dwemer_uplifted_lineage,
+#                         yneslea_scholar
+#    Maormer section    : maormer_heritage, snake_magic_adept,
+#                         pyandonean_sea_witch, sea_serpent_master,
+#                         orgnum_blessed
+#    Sload section      : sload_heritage, sload_necromancer,
+#                         sload_high_necromancer, plague_bearer
+#    Kothringi section  : kothringi_heritage, knahaten_immune,
+#                         crimson_ship_survivor, clavicus_bargain_made
+#    Kamal section      : kamal_heritage, kamal_thawed,
+#                         dir_kamal_herald
+#    Tang Mo section    : tang_mo_heritage, invasion_repeller
+#    Elder Tower section: tower_stone_keeper, tower_stone_lost
+#    Dreugh section     : dreugh_heritage, dreugh_land_phase,
+#                         dreugh_sea_phase
+#    Imga section       : imga_heritage, altmer_imitator
+#    Keptu/Nedic section: keptu_lineage, nedic_elder
+# -------------------------------------------------------------
+#  EK2 COMPATIBILITY:
+#    Depends on EK2 culture/religion flags for each race group.
+#    orgnum_blessed      — requires EK2 flag: maormer_culture
+#    plague_bearer       — interacts with EK2 epidemic events
+#    clavicus_bargain_made — requires EK2 event: ek2_stillrise.*
+#    dreugh_land_phase / dreugh_sea_phase — set by EK2 lifecycle
+#    events; never assign both to the same character.
+# -------------------------------------------------------------
+#  LORE BASIS:
+#    - Echmer (Uutak Mythos): uplifted bat-folk created by the
+#      Noraken Dwemer clan via tonal architecture (sound magic);
+#      native to Yneslea.
+#    - orgnum_blessed uses is_immortal = yes — correct per lore:
+#      Orgnum the Maormer king is genuinely immortal.
+#    - clavicus_bargain_made: the Stillrise Village Kothringi
+#      bargained with Clavicus Vile to survive the Knahaten Flu
+#      (2E 560) and were turned into undead; stress_gain_mult = 0.2
+#      reflects the psychological weight of immortality-as-undead.
+#    - Knahaten Flu (2E 560): wiped out the Kothringi; survivors
+#      who escaped on the Crimson Ship were never seen again.
+#    - Kamal hibernate through winter on Akavir ("Snow Hell") and
+#      thaw to invade; kamal_thawed represents peak battle-readiness.
+#    - Dreugh have a natural land/sea life-cycle phase; the two
+#      phase traits are mutually exclusive via opposites.
+# -------------------------------------------------------------
+#  HOW TO ADD A NEW TRAIT:
+#    1. Choose a unique snake_case key.
+#    2. Assign category:
+#         special   — racial/heritage markers
+#         lifestyle — acquired or phase-based states
+#         fame      — high-rank or legendary achievements
+#    3. Place the trait in the correct race/culture section and
+#       add a descriptive comment above the block.
+#    4. Use only valid CK3 modifier keys (see SYNTAX RULES below).
+#    5. Add  flag = <trait_key>  at the end of the block.
+#    6. Create matching loc keys in:
+#         localization/english/traits/
+#         lore_races_traits_l_english.yml
+#    7. Add a trait icon at:
+#         gfx/interface/icons/traits/<trait_key>.dds
+# -------------------------------------------------------------
+#  CK3 SYNTAX RULES FOR THIS FILE:
+#    monthly_piety              — flat monthly piety (± integer)
+#    monthly_piety_gain_mult    — multiplier on piety gain
+#                                 (use instead of "piety_mult")
+#    monthly_prestige           — flat monthly prestige
+#    monthly_prestige_gain_mult — multiplier on prestige gain
+#                                 (use instead of "prestige_mult")
+#    stress_gain_mult           — multiplier on stress gain;
+#                                 negative = stress reduction
+#                                 (use instead of "stress_loss_mult")
+#    is_immortal = yes          — prevents natural death by age
+#    can_have_children = no     — blocks heir generation
+#    command_modifier { }       — active only while in command
+#
+#    INVALID KEYS — never use:
+#      piety_mult, prestige_mult, stress_loss_mult
+# =============================================================
+
+# =============================================================
 #  Echmer Traits  (Uutak Mythos — Bat-Mer of Yneslea)
 #  The Echmer were uplifted bats engineered by the Noraken
 #  clan of Dwemer using tonal architecture (sound magic).

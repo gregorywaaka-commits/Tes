@@ -1,16 +1,84 @@
 # =============================================================
-#  Guild Traits — All 9 Guilds
-#  EK2 Timeframe: 2E 440–896 (the Interregnum)
+#  guild_traits.txt
+#  Elder Kings 2 Extension — All Nine Guilds
+# -------------------------------------------------------------
+#  CONTENTS (9 guilds × rank tiers):
+#    Mages Guild       : associate → member → wizard → archmagister
+#    Fighters Guild    : associate → journeyman → guardian → guildmaster
+#    Thieves Guild     : footpad → prowler → shadowfoot → guildmaster
+#    Dark Brotherhood  : initiate → assassin → speaker → listener
+#    Morag Tong        : assassin → master → grandmaster
+#    Companions        : shield-brother → veteran → circle → harbinger
+#    Psijic Order      : novice → initiate → adept → master
+#    Bards College     : apprentice → bard → master bard
+#    Undaunted         : member → veteran → elite
+# -------------------------------------------------------------
+#  EK2 COMPATIBILITY:
+#    EK2 timeframe : 2E 440–896 (the Interregnum)
+#    Rank tracking : character flag  guild_X_member
+#                    character variable  guild_X_rank  (1–4)
+#    Traits carry display text and stat modifiers only; rank
+#    transitions are handled by EK2 guild events (ek2_guilds.*).
+#    Undaunted traits require EK2 start date ≥ 2E 560
+#    (guild available from 2E 560 onward; fully founded 2E 582).
+# -------------------------------------------------------------
+#  LORE BASIS:
+#    - Mages Guild    : founded 2E 230 by Vanus Galerion on
+#                       Summerset Isle; fully active by 2E 440.
+#    - Fighters Guild : founded 2E 321 by Potentate Versidue-
+#                       Shaie; canonical date confirmed by
+#                       in-game ESO loading screens.
+#    - Thieves Guild  : ancient, predating recorded history;
+#                       always active in the Interregnum.
+#    - Dark Brotherhood : split from the Morag Tong circa
+#                       1E 2920; active throughout 2E.
+#    - Morag Tong    : 1E founding; legal assassination guild
+#                       operating under Tribunal sanction in
+#                       Morrowind.
+#    - Companions    : ancient Nordic warrior-society based in
+#                       Whiterun; active throughout Tamrielic
+#                       history.
+#    - Psijic Order  : Mythic Era founding; Artaeum island
+#                       absent from the world 2E 230–580
+#                       (per ESO lore); order continues to
+#                       operate during that period but is
+#                       reclusive.
+#    - Bards College : ancient institution in Solitude, Skyrim;
+#                       always active.
+#    - Undaunted     : adventurer's guild; fully founded 2E 582
+#                       but recruits available from ~2E 560.
+# -------------------------------------------------------------
+#  HOW TO ADD A NEW GUILD OR RANK:
+#    1. Choose a unique snake_case key for each rank tier
+#       (e.g. my_guild_rank1, my_guild_rank2, …).
+#    2. Assign category:
+#         lifestyle — for Tier 1–3 ranks
+#         fame      — for the top-tier (Tier 4) rank
+#    3. List all other rank traits for the SAME guild in
+#       opposites = { }  (a character holds only one rank).
+#    4. Use only valid CK3 modifier keys (see SYNTAX RULES below).
+#    5. Add  flag = <trait_key>  at the end of each block.
+#    6. Create matching loc keys in:
+#         localization/english/traits/guild_traits_l_english.yml
+#    7. Add a trait icon at:
+#         gfx/interface/icons/traits/<trait_key>.dds
+#    8. Add guild_X_member flag and guild_X_rank variable
+#       handling to the relevant EK2 guild events.
+# -------------------------------------------------------------
+#  CK3 SYNTAX RULES FOR THIS FILE:
+#    monthly_piety_gain_mult    — multiplier on piety gain
+#                                 (use instead of "piety_mult")
+#    monthly_prestige_gain_mult — multiplier on prestige gain
+#                                 (use instead of "prestige_mult")
+#    stress_gain_mult           — multiplier on stress gain;
+#                                 negative = stress reduction
+#                                 (use instead of "stress_loss_mult")
+#    dread_gain_mult            — multiplier on dread gain
+#    monthly_income             — flat monthly gold income
+#    command_modifier { }       — active only while in command
 #
-#  Rank system (per guild):
-#    Tier 1 = Associate / Initiate / Apprentice
-#    Tier 2 = Journeyman / Member / Bard
-#    Tier 3 = Senior / Veteran / Adept
-#    Tier 4 = Guildmaster / Grandmaster / Harbinger (top)
-#
-#  Membership is tracked by character flag (guild_X_member)
-#  and rank variable (guild_X_rank, 1–4).
-#  Traits carry the in-world display and stat modifiers.
+#    INVALID KEYS — never use:
+#      piety_mult, prestige_mult, stress_loss_mult
 # =============================================================
 
 # ================================================================
@@ -55,7 +123,7 @@ mages_guild_archmagister = {
 }
 
 # ================================================================
-#  FIGHTERS GUILD  (founded 2E 320; active by 2E 440)
+#  FIGHTERS GUILD  (founded 2E 321; active by 2E 440)
 #  Ranks: Associate → Journeyman → Guardian → Guildmaster
 # ================================================================
 

@@ -44,7 +44,6 @@
 #     Kamal invasion triggers at current_date >= 2E.572.
 #     Verify EK2 title IDs before use.
 # =============================================================
- # Encoding: UTF-8-BOM
 l_english:
 
  # =====================================================================
