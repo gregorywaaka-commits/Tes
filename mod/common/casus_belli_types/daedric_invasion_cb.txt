@@ -20,6 +20,7 @@ daedric_invasion_cb = {
     # The war target is every mortal realm
     valid_to_start = {
         is_daedric_invasion_active = yes
+        NOT = { has_modifier = daedric_invasion_white_peace_truce }  # 5-year post-truce cooldown
     }
 
     target_type = realm
@@ -70,6 +71,17 @@ daedric_invasion_cb = {
     }
 
     transfer_behavior = transfer_all
+
+    on_white_peace = {
+        # White peace: invasion phase unchanged; neither side achieved its goals.
+        # Apply a 5-year regrouping truce to the Prince to prevent immediate re-declaration.
+        scope:attacker = {
+            if = {
+                limit = { has_trait = daedric_prince }
+                add_modifier = { modifier = daedric_invasion_white_peace_truce days = 1825 }
+            }
+        }
+    }
 
     white_peace_desc = daedric_invasion_cb_white_peace_desc
 }

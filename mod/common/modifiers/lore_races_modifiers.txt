@@ -942,3 +942,8 @@ dragonfires_lit_modifier = {
 # Empty cooldown between Amulet of Kings post-events.
 # Duration: 1825 days (5 years).
 amulet_post_event_cooldown = { }
+
+# Applied to a Daedric Prince after a white peace to represent regrouping.
+# Duration: 1825 days (5 years).  Acts as a gate on daedric_invasion_cb
+# valid_to_start so the Prince cannot immediately re-declare after a truce.
+daedric_invasion_white_peace_truce = { }

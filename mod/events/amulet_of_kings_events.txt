@@ -17,6 +17,7 @@
 #  amulet.005     — The Amulet Rejects a Non-Dragonborn (burns non-Dragonborn holders)
 #  amulet.006     — Relighting the Dragonfires (climactic event; requires White-Gold Tower)
 #  amulet.007     — The Dragonfires Burn (world notification; fires on every living ruler)
+#  amulet.008     — The Amulet is Lost (world notification; fires when bearer dies without lighting the Fires)
 #  amulet.post_001 — The Amulet Draws Attention (recurring political pressure event)
 #
 #  EK2 IDENTIFIERS USED:
@@ -336,5 +337,34 @@ amulet.post_001 = {
         add_prestige = 400
         add_piety    = 100
         add_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
+    }
+}
+
+# ----------------------------------------------------------------
+# amulet.008  — The Amulet is Lost
+# World notification event — every living ruler learns that the
+# Dragonborn bearer of the Amulet has died and the Dragonfires
+# were never relit.  The Covenant is again unfulfilled; the
+# Amulet's location is once more unknown.
+# Fired by on_character_death in lore_races_on_actions.txt when:
+#   • character had amulet_of_kings_bearer flag
+#   • character did NOT have dragonfires_lit flag
+# ----------------------------------------------------------------
+amulet.008 = {
+    type  = character_event
+    title = amulet.008.t
+    desc  = amulet.008.desc
+    theme = realm
+
+    option = {
+        name = amulet.008.a   # "The Covenant is broken again.  The Amulet is lost."
+        add_piety    = -50
+        add_prestige = 25
+        add_stress   = 10
+    }
+    option = {
+        name = amulet.008.b   # "Another Dragonborn will come.  The covenant endures even when its bearer does not."
+        add_piety    = 50
+        add_stress   = -5
     }
 }

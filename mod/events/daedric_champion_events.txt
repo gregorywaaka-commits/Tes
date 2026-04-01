@@ -44,7 +44,9 @@
 #             sword_of_jyggalag_modifier
 #  Note: The daedric_champion trait is a generic "champion of a Prince" trait.
 #        Prince-specific champion traits (azura_champion, etc.) are additive.
-#        Cleanup of these traits on death is handled in daedric_invasion.060.
+#        Cleanup of these traits on death is handled in daedric_invasion.060
+#        (daedric_invasion_events.txt line ~345) — the event EXISTS and fires
+#        from the on_character_death hook in daedric_invasion_on_actions.txt.
 #
 #  LORE BASIS:
 #  Each quest chain draws on in-game lore for the Prince's sphere

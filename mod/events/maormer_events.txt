@@ -38,6 +38,16 @@
 #  Maormer have powerful storm and serpent magic that countered
 #  Altmer naval superiority.  Orgnum grows progressively younger
 #  each decade (an immortality quirk).
+#  ORGNUM'S IMMORTALITY: The mechanism of Orgnum's deathlessness
+#  is an unresolved lore mystery.  Two principal theories exist:
+#  (1) Orgnum is a Sload in disguise — the slug-men of Thras are
+#      long-lived necromancers who can extend life indefinitely;
+#  (2) Orgnum is bound to a Daedric artefact or has made a compact
+#      with a Prince (possibly Peryite, whose sphere includes
+#      pestilence and the ordering of the lower Planes).
+#  maormer.016 (Orgnum Grows Younger) and the orgnum_blessed trait
+#  deliberately leave this ambiguous — both are canonical positions
+#  and neither should be definitively resolved in mod content.
 #  Sources: The Last King of the Ayleids, Pocket Guide to the
 #  Empire (1st Edition), ESO: Summerset.
 #
@@ -45,7 +55,7 @@
 #  1. Add maormer.NNN = { ... } following the pattern below
 #  2. Gate Maormer-specific events with is_maormer = yes
 #  3. Add localization keys to mod/localization/english/
-#     maormer_l_english.yml
+#     lore_races_l_english.yml
 # =============================================================
 
 namespace = maormer

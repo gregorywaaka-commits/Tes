@@ -39,7 +39,7 @@
 #                     Players close gates via the close_oblivion_gate
 #                     decision (gains oblivion_slayer trait).
 #
-#  5. CHAMPIONS: on_five_year_pulse_character randomly offers rulers
+#  5. CHAMPIONS: on_five_year_pulse randomly offers rulers
 #                a chance to become a Daedric Champion (per-Prince
 #                quest chain in daedric_champion_events.txt).
 #                Champions can attempt to banish the Prince via
@@ -147,25 +147,37 @@ on_yearly_pulse = {
         8   = guild.companions.contract  # Companions hunting/warrior contract
         8   = guild.bards.ballad         # Bards College composition opportunity
         8   = guild.undaunted.delve      # Undaunted dungeon delve
+
+        # ---- Per-Prince invasion recurring events ----
+        # These events have internal trigger blocks checking is_daedric_invasion_active
+        # and the correct active Prince (is_X_invasion).  They are silently skipped
+        # in years with no active invasion — no wasted side effects, just a miss.
+        # Mehrunes Dagon, Boethiah, Hircine, Namira, Molag Bal have purely military
+        # invasions and have no recurring character events here.
+        80  = 0                                              # no-op: most years nothing fires
+        5   = daedric_prince_invasion.azura.003             # Azura: prophecy revelation
+        4   = daedric_prince_invasion.mephala.002           # Mephala: web tightens
+        4   = daedric_prince_invasion.clavicus.003          # Clavicus: follow-up offer
+        4   = daedric_prince_invasion.vaermina.003          # Vaermina: nightmare intensifies
+        3   = daedric_prince_invasion.sheogorath.003        # Sheogorath: madness deepens
+        4   = daedric_prince_invasion.peryite.002           # Peryite: plague spreads
+        4   = daedric_prince_invasion.sanguine.003          # Sanguine: corruption event
+        4   = daedric_prince_invasion.meridia.002           # Meridia: purge event
+        4   = daedric_prince_invasion.malacath.003          # Malacath: oath-curse deepens
+        4   = daedric_prince_invasion.nocturnal.002         # Nocturnal: shadow tithe event
+        4   = daedric_prince_invasion.hermaeus.003          # Mora: knowledge offer/price
+        3   = daedric_prince_invasion.jyggalag.003          # Jyggalag: crystallisation spreads
     }
 }
 
 # ---------------------------------------------------------------
-#  FIVE-YEAR CHARACTER PULSE — Prince contact during peace
-#  Even between invasions, Daedric Princes reach out to mortals.
-#  Each Prince has a small weight here.  When their event fires,
-#  the character gets the opening of their champion quest chain
-#  (defined in daedric_champion_events.txt).
-#  Lower weights = rarer contact (Namira, Sheogorath are more
-#  selective; Azura, Sanguine, Meridia reach out more often).
+#  FIVE-YEAR PULSE — Daedric Prince champion contact
+#  Uses the vanilla on_five_year_pulse hook (fires every 5 years
+#  for each living ruler).  Randomly offers rulers the opening
+#  of a Daedric Champion quest chain (daedric_champion_events.txt).
+#  Lower weights = rarer contact.
 # ---------------------------------------------------------------
-# TODO COMPATIBILITY: "on_five_year_pulse_character" is not a vanilla CK3 on_action hook.
-# Valid hooks are: on_five_year_pulse / on_yearly_pulse / on_decade_pulse.
-# If EK2 defines this "_character" variant and fires it internally, this block
-# works correctly. If EK2 does NOT define it, this block is silently ignored.
-# Verify against your EK2 version before relying on this.
-
-on_five_year_pulse_character = {
+on_five_year_pulse = {
     random_events = {
         100 = 0          # no-op — most 5-year periods, no contact
         3   = daedric_champion.mehrunes.001   # Dagon: seeks ambitious/martial rulers
@@ -185,63 +197,12 @@ on_five_year_pulse_character = {
 }
 
 # ---------------------------------------------------------------
-#  YEARLY CHARACTER PULSE — per-Prince invasion events
-#  During an active invasion, each Prince has unique recurring
-#  events that fire on the yearly pulse (defined in
-#  daedric_prince_invasion_events.txt).  The trigger blocks
-#  inside those events check is_X_invasion to ensure only the
-#  right events fire for the active Prince.
-#  Note: Mehrunes Dagon, Boethiah, Hircine, Namira, Molag Bal
-#  do not have entries here — their invasions are purely military
-#  and do not have special recurring character events.
+#  NOTE: on_yearly_pulse_character and on_decade_pulse_character
+#  were removed — these are not vanilla CK3 on_action hooks.
+#  Per-Prince invasion events have been merged into on_yearly_pulse
+#  above (they self-gate via internal triggers).
+#  Champion contact events have been moved to on_five_year_pulse
+#  above (a valid vanilla hook).
+#  The on_decade_pulse_character block was a placeholder with no
+#  real events and has been removed without replacement.
 # ---------------------------------------------------------------
-# TODO COMPATIBILITY: "on_yearly_pulse_character" is not a vanilla CK3 on_action hook.
-# Valid hooks are: on_five_year_pulse / on_yearly_pulse / on_decade_pulse.
-# If EK2 defines this "_character" variant and fires it internally, this block
-# works correctly. If EK2 does NOT define it, this block is silently ignored.
-# Verify against your EK2 version before relying on this.
-
-on_yearly_pulse_character = {
-    random_events = {
-        80 = 0
-        5  = daedric_prince_invasion.azura.003     # Azura: prophecy revelation
-        4  = daedric_prince_invasion.mephala.002   # Mephala: web tightens around the ruler
-        4  = daedric_prince_invasion.clavicus.003  # Clavicus: follow-up offer
-        4  = daedric_prince_invasion.vaermina.003  # Vaermina: nightmare intensifies
-        3  = daedric_prince_invasion.sheogorath.003 # Sheogorath: madness deepens
-        4  = daedric_prince_invasion.peryite.002   # Peryite: plague spreads
-        4  = daedric_prince_invasion.sanguine.003  # Sanguine: corruption event
-        4  = daedric_prince_invasion.meridia.002   # Meridia: purge event
-        4  = daedric_prince_invasion.malacath.003  # Malacath: oath-curse deepens
-        4  = daedric_prince_invasion.nocturnal.002 # Nocturnal: shadow tithe event
-        4  = daedric_prince_invasion.hermaeus.003  # Mora: knowledge offer/price
-        3  = daedric_prince_invasion.jyggalag.003  # Jyggalag: crystallisation spreads
-    }
-}
-
-# ---------------------------------------------------------------
-#  GUILD YEARLY ACTIVITY PULSES
-#  Each guild member has a small yearly chance of a guild activity
-#  event.  These events are defined in guild_events.txt and
-#  guild_leadership_events.txt.  The events check guild membership
-#  (has_trait = mages_guild_member, etc.) internally.
-# ---------------------------------------------------------------
-# NOTE: The guild on_yearly_pulse entries were merged into the
-# on_yearly_pulse block above. CK3 only loads the last same-named
-# block per file; a second block here would silently discard the
-# invasion trigger. Both pools now live in the single block above.
-
-# AI decade pulse — placeholder; AI guild joining is handled by ai_will_do
-# weights in the decision files (daedric_invasion_decisions.txt, guild_decisions.txt).
-# TODO COMPATIBILITY: "on_decade_pulse_character" is not a vanilla CK3 on_action hook.
-# Valid hooks are: on_five_year_pulse / on_yearly_pulse / on_decade_pulse.
-# If EK2 defines this "_character" variant and fires it internally, this block
-# works correctly. If EK2 does NOT define it, this block is silently ignored.
-# Verify against your EK2 version before relying on this.
-
-on_decade_pulse_character = {
-    random_events = {
-        80 = 0
-        5  = 0   # reserved for future AI proactive guild events
-    }
-}

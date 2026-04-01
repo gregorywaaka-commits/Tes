@@ -34,7 +34,7 @@
 #  2. Gate province/county events with
 #     has_variable = oblivion_gate_active (county scope)
 #  3. Add localization keys to mod/localization/english/
-#     oblivion_gate_l_english.yml
+#     daedric_invasion_l_english.yml
 # =============================================================
 
 namespace = oblivion_gate

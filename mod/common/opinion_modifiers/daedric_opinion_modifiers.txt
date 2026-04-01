@@ -32,6 +32,11 @@ reason_echmer_envoy = {
     decay_rate = 0
 }
 
+welcomed_envoy_opinion = {
+    opinion = 10
+    decay_rate = 0
+}
+
 # ---- Guild opinion modifiers ----
 same_guild_opinion = {
     opinion = 15

@@ -146,5 +146,19 @@ on_character_death = {
             limit = { has_character_flag = amulet_of_kings_claimed }
             remove_character_flag = amulet_of_kings_claimed
         }
+        # World notification: if the bearer dies without relighting the Dragonfires,
+        # all living rulers are informed the Amulet is lost again.
+        # NOTE: dragonfires_lit is a character flag — it auto-clears on death,
+        # so we check it BEFORE cleanup runs (on_character_death still has the flags).
+        if = {
+            limit = {
+                has_character_flag = amulet_of_kings_bearer
+                NOT = { has_character_flag = dragonfires_lit }
+            }
+            every_ruler = {
+                limit = { is_alive = yes }
+                trigger_event = { id = amulet.008 }
+            }
+        }
     }
 }

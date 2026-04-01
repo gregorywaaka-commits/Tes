@@ -187,6 +187,9 @@ sea_serpent_master = {
 }
 
 # Orgnum's Blessing — the immortal king grants a chosen follower longevity
+# NOTE: Orgnum's own immortality mechanism is an unresolved lore mystery —
+# he may be a Sload in disguise or bound to a Daedric artefact.  This trait
+# represents the benefit he grants; it does not imply his own origin.
 orgnum_blessed = {
     category = special
     is_immortal = yes

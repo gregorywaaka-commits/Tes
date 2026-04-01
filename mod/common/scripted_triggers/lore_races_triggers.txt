@@ -70,6 +70,7 @@ is_echmer = {
 #   • contact not already established
 #   • the kingdom of Yneslea exists in the game world (title:k_yneslea)
 #   • date >= 2E.150 (early contact period; they become more accessible later)
+# DEPRECATED NAME: Use echmer_expedition_possible (alias at bottom of file) in new code.
 echmer_invasion_possible = {
     NOT = { is_echmer_active_contact = yes }
     exists = title:k_yneslea

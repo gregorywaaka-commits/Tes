@@ -42,7 +42,7 @@
 #  1. Add sload.NNN = { ... } following the pattern below
 #  2. Gate Sload-specific events with is_sload = yes
 #  3. Add localization keys to mod/localization/english/
-#     sload_l_english.yml
+#     lore_races_l_english.yml
 # =============================================================
 
 namespace = sload

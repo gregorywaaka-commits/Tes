@@ -32,6 +32,12 @@
 #  The Echmer were uplifted by the Dwemer before the latter's
 #  disappearance in 1E 700, and retained some of their mechanical
 #  arts in the form of sonic "Echolalia" magic.
+#  DWEMER DISAPPEARANCE: In 1E 700, at the Battle of Red Mountain,
+#  every Dwemer in the world vanished simultaneously — a
+#  metaphysical catastrophe whose cause is still debated in lore.
+#  The Echmer are the Dwemer's only surviving legacy: orphaned
+#  inheritors of tonal architecture with no living masters to
+#  learn from.  This is the emotional core of echmer.002.
 #  This is a creative/lore-accurate extension of EK2's Akaviri
 #  and exotic-race systems.
 #
@@ -39,7 +45,7 @@
 #  1. Add echmer.NNN = { ... } following the pattern below
 #  2. Gate Echmer-specific events with is_echmer_active_contact = yes
 #  3. Add localization keys to mod/localization/english/
-#     echmer_l_english.yml
+#     lore_races_l_english.yml
 # =============================================================
 
 namespace = echmer

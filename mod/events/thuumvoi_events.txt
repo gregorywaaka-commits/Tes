@@ -49,6 +49,13 @@
 #  The Greybeards are an ancient order on High Hrothgar founded
 #  by Jurgen Windcaller after the Battle of Red Mountain (1E 416),
 #  who advocate using the Voice only to honour the gods.
+#  PAARTHURNAX: The great dragon at the summit of the Throat of the
+#  World is Paarthurnax — Alduin's former lieutenant who turned
+#  against him and has lived at the Throat since the Merethic Era.
+#  He pre-dates the Greybeards: they built High Hrothgar beneath
+#  the mountain he already inhabited, and he taught Jurgen Windcaller
+#  himself.  His presence in the 2E timeframe is fully canonical —
+#  unlike Arngeir (see below), no anachronism is involved.
 #  ARNGEIR ANACHRONISM NOTE: Arngeir is the Greybeards' spokesman
 #  in The Elder Scrolls V: Skyrim (4E 201).  His presence here in
 #  the 2E Interregnum is a deliberate creative choice, representing

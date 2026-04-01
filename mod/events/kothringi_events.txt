@@ -42,7 +42,7 @@
 #  2. Gate flu-related events with knahaten_flu_active = yes
 #     (or exists = global_var:knahaten_flu_active for world events)
 #  3. Add localization keys to mod/localization/english/
-#     kothringi_l_english.yml
+#     lore_races_l_english.yml
 # =============================================================
 
 namespace = kothringi
@@ -50,6 +50,13 @@ namespace = kothringi
 # ---------------------------------------------------------------
 # kothringi.001  The Knahaten Flu Erupts in Black Marsh
 #                Date-gated: current_date >= 2E.560
+# ARGONIAN IMMUNITY NOTE: Argonians are immune to the Knahaten Flu
+# because their Hist connection — the network of sentient hist trees
+# native to Black Marsh — conferred protection.  This is why the Flu
+# devastated the Kothringi (and other humans in the region) while
+# Argonian populations were unaffected.  The decision to NOT gate
+# this event on is_kothringi is deliberate: the Flu affects all
+# non-immune rulers with holdings in Black Marsh.
 # ---------------------------------------------------------------
 kothringi.001 = {
     type = character_event
