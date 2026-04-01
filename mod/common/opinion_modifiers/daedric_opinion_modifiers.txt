@@ -31,3 +31,24 @@ reason_echmer_envoy = {
     opinion = 10
     decay_rate = 0
 }
+
+# ---- Guild opinion modifiers ----
+same_guild_opinion = {
+    opinion = 15
+    decay_rate = 0
+}
+
+guild_rival_opinion = {
+    opinion = -15
+    decay_rate = 0
+}
+
+dark_brotherhood_target_opinion = {
+    opinion = -50
+    decay_rate = 0
+}
+
+guild_betrayed_opinion = {
+    opinion = -30
+    decay_rate = 1
+}

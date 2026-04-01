@@ -1,0 +1,388 @@
+l_english:
+ # ============================================================
+ #  Guild System — Full Localization
+ #  EK2 Timeframe: 2E 440–896 (the Interregnum)
+ # ============================================================
+
+ # ---- Trait Names ----
+ mages_guild_associate: "Mages Guild Associate"
+ mages_guild_associate_desc: "A probationary member of the Mages Guild, accepted after demonstrating sufficient arcane aptitude. They have access to the Guild's libraries and may request instruction from senior members."
+
+ mages_guild_member: "Mages Guild Member"
+ mages_guild_member_desc: "A full Member of the Mages Guild, having passed the initial examinations. They may conduct research under the Guild's auspices and access restricted tomes."
+
+ mages_guild_wizard: "Mages Guild Wizard"
+ mages_guild_wizard_desc: "A recognized Wizard of the Mages Guild — a scholar of significant magical standing whose research is sponsored and whose reputation extends across the Guild's network."
+
+ mages_guild_archmagister: "Arch-Magister"
+ mages_guild_archmagister_desc: "The highest rank attainable within the Mages Guild by a mortal of extraordinary learning. An Arch-Magister's pronouncements carry weight across Tamriel's magical community."
+
+ fighters_guild_associate: "Fighters Guild Associate"
+ fighters_guild_associate_desc: "A new recruit of the Fighters Guild — the Syffim as the Tsaesci founders named it — taking on contracts and proving their worth."
+
+ fighters_guild_journeyman: "Fighters Guild Journeyman"
+ fighters_guild_journeyman_desc: "A reliable Journeyman of the Fighters Guild. They have completed enough contracts to earn the Guild's trust and take on more demanding work."
+
+ fighters_guild_guardian: "Fighters Guild Guardian"
+ fighters_guild_guardian_desc: "A senior Guardian of the Fighters Guild. These warriors have fought across Tamriel in the Guild's name and trained those who came after them."
+
+ fighters_guild_guildmaster: "Fighters Guild Guildmaster"
+ fighters_guild_guildmaster_desc: "The Guildmaster of a Fighters Guild chapter — commander of the local fighting force, arbiter of contracts, and embodiment of the Guild's martial ideals."
+
+ thieves_guild_footpad: "Thieves Guild Footpad"
+ thieves_guild_footpad_desc: "A new recruit of the Thieves Guild, still learning the trade. Quick fingers, quieter footsteps, and a healthy respect for the darkness."
+
+ thieves_guild_prowler: "Thieves Guild Prowler"
+ thieves_guild_prowler_desc: "A tested thief who has proven themselves on several significant jobs. The Guild sends Prowlers on contracts too delicate for Footpads."
+
+ thieves_guild_shadowfoot: "Shadowfoot"
+ thieves_guild_shadowfoot_desc: "An elite thief of the highest standing within the Thieves Guild. A Shadowfoot moves unseen, knows every fence in Tamriel, and has the Guild's full backing."
+
+ thieves_guild_guildmaster_thief: "Thieves Guild Master"
+ thieves_guild_guildmaster_thief_desc: "The Guild Master of the Thieves Guild — unseen head of the shadow economy, keeper of every secret worth stealing, feared by merchant princes and kings alike."
+
+ dark_brotherhood_initiate: "Dark Brotherhood Initiate"
+ dark_brotherhood_initiate_desc: "A newly initiated member of the Dark Brotherhood, welcomed into the Family after performing their first sanctioned kill. The Night Mother watches. Sithis waits."
+
+ dark_brotherhood_assassin: "Dark Brotherhood Assassin"
+ dark_brotherhood_assassin_desc: "A trusted Assassin of the Dark Brotherhood — skilled, discreet, and utterly loyal to the Five Tenets and the Family."
+
+ dark_brotherhood_speaker: "Speaker of the Dark Brotherhood"
+ dark_brotherhood_speaker_desc: "One of the Brotherhood's inner council — a Speaker serves the Night Mother's will and directs contracts across a region of Tamriel."
+
+ dark_brotherhood_listener: "Listener"
+ dark_brotherhood_listener_desc: "The Listener is the one mortal who can hear the Night Mother's voice. The Listener is the Black Hand's directing will — the most feared individual in any realm they inhabit."
+
+ morag_tong_assassin: "Morag Tong Assassin"
+ morag_tong_assassin_desc: "A sanctioned assassin of the Morag Tong — Mephala's chosen instruments in Morrowind. Their writs of execution are legally recognized within House territories."
+
+ morag_tong_master: "Morag Tong Master Assassin"
+ morag_tong_master_desc: "A Master Assassin of the Morag Tong, trusted with the most sensitive writs and the training of new recruits."
+
+ morag_tong_grandmaster: "Grandmaster of the Morag Tong"
+ morag_tong_grandmaster_desc: "The Grandmaster of the Morag Tong — head of the ancient guild of sanctioned killing, feared across Morrowind and respected (or dreaded) beyond its borders."
+
+ companions_shield_brother: "Shield-Brother of the Companions"
+ companions_shield_brother_desc: "A Shield-Brother or Shield-Sister of the Companions — a proven warrior who has been welcomed into Ysgramor's ancient fellowship at Whiterun's Jorrvaskr."
+
+ companions_veteran: "Veteran Companion"
+ companions_veteran_desc: "A Veteran Companion who has fought in many battles under the banner of the ancient Nord fellowship."
+
+ companions_circle: "Companion of the Circle"
+ companions_circle_desc: "A member of the Circle — the inner council of the Companions, guardians of their deepest secrets and most powerful traditions."
+
+ companions_harbinger: "Harbinger of the Companions"
+ companions_harbinger_desc: "The Harbinger is not a leader but a guide — first among equals in the Companions, speaking for Ysgramor's ancient legacy."
+
+ psijic_novice: "Psijic Novice"
+ psijic_novice_desc: "A Novice of the Psijic Order — initiated into the Elder Way, learning the first disciplines of the ancient magical order of Artaeum."
+
+ psijic_initiate: "Psijic Initiate"
+ psijic_initiate_desc: "A full Initiate of the Psijic Order, trusted with the first secrets of the Elder Way and resident on the mysterious isle of Artaeum."
+
+ psijic_adept: "Psijic Adept"
+ psijic_adept_desc: "A Psijic Adept — a wielder of the Old Ways with significant mastery of the Order's ancient discipline. Their counsel is sought by rulers throughout Tamriel."
+
+ psijic_master: "Master of the Psijic Order"
+ psijic_master_desc: "A Master of the Psijic Order, among the most learned and spiritually advanced individuals in all of Tamriel."
+
+ bards_college_apprentice: "Bards College Apprentice"
+ bards_college_apprentice_desc: "A student of the Bards College of Solitude — learning the history, poetry, and songs of Tamriel's many cultures."
+
+ bards_college_bard: "Bard"
+ bards_college_bard_desc: "A graduated Bard of the College — a storyteller, singer, and keeper of lore whose songs are heard in courts across Skyrim and beyond."
+
+ bards_college_master_bard: "Master Bard"
+ bards_college_master_bard_desc: "A Master Bard of the College — a renowned voice whose songs will outlast kingdoms. Their ballads of great deeds spread prestige across the world."
+
+ undaunted_member: "The Undaunted"
+ undaunted_member_desc: "A member of the Undaunted — an adventurer's guild for those fearless enough to delve into ancient ruins, face Daedra, and drink to the dead."
+
+ undaunted_veteran: "Undaunted Veteran"
+ undaunted_veteran_desc: "A seasoned Undaunted veteran who has survived the worst that Tamriel's ruins and daedric incursions have to offer."
+
+ undaunted_elite: "Undaunted Elite"
+ undaunted_elite_desc: "One of the elite of the Undaunted — a battle-hardened adventurer whose name is sung in every tavern that serves adventurers across the continent."
+
+ # ============================================================
+ #  Decision Names & Descriptions
+ # ============================================================
+
+ join_mages_guild_decision: "Join the Mages Guild"
+ join_mages_guild_decision_desc: "The Mages Guild — founded in 2E 230 by Vanus Galerion and granted imperial recognition by the Guild Act — offers magical knowledge, research facilities, and a network of arcane scholars to those of sufficient learning. Apply for membership."
+
+ seek_mages_guild_advancement: "Seek Advancement in the Mages Guild"
+ seek_mages_guild_advancement_desc: "Demonstrate scholarly achievement and seek a higher rank within the Mages Guild."
+
+ conduct_magical_research: "Conduct Magical Research"
+ conduct_magical_research_desc: "Commission a significant research project through the Mages Guild's resources. The outcome may advance magical knowledge — or create complications."
+
+ leave_mages_guild_decision: "Leave the Mages Guild"
+ leave_mages_guild_decision_desc: "Resign from the Mages Guild. This will cost prestige and forfeit all Guild privileges."
+
+ join_fighters_guild_decision: "Join the Fighters Guild"
+ join_fighters_guild_decision_desc: "The Fighters Guild — chartered by the Guild Act of 2E 321 and originally called the Syffim by its Tsaesci founders — offers mercenary contracts, martial training, and a brotherhood of arms. Apply for membership."
+
+ seek_fighters_guild_advancement: "Seek Advancement in the Fighters Guild"
+ seek_fighters_guild_advancement_desc: "Prove martial worth and seek a higher rank within the Fighters Guild."
+
+ take_guild_contract: "Take a Fighters Guild Contract"
+ take_guild_contract_desc: "Accept a contract from the Fighters Guild — security work, monster hunting, or military escort — for gold and prestige."
+
+ leave_fighters_guild_decision: "Leave the Fighters Guild"
+ leave_fighters_guild_decision_desc: "Resign from the Fighters Guild. This will cost prestige and forfeit Guild privileges."
+
+ join_thieves_guild_decision: "Join the Thieves Guild"
+ join_thieves_guild_decision_desc: "The Thieves Guild has no charter and no imperial recognition, but it is the most persistent criminal organization in Tamriel. Seek out their contact in the shadows."
+
+ seek_thieves_guild_advancement: "Seek Advancement in the Thieves Guild"
+ seek_thieves_guild_advancement_desc: "Prove criminal skill and cunning to advance in the Thieves Guild's shadow hierarchy."
+
+ plan_heist: "Plan a Heist"
+ plan_heist_desc: "Use the Thieves Guild's network to plan a significant theft. The rewards can be substantial — or disastrous."
+
+ leave_thieves_guild_decision: "Leave the Thieves Guild"
+ leave_thieves_guild_decision_desc: "Attempt to leave the Thieves Guild. They will want their cut first."
+
+ join_dark_brotherhood_decision: "Join the Dark Brotherhood"
+ join_dark_brotherhood_decision_desc: "The Dark Brotherhood — servants of Sithis and the Night Mother — accept only those who have killed. Seek out the Family in the shadows."
+
+ seek_dark_brotherhood_advancement: "Seek Advancement in the Dark Brotherhood"
+ seek_dark_brotherhood_advancement_desc: "Prove dedication to the Five Tenets and seek advancement within the Brotherhood's hierarchy."
+
+ perform_black_sacrament: "Perform the Black Sacrament"
+ perform_black_sacrament_desc: "Conduct the Black Sacrament — a ritual calling upon the Night Mother to send a Dark Brotherhood assassin against a specific target."
+
+ leave_dark_brotherhood_decision: "Attempt to Leave the Dark Brotherhood"
+ leave_dark_brotherhood_decision_desc: "No one truly leaves the Dark Brotherhood. Attempt to walk away — and live with the consequences."
+
+ join_morag_tong_decision: "Join the Morag Tong"
+ join_morag_tong_decision_desc: "The Morag Tong is the ancient and legally sanctioned assassins' guild of Morrowind, operating under writs of execution blessed by the Tribunal and Mephala. Seek initiation."
+
+ seek_morag_tong_advancement: "Seek Advancement in the Morag Tong"
+ seek_morag_tong_advancement_desc: "Demonstrate skill and piety to advance within the Tong's ancient ranks."
+
+ issue_writ_of_execution: "Issue a Writ of Execution"
+ issue_writ_of_execution_desc: "Commission the Morag Tong to carry out a legally sanctioned execution against a specific enemy. Within Morrowind, this is entirely legal."
+
+ leave_morag_tong_decision: "Leave the Morag Tong"
+ leave_morag_tong_decision_desc: "Resign from the Morag Tong. The Tong does not forget those who abandon Mephala's service."
+
+ join_companions_decision: "Join the Companions"
+ join_companions_decision_desc: "The Companions of Whiterun are Tamriel's oldest brotherhood of warriors — founded in the age of Ysgramor. Any warrior of sufficient merit may petition to join."
+
+ seek_companions_advancement: "Seek Advancement Among the Companions"
+ seek_companions_advancement_desc: "Prove worth in battle and service to earn a higher standing in the Companions."
+
+ take_companions_contract: "Take a Companions Contract"
+ take_companions_contract_desc: "Accept a contract from those who seek the Companions' services — adventurous, dangerous, and profitable work."
+
+ seek_companions_circle_rite: "Seek the Circle's Rite"
+ seek_companions_circle_rite_desc: "The Circle — the Companions' inner council — guards a secret as ancient as Ysgramor's line. Petition to learn it and be initiated."
+
+ leave_companions_decision: "Leave the Companions"
+ leave_companions_decision_desc: "Part ways with the Companions. To leave the fellowship is to leave behind centuries of shared blood and honour."
+
+ seek_psijic_invitation: "Seek the Psijic Order's Invitation"
+ seek_psijic_invitation_desc: "The Psijic Order does not recruit — they choose. A scholar of sufficient learning and piety may attract their attention. Seek the Old Ways and hope Artaeum hears."
+
+ seek_psijic_advancement: "Seek Advancement in the Psijic Order"
+ seek_psijic_advancement_desc: "Demonstrate mastery of the Elder Way and seek advancement through the Order's ancient ranks."
+
+ commune_with_the_order: "Commune with the Psijic Order"
+ commune_with_the_order_desc: "Reach through the disciplines of the Elder Way to seek the Order's guidance. Their wisdom spans millennia."
+
+ leave_psijic_order_decision: "Leave the Psijic Order"
+ leave_psijic_order_decision_desc: "Depart from the Psijic Order and Artaeum. To leave is to lose their timeless counsel — and their protection."
+
+ join_bards_college_decision: "Join the Bards College"
+ join_bards_college_decision_desc: "The Bards College of Solitude preserves Tamriel's songs, histories, and stories. Apply to study there and learn the arts that outlast kingdoms."
+
+ seek_bards_college_advancement: "Seek Advancement in the Bards College"
+ seek_bards_college_advancement_desc: "Master new compositions and histories to advance in the Bards College's scholarly ranks."
+
+ compose_epic_ballad: "Compose an Epic Ballad"
+ compose_epic_ballad_desc: "Compose a new ballad through the Bards College — celebrating our deeds, praising a fallen hero, or lampooning our enemies."
+
+ leave_bards_college_decision: "Leave the Bards College"
+ leave_bards_college_decision_desc: "Step away from the Bards College. The songs will remember us regardless."
+
+ join_undaunted_decision: "Join the Undaunted"
+ join_undaunted_decision_desc: "The Undaunted are adventurers who go where no sensible warrior would — ancient ruins, Daedric anchors, cursed crypts. They drink to those who don't come back and toast those who do."
+
+ seek_undaunted_advancement: "Seek Advancement Among the Undaunted"
+ seek_undaunted_advancement_desc: "Prove mettle in the most dangerous places in Tamriel and earn a higher standing among the Undaunted."
+
+ delve_dangerous_ruin: "Delve a Dangerous Ruin"
+ delve_dangerous_ruin_desc: "Lead an Undaunted expedition into one of Tamriel's most dangerous ancient ruins — Dwemer, Ayleid, Nedic, or daedric. Glory awaits. Or death. Usually some of each."
+
+ leave_undaunted_decision: "Leave the Undaunted"
+ leave_undaunted_decision_desc: "Retire from the Undaunted. There is no shame in surviving long enough to retire."
+
+ # ============================================================
+ #  Event Titles & Descriptions
+ # ============================================================
+
+ # ---- Mages Guild ----
+ guild.mages.001.t: "Welcome to the Mages Guild"
+ guild.mages.001.desc: "The Magister at the guild hall takes our letter of application, examines it with the detached air of someone who has seen ten thousand such letters, and stamps it with the Guild seal. 'Associate status is granted. Study hard. Don't blow anything up. The Hall has a no-explosion policy.'"
+ guild.mages.001.a: "I dedicate myself to the pursuit of magical knowledge."
+
+ guild.mages.advance.t: "Mages Guild Advancement"
+ guild.mages.advance.desc_member: "A senior Magister convenes the Advancement Committee — two wizards, one enchanter, and a scroll full of examination results. After considerable deliberation (and several cups of tea), they pronounce: Full Membership is granted."
+ guild.mages.advance.desc_wizard: "The Wizardry examination is passed with distinction. The senior enchanter places the Wizard's sash over our shoulders and invites us to contribute to the Guild's greater research programs."
+ guild.mages.advance.desc_arch: "In a ceremony attended by Guild members from across Tamriel, the title of Arch-Magister is conferred. The previous holder is either dead, retired, or has ascended to a plane of existence that doesn't require a title."
+ guild.mages.advance.desc_generic: "A new rank is conferred within the Mages Guild."
+ guild.mages.advance.a: "Knowledge advances. So do we."
+
+ guild.mages.research.t: "Magical Research Conclusions"
+ guild.mages.research.desc: "Months of research in the Guild's libraries — cross-referencing ancient tomes, conducting carefully controlled experiments (some less controlled than intended), and filling page after page of notes — finally yield a conclusion."
+ guild.mages.research.a: "What did we learn?"
+
+ # ---- Fighters Guild ----
+ guild.fighters.001.t: "Welcome to the Fighters Guild"
+ guild.fighters.001.desc: "The Guild Steward at the hall examines our record and nods with the careful professional approval of someone who knows exactly what a fighter is worth. 'We have contracts to fill. The Guild needs reliable swords. Welcome aboard.'"
+ guild.fighters.001.a: "I take up arms for the Guild."
+
+ guild.fighters.advance.t: "Fighters Guild Advancement"
+ guild.fighters.advance.desc_journeyman: "After completing sufficient contracts without embarrassing ourselves or the Guild, Journeyman rank is granted. The Guild Steward hands over the signed certificate and a better class of armor-maintenance oil."
+ guild.fighters.advance.desc_guardian: "Guardian rank comes with authority — the right to oversee contracts, evaluate new Associates, and represent the Guild in dealings with local nobles."
+ guild.fighters.advance.desc_guildmaster: "Guildmaster of the local chapter. The hall is ours to command. The contracts flow through us. The Guild's honour is our responsibility."
+ guild.fighters.advance.desc_generic: "Advancement within the Fighters Guild is conferred."
+ guild.fighters.advance.a: "For the Guild."
+
+ guild.fighters.contract.t: "A Guild Contract"
+ guild.fighters.contract.desc: "The Fighters Guild board is full of contracts — merchants wanting armed escorts, nobles needing a discreet problem solved, villages troubled by things that go bump in the night. We select a contract and set to work."
+ guild.fighters.contract.a: "Accept the contract."
+ guild.fighters.contract.b: "Decline this contract."
+
+ # ---- Thieves Guild ----
+ guild.thieves.001.t: "Into the Shadows"
+ guild.thieves.001.desc: "The contact — recommended by a recommendation of a recommendation — meets us in a tavern basement. They look us over with the professional disinterest of someone who has recruited a hundred fools before us. 'If you're caught, you don't know us. If you talk, you know what happens. Welcome to the Guild.'"
+ guild.thieves.001.a: "The shadows welcome another shadow."
+
+ guild.thieves.advance.t: "Shadow Advancement"
+ guild.thieves.advance.desc_prowler: "A more senior Guild member delivers the news in a way that somehow makes it feel like a threat and a compliment simultaneously. 'You're a Prowler now. Better jobs. Better pay. Higher expectations.'"
+ guild.thieves.advance.desc_shadowfoot: "Shadowfoot. The name carries weight in the criminal underworld of Tamriel. Even city guards pause before challenging a known Shadowfoot."
+ guild.thieves.advance.desc_master: "Guild Master. The shadow at the top of the shadows. We receive the sign of authority and several very pointed reminders that the Guild's prosperity is now entirely our responsibility."
+ guild.thieves.advance.desc_generic: "Advancement within the Thieves Guild."
+ guild.thieves.advance.a: "Another rung on the invisible ladder."
+
+ guild.thieves.heist.t: "The Heist"
+ guild.thieves.heist.desc: "The Guild's intelligence network has identified a target — a treasury, a merchant's vault, a noble's art collection. The plan is, on paper, elegant. In practice, things rarely go according to plan."
+ guild.thieves.heist.a: "A clean job."
+ guild.thieves.heist.b: "Too risky — call it off."
+
+ # ---- Dark Brotherhood ----
+ guild.dark_brotherhood.001.t: "Hail Sithis"
+ guild.dark_brotherhood.001.desc: "The sanctuary is hidden behind a door that does not appear on any map, reached by a route that changes with each visit. Inside, robed figures move silently. A Speaker regards us with calm, measuring eyes. 'You have been chosen. You have heard the Night Mother's call. Welcome to the Family.' The door seals behind us."
+ guild.dark_brotherhood.001.a: "Hail Sithis. Welcome to the Family."
+
+ guild.dark_brotherhood.advance.t: "Dark Brotherhood Advancement"
+ guild.dark_brotherhood.advance.desc_assassin: "The Speaker presents a new contract and a new title simultaneously. Assassin. The kills are more complex now. The Family's trust is harder-won."
+ guild.dark_brotherhood.advance.desc_speaker: "The Black Hand has a new Speaker. We receive the seal of office and the Night Mother's whisper that accompanies it — soft, persistent, and utterly without mercy."
+ guild.dark_brotherhood.advance.desc_listener: "The Night Mother has spoken. We are the Listener now — the only soul in all of Tamriel who can hear her voice. The Black Hand kneels. The Family is ours to guide."
+ guild.dark_brotherhood.advance.desc_generic: "A new rank within the Dark Brotherhood."
+ guild.dark_brotherhood.advance.a: "Blood and shadows."
+
+ guild.dark_brotherhood.sacrament.t: "The Black Sacrament is Answered"
+ guild.dark_brotherhood.sacrament.desc: "The ritual is complete — the sweet lotus, the nightshade, the flesh of the offering. The Night Mother heard. The Brotherhood sends word through channels that leave no trace: the contract has been accepted."
+ guild.dark_brotherhood.sacrament.a: "The target is eliminated."
+ guild.dark_brotherhood.sacrament.b: "The Brotherhood demands payment — pay them."
+
+ guild.dark_brotherhood.leave.t: "You Cannot Leave the Family"
+ guild.dark_brotherhood.leave.desc: "Word has gone out through the Brotherhood's silent network. We have left the Family. The consequences of this are, according to every Dark Brotherhood tradition, severe. The Night Mother's favour is withdrawn. The marking is placed. We will spend the rest of our days looking over our shoulder."
+ guild.dark_brotherhood.leave.a: "I accept the consequences."
+
+ # ---- Morag Tong ----
+ guild.morag_tong.001.t: "The Morag Tong Accepts"
+ guild.morag_tong.001.desc: "In a hall of dark stone somewhere in the Dunmer heartland, the Grandmaster regards us with ancient, evaluating eyes. Morag Tong initiation is not a ceremony — it is a statement. A writ is placed in our hands. 'Mephala's web accepts a new thread. Do not tangle it.'"
+ guild.morag_tong.001.a: "I serve Mephala's web."
+
+ guild.morag_tong.advance.t: "Morag Tong Advancement"
+ guild.morag_tong.advance.desc_master: "Master Assassin. The Grandmaster acknowledges the rank with a formal gesture older than the current era. We may now train initiates and handle writs of the highest sensitivity."
+ guild.morag_tong.advance.desc_grandmaster: "Grandmaster of the Morag Tong. The ancient seal of the Tong passes to us. Mephala's satisfaction is palpable — a sensation like spider-silk across the mind."
+ guild.morag_tong.advance.desc_generic: "Advancement within the Morag Tong."
+ guild.morag_tong.advance.a: "For Mephala. For the Tong."
+
+ guild.morag_tong.writ.t: "The Writ is Carried Out"
+ guild.morag_tong.writ.desc: "The Tong receives the commission. A writ of execution is prepared — legal under Tribunal law, blessed by Mephala's ancient compact, and delivered with the quiet efficiency of two thousand years of practice. The target is dead before they knew they were hunted."
+ guild.morag_tong.writ.a: "The writ is carried out."
+ guild.morag_tong.writ.b: "Call off the writ."
+
+ # ---- Companions ----
+ guild.companions.001.t: "Welcome to Jorrvaskr"
+ guild.companions.001.desc: "Jorrvaskr's mead hall smells of wood smoke, old steel, and the accumulated memories of generations of warriors. The Harbinger gestures to a seat and places a cup of mead in our hands before saying a word. 'You've come to test yourself. The Companions don't offer easy glory. But the blood we share is real.' We are Shield-Brothers now."
+ guild.companions.001.a: "I am Shield-Brother now."
+
+ guild.companions.advance.t: "Advancement Among the Companions"
+ guild.companions.advance.desc_veteran: "The veterans acknowledge us with the formal nod of warriors who respect earned rank above all else. 'Veteran Companion. You've earned it in blood and sweat.'"
+ guild.companions.advance.desc_circle: "The Circle gathers in Jorrvaskr's understreets. The Harbinger looks at us steadily. 'The Circle guards a secret older than the Companions themselves. It is time you knew.'"
+ guild.companions.advance.desc_harbinger: "Harbinger. Not a leader but a guide — first among equals in the most ancient warrior brotherhood in all of Tamriel. Ysgramor's legacy rests with us now."
+ guild.companions.advance.desc_generic: "Advancement among the Companions."
+ guild.companions.advance.a: "For Ysgramor's honour."
+
+ guild.companions.contract.t: "A Contract for the Companions"
+ guild.companions.contract.desc: "Word has come of work — a creature troubling a village, a bandit lord harassing trade roads, a nobleman with a problem that requires the Companions' particular brand of solution. We take up sword and shield."
+ guild.companions.contract.a: "For glory and gold."
+
+ guild.companions.circle_rite.t: "The Circle's Secret"
+ guild.companions.circle_rite.desc: "The Circle meets in the depths of Jorrvaskr's undercroft. The Harbinger speaks quietly. 'The Circle's strength comes from an ancient pact with Hircine. Our inner members carry the blood of the beast — the gift of the werewolf, sworn to Hircine's Hunt. You may carry this gift. Or you may join us without it. The choice is yours.'"
+ guild.companions.circle_rite.a: "Accept the blood of Hircine."
+ guild.companions.circle_rite.b: "Join the Circle without the beast blood."
+
+ # ---- Psijic Order ----
+ guild.psijic.invitation.t: "The Psijic Order Makes Contact"
+ guild.psijic.invitation.desc: "A visitor arrives at court without appointment or announcement — simply present one moment, where before there had been empty air. They are robed in the manner of the Psijic Order, their eyes calm with the depth of someone who has seen too much. 'The Order has observed your scholarship,' they say. 'Artaeum extends an invitation. You may refuse. Many do. Few are invited again.'"
+ guild.psijic.invitation.a: "Accept the invitation to Artaeum."
+ guild.psijic.invitation.b: "The world needs me — I cannot retreat to Artaeum."
+
+ guild.psijic.001.t: "The Elder Way"
+ guild.psijic.001.desc: "Artaeum is an island that sits slightly outside the world — its light is always the same gentle dusk, its air always clear, its libraries always hushed. The Order's senior members introduce us to the disciplines of the Elder Way. It will take years. Decades. Perhaps a lifetime. The Order, for its part, does not seem concerned by the timeline."
+ guild.psijic.001.a: "I begin the Elder Way."
+
+ guild.psijic.advance.t: "Advancement in the Psijic Order"
+ guild.psijic.advance.desc_initiate: "Full Initiate status is granted. We have mastered the first disciplines and are trusted with greater access to the Order's archives and the more challenging meditative exercises."
+ guild.psijic.advance.desc_adept: "Adept. The Order's elders acknowledge the rank with the particular solemnity of people who have witnessed centuries pass. 'The world will seek your counsel,' one says. 'Be careful what you reveal.'"
+ guild.psijic.advance.desc_master: "Master of the Psijic Order. A distinction achieved by only a handful of scholars in each generation. The Order's ancient texts are ours to study. The future is, in glimpses, visible."
+ guild.psijic.advance.desc_generic: "Advancement within the Psijic Order."
+ guild.psijic.advance.a: "The Elder Way reveals more of itself."
+
+ guild.psijic.commune.t: "Communion with the Order"
+ guild.psijic.commune.desc: "Through the meditative disciplines of the Elder Way, we reach through the veil of Artaeum's distant shores and commune with the Order's senior members. They have much to say — about the future, about dangers unseen, about patterns in the Aurbis that mortal eyes rarely perceive."
+ guild.psijic.commune.a: "The Order shares its ancient wisdom."
+ guild.psijic.commune.b: "They warn of a coming danger."
+
+ # ---- Bards College ----
+ guild.bards.001.t: "Welcome to the Bards College"
+ guild.bards.001.desc: "Solitude's Bards College smells of old parchment, fresh ink, and the lingering echo of ten thousand songs performed in its halls. The Headmaster (currently a surprisingly enthusiastic man named something involving lots of vowels) greets us warmly. 'A new student! Splendid. We'll start with the basics — history, metre, and how to tell a saga without losing the audience before the second verse.'"
+ guild.bards.001.a: "The College is my home away from court."
+
+ guild.bards.advance.t: "Bards College Advancement"
+ guild.bards.advance.desc_bard: "Graduated Bard. The College confers the title with a ceremony involving several toasts, one moderately emotional song about the passage of time, and a certificate written in very elegant script."
+ guild.bards.advance.desc_master: "Master Bard. The highest title the College can bestow. Our compositions will be sung in courts we have never visited, by bards we will never meet, for generations after our names are otherwise forgotten."
+ guild.bards.advance.desc_generic: "Advancement within the Bards College."
+ guild.bards.advance.a: "The songs continue."
+
+ guild.bards.ballad.t: "A New Ballad"
+ guild.bards.ballad.desc: "The Bards College has provided resources, criticism, and no small amount of constructive debate. A new ballad is ready — awaiting only the decision of its subject."
+ guild.bards.ballad.a: "A ballad of our own deeds."
+ guild.bards.ballad.b: "A ballad praising a great historical hero."
+ guild.bards.ballad.c: "A satirical ballad about our enemies."
+
+ # ---- Undaunted ----
+ guild.undaunted.001.t: "Welcome to the Undaunted"
+ guild.undaunted.001.desc: "The Undaunted's local chapter meets in a tavern's back room filled with adventurers in various states of not-quite-healed injury. They assess us with the frank appraisal of people who know what it costs to do what they do. The leader raises a mug. 'If you're here, you're either brave or stupid. In our experience, both work fine. Welcome.'"
+ guild.undaunted.001.a: "Shor's bones, let's go!"
+
+ guild.undaunted.advance.t: "Undaunted Advancement"
+ guild.undaunted.advance.desc_veteran: "Veteran Undaunted. We have survived enough ruins and daedric incursions to have earned the respect of the older members, several impressive scars, and a permanent tab at the Guild's preferred tavern."
+ guild.undaunted.advance.desc_elite: "Undaunted Elite. Our name is sung — literally; there is a song — across every Undaunted chapter in Tamriel. The most dangerous delves are offered to us first."
+ guild.undaunted.advance.desc_generic: "Advancement among the Undaunted."
+ guild.undaunted.advance.a: "Into deeper darkness."
+
+ guild.undaunted.delve.t: "Descending into the Ruin"
+ guild.undaunted.delve.desc: "The ruin's entrance yawns before us — stone worn by centuries, darkness concealing whatever has taken up residence since the original builders departed. Somewhere below: treasure, history, and things that eat adventurers. Our Undaunted companions check their equipment. We descend."
+ guild.undaunted.delve.a: "Into the ruins."
+ guild.undaunted.delve.b: "Turn back — the ruins are too dangerous."
+ undaunted_delve_success_tt: "A magnificent haul — an ancient artefact, rare materials, and the kind of story that will buy drinks for a decade."

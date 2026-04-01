@@ -71,3 +71,26 @@ on_yearly_pulse_character = {
         3  = daedric_prince_invasion.jyggalag.003
     }
 }
+
+# ---- Guild yearly activity pulses ----
+# Each year: small chance to trigger a guild activity event for members
+on_yearly_pulse = {
+    random_events = {
+        70 = 0
+        10 = guild.mages.research
+        10 = guild.fighters.contract
+        10 = guild.thieves.heist
+        8  = guild.morag_tong.writ
+        8  = guild.companions.contract
+        8  = guild.bards.ballad
+        8  = guild.undaunted.delve
+    }
+}
+
+# AI rulers seek guild membership every decade
+on_decade_pulse_character = {
+    random_events = {
+        80 = 0
+        5  = 0   # placeholder: AI join mages guild handled by ai_will_do in decisions
+    }
+}

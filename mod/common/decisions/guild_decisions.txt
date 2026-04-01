@@ -1,0 +1,833 @@
+# =============================================================
+#  Guild Decisions — All 9 Guilds
+#  Join, advance, perform guild activities, and leave.
+#  EK2 Timeframe: 2E 440–896 (the Interregnum)
+# =============================================================
+
+# ================================================================
+#  MAGES GUILD
+# ================================================================
+
+join_mages_guild_decision = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = join_mages_guild_decision_desc
+
+    is_shown = { can_join_mages_guild = yes }
+
+    is_valid = {
+        learning >= 10
+        prestige >= 100
+        NOT = { has_modifier = guild_recently_rejected }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_prestige = -100
+        join_mages_guild = yes
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = { add = 8  learning >= 16 }
+        modifier = { add = 5  has_trait = mystic }
+        modifier = { add = 5  has_trait = scholar }
+    }
+}
+
+seek_mages_guild_advancement = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = seek_mages_guild_advancement_desc
+
+    is_shown = { is_mages_guild_member = yes }
+
+    is_valid = {
+        can_advance_mages_guild = yes
+        learning >= 12
+        piety    >= 100
+        NOT = { has_trait = mages_guild_archmagister }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_piety    = -100
+        advance_mages_guild = yes
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 learning >= 20 }
+    }
+}
+
+conduct_magical_research = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = conduct_magical_research_desc
+
+    is_shown = { is_mages_guild_member = yes }
+
+    is_valid = {
+        gold     >= 150
+        learning >= 12
+        NOT = { has_modifier = guild_research_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_gold     = -150
+        add_modifier = { modifier = guild_research_cooldown days = 1095 }
+        trigger_event = { id = guild.mages.research }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = { add = 5 learning >= 18 }
+    }
+}
+
+leave_mages_guild_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = leave_mages_guild_decision_desc
+
+    is_shown = { is_mages_guild_member = yes }
+
+    is_valid = { is_mages_guild_member = yes }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { leave_mages_guild = yes }
+
+    ai_will_do = { base = 0 }
+}
+
+# ================================================================
+#  FIGHTERS GUILD
+# ================================================================
+
+join_fighters_guild_decision = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = join_fighters_guild_decision_desc
+
+    is_shown = { can_join_fighters_guild = yes }
+
+    is_valid = {
+        OR = { martial >= 10 prowess >= 12 }
+        NOT = { has_modifier = guild_recently_rejected }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { join_fighters_guild = yes }
+
+    ai_will_do = {
+        base = 5
+        modifier = { add = 8  martial >= 16 }
+        modifier = { add = 5  has_trait = hunter }
+        modifier = { add = 5  has_trait = brave }
+    }
+}
+
+seek_fighters_guild_advancement = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = seek_fighters_guild_advancement_desc
+
+    is_shown = { is_fighters_guild_member = yes }
+
+    is_valid = {
+        can_advance_fighters_guild = yes
+        OR = { martial >= 12 prowess >= 14 }
+        NOT = { has_trait = fighters_guild_guildmaster }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { advance_fighters_guild = yes }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 8 martial >= 18 }
+        modifier = { add = 5 prowess >= 20 }
+    }
+}
+
+take_guild_contract = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = take_guild_contract_desc
+
+    is_shown = { is_fighters_guild_member = yes }
+
+    is_valid = {
+        is_at_war = no
+        NOT = { has_modifier = guild_contract_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = guild_contract_cooldown days = 730 }
+        trigger_event = { id = guild.fighters.contract }
+    }
+
+    ai_will_do = {
+        base = 8
+        modifier = { add = 5 martial >= 16 }
+    }
+}
+
+leave_fighters_guild_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = leave_fighters_guild_decision_desc
+
+    is_shown = { is_fighters_guild_member = yes }
+    is_valid  = { is_fighters_guild_member = yes }
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { leave_fighters_guild = yes }
+    ai_will_do = { base = 0 }
+}
+
+# ================================================================
+#  THIEVES GUILD
+# ================================================================
+
+join_thieves_guild_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = join_thieves_guild_decision_desc
+
+    is_shown = { can_join_thieves_guild = yes }
+
+    is_valid = {
+        intrigue >= 10
+        NOT = { has_modifier = guild_recently_rejected }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { join_thieves_guild = yes }
+
+    ai_will_do = {
+        base = 3
+        modifier = { add = 8  intrigue >= 16 }
+        modifier = { add = 5  has_trait = schemer }
+        modifier = { add = 5  has_trait = greedy }
+    }
+}
+
+seek_thieves_guild_advancement = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_thieves_guild_advancement_desc
+
+    is_shown = { is_thieves_guild_member = yes }
+
+    is_valid = {
+        can_advance_thieves_guild = yes
+        intrigue >= 12
+        NOT = { has_trait = thieves_guild_guildmaster_thief }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { advance_thieves_guild = yes }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 8 intrigue >= 20 }
+    }
+}
+
+plan_heist = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = plan_heist_desc
+
+    is_shown = { is_thieves_guild_member = yes }
+
+    is_valid = {
+        intrigue >= 10
+        NOT = { has_modifier = guild_heist_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = guild_heist_cooldown days = 730 }
+        trigger_event = { id = guild.thieves.heist }
+    }
+
+    ai_will_do = {
+        base = 6
+        modifier = { add = 5 intrigue >= 16 }
+        modifier = { add = 5 gold <= 200 }
+    }
+}
+
+leave_thieves_guild_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = leave_thieves_guild_decision_desc
+
+    is_shown = { is_thieves_guild_member = yes }
+    is_valid  = { is_thieves_guild_member = yes }
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { leave_thieves_guild = yes }
+    ai_will_do = { base = 0 }
+}
+
+# ================================================================
+#  DARK BROTHERHOOD
+# ================================================================
+
+join_dark_brotherhood_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = join_dark_brotherhood_decision_desc
+
+    is_shown = { can_join_dark_brotherhood = yes }
+
+    is_valid = {
+        intrigue >= 12
+        OR = { has_trait = murderer has_trait = sadistic has_trait = callous }
+        NOT = { has_modifier = guild_recently_rejected }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { join_dark_brotherhood = yes }
+
+    ai_will_do = {
+        base = 2
+        modifier = { add = 8  intrigue >= 18 }
+        modifier = { add = 5  has_trait = sadistic }
+        modifier = { add = 5  has_trait = murderer }
+    }
+}
+
+seek_dark_brotherhood_advancement = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_dark_brotherhood_advancement_desc
+
+    is_shown = { is_dark_brotherhood_member = yes }
+
+    is_valid = {
+        can_advance_dark_brotherhood = yes
+        intrigue >= 14
+        NOT = { has_trait = dark_brotherhood_listener }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { advance_dark_brotherhood = yes }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 8 intrigue >= 22 }
+    }
+}
+
+perform_black_sacrament = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = perform_black_sacrament_desc
+
+    is_shown = { is_dark_brotherhood_member = yes }
+
+    is_valid = {
+        has_enemy = yes
+        intrigue >= 12
+        NOT = { has_modifier = black_sacrament_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_piety    = -300
+        add_modifier = { modifier = black_sacrament_cooldown days = 1095 }
+        trigger_event = { id = guild.dark_brotherhood.sacrament }
+    }
+
+    ai_will_do = {
+        base = 4
+        modifier = { add = 8  has_trait = sadistic }
+        modifier = { add = 5  dread >= 30 }
+    }
+}
+
+leave_dark_brotherhood_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = leave_dark_brotherhood_decision_desc
+
+    is_shown = { is_dark_brotherhood_member = yes }
+    is_valid  = { is_dark_brotherhood_member = yes }
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { leave_dark_brotherhood = yes }
+    ai_will_do = { base = 0 }
+}
+
+# ================================================================
+#  MORAG TONG
+# ================================================================
+
+join_morag_tong_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = join_morag_tong_decision_desc
+
+    is_shown = { can_join_morag_tong = yes }
+
+    is_valid = {
+        intrigue >= 12
+        OR = {
+            culture = { has_name = "Dunmer" }
+            culture = { has_name = "Chimer" }
+            faith = { has_doctrine = doctrine_daedra_revered }
+        }
+        NOT = { has_modifier = guild_recently_rejected }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { join_morag_tong = yes }
+
+    ai_will_do = {
+        base = 4
+        modifier = { add = 8  culture = { has_name = "Dunmer" } }
+        modifier = { add = 5  intrigue >= 18 }
+        modifier = { add = 3  is_mephala_champion = yes }
+    }
+}
+
+seek_morag_tong_advancement = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_morag_tong_advancement_desc
+
+    is_shown = { is_morag_tong_member = yes }
+
+    is_valid = {
+        can_advance_morag_tong = yes
+        intrigue >= 14
+        NOT = { has_trait = morag_tong_grandmaster }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { advance_morag_tong = yes }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 8 intrigue >= 22 }
+    }
+}
+
+issue_writ_of_execution = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = issue_writ_of_execution_desc
+
+    is_shown = { is_morag_tong_member = yes }
+
+    is_valid = {
+        has_enemy = yes
+        intrigue >= 12
+        NOT = { has_modifier = writ_of_execution_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = writ_of_execution_cooldown days = 1095 }
+        trigger_event = { id = guild.morag_tong.writ }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = { add = 5 intrigue >= 18 }
+    }
+}
+
+leave_morag_tong_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = leave_morag_tong_decision_desc
+
+    is_shown = { is_morag_tong_member = yes }
+    is_valid  = { is_morag_tong_member = yes }
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { leave_morag_tong = yes }
+    ai_will_do = { base = 0 }
+}
+
+# ================================================================
+#  COMPANIONS
+# ================================================================
+
+join_companions_decision = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = join_companions_decision_desc
+
+    is_shown = { can_join_companions = yes }
+
+    is_valid = {
+        prowess >= 12
+        NOT = { has_modifier = guild_recently_rejected }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { join_companions = yes }
+
+    ai_will_do = {
+        base = 5
+        modifier = { add = 8  prowess >= 18 }
+        modifier = { add = 5  has_trait = hunter }
+        modifier = { add = 5  has_trait = brave }
+        modifier = { add = 6  culture = { has_name = "Nord" } }
+    }
+}
+
+seek_companions_advancement = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = seek_companions_advancement_desc
+
+    is_shown = { is_companions_member = yes }
+
+    is_valid = {
+        can_advance_companions = yes
+        prowess >= 14
+        NOT = { has_trait = companions_harbinger }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { advance_companions = yes }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 8 prowess >= 20 }
+    }
+}
+
+take_companions_contract = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = take_companions_contract_desc
+
+    is_shown = { is_companions_member = yes }
+
+    is_valid = {
+        is_at_war = no
+        NOT = { has_modifier = guild_contract_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = guild_contract_cooldown days = 730 }
+        trigger_event = { id = guild.companions.contract }
+    }
+
+    ai_will_do = {
+        base = 6
+        modifier = { add = 5 prowess >= 18 }
+    }
+}
+
+seek_companions_circle_rite = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_companions_circle_rite_desc
+
+    is_shown = {
+        is_companions_member = yes
+        has_trait = companions_veteran
+    }
+
+    is_valid = {
+        prowess >= 18
+        NOT = { has_trait = companions_circle }
+        NOT = { has_modifier = guild_advancement_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild.companions.circle_rite }
+    }
+
+    ai_will_do = {
+        base = 6
+        modifier = { add = 5 prowess >= 22 }
+        modifier = { add = 5 has_trait = brave }
+    }
+}
+
+leave_companions_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = leave_companions_decision_desc
+
+    is_shown = { is_companions_member = yes }
+    is_valid  = { is_companions_member = yes }
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { leave_companions = yes }
+    ai_will_do = { base = 0 }
+}
+
+# ================================================================
+#  PSIJIC ORDER
+# ================================================================
+
+seek_psijic_invitation = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = seek_psijic_invitation_desc
+
+    is_shown = { can_join_psijic_order = yes }
+
+    is_valid = {
+        learning >= 18
+        piety    >= 300
+        NOT = { has_modifier = guild_recently_rejected }
+        psijic_order_accessible = yes
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_piety    = -300
+        trigger_event = { id = guild.psijic.invitation }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = { add = 10 learning >= 24 }
+        modifier = { add = 5  has_trait = mystic }
+    }
+}
+
+seek_psijic_advancement = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = seek_psijic_advancement_desc
+
+    is_shown = { is_psijic_member = yes }
+
+    is_valid = {
+        can_advance_psijic = yes
+        learning >= 20
+        piety    >= 400
+        NOT = { has_trait = psijic_master }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_piety    = -400
+        advance_psijic_order = yes
+    }
+
+    ai_will_do = {
+        base = 8
+        modifier = { add = 10 learning >= 26 }
+    }
+}
+
+commune_with_the_order = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = commune_with_the_order_desc
+
+    is_shown = { is_psijic_member = yes }
+
+    is_valid = {
+        NOT = { has_modifier = psijic_communion_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = psijic_communion_cooldown days = 1825 }
+        trigger_event = { id = guild.psijic.commune }
+    }
+
+    ai_will_do = {
+        base = 6
+        modifier = { add = 5 learning >= 22 }
+    }
+}
+
+leave_psijic_order_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = leave_psijic_order_decision_desc
+
+    is_shown = { is_psijic_member = yes }
+    is_valid  = { is_psijic_member = yes }
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { leave_psijic_order = yes }
+    ai_will_do = { base = 0 }
+}
+
+# ================================================================
+#  BARDS COLLEGE
+# ================================================================
+
+join_bards_college_decision = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = join_bards_college_decision_desc
+
+    is_shown = { can_join_bards_college = yes }
+
+    is_valid = {
+        diplomacy >= 10
+        NOT = { has_modifier = guild_recently_rejected }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { join_bards_college = yes }
+
+    ai_will_do = {
+        base = 4
+        modifier = { add = 6  diplomacy >= 16 }
+        modifier = { add = 5  has_trait = gregarious }
+        modifier = { add = 5  culture = { has_name = "Nord" } }
+    }
+}
+
+seek_bards_college_advancement = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = seek_bards_college_advancement_desc
+
+    is_shown = { is_bards_college_member = yes }
+
+    is_valid = {
+        can_advance_bards = yes
+        diplomacy >= 12
+        NOT = { has_trait = bards_college_master_bard }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { advance_bards_college = yes }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 8 diplomacy >= 20 }
+    }
+}
+
+compose_epic_ballad = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = compose_epic_ballad_desc
+
+    is_shown = { is_bards_college_member = yes }
+
+    is_valid = {
+        NOT = { has_modifier = ballad_composition_cooldown }
+        diplomacy >= 12
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = ballad_composition_cooldown days = 1825 }
+        trigger_event = { id = guild.bards.ballad }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = { add = 5 diplomacy >= 18 }
+    }
+}
+
+leave_bards_college_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = leave_bards_college_decision_desc
+
+    is_shown = { is_bards_college_member = yes }
+    is_valid  = { is_bards_college_member = yes }
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { leave_bards_college = yes }
+    ai_will_do = { base = 0 }
+}
+
+# ================================================================
+#  UNDAUNTED
+# ================================================================
+
+join_undaunted_decision = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = join_undaunted_decision_desc
+
+    is_shown = { can_join_undaunted = yes }
+
+    is_valid = {
+        OR = { martial >= 12 prowess >= 14 }
+        NOT = { has_modifier = guild_recently_rejected }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { join_undaunted = yes }
+
+    ai_will_do = {
+        base = 4
+        modifier = { add = 6  prowess >= 18 }
+        modifier = { add = 5  has_trait = brave }
+        modifier = { add = 5  has_trait = adventurous }
+    }
+}
+
+seek_undaunted_advancement = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = seek_undaunted_advancement_desc
+
+    is_shown = { is_undaunted_member_trigger = yes }
+
+    is_valid = {
+        can_advance_undaunted = yes
+        OR = { martial >= 14 prowess >= 16 }
+        NOT = { has_trait = undaunted_elite }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { advance_undaunted = yes }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 8 prowess >= 20 }
+    }
+}
+
+delve_dangerous_ruin = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = delve_dangerous_ruin_desc
+
+    is_shown = { is_undaunted_member_trigger = yes }
+
+    is_valid = {
+        is_at_war = no
+        NOT = { has_modifier = guild_ruin_delve_cooldown }
+        OR = { martial >= 12 prowess >= 14 }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = guild_ruin_delve_cooldown days = 730 }
+        trigger_event = { id = guild.undaunted.delve }
+    }
+
+    ai_will_do = {
+        base = 6
+        modifier = { add = 5 prowess >= 18 }
+        modifier = { add = 3 has_trait = brave }
+    }
+}
+
+leave_undaunted_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = leave_undaunted_decision_desc
+
+    is_shown = { is_undaunted_member_trigger = yes }
+    is_valid  = { is_undaunted_member_trigger = yes }
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = { leave_undaunted = yes }
+    ai_will_do = { base = 0 }
+}

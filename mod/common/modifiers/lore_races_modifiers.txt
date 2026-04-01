@@ -364,3 +364,68 @@ sword_of_jyggalag_modifier = {
 daedric_quest_cooldown = {
     # Gate preventing a ruler from starting multiple Daedric quests simultaneously
 }
+
+# =============================================================
+#  Guild Modifiers — All 9 Guilds
+# =============================================================
+
+# ---- Activity cooldowns ----
+guild_advancement_cooldown    = { }
+guild_recently_rejected       = { }
+guild_research_cooldown       = { }
+guild_contract_cooldown       = { }
+guild_heist_cooldown          = { }
+black_sacrament_cooldown      = { }
+writ_of_execution_cooldown    = { }
+psijic_communion_cooldown     = { }
+ballad_composition_cooldown   = { }
+guild_ruin_delve_cooldown     = { }
+guild_heist_caught_modifier   = { monthly_prestige_gain_mult = -0.1 dread = -10 }
+dark_brotherhood_marked_modifier = { monthly_prestige_gain_mult = -0.15 stress_gain_mult = 0.2 }
+psijic_warning_modifier       = { martial = 2 stewardship = 1 }
+undaunted_wounded_modifier    = { prowess = -3 }
+psijic_order_modifier         = { monthly_piety_gain_mult = 0.05 }
+
+# ---- Chapter membership bonuses (persistent while in guild) ----
+mages_guild_chapter_modifier = {
+    monthly_piety_gain_mult = 0.05
+    learning = 1
+}
+
+fighters_guild_chapter_modifier = {
+    levy_size = 0.05
+    monthly_prestige_gain_mult = 0.03
+}
+
+morag_tong_chapter_modifier = {
+    monthly_piety_gain_mult = 0.05
+    intrigue = 1
+}
+
+companions_chapter_modifier = {
+    monthly_prestige_gain_mult = 0.05
+    prowess = 1
+}
+
+bards_college_chapter_modifier = {
+    monthly_prestige_gain_mult = 0.05
+    diplomacy = 1
+}
+
+undaunted_chapter_modifier = {
+    monthly_prestige_gain_mult = 0.03
+    prowess = 1
+}
+
+# ---- Activity results ----
+famous_ballad_modifier = {
+    monthly_prestige_gain_mult = 0.15
+    diplomacy = 2
+}
+
+# ---- Curse for leaving Dark Brotherhood / Vile bargain ----
+vile_curse_modifier = {
+    monthly_prestige_gain_mult = -0.15
+    diplomacy = -3
+    monthly_income = -0.1
+}

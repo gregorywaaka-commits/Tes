@@ -929,7 +929,7 @@ daedric_prince_invasion.jyggalag.003 = {
         add_piety    = 200
     }
     option = {
-        name = daedric_prince_invasion.jyggalag.003.b  # "I will not serve crystalline tyranny."
+        name = daedric_prince_invasion.jyggalag.003.b  # "The world needs its chaos."
         add_prestige = 300
         add_piety    = 200
     }

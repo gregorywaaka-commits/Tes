@@ -1,0 +1,219 @@
+# =============================================================
+#  Guild Scripted Triggers
+# =============================================================
+
+# ---- Membership checks ----
+is_mages_guild_member = {
+    has_character_flag = guild_mages_member
+}
+
+is_fighters_guild_member = {
+    has_character_flag = guild_fighters_member
+}
+
+is_thieves_guild_member = {
+    has_character_flag = guild_thieves_member
+}
+
+is_dark_brotherhood_member = {
+    has_character_flag = guild_dark_brotherhood_member
+}
+
+is_morag_tong_member = {
+    has_character_flag = guild_morag_tong_member
+}
+
+is_companions_member = {
+    has_character_flag = guild_companions_member
+}
+
+is_psijic_member = {
+    has_character_flag = guild_psijic_member
+}
+
+is_bards_college_member = {
+    has_character_flag = guild_bards_member
+}
+
+is_undaunted_member_trigger = {
+    has_character_flag = guild_undaunted_member
+}
+
+# ---- Any guild membership ----
+is_any_guild_member = {
+    OR = {
+        is_mages_guild_member     = yes
+        is_fighters_guild_member  = yes
+        is_thieves_guild_member   = yes
+        is_dark_brotherhood_member = yes
+        is_morag_tong_member      = yes
+        is_companions_member      = yes
+        is_psijic_member          = yes
+        is_bards_college_member   = yes
+        is_undaunted_member_trigger = yes
+    }
+}
+
+# ---- Guild availability date guards ----
+mages_guild_exists = {
+    # Mages Guild founded 2E 230; Guild Act 2E 321 — fully operational at EK2 start 2E 440
+    current_date >= 2E.321
+}
+
+fighters_guild_exists = {
+    # Fighters Guild founded 2E 320; Guild Act 2E 321
+    current_date >= 2E.321
+}
+
+psijic_order_accessible = {
+    # Psijic Order left Artaeum ~2E 230; returned ~2E 582
+    # Remnant members accessible at high cost before return
+    OR = {
+        current_date >= 2E.582
+        AND = {
+            current_date >= 2E.440
+            learning >= 24
+        }
+    }
+}
+
+undaunted_exist = {
+    # Undaunted active in ESO era; available from 2E 560
+    current_date >= 2E.560
+}
+
+# ---- Eligibility checks for joining ----
+can_join_mages_guild = {
+    mages_guild_exists = yes
+    NOT = { is_mages_guild_member = yes }
+    learning >= 10
+    is_adult = yes
+    is_ruler = yes
+}
+
+can_join_fighters_guild = {
+    fighters_guild_exists = yes
+    NOT = { is_fighters_guild_member = yes }
+    OR = { martial >= 10 prowess >= 12 }
+    is_adult = yes
+    is_ruler = yes
+}
+
+can_join_thieves_guild = {
+    NOT = { is_thieves_guild_member = yes }
+    intrigue >= 10
+    is_adult = yes
+    is_ruler = yes
+}
+
+can_join_dark_brotherhood = {
+    NOT = { is_dark_brotherhood_member = yes }
+    intrigue >= 12
+    OR = {
+        has_trait = murderer
+        has_trait = sadistic
+        has_trait = callous
+    }
+    is_adult = yes
+    is_ruler = yes
+}
+
+can_join_morag_tong = {
+    NOT = { is_morag_tong_member = yes }
+    intrigue >= 12
+    is_adult = yes
+    is_ruler = yes
+    # Must be in Morrowind region or Dunmer culture — or have Mephala devotion
+    OR = {
+        culture = { has_name = "Dunmer" }
+        culture = { has_name = "Chimer" }
+        faith = { has_doctrine = doctrine_daedra_revered }
+    }
+}
+
+can_join_companions = {
+    NOT = { is_companions_member = yes }
+    prowess >= 12
+    is_adult = yes
+    is_ruler = yes
+    # Companions are Nordic-focused but accept any warrior of merit
+}
+
+can_join_psijic_order = {
+    psijic_order_accessible = yes
+    NOT = { is_psijic_member = yes }
+    learning >= 18
+    piety    >= 300
+    is_adult = yes
+    is_ruler = yes
+}
+
+can_join_bards_college = {
+    NOT = { is_bards_college_member = yes }
+    diplomacy >= 10
+    is_adult = yes
+    is_ruler = yes
+}
+
+can_join_undaunted = {
+    undaunted_exist = yes
+    NOT = { is_undaunted_member_trigger = yes }
+    OR = { martial >= 12 prowess >= 14 }
+    is_adult = yes
+    is_ruler = yes
+}
+
+# ---- Advancement eligibility ----
+can_advance_mages_guild = {
+    is_mages_guild_member = yes
+    NOT = { has_trait = mages_guild_archmagister }
+    NOT = { has_modifier = guild_advancement_cooldown }
+}
+
+can_advance_fighters_guild = {
+    is_fighters_guild_member = yes
+    NOT = { has_trait = fighters_guild_guildmaster }
+    NOT = { has_modifier = guild_advancement_cooldown }
+}
+
+can_advance_thieves_guild = {
+    is_thieves_guild_member = yes
+    NOT = { has_trait = thieves_guild_guildmaster_thief }
+    NOT = { has_modifier = guild_advancement_cooldown }
+}
+
+can_advance_dark_brotherhood = {
+    is_dark_brotherhood_member = yes
+    NOT = { has_trait = dark_brotherhood_listener }
+    NOT = { has_modifier = guild_advancement_cooldown }
+}
+
+can_advance_morag_tong = {
+    is_morag_tong_member = yes
+    NOT = { has_trait = morag_tong_grandmaster }
+    NOT = { has_modifier = guild_advancement_cooldown }
+}
+
+can_advance_companions = {
+    is_companions_member = yes
+    NOT = { has_trait = companions_harbinger }
+    NOT = { has_modifier = guild_advancement_cooldown }
+}
+
+can_advance_psijic = {
+    is_psijic_member = yes
+    NOT = { has_trait = psijic_master }
+    NOT = { has_modifier = guild_advancement_cooldown }
+}
+
+can_advance_bards = {
+    is_bards_college_member = yes
+    NOT = { has_trait = bards_college_master_bard }
+    NOT = { has_modifier = guild_advancement_cooldown }
+}
+
+can_advance_undaunted = {
+    is_undaunted_member_trigger = yes
+    NOT = { has_trait = undaunted_elite }
+    NOT = { has_modifier = guild_advancement_cooldown }
+}
