@@ -1,0 +1,130 @@
+# =============================================================
+#  Sload CB — All-Flags Navy Punitive Expedition
+#  File: mod/common/casus_belli_types/sload_cb.txt
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  After the Thrassian Plague (1E 2200) killed roughly half of
+#  Tamriel's population, the coastal nations of Tamriel united
+#  under one navy — the All-Flags Navy — and sailed to Thras.
+#  In 1E 2260 they sank the coral island chain beneath the sea
+#  entirely, destroying the Sload homeland.
+#
+#  In this mod's 2E timeline the Thrassian Plague can occur again
+#  (as a new outbreak).  When it does, coastal rulers can invoke
+#  this CB to declare a coalition war against any Sload ruler.
+#  Winning destroys the Sload county (triggers destroy_thras_effect),
+#  ending the plague.
+#
+#  EK2 DEPENDENCY:
+#  ───────────────
+#  • Sload rulers are identified by has_trait = sload_heritage.
+#  • title:c_thras must exist in EK2 as the Sload homeland county.
+#  • destroy_thras_effect is defined in lore_races_effects.txt.
+#  • thrassian_plague_active trigger is in lore_races_triggers.txt.
+#
+#  COMPATIBILITY NOTES:
+#  ────────────────────
+#  • This CB belongs to the group "punitive_expedition" — it is not
+#    a holy war, conquest, or normal aggression CB.
+#  • Only valid while global_var:thrassian_plague_active exists.
+#  • Any coastal ruler (has a coastal county) can declare it.
+#  • The defender must be a Sload ruler (has_trait = sload_heritage).
+#  • Winning triggers destroy_thras_effect (see lore_races_effects.txt).
+#  • Losing removes the naval coalition and sets a 10-year cooldown.
+# =============================================================
+
+all_flags_navy_cb = {
+    group = punitive_expedition
+
+    # ─── WHO CAN USE THIS CB ───────────────────────────────────────
+    # Any living coastal ruler — the Plague affects all sea-facing lands.
+    allowed_for_character = {
+        is_alive = yes
+        any_held_county = { is_coastal = yes }    # must have a coast to contribute ships
+        NOT = { has_trait = sload_heritage }      # Sload cannot use this against themselves
+    }
+
+    # ─── WHO CAN BE DECLARED AGAINST ──────────────────────────────
+    # Only Sload rulers — this is specifically an anti-Thras CB.
+    allowed_against_character = {
+        is_alive = yes
+        has_trait = sload_heritage
+    }
+
+    # ─── VALIDITY CONDITIONS ──────────────────────────────────────
+    # The CB is only usable while the Thrassian Plague is active.
+    # Once Thras is destroyed the plague ends and this CB disappears.
+    valid_to_start = {
+        thrassian_plague_active = yes               # lore_races_triggers.txt
+        NOT = { exists = global_var:all_flags_navy_active }   # one Navy at a time
+    }
+
+    # ─── ON DECLARATION ───────────────────────────────────────────
+    # Declaring the CB automatically activates the Navy coalition —
+    # other coastal rulers receive an invitation (sload.010 event)
+    # and may join the war on the attacker's side.
+    on_declaration = {
+        set_global_variable = { name = all_flags_navy_active value = yes }
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                any_held_county = { is_coastal = yes }
+                NOT = { has_trait = sload_heritage }
+                NOT = { this = scope:attacker }     # don't fire for the declarer
+            }
+            trigger_event = { id = sload.010 }     # "The All-Flags Navy" — join invitation
+        }
+    }
+
+    # ─── WAR TARGET ───────────────────────────────────────────────
+    target_type = realm
+
+    # ─── ON VICTORY ───────────────────────────────────────────────
+    # If the All-Flags Navy wins, Thras is sunk:
+    #   • destroy_thras_effect removes the plague and sinks the county
+    #   • All participating rulers gain prestige
+    #   • The Coral Tower is destroyed (active_tower_count decremented)
+    on_victory = {
+        scope:attacker = {
+            destroy_thras_effect = yes              # lore_races_effects.txt
+            add_prestige = 1000                     # glory of sinking Thras
+        }
+        every_war_participant = {
+            limit = { is_allied_with = scope:attacker }
+            add_prestige = 500
+        }
+    }
+
+    on_victory_desc = {
+        first_valid = {
+            desc = all_flags_navy_cb_victory_desc
+        }
+    }
+
+    # ─── ON DEFEAT ────────────────────────────────────────────────
+    # If the Navy loses, the Sload repel the invasion.  The coalition
+    # collapses and a 10-year truce is applied.
+    on_defeat = {
+        scope:attacker = {
+            add_prestige = -500
+        }
+        remove_global_variable = all_flags_navy_active
+    }
+
+    on_defeat_desc = {
+        first_valid = {
+            desc = all_flags_navy_cb_defeat_desc
+        }
+    }
+
+    # ─── AI WEIGHTING ─────────────────────────────────────────────
+    # AI coastal rulers should eagerly join this CB when the Plague
+    # is active — it directly threatens their realms.
+    ai_will_do = {
+        base = 25
+        modifier = { add = 50  thrassian_plague_active = yes }    # urgent
+        modifier = { add = 20  martial >= 15 }                     # confident warriors
+        modifier = { add = 15  any_held_county = { is_coastal = yes } }   # already has ships
+    }
+}

@@ -343,3 +343,13 @@ l_english:
  keptu_lineage_desc: "This ruler carries the blood of the Keptu — an ancient Nedic (or related) tribe known for advanced metallurgy centred on the legendary Bloodroot Forge."
  nedic_elder: "Nedic Elder"
  nedic_elder_desc: "Keeper of oral Nedic traditions that predate the First Era — a living repository of pre-merethic Tamriel's history."
+
+ # =====================================================================
+ #  SLOAD CB — ALL-FLAGS NAVY
+ #  Strings for the sload_cb.txt casus belli (all_flags_navy_cb)
+ # =====================================================================
+ all_flags_navy_cb: "All-Flags Navy Punitive Expedition"
+ all_flags_navy_cb_desc: "The Thrassian Plague poisons the sea-lanes. The coastal peoples of Tamriel must unite under one navy and sail to Thras — and sink it."
+
+ all_flags_navy_cb_victory_desc: "The All-Flags Navy prevails. The coral spires of Thras sink beneath the waves; the Plague dies with them. This day is remembered."
+ all_flags_navy_cb_defeat_desc: "The Navy is broken on Sload reefs and necromancy. The Plague continues to claim lives. The Sload remain."

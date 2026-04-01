@@ -161,3 +161,62 @@ knight_of_order = {
     scaling_cost = { gold = 0.8 }
     maintenance_multiplier = 3.0
 }
+
+# =============================================================
+#  Kamal Units  (Snow Demons of Akavir)
+#  Lore: The Kamal freeze solid in winter and thaw each summer
+#  to invade.  In 2E 572 Ada'Soom Dir-Kamal led them into
+#  Tamriel itself.  They fight with brutal melee discipline
+#  and some practise a frost-based destruction magic.
+#  Used by: kamal_events.txt (seasonal invasion chain)
+#           begin_kamal_invasion (lore_races_effects.txt)
+#  EK2 dependency: these units are spawned in Akaviri / eastern
+#  coastal regions; confirm Akaviri region identifier with EK2.
+# =============================================================
+
+# ---- Kamal Warriors (front-line shock infantry; lethal in summer) ----
+# Kamal are physically powerful snow demons.  Their heavy, ice-rimed
+# armour and brutal melee technique make them devastating head-on.
+# Weakness: their campaigns end with the first winter freeze (use
+# kamal_summer_active trigger to gate their deployment).
+kamal_warriors = {
+    type = heavy_infantry
+    damage = 55
+    toughness = 50
+    pursuit = 10
+    screen = 20
+    siege_value = 5
+    max_size = 200
+    scaling_cost = { gold = 0.35 }
+    maintenance_multiplier = 1.8
+    terrain_bonus = {
+        # Kamal prefer open ground where their brute strength tells
+        plains = { damage = 10 toughness = 5 }
+        # They are slowed but not stopped in forests
+        forest = { pursuit = -5 }
+    }
+}
+
+# ---- Kamal Ice Mages (sorcerers wielding frost destruction magic) ----
+# A small caste of Kamal who have mastered frost magic beyond mere
+# physical freezing.  They call down blizzards, freeze rivers solid,
+# and afflict enemy troops with the Kamal Ice Curse province modifier.
+# Ada'Soom Dir-Kamal reportedly commanded several such mages.
+kamal_ice_mages = {
+    type = skirmishers
+    damage = 65            # frost destruction magic is devastating at range
+    toughness = 25         # fragile if engaged directly
+    pursuit = 10
+    screen = 40            # high screen — they hang back and support
+    siege_value = 10       # freeze rivers + walls = useful in sieges
+    max_size = 60          # rare; a handful can change a battle
+    scaling_cost = { gold = 0.55 }
+    maintenance_multiplier = 2.0
+    terrain_bonus = {
+        # Ice mages are most effective in cold, open terrain
+        plains = { damage = 10 screen = 5 }
+        # They lose some effectiveness in heat
+        desert = { damage = -10 toughness = -5 }
+        steppe = { damage = 5 }
+    }
+}

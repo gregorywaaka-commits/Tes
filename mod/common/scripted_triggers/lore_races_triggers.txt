@@ -2,8 +2,30 @@
 #  Lore Races — Scripted Triggers
 #  File: mod/common/scripted_triggers/lore_races_triggers.txt
 #
+#  EK2 COMPATIBILITY:
+#  ──────────────────
+#  This file requires Elder Kings 2 (EK2) as a parent mod.
+#  EK2-defined identifiers this file depends on:
+#    • Titles:  title:k_yneslea, title:k_pyandonea, title:c_thras,
+#               title:c_balfiera, title:c_imperial_city,
+#               title:c_red_mountain, title:d_kamal_lands
+#    • Government flag: government_has_flag = argonian_government
+#  Traits used here are defined in THIS mod at:
+#    common/traits/lore_races_traits.txt
+#  Modifiers used here are defined in THIS mod at:
+#    common/modifiers/lore_races_modifiers.txt
+#
+#  CK3 VERSION: 1.12.*  (see descriptor.mod)
+#
 #  These triggers check state for the obscure lore races system:
 #  Echmer, Maormer, Sload, Kothringi, Kamal, Elder Towers.
+#
+#  NAMING NOTE — echmer_invasion_possible:
+#  ─────────────────────────────────────────
+#  The trigger 'echmer_invasion_possible' is a legacy name kept for
+#  backwards compatibility.  The Echmer do NOT invade Tamriel.
+#  New code should use the alias 'echmer_expedition_possible' defined
+#  at the end of this file, which has identical logic and a correct name.
 #
 #  GLOBAL VARIABLES TRACKED HERE:
 #  ──────────────────────────────
@@ -95,8 +117,10 @@ orgnum_is_alive = {
 #  SLOAD (Thrassian Slug-Men)
 #  Context: The Sload are corpulent, slug-like beings from the
 #  coral island chain of Thras south-west of Tamriel.  They are
-#  master necromancers.  In 1E 2260 they unleashed the Thrassian
-#  Plague which killed half of Tamriel's population.  In 2E their
+#  master necromancers.  In 1E 2200 they unleashed the Thrassian
+#  Plague which killed approximately half of Tamriel's population.
+#  The All-Flags Navy was formed in response and sailed in 1E 2260
+#  to sink Thras beneath the sea entirely.  In 2E their
 #  schemes are subtler — they nurse ancient grudges and plan.
 # ---------------------------------------------------------------
 
@@ -264,116 +288,16 @@ world_stability_critical = {
     global_var:active_tower_count <= 1    # one or fewer Towers still standing
 }
 
-echmer_invasion_possible = {
+# ---------------------------------------------------------------
+#  ALIAS — echmer_expedition_possible
+#  'echmer_invasion_possible' is a legacy name; the Echmer do NOT
+#  invade Tamriel.  This alias has the identical logic but a
+#  correct name.  New code should use echmer_expedition_possible;
+#  existing callers of echmer_invasion_possible still work because
+#  both are defined below.
+# ---------------------------------------------------------------
+echmer_expedition_possible = {
     NOT = { is_echmer_active_contact = yes }
     exists = title:k_yneslea
-    current_date >= 2E.150
-}
-
-is_echmer_active_contact = {
-    exists = global_var:echmer_contact_established
-}
-
-# ---- Maormer ----
-is_maormer = {
-    has_trait = maormer_heritage
-}
-
-maormer_raid_possible = {
-    is_coastal = yes
-    NOT = { is_maormer = yes }
-    NOT = { has_modifier = maormer_truce_modifier }
-}
-
-orgnum_is_alive = {
-    exists = global_var:orgnum_alive
-}
-
-# ---- Sload ----
-is_sload = {
-    has_trait = sload_heritage
-}
-
-thrassian_plague_active = {
-    exists = global_var:thrassian_plague_active
-}
-
-sload_plague_can_trigger = {
-    NOT = { thrassian_plague_active = yes }
-    is_sload = yes
-    has_trait = sload_necromancer
-    stewardship >= 16
-}
-
-# ---- Kothringi ----
-is_kothringi = {
-    has_trait = kothringi_heritage
-}
-
-knahaten_flu_active = {
-    exists = global_var:knahaten_flu_active
-}
-
-knahaten_can_trigger = {
-    NOT = { knahaten_flu_active = yes }
-    NOT = { thrassian_plague_active = yes }   # only one mega-plague at a time
-    current_date >= 2E.550
-    current_date <= 2E.600
-    any_ruler = {
-        primary_title = { tier >= tier_kingdom }
-        government_has_flag = argonian_government   # Argonian rulers present
-    }
-}
-
-# ---- Kamal ----
-is_kamal = {
-    has_trait = kamal_heritage
-}
-
-kamal_summer_active = {
-    # CK3 uses month numbers; Kamal are active in months 3-9 (spring-autumn)
-    NOT = { current_date < 2E.100 }
-    exists = global_var:current_season_summer
-}
-
-kamal_invasion_possible = {
-    NOT = { exists = global_var:kamal_invasion_active }
-    current_date >= 2E.572    # historical: dir-Kamal invasion ~2E 572
-}
-
-# ---- Elder Towers ----
-tower_white_gold_active = {
-    title:c_imperial_city = {
-        has_variable = tower_stone_present
-    }
-}
-
-tower_adamantine_active = {
-    title:c_balfiera = {
-        has_variable = tower_stone_present
-    }
-}
-
-tower_red_mountain_active = {
-    title:c_red_mountain = {
-        has_variable = tower_stone_present
-    }
-}
-
-tower_coral_active = {
-    title:c_thras = {
-        has_variable = tower_stone_present
-    }
-}
-
-# Count of active towers (used for world stability)
-count_active_towers = {
-    # CK3 doesn't natively support counting booleans in a trigger,
-    # so we track this via global_var:active_tower_count instead
-    exists = global_var:active_tower_count
-}
-
-world_stability_critical = {
-    exists = global_var:active_tower_count
-    global_var:active_tower_count <= 1
+    current_date >= 2E.150    # Echmer are too isolated for contact before this date
 }

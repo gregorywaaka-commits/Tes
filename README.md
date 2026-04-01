@@ -275,8 +275,8 @@ mod/
 
 ### Already scripted
 - [x] Mod descriptor
-- [x] Daedric Prince character templates (5 Princes)
-- [x] Daedric invasion traits (prince markers, aspect traits, mortal rewards)
+- [x] Daedric Prince character templates (5 Princes + 12 extended Princes with aspect/champion traits)
+- [x] Daedric invasion traits (prince markers, aspect traits, mortal rewards, lycanthropy/vampirism markers)
 - [x] Daedric invasion scripted triggers + effects
 - [x] Daedric Invasion CB
 - [x] Daedric invasion on-actions (monthly tick, yearly trigger, occupation hook, death cleanup)
@@ -295,18 +295,21 @@ mod/
 - [x] **Keptu / Nedes** — Bloodroot Forge event, Nedic Elder oral history event
 - [x] Province modifiers for all modules (`lore_races_modifiers.txt`)
 - [x] Full English localisation for all modules
+- [x] **Guild system** — 9 guilds (Mages, Fighters, Thieves, Dark Brotherhood, Morag Tong, Companions, Psijic Order, Bards College, Undaunted) with join/advance/leave decisions, events, traits
+- [x] **Thu'um / Voice system** — General Voice path, Greybeard Order, Dragonborn awakening chain, Amulet of Kings
+- [x] **Men-at-arms types** — All Daedric units (`daedra_footsoldiers`, `daedra_cavalry`, `clannfear`, `golden_saint`, `dremora`, `dark_seducer`, `hircine_werewolf_pack`, `peryite_afflicted_unit`, `hermaeus_seeker`, `hermaeus_lurker`, `knight_of_order`) + Kamal units (`kamal_warriors`, `kamal_ice_mages`)
+- [x] **Opinion modifiers** — Daedric invasion modifiers + guild modifiers (`rallied_together_opinion`, `ignored_call_opinion`, `submitted_to_daedra_opinion`, `same_guild_opinion`, `guild_rival_opinion`, etc.)
+- [x] **Sload CB** — `all_flags_navy_cb` for the All-Flags Navy punitive expedition against Thras
 
 ### Still needed before release
-- [ ] **Men-at-arms types** — `daedra_footsoldiers`, `daedra_cavalry`, `clannfear`, `golden_saint`, `dremora`, `kamal_warriors`, `kamal_ice_mages` (EK2 may already have some)
-- [ ] **Opinion modifiers** — `rallied_together_opinion`, `welcomed_envoy_opinion`, `tolerated_necromancer`, etc.
-- [ ] **Faith & culture identifiers** — confirm EK2 ids for all race faiths/cultures; update templates
-- [ ] **Title scopes** — verify `title:k_yneslea`, `title:k_pyandonea`, `title:c_thras`, `title:c_balfiera`, `title:c_red_mountain`, `title:d_deadlands`, `title:d_kamal_lands`
-- [ ] **Geographical regions** — confirm EK2 region identifiers (`world_black_marsh`, `world_skyrim_north`, etc.)
-- [ ] **GFX** — decision icons, event illustrations (CK3 `.dds` format)
+- [ ] **Faith & culture identifiers** — confirm EK2 ids for all race faiths/cultures; update templates (e.g. `mehrunes_dagon_faith`, `maormer_serpent_faith`, `sload_death_faith`, `kothringi_pantheon_faith`, `kamal_war_faith`, `daedra_culture`)
+- [ ] **Title scopes** — verify `title:k_yneslea`, `title:k_pyandonea`, `title:c_thras`, `title:c_balfiera`, `title:c_red_mountain`, `title:d_deadlands`, `title:d_kamal_lands` exist in EK2 and match exactly
+- [ ] **Government flag** — confirm `government_has_flag = argonian_government` is a valid EK2 flag
+- [ ] **Geographical regions** — confirm EK2 region identifiers (`world_black_marsh`, `world_skyrim_north`, etc.) for event scoping
+- [ ] **GFX** — decision icons, event illustrations (CK3 `.dds` format, placed in `gfx/interface/icons/decisions/` and `gfx/event_pictures/`)
 - [ ] **Balance pass** — playtest all event chains, stat thresholds, plague spread rates, army sizes
-- [ ] **Additional Daedric Princes** — Sheogorath, Malacath, Meridia, Vaermina
-- [ ] **Sload CB** — a custom CB for the All-Flags Navy war declaration
-- [ ] **Tang Mo / Ka Po' Tun cultures** — confirm or create EK2 Akaviri culture identifiers
+- [ ] **Additional Daedric Princes** — Sheogorath, Malacath, Meridia, Vaermina (aspect + champion traits are scripted; character templates and dedicated event chains still needed)
+- [ ] **Tang Mo / Ka Po' Tun cultures** — confirm or create EK2 Akaviri culture identifiers (`tang_mo_culture`, `ka_po_tun_culture`)
 
 ---
 
