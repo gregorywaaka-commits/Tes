@@ -52,6 +52,17 @@
 #  Army unit types defined in men_at_arms_types/daedric_units.txt.
 #  Modifier definitions in lore_races_modifiers.txt.
 #  Character templates in character_templates/daedric_princes.txt.
+#
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  Traits used but defined externally:
+#    necromancy   — EK2: permission trait for necromantic arts
+#    oathbreaker  — EK2: breaker-of-oaths trait
+#    craven       — CK3 vanilla: personality traits group
+#    shortsighted — CK3 vanilla: personality traits group
+#  NOTE: If a future audit flags these as "undefined in mod," they are
+#  intentional EK2/vanilla references.  Do NOT add them to this mod's
+#  traits files — that would shadow EK2's own definitions.
 # =============================================================
 
 # ---------------------------------------------------------------

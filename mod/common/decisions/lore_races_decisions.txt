@@ -1,5 +1,13 @@
 # =============================================================
 #  Lore Races — Decisions
+#  File: mod/common/decisions/lore_races_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  Traits checked via has_trait but defined in CK3 vanilla:
+#    curious  — CK3 vanilla personality trait
+#    craven   — CK3 vanilla personality trait (coward)
+#  Do NOT redefine these in this mod — they are vanilla references.
 # =============================================================
 
 # ============================================================

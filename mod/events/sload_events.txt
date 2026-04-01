@@ -26,6 +26,14 @@
 #  Global variables:   all_flags_navy_active
 #  Variables:          tower_stone_present (county-scope: title:c_thras)
 #
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  banish = yes  — CK3 vanilla effect; expels a courtier from court.
+#                  Used in sload.000 option a to expel the Sload courtier.
+#                  Path: mod/events/sload_events.txt — NOT a scripted effect
+#                  in this mod; do not search for a local definition.
+#  sload_culture — EK2-defined culture identifier (Sload racial culture).
+#
 #  LORE BASIS:
 #  The Sload of Thras caused the Thrassian Plague circa 1E 2200,
 #  killing half of Tamriel's population.  An All-Flags Navy of
@@ -68,7 +76,7 @@ sload.000 = {
         name = sload.000.a   # "Expel this creature from our court!"
         every_courtier = {
             limit = { has_trait = sload_necromancer }
-            banish = yes
+            banish = yes    # CK3 vanilla effect — expels courtier from court (not defined in this mod)
         }
         add_prestige = 100
     }

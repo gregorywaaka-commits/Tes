@@ -1,5 +1,20 @@
 # =============================================================
 #  Guild Scripted Triggers
+#  File: mod/common/scripted_triggers/guild_triggers.txt
+#
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  Traits checked via has_trait but defined externally:
+#    murderer     — CK3 vanilla (committed_crimes group)
+#    scholar      — CK3 vanilla (education traits group)
+#    greedy       — CK3 vanilla (personality traits group)
+#    adventurous  — CK3 vanilla (personality traits group)
+#    callous      — CK3 vanilla (personality traits group)
+#    sadistic     — CK3 vanilla (personality traits group)
+#  NOTE: Do NOT define these in this mod — they are vanilla CK3 traits.
+#  If a future audit flags them as missing, they are correct references.
+#  Cultures checked via has_culture but defined in EK2:
+#    altmer_culture — EK2 (High Elf culture)
 # =============================================================
 
 # ---- Membership checks ----

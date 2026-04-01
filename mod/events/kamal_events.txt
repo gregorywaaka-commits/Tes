@@ -25,11 +25,21 @@
 #  Modifiers:          kamal_ice_curse_modifier
 #  Cultures:           dunmer_culture
 #
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  dunmer_culture   — EK2-defined culture identifier (Dark Elf culture).
+#                     Used in kamal.010 trigger to identify Dunmer rulers.
+#  argonian_culture — EK2-defined culture identifier (Argonian culture).
+#                     Used in kamal.010 OR block (An-Xileel Argonians).
+#  kamal_culture    — EK2-defined culture identifier (Kamal snow demon culture).
+#  NOTE: If a future audit flags these cultures as "undefined in mod,"
+#  they are correct EK2 references.  Do NOT define them locally.
+#
 #  LORE BASIS:
 #  The Kamal are a race of snow demons from Akavir who thaw each
 #  summer and invade Tamriel.  Ada'Soom Dir-Kamal led a major
-#  invasion in 2E 572, landing in Morrowind and being driven back
-#  by the combined forces of the Dunmer, Nords, and the Tribunal
+#  invasion in 2E 572, landing in Morrowind and being killed at
+#  the Battle of Vivec by the Ebonheart Pact and the Tribunal
 #  (specifically Almalexia, Vivec, and Sotha Sil acting together).
 #  IMPORTANT — kamal.010: The historical intervention is credited
 #  to THE TRIBUNAL collectively, not Vivec alone.  The localization

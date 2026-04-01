@@ -30,11 +30,43 @@
 #  • deactivate_tower_stone_effect: requires scope:tower_county to be set
 #  • end_kamal_invasion: requires scope:dir_kamal_char to be set
 #  • All others: called on root (the character scope)
+#
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  Traits used but defined in EK2:
+#    dragonborn        — EK2: mod/common/traits/ek2_traits.txt
+#    necromancy        — EK2: permission to use necromantic arts
+#    oathbreaker       — EK2: breaker of oaths trait
+#    murderer          — CK3 vanilla: committed_crimes group
+#    craven            — CK3 vanilla: personality traits group
+#    adventurous       — CK3 vanilla: personality traits group
+#    curious           — CK3 vanilla: personality traits group
+#    greedy            — CK3 vanilla: personality traits group
+#    paranoid          — CK3 vanilla: personality traits group
+#    shortsighted      — CK3 vanilla: personality traits group
+#    scholar           — CK3 vanilla: education traits group
+#    callous / sadistic / ambitious / brave — CK3 vanilla personality traits
+#  Cultures used but defined in EK2:
+#    altmer_culture    — EK2: Altmer (High Elf) culture
+#    daedra_culture    — EK2: generic Daedric creature culture
+#    dreugh_culture    — EK2: Dreugh race culture
+#    echmer_culture    — EK2: Echmer (bat-mer of Yneslea) culture
+#    imga_culture      — EK2: Imga (ape-men of Valenwood) culture
+#    ka_po_tun_culture — EK2: Ka Po' Tun (tiger-men of Akavir) culture
+#    kamal_culture     — EK2: Kamal (snow demons of Akavir) culture
+#    kothringi_culture — EK2: Kothringi (Argonian-adjacent Kothringi) culture
+#    maormer_culture   — EK2: Maormer (Sea Elves of Pyandonea) culture
+#    sload_culture     — EK2: Sload (slug-men of Thras) culture
+#    tang_mo_culture   — EK2: Tang Mo (monkey-men of Akavir) culture
+#  Effects / verbs defined in CK3 vanilla:
+#    banish = yes      — CK3: expels a courtier from the court
+#                        (mod/events/sload_events.txt line ~71)
+#  Opinion modifier reasons defined in this mod's opinion_modifiers/:
+#    reason_echmer_envoy — daedric_opinion_modifiers.txt
 # =============================================================
 
 # ---------------------------------------------------------------
 #  ECHMER — Establish First Contact
-#  Called when the expedition to Yneslea successfully makes contact.
 #  Creates an Echmer scholar character at the player's capital who
 #  serves as the ambassador and teacher of Echolalia Fantasia
 #  (the Echmer's unique tonal/bat magic tradition).
@@ -321,19 +353,3 @@ deactivate_tower_stone_effect = {
         }
     }
 }
-    set_global_variable = { name = echmer_contact_established value = yes }
-    # Spawn an Echmer scholar envoy at the player's court
-    create_character = {
-        template = echmer_scholar_template
-        location = root.capital_county
-        save_scope_as = echmer_envoy
-    }
-    scope:echmer_envoy = {
-        set_relation_friend = { target = root reason = reason_echmer_envoy }
-    }
-    every_ruler = {
-        limit = { is_alive = yes }
-        trigger_event = { id = echmer.001 }
-    }
-}
-

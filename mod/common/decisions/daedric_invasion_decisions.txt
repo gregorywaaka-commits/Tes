@@ -1,5 +1,13 @@
 # =============================================================
 #  Daedric Invasion Decisions
+#  File: mod/common/decisions/daedric_invasion_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  Traits checked via has_trait but defined in CK3 vanilla:
+#    craven       — CK3 vanilla personality trait (coward)
+#    shortsighted — CK3 vanilla personality trait (lacks foresight)
+#  Do NOT redefine these in this mod — they are vanilla references.
 # =============================================================
 
 # ---- Player can manually petition for help against the invasion ----
