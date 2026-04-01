@@ -113,10 +113,40 @@ on_character_death = {
 #  has passed (current_date >= 2E.100).
 #  The actual Prince selection happens inside daedric_invasion.000.
 # ---------------------------------------------------------------
+# ---------------------------------------------------------------
+#  YEARLY PULSE — invasion trigger + guild activity
+#  CK3 only processes the LAST on_yearly_pulse block in any given
+#  file.  All yearly pulse entries for this file are therefore
+#  merged into ONE block below.  If you add a second on_yearly_pulse
+#  in this file, the first will be silently ignored.
+#
+#  Weights at a glance:
+#    100 = 0          — most years: no invasion attempt
+#      5 = invasion   — ~4.8% chance to start an invasion
+#     70 = 0          — most years: no guild event fires
+#   10-8 = guild.*    — guild events occur sporadically
+#
+#  The two pools do NOT interfere because CK3 picks EXACTLY ONE
+#  entry from random_events per fire.  Having both pools in one
+#  block means the no-ops dominate (combined weight 170 vs ~59
+#  weighted events) which keeps both invasions and guild events
+#  appropriately rare.
+# ---------------------------------------------------------------
 on_yearly_pulse = {
     random_events = {
-        100 = 0                      # no-op — most years no new invasion is triggered
-        5   = daedric_invasion.000   # attempt to start a new Daedric invasion
+        # ---- Daedric invasion trigger ----
+        100 = 0                          # no-op: most years no invasion starts
+        5   = daedric_invasion.000       # attempt to start a new Daedric invasion
+
+        # ---- Guild activity events ----
+        70  = 0                          # no-op: most years no guild event fires
+        10  = guild.mages.research       # Mages Guild research opportunity
+        10  = guild.fighters.contract    # Fighters Guild contract
+        10  = guild.thieves.heist        # Thieves Guild heist opportunity
+        8   = guild.morag_tong.writ      # Morag Tong writ of execution
+        8   = guild.companions.contract  # Companions hunting/warrior contract
+        8   = guild.bards.ballad         # Bards College composition opportunity
+        8   = guild.undaunted.delve      # Undaunted dungeon delve
     }
 }
 
@@ -129,6 +159,12 @@ on_yearly_pulse = {
 #  Lower weights = rarer contact (Namira, Sheogorath are more
 #  selective; Azura, Sanguine, Meridia reach out more often).
 # ---------------------------------------------------------------
+# TODO COMPATIBILITY: "on_five_year_pulse_character" is not a vanilla CK3 on_action hook.
+# Valid hooks are: on_five_year_pulse / on_yearly_pulse / on_decade_pulse.
+# If EK2 defines this "_character" variant and fires it internally, this block
+# works correctly. If EK2 does NOT define it, this block is silently ignored.
+# Verify against your EK2 version before relying on this.
+
 on_five_year_pulse_character = {
     random_events = {
         100 = 0          # no-op — most 5-year periods, no contact
@@ -159,6 +195,12 @@ on_five_year_pulse_character = {
 #  do not have entries here — their invasions are purely military
 #  and do not have special recurring character events.
 # ---------------------------------------------------------------
+# TODO COMPATIBILITY: "on_yearly_pulse_character" is not a vanilla CK3 on_action hook.
+# Valid hooks are: on_five_year_pulse / on_yearly_pulse / on_decade_pulse.
+# If EK2 defines this "_character" variant and fires it internally, this block
+# works correctly. If EK2 does NOT define it, this block is silently ignored.
+# Verify against your EK2 version before relying on this.
+
 on_yearly_pulse_character = {
     random_events = {
         80 = 0
@@ -184,21 +226,19 @@ on_yearly_pulse_character = {
 #  guild_leadership_events.txt.  The events check guild membership
 #  (has_trait = mages_guild_member, etc.) internally.
 # ---------------------------------------------------------------
-on_yearly_pulse = {
-    random_events = {
-        70 = 0                   # no-op — guild events are flavour, should be infrequent
-        10 = guild.mages.research    # Mages Guild research opportunity
-        10 = guild.fighters.contract # Fighters Guild contract
-        10 = guild.thieves.heist     # Thieves Guild heist opportunity
-        8  = guild.morag_tong.writ   # Morag Tong writ of execution
-        8  = guild.companions.contract # Companions hunting/warrior contract
-        8  = guild.bards.ballad      # Bards College composition opportunity
-        8  = guild.undaunted.delve   # Undaunted dungeon delve
-    }
-}
+# NOTE: The guild on_yearly_pulse entries were merged into the
+# on_yearly_pulse block above. CK3 only loads the last same-named
+# block per file; a second block here would silently discard the
+# invasion trigger. Both pools now live in the single block above.
 
 # AI decade pulse — placeholder; AI guild joining is handled by ai_will_do
 # weights in the decision files (daedric_invasion_decisions.txt, guild_decisions.txt).
+# TODO COMPATIBILITY: "on_decade_pulse_character" is not a vanilla CK3 on_action hook.
+# Valid hooks are: on_five_year_pulse / on_yearly_pulse / on_decade_pulse.
+# If EK2 defines this "_character" variant and fires it internally, this block
+# works correctly. If EK2 does NOT define it, this block is silently ignored.
+# Verify against your EK2 version before relying on this.
+
 on_decade_pulse_character = {
     random_events = {
         80 = 0

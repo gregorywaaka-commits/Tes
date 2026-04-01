@@ -66,13 +66,16 @@ fighters_guild_exists = {
 }
 
 psijic_order_accessible = {
-    # Psijic Order left Artaeum ~2E 230; returned ~2E 582
-    # Remnant members accessible at high cost before return
+    # Lore: Artaeum (the Psijic isle) vanished from mortal perception in 2E 230
+    # and reappeared in 2E 580 (per ESO Summerset DLC / TES IV: Oblivion sources).
+    # Previous value was 2E.582 — corrected to 2E.580.
+    # Before 2E 580 the Order is effectively inaccessible; the fallback AND branch
+    # (learning >= 24) represents a character who has tracked down a rare exile member.
     OR = {
-        current_date >= 2E.582
+        current_date >= 2E.580     # Artaeum has returned — Order fully accessible
         AND = {
-            current_date >= 2E.440
-            learning >= 24
+            current_date >= 2E.440 # EK2 campaign start — rare exile contact only
+            learning >= 24         # exceptional scholar required to find an exile
         }
     }
 }
