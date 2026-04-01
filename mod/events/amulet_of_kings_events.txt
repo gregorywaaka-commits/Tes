@@ -1,0 +1,300 @@
+# =============================================================
+#  Amulet of Kings Events
+#  Namespace: amulet
+#
+#  The Amulet of Kings — Alessia's Covenant with Akatosh.
+#  Lore-accurate for the Second Era Interregnum.
+#  EK2 is required.
+# =============================================================
+
+namespace = amulet
+
+# ----------------------------------------------------------------
+# amulet.001  — The Covenant Remembered
+# Fired when the Dragonborn first seeks the Amulet of Kings.
+# A scholar or priest brings them the earliest account of the
+# Covenant — the story of Saint Alessia and the Dragon God of
+# Time, circa 1E 243.
+# ----------------------------------------------------------------
+amulet.001 = {
+    type  = character_event
+    title = amulet.001.t
+    desc  = amulet.001.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = amulet_quest_started
+        NOT = { has_character_flag = amulet_quest_1_seen }
+    }
+
+    option = {
+        name = amulet.001.a   # "She was the first Dragonborn.  The covenant passes to every one of us."
+        add_character_flag = amulet_quest_1_seen
+        add_piety    = 200
+        add_learning = 2
+        trigger_event = { id = amulet.002 days = 30 }
+    }
+    option = {
+        name = amulet.001.b   # "Why would Akatosh give such a thing?  What does he want from us?"
+        add_character_flag = amulet_quest_1_seen
+        add_piety    = 100
+        add_learning = 1
+        trigger_event = { id = amulet.002 days = 60 }
+    }
+}
+
+# ----------------------------------------------------------------
+# amulet.002  — Tracing the Amulet
+# The trail leads through Imperial archives, temple records, and
+# the accounts of the few who have seen it since the Interregnum
+# began.  It was last documented during the reign of a Cyrodilic
+# warlord whose line has since been extinguished.  Where it went
+# after that is unknown.
+# ----------------------------------------------------------------
+amulet.002 = {
+    type  = character_event
+    title = amulet.002.t
+    desc  = amulet.002.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = amulet_quest_1_seen
+        NOT = { has_character_flag = amulet_quest_2_seen }
+    }
+
+    option = {
+        name = amulet.002.a   # "The last Keeper brought it to a temple before their line ended.  Find the temple."
+        add_character_flag = amulet_quest_2_seen
+        add_prestige = 200
+        add_piety    = 100
+        trigger_event = { id = amulet.003 days = 45 }
+    }
+    option = {
+        name = amulet.002.b   # "The Moth Priests would know.  The Elder Scrolls see everything."
+        add_character_flag = amulet_quest_2_seen
+        add_learning = 2
+        add_piety    = 150
+        trigger_event = { id = amulet.003 days = 30 }
+    }
+}
+
+# ----------------------------------------------------------------
+# amulet.003  — The Guardian of the Amulet
+# The Amulet is found — but it is not unguarded.  A sect of priests
+# dedicated to Akatosh (and, specifically, to Alessia's Covenant)
+# has been preserving it through the Interregnum, waiting for the
+# true Dragonborn to claim it.  They test the claimant.
+# ----------------------------------------------------------------
+amulet.003 = {
+    type  = character_event
+    title = amulet.003.t
+    desc  = amulet.003.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = amulet_quest_2_seen
+        NOT = { has_character_flag = amulet_quest_3_done }
+    }
+
+    option = {
+        name = amulet.003.a   # "I submit to the test.  I have nothing to hide from Akatosh's servants."
+        add_character_flag = amulet_quest_3_done
+        add_piety    = 400
+        add_prestige = 300
+        # The test: they ask you to speak a Word of Power before the altar.
+        if = {
+            limit = {
+                OR = {
+                    has_trait = dovahkiin_soul_awakened
+                    has_trait = thu_um_master
+                    has_trait = greybeard_of_high_hrothgar
+                    has_trait = first_voice_of_the_greybeards
+                }
+            }
+            # The Word shatters a stone. The priests bow.
+            add_piety    = 300
+            add_prestige = 400
+        }
+    }
+    option = {
+        name = amulet.003.b   # "I do not need a test.  The blood speaks for itself."
+        add_character_flag = amulet_quest_3_done
+        add_prestige = 500
+        add_piety    = 100
+        add_dread    = 20       # The priests are wary, but they cannot deny the Dragonblood
+    }
+}
+
+# ----------------------------------------------------------------
+# amulet.004  — The Covenant of Akatosh
+# Fired when the Dragonborn formally claims the Amulet.
+# They place it around their neck for the first time.  The Amulet
+# responds to the Dragonblood — it glows.  The priests weep.
+# Outside, the wind changes direction.
+# ----------------------------------------------------------------
+amulet.004 = {
+    type  = character_event
+    title = amulet.004.t
+    desc  = amulet.004.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = amulet_quest_3_done
+        NOT = { has_amulet_of_kings = yes }
+    }
+
+    option = {
+        name = amulet.004.a   # "I feel it immediately.  The covenant is real.  Alessia's bargain is mine."
+        receive_amulet_of_kings = yes
+        add_modifier = { modifier = amulet_of_kings_dragonborn_modifier days = -1 }
+        add_piety    = 800
+        add_prestige = 1000
+        remove_character_flag = amulet_quest_started
+        add_character_flag    = amulet_of_kings_claimed
+    }
+    option = {
+        name = amulet.004.b   # "The weight of every Dragonborn Emperor before me.  I will carry it well."
+        receive_amulet_of_kings = yes
+        add_modifier = { modifier = amulet_of_kings_dragonborn_modifier days = -1 }
+        add_piety    = 1000
+        add_prestige = 800
+        remove_character_flag = amulet_quest_started
+        add_character_flag    = amulet_of_kings_claimed
+    }
+}
+
+# ----------------------------------------------------------------
+# amulet.005  — The Amulet Rejects a Non-Dragonborn
+# If somehow a non-Dragonborn comes into possession of the Amulet
+# (through the flag system), the Amulet will eventually burn them.
+# Fires as a yearly check for any character who holds the
+# amulet_of_kings_bearer flag WITHOUT the dragonborn trait.
+# ----------------------------------------------------------------
+amulet.005 = {
+    type  = character_event
+    title = amulet.005.t
+    desc  = amulet.005.desc
+    theme = realm
+
+    trigger = {
+        has_amulet_of_kings = yes
+        NOT = { is_dragonborn = yes }
+        NOT = { has_modifier = amulet_post_event_cooldown }
+    }
+
+    option = {
+        name = amulet.005.a   # "The Amulet burns — not with heat, but with judgment."
+        lose_amulet_of_kings = yes
+        add_piety    = -500
+        add_prestige = -400
+        add_stress   = 30
+        add_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
+    }
+    option = {
+        name = amulet.005.b   # "I cannot keep this.  I must find someone of the Dragonblood."
+        lose_amulet_of_kings = yes
+        add_piety    = -200
+        add_prestige = -200
+        add_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
+    }
+}
+
+# ----------------------------------------------------------------
+# amulet.006  — Relighting the Dragonfires
+# The most significant event in the Amulet of Kings chain.
+# The Dragonborn stands in the White-Gold Tower, Amulet in hand,
+# before the ancient Dragonfires that have been cold since the
+# Interregnum began.  The Covenant of Alessia is about to be
+# renewed — the barrier between Mundus and Oblivion restored.
+# ----------------------------------------------------------------
+amulet.006 = {
+    type  = character_event
+    title = amulet.006.t
+    desc  = amulet.006.desc
+    theme = realm
+
+    trigger = {
+        can_relight_dragonfires = yes
+        NOT = { has_character_flag = dragonfires_lit }
+    }
+
+    option = {
+        name = amulet.006.a   # "In the name of Alessia.  In the name of Akatosh.  I light the fire."
+        relight_dragonfires_effect = yes
+        add_prestige = 3000
+        add_piety    = 2500
+        # Notify every ruler — the Dragonfires burn for the first time in centuries
+        every_ruler = {
+            limit = { is_alive = yes }
+            trigger_event = { id = amulet.007 }
+        }
+    }
+    option = {
+        name = amulet.006.b   # "The fire catches — and the world beyond the veil pulls back.  I feel it."
+        relight_dragonfires_effect = yes
+        add_prestige = 2500
+        add_piety    = 3000
+        add_stress   = -30   # The act brings deep peace
+        every_ruler = {
+            limit = { is_alive = yes }
+            trigger_event = { id = amulet.007 }
+        }
+    }
+}
+
+# ----------------------------------------------------------------
+# amulet.007  — The Dragonfires Burn
+# World notification event — every ruler learns that the
+# Dragonfires have been relit by a Dragonborn.
+# This is a world-historic event.
+# ----------------------------------------------------------------
+amulet.007 = {
+    type  = character_event
+    title = amulet.007.t
+    desc  = amulet.007.desc
+    theme = realm
+
+    option = {
+        name = amulet.007.a   # "The Dragonfires burn again.  Oblivion's hand is stayed."
+        add_piety    = 100
+        add_prestige = 50
+        add_stress   = -10
+    }
+    option = {
+        name = amulet.007.b   # "A Dragonborn has renewed the Covenant.  Their claim to the Ruby Throne is undeniable."
+        add_prestige = 100
+        add_stress   = 10    # This changes everything politically
+    }
+}
+
+# ----------------------------------------------------------------
+# amulet.post_001  — The Amulet Draws Attention
+# Recurring event for the Dragonborn who holds the Amulet.
+# Others want it — for political reasons, for the power, or
+# simply because they believe it belongs to the Empire.
+# ----------------------------------------------------------------
+amulet.post_001 = {
+    type  = character_event
+    title = amulet.post_001.t
+    desc  = amulet.post_001.desc
+    theme = realm
+
+    trigger = {
+        has_amulet_of_kings = yes
+        is_dragonborn = yes
+        NOT = { has_modifier = amulet_post_event_cooldown }
+    }
+
+    option = {
+        name = amulet.post_001.a   # "The Amulet is not a political object.  It is a covenant.  They will not have it."
+        add_prestige = 300
+        add_dread    = 20
+        add_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
+    }
+    option = {
+        name = amulet.post_001.b   # "Let them come.  Every Dragonborn Emperor since Alessia has faced this.  I will not be the last."
+        add_prestige = 400
+        add_piety    = 100
+        add_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
+    }
+}

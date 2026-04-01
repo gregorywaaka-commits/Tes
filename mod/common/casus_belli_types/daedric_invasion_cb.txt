@@ -1,0 +1,75 @@
+# =============================================================
+#  Daedric Invasion Casus Belli
+#  Allows the Daedric Prince (or the mortal standing against the
+#  Prince) to declare war with unique CB mechanics.
+# =============================================================
+
+daedric_invasion_cb = {
+    group = daedric
+
+    # Only the spawned Daedric Prince NPC may use this CB offensively
+    allowed_for_character = {
+        has_trait = daedric_prince
+    }
+
+    allowed_against_character = {
+        is_alive = yes
+        NOT = { has_trait = daedric_prince }
+    }
+
+    # The war target is every mortal realm
+    valid_to_start = {
+        is_daedric_invasion_active = yes
+    }
+
+    target_type = realm
+
+    on_declaration = {
+        every_ruler = {
+            limit = { is_alive = yes }
+            trigger_event = { id = daedric_invasion.002 }
+        }
+    }
+
+    on_victory_desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { scope:attacker = { has_trait = daedric_prince } }
+                desc = daedric_invasion_cb_victory_prince_desc
+            }
+        }
+    }
+
+    on_victory = {
+        scope:attacker = {
+            # Prince wins — advance invasion phase
+            escalate_daedric_invasion = yes
+        }
+    }
+
+    on_defeat_desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { scope:attacker = { has_trait = daedric_prince } }
+                desc = daedric_invasion_cb_defeat_prince_desc
+            }
+        }
+    }
+
+    on_defeat = {
+        # Mortal realm repels the Prince — reduce invasion phase
+        scope:defender = {
+            add_prestige = 1000
+            add_piety = 500
+        }
+        change_global_variable = { name = daedric_invasion_phase subtract = 1 }
+        if = {
+            limit = { global_var:daedric_invasion_phase <= 0 }
+            end_daedric_invasion = yes
+        }
+    }
+
+    transfer_behavior = transfer_all
+
+    white_peace_desc = daedric_invasion_cb_white_peace_desc
+}

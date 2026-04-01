@@ -1,0 +1,253 @@
+# Encoding: UTF-8-BOM
+l_english:
+ # ============================================================
+ #  Thu'um / Voice — Greybeard Order & Dragonborn Localization
+ # ============================================================
+
+ # ---- Traits ----
+ thu_um_initiate: "Thu'um Initiate"
+ thu_um_initiate_desc: "Has spoken a first Word of Power. The Voice stirs within them — raw, powerful, not yet fully understood. They are at the beginning of a path that takes most people a lifetime."
+
+ thu_um_adept: "Thu'um Adept"
+ thu_um_adept_desc: "Knows several Words of Power and can execute complete Shouts. The Voice has become part of how they perceive the world — every sound carries meaning, every spoken word has weight."
+
+ thu_um_master: "Tongue"
+ thu_um_master_desc: "A Tongue — one who speaks with the Thu'um at the level of a true master. Commands many Shouts. The air bends when they speak. This is the title the ancient Nords gave to those whose Voice shaped the world, before Jurgen Windcaller's reformation. Some wear it with martial pride; others with humility."
+
+ greybeard_aspirant: "Greybeard Aspirant"
+ greybeard_aspirant_desc: "Has climbed the 7,000 Steps and been accepted by the Order of the Greybeards at High Hrothgar. Studying the Way of the Voice under Arngeir's guidance. The vow of near-silence is not yet complete, but the discipline has begun."
+
+ greybeard_of_high_hrothgar: "Greybeard of High Hrothgar"
+ greybeard_of_high_hrothgar_desc: "A fully initiated member of the Order of the Greybeards. Has taken the vow of near-silence — knowing that every utterance of the Thu'um reshapes reality, and that words must be chosen with absolute care. Lives according to Jurgen Windcaller's Way of the Voice. Very few in all of Tamriel hold this title."
+
+ first_voice_of_the_greybeards: "First Voice of the Greybeards"
+ first_voice_of_the_greybeards_desc: "The head of the Order of the Greybeards — the earthly voice of the Way of the Voice itself. Recognised by Arngeir, by the Order, and by Paarthurnax himself from the summit of the Throat of the World. Their words carry the weight of centuries of devotion to Akatosh and the mastery of the Thu'um."
+
+ dovahkiin_soul_awakened: "Dovahkiin Awakened"
+ dovahkiin_soul_awakened_desc: "The Dragonborn has absorbed a Dragon Soul. Their power is now fully unlocked — any Shout from a Word Wall opens to them instantly, every dragon slain gives them its essence, and the Dovah aspect of their nature is no longer dormant but awake and unmistakeable. Dragons sense this character. Wise people fear it."
+
+ # ---- Modifiers ----
+ thuumvoi_advancement_cooldown: "Voice Training — Meditation"
+ greybeard_vow_modifier: "The Vow of Near-Silence"
+ greybeard_vow_modifier_desc: "This character has taken the Greybeard vow. Every word must be chosen with care; the Thu'um is too powerful for casual speech. Ordinary discourse is foreign to them now."
+ greybeard_oath_broken: "Greybeard Oath Broken"
+ greybeard_oath_broken_desc: "Has broken the vow of the Greybeards. The Order will not receive them again easily, and those who know the Way regard them with deep disappointment."
+ first_voice_modifier: "First Voice of the Greybeards"
+ dovahkiin_full_power_modifier: "The Dragon Soul Burns"
+ dovahkiin_full_power_modifier_desc: "The Dragonborn has absorbed a Dragon Soul and their power is fully awakened. Every Shout comes naturally. Every Word Wall speaks to them. Dragons recognise them and dread them."
+ thu_um_shout_cooldown: "Thu'um Expended"
+ thu_um_shout_cooldown_desc: "The Voice demands recovery time. Even a Tongue cannot Shout endlessly without consequence."
+ greybeard_pilgrims_cooldown: "High Hrothgar — Period of Quiet"
+ dovahkiin_recognition_cooldown: "Known as Dovahkiin"
+
+ # ---- Decisions ----
+ seek_thu_um_training: "Seek Thu'um Training"
+ seek_thu_um_training_desc: "The Way of the Voice — the Thu'um — is a tradition older than most kingdoms. Masters are rare; true masters rarer still. But the path begins simply: find a teacher, a Word Wall, or already possess the blood of a Dovahkiin, and begin."
+
+ advance_thu_um_training: "Advance Thu'um Training"
+ advance_thu_um_training_desc: "The Voice grows with practice — with meditation, with study of the Dragon Language, and with the patient work of understanding what each Word truly means. Push further along the Way."
+
+ leave_voice_path_decision: "Abandon the Way of the Voice"
+ leave_voice_path_decision_desc: "The Thu'um demands total commitment. To walk away from it is not without consequence — every Tongue and student of the Voice will hear of it, and the reputation will follow."
+
+ seek_the_greybeard_order: "Seek Out the Greybeards"
+ seek_the_greybeard_order_desc: "The Order of the Greybeards has been at High Hrothgar on the slopes of the Throat of the World since the early First Era. They are the keepers of Jurgen Windcaller's Way of the Voice — a path of devotion rather than war. The 7,000 Steps are legendary for their difficulty. Fewer than a hundred pilgrims have ever been received by the Order."
+
+ take_greybeard_vows: "Take the Greybeard Vows"
+ take_greybeard_vows_desc: "Having trained under Arngeir and met with Paarthurnax on the Throat of the World, one may formally take the vow of near-silence and become a full member of the Order. This is not a light thing. It will change everything."
+
+ leave_greybeard_order_decision: "Renounce the Greybeard Vows"
+ leave_greybeard_order_decision_desc: "To leave the Order of the Greybeards is to break a promise made to Jurgen Windcaller's Way, to Arngeir, to Paarthurnax, and to Akatosh himself. The consequences — spiritual and reputational — will be severe."
+
+ harness_dovah_blood: "Harness the Dragon's Blood"
+ harness_dovah_blood_desc: "The Dragonborn has known for some time that there is something different in their nature — something that stirs when a dragon shrieks overhead, something that resonates with the Words carved into ancient Word Walls. It is time to stop treating it as an accident of birth and understand what it truly means."
+
+ begin_greybeard_leadership_quest: "Seek the Way Made Whole"
+ begin_greybeard_leadership_quest_desc: "A conflict has arisen between the Greybeards' interpretation of the Way of the Voice and the older Tongue tradition — and the Order needs a First Voice, someone who can speak for the Way with authority. The task falls to us."
+
+ claim_first_voice_of_greybeards: "Accept the Title of First Voice"
+ claim_first_voice_of_greybeards_desc: "The Order of the Greybeards — and Paarthurnax himself — have spoken. The Way has been upheld. The time has come to formally accept the title of First Voice, the earthly head of the Order."
+
+ use_thu_um_in_battle: "Unleash the Thu'um"
+ use_thu_um_in_battle_desc: "Choose a Shout and let it tear the battlefield apart. Unrelenting Force. Fire Breath. Whirlwind Sprint. The Voice is a weapon of absolute last resort — but a last resort unmatched by any blade or siege engine."
+
+ # ---- thuumvoi Events ----
+ thuumvoi.001.t: "The Voice Stirs"
+ thuumvoi.001.desc: "It happens without warning — or perhaps with more warning than we chose to hear. A phrase spoken with too much force, a sound that shouldn't carry that far, a whisper in a room that rattles the shutters. The Thu'um is real, and it lives in us. The tradition has a name for this moment: the first Speaking. Everything that comes after will be a choice about what to do with it."
+ thuumvoi.001.a: "Breathe. Listen. Let the world's voice speak to yours."
+ thuumvoi.001.b: "What does this mean? What have I tapped into?"
+
+ thuumvoi.002.t: "A Word of Power"
+ thuumvoi.002.desc: "Three syllables. FUS — Force. A single Word out of the hundreds carved on ancient Word Walls across Skyrim and beyond. Most practitioners spend years on a single Word; the Dragonborn absorb them like breathing. We are not yet at mastery, but we understand now — viscerally, in the bones — why the ancient Nords could shatter armies with a sentence. A Word of Power is not a sound. It is a command given to reality."
+ thuumvoi.002.a: "FUS. The Word of Unrelenting Force. I feel it."
+ thuumvoi.002.b: "I must write this down. Every detail. Every resonance."
+
+ thuumvoi.003.t: "The Second Shout"
+ thuumvoi.003.desc: "Multiple Words, multiple Shouts. The pattern is becoming clear — the Dragon Language is not metaphor or symbol, it is description. When we speak FUS we do not invoke force; we declare that force exists at this specific point in the world's fabric, and the world agrees. Three Words make a complete Shout. We know several now. The control that once required total concentration has become — not easy, but natural. The Voice is part of how we think."
+ thuumvoi.003.a: "I know three shouts now. I am learning the language of creation."
+ thuumvoi.003.b: "The power is growing faster than my discipline."
+
+ thuumvoi.004.t: "The Tongue"
+ thuumvoi.004.desc: "The ancient Nords had a name for someone at this level of mastery: Tongue. Not 'Voice user' or 'apprentice'; Tongue — because the Thu'um becomes the primary way one speaks with the world. The Greybeards use it with devotion and silence. The old Tongues of Skyrim's wars used it as a weapon. Jurgen Windcaller's reformation divided these traditions, and the division has never fully healed. We now stand at the level where that question becomes personal."
+ thuumvoi.004.a: "A Tongue. The ancient term for one who speaks with the Voice. I carry a great tradition."
+ thuumvoi.004.b: "The Greybeards call it vanity to use the Voice for glory. I disagree."
+
+ thuumvoi.005.t: "The Thu'um Unleashed"
+ thuumvoi.005.desc: "The battlefield is the wrong place for the Voice. Or so Jurgen Windcaller would have said. The ancient Tongues disagreed, and their armies broke entire kingdoms with a shout. Today, in this war, with the enemy pressing hard, the question is academic. The Voice is here. The Voice can end this. The only question is which Shout."
+ thuumvoi.005.a: "FUS RO DAH! The entire enemy line breaks."
+ thuumvoi.005.b: "YOL TOOR SHUL! The fire of Alduin's kind, mine to speak."
+ thuumvoi.005.c: "WULD NAH KEST! In a heartbeat I am through their lines."
+
+ # ---- greybeard Events ----
+ greybeard.001.t: "The 7,000 Steps"
+ greybeard.001.desc: "The Steps begin at Ivarstead — a small town at the base of the Throat of the World, the tallest mountain in all of Tamriel. From there, 7,000 steps carved by pilgrims of the First Era lead up through ice and stone and howling wind to High Hrothgar. The monastery of the Greybeards. No army has ever taken High Hrothgar. No army has ever tried — there is something in the air of the mountain that makes aggression feel profoundly, cosmically wrong. We begin to climb."
+ greybeard.001.a: "I climb. Every step carved by generations of pilgrims before me."
+ greybeard.001.b: "Seven thousand steps. I count every one."
+
+ greybeard.002.t: "The Storm on the Mountain"
+ greybeard.002.desc: "The blizzard comes from nowhere — or rather from everywhere at once, as Throat of the World blizzards do. Visibility drops to arm's length. The Steps are somewhere under our feet but cannot be seen. Other pilgrims turn back; we have met three already on the way down, all of them hollow-eyed and determined to try again in spring. Some say Kyne herself sends the storm to test those who climb. Some say it is simply weather. It doesn't matter. The question is the same either way: do we keep climbing?"
+ greybeard.002.a: "Press on. The mountain is testing me. I will not be found wanting."
+ greybeard.002.b: "Turn back — wait for the storm to pass. Patience is wisdom."
+
+ greybeard.003.t: "The Hall of High Hrothgar"
+ greybeard.003.desc: "High Hrothgar in the Second Era is very much as it will be in every era: ancient, cold, and utterly still in a way that no man-made building ever quite manages. Stone worn smooth by centuries of feet. The smell of old fire and mountain air. Four figures in grey robes who do not turn when we enter but somehow know we are here. And Arngeir — the one who speaks — who turns and looks at us with the measured patience of a man who has been answering pilgrims' questions for eighty years and intends to answer them accurately."
+ greybeard.003.a: "Arngeir speaks for them in halting words. He asks why I have come."
+
+ greybeard.004.t: "The First Word Under the Mountain"
+ greybeard.004.desc: "Arngeir teaches in silence, mostly. He points. He listens. He corrects — not with words but with a look of such patient precision that the correction is unmistakeable. Today he has led us to the inner hall, the one with the ancient Word Wall carved into the far wall, and he has stood us before it and stepped back. The Word is there. We can read it — partially; the Dragon Language comes to us in fragments. He waits. He will wait all day if necessary. He has that quality. We speak."
+ greybeard.004.a: "HI — Run. The first Word of Whirlwind Sprint. The simplest. It nearly tears the hall apart."
+ greybeard.004.b: "I speak FUS again — Unrelenting Force. The Greybeards go still. One weeps."
+
+ greybeard.005.t: "The Throat of the World"
+ greybeard.005.desc: "Above High Hrothgar — above even the monastery's highest courtyard, up a final impossibly steep path to the actual summit of the Throat of the World — lives Paarthurnax. He is a dragon. He is ancient beyond even the Greybeards' ancient span. He rebelled against Alduin during the Dragon War of the Merethic Era and has lived here, alone, teaching the Way of the Voice to any who ascend. He does not speak at first. He watches. The wind off the mountain summit smells of ice and something older than ice. Then he opens his enormous golden eyes and speaks our name."
+ greybeard.005.a: "He is enormous — ancient beyond reckoning — and he speaks to us as an equal."
+ greybeard.005.b: "I ask him about the nature of the Voice. He answers. Hours pass before I realise it."
+
+ greybeard.006.t: "The Vow"
+ greybeard.006.desc: "The vow of the Greybeards is not a vow of total silence — that would be impractical, and Jurgen Windcaller was a practical man. It is a vow of care. Of weight. Every word costs something. Every utterance of the Thu'um reshapes the world, however slightly, and even ordinary speech should be chosen the way a master sculptor chooses where to place the chisel. Arngeir says these words. We say them back. The hall is very quiet. Outside, the Throat of the World does not tremble — but we somehow feel that it is aware of what just happened."
+ greybeard.006.a: "The vow is not silence for its own sake. It is care — awareness — that every word has weight."
+ greybeard.006.b: "I will carry this until the day I can no longer speak at all."
+
+ greybeard.lead.001.t: "The Rift Between Tongues and Order"
+ greybeard.lead.001.desc: "His name is Jorlund Ironthroat — a Nord Tongue from Windhelm who has been climbing mountains with a retinue of disciples for six years, teaching them to use the Voice as a weapon. He is not wrong that the Voice was used this way for centuries. He is standing at the base of the 7,000 Steps with three disciples and a very great deal of confidence, and he is saying — loudly, in a voice that carries the Thu'um's resonance even when not technically shouting — that the Greybeards have been afraid of the Voice's power for too long, and that a new age of Tongues is coming whether the Order approves or not."
+ greybeard.lead.001.a: "Hear his argument before responding. Even those who are wrong must be understood."
+ greybeard.lead.001.b: "The Way of the Voice is not negotiable. Challenge him directly."
+
+ greybeard.lead.002.t: "The Voice-Duel"
+ greybeard.lead.002.desc: "Jorlund Ironthroat speaks first. He calls the Greybeards cowards. He says the Voice is a gift for use, not meditation. He says Jurgen Windcaller was a broken man who chose passivity because his armies had been destroyed, and that he dressed his failure in spiritual language to make it bearable. It is, considered purely as an argument, not entirely without merit. The crowd that has gathered — merchants, pilgrims, and a handful of very interested scholars — is quiet. Now we speak."
+ greybeard.lead.002.a: "Speak gently. Each Word measured, each shout considered. The Way made visible."
+ greybeard.lead.002.b: "Overwhelm him. Force and precision both. Show him what the Voice truly is."
+
+ greybeard.lead.003.t: "The Way Made Whole"
+ greybeard.lead.003.desc: "Jorlund Ironthroat goes quiet. His disciples look at each other. The crowd stands in the specific silence that falls when something true has been said loudly enough that no one wants to be the first to speak again afterward. Arngeir, at the top of the Steps, is not visible from here — but we have the distinct sense that something has just been resolved in the Order's favour. And then, from the summit of the Throat of the World, many leagues above us — a single word. One syllable. Not a Shout. Just a word. Our name."
+ greybeard.lead.003.a: "The Way is not an argument. It is a practice. It is a life."
+ greybeard.lead.003.b: "Even Paarthurnax chose the Way freely. That choice is what makes it powerful."
+
+ greybeard.lead.t: "First Voice of the Greybeards"
+ greybeard.lead.desc: "The Order of the Greybeards assembles in High Hrothgar's inner hall — all four of them, plus Arngeir, who will speak on their behalf. Arngeir is very old. He has been answering pilgrims' questions since before many kingdoms existed. He says: 'The Order has held this title in reserve since Jurgen Windcaller himself. The first Voice, the teacher who speaks for the Way when the Way must be spoken. The mountain has given us the name.' He says our name. He says it once. The stone carries the echo for a very long time."
+ greybeard.lead.a: "I accept. Speak rarely. Speak truly. Speak with the whole weight of the world."
+
+ greybeard.post_001.t: "A Pilgrim at the Steps"
+ greybeard.post_001.desc: "Word has reached us — the First Voice receives word about most things that happen on or near the Throat of the World — that someone is at the base of the 7,000 Steps. Not Jorlund Ironthroat this time; a young woman from a merchant family in Riften who has apparently been teaching herself the Dragon Language from copied Word Wall inscriptions for four years, alone, in secret. Arngeir thinks she might be worth receiving. He defers to us."
+ greybeard.post_001.a: "Send word: if they truly seek the Way, the Steps are open to them."
+ greybeard.post_001.b: "Send Arngeir to assess them first. High Hrothgar is not a court."
+
+ greybeard.post_002.t: "A Young Tongue Challenges the Way"
+ greybeard.post_002.desc: "A young Nord who calls himself the Voice of Windhelm has been issuing challenges to the Order — not arriving at the Steps as Jorlund did, but using the Thu'um in the marketplaces of Skyrim's holds, demanding that the Greybeards 'come down from their mountain and fight for something.' He is, by all accounts, genuinely talented. He is also, by all accounts, about seventeen years old and extremely angry about something he has never been willing to specify. He is making the Thu'um look like a tantrum."
+ greybeard.post_002.a: "Offer them the same debate. Let the Voice speak for itself."
+ greybeard.post_002.b: "Speak one Word — just one — and let them feel what it means."
+
+ # ---- dovahkiin Events ----
+ dovahkiin.001.t: "The Dragon's Blood Awakens"
+ dovahkiin.001.desc: "There is no other word for it. The Dovahkiin — the dragon-blood, the mortal-born-with-a-dragon's-soul — is not a metaphor. The blood literally carries something that has not been fully awake until now. We have known for some time that something was different. The shout that came out during the ambush last season, the way the dragon near Whiterun seemed to pause when it looked at us. The way the Word Walls speak. Today, looking at an inscription in the Dragon Language that no one has translated in living memory, we read it. All of it. In an instant."
+ dovahkiin.001.a: "The dragon's name — DOV — resonates with something inside me that I cannot name."
+ dovahkiin.001.b: "Every dragon I have encountered — I felt it. I thought it was fear. It wasn't."
+
+ dovahkiin.002.t: "The Soul Absorbs"
+ dovahkiin.002.desc: "A dragon. The size of a large building, armoured in ancient scales, with eyes the colour of old amber. It has lived for what the Thu'um tells us — instinctively — is approximately four hundred years. It has memories of the Dragon War. It has memories of Alduin. And then it is dead, because we killed it, and then something happens that is not like anything else that has ever happened to us. The soul comes. Not a metaphor; not a vision. An absorption. Four hundred years of experience, compressed and transferred and held. We contain the dragon's name now. We know its Shouts."
+ dovahkiin.002.a: "I did not choose this. But the soul comes to me like water finds the sea."
+ dovahkiin.002.b: "The dragon's memories flood me — centuries of sky and fire. I hold them all."
+
+ dovahkiin.003.t: "FUS RO DAH"
+ dovahkiin.003.desc: "The Wall of Words at Bleak Falls Barrow has stood since the First Era. Scholars have been copying it, debating it, and mostly failing to translate it for centuries. Three Words of the Dragon Language, the scholars agree. The first Word is probably FUS — Force. The second might be RO — Balance. The third they are still arguing about. We stand in front of it, and the Wall opens to us like a book. FUS. RO. DAH. Unrelenting Force. The full Shout. We have never practised this. We do not need to. We are the Dovahkiin."
+ dovahkiin.003.a: "FUS RO DAH! The Wall of Words simply opens to me. I understand all of it."
+ dovahkiin.003.b: "The Greybeards will want to know. I should seek them out."
+
+ dovahkiin.post_001.t: "The Last Dragonborn"
+ dovahkiin.post_001.desc: "The scholars have a name for it now. The word has spread — in the way that truly significant things spread, not through announcement or declaration but through the specific quiet that falls when something is true enough to be felt rather than merely heard. The Dovahkiin. The Last Dragonborn, some are already saying, though the word 'last' is the kind of claim that history tends to laugh at. The Greybeards have been silent on the matter, which among the Greybeards means something very specific."
+ dovahkiin.post_001.a: "They learn what I am. Let them."
+ dovahkiin.post_001.b: "The Dragonborn does not seek recognition. But it finds us anyway."
+
+ # ============================================================
+ #  New traits — Dragon Soul Stacking & Dovah Nature
+ # ============================================================
+
+ dragon_souls_growing: "Dragon Souls: Growing"
+ dragon_souls_growing_desc: "Has absorbed five or more Dragon Souls. The Thu'um is effortless now — Shouts come as easily as breathing. The Dragonborn carries the memories of five ancient Dovah: their grudges, their wars, their fire. The Dovah instinct — dominion, conquest, the endless hunger for more — is noticeably louder. This is not yet crisis. But it is direction."
+
+ dragon_souls_brimming: "Dragon Souls: Brimming"
+ dragon_souls_brimming_desc: "Has absorbed ten or more Dragon Souls. At this level the Dragonborn is something that has not existed before: a mortal vessel containing more Dovah essence than most living dragons. Their Thu'um could crack mountains. Their Dovah nature is at the edge of overcoming their mortal will. The tension must be resolved — by resistance or by submission — or it will resolve itself."
+
+ dovah_nature_resisted: "The Hardest Shout"
+ dovah_nature_resisted_desc: "Has faced the Dovah nature — the dragon's ancient instinct for domination and conquest — and chosen their own path instead. Paarthurnax calls this 'the hardest shout': the one you speak inward rather than outward, turning the full power of the Thu'um against the part of yourself that would use it only for dominance. This character is both Dovah and mortal, and they have chosen to be both freely. Very few achieve this."
+
+ dovah_nature_dominant: "Dovah Nature Dominant"
+ dovah_nature_dominant_desc: "The accumulated Dragon Souls are overwhelming this character's mortal free will. They are becoming something between a man and a dragon — ancient, driven, and consumed by the Dovah instinct for dominance. Their power is immense but their focus is gone. The world can feel it. Other Dovah can feel it. Every conversation is a battle with ten ancient voices who all want different things at maximum volume. The only resolution is to face the nature directly — or be consumed by it entirely."
+
+ # ---- New modifiers ----
+ absorb_soul_cooldown: "Dragon Soul — Recovery"
+ absorb_soul_cooldown_desc: "Absorbing a Dragon Soul is not a minor event. The Dragonborn needs time to integrate what they have taken in before seeking another."
+
+ dovahkiin_word_wall_cooldown: "Word Wall — Absorbed"
+ dovahkiin_word_wall_cooldown_desc: "The knowledge from this Word Wall is still settling into the Dragonborn's mind. Another Wall can be approached when this one has been fully integrated."
+
+ dragon_souls_growing_modifier: "Five Dragon Souls Within"
+ dragon_souls_brimming_modifier: "Ten Dragon Souls Within"
+ dovah_nature_resisted_modifier: "The Dragon Tamed"
+ dovah_nature_dominant_modifier: "The Dragon Ascendant"
+
+ # ---- New decisions ----
+ learn_from_word_wall: "Learn from a Word Wall"
+ learn_from_word_wall_desc: "A Word Wall is a stretch of ancient carved stone — Dragon Language inscribed by the ancient Nords to record their Shouts for posterity. For most people, a Word Wall is a historical curiosity. For a Dragonborn, it is a direct transmission: the moment their eyes reach the first Word, the knowledge is already inside them. No teacher. No practice. The dragon's blood recognises the dragon's language."
+
+ absorb_another_dragon_soul: "Seek and Absorb Another Dragon Soul"
+ absorb_another_dragon_soul_desc: "The Dragonborn's power grows with every Dragon Soul they absorb. Each one adds a lifetime of Shouts, memories, and the raw Dovah essence that makes the Thu'um what it is. But each one also adds to the weight of the Dovah nature within. Seek a dragon. Kill it. Absorb what remains. Know exactly what this will cost."
+
+ resist_dovah_nature_decision: "Face the Dragon Within"
+ resist_dovah_nature_decision_desc: "Paarthurnax has spoken about this. He calls it the hardest shout he ever spoke — not FUS or YOL, but the one with no word, the one you direct entirely inward. The dragon in every Dragonborn is real. Its hunger is real. The question is not whether it can be silenced — it cannot be silenced — but whether its owner can look at it clearly, understand exactly what it wants, and choose something else. This requires time, honesty, and more piety than most people ever accumulate. But it has been done before. Paarthurnax did it. The choice is available."
+
+ # ---- New events ----
+ thuumvoi.010.t: "Five Souls"
+ thuumvoi.010.desc: "The fifth Dragon Soul enters us — and something shifts. It is not dramatic, the way the first one was. The first was like a flood. This is like reaching a new floor in a building and realising you can see further than you thought. Five dragons. Five lifetimes of sky and fire and the high cold air above the clouds, where only Dovah go. We can feel them individually now — not as voices, not yet, but as presences. Distinct, ancient, each one specific. The oldest is from the late Merethic Era. We know this the way we know our own birthdate. We didn't before."
+ thuumvoi.010.a: "Five souls. I carry five dragons within me."
+ thuumvoi.010.b: "I hear them sometimes. Their memories. Sky and fire and ancient grudges."
+
+ thuumvoi.011.t: "Ten Souls: The Dragon at the Threshold"
+ thuumvoi.011.desc: "Ten Dragon Souls. We are not aware of a precedent. The academic records of the Moth Priests do not record a Dragonborn who has absorbed this many in one lifetime during the Second Era. The ancient accounts from the Dragon War in the Merethic Era speak of Dragonborn heroes who absorbed dozens, but those accounts also describe them as eventually becoming more dragon than mortal in temperament, and most of them are not described positively. The Dovah within us are not ten separate voices anymore. They are a chorus. They want things. They want sky. They want fire. They want dominance, because that is what Dovah want. We still know who we are. We have to keep knowing that."
+ thuumvoi.011.a: "Ten dragons. Ten lifetimes of sky. I am becoming something the world has never seen."
+ thuumvoi.011.b: "I should seek Paarthurnax. If anyone knows how to carry this, it is him."
+
+ thuumvoi.012.t: "The Dovah Nature Crisis"
+ thuumvoi.012.desc: "It comes without warning or rather with too much warning — every sign there since the tenth soul and wilfully ignored until now. The Dovah nature is not a metaphor. It is not a symbol of ambition or a poetic way of saying we have an aggressive streak. It is ten ancient dragons living in the same body as one mortal, and they all have opinions, and they all have those opinions at once, and they all agree that domination is the correct answer to most questions. We are still in here. We can still choose. But the question is becoming urgent: which part of us is going to make that choice?"
+ thuumvoi.012.a: "I am not a dragon. I am Dovahkiin. I choose."
+ thuumvoi.012.b: "Let it come. What mortal can stand against me now?"
+
+ thuumvoi.013.t: "The Hardest Shout"
+ thuumvoi.013.desc: "We did it. We cannot exactly explain how, which is perhaps the point — Paarthurnax said the hardest shout has no word in any language, not even Dragon Language. We turned inward. We looked at ten dragons looking back at us and we did not flinch and we did not give them what they wanted. We chose differently. They are still there. They will always be there. But the relationship has changed — they are ours now, not the other way around. The power remains. The Shouts remain. The memories and fire and sky remain. But we are the one who decides what to do with all of it. This is, we understand now, exactly what Paarthurnax has been doing for thousands of years. He called it the hardest shout. He was right."
+ thuumvoi.013.a: "It is not gone. But it is mine. I decide what it means."
+ thuumvoi.013.b: "The dragon did not expect me to choose compassion. Neither did I."
+
+ thuumvoi.014.t: "The Dragon Prevails"
+ thuumvoi.014.desc: "We are still ourselves. We want to be clear about that. We are still the person who has always been here. It is just that right now the other ten people in here are speaking louder than they should be, and everything has a quality of ancient Dovah about it — the cold calculation of a predator, the very long view of a creature that has lived for centuries, and the absolute conviction that dominance is not merely one approach to a problem but the only approach worth considering. It will pass. We believe that. We have to believe that. But right now, everything looks like a rival or a subject, and we are not sure which we prefer."
+ thuumvoi.014.a: "The words come without thought now. Everything bends to my will."
+ thuumvoi.014.b: "I can still feel myself in here. I have to find a way back."
+
+ thuumvoi.015.t: "A Word Wall"
+ thuumvoi.015.desc: "Other people have to study Word Walls. Scholars spend careers transcribing them, comparing them to other inscriptions, cross-referencing the Dragon Language with known texts. The most dedicated might read one Wall, correctly, over the course of several years. We stand in front of this particular stretch of ancient carved stone — three words, the inscription running in the old Atmoran style, the stone worn to near-illegibility in places — and the knowledge arrives before we finish reading the first glyph. Three syllables. A complete Shout. The dragon's blood recognises the dragon's language. It always has."
+ thuumvoi.015.a: "Three Words. I know them before I finish reading them."
+ thuumvoi.015.b: "There are more of these walls out there. Each one is a gift."
+
+ thuumvoi.016.t: "The Dragon God's Eye"
+ thuumvoi.016.desc: "It is not a vision in the sense of light and sound and dramatic imagery. It is more like a door opening that we did not know was there. A sense of being observed — not frightening; the opposite of frightening. An attention so vast and patient and ancient that it makes every human concern seem approximately the size of a grain of sand, but not diminishingly so — more the way the night sky makes you feel both very small and somehow part of something enormous. Akatosh is looking at us. Briefly. The way a mountain looks at a bird. And there is, in that brief attention, a question that has no words — and which we somehow know how to answer."
+ thuumvoi.016.a: "He does not say what I must do. Only that I must choose."
+ thuumvoi.016.b: "The Covenant of Alessia. It involves me. I feel it."

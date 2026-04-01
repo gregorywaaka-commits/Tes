@@ -1,0 +1,400 @@
+# =============================================================
+#  Thu'um / Voice Decisions
+#  EK2 is required.  'dragonborn' references EK2's existing trait.
+#
+#  Decision categories:
+#    1. General Voice training path (anyone eligible)
+#    2. Greybeard Order (masters or Dragonborn)
+#    3. Dragonborn-specific awakening
+#    4. Leadership quest (become First Voice)
+#    5. Active Thu'um use (battle shout)
+# =============================================================
+
+# ================================================================
+#  1. VOICE TRAINING PATH
+# ================================================================
+
+seek_thu_um_training = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = seek_thu_um_training_desc
+
+    is_shown = {
+        is_adult = yes
+        can_learn_thu_um = yes
+    }
+
+    is_valid = {
+        can_learn_thu_um = yes
+        # Must be in a region where the Voice tradition exists —
+        # primarily Skyrim, but wanderers may seek it elsewhere
+        OR = {
+            learning >= 8
+            has_trait = dragonborn
+        }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        begin_voice_training = yes
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = { add = 10 learning >= 16 }
+        modifier = { add = 20 has_trait = dragonborn }
+    }
+}
+
+advance_thu_um_training = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = advance_thu_um_training_desc
+
+    is_shown = {
+        can_advance_thu_um = yes
+    }
+
+    is_valid = {
+        can_advance_thu_um = yes
+        OR = {
+            learning >= 12
+            has_trait = dragonborn
+        }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        advance_voice_training = yes
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 learning >= 20 }
+    }
+}
+
+leave_voice_path_decision = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = leave_voice_path_decision_desc
+
+    is_shown = {
+        is_on_voice_path = yes
+        NOT = { is_greybeard = yes }
+    }
+
+    is_valid = { is_on_voice_path = yes }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        leave_voice_path = yes
+    }
+
+    ai_will_do = { base = 0 }
+}
+
+# ================================================================
+#  2. GREYBEARD ORDER DECISIONS
+# ================================================================
+
+seek_the_greybeard_order = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = seek_the_greybeard_order_desc
+
+    is_shown = {
+        can_seek_greybeards = yes
+    }
+
+    is_valid = {
+        can_seek_greybeards = yes
+        piety >= 150
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        join_greybeard_order = yes
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = { add = 15 has_trait = dragonborn }
+        modifier = { add = 10 piety >= 500 }
+    }
+}
+
+take_greybeard_vows = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = take_greybeard_vows_desc
+
+    is_shown = {
+        has_character_flag = greybeard_quest_4_done
+        has_trait = greybeard_aspirant
+    }
+
+    is_valid = {
+        has_character_flag = greybeard_quest_4_done
+        piety >= 400
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        initiate_greybeard = yes
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+leave_greybeard_order_decision = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = leave_greybeard_order_decision_desc
+
+    is_shown = { is_greybeard = yes }
+
+    is_valid = { is_greybeard = yes }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        leave_greybeard_order = yes
+    }
+
+    ai_will_do = { base = 0 }
+}
+
+# ================================================================
+#  3. DRAGONBORN AWAKENING  (requires EK2's 'dragonborn' trait)
+# ================================================================
+
+harness_dovah_blood = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = harness_dovah_blood_desc
+
+    is_shown = {
+        can_harness_dovah_blood = yes
+    }
+
+    is_valid = {
+        can_harness_dovah_blood = yes
+        OR = {
+            piety    >= 200
+            prestige >= 400
+        }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        awaken_dovah_blood = yes
+    }
+
+    ai_will_do = {
+        base = 20
+        modifier = { add = 20 piety >= 500 }
+    }
+}
+
+# ================================================================
+#  4. GREYBEARD LEADERSHIP QUEST
+# ================================================================
+
+begin_greybeard_leadership_quest = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = begin_greybeard_leadership_quest_desc
+
+    is_shown = {
+        can_begin_greybeard_leadership = yes
+    }
+
+    is_valid = {
+        can_begin_greybeard_leadership = yes
+        piety    >= 600
+        learning >= 16
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = greybeard.lead.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 piety >= 1000 }
+    }
+}
+
+claim_first_voice_of_greybeards = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = claim_first_voice_of_greybeards_desc
+
+    is_shown = {
+        has_character_flag = greybeard_lead_quest_done
+        NOT = { has_trait = first_voice_of_the_greybeards }
+    }
+
+    is_valid = { has_character_flag = greybeard_lead_quest_done }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = greybeard.lead }
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+# ================================================================
+#  5. ACTIVE THU'UM USE
+# ================================================================
+
+use_thu_um_in_battle = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = use_thu_um_in_battle_desc
+
+    is_shown = {
+        OR = {
+            has_trait = thu_um_master
+            has_trait = greybeard_of_high_hrothgar
+            has_trait = first_voice_of_the_greybeards
+            has_trait = dovahkiin_soul_awakened
+        }
+        NOT = { has_modifier = thu_um_shout_cooldown }
+        is_at_war = yes
+    }
+
+    is_valid = {
+        OR = {
+            has_trait = thu_um_master
+            has_trait = greybeard_of_high_hrothgar
+            has_trait = first_voice_of_the_greybeards
+            has_trait = dovahkiin_soul_awakened
+        }
+        NOT = { has_modifier = thu_um_shout_cooldown }
+        is_at_war = yes
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = thuumvoi.005 }
+    }
+
+    ai_will_do = {
+        base = 15
+        modifier = { add = 15 has_trait = dovahkiin_soul_awakened }
+        modifier = { add = 10 has_trait = first_voice_of_the_greybeards }
+    }
+}
+
+# ================================================================
+#  6. WORD WALL LEARNING  (Dragonborn bypass — lore-accurate)
+# ================================================================
+
+# Dragonborn absorb Shout knowledge from Word Walls instantly —
+# no teacher, no years of practice.  The dragon's blood recognises
+# the Dragon Language as its native tongue.
+learn_from_word_wall = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = learn_from_word_wall_desc
+
+    is_shown = {
+        can_learn_from_word_wall = yes
+    }
+
+    is_valid = {
+        can_learn_from_word_wall = yes
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        learn_from_word_wall_effect = yes
+    }
+
+    ai_will_do = {
+        base = 15
+        modifier = { add = 20 has_trait = dovahkiin_soul_awakened }
+        modifier = { add = 10 has_trait = dragon_souls_growing }
+        modifier = { add = 5  has_trait = dragon_souls_brimming }
+    }
+}
+
+# ================================================================
+#  7. ABSORB ANOTHER DRAGON SOUL  (post-awakening stacking)
+# ================================================================
+
+# The Dragonborn seeks out and slays a dragon, absorbing its soul
+# and adding its Thu'um knowledge to their own.  Each soul makes
+# them more powerful — and more dangerous to themselves.
+absorb_another_dragon_soul = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = absorb_another_dragon_soul_desc
+
+    is_shown = {
+        can_absorb_another_soul = yes
+    }
+
+    is_valid = {
+        can_absorb_another_soul = yes
+        OR = {
+            martial   >= 10      # Can face a dragon in combat
+            prowess   >= 16
+            has_trait = dovahkiin_soul_awakened
+        }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        absorb_additional_dragon_soul = yes
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 has_trait = dragon_souls_growing  }
+        modifier = { add = -5 has_trait = dragon_souls_brimming }  # AI is more cautious near peak
+        modifier = { add = -30 has_trait = dovah_nature_dominant }  # Can't focus to hunt
+    }
+}
+
+# ================================================================
+#  8. DOVAH NATURE — RESOLVE THE TENSION
+# ================================================================
+
+# The Dragonborn confronts the dragon's domination instinct head-on,
+# choosing their mortal free will over the ancient Dovah nature.
+# This is what Paarthurnax calls 'the hardest shout'.
+resist_dovah_nature_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = resist_dovah_nature_decision_desc
+
+    is_shown = {
+        OR = {
+            dovah_nature_at_risk = yes
+            has_trait = dovah_nature_dominant
+        }
+    }
+
+    is_valid = {
+        OR = {
+            dovah_nature_at_risk = yes
+            has_trait = dovah_nature_dominant
+        }
+        piety >= 400
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        resist_dovah_nature = yes
+    }
+
+    ai_will_do = {
+        base = 20
+        modifier = { add = 30 has_trait = dovah_nature_dominant }   # AI strongly wants to escape this
+        modifier = { add = 10 piety >= 1000 }
+    }
+}

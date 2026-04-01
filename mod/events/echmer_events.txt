@@ -1,0 +1,177 @@
+# =============================================================
+#  Echmer Events  (Uutak Mythos — Bat-Mer of Yneslea)
+#  Namespace: echmer
+# =============================================================
+
+namespace = echmer
+
+# ---------------------------------------------------------------
+# echmer.000  Opportunity to send a Yneslea expedition
+# ---------------------------------------------------------------
+echmer.000 = {
+    type = character_event
+    title = echmer.000.t
+    desc = echmer.000.desc
+    theme = diplomacy
+
+    trigger = {
+        is_ruler = yes
+        NOT = { is_echmer_active_contact = yes }
+        any_held_county = { is_coastal = yes }
+        prestige >= 300
+        learning >= 8
+    }
+
+    option = {
+        name = echmer.000.a   # "Send ships east — find this Yneslea!"
+        trigger = {
+            prestige >= 500
+            gold     >= 200
+        }
+        add_prestige = -500
+        add_gold     = -200
+        establish_echmer_contact = yes
+    }
+
+    option = {
+        name = echmer.000.b   # "An interesting rumour, nothing more."
+        add_prestige = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# echmer.001  Echmer Envoy Arrives at Court
+# ---------------------------------------------------------------
+echmer.001 = {
+    type = character_event
+    title = echmer.001.t
+    desc = echmer.001.desc
+    theme = diplomacy
+    left_portrait = {
+        character = scope:echmer_envoy
+        animation = personality_bold
+    }
+
+    option = {
+        name = echmer.001.a   # "Welcome — tell me of Yneslea."
+        add_prestige = 100
+        add_opinion = { target = scope:echmer_envoy modifier = welcomed_envoy_opinion }
+    }
+
+    option = {
+        name = echmer.001.b   # "A bat-person? Curious indeed..."
+        add_stress   = -10
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# echmer.002  The Echmer Dwemer Heritage — a scholar reveals the truth
+# ---------------------------------------------------------------
+echmer.002 = {
+    type = character_event
+    title = echmer.002.t
+    desc = echmer.002.desc
+    theme = learning
+
+    trigger = {
+        is_echmer_active_contact = yes
+        NOT = { has_variable = echmer_dwemer_revealed }
+        learning >= 14
+    }
+
+    immediate = {
+        set_variable = { name = echmer_dwemer_revealed value = yes }
+    }
+
+    option = {
+        name = echmer.002.a   # "The Dwemer uplifted them? Remarkable."
+        add_learning = 2
+        add_prestige = 200
+        trigger_event = { id = echmer.003 days = 60 }
+    }
+
+    option = {
+        name = echmer.002.b   # "Does the Noraken clan still live?"
+        add_learning = 1
+        add_intrigue = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# echmer.003  The Echolalia Fantasia — invitation to study
+# ---------------------------------------------------------------
+echmer.003 = {
+    type = character_event
+    title = echmer.003.t
+    desc = echmer.003.desc
+    theme = learning
+    left_portrait = {
+        character = scope:echmer_envoy
+        animation = personality_content
+    }
+
+    option = {
+        name = echmer.003.a   # "I will dedicate myself to this art."
+        trigger = { learning >= 12 }
+        add_trait = echolalia_adept
+        add_prestige = 300
+    }
+
+    option = {
+        name = echmer.003.b   # "Perhaps in time — for now, other duties call."
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# echmer.004  Mastery of Echolalia Fantasia
+# (Fires after months of study if character has echolalia_adept)
+# ---------------------------------------------------------------
+echmer.004 = {
+    type = character_event
+    title = echmer.004.t
+    desc = echmer.004.desc
+    theme = learning
+
+    trigger = {
+        has_trait = echolalia_adept
+        NOT = { has_trait = echolalia_master }
+        learning >= 20
+        age >= 25
+    }
+
+    option = {
+        name = echmer.004.a   # "The echoes speak to me now."
+        remove_trait = echolalia_adept
+        add_trait    = echolalia_master
+        add_prestige = 500
+        add_piety    = 200
+    }
+}
+
+# ---------------------------------------------------------------
+# echmer.005  Studying Echolalia Fantasia (triggered by decision)
+# ---------------------------------------------------------------
+echmer.005 = {
+    type = character_event
+    title = echmer.005.t
+    desc = echmer.005.desc
+    theme = learning
+    left_portrait = {
+        character = scope:echmer_envoy
+        animation = personality_content
+    }
+
+    option = {
+        name = echmer.005.a   # "Begin the lessons."
+        add_trait = echolalia_adept
+        add_prestige = 150
+        trigger_event = { id = echmer.004 days = 730 }
+    }
+
+    option = {
+        name = echmer.005.b   # "I've changed my mind."
+        add_gold = 100         # refund
+    }
+}

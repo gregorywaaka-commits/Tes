@@ -1,0 +1,363 @@
+# =============================================================
+#  Guild Traits — All 9 Guilds
+#  EK2 Timeframe: 2E 440–896 (the Interregnum)
+#
+#  Rank system (per guild):
+#    Tier 1 = Associate / Initiate / Apprentice
+#    Tier 2 = Journeyman / Member / Bard
+#    Tier 3 = Senior / Veteran / Adept
+#    Tier 4 = Guildmaster / Grandmaster / Harbinger (top)
+#
+#  Membership is tracked by character flag (guild_X_member)
+#  and rank variable (guild_X_rank, 1–4).
+#  Traits carry the in-world display and stat modifiers.
+# =============================================================
+
+# ================================================================
+#  MAGES GUILD  (founded 2E 230; fully active by 2E 440)
+#  Ranks: Associate → Member → Wizard → Arch-Mage
+# ================================================================
+
+mages_guild_associate = {
+    category = lifestyle
+    opposites = { mages_guild_member mages_guild_wizard mages_guild_archmagister }
+    learning  = 2
+    monthly_piety_gain_mult = 0.05
+    flag = mages_guild_associate
+}
+
+mages_guild_member = {
+    category = lifestyle
+    opposites = { mages_guild_associate mages_guild_wizard mages_guild_archmagister }
+    learning  = 4
+    monthly_piety_gain_mult = 0.08
+    monthly_prestige_gain_mult = 0.05
+    flag = mages_guild_member
+}
+
+mages_guild_wizard = {
+    category = lifestyle
+    opposites = { mages_guild_associate mages_guild_member mages_guild_archmagister }
+    learning  = 6
+    monthly_piety_gain_mult = 0.12
+    monthly_prestige_gain_mult = 0.1
+    flag = mages_guild_wizard
+}
+
+mages_guild_archmagister = {
+    category = fame
+    opposites = { mages_guild_associate mages_guild_member mages_guild_wizard }
+    learning  = 10
+    diplomacy = 3
+    monthly_piety_gain_mult   = 0.2
+    monthly_prestige_gain_mult = 0.15
+    flag = mages_guild_archmagister
+}
+
+# ================================================================
+#  FIGHTERS GUILD  (founded 2E 320; active by 2E 440)
+#  Ranks: Associate → Journeyman → Guardian → Guildmaster
+# ================================================================
+
+fighters_guild_associate = {
+    category = lifestyle
+    opposites = { fighters_guild_journeyman fighters_guild_guardian fighters_guild_guildmaster }
+    martial  = 1
+    prowess  = 2
+    flag = fighters_guild_associate
+}
+
+fighters_guild_journeyman = {
+    category = lifestyle
+    opposites = { fighters_guild_associate fighters_guild_guardian fighters_guild_guildmaster }
+    martial  = 3
+    prowess  = 4
+    monthly_prestige_gain_mult = 0.05
+    flag = fighters_guild_journeyman
+}
+
+fighters_guild_guardian = {
+    category = lifestyle
+    opposites = { fighters_guild_associate fighters_guild_journeyman fighters_guild_guildmaster }
+    martial  = 5
+    prowess  = 6
+    command_modifier = { advantage = 2 }
+    monthly_prestige_gain_mult = 0.08
+    flag = fighters_guild_guardian
+}
+
+fighters_guild_guildmaster = {
+    category = fame
+    opposites = { fighters_guild_associate fighters_guild_journeyman fighters_guild_guardian }
+    martial  = 8
+    prowess  = 8
+    command_modifier = { advantage = 4 damage = 0.1 max_morale = 0.2 }
+    monthly_prestige_gain_mult = 0.15
+    flag = fighters_guild_guildmaster
+}
+
+# ================================================================
+#  THIEVES GUILD  (ancient; always active)
+#  Ranks: Footpad → Prowler → Shadowfoot → Guild Master
+# ================================================================
+
+thieves_guild_footpad = {
+    category = lifestyle
+    opposites = { thieves_guild_prowler thieves_guild_shadowfoot thieves_guild_guildmaster_thief }
+    intrigue = 2
+    flag = thieves_guild_footpad
+}
+
+thieves_guild_prowler = {
+    category = lifestyle
+    opposites = { thieves_guild_footpad thieves_guild_shadowfoot thieves_guild_guildmaster_thief }
+    intrigue = 4
+    stewardship = 1    # learning to move wealth around
+    flag = thieves_guild_prowler
+}
+
+thieves_guild_shadowfoot = {
+    category = lifestyle
+    opposites = { thieves_guild_footpad thieves_guild_prowler thieves_guild_guildmaster_thief }
+    intrigue = 7
+    stewardship = 2
+    dread_gain_mult = 0.1
+    flag = thieves_guild_shadowfoot
+}
+
+thieves_guild_guildmaster_thief = {
+    category = fame
+    opposites = { thieves_guild_footpad thieves_guild_prowler thieves_guild_shadowfoot }
+    intrigue = 10
+    stewardship = 3
+    dread_gain_mult = 0.2
+    monthly_income = 0.1   # guild tithe flows upward
+    flag = thieves_guild_guildmaster_thief
+}
+
+# ================================================================
+#  DARK BROTHERHOOD  (active in 2E; split from Morag Tong)
+#  Ranks: Initiate → Assassin → Speaker → Listener
+# ================================================================
+
+dark_brotherhood_initiate = {
+    category = lifestyle
+    opposites = { dark_brotherhood_assassin dark_brotherhood_speaker dark_brotherhood_listener }
+    intrigue = 3
+    flag = dark_brotherhood_initiate
+}
+
+dark_brotherhood_assassin = {
+    category = lifestyle
+    opposites = { dark_brotherhood_initiate dark_brotherhood_speaker dark_brotherhood_listener }
+    intrigue = 6
+    prowess  = 2
+    dread_gain_mult = 0.15
+    flag = dark_brotherhood_assassin
+}
+
+dark_brotherhood_speaker = {
+    category = lifestyle
+    opposites = { dark_brotherhood_initiate dark_brotherhood_assassin dark_brotherhood_listener }
+    intrigue = 9
+    prowess  = 3
+    dread_gain_mult = 0.25
+    monthly_prestige_gain_mult = 0.05
+    flag = dark_brotherhood_speaker
+}
+
+dark_brotherhood_listener = {
+    category = fame
+    opposites = { dark_brotherhood_initiate dark_brotherhood_assassin dark_brotherhood_speaker }
+    intrigue = 12
+    prowess  = 4
+    dread_gain_mult = 0.4
+    monthly_prestige_gain_mult = 0.1
+    flag = dark_brotherhood_listener
+}
+
+# ================================================================
+#  MORAG TONG  (1E founding; legal assassins' guild in Morrowind)
+#  Ranks: Tong Assassin → Master Assassin → Grandmaster
+# ================================================================
+
+morag_tong_assassin = {
+    category = lifestyle
+    opposites = { morag_tong_master morag_tong_grandmaster }
+    intrigue = 4
+    prowess  = 3
+    monthly_piety_gain_mult = 0.05    # Mephala blessing
+    flag = morag_tong_assassin
+}
+
+morag_tong_master = {
+    category = lifestyle
+    opposites = { morag_tong_assassin morag_tong_grandmaster }
+    intrigue = 8
+    prowess  = 5
+    dread_gain_mult = 0.2
+    monthly_piety_gain_mult = 0.1
+    flag = morag_tong_master
+}
+
+morag_tong_grandmaster = {
+    category = fame
+    opposites = { morag_tong_assassin morag_tong_master }
+    intrigue = 12
+    prowess  = 7
+    dread_gain_mult  = 0.35
+    monthly_piety_gain_mult   = 0.15
+    monthly_prestige_gain_mult = 0.1
+    flag = morag_tong_grandmaster
+}
+
+# ================================================================
+#  COMPANIONS  (Nordic; ancient; active throughout Tamrielic history)
+#  Ranks: Shield-Brother → Veteran Companion → Circle Member → Harbinger
+# ================================================================
+
+companions_shield_brother = {
+    category = lifestyle
+    opposites = { companions_veteran companions_circle companions_harbinger }
+    prowess  = 3
+    martial  = 1
+    flag = companions_shield_brother
+}
+
+companions_veteran = {
+    category = lifestyle
+    opposites = { companions_shield_brother companions_circle companions_harbinger }
+    prowess  = 5
+    martial  = 3
+    monthly_prestige_gain_mult = 0.05
+    flag = companions_veteran
+}
+
+companions_circle = {
+    category = lifestyle
+    opposites = { companions_shield_brother companions_veteran companions_harbinger }
+    prowess  = 7
+    martial  = 4
+    command_modifier = { advantage = 2 damage = 0.08 }
+    monthly_prestige_gain_mult = 0.1
+    flag = companions_circle
+}
+
+companions_harbinger = {
+    category = fame
+    opposites = { companions_shield_brother companions_veteran companions_circle }
+    prowess  = 10
+    martial  = 6
+    command_modifier = { advantage = 4 damage = 0.15 max_morale = 0.2 }
+    monthly_prestige_gain_mult = 0.2
+    flag = companions_harbinger
+}
+
+# ================================================================
+#  PSIJIC ORDER  (Mythic Era; insular; absent 2E 230–580 from Artaeum)
+#  Ranks: Novice → Initiate → Adept → Master of the Order
+# ================================================================
+
+psijic_novice = {
+    category = lifestyle
+    opposites = { psijic_initiate psijic_adept psijic_master }
+    learning  = 3
+    monthly_piety_gain_mult = 0.08
+    flag = psijic_novice
+}
+
+psijic_initiate = {
+    category = lifestyle
+    opposites = { psijic_novice psijic_adept psijic_master }
+    learning  = 6
+    monthly_piety_gain_mult = 0.12
+    monthly_prestige_gain_mult = 0.05
+    flag = psijic_initiate
+}
+
+psijic_adept = {
+    category = lifestyle
+    opposites = { psijic_novice psijic_initiate psijic_master }
+    learning  = 9
+    diplomacy = 2
+    monthly_piety_gain_mult   = 0.18
+    monthly_prestige_gain_mult = 0.1
+    flag = psijic_adept
+}
+
+psijic_master = {
+    category = fame
+    opposites = { psijic_novice psijic_initiate psijic_adept }
+    learning  = 14
+    diplomacy = 4
+    monthly_piety_gain_mult   = 0.25
+    monthly_prestige_gain_mult = 0.15
+    flag = psijic_master
+}
+
+# ================================================================
+#  BARDS COLLEGE  (Solitude, Skyrim; ancient; always active)
+#  Ranks: Apprentice Bard → Bard → Master Bard
+# ================================================================
+
+bards_college_apprentice = {
+    category = lifestyle
+    opposites = { bards_college_bard bards_college_master_bard }
+    diplomacy = 2
+    learning  = 1
+    monthly_prestige_gain_mult = 0.04
+    flag = bards_college_apprentice
+}
+
+bards_college_bard = {
+    category = lifestyle
+    opposites = { bards_college_apprentice bards_college_master_bard }
+    diplomacy = 4
+    learning  = 2
+    monthly_prestige_gain_mult = 0.1
+    flag = bards_college_bard
+}
+
+bards_college_master_bard = {
+    category = fame
+    opposites = { bards_college_apprentice bards_college_bard }
+    diplomacy = 7
+    learning  = 3
+    monthly_prestige_gain_mult = 0.2
+    # A renowned bard's songs spread far
+    flag = bards_college_master_bard
+}
+
+# ================================================================
+#  UNDAUNTED  (ESO 2E 582 era; adventurer's guild; available 2E 560+)
+#  Ranks: Member → Veteran → Undaunted Elite
+# ================================================================
+
+undaunted_member = {
+    category = lifestyle
+    opposites = { undaunted_veteran undaunted_elite }
+    martial  = 2
+    prowess  = 2
+    monthly_prestige_gain_mult = 0.05
+    flag = undaunted_member
+}
+
+undaunted_veteran = {
+    category = lifestyle
+    opposites = { undaunted_member undaunted_elite }
+    martial  = 4
+    prowess  = 5
+    command_modifier = { advantage = 2 }
+    monthly_prestige_gain_mult = 0.1
+    flag = undaunted_veteran
+}
+
+undaunted_elite = {
+    category = fame
+    opposites = { undaunted_member undaunted_veteran }
+    martial  = 6
+    prowess  = 8
+    command_modifier = { advantage = 4 damage = 0.1 }
+    monthly_prestige_gain_mult = 0.18
+    flag = undaunted_elite
+}

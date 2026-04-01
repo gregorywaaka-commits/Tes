@@ -1,0 +1,539 @@
+# =============================================================
+#  Daedric Prince Player Decisions — All 17 Princes
+#  Players may seek out each Prince, make bargains, or
+#  attempt to resist/end the invasion via unique methods.
+# =============================================================
+
+# ---- Seek Mehrunes Dagon's Power ----
+seek_mehrunes_dagon = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = seek_mehrunes_dagon_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        martial  >= 14
+        NOT = { has_trait = daedric_champion }
+    }
+
+    is_valid = {
+        prestige >= 500
+        gold     >= 100
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -500
+        add_gold     = -100
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.mehrunes.001 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = { add = 5 has_trait = ambitious }
+        modifier = { add = 3 martial >= 20 }
+    }
+}
+
+# ---- Seek Azura's Blessing ----
+seek_azura = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = seek_azura_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        learning >= 12
+        NOT = { has_trait = azura_champion }
+    }
+
+    is_valid = {
+        piety    >= 300
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_piety    = -300
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.azura.001 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = { add = 5 has_trait = mystic }
+        modifier = { add = 5 learning >= 20 }
+    }
+}
+
+# ---- Seek Molag Bal's Dominion ----
+seek_molag_bal = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_molag_bal_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        dread    >= 20
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = molag_bal_vampire }
+    }
+
+    is_valid = {
+        intrigue >= 16
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.molag.001 }
+    }
+
+    ai_will_do = {
+        base = 1
+        modifier = { add = 5 has_trait = sadistic }
+        modifier = { add = 3 dread >= 50 }
+    }
+}
+
+# ---- Answer Hircine's Hunt ----
+seek_hircine = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = seek_hircine_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        prowess  >= 16
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = hircine_werewolf }
+    }
+
+    is_valid = {
+        prowess  >= 18
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.hircine.001 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = { add = 5 has_trait = hunter }
+        modifier = { add = 3 prowess >= 25 }
+    }
+}
+
+# ---- Enter Boethiah's Tournament ----
+seek_boethiah = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = seek_boethiah_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        NOT = { has_trait = daedric_champion }
+    }
+
+    is_valid = {
+        OR = { martial >= 16 intrigue >= 18 }
+        prestige >= 200
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_prestige = -200
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.boethiah.001 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = { add = 5 has_trait = ambitious }
+        modifier = { add = 3 intrigue >= 22 }
+    }
+}
+
+# ---- Seek Mephala's Web ----
+seek_mephala = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_mephala_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        intrigue >= 16
+        NOT = { has_trait = mephala_champion }
+    }
+
+    is_valid = {
+        intrigue >= 18
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.mephala.001 }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = { add = 5 has_trait = schemer }
+        modifier = { add = 3 has_trait = sadistic }
+    }
+}
+
+# ---- Make a Pact with Clavicus Vile ----
+seek_clavicus_vile = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = seek_clavicus_vile_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        NOT = { has_trait = clavicus_vile_champion }
+        NOT = { has_trait = clavicus_bargain_keeper }
+    }
+
+    is_valid = {
+        diplomacy >= 16
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.clavicus.001 }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = { add = 5 has_trait = greedy }
+        modifier = { add = 3 gold <= 100 }
+    }
+}
+
+# ---- Visit Nightcaller Temple (Vaermina) ----
+seek_vaermina = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = seek_vaermina_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        learning >= 12
+        NOT = { has_trait = vaermina_champion }
+    }
+
+    is_valid = {
+        learning >= 14
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.vaermina.001 }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = { add = 4 has_trait = paranoid }
+        modifier = { add = 3 learning >= 20 }
+    }
+}
+
+# ---- Enter the Shivering Isles (Sheogorath) ----
+seek_sheogorath = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_sheogorath_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        NOT = { has_trait = sheogorath_champion }
+    }
+
+    is_valid = {
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.sheogorath.001 }
+    }
+
+    ai_will_do = {
+        base = 1
+        modifier = { add = 5 has_trait = lunatic }
+    }
+}
+
+# ---- Seek the Afflicted (Peryite) ----
+seek_peryite = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = seek_peryite_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        NOT = { has_trait = peryite_champion }
+    }
+
+    is_valid = {
+        stewardship >= 14
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.peryite.001 }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = { add = 3 has_trait = diligent }
+    }
+}
+
+# ---- Accept Sanguine's Invitation ----
+seek_sanguine = {
+    picture = "gfx/interface/icons/decisions/decision_feast.dds"
+    desc = seek_sanguine_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        NOT = { has_trait = sanguine_champion }
+    }
+
+    is_valid = {
+        diplomacy >= 14
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.sanguine.001 }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = { add = 4 has_trait = gluttonous }
+    }
+}
+
+# ---- Answer Meridia's Beacon ----
+seek_meridia = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = seek_meridia_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        martial  >= 12
+        NOT = { has_trait = meridia_champion }
+        NOT = { faith = { has_doctrine = doctrine_undead_accepted } }
+    }
+
+    is_valid = {
+        piety    >= 300
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_piety    = -300
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.meridia.001 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = { add = 5 has_trait = zealous }
+        modifier = { add = 3 piety >= 800 }
+    }
+}
+
+# ---- Challenge Malacath's Trial ----
+seek_malacath = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = seek_malacath_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        prowess  >= 18
+        NOT = { has_trait = malacath_champion }
+    }
+
+    is_valid = {
+        prowess  >= 20
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.malacath.001 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = { add = 5 has_trait = oathbreaker }
+        modifier = {
+            add = 4
+            OR = {
+                culture = { has_name = "Orsimer" }
+                culture = { has_name = "Orc" }
+            }
+        }
+    }
+}
+
+# ---- Swear the Nightingale Oath (Nocturnal) ----
+seek_nocturnal = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_nocturnal_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        intrigue >= 18
+        NOT = { has_trait = nocturnal_champion }
+    }
+
+    is_valid = {
+        intrigue >= 20
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.nocturnal.001 }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = { add = 5 has_trait = schemer }
+        modifier = { add = 3 intrigue >= 25 }
+    }
+}
+
+# ---- Seek the Oghma Infinium (Hermaeus Mora) ----
+seek_hermaeus_mora = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = seek_hermaeus_mora_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        learning >= 20
+        NOT = { has_trait = hermaeus_mora_champion }
+    }
+
+    is_valid = {
+        learning >= 22
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.hermaeus.001 }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = { add = 5 learning >= 28 }
+    }
+}
+
+# ---- Seek Namira's Feast ----
+seek_namira = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_namira_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        NOT = { has_trait = daedric_champion }
+    }
+
+    is_valid = {
+        OR = { has_trait = cannibal intrigue >= 18 }
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        trigger_event = { id = daedric_champion.namira.001 }
+    }
+
+    ai_will_do = {
+        base = 1
+        modifier = { add = 5 has_trait = cannibal }
+    }
+}
+
+# ---- Seek Jyggalag Before the Greymarch ----
+seek_jyggalag = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = seek_jyggalag_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult  = yes
+        current_date >= 3E.380
+        NOT = { has_trait = jyggalag_champion }
+    }
+
+    is_valid = {
+        stewardship >= 18
+        martial     >= 18
+        NOT = { has_modifier = daedric_quest_cooldown }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_modifier = { modifier = daedric_quest_cooldown days = 3650 }
+        trigger_event = { id = daedric_champion.jyggalag.001 }
+    }
+
+    ai_will_do = {
+        base = 1
+        modifier = { add = 3 has_trait = arrogant }
+    }
+}

@@ -1,0 +1,379 @@
+# =============================================================
+#  Lore Races — Scripted Triggers
+#  File: mod/common/scripted_triggers/lore_races_triggers.txt
+#
+#  These triggers check state for the obscure lore races system:
+#  Echmer, Maormer, Sload, Kothringi, Kamal, Elder Towers.
+#
+#  GLOBAL VARIABLES TRACKED HERE:
+#  ──────────────────────────────
+#  global_var:echmer_contact_established  — set by establish_echmer_contact
+#  global_var:orgnum_alive                — tracks if King Orgnum of Pyandonea exists
+#  global_var:thrassian_plague_active     — set by unleash_thrassian_plague
+#  global_var:thrassian_plague_origin     — character scope of the Sload who unleashed it
+#  global_var:all_flags_navy_active       — set when the All-Flags Navy is formed
+#  global_var:knahaten_flu_active         — set by trigger_knahaten_flu
+#  global_var:current_season_summer       — set by kamal.050 monthly pulse
+#  global_var:kamal_invasion_active       — set by begin_kamal_invasion
+#  global_var:active_tower_count          — incremented/decremented by Tower Stone effects
+#
+#  HOW TO ADD A NEW LORE RACE:
+#  ───────────────────────────
+#  1. Create is_X trigger here (has_trait = X_heritage check).
+#  2. Create X_invasion_possible / X_active trigger here if needed.
+#  3. Add the X_heritage trait to lore_races_traits.txt.
+#  4. Add events to minor_lore_races_events.txt (or a new X_events.txt).
+#  5. Add effects to lore_races_effects.txt.
+#  6. Add modifiers to lore_races_modifiers.txt.
+#  7. Add yearly event entry to lore_races_on_actions.txt.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ECHMER (Bat-Mer of Yneslea)
+#  Context: The Echmer are bat-like mer created by the Noraken
+#  clan of Dwemer using tonal architecture (sound magic) to
+#  uplift bats into a sapient species.  They live on the island
+#  chain of Yneslea far east of Tamriel.  Contact with them is
+#  historically rare in the Second Era.
+# ---------------------------------------------------------------
+
+# Is this character of Echmer heritage?
+# (has the echmer_heritage trait from lore_races_traits.txt)
+is_echmer = {
+    has_trait = echmer_heritage
+}
+
+# Can a ruler attempt an expedition to make first contact with the Echmer?
+# Requirements:
+#   • contact not already established
+#   • the kingdom of Yneslea exists in the game world (title:k_yneslea)
+#   • date >= 2E.150 (early contact period; they become more accessible later)
+echmer_invasion_possible = {
+    NOT = { is_echmer_active_contact = yes }
+    exists = title:k_yneslea
+    current_date >= 2E.150    # Before this date the Echmer are too isolated to reach
+}
+
+# Has first contact with the Echmer been established this game?
+# Checked globally — once contact is made, all rulers can interact.
+is_echmer_active_contact = {
+    exists = global_var:echmer_contact_established
+}
+
+# ---------------------------------------------------------------
+#  MAORMER (Sea-Elves of Pyandonea)
+#  Context: The Maormer are pale sea-elves from the invisible
+#  island of Pyandonea south of Tamriel.  King Orgnum has led
+#  them in countless raids against Summerset since the Merethic
+#  Era; he is a deathless sorcerer.  They worship serpents.
+# ---------------------------------------------------------------
+
+# Is this character of Maormer heritage?
+is_maormer = {
+    has_trait = maormer_heritage
+}
+
+# Can a coastal county be raided by the Maormer right now?
+# Requirements:
+#   • target must be coastal (Maormer can't raid inland)
+#   • target is not Maormer (they raid others, not themselves)
+#   • no active truce with Maormer (maormer_truce_modifier gates this)
+maormer_raid_possible = {
+    is_coastal = yes
+    NOT = { is_maormer = yes }
+    NOT = { has_modifier = maormer_truce_modifier }    # modifier applied by peace events
+}
+
+# Is King Orgnum (of Pyandonea) still alive this game?
+# Orgnum is a near-immortal sorcerer; his presence or absence affects
+# whether Maormer raids are organised or opportunistic.
+orgnum_is_alive = {
+    exists = global_var:orgnum_alive    # set by Maormer event chain
+}
+
+# ---------------------------------------------------------------
+#  SLOAD (Thrassian Slug-Men)
+#  Context: The Sload are corpulent, slug-like beings from the
+#  coral island chain of Thras south-west of Tamriel.  They are
+#  master necromancers.  In 1E 2260 they unleashed the Thrassian
+#  Plague which killed half of Tamriel's population.  In 2E their
+#  schemes are subtler — they nurse ancient grudges and plan.
+# ---------------------------------------------------------------
+
+# Is this character of Sload heritage?
+is_sload = {
+    has_trait = sload_heritage
+}
+
+# Is the Thrassian Plague currently active globally?
+# The Plague can only be unleashed once per game (plague_cooldown_modifier
+# is applied after it ends — see destroy_thras_effect in lore_races_effects.txt).
+thrassian_plague_active = {
+    exists = global_var:thrassian_plague_active
+}
+
+# Can a Sload necromancer currently unleash the Plague?
+# Requirements:
+#   • Plague not already active (only one mega-plague at a time)
+#   • character is Sload with necromancer specialisation
+#   • stewardship >= 16 (the Plague requires careful, methodical planning;
+#     stewardship represents the organisational capacity to execute it)
+#   Note: No date restriction — unlike the Knahaten Flu, the Thrassian Plague
+#   is a historical event from the First Era.  In 2E it's a NEW outbreak.
+sload_plague_can_trigger = {
+    NOT = { thrassian_plague_active = yes }
+    is_sload = yes
+    has_trait = sload_necromancer
+    stewardship >= 16    # methodical, patient planning capacity required
+}
+
+# ---------------------------------------------------------------
+#  KOTHRINGI (Silver-Skinned Men of Black Marsh)
+#  Context: The Kothringi were the last Men of Black Marsh;
+#  they had silvery, translucent skin.  They were entirely wiped
+#  out by the Knahaten Flu around 2E 560.  Those who survived
+#  longer departed on the Crimson Ship and were never seen again.
+# ---------------------------------------------------------------
+
+# Is this character of Kothringi heritage?
+is_kothringi = {
+    has_trait = kothringi_heritage
+}
+
+# Is the Knahaten Flu currently spreading globally?
+knahaten_flu_active = {
+    exists = global_var:knahaten_flu_active
+}
+
+# Can the Knahaten Flu outbreak begin?
+# Requirements:
+#   • Flu not already active (one outbreak at a time)
+#   • Thrassian Plague not active (one mega-plague at a time — the game
+#     shouldn't be able to cope with two simultaneous pandemics)
+#   • Date between 2E.550 and 2E.600 (historical window for the Flu)
+#     The Flu began ~2E 560; allowing from 2E 550 gives variance.
+#   • Argonian rulers exist in Black Marsh (Argonians are immune to
+#     the Flu; their presence in the region means it can spread naturally
+#     without killing those who live there — lore-accurate)
+knahaten_can_trigger = {
+    NOT = { knahaten_flu_active = yes }
+    NOT = { thrassian_plague_active = yes }
+    current_date >= 2E.550    # historical: ~2E 560; window starts 10 years early for variance
+    current_date <= 2E.600    # Flu should not begin too late in the Interregnum
+    any_ruler = {
+        primary_title = { tier >= tier_kingdom }
+        government_has_flag = argonian_government    # Argonian presence in Black Marsh
+    }
+}
+
+# ---------------------------------------------------------------
+#  KAMAL (Snow Demons of Akavir)
+#  Context: The Kamal are one of the five races of Akavir.
+#  They are frozen solid in winter and attack in the summer.
+#  The dir-Kamal ("terrible" Kamal) invaded Tamriel in 2E 572,
+#  attacking the Dunmer coast and Skyrim before being repelled.
+# ---------------------------------------------------------------
+
+# Is this character of Kamal heritage?
+is_kamal = {
+    has_trait = kamal_heritage
+}
+
+# Is it currently the Kamal's active (summer) season?
+# The Kamal.050 monthly event checks the current month and sets/removes
+# global_var:current_season_summer accordingly.
+# CK3 months: 1=Jan, 2=Feb ... 12=Dec.  Summer = months 5-9 (May-Sep).
+kamal_summer_active = {
+    NOT = { current_date < 2E.100 }         # date sanity check
+    exists = global_var:current_season_summer   # set by kamal.050 monthly pulse
+}
+
+# Can the Kamal invasion begin?
+# Requirements:
+#   • no invasion already active this game cycle
+#   • date >= 2E.572 (the historical dir-Kamal invasion date)
+#     This locks the Kamal invasion to the correct historical period.
+kamal_invasion_possible = {
+    NOT = { exists = global_var:kamal_invasion_active }
+    current_date >= 2E.572    # historical dir-Kamal invasion ~2E 572
+}
+
+# ---------------------------------------------------------------
+#  ELDER TOWERS (World-Anchoring Structures of Mundus)
+#  Context: The Elder Towers anchor Nirn (the mortal plane) in
+#  reality.  Each Tower has a Stone — its magical core.  As long
+#  as the Stone functions, the Tower holds.  If too many Stones
+#  are destroyed, reality begins to fracture.
+#  The five relevant Towers are:
+#    White-Gold  — c_imperial_city (Cyrodiil) — the heart of the Empire
+#    Adamantine  — c_balfiera (High Rock/Iliac Bay) — the oldest Tower
+#    Red Mountain — c_red_mountain (Morrowind) — contains Lorkhan's Heart
+#    Coral        — c_thras (Thras) — the Sload's Tower
+#    [Orichalc    — lost; not included as its county doesn't exist in EK2]
+# ---------------------------------------------------------------
+
+# Is the White-Gold Tower (Imperial City, Cyrodiil) currently active?
+# Checks whether the tower_stone_present variable is set on the county.
+tower_white_gold_active = {
+    title:c_imperial_city = {
+        has_variable = tower_stone_present    # set by activate_tower_stone_effect
+    }
+}
+
+# Is the Adamantine Tower (Balfiera island, High Rock) currently active?
+# Adamantine is the oldest Tower — it predates all civilization.
+tower_adamantine_active = {
+    title:c_balfiera = {
+        has_variable = tower_stone_present
+    }
+}
+
+# Is Red Mountain (Morrowind) currently active?
+# Red Mountain contains the Heart of Lorkhan — Tamriel's creation engine.
+tower_red_mountain_active = {
+    title:c_red_mountain = {
+        has_variable = tower_stone_present
+    }
+}
+
+# Is the Coral Tower (Thras, Sload homeland) currently active?
+# The Coral Tower was destroyed by the All-Flags Navy — if it is
+# destroyed in-game, this will return false.
+tower_coral_active = {
+    title:c_thras = {
+        has_variable = tower_stone_present
+    }
+}
+
+# Is the global active tower count being tracked?
+# Note: CK3 does not natively support counting booleans in a trigger block.
+# Instead, activate_tower_stone_effect and deactivate_tower_stone_effect
+# manually maintain global_var:active_tower_count.
+# This trigger simply checks the variable exists (has been initialized).
+count_active_towers = {
+    exists = global_var:active_tower_count
+}
+
+# Is world stability at a critical level?
+# Fires the reality_fracturing_modifier for all rulers (towers.015 event).
+# Threshold: <= 1 active Tower remaining.  With only one Tower standing,
+# the magical framework sustaining Nirn begins to visibly unravel.
+# See towers_events.txt for the consequences.
+world_stability_critical = {
+    exists = global_var:active_tower_count
+    global_var:active_tower_count <= 1    # one or fewer Towers still standing
+}
+
+echmer_invasion_possible = {
+    NOT = { is_echmer_active_contact = yes }
+    exists = title:k_yneslea
+    current_date >= 2E.150
+}
+
+is_echmer_active_contact = {
+    exists = global_var:echmer_contact_established
+}
+
+# ---- Maormer ----
+is_maormer = {
+    has_trait = maormer_heritage
+}
+
+maormer_raid_possible = {
+    is_coastal = yes
+    NOT = { is_maormer = yes }
+    NOT = { has_modifier = maormer_truce_modifier }
+}
+
+orgnum_is_alive = {
+    exists = global_var:orgnum_alive
+}
+
+# ---- Sload ----
+is_sload = {
+    has_trait = sload_heritage
+}
+
+thrassian_plague_active = {
+    exists = global_var:thrassian_plague_active
+}
+
+sload_plague_can_trigger = {
+    NOT = { thrassian_plague_active = yes }
+    is_sload = yes
+    has_trait = sload_necromancer
+    stewardship >= 16
+}
+
+# ---- Kothringi ----
+is_kothringi = {
+    has_trait = kothringi_heritage
+}
+
+knahaten_flu_active = {
+    exists = global_var:knahaten_flu_active
+}
+
+knahaten_can_trigger = {
+    NOT = { knahaten_flu_active = yes }
+    NOT = { thrassian_plague_active = yes }   # only one mega-plague at a time
+    current_date >= 2E.550
+    current_date <= 2E.600
+    any_ruler = {
+        primary_title = { tier >= tier_kingdom }
+        government_has_flag = argonian_government   # Argonian rulers present
+    }
+}
+
+# ---- Kamal ----
+is_kamal = {
+    has_trait = kamal_heritage
+}
+
+kamal_summer_active = {
+    # CK3 uses month numbers; Kamal are active in months 3-9 (spring-autumn)
+    NOT = { current_date < 2E.100 }
+    exists = global_var:current_season_summer
+}
+
+kamal_invasion_possible = {
+    NOT = { exists = global_var:kamal_invasion_active }
+    current_date >= 2E.572    # historical: dir-Kamal invasion ~2E 572
+}
+
+# ---- Elder Towers ----
+tower_white_gold_active = {
+    title:c_imperial_city = {
+        has_variable = tower_stone_present
+    }
+}
+
+tower_adamantine_active = {
+    title:c_balfiera = {
+        has_variable = tower_stone_present
+    }
+}
+
+tower_red_mountain_active = {
+    title:c_red_mountain = {
+        has_variable = tower_stone_present
+    }
+}
+
+tower_coral_active = {
+    title:c_thras = {
+        has_variable = tower_stone_present
+    }
+}
+
+# Count of active towers (used for world stability)
+count_active_towers = {
+    # CK3 doesn't natively support counting booleans in a trigger,
+    # so we track this via global_var:active_tower_count instead
+    exists = global_var:active_tower_count
+}
+
+world_stability_critical = {
+    exists = global_var:active_tower_count
+    global_var:active_tower_count <= 1
+}

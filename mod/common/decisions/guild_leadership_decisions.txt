@@ -1,0 +1,486 @@
+# =============================================================
+#  Guild Leadership Decisions
+#
+#  Two decisions per guild:
+#    1. "Begin the leadership questline" — shown at penultimate rank
+#    2. "Claim leadership"              — shown after quest_done flag
+#       (fires the .lead event; most auto-trigger via event chain
+#        but the decision lets the player manually advance if the
+#        event has already been seen and dismissed)
+# =============================================================
+
+# ================================================================
+#  MAGES GUILD  — Arch-Magister questline
+# ================================================================
+
+begin_mages_guild_leadership_quest = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = begin_mages_guild_leadership_quest_desc
+
+    is_shown = {
+        is_mages_guild_member = yes
+        has_trait = mages_guild_wizard
+        NOT = { has_character_flag = guild_mages_quest_1 }
+        NOT = { has_character_flag = guild_mages_is_leader }
+    }
+
+    is_valid = {
+        has_trait  = mages_guild_wizard
+        learning  >= 16
+        piety     >= 200
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.mages.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 learning >= 22 }
+    }
+}
+
+claim_mages_guild_leadership = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = claim_mages_guild_leadership_desc
+
+    is_shown = {
+        has_character_flag = guild_mages_quest_done
+        NOT = { has_trait  = mages_guild_archmagister }
+    }
+
+    is_valid = {
+        has_character_flag = guild_mages_quest_done
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.mages.lead }
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+# ================================================================
+#  FIGHTERS GUILD  — Guildmaster questline
+# ================================================================
+
+begin_fighters_guild_leadership_quest = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = begin_fighters_guild_leadership_quest_desc
+
+    is_shown = {
+        is_fighters_guild_member = yes
+        has_trait = fighters_guild_guardian
+        NOT = { has_character_flag = guild_fighters_quest_1 }
+        NOT = { has_character_flag = guild_fighters_is_leader }
+    }
+
+    is_valid = {
+        has_trait = fighters_guild_guardian
+        OR = { martial >= 14 prowess >= 16 }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.fighters.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 martial >= 20 }
+    }
+}
+
+claim_fighters_guild_leadership = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = claim_fighters_guild_leadership_desc
+
+    is_shown = {
+        has_character_flag = guild_fighters_quest_done
+        NOT = { has_trait  = fighters_guild_guildmaster }
+    }
+
+    is_valid = { has_character_flag = guild_fighters_quest_done }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.fighters.lead }
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+# ================================================================
+#  THIEVES GUILD  — Guild Master questline
+# ================================================================
+
+begin_thieves_guild_leadership_quest = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = begin_thieves_guild_leadership_quest_desc
+
+    is_shown = {
+        is_thieves_guild_member = yes
+        has_trait = thieves_guild_shadowfoot
+        NOT = { has_character_flag = guild_thieves_quest_1 }
+        NOT = { has_character_flag = guild_thieves_is_leader }
+    }
+
+    is_valid = {
+        has_trait = thieves_guild_shadowfoot
+        intrigue >= 16
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.thieves.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 intrigue >= 22 }
+    }
+}
+
+claim_thieves_guild_leadership = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = claim_thieves_guild_leadership_desc
+
+    is_shown = {
+        has_character_flag = guild_thieves_quest_done
+        NOT = { has_trait  = thieves_guild_guildmaster_thief }
+    }
+
+    is_valid = { has_character_flag = guild_thieves_quest_done }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.thieves.lead }
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+# ================================================================
+#  DARK BROTHERHOOD  — Listener questline
+# ================================================================
+
+begin_dark_brotherhood_leadership_quest = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = begin_dark_brotherhood_leadership_quest_desc
+
+    is_shown = {
+        is_dark_brotherhood_member = yes
+        has_trait = dark_brotherhood_speaker
+        NOT = { has_character_flag = guild_db_quest_1 }
+        NOT = { has_character_flag = guild_db_is_listener }
+    }
+
+    is_valid = {
+        has_trait = dark_brotherhood_speaker
+        intrigue >= 18
+        dread    >= 20
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.db.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 intrigue >= 24 }
+        modifier = { add = 5  dread    >= 40 }
+    }
+}
+
+claim_dark_brotherhood_listener = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = claim_dark_brotherhood_listener_desc
+
+    is_shown = {
+        has_character_flag = guild_db_quest_done
+        NOT = { has_trait  = dark_brotherhood_listener }
+    }
+
+    is_valid = { has_character_flag = guild_db_quest_done }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.db.lead }
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+# ================================================================
+#  MORAG TONG  — Grandmaster questline
+# ================================================================
+
+begin_morag_tong_leadership_quest = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = begin_morag_tong_leadership_quest_desc
+
+    is_shown = {
+        is_morag_tong_member = yes
+        has_trait = morag_tong_master
+        NOT = { has_character_flag = guild_tong_quest_1 }
+        NOT = { has_character_flag = guild_tong_is_grandmaster }
+    }
+
+    is_valid = {
+        has_trait = morag_tong_master
+        intrigue >= 16
+        piety    >= 250
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.tong.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 intrigue >= 22 }
+    }
+}
+
+claim_morag_tong_grandmaster = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = claim_morag_tong_grandmaster_desc
+
+    is_shown = {
+        has_character_flag = guild_tong_quest_done
+        NOT = { has_trait  = morag_tong_grandmaster }
+    }
+
+    is_valid = { has_character_flag = guild_tong_quest_done }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.tong.lead }
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+# ================================================================
+#  COMPANIONS  — Harbinger questline
+# ================================================================
+
+begin_companions_harbinger_quest = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = begin_companions_harbinger_quest_desc
+
+    is_shown = {
+        is_companions_member = yes
+        has_trait = companions_circle
+        NOT = { has_character_flag = guild_comp_quest_1 }
+        NOT = { has_character_flag = guild_comp_is_harbinger }
+    }
+
+    is_valid = {
+        has_trait = companions_circle
+        prowess  >= 16
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.comp.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 8 prowess >= 22 }
+    }
+}
+
+claim_companions_harbinger = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = claim_companions_harbinger_desc
+
+    is_shown = {
+        has_character_flag = guild_comp_quest_done
+        NOT = { has_trait  = companions_harbinger }
+    }
+
+    is_valid = { has_character_flag = guild_comp_quest_done }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.comp.lead }
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+# ================================================================
+#  PSIJIC ORDER  — Master of the Order questline
+# ================================================================
+
+begin_psijic_master_quest = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = begin_psijic_master_quest_desc
+
+    is_shown = {
+        is_psijic_member = yes
+        has_trait = psijic_adept
+        NOT = { has_character_flag = guild_psijic_quest_1 }
+        NOT = { has_character_flag = guild_psijic_is_master }
+    }
+
+    is_valid = {
+        has_trait = psijic_adept
+        learning >= 22
+        piety    >= 400
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.psijic.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 learning >= 26 }
+    }
+}
+
+claim_psijic_master = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = claim_psijic_master_desc
+
+    is_shown = {
+        has_character_flag = guild_psijic_quest_done
+        NOT = { has_trait  = psijic_master }
+    }
+
+    is_valid = { has_character_flag = guild_psijic_quest_done }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.psijic.lead }
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+# ================================================================
+#  BARDS COLLEGE  — Master Bard questline
+# ================================================================
+
+begin_bards_master_quest = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = begin_bards_master_quest_desc
+
+    is_shown = {
+        is_bards_college_member = yes
+        has_trait = bards_college_bard
+        NOT = { has_character_flag = guild_bards_quest_1 }
+        NOT = { has_character_flag = guild_bards_is_master }
+    }
+
+    is_valid = {
+        has_trait  = bards_college_bard
+        diplomacy >= 14
+        learning  >= 12
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.bards.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 8 diplomacy >= 20 }
+    }
+}
+
+claim_bards_master = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = claim_bards_master_desc
+
+    is_shown = {
+        has_character_flag = guild_bards_quest_done
+        NOT = { has_trait  = bards_college_master_bard }
+    }
+
+    is_valid = { has_character_flag = guild_bards_quest_done }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.bards.lead }
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+# ================================================================
+#  UNDAUNTED  — Elite questline
+# ================================================================
+
+begin_undaunted_elite_quest = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = begin_undaunted_elite_quest_desc
+
+    is_shown = {
+        is_undaunted_member_trigger = yes
+        has_trait = undaunted_veteran
+        NOT = { has_character_flag = guild_undaunted_quest_1 }
+        NOT = { has_character_flag = guild_undaunted_is_elite }
+    }
+
+    is_valid = {
+        has_trait = undaunted_veteran
+        OR = { martial >= 14 prowess >= 16 }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.undaunted.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 8 prowess >= 20 }
+    }
+}
+
+claim_undaunted_elite = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = claim_undaunted_elite_desc
+
+    is_shown = {
+        has_character_flag = guild_undaunted_quest_done
+        NOT = { has_trait  = undaunted_elite }
+    }
+
+    is_valid = { has_character_flag = guild_undaunted_quest_done }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = guild_leader.undaunted.lead }
+    }
+
+    ai_will_do = { base = 100 }
+}

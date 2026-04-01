@@ -1,0 +1,240 @@
+# =============================================================
+#  Maormer Events  (Sea Elves of Pyandonea)
+#  Namespace: maormer
+# =============================================================
+
+namespace = maormer
+
+# ---------------------------------------------------------------
+# maormer.001  Maormer Raiders Strike a Coastal County
+# ---------------------------------------------------------------
+maormer.001 = {
+    type = character_event
+    title = maormer.001.t
+    desc = maormer.001.desc
+    theme = war
+
+    trigger = {
+        is_alive = yes
+        any_held_county = { is_coastal = yes }
+        NOT = { is_maormer = yes }
+    }
+
+    option = {
+        name = maormer.001.a   # "Drive them back into the sea!"
+        add_prestige = -100
+        add_stress   = 10
+        # Chance to repel or be damaged
+        random = {
+            chance = 50
+            add_prestige = 300
+            add_modifier = { modifier = repelled_maormer_modifier days = 365 }
+        }
+    }
+
+    option = {
+        name = maormer.001.b   # "Pay them tribute — buy their silence."
+        trigger = { gold >= 200 }
+        add_gold     = -200
+        add_prestige = -200
+        add_modifier = { modifier = maormer_truce_modifier days = 1825 }
+    }
+}
+
+# ---------------------------------------------------------------
+# maormer.002  Maormer Raid trigger (yearly pulse, fires on coastal ruler)
+# ---------------------------------------------------------------
+maormer.002 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_alive = yes
+        any_held_county = { is_coastal = yes }
+        maormer_raid_possible = yes
+    }
+
+    immediate = {
+        random_held_county = {
+            limit = { is_coastal = yes }
+            save_scope_as = raided_county
+        }
+        save_scope_as = raided_county_owner
+        maormer_raid_effect = yes
+    }
+}
+
+# ---------------------------------------------------------------
+# maormer.003  Storm Magic — Maormer sea witch calls a tempest
+# ---------------------------------------------------------------
+maormer.003 = {
+    type = character_event
+    title = maormer.003.t
+    desc = maormer.003.desc
+    theme = war
+
+    trigger = {
+        is_maormer = yes
+        has_trait  = pyandonean_sea_witch
+        any_neighboring_realm = {
+            any_realm_county = { is_coastal = yes }
+        }
+    }
+
+    option = {
+        name = maormer.003.a   # "Summon the storm — sink their fleets!"
+        add_piety    = 200
+        add_prestige = 300
+        every_neighboring_realm = {
+            limit = { any_realm_county = { is_coastal = yes } }
+            add_modifier = { modifier = maormer_tempest_modifier days = 180 }
+        }
+    }
+
+    option = {
+        name = maormer.003.b   # "Save the magic for greater need."
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# maormer.004  Altmer-Maormer War — ancient hatred erupts
+# ---------------------------------------------------------------
+maormer.004 = {
+    type = character_event
+    title = maormer.004.t
+    desc = maormer.004.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = anger
+    }
+
+    trigger = {
+        is_maormer = yes
+        any_neighboring_realm = {
+            any_ruler = { has_culture = altmer_culture }
+        }
+    }
+
+    option = {
+        name = maormer.004.a   # "The exile shall be avenged!"
+        add_prestige = 200
+        add_stress   = -15
+        every_neighboring_realm = {
+            limit = { any_ruler = { has_culture = altmer_culture } }
+            add_modifier = { modifier = maormer_hatred_modifier days = 3650 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# maormer.005  Taming a Sea Serpent (triggered by decision)
+# ---------------------------------------------------------------
+maormer.005 = {
+    type = character_event
+    title = maormer.005.t
+    desc = maormer.005.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    immediate = {
+        # Simple prowess + martial check
+        set_local_variable = {
+            name  = tame_chance
+            value = root.prowess
+        }
+        change_local_variable = {
+            name = tame_chance
+            add  = root.martial
+        }
+    }
+
+    option = {
+        name = maormer.005.a   # "Stare it down — project dominance!"
+        trigger = { local_var:tame_chance >= 28 }
+        tame_sea_serpent_effect = yes
+    }
+
+    option = {
+        name = maormer.005.b   # "The beast throws me — I barely escape."
+        add_prestige = -300
+        add_stress   = 20
+        add_modifier = { modifier = wounded days = 180 }
+    }
+}
+
+# ---------------------------------------------------------------
+# maormer.010  Sea Serpent Bonded — reward event
+# ---------------------------------------------------------------
+maormer.010 = {
+    type = character_event
+    title = maormer.010.t
+    desc = maormer.010.desc
+    theme = feast
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    option = {
+        name = maormer.010.a   # "Together we shall rule the sea-lanes."
+        add_prestige = 500
+    }
+}
+
+# ---------------------------------------------------------------
+# maormer.015  Seek Orgnum's Blessing (triggered by decision)
+# ---------------------------------------------------------------
+maormer.015 = {
+    type = character_event
+    title = maormer.015.t
+    desc = maormer.015.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    option = {
+        name = maormer.015.a   # "Grant me longevity, great Orgnum."
+        trigger = { piety >= 1000 }
+        add_trait    = orgnum_blessed
+        add_prestige = 1000
+    }
+
+    option = {
+        name = maormer.015.b   # "I am not yet ready for such a burden."
+        add_piety    = 500     # returned — you declined
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# maormer.016  Orgnum Grows Younger — lore flavour event
+# ---------------------------------------------------------------
+maormer.016 = {
+    type = character_event
+    title = maormer.016.t
+    desc = maormer.016.desc
+    theme = realm
+
+    trigger = {
+        is_maormer = yes
+        exists = global_var:orgnum_alive
+        NOT = { has_variable = orgnum_younger_event_fired }
+    }
+
+    immediate = {
+        set_variable = { name = orgnum_younger_event_fired value = yes }
+    }
+
+    option = {
+        name = maormer.016.a   # "The king grows stronger with each passing year..."
+        add_piety    = 100
+        add_prestige = 50
+    }
+}

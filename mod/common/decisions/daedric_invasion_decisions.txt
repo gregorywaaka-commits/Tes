@@ -1,0 +1,134 @@
+# =============================================================
+#  Daedric Invasion Decisions
+# =============================================================
+
+# ---- Player can manually petition for help against the invasion ----
+rally_against_daedric_invasion = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = rally_against_daedric_invasion_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_daedric_invasion_active = yes
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = daedric_vassal }
+    }
+
+    is_valid = {
+        prestige >= 500
+        piety >= 250
+        NOT = { has_modifier = rallied_against_daedra }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -500
+        add_piety    = -250
+        add_modifier = { modifier = rallied_against_daedra days = 3650 }
+        # Send rally event to all vassals
+        every_vassal = {
+            limit = { is_alive = yes }
+            trigger_event = { id = daedric_invasion.030 }
+        }
+        custom_tooltip = rally_against_daedric_invasion_effect_tt
+    }
+
+    ai_will_do = {
+        base = 20
+        modifier = {
+            add = 30
+            daedric_invasion_at_full_power = yes
+        }
+    }
+}
+
+# ---- A ruler may choose to surrender/submit to the Daedric Prince ----
+submit_to_daedric_prince = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = submit_to_daedric_prince_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_daedric_invasion_active = yes
+        NOT = { has_trait = daedric_vassal }
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = oblivion_slayer }
+    }
+
+    is_valid = {
+        NOT = { has_modifier = rejected_daedric_submission }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_trait = daedric_vassal
+        add_prestige = -300
+        add_piety    = -500
+        custom_tooltip = submit_to_daedric_prince_effect_tt
+        # Inform the Prince NPC
+        trigger_event = { id = daedric_invasion.040 }
+    }
+
+    ai_will_do = {
+        base = 0
+        modifier = {
+            add = 15
+            has_trait = craven
+        }
+        modifier = {
+            add = 10
+            has_trait = shortsighted
+        }
+    }
+}
+
+# ---- An Oblivion Slayer / Champion may attempt to banish the Prince ----
+attempt_to_banish_daedric_prince = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = attempt_to_banish_daedric_prince_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_daedric_invasion_active = yes
+        OR = {
+            has_trait = oblivion_slayer
+            has_trait = daedric_champion
+        }
+    }
+
+    is_valid = {
+        prestige  >= 2000
+        piety     >= 1000
+        prowess   >= 15
+        martial   >= 12
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_alive = yes
+    }
+
+    effect = {
+        add_prestige = -2000
+        add_piety    = -1000
+        trigger_event = { id = daedric_invasion.045 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 20
+            has_trait = brave
+        }
+        modifier = {
+            add = 15
+            martial >= 20
+        }
+    }
+}

@@ -1,0 +1,68 @@
+# Encoding: UTF-8-BOM
+l_english:
+ # ============================================================
+ #  Amulet of Kings — Localization
+ # ============================================================
+
+ # ---- Modifiers ----
+ amulet_of_kings_bearer_modifier: "Bearer of the Amulet of Kings"
+ amulet_of_kings_bearer_modifier_desc: "This character holds the Amulet of Kings — the covenant artefact of Akatosh and Saint Alessia. Its full power is accessible only to those of Dragonblood, but its presence lends authority regardless."
+
+ amulet_of_kings_dragonborn_modifier: "The Covenant of Alessia"
+ amulet_of_kings_dragonborn_modifier_desc: "A Dragonborn wearing the Amulet of Kings. The full covenant between Akatosh and Saint Alessia is active in them. The barrier between Mundus and Oblivion is stronger simply because they exist."
+
+ dragonfires_lit_modifier: "The Dragonfires Burn"
+ dragonfires_lit_modifier_desc: "This Dragonborn has relit the Dragonfires in the White-Gold Tower, renewing Alessia's Covenant with Akatosh. The barrier against Oblivion is at its strongest. This is the fulfilment of a promise that has stood since the First Era."
+
+ amulet_post_event_cooldown: "Covenant — Period of Quiet"
+
+ # ---- Decisions ----
+ seek_the_amulet_of_kings: "Seek the Amulet of Kings"
+ seek_the_amulet_of_kings_desc: "The Amulet of Kings — Alessia's Amulet — is the covenant artefact of Akatosh, given to Saint Alessia when she made her bargain with the Dragon God of Time during the slave revolt of the First Era. It seals the Dragonfires and strengthens the barrier between Mundus and Oblivion. Only one of Dragonblood can wear it and draw its power. The Dragonfires have been cold since the Interregnum began. The Amulet is somewhere in Tamriel. Find it."
+
+ claim_the_amulet_of_kings: "Claim the Amulet of Kings"
+ claim_the_amulet_of_kings_desc: "Akatosh's priests have tested us and found us worthy. The Amulet of Kings waits. Take it. Fulfil the Covenant."
+
+ attempt_relight_dragonfires: "Relight the Dragonfires"
+ attempt_relight_dragonfires_desc: "The Dragonfires in the White-Gold Tower have been cold since the Interregnum began. No Emperor stands at the hearth; Alessia's Covenant lies dormant. But the Dragonborn holds the Amulet of Kings, and the White-Gold Tower is within reach. To relight the Dragonfires is to renew the covenant between Akatosh and Alessia — to place the full weight of the Dragon God's blessing between Mundus and Oblivion. This is what every true Dragonborn Emperor has done."
+
+ # ---- Events ----
+ amulet.001.t: "The Covenant of Alessia"
+ amulet.001.desc: "The oldest record of the Amulet of Kings is also the most important: the account of Saint Alessia's covenant with Akatosh. After years of leading the slave revolt against the Ayleids, Alessia knelt on the stones of a ruined temple and wept, and her god came to her. He is described as a golden being of impossible size — all wings and eyes and ancient fire. He placed the Amulet around her neck himself. It glowed with a light that the chronicler could not describe adequately in any language. He told her: as long as the Dragonfires burn, Oblivion cannot touch Mundus. As long as Dragonblood rules, the Fires will never go cold. Every Dragonborn who has followed her carries a piece of that covenant. That includes us."
+ amulet.001.a: "She was the first Dragonborn. The covenant passes to every one of us."
+ amulet.001.b: "Why would Akatosh give such a thing? What does he want from us?"
+
+ amulet.002.t: "Tracing the Amulet's Path"
+ amulet.002.desc: "The Amulet of Kings has not been publicly displayed since the Cyrodiilic warlord Dolovas Serinus claimed the Ruby Throne in 2E 398. His dynasty lasted eleven years and three successions — none of them Dragonborn, though two tried to wear the Amulet and found it, by all accounts, deeply unpleasant. When his line ended the Amulet disappeared from the record. The Imperial archive has three theories about where it went. Two of them are contradicted by the same source document. The third leads to a temple complex in the hills west of the Imperial City — a temple to Akatosh, abandoned since the Interregnum made the roads unsafe. There are signs that someone has been maintaining it."
+ amulet.002.a: "The last Keeper brought it to a temple before their line ended. Find the temple."
+ amulet.002.b: "The Moth Priests would know. The Elder Scrolls see everything."
+
+ amulet.003.t: "The Guardians of the Covenant"
+ amulet.003.desc: "The temple is not abandoned. It was never abandoned. The Order of the Ancestor Moth — a branch, or offshoot, or simply a group of Akatosh priests who have been here long enough to be neither — has been in this temple since before the Interregnum. They are old. Some of them are very old. The eldest has been here, by her own account, for ninety-seven years. She says they have been waiting. She says: 'The Amulet knows its owner. It always has.' She is looking at us with an expression we have seen before — the expression Arngeir wore when we first spoke the Voice in his hall. Recognition. She holds the Amulet out. But she has conditions."
+ amulet.003.a: "I submit to the test. I have nothing to hide from Akatosh's servants."
+ amulet.003.b: "I do not need a test. The blood speaks for itself."
+
+ amulet.004.t: "Alessia's Covenant — Renewed"
+ amulet.004.desc: "The Amulet of Kings is in our hands. Not a reproduction; not a symbol. The actual covenant artefact of Akatosh — the same one that Saint Alessia wore, the same one that has been passed from Emperor to Emperor of the Cyrodiilic dynasties since the First Era. It is warm. It shouldn't be warm; the Dragonfires have been cold for decades. But it is warm. And when we put it on — the priests are watching; the old woman is weeping quietly and she is not sad — we feel it. The covenant. The weight of it. Every Dragonborn who has worn this before us. Alessia, who built an empire out of grief and won a god's attention with it. This is ours now. This is us."
+ amulet.004.a: "I feel it immediately. The covenant is real. Alessia's bargain is mine."
+ amulet.004.b: "The weight of every Dragonborn Emperor before me. I will carry it well."
+
+ amulet.005.t: "The Amulet Burns"
+ amulet.005.desc: "It begins with discomfort — a warmth at the throat that is not quite warmth. Then a pressure. Then something that can only be described as judgment. The Amulet of Kings has been in this possession for some time now, and it has been patient, as divine artefacts go. But patience has limits. The Amulet was made for Dragonblood. It was given to Alessia because Akatosh recognised his own fire in her. Wearing it without that fire is not merely presumptuous — it is a kind of insult to the covenant, and covenants have a way of making their displeasure felt. The Amulet cannot be kept. It never belonged here."
+ amulet.005.a: "The Amulet burns — not with heat, but with judgment."
+ amulet.005.b: "I cannot keep this. I must find someone of the Dragonblood."
+
+ amulet.006.t: "The Dragonfires"
+ amulet.006.desc: "The Dragonfires of the White-Gold Tower are cold stone and old ash. They have not burned since the last Dragonborn Emperor died without an heir and the Interregnum began. The priests say that when they went cold the world could feel it — a subtle wrongness in the air, as if a constant low note that everyone had stopped hearing suddenly stopped. We stand here now, Amulet around our throat, Dragonblood burning in our veins, before the ancient brazier that Saint Alessia first lit in 1E 243. The coals are not ash. They are waiting. A Dragonborn, Akatosh's chosen, the covenant made flesh — raises a hand, and speaks. Not a Shout. Something older than a Shout. A name. The fire catches."
+ amulet.006.a: "In the name of Alessia. In the name of Akatosh. I light the fire."
+ amulet.006.b: "The fire catches — and the world beyond the veil pulls back. I feel it."
+
+ amulet.007.t: "The Dragonfires Burn"
+ amulet.007.desc: "Word comes — in the way that world-historic things come, carried in letters and rumours and the expressions of people who have just heard something they cannot quite believe — that the Dragonfires in the White-Gold Tower are burning again. A Dragonborn lit them. Alessia's Covenant has been renewed. The barrier against Oblivion is at its strongest in generations. The Interregnum has produced many extraordinary things, but this is something older and more significant than any of them. Akatosh's compact with humanity, restored. The implications for the Ruby Throne are considerable."
+ amulet.007.a: "The Dragonfires burn again. Oblivion's hand is stayed."
+ amulet.007.b: "A Dragonborn has renewed the Covenant. Their claim to the Ruby Throne is undeniable."
+
+ amulet.post_001.t: "The Amulet Draws Interest"
+ amulet.post_001.desc: "The existence of the Amulet of Kings in our possession has not remained secret. In the current state of Tamriel's politics, any object with that degree of symbolic and actual divine significance becomes an immediate complication. There are claimants who believe it should belong to whoever controls Cyrodiil. There are priests who believe it belongs to Akatosh's temples. There are warlords who simply want a divine artefact and do not much care about the theological details. And there are the quietly desperate people who know what the Amulet means — the barrier against Oblivion, the Dragonfires, the covenant — and are frightened about what happens if it falls into the wrong hands or is simply lost again."
+ amulet.post_001.a: "The Amulet is not a political object. It is a covenant. They will not have it."
+ amulet.post_001.b: "Let them come. Every Dragonborn Emperor since Alessia has faced this. I will not be the last."

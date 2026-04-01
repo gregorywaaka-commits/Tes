@@ -1,0 +1,718 @@
+# =============================================================
+#  Guild Events — All 9 Guilds
+#  Namespace: guild
+#  Covers join, advancement, activity, and leave events.
+# =============================================================
+
+namespace = guild
+
+# ================================================================
+#  MAGES GUILD
+# ================================================================
+
+# guild.mages.001 — Joining the Mages Guild
+guild.mages.001 = {
+    type = character_event
+    title = guild.mages.001.t
+    desc = guild.mages.001.desc
+    theme = realm
+
+    option = {
+        name = guild.mages.001.a  # "I dedicate myself to the pursuit of magical knowledge."
+        add_prestige = 150
+    }
+}
+
+# guild.mages.advance — Mages Guild rank promotion
+guild.mages.advance = {
+    type = character_event
+    title = guild.mages.advance.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_trait = mages_guild_member }
+                desc = guild.mages.advance.desc_member
+            }
+            triggered_desc = {
+                trigger = { has_trait = mages_guild_wizard }
+                desc = guild.mages.advance.desc_wizard
+            }
+            triggered_desc = {
+                trigger = { has_trait = mages_guild_archmagister }
+                desc = guild.mages.advance.desc_arch
+            }
+            desc = guild.mages.advance.desc_generic
+        }
+    }
+    theme = realm
+
+    option = {
+        name = guild.mages.advance.a
+        add_prestige = 200
+    }
+}
+
+# guild.mages.research — Magical research project
+guild.mages.research = {
+    type = character_event
+    title = guild.mages.research.t
+    desc = guild.mages.research.desc
+    theme = realm
+
+    option = {
+        name = guild.mages.research.a  # "The research is promising."
+        random_list = {
+            50 = {
+                add_learning = 2
+                add_prestige = 300
+                add_piety    = 200
+            }
+            30 = {
+                add_learning = 1
+                add_prestige = 150
+            }
+            20 = {
+                # Experiment backfires
+                add_stress   = 15
+                add_prestige = -100
+            }
+        }
+    }
+}
+
+# ================================================================
+#  FIGHTERS GUILD
+# ================================================================
+
+# guild.fighters.001 — Joining the Fighters Guild
+guild.fighters.001 = {
+    type = character_event
+    title = guild.fighters.001.t
+    desc = guild.fighters.001.desc
+    theme = war
+
+    option = {
+        name = guild.fighters.001.a  # "I take up arms for the Guild."
+        add_prestige = 100
+    }
+}
+
+# guild.fighters.advance — Rank promotion
+guild.fighters.advance = {
+    type = character_event
+    title = guild.fighters.advance.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_trait = fighters_guild_journeyman }
+                desc = guild.fighters.advance.desc_journeyman
+            }
+            triggered_desc = {
+                trigger = { has_trait = fighters_guild_guardian }
+                desc = guild.fighters.advance.desc_guardian
+            }
+            triggered_desc = {
+                trigger = { has_trait = fighters_guild_guildmaster }
+                desc = guild.fighters.advance.desc_guildmaster
+            }
+            desc = guild.fighters.advance.desc_generic
+        }
+    }
+    theme = war
+
+    option = {
+        name = guild.fighters.advance.a
+        add_prestige = 200
+    }
+}
+
+# guild.fighters.contract — Taking a Guild contract
+guild.fighters.contract = {
+    type = character_event
+    title = guild.fighters.contract.t
+    desc = guild.fighters.contract.desc
+    theme = war
+
+    option = {
+        name = guild.fighters.contract.a  # "Accept the contract."
+        random_list = {
+            60 = {
+                add_gold     = 300
+                add_prestige = 200
+            }
+            25 = {
+                add_gold     = 150
+                add_prestige = 100
+            }
+            15 = {
+                # Contract goes wrong
+                add_prestige = -100
+                add_stress   = 10
+            }
+        }
+    }
+    option = {
+        name = guild.fighters.contract.b  # "Decline this contract."
+        add_prestige = -50
+    }
+}
+
+# ================================================================
+#  THIEVES GUILD
+# ================================================================
+
+# guild.thieves.001 — Joining the Thieves Guild
+guild.thieves.001 = {
+    type = character_event
+    title = guild.thieves.001.t
+    desc = guild.thieves.001.desc
+    theme = intrigue
+
+    option = {
+        name = guild.thieves.001.a  # "The shadows welcome another shadow."
+        add_intrigue = 1
+    }
+}
+
+# guild.thieves.advance — Rank promotion
+guild.thieves.advance = {
+    type = character_event
+    title = guild.thieves.advance.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_trait = thieves_guild_prowler }
+                desc = guild.thieves.advance.desc_prowler
+            }
+            triggered_desc = {
+                trigger = { has_trait = thieves_guild_shadowfoot }
+                desc = guild.thieves.advance.desc_shadowfoot
+            }
+            triggered_desc = {
+                trigger = { has_trait = thieves_guild_guildmaster_thief }
+                desc = guild.thieves.advance.desc_master
+            }
+            desc = guild.thieves.advance.desc_generic
+        }
+    }
+    theme = intrigue
+
+    option = {
+        name = guild.thieves.advance.a
+        add_prestige = 150
+    }
+}
+
+# guild.thieves.heist — Planning a heist
+guild.thieves.heist = {
+    type = character_event
+    title = guild.thieves.heist.t
+    desc = guild.thieves.heist.desc
+    theme = intrigue
+
+    option = {
+        name = guild.thieves.heist.a  # "A clean job."
+        random_list = {
+            50 = {
+                add_gold     = 500
+                add_prestige = 100
+            }
+            30 = {
+                add_gold     = 250
+            }
+            20 = {
+                # Caught!
+                add_gold     = -200
+                add_stress   = 20
+                add_modifier = { modifier = guild_heist_caught_modifier days = 365 }
+            }
+        }
+    }
+    option = {
+        name = guild.thieves.heist.b  # "Too risky — call it off."
+        add_gold = -50   # planning costs
+    }
+}
+
+# ================================================================
+#  DARK BROTHERHOOD
+# ================================================================
+
+# guild.dark_brotherhood.001 — Joining the Dark Brotherhood
+guild.dark_brotherhood.001 = {
+    type = character_event
+    title = guild.dark_brotherhood.001.t
+    desc = guild.dark_brotherhood.001.desc
+    theme = intrigue
+
+    option = {
+        name = guild.dark_brotherhood.001.a  # "Hail Sithis. Welcome to the Family."
+        add_dread  = 10
+        add_stress = -5
+    }
+}
+
+# guild.dark_brotherhood.advance — Rank promotion
+guild.dark_brotherhood.advance = {
+    type = character_event
+    title = guild.dark_brotherhood.advance.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_trait = dark_brotherhood_assassin }
+                desc = guild.dark_brotherhood.advance.desc_assassin
+            }
+            triggered_desc = {
+                trigger = { has_trait = dark_brotherhood_speaker }
+                desc = guild.dark_brotherhood.advance.desc_speaker
+            }
+            triggered_desc = {
+                trigger = { has_trait = dark_brotherhood_listener }
+                desc = guild.dark_brotherhood.advance.desc_listener
+            }
+            desc = guild.dark_brotherhood.advance.desc_generic
+        }
+    }
+    theme = intrigue
+
+    option = {
+        name = guild.dark_brotherhood.advance.a
+        add_dread  = 15
+        add_prestige = 200
+    }
+}
+
+# guild.dark_brotherhood.sacrament — The Black Sacrament answered
+guild.dark_brotherhood.sacrament = {
+    type = character_event
+    title = guild.dark_brotherhood.sacrament.t
+    desc = guild.dark_brotherhood.sacrament.desc
+    theme = intrigue
+
+    option = {
+        name = guild.dark_brotherhood.sacrament.a  # "The target is eliminated."
+        random_enemy = {
+            limit = { is_alive = yes }
+            death = { death_reason = death_murder }
+        }
+        add_dread  = 20
+        add_prestige = 300
+    }
+    option = {
+        name = guild.dark_brotherhood.sacrament.b  # "The Brotherhood demands payment — pay them."
+        add_gold = -300
+        random_enemy = {
+            limit = { is_alive = yes }
+            death = { death_reason = death_murder }
+        }
+        add_dread  = 15
+    }
+}
+
+# guild.dark_brotherhood.leave — The Brotherhood pursues the deserter
+guild.dark_brotherhood.leave = {
+    type = character_event
+    title = guild.dark_brotherhood.leave.t
+    desc = guild.dark_brotherhood.leave.desc
+    theme = intrigue
+
+    option = {
+        name = guild.dark_brotherhood.leave.a  # "I accept the consequences."
+        add_stress   = 20
+        add_prestige = -300
+        add_modifier = { modifier = dark_brotherhood_marked_modifier days = 1825 }
+    }
+}
+
+# ================================================================
+#  MORAG TONG
+# ================================================================
+
+# guild.morag_tong.001 — Joining the Morag Tong
+guild.morag_tong.001 = {
+    type = character_event
+    title = guild.morag_tong.001.t
+    desc = guild.morag_tong.001.desc
+    theme = intrigue
+
+    option = {
+        name = guild.morag_tong.001.a  # "I serve Mephala's web."
+        add_piety = 100
+    }
+}
+
+# guild.morag_tong.advance — Rank promotion
+guild.morag_tong.advance = {
+    type = character_event
+    title = guild.morag_tong.advance.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_trait = morag_tong_master }
+                desc = guild.morag_tong.advance.desc_master
+            }
+            triggered_desc = {
+                trigger = { has_trait = morag_tong_grandmaster }
+                desc = guild.morag_tong.advance.desc_grandmaster
+            }
+            desc = guild.morag_tong.advance.desc_generic
+        }
+    }
+    theme = intrigue
+
+    option = {
+        name = guild.morag_tong.advance.a
+        add_piety    = 150
+        add_prestige = 200
+    }
+}
+
+# guild.morag_tong.writ — Issuing a Writ of Execution
+guild.morag_tong.writ = {
+    type = character_event
+    title = guild.morag_tong.writ.t
+    desc = guild.morag_tong.writ.desc
+    theme = intrigue
+
+    option = {
+        name = guild.morag_tong.writ.a  # "The writ is carried out."
+        random_enemy = {
+            limit = { is_alive = yes }
+            death = { death_reason = death_murder }
+        }
+        add_piety    = 200   # Mephala is pleased
+        add_prestige = 250
+        add_dread    = 15
+    }
+    option = {
+        name = guild.morag_tong.writ.b  # "Call off the writ."
+        add_piety = -50
+    }
+}
+
+# ================================================================
+#  COMPANIONS
+# ================================================================
+
+# guild.companions.001 — Joining the Companions
+guild.companions.001 = {
+    type = character_event
+    title = guild.companions.001.t
+    desc = guild.companions.001.desc
+    theme = war
+
+    option = {
+        name = guild.companions.001.a  # "I am Shield-Brother now."
+        add_prestige = 100
+    }
+}
+
+# guild.companions.advance — Rank promotion
+guild.companions.advance = {
+    type = character_event
+    title = guild.companions.advance.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_trait = companions_veteran }
+                desc = guild.companions.advance.desc_veteran
+            }
+            triggered_desc = {
+                trigger = { has_trait = companions_circle }
+                desc = guild.companions.advance.desc_circle
+            }
+            triggered_desc = {
+                trigger = { has_trait = companions_harbinger }
+                desc = guild.companions.advance.desc_harbinger
+            }
+            desc = guild.companions.advance.desc_generic
+        }
+    }
+    theme = war
+
+    option = {
+        name = guild.companions.advance.a
+        add_prestige = 250
+    }
+}
+
+# guild.companions.contract — Taking a contract
+guild.companions.contract = {
+    type = character_event
+    title = guild.companions.contract.t
+    desc = guild.companions.contract.desc
+    theme = war
+
+    option = {
+        name = guild.companions.contract.a  # "For glory and gold."
+        random_list = {
+            60 = {
+                add_gold     = 250
+                add_prestige = 300
+            }
+            25 = {
+                add_gold     = 100
+                add_prestige = 150
+            }
+            15 = {
+                add_stress   = 15
+                add_prestige = -50
+            }
+        }
+    }
+}
+
+# guild.companions.circle_rite — The Circle initiation (Lycanthropy option)
+guild.companions.circle_rite = {
+    type = character_event
+    title = guild.companions.circle_rite.t
+    desc = guild.companions.circle_rite.desc
+    theme = war
+
+    option = {
+        name = guild.companions.circle_rite.a  # "Accept the blood of Hircine."
+        advance_companions = yes
+        add_trait = hircine_werewolf
+        add_prestige = 400
+        add_piety    = -200    # unnatural in most faiths
+    }
+    option = {
+        name = guild.companions.circle_rite.b  # "Join the Circle without the beast blood."
+        advance_companions = yes
+        add_prestige = 300
+    }
+}
+
+# ================================================================
+#  PSIJIC ORDER
+# ================================================================
+
+# guild.psijic.invitation — The Psijic Order makes contact
+guild.psijic.invitation = {
+    type = character_event
+    title = guild.psijic.invitation.t
+    desc = guild.psijic.invitation.desc
+    theme = realm
+
+    option = {
+        name = guild.psijic.invitation.a  # "Accept the invitation to Artaeum."
+        join_psijic_order = yes
+    }
+    option = {
+        name = guild.psijic.invitation.b  # "The world needs me — I cannot retreat to Artaeum."
+        add_prestige = 100
+        add_modifier = { modifier = guild_recently_rejected days = 1825 }
+    }
+}
+
+# guild.psijic.001 — Formally joining
+guild.psijic.001 = {
+    type = character_event
+    title = guild.psijic.001.t
+    desc = guild.psijic.001.desc
+    theme = realm
+
+    option = {
+        name = guild.psijic.001.a  # "I begin the Elder Way."
+        add_piety    = 200
+        add_prestige = 200
+    }
+}
+
+# guild.psijic.advance — Rank promotion
+guild.psijic.advance = {
+    type = character_event
+    title = guild.psijic.advance.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_trait = psijic_initiate }
+                desc = guild.psijic.advance.desc_initiate
+            }
+            triggered_desc = {
+                trigger = { has_trait = psijic_adept }
+                desc = guild.psijic.advance.desc_adept
+            }
+            triggered_desc = {
+                trigger = { has_trait = psijic_master }
+                desc = guild.psijic.advance.desc_master
+            }
+            desc = guild.psijic.advance.desc_generic
+        }
+    }
+    theme = realm
+
+    option = {
+        name = guild.psijic.advance.a
+        add_piety    = 300
+        add_prestige = 200
+    }
+}
+
+# guild.psijic.commune — Commune with the Order for guidance
+guild.psijic.commune = {
+    type = character_event
+    title = guild.psijic.commune.t
+    desc = guild.psijic.commune.desc
+    theme = realm
+
+    option = {
+        name = guild.psijic.commune.a  # "The Order shares its ancient wisdom."
+        add_learning = 3
+        add_piety    = 200
+        add_stress   = -10
+    }
+    option = {
+        name = guild.psijic.commune.b  # "They warn of a coming danger."
+        add_learning = 2
+        add_stress   = 10
+        add_modifier = { modifier = psijic_warning_modifier days = 730 }
+    }
+}
+
+# ================================================================
+#  BARDS COLLEGE
+# ================================================================
+
+# guild.bards.001 — Joining the Bards College
+guild.bards.001 = {
+    type = character_event
+    title = guild.bards.001.t
+    desc = guild.bards.001.desc
+    theme = feast
+
+    option = {
+        name = guild.bards.001.a  # "The College is my home away from court."
+        add_prestige = 100
+        add_stress   = -10
+    }
+}
+
+# guild.bards.advance — Rank promotion
+guild.bards.advance = {
+    type = character_event
+    title = guild.bards.advance.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_trait = bards_college_bard }
+                desc = guild.bards.advance.desc_bard
+            }
+            triggered_desc = {
+                trigger = { has_trait = bards_college_master_bard }
+                desc = guild.bards.advance.desc_master
+            }
+            desc = guild.bards.advance.desc_generic
+        }
+    }
+    theme = feast
+
+    option = {
+        name = guild.bards.advance.a
+        add_prestige = 200
+        add_stress   = -10
+    }
+}
+
+# guild.bards.ballad — Composing an epic ballad
+guild.bards.ballad = {
+    type = character_event
+    title = guild.bards.ballad.t
+    desc = guild.bards.ballad.desc
+    theme = feast
+
+    option = {
+        name = guild.bards.ballad.a  # "A ballad of our own deeds."
+        add_prestige = 400
+        add_modifier = { modifier = famous_ballad_modifier days = 1825 }
+    }
+    option = {
+        name = guild.bards.ballad.b  # "A ballad praising a great historical hero."
+        add_prestige = 200
+        add_piety    = 150
+    }
+    option = {
+        name = guild.bards.ballad.c  # "A satirical ballad about our enemies."
+        add_prestige = 300
+        random_enemy = {
+            limit = { is_alive = yes }
+            add_prestige = -200
+        }
+    }
+}
+
+# ================================================================
+#  UNDAUNTED
+# ================================================================
+
+# guild.undaunted.001 — Joining the Undaunted
+guild.undaunted.001 = {
+    type = character_event
+    title = guild.undaunted.001.t
+    desc = guild.undaunted.001.desc
+    theme = war
+
+    option = {
+        name = guild.undaunted.001.a  # "Shor's bones, let's go!"
+        add_prestige = 100
+        add_stress   = -5
+    }
+}
+
+# guild.undaunted.advance — Rank promotion
+guild.undaunted.advance = {
+    type = character_event
+    title = guild.undaunted.advance.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_trait = undaunted_veteran }
+                desc = guild.undaunted.advance.desc_veteran
+            }
+            triggered_desc = {
+                trigger = { has_trait = undaunted_elite }
+                desc = guild.undaunted.advance.desc_elite
+            }
+            desc = guild.undaunted.advance.desc_generic
+        }
+    }
+    theme = war
+
+    option = {
+        name = guild.undaunted.advance.a
+        add_prestige = 200
+    }
+}
+
+# guild.undaunted.delve — Delving a dangerous ruin
+guild.undaunted.delve = {
+    type = character_event
+    title = guild.undaunted.delve.t
+    desc = guild.undaunted.delve.desc
+    theme = war
+
+    option = {
+        name = guild.undaunted.delve.a  # "Into the ruins."
+        random_list = {
+            40 = {
+                add_gold     = 500
+                add_prestige = 400
+                custom_tooltip = undaunted_delve_success_tt
+            }
+            35 = {
+                add_gold     = 250
+                add_prestige = 200
+            }
+            25 = {
+                # Wounded in the ruins
+                add_stress   = 20
+                add_prestige = -100
+                add_modifier = { modifier = undaunted_wounded_modifier days = 365 }
+            }
+        }
+    }
+    option = {
+        name = guild.undaunted.delve.b  # "Turn back — the ruins are too dangerous."
+        add_prestige = -50
+    }
+}

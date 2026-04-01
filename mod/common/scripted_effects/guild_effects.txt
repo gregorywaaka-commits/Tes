@@ -1,0 +1,411 @@
+# =============================================================
+#  Guild Scripted Effects
+#  Join, advance rank, and leave each of the 9 guilds.
+# =============================================================
+
+# ================================================================
+#  MAGES GUILD
+# ================================================================
+
+join_mages_guild = {
+    add_character_flag = guild_mages_member
+    set_variable = { name = guild_mages_rank value = 1 }
+    add_trait    = mages_guild_associate
+    add_modifier = { modifier = mages_guild_chapter_modifier days = -1 }
+    trigger_event = { id = guild.mages.001 }
+}
+
+advance_mages_guild = {
+    add_modifier = { modifier = guild_advancement_cooldown days = 1825 }
+    if = {
+        limit = { has_trait = mages_guild_associate }
+        remove_trait = mages_guild_associate
+        add_trait    = mages_guild_member
+        change_variable = { name = guild_mages_rank add = 1 }
+        trigger_event = { id = guild.mages.advance }
+    }
+    else_if = {
+        limit = { has_trait = mages_guild_member }
+        remove_trait = mages_guild_member
+        add_trait    = mages_guild_wizard
+        change_variable = { name = guild_mages_rank add = 1 }
+        trigger_event = { id = guild.mages.advance }
+    }
+    else_if = {
+        limit = { has_trait = mages_guild_wizard }
+        remove_trait = mages_guild_wizard
+        add_trait    = mages_guild_archmagister
+        change_variable = { name = guild_mages_rank add = 1 }
+        trigger_event = { id = guild.mages.advance }
+    }
+}
+
+leave_mages_guild = {
+    remove_character_flag = guild_mages_member
+    clear_variable        = guild_mages_rank
+    if = { limit = { has_trait = mages_guild_associate   } remove_trait = mages_guild_associate   }
+    if = { limit = { has_trait = mages_guild_member      } remove_trait = mages_guild_member      }
+    if = { limit = { has_trait = mages_guild_wizard      } remove_trait = mages_guild_wizard      }
+    if = { limit = { has_trait = mages_guild_archmagister } remove_trait = mages_guild_archmagister }
+    remove_modifier = mages_guild_chapter_modifier
+    add_prestige = -200
+}
+
+# ================================================================
+#  FIGHTERS GUILD
+# ================================================================
+
+join_fighters_guild = {
+    add_character_flag = guild_fighters_member
+    set_variable = { name = guild_fighters_rank value = 1 }
+    add_trait    = fighters_guild_associate
+    add_modifier = { modifier = fighters_guild_chapter_modifier days = -1 }
+    trigger_event = { id = guild.fighters.001 }
+}
+
+advance_fighters_guild = {
+    add_modifier = { modifier = guild_advancement_cooldown days = 1825 }
+    if = {
+        limit = { has_trait = fighters_guild_associate }
+        remove_trait = fighters_guild_associate
+        add_trait    = fighters_guild_journeyman
+        change_variable = { name = guild_fighters_rank add = 1 }
+        trigger_event = { id = guild.fighters.advance }
+    }
+    else_if = {
+        limit = { has_trait = fighters_guild_journeyman }
+        remove_trait = fighters_guild_journeyman
+        add_trait    = fighters_guild_guardian
+        change_variable = { name = guild_fighters_rank add = 1 }
+        trigger_event = { id = guild.fighters.advance }
+    }
+    else_if = {
+        limit = { has_trait = fighters_guild_guardian }
+        remove_trait = fighters_guild_guardian
+        add_trait    = fighters_guild_guildmaster
+        change_variable = { name = guild_fighters_rank add = 1 }
+        trigger_event = { id = guild.fighters.advance }
+    }
+}
+
+leave_fighters_guild = {
+    remove_character_flag = guild_fighters_member
+    clear_variable        = guild_fighters_rank
+    if = { limit = { has_trait = fighters_guild_associate  } remove_trait = fighters_guild_associate  }
+    if = { limit = { has_trait = fighters_guild_journeyman } remove_trait = fighters_guild_journeyman }
+    if = { limit = { has_trait = fighters_guild_guardian   } remove_trait = fighters_guild_guardian   }
+    if = { limit = { has_trait = fighters_guild_guildmaster } remove_trait = fighters_guild_guildmaster }
+    remove_modifier = fighters_guild_chapter_modifier
+    add_prestige = -100
+}
+
+# ================================================================
+#  THIEVES GUILD
+# ================================================================
+
+join_thieves_guild = {
+    add_character_flag = guild_thieves_member
+    set_variable = { name = guild_thieves_rank value = 1 }
+    add_trait    = thieves_guild_footpad
+    trigger_event = { id = guild.thieves.001 }
+}
+
+advance_thieves_guild = {
+    add_modifier = { modifier = guild_advancement_cooldown days = 1825 }
+    if = {
+        limit = { has_trait = thieves_guild_footpad }
+        remove_trait = thieves_guild_footpad
+        add_trait    = thieves_guild_prowler
+        change_variable = { name = guild_thieves_rank add = 1 }
+        trigger_event = { id = guild.thieves.advance }
+    }
+    else_if = {
+        limit = { has_trait = thieves_guild_prowler }
+        remove_trait = thieves_guild_prowler
+        add_trait    = thieves_guild_shadowfoot
+        change_variable = { name = guild_thieves_rank add = 1 }
+        trigger_event = { id = guild.thieves.advance }
+    }
+    else_if = {
+        limit = { has_trait = thieves_guild_shadowfoot }
+        remove_trait = thieves_guild_shadowfoot
+        add_trait    = thieves_guild_guildmaster_thief
+        change_variable = { name = guild_thieves_rank add = 1 }
+        trigger_event = { id = guild.thieves.advance }
+    }
+}
+
+leave_thieves_guild = {
+    remove_character_flag = guild_thieves_member
+    clear_variable        = guild_thieves_rank
+    if = { limit = { has_trait = thieves_guild_footpad           } remove_trait = thieves_guild_footpad           }
+    if = { limit = { has_trait = thieves_guild_prowler           } remove_trait = thieves_guild_prowler           }
+    if = { limit = { has_trait = thieves_guild_shadowfoot        } remove_trait = thieves_guild_shadowfoot        }
+    if = { limit = { has_trait = thieves_guild_guildmaster_thief } remove_trait = thieves_guild_guildmaster_thief }
+    # Thieves Guild takes a fee for leaving
+    add_gold = -200
+}
+
+# ================================================================
+#  DARK BROTHERHOOD
+# ================================================================
+
+join_dark_brotherhood = {
+    add_character_flag = guild_dark_brotherhood_member
+    set_variable = { name = guild_dark_brotherhood_rank value = 1 }
+    add_trait    = dark_brotherhood_initiate
+    trigger_event = { id = guild.dark_brotherhood.001 }
+}
+
+advance_dark_brotherhood = {
+    add_modifier = { modifier = guild_advancement_cooldown days = 1825 }
+    if = {
+        limit = { has_trait = dark_brotherhood_initiate }
+        remove_trait = dark_brotherhood_initiate
+        add_trait    = dark_brotherhood_assassin
+        change_variable = { name = guild_dark_brotherhood_rank add = 1 }
+        trigger_event = { id = guild.dark_brotherhood.advance }
+    }
+    else_if = {
+        limit = { has_trait = dark_brotherhood_assassin }
+        remove_trait = dark_brotherhood_assassin
+        add_trait    = dark_brotherhood_speaker
+        change_variable = { name = guild_dark_brotherhood_rank add = 1 }
+        trigger_event = { id = guild.dark_brotherhood.advance }
+    }
+    else_if = {
+        limit = { has_trait = dark_brotherhood_speaker }
+        remove_trait = dark_brotherhood_speaker
+        add_trait    = dark_brotherhood_listener
+        change_variable = { name = guild_dark_brotherhood_rank add = 1 }
+        trigger_event = { id = guild.dark_brotherhood.advance }
+    }
+}
+
+leave_dark_brotherhood = {
+    # Leaving the Dark Brotherhood is extremely dangerous
+    remove_character_flag = guild_dark_brotherhood_member
+    clear_variable        = guild_dark_brotherhood_rank
+    if = { limit = { has_trait = dark_brotherhood_initiate } remove_trait = dark_brotherhood_initiate }
+    if = { limit = { has_trait = dark_brotherhood_assassin } remove_trait = dark_brotherhood_assassin }
+    if = { limit = { has_trait = dark_brotherhood_speaker  } remove_trait = dark_brotherhood_speaker  }
+    if = { limit = { has_trait = dark_brotherhood_listener } remove_trait = dark_brotherhood_listener }
+    add_modifier = { modifier = dark_brotherhood_marked_modifier days = 1825 }
+    trigger_event = { id = guild.dark_brotherhood.leave }
+}
+
+# ================================================================
+#  MORAG TONG
+# ================================================================
+
+join_morag_tong = {
+    add_character_flag = guild_morag_tong_member
+    set_variable = { name = guild_morag_tong_rank value = 1 }
+    add_trait    = morag_tong_assassin
+    add_modifier = { modifier = morag_tong_chapter_modifier days = -1 }
+    trigger_event = { id = guild.morag_tong.001 }
+}
+
+advance_morag_tong = {
+    add_modifier = { modifier = guild_advancement_cooldown days = 1825 }
+    if = {
+        limit = { has_trait = morag_tong_assassin }
+        remove_trait = morag_tong_assassin
+        add_trait    = morag_tong_master
+        change_variable = { name = guild_morag_tong_rank add = 1 }
+        trigger_event = { id = guild.morag_tong.advance }
+    }
+    else_if = {
+        limit = { has_trait = morag_tong_master }
+        remove_trait = morag_tong_master
+        add_trait    = morag_tong_grandmaster
+        change_variable = { name = guild_morag_tong_rank add = 1 }
+        trigger_event = { id = guild.morag_tong.advance }
+    }
+}
+
+leave_morag_tong = {
+    remove_character_flag = guild_morag_tong_member
+    clear_variable        = guild_morag_tong_rank
+    if = { limit = { has_trait = morag_tong_assassin  } remove_trait = morag_tong_assassin  }
+    if = { limit = { has_trait = morag_tong_master     } remove_trait = morag_tong_master     }
+    if = { limit = { has_trait = morag_tong_grandmaster } remove_trait = morag_tong_grandmaster }
+    remove_modifier = morag_tong_chapter_modifier
+    add_piety = -200
+}
+
+# ================================================================
+#  COMPANIONS
+# ================================================================
+
+join_companions = {
+    add_character_flag = guild_companions_member
+    set_variable = { name = guild_companions_rank value = 1 }
+    add_trait    = companions_shield_brother
+    add_modifier = { modifier = companions_chapter_modifier days = -1 }
+    trigger_event = { id = guild.companions.001 }
+}
+
+advance_companions = {
+    add_modifier = { modifier = guild_advancement_cooldown days = 1825 }
+    if = {
+        limit = { has_trait = companions_shield_brother }
+        remove_trait = companions_shield_brother
+        add_trait    = companions_veteran
+        change_variable = { name = guild_companions_rank add = 1 }
+        trigger_event = { id = guild.companions.advance }
+    }
+    else_if = {
+        limit = { has_trait = companions_veteran }
+        remove_trait = companions_veteran
+        add_trait    = companions_circle
+        change_variable = { name = guild_companions_rank add = 1 }
+        trigger_event = { id = guild.companions.advance }
+    }
+    else_if = {
+        limit = { has_trait = companions_circle }
+        remove_trait = companions_circle
+        add_trait    = companions_harbinger
+        change_variable = { name = guild_companions_rank add = 1 }
+        trigger_event = { id = guild.companions.advance }
+    }
+}
+
+leave_companions = {
+    remove_character_flag = guild_companions_member
+    clear_variable        = guild_companions_rank
+    if = { limit = { has_trait = companions_shield_brother } remove_trait = companions_shield_brother }
+    if = { limit = { has_trait = companions_veteran        } remove_trait = companions_veteran        }
+    if = { limit = { has_trait = companions_circle         } remove_trait = companions_circle         }
+    if = { limit = { has_trait = companions_harbinger      } remove_trait = companions_harbinger      }
+    remove_modifier = companions_chapter_modifier
+    add_prestige = -150
+}
+
+# ================================================================
+#  PSIJIC ORDER
+# ================================================================
+
+join_psijic_order = {
+    add_character_flag = guild_psijic_member
+    set_variable = { name = guild_psijic_rank value = 1 }
+    add_trait    = psijic_novice
+    add_modifier = { modifier = psijic_order_modifier days = -1 }
+    trigger_event = { id = guild.psijic.001 }
+}
+
+advance_psijic_order = {
+    add_modifier = { modifier = guild_advancement_cooldown days = 3650 }  # Psijic advancement is slow
+    if = {
+        limit = { has_trait = psijic_novice }
+        remove_trait = psijic_novice
+        add_trait    = psijic_initiate
+        change_variable = { name = guild_psijic_rank add = 1 }
+        trigger_event = { id = guild.psijic.advance }
+    }
+    else_if = {
+        limit = { has_trait = psijic_initiate }
+        remove_trait = psijic_initiate
+        add_trait    = psijic_adept
+        change_variable = { name = guild_psijic_rank add = 1 }
+        trigger_event = { id = guild.psijic.advance }
+    }
+    else_if = {
+        limit = { has_trait = psijic_adept }
+        remove_trait = psijic_adept
+        add_trait    = psijic_master
+        change_variable = { name = guild_psijic_rank add = 1 }
+        trigger_event = { id = guild.psijic.advance }
+    }
+}
+
+leave_psijic_order = {
+    remove_character_flag = guild_psijic_member
+    clear_variable        = guild_psijic_rank
+    if = { limit = { has_trait = psijic_novice   } remove_trait = psijic_novice   }
+    if = { limit = { has_trait = psijic_initiate } remove_trait = psijic_initiate }
+    if = { limit = { has_trait = psijic_adept    } remove_trait = psijic_adept    }
+    if = { limit = { has_trait = psijic_master   } remove_trait = psijic_master   }
+    remove_modifier = psijic_order_modifier
+    add_piety    = -300
+    add_prestige = -200
+}
+
+# ================================================================
+#  BARDS COLLEGE
+# ================================================================
+
+join_bards_college = {
+    add_character_flag = guild_bards_member
+    set_variable = { name = guild_bards_rank value = 1 }
+    add_trait    = bards_college_apprentice
+    add_modifier = { modifier = bards_college_chapter_modifier days = -1 }
+    trigger_event = { id = guild.bards.001 }
+}
+
+advance_bards_college = {
+    add_modifier = { modifier = guild_advancement_cooldown days = 1825 }
+    if = {
+        limit = { has_trait = bards_college_apprentice }
+        remove_trait = bards_college_apprentice
+        add_trait    = bards_college_bard
+        change_variable = { name = guild_bards_rank add = 1 }
+        trigger_event = { id = guild.bards.advance }
+    }
+    else_if = {
+        limit = { has_trait = bards_college_bard }
+        remove_trait = bards_college_bard
+        add_trait    = bards_college_master_bard
+        change_variable = { name = guild_bards_rank add = 1 }
+        trigger_event = { id = guild.bards.advance }
+    }
+}
+
+leave_bards_college = {
+    remove_character_flag = guild_bards_member
+    clear_variable        = guild_bards_rank
+    if = { limit = { has_trait = bards_college_apprentice  } remove_trait = bards_college_apprentice  }
+    if = { limit = { has_trait = bards_college_bard        } remove_trait = bards_college_bard        }
+    if = { limit = { has_trait = bards_college_master_bard } remove_trait = bards_college_master_bard }
+    remove_modifier = bards_college_chapter_modifier
+}
+
+# ================================================================
+#  UNDAUNTED
+# ================================================================
+
+join_undaunted = {
+    add_character_flag = guild_undaunted_member
+    set_variable = { name = guild_undaunted_rank value = 1 }
+    add_trait    = undaunted_member
+    add_modifier = { modifier = undaunted_chapter_modifier days = -1 }
+    trigger_event = { id = guild.undaunted.001 }
+}
+
+advance_undaunted = {
+    add_modifier = { modifier = guild_advancement_cooldown days = 1825 }
+    if = {
+        limit = { has_trait = undaunted_member }
+        remove_trait = undaunted_member
+        add_trait    = undaunted_veteran
+        change_variable = { name = guild_undaunted_rank add = 1 }
+        trigger_event = { id = guild.undaunted.advance }
+    }
+    else_if = {
+        limit = { has_trait = undaunted_veteran }
+        remove_trait = undaunted_veteran
+        add_trait    = undaunted_elite
+        change_variable = { name = guild_undaunted_rank add = 1 }
+        trigger_event = { id = guild.undaunted.advance }
+    }
+}
+
+leave_undaunted = {
+    remove_character_flag = guild_undaunted_member
+    clear_variable        = guild_undaunted_rank
+    if = { limit = { has_trait = undaunted_member  } remove_trait = undaunted_member  }
+    if = { limit = { has_trait = undaunted_veteran } remove_trait = undaunted_veteran }
+    if = { limit = { has_trait = undaunted_elite   } remove_trait = undaunted_elite   }
+    remove_modifier = undaunted_chapter_modifier
+    add_prestige = -100
+}

@@ -1,0 +1,197 @@
+# =============================================================
+#  Elder Towers Events
+#  Namespace: towers
+#  The Towers (White-Gold, Adamantine, Red Mountain, Orichalc,
+#  Coral) anchor Mundus in reality. If enough fall, the world
+#  begins to fracture.
+# =============================================================
+
+namespace = towers
+
+# ---------------------------------------------------------------
+# towers.000  Tower Stability Check (yearly pulse — hidden)
+# ---------------------------------------------------------------
+towers.000 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        count_active_towers = yes
+    }
+
+    immediate = {
+        if = {
+            limit = { world_stability_critical = yes }
+            every_ruler = {
+                limit = { is_alive = yes }
+                trigger_event = { id = towers.015 }
+            }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# towers.001  A Tower Stone is Claimed — Keeper named
+# ---------------------------------------------------------------
+towers.001 = {
+    type = character_event
+    title = towers.001.t
+    desc = towers.001.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    option = {
+        name = towers.001.a   # "I am Keeper of this Stone — let reality hold firm."
+        add_prestige = 500
+        add_piety    = 200
+    }
+}
+
+# ---------------------------------------------------------------
+# towers.002  White-Gold Tower — Cyrodiil reshaping (lore flavour)
+# ---------------------------------------------------------------
+towers.002 = {
+    type = character_event
+    title = towers.002.t
+    desc = towers.002.desc
+    theme = realm
+
+    trigger = {
+        has_trait = tower_stone_keeper
+        scope:tower_county = { this = title:c_imperial_city }
+    }
+
+    option = {
+        name = towers.002.a   # "Cyrodiil is what we will it to be."
+        add_prestige = 300
+        add_modifier = { modifier = white_gold_keeper_modifier days = -1 }
+    }
+}
+
+# ---------------------------------------------------------------
+# towers.003  Adamantine Tower — oldest Tower, greatest power
+# ---------------------------------------------------------------
+towers.003 = {
+    type = character_event
+    title = towers.003.t
+    desc = towers.003.desc
+    theme = learning
+
+    trigger = {
+        has_trait = tower_stone_keeper
+        scope:tower_county = { this = title:c_balfiera }
+    }
+
+    option = {
+        name = towers.003.a   # "The Ur-Tower speaks — through silence, everything."
+        add_learning = 4
+        add_piety    = 500
+        add_prestige = 300
+    }
+}
+
+# ---------------------------------------------------------------
+# towers.004  Red Mountain — Heart of Lorkhan (lore critical)
+# ---------------------------------------------------------------
+towers.004 = {
+    type = character_event
+    title = towers.004.t
+    desc = towers.004.desc
+    theme = learning
+
+    trigger = {
+        has_trait = tower_stone_keeper
+        scope:tower_county = { this = title:c_red_mountain }
+    }
+
+    option = {
+        name = towers.004.a   # "The Heart of Lorkhan beats beneath the mountain."
+        add_piety    = 800
+        add_prestige = 500
+        add_modifier = { modifier = red_mountain_keeper_modifier days = -1 }
+    }
+}
+
+# ---------------------------------------------------------------
+# towers.005  Tower Stone Sabotage Attempt (triggered by decision)
+# ---------------------------------------------------------------
+towers.005 = {
+    type = character_event
+    title = towers.005.t
+    desc = towers.005.desc
+    theme = intrigue
+
+    immediate = {
+        set_local_variable = {
+            name  = sabotage_chance
+            value = root.intrigue
+        }
+    }
+
+    option = {
+        name = towers.005.a   # "Our agents strike — the Stone cracks!"
+        trigger = { local_var:sabotage_chance >= 20 }
+        # Find the neighboring tower county and deactivate it
+        random_neighboring_realm = {
+            limit = {
+                any_held_county = { has_variable = tower_stone_present }
+            }
+            random_held_county = {
+                limit = { has_variable = tower_stone_present }
+                save_scope_as = tower_county
+            }
+        }
+        deactivate_tower_stone_effect = yes
+        add_prestige = 1000
+        add_modifier = { modifier = tower_sabotage_cooldown days = 3650 }
+    }
+
+    option = {
+        name = towers.005.b   # "The Stone repels our agents — they are lost."
+        add_prestige = -500
+        add_stress   = 20
+        add_modifier = { modifier = tower_sabotage_cooldown days = 1825 }
+    }
+}
+
+# ---------------------------------------------------------------
+# towers.010  A Tower Falls — the Stone is destroyed or stolen
+# ---------------------------------------------------------------
+towers.010 = {
+    type = character_event
+    title = towers.010.t
+    desc = towers.010.desc
+    theme = war
+
+    option = {
+        name = towers.010.a   # "The world shudders... but holds."
+        add_prestige = -200
+        add_stress   = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# towers.015  World Stability Critical — only one Tower remains
+# ---------------------------------------------------------------
+towers.015 = {
+    type = character_event
+    title = towers.015.t
+    desc = towers.015.desc
+    theme = war
+
+    option = {
+        name = towers.015.a   # "We must protect what remains — or Mundus falls!"
+        add_stress = 30
+        add_modifier = { modifier = reality_fracturing_modifier days = 1825 }
+    }
+
+    option = {
+        name = towers.015.b   # "Let it fracture — we will rebuild from nothing."
+        add_stress = -10
+        add_piety  = -500
+        add_modifier = { modifier = reality_fracturing_modifier days = 1825 }
+    }
+}

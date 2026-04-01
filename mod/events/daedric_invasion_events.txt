@@ -1,0 +1,302 @@
+# =============================================================
+#  Daedric Invasion — Main Events
+#  Namespace: daedric_invasion
+# =============================================================
+
+namespace = daedric_invasion
+
+# ------------------------------------------------------------
+# daedric_invasion.000
+# Yearly pulse check: attempt to start a new Daedric invasion.
+# ------------------------------------------------------------
+daedric_invasion.000 = {
+    type = world_event
+    title = daedric_invasion.000.t
+    desc = daedric_invasion.000.desc
+    theme = war
+
+    trigger = {
+        daedric_invasion_trigger_conditions = yes
+    }
+
+    immediate = {
+        # Randomly pick which Daedric Prince leads this invasion
+        # Weights reflect lore frequency: Dagon most common; Jyggalag rarest (the Greymarch)
+        random_list = {
+            25 = { set_global_variable = { name = chosen_prince_key value = "mehrunes_dagon_template" } }
+            15 = { set_global_variable = { name = chosen_prince_key value = "molag_bal_template" } }
+            10 = { set_global_variable = { name = chosen_prince_key value = "boethiah_template" } }
+            10 = { set_global_variable = { name = chosen_prince_key value = "hircine_template" } }
+             5 = { set_global_variable = { name = chosen_prince_key value = "namira_template" } }
+             5 = { set_global_variable = { name = chosen_prince_key value = "azura_template" } }
+             8 = { set_global_variable = { name = chosen_prince_key value = "mephala_template" } }
+             4 = { set_global_variable = { name = chosen_prince_key value = "clavicus_vile_template" } }
+             5 = { set_global_variable = { name = chosen_prince_key value = "vaermina_template" } }
+             3 = { set_global_variable = { name = chosen_prince_key value = "sheogorath_template" } }
+             5 = { set_global_variable = { name = chosen_prince_key value = "peryite_template" } }
+             2 = { set_global_variable = { name = chosen_prince_key value = "sanguine_template" } }
+             3 = { set_global_variable = { name = chosen_prince_key value = "meridia_template" } }
+             5 = { set_global_variable = { name = chosen_prince_key value = "malacath_template" } }
+             3 = { set_global_variable = { name = chosen_prince_key value = "nocturnal_template" } }
+             2 = { set_global_variable = { name = chosen_prince_key value = "hermaeus_mora_template" } }
+             1 = {
+                 # Jyggalag only triggers the Greymarch — requires no active invasion and later era
+                 modifier = {
+                     add = -1   # disabled unless date condition met below
+                     NOT = { current_date >= 3E.400 }
+                 }
+                 set_global_variable = { name = chosen_prince_key value = "jyggalag_template" }
+             }
+        }
+        begin_daedric_invasion = yes
+    }
+
+    option = {
+        name = daedric_invasion.000.a
+        custom_tooltip = daedric_invasion_started_tt
+    }
+}
+
+# ------------------------------------------------------------
+# daedric_invasion.001
+# Notification to all rulers that an invasion has begun.
+# ------------------------------------------------------------
+daedric_invasion.001 = {
+    type = character_event
+    title = daedric_invasion.001.t
+    desc = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { global_var:active_daedric_prince = "mehrunes_dagon_template" }
+                desc = daedric_invasion.001.desc_dagon
+            }
+            triggered_desc = {
+                trigger = { global_var:active_daedric_prince = "molag_bal_template" }
+                desc = daedric_invasion.001.desc_molag
+            }
+            triggered_desc = {
+                trigger = { global_var:active_daedric_prince = "boethiah_template" }
+                desc = daedric_invasion.001.desc_boethiah
+            }
+            triggered_desc = {
+                trigger = { global_var:active_daedric_prince = "hircine_template" }
+                desc = daedric_invasion.001.desc_hircine
+            }
+            triggered_desc = {
+                trigger = { global_var:active_daedric_prince = "namira_template" }
+                desc = daedric_invasion.001.desc_namira
+            }
+            desc = daedric_invasion.001.desc_generic
+        }
+    }
+    theme = war
+    left_portrait = {
+        character = scope:daedric_prince_char
+        animation = personality_bold
+    }
+
+    option = {
+        name = daedric_invasion.001.a  # "We must stand against this threat!"
+        add_stress = -10
+        add_prestige = 50
+    }
+    option = {
+        name = daedric_invasion.001.b  # "Perhaps we can negotiate..."
+        add_stress = 10
+    }
+}
+
+# ------------------------------------------------------------
+# daedric_invasion.002
+# War declaration — notifies defenders.
+# ------------------------------------------------------------
+daedric_invasion.002 = {
+    type = character_event
+    title = daedric_invasion.002.t
+    desc = daedric_invasion.002.desc
+    theme = war
+    left_portrait = {
+        character = scope:daedric_prince_char
+        animation = anger
+    }
+
+    option = {
+        name = daedric_invasion.002.a  # "Prepare for war!"
+        add_prestige = 100
+        add_stress = -5
+    }
+}
+
+# ------------------------------------------------------------
+# daedric_invasion.005
+# Invasion escalation notification.
+# ------------------------------------------------------------
+daedric_invasion.005 = {
+    type = character_event
+    title = daedric_invasion.005.t
+    desc = daedric_invasion.005.desc
+    theme = war
+
+    option = {
+        name = daedric_invasion.005.a  # "The situation grows dire."
+        add_stress = 10
+        add_prestige = 25
+    }
+}
+
+# ------------------------------------------------------------
+# daedric_invasion.020
+# Invasion ended — victory celebration.
+# ------------------------------------------------------------
+daedric_invasion.020 = {
+    type = character_event
+    title = daedric_invasion.020.t
+    desc = daedric_invasion.020.desc
+    theme = feast
+
+    option = {
+        name = daedric_invasion.020.a  # "Tamriel is safe — for now."
+        add_prestige = 200
+        add_piety    = 100
+    }
+}
+
+# ------------------------------------------------------------
+# daedric_invasion.030
+# A ruler rallies their vassals to fight.
+# (Fired on vassals by the rally decision)
+# ------------------------------------------------------------
+daedric_invasion.030 = {
+    type = character_event
+    title = daedric_invasion.030.t
+    desc = daedric_invasion.030.desc
+    theme = war
+    left_portrait = {
+        character = scope:liege
+        animation = personality_honorable
+    }
+
+    option = {
+        name = daedric_invasion.030.a  # "We answer the call!"
+        add_prestige = 50
+        add_opinion = { target = scope:liege modifier = rallied_together_opinion }
+    }
+    option = {
+        name = daedric_invasion.030.b  # "We have our own problems..."
+        add_stress = 5
+        add_opinion = { target = scope:liege modifier = ignored_call_opinion }
+    }
+}
+
+# ------------------------------------------------------------
+# daedric_invasion.040
+# A ruler submits to the Daedric Prince.
+# ------------------------------------------------------------
+daedric_invasion.040 = {
+    type = character_event
+    title = daedric_invasion.040.t
+    desc = daedric_invasion.040.desc
+    theme = realm
+
+    option = {
+        name = daedric_invasion.040.a  # "So be it."
+        # Every ally of the submitter loses opinion
+        every_ally = {
+            add_opinion = { target = root modifier = submitted_to_daedra_opinion }
+        }
+    }
+}
+
+# ------------------------------------------------------------
+# daedric_invasion.045
+# Player attempts to banish the Daedric Prince — dramatic duel.
+# ------------------------------------------------------------
+daedric_invasion.045 = {
+    type = character_event
+    title = daedric_invasion.045.t
+    desc = daedric_invasion.045.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+    right_portrait = {
+        character = scope:daedric_prince_char
+        animation = anger
+    }
+
+    immediate = {
+        # Simulate a duel outcome using the character's martial + prowess
+        set_local_variable = {
+            name = banish_chance
+            value = root.martial
+        }
+        change_local_variable = {
+            name = banish_chance
+            add  = root.prowess
+        }
+    }
+
+    option = {
+        name = daedric_invasion.045.a  # "Press the advantage!"
+        trigger = { local_var:banish_chance >= 30 }
+        # Success
+        end_daedric_invasion = yes
+        add_prestige = 5000
+        add_piety    = 2000
+        add_trait    = daedric_champion
+    }
+
+    option = {
+        name = daedric_invasion.045.b  # "Fall back — the Prince is too powerful."
+        # Failure — wounded but alive
+        add_prestige = -500
+        add_stress   = 25
+        add_modifier = { modifier = wounded days = 730 }
+    }
+}
+
+# ------------------------------------------------------------
+# daedric_invasion.050
+# Monthly tick: increment invasion timer; check escalation.
+# ------------------------------------------------------------
+daedric_invasion.050 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        is_daedric_invasion_active = yes
+    }
+
+    immediate = {
+        change_global_variable = {
+            name = daedric_invasion_started_days
+            add  = 30
+        }
+        if = {
+            limit = { daedric_invasion_can_escalate = yes }
+            escalate_daedric_invasion = yes
+        }
+    }
+}
+
+# ------------------------------------------------------------
+# daedric_invasion.060
+# On-death cleanup: remove Daedric Champion / Vassal traits.
+# ------------------------------------------------------------
+daedric_invasion.060 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        OR = {
+            has_trait = daedric_champion
+            has_trait = daedric_vassal
+        }
+    }
+
+    immediate = {
+        if = { limit = { has_trait = daedric_champion } remove_trait = daedric_champion }
+        if = { limit = { has_trait = daedric_vassal   } remove_trait = daedric_vassal   }
+    }
+}

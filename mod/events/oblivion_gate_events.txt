@@ -1,0 +1,138 @@
+# =============================================================
+#  Oblivion Gate Events
+#  Namespace: oblivion_gate
+# =============================================================
+
+namespace = oblivion_gate
+
+# ------------------------------------------------------------
+# oblivion_gate.001
+# A Gate has just opened — local ruler is notified.
+# ------------------------------------------------------------
+oblivion_gate.001 = {
+    type = character_event
+    title = oblivion_gate.001.t
+    desc = oblivion_gate.001.desc
+    theme = war
+
+    trigger = {
+        is_alive = yes
+        any_held_county = {
+            has_variable = oblivion_gate_active
+        }
+    }
+
+    option = {
+        name = oblivion_gate.001.a  # "Muster troops to contain it!"
+        add_prestige = 50
+        add_stress   = 10
+        trigger_event = { id = oblivion_gate.003 days = 60 }
+    }
+    option = {
+        name = oblivion_gate.001.b  # "We cannot afford soldiers — defend the walls."
+        add_stress   = 20
+        add_modifier = { modifier = oblivion_gate_unchecked days = 365 }
+    }
+}
+
+# ------------------------------------------------------------
+# oblivion_gate.002
+# On-county-occupied: chance to spawn a Gate in the occupied county.
+# ------------------------------------------------------------
+oblivion_gate.002 = {
+    type = province_event
+    hidden = yes
+
+    trigger = {
+        is_daedric_invasion_active = yes
+        NOT = { has_variable = oblivion_gate_active }
+    }
+
+    weight_multiplier = {
+        base = 5
+        modifier = {
+            add = 10
+            daedric_invasion_at_full_power = yes
+        }
+    }
+
+    immediate = {
+        open_oblivion_gate_effect = yes
+    }
+}
+
+# ------------------------------------------------------------
+# oblivion_gate.003
+# A ruler personally attempts to close a Gate.
+# ------------------------------------------------------------
+oblivion_gate.003 = {
+    type = character_event
+    title = oblivion_gate.003.t
+    desc = oblivion_gate.003.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_alive = yes
+        any_held_county = { has_variable = oblivion_gate_active }
+    }
+
+    immediate = {
+        random_held_county = {
+            limit = { has_variable = oblivion_gate_active }
+            save_scope_as = gate_county
+        }
+        save_scope_as = gate_closer
+    }
+
+    # Success — Gate closed (requires martial + prowess check)
+    option = {
+        name = oblivion_gate.003.a  # "Enter the Gate and destroy it from within!"
+        trigger = {
+            OR = {
+                martial  >= 14
+                prowess  >= 16
+            }
+        }
+        scope:gate_county = {
+            close_oblivion_gate_effect = yes
+        }
+    }
+
+    # Failure — Gate remains, ruler wounded
+    option = {
+        name = oblivion_gate.003.b  # "We could not close it — fall back."
+        add_prestige = -100
+        add_stress   = 15
+        add_modifier = { modifier = wounded days = 180 }
+        scope:gate_county = {
+            add_province_modifier = {
+                modifier = oblivion_gate_daedra_surge
+                days = 365
+            }
+        }
+    }
+}
+
+# ------------------------------------------------------------
+# oblivion_gate.010
+# Victory — a Gate has been closed (reward event).
+# ------------------------------------------------------------
+oblivion_gate.010 = {
+    type = character_event
+    title = oblivion_gate.010.t
+    desc = oblivion_gate.010.desc
+    theme = feast
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    option = {
+        name = oblivion_gate.010.a  # "Tamriel stands a little safer."
+        add_prestige = 300
+    }
+}

@@ -1,0 +1,936 @@
+# =============================================================
+#  Thu'um / Voice Events
+#  Three namespaces:
+#    thuumvoi  — General Voice training path
+#    greybeard — The Order of the Greybeards + leadership
+#    dovahkiin — Dragonborn awakening chain
+#
+#  EK2 is required.  'dragonborn' is EK2's trait.
+#  Lore timeframe: 2E 440–896 (the Interregnum)
+# =============================================================
+
+namespace = thuumvoi
+
+# ----------------------------------------------------------------
+# thuumvoi.001  — The Voice Stirs  (first training event)
+# Fired by begin_voice_training effect / seek_thu_um_training decision
+# ----------------------------------------------------------------
+thuumvoi.001 = {
+    type  = character_event
+    title = thuumvoi.001.t
+    desc  = thuumvoi.001.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = thuumvoi_quest_started
+        has_trait = thu_um_initiate
+        NOT = { has_character_flag = thuumvoi_event_1_seen }
+    }
+
+    option = {
+        name = thuumvoi.001.a   # "Breathe.  Listen.  Let the world's voice speak to yours."
+        add_character_flag = thuumvoi_event_1_seen
+        add_learning = 1
+        add_stress   = -5
+    }
+    option = {
+        name = thuumvoi.001.b   # "What does this mean?  What have I tapped into?"
+        add_character_flag = thuumvoi_event_1_seen
+        add_piety  = 50
+        add_stress = 10         # The power is terrifying
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.002  — A Word of Power
+# Fires after 90 days as an initiate; the character learns their
+# first complete Word of Power.
+# ----------------------------------------------------------------
+thuumvoi.002 = {
+    type  = character_event
+    title = thuumvoi.002.t
+    desc  = thuumvoi.002.desc
+    theme = realm
+
+    trigger = {
+        has_trait = thu_um_initiate
+        has_character_flag = thuumvoi_event_1_seen
+        NOT = { has_character_flag = thuumvoi_event_2_seen }
+    }
+
+    option = {
+        name = thuumvoi.002.a   # "FUS.  The Word of Unrelenting Force.  I feel it."
+        add_character_flag = thuumvoi_event_2_seen
+        add_learning = 1
+        add_prestige = 100
+        add_piety    = 50
+    }
+    option = {
+        name = thuumvoi.002.b   # "I must write this down.  Every detail.  Every resonance."
+        add_character_flag = thuumvoi_event_2_seen
+        add_learning = 2
+        add_piety    = 50
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.003  — The Second Shout
+# Fires when advancing from Initiate to Adept.
+# ----------------------------------------------------------------
+thuumvoi.003 = {
+    type  = character_event
+    title = thuumvoi.003.t
+    desc  = thuumvoi.003.desc
+    theme = realm
+
+    trigger = {
+        has_trait = thu_um_adept
+        NOT = { has_character_flag = thuumvoi_event_3_seen }
+    }
+
+    option = {
+        name = thuumvoi.003.a   # "I know three shouts now.  I am learning the language of creation."
+        add_character_flag = thuumvoi_event_3_seen
+        add_learning = 1
+        add_prestige = 200
+    }
+    option = {
+        name = thuumvoi.003.b   # "The power is growing faster than my discipline."
+        add_character_flag = thuumvoi_event_3_seen
+        add_learning = 2
+        add_stress   = 10
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.004  — The Tongue
+# Fires when advancing from Adept to Master.
+# ----------------------------------------------------------------
+thuumvoi.004 = {
+    type  = character_event
+    title = thuumvoi.004.t
+    desc  = thuumvoi.004.desc
+    theme = realm
+
+    trigger = {
+        has_trait = thu_um_master
+        NOT = { has_character_flag = thuumvoi_event_4_seen }
+    }
+
+    option = {
+        name = thuumvoi.004.a   # "A Tongue.  The ancient term for one who speaks with the Voice.  I carry a great tradition."
+        add_character_flag = thuumvoi_event_4_seen
+        add_prestige = 500
+        add_piety    = 300
+        add_learning = 2
+    }
+    option = {
+        name = thuumvoi.004.b   # "The Greybeards call it vanity to use the Voice for glory.  I disagree."
+        add_character_flag = thuumvoi_event_4_seen
+        add_prestige = 500
+        add_piety    = -100     # Rejecting Jurgen Windcaller's interpretation
+        add_prowess  = 2
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.005  — The Thu'um in Battle
+# Fired by use_thu_um_in_battle decision.
+# ----------------------------------------------------------------
+thuumvoi.005 = {
+    type  = character_event
+    title = thuumvoi.005.t
+    desc  = thuumvoi.005.desc
+    theme = war
+
+    trigger = {
+        is_at_war = yes
+    }
+
+    option = {
+        name = thuumvoi.005.a   # "FUS RO DAH.  The entire enemy line breaks."
+        add_modifier = { modifier = thu_um_shout_cooldown days = 365 }
+        add_prestige = 300
+        add_dread    = 30
+        add_stress   = -10
+    }
+    option = {
+        name = thuumvoi.005.b   # "YOL TOOR SHUL.  The fire of Alduin's kind, mine to speak."
+        add_modifier = { modifier = thu_um_shout_cooldown days = 365 }
+        add_prestige = 400
+        add_dread    = 50
+        add_piety    = -50      # Using the Voice as a weapon goes against Jurgen Windcaller
+    }
+    option = {
+        name = thuumvoi.005.c   # "WULD NAH KEST.  In a heartbeat I am through their lines."
+        add_modifier = { modifier = thu_um_shout_cooldown days = 365 }
+        add_prestige = 200
+        add_prowess  = 1
+        add_stress   = -5
+    }
+}
+
+# ================================================================
+#  GREYBEARD ORDER QUEST CHAIN
+# ================================================================
+
+namespace = greybeard
+
+# ----------------------------------------------------------------
+# greybeard.001  — The 7,000 Steps Begin
+# Fired when a character first joins the Greybeard Order.
+# ----------------------------------------------------------------
+greybeard.001 = {
+    type  = character_event
+    title = greybeard.001.t
+    desc  = greybeard.001.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_quest_started
+        has_trait = greybeard_aspirant
+        NOT = { has_character_flag = greybeard_quest_1_seen }
+    }
+
+    option = {
+        name = greybeard.001.a   # "I climb.  Every step carved by generations of pilgrims before me."
+        add_character_flag = greybeard_quest_1_seen
+        add_piety    = 100
+        add_stress   = -5
+        trigger_event = { id = greybeard.002 days = 45 }
+    }
+    option = {
+        name = greybeard.001.b   # "Seven thousand steps.  I count every one."
+        add_character_flag = greybeard_quest_1_seen
+        add_learning = 1
+        add_piety    = 50
+        trigger_event = { id = greybeard.002 days = 30 }
+    }
+}
+
+# ----------------------------------------------------------------
+# greybeard.002  — The Storm on the Mountain
+# A blizzard strikes on the Steps.  The first test of resolve.
+# ----------------------------------------------------------------
+greybeard.002 = {
+    type  = character_event
+    title = greybeard.002.t
+    desc  = greybeard.002.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_quest_1_seen
+        NOT = { has_character_flag = greybeard_quest_2_seen }
+    }
+
+    option = {
+        name = greybeard.002.a   # "Press on.  The mountain is testing me.  I will not be found wanting."
+        add_character_flag = greybeard_quest_2_seen
+        add_stress   = 10
+        add_piety    = 200
+        add_prestige = 100
+        trigger_event = { id = greybeard.003 days = 30 }
+    }
+    option = {
+        name = greybeard.002.b   # "Turn back — wait for the storm to pass.  Patience is wisdom."
+        add_character_flag = greybeard_quest_2_seen
+        add_piety    = 100
+        add_learning = 1
+        trigger_event = { id = greybeard.003 days = 60 }
+    }
+}
+
+# ----------------------------------------------------------------
+# greybeard.003  — The Hall of the Greybeards
+# Arriving at High Hrothgar.  The Order receives the aspirant.
+# ----------------------------------------------------------------
+greybeard.003 = {
+    type  = character_event
+    title = greybeard.003.t
+    desc  = greybeard.003.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_quest_2_seen
+        NOT = { has_character_flag = greybeard_quest_3_seen }
+    }
+
+    option = {
+        name = greybeard.003.a   # "Arngeir speaks for them in halting words.  He asks why I have come."
+        add_character_flag = greybeard_quest_3_seen
+        add_piety    = 150
+        trigger_event = { id = greybeard.004 days = 30 }
+    }
+}
+
+# ----------------------------------------------------------------
+# greybeard.004  — Learning the First Word Under Arngeir's Eye
+# The character is formally taught a Word of Power by the Order.
+# ----------------------------------------------------------------
+greybeard.004 = {
+    type  = character_event
+    title = greybeard.004.t
+    desc  = greybeard.004.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_quest_3_seen
+        NOT = { has_character_flag = greybeard_quest_4_done }
+    }
+
+    option = {
+        name = greybeard.004.a   # "HI — Run.  The first Word of Whirlwind Sprint.  The simplest.  It nearly tears the hall apart."
+        add_character_flag = greybeard_quest_4_done
+        add_learning = 2
+        add_piety    = 250
+        add_prestige = 200
+    }
+    option = {
+        name = greybeard.004.b   # "I speak FUS again — Unrelenting Force.  The Greybeards go still.  One weeps."
+        add_character_flag = greybeard_quest_4_done
+        add_piety    = 300
+        add_prestige = 300
+        add_learning = 2
+    }
+}
+
+# ----------------------------------------------------------------
+# greybeard.005  — The Throat of the World
+# For those who have proven themselves: an audience with Paarthurnax.
+# Paarthurnax is a dragon who rebelled against Alduin and has
+# lived at the summit of the Throat of the World since the First
+# Era, teaching the Way of the Voice.
+# ----------------------------------------------------------------
+greybeard.005 = {
+    type  = character_event
+    title = greybeard.005.t
+    desc  = greybeard.005.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_quest_4_done
+        NOT = { has_character_flag = greybeard_quest_5_seen }
+    }
+
+    option = {
+        name = greybeard.005.a   # "He is enormous — ancient beyond reckoning — and he speaks to us as an equal."
+        add_character_flag = greybeard_quest_5_seen
+        add_piety    = 400
+        add_prestige = 300
+        add_learning = 3
+        add_stress   = -15   # A profound, humbling peace
+    }
+    option = {
+        name = greybeard.005.b   # "I ask him about the nature of the Voice.  He answers.  Hours pass before I realise it."
+        add_character_flag = greybeard_quest_5_seen
+        add_piety    = 500
+        add_learning = 4
+    }
+}
+
+# ----------------------------------------------------------------
+# greybeard.006  — The Vow of Silence
+# Fired by initiate_greybeard effect.
+# ----------------------------------------------------------------
+greybeard.006 = {
+    type  = character_event
+    title = greybeard.006.t
+    desc  = greybeard.006.desc
+    theme = realm
+
+    trigger = {
+        has_trait = greybeard_of_high_hrothgar
+        NOT = { has_character_flag = greybeard_quest_6_seen }
+    }
+
+    option = {
+        name = greybeard.006.a   # "The vow is not silence for its own sake.  It is care — awareness — that every word has weight."
+        add_character_flag = greybeard_quest_6_seen
+        add_piety    = 600
+        add_prestige = 400
+        add_stress   = -20
+    }
+    option = {
+        name = greybeard.006.b   # "I will carry this until the day I can no longer speak at all."
+        add_character_flag = greybeard_quest_6_seen
+        add_piety    = 400
+        add_prestige = 200
+        add_learning = 2
+    }
+}
+
+# ================================================================
+#  GREYBEARD LEADERSHIP QUEST — "The Way Made Whole"
+# ================================================================
+
+# ----------------------------------------------------------------
+# greybeard.lead.001  — The Rift Between Tongues and Order
+# A powerful Nord Tongue (warrior-user of the Voice) has been
+# challenging the Greybeards' interpretation of Jurgen Windcaller.
+# He argues the Voice was given to mortals as a weapon.
+# The Order looks to you to resolve it.
+# ----------------------------------------------------------------
+greybeard.lead.001 = {
+    type  = character_event
+    title = greybeard.lead.001.t
+    desc  = greybeard.lead.001.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_lead_quest_1
+        NOT = { has_character_flag = greybeard_lead_quest_2_seen }
+    }
+
+    option = {
+        name = greybeard.lead.001.a   # "Hear his argument before responding.  Even those who are wrong must be understood."
+        add_character_flag = greybeard_lead_quest_2_seen
+        add_diplomacy = 1
+        add_piety     = 100
+        trigger_event = { id = greybeard.lead.002 days = 30 }
+    }
+    option = {
+        name = greybeard.lead.001.b   # "The Way of the Voice is not negotiable.  Challenge him directly."
+        add_character_flag = greybeard_lead_quest_2_seen
+        add_prestige  = 200
+        add_piety     = 50
+        trigger_event = { id = greybeard.lead.002 days = 20 }
+    }
+}
+
+# ----------------------------------------------------------------
+# greybeard.lead.002  — The Voice-Duel
+# The Tongue challenges you to prove your mastery — in words,
+# not combat.  A Thu'um debate: a contest of Shouts to demonstrate
+# the superior understanding of the Voice's nature.
+# ----------------------------------------------------------------
+greybeard.lead.002 = {
+    type  = character_event
+    title = greybeard.lead.002.t
+    desc  = greybeard.lead.002.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_lead_quest_2_seen
+        NOT = { has_character_flag = greybeard_lead_quest_3_seen }
+    }
+
+    option = {
+        name = greybeard.lead.002.a   # "Speak gently.  Each Word measured, each shout considered.  The Way made visible."
+        add_character_flag = greybeard_lead_quest_3_seen
+        add_piety    = 400
+        add_prestige = 300
+        add_learning = 2
+        trigger_event = { id = greybeard.lead.003 days = 30 }
+    }
+    option = {
+        name = greybeard.lead.002.b   # "Overwhelm him.  Force and precision both.  Show him what the Voice truly is."
+        add_character_flag = greybeard_lead_quest_3_seen
+        add_prestige = 500
+        add_piety    = 200
+        add_prowess  = 1
+        trigger_event = { id = greybeard.lead.003 days = 20 }
+    }
+}
+
+# ----------------------------------------------------------------
+# greybeard.lead.003  — The Way Made Whole
+# The Tongue submits — or at least pauses to reconsider.
+# The Order watches.  Arngeir, very old and very quiet, simply nods.
+# Paarthurnax sends a thought down from the summit: one Word.
+# Your name.
+# ----------------------------------------------------------------
+greybeard.lead.003 = {
+    type  = character_event
+    title = greybeard.lead.003.t
+    desc  = greybeard.lead.003.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_lead_quest_3_seen
+        NOT = { has_character_flag = greybeard_lead_quest_done }
+    }
+
+    option = {
+        name = greybeard.lead.003.a   # "The Way is not an argument.  It is a practice.  It is a life."
+        add_character_flag = greybeard_lead_quest_done
+        add_piety    = 600
+        add_prestige = 500
+        add_learning = 3
+    }
+    option = {
+        name = greybeard.lead.003.b   # "Even Paarthurnax chose the Way freely.  That choice is what makes it powerful."
+        add_character_flag = greybeard_lead_quest_done
+        add_piety    = 500
+        add_prestige = 400
+        add_diplomacy = 2
+    }
+}
+
+# ----------------------------------------------------------------
+# greybeard.lead  — Named First Voice
+# The Order formally recognises you as their First Voice.
+# ----------------------------------------------------------------
+greybeard.lead = {
+    type  = character_event
+    title = greybeard.lead.t
+    desc  = greybeard.lead.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_lead_quest_done
+        NOT = { has_trait = first_voice_of_the_greybeards }
+    }
+
+    option = {
+        name = greybeard.lead.a   # "I accept.  Speak rarely.  Speak truly.  Speak with the whole weight of the world."
+        remove_trait    = greybeard_of_high_hrothgar
+        add_trait       = first_voice_of_the_greybeards
+        # greybeard_rank was initialised to 1 in join_greybeard_order,
+        # incremented to 2 in initiate_greybeard; this brings it to 3 (max).
+        if = {
+            limit = { check_variable = { name = greybeard_rank value >= 2 } }
+            change_variable = { name = greybeard_rank add = 1 }
+        }
+        else = {
+            set_variable = { name = greybeard_rank value = 3 }  # safety fallback
+        }
+        add_modifier = { modifier = first_voice_modifier days = -1 }
+        add_piety    = 1000
+        add_prestige = 800
+        remove_character_flag = greybeard_lead_quest_done
+        add_character_flag    = greybeard_is_first_voice
+    }
+}
+
+# ================================================================
+#  POST-LEADERSHIP EVENTS (for First Voice)
+# ================================================================
+
+# greybeard.post_001 — A pilgrim at the base of the Steps
+greybeard.post_001 = {
+    type  = character_event
+    title = greybeard.post_001.t
+    desc  = greybeard.post_001.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_is_first_voice
+        NOT = { has_modifier = greybeard_pilgrims_cooldown }
+    }
+
+    option = {
+        name = greybeard.post_001.a   # "Send word: if they truly seek the Way, the Steps are open to them."
+        add_piety    = 200
+        add_prestige = 100
+        add_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
+    }
+    option = {
+        name = greybeard.post_001.b   # "Send Arngeir to assess them first.  High Hrothgar is not a court."
+        add_piety    = 100
+        add_learning = 1
+        add_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
+    }
+}
+
+# greybeard.post_002 — A young Tongue challenges the Order's pacifism
+greybeard.post_002 = {
+    type  = character_event
+    title = greybeard.post_002.t
+    desc  = greybeard.post_002.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = greybeard_is_first_voice
+        NOT = { has_modifier = greybeard_pilgrims_cooldown }
+    }
+
+    option = {
+        name = greybeard.post_002.a   # "Offer them the same debate.  Let the Voice speak for itself."
+        add_piety    = 300
+        add_prestige = 200
+        add_diplomacy = 1
+        add_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
+    }
+    option = {
+        name = greybeard.post_002.b   # "Speak one Word — just one — and let them feel what it means."
+        add_piety    = 200
+        add_prestige = 400
+        add_dread    = 20
+        add_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
+    }
+}
+
+# ================================================================
+#  DRAGONBORN AWAKENING CHAIN
+# ================================================================
+
+namespace = dovahkiin
+
+# ----------------------------------------------------------------
+# dovahkiin.001  — The Blood Awakens
+# Fired by awaken_dovah_blood effect.
+# ----------------------------------------------------------------
+dovahkiin.001 = {
+    type  = character_event
+    title = dovahkiin.001.t
+    desc  = dovahkiin.001.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = dovahkiin_quest_started
+        is_dragonborn = yes
+        NOT = { has_character_flag = dovahkiin_event_1_seen }
+    }
+
+    option = {
+        name = dovahkiin.001.a   # "The dragon's name — DOV — resonates with something inside me that I cannot name."
+        add_character_flag = dovahkiin_event_1_seen
+        add_learning = 2
+        add_piety    = 200
+        trigger_event = { id = dovahkiin.002 days = 30 }
+    }
+    option = {
+        name = dovahkiin.001.b   # "Every dragon I have encountered — I felt it.  I thought it was fear.  It wasn't."
+        add_character_flag = dovahkiin_event_1_seen
+        add_prowess  = 1
+        add_prestige = 200
+        trigger_event = { id = dovahkiin.002 days = 20 }
+    }
+}
+
+# ----------------------------------------------------------------
+# dovahkiin.002  — Absorbing the Dragon's Soul
+# A dragon is slain (narrative event — the player has encountered
+# and overcome a dragon; the soul is absorbed in the aftermath).
+# ----------------------------------------------------------------
+dovahkiin.002 = {
+    type  = character_event
+    title = dovahkiin.002.t
+    desc  = dovahkiin.002.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = dovahkiin_event_1_seen
+        NOT = { has_character_flag = dovahkiin_event_2_seen }
+    }
+
+    option = {
+        name = dovahkiin.002.a   # "I did not choose this.  But the soul comes to me like water finds the sea."
+        add_character_flag = dovahkiin_event_2_seen
+        add_piety    = 400
+        add_prestige = 400
+        add_learning = 2
+        trigger_event = { id = dovahkiin.003 days = 14 }
+    }
+    option = {
+        name = dovahkiin.002.b   # "The dragon's memories flood me — centuries of sky and fire.  I hold them all."
+        add_character_flag = dovahkiin_event_2_seen
+        add_piety    = 300
+        add_prestige = 500
+        add_learning = 3
+        trigger_event = { id = dovahkiin.003 days = 14 }
+    }
+}
+
+# ----------------------------------------------------------------
+# dovahkiin.003  — Full Power of the Dovahkiin
+# The awakening is complete.  Soul absorbed; Shouts come freely.
+# ----------------------------------------------------------------
+dovahkiin.003 = {
+    type  = character_event
+    title = dovahkiin.003.t
+    desc  = dovahkiin.003.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = dovahkiin_event_2_seen
+        NOT = { has_character_flag = dovahkiin_event_3_seen }
+    }
+
+    option = {
+        name = dovahkiin.003.a   # "FUS RO DAH!  The Wall of Words simply opens to me.  I understand all of it."
+        add_character_flag = dovahkiin_event_3_seen
+        absorb_dragon_soul = yes   # applies dovahkiin_soul_awakened + modifier
+        add_stress = -20
+    }
+    option = {
+        name = dovahkiin.003.b   # "The Greybeards will want to know.  I should seek them out."
+        add_character_flag = dovahkiin_event_3_seen
+        absorb_dragon_soul = yes
+        add_piety    = 200     # Choosing the humble path
+        # Unlock the Greybeard path if not already there
+        if = {
+            limit = { NOT = { has_character_flag = greybeard_quest_started } }
+            add_character_flag = dovahkiin_seeks_greybeards   # cosmetic flag for events
+        }
+    }
+}
+
+# ----------------------------------------------------------------
+# dovahkiin.post_001  — The Call of the Last Dragonborn
+# For Dovahkiin who have awakened — an ongoing recognition event
+# ----------------------------------------------------------------
+dovahkiin.post_001 = {
+    type  = character_event
+    title = dovahkiin.post_001.t
+    desc  = dovahkiin.post_001.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dovahkiin_soul_awakened
+        NOT = { has_modifier = dovahkiin_recognition_cooldown }
+    }
+
+    option = {
+        name = dovahkiin.post_001.a   # "They learn what I am.  Let them."
+        add_prestige = 400
+        add_dread    = 30
+        add_modifier = { modifier = dovahkiin_recognition_cooldown days = 3650 }
+    }
+    option = {
+        name = dovahkiin.post_001.b   # "The Dragonborn does not seek recognition.  But it finds us anyway."
+        add_prestige = 200
+        add_piety    = 300
+        add_modifier = { modifier = dovahkiin_recognition_cooldown days = 3650 }
+    }
+}
+
+# ================================================================
+#  DRAGONBORN SOUL STACKING EVENTS
+#  (continuing the thuumvoi namespace — already declared above)
+# ================================================================
+
+namespace = thuumvoi
+
+# ----------------------------------------------------------------
+# thuumvoi.010  — The Fifth Soul
+# Fired when dragon_souls_growing trait is added (5 souls absorbed).
+# ----------------------------------------------------------------
+thuumvoi.010 = {
+    type  = character_event
+    title = thuumvoi.010.t
+    desc  = thuumvoi.010.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dragon_souls_growing
+        NOT = { has_character_flag = thuumvoi_event_10_seen }
+    }
+
+    option = {
+        name = thuumvoi.010.a   # "Five souls.  I carry five dragons within me."
+        add_character_flag = thuumvoi_event_10_seen
+        add_prestige = 500
+        add_piety    = 300
+        add_stress   = 10       # The voices are real — and growing
+    }
+    option = {
+        name = thuumvoi.010.b   # "I hear them sometimes.  Their memories.  Sky and fire and ancient grudges."
+        add_character_flag = thuumvoi_event_10_seen
+        add_learning = 2        # Their knowledge is our knowledge
+        add_prestige = 300
+        add_stress   = 15
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.011  — Ten Souls: The Dragon at the Threshold
+# Fired when dragon_souls_brimming trait is added (10 souls).
+# The Dovah nature crisis is approaching.
+# ----------------------------------------------------------------
+thuumvoi.011 = {
+    type  = character_event
+    title = thuumvoi.011.t
+    desc  = thuumvoi.011.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dragon_souls_brimming
+        NOT = { has_character_flag = thuumvoi_event_11_seen }
+    }
+
+    option = {
+        name = thuumvoi.011.a   # "Ten dragons.  Ten lifetimes of sky.  I am becoming something the world has never seen."
+        add_character_flag = thuumvoi_event_11_seen
+        add_prestige = 800
+        add_dread    = 40
+        add_stress   = 20
+        # Trigger the Dovah nature crisis within 180 days if not resolved
+        add_character_flag = dovah_crisis_pending
+        trigger_event = { id = thuumvoi.012 days = 90 }
+    }
+    option = {
+        name = thuumvoi.011.b   # "I should seek Paarthurnax.  If anyone knows how to carry this, it is him."
+        add_character_flag = thuumvoi_event_11_seen
+        add_prestige = 500
+        add_piety    = 500
+        add_stress   = 10
+        # Reduced stress from seeking guidance — still triggers crisis
+        add_character_flag = dovah_crisis_pending
+        trigger_event = { id = thuumvoi.012 days = 180 }
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.012  — The Dovah Nature Crisis
+# The accumulated Dragon Souls press against the mortal self.
+# Choose: resist or submit.
+# ----------------------------------------------------------------
+thuumvoi.012 = {
+    type  = character_event
+    title = thuumvoi.012.t
+    desc  = thuumvoi.012.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = dovah_crisis_pending
+        NOT = { has_character_flag = dovah_crisis_resolved }
+    }
+
+    option = {
+        name = thuumvoi.012.a   # "I am not a dragon.  I am Dovahkiin.  I choose."
+        # Attempt to resist — requires piety; succeeds at cost
+        add_character_flag = dovah_crisis_resolved
+        remove_character_flag = dovah_crisis_pending
+        if = {
+            limit = { piety >= 300 }
+            resist_dovah_nature = yes
+        }
+        else = {
+            # Not enough spiritual grounding — the nature takes hold temporarily
+            submit_to_dovah_nature = yes
+        }
+    }
+    option = {
+        name = thuumvoi.012.b   # "Let it come.  What mortal can stand against me now?"
+        add_character_flag = dovah_crisis_resolved
+        remove_character_flag = dovah_crisis_pending
+        submit_to_dovah_nature = yes
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.013  — The Hardest Shout
+# Fired by resist_dovah_nature effect.
+# Paarthurnax called this the hardest shout — turning the Voice
+# inward, taming the dragon within rather than being tamed by it.
+# ----------------------------------------------------------------
+thuumvoi.013 = {
+    type  = character_event
+    title = thuumvoi.013.t
+    desc  = thuumvoi.013.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dovah_nature_resisted
+        NOT = { has_character_flag = thuumvoi_event_13_seen }
+    }
+
+    option = {
+        name = thuumvoi.013.a   # "It is not gone.  But it is mine.  I decide what it means."
+        add_character_flag = thuumvoi_event_13_seen
+        add_piety    = 500
+        add_prestige = 400
+        add_stress   = -40
+        add_learning = 2
+    }
+    option = {
+        name = thuumvoi.013.b   # "The dragon did not expect me to choose compassion.  Neither did I."
+        add_character_flag = thuumvoi_event_13_seen
+        add_piety    = 800
+        add_prestige = 300
+        add_stress   = -50
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.014  — The Dragon Prevails (for now)
+# Fired by submit_to_dovah_nature effect.
+# ----------------------------------------------------------------
+thuumvoi.014 = {
+    type  = character_event
+    title = thuumvoi.014.t
+    desc  = thuumvoi.014.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dovah_nature_dominant
+        NOT = { has_character_flag = thuumvoi_event_14_seen }
+    }
+
+    option = {
+        name = thuumvoi.014.a   # "The words come without thought now.  Everything bends to my will."
+        add_character_flag = thuumvoi_event_14_seen
+        add_prestige = 400
+        add_dread    = 60
+        add_stress   = 30
+    }
+    option = {
+        name = thuumvoi.014.b   # "I can still feel myself in here.  I have to find a way back."
+        add_character_flag = thuumvoi_event_14_seen
+        add_stress   = 40
+        add_piety    = 100
+        # Subtle hint: player should take the resist_dovah_nature_decision
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.015  — Word Wall
+# Fired by learn_from_word_wall_effect.
+# The Dragonborn stands before a Word Wall — ancient Dragon
+# Language carved in stone — and reads it like a native speaker.
+# ----------------------------------------------------------------
+thuumvoi.015 = {
+    type  = character_event
+    title = thuumvoi.015.t
+    desc  = thuumvoi.015.desc
+    theme = realm
+
+    option = {
+        name = thuumvoi.015.a   # "Three Words.  I know them before I finish reading them."
+        add_prestige = 200
+        add_piety    = 150
+        add_learning = 1
+    }
+    option = {
+        name = thuumvoi.015.b   # "There are more of these walls out there.  Each one is a gift."
+        add_prestige = 150
+        add_learning = 2
+        add_piety    = 50
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.016  — Akatosh's Vision
+# Post-awakening event for Dragonborn who have dovahkiin_soul_awakened.
+# The dragon god of time speaks to them — briefly.  An affirmation
+# that they are on the right path; a warning that the path is hard.
+# ----------------------------------------------------------------
+thuumvoi.016 = {
+    type  = character_event
+    title = thuumvoi.016.t
+    desc  = thuumvoi.016.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dovahkiin_soul_awakened
+        NOT = { has_character_flag = thuumvoi_akatosh_vision_seen }
+        NOT = { has_modifier = dovahkiin_recognition_cooldown }
+    }
+
+    option = {
+        name = thuumvoi.016.a   # "He does not say what I must do.  Only that I must choose."
+        add_character_flag = thuumvoi_akatosh_vision_seen
+        add_piety    = 600
+        add_prestige = 400
+        add_stress   = -20
+    }
+    option = {
+        name = thuumvoi.016.b   # "The Covenant of Alessia.  It involves me.  I feel it."
+        add_character_flag = thuumvoi_akatosh_vision_seen
+        add_piety    = 400
+        add_prestige = 200
+        # Hint toward the Amulet of Kings quest
+        add_character_flag = heard_of_covenant_of_alessia
+    }
+}

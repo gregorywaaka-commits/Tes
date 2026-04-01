@@ -1,0 +1,207 @@
+# =============================================================
+#  Daedric Invasion On-Actions
+#  File: mod/common/on_actions/daedric_invasion_on_actions.txt
+#
+#  !! IMPORTANT FOR FUTURE AGENTS !!
+#  CK3 merges all on_action files at load time unless two files
+#  share the SAME filename, in which case only one loads.
+#  Add new Daedric-invasion on_action hooks HERE, not in a
+#  second daedric_invasion_on_actions.txt.
+#  Note: on_monthly_pulse and on_yearly_pulse are ALSO declared
+#  in lore_races_on_actions.txt — CK3 merges both automatically
+#  because they are in DIFFERENT files.
+#
+#  HOW THE DAEDRIC INVASION SYSTEM WORKS:
+#  ───────────────────────────────────────
+#  1. TRIGGER:  on_yearly_pulse randomly fires daedric_invasion.000
+#               which checks daedric_invasion_trigger_conditions
+#               (see daedric_invasion_triggers.txt).  If conditions
+#               pass, it picks a Prince and calls begin_daedric_invasion
+#               (see daedric_invasion_effects.txt).
+#
+#  2. TRACKING: Three global variables track the invasion state:
+#               • global_var:active_daedric_prince — string key of
+#                 the current Prince template (e.g. "molag_bal_template")
+#               • global_var:daedric_invasion_phase — integer 1/2/3;
+#                 phase 3 = maximum threat
+#               • global_var:daedric_invasion_started_days — counter
+#                 used by daedric_invasion_can_escalate trigger
+#
+#  3. ESCALATION: on_monthly_pulse fires daedric_invasion.050 which
+#                 increments daedric_invasion_started_days and calls
+#                 escalate_daedric_invasion when thresholds are met
+#                 (~5 years per phase = 1825 days).
+#
+#  4. OBLIVION GATES: begin_daedric_invasion opens 3 initial gates.
+#                     on_county_occupied may open additional gates.
+#                     Each gate applies oblivion_gate_province_modifier
+#                     (heavy economic/military penalty) until closed.
+#                     Players close gates via the close_oblivion_gate
+#                     decision (gains oblivion_slayer trait).
+#
+#  5. CHAMPIONS: on_five_year_pulse_character randomly offers rulers
+#                a chance to become a Daedric Champion (per-Prince
+#                quest chain in daedric_champion_events.txt).
+#                Champions can attempt to banish the Prince via
+#                attempt_to_banish_daedric_prince decision.
+#
+#  6. RESOLUTION: end_daedric_invasion cleans up all gates, modifiers,
+#                 and global_vars, then fires daedric_invasion.020
+#                 (victory notification) for all living rulers.
+#
+#  KEY FILES:
+#  ─────────
+#  • daedric_invasion_effects.txt   — begin/escalate/end effects,
+#                                     open/close gate effects
+#  • daedric_invasion_triggers.txt  — is_daedric_invasion_active,
+#                                     per-prince checks, champion checks
+#  • daedric_invasion_events.txt    — main invasion event chain (001–060)
+#  • daedric_prince_invasion_events.txt — per-prince unique events
+#  • daedric_champion_events.txt    — champion quest chains per prince
+#  • oblivion_gate_events.txt       — gate open/close events (001, 002, 010)
+#  • daedric_invasion_decisions.txt — rally, submit, banish decisions
+#  • daedric_prince_decisions.txt   — seek each of the 17 Princes
+#  • daedric_invasion_traits.txt    — daedric_prince, champion, vassal traits
+#  • lore_races_modifiers.txt       — per-prince modifiers, gate modifiers,
+#                                     artifact holder modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MONTHLY PULSE — invasion tick
+#  Fires every month.  daedric_invasion.050 is a hidden event that:
+#  • Increments daedric_invasion_started_days by 1
+#  • Checks daedric_invasion_can_escalate (every 1825 days ≈ 5 years)
+#  • Calls escalate_daedric_invasion when ready
+#  • Calls end_daedric_invasion if the Prince's army has been defeated
+#    (detected via death of scope:daedric_prince_char)
+# ---------------------------------------------------------------
+on_monthly_pulse = {
+    events = {
+        daedric_invasion.050   # invasion phase tick / escalation check (hidden)
+    }
+}
+
+# ---------------------------------------------------------------
+#  ON COUNTY OCCUPIED — spread the invasion
+#  When any county is occupied during an active invasion, there is
+#  a chance a new Oblivion Gate opens in that county.
+#  This makes active wars more dangerous during an invasion and
+#  rewards players who stabilise their realm.
+# ---------------------------------------------------------------
+on_county_occupied = {
+    events = {
+        oblivion_gate.002     # 15% chance to open a new Oblivion Gate on occupation
+    }
+}
+
+# ---------------------------------------------------------------
+#  ON CHARACTER DEATH — cleanup
+#  Remove Daedric Champion and Vassal traits when the bearer dies
+#  so that those statuses do not persist on resurrected/inherited
+#  characters.  Also removes artifact holder flags.
+# ---------------------------------------------------------------
+on_character_death = {
+    events = {
+        daedric_invasion.060  # strips daedric_champion, daedric_vassal, artifact modifiers
+    }
+}
+
+# ---------------------------------------------------------------
+#  YEARLY PULSE — invasion trigger
+#  Each year there is a small chance (weight 5 out of ~105) that
+#  a new invasion starts IF no invasion is active AND enough time
+#  has passed (current_date >= 2E.100).
+#  The actual Prince selection happens inside daedric_invasion.000.
+# ---------------------------------------------------------------
+on_yearly_pulse = {
+    random_events = {
+        100 = 0                      # no-op — most years no new invasion is triggered
+        5   = daedric_invasion.000   # attempt to start a new Daedric invasion
+    }
+}
+
+# ---------------------------------------------------------------
+#  FIVE-YEAR CHARACTER PULSE — Prince contact during peace
+#  Even between invasions, Daedric Princes reach out to mortals.
+#  Each Prince has a small weight here.  When their event fires,
+#  the character gets the opening of their champion quest chain
+#  (defined in daedric_champion_events.txt).
+#  Lower weights = rarer contact (Namira, Sheogorath are more
+#  selective; Azura, Sanguine, Meridia reach out more often).
+# ---------------------------------------------------------------
+on_five_year_pulse_character = {
+    random_events = {
+        100 = 0          # no-op — most 5-year periods, no contact
+        3   = daedric_champion.mehrunes.001   # Dagon: seeks ambitious/martial rulers
+        4   = daedric_champion.azura.001      # Azura: seeks prophetic/learning rulers
+        2   = daedric_champion.mephala.001    # Mephala: seeks high-intrigue rulers
+        2   = daedric_champion.clavicus.001   # Clavicus: offers bargains to any ruler
+        2   = daedric_champion.vaermina.001   # Vaermina: haunts rulers with nightmares
+        1   = daedric_champion.sheogorath.001 # Sheogorath: random; prefers stressed rulers
+        2   = daedric_champion.peryite.001    # Peryite: approaches sick/plague-touched rulers
+        3   = daedric_champion.sanguine.001   # Sanguine: approaches hedonistic rulers
+        3   = daedric_champion.meridia.001    # Meridia: approaches pious rulers
+        2   = daedric_champion.malacath.001   # Malacath: approaches oath-breakers/Orcs
+        2   = daedric_champion.nocturnal.001  # Nocturnal: approaches thieves/high-intrigue
+        2   = daedric_champion.hermaeus.001   # Mora: approaches high-learning rulers
+        1   = daedric_champion.namira.001     # Namira: approaches rulers with sinister traits
+    }
+}
+
+# ---------------------------------------------------------------
+#  YEARLY CHARACTER PULSE — per-Prince invasion events
+#  During an active invasion, each Prince has unique recurring
+#  events that fire on the yearly pulse (defined in
+#  daedric_prince_invasion_events.txt).  The trigger blocks
+#  inside those events check is_X_invasion to ensure only the
+#  right events fire for the active Prince.
+#  Note: Mehrunes Dagon, Boethiah, Hircine, Namira, Molag Bal
+#  do not have entries here — their invasions are purely military
+#  and do not have special recurring character events.
+# ---------------------------------------------------------------
+on_yearly_pulse_character = {
+    random_events = {
+        80 = 0
+        5  = daedric_prince_invasion.azura.003     # Azura: prophecy revelation
+        4  = daedric_prince_invasion.mephala.002   # Mephala: web tightens around the ruler
+        4  = daedric_prince_invasion.clavicus.003  # Clavicus: follow-up offer
+        4  = daedric_prince_invasion.vaermina.003  # Vaermina: nightmare intensifies
+        3  = daedric_prince_invasion.sheogorath.003 # Sheogorath: madness deepens
+        4  = daedric_prince_invasion.peryite.002   # Peryite: plague spreads
+        4  = daedric_prince_invasion.sanguine.003  # Sanguine: corruption event
+        4  = daedric_prince_invasion.meridia.002   # Meridia: purge event
+        4  = daedric_prince_invasion.malacath.003  # Malacath: oath-curse deepens
+        4  = daedric_prince_invasion.nocturnal.002 # Nocturnal: shadow tithe event
+        4  = daedric_prince_invasion.hermaeus.003  # Mora: knowledge offer/price
+        3  = daedric_prince_invasion.jyggalag.003  # Jyggalag: crystallisation spreads
+    }
+}
+
+# ---------------------------------------------------------------
+#  GUILD YEARLY ACTIVITY PULSES
+#  Each guild member has a small yearly chance of a guild activity
+#  event.  These events are defined in guild_events.txt and
+#  guild_leadership_events.txt.  The events check guild membership
+#  (has_trait = mages_guild_member, etc.) internally.
+# ---------------------------------------------------------------
+on_yearly_pulse = {
+    random_events = {
+        70 = 0                   # no-op — guild events are flavour, should be infrequent
+        10 = guild.mages.research    # Mages Guild research opportunity
+        10 = guild.fighters.contract # Fighters Guild contract
+        10 = guild.thieves.heist     # Thieves Guild heist opportunity
+        8  = guild.morag_tong.writ   # Morag Tong writ of execution
+        8  = guild.companions.contract # Companions hunting/warrior contract
+        8  = guild.bards.ballad      # Bards College composition opportunity
+        8  = guild.undaunted.delve   # Undaunted dungeon delve
+    }
+}
+
+# AI decade pulse — placeholder; AI guild joining is handled by ai_will_do
+# weights in the decision files (daedric_invasion_decisions.txt, guild_decisions.txt).
+on_decade_pulse_character = {
+    random_events = {
+        80 = 0
+        5  = 0   # reserved for future AI proactive guild events
+    }
+}

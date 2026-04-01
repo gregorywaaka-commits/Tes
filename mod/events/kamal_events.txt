@@ -1,0 +1,149 @@
+# =============================================================
+#  Kamal Events  (Akaviri Snow Demons / Seasonal Invaders)
+#  Namespace: kamal
+# =============================================================
+
+namespace = kamal
+
+# ---------------------------------------------------------------
+# kamal.000  The Kamal Thaw — a summer invasion is brewing
+# ---------------------------------------------------------------
+kamal.000 = {
+    type = world_event
+    title = kamal.000.t
+    desc = kamal.000.desc
+    theme = war
+
+    trigger = {
+        kamal_invasion_possible = yes
+        NOT = { exists = global_var:kamal_invasion_active }
+    }
+
+    option = {
+        name = kamal.000.a   # "Let them come — Tamriel will not bow."
+        custom_tooltip = kamal_invasion_coming_tt
+        begin_kamal_invasion = yes
+    }
+}
+
+# ---------------------------------------------------------------
+# kamal.001  Kamal Invasion Declared — all rulers notified
+# ---------------------------------------------------------------
+kamal.001 = {
+    type = character_event
+    title = kamal.001.t
+    desc = kamal.001.desc
+    theme = war
+    left_portrait = {
+        character = scope:dir_kamal_char
+        animation = anger
+    }
+
+    option = {
+        name = kamal.001.a   # "Ada'Soom Dir-Kamal — we will stop you here!"
+        add_prestige = 100
+        add_stress   = -10
+    }
+
+    option = {
+        name = kamal.001.b   # "Pray the Tribunal can intervene as before."
+        add_piety    = 100
+        add_stress   = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# kamal.002  Kamal Ice-Curse (on county occupation — hidden)
+# ---------------------------------------------------------------
+kamal.002 = {
+    type = province_event
+    hidden = yes
+
+    trigger = {
+        exists = global_var:kamal_invasion_active
+    }
+
+    weight_multiplier = {
+        base = 10
+        modifier = {
+            add = 20
+            geographical_region = world_skyrim_north
+        }
+    }
+
+    immediate = {
+        add_province_modifier = {
+            modifier = kamal_ice_curse_modifier
+            days = 1825           # 5 years — lingering cold
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# kamal.010  Vivec Intervenes (lore: Tribunal god Vivec repelled Dir-Kamal)
+# ---------------------------------------------------------------
+kamal.010 = {
+    type = character_event
+    title = kamal.010.t
+    desc = kamal.010.desc
+    theme = realm
+
+    trigger = {
+        exists = global_var:kamal_invasion_active
+        any_ruler = {
+            has_culture = dunmer_culture       # Tribunal devotees present
+            primary_title = { tier >= tier_kingdom }
+        }
+        global_var:daedric_invasion_phase < 1   # no daedric invasion active
+    }
+
+    option = {
+        name = kamal.010.a   # "Vivec has spoken — the demons retreat!"
+        end_kamal_invasion = yes
+        add_prestige = 500
+        add_piety    = 1000
+    }
+
+    option = {
+        name = kamal.010.b   # "A narrow victory — do not rely on the Tribunal again."
+        end_kamal_invasion = yes
+        add_prestige = 300
+    }
+}
+
+# ---------------------------------------------------------------
+# kamal.020  Kamal Retreat (end event — either repelled or winter)
+# ---------------------------------------------------------------
+kamal.020 = {
+    type = character_event
+    title = kamal.020.t
+    desc = kamal.020.desc
+    theme = feast
+
+    option = {
+        name = kamal.020.a   # "They return to their frozen realm — for now."
+        add_prestige = 300
+        add_piety    = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# kamal.050  Monthly tick — winter/summer seasonal check (hidden)
+# ---------------------------------------------------------------
+kamal.050 = {
+    type = world_event
+    hidden = yes
+
+    immediate = {
+        # Track summer (months 3-9) and winter (months 10-2) via a global variable.
+        # CK3 date scripting: use game_start_date offset or on_action year/month flags.
+        # For now, the Kamal invasion is triggered via on_yearly_pulse and Dir-Kamal
+        # is spawned without a hard seasonal guard; balance via on_yearly_pulse weight.
+        if = {
+            limit = {
+                NOT = { exists = global_var:current_season_summer }
+            }
+            set_global_variable = { name = current_season_summer value = yes }
+        }
+    }
+}

@@ -1,0 +1,163 @@
+# =============================================================
+#  Men-at-Arms Types — Daedric & Obscure Lore Races
+#  All unit types referenced by invasion effects and events.
+#  Stats use CK3 men_at_arms_types conventions.
+#  EK2 defines its own unit types; these complement them.
+# =============================================================
+
+# ---- Daedric Footsoldiers (generic Daedra rank-and-file) ----
+daedra_footsoldiers = {
+    type = infantry
+    damage = 30
+    toughness = 25
+    pursuit = 10
+    screen = 10
+    siege_value = 0
+    max_size = 200
+    scaling_cost = { gold = 0.2 }
+    maintenance_multiplier = 1.5
+}
+
+# ---- Daedric Cavalry (mounted Daedra) ----
+daedra_cavalry = {
+    type = heavy_cavalry
+    damage = 55
+    toughness = 40
+    pursuit = 25
+    screen = 20
+    siege_value = 0
+    max_size = 100
+    scaling_cost = { gold = 0.4 }
+    maintenance_multiplier = 2.0
+    terrain_bonus = {
+        plains = { damage = 10 pursuit = 10 }
+    }
+}
+
+# ---- Clannfear (raptor-like Daedra; aggressive pursuit) ----
+clannfear = {
+    type = light_cavalry
+    damage = 40
+    toughness = 30
+    pursuit = 35
+    screen = 15
+    siege_value = 0
+    max_size = 150
+    scaling_cost = { gold = 0.3 }
+    maintenance_multiplier = 1.8
+    terrain_bonus = {
+        forest = { damage = 5 pursuit = 10 }
+        hills  = { damage = 5 }
+    }
+}
+
+# ---- Dremora (elite warrior caste of Oblivion; highly disciplined) ----
+dremora = {
+    type = knights
+    damage = 75
+    toughness = 55
+    pursuit = 20
+    screen = 25
+    siege_value = 5
+    max_size = 100
+    scaling_cost = { gold = 0.6 }
+    maintenance_multiplier = 2.5
+}
+
+# ---- Golden Saint (Aureal; elite guards of Sheogorath) ----
+golden_saint = {
+    type = heavy_infantry
+    damage = 60
+    toughness = 50
+    pursuit = 15
+    screen = 30
+    siege_value = 10
+    max_size = 80
+    scaling_cost = { gold = 0.5 }
+    maintenance_multiplier = 2.2
+    terrain_bonus = {
+        plains = { damage = 5 screen = 5 }
+    }
+}
+
+# ---- Dark Seducer (Mazken; elite guards of Sheogorath) ----
+dark_seducer = {
+    type = skirmishers
+    damage = 50
+    toughness = 40
+    pursuit = 30
+    screen = 20
+    siege_value = 8
+    max_size = 80
+    scaling_cost = { gold = 0.45 }
+    maintenance_multiplier = 2.0
+}
+
+# ---- Hircine Werewolf Pack (lycanthropes in battle frenzy) ----
+hircine_werewolf_pack = {
+    type = light_cavalry
+    damage = 65
+    toughness = 45
+    pursuit = 50
+    screen = 10
+    siege_value = 0
+    max_size = 120
+    scaling_cost = { gold = 0.35 }
+    maintenance_multiplier = 1.8
+    terrain_bonus = {
+        forest = { damage = 15 pursuit = 15 }
+        hills  = { damage = 5  pursuit = 5  }
+    }
+}
+
+# ---- Peryite Afflicted Unit (diseased shock troops; dangerous to engage) ----
+peryite_afflicted_unit = {
+    type = infantry
+    damage = 35
+    toughness = 20
+    pursuit = 5
+    screen = 5
+    siege_value = 0
+    max_size = 150
+    scaling_cost = { gold = 0.15 }
+    maintenance_multiplier = 1.0
+}
+
+# ---- Hermaeus Mora Seeker (Apocrypha's tentacled scholars) ----
+hermaeus_seeker = {
+    type = skirmishers
+    damage = 45
+    toughness = 30
+    pursuit = 20
+    screen = 30
+    siege_value = 5
+    max_size = 100
+    scaling_cost = { gold = 0.35 }
+    maintenance_multiplier = 1.7
+}
+
+# ---- Hermaeus Mora Lurker (Apocrypha's hulking gate-guardians) ----
+hermaeus_lurker = {
+    type = heavy_infantry
+    damage = 70
+    toughness = 60
+    pursuit = 5
+    screen = 20
+    siege_value = 15
+    max_size = 60
+    scaling_cost = { gold = 0.6 }
+    maintenance_multiplier = 2.0
+}
+
+# ---- Knight of Order (Jyggalag's crystalline champions; near-unstoppable) ----
+knight_of_order = {
+    type = knights
+    damage = 90
+    toughness = 80
+    pursuit = 15
+    screen = 30
+    siege_value = 20
+    max_size = 60
+    scaling_cost = { gold = 0.8 }
+    maintenance_multiplier = 3.0
+}

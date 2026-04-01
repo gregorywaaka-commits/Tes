@@ -1,0 +1,349 @@
+# =============================================================
+#  Daedric Prince character templates
+#  Each Daedric Prince is created as a non-playable, immortal
+#  NPC ruler who leads the invasion forces.
+#  These are spawned by scripted effects when an invasion begins.
+# =============================================================
+
+mehrunes_dagon_template = {
+    name = "Mehrunes_Dagon"
+    dynasty = daedric_dynasty
+    religion = mehrunes_dagon_faith       # defined in EK2
+    culture = daedra_culture              # defined in EK2
+    trait = daedric_prince
+    trait = mehrunes_dagon_aspect
+    trait = brilliant_strategist
+    trait = callous
+    trait = implacable
+    martial = 30
+    diplomacy = 8
+    stewardship = 12
+    intrigue = 15
+    learning = 18
+    prowess = 35
+    immortal_age = 0                      # eternal
+}
+
+molag_bal_template = {
+    name = "Molag_Bal"
+    dynasty = daedric_dynasty
+    religion = molag_bal_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = molag_bal_aspect
+    trait = brutal
+    trait = sadistic
+    trait = callous
+    martial = 28
+    diplomacy = 20
+    stewardship = 10
+    intrigue = 30
+    learning = 20
+    prowess = 30
+    immortal_age = 0
+}
+
+boethiah_template = {
+    name = "Boethiah"
+    dynasty = daedric_dynasty
+    religion = boethiah_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = boethiah_aspect
+    trait = schemer
+    trait = deceitful
+    trait = ambitious
+    martial = 25
+    diplomacy = 22
+    stewardship = 14
+    intrigue = 35
+    learning = 22
+    prowess = 28
+    immortal_age = 0
+}
+
+hircine_template = {
+    name = "Hircine"
+    dynasty = daedric_dynasty
+    religion = hircine_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = hircine_aspect
+    trait = hunter
+    trait = gregarious
+    trait = brave
+    martial = 32
+    diplomacy = 10
+    stewardship = 8
+    intrigue = 20
+    learning = 12
+    prowess = 40
+    immortal_age = 0
+}
+
+namira_template = {
+    name = "Namira"
+    dynasty = daedric_dynasty
+    religion = namira_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = namira_aspect
+    trait = cannibal
+    trait = repulsive
+    trait = callous
+    martial = 24
+    diplomacy = 5
+    stewardship = 6
+    intrigue = 28
+    learning = 25
+    prowess = 26
+    immortal_age = 0
+}
+
+# ---- Extended Prince Templates (Princes 6-17) ----
+
+# Azura — Prince of Dusk and Dawn, Prophecy, Twilight
+# Patron of the Dunmer; unusual among Daedra for genuine care toward mortals
+azura_template = {
+    name = "Azura"
+    dynasty = daedric_dynasty
+    religion = azura_faith            # EK2: azura_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = azura_aspect
+    trait = patient
+    trait = mystic
+    martial    = 18
+    diplomacy  = 28
+    stewardship = 16
+    intrigue   = 22
+    learning   = 30
+    prowess    = 20
+    immortal_age = 0
+}
+
+# Mephala — Webspinner, Prince of Plots, Murder, Secrets
+# Morag Tong patron; weaves webs of assassination
+mephala_template = {
+    name = "Mephala"
+    dynasty = daedric_dynasty
+    religion = mephala_faith          # EK2: mephala_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = mephala_aspect
+    trait = schemer
+    trait = sadistic
+    trait = callous
+    martial    = 22
+    diplomacy  = 18
+    stewardship = 14
+    intrigue   = 38
+    learning   = 24
+    prowess    = 24
+    immortal_age = 0
+}
+
+# Clavicus Vile — Prince of Bargains, Wishes, Trickery
+# Holds court with Barbas; grants wishes that always backfire
+clavicus_vile_template = {
+    name = "Clavicus_Vile"
+    dynasty = daedric_dynasty
+    religion = clavicus_vile_faith    # EK2: clavicus_vile_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = clavicus_vile_aspect
+    trait = charming
+    trait = deceitful
+    trait = gregarious
+    martial    = 14
+    diplomacy  = 35
+    stewardship = 20
+    intrigue   = 32
+    learning   = 22
+    prowess    = 16
+    immortal_age = 0
+}
+
+# Vaermina — Prince of Dreams, Nightmares, Stolen Memories
+# Enters the minds of sleeping mortals; makes them witnesses to horrors
+vaermina_template = {
+    name = "Vaermina"
+    dynasty = daedric_dynasty
+    religion = vaermina_faith         # EK2: vaermina_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = vaermina_aspect
+    trait = callous
+    trait = patient
+    martial    = 16
+    diplomacy  = 14
+    stewardship = 12
+    intrigue   = 36
+    learning   = 32
+    prowess    = 18
+    immortal_age = 0
+}
+
+# Sheogorath — Prince of Madness, Chaos, Creativity
+# The Mad God; every action is unpredictable; his realm is the Shivering Isles
+sheogorath_template = {
+    name = "Sheogorath"
+    dynasty = daedric_dynasty
+    religion = sheogorath_faith       # EK2: sheogorath_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = sheogorath_aspect
+    trait = lunatic
+    trait = gregarious
+    trait = whimsical
+    martial    = 20
+    diplomacy  = 22
+    stewardship = 8
+    intrigue   = 28
+    learning   = 20
+    prowess    = 25
+    immortal_age = 0
+}
+
+# Peryite — Prince of Pestilence, Order Among the Lowest
+# Least-revered of the Princes; governs disease and the lowest orders of Oblivion
+peryite_template = {
+    name = "Peryite"
+    dynasty = daedric_dynasty
+    religion = peryite_faith          # EK2: peryite_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = peryite_aspect
+    trait = callous
+    trait = patient
+    martial    = 22
+    diplomacy  = 10
+    stewardship = 24
+    intrigue   = 20
+    learning   = 28
+    prowess    = 20
+    immortal_age = 0
+}
+
+# Sanguine — Prince of Debauchery, Hedonism, Indulgence
+# Patron of revelry; his Rose summons Daedra; appears as a jovial reveller
+sanguine_template = {
+    name = "Sanguine"
+    dynasty = daedric_dynasty
+    religion = sanguine_faith         # EK2: sanguine_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = sanguine_aspect
+    trait = gregarious
+    trait = gluttonous
+    martial    = 18
+    diplomacy  = 32
+    stewardship = 10
+    intrigue   = 24
+    learning   = 16
+    prowess    = 20
+    immortal_age = 0
+}
+
+# Meridia — Princess of Living Energies, Light, Renewal
+# Despises undead; grants Dawnbreaker; quasi-Aedric alignment
+meridia_template = {
+    name = "Meridia"
+    dynasty = daedric_dynasty
+    religion = meridia_faith          # EK2: meridia_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = meridia_aspect
+    trait = zealous
+    trait = righteous
+    martial    = 26
+    diplomacy  = 20
+    stewardship = 18
+    intrigue   = 16
+    learning   = 28
+    prowess    = 28
+    immortal_age = 0
+}
+
+# Malacath — Prince of Oaths, Curses, Exiles, the Spurned
+# Transformation of Trinimac; patron of Orcs; enforces sworn oaths
+malacath_template = {
+    name = "Malacath"
+    dynasty = daedric_dynasty
+    religion = malacath_faith         # EK2: malacath_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = malacath_aspect
+    trait = stubborn
+    trait = wrathful
+    trait = brave
+    martial    = 32
+    diplomacy  = 8
+    stewardship = 14
+    intrigue   = 18
+    learning   = 16
+    prowess    = 42
+    immortal_age = 0
+}
+
+# Nocturnal — Princess of Night, Darkness, Luck, Secrets
+# Mistress of Shadows; patroness of Thieves Guild and Nightingales
+nocturnal_template = {
+    name = "Nocturnal"
+    dynasty = daedric_dynasty
+    religion = nocturnal_faith        # EK2: nocturnal_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = nocturnal_aspect
+    trait = patient
+    trait = callous
+    martial    = 20
+    diplomacy  = 22
+    stewardship = 18
+    intrigue   = 40
+    learning   = 26
+    prowess    = 22
+    immortal_age = 0
+}
+
+# Hermaeus Mora — Prince of Knowledge, Fate, Forbidden Secrets
+# The Gardener of Men; appears as a mass of tentacles and eyes; seeks all knowledge
+hermaeus_mora_template = {
+    name = "Hermaeus_Mora"
+    dynasty = daedric_dynasty
+    religion = hermaeus_mora_faith    # EK2: hermaeus_mora_faith
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = hermaeus_mora_aspect
+    trait = patient
+    trait = paranoid
+    martial    = 16
+    diplomacy  = 20
+    stewardship = 22
+    intrigue   = 34
+    learning   = 45
+    prowess    = 14
+    immortal_age = 0
+}
+
+# Jyggalag — Prince of Perfect Order, Logic, Deduction
+# Formerly cursed into Sheogorath; the most powerful of Princes in his true form
+# Extremely rare — the Greymarch of Perfect Order
+jyggalag_template = {
+    name = "Jyggalag"
+    dynasty = daedric_dynasty
+    religion = jyggalag_faith         # EK2: jyggalag_faith (custom, not in base EK2)
+    culture = daedra_culture
+    trait = daedric_prince
+    trait = jyggalag_aspect
+    trait = brilliant_strategist
+    trait = implacable
+    trait = arrogant
+    martial    = 38
+    diplomacy  = 14
+    stewardship = 28
+    intrigue   = 22
+    learning   = 35
+    prowess    = 45
+    immortal_age = 0
+}

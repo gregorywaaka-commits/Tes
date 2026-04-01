@@ -1,0 +1,1587 @@
+# =============================================================
+#  Province / Character Modifiers — All Systems
+#  File: mod/common/modifiers/lore_races_modifiers.txt
+#
+#  !! IMPORTANT FOR FUTURE AGENTS !!
+#  ALL modifiers for this mod live in this single file regardless
+#  of which system they belong to (Daedric, Thu'um, Guild, etc.).
+#  Do NOT create a second lore_races_modifiers.txt — it would
+#  shadow this one.  Append new modifiers at the end.
+#
+#  MODIFIER TYPES IN CK3:
+#  ─────────────────────
+#  • Character modifiers: affect a character's stats/income.
+#    Applied with: add_modifier = { modifier = X days = N }
+#    days = -1 means PERMANENT until manually removed.
+#  • Province modifiers: affect a specific county's development,
+#    income, supply.
+#    Applied with: add_province_modifier = { modifier = X days = N }
+#  • Empty modifiers { }: act as "cooldown flags" — they apply
+#    no stats but their presence can be checked with has_modifier.
+#    These are used to gate decisions and prevent event spam.
+#
+#  VALUE SCALE REFERENCE (for future contributors):
+#  ─────────────────────────────────────────────────
+#  monthly_income = 0.1        ≈ +10% income (small)
+#  monthly_income = -0.4       ≈ -40% income (severe plague)
+#  development_growth_factor = -0.5  ≈ halved growth (devastating)
+#  supply_limit_mult = -0.3    ≈ armies need more time to feed (military impact)
+#  monthly_prestige_gain_mult  = 0.1 ≈ +10% prestige gain (small)
+#  dread_gain_mult = 0.25      ≈ dread increases 25% faster
+#  prowess = 4                 ≈ +4 points to personal combat (notable)
+#  diplomacy = 3               ≈ +3 to all diplomacy skill checks
+#  command_modifier.advantage = 5   ≈ significant tactical edge in battles
+#  stress_gain_mult = 0.2      ≈ stressful situations 20% more stressful
+#
+#  HOW MODIFIERS ARE APPLIED/REMOVED (cross-reference):
+#  ──────────────────────────────────────────────────────
+#  See scripted_effects/ files for where each modifier is
+#  applied and removed — search for 'add_modifier' and
+#  'remove_modifier' calls with the modifier name.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MAORMER (Pyandonean Sea-Elves)
+#  Context: Maormer are sea-raiders from the Elven island of
+#  Pyandonea.  King Orgnum leads them; they worship serpents.
+#  Applied by: maormer_raid_effect (lore_races_effects.txt)
+#  Checked by: maormer_raid_possible trigger (lore_races_triggers.txt)
+# ---------------------------------------------------------------
+
+# Applied to a county that has been raided by Maormer sea-elves.
+# Duration: 730 days (2 years) — time to recover trade routes.
+maormer_raided_modifier = {
+    monthly_income    = -0.2    # Raided merchants and warehouses
+    supply_limit_mult = -0.1    # Disrupted grain stores
+}
+
+# Applied when a peace/truce has been negotiated with Maormer.
+# Acts as a cooldown flag — no stat effect, just prevents raid events.
+# Duration: set by decision outcome (typically 1825 days = 5 years).
+maormer_truce_modifier = {
+    build_speed_mult = 0.0   # no-op; presence of modifier prevents maormer_raid_possible
+}
+
+# Applied to coastal counties caught in a Maormer tempest.
+# Worse than a raid — sustained weather disruption rather than a single attack.
+maormer_tempest_modifier = {
+    monthly_income    = -0.15
+    supply_limit_mult = -0.2
+}
+
+# Bonus for a county that repelled a Maormer raid — local morale is high.
+# Duration: 365 days (1 year).
+repelled_maormer_modifier = {
+    monthly_prestige_gain_mult = 0.1   # County holder gains prestige for successful defence
+}
+
+# Applied to a ruler who has personal hatred for Maormer (lost family/land to raids).
+maormer_hatred_modifier = {
+    levy_size = 0.1                     # Subjects rally against the hated enemy
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  SLOAD (Thrassian Slug-People)
+#  Context: Sload are slug-like necromancers from the coral
+#  island of Thras.  They unleashed the Thrassian Plague in
+#  1E 2260.  In 2E their schemes are subtler.
+#  Applied by: unleash_thrassian_plague (lore_races_effects.txt)
+#  Removed by: destroy_thras_effect (lore_races_effects.txt)
+#  Checked by: thrassian_plague_active trigger
+# ---------------------------------------------------------------
+
+# Applied to every coastal county while the Thrassian Plague is active.
+# The plague was the most devastating in Tamrielic history — values reflect that.
+# Duration: permanent until destroy_thras_effect runs (days = -1).
+thrassian_plague_modifier = {
+    monthly_income            = -0.4    # Trade collapses; ports abandon commerce
+    supply_limit_mult         = -0.3    # Dead farmers = less food
+    development_growth_factor = -0.5    # No-one is building while dying
+}
+
+# Applied to counties that quarantine themselves against the Plague.
+# Lesser impact than the plague, but costs them too — quarantines hurt trade.
+# Duration: 730 days (2 years).
+quarantine_modifier = {
+    monthly_income    = -0.1
+    supply_limit_mult = -0.1
+}
+
+# ---------------------------------------------------------------
+#  KOTHRINGI (Argonian-Adjacent Silver-Skinned Men)
+#  Context: The Kothringi were wiped out by the Knahaten Flu
+#  (~2E 560).  The Flu originated in Black Marsh and spread
+#  northward, killing only Men (Mer and Beastfolk were immune).
+#  Applied by: trigger_knahaten_flu (lore_races_effects.txt)
+#  Checked by: knahaten_flu_active, knahaten_can_trigger triggers
+# ---------------------------------------------------------------
+
+# Applied to counties infected with the Knahaten Flu.
+# Less severe than the Thrassian Plague — more localised spread.
+# Duration: permanent until end-plague effect runs.
+knahaten_flu_modifier = {
+    monthly_income            = -0.3
+    supply_limit_mult         = -0.2
+    development_growth_factor = -0.4
+}
+
+# Psychological fear modifier for rulers who know the Flu is approaching.
+knahaten_flu_fear_modifier = {
+    monthly_prestige_gain_mult = -0.1   # Rulers lose face if they can't stop the spread
+}
+
+# ---------------------------------------------------------------
+#  KAMAL (Akaviri Demons / Snow Demons)
+#  Context: The Kamal are the "Snow Demons of Akavir".  They
+#  are frozen solid in winter and invade during summer.
+#  Historically: dir-Kamal invaded Tamriel in 2E 572.
+#  Applied by: kamal.002 event (kamal_events.txt)
+#  Removed by: end_kamal_invasion (lore_races_effects.txt)
+# ---------------------------------------------------------------
+
+# Applied when Kamal conquer and freeze a province.
+# The ice curse represents literal supernatural winter — the land freezes over.
+# Duration: 1095 days (3 years) — the curse lingers after the Kamal leave.
+kamal_ice_curse_modifier = {
+    supply_limit_mult         = -0.3    # Frozen ground can't sustain armies
+    monthly_income            = -0.2    # Agriculture stops; trade freezes
+    development_growth_factor = -0.3    # No construction in frozen terrain
+}
+
+# ---------------------------------------------------------------
+#  ELDER TOWERS (World Anchors)
+#  Context: The Towers (White-Gold, Adamantine, Red Mountain,
+#  Coral, Orichalc) are massive structures that anchor Mundus
+#  (the mortal plane) in reality.  If enough fall, the world
+#  becomes unstable.
+#  Applied by: activate_tower_stone_effect, deactivate_tower_stone_effect
+#  Checked by: tower_X_active triggers, world_stability_critical trigger
+# ---------------------------------------------------------------
+
+# Applied to a county that holds an active Tower Stone.
+# The Stone radiates stability and power into the surrounding land.
+# Duration: permanent (days = -1) until the Stone is deactivated.
+tower_stone_active_modifier = {
+    monthly_income            = 0.2     # Stone draws pilgrims and trade
+    development_growth_factor = 0.3     # Land flourishes under the Tower's influence
+    supply_limit_mult         = 0.15    # Stable reality = reliable supply
+}
+
+# Applied when a Tower Stone is destroyed or stolen.
+# The land weakens — reality is less stable here.
+# Duration: 3650 days (10 years).
+tower_fallen_modifier = {
+    monthly_income            = -0.2
+    development_growth_factor = -0.2
+}
+
+# Applied to the ruler who controls the White-Gold Tower (Imperial City).
+# White-Gold is Nirn's Tower — the most powerful of all the Towers.
+# Duration: permanent while they hold the Imperial City (applied by towers.002 event).
+white_gold_keeper_modifier = {
+    monthly_prestige_gain_mult = 0.3    # Controlling the heart of the Empire lends enormous prestige
+    monthly_income             = 0.2    # The City is the wealthiest in Tamriel
+    diplomacy                  = 3      # The Tower's Covenant gives authority
+}
+
+# Applied to the ruler who controls Red Mountain (Morrowind).
+# Red Mountain contains the Heart of Lorkhan — the dead god's power source.
+# Duration: permanent while they control Red Mountain (applied by towers.004 event).
+red_mountain_keeper_modifier = {
+    monthly_piety_gain_mult = 0.3   # Closeness to Lorkhan's Heart is spiritually profound
+    martial                 = 3     # The volcanic landscape forges hard soldiers
+    prowess                 = 4     # Red Mountain's power bleeds into the keeper
+}
+
+# Applied to ALL rulers when active_tower_count drops to 1 or below.
+# Reality is fracturing — the world can feel it.
+# Duration: 1825 days (5 years) per application.
+reality_fracturing_modifier = {
+    monthly_prestige_gain_mult = -0.2   # The world is ending; no-one cares about court politics
+    development_growth_factor  = -0.5   # Development halts as reality becomes unreliable
+    monthly_income             = -0.3   # Trade collapses when the world may end any day
+}
+
+# Empty cooldown — prevents a ruler from sabotaging Towers repeatedly.
+# Duration: 3650 days (10 years) on success, 1825 days on failure.
+tower_sabotage_cooldown = { }
+
+# ---------------------------------------------------------------
+#  DREUGH (Crustacean Humanoids)
+#  Context: Dreugh are intelligent crustacean-like beings who
+#  alternate between land and sea phases.  The 'old knocker'
+#  is a powerful ancient Dreugh respected by fishermen.
+# ---------------------------------------------------------------
+
+# Blessing from an 'old knocker' Dreugh who has been treated well.
+# Duration: 730 days (2 years).
+old_knocker_blessing_modifier = {
+    monthly_piety_gain_mult = 0.15  # The ancient creature's goodwill brings spiritual peace
+    prowess                 = 3     # Their warrior wisdom improves personal combat
+}
+
+# ---------------------------------------------------------------
+#  IMGA (Monkey-Like Elf-Imitators of Valenwood)
+#  Context: The Imga are great apes of Valenwood who idolise
+#  the Altmer and attempt to imitate them in dress and manners.
+# ---------------------------------------------------------------
+
+# Applied when an Imga aristocrat grants their favour to a ruler.
+imga_favor_modifier = {
+    monthly_prestige_gain_mult = 0.05   # The Imga's flattery is oddly valued at court
+    diplomacy                  = 1      # Their 'Noble' connections smooth negotiations
+}
+
+# ---------------------------------------------------------------
+#  TANG MO (Monkey Warriors of Akavir)
+#  Context: The Tang Mo are one of the five races of Akavir.
+#  They allied with the Ka Po' Tun against the Tsaesci.
+# ---------------------------------------------------------------
+
+tang_mo_unity_modifier = {
+    levy_size              = 0.15   # United Tang Mo clans field more warriors
+    supply_limit_mult      = 0.1    # Communal food stores support larger armies
+}
+
+ka_po_tun_alliance_modifier = {
+    monthly_prestige_gain_mult = 0.1
+    levy_size                  = 0.1
+}
+
+# ---------------------------------------------------------------
+#  KEPTU (Proto-Nedic Warrior Culture)
+#  Context: The Keptu are an ancient Nedic people known for
+#  their Bloodroot Forge (a Nedic ruin that enhances weapons).
+# ---------------------------------------------------------------
+
+# Applied to a county that holds an active Bloodroot Forge.
+bloodroot_forge_modifier = {
+    men_at_arms_maintenance_mult = -0.1  # Forge-hardened weapons last longer
+    monthly_income               = 0.15  # Forge attracts weapon-buyers
+}
+
+# ---------------------------------------------------------------
+#  GENERAL PLAGUE/EVENT COOLDOWNS
+# ---------------------------------------------------------------
+
+# Prevents unleashing the Thrassian Plague again after it has ended.
+# Duration: permanent (days = -1) — once Thras is destroyed it stays destroyed.
+plague_cooldown_modifier = { }
+
+# ---------------------------------------------------------------
+#  DAEDRIC INVASION — PROVINCE/CHARACTER MODIFIERS
+#  Context: These are applied by begin_daedric_invasion and
+#  begin_per-prince effects.
+#  Applied by: begin_daedric_invasion (daedric_invasion_effects.txt)
+#  Removed by: end_daedric_invasion (daedric_invasion_effects.txt)
+# ---------------------------------------------------------------
+
+# Generic rally bonus — applied when a ruler uses the rally decision.
+# Applied by: rally_against_daedric_invasion decision (daedric_invasion_decisions.txt)
+# Duration: 3650 days (10 years).
+rallied_against_daedra = {
+    levy_size = 0.1     # Rallied vassals provide extra levies
+}
+
+# Spiritual reward for refusing a Daedric bargain.
+rejected_daedric_bargain = {
+    monthly_piety_gain_mult = 0.1   # Refusal pleases the Divines
+}
+
+# Applied to counties with an active Oblivion Gate.
+# Gates are devastating — reality literally bleeds in from Oblivion.
+# Applied by: open_oblivion_gate_effect
+# Removed by: close_oblivion_gate_effect
+# Duration: permanent until gate is closed.
+oblivion_gate_province_modifier = {
+    monthly_income            = -0.5    # Daedra kill merchants and destroy trade
+    supply_limit_mult         = -0.4    # Armies can't survive near open Gates
+    development_growth_factor = -0.6    # All construction stops near a Gate
+}
+
+# Applied to counties where a Gate was not closed quickly (>2 years).
+oblivion_gate_unchecked = {
+    monthly_income    = -0.3
+    supply_limit_mult = -0.2
+}
+
+# Applied when a Gate surges with additional Daedra (escalation event).
+oblivion_gate_daedra_surge = {
+    supply_limit_mult = -0.2
+}
+
+# =============================================================
+#  PER-PRINCE INVASION MODIFIERS
+#  Each Prince's invasion applies unique modifiers reflecting
+#  their sphere of influence.
+#  Applied by: begin_daedric_invasion (daedric_invasion_effects.txt)
+#  Removed by: end_daedric_invasion (daedric_invasion_effects.txt)
+# =============================================================
+
+# --- MOLAG BAL (Lord of Brutality, Father of Vampires) ---
+# His invasion is the Planemeld — he tries to drag Nirn into Coldharbour.
+# Applied to all kingdom+ rulers at invasion start; duration 1825 days (5 years).
+molag_planemeld_dread = {
+    monthly_prestige_gain_mult = -0.1   # His dread presence suppresses the ambition of mortals
+    stress_gain_mult           = 0.2    # His dominion instinct stresses rulers who resist it
+    dread                      = 20     # Flat dread — even powerful rulers fear Coldharbour
+}
+
+# --- BOETHIAH (Prince of Plots, Betrayal, Assassination) ---
+# Applied to duchy+ rulers with intrigue <= 14 (those too naive to see it coming).
+# Duration: 730 days (2 years).
+boethiah_court_conspiracy = {
+    intrigue                   = -2     # Boethiah's agents muddy the political waters
+    monthly_prestige_gain_mult = -0.05  # Rumours of weakness spread
+}
+
+# --- MEPHALA (Webspinner, Prince of Secrets and Murder) ---
+# Applied to kingdom+ rulers at invasion start; duration 1825 days.
+mephala_web_modifier = {
+    intrigue                   = -3     # The web entangles normal intrigue operations
+    monthly_prestige_gain_mult = -0.1   # Secrets that should stay buried are escaping
+}
+
+# Reward for a ruler who joins Mephala's web willingly.
+mephala_web_gift = {
+    intrigue                   = 5
+    monthly_prestige_gain_mult = 0.1
+}
+
+# Punishment for a ruler who breaks free of Mephala's web.
+mephala_web_curse = {
+    intrigue         = -5
+    stress_gain_mult = 0.2
+}
+
+# --- VAERMINA (Prince of Dreams and Nightmares) ---
+# Applied to all county+ rulers; duration 365 days (renewed by events).
+vaermina_nightmare_modifier = {
+    stress_gain_mult = 0.3    # Every night brings fresh horrors
+    learning         = -2     # Exhaustion from sleeplessness impairs thought
+}
+
+# --- NOCTURNAL (Prince of Night and Shadow) ---
+# Applied to kingdom+ wealthy rulers (gold >= 100); duration 1095 days (3 years).
+nocturnal_shadow_tithe = {
+    monthly_income = -0.15    # Nocturnal's shadows steal from the treasury
+    stewardship    = -1       # Estate management suffers from shadow-corruption
+}
+
+# Reward for serving Nocturnal willingly.
+nocturnal_shadow_favor = {
+    intrigue                   = 3
+    monthly_prestige_gain_mult = 0.05
+}
+
+# --- MALACATH (Prince of the Spurned and Outcasts) ---
+# Applied to oath-breaker rulers; duration 1825 days.
+malacath_oath_curse = {
+    monthly_prestige_gain_mult = -0.2   # Oath-breakers are known; Malacath ensures it
+    prowess                    = -4     # Malacath's curse weakens their fighting spirit
+    stress_gain_mult           = 0.1    # The weight of oaths broken nags at them
+}
+
+# --- NAMIRA (Prince of Ancient Darkness, Decay, and the Reviled) ---
+# Province modifier applied to non-coastal counties with development >= 8.
+# Duration: 1095 days (3 years).
+namira_rot_modifier = {
+    monthly_income            = -0.2    # Namira's rot destroys stored food and trade goods
+    development_growth_factor = -0.3    # Decay undoes construction
+    supply_limit_mult         = -0.15   # Rotting supplies cannot feed armies
+}
+
+# --- PERYITE (Prince of Pestilence and Tasks) ---
+# Province modifier applied to non-coastal counties (20% random chance).
+peryite_plague_modifier = {
+    monthly_income            = -0.25
+    supply_limit_mult         = -0.2
+    development_growth_factor = -0.3
+}
+
+# Character modifier for rulers personally afflicted by Peryite's plague.
+peryite_afflicted_ruler = {
+    monthly_prestige_gain_mult = -0.1
+    diplomacy                  = -3     # Visibly ill rulers lose diplomatic standing
+    stress_gain_mult           = 0.15
+}
+
+# --- JYGGALAG (Prince of Order, the Greymarch) ---
+# Province modifier — counties crystallised by Jyggalag's Order.
+# 30% random chance on each county; duration 1825 days.
+jyggalag_crystal_modifier = {
+    development_growth_factor = -0.4    # Crystal growth prevents all construction
+    monthly_income            = -0.2    # Trade halts in crystallised terrain
+    supply_limit_mult         = -0.2
+}
+
+# Bonus for rulers who resist Jyggalag's crystallisation.
+anti_jyggalag_resistance = {
+    monthly_prestige_gain_mult = 0.15
+    levy_size                  = 0.1    # Resistance rallies subjects
+}
+
+# --- CLAVICUS VILE (Prince of Bargains and Wishes) ---
+# Curse applied to rulers who break a bargain with Clavicus.
+vile_curse_modifier = {
+    monthly_prestige_gain_mult = -0.15  # Vile ensures everyone knows the bargain was broken
+    diplomacy                  = -3     # Reputation for treachery
+    monthly_income             = -0.1   # The wish is undone
+}
+
+# --- MERIDIA (Lady of Infinite Energies, Light Against the Undead) ---
+# Displeasure applied to necromancers when Meridia invades.
+meridia_displeasure = {
+    monthly_piety_gain_mult    = -0.2
+    monthly_prestige_gain_mult = -0.1
+}
+
+# Active purge target — Meridia is specifically hunting this ruler.
+meridia_purge_target = {
+    monthly_prestige_gain_mult = -0.2
+    monthly_piety_gain_mult    = -0.3
+    levy_size                  = -0.1   # Subjects are afraid of Meridia's wrath on their lord
+}
+
+# =============================================================
+#  DAEDRIC ARTIFACT HOLDER MODIFIERS
+#  Context: Each of the 16 Daedric artifacts gives a character
+#  modifier when they possess it.  These are applied by the
+#  daedric_champion event chains (daedric_champion_events.txt).
+#  They are removed by end_daedric_invasion or on_character_death.
+#
+#  HOW TO ADD A NEW ARTIFACT:
+#  1. Add a modifier here with appropriate stat bonuses.
+#  2. Add a 'seek_X' decision in daedric_prince_decisions.txt.
+#  3. Add an event chain in daedric_champion_events.txt.
+#  4. Add removal logic in end_daedric_invasion (daedric_invasion_effects.txt).
+# =============================================================
+
+# Mehrunes' Razor: a powerful dagger that can instantly kill any target.
+mehrunes_razor_holder = {
+    prowess  = 4                            # The Razor is a supremely deadly weapon
+    intrigue = 3                            # Assassination is easier with a god's blade
+    command_modifier = { advantage = 3 damage = 0.1 }
+}
+
+# Azura's Star: a reusable Daedric soul gem; grants prophetic insight.
+azura_star_holder = {
+    monthly_piety_gain_mult = 0.2   # The Star channels Azura's prophetic grace
+    learning                = 3     # Soul knowledge grants unusual insight
+    diplomacy               = 2     # Azura's star grants social grace
+}
+
+# Mace of Molag Bal: weapon that steals the souls of the slain.
+mace_of_molag_bal_holder = {
+    prowess                          = 6    # The Mace is a devastating weapon
+    dread_gain_mult                  = 0.3  # Fear follows the Mace's wielder
+    command_modifier = { advantage = 4 damage = 0.15 }
+}
+
+# Ring of Hircine: grants the wearer greater prowess in the hunt.
+ring_of_hircine_holder = {
+    prowess  = 4
+    martial  = 2
+    command_modifier = { pursuit = 0.2 }    # Hunting instinct makes pursuit more effective
+}
+
+# Saviour's Hide: Hircine's cursed armour, later a legendary protection.
+saviors_hide_holder = {
+    prowess                  = 3
+    monthly_piety_gain_mult  = 0.1   # Surviving Hircine's hunt is a spiritual achievement
+    command_modifier = { toughness = 0.15 }
+}
+
+# Ebony Mail: Boethiah's enchanted armour; poisons those nearby.
+ebony_mail_holder = {
+    prowess         = 3
+    intrigue        = 4             # Boethiah's poison is subtle and political
+    dread_gain_mult = 0.2
+    command_modifier = { advantage = 3 }
+}
+
+# Ebony Blade: Mephala's sword; grows stronger as the wielder betrays those close to them.
+ebony_blade_holder = {
+    prowess         = 5
+    intrigue        = 5
+    dread_gain_mult = 0.25
+    # Note: The Ebony Blade's betrayal mechanic is handled via events in daedric_champion_events.txt
+}
+
+# Masque of Clavicus Vile: a golden mask that makes the wearer irresistibly charming.
+masque_of_clavicus_vile = {
+    diplomacy                  = 6   # The Masque is magically persuasive
+    intrigue                   = 3
+    monthly_prestige_gain_mult = 0.1
+}
+
+# Skull of Corruption: Vaermina's staff; copies the target's memories/dreams.
+skull_of_corruption_modifier = {
+    intrigue                   = 5   # Stolen memories are excellent leverage
+    learning                   = 3   # Accumulated knowledge from stolen minds
+    monthly_prestige_gain_mult = 0.1
+}
+
+# Wabbajack: Sheogorath's staff; random unpredictable effects.
+wabbajack_modifier = {
+    stress_gain_mult = -0.4   # Madness is its own kind of freedom
+    # Unpredictable combat outcomes are handled via events in daedric_champion_events.txt
+}
+
+# Spellbreaker: Peryite's shield; reflects spells and protects against disease.
+spellbreaker_modifier = {
+    prowess     = 3
+    stewardship = 3    # Peryite's order principle manifests as administrative competence
+    command_modifier = { toughness = 0.2 screen = 0.1 }
+}
+
+# Sanguine Rose: a staff that summons Daedra to serve.
+sanguine_rose_holder = {
+    diplomacy                  = 3
+    stress_gain_mult           = -0.2   # Sanguine's gifts are always pleasurable
+    monthly_prestige_gain_mult = 0.1
+}
+
+# Dawnbreaker: Meridia's sword; explodes undead and grants her blessing.
+dawnbreaker_modifier = {
+    prowess                 = 5
+    martial                 = 3
+    monthly_piety_gain_mult = 0.2
+    command_modifier = { advantage = 5 damage = 0.2 }    # Devastating vs. undead
+}
+
+# Volendrung: Malacath's hammer; grants immense strength.
+volendrung_bearer = {
+    prowess  = 8    # Volendrung is the hammer of a god — immense physical power
+    martial  = 4
+    command_modifier = { advantage = 5 damage = 0.25 }
+}
+
+# Skeleton Key: Nocturnal's unbreakable lockpick; opens any lock and mind.
+skeleton_key_holder = {
+    intrigue    = 6    # Every door is open; every secret accessible
+    stewardship = 2    # Even treasury locks yield to the Key
+}
+
+# Oghma Infinium: Hermaeus Mora's tome of forbidden knowledge.
+oghma_infinium_holder = {
+    learning                   = 8    # The Infinium contains knowledge beyond mortal reach
+    intrigue                   = 3    # Forbidden knowledge is powerful leverage
+    monthly_prestige_gain_mult = 0.1
+}
+
+# Ring of Namira: allows the wearer to feast on the dead; grants dark vitality.
+ring_of_namira_holder = {
+    prowess  = 4
+    intrigue = 3
+    # Cannibal synergy and specific interactions handled via events in daedric_champion_events.txt
+}
+
+# Sword of Jyggalag: weapon of perfect order; crystallises all it touches.
+sword_of_jyggalag_modifier = {
+    prowess     = 8     # The weapon of a Prince; immense combat power
+    martial     = 5
+    stewardship = 3     # Jyggalag's order principle = excellent administration
+    command_modifier = { advantage = 8 damage = 0.3 max_morale = 0.3 }
+}
+
+# Empty cooldown — prevents multiple simultaneous Daedric quests.
+# Duration: 1825 days (5 years) — after completing one quest, must wait 5 years.
+daedric_quest_cooldown = { }
+
+# =============================================================
+#  GUILD MODIFIERS — All 9 Guilds
+#  Context: The nine guilds are: Mages Guild, Fighters Guild,
+#  Thieves Guild, Dark Brotherhood, Morag Tong, Companions,
+#  Bards College, Undaunted, Psijic Order.
+#  Applied by: guild join/activity effects (guild_effects.txt)
+#  See guild_traits.txt for membership traits.
+#  See guild_decisions.txt for guild decisions.
+# =============================================================
+
+# ---- Activity cooldowns (empty flag modifiers) ----
+# These prevent spamming guild activities.  Duration varies by activity.
+guild_advancement_cooldown    = { }   # Prevents rapid guild rank advancement (days = 1825)
+guild_recently_rejected       = { }   # After being refused guild entry (days = 365)
+guild_research_cooldown       = { }   # Mages Guild research cooldown (days = 1095)
+guild_contract_cooldown       = { }   # Fighters/Companions contract cooldown (days = 730)
+guild_heist_cooldown          = { }   # Thieves Guild heist cooldown (days = 1095)
+black_sacrament_cooldown      = { }   # Dark Brotherhood contract cooldown (days = 1095)
+writ_of_execution_cooldown    = { }   # Morag Tong execution cooldown (days = 1095)
+psijic_communion_cooldown     = { }   # Psijic Order ritual cooldown (days = 1825)
+ballad_composition_cooldown   = { }   # Bards College composition cooldown (days = 730)
+guild_ruin_delve_cooldown     = { }   # Undaunted dungeon delve cooldown (days = 730)
+
+# Penalty for being caught during a Thieves Guild heist.
+guild_heist_caught_modifier   = {
+    monthly_prestige_gain_mult = -0.1   # Reputation suffers when caught thieving
+    dread                      = -10    # Hard to be feared when caught red-handed
+}
+
+# Applied when the Dark Brotherhood has marked someone for death.
+# Being marked = known to be targeted by the Night Mother.
+dark_brotherhood_marked_modifier = {
+    monthly_prestige_gain_mult = -0.15  # Others distance themselves from the condemned
+    stress_gain_mult           = 0.2    # The fear of assassination is constant
+}
+
+# Warning applied by the Psijic Order when a ruler meddles in dangerous magic.
+psijic_warning_modifier = {
+    martial     = 2    # The warning sharpens martial instincts (danger awareness)
+    stewardship = 1
+}
+
+# Applied to an Undaunted member who was seriously wounded on a delve.
+undaunted_wounded_modifier = {
+    prowess = -3    # Serious injury temporarily reduces combat effectiveness
+}
+
+# Applied to Psijic Order members (persistent membership bonus).
+psijic_order_modifier = {
+    monthly_piety_gain_mult = 0.05   # The Psijic Order's ancient teachings deepen spiritual practice
+}
+
+# ---- Guild chapter membership bonuses ----
+# Applied persistently while the character is a member of the guild's local chapter.
+# These supplement the trait bonuses defined in guild_traits.txt.
+
+mages_guild_chapter_modifier = {
+    monthly_piety_gain_mult = 0.05   # Access to the Guild's library expands spiritual understanding
+    learning                = 1
+}
+
+fighters_guild_chapter_modifier = {
+    levy_size                  = 0.05   # Fighters Guild members train local levies
+    monthly_prestige_gain_mult = 0.03
+}
+
+morag_tong_chapter_modifier = {
+    monthly_piety_gain_mult = 0.05   # Morag Tong writs are considered legal/holy in Morrowind
+    intrigue                = 1
+}
+
+companions_chapter_modifier = {
+    monthly_prestige_gain_mult = 0.05   # Companions reputation is prestigious
+    prowess                    = 1
+}
+
+bards_college_chapter_modifier = {
+    monthly_prestige_gain_mult = 0.05   # Bards spread fame through songs
+    diplomacy                  = 1
+}
+
+undaunted_chapter_modifier = {
+    monthly_prestige_gain_mult = 0.03
+    prowess                    = 1
+}
+
+# Applied when a Bard composes a famous ballad about their ruler/deeds.
+famous_ballad_modifier = {
+    monthly_prestige_gain_mult = 0.15   # A famous ballad significantly boosts renown
+    diplomacy                  = 2      # Being famous makes diplomacy easier
+}
+
+# Curse for breaking a Dark Brotherhood / Clavicus Vile bargain.
+# Also used by daedric_invasion_effects.txt for Vile.
+vile_curse_modifier = {
+    monthly_prestige_gain_mult = -0.15
+    diplomacy                  = -3
+    monthly_income             = -0.1
+}
+
+# =============================================================
+#  GUILD LEADERSHIP MODIFIERS
+#  Applied permanently (days = -1) when a character becomes the
+#  leader of a guild.  These are on top of the leadership trait
+#  bonuses defined in guild_traits.txt.
+#  Applied by: guild leadership effects (guild_effects.txt)
+#  Removed by: losing the leadership trait (guild resignation events)
+# =============================================================
+
+guild_leader_mages_modifier = {
+    learning                   = 4     # Full access to all Guild archives
+    monthly_prestige_gain_mult = 0.15
+    monthly_piety_gain_mult    = 0.15  # The Archmagister is the public face of magical scholarship
+}
+
+guild_leader_fighters_modifier = {
+    martial                    = 4
+    prowess                    = 4
+    levy_size                  = 0.10  # Guild Commander's reputation recruits better soldiers
+    monthly_prestige_gain_mult = 0.12
+    command_modifier = { advantage = 4 damage = 0.1 max_morale = 0.25 }
+}
+
+guild_leader_thieves_modifier = {
+    intrigue                   = 5
+    stewardship                = 3     # The Guildmaster's network provides inside trade knowledge
+    monthly_income             = 0.15  # Thieves Guild has finger in every pot
+    dread_gain_mult            = 0.2
+}
+
+guild_leader_db_modifier = {
+    intrigue                   = 6
+    dread_gain_mult            = 0.35  # The Listener's reputation for killing precedes them
+    monthly_prestige_gain_mult = 0.1
+}
+
+guild_leader_tong_modifier = {
+    intrigue                   = 5
+    prowess                    = 4
+    monthly_piety_gain_mult    = 0.2   # Morag Tong writs are considered acts of worship in Morrowind
+    dread_gain_mult            = 0.3
+    monthly_prestige_gain_mult = 0.12
+}
+
+guild_leader_companions_modifier = {
+    prowess                    = 5
+    martial                    = 4
+    monthly_prestige_gain_mult = 0.20
+    command_modifier = { advantage = 5 damage = 0.15 max_morale = 0.3 }
+}
+
+guild_leader_psijic_modifier = {
+    learning                   = 6
+    diplomacy                  = 4
+    monthly_piety_gain_mult    = 0.25  # The Order's spiritual depth is legendary
+    monthly_prestige_gain_mult = 0.15
+}
+
+guild_leader_bards_modifier = {
+    diplomacy                  = 5
+    learning                   = 3
+    monthly_prestige_gain_mult = 0.25  # Songs of the Bards College define Tamrielic culture
+    stress_loss_mult           = 0.15  # Music soothes the soul
+}
+
+guild_leader_undaunted_modifier = {
+    prowess                    = 5
+    martial                    = 4
+    monthly_prestige_gain_mult = 0.18
+    command_modifier = { advantage = 5 damage = 0.12 }
+}
+
+# Empty cooldown — prevents post-leadership events from firing immediately.
+# Duration: set by individual events (typically 730–1095 days).
+guild_leader_postquest_cooldown = { }
+
+# =============================================================
+#  THU'UM / VOICE MODIFIERS
+#  Context: The Thu'um (Voice) is the Tonal magic of dragon
+#  shouts.  The Way of the Voice (Greybeard Order) and the
+#  Dragonborn path both use these modifiers.
+#  See thuumvoi_effects.txt for where these are applied.
+#  See thuumvoi_triggers.txt for where they are checked.
+#  See thuumvoi_traits.txt for the companion traits.
+# =============================================================
+
+# Empty cooldown — prevents rapid advancement through Voice training.
+# Duration: 1825 days (5 years) per advancement tier.
+# Applied by: advance_voice_training (thuumvoi_effects.txt)
+thuumvoi_advancement_cooldown = { }
+
+# Empty cooldown — prevents spamming the 'use Thu'um in battle' decision.
+# Duration: 730 days (2 years) — a Shout takes time to recover.
+# Applied by: use_thu_um_in_battle decision (thuumvoi_decisions.txt)
+thu_um_shout_cooldown = { }
+
+# Applied permanently (days = -1) when a Greybeard takes the vow of near-silence.
+# The vow is a voluntary restriction: every utterance reshapes reality,
+# so Greybeards choose their words with absolute care.
+# Applied by: initiate_greybeard (thuumvoi_effects.txt)
+# Removed by: leave_greybeard_order (thuumvoi_effects.txt)
+greybeard_vow_modifier = {
+    diplomacy               = -2     # Silence is not rudeness — but courts don't understand it
+    piety_mult              = 0.15
+    monthly_piety_gain_mult = 0.20   # Deep contemplation and discipline build spiritual power
+}
+
+# Applied for 1825 days (5 years) when a Greybeard breaks their vows.
+# Leaving the Order is a profound spiritual failure in the Way of the Voice.
+# Applied by: leave_greybeard_order (thuumvoi_effects.txt)
+greybeard_oath_broken = {
+    piety_mult              = -0.30
+    monthly_piety_gain_mult = -0.25
+    diplomacy               = -5     # Known as an oath-breaker; courts are suspicious
+}
+
+# Applied permanently (days = -1) when a character becomes First Voice.
+# The First Voice is the head of the Greybeard Order.
+first_voice_modifier = {
+    learning                   = 5
+    piety_mult                 = 0.30
+    monthly_piety_gain_mult    = 0.30
+    monthly_prestige_gain_mult = 0.20
+    command_modifier = { advantage = 8 max_morale = 0.40 }
+}
+
+# Empty cooldown between First Voice pilgrimage post-events.
+greybeard_pilgrims_cooldown = { }
+
+# Applied permanently (days = -1) when the Dragonborn absorbs their first Dragon Soul.
+# This is the moment of full awakening — the Dovahkiin's power is fully unlocked.
+# Applied by: absorb_dragon_soul (thuumvoi_effects.txt)
+# Supplements the dovahkiin_soul_awakened trait (thuumvoi_traits.txt).
+dovahkiin_full_power_modifier = {
+    prowess         = 6
+    learning        = 4
+    martial         = 4
+    piety_mult      = 0.25
+    dread_gain_mult = 0.25   # Dragons and lore-aware mortals fear the Dragonborn
+    command_modifier = { advantage = 8 damage = 0.20 max_morale = 0.35 }
+}
+
+# Empty cooldown between Dragonborn recognition events (dovahkiin.post_001).
+# Duration: 3650 days (10 years) — recognition events are rare and meaningful.
+dovahkiin_recognition_cooldown = { }
+
+# =============================================================
+#  THU'UM — DRAGON SOUL STACKING & DOVAH NATURE MODIFIERS
+#  Context: The Dragonborn absorbs Dragon Souls when they slay
+#  dragons.  Each soul adds power but also feeds the Dovah
+#  (dragon) nature within them — the instinct for dominance.
+#  See thuumvoi_effects.txt for absorb_additional_dragon_soul,
+#  resist_dovah_nature, and submit_to_dovah_nature effects.
+# =============================================================
+
+# Empty cooldown — prevents absorbing Dragon Souls too rapidly.
+# Duration: 730 days (2 years) — hunting and absorbing a dragon is a significant undertaking.
+# Applied by: absorb_additional_dragon_soul (thuumvoi_effects.txt)
+absorb_soul_cooldown = { }
+
+# Empty cooldown — prevents repeated Word Wall visits back-to-back.
+# Duration: 365 days (1 year) — the knowledge needs time to settle.
+# Applied by: learn_from_word_wall_effect (thuumvoi_effects.txt)
+dovahkiin_word_wall_cooldown = { }
+
+# Supplemental modifier for dragon_souls_growing trait (5+ souls).
+# The trait (thuumvoi_traits.txt) provides the primary stats;
+# this modifier provides additional bonuses.
+# Applied by: absorb_additional_dragon_soul when threshold first reached
+dragon_souls_growing_modifier = {
+    prowess         = 2
+    martial         = 2
+    dread_gain_mult = 0.15
+    stress_gain_mult = 0.10   # Five dragon voices are already noticeable
+    command_modifier = { advantage = 4 damage = 0.10 }
+}
+
+# Supplemental modifier for dragon_souls_brimming trait (10+ souls).
+dragon_souls_brimming_modifier = {
+    prowess          = 4
+    martial          = 4
+    dread_gain_mult  = 0.30
+    stress_gain_mult = 0.20   # Ten dragon voices pressing constantly
+    command_modifier = { advantage = 6 damage = 0.15 }
+}
+
+# Applied permanently (days = -1) when the Dragonborn successfully resists the Dovah nature.
+# This is "the hardest shout" — choosing mortal free will over the dragon's hunger.
+# Applied by: resist_dovah_nature (thuumvoi_effects.txt)
+dovah_nature_resisted_modifier = {
+    piety_mult               = 0.20
+    stress_loss_mult         = 0.15   # Hard-won inner peace reduces ongoing stress
+    monthly_piety_gain_mult  = 0.20
+}
+
+# Applied permanently (days = -1) when the Dovah nature takes control.
+# Can be resolved by the resist_dovah_nature_decision (thuumvoi_decisions.txt).
+# Applied by: submit_to_dovah_nature (thuumvoi_effects.txt)
+# Removed by: resist_dovah_nature (thuumvoi_effects.txt)
+dovah_nature_dominant_modifier = {
+    diplomacy        = -4     # The dragon's bluntness makes normal interaction impossible
+    learning         = -2     # The mortal mind is being crowded out by dragon instinct
+    dread_gain_mult  = 0.35   # The ancient domination instinct radiates outward
+    stress_gain_mult = 0.25   # Every moment is a battle with ten ancient voices
+    command_modifier = { advantage = 5 damage = 0.15 max_morale = -0.10 }
+    # Note: max_morale is NEGATIVE — the Dragonborn's own troops sense something is wrong
+}
+
+# =============================================================
+#  AMULET OF KINGS MODIFIERS
+#  Context: The Amulet of Kings is Alessia's Covenant with
+#  Akatosh — it seals the Dragonfires and protects Mundus from
+#  Oblivion.  Only those of Dragonblood can wield it fully.
+#  The Dragonfires have been cold since the Interregnum began
+#  (~2E 430).  A Dragonborn relighting them restores the barrier.
+#  See amulet_of_kings_events.txt and amulet_of_kings_decisions.txt.
+#  Applied by: receive_amulet_of_kings, relight_dragonfires_effect
+#              (thuumvoi_effects.txt)
+# =============================================================
+
+# Base modifier: applies to ANYONE holding the Amulet of Kings.
+# Even without Dragonblood, the Amulet is a divine artefact.
+# Applied permanently (days = -1) by receive_amulet_of_kings.
+# Removed by lose_amulet_of_kings.
+amulet_of_kings_bearer_modifier = {
+    piety_mult                 = 0.20
+    monthly_prestige_gain_mult = 0.25
+    diplomacy                  = 3      # The Amulet lends divine authority
+}
+
+# Enhanced modifier: applies ONLY to Dragonborn wielding the Amulet.
+# The full Covenant of Alessia is active — the Dragonborn is the rightful heir.
+# Applied permanently (days = -1) by amulet.004 event (amulet_of_kings_events.txt).
+# Removed by lose_amulet_of_kings.
+amulet_of_kings_dragonborn_modifier = {
+    piety_mult                 = 0.40
+    monthly_prestige_gain_mult = 0.40
+    diplomacy                  = 5
+    learning                   = 3
+    command_modifier = {
+        advantage  = 6
+        max_morale = 0.25
+        # The Amulet strengthens the barrier against Oblivion —
+        # the Dragonborn's armies fight better knowing what they protect.
+    }
+    # Implicit effect: Daedric invasion trigger_conditions checks this
+    # modifier to reduce invasion chance while a Dragonborn holds the Amulet.
+}
+
+# Applied permanently (days = -1) when the Dragonborn relights the Dragonfires.
+# This is the greatest act a Dragonborn can perform — renewing Alessia's Covenant.
+# Applied by: relight_dragonfires_effect (thuumvoi_effects.txt)
+dragonfires_lit_modifier = {
+    piety_mult                 = 0.50
+    monthly_prestige_gain_mult = 0.50
+    diplomacy                  = 6
+    # The restored Dragonfires provide the strongest Oblivion barrier possible.
+    # Future: consider adding a global_var:dragonfires_lit check in
+    # daedric_invasion_trigger_conditions to make invasions impossible while active.
+}
+
+# Empty cooldown between Amulet of Kings post-events.
+# Duration: 1825 days (5 years).
+amulet_post_event_cooldown = { }
+    monthly_income = -0.2
+    supply_limit_mult = -0.1
+}
+
+maormer_truce_modifier = {
+    build_speed_mult = 0.0   # no-op; just prevents raid events
+}
+
+maormer_tempest_modifier = {
+    monthly_income = -0.15
+    supply_limit_mult = -0.2
+}
+
+repelled_maormer_modifier = {
+    monthly_prestige_gain_mult = 0.1
+}
+
+maormer_hatred_modifier = {
+    levy_size = 0.1
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---- Sload / Thrassian Plague ----
+thrassian_plague_modifier = {
+    monthly_income    = -0.4
+    supply_limit_mult = -0.3
+    development_growth_factor = -0.5
+}
+
+quarantine_modifier = {
+    monthly_income    = -0.1
+    supply_limit_mult = -0.1
+}
+
+# ---- Kothringi / Knahaten Flu ----
+knahaten_flu_modifier = {
+    monthly_income    = -0.3
+    supply_limit_mult = -0.2
+    development_growth_factor = -0.4
+}
+
+knahaten_flu_fear_modifier = {
+    monthly_prestige_gain_mult = -0.1
+}
+
+# ---- Kamal ----
+kamal_ice_curse_modifier = {
+    supply_limit_mult = -0.3
+    monthly_income    = -0.2
+    development_growth_factor = -0.3
+}
+
+# ---- Elder Towers ----
+tower_stone_active_modifier = {
+    monthly_income    = 0.2
+    development_growth_factor = 0.3
+    supply_limit_mult = 0.15
+}
+
+tower_fallen_modifier = {
+    monthly_income    = -0.2
+    development_growth_factor = -0.2
+}
+
+white_gold_keeper_modifier = {
+    monthly_prestige_gain_mult = 0.3
+    monthly_income = 0.2
+    diplomacy = 3
+}
+
+red_mountain_keeper_modifier = {
+    monthly_piety_gain_mult = 0.3
+    martial = 3
+    prowess = 4
+}
+
+reality_fracturing_modifier = {
+    monthly_prestige_gain_mult = -0.2
+    development_growth_factor  = -0.5
+    monthly_income = -0.3
+}
+
+tower_sabotage_cooldown = {
+    # Prevents repeated sabotage — no bonus/penalty, just a flag
+}
+
+# ---- Dreugh ----
+old_knocker_blessing_modifier = {
+    monthly_piety_gain_mult = 0.15
+    prowess = 3
+}
+
+# ---- Imga ----
+imga_favor_modifier = {
+    monthly_prestige_gain_mult = 0.05
+    diplomacy = 1
+}
+
+# ---- Tang Mo ----
+tang_mo_unity_modifier = {
+    levy_size = 0.15
+    supply_limit_mult = 0.1
+}
+
+ka_po_tun_alliance_modifier = {
+    monthly_prestige_gain_mult = 0.1
+    levy_size = 0.1
+}
+
+# ---- Keptu ----
+bloodroot_forge_modifier = {
+    men_at_arms_maintenance_mult = -0.1
+    monthly_income = 0.15
+}
+
+# ---- Plague cooldown ----
+plague_cooldown_modifier = {
+    # Prevents repeated unleashing — no-op flag
+}
+
+# ---- Misc ----
+rallied_against_daedra = {
+    # referenced by existing daedric invasion
+    levy_size = 0.1
+}
+
+rejected_daedric_bargain = {
+    monthly_piety_gain_mult = 0.1
+}
+
+oblivion_gate_province_modifier = {
+    monthly_income    = -0.5
+    supply_limit_mult = -0.4
+    development_growth_factor = -0.6
+}
+
+oblivion_gate_unchecked = {
+    monthly_income    = -0.3
+    supply_limit_mult = -0.2
+}
+
+oblivion_gate_daedra_surge = {
+    supply_limit_mult = -0.2
+}
+
+# =============================================================
+#  Character & Province Modifiers — All 17 Daedric Princes
+# =============================================================
+
+# ---- Per-Prince Invasion Province/Character Modifiers ----
+
+molag_planemeld_dread = {
+    monthly_prestige_gain_mult = -0.1
+    stress_gain_mult = 0.2
+    dread = 20
+}
+
+boethiah_court_conspiracy = {
+    intrigue = -2
+    monthly_prestige_gain_mult = -0.05
+}
+
+mephala_web_modifier = {
+    intrigue = -3
+    monthly_prestige_gain_mult = -0.1
+}
+
+mephala_web_gift = {
+    intrigue = 5
+    monthly_prestige_gain_mult = 0.1
+}
+
+mephala_web_curse = {
+    intrigue = -5
+    stress_gain_mult = 0.2
+}
+
+vaermina_nightmare_modifier = {
+    stress_gain_mult = 0.3
+    learning = -2
+}
+
+nocturnal_shadow_tithe = {
+    monthly_income = -0.15
+    stewardship = -1
+}
+
+nocturnal_shadow_favor = {
+    intrigue = 3
+    monthly_prestige_gain_mult = 0.05
+}
+
+malacath_oath_curse = {
+    monthly_prestige_gain_mult = -0.2
+    prowess = -4
+    stress_gain_mult = 0.1
+}
+
+namira_rot_modifier = {
+    monthly_income    = -0.2
+    development_growth_factor = -0.3
+    supply_limit_mult = -0.15
+}
+
+peryite_plague_modifier = {
+    monthly_income    = -0.25
+    supply_limit_mult = -0.2
+    development_growth_factor = -0.3
+}
+
+peryite_afflicted_ruler = {
+    monthly_prestige_gain_mult = -0.1
+    diplomacy = -3
+    stress_gain_mult = 0.15
+}
+
+jyggalag_crystal_modifier = {
+    development_growth_factor = -0.4
+    monthly_income = -0.2
+    supply_limit_mult = -0.2
+}
+
+anti_jyggalag_resistance = {
+    monthly_prestige_gain_mult = 0.15
+    levy_size = 0.1
+}
+
+vile_curse_modifier = {
+    monthly_prestige_gain_mult = -0.15
+    diplomacy = -3
+    monthly_income = -0.1
+}
+
+meridia_displeasure = {
+    monthly_piety_gain_mult = -0.2
+    monthly_prestige_gain_mult = -0.1
+}
+
+meridia_purge_target = {
+    monthly_prestige_gain_mult = -0.2
+    monthly_piety_gain_mult = -0.3
+    levy_size = -0.1
+}
+
+# ---- Daedric Artifact Holder Modifiers ----
+# (These represent possessing or wielding a Daedric artifact)
+
+mehrunes_razor_holder = {
+    prowess = 4
+    intrigue = 3
+    command_modifier = { advantage = 3 damage = 0.1 }
+}
+
+azura_star_holder = {
+    monthly_piety_gain_mult = 0.2
+    learning = 3
+    diplomacy = 2
+}
+
+mace_of_molag_bal_holder = {
+    prowess = 6
+    dread_gain_mult = 0.3
+    command_modifier = { advantage = 4 damage = 0.15 }
+}
+
+ring_of_hircine_holder = {
+    prowess = 4
+    martial = 2
+    command_modifier = { pursuit = 0.2 }
+}
+
+saviors_hide_holder = {
+    prowess = 3
+    monthly_piety_gain_mult = 0.1
+    command_modifier = { toughness = 0.15 }
+}
+
+ebony_mail_holder = {
+    prowess = 3
+    intrigue = 4
+    dread_gain_mult = 0.2
+    command_modifier = { advantage = 3 }
+}
+
+ebony_blade_holder = {
+    prowess = 5
+    intrigue = 5
+    dread_gain_mult = 0.25
+}
+
+masque_of_clavicus_vile = {
+    diplomacy = 6
+    intrigue  = 3
+    monthly_prestige_gain_mult = 0.1
+}
+
+skull_of_corruption_modifier = {
+    intrigue = 5
+    learning = 3
+    monthly_prestige_gain_mult = 0.1
+}
+
+wabbajack_modifier = {
+    stress_gain_mult = -0.4
+    # Unpredictable outcomes handled in Sheogorath events
+}
+
+spellbreaker_modifier = {
+    prowess = 3
+    stewardship = 3
+    command_modifier = { toughness = 0.2 screen = 0.1 }
+}
+
+sanguine_rose_holder = {
+    diplomacy = 3
+    stress_gain_mult = -0.2
+    monthly_prestige_gain_mult = 0.1
+}
+
+dawnbreaker_modifier = {
+    prowess  = 5
+    martial  = 3
+    monthly_piety_gain_mult = 0.2
+    command_modifier = { advantage = 5 damage = 0.2 }
+}
+
+volendrung_bearer = {
+    prowess = 8
+    martial = 4
+    command_modifier = { advantage = 5 damage = 0.25 }
+}
+
+skeleton_key_holder = {
+    intrigue = 6
+    stewardship = 2
+}
+
+oghma_infinium_holder = {
+    learning = 8
+    intrigue = 3
+    monthly_prestige_gain_mult = 0.1
+}
+
+ring_of_namira_holder = {
+    prowess = 4
+    intrigue = 3
+    # Cannibal synergy handled via events
+}
+
+sword_of_jyggalag_modifier = {
+    prowess = 8
+    martial = 5
+    stewardship = 3
+    command_modifier = { advantage = 8 damage = 0.3 max_morale = 0.3 }
+}
+
+# ---- Quest cooldown ----
+daedric_quest_cooldown = {
+    # Gate preventing a ruler from starting multiple Daedric quests simultaneously
+}
+
+# =============================================================
+#  Guild Modifiers — All 9 Guilds
+# =============================================================
+
+# ---- Activity cooldowns ----
+guild_advancement_cooldown    = { }
+guild_recently_rejected       = { }
+guild_research_cooldown       = { }
+guild_contract_cooldown       = { }
+guild_heist_cooldown          = { }
+black_sacrament_cooldown      = { }
+writ_of_execution_cooldown    = { }
+psijic_communion_cooldown     = { }
+ballad_composition_cooldown   = { }
+guild_ruin_delve_cooldown     = { }
+guild_heist_caught_modifier   = { monthly_prestige_gain_mult = -0.1 dread = -10 }
+dark_brotherhood_marked_modifier = { monthly_prestige_gain_mult = -0.15 stress_gain_mult = 0.2 }
+psijic_warning_modifier       = { martial = 2 stewardship = 1 }
+undaunted_wounded_modifier    = { prowess = -3 }
+psijic_order_modifier         = { monthly_piety_gain_mult = 0.05 }
+
+# ---- Chapter membership bonuses (persistent while in guild) ----
+mages_guild_chapter_modifier = {
+    monthly_piety_gain_mult = 0.05
+    learning = 1
+}
+
+fighters_guild_chapter_modifier = {
+    levy_size = 0.05
+    monthly_prestige_gain_mult = 0.03
+}
+
+morag_tong_chapter_modifier = {
+    monthly_piety_gain_mult = 0.05
+    intrigue = 1
+}
+
+companions_chapter_modifier = {
+    monthly_prestige_gain_mult = 0.05
+    prowess = 1
+}
+
+bards_college_chapter_modifier = {
+    monthly_prestige_gain_mult = 0.05
+    diplomacy = 1
+}
+
+undaunted_chapter_modifier = {
+    monthly_prestige_gain_mult = 0.03
+    prowess = 1
+}
+
+# ---- Activity results ----
+famous_ballad_modifier = {
+    monthly_prestige_gain_mult = 0.15
+    diplomacy = 2
+}
+
+# ---- Curse for leaving Dark Brotherhood / Vile bargain ----
+vile_curse_modifier = {
+    monthly_prestige_gain_mult = -0.15
+    diplomacy = -3
+    monthly_income = -0.1
+}
+
+# =============================================================
+#  Guild Leadership Modifiers  — permanent bonuses for leaders
+#  Applied when the leadership trait is gained; days = -1 (permanent)
+# =============================================================
+
+guild_leader_mages_modifier = {
+    learning   = 4
+    monthly_prestige_gain_mult = 0.15
+    monthly_piety_gain_mult    = 0.15
+    # Grants access to the Guild's full magical resources
+}
+
+guild_leader_fighters_modifier = {
+    martial    = 4
+    prowess    = 4
+    levy_size  = 0.10
+    monthly_prestige_gain_mult = 0.12
+    command_modifier = { advantage = 4 damage = 0.1 max_morale = 0.25 }
+}
+
+guild_leader_thieves_modifier = {
+    intrigue   = 5
+    stewardship = 3
+    monthly_income = 0.15
+    dread_gain_mult = 0.2
+}
+
+guild_leader_db_modifier = {
+    intrigue   = 6
+    dread_gain_mult = 0.35
+    monthly_prestige_gain_mult = 0.1
+    # The Listener's dread precedes them across Tamriel
+}
+
+guild_leader_tong_modifier = {
+    intrigue   = 5
+    prowess    = 4
+    monthly_piety_gain_mult    = 0.2
+    dread_gain_mult            = 0.3
+    monthly_prestige_gain_mult = 0.12
+}
+
+guild_leader_companions_modifier = {
+    prowess    = 5
+    martial    = 4
+    monthly_prestige_gain_mult = 0.20
+    command_modifier = { advantage = 5 damage = 0.15 max_morale = 0.3 }
+}
+
+guild_leader_psijic_modifier = {
+    learning   = 6
+    diplomacy  = 4
+    monthly_piety_gain_mult    = 0.25
+    monthly_prestige_gain_mult = 0.15
+}
+
+guild_leader_bards_modifier = {
+    diplomacy  = 5
+    learning   = 3
+    monthly_prestige_gain_mult = 0.25
+    stress_loss_mult = 0.15
+}
+
+guild_leader_undaunted_modifier = {
+    prowess    = 5
+    martial    = 4
+    monthly_prestige_gain_mult = 0.18
+    command_modifier = { advantage = 5 damage = 0.12 }
+}
+
+# Post-quest cooldown (shared across all leader post-events)
+guild_leader_postquest_cooldown = { }
+
+# =============================================================
+#  Thu'um / Voice Modifiers
+# =============================================================
+
+# Applied during Voice training advancement cooldowns
+thuumvoi_advancement_cooldown = { }
+
+# Applied when a Thu'um master uses a Shout in battle
+# (prevents spamming the battle decision)
+thu_um_shout_cooldown = { }
+
+# Applied to a fully initiated Greybeard (the vow of silence)
+greybeard_vow_modifier = {
+    diplomacy  = -2         # Speaking is reserved; courtly banter is alien
+    piety_mult = 0.15
+    monthly_piety_gain_mult = 0.20
+}
+
+# Applied when someone breaks their Greybeard vows
+greybeard_oath_broken = {
+    piety_mult = -0.30
+    monthly_piety_gain_mult = -0.25
+    diplomacy  = -5         # Known as oath-breaker
+}
+
+# Applied when named First Voice of the Greybeards
+first_voice_modifier = {
+    learning  = 5
+    piety_mult = 0.30
+    monthly_piety_gain_mult    = 0.30
+    monthly_prestige_gain_mult = 0.20
+    command_modifier = { advantage = 8 max_morale = 0.40 }
+}
+
+# Cooldown between greybeard post-leadership events
+greybeard_pilgrims_cooldown = { }
+
+# Applied to Dragonborn who have absorbed their first Dragon Soul
+dovahkiin_full_power_modifier = {
+    prowess   = 6
+    learning  = 4
+    martial   = 4
+    piety_mult = 0.25
+    dread_gain_mult = 0.25
+    command_modifier = { advantage = 8 damage = 0.20 max_morale = 0.35 }
+}
+
+# Cooldown between Dragonborn recognition post-events
+dovahkiin_recognition_cooldown = { }
+
+# =============================================================
+#  Thu'um — Dragon Soul Stacking & Dovah Nature Modifiers
+# =============================================================
+
+# Prevents rapid stacking of Dragon Soul absorption
+absorb_soul_cooldown = { }
+
+# Prevents spamming the Word Wall learning decision
+dovahkiin_word_wall_cooldown = { }
+
+# Applied when the Dragonborn has absorbed 5+ Dragon Souls
+dragon_souls_growing_modifier = {
+    prowess  = 2
+    martial  = 2
+    dread_gain_mult = 0.15
+    stress_gain_mult = 0.10
+    command_modifier = { advantage = 4 damage = 0.10 }
+}
+
+# Applied when the Dragonborn has absorbed 10+ Dragon Souls
+dragon_souls_brimming_modifier = {
+    prowess  = 4
+    martial  = 4
+    dread_gain_mult = 0.30
+    stress_gain_mult = 0.20
+    command_modifier = { advantage = 6 damage = 0.15 }
+}
+
+# Applied to a Dragonborn who has resisted the Dovah nature
+dovah_nature_resisted_modifier = {
+    piety_mult = 0.20
+    stress_loss_mult = 0.15
+    monthly_piety_gain_mult = 0.20
+}
+
+# Applied to a Dragonborn whose Dovah nature has taken hold
+dovah_nature_dominant_modifier = {
+    diplomacy  = -4
+    learning   = -2
+    dread_gain_mult = 0.35
+    stress_gain_mult = 0.25
+    command_modifier = { advantage = 5 damage = 0.15 max_morale = -0.10 }
+}
+
+# =============================================================
+#  Amulet of Kings Modifiers
+# =============================================================
+
+# Base modifier: anyone who holds the Amulet of Kings
+amulet_of_kings_bearer_modifier = {
+    piety_mult = 0.20
+    monthly_prestige_gain_mult = 0.25
+    diplomacy  = 3              # The Amulet lends authority beyond any title
+}
+
+# Enhanced modifier: Dragonborn wearing the Amulet of Kings
+# (the full Covenant is active — only for those of Dragonblood)
+amulet_of_kings_dragonborn_modifier = {
+    piety_mult = 0.40
+    monthly_prestige_gain_mult = 0.40
+    diplomacy  = 5
+    learning   = 3
+    command_modifier = {
+        advantage  = 6
+        max_morale = 0.25
+        # The Amulet strengthens the barrier against Oblivion
+    }
+    # Implicit Oblivion resistance: Daedric invasions less effective
+}
+
+# Applied when the Dragonborn relights the Dragonfires
+# This is the great covenant: Mundus is protected from Oblivion
+# as long as the blood of Akatosh lights the Dragonfires.
+dragonfires_lit_modifier = {
+    piety_mult = 0.50
+    monthly_prestige_gain_mult = 0.50
+    diplomacy  = 6
+    # Massive Oblivion resistance — the barrier is at its strongest
+}
+
+# Cooldown between Amulet of Kings post-events
+amulet_post_event_cooldown = { }

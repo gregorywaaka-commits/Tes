@@ -1,0 +1,457 @@
+# =============================================================
+#  Thu'um / Voice — Scripted Triggers
+#  File: mod/common/scripted_triggers/thuumvoi_triggers.txt
+#
+#  Scripted triggers are reusable boolean conditions used in:
+#    • Decision is_shown / is_valid blocks
+#    • Event trigger blocks
+#    • Other scripted triggers (composing complex conditions)
+#
+#  EK2 DEPENDENCY NOTE:
+#  The 'dragonborn' trait is defined by EK2 — NOT this mod.
+#  All Dragonborn-specific triggers check has_trait = dragonborn
+#  (EK2's trait) as their base condition.  If the character does
+#  not have EK2's dragonborn trait, NO Dragonborn-specific
+#  decisions or events will fire.
+#
+#  TRIGGER DEPENDENCY MAP:
+#  ───────────────────────
+#  is_on_voice_path
+#    └── used by: can_learn_thu_um, leave_voice_path_decision
+#  is_greybeard
+#    └── used by: can_seek_greybeards, leave_greybeard_order_decision
+#  can_learn_thu_um
+#    └── used by: seek_thu_um_training decision (shown + valid)
+#  can_advance_thu_um
+#    └── used by: advance_thu_um_training decision
+#  can_seek_greybeards
+#    └── used by: seek_the_greybeard_order decision
+#  is_dragonborn
+#    └── used by: can_harness_dovah_blood, can_seek_greybeards,
+#                 can_learn_thu_um, can_learn_from_word_wall,
+#                 can_seek_amulet_of_kings, can_relight_dragonfires
+#  can_harness_dovah_blood
+#    └── used by: harness_dovah_blood decision
+#  is_first_voice
+#    └── used by: can_begin_greybeard_leadership
+#  can_begin_greybeard_leadership
+#    └── used by: begin_greybeard_leadership_quest decision
+#  has_multiple_dragon_souls   (5+)
+#    └── used by: no direct decision check; used internally
+#  has_many_dragon_souls       (10+)
+#    └── used by: dovah_nature_at_risk
+#  dovah_nature_at_risk
+#    └── used by: resist_dovah_nature_decision (shown + valid)
+#  can_learn_from_word_wall
+#    └── used by: learn_from_word_wall decision
+#  can_absorb_another_soul
+#    └── used by: absorb_another_dragon_soul decision
+#  has_amulet_of_kings
+#    └── used by: can_relight_dragonfires, amulet.005 event
+#  can_seek_amulet_of_kings
+#    └── used by: seek_the_amulet_of_kings decision
+#  can_relight_dragonfires
+#    └── used by: attempt_relight_dragonfires decision
+# =============================================================
+
+# ---------------------------------------------------------------
+#  VOICE PATH MEMBERSHIP TRIGGERS
+# ---------------------------------------------------------------
+
+# True if the character is on ANY level of the Voice training path
+# (initiate, adept, master) — does NOT include Greybeard Order.
+# Used to block re-entering training and to check for the leave decision.
+is_on_voice_path = {
+    OR = {
+        has_trait = thu_um_initiate
+        has_trait = thu_um_adept
+        has_trait = thu_um_master
+        has_trait = greybeard_aspirant
+        has_trait = greybeard_of_high_hrothgar
+        has_trait = first_voice_of_the_greybeards
+    }
+}
+
+# True if the character is an active member of the Greybeard Order
+# (any tier from aspirant through First Voice).
+is_greybeard = {
+    OR = {
+        has_trait = greybeard_aspirant
+        has_trait = greybeard_of_high_hrothgar
+        has_trait = first_voice_of_the_greybeards
+    }
+}
+
+# ---------------------------------------------------------------
+#  VOICE PATH ELIGIBILITY TRIGGERS
+# ---------------------------------------------------------------
+
+# Can the character begin Voice training for the first time?
+# Requirements:
+#   • is_adult — children cannot train in the Thu'um
+#   • not already on a Voice path — the Way of the Voice is
+#     exclusive; you cannot train two ways simultaneously
+#   • not started the quest (prevents duplicate start events)
+#   • learning >= 8 OR is Dragonborn (Dragonborn need no learning minimum —
+#     their blood provides the foundation; learning >= 8 represents
+#     a baseline scholarly/intellectual capacity for non-Dragonborn)
+can_learn_thu_um = {
+    is_adult = yes
+    NOT = { is_on_voice_path = yes }
+    NOT = { has_character_flag = thuumvoi_quest_started }
+    OR = {
+        learning >= 8       # Minimum intellectual capacity to grasp the Thu'um
+        has_trait = dragonborn   # EK2 trait — Dragonborn learn naturally regardless
+    }
+}
+
+# Can the character advance to the next Voice training tier?
+# Requirements:
+#   • is_adult
+#   • not on the 1825-day training cooldown (5 years of practice required between tiers)
+#   • currently at initiate or adept (master cannot advance further on this path)
+can_advance_thu_um = {
+    is_adult = yes
+    NOT = { has_modifier = thuumvoi_advancement_cooldown }    # 5-year practice gap required
+    OR = {
+        has_trait = thu_um_initiate
+        has_trait = thu_um_adept
+    }
+}
+
+# Can the character seek the Greybeard Order at High Hrothgar?
+# Requirements:
+#   • is_adult
+#   • not already a Greybeard
+#   • not already started the Greybeard quest
+#   • must be either a Voice Master (Tongues may seek the Order)
+#     or Dragonborn (Dragonborn are always welcomed at High Hrothgar
+#     regardless of their training level)
+can_seek_greybeards = {
+    is_adult = yes
+    NOT = { is_greybeard = yes }
+    NOT = { has_character_flag = greybeard_quest_started }
+    OR = {
+        has_trait = thu_um_master   # Tongues (masters) may petition to join
+        has_trait = dragonborn      # EK2 trait — Greybeards welcome Dragonborn immediately
+    }
+}
+
+# ---------------------------------------------------------------
+#  DRAGONBORN IDENTITY TRIGGERS
+# ---------------------------------------------------------------
+
+# Is this character the Dragonborn (EK2 trait)?
+# This is the fundamental Dragonborn check — all Dragonborn-specific
+# content in this mod gates on this trigger.
+# The 'dragonborn' trait is defined by EK2; this mod does NOT define it.
+is_dragonborn = {
+    has_trait = dragonborn   # EK2-defined trait — do NOT redefine this trait in this mod
+}
+
+# Can the Dragonborn begin their awakening quest?
+# Requirements:
+#   • is_dragonborn — must have EK2's dragonborn trait
+#   • not already awakened (no dovahkiin_soul_awakened trait)
+#   • not already started the quest (flag prevents duplicate)
+#   • is_adult
+# Note: The awakening quest culminates in absorb_dragon_soul (thuumvoi_effects.txt)
+#       which gives dovahkiin_soul_awakened and sets dragon_souls_absorbed_count = 1.
+can_harness_dovah_blood = {
+    is_dragonborn = yes
+    NOT = { has_trait = dovahkiin_soul_awakened }
+    NOT = { has_character_flag = dovahkiin_quest_started }
+    is_adult = yes
+}
+
+# ---------------------------------------------------------------
+#  GREYBEARD LEADERSHIP TRIGGERS
+# ---------------------------------------------------------------
+
+# Is this character the current First Voice of the Greybeards?
+is_first_voice = {
+    has_trait = first_voice_of_the_greybeards
+}
+
+# Is the character eligible to begin the Greybeard leadership quest?
+# Requirements:
+#   • must be a full Greybeard (not aspirant)
+#   • leadership quest not already started
+#   • not already First Voice
+#   • not on advancement cooldown (ensures they have been Greybeard for some time)
+can_begin_greybeard_leadership = {
+    has_trait = greybeard_of_high_hrothgar
+    NOT = { has_character_flag = greybeard_lead_quest_1 }    # quest flag — prevents duplicate
+    NOT = { is_first_voice = yes }
+    NOT = { has_modifier = thuumvoi_advancement_cooldown }
+}
+
+# ---------------------------------------------------------------
+#  DRAGONBORN SOUL / DOVAH NATURE TRIGGERS
+# ---------------------------------------------------------------
+
+# Has the Dragonborn absorbed 5 or more Dragon Souls?
+# dragon_souls_absorbed_count is a character variable set by:
+#   absorb_dragon_soul (sets to 1) and
+#   absorb_additional_dragon_soul (increments by 1)
+# Both are in thuumvoi_effects.txt.
+has_multiple_dragon_souls = {
+    has_trait = dovahkiin_soul_awakened    # must have absorbed at least the first soul
+    check_variable = { name = dragon_souls_absorbed_count value >= 5 }
+}
+
+# Has the Dragonborn absorbed 10 or more Dragon Souls?
+# At this level the Dovah nature crisis becomes active.
+has_many_dragon_souls = {
+    has_trait = dovahkiin_soul_awakened
+    check_variable = { name = dragon_souls_absorbed_count value >= 10 }
+}
+
+# Is the Dovah nature at risk of taking over the Dragonborn?
+# True when:
+#   • 10+ souls absorbed (the threshold for crisis)
+#   • the crisis has not been resolved in either direction
+#   • neither the positive (resisted) nor negative (dominant) outcome trait is present
+# Used by resist_dovah_nature_decision to show the decision before full submission.
+dovah_nature_at_risk = {
+    has_many_dragon_souls = yes
+    NOT = { has_trait = dovah_nature_resisted }     # already resolved positively
+    NOT = { has_trait = dovah_nature_dominant }     # already in the negative state
+}
+
+# Can the Dragonborn learn from a Word Wall?
+# Lore basis: Word Walls are ancient stones carved with Dragon Language.
+# Dragonborn absorb the knowledge INSTANTLY — no teacher needed, no years of practice.
+# The dragon's blood recognises the dragon's language.
+# Requirements:
+#   • is_dragonborn (EK2 trait)
+#   • not on Word Wall cooldown (365 days = 1 year integration time)
+#   • must have begun their awakening OR be at least an initiate
+#     (a Dragonborn who hasn't awakened yet can still read Word Walls,
+#      but needs to have started the Voice path to benefit)
+can_learn_from_word_wall = {
+    is_dragonborn = yes
+    is_adult = yes
+    NOT = { has_modifier = dovahkiin_word_wall_cooldown }    # 1-year integration period
+    OR = {
+        has_trait = dovahkiin_soul_awakened     # fully awakened Dragonborn
+        has_trait = dragon_souls_growing        # multi-soul Dragonborn
+        has_trait = dragon_souls_brimming       # peak-power Dragonborn
+        has_trait = thu_um_initiate             # Dragonborn who has begun Voice training
+    }
+}
+
+# Can the Dragonborn seek out and absorb another Dragon Soul?
+# Requirements:
+#   • must have already absorbed their first soul (dovahkiin_soul_awakened)
+#   • not on the 730-day absorb cooldown (2 years between hunts)
+#   • Dovah nature not dominant — a dominated Dragonborn cannot focus enough to hunt
+can_absorb_another_soul = {
+    has_trait = dovahkiin_soul_awakened
+    is_adult = yes
+    NOT = { has_modifier = absorb_soul_cooldown }           # 2-year recovery between hunts
+    NOT = { has_trait = dovah_nature_dominant }             # cannot focus when dominated
+}
+
+# ---------------------------------------------------------------
+#  AMULET OF KINGS TRIGGERS
+# ---------------------------------------------------------------
+
+# Does this character hold the Amulet of Kings?
+# This checks the character FLAG (not a trait or modifier) because
+# the Amulet's possession is tracked as a permanent character state.
+# The flag is set by receive_amulet_of_kings (thuumvoi_effects.txt).
+# The flag is cleared by lose_amulet_of_kings (thuumvoi_effects.txt).
+has_amulet_of_kings = {
+    has_character_flag = amulet_of_kings_bearer
+}
+
+# Can the character begin the Amulet of Kings quest?
+# Must be Dragonborn — only those of Dragonblood can fulfil Alessia's Covenant.
+# piety >= 500 ensures the character has reached sufficient spiritual development
+# to even understand the significance of what they are seeking.
+can_seek_amulet_of_kings = {
+    is_dragonborn = yes
+    is_adult = yes
+    NOT = { has_amulet_of_kings = yes }
+    NOT = { has_character_flag = amulet_quest_started }    # prevents duplicate quest start
+    piety >= 500    # spiritual threshold — they must be prepared
+}
+
+# Can the character attempt to relight the Dragonfires in the White-Gold Tower?
+# This is the most demanding prerequisite check in the mod.
+# Requirements:
+#   • holds the Amulet of Kings (the covenant artefact)
+#   • is Dragonborn (only Dragonblood can light the Fires)
+#   • Dragonfires not already lit (can only be done once)
+#   • controls or has realm access to the White-Gold Tower
+#     (title:c_imperial_city — the Imperial City county in Cyrodiil)
+# Note: "any_realm_county" allows vassals who hold the city to also use this,
+# not just direct holders — the Dragonborn king need not personally own the county.
+can_relight_dragonfires = {
+    has_amulet_of_kings = yes
+    is_dragonborn = yes
+    NOT = { has_character_flag = dragonfires_lit }    # can only relight once per game
+    OR = {
+        any_held_county  = { this = title:c_imperial_city }    # directly holds the city
+        any_realm_county = { this = title:c_imperial_city }    # vassal holds the city
+    }
+}
+    OR = {
+        has_trait = thu_um_initiate
+        has_trait = thu_um_adept
+        has_trait = thu_um_master
+        has_trait = greybeard_aspirant
+        has_trait = greybeard_of_high_hrothgar
+        has_trait = first_voice_of_the_greybeards
+    }
+}
+
+# Is the character an active member of the Greybeard Order?
+is_greybeard = {
+    OR = {
+        has_trait = greybeard_aspirant
+        has_trait = greybeard_of_high_hrothgar
+        has_trait = first_voice_of_the_greybeards
+    }
+}
+
+# Is the character eligible to begin Voice training?
+# Requirements: old enough, not already trained, no conflicting path
+can_learn_thu_um = {
+    is_adult = yes
+    NOT = { is_on_voice_path = yes }
+    NOT = { has_character_flag = thuumvoi_quest_started }
+    OR = {
+        learning >= 8
+        has_trait = dragonborn   # EK2 trait
+    }
+}
+
+# Can the character advance their Voice training?
+can_advance_thu_um = {
+    is_adult = yes
+    NOT = { has_modifier = thuumvoi_advancement_cooldown }
+    OR = {
+        has_trait = thu_um_initiate
+        has_trait = thu_um_adept
+    }
+}
+
+# Can the character seek the Greybeards?
+can_seek_greybeards = {
+    is_adult = yes
+    NOT = { is_greybeard = yes }
+    NOT = { has_character_flag = greybeard_quest_started }
+    OR = {
+        has_trait = thu_um_master   # Masters may seek the Order
+        has_trait = dragonborn      # Dragonborn are always welcome
+    }
+}
+
+# Is this character the EK2 Dragonborn?
+is_dragonborn = {
+    has_trait = dragonborn   # EK2-defined trait
+}
+
+# Can the Dragonborn harness their full power?
+can_harness_dovah_blood = {
+    is_dragonborn = yes
+    NOT = { has_trait = dovahkiin_soul_awakened }
+    NOT = { has_character_flag = dovahkiin_quest_started }
+    is_adult = yes
+}
+
+# Is the character the First Voice?
+is_first_voice = {
+    has_trait = first_voice_of_the_greybeards
+}
+
+# Is a Greybeard quest ready to begin?
+can_begin_greybeard_leadership = {
+    has_trait = greybeard_of_high_hrothgar
+    NOT = { has_character_flag = greybeard_lead_quest_1 }
+    NOT = { is_first_voice = yes }
+    NOT = { has_modifier = thuumvoi_advancement_cooldown }
+}
+
+# ---------------------------------------------------------------
+#  DRAGONBORN SOUL / DOVAH NATURE TRIGGERS
+# ---------------------------------------------------------------
+
+# Has the Dragonborn absorbed multiple Dragon Souls (5+)?
+has_multiple_dragon_souls = {
+    has_trait = dovahkiin_soul_awakened
+    check_variable = { name = dragon_souls_absorbed_count value >= 5 }
+}
+
+# Has the Dragonborn absorbed many Dragon Souls (10+)?
+has_many_dragon_souls = {
+    has_trait = dovahkiin_soul_awakened
+    check_variable = { name = dragon_souls_absorbed_count value >= 10 }
+}
+
+# Is the Dovah nature at risk of taking over?
+# (10+ souls but not yet resolved)
+dovah_nature_at_risk = {
+    has_many_dragon_souls = yes
+    NOT = { has_trait = dovah_nature_resisted }
+    NOT = { has_trait = dovah_nature_dominant }
+}
+
+# Can the Dragonborn learn from a Word Wall?
+# Word Walls open instantly to a Dragonborn — they need no teacher.
+# Cooldown applies to prevent rapid stacking.
+can_learn_from_word_wall = {
+    is_dragonborn = yes
+    is_adult = yes
+    NOT = { has_modifier = dovahkiin_word_wall_cooldown }
+    # Must have at least begun their awakening (or have basic training)
+    OR = {
+        has_trait = dovahkiin_soul_awakened
+        has_trait = dragon_souls_growing
+        has_trait = dragon_souls_brimming
+        has_trait = thu_um_initiate     # Even an initiate Dragonborn can read a Word Wall
+    }
+}
+
+# Can the Dragonborn seek out and absorb another Dragon Soul?
+# (Represents seeking a dragon to slay)
+can_absorb_another_soul = {
+    has_trait = dovahkiin_soul_awakened
+    is_adult = yes
+    NOT = { has_modifier = absorb_soul_cooldown }
+    NOT = { has_trait = dovah_nature_dominant }     # Dominated Dragonborn can't focus
+}
+
+# ---------------------------------------------------------------
+#  AMULET OF KINGS TRIGGERS
+# ---------------------------------------------------------------
+
+# Does this character hold the Amulet of Kings?
+has_amulet_of_kings = {
+    has_character_flag = amulet_of_kings_bearer
+}
+
+# Can the character seek the Amulet of Kings?
+# Must be Dragonborn — only those of Dragonblood can fulfil the Covenant
+can_seek_amulet_of_kings = {
+    is_dragonborn = yes
+    is_adult = yes
+    NOT = { has_amulet_of_kings = yes }
+    NOT = { has_character_flag = amulet_quest_started }
+    piety >= 500
+}
+
+# Can the character attempt to relight the Dragonfires?
+# Requires the Amulet, the Dragonborn blood, and the White-Gold Tower
+can_relight_dragonfires = {
+    has_amulet_of_kings = yes
+    is_dragonborn = yes
+    NOT = { has_character_flag = dragonfires_lit }
+    # Must control or have access to the White-Gold Tower (Cyrodiil)
+    OR = {
+        any_held_county = { this = title:c_imperial_city }
+        any_realm_county = { this = title:c_imperial_city }
+    }
+}

@@ -1,0 +1,238 @@
+# =============================================================
+#  Minor Lore Race Events — Dreugh
+#  Namespace: dreugh
+# =============================================================
+
+namespace = dreugh
+
+# ---------------------------------------------------------------
+# lore_races.dreugh.001  Dreugh Life-Cycle Transition (yearly pulse)
+# ---------------------------------------------------------------
+dreugh.001 = {
+    type = character_event
+    title = dreugh.001.t
+    desc = dreugh.001.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dreugh_heritage
+        NOT = { has_variable = dreugh_cycle_locked }
+    }
+
+    option = {
+        name = dreugh.001.a   # "I feel the pull of the sea..."
+        trigger = { has_trait = dreugh_land_phase }
+        remove_trait = dreugh_land_phase
+        add_trait    = dreugh_sea_phase
+        add_prestige = 100
+    }
+
+    option = {
+        name = dreugh.001.b   # "I emerge from the depths, renewed."
+        trigger = { has_trait = dreugh_sea_phase }
+        remove_trait = dreugh_sea_phase
+        add_trait    = dreugh_land_phase
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# dreugh.002  Old Knocker — a Dreugh pays homage to their god
+# ---------------------------------------------------------------
+dreugh.002 = {
+    type = character_event
+    title = dreugh.002.t
+    desc = dreugh.002.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dreugh_heritage
+        has_trait = dreugh_sea_phase
+    }
+
+    option = {
+        name = dreugh.002.a   # "Ancient Knocker, hear us from the deep."
+        add_piety    = 300
+        add_prestige = 100
+        add_modifier = { modifier = old_knocker_blessing_modifier days = 730 }
+    }
+}
+
+# ============================================================
+#  IMGA
+#  Namespace: imga
+# ============================================================
+
+namespace = imga
+
+# ---------------------------------------------------------------
+# imga.001  An Imga Aristocrat Arrives at Court
+# ---------------------------------------------------------------
+imga.001 = {
+    type = character_event
+    title = imga.001.t
+    desc = imga.001.desc
+    theme = diplomacy
+
+    trigger = {
+        is_ruler = yes
+        primary_title = {
+            geographical_region = world_valenwood
+        }
+    }
+
+    option = {
+        name = imga.001.a   # "Welcome, great ape — your powder and poise are appreciated."
+        add_prestige = 100
+        add_modifier = { modifier = imga_favor_modifier days = 1825 }
+    }
+
+    option = {
+        name = imga.001.b   # "Their imitation of our ways is... unsettling."
+        add_prestige = 50
+        add_stress   = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# imga.002  Marukh's Legacy — an Imga prophet stirs in Valenwood
+# ---------------------------------------------------------------
+imga.002 = {
+    type = character_event
+    title = imga.002.t
+    desc = imga.002.desc
+    theme = realm
+
+    trigger = {
+        has_trait = imga_heritage
+        piety >= 200
+        learning >= 10
+    }
+
+    option = {
+        name = imga.002.a   # "Marukh spoke truth — the Aldmer are the pinnacle."
+        add_trait    = altmer_imitator
+        add_piety    = 300
+        add_prestige = 100
+    }
+
+    option = {
+        name = imga.002.b   # "Marukh's path is not mine — we are our own people."
+        add_piety    = 100
+        add_prestige = 200
+    }
+}
+
+# ============================================================
+#  TANG MO
+#  Namespace: tang_mo
+# ============================================================
+
+namespace = tang_mo
+
+# ---------------------------------------------------------------
+# tang_mo.001  Tang Mo Community Rally — defending against Kamal
+# ---------------------------------------------------------------
+tang_mo.001 = {
+    type = character_event
+    title = tang_mo.001.t
+    desc = tang_mo.001.desc
+    theme = war
+
+    trigger = {
+        has_trait = tang_mo_heritage
+        exists = global_var:kamal_invasion_active
+    }
+
+    option = {
+        name = tang_mo.001.a   # "The community stands as one — repel the demons!"
+        add_prestige = 200
+        add_piety    = 100
+        add_modifier = { modifier = tang_mo_unity_modifier days = 365 }
+        add_trait    = invasion_repeller
+    }
+
+    option = {
+        name = tang_mo.001.b   # "Seek shelter in the deep jungle — let the demons pass."
+        add_prestige = -100
+        add_stress   = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# tang_mo.002  Alliance with Ka Po' Tun — the Tiger-Dragon realms
+# ---------------------------------------------------------------
+tang_mo.002 = {
+    type = character_event
+    title = tang_mo.002.t
+    desc = tang_mo.002.desc
+    theme = diplomacy
+
+    trigger = {
+        has_trait = tang_mo_heritage
+        any_neighboring_realm = {
+            any_ruler = { has_culture = ka_po_tun_culture }
+        }
+    }
+
+    option = {
+        name = tang_mo.002.a   # "Together we are stronger than any Kamal horde."
+        add_prestige = 300
+        add_piety    = 200
+        # Grant mutual alliance — scripted as an event flag
+        add_modifier = { modifier = ka_po_tun_alliance_modifier days = 3650 }
+    }
+}
+
+# ============================================================
+#  KEPTU / NEDES
+#  Namespace: keptu (keptu events) / nedes (nedes events)
+# ============================================================
+
+namespace = keptu
+
+# ---------------------------------------------------------------
+# keptu.001  Bloodroot Forge — ancient Keptu smithing secret
+# ---------------------------------------------------------------
+keptu.001 = {
+    type = character_event
+    title = keptu.001.t
+    desc = keptu.001.desc
+    theme = learning
+
+    trigger = {
+        has_trait = keptu_lineage
+        stewardship >= 14
+    }
+
+    option = {
+        name = keptu.001.a   # "The Forge's secrets are mine to revive."
+        add_stewardship = 2
+        add_prestige    = 300
+        add_modifier = { modifier = bloodroot_forge_modifier days = 1825 }
+    }
+}
+
+# ---------------------------------------------------------------
+# nedes.001  A Nedic Elder Speaks — ancient knowledge unearthed
+# ---------------------------------------------------------------
+namespace = nedes
+
+nedes.001 = {
+    type = character_event
+    title = nedes.001.t
+    desc = nedes.001.desc
+    theme = learning
+
+    trigger = {
+        has_trait = nedic_elder
+        learning >= 12
+    }
+
+    option = {
+        name = nedes.001.a   # "Their oral histories predate the First Era."
+        add_learning = 3
+        add_prestige = 200
+        add_piety    = 100
+    }
+}
