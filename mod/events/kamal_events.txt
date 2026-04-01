@@ -187,20 +187,19 @@ kamal.050 = {
     hidden = yes
 
     immediate = {
-        # Track summer (months 3-9) and winter (months 10-2) via a global variable.
-        # CK3 date scripting: use game_start_date offset or on_action year/month flags.
-        # TODO: Implement a proper seasonal guard using the get_date scripting function.
-        # A working approach: use a yearly on_action that reads current_date arithmetic
-        # via set_variable = { name = month_num value = current_date.month } and then
-        # if = { limit = { scope:month_num >= 3 scope:month_num <= 9 } ... }.
-        # Until then, the Kamal invasion is triggered via on_yearly_pulse weight alone;
-        # Dir-Kamal is spawned without a hard seasonal guard — adjust on_yearly_pulse
-        # weights in daedric_invasion_on_actions.txt to compensate.
+        # Toggle the summer season flag based on the calendar month.
+        # Summer = months 5–9 (May–Sep): Dir-Kamal is active and aggressive.
+        # Winter = months 10–4 (Oct–Apr): reduced Kamal activity.
+        # CK3 evaluates current_date.month as an integer (1–12) in trigger comparisons.
         if = {
             limit = {
-                NOT = { exists = global_var:current_season_summer }
+                current_date.month >= 5
+                current_date.month <= 9
             }
             set_global_variable = { name = current_season_summer value = yes }
+        }
+        else = {
+            remove_global_variable = current_season_summer
         }
     }
 }

@@ -50,6 +50,7 @@ l_english:
  # ===================== Invasion Start =====================
  daedric_invasion.000.t: "The Veil Tears"
  daedric_invasion.000.desc: "Tremors shake the earth and the sky turns crimson. Oblivion itself bleeds into Mundus — a Daedric Prince has chosen this age to unleash their armies upon the mortal realm."
+ daedric_invasion.000.a: "Brace yourselves — the invasion has begun."
 
  daedric_invasion.001.t: "Darkness Descends"
  daedric_invasion.001.desc_dagon: "Mehrunes Dagon, Prince of Destruction and Change, has opened the Gates of Oblivion. His Daedric armies pour into the mortal world to raze every kingdom that stands before them."
