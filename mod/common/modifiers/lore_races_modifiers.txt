@@ -785,7 +785,6 @@ thu_um_shout_cooldown = { }
 # Removed by: leave_greybeard_order (thuumvoi_effects.txt)
 greybeard_vow_modifier = {
     diplomacy               = -2     # Silence is not rudeness — but courts don't understand it
-    monthly_piety_gain_mult              = 0.15
     monthly_piety_gain_mult = 0.20   # Deep contemplation and discipline build spiritual power
 }
 
@@ -793,8 +792,7 @@ greybeard_vow_modifier = {
 # Leaving the Order is a profound spiritual failure in the Way of the Voice.
 # Applied by: leave_greybeard_order (thuumvoi_effects.txt)
 greybeard_oath_broken = {
-    monthly_piety_gain_mult              = -0.30
-    monthly_piety_gain_mult = -0.25
+    monthly_piety_gain_mult = -0.30
     diplomacy               = -5     # Known as an oath-breaker; courts are suspicious
 }
 
@@ -802,7 +800,6 @@ greybeard_oath_broken = {
 # The First Voice is the head of the Greybeard Order.
 first_voice_modifier = {
     learning                   = 5
-    monthly_piety_gain_mult                 = 0.30
     monthly_piety_gain_mult    = 0.30
     monthly_prestige_gain_mult = 0.20
     command_modifier = { advantage = 8 max_morale = 0.40 }
@@ -819,7 +816,7 @@ dovahkiin_full_power_modifier = {
     prowess         = 6
     learning        = 4
     martial         = 4
-    monthly_piety_gain_mult      = 0.25
+    monthly_piety_gain_mult = 0.25
     dread_gain_mult = 0.25   # Dragons and lore-aware mortals fear the Dragonborn
     command_modifier = { advantage = 8 damage = 0.20 max_morale = 0.35 }
 }
@@ -872,9 +869,8 @@ dragon_souls_brimming_modifier = {
 # This is "the hardest shout" — choosing mortal free will over the dragon's hunger.
 # Applied by: resist_dovah_nature (thuumvoi_effects.txt)
 dovah_nature_resisted_modifier = {
-    monthly_piety_gain_mult               = 0.20
-    stress_gain_mult = -0.15   # Hard-won inner peace reduces ongoing stress
     monthly_piety_gain_mult  = 0.20
+    stress_gain_mult = -0.15   # Hard-won inner peace reduces ongoing stress
 }
 
 # Applied permanently (days = -1) when the Dovah nature takes control.
@@ -907,9 +903,9 @@ dovah_nature_dominant_modifier = {
 # Applied permanently (days = -1) by receive_amulet_of_kings.
 # Removed by lose_amulet_of_kings.
 amulet_of_kings_bearer_modifier = {
-    monthly_piety_gain_mult                 = 0.20
-    monthly_prestige_gain_mult = 0.25
-    diplomacy                  = 3      # The Amulet lends divine authority
+    monthly_piety_gain_mult      = 0.20
+    monthly_prestige_gain_mult   = 0.25
+    diplomacy                    = 3      # The Amulet lends divine authority
 }
 
 # Enhanced modifier: applies ONLY to Dragonborn wielding the Amulet.
@@ -917,10 +913,10 @@ amulet_of_kings_bearer_modifier = {
 # Applied permanently (days = -1) by amulet.004 event (amulet_of_kings_events.txt).
 # Removed by lose_amulet_of_kings.
 amulet_of_kings_dragonborn_modifier = {
-    monthly_piety_gain_mult                 = 0.40
-    monthly_prestige_gain_mult = 0.40
-    diplomacy                  = 5
-    learning                   = 3
+    monthly_piety_gain_mult      = 0.40
+    monthly_prestige_gain_mult   = 0.40
+    diplomacy                    = 5
+    learning                     = 3
     command_modifier = {
         advantage  = 6
         max_morale = 0.25
@@ -935,9 +931,9 @@ amulet_of_kings_dragonborn_modifier = {
 # This is the greatest act a Dragonborn can perform — renewing Alessia's Covenant.
 # Applied by: relight_dragonfires_effect (thuumvoi_effects.txt)
 dragonfires_lit_modifier = {
-    monthly_piety_gain_mult                 = 0.50
-    monthly_prestige_gain_mult = 0.50
-    diplomacy                  = 6
+    monthly_piety_gain_mult      = 0.50
+    monthly_prestige_gain_mult   = 0.50
+    diplomacy                    = 6
     # The restored Dragonfires provide the strongest Oblivion barrier possible.
     # Future: consider adding a global_var:dragonfires_lit check in
     # daedric_invasion_trigger_conditions to make invasions impossible while active.
