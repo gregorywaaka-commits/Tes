@@ -1,4 +1,48 @@
-# Encoding: UTF-8-BOM
+﻿# Encoding: UTF-8-BOM
+# =============================================================
+#  Amulet of Kings — English Localization
+#  File: mod/localization/english/amulet_of_kings_l_english.yml
+#
+#  CRITICAL: UTF-8 BOM required (0xEF 0xBB 0xBF).
+#
+#  This file provides strings for:
+#    • Amulet-related character modifiers (amulet_of_kings_bearer_modifier etc.)
+#    • Decisions (seek/claim/relight)
+#    • Event chain (amulet.001 – amulet.007, amulet.post_001)
+#
+#  LORE CHOICES & RATIONALE:
+#  ──────────────────────────
+#  — The Dragonfires in the White-Gold Tower were first lit by
+#    Saint Alessia in 1E 243 (canonical founding of the First Empire).
+#    They went cold at the start of the Interregnum (2E 430).
+#    The mod's campaign starts at 2E 440; the Dragonfires have
+#    been cold for ~10 years when play begins.
+#  — Only Dragonblood (Dragonborn) can safely wear the Amulet
+#    and access its full power.  Non-Dragonborn who wear it
+#    experience discomfort then rejection (amulet.005).
+#  — The "Order of the Ancestor Moth" appears in the event chain
+#    as guardians.  Their role as Amulet keepers is a mod
+#    invention; in canon, they are primarily associated with
+#    reading Elder Scrolls.  The connection is plausible lore
+#    extrapolation (both are Akatosh-adjacent).
+#  — Relighting the Dragonfires has geopolitical implications:
+#    it strengthens the claim to the Ruby Throne.  This is
+#    canonical — every Cyrodiilic Emperor maintained the Fires.
+#
+#  HOW TO REPLICATE INTO A NEW MOD:
+#  ──────────────────────────────────
+#  1. Copy this file (with BOM) and:
+#       amulet_of_kings_events.txt, amulet_of_kings_decisions.txt,
+#       plus the amulet modifier entries in lore_races_modifiers.txt.
+#  2. The system requires EK2's dragonborn trait as a read-only
+#     check (has_trait = dragonborn) — never redefine it.
+#  3. All Amulet state is tracked via character_flags:
+#     amulet_of_kings_bearer, amulet_quest_started,
+#     amulet_quest_1_seen, amulet_quest_2_seen, etc.
+#     These are defined in thuumvoi_effects.txt.
+#  4. The White-Gold Tower must be EK2 title c_imperial_city;
+#     verify this ID before use in your mod.
+# =============================================================
 l_english:
  # ============================================================
  #  Amulet of Kings — Localization

@@ -1,3 +1,49 @@
+﻿# Encoding: UTF-8-BOM
+# =============================================================
+#  Lore Races — English Localization
+#  File: mod/localization/english/lore_races_l_english.yml
+#
+#  CRITICAL (Mac + all platforms):
+#  This file MUST begin with a UTF-8 BOM (0xEF 0xBB 0xBF).
+#  CK3 silently ignores YAML without BOM on all platforms.
+#
+#  LORE CHOICES & RATIONALE:
+#  ──────────────────────────
+#  — Echmer: from the Uutak Mythos (Michael Kirkbride-adjacent
+#    extended lore); not in base TES games but widely accepted
+#    in the modding/fan-lore community.
+#  — Maormer: canonical; extensively documented in Pocket Guide
+#    to the Empire, ESO, and various in-game books.
+#  — Sload Plague date: 1E 2200 (plague begins); 1E 2260 (Thras
+#    sunk by All-Flags Navy).  Previous files erroneously had
+#    1E 2260 as the plague date — corrected.
+#  — Dir-Kamal was KILLED at the Battle of Vivec (2E 572), not
+#    merely driven back.  The battle was won by the Ebonheart
+#    Pact coalition (Dunmer + Nords + Argonians) and the Tribunal.
+#    Vivec did not act alone.  Events kamal.010 and kamal.020
+#    represent the two narrative paths (Tribunal intervention vs.
+#    player-led coalition victory).
+#  — Coral Tower / Coldharbour: the connection is a mod
+#    interpretation; marked with an in-file note.
+#  — Imga / Marukh: canonical; Marukh was an Imga prophet whose
+#    visions sparked the Alessian Order (TES books).
+#  — Kothringi: canonical; extinct by 2E 560–580 from Knahaten Flu.
+#
+#  HOW TO REPLICATE INTO A NEW MOD:
+#  ──────────────────────────────────
+#  1. Copy this file (with BOM) and the companion files:
+#       lore_races_traits.txt, lore_races_effects.txt,
+#       lore_races_triggers.txt, lore_races_modifiers.txt,
+#       lore_races_decisions.txt, lore_races_on_actions.txt.
+#  2. Each race is independently self-contained — you can strip
+#     out races you do not want by removing their trait/effect/
+#     trigger/event blocks and the corresponding localization keys.
+#  3. Echmer depends on title:k_yneslea (EK2 title).
+#     Maormer depends on title:k_pyandonea and global King Orgnum.
+#     Sload depends on title:c_thras.
+#     Kamal invasion triggers at current_date >= 2E.572.
+#     Verify EK2 title IDs before use.
+# =============================================================
  # Encoding: UTF-8-BOM
 l_english:
 
@@ -130,7 +176,13 @@ l_english:
  sload.010.a: "Sail for Thras — let us end this."
 
  sload.015.t: "The Coral Tower"
- sload.015.desc: "Before the fleet looms the Coral Tower of Thras — a blood-red spire of living coral that claws into the sky, its summit crowned with a flickering blue light. Scholars say that light is a portal to Coldharbour, Molag Bal's realm. The Sload's dying cries echo from within. They are calling on something."
+ # Lore note: The Coral Tower is canonically one of Tamriel's Towers (its Stone is
+ # the "Pearl" or Coral Stone).  The specific connection to Coldharbour is a mod
+ # interpretation — not established in canonical TES sources.  The flavour is used
+ # here to make the Coral Tower feel unique and dangerous.  If adapting this for a
+ # stricter canon mod, remove the Coldharbour reference and replace with a generic
+ # "resonance of dark magic" description.
+ sload.015.desc: "Before the fleet looms the Coral Tower of Thras — a blood-red spire of living coral that claws into the sky, its summit crowned with a flickering blue light. Scholars disagree on that light's nature; some claim it is the Coral Stone's death-pulse, others whisper of older, darker pacts. The Sload's dying cries echo from within. They are calling on something, and it is answering."
  sload.015.a: "Attack the Coral Tower directly!"
  sload.015.b: "Pull back — the tower's magic is too powerful."
 
@@ -202,20 +254,35 @@ l_english:
  kamal.000.a: "Let them come — Tamriel will not bow."
 
  kamal.001.t: "Ada'Soom Dir-Kamal"
- kamal.001.desc: "A name not heard since the Second Era echoes out of the east: Ada'Soom Dir-Kamal. The greatest of Kamal warlords — a snow demon of terrifying martial genius — has thawed. His armies fill the sea horizon. They make no demands, offer no terms. They come to conquer."
+ # Lore note: Ada'Soom Dir-Kamal led the historical 2E 572 invasion.
+ # The event fires at or after that date (current_date >= 2E.572 in kamal_invasion_possible).
+ # "A name that will define this age" replaces the previous "not heard since the Second Era"
+ # which was temporally confused — we ARE in the Second Era when this fires.
+ kamal.001.desc: "A name that will define this age echoes out of the east: Ada'Soom Dir-Kamal. The greatest Kamal warlord — a snow demon of terrifying martial genius — has thawed. His armies fill the sea horizon. They make no demands, offer no terms. They come to conquer."
  kamal.001.a: "Ada'Soom Dir-Kamal — we will stop you here!"
  kamal.001.b: "Pray the Tribunal can intervene as before."
 
- kamal.010.t: "Vivec Intervenes"
- kamal.010.desc: "The god-warrior Vivec descends upon the battlefield in a column of golden light. He confronts Dir-Kamal directly, driving the demon king back with a word. The Kamal host falters, freezes — and retreats to their ships. Vivec turns without looking back and vanishes."
- kamal.010.a: "Vivec has spoken — the demons retreat!"
- kamal.010.b: "A narrow victory — do not rely on the Tribunal again."
+ # Lore note: The historical Battle of Vivec (2E 572) ended with Dir-Kamal's DEATH,
+ # not a retreat.  The battle was won by the Ebonheart Pact coalition — Dunmer, Nords,
+ # and Argonians — alongside the Tribunal (Vivec, Almalexia, Sotha Sil).  Vivec played
+ # a significant role but did not act alone.  This event represents a scenario where
+ # the Tribunal's intervention ends the invasion; in a playthrough where the player
+ # defeats the Kamal without Tribunal aid, kamal.020 fires instead.
+ kamal.010.t: "The Tribunal Intervenes"
+ kamal.010.desc: "The god-warriors of the Tribunal descend upon the battlefield. Vivec leads, Almalexia fights at his side, and the Kamal host — for the first time — knows fear. Ada'Soom Dir-Kamal falls at the edge of Vivec's city as the Ebonheart Pact coalition closes the trap. The Kamal survivors scatter to their ships. Their warlord does not escape with them."
+ kamal.010.a: "The Tribunal and the Pact have ended this — for now."
+ kamal.010.b: "Dir-Kamal is dead. The coalition holds — barely."
 
  kamal.020.t: "The Kamal Retreat"
- kamal.020.desc: "The Kamal armies dissolve as winter returns. Ada'Soom Dir-Kamal stands at the ocean's edge, his ice-armour already stiffening, and looks one last time at Tamriel before the sea takes him. He will thaw again."
+ # Lore note: Dir-Kamal was killed in the historical 2E 572 battle.  This event fires
+ # when the player defeats the Kamal WITHOUT Tribunal intervention (kamal.010 represents
+ # the Tribunal path).  In this alternate outcome Dir-Kamal is also slain; the Kamal
+ # retreat is their leaderless host dissolving.  "Another may rise" acknowledges
+ # the Kamal threat is eternal (they thaw every summer) without implying Dir-Kamal himself survived.
+ kamal.020.desc: "The Kamal armies dissolve as winter returns. Ada'Soom Dir-Kamal lies dead on the shore, his ice-armour already reclaiming him. His leaderless host scatters to their ships and the Padomaic waves. Dir-Kamal will not thaw again. But Akavir is vast, and snow demons have long memories. Another will rise."
  kamal.020.a: "They return to their frozen realm — for now."
 
- kamal_invasion_coming_tt: "A Kamal invasion has begun. Ada'Soom Dir-Kamal will march unless repelled or Vivec intervenes."
+ kamal_invasion_coming_tt: "A Kamal invasion has begun. Ada'Soom Dir-Kamal will march until repelled by force or Tribunal intervention (kamal.010 / kamal.020)."
 
  # Traits
  kamal_heritage: "Kamal"

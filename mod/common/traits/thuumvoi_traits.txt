@@ -7,16 +7,38 @@
 #  EK2 Timeframe: 2E 440–896 (the Interregnum)
 #  Lore basis:
 #    — The Way of the Voice was established by Jurgen Windcaller
-#      (1E 369 after the Battle of Red Mountain).
+#      c. 1E 1069 — around 369 years after the Battle of Red
+#      Mountain (c. 1E 700 in most canonical sources).
+#      Note: 'after the Battle of Red Mountain' is the time gap,
+#      NOT the year 1E 369 — clarified here to avoid confusion.
 #    — High Hrothgar has housed the Order of the Greybeards since
 #      the early First Era; Paarthurnax leads from the Throat of
 #      the World above.
 #    — The Thu'um (Tonal magic / dragon shouts) is rare but real
 #      in the Second Era.  Most practitioners are at High Hrothgar
 #      or operating as Tongues (the older martial tradition).
+#    — 'Arngeir' appears in localization as the Greybeards' voice.
+#      Arngeir is a Fourth Era figure (TES V: Skyrim) and is
+#      anachronistic in the Second Era.  He is used here as
+#      recognisable flavour.  For strict accuracy, replace
+#      'Arngeir' with 'the Elder Greybeard' throughout.
+#      Paarthurnax IS present in the Second Era (pre-dates all eras).
 #    — The Dragonborn ('Dovahkiin') can absorb Dragon Souls and
 #      learns every Shout instantly.  This references EK2's
-#      existing 'dragonborn' trait.
+#      existing 'dragonborn' trait (read-only; never redefined).
+#
+#  HOW TO REPLICATE INTO A NEW MOD:
+#  ─────────────────────────────────
+#  1. Keep EK2 as a dependency (descriptor.mod).
+#  2. Copy: thuumvoi_traits.txt, thuumvoi_effects.txt,
+#     thuumvoi_triggers.txt, thuumvoi_decisions.txt,
+#     thuumvoi_events.txt, thuumvoi_l_english.yml.
+#  3. YAML files must have a UTF-8 BOM header byte (0xEF 0xBB 0xBF)
+#     or CK3 will silently ignore the localization.
+#  4. This system only reads EK2's 'dragonborn' trait.
+#     It never modifies EK2 files — safe to copy standalone.
+#  5. Use monthly_piety_gain_mult (not piety_mult) and
+#     stress_gain_mult with a negative value (not stress_loss_mult).
 # =============================================================
 
 # ================================================================

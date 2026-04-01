@@ -1,8 +1,61 @@
 # =============================================================
-#  Daedric Prince character templates
-#  Each Daedric Prince is created as a non-playable, immortal
-#  NPC ruler who leads the invasion forces.
-#  These are spawned by scripted effects when an invasion begins.
+#  Daedric Prince Character Templates
+#  File: mod/common/character_templates/daedric_princes.txt
+#
+#  WHAT THIS FILE DOES:
+#  ─────────────────────
+#  Defines character templates for all 17 canonical Daedric Princes.
+#  When begin_daedric_invasion fires (daedric_invasion_effects.txt),
+#  it calls create_character = { template = X_template } to spawn
+#  the Prince as a non-playable, immortal NPC ruler on the map.
+#
+#  IMPORTANT — immortal_age:
+#  ─────────────────────────
+#  immortal_age = 0 sets the character's age to 0 and stops aging.
+#  CK3 uses this to make a character permanently immortal.
+#  Daedric Princes are immortal by canon; they cannot be permanently
+#  killed on Mundus — only banished back to their Plane.
+#  In-game this means the Prince NPC cannot die naturally; they can
+#  only be 'banished' via the end_daedric_invasion effect which kills
+#  the character and cleans up global state.
+#
+#  STAT PHILOSOPHY:
+#  ─────────────────
+#  Each Prince's CK3 stats reflect their lore domain:
+#    • Mehrunes Dagon: high martial/prowess (Destruction domain)
+#    • Molag Bal: high intrigue/diplomacy (Domination/Corruption)
+#    • Boethiah: highest intrigue of all (Plots/Betrayal)
+#    • Hircine: highest prowess (The Hunt)
+#    • Hermaeus Mora: highest learning of all (Knowledge)
+#    • Jyggalag: high martial + learning + prowess (Perfect Order)
+#    • Clavicus Vile: high diplomacy (Bargains/Trickery)
+#    • Nocturnal: high intrigue (Shadow/Secrets)
+#    • Sanguine: high diplomacy (Hedonism/Social)
+#    • Azura: high learning/diplomacy (Prophecy/Twilight)
+#
+#  EK2 IDENTIFIERS USED (verify these match your EK2 version):
+#  ─────────────────────────────────────────────────────────────
+#  Faiths (religion = X_faith): mehrunes_dagon_faith, molag_bal_faith,
+#    boethiah_faith, hircine_faith, namira_faith, azura_faith,
+#    mephala_faith, clavicus_vile_faith, vaermina_faith,
+#    sheogorath_faith, peryite_faith, sanguine_faith, meridia_faith,
+#    malacath_faith, nocturnal_faith, hermaeus_mora_faith.
+#    NOTE: jyggalag_faith is NOT in base EK2; it is a custom addition
+#    in this mod (or requires manual creation in a custom faith file).
+#  Culture: daedra_culture (EK2)
+#  Dynasty: daedric_dynasty (may need creating if EK2 lacks it)
+#
+#  HOW TO ADD A NEW PRINCE TEMPLATE:
+#  ────────────────────────────────────
+#  1. Create a new X_template block below following the pattern.
+#  2. Add X_faith and X_aspect traits to daedric_invasion_traits.txt.
+#  3. Add an else_if block to begin_daedric_invasion in
+#     daedric_invasion_effects.txt, and cleanup in end_daedric_invasion.
+#  4. Add is_X_invasion to daedric_invasion_triggers.txt.
+#  5. Add a seek_X decision to daedric_prince_decisions.txt.
+#  6. Add event chain X to daedric_champion_events.txt.
+#  7. Add localization to daedric_princes_l_english.yml.
+#  8. Optionally add a unique MaA type to daedric_units.txt.
 # =============================================================
 
 mehrunes_dagon_template = {

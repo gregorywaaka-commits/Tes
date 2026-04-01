@@ -1,4 +1,58 @@
-# Encoding: UTF-8-BOM
+﻿# Encoding: UTF-8-BOM
+# =============================================================
+#  Guild System — English Localization
+#  File: mod/localization/english/guilds_l_english.yml
+#
+#  CRITICAL: UTF-8 BOM required (0xEF 0xBB 0xBF).
+#
+#  GUILDS COVERED (9 total):
+#  1. Mages Guild          — founded 2E 230 by Vanus Galerion
+#  2. Fighters Guild       — chartered 2E 321 (Tsaesci "Syffim")
+#  3. Thieves Guild        — active throughout Second Era
+#  4. Dark Brotherhood     — Sithis cult; Five Tenets; Night Mother
+#  5. Morag Tong           — Mephala's guild; legal writs in Morrowind
+#  6. Companions           — Ysgramor's ancient fellowship; Jorrvaskr
+#  7. Psijic Order         — the Elder Way; Artaeum; absent 2E 230–580
+#  8. Bards College        — based in Solitude, Skyrim
+#  9. Undaunted            — adventurers' fellowship; Tamriel-wide
+#
+#  LORE CHOICES & RATIONALE:
+#  ──────────────────────────
+#  — Fighters Guild: "Syffim" (Tsaesci name) is canonical from
+#    ESO lore and the Pocket Guide to the Empire.
+#    Guild Act 2E 321 is the standard founding date.
+#  — Mages Guild: 2E 230 / Vanus Galerion founding is canonical.
+#    Guild Act 2E 321 granted it imperial recognition.
+#  — Companions: NOT the same as the Fighters Guild.  The
+#    Companions predate the Fighters Guild by millennia
+#    (Ysgramor, Merethic Era); Jorrvaskr in Whiterun is their
+#    hall.  The Harbinger is a guide, not a traditional leader.
+#  — Psijic Order: their island Artaeum vanished from mortal
+#    perception in 2E 230 and reappeared in 2E 580.  Events
+#    reflecting this absence are correctly gated by date.
+#  — Dark Brotherhood: Five Tenets are canonical from TES lore;
+#    the Night Mother is the spiritual head; Speakers are her
+#    voice to the Black Hand council.
+#  — Morag Tong: predates the Dark Brotherhood; operates under
+#    legal writs of execution within Dunmer/Morrowind jurisdiction.
+#    Operates primarily in Morrowind and House territories.
+#
+#  HOW TO REPLICATE INTO A NEW MOD:
+#  ──────────────────────────────────
+#  1. Copy this file (with BOM) and:
+#       guild_traits.txt, guild_effects.txt, guild_triggers.txt,
+#       guild_decisions.txt, guild_leadership_decisions.txt,
+#       guild_events.txt, guild_leadership_events.txt.
+#  2. Each guild is independent.  To add just one guild:
+#     a. Add its trait keys here.
+#     b. Add its trait in guild_traits.txt.
+#     c. Add join/advance/leave effects in guild_effects.txt.
+#     d. Add join/advance decisions in guild_decisions.txt.
+#     e. Add guild events in guild_events.txt.
+#  3. Guild membership is tracked via character_flags
+#     (guild_X_member) and character variables (guild_X_rank).
+#     These are auto-cleared on character death.
+# =============================================================
 l_english:
  # ============================================================
  #  Guild System — Full Localization
