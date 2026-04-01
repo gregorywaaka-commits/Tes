@@ -1,0 +1,249 @@
+# =============================================================
+#  Akaviri Events — Tsaesci & Ka Po'Tun
+#  File: mod/events/akaviri_events.txt
+#
+#  WHAT THIS FILE DOES:
+#  Covers the Tsaesci (snake-men of Akavir) and Ka Po'Tun
+#  (tiger-dragon folk of Akavir) — two of the four Akaviri
+#  peoples alongside Tang Mo and Kamal (already in kamal_events.txt
+#  and minor_lore_races_events.txt respectively).
+#
+#  EVENT INDEX:
+#  TSAESCI
+#  tsaesci.001 — Tsaesci Envoy Arrives: sword discipline as cultural exchange
+#  tsaesci.002 — The Dragonguard Legacy: Akaviri sword-tradition lineage
+#  tsaesci.003 — Inducted into the Dragonguard: gaining akaviri_dragonguard trait
+#  tsaesci.004 — Tsaesci Blade Philosophy: inner conflict of the hunter vs. servant
+#  KA PO'TUN
+#  ka_po_tun.001 — News of Tosh Raka: the tiger-king's dragon transformation
+#  ka_po_tun.002 — Ka Po'Tun Alliance Offer: tiger-folk reach out across the sea
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_tsaesci, is_ka_po_tun, tsaesci_dragonguard_possible
+#  Traits:             tsaesci_heritage, tsaesci_blademaster,
+#                      akaviri_dragonguard, ka_po_tun_heritage,
+#                      tosh_raka_herald
+#  Modifiers:          akaviri_sword_tradition_modifier,
+#                      akaviri_dragonguard_cooldown,
+#                      tosh_raka_revelation_modifier
+#  Cultures:           tsaesci_culture, ka_po_tun_culture (EK2)
+#
+#  LORE BASIS:
+#  Tsaesci: serpent-people of Akavir who invaded Tamriel in 1E 2703;
+#    Reman I repelled them at the Battle of Pale Pass and incorporated
+#    survivors into his Dragonguard.  They are disciplined swordsmen
+#    who "ate" the men of Akavir (an Akaviri euphemism for conquest/
+#    absorption of cultures).  Sources: Mysterious Akavir.
+#  Ka Po'Tun: humanoid tigers of Akavir in constant war with the Tsaesci.
+#    Their king Tosh Raka is attempting to transform himself into a
+#    coloured dragon — an act requiring unthinkable ritual commitment.
+#    They have allied with the Tang Mo against the Tsaesci.
+#    Source: Mysterious Akavir.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add tsaesci.NNN or ka_po_tun.NNN = { ... } following the pattern below
+#  2. Add localization keys to mod/localization/english/lore_races_l_english.yml
+# =============================================================
+
+namespace = tsaesci
+
+# ---------------------------------------------------------------
+# tsaesci.001  Tsaesci Envoy Arrives — sword discipline as cultural exchange
+# ---------------------------------------------------------------
+tsaesci.001 = {
+    type = character_event
+    title = tsaesci.001.t
+    desc = tsaesci.001.desc
+    theme = diplomacy
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        NOT = { has_trait = tsaesci_heritage }
+        martial >= 14
+    }
+
+    option = {
+        name = tsaesci.001.a   # "Welcome — teach our soldiers your methods."
+        add_martial  = 1
+        add_prestige = 300
+        add_modifier = { modifier = akaviri_sword_tradition_modifier days = 3650 }
+    }
+
+    option = {
+        name = tsaesci.001.b   # "A serpent-man at court? What message does that send?"
+        add_prestige = -50
+    }
+}
+
+# ---------------------------------------------------------------
+# tsaesci.002  The Dragonguard Legacy — lineage of the Akaviri sword-tradition
+# ---------------------------------------------------------------
+tsaesci.002 = {
+    type = character_event
+    title = tsaesci.002.t
+    desc = tsaesci.002.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        has_trait = tsaesci_heritage
+        NOT = { has_trait = tsaesci_blademaster }
+        martial >= 16
+    }
+
+    option = {
+        name = tsaesci.002.a   # "Our ancestors served the Dragonborn Emperor — their legacy is ours."
+        add_trait    = tsaesci_blademaster
+        add_prestige = 400
+        add_martial  = 2
+    }
+
+    option = {
+        name = tsaesci.002.b   # "The old loyalties are gone — we serve no one now."
+        add_prestige = 200
+        add_dread    = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# tsaesci.003  Inducted into the Dragonguard — the ancient elite guard
+# ---------------------------------------------------------------
+tsaesci.003 = {
+    type = character_event
+    title = tsaesci.003.t
+    desc = tsaesci.003.desc
+    theme = martial
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        tsaesci_dragonguard_possible = yes
+    }
+
+    option = {
+        name = tsaesci.003.a   # "I take this oath in the name of the Dragonborn."
+        add_trait    = akaviri_dragonguard
+        add_prestige = 600
+        add_piety    = 200
+        add_modifier = { modifier = akaviri_dragonguard_cooldown days = 1825 }
+    }
+
+    option = {
+        name = tsaesci.003.b   # "The Dragonguard is a relic of a fallen empire — I decline."
+        add_prestige = -100
+    }
+}
+
+# ---------------------------------------------------------------
+# tsaesci.004  Tsaesci Blade Philosophy — hunter vs. servant
+# ---------------------------------------------------------------
+tsaesci.004 = {
+    type = character_event
+    title = tsaesci.004.t
+    desc = tsaesci.004.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        has_trait = tsaesci_heritage
+        has_trait = tsaesci_blademaster
+    }
+
+    option = {
+        name = tsaesci.004.a   # "We hunted dragons — and found Dragonborn masters instead."
+        add_piety    = 200
+        add_prestige = 200
+    }
+
+    option = {
+        name = tsaesci.004.b   # "We are hunters, not guards. The old oaths mean nothing."
+        add_dread    = 15
+        add_prestige = 300
+        add_stress   = 10
+    }
+}
+
+# ---------------------------------------------------------------
+
+namespace = ka_po_tun
+
+# ---------------------------------------------------------------
+# ka_po_tun.001  News of Tosh Raka — the tiger-king's dragon transformation
+# ---------------------------------------------------------------
+ka_po_tun.001 = {
+    type = character_event
+    title = ka_po_tun.001.t
+    desc = ka_po_tun.001.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = personality_zealous
+    }
+
+    trigger = {
+        is_ruler = yes
+        # Accessible to Ka Po'Tun rulers or those with Akaviri contacts
+        OR = {
+            has_trait = ka_po_tun_heritage
+            has_trait = tsaesci_heritage
+            has_trait = tang_mo_heritage
+        }
+    }
+
+    option = {
+        name = ka_po_tun.001.a   # "A mortal becoming a dragon? This defies everything we know."
+        add_learning  = 2
+        add_piety     = 100
+        add_modifier  = { modifier = tosh_raka_revelation_modifier days = 1825 }
+    }
+
+    option = {
+        name = ka_po_tun.001.b   # "If Tosh Raka succeeds, he will be something the world has never seen."
+        add_prestige  = 200
+    }
+}
+
+# ---------------------------------------------------------------
+# ka_po_tun.002  Ka Po'Tun Alliance Offer — tiger-folk reach out across the sea
+# ---------------------------------------------------------------
+ka_po_tun.002 = {
+    type = character_event
+    title = ka_po_tun.002.t
+    desc = ka_po_tun.002.desc
+    theme = diplomacy
+    left_portrait = {
+        character = root
+        animation = personality_gregarious
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = ka_po_tun_heritage
+        NOT = { has_trait = tosh_raka_herald }
+    }
+
+    option = {
+        name = ka_po_tun.002.a   # "We stand with Tosh Raka — his dream is our dream."
+        add_trait    = tosh_raka_herald
+        add_prestige = 400
+        add_piety    = 200
+    }
+
+    option = {
+        name = ka_po_tun.002.b   # "Our people fight the Tsaesci — we have no time for dragon visions."
+        add_prestige = 200
+        add_martial  = 1
+    }
+}

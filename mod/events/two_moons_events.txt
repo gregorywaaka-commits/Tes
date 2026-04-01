@@ -1,0 +1,148 @@
+# =============================================================
+#  Two Moons Path Events — Khajiit Lunar Faith
+#  File: mod/events/two_moons_events.txt
+#
+#  WHAT THIS FILE DOES:
+#  Covers the Khajiit Two Moons Path faith: the Mane (singular
+#  spiritual leader), Jode/Jone (moon veneration), and moon sugar's
+#  ritual role in Khajiit spiritual life.
+#
+#  EVENT INDEX:
+#  two_moons.001 — The Mane Is Named: a ruler is called as the Mane
+#  two_moons.002 — Moon Sugar Ritual: sacred communion under twin moons
+#  two_moons.003 — The Mane's Audience: the Mane grants a blessing
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_the_mane
+#  Traits:             the_mane, moonsugar_devotee
+#  Modifiers:          mane_blessing_modifier, mane_audience_cooldown
+#  Cultures:           khajiit_culture (EK2)
+#
+#  LORE BASIS:
+#  The Two Moons Path is the Khajiit faith centred on the twin
+#  moons Jode (Masser) and Jone (Secunda).  The Mane is born when
+#  both moons are simultaneously full — a generational event.  The
+#  Mane wears a mane of hair that grows into a distinctive pattern,
+#  identifying them as chosen.  All Khajiit recognise the Mane's
+#  spiritual authority regardless of political allegiances.  Moon
+#  sugar (ingredient of Skooma) has deep ritual significance, used
+#  in vision ceremonies and religious observances.  The Khajiit's
+#  physical form (Ohmes, Cathay, Suthay-raht, etc.) is determined
+#  by what moons are in the sky when they are born.
+#  Sources: Words of Clan Mother Ahnissi, The Lunar Lorkhan, ESO.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add two_moons.NNN = { ... } following the pattern below
+#  2. Add localization keys to mod/localization/english/lore_races_l_english.yml
+# =============================================================
+
+namespace = two_moons
+
+# ---------------------------------------------------------------
+# two_moons.001  The Mane Is Named — called as the spiritual leader of all Khajiit
+# ---------------------------------------------------------------
+two_moons.001 = {
+    type = character_event
+    title = two_moons.001.t
+    desc = two_moons.001.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_zealous
+    }
+
+    trigger = {
+        is_ruler    = yes
+        has_culture = khajiit_culture
+        NOT = { has_trait = the_mane }
+        piety >= 500
+    }
+
+    option = {
+        name = two_moons.001.a   # "Both moons are full — and they call my name."
+        add_trait    = the_mane
+        add_prestige = 600
+        add_piety    = 500
+    }
+
+    option = {
+        name = two_moons.001.b   # "This honour... I am not ready to lead all of us."
+        add_prestige = 200
+        add_piety    = 200
+        add_stress   = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# two_moons.002  Moon Sugar Ritual — sacred communion under twin moons
+# ---------------------------------------------------------------
+two_moons.002 = {
+    type = character_event
+    title = two_moons.002.t
+    desc = two_moons.002.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_calm
+    }
+
+    trigger = {
+        is_ruler = yes
+        OR = {
+            has_culture = khajiit_culture
+            has_trait   = moonsugar_devotee
+        }
+    }
+
+    option = {
+        name = two_moons.002.a   # "The moons shine on us — Jode and Jone hear our prayers."
+        if = {
+            limit = { NOT = { has_trait = moonsugar_devotee } }
+            add_trait = moonsugar_devotee
+        }
+        add_piety    = 200
+        add_stress   = -15
+    }
+
+    option = {
+        name = two_moons.002.b   # "The ritual is observed, but I keep my mind clear."
+        add_piety = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# two_moons.003  The Mane's Audience — the Mane grants a blessing
+# ---------------------------------------------------------------
+two_moons.003 = {
+    type = character_event
+    title = two_moons.003.t
+    desc = two_moons.003.desc
+    theme = diplomacy
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_the_mane = no
+        has_culture = khajiit_culture
+        NOT = { has_modifier = mane_audience_cooldown }
+        any_ruler = { is_the_mane = yes }
+    }
+
+    option = {
+        name = two_moons.003.a   # "The Mane's blessing — moonlight on fur, stars in eyes."
+        add_prestige = 300
+        add_piety    = 200
+        add_modifier = { modifier = mane_blessing_modifier days = 1095 }
+        add_modifier = { modifier = mane_audience_cooldown days = 1825 }
+    }
+
+    option = {
+        name = two_moons.003.b   # "I seek the Mane's wisdom, not just their blessing."
+        add_learning  = 2
+        add_prestige  = 200
+        add_modifier  = { modifier = mane_audience_cooldown days = 1825 }
+    }
+}

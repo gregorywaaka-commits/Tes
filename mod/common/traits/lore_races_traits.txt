@@ -3,24 +3,36 @@
 #  Elder Kings 2 Extension — Obscure Lore Races & Cultures
 # -------------------------------------------------------------
 #  CONTENTS:
-#    Echmer section     : echmer_heritage, echolalia_adept,
-#                         echolalia_master, dwemer_uplifted_lineage,
-#                         yneslea_scholar
-#    Maormer section    : maormer_heritage, snake_magic_adept,
-#                         pyandonean_sea_witch, sea_serpent_master,
-#                         orgnum_blessed
-#    Sload section      : sload_heritage, sload_necromancer,
-#                         sload_high_necromancer, plague_bearer
-#    Kothringi section  : kothringi_heritage, knahaten_immune,
-#                         crimson_ship_survivor, clavicus_bargain_made
-#    Kamal section      : kamal_heritage, kamal_thawed,
-#                         dir_kamal_herald
-#    Tang Mo section    : tang_mo_heritage, invasion_repeller
-#    Elder Tower section: tower_stone_keeper, tower_stone_lost
-#    Dreugh section     : dreugh_heritage, dreugh_land_phase,
-#                         dreugh_sea_phase
-#    Imga section       : imga_heritage, altmer_imitator
-#    Keptu/Nedic section: keptu_lineage, nedic_elder
+#    Echmer section        : echmer_heritage, echolalia_adept,
+#                            echolalia_master, dwemer_uplifted_lineage,
+#                            yneslea_scholar
+#    Maormer section       : maormer_heritage, snake_magic_adept,
+#                            pyandonean_sea_witch, sea_serpent_master,
+#                            orgnum_blessed
+#    Sload section         : sload_heritage, sload_necromancer,
+#                            sload_high_necromancer, plague_bearer
+#    Kothringi section     : kothringi_heritage, knahaten_immune,
+#                            crimson_ship_survivor, clavicus_bargain_made
+#    Kamal section         : kamal_heritage, kamal_thawed,
+#                            dir_kamal_herald
+#    Tang Mo section       : tang_mo_heritage, invasion_repeller
+#    Elder Tower section   : tower_stone_keeper, tower_stone_lost
+#    Dreugh section        : dreugh_heritage, dreugh_land_phase,
+#                            dreugh_sea_phase
+#    Imga section          : imga_heritage, altmer_imitator
+#    Keptu/Nedic section   : keptu_lineage, nedic_elder
+#    Tsaesci section       : tsaesci_heritage, tsaesci_blademaster,
+#                            akaviri_dragonguard
+#    Ka Po'Tun section     : ka_po_tun_heritage, tosh_raka_herald
+#    Lilmothiit section    : lilmothiit_heritage, lilmothiit_last_clan
+#    Reachfolk section     : reachman_heritage, reachman_briarheart,
+#                            hagraven_pact
+#    Hist / Argonian section: hist_bonded, an_xileel_warrior
+#    Two Moons Path section: the_mane, moonsugar_devotee
+#    Y'ffre / Green Pact   : green_pact_devotee, wild_hunt_called
+#    Ayleid section        : ayleid_bloodline
+#    Snow Elf section      : snow_elf_legacy
+#    Alessian section      : alessian_doctrine_scholar
 # -------------------------------------------------------------
 #  EK2 COMPATIBILITY:
 #    Depends on EK2 culture/religion flags for each race group.
@@ -458,4 +470,359 @@ nedic_elder = {
     learning  = 4
     monthly_piety = 1
     flag = nedic_elder
+}
+
+# =============================================================
+#  Tsaesci Traits  (Snake-Folk of Akavir)
+#
+#  LORE NOTE:
+#  The Tsaesci are serpent-people of Akavir ("snake palace").
+#  They are described as master swordsmen who "ate" the men of
+#  Akavir long ago.  In 1E 2703 they invaded Tamriel; Reman I
+#  repelled them and incorporated surviving Tsaesci into his
+#  Dragonguard — the precursors to the Blades.  They hunted
+#  dragons across Akavir and brought sword discipline to the
+#  Second Empire.  The Tsaesci have a complicated relationship
+#  with dragons — they hunted them, but the Dragonguard's role
+#  was also to guard Dragonborn emperors.
+#  Sources: Mysterious Akavir, The Annotated Anuad.
+# =============================================================
+
+# Marks a character as Tsaesci — serpent-folk of Akavir
+tsaesci_heritage = {
+    category = special
+    monthly_prestige = 2
+    martial   = 3           # martial culture par excellence
+    intrigue  = 3           # secretive and precise
+    diplomacy = -2          # alien to most Tamrielic peoples
+    flag = tsaesci_heritage
+}
+
+# A Tsaesci who has mastered the Akaviri sword discipline
+tsaesci_blademaster = {
+    category = fame
+    monthly_prestige = 2
+    prowess  = 6
+    martial  = 3
+    command_modifier = {
+        advantage  = 5
+        damage     = 0.15
+    }
+    flag = tsaesci_blademaster
+}
+
+# Member of the Akaviri Dragonguard — precursors to the Blades
+# NOTE: The Dragonguard was formed by Reman I from defeated Tsaesci
+# invaders (1E 2703); they became elite guards for Dragonborn emperors.
+# Their tradition eventually became the Blades.
+akaviri_dragonguard = {
+    category = fame
+    monthly_prestige = 3
+    monthly_piety    = 1
+    martial  = 4
+    prowess  = 4
+    command_modifier = {
+        advantage  = 6
+        max_morale = 0.2
+    }
+    flag = akaviri_dragonguard
+}
+
+# =============================================================
+#  Ka Po'Tun Traits  (Tiger-Dragon Folk of Akavir)
+#
+#  LORE NOTE:
+#  The Ka Po'Tun are humanoid tigers of Akavir.  Their king,
+#  Tosh Raka, is performing rituals to transform himself into
+#  a dragon — an unprecedented act.  Ka Po'Tun are in constant
+#  war with the Tsaesci and have allied with the Tang Mo against
+#  them.  They have a deep reverence for dragonkind distinct
+#  from the Tamrielic perspective.
+#  Source: Mysterious Akavir.
+# =============================================================
+
+# Marks a character as Ka Po'Tun — tiger-dragon folk of Akavir
+ka_po_tun_heritage = {
+    category = special
+    monthly_prestige = 1
+    martial   = 3
+    prowess   = 4
+    diplomacy = 2           # communal and alliance-minded
+    flag = ka_po_tun_heritage
+}
+
+# A herald of King Tosh Raka, who is transforming himself into a dragon
+tosh_raka_herald = {
+    category = fame
+    monthly_prestige = 3
+    monthly_piety    = 2
+    martial  = 3
+    command_modifier = {
+        advantage = 5
+    }
+    flag = tosh_raka_herald
+}
+
+# =============================================================
+#  Lilmothiit Traits  (Fox-Folk of Black Marsh)
+#
+#  LORE NOTE:
+#  The Lilmothiit were fox-like beastfolk inhabiting Black Marsh,
+#  distinct from Khajiit despite superficial similarity.  They
+#  were largely wiped out by the Knahaten Flu (c. 2E 560) — at
+#  the start of the 2E Interregnum they still exist but are
+#  declining.  Their culture and oral traditions are vanishing.
+#  Source: Pocket Guide to the Empire, First Edition.
+# =============================================================
+
+# Marks a character as Lilmothiit — fox-folk of Black Marsh
+lilmothiit_heritage = {
+    category = special
+    monthly_prestige = 1
+    intrigue  = 3           # agile and cunning by nature
+    diplomacy = 2
+    flag = lilmothiit_heritage
+}
+
+# One of the last surviving Lilmothiit clans — watching their people disappear
+# NOTE: date-gate events to before 2E 560 (Knahaten Flu outbreak).
+lilmothiit_last_clan = {
+    category = fame
+    monthly_prestige = -1   # their people are dying around them
+    monthly_piety    = 2    # spiritual awareness born of loss
+    stress_gain_mult = 0.2  # the weight of being among the last
+    flag = lilmothiit_last_clan
+}
+
+# =============================================================
+#  Reachfolk Traits  (The Reach — Old Ways practitioners)
+#
+#  LORE NOTE:
+#  The Reachmen (Reachfolk) are humans native to The Reach,
+#  the mountainous borderlands between Skyrim and High Rock.
+#  They practice the "Old Ways" — nature magic, Daedra worship
+#  (especially Hircine, Namira, and Molag Bal), and Hagraven
+#  alliances.  During 2E 420s the Reachmen held the Ruby Throne
+#  (Durcorach the Black Drake and successors — the "Longhouse
+#  Emperors").  Briarhearts undergo ritual heart replacement
+#  to become undead warriors of great power.
+#  Sources: ESO lore, The Reachman — a historical perspective.
+# =============================================================
+
+# Marks a character as Reachfolk — humans of The Reach
+reachman_heritage = {
+    category = special
+    monthly_prestige = 1
+    martial   = 2
+    intrigue  = 2           # guerrilla and ambush fighters
+    diplomacy = -1          # culturally isolated
+    flag = reachman_heritage
+}
+
+# A warrior who has undergone the Briarheart ritual — heart replaced by a briarheart
+# NOTE: The Briarheart ritual is performed by Hagravens; the warrior dies and
+# is reborn as an undead champion of great physical power, serving the Old Ways.
+reachman_briarheart = {
+    category = fame
+    monthly_prestige = 2
+    monthly_piety    = 2    # piety within Old Ways faith
+    prowess  = 6
+    stress_gain_mult = -0.1 # undead feel no fear
+    flag = reachman_briarheart
+}
+
+# A ruler who has sworn a formal pact with a Hagraven
+# NOTE: Hagravens are women who sacrificed their humanity to become
+# powerful Old Ways witches; allied with Hircine.  The pact grants
+# magical knowledge but at spiritual cost to mainstream faiths.
+hagraven_pact = {
+    category = lifestyle
+    monthly_piety    = -2   # mainstream faiths condemn Hagraven pacts
+    monthly_prestige = 1
+    intrigue = 3
+    learning = 3            # forbidden knowledge of the Old Ways
+    flag = hagraven_pact
+}
+
+# =============================================================
+#  Hist / Argonian Traits
+#
+#  LORE NOTE:
+#  The Hist are ancient tree-entities in Black Marsh, spiritually
+#  and biologically bonded to all Argonians.  Argonians who drink
+#  Hist sap commune with the Hist's memories and consciousness.
+#  The An-Xileel are an Argonian political faction that deeply
+#  embraced the Hist's guidance; they withdrew from the Oblivion
+#  Crisis by closing Black Marsh's own Oblivion Gates using Hist
+#  power.  The Hist warned Argonians of the Daedric threat before
+#  it was visible to others.
+#  Sources: ESO, Oblivion, Skyrim — various in-game books.
+# =============================================================
+
+# A character deeply bonded to the Hist — a rare honour among Argonians
+hist_bonded = {
+    category = fame
+    monthly_piety    = 3
+    monthly_prestige = 2
+    learning  = 4           # Hist memories span thousands of years
+    intrigue  = 2           # awareness of the unseen
+    flag = hist_bonded
+}
+
+# A warrior of the An-Xileel — the Argonian faction guided most closely by the Hist
+an_xileel_warrior = {
+    category = lifestyle
+    monthly_prestige = 2
+    martial  = 3
+    command_modifier = {
+        advantage = 4
+    }
+    flag = an_xileel_warrior
+}
+
+# =============================================================
+#  Two Moons Path Traits  (Khajiit Lunar Faith)
+#
+#  LORE NOTE:
+#  The Two Moons Path is the Khajiit faith centered on the twin
+#  moons Jode (Masser, the large moon) and Jone (Secunda, the
+#  small moon).  The Mane is a singular spiritual leader born
+#  when both moons are full simultaneously — an extremely rare
+#  event.  The Mane's golden fur grows in unique patterns and
+#  they are revered as the living embodiment of the twin moons.
+#  Moon sugar has sacred ritual significance.  Khajiit morphology
+#  (body form) is determined by lunar phases at birth.
+#  Sources: Words of Clan Mother Ahnissi, The Lunar Lorkhan, ESO.
+# =============================================================
+
+# The Mane — singular spiritual leader of all Khajiit, born under twin full moons
+the_mane = {
+    category = fame
+    is_immortal = no
+    monthly_piety    = 4
+    monthly_prestige = 4
+    diplomacy = 5           # all Khajiit defer to the Mane
+    learning  = 3
+    flag = the_mane
+}
+
+# A Khajiit devoted to the ritual use of moon sugar in the Two Moons Path
+moonsugar_devotee = {
+    category = lifestyle
+    monthly_piety = 2
+    stress_gain_mult = -0.15   # moon sugar provides spiritual peace
+    learning  = 1
+    flag = moonsugar_devotee
+}
+
+# =============================================================
+#  Y'ffre / Green Pact Traits  (Bosmer Faith)
+#
+#  LORE NOTE:
+#  Y'ffre (Jephre in Altmeri) is the Bosmer deity of the forest,
+#  stories, and the eternal pattern of life.  The Green Pact
+#  forbids Bosmer from consuming plant matter (they may only eat
+#  meat — including their fallen enemies, by ritual necessity)
+#  and from harming the trees of Valenwood without permission.
+#  The Wild Hunt is a collective transformation: when Bosmer cry
+#  out together with sufficient need, they transform into a horde
+#  of unstoppable monsters — the "Wild Hunt" is both gift and
+#  curse.  The Wild Hunt was last called against King Borgas of
+#  Skyrim (1E 369).
+#  Sources: The Wild Hunt, The Real Barenziah, ESO lore.
+# =============================================================
+
+# A Bosmer sworn to the strict observance of the Green Pact
+green_pact_devotee = {
+    category = lifestyle
+    monthly_piety    = 2
+    diplomacy = 2           # respected by Bosmer communities
+    learning  = 1           # knowledge of the forest and pact obligations
+    flag = green_pact_devotee
+}
+
+# A Bosmer who has participated in the Wild Hunt — irreversible transformation
+# NOTE: Participants in the Wild Hunt transform into monsters and cannot return
+# to normal form; they eventually drift into the forest forever.  This trait
+# represents the rare survivor/aftermath — most participants never return.
+wild_hunt_called = {
+    category = fame
+    monthly_piety    = 3
+    monthly_prestige = 3
+    prowess   = 8
+    stress_gain_mult = 0.3  # the transformation leaves deep psychological scars
+    flag = wild_hunt_called
+}
+
+# =============================================================
+#  Ayleid Traits  (Heartland High Elves — historical)
+#
+#  LORE NOTE:
+#  The Ayleid (Wild Elves, Heartland High Elves) were the
+#  original mer of Cyrodiil.  Their civilisation fell c. 1E 243
+#  with Alessia's slave revolt, though the last strongholds held
+#  until c. 1E 375 (fall of Nenalata).  By the 2E Interregnum,
+#  the Ayleid are extinct as a people but their ruins, wells,
+#  and bloodlines persist.  Colovian nobles frequently claim
+#  Ayleid ancestry as a mark of prestige.
+#  Sources: The Adabal-a, Ayleid Reference Compendium.
+# =============================================================
+
+# A ruler who claims Ayleid bloodline — a mark of ancient pedigree in Cyrodiil
+ayleid_bloodline = {
+    category = special
+    monthly_prestige = 2
+    learning  = 2           # Ayleid scholarship still carries value
+    diplomacy = 1
+    flag = ayleid_bloodline
+}
+
+# =============================================================
+#  Snow Elf Traits  (Children of the Snow — Falmer Precursors)
+#
+#  LORE NOTE:
+#  The Snow Elves were the original elves of Skyrim, predating
+#  Nordic settlement.  Persecuted by Nords after the war of
+#  Moesring (1E), they fled underground and were taken in by the
+#  Dwemer — who enslaved them, feeding them toxic fungi until
+#  they went blind and degenerated into the Falmer (cave-dwelling
+#  monsters).  A remnant maintained the Chantry of Auri-El in
+#  Skyrim, worshipping Auri-El (Akatosh in Aldmeri) in isolation.
+#  Knight-Paladin Gelebor is the last true Snow Elf in known
+#  canon (still alive in 4E 201).
+#  Sources: Dawnguard DLC, Before the Ages of Man.
+# =============================================================
+
+# A character who bears the legacy of the Snow Elves — Chantry devotee or blood heir
+snow_elf_legacy = {
+    category = special
+    monthly_piety    = 2    # Auri-El's devotion burns bright in the last of the line
+    monthly_prestige = 1
+    learning  = 3
+    flag = snow_elf_legacy
+}
+
+# =============================================================
+#  Alessian Traits  (Order of the One / Marukhati Selectives)
+#
+#  LORE NOTE:
+#  The Alessian Order was a theocratic religious movement founded
+#  after Saint Alessia's rebellion (c. 1E 243).  They dominated
+#  the First Empire for nearly 2000 years with their monotheistic
+#  Alessian Doctrines.  The Marukhati Selectives were a splinter
+#  group responsible for the "Dragon Break" / Middle Dawn of
+#  1E 1200 (1000 years of missing time).  The Order was destroyed
+#  at the Battle of Glenumbria Moors (c. 1E 2321).  By 2E it is
+#  defunct but its doctrines are still studied, debated, and
+#  revived by certain scholars.
+#  Sources: The Adabal-a, Daggerfall Chronicles.
+# =============================================================
+
+# A scholar who studies or revives the Alessian Doctrines in the 2E
+alessian_doctrine_scholar = {
+    category = lifestyle
+    monthly_piety = 2
+    learning  = 3
+    diplomacy = -1          # Alessian doctrine was historically intolerant of mer
+    flag = alessian_doctrine_scholar
 }

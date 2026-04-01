@@ -953,3 +953,216 @@ amulet_post_event_cooldown = { }
 # Duration: 1825 days (5 years).  Acts as a gate on daedric_invasion_cb
 # valid_to_start so the Prince cannot immediately re-declare after a truce.
 daedric_invasion_white_peace_truce = { }
+
+# =============================================================
+#  TSAESCI (Snake-Folk of Akavir)
+# =============================================================
+
+# Applied to a county that has hosted Tsaesci sword-training.
+# Represents the cultural uplift of Akaviri martial discipline.
+# Duration: 3650 days (10 years).
+akaviri_sword_tradition_modifier = {
+    levy_size            = 0.1
+    monthly_prestige_gain_mult = 0.05
+}
+
+# Cooldown after Tsaesci Dragonguard induction ceremony.
+# Duration: 1825 days (5 years).
+akaviri_dragonguard_cooldown = { }
+
+# =============================================================
+#  KA PO'TUN (Tiger-Dragon Folk of Akavir)
+# =============================================================
+
+# Applied when Tosh Raka's transformation into a dragon is witnessed.
+# Duration: 1825 days (5 years).
+tosh_raka_revelation_modifier = {
+    monthly_piety_gain_mult  = 0.1
+    monthly_prestige_gain_mult = 0.05
+}
+
+# =============================================================
+#  LILMOTHIIT (Fox-Folk of Black Marsh)
+# =============================================================
+
+# Applied to a county when a Lilmothiit clan is sheltered there.
+# Duration: 730 days (2 years).
+lilmothiit_refuge_modifier = {
+    monthly_income = 0.05    # they contribute to trade networks
+}
+
+# Cooldown after the Lilmothiit extinction event arc.
+# Duration: 3650 days (10 years).
+lilmothiit_extinction_cooldown = { }
+
+# =============================================================
+#  REACHFOLK (The Reach — Old Ways)
+# =============================================================
+
+# Applied to a county under Old Ways governance.
+# Represents Reachman tribal organisation and nature-worship.
+# Duration: permanent (days = -1) while Reachman rules.
+old_ways_county_modifier = {
+    levy_size              = 0.1
+    monthly_income         = -0.05    # Old Ways economies are subsistence-based
+    supply_limit_mult      = 0.1      # know the land well
+}
+
+# Applied to a ruler who has completed the Briarheart ritual.
+# Duration: permanent (days = -1).
+briarheart_power_modifier = {
+    prowess                    = 3
+    monthly_prestige_gain_mult = 0.1
+    stress_gain_mult           = -0.1
+}
+
+# Cooldown after attempting a Hagraven pact.
+# Duration: 3650 days (10 years).
+hagraven_pact_cooldown = { }
+
+# Applied after the Wild Hunt is called — recovery period.
+# Duration: 3650 days (10 years).
+wild_hunt_aftermath_modifier = {
+    monthly_prestige_gain_mult = 0.2    # the Hunt's legend grows
+    monthly_piety_gain_mult    = 0.1
+    dread_gain_mult            = 0.2    # the Hunt terrifies enemies
+}
+
+# =============================================================
+#  HIST / ARGONIAN
+# =============================================================
+
+# Applied to a character who has communed with the Hist.
+# Duration: 1825 days (5 years).
+hist_communion_modifier = {
+    monthly_piety_gain_mult = 0.2
+    learning                = 3
+    stress_gain_mult        = -0.1
+}
+
+# Applied to a county within the Hist's sphere of influence.
+# Duration: permanent (days = -1).
+hist_grove_modifier = {
+    development_growth_factor = 0.1
+    supply_limit_mult         = 0.1
+}
+
+# Cooldown after Hist communion decision.
+# Duration: 1825 days (5 years).
+hist_communion_cooldown = { }
+
+# =============================================================
+#  TWO MOONS PATH (Khajiit Lunar Faith)
+# =============================================================
+
+# Applied when the Mane blesses a ruler.
+# Duration: 1095 days (3 years).
+mane_blessing_modifier = {
+    monthly_piety_gain_mult    = 0.15
+    monthly_prestige_gain_mult = 0.1
+    diplomacy                  = 2
+}
+
+# Cooldown after seeking the Mane's audience.
+# Duration: 1825 days (5 years).
+mane_audience_cooldown = { }
+
+# =============================================================
+#  Y'FFRE / GREEN PACT (Bosmer Faith)
+# =============================================================
+
+# Applied when a ruler upholds the Green Pact — Valenwood blessings.
+# Duration: 1825 days (5 years).
+green_pact_blessing_modifier = {
+    supply_limit_mult          = 0.15   # Valenwood's forests sustain them
+    monthly_piety_gain_mult    = 0.1
+}
+
+# Cooldown after declaring a Wild Hunt.
+# Duration: 7300 days (20 years) — calling the Hunt is extremely rare.
+wild_hunt_cooldown = { }
+
+# =============================================================
+#  CRYSTAL TOWER (Summerset — county c_alinor)
+# =============================================================
+
+# Keeper bonus for the Crystal Tower.
+# The Crystal Tower embodies the principle of nullity and Aldmeri magical order.
+# Duration: permanent (days = -1).
+crystal_tower_keeper_modifier = {
+    monthly_piety_gain_mult    = 0.2
+    monthly_prestige_gain_mult = 0.15
+    learning                   = 4
+}
+
+# =============================================================
+#  SNOW THROAT (Skyrim — Throat of the World)
+# =============================================================
+
+# Keeper bonus for Snow Throat.
+# The mountain IS the Tower; deeply integrated with the Thu'um.
+# Duration: permanent (days = -1).
+snow_throat_keeper_modifier = {
+    monthly_piety_gain_mult    = 0.15
+    monthly_prestige_gain_mult = 0.1
+    prowess                    = 2
+}
+
+# =============================================================
+#  GREEN-SAP (Falinesti, Valenwood)
+# =============================================================
+
+# Keeper bonus for Green-Sap.
+# The walking tree-city is the Tower; its Stone is a living seed.
+# Duration: permanent (days = -1).
+green_sap_keeper_modifier = {
+    monthly_piety_gain_mult    = 0.15
+    supply_limit_mult          = 0.1
+    development_growth_factor  = 0.1
+}
+
+# =============================================================
+#  AYLEID (Heartland High Elves — historical ruins)
+# =============================================================
+
+# Applied after discovering a significant Ayleid ruin.
+# Duration: 1095 days (3 years).
+ayleid_ruin_discovery_modifier = {
+    monthly_prestige_gain_mult = 0.1
+    learning                   = 2
+}
+
+# Cooldown after Ayleid ruin survey decision.
+# Duration: 1825 days (5 years).
+ayleid_ruin_survey_cooldown = { }
+
+# =============================================================
+#  SNOW ELF (Chantry of Auri-El)
+# =============================================================
+
+# Applied after a Chantry of Auri-El pilgrimage.
+# Duration: 730 days (2 years).
+chantry_pilgrimage_modifier = {
+    monthly_piety_gain_mult = 0.15
+    stress_gain_mult        = -0.1
+}
+
+# Cooldown after Chantry pilgrimage.
+# Duration: 1825 days (5 years).
+chantry_pilgrimage_cooldown = { }
+
+# =============================================================
+#  ALESSIAN ORDER REMNANTS
+# =============================================================
+
+# Applied to a ruler who has revived Alessian doctrine.
+# Duration: 1825 days (5 years).
+alessian_revival_modifier = {
+    monthly_piety_gain_mult = 0.15
+    diplomacy               = -1    # Alessian doctrine was intolerant
+    dread_gain_mult         = 0.1
+}
+
+# Cooldown after Alessian doctrine study event.
+# Duration: 1825 days (5 years).
+alessian_doctrine_cooldown = { }

@@ -428,3 +428,284 @@ l_english:
  tower_sabotage_cooldown_desc: "A period of watchfulness follows tampering with a Tower Stone."
  plague_cooldown_modifier: "Plague — Recovery Period"
  plague_cooldown_modifier_desc: "The land is recovering from a plague outbreak; another cannot take hold so soon."
+
+ # =====================================================================
+ #  TSAESCI (Snake-Folk of Akavir)
+ #  Added: audit pass 5 — missing peoples
+ # =====================================================================
+ tsaesci.001.t: "The Tsaesci Envoy"
+ tsaesci.001.desc: "A serpent-man stands in your court — sleek, unblinking, every movement a controlled strike. This is a Tsaesci of Akavir: sword-masters who 'ate' the men of their continent and whose disciplined blade art shaped the armies of the Second Empire. They have crossed the seas for reasons of their own."
+ tsaesci.001.a: "Welcome — teach our soldiers your methods."
+ tsaesci.001.b: "A serpent-man at court? What message does that send?"
+
+ tsaesci.002.t: "The Dragonguard Legacy"
+ tsaesci.002.desc: "The blood of the Akaviri Dragonguard runs in your veins. Once, your ancestors served Reman Cyrodiil — the greatest Dragonborn Emperor — as elite guardians. The Dragonguard that became the Blades, the watchers of Dragonblood. That tradition is not dead."
+ tsaesci.002.a: "Our ancestors served the Dragonborn Emperor — their legacy is ours."
+ tsaesci.002.b: "The old loyalties are gone — we serve no one now."
+
+ tsaesci.003.t: "The Dragonguard Oath"
+ tsaesci.003.desc: "The ancient Akaviri sword-oath is offered to you. To join the Dragonguard — even in name, even in spirit — is to carry forward a tradition that stretches from Akavir to the Ruby Throne itself."
+ tsaesci.003.a: "I take this oath in the name of the Dragonborn."
+ tsaesci.003.b: "The Dragonguard is a relic of a fallen empire — I decline."
+
+ tsaesci.004.t: "Hunter and Guardian"
+ tsaesci.004.desc: "The Tsaesci hunted dragons across Akavir — and then found Dragonborn emperors across the sea, and became their guardians instead. The tension between being a hunter and being a sworn protector defines the Tsaesci soul."
+ tsaesci.004.a: "We hunted dragons — and found Dragonborn masters instead."
+ tsaesci.004.b: "We are hunters, not guards. The old oaths mean nothing."
+
+ tsaesci_heritage: "Tsaesci"
+ tsaesci_heritage_desc: "A serpent-person of Akavir — disciplined sword-masters who invaded Tamriel in 1E 2703 and were incorporated into Reman's Dragonguard after their defeat at Pale Pass."
+ tsaesci_blademaster: "Tsaesci Blademaster"
+ tsaesci_blademaster_desc: "A master of the Akaviri sword discipline — the most precise and lethal martial tradition in the known world."
+ akaviri_dragonguard: "Akaviri Dragonguard"
+ akaviri_dragonguard_desc: "Member of the ancient Akaviri Dragonguard — elite guardians of Dragonborn emperors, precursors to the legendary Blades."
+
+ # =====================================================================
+ #  KA PO'TUN (Tiger-Dragon Folk of Akavir)
+ # =====================================================================
+ ka_po_tun.001.t: "The Tiger-King Transforms"
+ ka_po_tun.001.desc: "Word reaches you from across the sea: King Tosh Raka of Ka Po'Tun is attempting something no mortal has ever achieved — transforming himself into a dragon. Not a metaphor, not a title. An actual, physical, metaphysical dragon. The tiger-king is becoming something beyond."
+ ka_po_tun.001.a: "A mortal becoming a dragon? This defies everything we know."
+ ka_po_tun.001.b: "If Tosh Raka succeeds, he will be something the world has never seen."
+
+ ka_po_tun.002.t: "An Alliance with the Tiger-Folk"
+ ka_po_tun.002.desc: "The Ka Po'Tun have fought the Tsaesci for generations. Now, Tosh Raka's court reaches out — they seek allies beyond Akavir, and your reputation has crossed the ocean. Serve the tiger-king's vision and share in his glory."
+ ka_po_tun.002.a: "We stand with Tosh Raka — his dream is our dream."
+ ka_po_tun.002.b: "Our people fight the Tsaesci — we have no time for dragon visions."
+
+ ka_po_tun_heritage: "Ka Po'Tun"
+ ka_po_tun_heritage_desc: "One of the tiger-dragon folk of Akavir — humanoid tigers in constant war with the Tsaesci, allies of the Tang Mo, and disciples of King Tosh Raka who seeks to transform himself into a dragon."
+ tosh_raka_herald: "Herald of Tosh Raka"
+ tosh_raka_herald_desc: "A herald of King Tosh Raka — the Ka Po'Tun monarch who is transforming himself into a coloured dragon, an act unprecedented in recorded history."
+
+ # =====================================================================
+ #  LILMOTHIIT (Fox-Folk of Black Marsh)
+ # =====================================================================
+ lilmothiit.001.t: "The Fox-Fires Dim"
+ lilmothiit.001.desc: "Your people — the Lilmothiit — have been in Black Marsh since before the Kothringi arrived, since before the Argonians became what they are. Fox-folk with quick minds and quicker feet. But something is wrong. The Knahaten Flu that swept through Black Marsh did not spare us as it spared the Argonians."
+ lilmothiit.001.a: "We will not be forgotten — our ways outlive the Flu."
+ lilmothiit.001.b: "Perhaps it is the will of the spirits that we fade."
+
+ lilmothiit.002.t: "The Last Hearth"
+ lilmothiit.002.desc: "The fires are going out. Clan after clan, the Lilmothiit have fallen to the Knahaten Flu — a sickness the Argonians simply walk through. You tend the last communal hearth of your people. The old stories, the fox-dances, the tail-language — they die with the last of us."
+ lilmothiit.002.a: "We are the last. The fire dies."
+
+ lilmothiit_heritage: "Lilmothiit"
+ lilmothiit_heritage_desc: "One of the fox-folk of Black Marsh — an intelligent, quick-witted beastfolk distinct from the Khajiit. The Lilmothiit were largely wiped out by the Knahaten Flu beginning c. 2E 560."
+ lilmothiit_last_clan: "Last of the Fox-Folk"
+ lilmothiit_last_clan_desc: "One of the last surviving Lilmothiit clans, watching their people disappear to the Knahaten Flu. A keeper of the final fox-fires."
+
+ # =====================================================================
+ #  REACHFOLK (The Reach — Old Ways)
+ # =====================================================================
+ reachfolk.001.t: "The Stones Speak"
+ reachfolk.001.desc: "The standing stones of The Reach are older than the Nords who claim to have built them. Older than the Empire. Your blood is Reachfolk blood — and tonight, the stones are singing."
+ reachfolk.001.a: "The stones speak — the Old Ways are not dead."
+ reachfolk.001.b: "The Old Ways are a relic — I will forge my own path."
+
+ reachfolk.002.t: "The Hagraven's Price"
+ reachfolk.002.desc: "She stands at the edge of the firelight — neither bird nor woman, neither living nor dead. A Hagraven. She has been watching you for some time. She offers knowledge of the Old Ways, power over the deep magic of The Reach. Her price is your service and secrecy."
+ reachfolk.002.a: "The pact is made — her feathers brush my hand and magic flows."
+ reachfolk.002.b: "Even the Old Ways have limits — I will not traffic with Hagravens."
+
+ reachfolk.003.t: "The Briarheart Ritual"
+ reachfolk.003.desc: "The Hagraven conducts the rite with terrible precision. Your heart — beating, living — is removed and replaced with a briarheart: a thorn of pure Old Ways magic. You die. And then you rise. Different. Stronger. Bound to the Reach in ways that cannot be undone."
+ reachfolk.003.a: "The Hagraven tears out my heart — I do not flinch."
+ reachfolk.003.b: "No — I choose to remain mortal."
+
+ reachfolk.004.t: "The Longhouse Legacy"
+ reachfolk.004.desc: "Durcorach the Black Drake — a Reachman — held the Ruby Throne. His successors, the Longhouse Emperors, ruled the Second Empire for a generation. Reachman blood has sat upon the seat of power before. Your blood. The stone of The Reach carries the memory of Empire."
+ reachfolk.004.a: "Durcorach held the Ruby Throne — so might we again."
+ reachfolk.004.b: "The Empire is gone — the Reach is enough."
+
+ forge_hagraven_pact_desc: "The Hagravens of The Reach offer power in exchange for loyalty to the Old Ways. A pact with one of these ancient crone-witches grants access to the deep magic of the standing stones."
+ reachman_heritage: "Reachfolk"
+ reachman_heritage_desc: "A human native to The Reach — practitioners of the Old Ways, the ancient nature-magic and Daedra-worship of the mountain borderlands."
+ reachman_briarheart: "Briarheart"
+ reachman_briarheart_desc: "A Reachfolk warrior who underwent the Briarheart ritual — their mortal heart replaced by a thorn of Old Ways magic. Powerful beyond normal measure, bound to The Reach."
+ hagraven_pact: "Hagraven's Pact"
+ hagraven_pact_desc: "A formal pact with a Hagraven — trading fealty for access to the deep magic of the Old Ways. Mainstream faiths view this with deep suspicion."
+
+ # =====================================================================
+ #  HIST / ARGONIAN
+ # =====================================================================
+ hist.001.t: "The Root-Memory Calls"
+ hist.001.desc: "You feel it before you hear it — a pressure at the base of your skull, a warmth in your blood. The Hist near your capital is calling. Not with words. Never words. With something older, more patient, more vast."
+ hist.001.a: "I go to the tree — the root-memory calls."
+ hist.001.b: "The tree can wait — there are more pressing matters."
+
+ hist.002.t: "The Sap of Ages"
+ hist.002.desc: "You press your tongue to the bark and the world dissolves. A thousand years of Black Marsh flow through you — migration patterns of Saxhleel clans, the first contact with men, the war against the Ayleids, the slow encroachment of the Empire. The Hist remembers everything."
+ hist.002.a: "The ages pour through me — I see Tamriel as the Hist see it."
+ hist.002.b: "The visions are too vast — I withdraw before I am lost."
+
+ hist.003.t: "The An-Xileel Gathers"
+ hist.003.desc: "The An-Xileel have always been the Hist's most devoted servants — not because they follow blindly, but because they understood before others that the Hist do not deceive. They see what others miss. They are gathering. And they want you."
+ hist.003.a: "We are the Hist's warriors — An-Xileel."
+ hist.003.b: "The An-Xileel's zeal goes too far — even for me."
+
+ hist.004.t: "The Hist Is Afraid"
+ hist.004.desc: "The Hist does not know fear the way mortals know it. But you feel something in the root-memories tonight that is close enough: a trembling, a recalculation of futures. Something is coming. The Hist has seen this before, in the darkness before recorded time."
+ hist.004.a: "The trees have seen this darkness before — we prepare."
+ hist.004.b: "The Hist's fear becomes mine — we must act immediately."
+
+ commune_with_hist_desc: "The Hist trees of Black Marsh are ancient beyond reckoning. An Argonian ruler who communes with their local Hist tree may receive the accumulated memories of thousands of years — at the cost of time spent in deep meditation."
+ hist_bonded: "Hist-Bonded"
+ hist_bonded_desc: "Deeply bonded to a Hist tree — this ruler has communed with the ancient world-memory of Black Marsh and carries its accumulated wisdom."
+ an_xileel_warrior: "An-Xileel"
+ an_xileel_warrior_desc: "A warrior of the An-Xileel faction — Argonians who follow the Hist's guidance most zealously, understanding that the trees see threats long before mortal eyes do."
+
+ # =====================================================================
+ #  TWO MOONS PATH (Khajiit Lunar Faith)
+ # =====================================================================
+ two_moons.001.t: "The Twin Moons Rise"
+ two_moons.001.desc: "Both moons are full tonight — Jode vast and golden, Jone sharp and silver. In the history of the Khajiit, this has always meant one thing: somewhere in Elsweyr, a new Mane is born. Or named. You look at your fur in the moonlight, and the pattern seems... different."
+ two_moons.001.a: "Both moons are full — and they call my name."
+ two_moons.001.b: "This honour... I am not ready to lead all of us."
+
+ two_moons.002.t: "The Moon Sugar Rite"
+ two_moons.002.desc: "The Two Moons Path teaches that Jode and Jone are not simply lights in the sky but the twin eyes of a god. Moon sugar — crystallised from the sugarcane that grows where moonlight touches the earth of Elsweyr — is the sacrament of this faith. Tonight, under twin moons, your priests prepare the rite."
+ two_moons.002.a: "The moons shine on us — Jode and Jone hear our prayers."
+ two_moons.002.b: "The ritual is observed, but I keep my mind clear."
+
+ two_moons.003.t: "An Audience with the Mane"
+ two_moons.003.desc: "All Khajiit know the Mane — the singular spiritual leader, born when both moons are full, chosen by the twin eyes of the divine. To seek an audience is both a political act and a sacred pilgrimage."
+ two_moons.003.a: "The Mane's blessing — moonlight on fur, stars in eyes."
+ two_moons.003.b: "I seek the Mane's wisdom, not just their blessing."
+
+ the_mane: "The Mane"
+ the_mane_desc: "The singular spiritual leader of all Khajiit — born when both moons are simultaneously full, the Mane is the living embodiment of the Two Moons Path. All Khajiit defer to the Mane's authority."
+ moonsugar_devotee: "Two Moons Devotee"
+ moonsugar_devotee_desc: "A Khajiit devoted to the sacred rituals of the Two Moons Path, including the ceremonial use of moon sugar in communion with Jode and Jone."
+
+ # =====================================================================
+ #  Y'FFRE / GREEN PACT (Bosmer Faith)
+ # =====================================================================
+ bosmeri.001.t: "The Forest Speaks"
+ bosmeri.001.desc: "The canopy of Valenwood has its own language — not words, but a presence, a weight of green intent. Y'ffre, the Storyteller, the forest god of the Bosmer, is not subtle when he wants to be heard. Tonight the forest is very, very loud."
+ bosmeri.001.a: "The forest speaks — Y'ffre's pattern flows through everything."
+ bosmeri.001.b: "The old stories are stories — I walk my own path."
+
+ bosmeri.002.t: "The Green Pact's Demand"
+ bosmeri.002.desc: "The Green Pact is not negotiable. A Bosmer who eats plant matter — bread, fruit, anything that was once rooted in the earth — violates the Pact and offends Y'ffre. And a Bosmer who kills but does not consume what they kill violates it too. Your enemy has fallen. The Pact demands its due."
+ bosmeri.002.a: "The Pact demands it — we consume what we kill."
+ bosmeri.002.b: "The Pact is about respect — but this goes too far."
+
+ bosmeri.003.t: "Y'ffre — Hear Us!"
+ bosmeri.003.desc: "The trees know. The trees have always known when the Bosmer cry out together — when a single voice becomes thousands, when grief becomes a weapon and love becomes a transformation. The Wild Hunt is not invoked lightly. Once called, participants rarely return to themselves. They become part of the forest."
+ bosmeri.003.a: "Y'ffre — hear us. HEAR US. We call the Hunt!"
+ bosmeri.003.b: "The Hunt is too great a cost — we fight as mortals."
+
+ bosmeri.004.t: "The Forest Is Quiet"
+ bosmeri.004.desc: "It is over. The Wild Hunt has passed through like a storm. What remains is silence, and a forest that remembers what it tasted. Some of the hunters never returned to their forms. Their shapes merge with the trees. Y'ffre took them home."
+ bosmeri.004.a: "The monsters recede. The forest is quiet. We won."
+
+ declare_green_pact_observance_desc: "Formally declare the observance of Y'ffre's Green Pact — the ancient covenant between the Bosmer and the forest deity that forbids eating plant matter and demands ritual consumption of fallen enemies."
+ green_pact_devotee: "Green Pact Devotee"
+ green_pact_devotee_desc: "A Bosmer sworn to the strict observance of Y'ffre's Green Pact — the ancient covenant that forbids consuming plant matter and demands eating fallen enemies."
+ wild_hunt_called: "Wild Hunt Participant"
+ wild_hunt_called_desc: "A Bosmer who participated in the Wild Hunt — the collective transformation into unstoppable monsters called upon Y'ffre's name. Few participants fully return to themselves."
+
+ # =====================================================================
+ #  AYLEID RUINS
+ # =====================================================================
+ ayleid.001.t: "The Ayleid Well"
+ ayleid.001.desc: "Your scholars have found it beneath a collapsed hillside: an Ayleid ruin, intact. White stone, vaulted arches, star-maps in the ceiling that still faintly glow. At its heart, a Well of the Ancestors — a cistern of magical energy charged by Ayleid metaphysics and still functioning after a thousand years."
+ ayleid.001.a: "The Ayleid well still functions — wild magic answers our touch."
+ ayleid.001.b: "The ruins are dangerous — seal them and move on."
+
+ survey_ayleid_ruin_desc: "Commission a scholarly survey of Ayleid ruins in your territory. The Heartland High Elves built extensively across Cyrodiil; their ruins, Wells, and artefacts still hold considerable magical and historical value."
+ ayleid_bloodline: "Ayleid Bloodline"
+ ayleid_bloodline_desc: "A claim of descent from the Ayleid — the Heartland High Elves who built the first civilisation of Cyrodiil. A mark of ancient prestige among Colovian nobility."
+
+ # =====================================================================
+ #  SNOW ELF / CHANTRY OF AURI-EL
+ # =====================================================================
+ snow_elf.001.t: "The Last Knight of Auri-El"
+ snow_elf.001.desc: "High in the glaciers of Skyrim, the Chantry of Auri-El still stands — maintained by a single Snow Elf who has prayed there since before the Second Era began. The Falmer who rot in the Dwemer ruins are his kin, transformed by blindness and servitude into monsters. He alone was spared. He alone still prays."
+ snow_elf.001.a: "In the ice, one Snow Elf still prays — and Auri-El listens."
+ snow_elf.001.b: "A sad relic — but their devotion is still admirable."
+
+ chantry_of_auriel_pilgrimage_desc: "Undertake a pilgrimage to the Chantry of Auri-El — a remote sanctuary in Skyrim's glaciers maintained by the last true Snow Elf, Knight-Paladin Gelebor. The Chantry is one of the few places where the Snow Elf faith survives in any form."
+ snow_elf_legacy: "Snow Elf Legacy"
+ snow_elf_legacy_desc: "Bearer of the Snow Elf legacy — connected to the Chantry of Auri-El and the ancient faith of the Children of the Snow, whose people were nearly annihilated by the Nords and then enslaved by the Dwemer."
+
+ # =====================================================================
+ #  ALESSIAN ORDER REMNANTS
+ # =====================================================================
+ alessian.001.t: "The Doctrines Endure"
+ alessian.001.desc: "The Alessian Order is gone — shattered at Glenumbria Moors, discredited by the Reman dynasty. But their Doctrines survive: in monastery libraries, in the margin-notes of Imperial scholars, in the obsessions of a certain kind of religious fanatic. You have found such a collection. The Doctrines are wrong about many things. But they are not without insight."
+ alessian.001.a: "The Alessian Doctrines — flawed, yes, but a monument of faith."
+ alessian.001.b: "The Doctrines brought ruin — I will not revive their poison."
+
+ alessian_doctrine_scholar: "Alessian Scholar"
+ alessian_doctrine_scholar_desc: "A scholar of the Alessian Doctrines — the theocratic texts that dominated the First Empire for 2000 years. Studies them critically, reviving insights while noting their dangerous theological intolerance."
+
+ # =====================================================================
+ #  NEW TOWER SITES (audit pass 5)
+ # =====================================================================
+ towers.006.t: "The Crystal Tower Speaks"
+ towers.006.desc: "The Crystal Tower of Summerset is not merely tall — it is the materialization of the Aldmeri principle of nullity, the idea that the universe was created from a perfect and complete absence. Its Stone does not feel like power. It feels like silence so total that the noise of the world seems an intrusion."
+ towers.006.a: "The Crystal speaks the language of pure absence — and perfect order."
+
+ towers.007.t: "The Mountain Breathes"
+ towers.007.desc: "Snow Throat is not like other Towers. There is no building, no stone chamber, no Well. The mountain itself is the Tower. The Stone is the mountain — and the mountain breathes. Every exhale is a Word of Power half-spoken."
+ towers.007.a: "The mountain breathes — and its breath is the Thu'um."
+
+ towers.008.t: "The Living Seed"
+ towers.008.desc: "Falinesti does not stand still. The walking city moves through Valenwood on ancient paths that only the city itself knows, and at its heart is not a throne room but a hollow in the oldest tree — a seed that never planted itself because it is already growing into everything."
+ towers.008.a: "The living seed pulses — Falinesti walks because Y'ffre wills it."
+
+ # =====================================================================
+ #  NEW MODIFIER DISPLAY NAMES (cooldowns from new systems)
+ # =====================================================================
+ akaviri_sword_tradition_modifier: "Akaviri Sword Tradition"
+ akaviri_sword_tradition_modifier_desc: "The Tsaesci blade discipline has taken root in this realm's martial culture."
+ akaviri_dragonguard_cooldown: "Dragonguard Oath — Cooldown"
+ akaviri_dragonguard_cooldown_desc: "A period of reflection follows the Dragonguard oath."
+ tosh_raka_revelation_modifier: "Revelation of the Tiger-King"
+ tosh_raka_revelation_modifier_desc: "The knowledge of Tosh Raka's dragon transformation still reverberates."
+ lilmothiit_refuge_modifier: "Lilmothiit Refuge"
+ lilmothiit_refuge_modifier_desc: "A Lilmothiit clan has found shelter here, contributing to trade and culture."
+ lilmothiit_extinction_cooldown: "Lilmothiit — Extinction Arc"
+ lilmothiit_extinction_cooldown_desc: "The weight of being among the last of your kind cannot be revisited soon."
+ old_ways_county_modifier: "Old Ways Governance"
+ old_ways_county_modifier_desc: "This county is governed according to Reachfolk Old Ways traditions."
+ briarheart_power_modifier: "Briarheart Strength"
+ briarheart_power_modifier_desc: "The magic of the briarheart thorn courses through this warrior."
+ hagraven_pact_cooldown: "Hagraven Pact — Cooldown"
+ hagraven_pact_cooldown_desc: "A Hagraven pact cannot be revisited soon — such bargains are made once."
+ wild_hunt_aftermath_modifier: "Wild Hunt's Legend"
+ wild_hunt_aftermath_modifier_desc: "The Wild Hunt passed through here — and is not forgotten."
+ wild_hunt_cooldown: "Wild Hunt — Generational Cooldown"
+ wild_hunt_cooldown_desc: "The Wild Hunt cannot be called again so soon; Y'ffre does not answer twice in a generation."
+ hist_communion_modifier: "Hist Communion"
+ hist_communion_modifier_desc: "The accumulated wisdom of the Hist's root-memory still flows through this ruler."
+ hist_grove_modifier: "Hist Grove"
+ hist_grove_modifier_desc: "A Hist tree grows here — ancient, patient, watching."
+ hist_communion_cooldown: "Hist Communion — Cooldown"
+ hist_communion_cooldown_desc: "The Hist does not give its memories lightly; another communion cannot be sought so soon."
+ mane_blessing_modifier: "Mane's Blessing"
+ mane_blessing_modifier_desc: "The Mane has blessed this ruler — twin-moon favour flows through their reign."
+ mane_audience_cooldown: "Mane's Audience — Cooldown"
+ mane_audience_cooldown_desc: "The Mane's time is precious; another audience cannot be sought so soon."
+ green_pact_blessing_modifier: "Y'ffre's Blessing"
+ green_pact_blessing_modifier_desc: "The forest deity smiles on this Green Pact devotee — Valenwood's gifts sustain their realm."
+ crystal_tower_keeper_modifier: "Crystal Tower Keeper"
+ crystal_tower_keeper_modifier_desc: "Keeper of the Crystal Tower's Stone — the principle of nullity anchors this realm's magical order."
+ snow_throat_keeper_modifier: "Snow Throat Keeper"
+ snow_throat_keeper_modifier_desc: "Keeper of Snow Throat — the mountain-Tower's breath enhances the Thu'um and fortifies the spirit."
+ green_sap_keeper_modifier: "Green-Sap Keeper"
+ green_sap_keeper_modifier_desc: "Keeper of the Green-Sap — the living seed-Tower of Falinesti blesses this realm with vitality."
+ ayleid_ruin_discovery_modifier: "Ayleid Discovery"
+ ayleid_ruin_discovery_modifier_desc: "A significant Ayleid ruin has been uncovered and studied — ancient Heartland magic enriches scholarly pursuits."
+ ayleid_ruin_survey_cooldown: "Ayleid Survey — Cooldown"
+ ayleid_ruin_survey_cooldown_desc: "The scholars are still documenting the last ruin; another survey cannot begin yet."
+ chantry_pilgrimage_modifier: "Auri-El's Grace"
+ chantry_pilgrimage_modifier_desc: "The Chantry of Auri-El's blessing lingers after the pilgrimage."
+ chantry_pilgrimage_cooldown: "Chantry Pilgrimage — Cooldown"
+ chantry_pilgrimage_cooldown_desc: "A pilgrimage to the Chantry of Auri-El cannot be undertaken again so soon."
+ alessian_revival_modifier: "Alessian Revival"
+ alessian_revival_modifier_desc: "The Alessian Doctrines are being studied and partially revived in this realm."
+ alessian_doctrine_cooldown: "Alessian Study — Cooldown"
+ alessian_doctrine_cooldown_desc: "The Doctrines have been studied enough; another revision cannot begin so soon."

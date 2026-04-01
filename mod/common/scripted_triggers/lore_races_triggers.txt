@@ -302,3 +302,124 @@ echmer_expedition_possible = {
     exists = title:k_yneslea
     current_date >= 2E.150    # Echmer are too isolated for contact before this date
 }
+
+# ---------------------------------------------------------------
+#  TSAESCI (Snake-Folk of Akavir)
+# ---------------------------------------------------------------
+
+is_tsaesci = {
+    has_trait = tsaesci_heritage
+}
+
+# Can a Tsaesci ruler form or join the Akaviri Dragonguard?
+tsaesci_dragonguard_possible = {
+    is_tsaesci = yes
+    NOT = { has_trait = akaviri_dragonguard }
+    martial >= 14
+}
+
+# ---------------------------------------------------------------
+#  KA PO'TUN (Tiger-Dragon Folk of Akavir)
+# ---------------------------------------------------------------
+
+is_ka_po_tun = {
+    has_trait = ka_po_tun_heritage
+}
+
+# ---------------------------------------------------------------
+#  LILMOTHIIT (Fox-Folk of Black Marsh)
+#  NOTE: The Lilmothiit were nearly wiped out by the Knahaten Flu
+#  (2E 560).  Events should be date-gated before 2E 560.
+# ---------------------------------------------------------------
+
+is_lilmothiit = {
+    has_trait = lilmothiit_heritage
+}
+
+# Are the Lilmothiit in their extinction period? (2E 540 onward)
+lilmothiit_declining = {
+    current_date >= 2E.540
+    NOT = { current_date >= 2E.600 }
+}
+
+# ---------------------------------------------------------------
+#  REACHFOLK (The Reach — Old Ways practitioners)
+# ---------------------------------------------------------------
+
+is_reachman = {
+    has_trait = reachman_heritage
+}
+
+# Can a Reachfolk ruler attempt to forge a Hagraven pact?
+hagraven_pact_possible = {
+    is_reachman = yes
+    NOT = { has_trait = hagraven_pact }
+    intrigue >= 12
+    piety    >= 200
+}
+
+# ---------------------------------------------------------------
+#  HIST / ARGONIAN
+# ---------------------------------------------------------------
+
+is_hist_bonded = {
+    has_trait = hist_bonded
+}
+
+# Is this character An-Xileel (has culture and trait)?
+# NOTE: argonian_culture is EK2-defined.
+is_an_xileel = {
+    has_trait = an_xileel_warrior
+}
+
+# ---------------------------------------------------------------
+#  TWO MOONS PATH (Khajiit Lunar Faith)
+# ---------------------------------------------------------------
+
+is_the_mane = {
+    has_trait = the_mane
+}
+
+# ---------------------------------------------------------------
+#  Y'FFRE / GREEN PACT (Bosmer Faith)
+# ---------------------------------------------------------------
+
+is_green_pact_devotee = {
+    has_trait = green_pact_devotee
+}
+
+# Has the Wild Hunt been called recently?
+# Uses a global variable set by the Wild Hunt event chain.
+wild_hunt_active = {
+    exists = global_var:wild_hunt_in_progress
+}
+
+# ---------------------------------------------------------------
+#  CRYSTAL TOWER  (Summerset — county c_alinor)
+# ---------------------------------------------------------------
+
+tower_crystal_active = {
+    title:c_alinor = {
+        has_variable = tower_stone_present
+    }
+}
+
+# ---------------------------------------------------------------
+#  SNOW THROAT  (Skyrim — Throat of the World)
+# ---------------------------------------------------------------
+
+tower_snow_throat_active = {
+    title:c_whiterun = {
+        has_variable = tower_stone_present
+    }
+}
+
+# ---------------------------------------------------------------
+#  GREEN-SAP  (Falinesti, Valenwood)
+# ---------------------------------------------------------------
+
+tower_green_sap_active = {
+    title:c_falinesti = {
+        has_variable = tower_stone_present
+    }
+}

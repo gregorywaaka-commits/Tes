@@ -1,0 +1,174 @@
+# =============================================================
+#  Reachfolk Events — Old Ways, Hagravens, Briarhearts
+#  File: mod/events/reachfolk_events.txt
+#
+#  WHAT THIS FILE DOES:
+#  Covers the Reachmen (Reachfolk) — humans native to The Reach,
+#  practitioners of the Old Ways: nature magic, Hagraven alliances,
+#  Daedra worship, and the Briarheart warrior ritual.
+#
+#  EVENT INDEX:
+#  reachfolk.001 — The Old Ways Stir: Reachfolk spiritual awakening
+#  reachfolk.002 — The Hagraven's Bargain: pact with a Hagraven witch
+#  reachfolk.003 — The Briarheart Rite: warrior heart-replacement ritual
+#  reachfolk.004 — Reachman Longhouse Legacy: memory of the Ruby Throne
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_reachman, hagraven_pact_possible
+#  Traits:             reachman_heritage, reachman_briarheart,
+#                      hagraven_pact, hircine_werewolf (EK2 via daedric traits)
+#  Modifiers:          old_ways_county_modifier, briarheart_power_modifier,
+#                      hagraven_pact_cooldown, wild_hunt_aftermath_modifier
+#  Cultures:           reachman_culture (EK2)
+#
+#  LORE BASIS:
+#  The Reachmen practice the Old Ways — a fusion of nature-worship,
+#  Daedra reverence (Hircine, Namira, Molag Bal), and Hagraven magic.
+#  Hagravens are women who sacrifice their humanity to gain power;
+#  they perform the Briarheart ritual, replacing a warrior's heart
+#  with a magical briarheart thorn, granting great power at cost of
+#  mortality.  During 2E 420s the Reachman kings (Durcorach the
+#  Black Drake and successors) held the Ruby Throne briefly.
+#  Sources: ESO, Skyrim (Forsworn), The Reachman — A Historical View.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add reachfolk.NNN = { ... } following the pattern below
+#  2. Add localization keys to mod/localization/english/lore_races_l_english.yml
+# =============================================================
+
+namespace = reachfolk
+
+# ---------------------------------------------------------------
+# reachfolk.001  The Old Ways Stir — Reachfolk spiritual awakening
+# ---------------------------------------------------------------
+reachfolk.001 = {
+    type = character_event
+    title = reachfolk.001.t
+    desc = reachfolk.001.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_zealous
+    }
+
+    trigger = {
+        is_reachman = yes
+        NOT = { has_trait = hagraven_pact }
+        NOT = { has_trait = reachman_briarheart }
+    }
+
+    option = {
+        name = reachfolk.001.a   # "The stones speak — the Old Ways are not dead."
+        add_piety    = 200
+        add_prestige = 200
+        add_modifier = { modifier = old_ways_county_modifier days = -1 }
+    }
+
+    option = {
+        name = reachfolk.001.b   # "The Old Ways are a relic — I will forge my own path."
+        add_prestige = 100
+        add_piety    = -100
+    }
+}
+
+# ---------------------------------------------------------------
+# reachfolk.002  The Hagraven's Bargain — a Hagraven witch offers a pact
+# ---------------------------------------------------------------
+reachfolk.002 = {
+    type = character_event
+    title = reachfolk.002.t
+    desc = reachfolk.002.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        hagraven_pact_possible = yes
+    }
+
+    option = {
+        name = reachfolk.002.a   # "The pact is made — her feathers brush my hand and magic flows."
+        add_trait    = hagraven_pact
+        add_intrigue = 3
+        add_learning = 2
+        add_prestige = 300
+        add_piety    = -300   # mainstream faiths disapprove strongly
+        add_modifier = { modifier = hagraven_pact_cooldown days = 3650 }
+    }
+
+    option = {
+        name = reachfolk.002.b   # "Even the Old Ways have limits — I will not traffic with Hagravens."
+        add_prestige = 100
+        add_piety    = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# reachfolk.003  The Briarheart Rite — warrior heart-replacement ritual
+# ---------------------------------------------------------------
+reachfolk.003 = {
+    type = character_event
+    title = reachfolk.003.t
+    desc = reachfolk.003.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_reachman = yes
+        has_trait   = hagraven_pact
+        NOT = { has_trait = reachman_briarheart }
+        prowess >= 14
+    }
+
+    option = {
+        name = reachfolk.003.a   # "The Hagraven tears out my heart — I do not flinch."
+        add_trait    = reachman_briarheart
+        add_prestige = 500
+        add_piety    = 300
+        add_modifier = { modifier = briarheart_power_modifier days = -1 }
+    }
+
+    option = {
+        name = reachfolk.003.b   # "No — I choose to remain mortal."
+        add_prestige = 100
+        add_piety    = 100
+        add_stress   = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# reachfolk.004  Reachman Longhouse Legacy — memory of the Ruby Throne
+# ---------------------------------------------------------------
+reachfolk.004 = {
+    type = character_event
+    title = reachfolk.004.t
+    desc = reachfolk.004.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_reachman = yes
+        is_ruler    = yes
+        prestige    >= 500
+    }
+
+    option = {
+        name = reachfolk.004.a   # "Durcorach held the Ruby Throne — so might we again."
+        add_prestige = 500
+        add_claim    = title:k_cyrodiil
+    }
+
+    option = {
+        name = reachfolk.004.b   # "The Empire is gone — the Reach is enough."
+        add_prestige = 200
+        add_piety    = 100
+    }
+}
