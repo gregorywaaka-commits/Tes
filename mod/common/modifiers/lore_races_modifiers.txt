@@ -590,6 +590,12 @@ sword_of_jyggalag_modifier = {
 # Duration: 1825 days (5 years) — after completing one quest, must wait 5 years.
 daedric_quest_cooldown = { }
 
+# Applied when a ruler refuses to submit to a Daedric Prince's demands during
+# an active invasion.  Gates the "submit_to_daedric_prince" decision so the
+# same choice is not repeatedly offered and rejected.
+# Duration: applied via the decision's effect block with an appropriate duration.
+rejected_daedric_submission = { }
+
 # =============================================================
 #  GUILD MODIFIERS — All 9 Guilds
 #  Context: The nine guilds are: Mages Guild, Fighters Guild,
@@ -682,14 +688,6 @@ famous_ballad_modifier = {
     diplomacy                  = 2      # Being famous makes diplomacy easier
 }
 
-# Curse for breaking a Dark Brotherhood / Clavicus Vile bargain.
-# Also used by daedric_invasion_effects.txt for Vile.
-vile_curse_modifier = {
-    monthly_prestige_gain_mult = -0.15
-    diplomacy                  = -3
-    monthly_income             = -0.1
-}
-
 # =============================================================
 #  GUILD LEADERSHIP MODIFIERS
 #  Applied permanently (days = -1) when a character becomes the
@@ -752,7 +750,7 @@ guild_leader_bards_modifier = {
     diplomacy                  = 5
     learning                   = 3
     monthly_prestige_gain_mult = 0.25  # Songs of the Bards College define Tamrielic culture
-    stress_loss_mult           = 0.15  # Music soothes the soul
+    stress_gain_mult = -0.15  # Music soothes the soul
 }
 
 guild_leader_undaunted_modifier = {
@@ -793,7 +791,6 @@ thu_um_shout_cooldown = { }
 # Removed by: leave_greybeard_order (thuumvoi_effects.txt)
 greybeard_vow_modifier = {
     diplomacy               = -2     # Silence is not rudeness — but courts don't understand it
-    piety_mult              = 0.15
     monthly_piety_gain_mult = 0.20   # Deep contemplation and discipline build spiritual power
 }
 
@@ -801,8 +798,7 @@ greybeard_vow_modifier = {
 # Leaving the Order is a profound spiritual failure in the Way of the Voice.
 # Applied by: leave_greybeard_order (thuumvoi_effects.txt)
 greybeard_oath_broken = {
-    piety_mult              = -0.30
-    monthly_piety_gain_mult = -0.25
+    monthly_piety_gain_mult = -0.30
     diplomacy               = -5     # Known as an oath-breaker; courts are suspicious
 }
 
@@ -810,7 +806,6 @@ greybeard_oath_broken = {
 # The First Voice is the head of the Greybeard Order.
 first_voice_modifier = {
     learning                   = 5
-    piety_mult                 = 0.30
     monthly_piety_gain_mult    = 0.30
     monthly_prestige_gain_mult = 0.20
     command_modifier = { advantage = 8 max_morale = 0.40 }
@@ -827,7 +822,7 @@ dovahkiin_full_power_modifier = {
     prowess         = 6
     learning        = 4
     martial         = 4
-    piety_mult      = 0.25
+    monthly_piety_gain_mult = 0.25
     dread_gain_mult = 0.25   # Dragons and lore-aware mortals fear the Dragonborn
     command_modifier = { advantage = 8 damage = 0.20 max_morale = 0.35 }
 }
@@ -880,9 +875,8 @@ dragon_souls_brimming_modifier = {
 # This is "the hardest shout" — choosing mortal free will over the dragon's hunger.
 # Applied by: resist_dovah_nature (thuumvoi_effects.txt)
 dovah_nature_resisted_modifier = {
-    piety_mult               = 0.20
-    stress_loss_mult         = 0.15   # Hard-won inner peace reduces ongoing stress
     monthly_piety_gain_mult  = 0.20
+    stress_gain_mult = -0.15   # Hard-won inner peace reduces ongoing stress
 }
 
 # Applied permanently (days = -1) when the Dovah nature takes control.
@@ -915,9 +909,9 @@ dovah_nature_dominant_modifier = {
 # Applied permanently (days = -1) by receive_amulet_of_kings.
 # Removed by lose_amulet_of_kings.
 amulet_of_kings_bearer_modifier = {
-    piety_mult                 = 0.20
-    monthly_prestige_gain_mult = 0.25
-    diplomacy                  = 3      # The Amulet lends divine authority
+    monthly_piety_gain_mult      = 0.20
+    monthly_prestige_gain_mult   = 0.25
+    diplomacy                    = 3      # The Amulet lends divine authority
 }
 
 # Enhanced modifier: applies ONLY to Dragonborn wielding the Amulet.
@@ -925,10 +919,10 @@ amulet_of_kings_bearer_modifier = {
 # Applied permanently (days = -1) by amulet.004 event (amulet_of_kings_events.txt).
 # Removed by lose_amulet_of_kings.
 amulet_of_kings_dragonborn_modifier = {
-    piety_mult                 = 0.40
-    monthly_prestige_gain_mult = 0.40
-    diplomacy                  = 5
-    learning                   = 3
+    monthly_piety_gain_mult      = 0.40
+    monthly_prestige_gain_mult   = 0.40
+    diplomacy                    = 5
+    learning                     = 3
     command_modifier = {
         advantage  = 6
         max_morale = 0.25
@@ -943,9 +937,9 @@ amulet_of_kings_dragonborn_modifier = {
 # This is the greatest act a Dragonborn can perform — renewing Alessia's Covenant.
 # Applied by: relight_dragonfires_effect (thuumvoi_effects.txt)
 dragonfires_lit_modifier = {
-    piety_mult                 = 0.50
-    monthly_prestige_gain_mult = 0.50
-    diplomacy                  = 6
+    monthly_piety_gain_mult      = 0.50
+    monthly_prestige_gain_mult   = 0.50
+    diplomacy                    = 6
     # The restored Dragonfires provide the strongest Oblivion barrier possible.
     # Future: consider adding a global_var:dragonfires_lit check in
     # daedric_invasion_trigger_conditions to make invasions impossible while active.
@@ -954,634 +948,221 @@ dragonfires_lit_modifier = {
 # Empty cooldown between Amulet of Kings post-events.
 # Duration: 1825 days (5 years).
 amulet_post_event_cooldown = { }
-    monthly_income = -0.2
-    supply_limit_mult = -0.1
-}
 
-maormer_truce_modifier = {
-    build_speed_mult = 0.0   # no-op; just prevents raid events
-}
+# Applied to a Daedric Prince after a white peace to represent regrouping.
+# Duration: 1825 days (5 years).  Acts as a gate on daedric_invasion_cb
+# valid_to_start so the Prince cannot immediately re-declare after a truce.
+daedric_invasion_white_peace_truce = { }
 
-maormer_tempest_modifier = {
-    monthly_income = -0.15
-    supply_limit_mult = -0.2
-}
+# =============================================================
+#  TSAESCI (Snake-Folk of Akavir)
+# =============================================================
 
-repelled_maormer_modifier = {
-    monthly_prestige_gain_mult = 0.1
-}
-
-maormer_hatred_modifier = {
-    levy_size = 0.1
+# Applied to a county that has hosted Tsaesci sword-training.
+# Represents the cultural uplift of Akaviri martial discipline.
+# Duration: 3650 days (10 years).
+akaviri_sword_tradition_modifier = {
+    levy_size            = 0.1
     monthly_prestige_gain_mult = 0.05
 }
 
-# ---- Sload / Thrassian Plague ----
-thrassian_plague_modifier = {
-    monthly_income    = -0.4
-    supply_limit_mult = -0.3
-    development_growth_factor = -0.5
-}
+# Cooldown after Tsaesci Dragonguard induction ceremony.
+# Duration: 1825 days (5 years).
+akaviri_dragonguard_cooldown = { }
 
-quarantine_modifier = {
-    monthly_income    = -0.1
-    supply_limit_mult = -0.1
-}
+# =============================================================
+#  KA PO'TUN (Tiger-Dragon Folk of Akavir)
+# =============================================================
 
-# ---- Kothringi / Knahaten Flu ----
-knahaten_flu_modifier = {
-    monthly_income    = -0.3
-    supply_limit_mult = -0.2
-    development_growth_factor = -0.4
-}
-
-knahaten_flu_fear_modifier = {
-    monthly_prestige_gain_mult = -0.1
-}
-
-# ---- Kamal ----
-kamal_ice_curse_modifier = {
-    supply_limit_mult = -0.3
-    monthly_income    = -0.2
-    development_growth_factor = -0.3
-}
-
-# ---- Elder Towers ----
-tower_stone_active_modifier = {
-    monthly_income    = 0.2
-    development_growth_factor = 0.3
-    supply_limit_mult = 0.15
-}
-
-tower_fallen_modifier = {
-    monthly_income    = -0.2
-    development_growth_factor = -0.2
-}
-
-white_gold_keeper_modifier = {
-    monthly_prestige_gain_mult = 0.3
-    monthly_income = 0.2
-    diplomacy = 3
-}
-
-red_mountain_keeper_modifier = {
-    monthly_piety_gain_mult = 0.3
-    martial = 3
-    prowess = 4
-}
-
-reality_fracturing_modifier = {
-    monthly_prestige_gain_mult = -0.2
-    development_growth_factor  = -0.5
-    monthly_income = -0.3
-}
-
-tower_sabotage_cooldown = {
-    # Prevents repeated sabotage — no bonus/penalty, just a flag
-}
-
-# ---- Dreugh ----
-old_knocker_blessing_modifier = {
-    monthly_piety_gain_mult = 0.15
-    prowess = 3
-}
-
-# ---- Imga ----
-imga_favor_modifier = {
+# Applied when Tosh Raka's transformation into a dragon is witnessed.
+# Duration: 1825 days (5 years).
+tosh_raka_revelation_modifier = {
+    monthly_piety_gain_mult  = 0.1
     monthly_prestige_gain_mult = 0.05
-    diplomacy = 1
-}
-
-# ---- Tang Mo ----
-tang_mo_unity_modifier = {
-    levy_size = 0.15
-    supply_limit_mult = 0.1
-}
-
-ka_po_tun_alliance_modifier = {
-    monthly_prestige_gain_mult = 0.1
-    levy_size = 0.1
-}
-
-# ---- Keptu ----
-bloodroot_forge_modifier = {
-    men_at_arms_maintenance_mult = -0.1
-    monthly_income = 0.15
-}
-
-# ---- Plague cooldown ----
-plague_cooldown_modifier = {
-    # Prevents repeated unleashing — no-op flag
-}
-
-# ---- Misc ----
-rallied_against_daedra = {
-    # referenced by existing daedric invasion
-    levy_size = 0.1
-}
-
-rejected_daedric_bargain = {
-    monthly_piety_gain_mult = 0.1
-}
-
-oblivion_gate_province_modifier = {
-    monthly_income    = -0.5
-    supply_limit_mult = -0.4
-    development_growth_factor = -0.6
-}
-
-oblivion_gate_unchecked = {
-    monthly_income    = -0.3
-    supply_limit_mult = -0.2
-}
-
-oblivion_gate_daedra_surge = {
-    supply_limit_mult = -0.2
 }
 
 # =============================================================
-#  Character & Province Modifiers — All 17 Daedric Princes
+#  LILMOTHIIT (Fox-Folk of Black Marsh)
 # =============================================================
 
-# ---- Per-Prince Invasion Province/Character Modifiers ----
-
-molag_planemeld_dread = {
-    monthly_prestige_gain_mult = -0.1
-    stress_gain_mult = 0.2
-    dread = 20
+# Applied to a county when a Lilmothiit clan is sheltered there.
+# Duration: 730 days (2 years).
+lilmothiit_refuge_modifier = {
+    monthly_income = 0.05    # they contribute to trade networks
 }
 
-boethiah_court_conspiracy = {
-    intrigue = -2
-    monthly_prestige_gain_mult = -0.05
+# Cooldown after the Lilmothiit extinction event arc.
+# Duration: 3650 days (10 years).
+lilmothiit_extinction_cooldown = { }
+
+# =============================================================
+#  REACHFOLK (The Reach — Old Ways)
+# =============================================================
+
+# Applied to a county under Old Ways governance.
+# Represents Reachman tribal organisation and nature-worship.
+# Duration: permanent (days = -1) while Reachman rules.
+old_ways_county_modifier = {
+    levy_size              = 0.1
+    monthly_income         = -0.05    # Old Ways economies are subsistence-based
+    supply_limit_mult      = 0.1      # know the land well
 }
 
-mephala_web_modifier = {
-    intrigue = -3
-    monthly_prestige_gain_mult = -0.1
-}
-
-mephala_web_gift = {
-    intrigue = 5
+# Applied to a ruler who has completed the Briarheart ritual.
+# Duration: permanent (days = -1).
+briarheart_power_modifier = {
+    prowess                    = 3
     monthly_prestige_gain_mult = 0.1
+    stress_gain_mult           = -0.1
 }
 
-mephala_web_curse = {
-    intrigue = -5
-    stress_gain_mult = 0.2
+# Cooldown after attempting a Hagraven pact.
+# Duration: 3650 days (10 years).
+hagraven_pact_cooldown = { }
+
+# Applied after the Wild Hunt is called — recovery period.
+# Duration: 3650 days (10 years).
+wild_hunt_aftermath_modifier = {
+    monthly_prestige_gain_mult = 0.2    # the Hunt's legend grows
+    monthly_piety_gain_mult    = 0.1
+    dread_gain_mult            = 0.2    # the Hunt terrifies enemies
 }
 
-vaermina_nightmare_modifier = {
-    stress_gain_mult = 0.3
-    learning = -2
-}
+# =============================================================
+#  HIST / ARGONIAN
+# =============================================================
 
-nocturnal_shadow_tithe = {
-    monthly_income = -0.15
-    stewardship = -1
-}
-
-nocturnal_shadow_favor = {
-    intrigue = 3
-    monthly_prestige_gain_mult = 0.05
-}
-
-malacath_oath_curse = {
-    monthly_prestige_gain_mult = -0.2
-    prowess = -4
-    stress_gain_mult = 0.1
-}
-
-namira_rot_modifier = {
-    monthly_income    = -0.2
-    development_growth_factor = -0.3
-    supply_limit_mult = -0.15
-}
-
-peryite_plague_modifier = {
-    monthly_income    = -0.25
-    supply_limit_mult = -0.2
-    development_growth_factor = -0.3
-}
-
-peryite_afflicted_ruler = {
-    monthly_prestige_gain_mult = -0.1
-    diplomacy = -3
-    stress_gain_mult = 0.15
-}
-
-jyggalag_crystal_modifier = {
-    development_growth_factor = -0.4
-    monthly_income = -0.2
-    supply_limit_mult = -0.2
-}
-
-anti_jyggalag_resistance = {
-    monthly_prestige_gain_mult = 0.15
-    levy_size = 0.1
-}
-
-vile_curse_modifier = {
-    monthly_prestige_gain_mult = -0.15
-    diplomacy = -3
-    monthly_income = -0.1
-}
-
-meridia_displeasure = {
-    monthly_piety_gain_mult = -0.2
-    monthly_prestige_gain_mult = -0.1
-}
-
-meridia_purge_target = {
-    monthly_prestige_gain_mult = -0.2
-    monthly_piety_gain_mult = -0.3
-    levy_size = -0.1
-}
-
-# ---- Daedric Artifact Holder Modifiers ----
-# (These represent possessing or wielding a Daedric artifact)
-
-mehrunes_razor_holder = {
-    prowess = 4
-    intrigue = 3
-    command_modifier = { advantage = 3 damage = 0.1 }
-}
-
-azura_star_holder = {
+# Applied to a character who has communed with the Hist.
+# Duration: 1825 days (5 years).
+hist_communion_modifier = {
     monthly_piety_gain_mult = 0.2
-    learning = 3
-    diplomacy = 2
+    learning                = 3
+    stress_gain_mult        = -0.1
 }
 
-mace_of_molag_bal_holder = {
-    prowess = 6
-    dread_gain_mult = 0.3
-    command_modifier = { advantage = 4 damage = 0.15 }
+# Applied to a county within the Hist's sphere of influence.
+# Duration: permanent (days = -1).
+hist_grove_modifier = {
+    development_growth_factor = 0.1
+    supply_limit_mult         = 0.1
 }
 
-ring_of_hircine_holder = {
-    prowess = 4
-    martial = 2
-    command_modifier = { pursuit = 0.2 }
-}
-
-saviors_hide_holder = {
-    prowess = 3
-    monthly_piety_gain_mult = 0.1
-    command_modifier = { toughness = 0.15 }
-}
-
-ebony_mail_holder = {
-    prowess = 3
-    intrigue = 4
-    dread_gain_mult = 0.2
-    command_modifier = { advantage = 3 }
-}
-
-ebony_blade_holder = {
-    prowess = 5
-    intrigue = 5
-    dread_gain_mult = 0.25
-}
-
-masque_of_clavicus_vile = {
-    diplomacy = 6
-    intrigue  = 3
-    monthly_prestige_gain_mult = 0.1
-}
-
-skull_of_corruption_modifier = {
-    intrigue = 5
-    learning = 3
-    monthly_prestige_gain_mult = 0.1
-}
-
-wabbajack_modifier = {
-    stress_gain_mult = -0.4
-    # Unpredictable outcomes handled in Sheogorath events
-}
-
-spellbreaker_modifier = {
-    prowess = 3
-    stewardship = 3
-    command_modifier = { toughness = 0.2 screen = 0.1 }
-}
-
-sanguine_rose_holder = {
-    diplomacy = 3
-    stress_gain_mult = -0.2
-    monthly_prestige_gain_mult = 0.1
-}
-
-dawnbreaker_modifier = {
-    prowess  = 5
-    martial  = 3
-    monthly_piety_gain_mult = 0.2
-    command_modifier = { advantage = 5 damage = 0.2 }
-}
-
-volendrung_bearer = {
-    prowess = 8
-    martial = 4
-    command_modifier = { advantage = 5 damage = 0.25 }
-}
-
-skeleton_key_holder = {
-    intrigue = 6
-    stewardship = 2
-}
-
-oghma_infinium_holder = {
-    learning = 8
-    intrigue = 3
-    monthly_prestige_gain_mult = 0.1
-}
-
-ring_of_namira_holder = {
-    prowess = 4
-    intrigue = 3
-    # Cannibal synergy handled via events
-}
-
-sword_of_jyggalag_modifier = {
-    prowess = 8
-    martial = 5
-    stewardship = 3
-    command_modifier = { advantage = 8 damage = 0.3 max_morale = 0.3 }
-}
-
-# ---- Quest cooldown ----
-daedric_quest_cooldown = {
-    # Gate preventing a ruler from starting multiple Daedric quests simultaneously
-}
+# Cooldown after Hist communion decision.
+# Duration: 1825 days (5 years).
+hist_communion_cooldown = { }
 
 # =============================================================
-#  Guild Modifiers — All 9 Guilds
+#  TWO MOONS PATH (Khajiit Lunar Faith)
 # =============================================================
 
-# ---- Activity cooldowns ----
-guild_advancement_cooldown    = { }
-guild_recently_rejected       = { }
-guild_research_cooldown       = { }
-guild_contract_cooldown       = { }
-guild_heist_cooldown          = { }
-black_sacrament_cooldown      = { }
-writ_of_execution_cooldown    = { }
-psijic_communion_cooldown     = { }
-ballad_composition_cooldown   = { }
-guild_ruin_delve_cooldown     = { }
-guild_heist_caught_modifier   = { monthly_prestige_gain_mult = -0.1 dread = -10 }
-dark_brotherhood_marked_modifier = { monthly_prestige_gain_mult = -0.15 stress_gain_mult = 0.2 }
-psijic_warning_modifier       = { martial = 2 stewardship = 1 }
-undaunted_wounded_modifier    = { prowess = -3 }
-psijic_order_modifier         = { monthly_piety_gain_mult = 0.05 }
-
-# ---- Chapter membership bonuses (persistent while in guild) ----
-mages_guild_chapter_modifier = {
-    monthly_piety_gain_mult = 0.05
-    learning = 1
-}
-
-fighters_guild_chapter_modifier = {
-    levy_size = 0.05
-    monthly_prestige_gain_mult = 0.03
-}
-
-morag_tong_chapter_modifier = {
-    monthly_piety_gain_mult = 0.05
-    intrigue = 1
-}
-
-companions_chapter_modifier = {
-    monthly_prestige_gain_mult = 0.05
-    prowess = 1
-}
-
-bards_college_chapter_modifier = {
-    monthly_prestige_gain_mult = 0.05
-    diplomacy = 1
-}
-
-undaunted_chapter_modifier = {
-    monthly_prestige_gain_mult = 0.03
-    prowess = 1
-}
-
-# ---- Activity results ----
-famous_ballad_modifier = {
-    monthly_prestige_gain_mult = 0.15
-    diplomacy = 2
-}
-
-# ---- Curse for leaving Dark Brotherhood / Vile bargain ----
-vile_curse_modifier = {
-    monthly_prestige_gain_mult = -0.15
-    diplomacy = -3
-    monthly_income = -0.1
-}
-
-# =============================================================
-#  Guild Leadership Modifiers  — permanent bonuses for leaders
-#  Applied when the leadership trait is gained; days = -1 (permanent)
-# =============================================================
-
-guild_leader_mages_modifier = {
-    learning   = 4
-    monthly_prestige_gain_mult = 0.15
+# Applied when the Mane blesses a ruler.
+# Duration: 1095 days (3 years).
+mane_blessing_modifier = {
     monthly_piety_gain_mult    = 0.15
-    # Grants access to the Guild's full magical resources
-}
-
-guild_leader_fighters_modifier = {
-    martial    = 4
-    prowess    = 4
-    levy_size  = 0.10
-    monthly_prestige_gain_mult = 0.12
-    command_modifier = { advantage = 4 damage = 0.1 max_morale = 0.25 }
-}
-
-guild_leader_thieves_modifier = {
-    intrigue   = 5
-    stewardship = 3
-    monthly_income = 0.15
-    dread_gain_mult = 0.2
-}
-
-guild_leader_db_modifier = {
-    intrigue   = 6
-    dread_gain_mult = 0.35
     monthly_prestige_gain_mult = 0.1
-    # The Listener's dread precedes them across Tamriel
+    diplomacy                  = 2
 }
 
-guild_leader_tong_modifier = {
-    intrigue   = 5
-    prowess    = 4
+# Cooldown after seeking the Mane's audience.
+# Duration: 1825 days (5 years).
+mane_audience_cooldown = { }
+
+# =============================================================
+#  Y'FFRE / GREEN PACT (Bosmer Faith)
+# =============================================================
+
+# Applied when a ruler upholds the Green Pact — Valenwood blessings.
+# Duration: 1825 days (5 years).
+green_pact_blessing_modifier = {
+    supply_limit_mult          = 0.15   # Valenwood's forests sustain them
+    monthly_piety_gain_mult    = 0.1
+}
+
+# Cooldown after declaring a Wild Hunt.
+# Duration: 7300 days (20 years) — calling the Hunt is extremely rare.
+wild_hunt_cooldown = { }
+
+# =============================================================
+#  CRYSTAL TOWER (Summerset — county c_alinor)
+# =============================================================
+
+# Keeper bonus for the Crystal Tower.
+# The Crystal Tower embodies the principle of nullity and Aldmeri magical order.
+# Duration: permanent (days = -1).
+crystal_tower_keeper_modifier = {
     monthly_piety_gain_mult    = 0.2
-    dread_gain_mult            = 0.3
-    monthly_prestige_gain_mult = 0.12
-}
-
-guild_leader_companions_modifier = {
-    prowess    = 5
-    martial    = 4
-    monthly_prestige_gain_mult = 0.20
-    command_modifier = { advantage = 5 damage = 0.15 max_morale = 0.3 }
-}
-
-guild_leader_psijic_modifier = {
-    learning   = 6
-    diplomacy  = 4
-    monthly_piety_gain_mult    = 0.25
     monthly_prestige_gain_mult = 0.15
-}
-
-guild_leader_bards_modifier = {
-    diplomacy  = 5
-    learning   = 3
-    monthly_prestige_gain_mult = 0.25
-    stress_loss_mult = 0.15
-}
-
-guild_leader_undaunted_modifier = {
-    prowess    = 5
-    martial    = 4
-    monthly_prestige_gain_mult = 0.18
-    command_modifier = { advantage = 5 damage = 0.12 }
-}
-
-# Post-quest cooldown (shared across all leader post-events)
-guild_leader_postquest_cooldown = { }
-
-# =============================================================
-#  Thu'um / Voice Modifiers
-# =============================================================
-
-# Applied during Voice training advancement cooldowns
-thuumvoi_advancement_cooldown = { }
-
-# Applied when a Thu'um master uses a Shout in battle
-# (prevents spamming the battle decision)
-thu_um_shout_cooldown = { }
-
-# Applied to a fully initiated Greybeard (the vow of silence)
-greybeard_vow_modifier = {
-    diplomacy  = -2         # Speaking is reserved; courtly banter is alien
-    piety_mult = 0.15
-    monthly_piety_gain_mult = 0.20
-}
-
-# Applied when someone breaks their Greybeard vows
-greybeard_oath_broken = {
-    piety_mult = -0.30
-    monthly_piety_gain_mult = -0.25
-    diplomacy  = -5         # Known as oath-breaker
-}
-
-# Applied when named First Voice of the Greybeards
-first_voice_modifier = {
-    learning  = 5
-    piety_mult = 0.30
-    monthly_piety_gain_mult    = 0.30
-    monthly_prestige_gain_mult = 0.20
-    command_modifier = { advantage = 8 max_morale = 0.40 }
-}
-
-# Cooldown between greybeard post-leadership events
-greybeard_pilgrims_cooldown = { }
-
-# Applied to Dragonborn who have absorbed their first Dragon Soul
-dovahkiin_full_power_modifier = {
-    prowess   = 6
-    learning  = 4
-    martial   = 4
-    piety_mult = 0.25
-    dread_gain_mult = 0.25
-    command_modifier = { advantage = 8 damage = 0.20 max_morale = 0.35 }
-}
-
-# Cooldown between Dragonborn recognition post-events
-dovahkiin_recognition_cooldown = { }
-
-# =============================================================
-#  Thu'um — Dragon Soul Stacking & Dovah Nature Modifiers
-# =============================================================
-
-# Prevents rapid stacking of Dragon Soul absorption
-absorb_soul_cooldown = { }
-
-# Prevents spamming the Word Wall learning decision
-dovahkiin_word_wall_cooldown = { }
-
-# Applied when the Dragonborn has absorbed 5+ Dragon Souls
-dragon_souls_growing_modifier = {
-    prowess  = 2
-    martial  = 2
-    dread_gain_mult = 0.15
-    stress_gain_mult = 0.10
-    command_modifier = { advantage = 4 damage = 0.10 }
-}
-
-# Applied when the Dragonborn has absorbed 10+ Dragon Souls
-dragon_souls_brimming_modifier = {
-    prowess  = 4
-    martial  = 4
-    dread_gain_mult = 0.30
-    stress_gain_mult = 0.20
-    command_modifier = { advantage = 6 damage = 0.15 }
-}
-
-# Applied to a Dragonborn who has resisted the Dovah nature
-dovah_nature_resisted_modifier = {
-    piety_mult = 0.20
-    stress_loss_mult = 0.15
-    monthly_piety_gain_mult = 0.20
-}
-
-# Applied to a Dragonborn whose Dovah nature has taken hold
-dovah_nature_dominant_modifier = {
-    diplomacy  = -4
-    learning   = -2
-    dread_gain_mult = 0.35
-    stress_gain_mult = 0.25
-    command_modifier = { advantage = 5 damage = 0.15 max_morale = -0.10 }
+    learning                   = 4
 }
 
 # =============================================================
-#  Amulet of Kings Modifiers
+#  SNOW THROAT (Skyrim — Throat of the World)
 # =============================================================
 
-# Base modifier: anyone who holds the Amulet of Kings
-amulet_of_kings_bearer_modifier = {
-    piety_mult = 0.20
-    monthly_prestige_gain_mult = 0.25
-    diplomacy  = 3              # The Amulet lends authority beyond any title
+# Keeper bonus for Snow Throat.
+# The mountain IS the Tower; deeply integrated with the Thu'um.
+# Duration: permanent (days = -1).
+snow_throat_keeper_modifier = {
+    monthly_piety_gain_mult    = 0.15
+    monthly_prestige_gain_mult = 0.1
+    prowess                    = 2
 }
 
-# Enhanced modifier: Dragonborn wearing the Amulet of Kings
-# (the full Covenant is active — only for those of Dragonblood)
-amulet_of_kings_dragonborn_modifier = {
-    piety_mult = 0.40
-    monthly_prestige_gain_mult = 0.40
-    diplomacy  = 5
-    learning   = 3
-    command_modifier = {
-        advantage  = 6
-        max_morale = 0.25
-        # The Amulet strengthens the barrier against Oblivion
-    }
-    # Implicit Oblivion resistance: Daedric invasions less effective
+# =============================================================
+#  GREEN-SAP (Falinesti, Valenwood)
+# =============================================================
+
+# Keeper bonus for Green-Sap.
+# The walking tree-city is the Tower; its Stone is a living seed.
+# Duration: permanent (days = -1).
+green_sap_keeper_modifier = {
+    monthly_piety_gain_mult    = 0.15
+    supply_limit_mult          = 0.1
+    development_growth_factor  = 0.1
 }
 
-# Applied when the Dragonborn relights the Dragonfires
-# This is the great covenant: Mundus is protected from Oblivion
-# as long as the blood of Akatosh lights the Dragonfires.
-dragonfires_lit_modifier = {
-    piety_mult = 0.50
-    monthly_prestige_gain_mult = 0.50
-    diplomacy  = 6
-    # Massive Oblivion resistance — the barrier is at its strongest
+# =============================================================
+#  AYLEID (Heartland High Elves — historical ruins)
+# =============================================================
+
+# Applied after discovering a significant Ayleid ruin.
+# Duration: 1095 days (3 years).
+ayleid_ruin_discovery_modifier = {
+    monthly_prestige_gain_mult = 0.1
+    learning                   = 2
 }
 
-# Cooldown between Amulet of Kings post-events
-amulet_post_event_cooldown = { }
+# Cooldown after Ayleid ruin survey decision.
+# Duration: 1825 days (5 years).
+ayleid_ruin_survey_cooldown = { }
+
+# =============================================================
+#  SNOW ELF (Chantry of Auri-El)
+# =============================================================
+
+# Applied after a Chantry of Auri-El pilgrimage.
+# Duration: 730 days (2 years).
+chantry_pilgrimage_modifier = {
+    monthly_piety_gain_mult = 0.15
+    stress_gain_mult        = -0.1
+}
+
+# Cooldown after Chantry pilgrimage.
+# Duration: 1825 days (5 years).
+chantry_pilgrimage_cooldown = { }
+
+# =============================================================
+#  ALESSIAN ORDER REMNANTS
+# =============================================================
+
+# Applied to a ruler who has revived Alessian doctrine.
+# Duration: 1825 days (5 years).
+alessian_revival_modifier = {
+    monthly_piety_gain_mult = 0.15
+    diplomacy               = -1    # Alessian doctrine was intolerant
+    dread_gain_mult         = 0.1
+}
+
+# Cooldown after Alessian doctrine study event.
+# Duration: 1825 days (5 years).
+alessian_doctrine_cooldown = { }

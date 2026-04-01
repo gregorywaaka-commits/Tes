@@ -1,0 +1,182 @@
+# =============================================================
+#  Bosmeri Events — Y'ffre, Green Pact, and Wild Hunt
+#  File: mod/events/bosmeri_events.txt
+#
+#  WHAT THIS FILE DOES:
+#  Covers the Bosmer's spiritual relationship with Y'ffre (forest
+#  deity), the Green Pact (dietary and ecological obligations),
+#  and the Wild Hunt (collective transformation into monsters).
+#
+#  EVENT INDEX:
+#  bosmeri.001 — Y'ffre Speaks: a Bosmer ruler receives a vision
+#  bosmeri.002 — The Green Pact Tested: obligation to consume slain enemies
+#  bosmeri.003 — The Wild Hunt Is Called: collective transformation
+#  bosmeri.004 — The Hunt Ends: aftermath of the Wild Hunt
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_green_pact_devotee, wild_hunt_active
+#  Traits:             green_pact_devotee, wild_hunt_called
+#  Modifiers:          green_pact_blessing_modifier,
+#                      wild_hunt_cooldown, wild_hunt_aftermath_modifier
+#  Cultures:           bosmer_culture (EK2)
+#  Global variables:   wild_hunt_in_progress
+#
+#  LORE BASIS:
+#  Y'ffre (Jephre in Altmeri) is the Bosmer deity of the forest,
+#  stories, and the eternal natural pattern.  The Green Pact
+#  forbids Bosmer from consuming plant matter and requires them
+#  to consume their fallen enemies (as an act of respect and
+#  ecological stewardship).  The Wild Hunt is a collective
+#  transformation where Bosmer cry out together and transform
+#  into unstoppable monsters; participants rarely return to
+#  normal form and eventually merge with the forest.  The last
+#  canonical Wild Hunt was called against King Borgas of Skyrim
+#  in 1E 369.  The Bosmer of Valenwood live in and around the
+#  walking tree-city of Falinesti, whose tree is also a Tower
+#  (Green-Sap).
+#  Sources: The Wild Hunt, Words of the Wind, ESO Valenwood lore.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add bosmeri.NNN = { ... } following the pattern below
+#  2. Add localization keys to mod/localization/english/lore_races_l_english.yml
+# =============================================================
+
+namespace = bosmeri
+
+# ---------------------------------------------------------------
+# bosmeri.001  Y'ffre Speaks — a Bosmer ruler receives a vision from the forest
+# ---------------------------------------------------------------
+bosmeri.001 = {
+    type = character_event
+    title = bosmeri.001.t
+    desc = bosmeri.001.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_calm
+    }
+
+    trigger = {
+        is_ruler = yes
+        OR = {
+            has_culture = bosmer_culture
+            has_trait   = green_pact_devotee
+        }
+    }
+
+    option = {
+        name = bosmeri.001.a   # "The forest speaks — Y'ffre's pattern flows through everything."
+        if = {
+            limit = { NOT = { has_trait = green_pact_devotee } }
+            add_trait = green_pact_devotee
+        }
+        add_piety    = 200
+        add_prestige = 200
+        add_modifier = { modifier = green_pact_blessing_modifier days = 1825 }
+    }
+
+    option = {
+        name = bosmeri.001.b   # "The old stories are stories — I walk my own path."
+        add_prestige = 100
+        add_piety    = -100
+    }
+}
+
+# ---------------------------------------------------------------
+# bosmeri.002  The Green Pact Tested — the obligation to consume a fallen enemy
+# ---------------------------------------------------------------
+bosmeri.002 = {
+    type = character_event
+    title = bosmeri.002.t
+    desc = bosmeri.002.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        has_trait = green_pact_devotee
+        is_ruler  = yes
+        martial   >= 10
+    }
+
+    option = {
+        name = bosmeri.002.a   # "The Pact demands it — we consume what we kill."
+        add_piety    = 300
+        add_prestige = 200
+        add_dread    = 10
+    }
+
+    option = {
+        name = bosmeri.002.b   # "The Pact is about respect — but this goes too far."
+        add_piety    = -200
+        add_stress   = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# bosmeri.003  The Wild Hunt Is Called — collective Bosmer transformation
+# ---------------------------------------------------------------
+bosmeri.003 = {
+    type = character_event
+    title = bosmeri.003.t
+    desc = bosmeri.003.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler  = yes
+        has_trait = green_pact_devotee
+        martial   >= 16
+        prowess   >= 14
+        NOT = { has_trait = wild_hunt_called }
+        NOT = { wild_hunt_active = yes }
+    }
+
+    immediate = {
+        set_global_variable = { name = wild_hunt_in_progress value = yes }
+    }
+
+    option = {
+        name = bosmeri.003.a   # "Y'ffre — hear us. HEAR US. We call the Hunt!"
+        add_trait    = wild_hunt_called
+        add_prestige = 800
+        add_piety    = 500
+        add_dread    = 30
+        trigger_event = { id = bosmeri.004 days = 30 }
+    }
+
+    option = {
+        name = bosmeri.003.b   # "The Hunt is too great a cost — we fight as mortals."
+        add_prestige = 200
+    }
+}
+
+# ---------------------------------------------------------------
+# bosmeri.004  The Hunt Ends — aftermath of the Wild Hunt
+# ---------------------------------------------------------------
+bosmeri.004 = {
+    type = character_event
+    title = bosmeri.004.t
+    desc = bosmeri.004.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_calm
+    }
+
+    immediate = {
+        remove_global_variable = wild_hunt_in_progress
+    }
+
+    option = {
+        name = bosmeri.004.a   # "The monsters recede. The forest is quiet. We won."
+        add_prestige = 500
+        add_modifier = { modifier = wild_hunt_aftermath_modifier days = 3650 }
+        add_modifier = { modifier = wild_hunt_cooldown         days = 7300 }
+    }
+}

@@ -2,6 +2,19 @@
 #  Daedric Invasion — Scripted Triggers
 #  File: mod/common/scripted_triggers/daedric_invasion_triggers.txt
 #
+#  EK2 COMPATIBILITY:
+#  ──────────────────
+#  This file requires Elder Kings 2 (EK2) as a parent mod.
+#  EK2-defined identifiers this file depends on:
+#    • Traits:    daedric_prince (EK2), dragonborn (EK2)
+#    • Faith docs: doctrine_daedra_revered, doctrine_daedra_accepted
+#    • Titles:    title:d_deadlands (Mehrunes Dagon's plane)
+#  All templates and aspect traits are defined in THIS mod at:
+#    common/character_templates/daedric_princes.txt
+#    common/traits/daedric_invasion_traits.txt
+#
+#  CK3 VERSION: 1.12.*  (see descriptor.mod)
+#
 #  HOW THE DAEDRIC INVASION TRIGGER SYSTEM WORKS:
 #  ─────────────────────────────────────────────────
 #  These triggers are the "is X currently true?" checks for the
@@ -126,7 +139,10 @@ is_mehrunes_dagon_invasion = {
 }
 
 # Boethiah: Prince of Plots, Betrayal, Assassination, Secret Murder.
-# His invasion = court destabilisation and assassination.
+# Gender note: Boethiah is described as male in some First/Second Era
+# texts and female in others; the Prince is canonically gender-ambiguous.
+# TES IV: Oblivion and TES V: Skyrim portray Boethiah as female.
+# This invasion = court destabilisation and assassination.
 is_boethiah_invasion = {
     is_daedric_invasion_active = yes
     global_var:active_daedric_prince = "boethiah_template"
@@ -278,158 +294,4 @@ is_daedra_worshipper = {
     }
 }
 
-# True for the character who is the current Daedric Prince invader
-is_daedric_prince_invader = {
-    has_trait = daedric_prince
-    is_ai = yes
-}
 
-# True when a province has an open Oblivion Gate
-province_has_oblivion_gate = {
-    has_variable = oblivion_gate_active
-}
-
-# True when a ruler's capital county has an Oblivion Gate nearby
-ruler_threatened_by_oblivion_gate = {
-    any_held_county = {
-        has_variable = oblivion_gate_active
-    }
-}
-
-# Check whether enough time has passed for the invasion to escalate
-daedric_invasion_can_escalate = {
-    exists = global_var:daedric_invasion_phase
-    global_var:daedric_invasion_phase < 3
-    global_var:daedric_invasion_started_days >= 1825   # ~5 in-game years
-}
-
-# True once the invasion has reached max escalation
-daedric_invasion_at_full_power = {
-    exists = global_var:daedric_invasion_phase
-    global_var:daedric_invasion_phase >= 3
-}
-
-# Conditions under which the invasion can be triggered
-daedric_invasion_trigger_conditions = {
-    NOT = { is_daedric_invasion_active = yes }
-    current_date >= 2E.100                              # minimum date guard
-    any_ruler = {
-        realm_size >= 30
-        NOT = { has_trait = daedric_champion }
-    }
-}
-
-# ---- Per-Prince invasion active checks ----
-is_mehrunes_dagon_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "mehrunes_dagon_template"
-}
-
-is_molag_bal_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "molag_bal_template"
-}
-
-is_boethiah_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "boethiah_template"
-}
-
-is_hircine_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "hircine_template"
-}
-
-is_namira_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "namira_template"
-}
-
-is_azura_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "azura_template"
-}
-
-is_mephala_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "mephala_template"
-}
-
-is_clavicus_vile_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "clavicus_vile_template"
-}
-
-is_vaermina_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "vaermina_template"
-}
-
-is_sheogorath_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "sheogorath_template"
-}
-
-is_peryite_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "peryite_template"
-}
-
-is_sanguine_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "sanguine_template"
-}
-
-is_meridia_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "meridia_template"
-}
-
-is_malacath_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "malacath_template"
-}
-
-is_nocturnal_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "nocturnal_template"
-}
-
-is_hermaeus_mora_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "hermaeus_mora_template"
-}
-
-is_jyggalag_invasion = {
-    is_daedric_invasion_active = yes
-    global_var:active_daedric_prince = "jyggalag_template"
-}
-
-# ---- Champion checks ----
-is_any_daedric_champion = {
-    OR = {
-        has_trait = daedric_champion
-        has_trait = azura_champion
-        has_trait = mephala_champion
-        has_trait = clavicus_vile_champion
-        has_trait = vaermina_champion
-        has_trait = sheogorath_champion
-        has_trait = peryite_champion
-        has_trait = sanguine_champion
-        has_trait = meridia_champion
-        has_trait = malacath_champion
-        has_trait = nocturnal_champion
-        has_trait = hermaeus_mora_champion
-        has_trait = jyggalag_champion
-    }
-}
-
-# Checks if a character is a devotee of any Daedric Prince
-is_daedra_worshipper = {
-    OR = {
-        faith = { has_doctrine = doctrine_daedra_revered }
-        faith = { has_doctrine = doctrine_daedra_accepted }
-        has_trait = daedric_vassal
-        is_any_daedric_champion = yes
-    }
-}

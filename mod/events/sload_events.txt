@@ -1,6 +1,56 @@
 # =============================================================
 #  Sload Events  (Slug Necromancers of Thras / Coral Tower)
+#  File: mod/events/sload_events.txt
 #  Namespace: sload
+#
+#  WHAT THIS FILE DOES:
+#  Covers the Sload necromantic threat, the Thrassian Plague
+#  (1E 2200), the All-Flags Navy coalition, the siege and
+#  sinking of Thras, and the Coral Tower as a living Stone.
+#
+#  EVENT INDEX:
+#  sload.000  — A Sload Necromantic Scheme Uncovered (non-Sload rulers)
+#  sload.001  — The Thrassian Plague Begins: global notification
+#  sload.005  — Rulers Call for an All-Flags Navy
+#  sload.010  — All-Flags Navy Assembles
+#  sload.015  — The Siege of Thras: Coral Tower Confrontation
+#               (no Coldharbour reference — lore-accurate, see LORE BASIS)
+#  sload.020  — Thras Sinks: the Plague ends
+#  sload.025  — Coral Tower Whispers: a living Tower Stone (Sload only)
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_sload, thrassian_plague_active
+#  Scripted effects:   form_all_flags_navy_effect, destroy_thras_effect
+#  Traits:             sload_necromancer, sload_high_necromancer
+#  Modifiers:          quarantine_modifier
+#  Global variables:   all_flags_navy_active
+#  Variables:          tower_stone_present (county-scope: title:c_thras)
+#
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  banish = yes  — CK3 vanilla effect; expels a courtier from court.
+#                  Used in sload.000 option a to expel the Sload courtier.
+#                  Path: mod/events/sload_events.txt — NOT a scripted effect
+#                  in this mod; do not search for a local definition.
+#  sload_culture — EK2-defined culture identifier (Sload racial culture).
+#
+#  LORE BASIS:
+#  The Sload of Thras caused the Thrassian Plague circa 1E 2200,
+#  killing half of Tamriel's population.  An All-Flags Navy of
+#  every maritime nation sank Thras into the sea.  The Sload's
+#  Coral Tower is a legitimate Tower candidate (as their Stone);
+#  there is NO Coldharbour connection in this event chain.
+#  sload.015 references only the Coral Tower — any prior
+#  Coldharbour reference in localization was a lore error and
+#  has been corrected in the YAML file.
+#  Sources: Pocket Guide to the Empire (1st Ed.), Before the
+#  Ages of Man, The Wolf Queen.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add sload.NNN = { ... } following the pattern below
+#  2. Gate Sload-specific events with is_sload = yes
+#  3. Add localization keys to mod/localization/english/
+#     lore_races_l_english.yml
 # =============================================================
 
 namespace = sload
@@ -26,7 +76,7 @@ sload.000 = {
         name = sload.000.a   # "Expel this creature from our court!"
         every_courtier = {
             limit = { has_trait = sload_necromancer }
-            banish = yes
+            banish = yes    # CK3 vanilla effect — expels courtier from court (not defined in this mod)
         }
         add_prestige = 100
     }

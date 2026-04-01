@@ -2,6 +2,15 @@
 #  Daedric Prince Player Decisions — All 17 Princes
 #  Players may seek out each Prince, make bargains, or
 #  attempt to resist/end the invasion via unique methods.
+#  File: mod/common/decisions/daedric_prince_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  Traits checked via has_trait but defined externally:
+#    paranoid    — CK3 vanilla personality trait
+#    oathbreaker — EK2 trait (breaker-of-oaths)
+#    greedy      — CK3 vanilla personality trait
+#  Do NOT redefine these in this mod — they are vanilla/EK2 references.
 # =============================================================
 
 # ---- Seek Mehrunes Dagon's Power ----

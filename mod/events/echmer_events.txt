@@ -1,6 +1,51 @@
 # =============================================================
 #  Echmer Events  (Uutak Mythos — Bat-Mer of Yneslea)
+#  File: mod/events/echmer_events.txt
 #  Namespace: echmer
+#
+#  WHAT THIS FILE DOES:
+#  Events covering diplomatic contact with the Echmer of Yneslea,
+#  revelation of their Dwemer heritage, and study of the
+#  Echolalia Fantasia (their unique sonic magic).
+#
+#  EVENT INDEX:
+#  echmer.000 — Opportunity to send a Yneslea expedition (coastal rulers)
+#  echmer.001 — Echmer Envoy Arrives at Court
+#  echmer.002 — The Echmer Dwemer Heritage revealed by a scholar
+#  echmer.003 — The Echolalia Fantasia — invitation to study (event chain path)
+#  echmer.004 — Mastery of Echolalia Fantasia (fires after echmer.003 or echmer.005)
+#  echmer.005 — Studying Echolalia Fantasia (decision-triggered path)
+#  NOTE: echmer.003.a and echmer.005.a both grant echolalia_adept.
+#        These are alternative paths (event chain vs. standalone decision);
+#        only one should fire per character.
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_echmer_active_contact
+#  Scripted effects:   establish_echmer_contact
+#  Traits:             echolalia_adept, echolalia_master
+#  Character variables: echmer_dwemer_revealed (set_variable / has_variable)
+#  Scopes:             scope:echmer_envoy
+#
+#  LORE BASIS:
+#  The Echmer (Bat-Mer) are from the Uutak Mythos, a fan-created
+#  lore body by IceFireWarden exploring Yneslea and its people.
+#  The Echmer were uplifted by the Dwemer before the latter's
+#  disappearance in 1E 700, and retained some of their mechanical
+#  arts in the form of sonic "Echolalia" magic.
+#  DWEMER DISAPPEARANCE: In 1E 700, at the Battle of Red Mountain,
+#  every Dwemer in the world vanished simultaneously — a
+#  metaphysical catastrophe whose cause is still debated in lore.
+#  The Echmer are the Dwemer's only surviving legacy: orphaned
+#  inheritors of tonal architecture with no living masters to
+#  learn from.  This is the emotional core of echmer.002.
+#  This is a creative/lore-accurate extension of EK2's Akaviri
+#  and exotic-race systems.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add echmer.NNN = { ... } following the pattern below
+#  2. Gate Echmer-specific events with is_echmer_active_contact = yes
+#  3. Add localization keys to mod/localization/english/
+#     lore_races_l_english.yml
 # =============================================================
 
 namespace = echmer

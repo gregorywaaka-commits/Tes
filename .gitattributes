@@ -1,0 +1,48 @@
+# =============================================================
+#  .gitattributes — Cross-platform line ending safety
+#  File: .gitattributes (repository root)
+#
+#  WHY THIS FILE EXISTS:
+#  ─────────────────────
+#  CK3 on Windows, Mac, and Linux all accept LF (\n) line endings
+#  in script/YAML files.  Windows Git defaults to converting LF
+#  to CRLF (\r\n) on checkout — which CK3 does NOT handle well
+#  (it may silently misparse events and ignore entries).
+#
+#  This file forces all text files in this repo to always use
+#  LF line endings on all platforms.
+#
+#  HOW IT WORKS:
+#  ─────────────
+#  * = text=auto eol=lf  — every text file gets LF on checkout
+#  *.yml text eol=lf     — YAML (localization) files always LF
+#  *.txt text eol=lf     — CK3 script files always LF
+#
+#  ADDITIONAL NOTE — UTF-8 BOM:
+#  ─────────────────────────────
+#  CK3 YAML localization files (.yml) MUST also have a UTF-8 BOM
+#  (bytes 0xEF 0xBB 0xBF at the start of the file).  This file
+#  only controls line endings, not BOM.  All .yml files in
+#  mod/localization/english/ have been saved with BOM.
+#  If you create a new .yml file, add the BOM manually or via
+#  your editor's "Save as UTF-8 with BOM" option.
+# =============================================================
+
+*       text=auto eol=lf
+
+# CK3 script files
+*.txt   text eol=lf
+
+# CK3 localization YAML files
+*.yml   text eol=lf
+
+# Markdown documentation
+*.md    text eol=lf
+
+# Keep binary files untouched
+*.dds   binary
+*.png   binary
+*.jpg   binary
+*.tga   binary
+*.ogg   binary
+*.wav   binary

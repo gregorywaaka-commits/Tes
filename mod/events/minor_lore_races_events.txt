@@ -1,6 +1,74 @@
 # =============================================================
-#  Minor Lore Race Events — Dreugh
-#  Namespace: dreugh
+#  Minor Lore Race Events
+#  File: mod/events/minor_lore_races_events.txt
+#
+#  NOTE ON NAMESPACES: This file contains five separate namespace
+#  declarations (dreugh, imga, tang_mo, keptu, nedes).  CK3
+#  accepts multiple namespaces per file when each event ID
+#  explicitly includes its namespace prefix; the declarations
+#  appear immediately before each event group for clarity.
+#  Per-file convention is documented here for maintainers.
+#
+#  WHAT THIS FILE DOES:
+#  Flavour and lore events for minor playable / encountered
+#  races: Dreugh (aquatic life cycle), Imga (Valenwood ape-men),
+#  Tang Mo (Akaviri monkey-folk), Keptu (ancient High Rock proto-
+#  humans and Bloodroot Forge smiths — NOT Redguard ancestors),
+#  Nedes (proto-human ancestors of most Tamrielic humans),
+#  Lilmothiit (fox-folk of Black Marsh — pre-extinction arc),
+#  Ayleid (Heartland High Elf ruin discovery),
+#  Snow Elf (Chantry of Auri-El), and Alessian Order remnants.
+#
+#  EVENT INDEX (by namespace):
+#  dreugh.001  — Dreugh Life-Cycle Transition (land phase ↔ sea phase)
+#  dreugh.002  — Old Knocker prayer — Dreugh pays homage to their god
+#  imga.001    — An Imga Aristocrat Arrives at Court (Valenwood rulers)
+#  imga.002    — Marukh's Legacy — Imga prophet stirs in Valenwood
+#  tang_mo.001 — Tang Mo Community Rally — defending against Kamal
+#  tang_mo.002 — Alliance with Ka Po' Tun — Tiger-Dragon realms
+#  keptu.001   — Bloodroot Forge — ancient Keptu smithing secret
+#  nedes.001   — A Nedic Elder Speaks — ancient oral history unearthed
+#  lilmothiit.001 — Fox-Fires Dim — Lilmothiit lament (pre-2E 560)
+#  lilmothiit.002 — The Last Hearth — Lilmothiit extinction (2E 560+)
+#  ayleid.001  — The Ayleid Well — ruin discovery in Cyrodiil
+#  snow_elf.001 — Last Knight of Auri-El — Chantry pilgrimage
+#  alessian.001 — The Doctrines Endure — Alessian revival event
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  (none — all standard CK3 triggers)
+#  Traits:             dreugh_heritage, dreugh_land_phase, dreugh_sea_phase,
+#                      imga_heritage, altmer_imitator, tang_mo_heritage,
+#                      invasion_repeller, keptu_lineage, nedic_elder
+#  Modifiers:          old_knocker_blessing_modifier, imga_favor_modifier,
+#                      tang_mo_unity_modifier, ka_po_tun_alliance_modifier,
+#                      bloodroot_forge_modifier
+#  Global variables:   kamal_invasion_active
+#  Cultures:           ka_po_tun_culture
+#  Regions:            world_valenwood
+#
+#  LORE BASIS:
+#  Dreugh: aquatic creatures with a land-dwelling larval phase,
+#    worshipping Old Knocker; referenced across multiple TES games.
+#  Imga: great apes of Valenwood who imitate Aldmeri aristocracy;
+#    their prophet Marukh later triggered the Alessian Doctrines.
+#  Tang Mo: monkey-folk of Akavir who repelled the Kamal with
+#    Ka Po' Tun; sources: Mysterious Akavir.
+#  Keptu: ancient proto-human inhabitants of High Rock, distinct
+#    from the Yokudans/Redguards (who arrived c. 1E 808, millennia
+#    later).  The Keptu predated Aldmeri settlement of Tamriel and
+#    maintained their own smithing tradition centred on the
+#    Bloodroot Forge (a Hircine-adjacent Daedric artifact).
+#    Bloodroot Forge is attested in ESO: Horns of the Reach.
+#  Nedes: proto-human ancestors of most Tamrielic human races;
+#    sources: Frontier, Conquest, and Accommodations of the
+#    Nords, Songs of the Return.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add the appropriate namespace declaration if introducing
+#     a new race namespace
+#  2. Add <namespace>.NNN = { ... } under the correct section
+#  3. Add localization keys to mod/localization/english/
+#     minor_lore_races_l_english.yml
 # =============================================================
 
 namespace = dreugh
@@ -234,5 +302,178 @@ nedes.001 = {
         add_learning = 3
         add_prestige = 200
         add_piety    = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# Lilmothiit (Fox-Folk of Black Marsh — pre-extinction)
+# ---------------------------------------------------------------
+namespace = lilmothiit
+
+# lilmothiit.001 — A Lilmothiit Elder's Lament (declining people)
+lilmothiit.001 = {
+    type = character_event
+    title = lilmothiit.001.t
+    desc = lilmothiit.001.desc
+    theme = faith
+
+    trigger = {
+        has_trait = lilmothiit_heritage
+        learning  >= 10
+    }
+
+    option = {
+        name = lilmothiit.001.a   # "We will not be forgotten — our ways outlive the Flu."
+        if = {
+            limit = { NOT = { has_trait = lilmothiit_last_clan } }
+            add_trait = lilmothiit_last_clan
+        }
+        add_piety    = 200
+        add_prestige = 200
+        add_stress   = 15
+    }
+
+    option = {
+        name = lilmothiit.001.b   # "Perhaps it is the will of the spirits that we fade."
+        add_piety  = 100
+        add_stress = 20
+    }
+}
+
+# lilmothiit.002 — The Last Hearth (Lilmothiit extinction after 2E 560)
+lilmothiit.002 = {
+    type = character_event
+    title = lilmothiit.002.t
+    desc = lilmothiit.002.desc
+    theme = faith
+
+    trigger = {
+        has_trait = lilmothiit_last_clan
+        current_date >= 2E.560   # Knahaten Flu begins taking its full toll
+    }
+
+    option = {
+        name = lilmothiit.002.a   # "We are the last. The fire dies."
+        add_stress   = 30
+        add_piety    = 300
+        add_prestige = 300
+        add_modifier = { modifier = lilmothiit_extinction_cooldown days = 3650 }
+    }
+}
+
+# ---------------------------------------------------------------
+# Ayleid (Heartland High Elves — historical bloodlines)
+# ---------------------------------------------------------------
+namespace = ayleid
+
+# ayleid.001 — Ayleid Ruin Discovery (character with Ayleid bloodline or Cyrodilic ruler)
+ayleid.001 = {
+    type = character_event
+    title = ayleid.001.t
+    desc = ayleid.001.desc
+    theme = learning
+
+    trigger = {
+        is_ruler = yes
+        OR = {
+            has_trait = ayleid_bloodline
+            culture   = imperial_culture
+        }
+        NOT = { has_modifier = ayleid_ruin_survey_cooldown }
+    }
+
+    option = {
+        name = ayleid.001.a   # "The Ayleid well still functions — wild magic answers our touch."
+        if = {
+            limit = { NOT = { has_trait = ayleid_bloodline } }
+            add_trait = ayleid_bloodline
+        }
+        add_learning  = 3
+        add_prestige  = 400
+        add_modifier  = { modifier = ayleid_ruin_discovery_modifier days = 1095 }
+        add_modifier  = { modifier = ayleid_ruin_survey_cooldown    days = 1825 }
+    }
+
+    option = {
+        name = ayleid.001.b   # "The ruins are dangerous — seal them and move on."
+        add_prestige = 100
+        add_modifier = { modifier = ayleid_ruin_survey_cooldown days = 1825 }
+    }
+}
+
+# ---------------------------------------------------------------
+# Snow Elf (Chantry of Auri-El — last survivors)
+# ---------------------------------------------------------------
+namespace = snow_elf
+
+# snow_elf.001 — The Chantry of Auri-El (pilgrimage to the last Snow Elf sanctuary)
+snow_elf.001 = {
+    type = character_event
+    title = snow_elf.001.t
+    desc = snow_elf.001.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        OR = {
+            has_trait = snow_elf_legacy
+            has_culture = nordic_culture    # Nords share Skyrim with the Chantry
+        }
+        NOT = { has_modifier = chantry_pilgrimage_cooldown }
+    }
+
+    option = {
+        name = snow_elf.001.a   # "In the ice, one Snow Elf still prays — and Auri-El listens."
+        if = {
+            limit = { NOT = { has_trait = snow_elf_legacy } }
+            add_trait = snow_elf_legacy
+        }
+        add_piety    = 300
+        add_prestige = 200
+        add_modifier = { modifier = chantry_pilgrimage_modifier  days = 730  }
+        add_modifier = { modifier = chantry_pilgrimage_cooldown  days = 1825 }
+    }
+
+    option = {
+        name = snow_elf.001.b   # "A sad relic — but their devotion is still admirable."
+        add_piety    = 100
+        add_modifier = { modifier = chantry_pilgrimage_cooldown days = 1825 }
+    }
+}
+
+# ---------------------------------------------------------------
+# Alessian Order Remnants (historical / scholarly)
+# ---------------------------------------------------------------
+namespace = alessian
+
+# alessian.001 — A Scholar Revives the Doctrines (2E Interregnum context)
+alessian.001 = {
+    type = character_event
+    title = alessian.001.t
+    desc = alessian.001.desc
+    theme = learning
+
+    trigger = {
+        is_ruler = yes
+        learning >= 12
+        NOT = { has_trait = alessian_doctrine_scholar }
+        NOT = { has_modifier = alessian_doctrine_cooldown }
+    }
+
+    option = {
+        name = alessian.001.a   # "The Alessian Doctrines — flawed, yes, but a monument of faith."
+        add_trait    = alessian_doctrine_scholar
+        add_learning = 2
+        add_piety    = 200
+        add_prestige = 200
+        add_modifier = { modifier = alessian_revival_modifier  days = 1825 }
+        add_modifier = { modifier = alessian_doctrine_cooldown days = 1825 }
+    }
+
+    option = {
+        name = alessian.001.b   # "The Doctrines brought ruin — I will not revive their poison."
+        add_piety    = -100
+        add_prestige = 100
+        add_modifier = { modifier = alessian_doctrine_cooldown days = 1825 }
     }
 }

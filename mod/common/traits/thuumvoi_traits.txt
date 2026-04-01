@@ -7,16 +7,38 @@
 #  EK2 Timeframe: 2E 440–896 (the Interregnum)
 #  Lore basis:
 #    — The Way of the Voice was established by Jurgen Windcaller
-#      (1E 369 after the Battle of Red Mountain).
+#      c. 1E 1069 — around 369 years after the Battle of Red
+#      Mountain (c. 1E 700 in most canonical sources).
+#      Note: 'after the Battle of Red Mountain' is the time gap,
+#      NOT the year 1E 369 — clarified here to avoid confusion.
 #    — High Hrothgar has housed the Order of the Greybeards since
 #      the early First Era; Paarthurnax leads from the Throat of
 #      the World above.
 #    — The Thu'um (Tonal magic / dragon shouts) is rare but real
 #      in the Second Era.  Most practitioners are at High Hrothgar
 #      or operating as Tongues (the older martial tradition).
+#    — 'Arngeir' appears in localization as the Greybeards' voice.
+#      Arngeir is a Fourth Era figure (TES V: Skyrim) and is
+#      anachronistic in the Second Era.  He is used here as
+#      recognisable flavour.  For strict accuracy, replace
+#      'Arngeir' with 'the Elder Greybeard' throughout.
+#      Paarthurnax IS present in the Second Era (pre-dates all eras).
 #    — The Dragonborn ('Dovahkiin') can absorb Dragon Souls and
 #      learns every Shout instantly.  This references EK2's
-#      existing 'dragonborn' trait.
+#      existing 'dragonborn' trait (read-only; never redefined).
+#
+#  HOW TO REPLICATE INTO A NEW MOD:
+#  ─────────────────────────────────
+#  1. Keep EK2 as a dependency (descriptor.mod).
+#  2. Copy: thuumvoi_traits.txt, thuumvoi_effects.txt,
+#     thuumvoi_triggers.txt, thuumvoi_decisions.txt,
+#     thuumvoi_events.txt, thuumvoi_l_english.yml.
+#  3. YAML files must have a UTF-8 BOM header byte (0xEF 0xBB 0xBF)
+#     or CK3 will silently ignore the localization.
+#  4. This system only reads EK2's 'dragonborn' trait.
+#     It never modifies EK2 files — safe to copy standalone.
+#  5. Use monthly_piety_gain_mult (not piety_mult) and
+#     stress_gain_mult with a negative value (not stress_loss_mult).
 # =============================================================
 
 # ================================================================
@@ -29,7 +51,7 @@ thu_um_initiate = {
     category = lifestyle
     opposites = { thu_um_adept thu_um_master }
     learning  = 2
-    piety_mult = 0.05
+    monthly_piety_gain_mult = 0.05
     flag = thu_um_initiate
 }
 
@@ -84,7 +106,6 @@ greybeard_aspirant = {
     category = lifestyle
     opposites = { greybeard_of_high_hrothgar first_voice_of_the_greybeards }
     learning  = 3
-    piety_mult = 0.10
     monthly_piety_gain_mult    = 0.15
     monthly_prestige_gain_mult = -0.05  # withdrawing from the world
     flag = greybeard_aspirant
@@ -96,7 +117,6 @@ greybeard_of_high_hrothgar = {
     category = lifestyle
     opposites = { greybeard_aspirant first_voice_of_the_greybeards }
     learning   = 7
-    piety_mult = 0.20
     diplomacy  = -3         # The vow makes normal discourse difficult
     monthly_piety_gain_mult    = 0.25
     monthly_prestige_gain_mult = 0.10
@@ -116,7 +136,6 @@ first_voice_of_the_greybeards = {
     learning   = 10
     prowess    = 5
     diplomacy  = -2         # Still bound by the vow, though more freely able to speak
-    piety_mult = 0.30
     monthly_piety_gain_mult    = 0.35
     monthly_prestige_gain_mult = 0.25
     command_modifier = {
@@ -152,7 +171,6 @@ dovahkiin_soul_awakened = {
     learning  = 4
     prowess   = 6
     martial   = 4
-    piety_mult = 0.25
     monthly_piety_gain_mult    = 0.20
     monthly_prestige_gain_mult = 0.30
     dread_gain_mult = 0.25
@@ -172,7 +190,7 @@ dragon_souls_growing = {
     learning  = 5
     prowess   = 8
     martial   = 5
-    piety_mult = 0.30
+    monthly_piety_gain_mult = 0.30
     monthly_prestige_gain_mult = 0.40
     dread_gain_mult = 0.35
     stress_gain_mult = 0.10     # The Dovah voice in their head is growing
@@ -194,7 +212,7 @@ dragon_souls_brimming = {
     learning  = 6
     prowess   = 10
     martial   = 6
-    piety_mult = 0.35
+    monthly_piety_gain_mult = 0.35
     monthly_prestige_gain_mult = 0.50
     dread_gain_mult = 0.50
     stress_gain_mult = 0.20     # The accumulated Dovah voices press hard
@@ -214,10 +232,9 @@ dragon_souls_brimming = {
 dovah_nature_resisted = {
     category = special
     learning  = 3
-    piety_mult = 0.30
     monthly_piety_gain_mult    = 0.25
     monthly_prestige_gain_mult = 0.20
-    stress_loss_mult = 0.20     # Hard-won inner peace
+    stress_gain_mult = -0.20    # Hard-won inner peace (negative = stress gain reduced)
     command_modifier = {
         advantage  = 4
         max_morale = 0.20

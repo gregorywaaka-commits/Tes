@@ -1,21 +1,104 @@
 # =============================================================
-#  Guild Traits — All 9 Guilds
-#  EK2 Timeframe: 2E 440–896 (the Interregnum)
+#  guild_traits.txt
+#  Elder Kings 2 Extension — All Nine Guilds
+# -------------------------------------------------------------
+#  CONTENTS (9 guilds × rank tiers):
+#    Mages Guild       : associate → member → wizard → archmagister
+#    Fighters Guild    : associate → journeyman → guardian → guildmaster
+#    Thieves Guild     : footpad → prowler → shadowfoot → guildmaster
+#    Dark Brotherhood  : initiate → assassin → speaker → listener
+#    Morag Tong        : assassin → master → grandmaster
+#    Companions        : shield-brother → veteran → circle → harbinger
+#    Psijic Order      : novice → initiate → adept → master
+#    Bards College     : apprentice → bard → master bard
+#    Undaunted         : member → veteran → elite
+# -------------------------------------------------------------
+#  EK2 COMPATIBILITY:
+#    EK2 timeframe : 2E 440–896 (the Interregnum)
+#    Rank tracking : character flag  guild_X_member
+#                    character variable  guild_X_rank  (1–4)
+#    Traits carry display text and stat modifiers only; rank
+#    transitions are handled by EK2 guild events (ek2_guilds.*).
+#    Undaunted traits require EK2 start date ≥ 2E 560
+#    (guild available from 2E 560 onward; fully founded 2E 582).
+# -------------------------------------------------------------
+#  LORE BASIS:
+#    - Mages Guild    : founded 2E 230 by Vanus Galerion on
+#                       Summerset Isle; fully active by 2E 440.
+#    - Fighters Guild : founded 2E 321 by Potentate Versidue-
+#                       Shaie; canonical date confirmed by
+#                       in-game ESO loading screens.
+#    - Thieves Guild  : ancient, predating recorded history;
+#                       always active in the Interregnum.
+#    - Dark Brotherhood : split from the Morag Tong circa
+#                       1E 2920; active throughout 2E.
+#    - Morag Tong    : 1E founding; legal assassination guild
+#                       operating under Tribunal sanction in
+#                       Morrowind.
+#    - Companions    : ancient Nordic warrior-society based in
+#                       Whiterun; active throughout Tamrielic
+#                       history.
+#    - Psijic Order  : Mythic Era founding; Artaeum island
+#                       absent from the world 2E 230–580
+#                       (per ESO lore); order continues to
+#                       operate during that period but is
+#                       reclusive.
+#    - Bards College : ancient institution in Solitude, Skyrim;
+#                       always active.
+#    - Undaunted     : adventurer's guild; fully founded 2E 582
+#                       but recruits available from ~2E 560.
+# -------------------------------------------------------------
+#  HOW TO ADD A NEW GUILD OR RANK:
+#    1. Choose a unique snake_case key for each rank tier
+#       (e.g. my_guild_rank1, my_guild_rank2, …).
+#    2. Assign category:
+#         lifestyle — for Tier 1–3 ranks
+#         fame      — for the top-tier (Tier 4) rank
+#    3. List all other rank traits for the SAME guild in
+#       opposites = { }  (a character holds only one rank).
+#    4. Use only valid CK3 modifier keys (see SYNTAX RULES below).
+#    5. Add  flag = <trait_key>  at the end of each block.
+#    6. Create matching loc keys in:
+#         localization/english/traits/guild_traits_l_english.yml
+#    7. Add a trait icon at:
+#         gfx/interface/icons/traits/<trait_key>.dds
+#    8. Add guild_X_member flag and guild_X_rank variable
+#       handling to the relevant EK2 guild events.
+# -------------------------------------------------------------
+#  CK3 SYNTAX RULES FOR THIS FILE:
+#    monthly_piety_gain_mult    — multiplier on piety gain
+#                                 (use instead of "piety_mult")
+#    monthly_prestige_gain_mult — multiplier on prestige gain
+#                                 (use instead of "prestige_mult")
+#    stress_gain_mult           — multiplier on stress gain;
+#                                 negative = stress reduction
+#                                 (use instead of "stress_loss_mult")
+#    dread_gain_mult            — multiplier on dread gain
+#    monthly_income             — flat monthly gold income
+#    command_modifier { }       — active only while in command
 #
-#  Rank system (per guild):
-#    Tier 1 = Associate / Initiate / Apprentice
-#    Tier 2 = Journeyman / Member / Bard
-#    Tier 3 = Senior / Veteran / Adept
-#    Tier 4 = Guildmaster / Grandmaster / Harbinger (top)
-#
-#  Membership is tracked by character flag (guild_X_member)
-#  and rank variable (guild_X_rank, 1–4).
-#  Traits carry the in-world display and stat modifiers.
+#    INVALID KEYS — never use:
+#      piety_mult, prestige_mult, stress_loss_mult
 # =============================================================
 
 # ================================================================
 #  MAGES GUILD  (founded 2E 230; fully active by 2E 440)
 #  Ranks: Associate → Member → Wizard → Arch-Mage
+#
+#  LORE NOTE — VANUS GALERION AND THE PSIJIC SCHISM:
+#  Vanus Galerion was born in Firsthold, Auridon, and trained as
+#  a student of the Psijic Order on Artaeum.  He broke with the
+#  Order — some accounts say he was expelled, others that he left
+#  of his own will — because the Psijics' insistence on secrecy
+#  and exclusivity contradicted his belief that magical knowledge
+#  should be freely shared with all capable students regardless
+#  of birth.  He founded the Mages Guild on Summerset Isle in
+#  2E 230 on exactly that open-knowledge principle.  The Guild
+#  Act of 2E 321 gave the Guild official imperial recognition
+#  and expanded it across Tamriel.  The philosophical tension
+#  between Psijic secrecy and Guild openness is the reason the
+#  two organisations distrust each other even in the 2E 440
+#  mod timeframe.  See Psijic Order section for the other side.
 # ================================================================
 
 mages_guild_associate = {
@@ -55,7 +138,7 @@ mages_guild_archmagister = {
 }
 
 # ================================================================
-#  FIGHTERS GUILD  (founded 2E 320; active by 2E 440)
+#  FIGHTERS GUILD  (founded 2E 321; active by 2E 440)
 #  Ranks: Associate → Journeyman → Guardian → Guildmaster
 # ================================================================
 
@@ -136,8 +219,31 @@ thieves_guild_guildmaster_thief = {
 }
 
 # ================================================================
-#  DARK BROTHERHOOD  (active in 2E; split from Morag Tong)
+#  DARK BROTHERHOOD  (active in 2E; split from Morag Tong ~1E 2920)
 #  Ranks: Initiate → Assassin → Speaker → Listener
+#
+#  LORE NOTE — SITHIS IS NOT A DAEDRIC PRINCE:
+#  Sithis (the Void, the Dread Father) is a primal concept of
+#  nothingness and entropy that predates and exists outside the
+#  17 Daedric Princes.  He is not a conventional divine being —
+#  the Night Mother acts as his mortal-world bride and conduit.
+#  The piety bonuses here reflect devotion to the Night Mother
+#  (and through her, to the void that is Sithis), NOT a standard
+#  Daedric patron relationship.
+#
+#  LORE NOTE — MEPHALA AND THE NIGHT MOTHER (CONTESTED):
+#  Multiple TES scholars (cf. *The Brothers of Darkness*,
+#  Pellarne Assi) argue that the Night Mother IS Mephala —
+#  or at minimum is her mortal-world avatar.  Under this reading,
+#  both the Morag Tong (who serve Mephala openly) and the Dark
+#  Brotherhood (who serve the Night Mother) are ultimately
+#  instruments of the same Daedric Prince.  The Brotherhood split
+#  from the Tong precisely because it refused to acknowledge
+#  Mephala's authority directly, preferring the Night Mother
+#  as a distinct patron.  This schism is the theological core of
+#  the guild_leader.db quest chain ("The Night Mother Weeps").
+#  The connection is NOT confirmed as explicit canon; it is
+#  presented here as the scholarly consensus within the TES world.
 # ================================================================
 
 dark_brotherhood_initiate = {
@@ -179,6 +285,20 @@ dark_brotherhood_listener = {
 # ================================================================
 #  MORAG TONG  (1E founding; legal assassins' guild in Morrowind)
 #  Ranks: Tong Assassin → Master Assassin → Grandmaster
+#
+#  LORE NOTE — MEPHALA'S PATRON RELATIONSHIP:
+#  Mephala — the Webspinner, Prince of Plots, Murder, and Secrets
+#  — is the explicit divine patron of the Morag Tong.  The Tong
+#  was founded under Mephala's direct guidance; their writs of
+#  execution are considered spiritually sanctioned by her web.
+#  The monthly_piety_gain_mult on all Tong ranks reflects Mephala's
+#  blessing on each lawful, sanctioned kill.
+#
+#  Note: Mephala also patron-claims the Dark Brotherhood indirectly
+#  through the Night Mother (see Dark Brotherhood section above).
+#  The Tong acknowledge this relationship openly; the Brotherhood
+#  does not.  This makes the Tong and Brotherhood theological rivals
+#  despite sharing the same ultimate divine patron.
 # ================================================================
 
 morag_tong_assassin = {
@@ -214,6 +334,20 @@ morag_tong_grandmaster = {
 # ================================================================
 #  COMPANIONS  (Nordic; ancient; active throughout Tamrielic history)
 #  Ranks: Shield-Brother → Veteran Companion → Circle Member → Harbinger
+#
+#  LORE NOTE — THE CIRCLE AND LYCANTHROPY:
+#  The Companions' inner Circle are werewolves, having accepted
+#  the gift/curse of Hircine through a pact originally brokered
+#  by the Glenmoril Witches — a coven of hagravens who serve
+#  Hircine in his eternal Hunt.  The companions_circle trait
+#  represents this secret lycanthropic inner order.
+#  Mechanically: companions_circle and hircine_werewolf
+#  (from the Daedric invasion system) represent the same
+#  lycanthropy from the same divine source.  A character
+#  who is already companions_circle should not receive
+#  hircine_werewolf separately — the two traits are redundant
+#  but not strictly exclusive (the flag logic in
+#  daedric_invasion_traits.txt handles this).
 # ================================================================
 
 companions_shield_brother = {
@@ -256,6 +390,20 @@ companions_harbinger = {
 # ================================================================
 #  PSIJIC ORDER  (Mythic Era; insular; absent 2E 230–580 from Artaeum)
 #  Ranks: Novice → Initiate → Adept → Master of the Order
+#
+#  LORE NOTE — THE ELDER WAY:
+#  The Psijic Order follows the "Elder Way" — an ancient
+#  philosophy predating the Aedric/Daedric religious divide.
+#  It emphasizes direct personal contemplation, mastery of natural
+#  laws, and ancestor communion over prayer to any specific deity.
+#  Artaeum, their island home, exists partially outside normal
+#  time and space; it vanished from mortal perception in 2E 230
+#  and did not return until 2E 580.  During that period the Order
+#  continued to operate but avoided all outside contact.
+#  Vanus Galerion was expelled from (or left) the Psijic Order
+#  specifically because he wanted to share magical knowledge
+#  openly — the antithesis of Psijic secrecy — and founded the
+#  Mages Guild on that principle.  See Mages Guild header above.
 # ================================================================
 
 psijic_novice = {

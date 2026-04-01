@@ -1,7 +1,46 @@
 # =============================================================
 #  Daedric Prince — Per-Prince Invasion Flavour Events
+#  File: mod/events/daedric_prince_invasion_events.txt
 #  Namespace: daedric_prince_invasion
-#  Covers unique events for all 17 Princes during their invasions.
+#
+#  WHAT THIS FILE DOES:
+#  Unique flavour and mechanical events for all 17 Daedric Princes
+#  during their active invasions.  These events fire on rulers
+#  while is_<prince>_invasion == yes and complement the generic
+#  invasion events in daedric_invasion_events.txt.
+#
+#  EVENT INDEX:
+#  daedric_prince_invasion.azura.001-003    — Azura: prophecy, star gift, army guidance
+#  daedric_prince_invasion.mephala.001      — Mephala: spider-silk package (gift or curse)
+#  (… one section per Prince; see inline headers below)
+#  daedric_prince_invasion.jyggalag.001-004 — Jyggalag: Greymarch order, resistance,
+#                                              Sword of Perfect Order, transformation back
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_azura_invasion, is_mephala_invasion, is_jyggalag_invasion,
+#                      (is_<prince>_invasion for all 17 Princes),
+#                      daedric_invasion_phase, daedric_invasion_at_full_power
+#  Scripted effects:   end_daedric_invasion
+#  Traits:             azura_champion, mephala_champion, jyggalag_champion,
+#                      (see daedric_champion_events.txt for full trait list)
+#  Modifiers:          azura_star_holder, mephala_web_gift, mephala_web_curse,
+#                      anti_jyggalag_resistance, sword_of_jyggalag_modifier
+#  Global variables:   daedric_invasion_phase
+#
+#  LORE BASIS:
+#  Each Prince's invasion reflects their sphere: Azura grants
+#  prophecy and twilight visions; Mephala weaves webs of secrecy
+#  and murder; Jyggalag's Greymarch imposes perfect crystalline
+#  order before he is transformed back into Sheogorath.
+#  Sources: 36 Lessons of Vivec, A Brief History of the Empire,
+#  The Real Barenziah, Varieties of Faith in the Empire.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add daedric_prince_invasion.<prince>.NNN = { ... } under
+#     the appropriate Prince section header
+#  2. Gate the event with trigger = { is_<prince>_invasion = yes }
+#  3. Add localization keys to mod/localization/english/
+#     daedric_prince_invasion_l_english.yml
 # =============================================================
 
 namespace = daedric_prince_invasion
@@ -936,6 +975,15 @@ daedric_prince_invasion.jyggalag.003 = {
 }
 
 # jyggalag.004 — The Greymarch ends; Jyggalag transforms back to Sheogorath
+# LORE NOTE: This transformation is MANDATORY canon.  Jyggalag was cursed by the
+# combined will of all other Daedric Princes (who feared his perfect logic would
+# consume Oblivion) to periodically manifest, march across reality in perfect order
+# destroying everything — then be forcibly regressed back into Sheogorath, the Prince
+# of Madness.  The cruelty is intentional: each time he remembers who he truly is,
+# he is immediately stripped of that identity again.  Only in TES IV: Shivering Isles
+# (late 3E) is this curse broken.  In the 2E mod timeframe, the transformation back
+# is inevitable; end_daedric_invasion fires here to reflect the Prince's banishment
+# back into his Sheogorath prison-form.
 daedric_prince_invasion.jyggalag.004 = {
     type = character_event
     title = daedric_prince_invasion.jyggalag.004.t

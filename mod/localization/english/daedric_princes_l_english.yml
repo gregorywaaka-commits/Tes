@@ -1,3 +1,61 @@
+﻿# Encoding: UTF-8-BOM
+# =============================================================
+#  Daedric Princes — Extended Localization (All 17 Princes)
+#  File: mod/localization/english/daedric_princes_l_english.yml
+#
+#  CRITICAL: UTF-8 BOM required (0xEF 0xBB 0xBF).
+#
+#  This file provides strings for:
+#    • Daedric Prince aspect traits (X_aspect, X_aspect_desc)
+#    • Daedric champion traits (X_champion, X_champion_desc)
+#    • Lycanthrope / cursed traits (hircine_werewolf, etc.)
+#    • Per-Prince invasion event titles and descriptions
+#      (daedric_prince_invasion.X.NNN.t / .desc / .a / .b)
+#    • Per-Prince champion quest events
+#      (daedric_champion.X.NNN.t / .desc / .a / .b)
+#
+#  LORE CHOICES & RATIONALE:
+#  ──────────────────────────
+#  — All 17 canonical Daedric Princes are included.
+#    The 16+1 count: 16 "standard" Princes plus Jyggalag,
+#    who was cursed into Sheogorath by the other Princes.
+#    In-game, Jyggalag and Sheogorath share a connection;
+#    their events acknowledge this.
+#  — Meridia is technically closer to the Aedra in some lore
+#    texts.  She is included as a Daedric Prince here because
+#    she functions as one in EK2's faith/deity system.
+#  — Artifact assignments match canonical TES lore:
+#    Mehrunes Dagon → Mehrunes' Razor
+#    Molag Bal → Mace of Molag Bal
+#    Boethiah → Ebony Blade / Goldbrand
+#    Hircine → Savior's Hide / Ring of Hircine
+#    Azura → Azura's Star
+#    Mephala → Ebony Blade (katana form, ESO/Skyrim)
+#    Clavicus Vile → Masque of Clavicus Vile
+#    Vaermina → Skull of Corruption
+#    Sheogorath → Wabbajack
+#    Peryite → Spellbreaker
+#    Sanguine → Sanguine Rose
+#    Meridia → Dawnbreaker
+#    Malacath → Volendrung
+#    Nocturnal → Skeleton Key
+#    Hermaeus Mora → Oghma Infinium / Skeleton Key (shared lore)
+#    Jyggalag → Sword of Perfect Order
+#
+#  HOW TO REPLICATE INTO A NEW MOD:
+#  ──────────────────────────────────
+#  1. Copy this file and daedric_invasion_l_english.yml (both need BOM).
+#  2. Companion files: daedric_invasion_traits.txt,
+#     daedric_prince_invasion_events.txt,
+#     daedric_champion_events.txt, daedric_prince_decisions.txt.
+#  3. To add a new Prince event chain:
+#     a. Add trait keys here (X_aspect, X_champion).
+#     b. Add event strings here (daedric_prince_invasion.X.NNN.*).
+#     c. Add events to daedric_prince_invasion_events.txt.
+#     d. Add template to character_templates/daedric_princes.txt.
+#     e. Add is_X_invasion trigger to daedric_invasion_triggers.txt.
+#     f. Add begin/end handlers to daedric_invasion_effects.txt.
+# =============================================================
 l_english:
  # ============================================================
  #  Daedric Princes — Extended Localization (All 17 Princes)
@@ -317,7 +375,7 @@ l_english:
  daedric_champion.azura.002.b: "Prophecy is a burden."
 
  daedric_champion.molag.001.t: "Coldharbour Calls"
- daedric_champion.molag.001.desc: "A way into Coldharbour has opened. Molag Bal — the King of Rape, Prince of domination and vampirism — offers power to those who survive his realm. Few do."
+ daedric_champion.molag.001.desc: "A way into Coldharbour has opened. Molag Bal — the King of Corruption, Prince of domination and vampirism — offers power to those who survive his realm. Few do."
  daedric_champion.molag.001.a: "Enter Coldharbour."
  daedric_champion.molag.001.b: "Coldharbour is a realm of suffering — refuse."
 

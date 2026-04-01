@@ -1,13 +1,64 @@
- # Encoding: UTF-8-BOM
+﻿# Encoding: UTF-8-BOM
+# =============================================================
+#  Daedric Invasion — English Localization
+#  File: mod/localization/english/daedric_invasion_l_english.yml
+#
+#  CRITICAL (Mac + all platforms):
+#  ─────────────────────────────────
+#  This file MUST start with a UTF-8 BOM (bytes 0xEF 0xBB 0xBF).
+#  CK3 silently ignores YAML files without BOM on all platforms.
+#  The "# Encoding: UTF-8-BOM" comment is documentation only —
+#  the actual BOM is the invisible first byte, not this comment.
+#
+#  LOCALIZATION KEY FORMAT:
+#  ─────────────────────────
+#  key: "value"          — one space indent before the key
+#  No trailing spaces.  Keys must be unique within l_english.
+#
+#  LORE CHOICES & RATIONALE:
+#  ──────────────────────────
+#  — Molag Bal is titled "King of Corruption" not "King of Rape"
+#    (the archaic Pocket Guide 1st Ed. title).  "King of Corruption"
+#    is the title used consistently in ESO and later TES material.
+#    Both are canonical; this mod uses the modern preferred form.
+#  — "Oblivion" refers to the collective realm of the Daedra, not
+#    any one Prince's domain.  Oblivion Gates connect to a Prince's
+#    specific Plane (Mehrunes Dagon's Deadlands, Molag Bal's
+#    Coldharbour, etc.).  The generic "Gates of Oblivion" framing
+#    is used for the shared event text.
+#  — Daedric Princes cannot be permanently killed on Mundus —
+#    only banished back to their Plane.  This is canonical TES lore
+#    and is reflected in daedric_prince_desc.
+#
+#  HOW TO REPLICATE INTO A NEW MOD:
+#  ──────────────────────────────────
+#  1. Copy this file as-is (with BOM).
+#  2. All localization keys here match keys used in:
+#       daedric_invasion_events.txt     — event titles / descs
+#       daedric_invasion_decisions.txt  — decision names / descs
+#       daedric_invasion_cb.txt         — CB descriptions
+#       daedric_invasion_traits.txt     — trait names / descs
+#  3. To add a new Prince, add:
+#       daedric_invasion.001.desc_PRINCENAME — invasion start desc
+#       X_aspect / X_aspect_desc — aspect trait strings
+#       X_champion / X_champion_desc — champion trait strings
+#  4. Ensure your new Prince template is in:
+#       character_templates/daedric_princes.txt
+# =============================================================
 l_english:
 
  # ===================== Invasion Start =====================
  daedric_invasion.000.t: "The Veil Tears"
  daedric_invasion.000.desc: "Tremors shake the earth and the sky turns crimson. Oblivion itself bleeds into Mundus — a Daedric Prince has chosen this age to unleash their armies upon the mortal realm."
+ daedric_invasion.000.a: "Brace yourselves — the invasion has begun."
 
  daedric_invasion.001.t: "Darkness Descends"
  daedric_invasion.001.desc_dagon: "Mehrunes Dagon, Prince of Destruction and Change, has opened the Gates of Oblivion. His Daedric armies pour into the mortal world to raze every kingdom that stands before them."
- daedric_invasion.001.desc_molag: "Molag Bal, the King of Rape and Prince of Domination, seeks to drag Nirn into Coldharbour. His soul husks and vampiric forces march upon the living."
+ # Lore note: Molag Bal's archaic 1st-edition title "King of Rape" (Pocket Guide to the Empire,
+ # 1st Ed., 2E) is intentionally replaced here with "King of Corruption," the title consistently
+ # used in ESO and later TES material.  Both are canonical; "King of Corruption" is preferred by
+ # the modern community and is less likely to cause confusion or offense.
+ daedric_invasion.001.desc_molag: "Molag Bal, the King of Corruption and Father of Vampires, seeks to drag Nirn into Coldharbour. His soul husks and vampiric forces march upon the living."
  daedric_invasion.001.desc_boethiah: "Boethiah, Prince of Plots and Assassination, has seeded treachery across the courts of Tamriel. Her cultists and Daedric warriors advance from the shadows."
  daedric_invasion.001.desc_hircine: "Hircine, the Huntsman of the Princes, has opened his Hunting Grounds to Nirn. Werewolves, werebears, and Daedric hunters stalk every forest and vale."
  daedric_invasion.001.desc_namira: "Namira, the Lady of Decay, spreads corruption across the land. Her children — the ancient and repulsive — crawl forth to devour civilization."
@@ -81,7 +132,7 @@ l_english:
  mehrunes_dagon_aspect_desc: "Channelling the Prince of Destruction, this entity embodies change through violence."
 
  molag_bal_aspect: "Aspect of Molag Bal"
- molag_bal_aspect_desc: "Infused with the will of the King of Rape, this entity breaks others to serve."
+ molag_bal_aspect_desc: "Infused with the will of the King of Corruption, this entity breaks others to serve."
 
  boethiah_aspect: "Aspect of Boethiah"
  boethiah_aspect_desc: "Shaped by the Prince of Plots, this entity achieves dominance through cunning."
@@ -112,3 +163,14 @@ l_english:
  # ===================== Tooltip =====================
  daedric_invasion_started_tt: "A Daedric Invasion is now underway. Oblivion Gates will open across the realm."
  submit_to_daedric_prince_effect_tt: "You become a Daedric Vassal, receiving protection at the cost of prestige and piety."
+
+ # =====================================================================
+ #  DAEDRIC COOLDOWN MODIFIERS
+ #  Empty flag-modifiers used as mechanical cooldowns.
+ # =====================================================================
+ daedric_quest_cooldown: "Daedric Dealings — Cooldown"
+ daedric_quest_cooldown_desc: "The Daedric Prince will not be approached again so soon — such meetings have their own rhythm."
+ rejected_daedric_submission: "Daedric Submission — Rejected"
+ rejected_daedric_submission_desc: "This ruler has refused submission to a Daedric Prince once; the window will not open again immediately."
+ daedric_invasion_white_peace_truce: "Daedric Truce — White Peace"
+ daedric_invasion_white_peace_truce_desc: "A temporary cessation of the Daedric Invasion. Neither side achieved full victory; hostilities are paused."

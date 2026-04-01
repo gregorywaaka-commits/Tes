@@ -1,9 +1,75 @@
 # =============================================================
 #  Elder Towers Events
+#  File: mod/events/towers_events.txt
 #  Namespace: towers
-#  The Towers (White-Gold, Adamantine, Red Mountain, Orichalc,
-#  Coral) anchor Mundus in reality. If enough fall, the world
-#  begins to fracture.
+#
+#  WHAT THIS FILE DOES:
+#  Implements the Tower Stone system.  The Towers (White-Gold,
+#  Adamantine, Red Mountain, Orichalc, Coral, etc.) anchor
+#  Mundus in reality.  If enough fall, the world begins to
+#  fracture.  Covers keeper events, sabotage, Tower-specific
+#  flavour, and world-critical stability warnings.
+#
+#  EVENT INDEX:
+#  towers.000 — Tower Stability Check (yearly pulse, hidden world_event)
+#  towers.001 — A Tower Stone is Claimed: Keeper named
+#  towers.002 — White-Gold Tower: Cyrodiil reshaping lore flavour
+#               (requires scope:tower_county — only fires when scope is set)
+#  towers.003 — Adamantine Tower: oldest Tower, greatest power
+#               (requires scope:tower_county — only fires when scope is set)
+#  towers.004 — Red Mountain: Heart of Lorkhan
+#               (requires scope:tower_county — only fires when scope is set)
+#  towers.005 — Tower Stone Sabotage Attempt (triggered by decision)
+#  towers.006 — Crystal Tower: principle of nullity, Summerset (c_alinor)
+#               (requires scope:tower_county — only fires when scope is set)
+#  towers.007 — Snow Throat: the mountain-Tower, Skyrim (c_whiterun)
+#               (requires scope:tower_county — only fires when scope is set)
+#  towers.008 — Green-Sap: the walking city, Falinesti, Valenwood (c_falinesti)
+#               (requires scope:tower_county — only fires when scope is set)
+#  towers.010 — A Tower Falls: Stone destroyed or stolen
+#  towers.015 — World Stability Critical: only one Tower remains
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  count_active_towers, world_stability_critical
+#  Scripted effects:   deactivate_tower_stone_effect
+#  Traits:             tower_stone_keeper
+#  Modifiers:          white_gold_keeper_modifier, red_mountain_keeper_modifier,
+#                      reality_fracturing_modifier, tower_sabotage_cooldown
+#  Variables:          tower_stone_present (county-scope has_variable)
+#  Titles:             title:c_imperial_city, title:c_balfiera, title:c_red_mountain
+#  NOTE: towers.002, .003, .004 use scope:tower_county in their
+#        trigger block.  These events must only be fired from
+#        contexts where scope:tower_county has been set (e.g., by
+#        the Tower Keeper on_action); firing them without the scope
+#        will cause the trigger to fail silently.
+#
+#  LORE BASIS:
+#  The Elder Scrolls' metaphysics hold that the Towers (large
+#  structures each containing a "Stone" at their heart) maintain
+#  the existence of Mundus.  White-Gold reshapes Cyrodiil's
+#  weather; Adamantine (Balfiera, Isle of Balfiera) is the oldest
+#  and most powerful; Red Mountain's Stone is the Heart of Lorkhan
+#  itself, powering the Tribunal in the Third Era.
+#  Sources: The Arcturian Heresy, Mysterious Akavir, 36 Lessons,
+#           The Monomyth, ESO lore notes.
+#
+#  TOWERS EXTANT IN 2E AND NOW IMPLEMENTED:
+#    White-Gold (c_imperial_city), Adamantine (c_balfiera),
+#    Red Mountain (c_red_mountain), Coral (c_thras),
+#    Crystal Tower (c_alinor, Summerset) — towers.006,
+#    Snow Throat (c_whiterun, Skyrim) — towers.007,
+#    Green-Sap (c_falinesti, Valenwood) — towers.008.
+#
+#  TOWERS DELIBERATELY OMITTED:
+#    Orichalc Tower (Yokuda) — destroyed when Yokuda sank c. 1E 792;
+#      not available in 2E; omit.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add towers.NNN = { ... } following the pattern below
+#  2. Tower-specific events (like .002–.004) must be called from
+#     a context where scope:tower_county is set
+#  3. Add localization keys to mod/localization/english/
+#     towers_l_english.yml
 # =============================================================
 
 namespace = towers
@@ -112,6 +178,111 @@ towers.004 = {
         add_piety    = 800
         add_prestige = 500
         add_modifier = { modifier = red_mountain_keeper_modifier days = -1 }
+    }
+}
+
+# ---------------------------------------------------------------
+# towers.006  Crystal Tower — principle of nullity and Aldmeri order
+#  (Summerset Isles — county c_alinor)
+#  NOTE: The Crystal Tower was intact throughout the 2E Interregnum
+#  and destroyed only in 4E 29.  Its Stone is "Crystal" — the
+#  principle of nullity and Aldmeri magical order.  It represents
+#  the Altmer's concept of themselves as the true inheritors of
+#  the Aldmer.
+# ---------------------------------------------------------------
+towers.006 = {
+    type = character_event
+    title = towers.006.t
+    desc = towers.006.desc
+    theme = learning
+
+    trigger = {
+        has_trait = tower_stone_keeper
+        scope:tower_county = { this = title:c_alinor }
+    }
+
+    option = {
+        name = towers.006.a   # "The Crystal speaks the language of pure absence — and perfect order."
+        add_learning  = 5
+        add_piety     = 600
+        add_prestige  = 600
+        add_modifier  = { modifier = crystal_tower_keeper_modifier days = -1 }
+    }
+}
+
+# ---------------------------------------------------------------
+# towers.007  Snow Throat — the Tower that is a Mountain
+#  (Throat of the World, Skyrim — county c_whiterun)
+#  NOTE: Snow Throat is unique among the Towers — the mountain
+#  itself is the Tower.  Its Stone predates recorded history and
+#  is deeply entwined with the Thu'um.  Paarthurnax (a dragon)
+#  sits at its summit.  Greybeards use the mountain as their
+#  monastery.  A Keeper of Snow Throat has an extraordinary
+#  connection to the Voice.
+# ---------------------------------------------------------------
+towers.007 = {
+    type = character_event
+    title = towers.007.t
+    desc = towers.007.desc
+    theme = realm
+
+    trigger = {
+        has_trait = tower_stone_keeper
+        scope:tower_county = { this = title:c_whiterun }
+    }
+
+    option = {
+        name = towers.007.a   # "The mountain breathes — and its breath is the Thu'um."
+        add_piety    = 600
+        add_prestige = 500
+        # Snow Throat's connection to the Voice enhances Thu'um users
+        if = {
+            limit = {
+                OR = {
+                    has_trait = thu_um_adept
+                    has_trait = thu_um_master
+                    has_trait = greybeard_of_high_hrothgar
+                    has_trait = first_voice_of_the_greybeards
+                }
+            }
+            add_martial = 2
+            add_prowess = 2
+        }
+        add_modifier = { modifier = snow_throat_keeper_modifier days = -1 }
+    }
+}
+
+# ---------------------------------------------------------------
+# towers.008  Green-Sap — the Walking City, the Living Seed
+#  (Falinesti, Valenwood — county c_falinesti)
+#  NOTE: The walking tree-city of Falinesti is both a city and
+#  a Tower.  Its Stone is a living seed — a fragment of Y'ffre's
+#  own body or pattern.  The Green-Sap Tower embodies the Bosmer's
+#  covenant with the forest and cannot easily be "sabotaged" in
+#  the traditional sense.  Keepers of Green-Sap are typically
+#  Bosmer Green Pact devotees.
+# ---------------------------------------------------------------
+towers.008 = {
+    type = character_event
+    title = towers.008.t
+    desc = towers.008.desc
+    theme = faith
+
+    trigger = {
+        has_trait = tower_stone_keeper
+        scope:tower_county = { this = title:c_falinesti }
+    }
+
+    option = {
+        name = towers.008.a   # "The living seed pulses — Falinesti walks because Y'ffre wills it."
+        add_piety    = 700
+        add_prestige = 500
+        # The Green-Sap's connection to the forest strengthens Green Pact devotees
+        if = {
+            limit = { has_trait = green_pact_devotee }
+            add_piety = 200
+        }
+        add_modifier = { modifier = green_sap_keeper_modifier days = -1 }
     }
 }
 

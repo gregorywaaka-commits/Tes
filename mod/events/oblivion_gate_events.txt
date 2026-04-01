@@ -1,6 +1,40 @@
 # =============================================================
 #  Oblivion Gate Events
+#  File: mod/events/oblivion_gate_events.txt
 #  Namespace: oblivion_gate
+#
+#  WHAT THIS FILE DOES:
+#  Handles Oblivion Gates that open during Daedric invasions:
+#  local ruler notification, province-level gate spawning,
+#  personal gate-closing attempts, and victory rewards.
+#
+#  EVENT INDEX:
+#  oblivion_gate.001 — A Gate has opened: local ruler notified
+#  oblivion_gate.002 — On-county-occupied: chance to spawn a Gate (province_event, hidden)
+#  oblivion_gate.003 — A ruler personally attempts to close a Gate
+#  oblivion_gate.010 — Victory: a Gate has been closed (reward event)
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_daedric_invasion_active, daedric_invasion_at_full_power
+#  Scripted effects:   open_oblivion_gate_effect, close_oblivion_gate_effect
+#  Variables:          oblivion_gate_active (county-scope has_variable / set_variable)
+#  Modifiers:          oblivion_gate_unchecked, oblivion_gate_daedra_surge, wounded
+#
+#  LORE BASIS:
+#  Oblivion Gates are rifts between Mundus and an Oblivion plane
+#  that open during major Daedric invasions.  Most prominently
+#  featured in the Oblivion Crisis (3E 433) in TES IV: Oblivion,
+#  but lore supports smaller gate openings during earlier Daedric
+#  incursions.  Gates must be closed from within or destroyed
+#  by removing the Sigil Stone.
+#  Sources: TES IV: Oblivion, The Oblivion Crisis (in-game book).
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add oblivion_gate.NNN = { ... } following the pattern below
+#  2. Gate province/county events with
+#     has_variable = oblivion_gate_active (county scope)
+#  3. Add localization keys to mod/localization/english/
+#     daedric_invasion_l_english.yml
 # =============================================================
 
 namespace = oblivion_gate

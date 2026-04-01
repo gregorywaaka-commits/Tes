@@ -32,6 +32,11 @@ reason_echmer_envoy = {
     decay_rate = 0
 }
 
+welcomed_envoy_opinion = {
+    opinion = 10
+    decay_rate = 0
+}
+
 # ---- Guild opinion modifiers ----
 same_guild_opinion = {
     opinion = 15
@@ -51,4 +56,13 @@ dark_brotherhood_target_opinion = {
 guild_betrayed_opinion = {
     opinion = -30
     decay_rate = 1
+}
+
+# ---- Sload / necromancer opinion modifier ----
+# Applied to Sload necromancers in a ruler's court who are tolerated rather
+# than expelled (sload.000 option b).  The Sload are reviled but their
+# knowledge is too valuable to ignore.  A small lasting favour offset.
+tolerated_necromancer = {
+    opinion = 10
+    decay_rate = 0
 }

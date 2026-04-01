@@ -1,5 +1,77 @@
 # =============================================================
-#  Daedric Invasion Traits
+#  daedric_invasion_traits.txt
+#  Elder Kings 2 Extension — Daedric Invasion Content
+# -------------------------------------------------------------
+#  CONTENTS:
+#    daedric_prince            : base marker for all Daedric Princes
+#    *_aspect          (×17)   : one trait per Prince (avatar form)
+#    *_champion        (×12)   : mortal champion traits (per-Prince)
+#    hircine_werewolf          : lycanthropy from Hircine's invasion
+#    molag_bal_vampire         : vampirism from the Planemeld
+#    peryite_afflicted         : plague carrier (Peryite strain)
+#    vaermina_dreamt           : dream-web victim (Vaermina)
+#    clavicus_bargain_keeper   : holder of a Vile bargain
+#    mora_knowledge_seeker     : Hermaeus Mora knowledge-touched
+#    jyggalag_crystal_knight   : Crystal Knight of perfect Order
+#    oblivion_touched          : mortal near an active Oblivion Gate
+#    oblivion_slayer           : hero who personally sealed a Gate
+#    daedric_vassal            : fealty sworn to a Daedric Prince
+#    daedric_champion          : mortal champion chosen by any Prince
+# -------------------------------------------------------------
+#  EK2 COMPATIBILITY:
+#    Depends on EK2 flags   : daedric_prince, *_aspect, *_champion
+#    Depends on EK2 events  : ek2_oblivion_gate.*, ek2_planemeld.*
+#    Depends on EK2 casus   : cb_daedric_invasion
+#    Does NOT require base CK3 trait files (standalone extension)
+# -------------------------------------------------------------
+#  LORE BASIS:
+#    - The 17 Daedric Princes are drawn from mainline TES lore.
+#    - Meridia is treated as Aedric-adjacent: she was an Aedroth
+#      who was cast out, making her closer to the Aedra than most
+#      Daedra; hence her monthly_piety bonus is the highest among
+#      the extended Prince aspects.
+#    - hircine_werewolf and molag_bal_vampire use flat
+#      monthly_piety values (not monthly_piety_gain_mult) because
+#      the penalty is a constant monthly drain, not a multiplier.
+#    - All 17 Prince aspects list ONLY the 5 core invaders
+#      (Mehrunes, Molag, Boethiah, Hircine, Namira) as opposites.
+#      This is intentional: those 5 are the primary invasion
+#      factions and are mutually exclusive — a character cannot
+#      serve two invasion commanders simultaneously. Extended
+#      Princes (Azura, Mephala, Clavicus, etc.) can coexist with
+#      a non-conflicting invasion allegiance as champion traits.
+# -------------------------------------------------------------
+#  HOW TO ADD A NEW TRAIT:
+#    1. Choose a unique snake_case key (e.g. my_prince_aspect).
+#    2. Assign category:
+#         special   — race/supernatural markers
+#         lifestyle — acquired temporary/permanent states
+#         fame      — prestigious rank achievements
+#    3. List only logically exclusive traits in opposites = { }.
+#    4. Use only valid CK3 modifier keys (see SYNTAX RULES below).
+#    5. Add  flag = <trait_key>  at the end of the block.
+#    6. Create matching loc keys in:
+#         localization/english/traits/
+#         daedric_invasion_traits_l_english.yml
+#    7. Add a trait icon at:
+#         gfx/interface/icons/traits/<trait_key>.dds
+# -------------------------------------------------------------
+#  CK3 SYNTAX RULES FOR THIS FILE:
+#    monthly_piety              — flat monthly piety (± integer)
+#    monthly_piety_gain_mult    — multiplier on piety gain
+#                                 (0.1 = +10 %; use instead of
+#                                  the invalid "piety_mult")
+#    monthly_prestige           — flat monthly prestige
+#    monthly_prestige_gain_mult — multiplier on prestige gain
+#                                 (use instead of "prestige_mult")
+#    stress_gain_mult           — multiplier on stress gain;
+#                                 negative value = stress reduction
+#                                 (use instead of "stress_loss_mult")
+#    dread_gain_mult            — multiplier on dread gain
+#    command_modifier { }       — modifiers active while in command
+#
+#    INVALID KEYS — never use:
+#      piety_mult, prestige_mult, stress_loss_mult
 # =============================================================
 
 # ---- Prince marker ----
@@ -64,6 +136,11 @@ namira_aspect = {
 }
 
 # ---- Extended Prince aspects (remaining 12) ----
+# NOTE: All extended aspects below list only the 5 core invading Princes
+# (mehrunes_dagon_aspect … namira_aspect) as opposites.  The core 5 are
+# the primary invasion factions and are mutually exclusive with each other.
+# Extended Prince aspects represent champion/devotee relationships that can
+# coexist with any non-core-invasion allegiance.
 
 azura_aspect = {
     category = special

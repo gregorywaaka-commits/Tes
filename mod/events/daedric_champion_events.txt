@@ -1,12 +1,69 @@
 # =============================================================
 #  Daedric Champion Quest Chains — All 17 Princes
+#  File: mod/events/daedric_champion_events.txt
 #  Namespace: daedric_champion
 #
-#  These events fire OUTSIDE of an active invasion, allowing
-#  any ruler to seek out a Daedric Prince and earn their
-#  champion title through lore-accurate quest chains.
-#  EK2 has similar chains for all Princes in its base mod;
-#  these extend and complement that system.
+#  WHAT THIS FILE DOES:
+#  Quest chains allowing any ruler to seek out a Daedric Prince
+#  and earn their champion title/artefact outside of an active
+#  invasion.  Each Prince has a 2-event chain (initiation +
+#  outcome).  All 17 Princes are covered.
+#
+#  EVENT INDEX:
+#  daedric_champion.mehrunes.001-002 — Mysterium Xarxes ritual; Mehrunes' Razor
+#  daedric_champion.azura.001-002    — Nerevarine Prophecy path; Azura's Star
+#  daedric_champion.molag.001-002    — Planemeld Bargain; Mace of Molag Bal
+#  daedric_champion.hircine.001-002  — The Great Hunt; Ring of Hircine / Savior's Hide
+#  daedric_champion.boethiah.001-002 — Tournament of Ten Bloods; Ebony Mail
+#  daedric_champion.mephala.001-002  — Morag Tong Contract; Ebony Blade
+#  daedric_champion.clavicus.001-002 — Barbas and the Deal; Masque of Clavicus Vile
+#  daedric_champion.vaermina.001-002 — Waking Nightmare; Skull of Corruption
+#  daedric_champion.sheogorath.001-002 — A Mind Unravelled; Wabbajack
+#  daedric_champion.peryite.001-002  — The Afflicted; Spellbreaker
+#  daedric_champion.sanguine.001-002 — A Night to Forget; Sanguine Rose
+#  daedric_champion.meridia.001-002  — The Beacon; Dawnbreaker
+#  daedric_champion.malacath.001-002 — The Forsworn's Oath; Volendrung
+#  daedric_champion.nocturnal.001-002 — Nightingale Oath; Skeleton Key
+#  daedric_champion.hermaeus.001-002 — Oghma Infinium; forbidden knowledge
+#  daedric_champion.namira.001-002   — Cannibal's Feast; Ring of Namira
+#  daedric_champion.jyggalag.001-002 — Greymarch Prophecy; Sword of Jyggalag (3E.400+ only)
+#
+#  EK2 IDENTIFIERS USED:
+#  Traits:    daedric_champion, azura_champion, molag_bal_vampire, hircine_werewolf,
+#             mephala_champion, clavicus_vile_champion, vaermina_champion,
+#             sheogorath_champion, peryite_champion, peryite_afflicted,
+#             sanguine_champion, meridia_champion, malacath_champion,
+#             nocturnal_champion, hermaeus_mora_champion, jyggalag_champion,
+#             cannibal, clavicus_bargain_made
+#  Modifiers: mehrunes_razor_holder, azura_star_holder, mace_of_molag_bal_holder,
+#             ring_of_hircine_holder, saviors_hide_holder, ebony_mail_holder,
+#             ebony_blade_holder, masque_of_clavicus_vile, vile_curse_modifier,
+#             skull_of_corruption_modifier, wabbajack_modifier, spellbreaker_modifier,
+#             sanguine_rose_holder, dawnbreaker_modifier, volendrung_bearer,
+#             skeleton_key_holder, oghma_infinium_holder, ring_of_namira_holder,
+#             sword_of_jyggalag_modifier
+#  Note: The daedric_champion trait is a generic "champion of a Prince" trait.
+#        Prince-specific champion traits (azura_champion, etc.) are additive.
+#        Cleanup of these traits on death is handled in daedric_invasion.060
+#        (daedric_invasion_events.txt line ~345) — the event EXISTS and fires
+#        from the on_character_death hook in daedric_invasion_on_actions.txt.
+#
+#  LORE BASIS:
+#  Each quest chain draws on in-game lore for the Prince's sphere
+#  and associated artefact.  Mehrunes' Razor, Azura's Star, etc.
+#  are canonical Daedric artefacts from the Elder Scrolls series.
+#  The Jyggalag chain is restricted to 3E.400+ because the
+#  Greymarch only becomes relevant near the end of the Third Era.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add daedric_champion.<prince>.<NNN> = { ... } following
+#     the 2-event (introduction + resolution) pattern below
+#  2. Add localization keys to mod/localization/english/
+#     daedric_champion_l_english.yml
+#  3. Link the introduction event from the relevant decision
+#     in mod/common/decisions/daedric_champion_decisions.txt
+#  4. If granting a new trait, add remove_trait cleanup to
+#     daedric_invasion.060 in daedric_invasion_events.txt
 # =============================================================
 
 namespace = daedric_champion

@@ -1,4 +1,71 @@
-# Encoding: UTF-8-BOM
+﻿# Encoding: UTF-8-BOM
+# =============================================================
+#  Guild System — English Localization
+#  File: mod/localization/english/guilds_l_english.yml
+#
+#  CRITICAL: UTF-8 BOM required (0xEF 0xBB 0xBF).
+#
+#  GUILDS COVERED (9 total):
+#  1. Mages Guild          — founded 2E 230 by Vanus Galerion
+#  2. Fighters Guild       — chartered 2E 321 (Tsaesci "Syffim")
+#  3. Thieves Guild        — active throughout Second Era
+#  4. Dark Brotherhood     — Sithis cult; Five Tenets; Night Mother
+#  5. Morag Tong           — Mephala's guild; legal writs in Morrowind
+#  6. Companions           — Ysgramor's ancient fellowship; Jorrvaskr
+#  7. Psijic Order         — the Elder Way; Artaeum; absent 2E 230–580
+#  8. Bards College        — based in Solitude, Skyrim
+#  9. Undaunted            — adventurers' fellowship; Tamriel-wide
+#
+#  LORE CHOICES & RATIONALE:
+#  ──────────────────────────
+#  — Fighters Guild: "Syffim" (Tsaesci name) is canonical from
+#    ESO lore and the Pocket Guide to the Empire.
+#    Guild Act 2E 321 is the standard founding date.
+#  — Mages Guild: 2E 230 / Vanus Galerion founding is canonical.
+#    Guild Act 2E 321 granted it imperial recognition.
+#  — Companions: NOT the same as the Fighters Guild.  The
+#    Companions predate the Fighters Guild by millennia
+#    (Ysgramor, Merethic Era); Jorrvaskr in Whiterun is their
+#    hall.  The Harbinger is a guide, not a traditional leader.
+#  — Psijic Order: their island Artaeum vanished from mortal
+#    perception in 2E 230 and reappeared in 2E 580.  Events
+#    reflecting this absence are correctly gated by date.
+#  — Dark Brotherhood: Five Tenets are canonical from TES lore;
+#    the Night Mother is the spiritual head; Speakers are her
+#    voice to the Black Hand council.
+#    CONTESTED LORE — NIGHT MOTHER = MEPHALA?
+#    *The Brothers of Darkness* (Pellarne Assi) argues that both
+#    the Morag Tong (openly Mephala's guild) and the Dark
+#    Brotherhood (the Night Mother's guild) ultimately serve the
+#    same patron — Mephala — with the Night Mother being
+#    Mephala's mortal-world avatar or bride-of-Sithis persona.
+#    This connection is not explicit canon but is the dominant
+#    scholarly interpretation within TES lore.  The shared
+#    divine origin explains why the two guilds practise the same
+#    craft but are bitter theological rivals: the Brotherhood
+#    refuses to name Mephala as their patron directly.
+#    This connection is flagged in guild_traits.txt (DB + Tong
+#    section headers) for mod authors adding related content.
+#  — Morag Tong: predates the Dark Brotherhood; operates under
+#    legal writs of execution within Dunmer/Morrowind jurisdiction.
+#    Operates primarily in Morrowind and House territories.
+#
+#  HOW TO REPLICATE INTO A NEW MOD:
+#  ──────────────────────────────────
+#  1. Copy this file (with BOM) and:
+#       guild_traits.txt, guild_effects.txt, guild_triggers.txt,
+#       guild_decisions.txt, guild_leadership_decisions.txt,
+#       guild_events.txt, guild_leadership_events.txt.
+#  2. Each guild is independent.  To add just one guild:
+#     a. Add its trait keys here.
+#     b. Add its trait in guild_traits.txt.
+#     c. Add join/advance/leave effects in guild_effects.txt.
+#     d. Add join/advance decisions in guild_decisions.txt.
+#     e. Add guild events in guild_events.txt.
+#  3. Guild membership is tracked via character_flags
+#     (guild_X_member) and character variables (guild_X_rank).
+#     These are auto-cleared on character death.
+# =============================================================
 l_english:
  # ============================================================
  #  Guild System — Full Localization
@@ -640,3 +707,33 @@ l_english:
  guild_leader.bards.post_001.desc: "A delegation of noble patrons arrives at the College with an unusual commission: they want a composition that will define this era — the Interregnum, the chaos, the slow recovery of civilisation, the courage of those who persist. Something that will be sung a thousand years from now and make whoever hears it understand what it was like to be alive in this time. The commission is extraordinary. The challenge is greater."
  guild_leader.bards.post_001.a: "Write it yourself — the age deserves the best."
  guild_leader.bards.post_001.b: "Invite every Master Bard in Tamriel — make it a collaboration."
+
+ # =====================================================================
+ #  GUILD COOLDOWN MODIFIERS
+ #  These empty flag-modifiers act as mechanical cooldowns — they carry
+ #  no stat bonuses but prevent decisions/events from re-firing until
+ #  the duration expires.  Without localization they display the raw
+ #  key string in-game; these entries give them a readable label.
+ # =====================================================================
+ guild_advancement_cooldown: "Guild Advancement — Cooldown"
+ guild_advancement_cooldown_desc: "The guild requires time before further advancement can be considered."
+ guild_recently_rejected: "Guild Application Rejected"
+ guild_recently_rejected_desc: "A recent rejection means reapplication must wait."
+ guild_research_cooldown: "Mages Guild — Research Period"
+ guild_research_cooldown_desc: "The Mages Guild research project requires time before another can begin."
+ guild_contract_cooldown: "Fighters Guild — Contract Cooldown"
+ guild_contract_cooldown_desc: "A period of recovery between major Fighters Guild contracts."
+ guild_heist_cooldown: "Thieves Guild — Heist Cooldown"
+ guild_heist_cooldown_desc: "The guild waits for the dust to settle before planning the next heist."
+ black_sacrament_cooldown: "Black Sacrament — Cooldown"
+ black_sacrament_cooldown_desc: "The Night Mother will not hear another Sacrament so soon."
+ writ_of_execution_cooldown: "Morag Tong — Writ Cooldown"
+ writ_of_execution_cooldown_desc: "The Morag Tong requires a period between official Writs."
+ psijic_communion_cooldown: "Psijic Order — Communion Cooldown"
+ psijic_communion_cooldown_desc: "The Psijic Order advises patience between communions with the Dreaming Cave."
+ ballad_composition_cooldown: "Bards College — Composition Cooldown"
+ ballad_composition_cooldown_desc: "A great ballad takes time to write; the College waits before commissioning another."
+ guild_ruin_delve_cooldown: "Undaunted — Delve Cooldown"
+ guild_ruin_delve_cooldown_desc: "The Undaunted are recovering from the last ruin delve before taking on another."
+ guild_leader_postquest_cooldown: "Guild Leadership — Post-Quest Period"
+ guild_leader_postquest_cooldown_desc: "The guild's affairs need to settle after a major leadership challenge before another can arise."

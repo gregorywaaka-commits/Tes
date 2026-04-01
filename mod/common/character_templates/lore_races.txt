@@ -194,3 +194,60 @@ imga_aristocrat_template = {
     learning   = 14
     prowess    = 18
 }
+
+# ---- Tsaesci ----
+
+tsaesci_swordmaster_template = {
+    name = "Tsaesci_Swordmaster"
+    dynasty = akavir_tsaesci_dynasty
+    religion = tsaesci_ancestor_faith
+    culture = tsaesci_culture
+    trait = tsaesci_heritage
+    trait = tsaesci_blademaster
+    trait = ambitious
+    martial    = 26
+    diplomacy  = 8
+    stewardship = 12
+    intrigue   = 18
+    learning   = 14
+    prowess    = 28
+}
+
+# Reman I absorbed defeated Tsaesci invaders into his Dragonguard after
+# the Battle of Pale Pass (1E 2703).  This template represents an early
+# Dragonguard captain — the institutional precursor to the Blades.
+tsaesci_dragonguard_captain_template = {
+    name = "Tsaesci_Dragonguard"
+    dynasty = akavir_tsaesci_dynasty
+    religion = tsaesci_ancestor_faith
+    culture = tsaesci_culture
+    trait = tsaesci_heritage
+    trait = akaviri_dragonguard
+    trait = patient
+    martial    = 22
+    diplomacy  = 12
+    stewardship = 14
+    intrigue   = 16
+    learning   = 16
+    prowess    = 24
+}
+
+# ---- Ka Po'Tun ----
+
+# King Tosh Raka is transforming himself into a dragon — an unprecedented act.
+# This template represents a herald or general of his court during the transformation.
+ka_po_tun_warlord_template = {
+    name = "Ka_Po_Tun_Warlord"
+    dynasty = ka_po_tun_dynasty
+    religion = ka_po_tun_dragon_faith
+    culture = ka_po_tun_culture
+    trait = ka_po_tun_heritage
+    trait = brave
+    trait = gregarious
+    martial    = 22
+    diplomacy  = 14
+    stewardship = 10
+    intrigue   = 12
+    learning   = 14
+    prowess    = 22
+}

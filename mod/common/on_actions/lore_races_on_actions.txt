@@ -80,6 +80,27 @@ on_yearly_pulse = {
         4   = thuumvoi.016           # Akatosh's vision for post-awakening Dragonborn (thuumvoi_events.txt)
         3   = amulet.005             # Amulet of Kings rejects a non-Dragonborn bearer (amulet_of_kings_events.txt)
         4   = amulet.post_001        # Amulet of Kings draws political/religious attention (amulet_of_kings_events.txt)
+        # -- New peoples (audit pass 5) --
+        3   = tsaesci.001            # Tsaesci envoy arrives with sword-discipline (akaviri_events.txt)
+        2   = tsaesci.002            # Tsaesci Dragonguard legacy event (akaviri_events.txt)
+        2   = tsaesci.004            # Tsaesci blade philosophy — hunter vs. servant (akaviri_events.txt)
+        3   = ka_po_tun.001          # News of Tosh Raka's dragon transformation (akaviri_events.txt)
+        2   = ka_po_tun.002          # Ka Po'Tun alliance offer (akaviri_events.txt)
+        2   = lilmothiit.001         # Lilmothiit elder's lament (minor_lore_races_events.txt)
+        1   = lilmothiit.002         # Lilmothiit last hearth — extinction arc (minor_lore_races_events.txt)
+        3   = reachfolk.001          # Old Ways stir — Reachfolk awakening (reachfolk_events.txt)
+        2   = reachfolk.004          # Reachman Longhouse Legacy event (reachfolk_events.txt)
+        3   = hist.001               # The Hist Calls — Argonian communion (hist_events.txt)
+        2   = hist.003               # An-Xileel Gathering (hist_events.txt)
+        2   = hist.004               # The Hist Warns — sense coming danger (hist_events.txt)
+        3   = two_moons.001          # The Mane Is Named (two_moons_events.txt)
+        3   = two_moons.002          # Moon Sugar Ritual (two_moons_events.txt)
+        2   = two_moons.003          # The Mane's Audience (two_moons_events.txt)
+        3   = bosmeri.001            # Y'ffre Speaks — Bosmer vision (bosmeri_events.txt)
+        2   = bosmeri.002            # Green Pact Tested (bosmeri_events.txt)
+        2   = ayleid.001             # Ayleid Ruin Discovery (minor_lore_races_events.txt)
+        2   = snow_elf.001           # Chantry of Auri-El — Snow Elf legacy (minor_lore_races_events.txt)
+        2   = alessian.001           # Alessian Doctrine revival event (minor_lore_races_events.txt)
     }
 }
 
@@ -123,5 +144,42 @@ on_character_death = {
         # Thu'um flags: character_flags die with the character — no manual cleanup needed.
         # Dragon soul counter (dragon_souls_absorbed_count) is a character variable — auto-cleared on death.
         # Greybeard_rank and thuumvoi_rank variables are also character-scoped — auto-cleared.
+    }
+
+    # Tower Stone Keeper cleanup:
+    # When the Keeper dies their tower_stone_keeper trait dies with them automatically
+    # (traits are character-scoped), but the county-scope variable tower_stone_present
+    # must be cleared so the Tower Stone becomes re-claimable.
+    effect = {
+        if = {
+            limit = { has_trait = tower_stone_keeper }
+            every_held_county = {
+                limit = { has_variable = tower_stone_present }
+                remove_variable = tower_stone_present
+            }
+        }
+        # Amulet of Kings cleanup:
+        # The amulet_of_kings_dragonborn_modifier and amulet_of_kings_claimed flag
+        # are character-scoped and auto-cleared on death.  The has_amulet_of_kings
+        # scripted trigger (EK2) must handle physical removal; clear the flag here
+        # in case EK2's cleanup does not fire.
+        if = {
+            limit = { has_character_flag = amulet_of_kings_claimed }
+            remove_character_flag = amulet_of_kings_claimed
+        }
+        # World notification: if the bearer dies without relighting the Dragonfires,
+        # all living rulers are informed the Amulet is lost again.
+        # NOTE: dragonfires_lit is a character flag — it auto-clears on death,
+        # so we check it BEFORE cleanup runs (on_character_death still has the flags).
+        if = {
+            limit = {
+                has_character_flag = amulet_of_kings_bearer
+                NOT = { has_character_flag = dragonfires_lit }
+            }
+            every_ruler = {
+                limit = { is_alive = yes }
+                trigger_event = { id = amulet.008 }
+            }
+        }
     }
 }

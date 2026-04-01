@@ -1,4 +1,47 @@
-# Encoding: UTF-8-BOM
+﻿# Encoding: UTF-8-BOM
+# =============================================================
+#  Thu'um / Voice — English Localization
+#  File: mod/localization/english/thuumvoi_l_english.yml
+#
+#  CRITICAL: UTF-8 BOM required (0xEF 0xBB 0xBF).
+#
+#  This file provides strings for:
+#    • Thu'um traits (thu_um_initiate, adept, master/Tongue)
+#    • Greybeard Order traits (greybeard_aspirant, etc.)
+#    • Dragonborn enhancement traits (dovahkiin_soul_awakened, etc.)
+#    • Voice decisions (seek/advance/leave training; Greybeard join)
+#    • Thu'um events (thuumvoi.001–thuumvoi.016)
+#    • Greybeard events (greybeard.001–greybeard.lead.007)
+#    • Dragonborn events (dovahkiin.001–dovahkiin.post_001)
+#    • Modifiers (thuumvoi_advancement_cooldown, etc.)
+#
+#  LORE CHOICES & RATIONALE:
+#  ──────────────────────────
+#  — "Arngeir" is used as the named Greybeard guide.  Arngeir
+#    is a Fourth Era figure (TES V: Skyrim); his use here is
+#    anachronistic flavour for player recognition.  For strict
+#    Second Era accuracy, replace with "the Elder Greybeard."
+#  — Paarthurnax is correctly placed in the Second Era — he is
+#    an ancient dragon who predates recorded history.
+#  — "Tongue" (thu_um_master) is the canonical ancient Nord title
+#    for a master Voice user, predating Jurgen Windcaller's
+#    reformation.  Both traditions (martial Tongue and devotional
+#    Greybeard) coexist in the Second Era.
+#  — The "dovah_nature_at_risk" crisis (thuumvoi.012) is a mod
+#    invention.  In canon there is no known mechanic where a
+#    Dragonborn "becomes" a dragon from absorbing too many souls,
+#    but absorbing dragon souls is an inherently dragon-natured
+#    act.  The crisis is a gameplay/narrative extrapolation.
+#
+#  HOW TO REPLICATE INTO A NEW MOD:
+#  ──────────────────────────────────
+#  1. Copy this file (with BOM) and the Thu'um companion files
+#     (see thuumvoi_traits.txt for the full list).
+#  2. EK2's "dragonborn" trait is used read-only.  Never redefine.
+#  3. All event/decision/modifier keys in this file map 1:1 to
+#     keys in thuumvoi_events.txt / thuumvoi_decisions.txt.
+#     If you rename a key here, rename it in the script file too.
+# =============================================================
 l_english:
  # ============================================================
  #  Thu'um / Voice — Greybeard Order & Dragonborn Localization

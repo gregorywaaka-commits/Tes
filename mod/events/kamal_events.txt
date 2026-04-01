@@ -1,6 +1,59 @@
 # =============================================================
 #  Kamal Events  (Akaviri Snow Demons / Seasonal Invaders)
+#  File: mod/events/kamal_events.txt
 #  Namespace: kamal
+#
+#  WHAT THIS FILE DOES:
+#  Events for the Kamal invasion cycle — summer thaw, invasion
+#  declaration, ice-curse spread, and the Tribunal intervention
+#  that historically repelled Dir-Kamal in 2E 572.
+#
+#  EVENT INDEX:
+#  kamal.000 — The Kamal Thaw: summer invasion is brewing (world_event)
+#  kamal.001 — Kamal Invasion Declared: all rulers notified
+#  kamal.002 — Kamal Ice-Curse spread to occupied provinces (province_event, hidden)
+#  kamal.010 — The Tribunal Intervenes: Dunmer intervention repels Dir-Kamal
+#  kamal.020 — Kamal Retreat: invasion ends (repelled or winter)
+#  kamal.050 — Monthly tick: seasonal check (hidden world_event)
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  kamal_invasion_possible, knahaten_flu_active
+#  Scripted effects:   begin_kamal_invasion, end_kamal_invasion
+#  Global variables:   kamal_invasion_active, daedric_invasion_phase,
+#                      current_season_summer
+#  Scopes:             scope:dir_kamal_char
+#  Modifiers:          kamal_ice_curse_modifier
+#  Cultures:           dunmer_culture
+#
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  dunmer_culture   — EK2-defined culture identifier (Dark Elf culture).
+#                     Used in kamal.010 trigger to identify Dunmer rulers.
+#  argonian_culture — EK2-defined culture identifier (Argonian culture).
+#                     Used in kamal.010 OR block (An-Xileel Argonians).
+#  kamal_culture    — EK2-defined culture identifier (Kamal snow demon culture).
+#  NOTE: If a future audit flags these cultures as "undefined in mod,"
+#  they are correct EK2 references.  Do NOT define them locally.
+#
+#  LORE BASIS:
+#  The Kamal are a race of snow demons from Akavir who thaw each
+#  summer and invade Tamriel.  Ada'Soom Dir-Kamal led a major
+#  invasion in 2E 572, landing in Morrowind and being killed at
+#  the Battle of Vivec by the Ebonheart Pact and the Tribunal
+#  (specifically Almalexia, Vivec, and Sotha Sil acting together).
+#  IMPORTANT — kamal.010: The historical intervention is credited
+#  to THE TRIBUNAL collectively, not Vivec alone.  The localization
+#  key kamal.010.t / kamal.010.desc reflect "The Tribunal Intervenes"
+#  as corrected in the YAML.  This event's trigger/effects are
+#  lore-accurate: Dunmer rulers with kingdom-tier titles present,
+#  no active Daedric invasion to interfere.
+#  Sources: The Brothers of Darkness, 2920 (novel series), ESO lore.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add kamal.NNN = { ... } following the pattern below
+#  2. Gate invasion events with exists = global_var:kamal_invasion_active
+#  3. Add localization keys to mod/localization/english/
+#     kamal_l_english.yml
 # =============================================================
 
 namespace = kamal
@@ -80,7 +133,7 @@ kamal.002 = {
 }
 
 # ---------------------------------------------------------------
-# kamal.010  Vivec Intervenes (lore: Tribunal god Vivec repelled Dir-Kamal)
+# kamal.010  The Tribunal Intervenes (lore: the Tribunal gods collectively repelled Dir-Kamal)
 # ---------------------------------------------------------------
 kamal.010 = {
     type = character_event
@@ -90,15 +143,24 @@ kamal.010 = {
 
     trigger = {
         exists = global_var:kamal_invasion_active
+        # Lore: Dir-Kamal was killed at the Battle of Vivec (2E 572) by the full
+        # Ebonheart Pact coalition — Dunmer, Nords, AND the An-Xileel Argonian army
+        # that emerged from Black Marsh to deliver the killing blow.  The Tribunal
+        # (Almalexia, Vivec, Sotha Sil collectively) also intervened.
+        # This trigger requires EITHER a kingdom-tier Dunmer OR Argonian ruler to be
+        # present, reflecting both halves of the Pact's decisive contribution.
         any_ruler = {
-            has_culture = dunmer_culture       # Tribunal devotees present
+            OR = {
+                has_culture = dunmer_culture        # Tribunal devotees; Morrowind forces
+                has_culture = argonian_culture      # An-Xileel; delivered the killing blow
+            }
             primary_title = { tier >= tier_kingdom }
         }
         global_var:daedric_invasion_phase < 1   # no daedric invasion active
     }
 
     option = {
-        name = kamal.010.a   # "Vivec has spoken — the demons retreat!"
+        name = kamal.010.a   # "The Tribunal has spoken — the demons retreat!"
         end_kamal_invasion = yes
         add_prestige = 500
         add_piety    = 1000
@@ -135,15 +197,19 @@ kamal.050 = {
     hidden = yes
 
     immediate = {
-        # Track summer (months 3-9) and winter (months 10-2) via a global variable.
-        # CK3 date scripting: use game_start_date offset or on_action year/month flags.
-        # For now, the Kamal invasion is triggered via on_yearly_pulse and Dir-Kamal
-        # is spawned without a hard seasonal guard; balance via on_yearly_pulse weight.
+        # Toggle the summer season flag based on the calendar month.
+        # Summer = months 5–9 (May–Sep): Dir-Kamal is active and aggressive.
+        # Winter = months 10–4 (Oct–Apr): reduced Kamal activity.
+        # CK3 evaluates current_date.month as an integer (1–12) in trigger comparisons.
         if = {
             limit = {
-                NOT = { exists = global_var:current_season_summer }
+                current_date.month >= 5
+                current_date.month <= 9
             }
             set_global_variable = { name = current_season_summer value = yes }
+        }
+        else = {
+            remove_global_variable = current_season_summer
         }
     }
 }

@@ -1,0 +1,179 @@
+# =============================================================
+#  Hist Events — Argonian World-Tree Communion & An-Xileel
+#  File: mod/events/hist_events.txt
+#
+#  WHAT THIS FILE DOES:
+#  Covers the Hist (ancient tree-entities of Black Marsh) and
+#  their relationship with Argonian rulers.  Includes the
+#  An-Xileel faction, Hist-sap communion, and the Hist's role
+#  as advisors to Argonian civilisation.
+#
+#  EVENT INDEX:
+#  hist.001 — The Hist Calls: a ruler is summoned to commune
+#  hist.002 — The Sap of Ages: drinking Hist sap and receiving ancient memory
+#  hist.003 — An-Xileel Gathering: the Hist-guided faction rallies
+#  hist.004 — The Hist Warns: the trees sense coming danger (Daedric/Kamal)
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_hist_bonded, is_an_xileel
+#  Traits:             hist_bonded, an_xileel_warrior
+#  Modifiers:          hist_communion_modifier, hist_grove_modifier,
+#                      hist_communion_cooldown
+#  Cultures:           argonian_culture (EK2)
+#  Global variables:   kamal_invasion_active, active_daedric_prince (EK2)
+#
+#  LORE BASIS:
+#  The Hist are tree-entities native to Black Marsh whose sap
+#  provides Argonians with memories, consciousness, and spiritual
+#  guidance.  Argonian hatchlings lick the Hist sap at birth to
+#  receive their soul.  An adult drinking Hist sap communes with
+#  the tree's vast accumulated memories.  The An-Xileel are an
+#  Argonian political faction that followed the Hist's guidance
+#  most zealously — including during the Oblivion Crisis (3E 433),
+#  when they closed Black Marsh's Oblivion Gates using Hist power
+#  before the rest of Tamriel even understood the threat.
+#  Sources: ESO, Oblivion lore books, The Infernal City.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add hist.NNN = { ... } following the pattern below
+#  2. Add localization keys to mod/localization/english/lore_races_l_english.yml
+# =============================================================
+
+namespace = hist
+
+# ---------------------------------------------------------------
+# hist.001  The Hist Calls — a ruler is summoned to commune with their tree
+# ---------------------------------------------------------------
+hist.001 = {
+    type = character_event
+    title = hist.001.t
+    desc = hist.001.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_zealous
+    }
+
+    trigger = {
+        is_ruler = yes
+        # Accessible to Argonians and those bonded to the Hist
+        OR = {
+            has_culture = argonian_culture
+            has_trait   = hist_bonded
+        }
+        NOT = { has_modifier = hist_communion_cooldown }
+    }
+
+    option = {
+        name = hist.001.a   # "I go to the tree — the root-memory calls."
+        add_piety    = 200
+        trigger_event = { id = hist.002 days = 5 }
+    }
+
+    option = {
+        name = hist.001.b   # "The tree can wait — there are more pressing matters."
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# hist.002  The Sap of Ages — drinking Hist sap and receiving ancient memory
+# ---------------------------------------------------------------
+hist.002 = {
+    type = character_event
+    title = hist.002.t
+    desc = hist.002.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = personality_calm
+    }
+
+    option = {
+        name = hist.002.a   # "The ages pour through me — I see Tamriel as the Hist see it."
+        if = {
+            limit = { NOT = { has_trait = hist_bonded } }
+            add_trait = hist_bonded
+        }
+        add_learning  = 3
+        add_piety     = 300
+        add_modifier  = { modifier = hist_communion_modifier days = 1825 }
+        add_modifier  = { modifier = hist_communion_cooldown days = 1825 }
+    }
+
+    option = {
+        name = hist.002.b   # "The visions are too vast — I withdraw before I am lost."
+        add_learning  = 1
+        add_stress    = 15
+        add_modifier  = { modifier = hist_communion_cooldown days = 1825 }
+    }
+}
+
+# ---------------------------------------------------------------
+# hist.003  An-Xileel Gathering — the Hist-guided faction rallies
+# ---------------------------------------------------------------
+hist.003 = {
+    type = character_event
+    title = hist.003.t
+    desc = hist.003.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = hist_bonded
+        NOT = { has_trait = an_xileel_warrior }
+    }
+
+    option = {
+        name = hist.003.a   # "We are the Hist's warriors — An-Xileel."
+        add_trait    = an_xileel_warrior
+        add_prestige = 400
+        add_piety    = 200
+    }
+
+    option = {
+        name = hist.003.b   # "The An-Xileel's zeal goes too far — even for me."
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# hist.004  The Hist Warns — the trees sense coming danger
+# ---------------------------------------------------------------
+hist.004 = {
+    type = character_event
+    title = hist.004.t
+    desc = hist.004.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = hist_bonded
+        OR = {
+            # Hist warns of active threats
+            exists = global_var:kamal_invasion_active
+            exists = global_var:active_daedric_prince
+        }
+    }
+
+    option = {
+        name = hist.004.a   # "The trees have seen this darkness before — we prepare."
+        add_martial  = 2
+        add_prestige = 300
+    }
+
+    option = {
+        name = hist.004.b   # "The Hist's fear becomes mine — we must act immediately."
+        add_stress   = 10
+        add_prestige = 200
+        add_piety    = 100
+    }
+}

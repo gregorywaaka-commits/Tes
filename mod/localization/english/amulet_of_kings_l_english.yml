@@ -1,4 +1,48 @@
-# Encoding: UTF-8-BOM
+﻿# Encoding: UTF-8-BOM
+# =============================================================
+#  Amulet of Kings — English Localization
+#  File: mod/localization/english/amulet_of_kings_l_english.yml
+#
+#  CRITICAL: UTF-8 BOM required (0xEF 0xBB 0xBF).
+#
+#  This file provides strings for:
+#    • Amulet-related character modifiers (amulet_of_kings_bearer_modifier etc.)
+#    • Decisions (seek/claim/relight)
+#    • Event chain (amulet.001 – amulet.007, amulet.post_001)
+#
+#  LORE CHOICES & RATIONALE:
+#  ──────────────────────────
+#  — The Dragonfires in the White-Gold Tower were first lit by
+#    Saint Alessia in 1E 243 (canonical founding of the First Empire).
+#    They went cold at the start of the Interregnum (2E 430).
+#    The mod's campaign starts at 2E 440; the Dragonfires have
+#    been cold for ~10 years when play begins.
+#  — Only Dragonblood (Dragonborn) can safely wear the Amulet
+#    and access its full power.  Non-Dragonborn who wear it
+#    experience discomfort then rejection (amulet.005).
+#  — The "Order of the Ancestor Moth" appears in the event chain
+#    as guardians.  Their role as Amulet keepers is a mod
+#    invention; in canon, they are primarily associated with
+#    reading Elder Scrolls.  The connection is plausible lore
+#    extrapolation (both are Akatosh-adjacent).
+#  — Relighting the Dragonfires has geopolitical implications:
+#    it strengthens the claim to the Ruby Throne.  This is
+#    canonical — every Cyrodiilic Emperor maintained the Fires.
+#
+#  HOW TO REPLICATE INTO A NEW MOD:
+#  ──────────────────────────────────
+#  1. Copy this file (with BOM) and:
+#       amulet_of_kings_events.txt, amulet_of_kings_decisions.txt,
+#       plus the amulet modifier entries in lore_races_modifiers.txt.
+#  2. The system requires EK2's dragonborn trait as a read-only
+#     check (has_trait = dragonborn) — never redefine it.
+#  3. All Amulet state is tracked via character_flags:
+#     amulet_of_kings_bearer, amulet_quest_started,
+#     amulet_quest_1_seen, amulet_quest_2_seen, etc.
+#     These are defined in thuumvoi_effects.txt.
+#  4. The White-Gold Tower must be EK2 title c_imperial_city;
+#     verify this ID before use in your mod.
+# =============================================================
 l_english:
  # ============================================================
  #  Amulet of Kings — Localization
@@ -66,3 +110,8 @@ l_english:
  amulet.post_001.desc: "The existence of the Amulet of Kings in our possession has not remained secret. In the current state of Tamriel's politics, any object with that degree of symbolic and actual divine significance becomes an immediate complication. There are claimants who believe it should belong to whoever controls Cyrodiil. There are priests who believe it belongs to Akatosh's temples. There are warlords who simply want a divine artefact and do not much care about the theological details. And there are the quietly desperate people who know what the Amulet means — the barrier against Oblivion, the Dragonfires, the covenant — and are frightened about what happens if it falls into the wrong hands or is simply lost again."
  amulet.post_001.a: "The Amulet is not a political object. It is a covenant. They will not have it."
  amulet.post_001.b: "Let them come. Every Dragonborn Emperor since Alessia has faced this. I will not be the last."
+
+ amulet.008.t: "The Amulet of Kings — Lost Again"
+ amulet.008.desc: "Word reaches us that the Dragonborn who carried the Amulet of Kings has died. The Dragonfires were never relit. Alessia's Covenant remains unfulfilled, the barrier against Oblivion unreinforced — and the Amulet itself has vanished from the record once more. This has happened before. The Amulet has always been found again. But in the Interregnum, with Oblivion's appetite unsatisfied and no Dragon-blooded hand to hold the covenant, there is no guarantee that it will be found by the right person. Or found at all."
+ amulet.008.a: "The Covenant is broken again. The Amulet is lost."
+ amulet.008.b: "Another Dragonborn will come. The covenant endures even when its bearer does not."

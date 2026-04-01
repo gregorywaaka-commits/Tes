@@ -1,5 +1,13 @@
 # =============================================================
 #  Lore Races — Decisions
+#  File: mod/common/decisions/lore_races_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES (EK2 / CK3 vanilla — not defined in this mod):
+#  ─────────────────────────────────────────────────────────────────────
+#  Traits checked via has_trait but defined in CK3 vanilla:
+#    curious  — CK3 vanilla personality trait
+#    craven   — CK3 vanilla personality trait (coward)
+#  Do NOT redefine these in this mod — they are vanilla references.
 # =============================================================
 
 # ============================================================
@@ -284,6 +292,26 @@ bargain_with_clavicus_vile = {
 
 # ============================================================
 #  ELDER TOWERS
+#  MOD NOTE — THRAS / CORAL TOWER:
+#  Thras, the Sload coral island chain, was sunk to the bottom
+#  of the Abecean Sea in 1E 2260 by the All-Flags Navy as
+#  punishment for the Thrassian Plague.  It was gone more than
+#  1,100 years before the 2E 440 mod start.
+#  Mod choice: in this timeline, Thras partially re-emerged
+#  from the sea floor in the early Second Era — this is NOT
+#  canonical, but allows the Sload / All-Flags Navy content
+#  to function meaningfully.  The in-game text should always
+#  refer to it as "the re-emerged Thras" or "Thras Reborn."
+#
+#  TOWERS IMPLEMENTED AS KEEPER SITES:
+#    White-Gold (c_imperial_city), Adamantine (c_balfiera),
+#    Red Mountain (c_red_mountain), Coral (c_thras),
+#    Crystal Tower (c_alinor, Summerset) — towers.006,
+#    Snow Throat (c_whiterun, Skyrim) — towers.007,
+#    Green-Sap (c_falinesti, Valenwood) — towers.008.
+#  TOWERS OMITTED:
+#    Orichalc Tower (Yokuda / Sea of Ghosts) — destroyed along with Yokuda
+#      c. 1E 792; not available in 2E; skip.
 # ============================================================
 
 # A ruler claims a Tower Stone and becomes its Keeper
@@ -301,6 +329,9 @@ claim_tower_stone = {
                 this = title:c_balfiera
                 this = title:c_red_mountain
                 this = title:c_thras
+                this = title:c_alinor       # Crystal Tower — intact throughout 2E
+                this = title:c_whiterun     # Snow Throat — the mountain is the Tower
+                this = title:c_falinesti    # Green-Sap — Falinesti, the walking city
             }
         }
     }
@@ -325,6 +356,9 @@ claim_tower_stone = {
                     this = title:c_balfiera
                     this = title:c_red_mountain
                     this = title:c_thras
+                    this = title:c_alinor
+                    this = title:c_whiterun
+                    this = title:c_falinesti
                 }
             }
             save_scope_as = tower_county
@@ -378,6 +412,226 @@ sabotage_tower_stone = {
         modifier = {
             add = 10
             has_trait = schemer
+        }
+    }
+}
+
+# ============================================================
+#  REACHFOLK — Old Ways Pact
+# ============================================================
+
+# Seek out a Hagraven and forge an Old Ways pact
+forge_hagraven_pact = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = forge_hagraven_pact_desc
+
+    is_shown = {
+        is_ruler = yes
+        hagraven_pact_possible = yes
+    }
+
+    is_valid = {
+        piety    >= 200
+        intrigue >= 12
+        gold     >= 150
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_piety    = -200
+        add_gold     = -150
+        trigger_event = { id = reachfolk.002 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 10
+            intrigue >= 18
+        }
+        modifier = {
+            add = 5
+            has_trait = reachman_heritage
+        }
+    }
+}
+
+# ============================================================
+#  HIST — Commune with a Hist Tree
+# ============================================================
+
+# Seek communion with a Hist tree in Black Marsh
+commune_with_hist = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = commune_with_hist_desc
+
+    is_shown = {
+        is_ruler = yes
+        OR = {
+            has_culture = argonian_culture
+            has_trait   = hist_bonded
+        }
+        NOT = { has_modifier = hist_communion_cooldown }
+    }
+
+    is_valid = {
+        piety   >= 300
+        gold    >= 100
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_piety = -300
+        add_gold  = -100
+        trigger_event = { id = hist.001 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = {
+            add = 15
+            learning >= 18
+        }
+        modifier = {
+            add = 10
+            has_trait = hist_bonded
+        }
+    }
+}
+
+# ============================================================
+#  BOSMER — Declare the Green Pact
+# ============================================================
+
+# Formally declare observance of Y'ffre's Green Pact
+declare_green_pact_observance = {
+    picture = "gfx/interface/icons/decisions/decision_faith.dds"
+    desc = declare_green_pact_observance_desc
+
+    is_shown = {
+        is_ruler    = yes
+        has_culture = bosmer_culture
+        NOT = { has_trait = green_pact_devotee }
+    }
+
+    is_valid = {
+        piety >= 300
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_piety = -300
+        trigger_event = { id = bosmeri.001 }
+    }
+
+    ai_will_do = {
+        base = 15
+        modifier = {
+            add = 10
+            piety >= 500
+        }
+    }
+}
+
+# ============================================================
+#  AYLEID — Survey an Ayleid Ruin
+# ============================================================
+
+# Commission scholars to excavate and survey a nearby Ayleid ruin
+survey_ayleid_ruin = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = survey_ayleid_ruin_desc
+
+    is_shown = {
+        is_ruler = yes
+        OR = {
+            has_trait   = ayleid_bloodline
+            has_culture = imperial_culture
+        }
+        NOT = { has_modifier = ayleid_ruin_survey_cooldown }
+        any_held_county = {
+            geographical_region = world_cyrodiil    # Ayleid ruins are most common in Cyrodiil
+        }
+    }
+
+    is_valid = {
+        gold      >= 200
+        learning  >= 10
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_gold = -200
+        trigger_event = { id = ayleid.001 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 10
+            has_trait = ayleid_bloodline
+        }
+        modifier = {
+            add = 10
+            learning >= 16
+        }
+    }
+}
+
+# ============================================================
+#  SNOW ELF — Chantry of Auri-El Pilgrimage
+# ============================================================
+
+# Undertake a pilgrimage to the Chantry of Auri-El in Skyrim
+chantry_of_auriel_pilgrimage = {
+    picture = "gfx/interface/icons/decisions/decision_faith.dds"
+    desc = chantry_of_auriel_pilgrimage_desc
+
+    is_shown = {
+        is_ruler = yes
+        NOT = { has_modifier = chantry_pilgrimage_cooldown }
+        # Must hold or be adjacent to Skyrim
+        any_held_county = {
+            geographical_region = world_skyrim
+        }
+    }
+
+    is_valid = {
+        piety    >= 300
+        gold     >= 150
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_piety = -300
+        add_gold  = -150
+        trigger_event = { id = snow_elf.001 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 10
+            has_trait = snow_elf_legacy
+        }
+        modifier = {
+            add = 5
+            piety >= 600
         }
     }
 }
