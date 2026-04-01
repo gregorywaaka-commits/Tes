@@ -1,9 +1,326 @@
 # =============================================================
 #  Lore Races — Scripted Effects
+#  File: mod/common/scripted_effects/lore_races_effects.txt
+#
+#  These effects are the "do action" building blocks for the
+#  obscure lore races systems: Echmer, Maormer, Sload, Kothringi,
+#  Kamal, and Elder Towers.
+#
+#  CALL GRAPH (who calls what):
+#  ────────────────────────────
+#  establish_echmer_contact      ← echmer.001 event (result of expedition)
+#  maormer_raid_effect           ← maormer.001 event (raid landing event)
+#  tame_sea_serpent_effect       ← maormer.008 event (sea serpent encounter)
+#  unleash_thrassian_plague      ← sload.001 event (Sload decision outcome)
+#  form_all_flags_navy_effect    ← sload.010 event (response coalition)
+#  destroy_thras_effect          ← sload.020 event (All-Flags Navy victory)
+#  trigger_knahaten_flu          ← kothringi.001 event (Flu outbreak event)
+#  depart_crimson_ship           ← kothringi.010 event (Kothringi exile)
+#  accept_clavicus_bargain       ← kothringi.020 event (bargain for immunity)
+#  begin_kamal_invasion          ← kamal.001 event (summer invasion trigger)
+#  end_kamal_invasion            ← kamal.020 event (winter/repelled cleanup)
+#  activate_tower_stone_effect   ← towers.001 event (keeper named)
+#  deactivate_tower_stone_effect ← towers.005 event option (sabotage success)
+#                                ← towers.010 event (Tower falls)
+#
+#  SCOPE REQUIREMENTS:
+#  ───────────────────
+#  • maormer_raid_effect: requires scope:raided_county_owner to be set
+#  • activate_tower_stone_effect: requires scope:tower_county to be set
+#  • deactivate_tower_stone_effect: requires scope:tower_county to be set
+#  • end_kamal_invasion: requires scope:dir_kamal_char to be set
+#  • All others: called on root (the character scope)
 # =============================================================
 
-# ---- Echmer: Establish First Contact ----
+# ---------------------------------------------------------------
+#  ECHMER — Establish First Contact
+#  Called when the expedition to Yneslea successfully makes contact.
+#  Creates an Echmer scholar character at the player's capital who
+#  serves as the ambassador and teacher of Echolalia Fantasia
+#  (the Echmer's unique tonal/bat magic tradition).
+# ---------------------------------------------------------------
 establish_echmer_contact = {
+    set_global_variable = { name = echmer_contact_established value = yes }
+    # Spawn an Echmer scholar at the player's court
+    # This character is the gateway to Echolalia Fantasia study
+    create_character = {
+        template = echmer_scholar_template       # defined in character_templates/lore_races.txt
+        location = root.capital_county
+        save_scope_as = echmer_envoy
+    }
+    scope:echmer_envoy = {
+        # The envoy becomes a close ally — their friendship opens cultural exchange
+        set_relation_friend = { target = root reason = reason_echmer_envoy }
+    }
+    # Notify all rulers — contact with Yneslea is world news
+    every_ruler = {
+        limit = { is_alive = yes }
+        trigger_event = { id = echmer.001 }    # "The Bat-Mer Speak" — contact event
+    }
+}
+
+# ---------------------------------------------------------------
+#  MAORMER — Raid on a Coastal County
+#  Applied to a specific county that Maormer raiders have hit.
+#  Sets a 2-year recovery modifier and offers the county owner
+#  an event to respond (retaliate, fortify, seek truce, etc.).
+# ---------------------------------------------------------------
+maormer_raid_effect = {
+    # Apply the raided modifier to the target county (2 years to recover trade)
+    add_province_modifier = {
+        modifier = maormer_raided_modifier
+        days = 730    # 2 years — time to rebuild raided infrastructure
+    }
+    # Notify the county holder — they must respond
+    scope:raided_county_owner = {
+        trigger_event = { id = maormer.001 }    # "The Sea-Elves Strike" — response event
+    }
+}
+
+# ---------------------------------------------------------------
+#  MAORMER — Tame a Sea Serpent
+#  The Maormer have a special relationship with sea serpents —
+#  some can tame them as mounts or weapons of war.
+#  Called when the player character succeeds in the serpent encounter.
+# ---------------------------------------------------------------
+tame_sea_serpent_effect = {
+    root = {
+        add_trait    = sea_serpent_master    # the trait itself (lore_races_traits.txt)
+        add_prestige = 1000    # Taming a sea serpent is legendary
+        add_piety    = 500     # Connection to the serpents is spiritually significant to Maormer
+        trigger_event = { id = maormer.010 }    # "The Serpent Bows" — taming success event
+    }
+}
+
+# ---------------------------------------------------------------
+#  SLOAD — Unleash the Thrassian Plague
+#  The most devastating pandemic in Tamrielic history.
+#  Applies to ALL coastal counties except the Sload homeland.
+#  Duration: permanent (days = -1) until destroy_thras_effect.
+# ---------------------------------------------------------------
+unleash_thrassian_plague = {
+    set_global_variable = { name = thrassian_plague_active value = yes }
+    set_global_variable = { name = thrassian_plague_origin value = root }    # track who unleashed it
+    # Apply province plague modifier to ALL coastal counties (except Sload lands)
+    # The Thrassian Plague spread by sea — coastal areas first
+    every_county = {
+        limit = {
+            is_coastal = yes
+            NOT = { holder = { is_sload = yes } }    # Sload are immune to their own plague
+        }
+        add_province_modifier = {
+            modifier = thrassian_plague_modifier
+            days = -1    # permanent until destroy_thras_effect runs
+        }
+    }
+    # World notification — every ruler learns of the Plague
+    every_ruler = {
+        limit = { is_alive = yes }
+        trigger_event = { id = sload.001 }    # "The Coral Poison" — plague outbreak event
+    }
+}
+
+# ---------------------------------------------------------------
+#  SLOAD — Form the All-Flags Navy
+#  Historical: After the Thrassian Plague, coastal Tamriel united
+#  under one navy to destroy Thras.  This effect forms that coalition.
+#  Called when enough rulers have joined the response effort.
+# ---------------------------------------------------------------
+form_all_flags_navy_effect = {
+    set_global_variable = { name = all_flags_navy_active value = yes }
+    # Notify all coastal rulers — they are being asked to contribute ships
+    every_ruler = {
+        limit = {
+            is_alive = yes
+            any_held_county = { is_coastal = yes }    # only coastal rulers have a navy to contribute
+        }
+        trigger_event = { id = sload.010 }    # "The All-Flags Navy" — coalition formation event
+    }
+}
+
+# ---------------------------------------------------------------
+#  SLOAD — Destroy Thras (the island sinks into the sea)
+#  Historical: The All-Flags Navy literally sank Thras using
+#  a magical weapon or coordinated attack.  The island was submerged.
+#  This ends the Thrassian Plague globally and removes all related state.
+# ---------------------------------------------------------------
+destroy_thras_effect = {
+    remove_global_variable = thrassian_plague_active
+    remove_global_variable = thrassian_plague_origin
+    remove_global_variable = all_flags_navy_active
+    # Remove the plague modifier from every county that had it
+    every_county = {
+        limit = { has_modifier = thrassian_plague_modifier }
+        remove_province_modifier = thrassian_plague_modifier
+    }
+    # World notification — the plague is over; Thras is gone
+    every_ruler = {
+        limit = { is_alive = yes }
+        trigger_event = { id = sload.020 }    # "Thras Sinks" — victory event
+    }
+}
+
+# ---------------------------------------------------------------
+#  KOTHRINGI — Trigger the Knahaten Flu Outbreak
+#  Historical: The Knahaten Flu originated in Black Marsh and
+#  spread north, killing only Men (Mer and Beastfolk were immune).
+#  The Kothringi were the primary victims in Black Marsh.
+# ---------------------------------------------------------------
+trigger_knahaten_flu = {
+    set_global_variable = { name = knahaten_flu_active value = yes }
+    # Infect Black Marsh counties first — the Flu's origin region
+    every_county = {
+        limit = {
+            title_province = { geographical_region = world_black_marsh }
+        }
+        add_province_modifier = {
+            modifier = knahaten_flu_modifier
+            days = -1    # permanent until end-plague effect (not yet implemented — see future work)
+        }
+    }
+    # Notify rulers who control Black Marsh — they are first affected
+    every_ruler = {
+        limit = {
+            is_alive = yes
+            primary_title = { capital_county = { geographical_region = world_black_marsh } }
+        }
+        trigger_event = { id = kothringi.001 }    # "The Silver Plague" — Flu outbreak event
+    }
+}
+
+# ---------------------------------------------------------------
+#  KOTHRINGI — Depart on the Crimson Ship
+#  Historical: After being wiped out by the Knahaten Flu, the
+#  surviving Kothringi departed on ships and were never seen again.
+#  This effect represents the character fleeing with the remnants
+#  of their people.  It is a permanent exile — a sad, costly choice.
+# ---------------------------------------------------------------
+depart_crimson_ship = {
+    root = {
+        add_trait    = crimson_ship_survivor    # the survivor trait (lore_races_traits.txt)
+        add_prestige = -500    # Abandoning your homeland — even in desperation — is shameful
+        add_piety    = -300    # Fleeing rather than dying with your people
+        trigger_event = { id = kothringi.010 }    # "The Last Voyage" — departure event
+    }
+}
+
+# ---------------------------------------------------------------
+#  KOTHRINGI — Accept Clavicus Vile's Bargain for Immunity
+#  Clavicus Vile offers Kothringi characters immunity from the
+#  Knahaten Flu in exchange for... something.  The terms are always
+#  worse than they sound.  The character gains knahaten_immune but
+#  becomes a daedric bargain holder (clavicus_bargain_made trait).
+# ---------------------------------------------------------------
+accept_clavicus_bargain = {
+    root = {
+        add_trait  = clavicus_bargain_made    # marks the Vile bargain — has consequences
+        add_trait  = knahaten_immune          # the promised immunity
+        add_piety  = -1000    # Dealing with Vile is a profound spiritual failure
+        trigger_event = { id = kothringi.020 }    # "The Price of Survival" — bargain event
+    }
+}
+
+# ---------------------------------------------------------------
+#  KAMAL — Begin the Summer Invasion
+#  The Kamal thaw in summer and invade.  This spawns the dir-Kamal
+#  (the "terrible" Kamal) leader character and their invasion army.
+# ---------------------------------------------------------------
+begin_kamal_invasion = {
+    set_global_variable = { name = kamal_invasion_active value = yes }
+    create_character = {
+        template = dir_kamal_template       # defined in character_templates/lore_races.txt
+        location = title:d_kamal_lands      # spawns in Akaviri territory
+        save_scope_as = dir_kamal_char      # scope for army creation and future reference
+    }
+    scope:dir_kamal_char = {
+        create_army = {
+            name = "Kamal War Host"
+            men_at_arms = { type = kamal_warriors   stack = 600 }    # Kamal shock troops
+            men_at_arms = { type = kamal_ice_mages  stack = 100 }    # Frost-wielding spellcasters
+        }
+    }
+    # Notify all rulers — the Kamal are thawing
+    every_ruler = {
+        limit = { is_alive = yes }
+        trigger_event = { id = kamal.001 }    # "The Kamal Stir" — invasion start event
+    }
+}
+
+# ---------------------------------------------------------------
+#  KAMAL — End the Invasion (winter freeze or repelled)
+#  Either winter returns and re-freezes the Kamal, or they were
+#  militarily defeated.  Removes the invasion state and kills
+#  (banishes) the dir-Kamal leader character.
+# ---------------------------------------------------------------
+end_kamal_invasion = {
+    remove_global_variable = kamal_invasion_active
+    # The dir-Kamal leader retreats (back to Akavir to refreeze)
+    scope:dir_kamal_char = {
+        death = { death_reason = death_banished }    # "banished" represents retreat to Akavir
+    }
+    # Notify all rulers — the Kamal are gone (for this year)
+    every_ruler = {
+        limit = { is_alive = yes }
+        trigger_event = { id = kamal.020 }    # "The Kamal Retreat" — end of invasion event
+    }
+}
+
+# ---------------------------------------------------------------
+#  ELDER TOWERS — Activate a Tower Stone
+#  Called when a character claims a Tower Stone and becomes its Keeper.
+#  Requires scope:tower_county to be set to the county containing the Stone.
+#  Applies the Stone's benefit modifier, increments the global tower count,
+#  and gives the character the tower_stone_keeper trait.
+# ---------------------------------------------------------------
+activate_tower_stone_effect = {
+    # Apply the active Stone modifier to the county (permanent)
+    scope:tower_county = {
+        set_variable = { name = tower_stone_present value = yes }    # checked by tower_X_active triggers
+        add_province_modifier = {
+            modifier = tower_stone_active_modifier
+            days = -1    # permanent until Stone is deactivated
+        }
+    }
+    # Maintain the global active tower count
+    if = {
+        limit = { NOT = { exists = global_var:active_tower_count } }
+        set_global_variable = { name = active_tower_count value = 1 }    # first Tower activated
+    }
+    else = {
+        change_global_variable = { name = active_tower_count add = 1 }
+    }
+    root = {
+        add_trait    = tower_stone_keeper    # the Keeper trait (lore_races_traits.txt)
+        add_prestige = 1500    # Claiming a Tower Stone is a legendary political/magical act
+        add_piety    = 500
+    }
+}
+
+# ---------------------------------------------------------------
+#  ELDER TOWERS — Deactivate / Destroy a Tower Stone
+#  Called when a Stone is sabotaged, destroyed, or stolen.
+#  Removes the Stone's benefit, applies a fallen modifier, and decrements
+#  the global count.  If only 1 Tower remains, fires the world crisis event.
+# ---------------------------------------------------------------
+deactivate_tower_stone_effect = {
+    scope:tower_county = {
+        remove_variable = tower_stone_present               # clears tower_X_active trigger
+        remove_province_modifier = tower_stone_active_modifier
+        add_province_modifier = {
+            modifier = tower_fallen_modifier
+            days = 3650    # 10 years of weakened land from the Stone's absence
+        }
+    }
+    change_global_variable = { name = active_tower_count subtract = 1 }
+    # Check if reality is now critically destabilised
+    if = {
+        limit = { world_stability_critical = yes }    # only 1 Tower left — see lore_races_triggers.txt
+        every_ruler = {
+            limit = { is_alive = yes }
+            trigger_event = { id = towers.015 }    # "Reality Fractures" — world crisis event
+        }
+    }
+}
     set_global_variable = { name = echmer_contact_established value = yes }
     # Spawn an Echmer scholar envoy at the player's court
     create_character = {

@@ -1,47 +1,127 @@
 # =============================================================
 #  Lore Races — On-Actions
+#  File: mod/common/on_actions/lore_races_on_actions.txt
+#
+#  !! IMPORTANT FOR FUTURE AGENTS !!
+#  CK3 merges all on_action files at load time, but files with
+#  the SAME FILENAME shadow each other — only one is loaded.
+#  Always add NEW on_action entries INSIDE THIS FILE rather
+#  than creating a second lore_races_on_actions.txt.
+#  The same rule applies to daedric_invasion_on_actions.txt.
+#
+#  HOW THIS MOD'S ON-ACTION SYSTEM WORKS:
+#  ─────────────────────────────────────
+#  The mod drives gameplay through three CK3 pulse hooks:
+#    • on_yearly_pulse  — fires once per year per living ruler;
+#                         used for flavour, rare events, and
+#                         long-period checks (plagues, Thu'um, etc.)
+#    • on_monthly_pulse — fires every month; used for spread/
+#                         decay ticks (flu, Kamal freeze).
+#    • on_county_occupied — fires when any county changes hands;
+#                           used for Kamal ice-curse.
+#    • on_character_death  — fires on death; used for cleanup.
+#
+#  The random_events weight table controls probability:
+#    The no-op '0' entry carries the bulk of the weight (200)
+#    so that most years nothing happens — keeping events rare
+#    and meaningful.  The other entries are weights relative
+#    to that pool.  For example weight 5 means roughly 1-in-41
+#    chance vs. the no-op in any given year for an eligible ruler.
+#
+#  SYSTEMS MANAGED HERE:
+#  ─────────────────────
+#  • Echmer (bat-mer of Yneslea) — expedition/contact events
+#  • Maormer (sea-elves of Pyandonea) — coastal raids
+#  • Sload (slug-men of Thras) — necromantic schemes, Plague
+#  • Kothringi (silver-skinned men) — Knahaten Flu spread
+#  • Kamal (demons of Akavir) — seasonal freeze/thaw invasion
+#  • Dreugh (sea-creatures) — land/sea life cycle events
+#  • Imga (great apes) — court interaction events
+#  • Elder Towers — world-stability pulse
+#  • Thu'um / Voice — training milestone events
+#  • Dragonborn — Dovahkiin recognition, Akatosh visions
+#  • Greybeard Order — First Voice pilgrimage events
+#  • Amulet of Kings — bearer rejection, political attention
+#
+#  CROSS-REFERENCES:
+#  ─────────────────
+#  • daedric_invasion_on_actions.txt has its own on_yearly_pulse
+#    and on_monthly_pulse entries — CK3 merges them automatically.
+#  • Individual event files: echmer_events.txt, maormer_events.txt,
+#    sload_events.txt, kothringi_events.txt, kamal_events.txt,
+#    minor_lore_races_events.txt, towers_events.txt,
+#    thuumvoi_events.txt, amulet_of_kings_events.txt.
+#  • Systems triggered here read global_vars set by their effects:
+#    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
+#    global_var:thrassian_plague_active, global_var:active_tower_count.
 # =============================================================
 
-# Yearly random pulse — trigger obscure lore events and Thu'um events
+# ---------------------------------------------------------------
+#  YEARLY RANDOM PULSE
+#  Fires once per year for each living ruler.
+#  Only one event fires per ruler per year (random_events picks one).
+#  Add new yearly flavour events HERE — keep the no-op weight high
+#  enough that events remain rare (current no-op weight = 200).
+# ---------------------------------------------------------------
 on_yearly_pulse = {
     random_events = {
-        200 = 0                      # no-op weight
-        3   = echmer.000             # expedition opportunity
-        4   = maormer.002            # Maormer raid on random coastal county
-        2   = sload.000              # Sload necromantic scheme discovered
-        5   = kamal.000              # Kamal thaw check
-        3   = dreugh.001             # Dreugh life-cycle event
-        2   = imga.001               # Imga aristocrat arrives at court
-        2   = towers.000             # Tower stability check
-        10  = thuumvoi.002           # Word of Power milestone (Voice initiates)
-        8   = dovahkiin.post_001     # Dragonborn recognition
-        6   = greybeard.post_001     # First Voice receives a pilgrim
-        5   = greybeard.post_002     # First Voice — young Tongue challenges them
-        4   = thuumvoi.016           # Akatosh's vision (post-awakening Dragonborn)
-        3   = amulet.005             # Amulet rejects non-Dragonborn bearer
-        4   = amulet.post_001        # Amulet draws political attention
+        200 = 0                      # no-op — most years, nothing fires (keeps events meaningful)
+        3   = echmer.000             # Expedition to Yneslea opportunity (see echmer_events.txt)
+        4   = maormer.002            # Maormer sea-elves raid a random coastal county (maormer_events.txt)
+        2   = sload.000              # Sload necromantic scheme discovered (sload_events.txt)
+        5   = kamal.000              # Kamal seasonal thaw check — may trigger summer invasion (kamal_events.txt)
+        3   = dreugh.001             # Dreugh land/sea life-cycle event (minor_lore_races_events.txt)
+        2   = imga.001               # Imga aristocrat arrives seeking audience (minor_lore_races_events.txt)
+        2   = towers.000             # World Tower stability check (towers_events.txt) — hidden event
+        10  = thuumvoi.002           # Word of Power milestone for active Voice initiates (thuumvoi_events.txt)
+        8   = dovahkiin.post_001     # Dragonborn recognition event (thuumvoi_events.txt dovahkiin namespace)
+        6   = greybeard.post_001     # First Voice receives a pilgrim at High Hrothgar (thuumvoi_events.txt)
+        5   = greybeard.post_002     # First Voice — young Tongue challenges their authority (thuumvoi_events.txt)
+        4   = thuumvoi.016           # Akatosh's vision for post-awakening Dragonborn (thuumvoi_events.txt)
+        3   = amulet.005             # Amulet of Kings rejects a non-Dragonborn bearer (amulet_of_kings_events.txt)
+        4   = amulet.post_001        # Amulet of Kings draws political/religious attention (amulet_of_kings_events.txt)
     }
 }
 
-# Monthly pulse — Knahaten flu spread tick, Kamal seasonal check, Tower stability
+# ---------------------------------------------------------------
+#  MONTHLY PULSE
+#  Fires every month for every living ruler.
+#  Used for spread/decay mechanics that need finer granularity
+#  than once-per-year.  Keep the event list short — this fires
+#  frequently and can generate a lot of event triggers.
+# ---------------------------------------------------------------
 on_monthly_pulse = {
     events = {
-        kothringi.050                # Knahaten flu spread tick
-        kamal.050                    # Kamal seasonal freeze / thaw tick
+        kothringi.050    # Knahaten Flu spread tick — infects new counties if global_var:knahaten_flu_active is set
+        kamal.050        # Kamal seasonal freeze/thaw tick — checks current month to apply/remove ice modifiers
     }
 }
 
-# On county occupied — chance for Kamal to freeze a province
+# ---------------------------------------------------------------
+#  ON COUNTY OCCUPIED
+#  Fires whenever a county is taken by a different controller.
+#  Used for Kamal ice-curse: when Kamal conquer a province in
+#  summer they freeze it (kamal_ice_curse_modifier).
+# ---------------------------------------------------------------
 on_county_occupied = {
     events = {
-        kamal.002                    # Kamal ice-curse on occupied county
+        kamal.002    # Chance to apply Kamal ice-curse to the newly occupied county
     }
 }
 
-# On character death — clean up lore race trait flags and Thu'um flags
+# ---------------------------------------------------------------
+#  ON CHARACTER DEATH
+#  Fires when any character dies.
+#  Used to clean up trait flags that should not persist after
+#  death.  Note: CK3 character variables/flags are automatically
+#  destroyed with the character, but some global_vars may need
+#  cleanup if they reference a specific character.
+# ---------------------------------------------------------------
 on_character_death = {
     events = {
-        kothringi.060                # remove Knahaten immune flag if relevant
-        # Thu'um flags die with the character automatically — no cleanup needed
+        kothringi.060    # Removes knahaten_immune flag bookkeeping if the immune character was the last
+        # Thu'um flags: character_flags die with the character — no manual cleanup needed.
+        # Dragon soul counter (dragon_souls_absorbed_count) is a character variable — auto-cleared on death.
+        # Greybeard_rank and thuumvoi_rank variables are also character-scoped — auto-cleared.
     }
 }

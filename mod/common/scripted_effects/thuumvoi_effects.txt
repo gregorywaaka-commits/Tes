@@ -1,16 +1,337 @@
 # =============================================================
 #  Thu'um / Voice — Scripted Effects
+#  File: mod/common/scripted_effects/thuumvoi_effects.txt
+#
+#  HOW THIS FILE FITS INTO THE SYSTEM:
+#  ─────────────────────────────────────
+#  Scripted effects are reusable blocks of CK3 effects called
+#  from decisions, events, and other effects.  They are the
+#  "action verbs" of the system — each one does something.
+#
+#  CALL GRAPH (who calls what):
+#  ────────────────────────────
+#  begin_voice_training        ← seek_thu_um_training decision
+#  advance_voice_training      ← advance_thu_um_training decision
+#  leave_voice_path            ← leave_voice_path_decision decision
+#  join_greybeard_order        ← seek_the_greybeard_order decision
+#  initiate_greybeard          ← take_greybeard_vows decision
+#  leave_greybeard_order       ← leave_greybeard_order_decision decision
+#  awaken_dovah_blood          ← harness_dovah_blood decision
+#  absorb_dragon_soul          ← dovahkiin.003 event (first soul)
+#  absorb_additional_dragon_soul ← absorb_another_dragon_soul decision
+#  learn_from_word_wall_effect ← learn_from_word_wall decision
+#  resist_dovah_nature         ← resist_dovah_nature_decision decision
+#                              ← thuumvoi.012 event (crisis choice)
+#  submit_to_dovah_nature      ← thuumvoi.012 event (crisis choice)
+#  receive_amulet_of_kings     ← amulet.004 event
+#  lose_amulet_of_kings        ← amulet.005 event
+#  relight_dragonfires_effect  ← amulet.006 event
+#
+#  STATE VARIABLES (character-scoped, auto-cleared on death):
+#  ────────────────────────────────────────────────────────
+#  thuumvoi_rank       — integer 1/2/3; Voice tier
+#  greybeard_rank      — integer 1/2/3; Greybeard tier
+#  dragon_souls_absorbed_count — integer; number of Dragon Souls
+#
+#  CHARACTER FLAGS (character-scoped, auto-cleared on death):
+#  ──────────────────────────────────────────────────────────
+#  thuumvoi_quest_started        — prevents duplicate Voice training start
+#  greybeard_quest_started       — prevents duplicate Greybeard join
+#  greybeard_quest_4_done        — unlocks take_greybeard_vows decision
+#  greybeard_lead_quest_1        — unlocks Greybeard leadership quest
+#  greybeard_lead_quest_done     — unlocks claim_first_voice decision
+#  dovahkiin_quest_started       — prevents duplicate Dragonborn awakening
+#  dovah_crisis_pending          — triggers thuumvoi.012 after delay
+#  dovah_crisis_resolved         — blocks repeat crisis events
+#  amulet_quest_started          — prevents duplicate Amulet quest start
+#  amulet_quest_1_seen           — tracks progress through Amulet quest chain
+#  amulet_quest_2_seen           — tracks progress
+#  amulet_quest_3_done           — unlocks claim_the_amulet_of_kings decision
+#  amulet_of_kings_claimed       — set after claiming the Amulet
+#  amulet_of_kings_bearer        — presence = holds the Amulet (checked by has_amulet_of_kings trigger)
+#  dragonfires_lit               — set after relighting; blocks further relight attempts
+#  heard_of_covenant_of_alessia  — nudges toward Amulet quest; eases is_valid conditions
+#  dovahkiin_akatosh_vision_seen — prevents repeat Akatosh vision events
+#  thuumvoi_event_10_seen        — prevents repeat soul-threshold event
+#  thuumvoi_event_11_seen        — prevents repeat soul-threshold event
+#  thuumvoi_event_13_seen        — prevents repeat resist event
+#  thuumvoi_event_14_seen        — prevents repeat submit event
 # =============================================================
 
 # ---------------------------------------------------------------
 #  VOICE PATH — join/advance/leave
 # ---------------------------------------------------------------
 
+# begin_voice_training: starts the Voice training quest chain.
+# Sets the quest flag and rank variable, gives thu_um_initiate trait,
+# fires thuumvoi.001 (the opening narrative event).
+# Called by: seek_thu_um_training decision (thuumvoi_decisions.txt)
 begin_voice_training = {
-    add_character_flag = thuumvoi_quest_started
+    add_character_flag = thuumvoi_quest_started    # prevents re-entry into training
     set_variable       = { name = thuumvoi_rank value = 1 }
     add_trait          = thu_um_initiate
-    trigger_event      = { id = thuumvoi.001 }
+    trigger_event      = { id = thuumvoi.001 }     # "The First Word" — opening event
+}
+
+# advance_voice_training: advances one step along the Voice path.
+# initiate → adept (fires thuumvoi.003)
+# adept    → master / Tongue (fires thuumvoi.004)
+# The 1825-day cooldown (5 years) simulates years of practice between tiers.
+# Called by: advance_thu_um_training decision (thuumvoi_decisions.txt)
+advance_voice_training = {
+    add_modifier = { modifier = thuumvoi_advancement_cooldown days = 1825 }  # 5-year practice requirement
+    if = {
+        limit = { has_trait = thu_um_initiate }
+        remove_trait = thu_um_initiate
+        add_trait    = thu_um_adept
+        change_variable = { name = thuumvoi_rank add = 1 }
+        trigger_event = { id = thuumvoi.003 }    # "The Voice Deepens" event
+    }
+    else_if = {
+        limit = { has_trait = thu_um_adept }
+        remove_trait = thu_um_adept
+        add_trait    = thu_um_master
+        change_variable = { name = thuumvoi_rank add = 1 }
+        trigger_event = { id = thuumvoi.004 }    # "A Tongue" event — becoming a master
+    }
+}
+
+# leave_voice_path: removes all Voice training, clears flags/variables.
+# Prestige penalty represents the shame of abandoning the Way of the Voice
+# after the community had invested in training them.
+# Called by: leave_voice_path_decision decision (thuumvoi_decisions.txt)
+leave_voice_path = {
+    remove_character_flag = thuumvoi_quest_started
+    clear_variable        = thuumvoi_rank
+    if = { limit = { has_trait = thu_um_initiate } remove_trait = thu_um_initiate }
+    if = { limit = { has_trait = thu_um_adept    } remove_trait = thu_um_adept    }
+    if = { limit = { has_trait = thu_um_master   } remove_trait = thu_um_master   }
+    add_prestige = -150    # Abandoning the Way brings shame — 150 is a moderate penalty
+}
+
+# ---------------------------------------------------------------
+#  GREYBEARD ORDER — join/advance/leave
+#  The Order of the Greybeards at High Hrothgar (Skyrim).
+#  Members take a vow of near-silence — every utterance of the
+#  Thu'um is sacred and reshapes reality.
+#  Path: greybeard_aspirant → greybeard_of_high_hrothgar → first_voice_of_the_greybeards
+# ---------------------------------------------------------------
+
+# join_greybeard_order: beginning the Greybeard initiation quest.
+# Removes training cooldown because Greybeard path bypasses normal advancement.
+# Called by: seek_the_greybeard_order decision (thuumvoi_decisions.txt)
+join_greybeard_order = {
+    add_character_flag = greybeard_quest_started
+    set_variable       = { name = greybeard_rank value = 1 }
+    add_trait          = greybeard_aspirant
+    remove_modifier    = thuumvoi_advancement_cooldown    # Greybeards don't use the normal training ladder
+    trigger_event      = { id = greybeard.001 }           # "The 7,000 Steps" — opening Greybeard event
+}
+
+# initiate_greybeard: the character takes the full vow and becomes a Greybeard.
+# The greybeard_vow_modifier (permanent) represents the ongoing vow of near-silence.
+# Called by: take_greybeard_vows decision (thuumvoi_decisions.txt)
+initiate_greybeard = {
+    remove_trait    = greybeard_aspirant
+    add_trait       = greybeard_of_high_hrothgar
+    change_variable = { name = greybeard_rank add = 1 }
+    add_modifier    = { modifier = greybeard_vow_modifier days = -1 }    # permanent vow
+    trigger_event   = { id = greybeard.006 }    # "The Vow" — ceremony event
+}
+
+# leave_greybeard_order: breaks the vow and removes all Greybeard ties.
+# Heavy piety penalty (400) and broken oath modifier (5 years) represent
+# the spiritual severity of breaking such a sacred commitment.
+# Called by: leave_greybeard_order_decision decision (thuumvoi_decisions.txt)
+leave_greybeard_order = {
+    remove_character_flag = greybeard_quest_started
+    clear_variable        = greybeard_rank
+    if = { limit = { has_trait = greybeard_aspirant             } remove_trait = greybeard_aspirant             }
+    if = { limit = { has_trait = greybeard_of_high_hrothgar     } remove_trait = greybeard_of_high_hrothgar     }
+    if = { limit = { has_trait = first_voice_of_the_greybeards  } remove_trait = first_voice_of_the_greybeards  }
+    remove_modifier = greybeard_vow_modifier
+    add_modifier    = { modifier = greybeard_oath_broken days = 1825 }    # 5 years of spiritual dishonour
+    add_prestige    = -300    # Leaving the most respected spiritual order in Skyrim
+    add_piety       = -400    # Breaking a sacred vow — severe spiritual consequence
+}
+
+# ---------------------------------------------------------------
+#  DRAGONBORN AWAKENING
+#  The Dragonborn (EK2 trait) must go through an awakening
+#  event chain before their full power is unlocked.
+#  The awakening culminates in absorbing their first Dragon Soul.
+# ---------------------------------------------------------------
+
+# awaken_dovah_blood: begins the Dragonborn awakening quest chain.
+# Sets a flag to prevent re-entry, then fires dovahkiin.001.
+# Called by: harness_dovah_blood decision (thuumvoi_decisions.txt)
+awaken_dovah_blood = {
+    add_character_flag = dovahkiin_quest_started    # prevents duplicate awakening attempts
+    trigger_event      = { id = dovahkiin.001 }     # "The Dovah Stirs" — first awakening event
+}
+
+# absorb_dragon_soul: the Dragonborn absorbs their FIRST Dragon Soul.
+# This is the culminating moment of the awakening chain.
+# Sets dragon_souls_absorbed_count = 1 (used by future absorption checks).
+# The Training advance (initiate → adept) is lore-accurate: absorbing a soul
+# gives instant knowledge of many Shouts, bypassing years of practice.
+# Called by: dovahkiin.003 event (thuumvoi_events.txt)
+absorb_dragon_soul = {
+    add_trait    = dovahkiin_soul_awakened
+    add_modifier = { modifier = dovahkiin_full_power_modifier days = -1 }    # permanent power awakening
+    set_variable = { name = dragon_souls_absorbed_count value = 1 }
+    add_prestige = 600    # Absorbing a Dragon Soul is a world-significant act
+    add_piety    = 300    # Fulfilling one's divine nature as Dovahkiin
+    remove_modifier = thuumvoi_advancement_cooldown    # Dragonborn bypasses training restrictions
+    # Lore-accurate: a Dragonborn who absorbs their first soul immediately
+    # knows more Shouts than a trained initiate — advance them automatically.
+    if = {
+        limit = { has_trait = thu_um_initiate }
+        remove_trait = thu_um_initiate
+        add_trait    = thu_um_adept
+    }
+}
+
+# ---------------------------------------------------------------
+#  DRAGONBORN — SOUL STACKING
+#  Each additional Dragon Soul absorbed after the first adds
+#  to dragon_souls_absorbed_count and may trigger threshold traits.
+#  Thresholds: 5 souls → dragon_souls_growing, 10 → dragon_souls_brimming.
+# ---------------------------------------------------------------
+
+# absorb_additional_dragon_soul: absorbs one more Dragon Soul.
+# The 730-day cooldown (2 years) represents the time needed to
+# find, fight, and recover from slaying another dragon.
+# At thresholds (5, 10), fires corresponding narrative events.
+# Called by: absorb_another_dragon_soul decision (thuumvoi_decisions.txt)
+absorb_additional_dragon_soul = {
+    add_modifier    = { modifier = absorb_soul_cooldown days = 730 }    # 2-year recovery
+    change_variable = { name = dragon_souls_absorbed_count add = 1 }
+    # --- Threshold check: 5 souls (dragon_souls_growing) ---
+    if = {
+        limit = {
+            check_variable = { name = dragon_souls_absorbed_count value >= 5 }
+            NOT = { has_trait = dragon_souls_growing }
+        }
+        add_trait     = dragon_souls_growing
+        trigger_event = { id = thuumvoi.010 }    # "Five Souls" event
+    }
+    # --- Threshold check: 10 souls (dragon_souls_brimming + crisis) ---
+    else_if = {
+        limit = {
+            check_variable = { name = dragon_souls_absorbed_count value >= 10 }
+            NOT = { has_trait = dragon_souls_brimming }
+        }
+        add_trait     = dragon_souls_brimming
+        trigger_event = { id = thuumvoi.011 }    # "Ten Souls: The Dragon at the Threshold" event
+    }
+    # --- Between thresholds: small reward, no event ---
+    else = {
+        add_prestige = 300
+        add_piety    = 100
+    }
+}
+
+# learn_from_word_wall_effect: the Dragonborn reads a Word Wall.
+# Lore-accurate: Dragonborn absorb Word Wall knowledge instantly
+# without years of practice — the Dragonblood recognises the Dragon Language.
+# 365-day cooldown (1 year) represents integration time.
+# Also auto-advances an initiate to adept (same logic as soul absorption).
+# Called by: learn_from_word_wall decision (thuumvoi_decisions.txt)
+learn_from_word_wall_effect = {
+    add_modifier = { modifier = dovahkiin_word_wall_cooldown days = 365 }    # 1-year integration
+    trigger_event = { id = thuumvoi.015 }    # "A Word Wall" — reading event
+    if = {
+        limit = { has_trait = thu_um_initiate }
+        remove_trait = thu_um_initiate
+        add_trait    = thu_um_adept    # Instant advancement — Word Wall contains full Shout knowledge
+    }
+    add_learning = 1       # The dragon's language expands understanding of the world
+    add_piety    = 100
+    add_prestige = 150
+}
+
+# ---------------------------------------------------------------
+#  DOVAH NATURE RESOLUTION
+#  When dragon_souls_absorbed_count >= 10, the Dovah nature crisis
+#  can overwhelm the Dragonborn.  These two effects represent the
+#  two possible resolutions: resist (choose mortal self) or submit.
+#  The crisis itself is triggered by thuumvoi.011 and resolved in
+#  thuumvoi.012 or the resist_dovah_nature_decision decision.
+# ---------------------------------------------------------------
+
+# resist_dovah_nature: the Dragonborn wins "the hardest shout".
+# Paarthurnax calls this turning the Voice inward — taming the
+# Dovah instinct rather than being tamed by it.
+# Piety (500) gate in the decision means this requires spiritual maturity.
+# Called by: resist_dovah_nature_decision (thuumvoi_decisions.txt)
+#            thuumvoi.012 (if piety >= 300)
+resist_dovah_nature = {
+    if = { limit = { has_trait = dovah_nature_dominant } remove_trait = dovah_nature_dominant }
+    add_trait    = dovah_nature_resisted
+    add_piety    = 500    # This is the most spiritually significant act in the Dragonborn's life
+    add_prestige = 400
+    add_stress   = -30    # The resolution brings genuine peace
+    trigger_event = { id = thuumvoi.013 }    # "The Hardest Shout" event
+}
+
+# submit_to_dovah_nature: the dragon's instinct takes hold — for now.
+# The character still has a path back (resist_dovah_nature_decision is
+# still available with dovah_nature_dominant trait active).
+# The 50 dread gain reflects the terror the Dragonborn radiates in this state.
+# Called by: resist_dovah_nature_decision (if piety < 300)
+#            thuumvoi.012 (option b — willing submission)
+submit_to_dovah_nature = {
+    if = { limit = { has_trait = dovah_nature_resisted } remove_trait = dovah_nature_resisted }
+    add_trait    = dovah_nature_dominant
+    add_prestige = 200    # The dragon's power is impressive even if the mortal is losing
+    add_dread    = 50     # The Dovah nature radiates dominance and ancient power
+    add_stress   = 20     # But it is NOT peaceful — the mortal is fighting for control
+    trigger_event = { id = thuumvoi.014 }    # "The Dragon Prevails" event
+}
+
+# ---------------------------------------------------------------
+#  AMULET OF KINGS
+#  See amulet_of_kings_events.txt for the quest chain.
+#  See amulet_of_kings_decisions.txt for decisions.
+#  See lore_races_modifiers.txt for the modifier definitions.
+# ---------------------------------------------------------------
+
+# receive_amulet_of_kings: the character formally takes possession of the Amulet.
+# The amulet_of_kings_bearer flag is what triggers has_amulet_of_kings.
+# Note: the amulet_of_kings_dragonborn_modifier is applied SEPARATELY in amulet.004
+# if the character is Dragonborn — this effect only applies the base bearer modifier.
+# Called by: amulet.004 event (amulet_of_kings_events.txt)
+receive_amulet_of_kings = {
+    add_character_flag = amulet_of_kings_bearer            # checked by has_amulet_of_kings trigger
+    add_modifier = { modifier = amulet_of_kings_bearer_modifier days = -1 }    # permanent base bonus
+    add_prestige = 1000    # Possessing a divine artefact of this magnitude is extraordinary
+    add_piety    = 500
+}
+
+# lose_amulet_of_kings: the character loses possession of the Amulet.
+# Removes BOTH base and Dragonborn-specific modifiers (safe even if one isn't applied).
+# Called by: amulet.005 event (rejection/burn by non-Dragonborn)
+#            future: conquest/theft mechanics could call this too
+lose_amulet_of_kings = {
+    remove_character_flag = amulet_of_kings_bearer
+    remove_modifier = amulet_of_kings_bearer_modifier
+    remove_modifier = amulet_of_kings_dragonborn_modifier    # safe to call even if not applied
+    add_prestige = -500
+    add_piety    = -300
+}
+
+# relight_dragonfires_effect: the culminating act of the Amulet of Kings questline.
+# Requires: has_amulet_of_kings + is_dragonborn + White-Gold Tower in realm
+#           (checked by can_relight_dragonfires trigger in thuumvoi_triggers.txt)
+# The dragonfires_lit flag blocks this from being done twice.
+# The dragonfires_lit_modifier provides the strongest Oblivion protection in the mod.
+# Called by: amulet.006 event (amulet_of_kings_events.txt)
+relight_dragonfires_effect = {
+    add_character_flag = dragonfires_lit                        # permanent — cannot relight twice
+    add_modifier = { modifier = dragonfires_lit_modifier days = -1 }    # permanent divine protection
+    add_prestige = 3000    # Relighting the Dragonfires is the most significant political act possible
+    add_piety    = 2000    # Renewing Alessia's Covenant with Akatosh
 }
 
 advance_voice_training = {

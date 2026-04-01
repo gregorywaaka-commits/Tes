@@ -1,21 +1,83 @@
 # =============================================================
 #  Daedric Invasion — Scripted Effects
+#  File: mod/common/scripted_effects/daedric_invasion_effects.txt
+#
+#  These effects are the primary "action" building blocks for the
+#  Daedric invasion system.  They are called from events and decisions.
+#
+#  CALL GRAPH:
+#  ────────────
+#  begin_daedric_invasion         ← daedric_invasion.000 event
+#    └── calls: open_oblivion_gate_effect (×3)
+#    └── fires: daedric_invasion.001 (all rulers)
+#  open_oblivion_gate_effect      ← begin_daedric_invasion
+#                                 ← oblivion_gate.002 event (on occupation)
+#    └── fires: oblivion_gate.001 (county owner)
+#  close_oblivion_gate_effect     ← oblivion_gate.010 event (gate closed)
+#    └── fires: oblivion_gate.010 (gate_closer character)
+#  escalate_daedric_invasion      ← daedric_invasion.050 event (monthly tick)
+#    └── calls: open_oblivion_gate_effect (×2)
+#    └── fires: daedric_invasion.005 (all rulers)
+#  end_daedric_invasion           ← daedric_invasion.045 event (banishment success)
+#                                 ← daedric_invasion.050 event (Prince army dead)
+#    └── fires: daedric_invasion.020 (all rulers)
+#
+#  SCOPE REQUIREMENTS:
+#  ───────────────────
+#  begin_daedric_invasion:   sets scope:daedric_prince_char internally
+#  close_oblivion_gate_effect: requires scope:gate_closer = the character who closed the gate
+#  escalate_daedric_invasion: requires scope:daedric_prince_char to be alive
+#  end_daedric_invasion:      requires scope:daedric_prince_char to be alive
+#
+#  PRINCE TEMPLATE KEYS (global_var:active_daedric_prince values):
+#  ────────────────────────────────────────────────────────────────
+#  "mehrunes_dagon_template"  — Mehrunes Dagon (Destruction)
+#  "molag_bal_template"       — Molag Bal (Domination / Planemeld)
+#  "boethiah_template"        — Boethiah (Betrayal / Plots)
+#  "hircine_template"         — Hircine (Hunt)
+#  "namira_template"          — Namira (Darkness / Decay)
+#  "azura_template"           — Azura (Prophecy / Twilight)
+#  "mephala_template"         — Mephala (Secrets / Webs)
+#  "clavicus_vile_template"   — Clavicus Vile (Bargains)
+#  "vaermina_template"        — Vaermina (Nightmares)
+#  "sheogorath_template"      — Sheogorath (Madness)
+#  "peryite_template"         — Peryite (Pestilence)
+#  "sanguine_template"        — Sanguine (Hedonism)
+#  "meridia_template"         — Meridia (Light / Anti-undead)
+#  "malacath_template"        — Malacath (Oaths / Outcasts)
+#  "nocturnal_template"       — Nocturnal (Shadow / Thieves)
+#  "hermaeus_mora_template"   — Hermaeus Mora (Knowledge / Fate)
+#  "jyggalag_template"        — Jyggalag (Order / Greymarch)
+#
+#  Army unit types defined in men_at_arms_types/daedric_units.txt.
+#  Modifier definitions in lore_races_modifiers.txt.
+#  Character templates in character_templates/daedric_princes.txt.
 # =============================================================
 
-# ----- Begin an invasion by a specific Prince -----
-# Caller must have set global_var:chosen_prince_key before calling.
+# ---------------------------------------------------------------
+#  begin_daedric_invasion
+#  The central effect that starts any Daedric invasion.
+#  Sets global state, spawns the Prince character and their army,
+#  applies per-Prince world modifiers, opens 3 Oblivion Gates,
+#  and notifies all rulers.
+#
+#  PREREQUISITE: global_var:chosen_prince_key must be set before calling.
+#  (This is done by daedric_invasion.000 which picks a Prince.)
+# ---------------------------------------------------------------
 begin_daedric_invasion = {
+    # Set the three core global variables that track invasion state
     set_global_variable = { name = active_daedric_prince value = global_var:chosen_prince_key }
-    set_global_variable = { name = daedric_invasion_phase value = 1 }
-    set_global_variable = { name = daedric_invasion_started_days value = 0 }
+    set_global_variable = { name = daedric_invasion_phase value = 1 }             # start at phase 1
+    set_global_variable = { name = daedric_invasion_started_days value = 0 }      # day counter for escalation
 
-    # Spawn the Prince in a realm fitting their sphere
-    # Per-prince spawn location and opening army
+    # ── MEHRUNES DAGON (Prince of Destruction, Change, Revolution) ──────────────
+    # Largest initial army of any Prince; no special world modifier.
+    # His invasion is straightforward military conquest — he destroys for its own sake.
     if = {
         limit = { global_var:active_daedric_prince = "mehrunes_dagon_template" }
         create_character = {
             template = mehrunes_dagon_template
-            location = title:d_deadlands
+            location = title:d_deadlands    # spawns in his Plane (the Deadlands)
             save_scope_as = daedric_prince_char
         }
         scope:daedric_prince_char = {
@@ -23,16 +85,21 @@ begin_daedric_invasion = {
                 name = "Dagon's Horde"
                 men_at_arms = { type = daedra_footsoldiers  stack = 500 }
                 men_at_arms = { type = daedra_cavalry       stack = 200 }
-                men_at_arms = { type = clannfear            stack = 100 }
+                men_at_arms = { type = clannfear            stack = 100 }    # panther-like Daedra
                 men_at_arms = { type = golden_saint         stack =  50 }
             }
         }
     }
+    # ── MOLAG BAL (Prince of Domination, Father of Vampires) ────────────────────
+    # Lore: Molag Bal's invasion IS the Planemeld — his attempt to drag all of
+    # Nirn into his realm Coldharbour.  He is ESO's primary antagonist.
+    # Game effect: applies molag_planemeld_dread to all kingdom+ rulers, representing
+    # the psychic weight of Coldharbour threatening to absorb the world.
     else_if = {
         limit = { global_var:active_daedric_prince = "molag_bal_template" }
         create_character = {
             template = molag_bal_template
-            location = title:d_coldharbour
+            location = title:d_coldharbour    # spawns in Coldharbour (his Oblivion plane)
             save_scope_as = daedric_prince_char
         }
         scope:daedric_prince_char = {
@@ -40,16 +107,16 @@ begin_daedric_invasion = {
                 name = "Coldharbour Dominion"
                 men_at_arms = { type = daedra_footsoldiers  stack = 400 }
                 men_at_arms = { type = clannfear            stack = 150 }
-                men_at_arms = { type = dremora             stack = 100 }
+                men_at_arms = { type = dremora             stack = 100 }    # the warrior nobility of Oblivion
             }
         }
-        # Molag's invasion begins the Planemeld — apply dread to targeted rulers
+        # The Planemeld affects all major rulers psychologically
         every_ruler = {
             limit = {
                 is_alive = yes
-                primary_title = { tier >= tier_kingdom }
+                primary_title = { tier >= tier_kingdom }    # only kingdom+ rulers feel this initially
             }
-            add_modifier = { modifier = molag_planemeld_dread days = 1825 }
+            add_modifier = { modifier = molag_planemeld_dread days = 1825 }    # 5 years of dread
         }
     }
     else_if = {

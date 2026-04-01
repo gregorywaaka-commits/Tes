@@ -1,10 +1,281 @@
 # =============================================================
 #  Daedric Invasion — Scripted Triggers
+#  File: mod/common/scripted_triggers/daedric_invasion_triggers.txt
+#
+#  HOW THE DAEDRIC INVASION TRIGGER SYSTEM WORKS:
+#  ─────────────────────────────────────────────────
+#  These triggers are the "is X currently true?" checks for the
+#  Daedric invasion system.  They are used by:
+#    • Decision is_shown / is_valid blocks
+#    • Event trigger / immediate blocks
+#    • Other scripted triggers (composed checks)
+#    • Effects (begin/escalate/end effects check these)
+#
+#  GLOBAL VARIABLE SUMMARY:
+#  ─────────────────────────
+#  global_var:active_daedric_prince — string key of the current Prince
+#    template (e.g. "molag_bal_template").  EXISTS iff an invasion is active.
+#  global_var:daedric_invasion_phase — integer 1/2/3.  Phase increases
+#    over time via escalate_daedric_invasion.  Phase 3 = maximum threat.
+#  global_var:daedric_invasion_started_days — integer days counter.
+#    Incremented monthly by daedric_invasion.050.
+#    escalate check fires when this >= 1825 (5 years).
+#
+#  HOW TO ADD A NEW PRINCE:
+#  ─────────────────────────
+#  1. Add is_X_invasion trigger here (copy pattern below).
+#  2. Add the prince's template to character_templates/daedric_princes.txt.
+#  3. Add an else_if block to begin_daedric_invasion (daedric_invasion_effects.txt).
+#  4. Add cleanup to end_daedric_invasion (daedric_invasion_effects.txt).
+#  5. Add a seek_X decision to daedric_prince_decisions.txt.
+#  6. Add a daedric_champion.X.001 event chain to daedric_champion_events.txt.
+#  7. Add the X_aspect and X_champion traits to daedric_invasion_traits.txt.
+#  8. Add any unique modifiers to lore_races_modifiers.txt.
 # =============================================================
 
-# True while any active Daedric invasion is running
+# ---------------------------------------------------------------
+#  CORE INVASION STATE TRIGGERS
+# ---------------------------------------------------------------
+
+# True while ANY Daedric invasion is active.
+# The presence of global_var:active_daedric_prince is the sole
+# source of truth for invasion state — all other checks build on this.
+# If this is false, no invasion-specific decisions/events should show.
 is_daedric_invasion_active = {
     exists = global_var:active_daedric_prince
+}
+
+# True for the AI character who IS the Daedric Prince invader.
+# is_ai = yes prevents this from ever being true for a player character.
+is_daedric_prince_invader = {
+    has_trait = daedric_prince    # the daedric_prince trait (daedric_invasion_traits.txt)
+    is_ai = yes
+}
+
+# True when a specific county (province scope) has an Oblivion Gate.
+# Gates are opened by open_oblivion_gate_effect and closed by close_oblivion_gate_effect.
+# The variable is set on the county itself (not a character variable).
+province_has_oblivion_gate = {
+    has_variable = oblivion_gate_active    # set by open_oblivion_gate_effect in daedric_invasion_effects.txt
+}
+
+# True when any of the ruler's held counties has a Gate.
+# Used to show/gate decisions that let the ruler personally deal with a nearby Gate.
+ruler_threatened_by_oblivion_gate = {
+    any_held_county = {
+        has_variable = oblivion_gate_active
+    }
+}
+
+# Can the invasion escalate to the next phase?
+# Requirements:
+#   • invasion phase variable exists (invasion is active)
+#   • phase < 3 (cannot escalate beyond phase 3)
+#   • 1825+ days have passed since start (~5 years per phase)
+# The 5-year escalation period means a typical invasion lasts ~15 years
+# from start to maximum threat — long enough to require sustained response.
+daedric_invasion_can_escalate = {
+    exists = global_var:daedric_invasion_phase
+    global_var:daedric_invasion_phase < 3
+    global_var:daedric_invasion_started_days >= 1825    # 5 years = 1825 days in CK3
+}
+
+# True once the invasion has reached maximum escalation (phase 3).
+# At this point the invasion cannot get worse — only be ended.
+daedric_invasion_at_full_power = {
+    exists = global_var:daedric_invasion_phase
+    global_var:daedric_invasion_phase >= 3
+}
+
+# Can a NEW invasion be triggered?
+# Requirements:
+#   • no invasion currently active (prevents two simultaneous invasions)
+#   • date is past 2E.100 (early Interregnum guard — EK2 starts at 2E 440,
+#     so this is effectively always true, but guards against edge cases)
+#   • there exists at least one eligible large non-champion realm to target
+# Note: The actual Prince selection and conditions are checked inside
+#       daedric_invasion.000 (daedric_invasion_events.txt), not here.
+daedric_invasion_trigger_conditions = {
+    NOT = { is_daedric_invasion_active = yes }
+    current_date >= 2E.100                   # minimum date — all invasions set in Interregnum
+    any_ruler = {
+        realm_size >= 30                     # only realms large enough to be worth targeting
+        NOT = { has_trait = daedric_champion }    # champions are already serving a Prince
+    }
+}
+
+# ---------------------------------------------------------------
+#  PER-PRINCE INVASION ACTIVE CHECKS
+#  Used to gate per-Prince invasion events and decisions.
+#  Each returns true only during that Prince's specific invasion.
+#  If you want to check which Prince is invading, use these triggers.
+# ---------------------------------------------------------------
+
+# Molag Bal: Prince of Domination, Father of Vampires, Lord of Coldharbour.
+# His invasion = the Planemeld — dragging Nirn into Coldharbour.
+is_molag_bal_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "molag_bal_template"
+}
+
+# Mehrunes Dagon: Prince of Destruction, Change, Revolution, Ambition.
+# His invasion = straightforward military conquest.
+is_mehrunes_dagon_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "mehrunes_dagon_template"
+}
+
+# Boethiah: Prince of Plots, Betrayal, Assassination, Secret Murder.
+# His invasion = court destabilisation and assassination.
+is_boethiah_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "boethiah_template"
+}
+
+# Hircine: Prince of the Hunt, Sport, Feeling of the Chase.
+# His invasion = the Great Hunt — mortals are the prey.
+is_hircine_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "hircine_template"
+}
+
+# Namira: Prince of Ancient Darkness, Decay, the Reviled.
+# Her invasion = corruption and rot spreading through the land.
+is_namira_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "namira_template"
+}
+
+# Azura: Prince of Dusk and Dawn, Prophecy, Fate.
+# Her invasion = prophetic intervention; she does not conquer — she reveals.
+is_azura_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "azura_template"
+}
+
+# Mephala: Prince of Secrets, Lies, Webspinner, Anticipation of Vivec.
+# Her invasion = webs of intrigue threaded through every court.
+is_mephala_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "mephala_template"
+}
+
+# Clavicus Vile: Prince of Wishes, Bargains, Trickery.
+# His invasion = offers of power; the terms are always worse than they seem.
+is_clavicus_vile_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "clavicus_vile_template"
+}
+
+# Vaermina: Prince of Dreams, Nightmares, Omens.
+# Her invasion = psychological terror through dreams.
+is_vaermina_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "vaermina_template"
+}
+
+# Sheogorath: Prince of Madness, the Skooma Cat.
+# His invasion = delightful chaos (from his perspective).
+is_sheogorath_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "sheogorath_template"
+}
+
+# Peryite: Prince of Pestilence, Plague, and Tasks.
+# His invasion = disease vectors spreading across Tamriel.
+is_peryite_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "peryite_template"
+}
+
+# Sanguine: Prince of Hedonism, Debauchery, Living Desire.
+# His invasion = courts corrupted by excess.
+is_sanguine_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "sanguine_template"
+}
+
+# Meridia: Lady of Infinite Energies, Light Against Undead.
+# Her invasion targets necromancers and the undead specifically.
+# Note: Meridia is an unusual Daedra — considered closer to the Aedra
+# by many scholars; her 'invasion' is more of a crusade against undead.
+is_meridia_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "meridia_template"
+}
+
+# Malacath: Prince of the Spurned, Oaths, Orcs.
+# His invasion targets those who have broken oaths.
+is_malacath_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "malacath_template"
+}
+
+# Nocturnal: Prince of Night, Shadow, Luck, and Thieves.
+# Her invasion drains wealth from the shadows.
+is_nocturnal_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "nocturnal_template"
+}
+
+# Hermaeus Mora: Prince of Fate, Knowledge, Memory.
+# His invasion offers knowledge at terrible prices.
+is_hermaeus_mora_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "hermaeus_mora_template"
+}
+
+# Jyggalag: Prince of Order, Inevitability, the Greymarch.
+# His invasion crystallises reality — the Greymarch.
+# Note: In canon, Jyggalag was cursed to be Sheogorath by the other Princes.
+# If implementing this lore-accurately, Jyggalag's events should acknowledge
+# his connection to Sheogorath.
+is_jyggalag_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "jyggalag_template"
+}
+
+# ---------------------------------------------------------------
+#  CHAMPION AND DEVOTEE CHECKS
+# ---------------------------------------------------------------
+
+# Is the character a champion or devotee of ANY Daedric Prince?
+# Note: daedric_champion is the generic base trait (Mehrunes Dagon, Boethiah,
+# Hircine, Namira, Molag Bal); the other Princes have unique champion traits.
+# See daedric_invasion_traits.txt for full trait definitions.
+is_any_daedric_champion = {
+    OR = {
+        has_trait = daedric_champion          # base: Dagon/Boethiah/Hircine/Namira/Molag Bal
+        has_trait = azura_champion
+        has_trait = mephala_champion
+        has_trait = clavicus_vile_champion
+        has_trait = vaermina_champion
+        has_trait = sheogorath_champion
+        has_trait = peryite_champion
+        has_trait = sanguine_champion
+        has_trait = meridia_champion
+        has_trait = malacath_champion
+        has_trait = nocturnal_champion
+        has_trait = hermaeus_mora_champion
+        has_trait = jyggalag_champion
+    }
+}
+
+# Checks if a character actively worships or is aligned with Daedra.
+# Used to block certain virtuous decisions (e.g. Amulet of Kings quest)
+# from Daedra worshippers, and to gate Daedric champion quests.
+# Three paths to being a Daedra worshipper:
+#   1. Faith with doctrine_daedra_revered — formal religious worship
+#   2. Faith with doctrine_daedra_accepted — their faith tolerates Daedra
+#   3. daedric_vassal trait — submitted to a Prince during an invasion
+#   4. Being any kind of champion — an active relationship with a Prince
+is_daedra_worshipper = {
+    OR = {
+        faith = { has_doctrine = doctrine_daedra_revered }
+        faith = { has_doctrine = doctrine_daedra_accepted }
+        has_trait = daedric_vassal
+        is_any_daedric_champion = yes
+    }
 }
 
 # True for the character who is the current Daedric Prince invader
