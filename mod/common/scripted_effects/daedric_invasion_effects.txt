@@ -3,39 +3,430 @@
 # =============================================================
 
 # ----- Begin an invasion by a specific Prince -----
-# Caller must set scope:chosen_prince_key before calling.
+# Caller must have set global_var:chosen_prince_key before calling.
 begin_daedric_invasion = {
-    # Record invasion state
-    set_global_variable = { name = active_daedric_prince value = scope:chosen_prince_key }
+    set_global_variable = { name = active_daedric_prince value = global_var:chosen_prince_key }
     set_global_variable = { name = daedric_invasion_phase value = 1 }
     set_global_variable = { name = daedric_invasion_started_days value = 0 }
 
-    # Spawn the Prince character in a suitably remote / inhospitable title
-    # (actual title_id must match your EK2 setup — adjust as needed)
-    create_character = {
-        template = scope:chosen_prince_key
-        location = title:d_deadlands         # Mehrunes Dagon's realm
-        save_scope_as = daedric_prince_char
+    # Spawn the Prince in a realm fitting their sphere
+    # Per-prince spawn location and opening army
+    if = {
+        limit = { global_var:active_daedric_prince = "mehrunes_dagon_template" }
+        create_character = {
+            template = mehrunes_dagon_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Dagon's Horde"
+                men_at_arms = { type = daedra_footsoldiers  stack = 500 }
+                men_at_arms = { type = daedra_cavalry       stack = 200 }
+                men_at_arms = { type = clannfear            stack = 100 }
+                men_at_arms = { type = golden_saint         stack =  50 }
+            }
+        }
     }
-
-    # Give the Prince a powerful starting army
-    scope:daedric_prince_char = {
-        create_army = {
-            name = "Daedra Horde"
-            men_at_arms = { type = daedra_footsoldiers  stack = 500 }
-            men_at_arms = { type = daedra_cavalry       stack = 200 }
-            men_at_arms = { type = clannfear            stack = 100 }
-            men_at_arms = { type = golden_saint         stack =  50 }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "molag_bal_template" }
+        create_character = {
+            template = molag_bal_template
+            location = title:d_coldharbour
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Coldharbour Dominion"
+                men_at_arms = { type = daedra_footsoldiers  stack = 400 }
+                men_at_arms = { type = clannfear            stack = 150 }
+                men_at_arms = { type = dremora             stack = 100 }
+            }
+        }
+        # Molag's invasion begins the Planemeld — apply dread to targeted rulers
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                primary_title = { tier >= tier_kingdom }
+            }
+            add_modifier = { modifier = molag_planemeld_dread days = 1825 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "boethiah_template" }
+        create_character = {
+            template = boethiah_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Tournament of Ten Bloods"
+                men_at_arms = { type = daedra_footsoldiers  stack = 300 }
+                men_at_arms = { type = dremora             stack = 200 }
+                men_at_arms = { type = golden_saint         stack =  80 }
+            }
+        }
+        # Boethiah seeds assassins in every major court
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                intrigue <= 14
+                primary_title = { tier >= tier_duchy }
+            }
+            add_modifier = { modifier = boethiah_court_conspiracy days = 730 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "hircine_template" }
+        create_character = {
+            template = hircine_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "The Great Hunt"
+                men_at_arms = { type = hircine_werewolf_pack stack = 300 }
+                men_at_arms = { type = daedra_footsoldiers   stack = 200 }
+                men_at_arms = { type = clannfear             stack = 150 }
+            }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "namira_template" }
+        create_character = {
+            template = namira_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Namira's Coven"
+                men_at_arms = { type = daedra_footsoldiers  stack = 400 }
+                men_at_arms = { type = clannfear            stack = 200 }
+            }
+        }
+        # Namira spreads rot — apply decay modifier to counties
+        every_county = {
+            limit = {
+                NOT = { is_coastal = yes }
+                development_level >= 8
+            }
+            add_province_modifier = {
+                modifier = namira_rot_modifier
+                days = 1095
+            }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "azura_template" }
+        create_character = {
+            template = azura_template
+            location = title:d_moonshadow
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Children of Twilight"
+                men_at_arms = { type = daedra_footsoldiers  stack = 250 }
+                men_at_arms = { type = golden_saint         stack = 150 }
+                men_at_arms = { type = dremora             stack = 100 }
+            }
+        }
+        # Azura's arrival triggers a major prophecy event for all rulers
+        every_ruler = {
+            limit = { is_alive = yes }
+            trigger_event = { id = daedric_prince_invasion.azura.001 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "mephala_template" }
+        create_character = {
+            template = mephala_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Web of the Webspinner"
+                men_at_arms = { type = daedra_footsoldiers  stack = 300 }
+                men_at_arms = { type = dremora             stack = 150 }
+            }
+        }
+        # Mephala plants spies/assassins in every major court
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                primary_title = { tier >= tier_kingdom }
+            }
+            add_modifier = { modifier = mephala_web_modifier days = 1825 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "clavicus_vile_template" }
+        create_character = {
+            template = clavicus_vile_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Vile's Bargainers"
+                men_at_arms = { type = daedra_footsoldiers  stack = 200 }
+                men_at_arms = { type = dremora             stack = 100 }
+            }
+        }
+        # Clavicus makes offers to all rulers — some accept
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                primary_title = { tier >= tier_duchy }
+            }
+            trigger_event = { id = daedric_prince_invasion.clavicus.001 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "vaermina_template" }
+        create_character = {
+            template = vaermina_template
+            location = title:d_quagmire
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Nightmares Made Flesh"
+                men_at_arms = { type = daedra_footsoldiers  stack = 300 }
+                men_at_arms = { type = clannfear            stack = 150 }
+            }
+        }
+        # Vaermina invades through dreams — apply nightmare modifier to rulers
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                primary_title = { tier >= tier_county }
+            }
+            add_modifier = { modifier = vaermina_nightmare_modifier days = 365 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "sheogorath_template" }
+        create_character = {
+            template = sheogorath_template
+            location = title:d_shivering_isles
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "The Mad Host"
+                men_at_arms = { type = daedra_footsoldiers  stack = 300 }
+                men_at_arms = { type = golden_saint         stack = 100 }
+                men_at_arms = { type = dark_seducer         stack = 100 }
+            }
+        }
+        # Sheogorath fires a random madness event on each ruler
+        every_ruler = {
+            limit = { is_alive = yes }
+            trigger_event = { id = daedric_prince_invasion.sheogorath.001 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "peryite_template" }
+        create_character = {
+            template = peryite_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "The Afflicted Host"
+                men_at_arms = { type = daedra_footsoldiers  stack = 350 }
+                men_at_arms = { type = peryite_afflicted_unit stack = 200 }
+            }
+        }
+        # Peryite releases a plague — similar to Sload but daedric in origin
+        every_county = {
+            limit = {
+                NOT = { is_coastal = yes }
+            }
+            random = {
+                chance = 20
+                add_province_modifier = {
+                    modifier = peryite_plague_modifier
+                    days = 1095
+                }
+            }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "sanguine_template" }
+        create_character = {
+            template = sanguine_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "The Revellers"
+                men_at_arms = { type = daedra_footsoldiers  stack = 200 }
+                men_at_arms = { type = dremora             stack = 100 }
+            }
+        }
+        # Sanguine corrupts courts with debauchery
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                primary_title = { tier >= tier_kingdom }
+            }
+            trigger_event = { id = daedric_prince_invasion.sanguine.001 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "meridia_template" }
+        create_character = {
+            template = meridia_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Knights of Order's Antithesis"
+                men_at_arms = { type = daedra_footsoldiers  stack = 400 }
+                men_at_arms = { type = golden_saint         stack = 200 }
+            }
+        }
+        # Meridia's arrival destroys undead but threatens necromancers
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                OR = {
+                    has_trait = necromancy
+                    faith = { has_doctrine = doctrine_undead_accepted }
+                }
+            }
+            trigger_event = { id = daedric_prince_invasion.meridia.001 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "malacath_template" }
+        create_character = {
+            template = malacath_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "The Spurned Host"
+                men_at_arms = { type = daedra_footsoldiers  stack = 400 }
+                men_at_arms = { type = clannfear            stack = 150 }
+                men_at_arms = { type = dremora             stack = 100 }
+            }
+        }
+        # Malacath targets oath-breakers — curses rulers who have broken agreements
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                has_trait = oathbreaker
+            }
+            add_modifier = { modifier = malacath_oath_curse days = 1825 }
+            trigger_event = { id = daedric_prince_invasion.malacath.001 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "nocturnal_template" }
+        create_character = {
+            template = nocturnal_template
+            location = title:d_evergloam
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "The Nightingale Host"
+                men_at_arms = { type = daedra_footsoldiers  stack = 250 }
+                men_at_arms = { type = dremora             stack = 150 }
+            }
+        }
+        # Nocturnal steals wealth from realms — treasury drain modifier
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                primary_title = { tier >= tier_kingdom }
+                gold >= 100
+            }
+            add_modifier = { modifier = nocturnal_shadow_tithe days = 1095 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "hermaeus_mora_template" }
+        create_character = {
+            template = hermaeus_mora_template
+            location = title:d_apocrypha
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Seekers of Apocrypha"
+                men_at_arms = { type = daedra_footsoldiers  stack = 200 }
+                men_at_arms = { type = hermaeus_seeker       stack = 150 }
+                men_at_arms = { type = hermaeus_lurker       stack =  80 }
+            }
+        }
+        # Mora offers knowledge to high-learning rulers — a dangerous gift
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                learning >= 18
+            }
+            trigger_event = { id = daedric_prince_invasion.hermaeus.001 }
+        }
+    }
+    else_if = {
+        limit = { global_var:active_daedric_prince = "jyggalag_template" }
+        create_character = {
+            template = jyggalag_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+        scope:daedric_prince_char = {
+            create_army = {
+                name = "Knights of Order"
+                men_at_arms = { type = knight_of_order      stack = 600 }
+                men_at_arms = { type = daedra_footsoldiers  stack = 300 }
+            }
+        }
+        # Jyggalag's Greymarch crystallizes counties
+        every_county = {
+            random = {
+                chance = 30
+                add_province_modifier = {
+                    modifier = jyggalag_crystal_modifier
+                    days = 1825
+                }
+            }
+        }
+        every_ruler = {
+            limit = { is_alive = yes }
+            trigger_event = { id = daedric_prince_invasion.jyggalag.001 }
         }
     }
 
-    # Open 3 initial Oblivion Gates in random border counties
+    # Fallback — should not fire, but safe
+    if = {
+        limit = { NOT = { exists = scope:daedric_prince_char } }
+        create_character = {
+            template = mehrunes_dagon_template
+            location = title:d_deadlands
+            save_scope_as = daedric_prince_char
+        }
+    }
+
+    # Open 3 initial Oblivion Gates in random counties
     random_county = {
-        limit = { is_coastal = no }
+        limit = { NOT = { is_coastal = yes } }
         open_oblivion_gate_effect = yes
     }
     random_county = {
-        limit = { is_coastal = no }
+        limit = { NOT = { is_coastal = yes } }
         open_oblivion_gate_effect = yes
     }
     random_county = {
@@ -43,7 +434,7 @@ begin_daedric_invasion = {
         open_oblivion_gate_effect = yes
     }
 
-    # Notify all rulers
+    # Notify all rulers of the invasion
     every_ruler = {
         limit = { is_alive = yes }
         trigger_event = { id = daedric_invasion.001 }
@@ -55,20 +446,19 @@ open_oblivion_gate_effect = {
     set_variable = { name = oblivion_gate_active value = yes }
     add_province_modifier = {
         modifier = oblivion_gate_province_modifier
-        days = -1                            # permanent until closed
+        days = -1
     }
     trigger_event = { id = oblivion_gate.001 }
 }
 
-# ----- Close an Oblivion Gate (called from closing event) -----
+# ----- Close an Oblivion Gate -----
 close_oblivion_gate_effect = {
     remove_variable = oblivion_gate_active
     remove_province_modifier = oblivion_gate_province_modifier
-    # Reward the champion
     scope:gate_closer = {
         add_trait = oblivion_slayer
         add_prestige = 500
-        add_piety = 300
+        add_piety    = 300
         trigger_event = { id = oblivion_gate.010 }
     }
 }
@@ -77,11 +467,9 @@ close_oblivion_gate_effect = {
 escalate_daedric_invasion = {
     change_global_variable = { name = daedric_invasion_phase add = 1 }
 
-    # Open additional gates
     random_county = { open_oblivion_gate_effect = yes }
     random_county = { open_oblivion_gate_effect = yes }
 
-    # Reinforce the Prince's army
     scope:daedric_prince_char = {
         create_army = {
             name = "Daedric Reinforcements"
@@ -98,19 +486,36 @@ escalate_daedric_invasion = {
 
 # ----- End and clean up the invasion -----
 end_daedric_invasion = {
-    # Close all remaining gates
     every_county = {
         limit = { has_variable = oblivion_gate_active }
         remove_variable = oblivion_gate_active
         remove_province_modifier = oblivion_gate_province_modifier
     }
 
-    # Remove global state
+    # Clean up per-prince modifiers
+    every_ruler = {
+        limit = { is_alive = yes }
+        remove_modifier = molag_planemeld_dread
+        remove_modifier = boethiah_court_conspiracy
+        remove_modifier = mephala_web_modifier
+        remove_modifier = vaermina_nightmare_modifier
+        remove_modifier = nocturnal_shadow_tithe
+        remove_modifier = malacath_oath_curse
+        remove_modifier = namira_rot_modifier
+    }
+    every_county = {
+        limit = { has_modifier = peryite_plague_modifier }
+        remove_province_modifier = peryite_plague_modifier
+    }
+    every_county = {
+        limit = { has_modifier = jyggalag_crystal_modifier }
+        remove_province_modifier = jyggalag_crystal_modifier
+    }
+
     remove_global_variable = active_daedric_prince
     remove_global_variable = daedric_invasion_phase
     remove_global_variable = daedric_invasion_started_days
 
-    # Kill or banish the Prince character
     scope:daedric_prince_char = {
         death = { death_reason = death_banished }
     }

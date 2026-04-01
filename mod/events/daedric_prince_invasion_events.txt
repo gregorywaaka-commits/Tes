@@ -1,0 +1,956 @@
+# =============================================================
+#  Daedric Prince — Per-Prince Invasion Flavour Events
+#  Namespace: daedric_prince_invasion
+#  Covers unique events for all 17 Princes during their invasions.
+# =============================================================
+
+namespace = daedric_prince_invasion
+
+# ================================================================
+#  AZURA (Prince of Dusk and Dawn, Prophecy)
+# ================================================================
+
+# azura.001 — Azura's Twilight Prophecy arrives at court
+daedric_prince_invasion.azura.001 = {
+    type = character_event
+    title = daedric_prince_invasion.azura.001.t
+    desc = daedric_prince_invasion.azura.001.desc
+    theme = realm
+
+    option = {
+        name = daedric_prince_invasion.azura.001.a  # "We heed the Twilight Queen's warning."
+        add_piety   = 200
+        add_stress  = -10
+        trigger_event = { id = daedric_prince_invasion.azura.002 days = 60 }
+    }
+    option = {
+        name = daedric_prince_invasion.azura.001.b  # "A Daedra's prophecy is a trap."
+        add_prestige = 100
+        add_stress   = 10
+    }
+}
+
+# azura.002 — Azura's Star appears in the throne room
+daedric_prince_invasion.azura.002 = {
+    type = character_event
+    title = daedric_prince_invasion.azura.002.t
+    desc = daedric_prince_invasion.azura.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_prince_invasion.azura.002.a  # "Accept the Star as her gift."
+        add_piety    = 300
+        add_modifier = { modifier = azura_star_holder days = 3650 }
+    }
+    option = {
+        name = daedric_prince_invasion.azura.002.b  # "Return it — her gifts come with conditions."
+        add_prestige = 200
+        add_stress   = -5
+    }
+}
+
+# azura.003 — Azura's servants guide an army against Dagon's forces
+daedric_prince_invasion.azura.003 = {
+    type = character_event
+    title = daedric_prince_invasion.azura.003.t
+    desc = daedric_prince_invasion.azura.003.desc
+    theme = war
+
+    trigger = {
+        is_azura_invasion = yes
+        daedric_invasion_phase >= 2
+    }
+
+    option = {
+        name = daedric_prince_invasion.azura.003.a  # "March with Azura's Children!"
+        add_prestige = 500
+        add_piety    = 400
+        add_trait = azura_champion
+    }
+}
+
+# ================================================================
+#  MEPHALA (Webspinner — Plots, Murder, Secrets)
+# ================================================================
+
+# mephala.001 — A spider-silk package arrives at court
+daedric_prince_invasion.mephala.001 = {
+    type = character_event
+    title = daedric_prince_invasion.mephala.001.t
+    desc = daedric_prince_invasion.mephala.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_mephala_invasion = yes
+    }
+
+    option = {
+        name = daedric_prince_invasion.mephala.001.a  # "Open it."
+        # 50/50 — gift or curse
+        random_list = {
+            50 = {
+                add_modifier = { modifier = mephala_web_gift days = 1825 }
+                add_intrigue = 4
+            }
+            50 = {
+                add_modifier = { modifier = mephala_web_curse days = 730 }
+                add_stress   = 20
+            }
+        }
+    }
+    option = {
+        name = daedric_prince_invasion.mephala.001.b  # "Burn it unopened."
+        add_prestige = 100
+        add_piety    = 100
+    }
+}
+
+# mephala.002 — The Ebony Blade surfaces at court
+daedric_prince_invasion.mephala.002 = {
+    type = character_event
+    title = daedric_prince_invasion.mephala.002.t
+    desc = daedric_prince_invasion.mephala.002.desc
+    theme = intrigue
+
+    trigger = {
+        is_mephala_invasion = yes
+        intrigue >= 16
+        NOT = { has_trait = mephala_champion }
+    }
+
+    option = {
+        name = daedric_prince_invasion.mephala.002.a  # "Take up the Ebony Blade."
+        add_trait = mephala_champion
+        add_prestige = 500
+        add_dread    = 30
+    }
+    option = {
+        name = daedric_prince_invasion.mephala.002.b  # "Such a blade feeds on betrayal — refuse."
+        add_piety    = 200
+        add_prestige = 100
+    }
+}
+
+# mephala.003 — An assassin sent by the Webspinner targets a rival
+daedric_prince_invasion.mephala.003 = {
+    type = character_event
+    title = daedric_prince_invasion.mephala.003.t
+    desc = daedric_prince_invasion.mephala.003.desc
+    theme = intrigue
+
+    trigger = {
+        is_mephala_invasion = yes
+        has_trait = mephala_champion
+    }
+
+    option = {
+        name = daedric_prince_invasion.mephala.003.a  # "Direct the spider's strike at an enemy."
+        add_prestige = 300
+        random_enemy = {
+            limit = { is_alive = yes }
+            death = { death_reason = death_murder }
+        }
+        add_dread = 20
+    }
+    option = {
+        name = daedric_prince_invasion.mephala.003.b  # "Deny her the kill."
+        remove_trait = mephala_champion
+        add_piety    = 300
+    }
+}
+
+# ================================================================
+#  CLAVICUS VILE (Prince of Bargains, Wishes, Trickery)
+# ================================================================
+
+# clavicus.001 — Clavicus Vile makes an offer
+daedric_prince_invasion.clavicus.001 = {
+    type = character_event
+    title = daedric_prince_invasion.clavicus.001.t
+    desc = daedric_prince_invasion.clavicus.001.desc
+    theme = realm
+
+    trigger = {
+        is_clavicus_vile_invasion = yes
+    }
+
+    option = {
+        name = daedric_prince_invasion.clavicus.001.a  # "Accept his bargain."
+        add_trait = clavicus_bargain_keeper
+        add_gold  = 500
+        trigger_event = { id = daedric_prince_invasion.clavicus.002 days = 365 }
+    }
+    option = {
+        name = daedric_prince_invasion.clavicus.001.b  # "Refuse — no good comes from Vile's deals."
+        add_prestige = 200
+        add_piety    = 150
+    }
+}
+
+# clavicus.002 — The catch arrives (Vile's bargain goes wrong)
+daedric_prince_invasion.clavicus.002 = {
+    type = character_event
+    title = daedric_prince_invasion.clavicus.002.t
+    desc = daedric_prince_invasion.clavicus.002.desc
+    theme = realm
+
+    trigger = {
+        has_trait = clavicus_bargain_keeper
+    }
+
+    option = {
+        name = daedric_prince_invasion.clavicus.002.a  # "Pay the price."
+        add_gold  = -300
+        add_stress = 15
+        remove_trait = clavicus_bargain_keeper
+    }
+    option = {
+        name = daedric_prince_invasion.clavicus.002.b  # "Refuse — and face his wrath."
+        add_dread    = -20
+        add_prestige = -200
+        add_modifier = { modifier = vile_curse_modifier days = 730 }
+        remove_trait = clavicus_bargain_keeper
+    }
+}
+
+# clavicus.003 — The Masque of Clavicus Vile is found
+daedric_prince_invasion.clavicus.003 = {
+    type = character_event
+    title = daedric_prince_invasion.clavicus.003.t
+    desc = daedric_prince_invasion.clavicus.003.desc
+    theme = realm
+
+    trigger = {
+        is_clavicus_vile_invasion = yes
+        diplomacy >= 18
+        NOT = { has_trait = clavicus_vile_champion }
+    }
+
+    option = {
+        name = daedric_prince_invasion.clavicus.003.a  # "Don the Masque."
+        add_trait    = clavicus_vile_champion
+        add_prestige = 500
+        add_modifier = { modifier = masque_of_clavicus_vile days = 3650 }
+    }
+    option = {
+        name = daedric_prince_invasion.clavicus.003.b  # "Leave it — Vile's vanity is a trap."
+        add_piety = 200
+    }
+}
+
+# ================================================================
+#  VAERMINA (Prince of Dreams, Nightmares)
+# ================================================================
+
+# vaermina.001 — Nightmares grip the realm
+daedric_prince_invasion.vaermina.001 = {
+    type = character_event
+    title = daedric_prince_invasion.vaermina.001.t
+    desc = daedric_prince_invasion.vaermina.001.desc
+    theme = realm
+
+    trigger = {
+        is_vaermina_invasion = yes
+    }
+
+    option = {
+        name = daedric_prince_invasion.vaermina.001.a  # "Seek a remedy for the nightmares."
+        add_stress  = 20
+        add_gold    = -100
+        trigger_event = { id = daedric_prince_invasion.vaermina.002 days = 30 }
+    }
+    option = {
+        name = daedric_prince_invasion.vaermina.001.b  # "Endure them — they are only dreams."
+        add_stress   = 30
+        add_modifier = { modifier = vaermina_nightmare_modifier days = 365 }
+    }
+}
+
+# vaermina.002 — Vaermina steals a memory
+daedric_prince_invasion.vaermina.002 = {
+    type = character_event
+    title = daedric_prince_invasion.vaermina.002.t
+    desc = daedric_prince_invasion.vaermina.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_prince_invasion.vaermina.002.a  # "Fight to keep the memory."
+        random_list = {
+            50 = {
+                add_stress = -10
+                add_learning = 2
+            }
+            50 = {
+                add_trait  = vaermina_dreamt
+                add_stress = 20
+            }
+        }
+    }
+    option = {
+        name = daedric_prince_invasion.vaermina.002.b  # "Let it go — better to forget."
+        add_trait  = vaermina_dreamt
+        add_stress = -5
+    }
+}
+
+# vaermina.003 — The Skull of Corruption is offered
+daedric_prince_invasion.vaermina.003 = {
+    type = character_event
+    title = daedric_prince_invasion.vaermina.003.t
+    desc = daedric_prince_invasion.vaermina.003.desc
+    theme = intrigue
+
+    trigger = {
+        is_vaermina_invasion = yes
+        intrigue >= 14
+        learning >= 14
+        NOT = { has_trait = vaermina_champion }
+    }
+
+    option = {
+        name = daedric_prince_invasion.vaermina.003.a  # "Take the Skull — turn nightmares into a weapon."
+        add_trait    = vaermina_champion
+        add_modifier = { modifier = skull_of_corruption_modifier days = 3650 }
+        add_prestige = 400
+    }
+    option = {
+        name = daedric_prince_invasion.vaermina.003.b  # "Refuse — its power would drive me mad."
+        add_piety = 300
+    }
+}
+
+# ================================================================
+#  SHEOGORATH (Prince of Madness, Chaos, Creativity)
+# ================================================================
+
+# sheogorath.001 — Something strange has happened
+daedric_prince_invasion.sheogorath.001 = {
+    type = character_event
+    title = daedric_prince_invasion.sheogorath.001.t
+    desc = daedric_prince_invasion.sheogorath.001.desc
+    theme = realm
+
+    trigger = {
+        is_sheogorath_invasion = yes
+    }
+
+    option = {
+        name = daedric_prince_invasion.sheogorath.001.a  # "Embrace the madness!"
+        add_trait  = lunatic
+        add_stress = -30
+        add_prestige = 100
+        trigger_event = { id = daedric_prince_invasion.sheogorath.002 days = 90 }
+    }
+    option = {
+        name = daedric_prince_invasion.sheogorath.001.b  # "This is not right. This is very not right."
+        add_stress  = 25
+    }
+}
+
+# sheogorath.002 — Sheogorath offers the Wabbajack
+daedric_prince_invasion.sheogorath.002 = {
+    type = character_event
+    title = daedric_prince_invasion.sheogorath.002.t
+    desc = daedric_prince_invasion.sheogorath.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_prince_invasion.sheogorath.002.a  # "Accept the Wabbajack."
+        add_trait    = sheogorath_champion
+        add_prestige = 300
+        add_modifier = { modifier = wabbajack_modifier days = 3650 }
+    }
+    option = {
+        name = daedric_prince_invasion.sheogorath.002.b  # "Refuse."
+        # Sheogorath ignores refusals — fire the same outcome anyway
+        add_trait    = sheogorath_champion
+        add_modifier = { modifier = wabbajack_modifier days = 3650 }
+        add_stress = 10
+        custom_tooltip = sheogorath_ignores_refusal_tt
+    }
+}
+
+# sheogorath.003 — A random blessing or curse from the Mad God
+daedric_prince_invasion.sheogorath.003 = {
+    type = character_event
+    title = daedric_prince_invasion.sheogorath.003.t
+    desc = daedric_prince_invasion.sheogorath.003.desc
+    theme = realm
+
+    trigger = {
+        is_sheogorath_invasion = yes
+        has_trait = sheogorath_champion
+    }
+
+    option = {
+        name = daedric_prince_invasion.sheogorath.003.a  # "...so it goes."
+        random_list = {
+            20 = { add_prestige = 1000 }
+            20 = { add_prestige = -1000 }
+            20 = { add_piety = 500 }
+            20 = { add_gold = 500 }
+            20 = { add_gold = -500 add_stress = 20 }
+        }
+    }
+}
+
+# ================================================================
+#  PERYITE (Prince of Pestilence, Order Among the Lowest)
+# ================================================================
+
+# peryite.001 — Peryite's plague takes hold
+daedric_prince_invasion.peryite.001 = {
+    type = character_event
+    title = daedric_prince_invasion.peryite.001.t
+    desc = daedric_prince_invasion.peryite.001.desc
+    theme = realm
+
+    trigger = {
+        is_peryite_invasion = yes
+        any_held_county = { has_modifier = peryite_plague_modifier }
+    }
+
+    option = {
+        name = daedric_prince_invasion.peryite.001.a  # "Quarantine the afflicted."
+        add_gold   = -150
+        add_prestige = 100
+        every_held_county = {
+            limit = { has_modifier = peryite_plague_modifier }
+            remove_province_modifier = peryite_plague_modifier
+            add_province_modifier = {
+                modifier = quarantine_modifier
+                days = 365
+            }
+        }
+    }
+    option = {
+        name = daedric_prince_invasion.peryite.001.b  # "Allow the afflicted to spread — Peryite's will."
+        add_trait = peryite_afflicted
+        add_modifier = { modifier = peryite_afflicted_ruler days = 730 }
+        trigger_event = { id = daedric_prince_invasion.peryite.002 days = 90 }
+    }
+}
+
+# peryite.002 — The Afflicted offer Spellbreaker as reward for service
+daedric_prince_invasion.peryite.002 = {
+    type = character_event
+    title = daedric_prince_invasion.peryite.002.t
+    desc = daedric_prince_invasion.peryite.002.desc
+    theme = realm
+
+    trigger = {
+        has_trait = peryite_afflicted
+    }
+
+    option = {
+        name = daedric_prince_invasion.peryite.002.a  # "Accept Spellbreaker and become Peryite's champion."
+        add_trait    = peryite_champion
+        remove_trait = peryite_afflicted
+        add_modifier = { modifier = spellbreaker_modifier days = 3650 }
+        add_prestige = 500
+    }
+    option = {
+        name = daedric_prince_invasion.peryite.002.b  # "Reject his 'gift'."
+        remove_trait = peryite_afflicted
+        add_piety    = 250
+    }
+}
+
+# ================================================================
+#  SANGUINE (Prince of Debauchery, Hedonism)
+# ================================================================
+
+# sanguine.001 — A mysterious reveller appears at court
+daedric_prince_invasion.sanguine.001 = {
+    type = character_event
+    title = daedric_prince_invasion.sanguine.001.t
+    desc = daedric_prince_invasion.sanguine.001.desc
+    theme = feast
+
+    trigger = {
+        is_sanguine_invasion = yes
+    }
+
+    option = {
+        name = daedric_prince_invasion.sanguine.001.a  # "Indulge in the feast."
+        add_stress   = -20
+        add_prestige = 100
+        trigger_event = { id = daedric_prince_invasion.sanguine.002 days = 30 }
+    }
+    option = {
+        name = daedric_prince_invasion.sanguine.001.b  # "This is a daedric trap — expel the stranger."
+        add_piety    = 200
+        add_stress   = 5
+    }
+}
+
+# sanguine.002 — The morning after (consequences of the feast)
+daedric_prince_invasion.sanguine.002 = {
+    type = character_event
+    title = daedric_prince_invasion.sanguine.002.t
+    desc = daedric_prince_invasion.sanguine.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_prince_invasion.sanguine.002.a  # "What happened last night...?"
+        add_stress  = 10
+        add_prestige = -100
+        random_list = {
+            50 = { add_modifier = { modifier = sanguine_rose_holder days = 1825 } }
+            50 = { add_dread = -15 add_gold = -200 }
+        }
+    }
+}
+
+# sanguine.003 — Sanguine Rose is offered directly
+daedric_prince_invasion.sanguine.003 = {
+    type = character_event
+    title = daedric_prince_invasion.sanguine.003.t
+    desc = daedric_prince_invasion.sanguine.003.desc
+    theme = feast
+
+    trigger = {
+        is_sanguine_invasion = yes
+        diplomacy >= 16
+        NOT = { has_trait = sanguine_champion }
+    }
+
+    option = {
+        name = daedric_prince_invasion.sanguine.003.a  # "Accept the Rose and revel in his service."
+        add_trait    = sanguine_champion
+        add_modifier = { modifier = sanguine_rose_holder days = 3650 }
+        add_prestige = 400
+    }
+    option = {
+        name = daedric_prince_invasion.sanguine.003.b  # "Sober up and refuse."
+        add_piety = 200
+    }
+}
+
+# ================================================================
+#  MERIDIA (Princess of Living Energies, Light)
+# ================================================================
+
+# meridia.001 — Meridia's beacon burns in the night sky
+daedric_prince_invasion.meridia.001 = {
+    type = character_event
+    title = daedric_prince_invasion.meridia.001.t
+    desc = daedric_prince_invasion.meridia.001.desc
+    theme = realm
+
+    trigger = {
+        is_meridia_invasion = yes
+    }
+
+    option = {
+        name = daedric_prince_invasion.meridia.001.a  # "The undead in our realm are destroyed — Meridia cleanses us."
+        # Meridia destroys undead-raising necromancers
+        every_realm_character = {
+            limit = { has_trait = necromancy }
+            death = { death_reason = death_meridia_purge }
+        }
+        add_piety = 400
+        add_prestige = 200
+    }
+    option = {
+        name = daedric_prince_invasion.meridia.001.b  # "We cannot allow even a Daedra to cull our people."
+        add_prestige = 200
+        add_modifier = { modifier = meridia_displeasure days = 730 }
+    }
+}
+
+# meridia.002 — Dawnbreaker is revealed
+daedric_prince_invasion.meridia.002 = {
+    type = character_event
+    title = daedric_prince_invasion.meridia.002.t
+    desc = daedric_prince_invasion.meridia.002.desc
+    theme = war
+
+    trigger = {
+        is_meridia_invasion = yes
+        martial >= 16
+        NOT = { has_trait = meridia_champion }
+    }
+
+    option = {
+        name = daedric_prince_invasion.meridia.002.a  # "Take up Dawnbreaker for Meridia."
+        add_trait    = meridia_champion
+        add_modifier = { modifier = dawnbreaker_modifier days = 3650 }
+        add_prestige = 600
+        add_piety    = 400
+    }
+    option = {
+        name = daedric_prince_invasion.meridia.002.b  # "I take orders from no Daedra."
+        add_prestige = 200
+        add_piety    = 100
+    }
+}
+
+# meridia.003 — Meridia turns against a necromancer king
+daedric_prince_invasion.meridia.003 = {
+    type = character_event
+    title = daedric_prince_invasion.meridia.003.t
+    desc = daedric_prince_invasion.meridia.003.desc
+    theme = war
+
+    trigger = {
+        is_meridia_invasion = yes
+        faith = { has_doctrine = doctrine_undead_accepted }
+    }
+
+    option = {
+        name = daedric_prince_invasion.meridia.003.a  # "Face Meridia's wrath."
+        add_modifier = { modifier = meridia_purge_target days = 1095 }
+        add_piety = -300
+    }
+    option = {
+        name = daedric_prince_invasion.meridia.003.b  # "Renounce the undead arts to appease her."
+        remove_from_faction = faction_daedric
+        add_piety    = 200
+        add_prestige = -100
+    }
+}
+
+# ================================================================
+#  MALACATH (Prince of Oaths, Curses, the Spurned)
+# ================================================================
+
+# malacath.001 — Malacath curses an oath-breaker
+daedric_prince_invasion.malacath.001 = {
+    type = character_event
+    title = daedric_prince_invasion.malacath.001.t
+    desc = daedric_prince_invasion.malacath.001.desc
+    theme = realm
+
+    trigger = {
+        is_malacath_invasion = yes
+        has_trait = oathbreaker
+    }
+
+    option = {
+        name = daedric_prince_invasion.malacath.001.a  # "Endure the curse."
+        add_modifier = { modifier = malacath_oath_curse days = 1825 }
+        add_stress   = 20
+    }
+    option = {
+        name = daedric_prince_invasion.malacath.001.b  # "Make amends for the broken oath."
+        add_prestige = -500
+        add_piety    = 300
+        remove_trait = oathbreaker
+        remove_modifier = malacath_oath_curse
+    }
+}
+
+# malacath.002 — Malacath's Orcs rally to the Prince
+daedric_prince_invasion.malacath.002 = {
+    type = character_event
+    title = daedric_prince_invasion.malacath.002.t
+    desc = daedric_prince_invasion.malacath.002.desc
+    theme = war
+
+    trigger = {
+        is_malacath_invasion = yes
+        # EK2: Orcish cultures use orsimer or similar identifier
+        OR = {
+            culture = { has_name = "Orsimer" }
+            culture = { has_name = "Orc" }
+        }
+    }
+
+    option = {
+        name = daedric_prince_invasion.malacath.002.a  # "March under Malacath's banner."
+        add_trait    = malacath_champion
+        add_modifier = { modifier = volendrung_bearer days = 3650 }
+        add_prestige = 600
+        add_piety    = 300
+    }
+    option = {
+        name = daedric_prince_invasion.malacath.002.b  # "My oaths are to my own realm, not to a Daedra."
+        add_prestige = 300
+    }
+}
+
+# malacath.003 — Volendrung is forged anew
+daedric_prince_invasion.malacath.003 = {
+    type = character_event
+    title = daedric_prince_invasion.malacath.003.t
+    desc = daedric_prince_invasion.malacath.003.desc
+    theme = war
+
+    trigger = {
+        is_malacath_invasion = yes
+        prowess >= 20
+        NOT = { has_trait = malacath_champion }
+    }
+
+    option = {
+        name = daedric_prince_invasion.malacath.003.a  # "Claim Volendrung."
+        add_trait    = malacath_champion
+        add_modifier = { modifier = volendrung_bearer days = 3650 }
+        add_prestige = 500
+    }
+    option = {
+        name = daedric_prince_invasion.malacath.003.b  # "Let the Spurned One keep his hammer."
+        add_piety = 200
+    }
+}
+
+# ================================================================
+#  NOCTURNAL (Princess of Night, Luck, Shadows)
+# ================================================================
+
+# nocturnal.001 — Treasuries begin to vanish
+daedric_prince_invasion.nocturnal.001 = {
+    type = character_event
+    title = daedric_prince_invasion.nocturnal.001.t
+    desc = daedric_prince_invasion.nocturnal.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_nocturnal_invasion = yes
+        gold >= 100
+    }
+
+    option = {
+        name = daedric_prince_invasion.nocturnal.001.a  # "Hire guards for the treasury."
+        add_gold = -200
+        add_prestige = 50
+    }
+    option = {
+        name = daedric_prince_invasion.nocturnal.001.b  # "Let the shadows have their tithe."
+        add_gold = -300
+        add_modifier = { modifier = nocturnal_shadow_favor days = 730 }
+    }
+}
+
+# nocturnal.002 — The Skeleton Key appears
+daedric_prince_invasion.nocturnal.002 = {
+    type = character_event
+    title = daedric_prince_invasion.nocturnal.002.t
+    desc = daedric_prince_invasion.nocturnal.002.desc
+    theme = intrigue
+
+    trigger = {
+        is_nocturnal_invasion = yes
+        intrigue >= 18
+        NOT = { has_trait = nocturnal_champion }
+    }
+
+    option = {
+        name = daedric_prince_invasion.nocturnal.002.a  # "Become a Nightingale."
+        add_trait    = nocturnal_champion
+        add_modifier = { modifier = skeleton_key_holder days = 3650 }
+        add_prestige = 500
+        add_intrigue = 3
+    }
+    option = {
+        name = daedric_prince_invasion.nocturnal.002.b  # "Nocturnal's keys open doors best left shut."
+        add_piety = 200
+    }
+}
+
+# nocturnal.003 — A rival's secrets are revealed through Nocturnal's shadows
+daedric_prince_invasion.nocturnal.003 = {
+    type = character_event
+    title = daedric_prince_invasion.nocturnal.003.t
+    desc = daedric_prince_invasion.nocturnal.003.desc
+    theme = intrigue
+
+    trigger = {
+        is_nocturnal_invasion = yes
+        has_trait = nocturnal_champion
+        has_rival = yes
+    }
+
+    option = {
+        name = daedric_prince_invasion.nocturnal.003.a  # "Use the shadows against our rival."
+        random_rival = {
+            limit = { is_alive = yes }
+            add_prestige = -300
+            add_opinion = { target = root modifier = exposed_secrets_opinion }
+        }
+        add_prestige = 300
+    }
+}
+
+# ================================================================
+#  HERMAEUS MORA (Prince of Forbidden Knowledge, Fate)
+# ================================================================
+
+# hermaeus.001 — A Black Book appears in the library
+daedric_prince_invasion.hermaeus.001 = {
+    type = character_event
+    title = daedric_prince_invasion.hermaeus.001.t
+    desc = daedric_prince_invasion.hermaeus.001.desc
+    theme = realm
+
+    trigger = {
+        is_hermaeus_mora_invasion = yes
+        learning >= 18
+    }
+
+    option = {
+        name = daedric_prince_invasion.hermaeus.001.a  # "Open the Black Book."
+        add_learning = 6
+        add_stress   = 20
+        trigger_event = { id = daedric_prince_invasion.hermaeus.002 days = 30 }
+    }
+    option = {
+        name = daedric_prince_invasion.hermaeus.001.b  # "Burn it before it can corrupt us."
+        add_piety    = 200
+        add_prestige = 100
+    }
+}
+
+# hermaeus.002 — Apocrypha tries to swallow the reader whole
+daedric_prince_invasion.hermaeus.002 = {
+    type = character_event
+    title = daedric_prince_invasion.hermaeus.002.t
+    desc = daedric_prince_invasion.hermaeus.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_prince_invasion.hermaeus.002.a  # "Fight free of Apocrypha."
+        random_list = {
+            50 = {
+                # Escaped with knowledge
+                add_trait = mora_knowledge_seeker
+                add_learning = 4
+                add_prestige = 400
+            }
+            50 = {
+                # Trapped — Mora has a new servant
+                add_trait    = hermaeus_mora_champion
+                add_modifier = { modifier = oghma_infinium_holder days = 3650 }
+                add_stress   = 20
+            }
+        }
+    }
+    option = {
+        name = daedric_prince_invasion.hermaeus.002.b  # "Surrender to Mora's will."
+        add_trait    = hermaeus_mora_champion
+        add_modifier = { modifier = oghma_infinium_holder days = 3650 }
+        add_learning = 8
+    }
+}
+
+# hermaeus.003 — Mora offers forbidden knowledge of an enemy's plans
+daedric_prince_invasion.hermaeus.003 = {
+    type = character_event
+    title = daedric_prince_invasion.hermaeus.003.t
+    desc = daedric_prince_invasion.hermaeus.003.desc
+    theme = intrigue
+
+    trigger = {
+        is_hermaeus_mora_invasion = yes
+        has_trait = hermaeus_mora_champion
+        has_enemy = yes
+    }
+
+    option = {
+        name = daedric_prince_invasion.hermaeus.003.a  # "Accept Mora's insight into our enemy."
+        random_enemy = {
+            limit = { is_alive = yes }
+            add_opinion = { target = root modifier = mora_knows_all_opinion }
+        }
+        add_prestige = 300
+        add_stress   = 10
+    }
+}
+
+# ================================================================
+#  JYGGALAG (Prince of Perfect Order — The Greymarch)
+# ================================================================
+
+# jyggalag.001 — The Greymarch begins; crystallization sweeps the realm
+daedric_prince_invasion.jyggalag.001 = {
+    type = character_event
+    title = daedric_prince_invasion.jyggalag.001.t
+    desc = daedric_prince_invasion.jyggalag.001.desc
+    theme = war
+
+    trigger = {
+        is_jyggalag_invasion = yes
+    }
+
+    option = {
+        name = daedric_prince_invasion.jyggalag.001.a  # "The Greymarch — all shall be made orderly."
+        add_stress   = 15
+        add_prestige = 100
+        trigger_event = { id = daedric_prince_invasion.jyggalag.002 days = 60 }
+    }
+    option = {
+        name = daedric_prince_invasion.jyggalag.001.b  # "Our chaos will resist his order."
+        add_prestige = 200
+        add_stress   = 20
+    }
+}
+
+# jyggalag.002 — Knights of Order arrive; demand total submission
+daedric_prince_invasion.jyggalag.002 = {
+    type = character_event
+    title = daedric_prince_invasion.jyggalag.002.t
+    desc = daedric_prince_invasion.jyggalag.002.desc
+    theme = war
+
+    option = {
+        name = daedric_prince_invasion.jyggalag.002.a  # "Submit to the perfect order."
+        add_trait    = jyggalag_crystal_knight
+        add_modifier = { modifier = jyggalag_crystal_modifier days = 1825 }
+        add_stress   = -10
+    }
+    option = {
+        name = daedric_prince_invasion.jyggalag.002.b  # "Resist — madness and chaos are our shield."
+        add_prestige = 400
+        add_stress   = 25
+        add_modifier = { modifier = anti_jyggalag_resistance days = 730 }
+    }
+}
+
+# jyggalag.003 — Jyggalag offers the Sword of Perfect Order
+daedric_prince_invasion.jyggalag.003 = {
+    type = character_event
+    title = daedric_prince_invasion.jyggalag.003.t
+    desc = daedric_prince_invasion.jyggalag.003.desc
+    theme = war
+
+    trigger = {
+        is_jyggalag_invasion = yes
+        martial     >= 22
+        stewardship >= 16
+        NOT = { has_trait = jyggalag_champion }
+    }
+
+    option = {
+        name = daedric_prince_invasion.jyggalag.003.a  # "Accept Jyggalag's perfect blade."
+        add_trait    = jyggalag_champion
+        add_modifier = { modifier = sword_of_jyggalag_modifier days = 3650 }
+        add_prestige = 700
+        add_piety    = 200
+    }
+    option = {
+        name = daedric_prince_invasion.jyggalag.003.b  # "I will not serve crystalline tyranny."
+        add_prestige = 300
+        add_piety    = 200
+    }
+}
+
+# jyggalag.004 — The Greymarch ends; Jyggalag transforms back to Sheogorath
+daedric_prince_invasion.jyggalag.004 = {
+    type = character_event
+    title = daedric_prince_invasion.jyggalag.004.t
+    desc = daedric_prince_invasion.jyggalag.004.desc
+    theme = realm
+
+    trigger = {
+        is_jyggalag_invasion = yes
+        global_var:daedric_invasion_phase >= 3
+    }
+
+    option = {
+        name = daedric_prince_invasion.jyggalag.004.a  # "He is becoming... the Mad God once more."
+        add_prestige = 500
+        add_stress   = -20
+        end_daedric_invasion = yes
+    }
+}

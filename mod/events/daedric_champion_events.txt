@@ -1,0 +1,844 @@
+# =============================================================
+#  Daedric Champion Quest Chains — All 17 Princes
+#  Namespace: daedric_champion
+#
+#  These events fire OUTSIDE of an active invasion, allowing
+#  any ruler to seek out a Daedric Prince and earn their
+#  champion title through lore-accurate quest chains.
+#  EK2 has similar chains for all Princes in its base mod;
+#  these extend and complement that system.
+# =============================================================
+
+namespace = daedric_champion
+
+# ================================================================
+#  MEHRUNES DAGON — Quest: The Mysterium Xarxes
+#  Mehrunes' Razor is the reward; complete a ritual of destruction
+# ================================================================
+
+daedric_champion.mehrunes.001 = {
+    type = character_event
+    title = daedric_champion.mehrunes.001.t
+    desc = daedric_champion.mehrunes.001.desc
+    theme = war
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        martial  >= 16
+        NOT = { has_trait = daedric_champion }
+        NOT = { is_daedric_invasion_active = yes }
+    }
+
+    option = {
+        name = daedric_champion.mehrunes.001.a  # "Seek the Mysterium Xarxes."
+        add_prestige = -300
+        trigger_event = { id = daedric_champion.mehrunes.002 days = 90 }
+    }
+    option = {
+        name = daedric_champion.mehrunes.001.b  # "Some doors are best left closed."
+        add_piety = 100
+    }
+}
+
+daedric_champion.mehrunes.002 = {
+    type = character_event
+    title = daedric_champion.mehrunes.002.t
+    desc = daedric_champion.mehrunes.002.desc
+    theme = war
+
+    option = {
+        name = daedric_champion.mehrunes.002.a  # "Complete the ritual."
+        random_list = {
+            60 = {
+                add_trait = daedric_champion
+                add_modifier = { modifier = mehrunes_razor_holder days = 3650 }
+                add_prestige = 800
+            }
+            40 = {
+                add_prestige = -400
+                add_stress   = 30
+                custom_tooltip = mehrunes_ritual_failed_tt
+            }
+        }
+    }
+    option = {
+        name = daedric_champion.mehrunes.002.b  # "Walk away."
+        add_prestige = 100
+        add_piety    = 200
+    }
+}
+
+# ================================================================
+#  AZURA — Quest: The Nerevarine Prophecy Path
+#  Azura's Star is the reward; interpret and fulfil a prophecy
+# ================================================================
+
+daedric_champion.azura.001 = {
+    type = character_event
+    title = daedric_champion.azura.001.t
+    desc = daedric_champion.azura.001.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        learning >= 14
+        NOT = { has_trait = azura_champion }
+    }
+
+    option = {
+        name = daedric_champion.azura.001.a  # "Seek out Azura's shrine at dawn."
+        trigger_event = { id = daedric_champion.azura.002 days = 60 }
+    }
+    option = {
+        name = daedric_champion.azura.001.b  # "Azura's prophecies are not for me."
+        add_piety = 50
+    }
+}
+
+daedric_champion.azura.002 = {
+    type = character_event
+    title = daedric_champion.azura.002.t
+    desc = daedric_champion.azura.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_champion.azura.002.a  # "Fulfil Azura's prophecy."
+        add_trait    = azura_champion
+        add_modifier = { modifier = azura_star_holder days = 3650 }
+        add_prestige = 600
+        add_piety    = 500
+    }
+    option = {
+        name = daedric_champion.azura.002.b  # "Prophecy is a burden."
+        add_piety    = 200
+        add_stress   = 10
+    }
+}
+
+# ================================================================
+#  MOLAG BAL — Quest: The Planemeld Bargain
+#  Mace of Molag Bal is the reward; survive Coldharbour's trial
+# ================================================================
+
+daedric_champion.molag.001 = {
+    type = character_event
+    title = daedric_champion.molag.001.t
+    desc = daedric_champion.molag.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        intrigue >= 16
+        dread     >= 30
+        NOT = { has_trait = daedric_champion }
+    }
+
+    option = {
+        name = daedric_champion.molag.001.a  # "Enter Coldharbour."
+        add_stress = 20
+        trigger_event = { id = daedric_champion.molag.002 days = 60 }
+    }
+    option = {
+        name = daedric_champion.molag.001.b  # "Coldharbour is a realm of suffering — refuse."
+        add_piety = 200
+    }
+}
+
+daedric_champion.molag.002 = {
+    type = character_event
+    title = daedric_champion.molag.002.t
+    desc = daedric_champion.molag.002.desc
+    theme = intrigue
+
+    option = {
+        name = daedric_champion.molag.002.a  # "Dominate."
+        add_trait    = daedric_champion
+        add_trait    = molag_bal_vampire
+        add_modifier = { modifier = mace_of_molag_bal_holder days = 3650 }
+        add_dread    = 40
+        add_prestige = 600
+    }
+    option = {
+        name = daedric_champion.molag.002.b  # "Flee Coldharbour."
+        add_prestige = -200
+        add_stress   = 30
+    }
+}
+
+# ================================================================
+#  HIRCINE — Quest: The Great Hunt
+#  Ring of Hircine + Savior's Hide are the rewards
+# ================================================================
+
+daedric_champion.hircine.001 = {
+    type = character_event
+    title = daedric_champion.hircine.001.t
+    desc = daedric_champion.hircine.001.desc
+    theme = war
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        prowess  >= 18
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = hircine_werewolf }
+    }
+
+    option = {
+        name = daedric_champion.hircine.001.a  # "Answer Hircine's Hunt."
+        trigger_event = { id = daedric_champion.hircine.002 days = 30 }
+    }
+    option = {
+        name = daedric_champion.hircine.001.b  # "I am no prey."
+        add_prestige = 100
+    }
+}
+
+daedric_champion.hircine.002 = {
+    type = character_event
+    title = daedric_champion.hircine.002.t
+    desc = daedric_champion.hircine.002.desc
+    theme = war
+
+    option = {
+        name = daedric_champion.hircine.002.a  # "Accept Hircine's gift — become the Hunter."
+        add_trait = daedric_champion
+        add_trait = hircine_werewolf
+        add_modifier = { modifier = ring_of_hircine_holder days = 3650 }
+        add_prestige = 700
+    }
+    option = {
+        name = daedric_champion.hircine.002.b  # "Slay the beast and earn the Savior's Hide."
+        add_modifier = { modifier = saviors_hide_holder days = 3650 }
+        add_prestige = 500
+        add_piety    = 300
+    }
+}
+
+# ================================================================
+#  BOETHIAH — Quest: Tournament of Ten Bloods
+#  Ebony Mail is the reward; win Boethiah's tournament
+# ================================================================
+
+daedric_champion.boethiah.001 = {
+    type = character_event
+    title = daedric_champion.boethiah.001.t
+    desc = daedric_champion.boethiah.001.desc
+    theme = war
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        OR = { martial >= 16 intrigue >= 18 }
+        NOT = { has_trait = daedric_champion }
+    }
+
+    option = {
+        name = daedric_champion.boethiah.001.a  # "Enter the Tournament."
+        add_prestige = -200
+        trigger_event = { id = daedric_champion.boethiah.002 days = 60 }
+    }
+    option = {
+        name = daedric_champion.boethiah.001.b  # "Boethiah's trials are for schemers — not rulers."
+        add_piety = 100
+    }
+}
+
+daedric_champion.boethiah.002 = {
+    type = character_event
+    title = daedric_champion.boethiah.002.t
+    desc = daedric_champion.boethiah.002.desc
+    theme = war
+
+    option = {
+        name = daedric_champion.boethiah.002.a  # "Win at any cost."
+        add_trait    = daedric_champion
+        add_modifier = { modifier = ebony_mail_holder days = 3650 }
+        add_prestige = 800
+        add_dread    = 30
+    }
+    option = {
+        name = daedric_champion.boethiah.002.b  # "Refuse to kill for sport."
+        add_piety    = 400
+        add_prestige = 100
+    }
+}
+
+# ================================================================
+#  MEPHALA — Quest: The Morag Tong Contract
+#  Ebony Blade is the reward; complete three secret kills
+# ================================================================
+
+daedric_champion.mephala.001 = {
+    type = character_event
+    title = daedric_champion.mephala.001.t
+    desc = daedric_champion.mephala.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        intrigue >= 18
+        NOT = { has_trait = mephala_champion }
+    }
+
+    option = {
+        name = daedric_champion.mephala.001.a  # "Accept the Morag Tong writ."
+        trigger_event = { id = daedric_champion.mephala.002 days = 90 }
+    }
+    option = {
+        name = daedric_champion.mephala.001.b  # "Refuse — webs are easily tangled."
+        add_piety = 100
+    }
+}
+
+daedric_champion.mephala.002 = {
+    type = character_event
+    title = daedric_champion.mephala.002.t
+    desc = daedric_champion.mephala.002.desc
+    theme = intrigue
+
+    option = {
+        name = daedric_champion.mephala.002.a  # "Three kills. The Ebony Blade awakens."
+        add_trait    = mephala_champion
+        add_modifier = { modifier = ebony_blade_holder days = 3650 }
+        add_prestige = 500
+        add_dread    = 25
+    }
+    option = {
+        name = daedric_champion.mephala.002.b  # "Stop at two — deny Mephala her third."
+        add_prestige = 200
+        add_piety    = 200
+    }
+}
+
+# ================================================================
+#  CLAVICUS VILE — Quest: Barbas and the Deal
+#  Masque of Clavicus Vile is the reward; make a wish
+# ================================================================
+
+daedric_champion.clavicus.001 = {
+    type = character_event
+    title = daedric_champion.clavicus.001.t
+    desc = daedric_champion.clavicus.001.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        diplomacy >= 16
+        NOT = { has_trait = clavicus_vile_champion }
+    }
+
+    option = {
+        name = daedric_champion.clavicus.001.a  # "Make a wish."
+        add_gold  = 1000        # immediate boon
+        trigger_event = { id = daedric_champion.clavicus.002 days = 365 }
+    }
+    option = {
+        name = daedric_champion.clavicus.001.b  # "Barbas is suspicious — send the dog away."
+        add_piety = 100
+    }
+}
+
+daedric_champion.clavicus.002 = {
+    type = character_event
+    title = daedric_champion.clavicus.002.t
+    desc = daedric_champion.clavicus.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_champion.clavicus.002.a  # "The wish backfired — honour the contract."
+        add_trait    = clavicus_vile_champion
+        add_modifier = { modifier = masque_of_clavicus_vile days = 3650 }
+        add_gold  = -500
+        add_prestige = 400
+    }
+    option = {
+        name = daedric_champion.clavicus.002.b  # "Break the contract — face Vile's anger."
+        add_modifier = { modifier = vile_curse_modifier days = 1825 }
+        add_prestige = -300
+    }
+}
+
+# ================================================================
+#  VAERMINA — Quest: Waking Nightmare
+#  Skull of Corruption is the reward; survive a memory theft
+# ================================================================
+
+daedric_champion.vaermina.001 = {
+    type = character_event
+    title = daedric_champion.vaermina.001.t
+    desc = daedric_champion.vaermina.001.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        learning >= 14
+        NOT = { has_trait = vaermina_champion }
+    }
+
+    option = {
+        name = daedric_champion.vaermina.001.a  # "Explore Nightcaller Temple."
+        add_stress = 15
+        trigger_event = { id = daedric_champion.vaermina.002 days = 30 }
+    }
+    option = {
+        name = daedric_champion.vaermina.001.b  # "Nightmares are best left sleeping."
+        add_piety = 100
+    }
+}
+
+daedric_champion.vaermina.002 = {
+    type = character_event
+    title = daedric_champion.vaermina.002.t
+    desc = daedric_champion.vaermina.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_champion.vaermina.002.a  # "Survive the nightmare."
+        add_trait    = vaermina_champion
+        add_modifier = { modifier = skull_of_corruption_modifier days = 3650 }
+        add_learning = 4
+        add_prestige = 500
+    }
+    option = {
+        name = daedric_champion.vaermina.002.b  # "Free the trapped priest."
+        add_piety    = 500
+        add_prestige = 200
+    }
+}
+
+# ================================================================
+#  SHEOGORATH — Quest: A Mind Unravelled
+#  Wabbajack is the reward; complete the Greymarch's opposite
+# ================================================================
+
+daedric_champion.sheogorath.001 = {
+    type = character_event
+    title = daedric_champion.sheogorath.001.t
+    desc = daedric_champion.sheogorath.001.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        NOT = { has_trait = sheogorath_champion }
+    }
+
+    option = {
+        name = daedric_champion.sheogorath.001.a  # "Enter the Shivering Isles."
+        add_stress   = -10
+        trigger_event = { id = daedric_champion.sheogorath.002 days = 60 }
+    }
+    option = {
+        name = daedric_champion.sheogorath.001.b  # "Madness is not for rulers."
+        add_stress = 5
+    }
+}
+
+daedric_champion.sheogorath.002 = {
+    type = character_event
+    title = daedric_champion.sheogorath.002.t
+    desc = daedric_champion.sheogorath.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_champion.sheogorath.002.a  # "Survive the Shivering Isles."
+        add_trait    = sheogorath_champion
+        add_modifier = { modifier = wabbajack_modifier days = 3650 }
+        add_prestige = 600
+        add_stress   = -30
+    }
+    option = {
+        name = daedric_champion.sheogorath.002.b  # "Flee while sanity holds."
+        add_prestige = -100
+        add_piety    = 100
+    }
+}
+
+# ================================================================
+#  PERYITE — Quest: The Afflicted and Spellbreaker
+# ================================================================
+
+daedric_champion.peryite.001 = {
+    type = character_event
+    title = daedric_champion.peryite.001.t
+    desc = daedric_champion.peryite.001.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        stewardship >= 14
+        NOT = { has_trait = peryite_champion }
+    }
+
+    option = {
+        name = daedric_champion.peryite.001.a  # "Seek out the Afflicted."
+        trigger_event = { id = daedric_champion.peryite.002 days = 60 }
+    }
+    option = {
+        name = daedric_champion.peryite.001.b  # "Disease is no patron for a ruler."
+        add_piety = 100
+    }
+}
+
+daedric_champion.peryite.002 = {
+    type = character_event
+    title = daedric_champion.peryite.002.t
+    desc = daedric_champion.peryite.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_champion.peryite.002.a  # "Cure the Afflicted — earn Spellbreaker."
+        add_trait    = peryite_champion
+        add_modifier = { modifier = spellbreaker_modifier days = 3650 }
+        add_prestige = 500
+        add_piety    = 300
+    }
+    option = {
+        name = daedric_champion.peryite.002.b  # "Become the next Afflicted."
+        add_trait    = peryite_afflicted
+        add_prestige = -100
+    }
+}
+
+# ================================================================
+#  SANGUINE — Quest: A Night to Forget
+# ================================================================
+
+daedric_champion.sanguine.001 = {
+    type = character_event
+    title = daedric_champion.sanguine.001.t
+    desc = daedric_champion.sanguine.001.desc
+    theme = feast
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        diplomacy >= 14
+        NOT = { has_trait = sanguine_champion }
+    }
+
+    option = {
+        name = daedric_champion.sanguine.001.a  # "Accept the invitation to the feast."
+        add_stress   = -20
+        trigger_event = { id = daedric_champion.sanguine.002 days = 7 }
+    }
+    option = {
+        name = daedric_champion.sanguine.001.b  # "A ruler must keep their head clear."
+        add_piety = 50
+    }
+}
+
+daedric_champion.sanguine.002 = {
+    type = character_event
+    title = daedric_champion.sanguine.002.t
+    desc = daedric_champion.sanguine.002.desc
+    theme = feast
+
+    option = {
+        name = daedric_champion.sanguine.002.a  # "Go along with it."
+        add_trait    = sanguine_champion
+        add_modifier = { modifier = sanguine_rose_holder days = 3650 }
+        add_prestige = 500
+        add_stress   = -25
+    }
+    option = {
+        name = daedric_champion.sanguine.002.b  # "Demand sobriety and return home."
+        add_prestige = -100
+        add_piety    = 200
+    }
+}
+
+# ================================================================
+#  MERIDIA — Quest: The Beacon Lights the Way
+# ================================================================
+
+daedric_champion.meridia.001 = {
+    type = character_event
+    title = daedric_champion.meridia.001.t
+    desc = daedric_champion.meridia.001.desc
+    theme = war
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        martial  >= 14
+        piety    >= 300
+        NOT = { has_trait = meridia_champion }
+        NOT = { faith = { has_doctrine = doctrine_undead_accepted } }
+    }
+
+    option = {
+        name = daedric_champion.meridia.001.a  # "Answer Meridia's call."
+        add_piety = -300
+        trigger_event = { id = daedric_champion.meridia.002 days = 60 }
+    }
+    option = {
+        name = daedric_champion.meridia.001.b  # "Daedra ask too much — even the seemingly good ones."
+        add_piety = 100
+    }
+}
+
+daedric_champion.meridia.002 = {
+    type = character_event
+    title = daedric_champion.meridia.002.t
+    desc = daedric_champion.meridia.002.desc
+    theme = war
+
+    option = {
+        name = daedric_champion.meridia.002.a  # "Take Dawnbreaker and purge the undead."
+        add_trait    = meridia_champion
+        add_modifier = { modifier = dawnbreaker_modifier days = 3650 }
+        add_prestige = 700
+        add_piety    = 500
+    }
+}
+
+# ================================================================
+#  MALACATH — Quest: The Forsworn's Oath
+# ================================================================
+
+daedric_champion.malacath.001 = {
+    type = character_event
+    title = daedric_champion.malacath.001.t
+    desc = daedric_champion.malacath.001.desc
+    theme = war
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        prowess  >= 20
+        NOT = { has_trait = malacath_champion }
+    }
+
+    option = {
+        name = daedric_champion.malacath.001.a  # "Challenge Malacath's trial."
+        trigger_event = { id = daedric_champion.malacath.002 days = 60 }
+    }
+    option = {
+        name = daedric_champion.malacath.001.b  # "The Spurned King has no claim over me."
+        add_piety = 100
+    }
+}
+
+daedric_champion.malacath.002 = {
+    type = character_event
+    title = daedric_champion.malacath.002.t
+    desc = daedric_champion.malacath.002.desc
+    theme = war
+
+    option = {
+        name = daedric_champion.malacath.002.a  # "Claim Volendrung."
+        add_trait    = malacath_champion
+        add_modifier = { modifier = volendrung_bearer days = 3650 }
+        add_prestige = 700
+        add_prowess  = 3
+    }
+    option = {
+        name = daedric_champion.malacath.002.b  # "Honour the exile — leave Volendrung."
+        add_piety    = 300
+        add_prestige = 200
+    }
+}
+
+# ================================================================
+#  NOCTURNAL — Quest: The Nightingale Oath
+# ================================================================
+
+daedric_champion.nocturnal.001 = {
+    type = character_event
+    title = daedric_champion.nocturnal.001.t
+    desc = daedric_champion.nocturnal.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        intrigue >= 20
+        NOT = { has_trait = nocturnal_champion }
+    }
+
+    option = {
+        name = daedric_champion.nocturnal.001.a  # "Swear the Nightingale Oath."
+        trigger_event = { id = daedric_champion.nocturnal.002 days = 30 }
+    }
+    option = {
+        name = daedric_champion.nocturnal.001.b  # "No oath to Nocturnal — the shadows keep their own price."
+        add_piety = 100
+    }
+}
+
+daedric_champion.nocturnal.002 = {
+    type = character_event
+    title = daedric_champion.nocturnal.002.t
+    desc = daedric_champion.nocturnal.002.desc
+    theme = intrigue
+
+    option = {
+        name = daedric_champion.nocturnal.002.a  # "Become a Nightingale."
+        add_trait    = nocturnal_champion
+        add_modifier = { modifier = skeleton_key_holder days = 3650 }
+        add_prestige = 600
+        add_intrigue = 4
+    }
+    option = {
+        name = daedric_champion.nocturnal.002.b  # "The Oath's price is eternal service — refuse."
+        add_piety    = 300
+        add_prestige = 100
+    }
+}
+
+# ================================================================
+#  HERMAEUS MORA — Quest: The Oghma Infinium
+# ================================================================
+
+daedric_champion.hermaeus.001 = {
+    type = character_event
+    title = daedric_champion.hermaeus.001.t
+    desc = daedric_champion.hermaeus.001.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        learning >= 22
+        NOT = { has_trait = hermaeus_mora_champion }
+    }
+
+    option = {
+        name = daedric_champion.hermaeus.001.a  # "Seek the Oghma Infinium."
+        trigger_event = { id = daedric_champion.hermaeus.002 days = 90 }
+    }
+    option = {
+        name = daedric_champion.hermaeus.001.b  # "Some knowledge is best unfound."
+        add_piety = 200
+    }
+}
+
+daedric_champion.hermaeus.002 = {
+    type = character_event
+    title = daedric_champion.hermaeus.002.t
+    desc = daedric_champion.hermaeus.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_champion.hermaeus.002.a  # "Read the Oghma Infinium."
+        add_trait    = hermaeus_mora_champion
+        add_modifier = { modifier = oghma_infinium_holder days = 3650 }
+        add_learning = 8
+        add_prestige = 600
+        add_stress   = 15
+    }
+    option = {
+        name = daedric_champion.hermaeus.002.b  # "Mora's knowledge demands too high a price."
+        add_piety    = 400
+        add_prestige = 100
+    }
+}
+
+# ================================================================
+#  NAMIRA — Quest: The Cannibal's Feast
+# ================================================================
+
+daedric_champion.namira.001 = {
+    type = character_event
+    title = daedric_champion.namira.001.t
+    desc = daedric_champion.namira.001.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        NOT = { has_trait = daedric_champion }
+        OR = {
+            has_trait = cannibal
+            intrigue >= 18
+        }
+    }
+
+    option = {
+        name = daedric_champion.namira.001.a  # "Embrace decay."
+        trigger_event = { id = daedric_champion.namira.002 days = 30 }
+    }
+    option = {
+        name = daedric_champion.namira.001.b  # "Namira's feast is not for me."
+        add_piety = 100
+    }
+}
+
+daedric_champion.namira.002 = {
+    type = character_event
+    title = daedric_champion.namira.002.t
+    desc = daedric_champion.namira.002.desc
+    theme = realm
+
+    option = {
+        name = daedric_champion.namira.002.a  # "Wear the Ring of Namira."
+        add_trait = daedric_champion
+        add_trait = cannibal
+        add_modifier = { modifier = ring_of_namira_holder days = 3650 }
+        add_prestige = 400
+        add_piety    = -400
+    }
+    option = {
+        name = daedric_champion.namira.002.b  # "Walk away from the feast."
+        add_piety = 300
+        add_prestige = -100
+    }
+}
+
+# ================================================================
+#  JYGGALAG — Quest: The Greymarch Prophecy
+#  Sword of Jyggalag; only accessible once per era
+# ================================================================
+
+daedric_champion.jyggalag.001 = {
+    type = character_event
+    title = daedric_champion.jyggalag.001.t
+    desc = daedric_champion.jyggalag.001.desc
+    theme = war
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        stewardship >= 18
+        martial     >= 18
+        NOT = { has_trait = jyggalag_champion }
+        current_date >= 3E.400      # Greymarch proximity
+    }
+
+    option = {
+        name = daedric_champion.jyggalag.001.a  # "Seek Jyggalag before the Greymarch."
+        trigger_event = { id = daedric_champion.jyggalag.002 days = 60 }
+    }
+    option = {
+        name = daedric_champion.jyggalag.001.b  # "Perfect order would destroy all I have built."
+        add_prestige = 200
+    }
+}
+
+daedric_champion.jyggalag.002 = {
+    type = character_event
+    title = daedric_champion.jyggalag.002.t
+    desc = daedric_champion.jyggalag.002.desc
+    theme = war
+
+    option = {
+        name = daedric_champion.jyggalag.002.a  # "Wield the Sword of Perfect Order."
+        add_trait    = jyggalag_champion
+        add_modifier = { modifier = sword_of_jyggalag_modifier days = 3650 }
+        add_prestige = 800
+        add_piety    = 300
+    }
+    option = {
+        name = daedric_champion.jyggalag.002.b  # "The world needs its chaos."
+        add_prestige = 400
+    }
+}

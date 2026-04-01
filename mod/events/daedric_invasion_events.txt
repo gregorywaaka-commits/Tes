@@ -21,12 +21,32 @@ daedric_invasion.000 = {
 
     immediate = {
         # Randomly pick which Daedric Prince leads this invasion
+        # Weights reflect lore frequency: Dagon most common; Jyggalag rarest (the Greymarch)
         random_list = {
-            40 = { set_global_variable = { name = chosen_prince_key value = "mehrunes_dagon_template" } }
-            20 = { set_global_variable = { name = chosen_prince_key value = "molag_bal_template" } }
-            15 = { set_global_variable = { name = chosen_prince_key value = "boethiah_template" } }
-            15 = { set_global_variable = { name = chosen_prince_key value = "hircine_template" } }
-            10 = { set_global_variable = { name = chosen_prince_key value = "namira_template" } }
+            25 = { set_global_variable = { name = chosen_prince_key value = "mehrunes_dagon_template" } }
+            15 = { set_global_variable = { name = chosen_prince_key value = "molag_bal_template" } }
+            10 = { set_global_variable = { name = chosen_prince_key value = "boethiah_template" } }
+            10 = { set_global_variable = { name = chosen_prince_key value = "hircine_template" } }
+             5 = { set_global_variable = { name = chosen_prince_key value = "namira_template" } }
+             5 = { set_global_variable = { name = chosen_prince_key value = "azura_template" } }
+             8 = { set_global_variable = { name = chosen_prince_key value = "mephala_template" } }
+             4 = { set_global_variable = { name = chosen_prince_key value = "clavicus_vile_template" } }
+             5 = { set_global_variable = { name = chosen_prince_key value = "vaermina_template" } }
+             3 = { set_global_variable = { name = chosen_prince_key value = "sheogorath_template" } }
+             5 = { set_global_variable = { name = chosen_prince_key value = "peryite_template" } }
+             2 = { set_global_variable = { name = chosen_prince_key value = "sanguine_template" } }
+             3 = { set_global_variable = { name = chosen_prince_key value = "meridia_template" } }
+             5 = { set_global_variable = { name = chosen_prince_key value = "malacath_template" } }
+             3 = { set_global_variable = { name = chosen_prince_key value = "nocturnal_template" } }
+             2 = { set_global_variable = { name = chosen_prince_key value = "hermaeus_mora_template" } }
+             1 = {
+                 # Jyggalag only triggers the Greymarch — requires no active invasion and later era
+                 modifier = {
+                     add = -1   # disabled unless date condition met below
+                     NOT = { current_date >= 3E.400 }
+                 }
+                 set_global_variable = { name = chosen_prince_key value = "jyggalag_template" }
+             }
         }
         begin_daedric_invasion = yes
     }

@@ -48,8 +48,9 @@ unleash_thrassian_plague = {
     set_global_variable = { name = thrassian_plague_active value = yes }
     set_global_variable = { name = thrassian_plague_origin value = root }
     # Apply province plague modifier to 5 random coastal counties
-    every_coastal_county = {
+    every_county = {
         limit = {
+            is_coastal = yes
             NOT = { holder = { is_sload = yes } }
         }
         add_province_modifier = {

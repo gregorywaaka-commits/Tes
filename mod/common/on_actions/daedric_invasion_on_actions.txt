@@ -32,3 +32,42 @@ on_yearly_pulse = {
         5   = daedric_invasion.000   # attempt to trigger a new invasion
     }
 }
+
+# Fires every 5 years — chance for a ruler to be contacted by a Prince during peace
+on_five_year_pulse_character = {
+    random_events = {
+        100 = 0          # no-op weight
+        3   = daedric_champion.mehrunes.001
+        4   = daedric_champion.azura.001
+        2   = daedric_champion.mephala.001
+        2   = daedric_champion.clavicus.001
+        2   = daedric_champion.vaermina.001
+        1   = daedric_champion.sheogorath.001
+        2   = daedric_champion.peryite.001
+        3   = daedric_champion.sanguine.001
+        3   = daedric_champion.meridia.001
+        2   = daedric_champion.malacath.001
+        2   = daedric_champion.nocturnal.001
+        2   = daedric_champion.hermaeus.001
+        1   = daedric_champion.namira.001
+    }
+}
+
+# During an active invasion: per-prince unique events fire on the yearly pulse
+on_yearly_pulse_character = {
+    random_events = {
+        80 = 0
+        5  = daedric_prince_invasion.azura.003
+        4  = daedric_prince_invasion.mephala.002
+        4  = daedric_prince_invasion.clavicus.003
+        4  = daedric_prince_invasion.vaermina.003
+        3  = daedric_prince_invasion.sheogorath.003
+        4  = daedric_prince_invasion.peryite.002
+        4  = daedric_prince_invasion.sanguine.003
+        4  = daedric_prince_invasion.meridia.002
+        4  = daedric_prince_invasion.malacath.003
+        4  = daedric_prince_invasion.nocturnal.002
+        4  = daedric_prince_invasion.hermaeus.003
+        3  = daedric_prince_invasion.jyggalag.003
+    }
+}

@@ -148,3 +148,219 @@ oblivion_gate_unchecked = {
 oblivion_gate_daedra_surge = {
     supply_limit_mult = -0.2
 }
+
+# =============================================================
+#  Character & Province Modifiers — All 17 Daedric Princes
+# =============================================================
+
+# ---- Per-Prince Invasion Province/Character Modifiers ----
+
+molag_planemeld_dread = {
+    monthly_prestige_gain_mult = -0.1
+    stress_gain_mult = 0.2
+    dread = 20
+}
+
+boethiah_court_conspiracy = {
+    intrigue = -2
+    monthly_prestige_gain_mult = -0.05
+}
+
+mephala_web_modifier = {
+    intrigue = -3
+    monthly_prestige_gain_mult = -0.1
+}
+
+mephala_web_gift = {
+    intrigue = 5
+    monthly_prestige_gain_mult = 0.1
+}
+
+mephala_web_curse = {
+    intrigue = -5
+    stress_gain_mult = 0.2
+}
+
+vaermina_nightmare_modifier = {
+    stress_gain_mult = 0.3
+    learning = -2
+}
+
+nocturnal_shadow_tithe = {
+    monthly_income = -0.15
+    stewardship = -1
+}
+
+nocturnal_shadow_favor = {
+    intrigue = 3
+    monthly_prestige_gain_mult = 0.05
+}
+
+malacath_oath_curse = {
+    monthly_prestige_gain_mult = -0.2
+    prowess = -4
+    stress_gain_mult = 0.1
+}
+
+namira_rot_modifier = {
+    monthly_income    = -0.2
+    development_growth_factor = -0.3
+    supply_limit_mult = -0.15
+}
+
+peryite_plague_modifier = {
+    monthly_income    = -0.25
+    supply_limit_mult = -0.2
+    development_growth_factor = -0.3
+}
+
+peryite_afflicted_ruler = {
+    monthly_prestige_gain_mult = -0.1
+    diplomacy = -3
+    stress_gain_mult = 0.15
+}
+
+jyggalag_crystal_modifier = {
+    development_growth_factor = -0.4
+    monthly_income = -0.2
+    supply_limit_mult = -0.2
+}
+
+anti_jyggalag_resistance = {
+    monthly_prestige_gain_mult = 0.15
+    levy_size = 0.1
+}
+
+vile_curse_modifier = {
+    monthly_prestige_gain_mult = -0.15
+    diplomacy = -3
+    monthly_income = -0.1
+}
+
+meridia_displeasure = {
+    monthly_piety_gain_mult = -0.2
+    monthly_prestige_gain_mult = -0.1
+}
+
+meridia_purge_target = {
+    monthly_prestige_gain_mult = -0.2
+    monthly_piety_gain_mult = -0.3
+    levy_size = -0.1
+}
+
+# ---- Daedric Artifact Holder Modifiers ----
+# (These represent possessing or wielding a Daedric artifact)
+
+mehrunes_razor_holder = {
+    prowess = 4
+    intrigue = 3
+    command_modifier = { advantage = 3 damage = 0.1 }
+}
+
+azura_star_holder = {
+    monthly_piety_gain_mult = 0.2
+    learning = 3
+    diplomacy = 2
+}
+
+mace_of_molag_bal_holder = {
+    prowess = 6
+    dread_gain_mult = 0.3
+    command_modifier = { advantage = 4 damage = 0.15 }
+}
+
+ring_of_hircine_holder = {
+    prowess = 4
+    martial = 2
+    command_modifier = { pursuit = 0.2 }
+}
+
+saviors_hide_holder = {
+    prowess = 3
+    monthly_piety_gain_mult = 0.1
+    command_modifier = { toughness = 0.15 }
+}
+
+ebony_mail_holder = {
+    prowess = 3
+    intrigue = 4
+    dread_gain_mult = 0.2
+    command_modifier = { advantage = 3 }
+}
+
+ebony_blade_holder = {
+    prowess = 5
+    intrigue = 5
+    dread_gain_mult = 0.25
+}
+
+masque_of_clavicus_vile = {
+    diplomacy = 6
+    intrigue  = 3
+    monthly_prestige_gain_mult = 0.1
+}
+
+skull_of_corruption_modifier = {
+    intrigue = 5
+    learning = 3
+    monthly_prestige_gain_mult = 0.1
+}
+
+wabbajack_modifier = {
+    stress_gain_mult = -0.4
+    # Unpredictable outcomes handled in Sheogorath events
+}
+
+spellbreaker_modifier = {
+    prowess = 3
+    stewardship = 3
+    command_modifier = { toughness = 0.2 screen = 0.1 }
+}
+
+sanguine_rose_holder = {
+    diplomacy = 3
+    stress_gain_mult = -0.2
+    monthly_prestige_gain_mult = 0.1
+}
+
+dawnbreaker_modifier = {
+    prowess  = 5
+    martial  = 3
+    monthly_piety_gain_mult = 0.2
+    command_modifier = { advantage = 5 damage = 0.2 }
+}
+
+volendrung_bearer = {
+    prowess = 8
+    martial = 4
+    command_modifier = { advantage = 5 damage = 0.25 }
+}
+
+skeleton_key_holder = {
+    intrigue = 6
+    stewardship = 2
+}
+
+oghma_infinium_holder = {
+    learning = 8
+    intrigue = 3
+    monthly_prestige_gain_mult = 0.1
+}
+
+ring_of_namira_holder = {
+    prowess = 4
+    intrigue = 3
+    # Cannibal synergy handled via events
+}
+
+sword_of_jyggalag_modifier = {
+    prowess = 8
+    martial = 5
+    stewardship = 3
+    command_modifier = { advantage = 8 damage = 0.3 max_morale = 0.3 }
+}
+
+# ---- Quest cooldown ----
+daedric_quest_cooldown = {
+    # Gate preventing a ruler from starting multiple Daedric quests simultaneously
+}

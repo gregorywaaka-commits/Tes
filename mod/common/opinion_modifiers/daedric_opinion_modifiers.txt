@@ -1,0 +1,33 @@
+# =============================================================
+#  Opinion Modifiers — Daedric Invasion & Champion System
+# =============================================================
+
+rallied_together_opinion = {
+    opinion = 20
+    decay_rate = 1
+}
+
+ignored_call_opinion = {
+    opinion = -15
+    decay_rate = 1
+}
+
+submitted_to_daedra_opinion = {
+    opinion = -30
+    decay_rate = 1
+}
+
+exposed_secrets_opinion = {
+    opinion = -20
+    decay_rate = 1
+}
+
+mora_knows_all_opinion = {
+    opinion = -15
+    decay_rate = 1
+}
+
+reason_echmer_envoy = {
+    opinion = 10
+    decay_rate = 0
+}

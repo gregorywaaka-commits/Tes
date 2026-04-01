@@ -47,3 +47,118 @@ daedric_invasion_trigger_conditions = {
         NOT = { has_trait = daedric_champion }
     }
 }
+
+# ---- Per-Prince invasion active checks ----
+is_mehrunes_dagon_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "mehrunes_dagon_template"
+}
+
+is_molag_bal_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "molag_bal_template"
+}
+
+is_boethiah_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "boethiah_template"
+}
+
+is_hircine_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "hircine_template"
+}
+
+is_namira_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "namira_template"
+}
+
+is_azura_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "azura_template"
+}
+
+is_mephala_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "mephala_template"
+}
+
+is_clavicus_vile_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "clavicus_vile_template"
+}
+
+is_vaermina_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "vaermina_template"
+}
+
+is_sheogorath_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "sheogorath_template"
+}
+
+is_peryite_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "peryite_template"
+}
+
+is_sanguine_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "sanguine_template"
+}
+
+is_meridia_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "meridia_template"
+}
+
+is_malacath_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "malacath_template"
+}
+
+is_nocturnal_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "nocturnal_template"
+}
+
+is_hermaeus_mora_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "hermaeus_mora_template"
+}
+
+is_jyggalag_invasion = {
+    is_daedric_invasion_active = yes
+    global_var:active_daedric_prince = "jyggalag_template"
+}
+
+# ---- Champion checks ----
+is_any_daedric_champion = {
+    OR = {
+        has_trait = daedric_champion
+        has_trait = azura_champion
+        has_trait = mephala_champion
+        has_trait = clavicus_vile_champion
+        has_trait = vaermina_champion
+        has_trait = sheogorath_champion
+        has_trait = peryite_champion
+        has_trait = sanguine_champion
+        has_trait = meridia_champion
+        has_trait = malacath_champion
+        has_trait = nocturnal_champion
+        has_trait = hermaeus_mora_champion
+        has_trait = jyggalag_champion
+    }
+}
+
+# Checks if a character is a devotee of any Daedric Prince
+is_daedra_worshipper = {
+    OR = {
+        faith = { has_doctrine = doctrine_daedra_revered }
+        faith = { has_doctrine = doctrine_daedra_accepted }
+        has_trait = daedric_vassal
+        is_any_daedric_champion = yes
+    }
+}
