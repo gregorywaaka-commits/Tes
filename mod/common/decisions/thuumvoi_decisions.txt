@@ -288,3 +288,113 @@ use_thu_um_in_battle = {
         modifier = { add = 10 has_trait = first_voice_of_the_greybeards }
     }
 }
+
+# ================================================================
+#  6. WORD WALL LEARNING  (Dragonborn bypass — lore-accurate)
+# ================================================================
+
+# Dragonborn absorb Shout knowledge from Word Walls instantly —
+# no teacher, no years of practice.  The dragon's blood recognises
+# the Dragon Language as its native tongue.
+learn_from_word_wall = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = learn_from_word_wall_desc
+
+    is_shown = {
+        can_learn_from_word_wall = yes
+    }
+
+    is_valid = {
+        can_learn_from_word_wall = yes
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        learn_from_word_wall_effect = yes
+    }
+
+    ai_will_do = {
+        base = 15
+        modifier = { add = 20 has_trait = dovahkiin_soul_awakened }
+        modifier = { add = 10 has_trait = dragon_souls_growing }
+        modifier = { add = 5  has_trait = dragon_souls_brimming }
+    }
+}
+
+# ================================================================
+#  7. ABSORB ANOTHER DRAGON SOUL  (post-awakening stacking)
+# ================================================================
+
+# The Dragonborn seeks out and slays a dragon, absorbing its soul
+# and adding its Thu'um knowledge to their own.  Each soul makes
+# them more powerful — and more dangerous to themselves.
+absorb_another_dragon_soul = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = absorb_another_dragon_soul_desc
+
+    is_shown = {
+        can_absorb_another_soul = yes
+    }
+
+    is_valid = {
+        can_absorb_another_soul = yes
+        OR = {
+            martial   >= 10      # Can face a dragon in combat
+            prowess   >= 16
+            has_trait = dovahkiin_soul_awakened
+        }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        absorb_additional_dragon_soul = yes
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 10 has_trait = dragon_souls_growing  }
+        modifier = { add = -5 has_trait = dragon_souls_brimming }  # AI is more cautious near peak
+        modifier = { add = -30 has_trait = dovah_nature_dominant }  # Can't focus to hunt
+    }
+}
+
+# ================================================================
+#  8. DOVAH NATURE — RESOLVE THE TENSION
+# ================================================================
+
+# The Dragonborn confronts the dragon's domination instinct head-on,
+# choosing their mortal free will over the ancient Dovah nature.
+# This is what Paarthurnax calls 'the hardest shout'.
+resist_dovah_nature_decision = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = resist_dovah_nature_decision_desc
+
+    is_shown = {
+        OR = {
+            dovah_nature_at_risk = yes
+            has_trait = dovah_nature_dominant
+        }
+    }
+
+    is_valid = {
+        OR = {
+            dovah_nature_at_risk = yes
+            has_trait = dovah_nature_dominant
+        }
+        piety >= 400
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        resist_dovah_nature = yes
+    }
+
+    ai_will_do = {
+        base = 20
+        modifier = { add = 30 has_trait = dovah_nature_dominant }   # AI strongly wants to escape this
+        modifier = { add = 10 piety >= 1000 }
+    }
+}

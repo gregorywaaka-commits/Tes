@@ -17,6 +17,9 @@ on_yearly_pulse = {
         8   = dovahkiin.post_001     # Dragonborn recognition
         6   = greybeard.post_001     # First Voice receives a pilgrim
         5   = greybeard.post_002     # First Voice — young Tongue challenges them
+        4   = thuumvoi.016           # Akatosh's vision (post-awakening Dragonborn)
+        3   = amulet.005             # Amulet rejects non-Dragonborn bearer
+        4   = amulet.post_001        # Amulet draws political attention
     }
 }
 

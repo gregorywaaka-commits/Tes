@@ -177,3 +177,77 @@ l_english:
  dovahkiin.post_001.desc: "The scholars have a name for it now. The word has spread — in the way that truly significant things spread, not through announcement or declaration but through the specific quiet that falls when something is true enough to be felt rather than merely heard. The Dovahkiin. The Last Dragonborn, some are already saying, though the word 'last' is the kind of claim that history tends to laugh at. The Greybeards have been silent on the matter, which among the Greybeards means something very specific."
  dovahkiin.post_001.a: "They learn what I am. Let them."
  dovahkiin.post_001.b: "The Dragonborn does not seek recognition. But it finds us anyway."
+
+ # ============================================================
+ #  New traits — Dragon Soul Stacking & Dovah Nature
+ # ============================================================
+
+ dragon_souls_growing: "Dragon Souls: Growing"
+ dragon_souls_growing_desc: "Has absorbed five or more Dragon Souls. The Thu'um is effortless now — Shouts come as easily as breathing. The Dragonborn carries the memories of five ancient Dovah: their grudges, their wars, their fire. The Dovah instinct — dominion, conquest, the endless hunger for more — is noticeably louder. This is not yet crisis. But it is direction."
+
+ dragon_souls_brimming: "Dragon Souls: Brimming"
+ dragon_souls_brimming_desc: "Has absorbed ten or more Dragon Souls. At this level the Dragonborn is something that has not existed before: a mortal vessel containing more Dovah essence than most living dragons. Their Thu'um could crack mountains. Their Dovah nature is at the edge of overcoming their mortal will. The tension must be resolved — by resistance or by submission — or it will resolve itself."
+
+ dovah_nature_resisted: "The Hardest Shout"
+ dovah_nature_resisted_desc: "Has faced the Dovah nature — the dragon's ancient instinct for domination and conquest — and chosen their own path instead. Paarthurnax calls this 'the hardest shout': the one you speak inward rather than outward, turning the full power of the Thu'um against the part of yourself that would use it only for dominance. This character is both Dovah and mortal, and they have chosen to be both freely. Very few achieve this."
+
+ dovah_nature_dominant: "Dovah Nature Dominant"
+ dovah_nature_dominant_desc: "The accumulated Dragon Souls are overwhelming this character's mortal free will. They are becoming something between a man and a dragon — ancient, driven, and consumed by the Dovah instinct for dominance. Their power is immense but their focus is gone. The world can feel it. Other Dovah can feel it. Every conversation is a battle with ten ancient voices who all want different things at maximum volume. The only resolution is to face the nature directly — or be consumed by it entirely."
+
+ # ---- New modifiers ----
+ absorb_soul_cooldown: "Dragon Soul — Recovery"
+ absorb_soul_cooldown_desc: "Absorbing a Dragon Soul is not a minor event. The Dragonborn needs time to integrate what they have taken in before seeking another."
+
+ dovahkiin_word_wall_cooldown: "Word Wall — Absorbed"
+ dovahkiin_word_wall_cooldown_desc: "The knowledge from this Word Wall is still settling into the Dragonborn's mind. Another Wall can be approached when this one has been fully integrated."
+
+ dragon_souls_growing_modifier: "Five Dragon Souls Within"
+ dragon_souls_brimming_modifier: "Ten Dragon Souls Within"
+ dovah_nature_resisted_modifier: "The Dragon Tamed"
+ dovah_nature_dominant_modifier: "The Dragon Ascendant"
+
+ # ---- New decisions ----
+ learn_from_word_wall: "Learn from a Word Wall"
+ learn_from_word_wall_desc: "A Word Wall is a stretch of ancient carved stone — Dragon Language inscribed by the ancient Nords to record their Shouts for posterity. For most people, a Word Wall is a historical curiosity. For a Dragonborn, it is a direct transmission: the moment their eyes reach the first Word, the knowledge is already inside them. No teacher. No practice. The dragon's blood recognises the dragon's language."
+
+ absorb_another_dragon_soul: "Seek and Absorb Another Dragon Soul"
+ absorb_another_dragon_soul_desc: "The Dragonborn's power grows with every Dragon Soul they absorb. Each one adds a lifetime of Shouts, memories, and the raw Dovah essence that makes the Thu'um what it is. But each one also adds to the weight of the Dovah nature within. Seek a dragon. Kill it. Absorb what remains. Know exactly what this will cost."
+
+ resist_dovah_nature_decision: "Face the Dragon Within"
+ resist_dovah_nature_decision_desc: "Paarthurnax has spoken about this. He calls it the hardest shout he ever spoke — not FUS or YOL, but the one with no word, the one you direct entirely inward. The dragon in every Dragonborn is real. Its hunger is real. The question is not whether it can be silenced — it cannot be silenced — but whether its owner can look at it clearly, understand exactly what it wants, and choose something else. This requires time, honesty, and more piety than most people ever accumulate. But it has been done before. Paarthurnax did it. The choice is available."
+
+ # ---- New events ----
+ thuumvoi.010.t: "Five Souls"
+ thuumvoi.010.desc: "The fifth Dragon Soul enters us — and something shifts. It is not dramatic, the way the first one was. The first was like a flood. This is like reaching a new floor in a building and realising you can see further than you thought. Five dragons. Five lifetimes of sky and fire and the high cold air above the clouds, where only Dovah go. We can feel them individually now — not as voices, not yet, but as presences. Distinct, ancient, each one specific. The oldest is from the late Merethic Era. We know this the way we know our own birthdate. We didn't before."
+ thuumvoi.010.a: "Five souls. I carry five dragons within me."
+ thuumvoi.010.b: "I hear them sometimes. Their memories. Sky and fire and ancient grudges."
+
+ thuumvoi.011.t: "Ten Souls: The Dragon at the Threshold"
+ thuumvoi.011.desc: "Ten Dragon Souls. We are not aware of a precedent. The academic records of the Moth Priests do not record a Dragonborn who has absorbed this many in one lifetime during the Second Era. The ancient accounts from the Dragon War in the Merethic Era speak of Dragonborn heroes who absorbed dozens, but those accounts also describe them as eventually becoming more dragon than mortal in temperament, and most of them are not described positively. The Dovah within us are not ten separate voices anymore. They are a chorus. They want things. They want sky. They want fire. They want dominance, because that is what Dovah want. We still know who we are. We have to keep knowing that."
+ thuumvoi.011.a: "Ten dragons. Ten lifetimes of sky. I am becoming something the world has never seen."
+ thuumvoi.011.b: "I should seek Paarthurnax. If anyone knows how to carry this, it is him."
+
+ thuumvoi.012.t: "The Dovah Nature Crisis"
+ thuumvoi.012.desc: "It comes without warning or rather with too much warning — every sign there since the tenth soul and wilfully ignored until now. The Dovah nature is not a metaphor. It is not a symbol of ambition or a poetic way of saying we have an aggressive streak. It is ten ancient dragons living in the same body as one mortal, and they all have opinions, and they all have those opinions at once, and they all agree that domination is the correct answer to most questions. We are still in here. We can still choose. But the question is becoming urgent: which part of us is going to make that choice?"
+ thuumvoi.012.a: "I am not a dragon. I am Dovahkiin. I choose."
+ thuumvoi.012.b: "Let it come. What mortal can stand against me now?"
+
+ thuumvoi.013.t: "The Hardest Shout"
+ thuumvoi.013.desc: "We did it. We cannot exactly explain how, which is perhaps the point — Paarthurnax said the hardest shout has no word in any language, not even Dragon Language. We turned inward. We looked at ten dragons looking back at us and we did not flinch and we did not give them what they wanted. We chose differently. They are still there. They will always be there. But the relationship has changed — they are ours now, not the other way around. The power remains. The Shouts remain. The memories and fire and sky remain. But we are the one who decides what to do with all of it. This is, we understand now, exactly what Paarthurnax has been doing for thousands of years. He called it the hardest shout. He was right."
+ thuumvoi.013.a: "It is not gone. But it is mine. I decide what it means."
+ thuumvoi.013.b: "The dragon did not expect me to choose compassion. Neither did I."
+
+ thuumvoi.014.t: "The Dragon Prevails"
+ thuumvoi.014.desc: "We are still ourselves. We want to be clear about that. We are still the person who has always been here. It is just that right now the other ten people in here are speaking louder than they should be, and everything has a quality of ancient Dovah about it — the cold calculation of a predator, the very long view of a creature that has lived for centuries, and the absolute conviction that dominance is not merely one approach to a problem but the only approach worth considering. It will pass. We believe that. We have to believe that. But right now, everything looks like a rival or a subject, and we are not sure which we prefer."
+ thuumvoi.014.a: "The words come without thought now. Everything bends to my will."
+ thuumvoi.014.b: "I can still feel myself in here. I have to find a way back."
+
+ thuumvoi.015.t: "A Word Wall"
+ thuumvoi.015.desc: "Other people have to study Word Walls. Scholars spend careers transcribing them, comparing them to other inscriptions, cross-referencing the Dragon Language with known texts. The most dedicated might read one Wall, correctly, over the course of several years. We stand in front of this particular stretch of ancient carved stone — three words, the inscription running in the old Atmoran style, the stone worn to near-illegibility in places — and the knowledge arrives before we finish reading the first glyph. Three syllables. A complete Shout. The dragon's blood recognises the dragon's language. It always has."
+ thuumvoi.015.a: "Three Words. I know them before I finish reading them."
+ thuumvoi.015.b: "There are more of these walls out there. Each one is a gift."
+
+ thuumvoi.016.t: "The Dragon God's Eye"
+ thuumvoi.016.desc: "It is not a vision in the sense of light and sound and dramatic imagery. It is more like a door opening that we did not know was there. A sense of being observed — not frightening; the opposite of frightening. An attention so vast and patient and ancient that it makes every human concern seem approximately the size of a grain of sand, but not diminishingly so — more the way the night sky makes you feel both very small and somehow part of something enormous. Akatosh is looking at us. Briefly. The way a mountain looks at a bird. And there is, in that brief attention, a question that has no words — and which we somehow know how to answer."
+ thuumvoi.016.a: "He does not say what I must do. Only that I must choose."
+ thuumvoi.016.b: "The Covenant of Alessia. It involves me. I feel it."

@@ -694,3 +694,243 @@ dovahkiin.post_001 = {
         add_modifier = { modifier = dovahkiin_recognition_cooldown days = 3650 }
     }
 }
+
+# ================================================================
+#  DRAGONBORN SOUL STACKING EVENTS
+#  (continuing the thuumvoi namespace — already declared above)
+# ================================================================
+
+namespace = thuumvoi
+
+# ----------------------------------------------------------------
+# thuumvoi.010  — The Fifth Soul
+# Fired when dragon_souls_growing trait is added (5 souls absorbed).
+# ----------------------------------------------------------------
+thuumvoi.010 = {
+    type  = character_event
+    title = thuumvoi.010.t
+    desc  = thuumvoi.010.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dragon_souls_growing
+        NOT = { has_character_flag = thuumvoi_event_10_seen }
+    }
+
+    option = {
+        name = thuumvoi.010.a   # "Five souls.  I carry five dragons within me."
+        add_character_flag = thuumvoi_event_10_seen
+        add_prestige = 500
+        add_piety    = 300
+        add_stress   = 10       # The voices are real — and growing
+    }
+    option = {
+        name = thuumvoi.010.b   # "I hear them sometimes.  Their memories.  Sky and fire and ancient grudges."
+        add_character_flag = thuumvoi_event_10_seen
+        add_learning = 2        # Their knowledge is our knowledge
+        add_prestige = 300
+        add_stress   = 15
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.011  — Ten Souls: The Dragon at the Threshold
+# Fired when dragon_souls_brimming trait is added (10 souls).
+# The Dovah nature crisis is approaching.
+# ----------------------------------------------------------------
+thuumvoi.011 = {
+    type  = character_event
+    title = thuumvoi.011.t
+    desc  = thuumvoi.011.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dragon_souls_brimming
+        NOT = { has_character_flag = thuumvoi_event_11_seen }
+    }
+
+    option = {
+        name = thuumvoi.011.a   # "Ten dragons.  Ten lifetimes of sky.  I am becoming something the world has never seen."
+        add_character_flag = thuumvoi_event_11_seen
+        add_prestige = 800
+        add_dread    = 40
+        add_stress   = 20
+        # Trigger the Dovah nature crisis within 180 days if not resolved
+        add_character_flag = dovah_crisis_pending
+        trigger_event = { id = thuumvoi.012 days = 90 }
+    }
+    option = {
+        name = thuumvoi.011.b   # "I should seek Paarthurnax.  If anyone knows how to carry this, it is him."
+        add_character_flag = thuumvoi_event_11_seen
+        add_prestige = 500
+        add_piety    = 500
+        add_stress   = 10
+        # Reduced stress from seeking guidance — still triggers crisis
+        add_character_flag = dovah_crisis_pending
+        trigger_event = { id = thuumvoi.012 days = 180 }
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.012  — The Dovah Nature Crisis
+# The accumulated Dragon Souls press against the mortal self.
+# Choose: resist or submit.
+# ----------------------------------------------------------------
+thuumvoi.012 = {
+    type  = character_event
+    title = thuumvoi.012.t
+    desc  = thuumvoi.012.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = dovah_crisis_pending
+        NOT = { has_character_flag = dovah_crisis_resolved }
+    }
+
+    option = {
+        name = thuumvoi.012.a   # "I am not a dragon.  I am Dovahkiin.  I choose."
+        # Attempt to resist — requires piety; succeeds at cost
+        add_character_flag = dovah_crisis_resolved
+        remove_character_flag = dovah_crisis_pending
+        if = {
+            limit = { piety >= 300 }
+            resist_dovah_nature = yes
+        }
+        else = {
+            # Not enough spiritual grounding — the nature takes hold temporarily
+            submit_to_dovah_nature = yes
+        }
+    }
+    option = {
+        name = thuumvoi.012.b   # "Let it come.  What mortal can stand against me now?"
+        add_character_flag = dovah_crisis_resolved
+        remove_character_flag = dovah_crisis_pending
+        submit_to_dovah_nature = yes
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.013  — The Hardest Shout
+# Fired by resist_dovah_nature effect.
+# Paarthurnax called this the hardest shout — turning the Voice
+# inward, taming the dragon within rather than being tamed by it.
+# ----------------------------------------------------------------
+thuumvoi.013 = {
+    type  = character_event
+    title = thuumvoi.013.t
+    desc  = thuumvoi.013.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dovah_nature_resisted
+        NOT = { has_character_flag = thuumvoi_event_13_seen }
+    }
+
+    option = {
+        name = thuumvoi.013.a   # "It is not gone.  But it is mine.  I decide what it means."
+        add_character_flag = thuumvoi_event_13_seen
+        add_piety    = 500
+        add_prestige = 400
+        add_stress   = -40
+        add_learning = 2
+    }
+    option = {
+        name = thuumvoi.013.b   # "The dragon did not expect me to choose compassion.  Neither did I."
+        add_character_flag = thuumvoi_event_13_seen
+        add_piety    = 800
+        add_prestige = 300
+        add_stress   = -50
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.014  — The Dragon Prevails (for now)
+# Fired by submit_to_dovah_nature effect.
+# ----------------------------------------------------------------
+thuumvoi.014 = {
+    type  = character_event
+    title = thuumvoi.014.t
+    desc  = thuumvoi.014.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dovah_nature_dominant
+        NOT = { has_character_flag = thuumvoi_event_14_seen }
+    }
+
+    option = {
+        name = thuumvoi.014.a   # "The words come without thought now.  Everything bends to my will."
+        add_character_flag = thuumvoi_event_14_seen
+        add_prestige = 400
+        add_dread    = 60
+        add_stress   = 30
+    }
+    option = {
+        name = thuumvoi.014.b   # "I can still feel myself in here.  I have to find a way back."
+        add_character_flag = thuumvoi_event_14_seen
+        add_stress   = 40
+        add_piety    = 100
+        # Subtle hint: player should take the resist_dovah_nature_decision
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.015  — Word Wall
+# Fired by learn_from_word_wall_effect.
+# The Dragonborn stands before a Word Wall — ancient Dragon
+# Language carved in stone — and reads it like a native speaker.
+# ----------------------------------------------------------------
+thuumvoi.015 = {
+    type  = character_event
+    title = thuumvoi.015.t
+    desc  = thuumvoi.015.desc
+    theme = realm
+
+    option = {
+        name = thuumvoi.015.a   # "Three Words.  I know them before I finish reading them."
+        add_prestige = 200
+        add_piety    = 150
+        add_learning = 1
+    }
+    option = {
+        name = thuumvoi.015.b   # "There are more of these walls out there.  Each one is a gift."
+        add_prestige = 150
+        add_learning = 2
+        add_piety    = 50
+    }
+}
+
+# ----------------------------------------------------------------
+# thuumvoi.016  — Akatosh's Vision
+# Post-awakening event for Dragonborn who have dovahkiin_soul_awakened.
+# The dragon god of time speaks to them — briefly.  An affirmation
+# that they are on the right path; a warning that the path is hard.
+# ----------------------------------------------------------------
+thuumvoi.016 = {
+    type  = character_event
+    title = thuumvoi.016.t
+    desc  = thuumvoi.016.desc
+    theme = realm
+
+    trigger = {
+        has_trait = dovahkiin_soul_awakened
+        NOT = { has_character_flag = thuumvoi_akatosh_vision_seen }
+        NOT = { has_modifier = dovahkiin_recognition_cooldown }
+    }
+
+    option = {
+        name = thuumvoi.016.a   # "He does not say what I must do.  Only that I must choose."
+        add_character_flag = thuumvoi_akatosh_vision_seen
+        add_piety    = 600
+        add_prestige = 400
+        add_stress   = -20
+    }
+    option = {
+        name = thuumvoi.016.b   # "The Covenant of Alessia.  It involves me.  I feel it."
+        add_character_flag = thuumvoi_akatosh_vision_seen
+        add_piety    = 400
+        add_prestige = 200
+        # Hint toward the Amulet of Kings quest
+        add_character_flag = heard_of_covenant_of_alessia
+    }
+}

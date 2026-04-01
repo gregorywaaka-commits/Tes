@@ -1,0 +1,113 @@
+# =============================================================
+#  Amulet of Kings Decisions
+#  EK2 is required.  The Amulet of Kings is one of the most
+#  significant artefacts in all of Tamrielic lore:
+#
+#  — Created by Akatosh, Dragon God of Time, and given to
+#    Saint Alessia after her covenant with him (circa 1E 243).
+#  — Seals the Dragonfires — the barrier preventing Daedric
+#    invasion of Mundus from Oblivion.
+#  — Can only be wielded by those of Dragonblood; in any other
+#    hands it is merely a jewelled amulet.
+#  — In 2E (the Interregnum), the Dragonfires are extinguished
+#    and the Amulet's location is uncertain.  A Dragonborn who
+#    finds and wears it can attempt to restore Alessia's Covenant.
+#
+#  EK2 Timeframe: 2E 440–896 (the Interregnum)
+# =============================================================
+
+# ================================================================
+#  1. SEEK THE AMULET OF KINGS
+# ================================================================
+
+seek_the_amulet_of_kings = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = seek_the_amulet_of_kings_desc
+
+    is_shown = {
+        can_seek_amulet_of_kings = yes
+    }
+
+    is_valid = {
+        can_seek_amulet_of_kings = yes
+        OR = {
+            # The Akatosh vision has pointed toward the Covenant
+            has_character_flag = heard_of_covenant_of_alessia
+            # Or simply high enough piety/knowledge
+            piety >= 800
+            learning >= 14
+        }
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        add_character_flag = amulet_quest_started
+        trigger_event = { id = amulet.001 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = { add = 20 has_character_flag = heard_of_covenant_of_alessia }
+        modifier = { add = 10 piety >= 1000 }
+        modifier = { add = 10 has_trait = dovahkiin_soul_awakened }
+    }
+}
+
+# ================================================================
+#  2. CLAIM THE AMULET OF KINGS
+# (shown after the quest chain concludes)
+# ================================================================
+
+claim_the_amulet_of_kings = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = claim_the_amulet_of_kings_desc
+
+    is_shown = {
+        has_character_flag = amulet_quest_3_done
+        NOT = { has_amulet_of_kings = yes }
+    }
+
+    is_valid = {
+        has_character_flag = amulet_quest_3_done
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = amulet.004 }
+    }
+
+    ai_will_do = { base = 100 }
+}
+
+# ================================================================
+#  3. RELIGHT THE DRAGONFIRES
+# (requires the Amulet + White-Gold Tower + Dragonborn blood)
+# ================================================================
+
+attempt_relight_dragonfires = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = attempt_relight_dragonfires_desc
+
+    is_shown = {
+        can_relight_dragonfires = yes
+    }
+
+    is_valid = {
+        can_relight_dragonfires = yes
+        piety    >= 2000
+        prestige >= 1500
+    }
+
+    is_valid_showing_failures_only = { is_adult = yes }
+
+    effect = {
+        trigger_event = { id = amulet.006 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = { add = 20 piety >= 3000 }
+    }
+}

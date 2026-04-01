@@ -83,11 +83,119 @@ awaken_dovah_blood = {
 }
 
 absorb_dragon_soul = {
-    # Applied when the Dragonborn absorbs their first Dragon Soul
+    # Applied when the Dragonborn absorbs their first Dragon Soul.
+    # Initialises the soul counter to 1.
     add_trait    = dovahkiin_soul_awakened
     add_modifier = { modifier = dovahkiin_full_power_modifier days = -1 }
+    set_variable = { name = dragon_souls_absorbed_count value = 1 }
     add_prestige = 600
     add_piety    = 300
-    # Remove the cooldown on all Thu'um decisions
     remove_modifier = thuumvoi_advancement_cooldown
+    # A Dragonborn who has just awakened immediately knows multiple shouts —
+    # advance them from initiate to adept if they are on the training path
+    if = {
+        limit = { has_trait = thu_um_initiate }
+        remove_trait = thu_um_initiate
+        add_trait    = thu_um_adept
+    }
+}
+
+# ---------------------------------------------------------------
+#  DRAGONBORN — SOUL STACKING
+# ---------------------------------------------------------------
+
+# Called each time the Dragonborn absorbs an additional Dragon Soul
+# after their awakening (from the absorb_another_soul decision).
+absorb_additional_dragon_soul = {
+    add_modifier = { modifier = absorb_soul_cooldown days = 730 }
+    change_variable = { name = dragon_souls_absorbed_count add = 1 }
+    # Check threshold: 5 souls — dragon_souls_growing
+    if = {
+        limit = {
+            check_variable = { name = dragon_souls_absorbed_count value >= 5 }
+            NOT = { has_trait = dragon_souls_growing }
+        }
+        add_trait     = dragon_souls_growing
+        trigger_event = { id = thuumvoi.010 }
+    }
+    # Check threshold: 10 souls — dragon_souls_brimming
+    else_if = {
+        limit = {
+            check_variable = { name = dragon_souls_absorbed_count value >= 10 }
+            NOT = { has_trait = dragon_souls_brimming }
+        }
+        add_trait     = dragon_souls_brimming
+        trigger_event = { id = thuumvoi.011 }
+    }
+    # Intermediate soul absorption event (between thresholds)
+    else = {
+        add_prestige = 300
+        add_piety    = 100
+    }
+}
+
+# Called when the Dragonborn learns a Shout directly from a Word Wall.
+# This is lore-accurate: Dragonborn absorb the knowledge instantly.
+learn_from_word_wall_effect = {
+    add_modifier = { modifier = dovahkiin_word_wall_cooldown days = 365 }
+    trigger_event = { id = thuumvoi.015 }
+    # Advance training if they are still at initiate level
+    if = {
+        limit = { has_trait = thu_um_initiate }
+        remove_trait = thu_um_initiate
+        add_trait    = thu_um_adept
+    }
+    add_learning = 1
+    add_piety    = 100
+    add_prestige = 150
+}
+
+# ---------------------------------------------------------------
+#  DOVAH NATURE RESOLUTION
+# ---------------------------------------------------------------
+
+resist_dovah_nature = {
+    # The Dragonborn chose the mortal's path over the dragon's
+    if = { limit = { has_trait = dovah_nature_dominant } remove_trait = dovah_nature_dominant }
+    add_trait   = dovah_nature_resisted
+    add_piety    = 500
+    add_prestige = 400
+    add_stress   = -30
+    trigger_event = { id = thuumvoi.013 }
+}
+
+submit_to_dovah_nature = {
+    # The dragon within has won — for now
+    if = { limit = { has_trait = dovah_nature_resisted } remove_trait = dovah_nature_resisted }
+    add_trait    = dovah_nature_dominant
+    add_prestige = 200
+    add_dread    = 50
+    add_stress   = 20
+    trigger_event = { id = thuumvoi.014 }
+}
+
+# ---------------------------------------------------------------
+#  AMULET OF KINGS
+# ---------------------------------------------------------------
+
+receive_amulet_of_kings = {
+    add_character_flag = amulet_of_kings_bearer
+    add_modifier = { modifier = amulet_of_kings_bearer_modifier days = -1 }
+    add_prestige = 1000
+    add_piety    = 500
+}
+
+lose_amulet_of_kings = {
+    remove_character_flag = amulet_of_kings_bearer
+    remove_modifier = amulet_of_kings_bearer_modifier
+    remove_modifier = amulet_of_kings_dragonborn_modifier
+    add_prestige = -500
+    add_piety    = -300
+}
+
+relight_dragonfires_effect = {
+    add_character_flag = dragonfires_lit
+    add_modifier = { modifier = dragonfires_lit_modifier days = -1 }
+    add_prestige = 3000
+    add_piety    = 2000
 }

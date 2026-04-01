@@ -129,30 +129,120 @@ first_voice_of_the_greybeards = {
 
 # ================================================================
 #  DRAGONBORN ENHANCEMENT
-#  'dragonborn' is EK2's trait.  'dovahkiin_soul_awakened' is
-#  OURS — it is applied on top of the EK2 trait when the
-#  character absorbs their first Dragon Soul via our event chain.
-#  It REQUIRES the EK2 dragonborn trait and will not function
-#  independently.
+#  'dragonborn' is EK2's trait.  All traits below supplement it;
+#  none redefine it.
+#
+#  Lore-accurate Dragonborn Thu'um mechanics:
+#   1. They absorb Dragon Souls when they kill dragons — instant
+#      knowledge of that dragon's shouts and memories.
+#   2. Word Walls open to them without years of practice.
+#   3. Each soul makes their Thu'um more powerful but also feeds
+#      the Dovah nature (domination instinct) within them.
+#   4. Resisting the Dovah nature — as Paarthurnax did — is the
+#      hardest shout: turning inward and choosing mercy over the
+#      dragon's natural craving for dominance.
 # ================================================================
 
-# The Dragonborn has absorbed a Dragon Soul.  Their power is now
-# fully unlocked — they can learn any Shout from a Wall of Words
-# and speak them in an instant.  Dragons fear this character.
+# The Dragonborn has absorbed their first Dragon Soul.  Their
+# power is now fully unlocked — Word Walls open instantly,
+# Shouts come naturally, and the Dovah within awakens.
+# Supplements EK2's 'dragonborn' trait — does not replace it.
 dovahkiin_soul_awakened = {
-    category = special          # distinct from the lifestyle track
+    category = special
     learning  = 4
     prowess   = 6
     martial   = 4
     piety_mult = 0.25
     monthly_piety_gain_mult    = 0.20
     monthly_prestige_gain_mult = 0.30
-    dread_gain_mult = 0.25      # Dragons and those who know the lore fear them
+    dread_gain_mult = 0.25
     command_modifier = {
         advantage  = 8
         damage     = 0.20
         max_morale = 0.35
     }
     flag = dovahkiin_soul_awakened
-    # Does not conflict with EK2's dragonborn trait — it supplements it
+}
+
+# Five or more Dragon Souls absorbed.  The Thu'um is effortless
+# now — the Dragonborn has more Shouts at their command than any
+# Tongue in recorded history.  The Dovah instinct grows louder.
+dragon_souls_growing = {
+    category = special
+    learning  = 5
+    prowess   = 8
+    martial   = 5
+    piety_mult = 0.30
+    monthly_prestige_gain_mult = 0.40
+    dread_gain_mult = 0.35
+    stress_gain_mult = 0.10     # The Dovah voice in their head is growing
+    command_modifier = {
+        advantage  = 10
+        damage     = 0.25
+        max_morale = 0.40
+    }
+    flag = dragon_souls_growing
+}
+
+# Ten or more Dragon Souls absorbed.  The character is more
+# dragon than any living dragon — they carry the Thu'um, memories,
+# and essences of a dozen ancient Dovah.  The tension between
+# their mortal self and the accumulated Dovah nature is at its
+# peak; without resolution it will consume them.
+dragon_souls_brimming = {
+    category = special
+    learning  = 6
+    prowess   = 10
+    martial   = 6
+    piety_mult = 0.35
+    monthly_prestige_gain_mult = 0.50
+    dread_gain_mult = 0.50
+    stress_gain_mult = 0.20     # The accumulated Dovah voices press hard
+    command_modifier = {
+        advantage  = 12
+        damage     = 0.30
+        max_morale = 0.45
+    }
+    flag = dragon_souls_brimming
+}
+
+# The Dragonborn has faced the Dovah nature — the dragon's craving
+# for domination and conquest — and chosen their own path instead.
+# Paarthurnax calls this 'the hardest shout': turning the power of
+# the Voice inward and emerging with both the Dovah strength and
+# the mortal's capacity for mercy.  Very few achieve this.
+dovah_nature_resisted = {
+    category = special
+    learning  = 3
+    piety_mult = 0.30
+    monthly_piety_gain_mult    = 0.25
+    monthly_prestige_gain_mult = 0.20
+    stress_loss_mult = 0.20     # Hard-won inner peace
+    command_modifier = {
+        advantage  = 4
+        max_morale = 0.20
+    }
+    flag = dovah_nature_resisted
+}
+
+# The accumulated Dragon Souls are overwhelming the mortal's free
+# will.  The character is becoming something between man and
+# dragon — ancient, powerful, and driven by the Dovah instinct:
+# dominion, conquest, and the endless hunger for more.  The world
+# can feel it.  Other Dovah can feel it.  It takes enormous effort
+# to function normally.
+dovah_nature_dominant = {
+    category = special
+    prowess   = 4               # Raw power remains — focus does not
+    diplomacy = -5              # Cannot engage normally; the Dovah dominates every interaction
+    learning  = -3              # The mortal mind is being crowded out
+    monthly_piety_gain_mult    = -0.30   # Akatosh's peace is far
+    stress_gain_mult = 0.40     # Every moment is a battle with the dragon within
+    dread_gain_mult  = 0.50
+    command_modifier = {
+        advantage = 6
+        damage    = 0.20
+        max_morale = -0.10      # Their own troops sense something is wrong
+    }
+    flag = dovah_nature_dominant
 }

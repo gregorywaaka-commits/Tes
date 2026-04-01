@@ -552,3 +552,86 @@ dovahkiin_full_power_modifier = {
 
 # Cooldown between Dragonborn recognition post-events
 dovahkiin_recognition_cooldown = { }
+
+# =============================================================
+#  Thu'um — Dragon Soul Stacking & Dovah Nature Modifiers
+# =============================================================
+
+# Prevents rapid stacking of Dragon Soul absorption
+absorb_soul_cooldown = { }
+
+# Prevents spamming the Word Wall learning decision
+dovahkiin_word_wall_cooldown = { }
+
+# Applied when the Dragonborn has absorbed 5+ Dragon Souls
+dragon_souls_growing_modifier = {
+    prowess  = 2
+    martial  = 2
+    dread_gain_mult = 0.15
+    stress_gain_mult = 0.10
+    command_modifier = { advantage = 4 damage = 0.10 }
+}
+
+# Applied when the Dragonborn has absorbed 10+ Dragon Souls
+dragon_souls_brimming_modifier = {
+    prowess  = 4
+    martial  = 4
+    dread_gain_mult = 0.30
+    stress_gain_mult = 0.20
+    command_modifier = { advantage = 6 damage = 0.15 }
+}
+
+# Applied to a Dragonborn who has resisted the Dovah nature
+dovah_nature_resisted_modifier = {
+    piety_mult = 0.20
+    stress_loss_mult = 0.15
+    monthly_piety_gain_mult = 0.20
+}
+
+# Applied to a Dragonborn whose Dovah nature has taken hold
+dovah_nature_dominant_modifier = {
+    diplomacy  = -4
+    learning   = -2
+    dread_gain_mult = 0.35
+    stress_gain_mult = 0.25
+    command_modifier = { advantage = 5 damage = 0.15 max_morale = -0.10 }
+}
+
+# =============================================================
+#  Amulet of Kings Modifiers
+# =============================================================
+
+# Base modifier: anyone who holds the Amulet of Kings
+amulet_of_kings_bearer_modifier = {
+    piety_mult = 0.20
+    monthly_prestige_gain_mult = 0.25
+    diplomacy  = 3              # The Amulet lends authority beyond any title
+}
+
+# Enhanced modifier: Dragonborn wearing the Amulet of Kings
+# (the full Covenant is active — only for those of Dragonblood)
+amulet_of_kings_dragonborn_modifier = {
+    piety_mult = 0.40
+    monthly_prestige_gain_mult = 0.40
+    diplomacy  = 5
+    learning   = 3
+    command_modifier = {
+        advantage  = 6
+        max_morale = 0.25
+        # The Amulet strengthens the barrier against Oblivion
+    }
+    # Implicit Oblivion resistance: Daedric invasions less effective
+}
+
+# Applied when the Dragonborn relights the Dragonfires
+# This is the great covenant: Mundus is protected from Oblivion
+# as long as the blood of Akatosh lights the Dragonfires.
+dragonfires_lit_modifier = {
+    piety_mult = 0.50
+    monthly_prestige_gain_mult = 0.50
+    diplomacy  = 6
+    # Massive Oblivion resistance — the barrier is at its strongest
+}
+
+# Cooldown between Amulet of Kings post-events
+amulet_post_event_cooldown = { }
