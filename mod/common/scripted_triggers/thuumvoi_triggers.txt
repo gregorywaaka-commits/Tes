@@ -1,0 +1,85 @@
+# =============================================================
+#  Thu'um / Voice — Scripted Triggers
+#  EK2 is required; 'dragonborn' references EK2's existing trait.
+# =============================================================
+
+# Is the character on the Voice path at any level?
+is_on_voice_path = {
+    OR = {
+        has_trait = thu_um_initiate
+        has_trait = thu_um_adept
+        has_trait = thu_um_master
+        has_trait = greybeard_aspirant
+        has_trait = greybeard_of_high_hrothgar
+        has_trait = first_voice_of_the_greybeards
+    }
+}
+
+# Is the character an active member of the Greybeard Order?
+is_greybeard = {
+    OR = {
+        has_trait = greybeard_aspirant
+        has_trait = greybeard_of_high_hrothgar
+        has_trait = first_voice_of_the_greybeards
+    }
+}
+
+# Is the character eligible to begin Voice training?
+# Requirements: old enough, not already trained, no conflicting path
+can_learn_thu_um = {
+    is_adult = yes
+    NOT = { is_on_voice_path = yes }
+    NOT = { has_character_flag = thuumvoi_quest_started }
+    # Learning >= 8 or a Dragonborn (they learn the Voice naturally)
+    OR = {
+        learning >= 8
+        has_trait = dragonborn   # EK2 trait
+    }
+}
+
+# Can the character advance their Voice training?
+can_advance_thu_um = {
+    is_adult = yes
+    NOT = { has_modifier = thuumvoi_advancement_cooldown }
+    OR = {
+        has_trait = thu_um_initiate
+        has_trait = thu_um_adept
+    }
+}
+
+# Can the character seek the Greybeards?
+can_seek_greybeards = {
+    is_adult = yes
+    NOT = { is_greybeard = yes }
+    NOT = { has_character_flag = greybeard_quest_started }
+    OR = {
+        has_trait = thu_um_master   # Masters may seek the Order
+        has_trait = dragonborn      # Dragonborn are always welcome
+    }
+}
+
+# Is this character the EK2 Dragonborn?
+is_dragonborn = {
+    has_trait = dragonborn   # EK2-defined trait
+}
+
+# Can the Dragonborn harness their full power?
+can_harness_dovah_blood = {
+    is_dragonborn = yes
+    NOT = { has_trait = dovahkiin_soul_awakened }
+    NOT = { has_character_flag = dovahkiin_quest_started }
+    is_adult = yes
+}
+
+# Is the character the First Voice?
+is_first_voice = {
+    has_trait = first_voice_of_the_greybeards
+}
+
+# Is a Greybeard quest ready to begin?
+can_begin_greybeard_leadership = {
+    has_trait = greybeard_of_high_hrothgar
+    NOT = { has_character_flag = greybeard_lead_quest_1 }
+    NOT = { is_first_voice = yes }
+    NOT = { has_modifier = thuumvoi_advancement_cooldown }
+}

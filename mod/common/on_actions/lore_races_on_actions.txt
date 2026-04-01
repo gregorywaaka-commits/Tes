@@ -2,7 +2,7 @@
 #  Lore Races — On-Actions
 # =============================================================
 
-# Yearly random pulse — trigger obscure lore events
+# Yearly random pulse — trigger obscure lore events and Thu'um events
 on_yearly_pulse = {
     random_events = {
         200 = 0                      # no-op weight
@@ -13,6 +13,10 @@ on_yearly_pulse = {
         3   = dreugh.001             # Dreugh life-cycle event
         2   = imga.001               # Imga aristocrat arrives at court
         2   = towers.000             # Tower stability check
+        10  = thuumvoi.002           # Word of Power milestone (Voice initiates)
+        8   = dovahkiin.post_001     # Dragonborn recognition
+        6   = greybeard.post_001     # First Voice receives a pilgrim
+        5   = greybeard.post_002     # First Voice — young Tongue challenges them
     }
 }
 
@@ -31,9 +35,10 @@ on_county_occupied = {
     }
 }
 
-# On character death — clean up lore race trait flags
+# On character death — clean up lore race trait flags and Thu'um flags
 on_character_death = {
     events = {
         kothringi.060                # remove Knahaten immune flag if relevant
+        # Thu'um flags die with the character automatically — no cleanup needed
     }
 }

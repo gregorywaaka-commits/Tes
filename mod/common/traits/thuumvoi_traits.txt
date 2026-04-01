@@ -1,0 +1,158 @@
+# =============================================================
+#  Thu'um (Voice) Traits — Greybeard Order & Dragonborn Path
+#  EK2 is required as a dependency.  The 'dragonborn' trait is
+#  defined by EK2 and is NOT redefined here; this file adds
+#  progression traits built on top of EK2's foundation.
+#
+#  EK2 Timeframe: 2E 440–896 (the Interregnum)
+#  Lore basis:
+#    — The Way of the Voice was established by Jurgen Windcaller
+#      (1E 369 after the Battle of Red Mountain).
+#    — High Hrothgar has housed the Order of the Greybeards since
+#      the early First Era; Paarthurnax leads from the Throat of
+#      the World above.
+#    — The Thu'um (Tonal magic / dragon shouts) is rare but real
+#      in the Second Era.  Most practitioners are at High Hrothgar
+#      or operating as Tongues (the older martial tradition).
+#    — The Dragonborn ('Dovahkiin') can absorb Dragon Souls and
+#      learns every Shout instantly.  This references EK2's
+#      existing 'dragonborn' trait.
+# =============================================================
+
+# ================================================================
+#  GENERAL VOICE PROGRESSION  (The Way of the Voice)
+#  Initiate → Adept → Master (Tongue)
+# ================================================================
+
+# Has spoken a first Word of Power — the Voice stirs within them.
+thu_um_initiate = {
+    category = lifestyle
+    opposites = { thu_um_adept thu_um_master }
+    learning  = 2
+    piety_mult = 0.05
+    flag = thu_um_initiate
+}
+
+# Knows several Words of Power across multiple Shouts.
+# The Voice resonates in everything they do.
+thu_um_adept = {
+    category = lifestyle
+    opposites = { thu_um_initiate thu_um_master }
+    learning  = 4
+    prowess   = 2
+    monthly_piety_gain_mult    = 0.10
+    monthly_prestige_gain_mult = 0.08
+    flag = thu_um_adept
+}
+
+# A Tongue — master of the Thu'um.  Commands many Shouts.
+# The air bends when they speak.  Their words carry the weight
+# of Akatosh himself.
+thu_um_master = {
+    category = fame
+    opposites = { thu_um_initiate thu_um_adept }
+    learning  = 6
+    prowess   = 4
+    diplomacy = 2           # Their words have authority beyond combat
+    monthly_piety_gain_mult    = 0.15
+    monthly_prestige_gain_mult = 0.15
+    command_modifier = {
+        advantage  = 5
+        damage     = 0.12
+        max_morale = 0.20
+    }
+    flag = thu_um_master
+}
+
+# ================================================================
+#  GREYBEARD ORDER  (The Order of the Greybeards at High Hrothgar)
+#  Aspirant → Full Greybeard → First Voice
+#
+#  Greybeards have taken a vow of near-silence — every utterance
+#  of the Thu'um reshapes reality, so they speak rarely.  This
+#  means heavy social penalties (they do not debate, negotiate, or
+#  hold court in the normal sense) but enormous spiritual gains.
+#  They can still rule — a Greybeard who inherits a title would
+#  be unusual, but the Way of the Voice does not demand one give
+#  up worldly holdings, only that one's words be chosen with
+#  absolute care.
+# ================================================================
+
+# Has climbed the 7,000 Steps and been accepted by the Order.
+# Still learning discipline; the vow is not yet complete.
+greybeard_aspirant = {
+    category = lifestyle
+    opposites = { greybeard_of_high_hrothgar first_voice_of_the_greybeards }
+    learning  = 3
+    piety_mult = 0.10
+    monthly_piety_gain_mult    = 0.15
+    monthly_prestige_gain_mult = -0.05  # withdrawing from the world
+    flag = greybeard_aspirant
+}
+
+# Fully initiated Greybeard.  The vow of near-silence is taken.
+# Words carry tremendous weight — both magically and spiritually.
+greybeard_of_high_hrothgar = {
+    category = lifestyle
+    opposites = { greybeard_aspirant first_voice_of_the_greybeards }
+    learning   = 7
+    piety_mult = 0.20
+    diplomacy  = -3         # The vow makes normal discourse difficult
+    monthly_piety_gain_mult    = 0.25
+    monthly_prestige_gain_mult = 0.10
+    command_modifier = {
+        advantage = 6       # A Greybeard shout in battle is devastating
+        max_morale = 0.30
+    }
+    flag = greybeard_of_high_hrothgar
+}
+
+# The First Voice — head of the Order of the Greybeards.
+# Speaks for the Way; arbitrates between Tongues and the Order;
+# the earthly voice of the Way of the Voice.
+first_voice_of_the_greybeards = {
+    category = fame
+    opposites = { greybeard_aspirant greybeard_of_high_hrothgar }
+    learning   = 10
+    prowess    = 5
+    diplomacy  = -2         # Still bound by the vow, though more freely able to speak
+    piety_mult = 0.30
+    monthly_piety_gain_mult    = 0.35
+    monthly_prestige_gain_mult = 0.25
+    command_modifier = {
+        advantage  = 8
+        damage     = 0.15
+        max_morale = 0.40
+    }
+    flag = first_voice_of_the_greybeards
+}
+
+# ================================================================
+#  DRAGONBORN ENHANCEMENT
+#  'dragonborn' is EK2's trait.  'dovahkiin_soul_awakened' is
+#  OURS — it is applied on top of the EK2 trait when the
+#  character absorbs their first Dragon Soul via our event chain.
+#  It REQUIRES the EK2 dragonborn trait and will not function
+#  independently.
+# ================================================================
+
+# The Dragonborn has absorbed a Dragon Soul.  Their power is now
+# fully unlocked — they can learn any Shout from a Wall of Words
+# and speak them in an instant.  Dragons fear this character.
+dovahkiin_soul_awakened = {
+    category = special          # distinct from the lifestyle track
+    learning  = 4
+    prowess   = 6
+    martial   = 4
+    piety_mult = 0.25
+    monthly_piety_gain_mult    = 0.20
+    monthly_prestige_gain_mult = 0.30
+    dread_gain_mult = 0.25      # Dragons and those who know the lore fear them
+    command_modifier = {
+        advantage  = 8
+        damage     = 0.20
+        max_morale = 0.35
+    }
+    flag = dovahkiin_soul_awakened
+    # Does not conflict with EK2's dragonborn trait — it supplements it
+}

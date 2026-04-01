@@ -502,3 +502,53 @@ guild_leader_undaunted_modifier = {
 
 # Post-quest cooldown (shared across all leader post-events)
 guild_leader_postquest_cooldown = { }
+
+# =============================================================
+#  Thu'um / Voice Modifiers
+# =============================================================
+
+# Applied during Voice training advancement cooldowns
+thuumvoi_advancement_cooldown = { }
+
+# Applied when a Thu'um master uses a Shout in battle
+# (prevents spamming the battle decision)
+thu_um_shout_cooldown = { }
+
+# Applied to a fully initiated Greybeard (the vow of silence)
+greybeard_vow_modifier = {
+    diplomacy  = -2         # Speaking is reserved; courtly banter is alien
+    piety_mult = 0.15
+    monthly_piety_gain_mult = 0.20
+}
+
+# Applied when someone breaks their Greybeard vows
+greybeard_oath_broken = {
+    piety_mult = -0.30
+    monthly_piety_gain_mult = -0.25
+    diplomacy  = -5         # Known as oath-breaker
+}
+
+# Applied when named First Voice of the Greybeards
+first_voice_modifier = {
+    learning  = 5
+    piety_mult = 0.30
+    monthly_piety_gain_mult    = 0.30
+    monthly_prestige_gain_mult = 0.20
+    command_modifier = { advantage = 8 max_morale = 0.40 }
+}
+
+# Cooldown between greybeard post-leadership events
+greybeard_pilgrims_cooldown = { }
+
+# Applied to Dragonborn who have absorbed their first Dragon Soul
+dovahkiin_full_power_modifier = {
+    prowess   = 6
+    learning  = 4
+    martial   = 4
+    piety_mult = 0.25
+    dread_gain_mult = 0.25
+    command_modifier = { advantage = 8 damage = 0.20 max_morale = 0.35 }
+}
+
+# Cooldown between Dragonborn recognition post-events
+dovahkiin_recognition_cooldown = { }

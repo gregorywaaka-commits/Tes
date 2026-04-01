@@ -1,0 +1,93 @@
+# =============================================================
+#  Thu'um / Voice — Scripted Effects
+# =============================================================
+
+# ---------------------------------------------------------------
+#  VOICE PATH — join/advance/leave
+# ---------------------------------------------------------------
+
+begin_voice_training = {
+    add_character_flag = thuumvoi_quest_started
+    set_variable       = { name = thuumvoi_rank value = 1 }
+    add_trait          = thu_um_initiate
+    trigger_event      = { id = thuumvoi.001 }
+}
+
+advance_voice_training = {
+    add_modifier = { modifier = thuumvoi_advancement_cooldown days = 1825 }
+    if = {
+        limit = { has_trait = thu_um_initiate }
+        remove_trait = thu_um_initiate
+        add_trait    = thu_um_adept
+        change_variable = { name = thuumvoi_rank add = 1 }
+        trigger_event = { id = thuumvoi.003 }
+    }
+    else_if = {
+        limit = { has_trait = thu_um_adept }
+        remove_trait = thu_um_adept
+        add_trait    = thu_um_master
+        change_variable = { name = thuumvoi_rank add = 1 }
+        trigger_event = { id = thuumvoi.004 }
+    }
+}
+
+leave_voice_path = {
+    remove_character_flag = thuumvoi_quest_started
+    clear_variable        = thuumvoi_rank
+    if = { limit = { has_trait = thu_um_initiate } remove_trait = thu_um_initiate }
+    if = { limit = { has_trait = thu_um_adept    } remove_trait = thu_um_adept    }
+    if = { limit = { has_trait = thu_um_master   } remove_trait = thu_um_master   }
+    add_prestige = -150   # Abandoning the Way brings shame
+}
+
+# ---------------------------------------------------------------
+#  GREYBEARD ORDER — join/leave
+# ---------------------------------------------------------------
+
+join_greybeard_order = {
+    add_character_flag = greybeard_quest_started
+    set_variable       = { name = greybeard_rank value = 1 }
+    add_trait          = greybeard_aspirant
+    remove_modifier    = thuumvoi_advancement_cooldown
+    trigger_event      = { id = greybeard.001 }
+}
+
+initiate_greybeard = {
+    # Full Greybeard — the vow of near-silence is taken
+    remove_trait  = greybeard_aspirant
+    add_trait     = greybeard_of_high_hrothgar
+    change_variable = { name = greybeard_rank add = 1 }
+    add_modifier  = { modifier = greybeard_vow_modifier days = -1 }
+    trigger_event = { id = greybeard.006 }
+}
+
+leave_greybeard_order = {
+    remove_character_flag = greybeard_quest_started
+    clear_variable        = greybeard_rank
+    if = { limit = { has_trait = greybeard_aspirant             } remove_trait = greybeard_aspirant             }
+    if = { limit = { has_trait = greybeard_of_high_hrothgar     } remove_trait = greybeard_of_high_hrothgar     }
+    if = { limit = { has_trait = first_voice_of_the_greybeards  } remove_trait = first_voice_of_the_greybeards  }
+    remove_modifier = greybeard_vow_modifier
+    add_modifier    = { modifier = greybeard_oath_broken days = 1825 }
+    add_prestige = -300
+    add_piety    = -400
+}
+
+# ---------------------------------------------------------------
+#  DRAGONBORN AWAKENING
+# ---------------------------------------------------------------
+
+awaken_dovah_blood = {
+    add_character_flag = dovahkiin_quest_started
+    trigger_event      = { id = dovahkiin.001 }
+}
+
+absorb_dragon_soul = {
+    # Applied when the Dragonborn absorbs their first Dragon Soul
+    add_trait    = dovahkiin_soul_awakened
+    add_modifier = { modifier = dovahkiin_full_power_modifier days = -1 }
+    add_prestige = 600
+    add_piety    = 300
+    # Remove the cooldown on all Thu'um decisions
+    remove_modifier = thuumvoi_advancement_cooldown
+}
