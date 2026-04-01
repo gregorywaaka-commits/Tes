@@ -707,3 +707,33 @@ l_english:
  guild_leader.bards.post_001.desc: "A delegation of noble patrons arrives at the College with an unusual commission: they want a composition that will define this era — the Interregnum, the chaos, the slow recovery of civilisation, the courage of those who persist. Something that will be sung a thousand years from now and make whoever hears it understand what it was like to be alive in this time. The commission is extraordinary. The challenge is greater."
  guild_leader.bards.post_001.a: "Write it yourself — the age deserves the best."
  guild_leader.bards.post_001.b: "Invite every Master Bard in Tamriel — make it a collaboration."
+
+ # =====================================================================
+ #  GUILD COOLDOWN MODIFIERS
+ #  These empty flag-modifiers act as mechanical cooldowns — they carry
+ #  no stat bonuses but prevent decisions/events from re-firing until
+ #  the duration expires.  Without localization they display the raw
+ #  key string in-game; these entries give them a readable label.
+ # =====================================================================
+ guild_advancement_cooldown: "Guild Advancement — Cooldown"
+ guild_advancement_cooldown_desc: "The guild requires time before further advancement can be considered."
+ guild_recently_rejected: "Guild Application Rejected"
+ guild_recently_rejected_desc: "A recent rejection means reapplication must wait."
+ guild_research_cooldown: "Mages Guild — Research Period"
+ guild_research_cooldown_desc: "The Mages Guild research project requires time before another can begin."
+ guild_contract_cooldown: "Fighters Guild — Contract Cooldown"
+ guild_contract_cooldown_desc: "A period of recovery between major Fighters Guild contracts."
+ guild_heist_cooldown: "Thieves Guild — Heist Cooldown"
+ guild_heist_cooldown_desc: "The guild waits for the dust to settle before planning the next heist."
+ black_sacrament_cooldown: "Black Sacrament — Cooldown"
+ black_sacrament_cooldown_desc: "The Night Mother will not hear another Sacrament so soon."
+ writ_of_execution_cooldown: "Morag Tong — Writ Cooldown"
+ writ_of_execution_cooldown_desc: "The Morag Tong requires a period between official Writs."
+ psijic_communion_cooldown: "Psijic Order — Communion Cooldown"
+ psijic_communion_cooldown_desc: "The Psijic Order advises patience between communions with the Dreaming Cave."
+ ballad_composition_cooldown: "Bards College — Composition Cooldown"
+ ballad_composition_cooldown_desc: "A great ballad takes time to write; the College waits before commissioning another."
+ guild_ruin_delve_cooldown: "Undaunted — Delve Cooldown"
+ guild_ruin_delve_cooldown_desc: "The Undaunted are recovering from the last ruin delve before taking on another."
+ guild_leader_postquest_cooldown: "Guild Leadership — Post-Quest Period"
+ guild_leader_postquest_cooldown_desc: "The guild's affairs need to settle after a major leadership challenge before another can arise."

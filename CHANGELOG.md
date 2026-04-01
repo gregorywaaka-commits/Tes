@@ -6,6 +6,65 @@ was initially created and then iteratively audited and fixed.
 
 ---
 
+## [Unreleased] — 2026-04-01 (Audit Pass 4)
+
+### Fixed — Lore
+- **`thuumvoi_events.txt` line 50**: Battle of Red Mountain date corrected from "1E 416"
+  to "c. 1E 700".  The 1E 416 date gave a 653-year gap to Jurgen Windcaller's founding
+  of the Way of Voice (c. 1E 1069), contradicting the mod's own comment in
+  `thuumvoi_traits.txt` which correctly states ~369 years.  1E 700 is the date given
+  in most canonical TES sources (Pocket Guide to the Empire, 3rd Ed.) and produces
+  the correct 1069 − 700 = 369-year gap.
+
+### Fixed — Missing Localization
+Added display names for **16 empty cooldown/flag modifier definitions** that were
+showing raw key strings in-game.  These modifiers have no stat effects — they are
+purely mechanical cooldown markers — but without localization CK3 renders the raw
+identifier in the character modifier tooltip list.
+
+Added to **`guilds_l_english.yml`** (12 entries):
+- `guild_advancement_cooldown` — "Guild Advancement — Cooldown"
+- `guild_recently_rejected` — "Guild Application Rejected"
+- `guild_research_cooldown` — "Mages Guild — Research Period"
+- `guild_contract_cooldown` — "Fighters Guild — Contract Cooldown"
+- `guild_heist_cooldown` — "Thieves Guild — Heist Cooldown"
+- `black_sacrament_cooldown` — "Black Sacrament — Cooldown"
+- `writ_of_execution_cooldown` — "Morag Tong — Writ Cooldown"
+- `psijic_communion_cooldown` — "Psijic Order — Communion Cooldown"
+- `ballad_composition_cooldown` — "Bards College — Composition Cooldown"
+- `guild_ruin_delve_cooldown` — "Undaunted — Delve Cooldown"
+- `guild_leader_postquest_cooldown` — "Guild Leadership — Post-Quest Period"
+
+Added to **`lore_races_l_english.yml`** (2 entries):
+- `tower_sabotage_cooldown` — "Tower Stone — Sabotage Cooldown"
+- `plague_cooldown_modifier` — "Plague — Recovery Period"
+
+Added to **`daedric_invasion_l_english.yml`** (3 entries):
+- `daedric_quest_cooldown` — "Daedric Dealings — Cooldown"
+- `rejected_daedric_submission` — "Daedric Submission — Rejected"
+- `daedric_invasion_white_peace_truce` — "Daedric Truce — White Peace"
+
+### Verified Clean (Audit Pass 4 — no issues found)
+- `guild_decisions.txt` (833 lines) — syntax, lore, spacing all correct
+- `guild_leadership_decisions.txt` (486 lines) — all correct
+- `lore_races_modifiers.txt` (955 lines) — no invalid modifier keywords; all empty
+  cooldowns intentionally empty; modifier keyword naming correct throughout
+- `guild_traits.txt` (511 lines) — all trait modifier keywords valid
+- `lore_races_traits.txt` (461 lines) — all correct; `is_immortal = no` on
+  `echmer_heritage` is redundant but not an error
+- `daedric_invasion_traits.txt` (482 lines) — all correct
+- `guild_events.txt` (792 lines) — all event syntax correct; all localization keys
+  present; `add_modifier` on character scope is valid CK3 syntax (style note only)
+- `guild_leadership_events.txt` (1224 lines) — all correct
+- `daedric_champion_events.txt` (901 lines) — all correct
+- `daedric_prince_invasion_events.txt` (1004 lines) — Sheogorath.002 option B grants
+  trait regardless of player choice by design ("Sheogorath ignores refusals") — noted
+  in comment at event; not a bug
+- `thuumvoi_decisions.txt` (400 lines) — all correct
+- `thuumvoi_traits.txt` (265 lines) — all modifier keywords valid
+
+---
+
 ## [Unreleased] — 2026-04-01 (Audit Pass 3)
 
 ### Fixed — Critical

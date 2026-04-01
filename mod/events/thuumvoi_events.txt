@@ -47,7 +47,7 @@
 #  LORE BASIS:
 #  Lore timeframe: 2E 440–896 (the Interregnum).
 #  The Greybeards are an ancient order on High Hrothgar founded
-#  by Jurgen Windcaller after the Battle of Red Mountain (1E 416),
+#  by Jurgen Windcaller after the Battle of Red Mountain (c. 1E 700),
 #  who advocate using the Voice only to honour the gods.
 #  PAARTHURNAX: The great dragon at the summit of the Throat of the
 #  World is Paarthurnax — Alduin's former lieutenant who turned

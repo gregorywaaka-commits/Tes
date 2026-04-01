@@ -419,3 +419,12 @@ l_english:
 
  all_flags_navy_cb_victory_desc: "The All-Flags Navy prevails. The coral spires of Thras sink beneath the waves; the Plague dies with them. This day is remembered."
  all_flags_navy_cb_defeat_desc: "The Navy is broken on Sload reefs and necromancy. The Plague continues to claim lives. The Sload remain."
+
+ # =====================================================================
+ #  LORE RACE COOLDOWN MODIFIERS
+ #  Empty flag-modifiers used as mechanical cooldowns.
+ # =====================================================================
+ tower_sabotage_cooldown: "Tower Stone — Sabotage Cooldown"
+ tower_sabotage_cooldown_desc: "A period of watchfulness follows tampering with a Tower Stone."
+ plague_cooldown_modifier: "Plague — Recovery Period"
+ plague_cooldown_modifier_desc: "The land is recovering from a plague outbreak; another cannot take hold so soon."

@@ -163,3 +163,14 @@ l_english:
  # ===================== Tooltip =====================
  daedric_invasion_started_tt: "A Daedric Invasion is now underway. Oblivion Gates will open across the realm."
  submit_to_daedric_prince_effect_tt: "You become a Daedric Vassal, receiving protection at the cost of prestige and piety."
+
+ # =====================================================================
+ #  DAEDRIC COOLDOWN MODIFIERS
+ #  Empty flag-modifiers used as mechanical cooldowns.
+ # =====================================================================
+ daedric_quest_cooldown: "Daedric Dealings — Cooldown"
+ daedric_quest_cooldown_desc: "The Daedric Prince will not be approached again so soon — such meetings have their own rhythm."
+ rejected_daedric_submission: "Daedric Submission — Rejected"
+ rejected_daedric_submission_desc: "This ruler has refused submission to a Daedric Prince once; the window will not open again immediately."
+ daedric_invasion_white_peace_truce: "Daedric Truce — White Peace"
+ daedric_invasion_white_peace_truce_desc: "A temporary cessation of the Daedric Invasion. Neither side achieved full victory; hostilities are paused."
