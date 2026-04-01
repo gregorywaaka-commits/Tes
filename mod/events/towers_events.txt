@@ -1,9 +1,58 @@
 # =============================================================
 #  Elder Towers Events
+#  File: mod/events/towers_events.txt
 #  Namespace: towers
-#  The Towers (White-Gold, Adamantine, Red Mountain, Orichalc,
-#  Coral) anchor Mundus in reality. If enough fall, the world
-#  begins to fracture.
+#
+#  WHAT THIS FILE DOES:
+#  Implements the Tower Stone system.  The Towers (White-Gold,
+#  Adamantine, Red Mountain, Orichalc, Coral, etc.) anchor
+#  Mundus in reality.  If enough fall, the world begins to
+#  fracture.  Covers keeper events, sabotage, Tower-specific
+#  flavour, and world-critical stability warnings.
+#
+#  EVENT INDEX:
+#  towers.000 — Tower Stability Check (yearly pulse, hidden world_event)
+#  towers.001 — A Tower Stone is Claimed: Keeper named
+#  towers.002 — White-Gold Tower: Cyrodiil reshaping lore flavour
+#               (requires scope:tower_county — only fires when scope is set)
+#  towers.003 — Adamantine Tower: oldest Tower, greatest power
+#               (requires scope:tower_county — only fires when scope is set)
+#  towers.004 — Red Mountain: Heart of Lorkhan
+#               (requires scope:tower_county — only fires when scope is set)
+#  towers.005 — Tower Stone Sabotage Attempt (triggered by decision)
+#  towers.010 — A Tower Falls: Stone destroyed or stolen
+#  towers.015 — World Stability Critical: only one Tower remains
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  count_active_towers, world_stability_critical
+#  Scripted effects:   deactivate_tower_stone_effect
+#  Traits:             tower_stone_keeper
+#  Modifiers:          white_gold_keeper_modifier, red_mountain_keeper_modifier,
+#                      reality_fracturing_modifier, tower_sabotage_cooldown
+#  Variables:          tower_stone_present (county-scope has_variable)
+#  Titles:             title:c_imperial_city, title:c_balfiera, title:c_red_mountain
+#  NOTE: towers.002, .003, .004 use scope:tower_county in their
+#        trigger block.  These events must only be fired from
+#        contexts where scope:tower_county has been set (e.g., by
+#        the Tower Keeper on_action); firing them without the scope
+#        will cause the trigger to fail silently.
+#
+#  LORE BASIS:
+#  The Elder Scrolls' metaphysics hold that the Towers (large
+#  structures each containing a "Stone" at their heart) maintain
+#  the existence of Mundus.  White-Gold reshapes Cyrodiil's
+#  weather; Adamantine (Balfiera, Isle of Balfiera) is the oldest
+#  and most powerful; Red Mountain's Stone is the Heart of Lorkhan
+#  itself, powering the Tribunal in the Third Era.
+#  Sources: The Arcturian Heresy, Mysterious Akavir, 36 Lessons,
+#           The Monomyth, ESO lore notes.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add towers.NNN = { ... } following the pattern below
+#  2. Tower-specific events (like .002–.004) must be called from
+#     a context where scope:tower_county is set
+#  3. Add localization keys to mod/localization/english/
+#     towers_l_english.yml
 # =============================================================
 
 namespace = towers

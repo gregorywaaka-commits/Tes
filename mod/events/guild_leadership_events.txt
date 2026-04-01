@@ -1,15 +1,69 @@
 # =============================================================
 #  Guild Leadership Questlines — All 9 Guilds
+#  File: mod/events/guild_leadership_events.txt
 #  Namespace: guild_leader
 #
-#  Each guild has a 3-event story chain + a climactic leadership
-#  event.  Events are triggered by the quest-start decision and
-#  fire sequentially via character flags.
+#  WHAT THIS FILE DOES:
+#  Each guild has a 3-event story chain culminating in a
+#  leadership event that grants the Guildmaster trait.
+#  Events fire sequentially via character flags; the chain is
+#  started by the "Begin Leadership Quest" decision at the
+#  appropriate guild rank.
 #
 #  Flag convention:
 #    guild_X_quest_1    — first chapter seen
 #    guild_X_quest_2    — second chapter seen
 #    guild_X_quest_done — questline complete; claim decision unlocked
+#    guild_X_is_leader  — set after leadership event fires
+#
+#  EVENT INDEX:
+#  guild_leader.mages.001-003 + .lead   — "The Stolen Flame" (Daedric study scandal)
+#  guild_leader.fighters.001-003 + .lead — "Blood on the Charter" (corruption by bandit bribes)
+#  guild_leader.thieves.001-003 + .lead  — "The Rat in the Walls" (informant in senior ranks)
+#  guild_leader.db.001-003 + .lead       — "The Night Mother Weeps" (Dread Father cult fracture)
+#  guild_leader.morag_tong.001-003 + .lead — "The Unsanctioned Kill" (unauthorized murder)
+#  guild_leader.companions.001-003 + .lead — "The Silver Hand's Price" (Silver Hand alliance offer)
+#  guild_leader.psijic.001-003 + .lead   — "The Ruptured Veil" (time anomaly from Artaeum)
+#  guild_leader.bards.001-003 + .lead    — "The Silenced Song" (censorship of a forbidden ballad)
+#  guild_leader.undaunted.001-003 + .lead — "The Endless Delve" (ancient ruin that kills heroes)
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_fighters_guild_member, is_thieves_guild_member,
+#                      is_dark_brotherhood_member, is_morag_tong_member,
+#                      is_companions_member, is_psijic_member,
+#                      is_bards_college_member, is_undaunted_member
+#  Scripted effects:   (none — all changes via traits and modifiers)
+#  Traits:             mages_guild_wizard, mages_guild_archmagister,
+#                      fighters_guild_guardian, fighters_guild_guildmaster,
+#                      thieves_guild_shadowfoot, thieves_guild_guildmaster_thief,
+#                      dark_brotherhood_speaker, dark_brotherhood_listener,
+#                      morag_tong_master, morag_tong_grandmaster,
+#                      companions_circle, companions_harbinger,
+#                      psijic_adept, psijic_master,
+#                      bards_college_bard, bards_college_master_bard,
+#                      undaunted_veteran, undaunted_elite
+#  Modifiers:          guild_leader_mages_modifier, guild_leader_fighters_modifier,
+#                      guild_leader_thieves_modifier, guild_leader_db_modifier,
+#                      guild_leader_morag_tong_modifier, guild_leader_companions_modifier,
+#                      guild_leader_psijic_modifier, guild_leader_bards_modifier,
+#                      guild_leader_undaunted_modifier
+#  Variables:          guild_mages_rank, guild_fighters_rank, guild_thieves_rank,
+#                      (change_variable / has_variable — character scope)
+#
+#  LORE BASIS:
+#  Each questline reflects a lore-accurate internal conflict for
+#  that guild.  The Dark Brotherhood's "Night Mother Weeps" draws
+#  on the Dread Father vs. Night Mother schism found in ESO lore.
+#  The Psijic Order's "Ruptured Veil" references their manipulation
+#  of time (as seen in ESO: Summerset).
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add guild_leader.<guildname>.<NNN> = { ... } under the
+#     appropriate guild section header
+#  2. Set add_character_flag = guild_<name>_quest_<N> in each
+#     option to prevent re-firing
+#  3. Add localization keys to mod/localization/english/
+#     guild_leadership_l_english.yml
 # =============================================================
 
 namespace = guild_leader

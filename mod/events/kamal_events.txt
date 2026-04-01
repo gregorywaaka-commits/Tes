@@ -1,6 +1,49 @@
 # =============================================================
 #  Kamal Events  (Akaviri Snow Demons / Seasonal Invaders)
+#  File: mod/events/kamal_events.txt
 #  Namespace: kamal
+#
+#  WHAT THIS FILE DOES:
+#  Events for the Kamal invasion cycle — summer thaw, invasion
+#  declaration, ice-curse spread, and the Tribunal intervention
+#  that historically repelled Dir-Kamal in 2E 572.
+#
+#  EVENT INDEX:
+#  kamal.000 — The Kamal Thaw: summer invasion is brewing (world_event)
+#  kamal.001 — Kamal Invasion Declared: all rulers notified
+#  kamal.002 — Kamal Ice-Curse spread to occupied provinces (province_event, hidden)
+#  kamal.010 — The Tribunal Intervenes: Dunmer intervention repels Dir-Kamal
+#  kamal.020 — Kamal Retreat: invasion ends (repelled or winter)
+#  kamal.050 — Monthly tick: seasonal check (hidden world_event)
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  kamal_invasion_possible, knahaten_flu_active
+#  Scripted effects:   begin_kamal_invasion, end_kamal_invasion
+#  Global variables:   kamal_invasion_active, daedric_invasion_phase,
+#                      current_season_summer
+#  Scopes:             scope:dir_kamal_char
+#  Modifiers:          kamal_ice_curse_modifier
+#  Cultures:           dunmer_culture
+#
+#  LORE BASIS:
+#  The Kamal are a race of snow demons from Akavir who thaw each
+#  summer and invade Tamriel.  Ada'Soom Dir-Kamal led a major
+#  invasion in 2E 572, landing in Morrowind and being driven back
+#  by the combined forces of the Dunmer, Nords, and the Tribunal
+#  (specifically Almalexia, Vivec, and Sotha Sil acting together).
+#  IMPORTANT — kamal.010: The historical intervention is credited
+#  to THE TRIBUNAL collectively, not Vivec alone.  The localization
+#  key kamal.010.t / kamal.010.desc reflect "The Tribunal Intervenes"
+#  as corrected in the YAML.  This event's trigger/effects are
+#  lore-accurate: Dunmer rulers with kingdom-tier titles present,
+#  no active Daedric invasion to interfere.
+#  Sources: The Brothers of Darkness, 2920 (novel series), ESO lore.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add kamal.NNN = { ... } following the pattern below
+#  2. Gate invasion events with exists = global_var:kamal_invasion_active
+#  3. Add localization keys to mod/localization/english/
+#     kamal_l_english.yml
 # =============================================================
 
 namespace = kamal
@@ -80,7 +123,7 @@ kamal.002 = {
 }
 
 # ---------------------------------------------------------------
-# kamal.010  Vivec Intervenes (lore: Tribunal god Vivec repelled Dir-Kamal)
+# kamal.010  The Tribunal Intervenes (lore: the Tribunal gods collectively repelled Dir-Kamal)
 # ---------------------------------------------------------------
 kamal.010 = {
     type = character_event
@@ -98,7 +141,7 @@ kamal.010 = {
     }
 
     option = {
-        name = kamal.010.a   # "Vivec has spoken — the demons retreat!"
+        name = kamal.010.a   # "The Tribunal has spoken — the demons retreat!"
         end_kamal_invasion = yes
         add_prestige = 500
         add_piety    = 1000

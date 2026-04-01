@@ -1,7 +1,81 @@
 # =============================================================
 #  Guild Events — All 9 Guilds
+#  File: mod/events/guild_events.txt
 #  Namespace: guild
-#  Covers join, advancement, activity, and leave events.
+#
+#  WHAT THIS FILE DOES:
+#  Handles joining, rank advancement, activity events, and leave
+#  events for all nine guilds in the Elder Kings setting.
+#  Guild membership is tracked via traits; activity events
+#  (research, contracts, heists, etc.) fire via on_yearly_pulse
+#  or decisions.
+#
+#  EVENT INDEX:
+#  guild.mages.001         — Joining the Mages Guild
+#  guild.mages.advance     — Mages Guild rank promotion
+#  guild.mages.research    — Magical research project
+#  guild.fighters.001      — Joining the Fighters Guild
+#  guild.fighters.advance  — Rank promotion
+#  guild.fighters.contract — Taking a Guild contract
+#  guild.thieves.001       — Joining the Thieves Guild
+#  guild.thieves.advance   — Rank promotion
+#  guild.thieves.heist     — Planning a heist
+#  guild.dark_brotherhood.001      — Joining the Dark Brotherhood
+#  guild.dark_brotherhood.advance  — Rank promotion
+#  guild.dark_brotherhood.sacrament — The Black Sacrament answered
+#  guild.dark_brotherhood.leave    — Leaving / being hunted by the Brotherhood
+#  guild.morag_tong.001    — Joining the Morag Tong
+#  guild.morag_tong.advance — Rank promotion
+#  guild.morag_tong.writ   — Issuing a Writ of Execution
+#  guild.companions.001          — Joining the Companions
+#  guild.companions.advance      — Rank promotion
+#  guild.companions.contract     — Taking a contract
+#  guild.companions.circle_rite  — Circle initiation (Lycanthropy)
+#  guild.psijic.invitation — The Psijic Order makes contact
+#  guild.psijic.001        — Formally joining the Psijic Order
+#  guild.psijic.advance    — Rank promotion
+#  guild.psijic.commune    — Commune with the Order for guidance
+#  guild.bards.001         — Joining the Bards College
+#  guild.bards.advance     — Rank promotion
+#  guild.bards.ballad      — Composing an epic ballad
+#  guild.undaunted.001     — Joining the Undaunted
+#  guild.undaunted.advance — Rank promotion
+#  guild.undaunted.delve   — Delving a dangerous ruin
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_fighters_guild_member, is_thieves_guild_member,
+#                      is_dark_brotherhood_member
+#  Scripted effects:   advance_companions, join_psijic_order,
+#                      form_all_flags_navy_effect
+#  Traits:             mages_guild_member, mages_guild_wizard, mages_guild_archmagister,
+#                      fighters_guild_journeyman, fighters_guild_guardian,
+#                      fighters_guild_guildmaster, thieves_guild_prowler,
+#                      thieves_guild_shadowfoot, thieves_guild_guildmaster_thief,
+#                      dark_brotherhood_assassin, dark_brotherhood_speaker,
+#                      dark_brotherhood_listener, morag_tong_master,
+#                      morag_tong_grandmaster, companions_veteran, companions_circle,
+#                      companions_harbinger, hircine_werewolf, psijic_initiate,
+#                      psijic_adept, psijic_master, bards_college_bard,
+#                      bards_college_master_bard, undaunted_veteran, undaunted_elite
+#  Modifiers:          guild_heist_caught_modifier, dark_brotherhood_marked_modifier,
+#                      guild_recently_rejected, famous_ballad_modifier,
+#                      psijic_warning_modifier
+#
+#  LORE BASIS:
+#  All guilds are canonical Elder Scrolls institutions present in
+#  the Second Era: Mages Guild founded 2E 230, Thieves Guild and
+#  Dark Brotherhood operating throughout, Psijic Order predating
+#  all guilds, Companions originating in Skyrim.  The Morag Tong
+#  is the legal Dunmer assassination guild, contrasting with the
+#  illegal Dark Brotherhood.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add guild.<guildname>.<eventname> = { ... } under the
+#     appropriate guild section header
+#  2. Add localization keys to mod/localization/english/
+#     guild_l_english.yml
+#  3. Wire activity events into the appropriate on_yearly_pulse
+#     or guild-specific decision
 # =============================================================
 
 namespace = guild

@@ -1,10 +1,50 @@
 # =============================================================
 #  Amulet of Kings Events
+#  File: mod/events/amulet_of_kings_events.txt
 #  Namespace: amulet
 #
-#  The Amulet of Kings — Alessia's Covenant with Akatosh.
-#  Lore-accurate for the Second Era Interregnum.
-#  EK2 is required.
+#  WHAT THIS FILE DOES:
+#  Implements the Amulet of Kings quest chain for Dragonborn
+#  characters in the 2E Interregnum.  Covers finding, claiming,
+#  and wielding the Amulet, relighting the Dragonfires, and
+#  recurring post-claim flavour events.
+#
+#  EVENT INDEX:
+#  amulet.001     — The Covenant Remembered (Dragonborn learns of the Amulet's history; 1E 243 context)
+#  amulet.002     — Tracing the Amulet (following the trail through Imperial archives)
+#  amulet.003     — The Guardian of the Amulet (priests of Akatosh test the claimant)
+#  amulet.004     — The Covenant of Akatosh (formal claim of the Amulet)
+#  amulet.005     — The Amulet Rejects a Non-Dragonborn (burns non-Dragonborn holders)
+#  amulet.006     — Relighting the Dragonfires (climactic event; requires White-Gold Tower)
+#  amulet.007     — The Dragonfires Burn (world notification; fires on every living ruler)
+#  amulet.post_001 — The Amulet Draws Attention (recurring political pressure event)
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  has_amulet_of_kings, is_dragonborn, can_relight_dragonfires
+#  Scripted effects:   receive_amulet_of_kings, lose_amulet_of_kings,
+#                      relight_dragonfires_effect
+#  Traits:             dovahkiin_soul_awakened, thu_um_master, greybeard_of_high_hrothgar,
+#                      first_voice_of_the_greybeards
+#  Modifiers:          amulet_of_kings_dragonborn_modifier, amulet_post_event_cooldown
+#
+#  LORE BASIS:
+#  The Amulet of Kings was created when Saint Alessia made her
+#  Covenant with Akatosh at the end of the Alessian slave revolt,
+#  circa 1E 243.  The Amulet is bound to Dragonblood and maintains
+#  the barrier between Mundus and Oblivion.  During the Interregnum
+#  the Dragonfires in the White-Gold Tower are extinguished, allowing
+#  Daedric incursion.  A Dragonborn Emperor relighting the Dragonfires
+#  restores the Covenant and is a world-historic event.
+#  Sources: The Adabal-a, Shonni-etta, Before the Ages of Man.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add amulet.NNN = { ... } following the pattern below
+#  2. Add localization keys (amulet.NNN.t, amulet.NNN.desc,
+#     amulet.NNN.a etc.) to mod/localization/english/amulet_l_english.yml
+#  3. If the event is part of the quest chain, link it via
+#     trigger_event = { id = amulet.NNN days = X } in the preceding event
+#  4. If granting a new trait or modifier, add a corresponding
+#     cleanup in an on_character_death on_action
 # =============================================================
 
 namespace = amulet

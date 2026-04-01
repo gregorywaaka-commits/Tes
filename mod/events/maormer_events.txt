@@ -1,6 +1,51 @@
 # =============================================================
 #  Maormer Events  (Sea Elves of Pyandonea)
+#  File: mod/events/maormer_events.txt
 #  Namespace: maormer
+#
+#  WHAT THIS FILE DOES:
+#  Handles Maormer coastal raids, Pyandonean storm magic,
+#  ancient Altmer-Maormer hatred, sea serpent taming, and
+#  King Orgnum's divine lore flavour.
+#
+#  EVENT INDEX:
+#  maormer.001 — Maormer Raiders Strike a Coastal County
+#  maormer.002 — Maormer Raid trigger (hidden; yearly pulse on coastal rulers)
+#  maormer.003 — Storm Magic: Pyandonean sea witch calls a tempest
+#  maormer.004 — Altmer-Maormer War: ancient hatred erupts
+#  maormer.005 — Taming a Sea Serpent (triggered by decision; prowess/martial check)
+#  maormer.010 — Sea Serpent Bonded: reward event
+#  maormer.015 — Seek Orgnum's Blessing (decision-triggered; requires piety >= 1000)
+#  maormer.016 — Orgnum Grows Younger: lore flavour event (fires once per character)
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_maormer, maormer_raid_possible
+#  Scripted effects:   maormer_raid_effect, tame_sea_serpent_effect
+#  Traits:             pyandonean_sea_witch, orgnum_blessed
+#  Modifiers:          repelled_maormer_modifier, maormer_truce_modifier,
+#                      maormer_tempest_modifier, maormer_hatred_modifier,
+#                      wounded
+#  Global variables:   orgnum_alive
+#  Character variables: orgnum_younger_event_fired (set_variable / has_variable)
+#  Cultures:           altmer_culture
+#  NOTE: maormer.016 uses set_variable (character scope) to ensure
+#        the Orgnum flavour event fires only once per character.
+#
+#  LORE BASIS:
+#  The Maormer (Sea Elves) were exiled from the Summerset Isles
+#  by the Aldmer and settled Pyandonea.  Their immortal god-king
+#  Orgnum has led millennia of war against the Altmer.  The
+#  Maormer have powerful storm and serpent magic that countered
+#  Altmer naval superiority.  Orgnum grows progressively younger
+#  each decade (an immortality quirk).
+#  Sources: The Last King of the Ayleids, Pocket Guide to the
+#  Empire (1st Edition), ESO: Summerset.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add maormer.NNN = { ... } following the pattern below
+#  2. Gate Maormer-specific events with is_maormer = yes
+#  3. Add localization keys to mod/localization/english/
+#     maormer_l_english.yml
 # =============================================================
 
 namespace = maormer

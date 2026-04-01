@@ -1,12 +1,71 @@
 # =============================================================
 #  Thu'um / Voice Events
-#  Three namespaces:
-#    thuumvoi  — General Voice training path
-#    greybeard — The Order of the Greybeards + leadership
-#    dovahkiin — Dragonborn awakening chain
+#  File: mod/events/thuumvoi_events.txt
+#  Three namespaces (all declared below):
+#    thuumvoi  — General Voice training path (thuumvoi.001–thuumvoi.010+)
+#    greybeard — The Order of the Greybeards + leadership (greybeard.001–greybeard.lead.003)
+#    dovahkiin — Dragonborn awakening chain (dovahkiin.001+)
 #
-#  EK2 is required.  'dragonborn' is EK2's trait.
-#  Lore timeframe: 2E 440–896 (the Interregnum)
+#  WHAT THIS FILE DOES:
+#  Implements the Thu'um (Voice) progression system, the
+#  Greybeard Order quest chain, and the Dragonborn awakening
+#  sequence.  Three namespace sections are maintained in one
+#  file for cohesion; each namespace block is clearly marked.
+#
+#  EVENT INDEX — thuumvoi namespace:
+#  thuumvoi.001 — The Voice Stirs (first training)
+#  thuumvoi.002 — A Word of Power learned
+#  thuumvoi.003 — The Second Shout (Initiate → Adept)
+#  thuumvoi.004 — The Tongue (Adept → Master)
+#  thuumvoi.005 — The Thu'um in Battle (FUS RO DAH / YOL TOOR SHUL / WULD)
+#  thuumvoi.010 — The Fifth Soul (dragon_souls_growing: 5 souls absorbed)
+#
+#  EVENT INDEX — greybeard namespace:
+#  greybeard.001      — The 7,000 Steps Begin
+#  greybeard.002      — The Gates of High Hrothgar
+#  greybeard.003      — Meeting the Greybeards (Arngeir speaks)
+#  greybeard.004      — Learning the First Word Under Arngeir's Eye
+#  greybeard.005      — The Throat of the World / Paarthurnax audience
+#  greybeard.lead.001 — Leadership quest step 1
+#  greybeard.lead.002 — Leadership quest step 2
+#  greybeard.lead.003 — The Way Made Whole (leadership conclusion)
+#  greybeard.post_001 — Post-leadership recurring event
+#
+#  EVENT INDEX — dovahkiin namespace:
+#  dovahkiin.001 — The Blood Awakens (fired by awaken_dovah_blood effect)
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted effects:   begin_voice_training, awaken_dovah_blood,
+#                      advance_greybeard_rank
+#  Traits:             thu_um_initiate, thu_um_adept, thu_um_master,
+#                      greybeard_aspirant, greybeard_of_high_hrothgar,
+#                      first_voice_of_the_greybeards, dovahkiin_soul_awakened,
+#                      dragon_souls_growing
+#  Modifiers:          thu_um_shout_cooldown, greybeard_leader_modifier
+#  Variables:          greybeard_rank (character scope: change_variable)
+#
+#  LORE BASIS:
+#  Lore timeframe: 2E 440–896 (the Interregnum).
+#  The Greybeards are an ancient order on High Hrothgar founded
+#  by Jurgen Windcaller after the Battle of Red Mountain (1E 416),
+#  who advocate using the Voice only to honour the gods.
+#  ARNGEIR ANACHRONISM NOTE: Arngeir is the Greybeards' spokesman
+#  in The Elder Scrolls V: Skyrim (4E 201).  His presence here in
+#  the 2E Interregnum is a deliberate creative choice, representing
+#  a long-lived or identically-named Greybeard elder.  This is
+#  flagged as a known anachronism and may be replaced with a
+#  generic Greybeard spokesman in a future revision.
+#  Sources: TES V: Skyrim, Songs of the Return, The Voice of the
+#  Sky, Jurgen Windcaller and His Epitaph.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add <namespace>.NNN = { ... } under the appropriate
+#     namespace section header in this file
+#  2. Declare the namespace with namespace = X before the first
+#     event of that block (the three declarations are at lines
+#     ~12, ~177, ~567 — do not add a fourth)
+#  3. Add localization keys to mod/localization/english/
+#     thuumvoi_l_english.yml
 # =============================================================
 
 namespace = thuumvoi
@@ -697,10 +756,8 @@ dovahkiin.post_001 = {
 
 # ================================================================
 #  DRAGONBORN SOUL STACKING EVENTS
-#  (continuing the thuumvoi namespace — already declared above)
+#  (continuing the thuumvoi namespace — declared at top of file)
 # ================================================================
-
-namespace = thuumvoi
 
 # ----------------------------------------------------------------
 # thuumvoi.010  — The Fifth Soul

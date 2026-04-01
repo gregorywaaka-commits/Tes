@@ -1,18 +1,65 @@
 # =============================================================
 #  Kothringi Events  (Silver-Skinned Humans of Black Marsh)
+#  File: mod/events/kothringi_events.txt
 #  Namespace: kothringi
+#
+#  WHAT THIS FILE DOES:
+#  Covers the Knahaten Flu pandemic (2E 560+), the Crimson Ship
+#  exodus, and the Stillrise Village bargain with Clavicus Vile.
+#
+#  EVENT INDEX:
+#  kothringi.001 — The Knahaten Flu Erupts in Black Marsh (date-gated: 2E 560+)
+#  kothringi.002 — The Flu Spreads to a neighbouring ruler
+#  kothringi.010 — Boarding the Crimson Ship (Kothringi exile exodus)
+#  kothringi.011 — The Crimson Ship is Turned Away (every port rejects them)
+#  kothringi.020 — Bargaining with Clavicus Vile — Stillrise Village
+#  kothringi.050 — Monthly flu spread tick (hidden world_event)
+#  kothringi.060 — On-death cleanup (knahaten_immune trait stays — it is permanent)
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  is_kothringi, knahaten_flu_active
+#  Scripted effects:   depart_crimson_ship
+#  Traits:             knahaten_immune, kothringi_heritage, crimson_ship_survivor,
+#                      clavicus_bargain_made
+#  Modifiers:          quarantine_modifier, knahaten_flu_modifier,
+#                      knahaten_flu_fear_modifier
+#  Variables:          crimson_ship_resolved (has_variable / set_variable)
+#
+#  LORE BASIS:
+#  The Knahaten Flu erupted in Black Marsh circa 2E 560 and
+#  devastated the Kothringi and most other human populations,
+#  while Argonians were immune (their Hist connection conferred
+#  protection).  The Kothringi remnant fled on the Crimson Ship
+#  around 2E 572, were refused entry at every port, and
+#  disappeared from history.  A Clavicus Vile bargain at
+#  Stillrise Village is attested in ESO.
+#  DATE GATE: kothringi.001 is gated current_date >= 2E.560.
+#  Sources: 2920, Pocket Guide to the Empire (1st Edition),
+#           ESO: Murkmire DLC.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add kothringi.NNN = { ... } following the pattern below
+#  2. Gate flu-related events with knahaten_flu_active = yes
+#     (or exists = global_var:knahaten_flu_active for world events)
+#  3. Add localization keys to mod/localization/english/
+#     kothringi_l_english.yml
 # =============================================================
 
 namespace = kothringi
 
 # ---------------------------------------------------------------
 # kothringi.001  The Knahaten Flu Erupts in Black Marsh
+#                Date-gated: current_date >= 2E.560
 # ---------------------------------------------------------------
 kothringi.001 = {
     type = character_event
     title = kothringi.001.t
     desc = kothringi.001.desc
     theme = plague
+
+    trigger = {
+        current_date >= 2E.560
+    }
 
     option = {
         name = kothringi.001.a   # "Seal the borders — no one leaves the marsh!"

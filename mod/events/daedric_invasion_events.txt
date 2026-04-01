@@ -1,6 +1,51 @@
 # =============================================================
 #  Daedric Invasion — Main Events
+#  File: mod/events/daedric_invasion_events.txt
 #  Namespace: daedric_invasion
+#
+#  WHAT THIS FILE DOES:
+#  Core machinery for Daedric invasions of Tamriel.  Handles
+#  invasion start/escalation/end, ruler notifications, rally
+#  mechanics, submission, the dramatic banishment duel, and
+#  cleanup on character death.
+#
+#  EVENT INDEX:
+#  daedric_invasion.000 — Yearly pulse: attempt to start a new invasion (world_event)
+#  daedric_invasion.001 — Invasion declared: notification to all rulers
+#  daedric_invasion.002 — War declaration to defenders
+#  daedric_invasion.005 — Invasion escalation notification
+#  daedric_invasion.020 — Invasion ended — victory celebration
+#  daedric_invasion.030 — A ruler rallies vassals (fires on vassals)
+#  daedric_invasion.040 — A ruler submits to the Daedric Prince
+#  daedric_invasion.045 — Player attempts to banish the Prince (dramatic duel)
+#  daedric_invasion.050 — Monthly tick: increment timer, check escalation (hidden world_event)
+#  daedric_invasion.060 — On-death cleanup: remove daedric_champion / daedric_vassal traits
+#
+#  EK2 IDENTIFIERS USED:
+#  Scripted triggers:  daedric_invasion_trigger_conditions, is_daedric_invasion_active,
+#                      daedric_invasion_can_escalate
+#  Scripted effects:   begin_daedric_invasion, end_daedric_invasion,
+#                      escalate_daedric_invasion
+#  Global variables:   chosen_prince_key, active_daedric_prince,
+#                      daedric_invasion_started_days, daedric_invasion_phase
+#  Traits:             daedric_champion, daedric_vassal
+#  Opinions:           rallied_together_opinion, ignored_call_opinion,
+#                      submitted_to_daedra_opinion
+#  Modifier:           wounded
+#
+#  LORE BASIS:
+#  Daedric invasions are a recurring threat in the Second Era.
+#  Mehrunes Dagon's invasions (most frequent), Molag Bal's Planemeld
+#  (2E 578–582), and the Greymarch of Jyggalag (near 3E 400) are
+#  the most significant.  Invasion weights reflect lore frequency.
+#  Jyggalag is locked behind current_date >= 3E.400.
+#
+#  HOW TO ADD A NEW EVENT:
+#  1. Add daedric_invasion.NNN = { ... } following the pattern below
+#  2. Add localization keys to mod/localization/english/
+#     daedric_invasion_l_english.yml
+#  3. Wire into the invasion lifecycle via begin_daedric_invasion,
+#     escalate_daedric_invasion, or end_daedric_invasion scripted effects
 # =============================================================
 
 namespace = daedric_invasion
