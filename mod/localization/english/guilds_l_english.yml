@@ -1,4 +1,4 @@
-# Encoding: UTF-8-BOM
+﻿# Encoding: UTF-8-BOM
 l_english:
  # ============================================================
  #  Guild System — Full Localization
@@ -640,3 +640,49 @@ l_english:
  guild_leader.bards.post_001.desc: "A delegation of noble patrons arrives at the College with an unusual commission: they want a composition that will define this era — the Interregnum, the chaos, the slow recovery of civilisation, the courage of those who persist. Something that will be sung a thousand years from now and make whoever hears it understand what it was like to be alive in this time. The commission is extraordinary. The challenge is greater."
  guild_leader.bards.post_001.a: "Write it yourself — the age deserves the best."
  guild_leader.bards.post_001.b: "Invite every Master Bard in Tamriel — make it a collaboration."
+
+ # =====================================================================
+ #  MODIFIERS — Guilds
+ # =====================================================================
+ dark_brotherhood_marked_modifier: "Marked by the Dark Brotherhood"
+ dark_brotherhood_marked_modifier_desc: "A Black Sacrament has been performed. The Dark Brotherhood's assassins are hunting this target."
+ psijic_warning_modifier: "Psijic Order Warning"
+ psijic_warning_modifier_desc: "The Psijic Order has issued a formal warning. They are watching closely."
+ undaunted_wounded_modifier: "Battle-Wounded"
+ undaunted_wounded_modifier_desc: "Injured during an Undaunted delve. Recovery takes time."
+ psijic_order_modifier: "Psijic Order Presence"
+ psijic_order_modifier_desc: "The Psijic Order maintains a discreet presence in this realm."
+ mages_guild_chapter_modifier: "Mages Guild Chapter"
+ mages_guild_chapter_modifier_desc: "A chapter of the Mages Guild operates in this county."
+ fighters_guild_chapter_modifier: "Fighters Guild Chapter"
+ fighters_guild_chapter_modifier_desc: "A chapter of the Fighters Guild operates in this county."
+ morag_tong_chapter_modifier: "Morag Tong Chapter"
+ morag_tong_chapter_modifier_desc: "A Morag Tong cell operates in the shadows of this county."
+ companions_chapter_modifier: "Companions Chapter"
+ companions_chapter_modifier_desc: "A mead-hall chapter of the Companions operates in this county."
+ bards_college_chapter_modifier: "Bards College Chapter"
+ bards_college_chapter_modifier_desc: "A Bards College chapter enriches the culture of this county."
+ undaunted_chapter_modifier: "Undaunted Chapter"
+ undaunted_chapter_modifier_desc: "The Undaunted have established a base of operations in this county."
+ famous_ballad_modifier: "Famous Ballad"
+ famous_ballad_modifier_desc: "A Bard has composed a famous ballad about this ruler. Their legend spreads."
+ guild_leader_mages_modifier: "Arch-Mage's Authority"
+ guild_leader_mages_modifier_desc: "The Arch-Mage of the Mages Guild. Their authority over magical matters in Tamriel is unmatched."
+ guild_leader_fighters_modifier: "Harbinger's Authority"
+ guild_leader_fighters_modifier_desc: "The Harbinger of the Companions — the first among equals of Tamriel's foremost warrior guild."
+ guild_leader_thieves_modifier: "Guild Master's Mark"
+ guild_leader_thieves_modifier_desc: "The Guild Master of the Thieves Guild. The shadows of every city answer to them."
+ guild_leader_db_modifier: "Listener's Shroud"
+ guild_leader_db_modifier_desc: "The Listener of the Dark Brotherhood — chosen to hear the voice of the Night Mother."
+ guild_leader_tong_modifier: "Grandmaster's Writ"
+ guild_leader_tong_modifier_desc: "The Grandmaster of the Morag Tong. Their writs of execution are legal throughout Morrowind."
+ guild_leader_companions_modifier: "Shield-Sibling's Bond"
+ guild_leader_companions_modifier_desc: "A trusted leader of the Companions, bound by shield and honour."
+ guild_leader_psijic_modifier: "Psijic Master's Calm"
+ guild_leader_psijic_modifier_desc: "A Master of the Psijic Order, gifted with profound temporal and metaphysical insight."
+ guild_leader_bards_modifier: "Master Bard's Voice"
+ guild_leader_bards_modifier_desc: "A Master Bard of the Bards College. Their compositions are taught across Tamriel."
+ guild_leader_undaunted_modifier: "Undaunted Veteran's Scars"
+ guild_leader_undaunted_modifier_desc: "A veteran Undaunted who has led countless delves into the deadliest ruins in Tamriel."
+ guild_leader_postquest_cooldown: "Guild Leadership Cooldown"
+ guild_leader_postquest_cooldown_desc: "The guild leadership quest chain has recently concluded. A new chapter cannot begin immediately."

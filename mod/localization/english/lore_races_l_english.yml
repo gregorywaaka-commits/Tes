@@ -1,4 +1,4 @@
- # Encoding: UTF-8-BOM
+﻿ # Encoding: UTF-8-BOM
 l_english:
 
  # =====================================================================
@@ -343,3 +343,61 @@ l_english:
  keptu_lineage_desc: "This ruler carries the blood of the Keptu — an ancient Nedic (or related) tribe known for advanced metallurgy centred on the legendary Bloodroot Forge."
  nedic_elder: "Nedic Elder"
  nedic_elder_desc: "Keeper of oral Nedic traditions that predate the First Era — a living repository of pre-merethic Tamriel's history."
+
+ # =====================================================================
+ #  MODIFIERS — Lore Races
+ # =====================================================================
+
+ # Maormer
+ maormer_raided_modifier: "Maormer Raid Damage"
+ maormer_raided_modifier_desc: "This county has been struck by Maormer sea-raiders. Trade infrastructure is damaged and the people are shaken."
+ maormer_truce_modifier: "Maormer Truce"
+ maormer_truce_modifier_desc: "A fragile truce holds between this realm and the Maormer of Pyandonea."
+ maormer_tempest_modifier: "Maormer Tempest"
+ maormer_tempest_modifier_desc: "Maormer serpent-magic has called a great storm upon this coast."
+ repelled_maormer_modifier: "Repelled Maormer Raiders"
+ repelled_maormer_modifier_desc: "Maormer raiders have been driven back. The coast is safe — for now."
+ maormer_hatred_modifier: "Maormer Hatred"
+ maormer_hatred_modifier_desc: "The Maormer of Pyandonea despise this realm and will raid its shores whenever possible."
+
+ # Sload / Thrassian Plague
+ thrassian_plague_modifier: "Thrassian Plague"
+ thrassian_plague_modifier_desc: "The Sload's terrible necromantic plague has reached this county. The dead rise; the living flee."
+ quarantine_modifier: "Quarantine"
+ quarantine_modifier_desc: "Strict quarantine measures are in place to contain the spread of plague."
+ knahaten_flu_modifier: "Knahaten Flu"
+ knahaten_flu_modifier_desc: "The Knahaten Flu rages through this county. Argonians are immune; all other races suffer greatly."
+ knahaten_flu_fear_modifier: "Fear of the Knahaten Flu"
+ knahaten_flu_fear_modifier_desc: "Word of the Knahaten Flu has reached this county. Panic is spreading even before the disease itself."
+ plague_cooldown_modifier: "Plague Recovery"
+ plague_cooldown_modifier_desc: "This county is recovering from a plague outbreak. Another cannot begin so soon."
+
+ # Kamal
+ kamal_ice_curse_modifier: "Kamal Ice Curse"
+ kamal_ice_curse_modifier_desc: "The frozen warriors of Kamal have cursed this land. Ice creeps across the earth even in summer."
+
+ # Elder Towers
+ tower_stone_active_modifier: "Tower Stone Active"
+ tower_stone_active_modifier_desc: "An Elder Tower's Stone rests in this county, anchoring reality and granting subtle but significant boons."
+ tower_fallen_modifier: "Tower Stone Fallen"
+ tower_fallen_modifier_desc: "The Tower Stone of this county has been destroyed or stolen. Reality here grows subtly unstable."
+ white_gold_keeper_modifier: "White-Gold Tower Keeper"
+ white_gold_keeper_modifier_desc: "Keeper of the White-Gold Tower — the ur-tower of Nirn and the axis of mortal reality."
+ red_mountain_keeper_modifier: "Red Mountain Tower Keeper"
+ red_mountain_keeper_modifier_desc: "Keeper of Red Mountain — the Tower of Stone whose Heart anchors the Dunmeri homeland."
+ reality_fracturing_modifier: "Reality Fracturing"
+ reality_fracturing_modifier_desc: "With so few Towers standing, the barrier between Nirn and Oblivion has grown dangerously thin. Strange things slip through."
+ tower_sabotage_cooldown: "Tower Sabotage Recovery"
+ tower_sabotage_cooldown_desc: "This Tower Stone cannot be sabotaged again so soon — the metaphysical wards have been renewed."
+
+ # Minor Races
+ old_knocker_blessing_modifier: "Old Knocker's Blessing"
+ old_knocker_blessing_modifier_desc: "The ancient Dreugh god Old Knocker has smiled upon this ruler."
+ imga_favor_modifier: "Imga Favour"
+ imga_favor_modifier_desc: "The great apes of Valenwood look upon this ruler with favour."
+ tang_mo_unity_modifier: "Tang Mo Unity"
+ tang_mo_unity_modifier_desc: "The Tang Mo of Akavir stand united under this ruler's banner."
+ ka_po_tun_alliance_modifier: "Ka Po' Tun Alliance"
+ ka_po_tun_alliance_modifier_desc: "The Ka Po' Tun of Akavir have forged an alliance with this realm."
+ bloodroot_forge_modifier: "Bloodroot Forge Mastery"
+ bloodroot_forge_modifier_desc: "The secrets of the Keptu's Bloodroot Forge have been unlocked, granting exceptional metallurgical knowledge."

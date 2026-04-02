@@ -107,16 +107,25 @@ on_character_death = {
 }
 
 # ---------------------------------------------------------------
-#  YEARLY PULSE — invasion trigger
-#  Each year there is a small chance (weight 5 out of ~105) that
-#  a new invasion starts IF no invasion is active AND enough time
+#  YEARLY PULSE — invasion trigger + guild activity events
+#  Each year there is a small chance (weight 5) that a new
+#  invasion starts IF no invasion is active AND enough time
 #  has passed (current_date >= 2E.100).
-#  The actual Prince selection happens inside daedric_invasion.000.
+#  Guild activity events also fire yearly at low probability.
+#  NOTE: Both sets of events share ONE on_yearly_pulse block;
+#  CK3 only uses the LAST on_yearly_pulse block in the same file.
 # ---------------------------------------------------------------
 on_yearly_pulse = {
     random_events = {
-        100 = 0                      # no-op — most years no new invasion is triggered
-        5   = daedric_invasion.000   # attempt to start a new Daedric invasion
+        100 = 0                          # no-op — most years nothing fires
+        5   = daedric_invasion.000       # attempt to start a new Daedric invasion
+        10  = guild.mages.research       # Mages Guild research opportunity
+        10  = guild.fighters.contract    # Fighters Guild contract
+        10  = guild.thieves.heist        # Thieves Guild heist opportunity
+        8   = guild.morag_tong.writ      # Morag Tong writ of execution
+        8   = guild.companions.contract  # Companions hunting/warrior contract
+        8   = guild.bards.ballad         # Bards College composition opportunity
+        8   = guild.undaunted.delve      # Undaunted dungeon delve
     }
 }
 
@@ -174,26 +183,6 @@ on_yearly_pulse_character = {
         4  = daedric_prince_invasion.nocturnal.002 # Nocturnal: shadow tithe event
         4  = daedric_prince_invasion.hermaeus.003  # Mora: knowledge offer/price
         3  = daedric_prince_invasion.jyggalag.003  # Jyggalag: crystallisation spreads
-    }
-}
-
-# ---------------------------------------------------------------
-#  GUILD YEARLY ACTIVITY PULSES
-#  Each guild member has a small yearly chance of a guild activity
-#  event.  These events are defined in guild_events.txt and
-#  guild_leadership_events.txt.  The events check guild membership
-#  (has_trait = mages_guild_member, etc.) internally.
-# ---------------------------------------------------------------
-on_yearly_pulse = {
-    random_events = {
-        70 = 0                   # no-op — guild events are flavour, should be infrequent
-        10 = guild.mages.research    # Mages Guild research opportunity
-        10 = guild.fighters.contract # Fighters Guild contract
-        10 = guild.thieves.heist     # Thieves Guild heist opportunity
-        8  = guild.morag_tong.writ   # Morag Tong writ of execution
-        8  = guild.companions.contract # Companions hunting/warrior contract
-        8  = guild.bards.ballad      # Bards College composition opportunity
-        8  = guild.undaunted.delve   # Undaunted dungeon delve
     }
 }
 

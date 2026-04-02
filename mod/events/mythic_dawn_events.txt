@@ -204,7 +204,7 @@ mythic_dawn.004 = {
 
     option = {
         name = mythic_dawn.004.a   # "Open the Gate. Let Mehrunes Dagon in."
-        trigger_event = { id = oblivion_gate.000 }
+        trigger_event = { id = oblivion_gate.001 }
         add_prestige = -300
         add_stress = 40
         remove_character_flag = mythic_dawn_initiate
