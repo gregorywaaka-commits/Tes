@@ -1,0 +1,68 @@
+﻿l_english:
+
+ # =====================================================================
+ #  THE TRIBUNAL — THREE VISIONS, THREE GODS
+ # =====================================================================
+
+ # ---- tribunal.000 — Vivec: The Warrior-Poet ----
+
+ tribunal.000.t: "A Vision of Vivec"
+ tribunal.000.desc: "It arrives without warning — between one thought and the next, a presence fills the room like a change in air pressure. He is standing in your hall, though no door opened. Half in war-mask of burnished gold, half bare-faced and smiling as a young man might smile — contradictions walking together without apology. Vivec. The warrior-poet, the Mask of God, the saint who murdered and was murdered and wrote the Thirty-Six Lessons about it. He regards you without particular urgency. He does not need to speak first."
+ tribunal.000.a: "I am a warrior first, my lord. Bless my spear — my people need a champion."
+ tribunal.000.b: "Your lessons have guided me. I seek your wisdom as a poet, not your fury as a god."
+ tribunal.000.c: "A god stands before me — and for once in my life, I have no words."
+
+ # ---- tribunal.010 — Almalexia: Mother of Morrowind ----
+
+ tribunal.010.t: "Almalexia's Grace"
+ tribunal.010.desc: "You find her waiting in the garden at the hour before dawn, when the world belongs to no one. She is simply there — tall, red-robed, crowned with golden antlers that catch light that does not exist. Almalexia, the Mother of Morrowind, the war-queen of a thousand painted portraits, stands among your dormant roses as though she planted them herself. She looks at you with the particular attention of a mother who knows every thought her child has had since birth. She is not disappointed. She is simply looking."
+ tribunal.010.a: "Mother Morrowind — guide my rule. My people need you more than I need glory."
+ tribunal.010.b: "Blessed mother — arm my hand. My people need a champion, not comfort."
+ tribunal.010.c: "Goddess — I carry your face in my heart, but standing before you I am afraid."
+
+ # ---- tribunal.020 — Sotha Sil: The Clockwork God ----
+
+ tribunal.020.t: "Sotha Sil's Revelation"
+ tribunal.020.desc: "It begins with a sound no one else in the room can hear: the tick of a gear that is not here, a rhythm beneath the natural world. Then you see the lines — geometric, precise, running along the grain of wood and the curve of bone and the arc of every breath in the room — as though someone has drawn the underlying structure of reality in faint silver ink. And at the centre of it all, a figure in robes that hum faintly at a frequency just below sound. Sotha Sil does not speak. He opens a door in the air and shows you what is behind it. What you do with what you see is your choice."
+ tribunal.020.a: "Show me the mechanisms. I am prepared to understand what I am looking at."
+ tribunal.020.b: "The Clockwork City is a god's madness given form. I see it — and I am disturbed."
+ tribunal.020.c: "I close my mind to it. Some doors were not meant for me."
+
+ # ---- tribunal.030 — The Blessed of Three ----
+
+ tribunal.030.t: "The Blessed of Three"
+ tribunal.030.desc: "There is a night — quiet, unremarkable in every way that matters to anyone else — when you understand that you have walked all three paths. Vivec's dual nature speaks in your dreams with a voice that is both spear-strike and verse. Almalexia's warmth sits behind your sternum like a hearthstone that never cools. And Sotha Sil's lines are visible at the edge of everything, not frightening anymore, just present. To receive the blessing of one Tribunal god in a lifetime is rare. To carry the mark of all three is something Morrowind has not seen in generations. You are not sure what it means. You are fairly sure it means something."
+ tribunal.030.a: "Three gods, three trials, one life. I carry them all. I am theirs entirely."
+ tribunal.030.b: "I have walked all three paths — and the only word I have left is humility."
+
+ # ---- Traits ----
+
+ vivec_blessed: "Blessed by Vivec"
+ vivec_blessed_desc: "This ruler has received a vision of Vivec — the warrior-poet of the Tribunal. The dual blessing of spear and verse rests on them: their martial instincts are sharpened, and their understanding of the hidden teachings of the Thirty-Six Lessons deepens. Vivec's favour marks them as genuinely devout in the eyes of all Dunmer."
+
+ almalexia_devoted: "Devoted to Almalexia"
+ almalexia_devoted_desc: "This ruler has received the grace of Almalexia, the Mother of Morrowind. She is the healer-queen, the goddess of compassion and war in equal measure — and her devoted carry her warmth with them into diplomacy and hardship alike. To be openly loved by the Mother is to be followed without question by the Dunmer faithful."
+
+ sotha_sil_student: "Student of Sotha Sil"
+ sotha_sil_student_desc: "This ruler has looked into the mechanisms that Sotha Sil sees behind all things and not looked away. The Clockwork God does not speak much, but what he shows cannot be unseen: the underlying structure of cause and effect, governance and craft, the gear-logic of a world that can be understood if one is willing to be disturbed by the understanding."
+
+ tribunal_champion: "Tribunal Champion"
+ tribunal_champion_desc: "A Dunmer ruler who has been touched by all three gods of the Tribunal — Vivec, Almalexia, and Sotha Sil — in a single lifetime. This is vanishingly rare. Among the Dunmer people, such a ruler is regarded as a living symbol of Morrowind's divine covenant: the walking proof that the three-faced god still watches over its chosen."
+
+ # ---- Modifiers ----
+
+ vivec_warrior_blessing: "Vivec's Warrior Blessing"
+ vivec_warrior_blessing_desc: "The warrior aspect of the god rests on this ruler. Combat comes with the clarity of a man who has fought at Red Mountain and written about it — simultaneous, precise, inevitable."
+
+ vivec_poet_blessing: "Vivec's Poet Blessing"
+ vivec_poet_blessing_desc: "The poet aspect of the god rests on this ruler. The Thirty-Six Lessons speak more clearly; meaning surfaces in places that were obscure before."
+
+ almalexia_grace: "Almalexia's Grace"
+ almalexia_grace_desc: "The Mother of Morrowind's warmth eases the burden of rule. Decisions that would otherwise cost peace of mind feel guided, not alone."
+
+ sotha_sil_insight: "Sotha Sil's Insight"
+ sotha_sil_insight_desc: "The Clockwork God's vision has left its mark. The mechanisms of governance and construction are clearer — every project proceeds a little more deliberately, a little more exactly."
+
+ # ---- Custom Tooltips ----
+
+ tribunal_champion_complete_tt: "You have received the blessing of all three Tribunal gods. The tribunal_champion trait is now yours — a mark that will follow your name in Dunmer memory long after your reign ends."

@@ -1699,3 +1699,41 @@ dagoth_ur_champion_modifier = {
         max_morale = 0.10
     }
 }
+
+# ---------------------------------------------------------------
+#  TRIBUNAL — Three-Gods Blessing Modifiers
+#  Context: Short-term blessings from Vivec, Almalexia, and Sotha Sil.
+#  Applied by: tribunal.000, tribunal.010, tribunal.020 events.
+#  Duration: 730 days (2 years) — the blessing fades, but the trait persists.
+# ---------------------------------------------------------------
+
+# Warrior path of Vivec's vision — the spear-hand is strengthened.
+# Duration: 730 days.
+vivec_warrior_blessing = {
+    martial  = 2
+    prowess  = 3
+    command_modifier = {
+        advantage = 2    # Vivec's warrior-aspect sharpens tactical thinking
+    }
+}
+
+# Poet path of Vivec's vision — the quill-hand is strengthened.
+# Duration: 730 days.
+vivec_poet_blessing = {
+    learning = 2
+    monthly_piety_gain_mult = 0.10   # The 36 Lessons resonate more clearly
+}
+
+# Almalexia's healing grace — the Mother's touch eases the burdens of rule.
+# Duration: 730 days.
+almalexia_grace = {
+    diplomacy        = 2
+    stress_gain_mult = -0.20   # Almalexia's warmth makes stressful choices easier to bear
+}
+
+# Sotha Sil's clockwork insight — seeing the mechanics of reality improves all endeavours.
+# Duration: 730 days.
+sotha_sil_insight = {
+    learning                  = 2
+    development_growth_factor = 0.10   # The Clockwork God's students build and plan with greater precision
+}

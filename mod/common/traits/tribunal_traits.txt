@@ -1,0 +1,105 @@
+# =============================================================
+#  The Tribunal — Traits
+#  File: mod/common/traits/tribunal_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  vivec_blessed       — Touched by the warrior-poet Vivec.
+#                        Balanced martial and learning bonuses.
+#  almalexia_devoted   — Devoted to Almalexia, the Mother of Morrowind.
+#                        Diplomacy and health bonuses; spiritual protection.
+#  sotha_sil_student   — A student of Sotha Sil's Clockwork philosophy.
+#                        High learning; development and stewardship bonuses.
+#  tribunal_champion   — Blessed by all three Tribunal gods in one lifetime.
+#                        A rare honour; well-rounded bonuses and major piety.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Tribunal are the three living gods of Morrowind: Vivec the warrior-
+#  poet, Almalexia the mother-protector, and Sotha Sil the Clockwork God.
+#  Their divine power derives from the Heart of Lorkhan beneath Red Mountain.
+#  To receive the blessing of even one Tribunal god in a vision is significant;
+#  to be touched by all three is a mark of extraordinary Dunmer faith.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  VIVEC BLESSED
+#  A ruler who has received a vision of Vivec — the warrior-poet,
+#  the Mask of God, the saint who wrote the 36 Lessons.  Vivec's
+#  blessing is dual: it sharpens the spear-hand and the quill-hand
+#  in equal measure.  Warriors and scholars both may bear it.
+# ---------------------------------------------------------------
+vivec_blessed = {
+    category = lifestyle
+
+    martial  = 2
+    learning = 1
+
+    monthly_piety_gain_mult    = 0.10   # Vivec's favour marks the blessed as genuinely devout
+    monthly_prestige_gain_mult = 0.05   # The warrior-poet's blessing is widely respected
+
+    flag = vivec_blessed
+}
+
+# ---------------------------------------------------------------
+#  ALMALEXIA DEVOTED
+#  A ruler who has received Almalexia's grace — the healing touch
+#  of the Mother of Morrowind.  She watches over her devoted with
+#  fierce love; they are harder to break and easier to follow.
+#  Diplomacy and health improve under her perpetual gaze.
+# ---------------------------------------------------------------
+almalexia_devoted = {
+    category = lifestyle
+
+    diplomacy = 2
+    health    = 0.5
+
+    monthly_piety_gain_mult    = 0.15   # The Mother's direct blessing is one of the highest honours
+    monthly_prestige_gain_mult = 0.05   # Loved by the Dunmer people who revere Almalexia
+
+    flag = almalexia_devoted
+}
+
+# ---------------------------------------------------------------
+#  SOTHA SIL STUDENT
+#  A ruler touched by Sotha Sil's clockwork revelation — the god
+#  who retreated from the world to build a city of perfect gears
+#  and silent machines.  His students see the mechanics behind
+#  reality.  Unsettling to others; transformative to themselves.
+# ---------------------------------------------------------------
+sotha_sil_student = {
+    category = scholar
+
+    learning    = 3
+    stewardship = 1
+
+    monthly_piety_gain_mult = 0.10   # Sotha Sil's blessing carries Tribunal weight, however strange
+
+    flag = sotha_sil_student
+}
+
+# ---------------------------------------------------------------
+#  TRIBUNAL CHAMPION
+#  A Dunmer ruler who has been touched by all three Tribunal gods
+#  in their lifetime — Vivec, Almalexia, and Sotha Sil.  Such a
+#  ruler is seen as a living embodiment of Morrowind's divine
+#  covenant and a champion of the three-faced god.  The title
+#  carries enormous spiritual and political weight among Dunmer.
+# ---------------------------------------------------------------
+tribunal_champion = {
+    category = lifestyle
+
+    martial     = 1
+    diplomacy   = 1
+    learning    = 2
+    stewardship = 1
+
+    monthly_piety_gain_mult    = 0.20   # The Tribunal's collective favour is extraordinary
+    monthly_prestige_gain_mult = 0.10   # A living symbol of Dunmer faith and divine covenant
+
+    flag = tribunal_champion
+}

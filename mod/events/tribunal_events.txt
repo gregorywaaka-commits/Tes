@@ -1,0 +1,242 @@
+# =============================================================
+#  The Tribunal — Three Visions, Three Gods
+#  Namespace: tribunal
+#
+#  LORE:
+#  The Tribunal — Vivec, Almalexia, and Sotha Sil — are the
+#  three living gods of Morrowind.  Once Chimer generals, they
+#  drew divine power from the Heart of Lorkhan after the Battle
+#  of Red Mountain (1E 700) and transformed themselves into
+#  immortal deities.  Each embodies a distinct aspect:
+#
+#    Vivec       — the warrior-poet god; king, saint, and killer;
+#                  author of the cryptic 36 Lessons of Vivec.
+#    Almalexia   — the mother of Morrowind; healer, protector,
+#                  and queen of the Dunmer people.
+#    Sotha Sil   — the Clockwork God; recluse, mechanic of
+#                  reality, builder of the Clockwork City.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • tribunal.000  — Vision of Vivec: warrior-poet aspect
+#                    (Dunmer rulers with martial >= 12)
+#  • tribunal.010  — Almalexia's Grace: mother-protector aspect
+#                    (Dunmer rulers with diplomacy >= 12)
+#  • tribunal.020  — Sotha Sil's Revelation: clockwork philosophy
+#                    (any ruler with learning >= 14)
+#  • tribunal.030  — The Blessed of Three: all three visions seen
+#                    (Dunmer ruler with all three flags set)
+#
+#  KEY TRAITS (tribunal_traits.txt):
+#  ───────────────────────────────────
+#  • vivec_blessed        — touched by the warrior-poet
+#  • almalexia_devoted    — devoted to the Mother of Morrowind
+#  • sotha_sil_student    — student of the Clockwork God
+#  • tribunal_champion    — honoured by all three Tribunal gods
+#
+#  KEY MODIFIERS (lore_races_modifiers.txt):
+#  ──────────────────────────────────────────
+#  • vivec_warrior_blessing  — short martial/combat boost (730 days)
+#  • vivec_poet_blessing     — short learning/piety boost (730 days)
+#  • almalexia_grace         — short diplomacy/stress relief (730 days)
+#  • sotha_sil_insight       — short learning/development boost (730 days)
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture  = EK2 culture identifier
+# =============================================================
+
+namespace = tribunal
+
+# ---------------------------------------------------------------
+# tribunal.000  A Vision of Vivec — The Warrior-Poet
+# Fires once for a Dunmer ruler whose martial skill (>= 12) has
+# drawn the attention of the warrior-god.  Vivec is inseparable
+# from combat and poetry — the player chooses which aspect to
+# embrace, receiving a matching short-term blessing modifier.
+# Both paths grant the vivec_blessed trait.
+# ---------------------------------------------------------------
+tribunal.000 = {
+    type = character_event
+    title = tribunal.000.t
+    desc = tribunal.000.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        martial >= 12
+        NOT = { has_character_flag = vivec_vision_seen }
+    }
+
+    option = {
+        name = tribunal.000.a   # "I am a warrior. Bless my spear, lord."
+        add_character_flag = { flag = vivec_vision_seen }
+        add_trait = vivec_blessed
+        add_modifier = {
+            modifier = vivec_warrior_blessing
+            days = 730
+        }
+        add_prestige = 200
+        add_stress   = 5
+    }
+
+    option = {
+        name = tribunal.000.b   # "Speak to me as a poet. I seek meaning, not victory."
+        add_character_flag = { flag = vivec_vision_seen }
+        add_trait = vivec_blessed
+        add_modifier = {
+            modifier = vivec_poet_blessing
+            days = 730
+        }
+        add_piety  = 200
+        add_stress = 5
+    }
+
+    option = {
+        name = tribunal.000.c   # "A god appears before me — and I have no words."
+        add_character_flag = { flag = vivec_vision_seen }
+        add_piety  = 100
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# tribunal.010  Almalexia's Grace — The Mother of Morrowind
+# Fires once for a Dunmer ruler whose diplomacy skill (>= 12)
+# reflects the compassion Almalexia values in her people.
+# She is both healer and war-queen; the player's choice shapes
+# which face of the goddess answers them.
+# ---------------------------------------------------------------
+tribunal.010 = {
+    type = character_event
+    title = tribunal.010.t
+    desc = tribunal.010.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        diplomacy >= 12
+        NOT = { has_character_flag = almalexia_vision_seen }
+    }
+
+    option = {
+        name = tribunal.010.a   # "Mother Morrowind — guide my rule and heal my people."
+        add_character_flag = { flag = almalexia_vision_seen }
+        add_trait = almalexia_devoted
+        add_modifier = {
+            modifier = almalexia_grace
+            days = 730
+        }
+        add_piety  = 250
+        add_stress = -10
+    }
+
+    option = {
+        name = tribunal.010.b   # "Blessed mother, arm my hand — my people need a champion, not comfort."
+        add_character_flag = { flag = almalexia_vision_seen }
+        add_trait = almalexia_devoted
+        add_prestige = 150
+        add_piety    = 100
+        add_stress   = 10
+    }
+
+    option = {
+        name = tribunal.010.c   # "Goddess — I carry your face in my heart, but I am afraid."
+        add_character_flag = { flag = almalexia_vision_seen }
+        add_piety  = 150
+        add_stress = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# tribunal.020  Sotha Sil's Revelation — The Clockwork God
+# Fires once for any ruler with learning >= 14.  Sotha Sil's
+# clockwork philosophy transcends Dunmer culture — any scholar
+# deep enough in the mechanisms of the world may receive his
+# vision.  His message is cold, structural, and profoundly
+# unsettling to those unprepared for it.
+# ---------------------------------------------------------------
+tribunal.020 = {
+    type = character_event
+    title = tribunal.020.t
+    desc = tribunal.020.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        learning >= 14
+        NOT = { has_character_flag = sotha_sil_vision_seen }
+    }
+
+    option = {
+        name = tribunal.020.a   # "Show me the mechanisms. I am ready to understand."
+        add_character_flag = { flag = sotha_sil_vision_seen }
+        add_trait = sotha_sil_student
+        add_modifier = {
+            modifier = sotha_sil_insight
+            days = 730
+        }
+        add_piety  = 200
+        add_stress = 10
+    }
+
+    option = {
+        name = tribunal.020.b   # "The Clockwork City is a god's madness given form. I am disturbed."
+        add_character_flag = { flag = sotha_sil_vision_seen }
+        add_learning = 2
+        add_stress = 25
+        add_piety  = 100
+    }
+
+    option = {
+        name = tribunal.020.c   # "I am not ready for this revelation. I close my mind to it."
+        add_character_flag = { flag = sotha_sil_vision_seen }
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# tribunal.030  The Blessed of Three — Tribunal Champion
+# Fires once for a Dunmer ruler who has received all three
+# Tribunal visions.  Being touched by Vivec, Almalexia, and
+# Sotha Sil in one lifetime is vanishingly rare — the Dunmer
+# who achieves it is regarded as a living symbol of Morrowind's
+# divine covenant.  Grants the tribunal_champion trait.
+# ---------------------------------------------------------------
+tribunal.030 = {
+    type = character_event
+    title = tribunal.030.t
+    desc = tribunal.030.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        has_character_flag = vivec_vision_seen
+        has_character_flag = almalexia_vision_seen
+        has_character_flag = sotha_sil_vision_seen
+        NOT = { has_character_flag = tribunal_champion_seen }
+        NOT = { has_trait = tribunal_champion }
+    }
+
+    option = {
+        name = tribunal.030.a   # "Three gods, three trials, one life. I am theirs entirely."
+        add_character_flag = { flag = tribunal_champion_seen }
+        add_trait    = tribunal_champion
+        add_piety    = 500
+        add_prestige = 300
+        add_stress   = -20
+        custom_tooltip = tribunal_champion_complete_tt
+    }
+
+    option = {
+        name = tribunal.030.b   # "I have walked all three paths — yet I feel only humility."
+        add_character_flag = { flag = tribunal_champion_seen }
+        add_trait = tribunal_champion
+        add_piety = 600
+        add_stress = -30
+        custom_tooltip = tribunal_champion_complete_tt
+    }
+}

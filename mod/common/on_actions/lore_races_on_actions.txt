@@ -44,6 +44,7 @@
 #  • Amulet of Kings — bearer rejection, political attention
 #  • Dwemer Ruins — ruin discovery rumours, tonal breakthrough
 #  • Dagoth Ur — Sixth House awakening, Blight spread, Nerevarine prophecy
+#  • Tribunal — Vivec/Almalexia/Sotha Sil visions for devout Dunmer (and scholars)
 #
 #  CROSS-REFERENCES:
 #  ─────────────────
@@ -52,7 +53,8 @@
 #  • Individual event files: echmer_events.txt, maormer_events.txt,
 #    sload_events.txt, kothringi_events.txt, kamal_events.txt,
 #    minor_lore_races_events.txt, towers_events.txt,
-#    thuumvoi_events.txt, amulet_of_kings_events.txt.
+#    thuumvoi_events.txt, amulet_of_kings_events.txt,
+#    tribunal_events.txt.
 #  • Systems triggered here read global_vars set by their effects:
 #    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
 #    global_var:thrassian_plague_active, global_var:active_tower_count, global_var:dagoth_ur_awakened.
@@ -88,6 +90,10 @@ on_yearly_pulse = {
         5   = dagoth_ur.002          # Ghost Fence Strains — Dunmer ruler flavor post-awakening (dagoth_ur_events.txt)
         4   = dagoth_ur.010          # A Sixth House sleeper is discovered at court (dagoth_ur_events.txt)
         3   = dagoth_ur.030          # Azura's call: Nerevarine Prophecy for azura_champion Dunmer (dagoth_ur_events.txt)
+        4   = tribunal.000           # Vision of Vivec — warrior-poet aspect for martial Dunmer rulers (tribunal_events.txt)
+        3   = tribunal.010           # Almalexia's Grace — mother-protector aspect for diplomatic Dunmer rulers (tribunal_events.txt)
+        3   = tribunal.020           # Sotha Sil's Revelation — clockwork philosophy for learned rulers (tribunal_events.txt)
+        2   = tribunal.030           # The Blessed of Three — all three Tribunal visions completed (tribunal_events.txt)
     }
 }
 
