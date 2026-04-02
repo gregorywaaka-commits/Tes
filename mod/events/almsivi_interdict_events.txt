@@ -1,0 +1,155 @@
+# =============================================================
+#  The ALMSIVI Interdict — Tribunal Excommunication
+#  Namespace: almsivi
+#
+#  LORE:
+#  The Tribunal Temple — the ecclesiastical institution that
+#  serves the three living gods of Morrowind — holds temporal
+#  as well as spiritual authority over the Dunmer people.
+#  When a ruler has committed acts that the Temple considers
+#  heresy — cultivating the Sixth House, standing trial against
+#  Vivec and winning, or amassing the authority of a Tribunal
+#  Champion in ways that challenge the Temple's hierarchy —
+#  the ALMSIVI (the combined divine designation for all three
+#  Tribunal gods) may issue a formal Interdict.
+#
+#  An Interdict is more than excommunication: it is a public
+#  declaration that a person is cut off from the divine favour
+#  of the three-faced god.  Among Dunmer, this carries
+#  enormous social and spiritual weight.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • almsivi.000 — The Temple Messenger Arrives
+#                  (yearly, for heretical Dunmer rulers)
+#  • almsivi.001 — The ALMSIVI Interdict is Proclaimed
+#                  (fires when ruler defies almsivi.000)
+#  • almsivi.002 — The Recantation
+#                  (fires as resolution — removes interdict modifier)
+#
+#  KEY MODIFIERS:
+#  ──────────────
+#  • almsivi_interdict_modifier — piety drain, vassal opinion malus
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture            — EK2 culture identifier
+#  • sixth_house_cultist       — EK2 trait
+#  • vivec_trial_victor_modifier — lore_races_modifiers.txt
+#  • tribunal_champion         — tribunal_traits.txt
+# =============================================================
+
+namespace = almsivi
+
+# ---------------------------------------------------------------
+# almsivi.000  The Temple Messenger Arrives
+# Fires yearly for Dunmer rulers who are sixth_house_cultist OR
+# carry the vivec_trial_victor_modifier OR are tribunal_champion
+# (the last because a tribunal_champion with outsized power
+# has drawn the Temple's jealous attention).
+# Two paths: recant publicly (painful but safe) or defy
+# (triggers the formal Interdict via almsivi.001).
+# ---------------------------------------------------------------
+almsivi.000 = {
+    type = character_event
+    title = almsivi.000.t
+    desc = almsivi.000.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        NOT = { has_character_flag = almsivi_warned }
+        NOT = { has_modifier = almsivi_interdict_modifier }
+        OR = {
+            has_trait = sixth_house_cultist
+            has_modifier = vivec_trial_victor_modifier
+            has_trait = tribunal_champion
+        }
+    }
+
+    option = {
+        name = almsivi.000.a   # "I recant. Publicly. Whatever it costs me."
+        add_character_flag = { flag = almsivi_warned days = 1825 }
+        add_prestige = -200
+        add_stress   = 20
+        add_piety    = 100
+        # Recanting removes the threat for 5 years — the Temple is satisfied
+    }
+
+    option = {
+        name = almsivi.000.b   # "Tell the Temple I received their message. Tell them I decline."
+        trigger_event = { id = almsivi.001 days = 7 }
+    }
+}
+
+# ---------------------------------------------------------------
+# almsivi.001  The ALMSIVI Interdict is Proclaimed
+# Fires 7 days after almsivi.000 option b.
+# The Temple has made good on its threat.  The proclamation
+# reaches every Dunmer house and settlement.  Vassals grow
+# uneasy.  Piety income dries up as shrines go cold.
+# The ruler may choose to endure, buy their way out with piety,
+# or recant immediately — triggering almsivi.002.
+# ---------------------------------------------------------------
+almsivi.001 = {
+    type = character_event
+    title = almsivi.001.t
+    desc = almsivi.001.desc
+    theme = faith
+
+    option = {
+        name = almsivi.001.a   # "Let them proclaim it. I stand behind what I have done."
+        add_modifier = {
+            modifier = almsivi_interdict_modifier
+            days = 1825
+        }
+        add_prestige = 100   # at least there is a certain dignity in defiance
+        add_stress   = 30
+    }
+
+    option = {
+        name = almsivi.001.b   # "I will pay whatever it costs to end this. Piety, if that is what they want."
+        trigger = { piety >= 500 }
+        add_piety    = -500
+        add_prestige = -100
+        add_stress   = 25
+        trigger_event = { id = almsivi.002 }
+    }
+
+    option = {
+        name = almsivi.001.c   # "I have reconsidered. I recant. End this now."
+        add_prestige = -300
+        add_stress   = 35
+        add_piety    = 50
+        trigger_event = { id = almsivi.002 }
+    }
+}
+
+# ---------------------------------------------------------------
+# almsivi.002  The Recantation
+# Fires from almsivi.001 options b or c, OR after the 1825-day
+# modifier expires and the ruler seeks formal resolution.
+# The formal recantation removes the Interdict modifier,
+# acknowledges the Temple's authority, and lets the ruler
+# begin the slow work of repairing their standing.
+# ---------------------------------------------------------------
+almsivi.002 = {
+    type = character_event
+    title = almsivi.002.t
+    desc = almsivi.002.desc
+    theme = faith
+
+    option = {
+        name = almsivi.002.a   # "It is done. I have said the words. Now I live with having said them."
+        add_character_flag = { flag = almsivi_warned days = 1825 }
+        if = {
+            limit = { has_modifier = almsivi_interdict_modifier }
+            remove_modifier = almsivi_interdict_modifier
+        }
+        add_prestige = -200
+        add_stress   = 30
+        add_piety    = 150
+        custom_tooltip = almsivi_recantation_complete_tt
+    }
+}

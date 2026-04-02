@@ -348,3 +348,68 @@ nedic_elder = {
     monthly_piety = 1
     flag = nedic_elder
 }
+
+# =============================================================
+#  Clockwork City / Seven Graces / Ashlander Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CLOCKWORK INITIATE
+#  A ruler who has entered the Clockwork City and returned.
+#  Only a handful of people in all of Tamriel have ever walked
+#  Sotha Sil's Brass Halls.  The experience rewires the way
+#  the mind approaches governance, scholarship, and faith:
+#  everything is mechanism; everything can be understood if
+#  one is willing to look long enough at the gears.
+# ---------------------------------------------------------------
+clockwork_initiate = {
+    category = scholar
+
+    learning    = 3
+    stewardship = 2
+
+    monthly_piety_gain_mult = 0.10   # Sotha Sil's direct legacy carries Tribunal weight
+
+    flag = clockwork_initiate
+}
+
+# ---------------------------------------------------------------
+#  SEVEN GRACES PILGRIM
+#  A Dunmer ruler who has walked all seven canonical shrines
+#  of Vivec's graces — from Vivec City to Mount Kand — and
+#  completed each in the proper spirit.  This is a life's
+#  devotion compressed into months of hard travel: the warrior-
+#  poet's road, walked in full.  The Dunmer faithful regard
+#  a completed Seven Graces pilgrim with profound reverence.
+# ---------------------------------------------------------------
+seven_graces_pilgrim = {
+    category = lifestyle
+
+    diplomacy = 2
+
+    monthly_piety_gain_mult    = 0.25   # Vivec's graces permanently deepen the character's faith
+    monthly_prestige_gain_mult = 0.15   # Completion of all seven is widely known and admired
+
+    flag = seven_graces_pilgrim
+}
+
+# ---------------------------------------------------------------
+#  ASHLANDER NEREVARINE
+#  A Dunmer ruler who has been recognised by all four great
+#  Ashlander tribes — the Urshilaku, the Erabenimsun, the
+#  Ahemmusa, and the Zainab — as the living incarnation of
+#  the Nerevarine prophecy.  This is the fulfilment of Azura's
+#  promise to the Chimer: that Nerevar would return to defend
+#  Morrowind in its time of need.  To bear this recognition
+#  is to carry a weight that has nothing to do with politics.
+# ---------------------------------------------------------------
+ashlander_nerevarine = {
+    category = fame
+
+    martial   = 2
+    diplomacy = 2
+
+    monthly_piety_gain_mult = 0.15   # Azura's mark is unmistakable; faith follows naturally
+
+    flag = ashlander_nerevarine
+}

@@ -1,0 +1,295 @@
+# =============================================================
+#  The Seven Graces Pilgrimages — The Canonical Path of Vivec
+#  Namespace: seven_graces
+#
+#  LORE:
+#  The Seven Graces are a canonical Dunmer religious tradition:
+#  seven shrines in Morrowind representing seven virtues taught
+#  by Vivec — the warrior-poet who wrote the 36 Lessons and
+#  stands as the living god of the Tribunal.  A pilgrim who
+#  completes all seven shrines in the proper spirit is believed
+#  to receive a fragment of Vivec's understanding — not merely
+#  faith, but the thing behind faith that holds faith upright.
+#
+#  THE SHRINES AND THEIR VIRTUES:
+#  ────────────────────────────────
+#  1. Vivec City      — First Grace: the gift of proper worship
+#  2. Gnisis           — Second Grace: the grace of humility
+#  3. Maar Gan         — Third Grace: the grace of courage
+#                        (lore: Vivec let a Nord strike him
+#                         without resistance — demonstrating that
+#                         standing firm is not the same as striking)
+#  4. Ald'ruhn         — Fourth Grace: the grace of wisdom
+#  5. Molag Mar        — Fifth Grace: the grace of charity
+#  6. Ghostgate        — Sixth Grace: the grace of resolve
+#  7. Mount Kand       — Seventh Grace: completion and unity
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • seven_graces.000 — The First Grace (Vivec City)
+#                       fires from decision or yearly pulse
+#  • seven_graces.001 — The Second Grace (Gnisis)
+#                       fires 30 days after grace 1
+#  • seven_graces.002 — The Third Grace (Maar Gan)
+#                       fires 30 days after grace 2
+#  • seven_graces.003 — The Fourth Grace (Ald'ruhn)
+#                       fires 30 days after grace 3
+#  • seven_graces.004 — The Fifth Grace (Molag Mar)
+#                       fires 30 days after grace 4
+#  • seven_graces.005 — The Sixth Grace (Ghostgate)
+#                       fires 30 days after grace 5
+#  • seven_graces.006 — The Seventh Grace (Mount Kand)
+#                       fires 30 days after grace 6
+#
+#  KEY TRAITS:
+#  ───────────
+#  • seven_graces_pilgrim — lore_races_traits.txt (appended)
+#
+#  KEY MODIFIERS:
+#  ──────────────
+#  • seven_graces_blessing — 1825 days, piety/stress buff
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • vivec_blessed   — tribunal_traits.txt (requirement)
+#  • dunmer_culture  — EK2 culture identifier
+# =============================================================
+
+namespace = seven_graces
+
+# ---------------------------------------------------------------
+# seven_graces.000  The First Grace — Vivec City
+# Fires for vivec_blessed Dunmer who have not yet begun the
+# pilgrimage.  Arrives at the shrine of the First Grace in
+# Vivec City — the beginning of the canonical walk.  The first
+# grace is simple: proper worship.  Coming here and meaning it.
+# ---------------------------------------------------------------
+seven_graces.000 = {
+    type = character_event
+    title = seven_graces.000.t
+    desc = seven_graces.000.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        has_trait = vivec_blessed
+        NOT = { has_character_flag = grace_1_completed }
+        NOT = { has_trait = seven_graces_pilgrim }
+    }
+
+    option = {
+        name = seven_graces.000.a   # "I kneel. Genuinely. Whatever that is worth."
+        add_character_flag = { flag = grace_1_completed }
+        add_piety  = 150
+        add_stress = -5
+        trigger_event = { id = seven_graces.001 days = 30 }
+    }
+
+    option = {
+        name = seven_graces.000.b   # "I come but I am not certain what I am coming for."
+        add_character_flag = { flag = grace_1_completed }
+        add_piety  = 75
+        add_stress = 10
+        trigger_event = { id = seven_graces.001 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# seven_graces.001  The Second Grace — Gnisis
+# Fires 30 days after the first grace.  The shrine at Gnisis
+# teaches humility — not weakness, but the recognition that the
+# gods do not require a ruler's admiration.  A character whose
+# diplomacy reflects this understanding passes the test easily.
+# ---------------------------------------------------------------
+seven_graces.001 = {
+    type = character_event
+    title = seven_graces.001.t
+    desc = seven_graces.001.desc
+    theme = faith
+
+    option = {
+        name = seven_graces.001.a   # "I bow — not because I must, but because it is true."
+        trigger = { diplomacy >= 10 }
+        add_character_flag = { flag = grace_2_completed }
+        add_piety    = 100
+        add_diplomacy = 1
+        trigger_event = { id = seven_graces.002 days = 30 }
+    }
+
+    option = {
+        name = seven_graces.001.b   # "Humility is harder than it looks. I try."
+        add_character_flag = { flag = grace_2_completed }
+        add_piety  = 75
+        add_stress = 10
+        trigger_event = { id = seven_graces.002 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# seven_graces.002  The Third Grace — Maar Gan
+# Fires 30 days after the second grace.  At Maar Gan, Vivec
+# allowed a Nord warrior to strike him without raising a hand in
+# his own defence — demonstrating that the courage to endure
+# is greater than the courage to retaliate.  The test here is
+# martial: not physical violence, but the discipline behind it.
+# ---------------------------------------------------------------
+seven_graces.002 = {
+    type = character_event
+    title = seven_graces.002.t
+    desc = seven_graces.002.desc
+    theme = faith
+
+    option = {
+        name = seven_graces.002.a   # "I stand without defending myself. I understand the lesson."
+        trigger = { martial >= 10 }
+        add_character_flag = { flag = grace_3_completed }
+        add_piety    = 150
+        add_prestige = 100
+        trigger_event = { id = seven_graces.003 days = 30 }
+    }
+
+    option = {
+        name = seven_graces.002.b   # "I struggle with this. The instinct to fight is very old."
+        add_character_flag = { flag = grace_3_completed }
+        add_piety  = 75
+        add_stress = 15
+        trigger_event = { id = seven_graces.003 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# seven_graces.003  The Fourth Grace — Ald'ruhn
+# Fires 30 days after the third grace.  The shrine at Ald'ruhn
+# tests wisdom — specifically the wisdom to know that the 36
+# Lessons are not literal history but a framework for living.
+# A character of sufficient learning grasps the distinction
+# between surface text and the philosophy beneath it.
+# ---------------------------------------------------------------
+seven_graces.003 = {
+    type = character_event
+    title = seven_graces.003.t
+    desc = seven_graces.003.desc
+    theme = scholarship
+
+    option = {
+        name = seven_graces.003.a   # "The Lessons are not history. I understand what they are."
+        trigger = { learning >= 12 }
+        add_character_flag = { flag = grace_4_completed }
+        add_piety   = 150
+        add_learning = 1
+        trigger_event = { id = seven_graces.004 days = 30 }
+    }
+
+    option = {
+        name = seven_graces.003.b   # "I do not understand all of it. I continue regardless."
+        add_character_flag = { flag = grace_4_completed }
+        add_piety  = 75
+        add_stress = 10
+        trigger_event = { id = seven_graces.004 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# seven_graces.004  The Fifth Grace — Molag Mar
+# Fires 30 days after the fourth grace.  The grace of charity
+# is not symbolic at Molag Mar — the pilgrim is expected to
+# give.  The shrine maintains its work through the donations of
+# the faithful.  A ruler who arrives wealthy and leaves with
+# less has understood something important about what wealth is for.
+# ---------------------------------------------------------------
+seven_graces.004 = {
+    type = character_event
+    title = seven_graces.004.t
+    desc = seven_graces.004.desc
+    theme = faith
+
+    option = {
+        name = seven_graces.004.a   # "I give what I can give. It is a small thing and I know it."
+        add_character_flag = { flag = grace_5_completed }
+        add_gold   = -75
+        add_piety  = 200
+        trigger_event = { id = seven_graces.005 days = 30 }
+    }
+
+    option = {
+        name = seven_graces.004.b   # "I give what I must — no more than the minimum required."
+        add_character_flag = { flag = grace_5_completed }
+        add_gold   = -25
+        add_piety  = 100
+        add_stress = 10
+        trigger_event = { id = seven_graces.005 days = 30 }
+    }
+
+    option = {
+        name = seven_graces.004.c   # "I cannot spare this right now. I will return to this shrine."
+        add_piety  = -50
+        add_stress = 15
+        # does not set flag — pilgrimage stalls here
+    }
+}
+
+# ---------------------------------------------------------------
+# seven_graces.005  The Sixth Grace — Ghostgate
+# Fires 30 days after the fifth grace.  The Ghostgate stands
+# at the edge of the Ghostfence — the barrier between Morrowind
+# and the Blight.  The shrine there tests resolve: the pilgrim
+# arrives exhausted, windswept, and confronted with the full
+# weight of what the Dunmer have been defending against since
+# the Tribunal raised the Fence.  Continuing takes something.
+# ---------------------------------------------------------------
+seven_graces.005 = {
+    type = character_event
+    title = seven_graces.005.t
+    desc = seven_graces.005.desc
+    theme = faith
+
+    option = {
+        name = seven_graces.005.a   # "I press forward. One more shrine. I have not come this far to stop."
+        add_character_flag = { flag = grace_6_completed }
+        add_piety  = 175
+        add_stress = 20
+        trigger_event = { id = seven_graces.006 days = 30 }
+    }
+
+    option = {
+        name = seven_graces.005.b   # "I rest. The Fence will hold for one more day."
+        add_piety  = 100
+        add_stress = -10
+        # rests but does not advance — flag not set, must retry
+    }
+}
+
+# ---------------------------------------------------------------
+# seven_graces.006  The Seventh Grace — Mount Kand
+# Fires 30 days after the sixth grace.  The final grace is
+# at the peak of Mount Kand — far enough, high enough, difficult
+# enough that arriving there at all proves the point.  There is
+# no test here.  There is only arrival, and the understanding
+# that the path was the lesson all along.
+# Grants the seven_graces_pilgrim trait and seven_graces_blessing.
+# ---------------------------------------------------------------
+seven_graces.006 = {
+    type = character_event
+    title = seven_graces.006.t
+    desc = seven_graces.006.desc
+    theme = faith
+
+    option = {
+        name = seven_graces.006.a   # "I have walked all seven. I am done. I am glad it is done."
+        add_character_flag = { flag = grace_7_completed }
+        remove_character_flag = seven_graces_active
+        if = {
+            limit = { NOT = { has_trait = seven_graces_pilgrim } }
+            add_trait = seven_graces_pilgrim
+        }
+        add_modifier = {
+            modifier = seven_graces_blessing
+            days = 1825
+        }
+        add_piety    = 500
+        add_prestige = 200
+        add_stress   = -30
+        custom_tooltip = seven_graces_complete_tt
+    }
+}

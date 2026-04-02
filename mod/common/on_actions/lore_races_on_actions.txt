@@ -95,6 +95,10 @@ on_yearly_pulse = {
         3   = tribunal.020           # Sotha Sil's Revelation — clockwork philosophy for learned rulers (tribunal_events.txt)
         2   = tribunal.030           # The Blessed of Three — all three Tribunal visions completed (tribunal_events.txt)
         3   = almalexia_hands.005    # Almalexia's Command — yearly call to a Hand of Almalexia (almalexia_hands_events.txt)
+        3   = clockwork.000          # Clockwork City rumour — sotha_sil_student rulers with learning >= 14 (clockwork_city_events.txt)
+        3   = seven_graces.000       # Seven Graces First Grace — vivec_blessed Dunmer (seven_graces_events.txt)
+        3   = ashlander.000          # Ashlander ambassador arrives — Dunmer rulers (ashlander_events.txt)
+        4   = almsivi.000            # ALMSIVI Interdict threat — heretical Dunmer rulers (almsivi_interdict_events.txt)
     }
 }
 

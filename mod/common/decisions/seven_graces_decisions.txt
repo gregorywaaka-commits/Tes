@@ -1,0 +1,68 @@
+# =============================================================
+#  The Seven Graces — Decision
+#  File: mod/common/decisions/seven_graces_decisions.txt
+#
+#  DECISIONS IN THIS FILE:
+#  ────────────────────────
+#  begin_seven_graces_pilgrimage — Formally commit to the
+#    canonical Seven Graces pilgrimage of the Dunmer faith.
+#    Requires the Blessing of Vivec and sufficient spiritual
+#    and worldly standing.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture       — EK2 culture identifier
+#  • vivec_blessed        — tribunal_traits.txt
+#  • seven_graces_pilgrim — lore_races_traits.txt (appended)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BEGIN THE SEVEN GRACES PILGRIMAGE
+#  A Dunmer ruler who bears Vivec's blessing and stands high
+#  enough in faith and prestige to be taken seriously may
+#  declare formal intent to walk all seven shrines.  The path
+#  takes months and demands sacrifice at every step.
+#  Triggers seven_graces.000 immediately.
+# ---------------------------------------------------------------
+begin_seven_graces_pilgrimage = {
+    picture = "gfx/interface/icons/decisions/decision_faith.dds"
+    desc = begin_seven_graces_pilgrimage_desc
+
+    is_shown = {
+        has_culture = dunmer_culture
+        has_trait = vivec_blessed
+        NOT = { has_trait = seven_graces_pilgrim }
+        NOT = { has_character_flag = seven_graces_active }
+    }
+
+    is_valid = {
+        piety    >= 300
+        prestige >= 200
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        set_character_flag = { flag = seven_graces_active days = 1095 }
+        trigger_event = { id = seven_graces.000 }
+    }
+
+    ai_will_do = {
+        base = 4
+        modifier = {
+            add = 12
+            has_trait = vivec_blessed
+            piety >= 500
+        }
+        modifier = {
+            add = 8
+            has_trait = almalexia_devoted
+        }
+        modifier = {
+            add = 6
+            has_trait = tribunal_champion
+        }
+    }
+}

@@ -1781,3 +1781,41 @@ almalexia_hands_blessing = {
         max_morale = 0.10   # Fighting under Almalexia's blessing sustains the faithful
     }
 }
+
+# ---------------------------------------------------------------
+#  CLOCKWORK CITY / SEVEN GRACES / ASHLANDER / ALMSIVI MODIFIERS
+#  Context: Rewards and penalties from the new systems.
+# ---------------------------------------------------------------
+
+# Applied to any ruler who has visited the Clockwork City.
+# The experience leaves a lasting mark: improved scholarship and governance.
+# Duration: 1825 days (5 years).
+clockwork_city_vision = {
+    learning    = 2
+    stewardship = 1
+    monthly_piety_gain_mult = 0.10   # Sotha Sil's legacy resonates long after the visit
+}
+
+# Applied to a character who has completed all Seven Graces of Vivec.
+# Vivec's graces are understood, not just performed — the blessing endures.
+# Duration: 1825 days (5 years).
+seven_graces_blessing = {
+    monthly_piety_gain_mult = 0.15   # The completed pilgrimage deepens spiritual connection
+    stress_gain_mult        = -0.15  # The Seven Graces teach equanimity; stressors are easier to bear
+}
+
+# Applied when a ruler has welcomed an Ashlander ambassador with genuine honour.
+# The tribes take note of rulers who treat them as equals.
+# Duration: 730 days (2 years).
+ashlander_welcomed_modifier = {
+    diplomacy               = 1
+    monthly_piety_gain_mult = 0.05   # Ancestor-worship traditions resonate; piety accrues quietly
+}
+
+# Applied when the ALMSIVI Interdict is proclaimed against a heretical ruler.
+# The Temple has cut them off from Tribunal favour — vassals grow uncertain.
+# Duration: set by almsivi.001 (typically 1825 days = 5 years unless lifted early).
+almsivi_interdict_modifier = {
+    monthly_piety_gain_mult = -0.40   # Shrines go cold; divine favour is formally withdrawn
+    vassal_opinion          = -20     # Loyal Dunmer vassals are uneasy under the Temple's censure
+}
