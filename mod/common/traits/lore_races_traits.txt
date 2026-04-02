@@ -413,3 +413,69 @@ ashlander_nerevarine = {
 
     flag = ashlander_nerevarine
 }
+
+# =============================================================
+#  Great Houses of Morrowind — Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MORROWIND HORTATOR
+#  A Dunmer ruler who has been named Hortator — war-leader of
+#  Morrowind — by all five Great House councils: Redoran,
+#  Telvanni, Indoril, Hlaalu, and Dres.  The title of Hortator
+#  predates the Tribunal; it is the oldest form of Dunmer
+#  political authority, invoked only when the threat to
+#  Morrowind is existential.  To bear it is to carry the
+#  weight of an entire people's survival in one pair of hands.
+# ---------------------------------------------------------------
+morrowind_hortator = {
+    category = fame
+
+    martial   = 3
+    diplomacy = 2
+
+    monthly_prestige_gain_mult = 0.20   # Every Great House acknowledged this ruler by name; the word spreads
+
+    flag = morrowind_hortator
+}
+
+# ---------------------------------------------------------------
+#  TELVANNI MASTER WIZARD
+#  A wizard-lord who has claimed a living mushroom tower and
+#  refused all external authority — Tribunal, house council, or
+#  vassal obligation.  Telvanni wizard-lords grow their towers
+#  from spores and their reputations from studied indifference
+#  to the rest of the world.  The isolation is deliberate.
+#  The learning it produces is profound.  The cost is real.
+# ---------------------------------------------------------------
+telvanni_master_wizard = {
+    category = scholar
+
+    learning    = 4
+    stewardship = 2
+
+    stress_gain_mult = 0.20         # Isolation is intellectually productive and personally costly
+    general_opinion  = -10          # The wizard-lord's deliberate withdrawal from society is noted
+
+    flag = telvanni_master_wizard
+}
+
+# ---------------------------------------------------------------
+#  DRES SLAVER
+#  A Dunmer lord who has engaged openly in House Dres's
+#  slave-trade — raiding Black Marsh and selling Hist-bonded
+#  Argonians into bondage in the Deshaan Plains and beyond.
+#  The Tribunal's Temple condemns the practice; the Hist
+#  remembers every name.  The gold is real.  So is everything
+#  else that comes with it.
+# ---------------------------------------------------------------
+dres_slaver = {
+    category = lifestyle
+
+    intrigue    = 2
+    stewardship = 1
+
+    monthly_piety_gain_mult = -0.20   # The Temple's condemnation is formal and ongoing
+
+    flag = dres_slaver
+}

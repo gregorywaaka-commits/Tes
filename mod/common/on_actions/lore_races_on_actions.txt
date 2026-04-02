@@ -99,6 +99,9 @@ on_yearly_pulse = {
         3   = seven_graces.000       # Seven Graces First Grace — vivec_blessed Dunmer (seven_graces_events.txt)
         3   = ashlander.000          # Ashlander ambassador arrives — Dunmer rulers (ashlander_events.txt)
         4   = almsivi.000            # ALMSIVI Interdict threat — heretical Dunmer rulers (almsivi_interdict_events.txt)
+        3   = great_houses.000       # Hortator candidacy offered to worthy Dunmer ruler (great_houses_events.txt)
+        2   = great_houses.010       # Telvanni wizard challenger arrives at court (great_houses_events.txt)
+        2   = great_houses.020       # Dres slaving ship returns from Black Marsh (great_houses_events.txt)
     }
 }
 

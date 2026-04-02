@@ -1,0 +1,125 @@
+# =============================================================
+#  Great Houses of Morrowind — Decisions
+#  File: mod/common/decisions/great_houses_decisions.txt
+#
+#  DECISIONS IN THIS FILE:
+#  ────────────────────────
+#  petition_great_house_hortator — Begin the Hortator candidacy
+#                                   chain (requires nerevarine_marked)
+#  claim_telvanni_tower          — Claim a Telvanni mushroom tower
+#                                   (requires learning >= 16)
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture        = EK2 culture identifier
+#  • nerevarine_marked     = trait from dagoth_ur system (dagoth_ur_traits.txt)
+#  • morrowind_hortator    = trait from this system
+#  • telvanni_master_wizard = trait from this system
+# =============================================================
+
+# ---------------------------------------------------------------
+#  PETITION THE GREAT HOUSE COUNCIL
+#  A Dunmer ruler who bears the Nerevarine mark may approach the
+#  five Great House councils and begin the process of being named
+#  Hortator — war-leader of all Morrowind.  The petitioning
+#  requires political standing, diplomatic skill, and the nerve
+#  to walk into five different rooms of powerful people and
+#  convince each that you are worth following.
+# ---------------------------------------------------------------
+petition_great_house_hortator = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = petition_great_house_hortator_desc
+
+    is_shown = {
+        has_culture = dunmer_culture
+        has_trait = nerevarine_marked
+        NOT = { has_trait = morrowind_hortator }
+        NOT = { has_character_flag = hortator_selection_active }
+    }
+
+    is_valid = {
+        prestige  >= 500
+        diplomacy >= 10
+        is_ruler  = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -500
+        set_character_flag = { flag = hortator_selection_active days = 730 }
+        trigger_event = { id = great_houses.000 days = 7 }
+    }
+
+    ai_will_do = {
+        base = 8
+        modifier = {
+            add = 10
+            has_trait = nerevarine_marked
+        }
+        modifier = {
+            add = 8
+            martial >= 14
+        }
+        modifier = {
+            add = 6
+            diplomacy >= 14
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  CLAIM A TELVANNI TOWER
+#  A sufficiently learned ruler — one whose magical reputation
+#  has reached the ears of House Telvanni's isolated councillors
+#  — may stake a claim to one of the house's living mushroom
+#  towers.  Telvanni towers grow from fungal spores seeded by
+#  master wizards; they are home, fortress, and statement of
+#  power all in one vertical column of amber-tinted chitin.
+#  Claiming one is a declaration that you are Telvanni, whether
+#  the rest of the world recognises the title or not.
+# ---------------------------------------------------------------
+claim_telvanni_tower = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = claim_telvanni_tower_desc
+
+    is_shown = {
+        has_culture = dunmer_culture
+        NOT = { has_trait = telvanni_master_wizard }
+        learning >= 16
+    }
+
+    is_valid = {
+        gold     >= 300
+        prestige >= 400
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_gold     = -300
+        add_prestige = -400
+        set_character_flag = { flag = telvanni_challenge_active days = 365 }
+        trigger_event = { id = great_houses.011 days = 14 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 15
+            learning >= 20
+        }
+        modifier = {
+            add = 10
+            learning >= 18
+        }
+        modifier = {
+            add = 8
+            has_trait = sotha_sil_student
+        }
+    }
+}

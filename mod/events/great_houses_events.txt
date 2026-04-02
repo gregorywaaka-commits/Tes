@@ -1,0 +1,774 @@
+# =============================================================
+#  Great Houses of Morrowind
+#  Namespace: great_houses
+#
+#  LORE:
+#  The five Great Houses of Morrowind are the political bedrock
+#  of Dunmer civilisation — each house a distinct ideology, a
+#  distinct philosophy of power:
+#
+#    Redoran   — the warrior house; honour, duty, and martial
+#                excellence above all.  They guard Morrowind's
+#                borders and hold the border wars as sacred.
+#    Telvanni  — isolationist wizard-lords who grow their towers
+#                from living mushroom-trees; they answer to no
+#                Tribunal authority and no temporal law.
+#    Indoril   — the Tribunal clergy's house; deeply pious,
+#                holding the Temple above all secular concerns.
+#    Hlaalu    — merchants and political operators; they survive
+#                by making themselves indispensable to every
+#                power that rises, and they always survive.
+#    Dres      — lords of the Deshaan Plains, bordering Black
+#                Marsh; they have built their wealth on the
+#                slave trade, raiding Hist-bonded Argonians for
+#                generations.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • great_houses.000  — Hortator candidacy: Great House council
+#                        approaches a worthy Dunmer ruler
+#  • great_houses.001  — Redoran Test: martial honour & combat
+#  • great_houses.002  — Telvanni Negotiation: power & knowledge
+#  • great_houses.003  — Indoril Piety: genuine faith & devotion
+#  • great_houses.004  — Hlaalu Bargain: commerce & obligation
+#  • great_houses.005  — Dres Compliance: slavery & conscience
+#  • great_houses.006  — Named Hortator: all five houses approve
+#
+#  • great_houses.010  — Telvanni wizard challenger at court
+#  • great_houses.011  — Claiming a Telvanni mushroom tower
+#  • great_houses.012  — Telvanni Isolation: demands to submit
+#
+#  • great_houses.020  — Dres slaving ship returns from Black Marsh
+#  • great_houses.021  — The Hist Retaliates
+#  • great_houses.022  — The Argonian Uprising
+#
+#  KEY FLAGS (character flags):
+#  ────────────────────────────
+#  • hortator_selection_active   — active Hortator candidacy
+#  • hortator_redoran            — named Hortator by House Redoran
+#  • hortator_telvanni           — named Hortator by House Telvanni
+#  • hortator_indoril            — named Hortator by House Indoril
+#  • hortator_hlaalu             — named Hortator by House Hlaalu
+#  • hortator_dres               — named Hortator by House Dres
+#  • kagrenac_path_unlocked      — Hortator path opens the Kagrenac way
+#
+#  KEY TRAITS (lore_races_traits.txt):
+#  ────────────────────────────────────
+#  • morrowind_hortator        — war-leader of all five Great Houses
+#  • telvanni_master_wizard    — Telvanni wizard-lord, tower claimed
+#  • dres_slaver               — practitioner of House Dres slave-trade
+#
+#  KEY MODIFIERS (lore_races_modifiers.txt):
+#  ──────────────────────────────────────────
+#  • hortator_redoran_support       — Redoran martial backing
+#  • hortator_telvanni_knowledge    — Telvanni magical secrets
+#  • hortator_indoril_blessing      — Indoril Temple blessing
+#  • hortator_hlaalu_network        — Hlaalu trade connections
+#  • hortator_dres_compliance       — moral cost of Dres acceptance
+#  • telvanni_tower_research        — mushroom tower research bonus
+#  • dres_slave_tribute             — slave-trade income
+#  • argonian_uprising_aftermath    — county destabilised by uprising
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture            = EK2 culture identifier
+#  • nerevarine_marked         = trait from dagoth_ur system (dagoth_ur_traits.txt)
+#  • dwemer_scholar            = trait from dwemer_ruins system
+#  • tonal_architect           = trait from dwemer_ruins system
+#  • vivec_blessed             = trait from tribunal system
+#  • almalexia_devoted         = trait from tribunal system
+#  • sotha_sil_student         = trait from tribunal system
+#  • seven_graces_pilgrim      = trait from seven_graces system
+#  • hist_bonded               = EK2 Argonian trait
+# =============================================================
+
+namespace = great_houses
+
+# ---------------------------------------------------------------
+# great_houses.000  A Great House Council Approaches
+# Yearly flavour: a council of Great House lords rides to a
+# worthy Dunmer ruler's hall with a proposition.  The five
+# houses are seeking a Hortator — a war-leader to stand against
+# a great threat — and this ruler's name has been spoken aloud
+# at the council table.  The candidacy is an honour.  It is
+# also a burden with no clear bottom.
+# ---------------------------------------------------------------
+great_houses.000 = {
+    type = character_event
+    title = great_houses.000.t
+    desc = great_houses.000.desc
+    theme = diplomacy
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        NOT = { has_trait = morrowind_hortator }
+        NOT = { has_character_flag = hortator_redoran }
+        NOT = { has_character_flag = hortator_selection_active }
+    }
+
+    option = {
+        name = great_houses.000.a   # "I accept the honour. Tell me what the houses require."
+        add_character_flag = { flag = hortator_selection_active days = 730 }
+        add_prestige = 100
+        add_stress   = 5
+        trigger_event = { id = great_houses.001 days = 14 }
+    }
+
+    option = {
+        name = great_houses.000.b   # "I am not ready. Let the council find another name."
+        add_prestige = -50
+        add_stress   = 5
+    }
+
+    option = {
+        name = great_houses.000.c   # "An honour worth recognising — in gold as well as words."
+        trigger = {
+            gold >= 0   # always available; gold option
+        }
+        add_character_flag = { flag = hortator_selection_active days = 730 }
+        add_gold     = 200
+        add_prestige = 50
+        add_stress   = 10
+        trigger_event = { id = great_houses.001 days = 14 }
+    }
+}
+
+# ---------------------------------------------------------------
+# great_houses.001  The Redoran Test — Honour and the Spear
+# House Redoran will not name a Hortator who cannot prove
+# honour in combat.  They are warriors first; the council
+# demands demonstration before they commit the house's name
+# to any cause.  Duel their champion, present a battle record,
+# or fall back on lineage.
+# ---------------------------------------------------------------
+great_houses.001 = {
+    type = character_event
+    title = great_houses.001.t
+    desc = great_houses.001.desc
+    theme = martial
+
+    option = {
+        name = great_houses.001.a   # "I will face your champion personally."
+        if = {
+            limit = { martial >= 12 }
+            add_modifier = {
+                modifier = hortator_redoran_support
+                days = 1825
+            }
+            add_character_flag = { flag = hortator_redoran }
+            add_prestige = 150
+            trigger_event = { id = great_houses.002 days = 21 }
+        }
+        else = {
+            add_stress   = 20
+            add_prestige = -75
+            custom_tooltip = great_houses_redoran_duel_failed_tt
+        }
+    }
+
+    option = {
+        name = great_houses.001.b   # "Let my battle record speak. I have not avoided war."
+        if = {
+            limit = { martial >= 10 }
+            add_character_flag = { flag = hortator_redoran }
+            add_prestige = 100
+            trigger_event = { id = great_houses.002 days = 21 }
+        }
+        else = {
+            add_stress   = 15
+            add_prestige = -50
+            custom_tooltip = great_houses_redoran_record_failed_tt
+        }
+    }
+
+    option = {
+        name = great_houses.001.c   # "My lineage speaks for itself. Redoran knows my blood."
+        add_character_flag = { flag = hortator_redoran }
+        add_stress   = 5
+        add_prestige = 50
+        trigger_event = { id = great_houses.002 days = 21 }
+    }
+}
+
+# ---------------------------------------------------------------
+# great_houses.002  Telvanni Negotiation — Power and Knowledge
+# The wizard-lords of House Telvanni do not care for honour
+# in the conventional sense.  They respect only one currency:
+# power.  Magical knowledge, Dwemer secrets, or substantial
+# gold — any will satisfy a Telvanni councillor who is already
+# comfortable in their tower and sees no reason to involve
+# themselves in anyone else's war.
+# ---------------------------------------------------------------
+great_houses.002 = {
+    type = character_event
+    title = great_houses.002.t
+    desc = great_houses.002.desc
+    theme = scholarship
+
+    option = {
+        name = great_houses.002.a   # "Observe what I have studied. My magical understanding is considerable."
+        if = {
+            limit = { learning >= 16 }
+            add_modifier = {
+                modifier = hortator_telvanni_knowledge
+                days = 1825
+            }
+            add_character_flag = { flag = hortator_telvanni }
+            add_piety    = 50
+            trigger_event = { id = great_houses.003 days = 21 }
+        }
+        else = {
+            add_stress   = 15
+            add_prestige = -50
+            custom_tooltip = great_houses_telvanni_knowledge_failed_tt
+        }
+    }
+
+    option = {
+        name = great_houses.002.b   # "I carry a Dwemer secret your council has never heard spoken aloud."
+        trigger = {
+            OR = {
+                has_trait = dwemer_scholar
+                has_trait = tonal_architect
+            }
+        }
+        add_modifier = {
+            modifier = hortator_telvanni_knowledge
+            days = 1825
+        }
+        add_character_flag = { flag = hortator_telvanni }
+        add_prestige = 100
+        trigger_event = { id = great_houses.003 days = 21 }
+    }
+
+    option = {
+        name = great_houses.002.c   # "Gold is the universal language — even in a mushroom tower."
+        trigger = {
+            gold >= 500
+        }
+        add_gold     = -500
+        add_character_flag = { flag = hortator_telvanni }
+        trigger_event = { id = great_houses.003 days = 21 }
+    }
+}
+
+# ---------------------------------------------------------------
+# great_houses.003  Indoril Piety — Faith Before Politics
+# The Tribunal clergy will not endorse a Hortator who is merely
+# powerful.  House Indoril demands that the candidate be genuine
+# in their faith — that the Tribunal's names have been more than
+# words in a prayer, that the Lessons have been read and walked.
+# They will listen to those who have been touched by the gods.
+# ---------------------------------------------------------------
+great_houses.003 = {
+    type = character_event
+    title = great_houses.003.t
+    desc = great_houses.003.desc
+    theme = faith
+
+    option = {
+        name = great_houses.003.a   # "The Lessons of Vivec are not merely text to me. I have lived them."
+        trigger = {
+            OR = {
+                has_trait = vivec_blessed
+                has_trait = almalexia_devoted
+                has_trait = sotha_sil_student
+            }
+        }
+        add_modifier = {
+            modifier = hortator_indoril_blessing
+            days = 1825
+        }
+        add_character_flag = { flag = hortator_indoril }
+        add_piety    = 150
+        trigger_event = { id = great_houses.004 days = 21 }
+    }
+
+    option = {
+        name = great_houses.003.b   # "I have walked the Seven Graces. Every shrine, every grace."
+        trigger = {
+            has_trait = seven_graces_pilgrim
+        }
+        add_modifier = {
+            modifier = hortator_indoril_blessing
+            days = 1825
+        }
+        add_character_flag = { flag = hortator_indoril }
+        add_piety    = 200
+        trigger_event = { id = great_houses.004 days = 21 }
+    }
+
+    option = {
+        name = great_houses.003.c   # "I submit to your examination. Ask me anything of the Temple's teaching."
+        add_character_flag = { flag = hortator_indoril }
+        add_piety  = 75
+        add_stress = 10
+        trigger_event = { id = great_houses.004 days = 21 }
+    }
+}
+
+# ---------------------------------------------------------------
+# great_houses.004  The Hlaalu Bargain — Everything Has a Price
+# House Hlaalu has survived every regime change in Morrowind's
+# history by ensuring that whoever holds power also needs them.
+# They will support the Hortator candidacy — but they will want
+# something in return, and they will want it in writing.  The
+# only question is what form the payment takes.
+# ---------------------------------------------------------------
+great_houses.004 = {
+    type = character_event
+    title = great_houses.004.t
+    desc = great_houses.004.desc
+    theme = stewardship
+
+    option = {
+        name = great_houses.004.a   # "We will formalise a trade agreement. Hlaalu merchants gain preferred terms."
+        add_modifier = {
+            modifier = hortator_hlaalu_network
+            days = 1825
+        }
+        add_character_flag = { flag = hortator_hlaalu }
+        add_prestige = 75
+        trigger_event = { id = great_houses.005 days = 21 }
+    }
+
+    option = {
+        name = great_houses.004.b   # "I will send a member of my household to serve as a Hlaalu guest."
+        add_character_flag = { flag = hortator_hlaalu }
+        add_prestige = 50
+        add_stress   = 15
+        trigger_event = { id = great_houses.005 days = 21 }
+    }
+
+    option = {
+        name = great_houses.004.c   # "Name your price in coin. I will not be indebted further than gold."
+        trigger = {
+            prestige >= 300
+        }
+        add_prestige = -300
+        add_character_flag = { flag = hortator_hlaalu }
+        trigger_event = { id = great_houses.005 days = 21 }
+    }
+}
+
+# ---------------------------------------------------------------
+# great_houses.005  Dres Compliance — The Slave-Lords of Deshaan
+# House Dres is the last negotiation in the Hortator chain — and
+# the most difficult.  Their power comes from the slave trade,
+# and they do not welcome a war-leader who might disrupt it.
+# The candidate must choose: accept the institution, condemn it,
+# or find the narrow path of compromise that satisfies neither
+# conscience nor council.
+# ---------------------------------------------------------------
+great_houses.005 = {
+    type = character_event
+    title = great_houses.005.t
+    desc = great_houses.005.desc
+    theme = intrigue
+
+    option = {
+        name = great_houses.005.a   # "The slave trade is a Morrowind institution. I will not interfere with it."
+        add_modifier = {
+            modifier = dres_slave_tribute
+            days = 730
+        }
+        add_modifier = {
+            modifier = hortator_dres_compliance
+            days = 730
+        }
+        add_character_flag = { flag = hortator_dres }
+        add_piety  = -150
+        add_stress = 20
+        if = {
+            limit = {
+                has_character_flag = hortator_redoran
+                has_character_flag = hortator_telvanni
+                has_character_flag = hortator_indoril
+                has_character_flag = hortator_hlaalu
+            }
+            trigger_event = { id = great_houses.006 days = 30 }
+        }
+    }
+
+    option = {
+        name = great_houses.005.b   # "I will not endorse slavery. Condemn me for it if you must."
+        add_piety    = 200
+        add_prestige = -100
+        add_stress   = 10
+        custom_tooltip = great_houses_dres_condemned_tt
+        if = {
+            limit = {
+                has_character_flag = hortator_redoran
+                has_character_flag = hortator_telvanni
+                has_character_flag = hortator_indoril
+                has_character_flag = hortator_hlaalu
+            }
+            add_character_flag = { flag = hortator_dres }
+            trigger_event = { id = great_houses.006 days = 30 }
+        }
+        else = {
+            add_character_flag = { flag = hortator_dres }
+        }
+    }
+
+    option = {
+        name = great_houses.005.c   # "There is a middle path here. Let us find it together."
+        if = {
+            limit = { stewardship >= 12 }
+            add_character_flag = { flag = hortator_dres }
+            add_prestige = 50
+            add_piety    = 50
+            add_stress   = 5
+            if = {
+                limit = {
+                    has_character_flag = hortator_redoran
+                    has_character_flag = hortator_telvanni
+                    has_character_flag = hortator_indoril
+                    has_character_flag = hortator_hlaalu
+                }
+                trigger_event = { id = great_houses.006 days = 30 }
+            }
+        }
+        else = {
+            add_stress   = 20
+            add_prestige = -50
+            custom_tooltip = great_houses_dres_negotiation_failed_tt
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# great_houses.006  Named Hortator of Morrowind
+# All five Great Houses have spoken.  The chain is complete.
+# The candidate is Hortator — war-leader of Morrowind, named by
+# Redoran blade, Telvanni magic, Indoril prayer, Hlaalu coin,
+# and Dres pragmatism in equal measure.  It is a terrible honour
+# to carry.  It is the only one that matters now.
+# ---------------------------------------------------------------
+great_houses.006 = {
+    type = character_event
+    title = great_houses.006.t
+    desc = great_houses.006.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        has_character_flag = hortator_redoran
+        has_character_flag = hortator_telvanni
+        has_character_flag = hortator_indoril
+        has_character_flag = hortator_hlaalu
+        has_character_flag = hortator_dres
+        NOT = { has_trait = morrowind_hortator }
+    }
+
+    option = {
+        name = great_houses.006.a   # "Five houses. One name. I will not waste it."
+        add_trait    = morrowind_hortator
+        add_prestige = 600
+        add_piety    = 200
+        add_stress   = -15
+        remove_character_flag = hortator_selection_active
+        add_character_flag = { flag = kagrenac_path_unlocked }
+        custom_tooltip = great_houses_hortator_complete_tt
+    }
+
+    option = {
+        name = great_houses.006.b   # "I carry Morrowind's hope now. That is the only thought I have room for."
+        add_trait    = morrowind_hortator
+        add_prestige = 500
+        add_piety    = 300
+        add_stress   = -10
+        remove_character_flag = hortator_selection_active
+        add_character_flag = { flag = kagrenac_path_unlocked }
+        custom_tooltip = great_houses_hortator_complete_tt
+    }
+}
+
+# =============================================================
+#  HOUSE TELVANNI ISOLATION SYSTEM
+# =============================================================
+
+# ---------------------------------------------------------------
+# great_houses.010  A Telvanni Wizard at Court
+# Yearly: a Telvanni wizard-lord has heard of this ruler's
+# reputation for learning and arrived uninvited at court to
+# determine whether the claim is substantiated.  Telvanni
+# masters do not pay courtesy calls.  This is a test.
+# ---------------------------------------------------------------
+great_houses.010 = {
+    type = character_event
+    title = great_houses.010.t
+    desc = great_houses.010.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        learning >= 14
+        NOT = { has_trait = telvanni_master_wizard }
+        NOT = { has_character_flag = telvanni_challenge_active }
+    }
+
+    option = {
+        name = great_houses.010.a   # "I accept. Let the wizard see what I know."
+        if = {
+            limit = { learning >= 18 }
+            add_character_flag = { flag = telvanni_challenge_active days = 365 }
+            add_prestige = 100
+            trigger_event = { id = great_houses.011 days = 30 }
+        }
+        else = {
+            if = {
+                limit = { learning >= 14 }
+                add_character_flag = { flag = telvanni_challenge_active days = 365 }
+                add_prestige = 50
+                add_stress   = 10
+                trigger_event = { id = great_houses.011 days = 30 }
+            }
+        }
+    }
+
+    option = {
+        name = great_houses.010.b   # "A wizard tests me in my own hall. I decline."
+        add_prestige = -25
+        add_stress   = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# great_houses.011  Claiming a Telvanni Tower
+# The challenger has proved worthy of the Telvanni's notice.
+# Now the wizard-lord offers what Telvanni truly offers: a tower
+# of their own.  A living mushroom-spire on the edge of the
+# world, answerable to no one.  What the new lord does with it
+# determines what kind of Telvanni they will become.
+# ---------------------------------------------------------------
+great_houses.011 = {
+    type = character_event
+    title = great_houses.011.t
+    desc = great_houses.011.desc
+    theme = scholarship
+
+    option = {
+        name = great_houses.011.a   # "I will use the tower as it was meant to be used — for study."
+        add_trait = telvanni_master_wizard
+        add_modifier = {
+            modifier = telvanni_tower_research
+            days = -1
+        }
+        add_prestige = 100
+        add_stress   = -10
+        remove_character_flag = telvanni_challenge_active
+    }
+
+    option = {
+        name = great_houses.011.b   # "A tower is eyes as much as walls. I will use it to watch my rivals."
+        add_trait  = telvanni_master_wizard
+        add_modifier = {
+            modifier = telvanni_tower_research
+            days = -1
+        }
+        add_intrigue = 1
+        add_prestige = 75
+        remove_character_flag = telvanni_challenge_active
+    }
+}
+
+# ---------------------------------------------------------------
+# great_houses.012  Telvanni Isolation — Demands to Submit
+# The world does not leave Telvanni wizard-lords alone forever.
+# The Tribunal's arm is long; other houses resent the isolation;
+# vassals ask questions.  Eventually someone demands compliance.
+# The wizard-lord must decide whether to bend or to hold.
+# ---------------------------------------------------------------
+great_houses.012 = {
+    type = character_event
+    title = great_houses.012.t
+    desc = great_houses.012.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        has_trait = telvanni_master_wizard
+        NOT = { has_character_flag = telvanni_isolation_recent }
+    }
+
+    option = {
+        name = great_houses.012.a   # "I answer to no council, no temple, and no house but my own."
+        add_character_flag = { flag = telvanni_isolation_recent days = 1825 }
+        add_stress   = 20
+        add_prestige = -50
+        custom_tooltip = great_houses_telvanni_isolation_hold_tt
+    }
+
+    option = {
+        name = great_houses.012.b   # "A strategic compliance costs me nothing essential."
+        add_character_flag = { flag = telvanni_isolation_recent days = 1825 }
+        add_diplomacy = 1
+        add_prestige  = 50
+        add_stress    = 10
+        custom_tooltip = great_houses_telvanni_isolation_comply_tt
+    }
+}
+
+# =============================================================
+#  HOUSE DRES SLAVE TRADE SYSTEM
+# =============================================================
+
+# ---------------------------------------------------------------
+# great_houses.020  A Dres Slaving Ship Returns
+# A House Dres vessel makes port with cargo from Black Marsh.
+# The Hist-bonded Argonians who crew it are silent.  The hold
+# is not.  For a southern Dunmer lord or one already entangled
+# in Dres commerce, the question is unavoidable: what do you do
+# with what arrives at your dock?
+# ---------------------------------------------------------------
+great_houses.020 = {
+    type = character_event
+    title = great_houses.020.t
+    desc = great_houses.020.desc
+    theme = stewardship
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        OR = {
+            has_trait = dres_slaver
+            has_character_flag = dres_trade_engaged
+        }
+    }
+
+    option = {
+        name = great_houses.020.a   # "Take the tribute. A southern lord cannot afford sentiment."
+        add_modifier = {
+            modifier = dres_slave_tribute
+            days = 730
+        }
+        add_character_flag = { flag = dres_trade_engaged days = 1825 }
+        add_piety  = -100
+        add_stress = 15
+    }
+
+    option = {
+        name = great_houses.020.b   # "Release them. All of them. I will pay the loss myself."
+        add_gold   = -150
+        add_piety  = 200
+        add_stress = -10
+        custom_tooltip = great_houses_dres_freed_tt
+    }
+
+    option = {
+        name = great_houses.020.c   # "This ship docked at the wrong harbour. Move it along."
+        add_prestige = -25
+        add_stress   = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# great_houses.021  The Hist Retaliates
+# The Hist remembers everything.  Every raid on Black Marsh has
+# been recorded in root and sap and the slow dreaming of ten
+# thousand ancient trees.  Now a warning comes — not from any
+# Argonian messenger, but through the soil itself, through a
+# courtier who touched a Hist-root on a trade mission and has
+# not been the same since.  The Hist is patient.  It is done
+# being patient.
+# ---------------------------------------------------------------
+great_houses.021 = {
+    type = character_event
+    title = great_houses.021.t
+    desc = great_houses.021.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_character_flag = dres_trade_engaged
+        any_courtier = {
+            OR = {
+                has_trait = hist_bonded
+                has_trait = an_xileel_warrior
+            }
+        }
+        NOT = { has_character_flag = hist_warning_received }
+    }
+
+    option = {
+        name = great_houses.021.a   # "I hear the warning. I will reconsider my involvement with Dres."
+        add_character_flag = { flag = hist_warning_received days = 1825 }
+        remove_character_flag = dres_trade_engaged
+        add_piety  = 100
+        add_stress = -10
+    }
+
+    option = {
+        name = great_houses.021.b   # "A tree's dream does not govern my politics. Press on."
+        add_character_flag = { flag = hist_warning_received days = 1825 }
+        add_stress   = 25
+        add_prestige = -75
+        custom_tooltip = great_houses_hist_warning_ignored_tt
+    }
+}
+
+# ---------------------------------------------------------------
+# great_houses.022  The Argonian Uprising
+# The raids were too many.  Too recent.  The slaves at the border
+# have organised — not in the chaotic way of desperate people,
+# but with the calm, patient fury of people who have the Hist
+# behind them.  A county is burning.  The Dunmer lord must
+# respond before it spreads.
+# ---------------------------------------------------------------
+great_houses.022 = {
+    type = character_event
+    title = great_houses.022.t
+    desc = great_houses.022.desc
+    theme = martial
+
+    trigger = {
+        is_ruler = yes
+        has_character_flag = dres_trade_engaged
+        has_character_flag = hist_warning_received
+        NOT = { has_character_flag = argonian_uprising_resolved }
+    }
+
+    option = {
+        name = great_houses.022.a   # "Crush the uprising. Morrowind's borders must hold."
+        trigger = {
+            martial >= 10
+        }
+        add_character_flag = { flag = argonian_uprising_resolved days = 1825 }
+        add_prestige = 100
+        add_piety    = -100
+        add_stress   = 25
+        add_gold     = -200
+        custom_tooltip = great_houses_uprising_crushed_tt
+    }
+
+    option = {
+        name = great_houses.022.b   # "Negotiate terms. I want this ended, not extended."
+        trigger = {
+            diplomacy >= 12
+        }
+        add_character_flag = { flag = argonian_uprising_resolved days = 1825 }
+        add_modifier = {
+            modifier = argonian_uprising_aftermath
+            days = 1825
+        }
+        add_gold     = -300
+        add_piety    = 100
+        add_stress   = 10
+        remove_character_flag = dres_trade_engaged
+    }
+
+    option = {
+        name = great_houses.022.c   # "Withdraw. Let the border counties sort themselves."
+        add_character_flag = { flag = argonian_uprising_resolved days = 1825 }
+        add_modifier = {
+            modifier = argonian_uprising_aftermath
+            days = 1825
+        }
+        add_prestige = -200
+        add_stress   = 30
+    }
+}

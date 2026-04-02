@@ -1819,3 +1819,92 @@ almsivi_interdict_modifier = {
     monthly_piety_gain_mult = -0.40   # Shrines go cold; divine favour is formally withdrawn
     vassal_opinion          = -20     # Loyal Dunmer vassals are uneasy under the Temple's censure
 }
+
+# =============================================================
+#  GREAT HOUSES OF MORROWIND — MODIFIERS
+#  Context: Hortator candidacy rewards, Telvanni isolation,
+#           and Dres slave-trade consequences.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  HORTATOR HOUSE SUPPORT MODIFIERS
+#  Each modifier represents the active backing of one Great House
+#  following the Hortator candidacy chain.  They persist for
+#  1825 days (5 years) — the period of maximum house engagement.
+# ---------------------------------------------------------------
+
+# Applied when House Redoran endorses the Hortator candidate.
+# Redoran warriors pledge martial support — the border-guard's
+# respect translates directly to battlefield advantage.
+# Duration: 1825 days (5 years).
+hortator_redoran_support = {
+    martial = 1
+    command_modifier = {
+        advantage = 1   # "The warrior house stands behind you — their enemies feel it"
+    }
+}
+
+# Applied when House Telvanni shares magical knowledge with the candidate.
+# Wizard-lords rarely share anything; what they offer is worth having.
+# Duration: 1825 days (5 years).
+hortator_telvanni_knowledge = {
+    learning = 2   # Telvanni secrets are worth years of ordinary scholarship
+}
+
+# Applied when House Indoril's clergy formally bless the Hortator.
+# The Temple's blessing is not merely symbolic — the faithful respond.
+# Duration: 1825 days (5 years).
+hortator_indoril_blessing = {
+    monthly_piety_gain_mult = 0.10   # The Temple's formal blessing deepens the candidate's spiritual standing
+}
+
+# Applied when House Hlaalu formalises trade arrangements with the candidate.
+# Hlaalu merchant networks are among the most efficient in Morrowind.
+# Duration: 1825 days (5 years).
+hortator_hlaalu_network = {
+    stewardship    = 1
+    monthly_income = 0.10   # Hlaalu preferred trade routes generate steady returns
+}
+
+# Applied when the candidate accepts House Dres's slave-trade practices.
+# The moral compromise of accepting Dres's institution weighs on the conscience.
+# Duration: 730 days (2 years).
+hortator_dres_compliance = {
+    stress_gain_mult = 0.15   # Accepting the Dres institution is pragmatic — and it costs something
+}
+
+# ---------------------------------------------------------------
+#  TELVANNI TOWER RESEARCH
+#  Applied when a wizard-lord claims a mushroom tower for magical
+#  research.  The tower is a permanent research base; its bonus
+#  never expires as long as the wizard-lord occupies it.
+#  Duration: permanent (-1 days).
+# ---------------------------------------------------------------
+telvanni_tower_research = {
+    learning                = 1
+    development_growth_factor = 0.10   # The tower's research radiates outward into the surrounding domain
+}
+
+# ---------------------------------------------------------------
+#  DRES SLAVE TRIBUTE
+#  Applied when a Dunmer lord accepts House Dres's slave-trade
+#  tribute from a Black Marsh raiding ship.  The income is real.
+#  The moral accounting runs quietly in the background.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+dres_slave_tribute = {
+    monthly_income = 0.20   # Slave-trade returns are substantial — the Dres did not build their power on nothing
+}
+
+# ---------------------------------------------------------------
+#  ARGONIAN UPRISING AFTERMATH
+#  Applied to the domain of a Dunmer lord whose border counties
+#  have been torn apart by a Hist-backed slave rebellion.
+#  Order will be restored, eventually.  The economy will not
+#  recover for years.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+argonian_uprising_aftermath = {
+    monthly_income   = -0.30   # Counties in ruins; trade routes broken; labour fled or dead
+    supply_limit_mult = -0.20  # Disrupted infrastructure limits what armies can sustain in the field
+}
