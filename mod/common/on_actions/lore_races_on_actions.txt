@@ -52,7 +52,7 @@
 #  • Worm Cult — Black Worm invitation for high-intrigue rulers
 #  • Dragon Breaks — temporal anomaly when too many Towers fall (very rare)
 #  • Ayleid Ruins — ruin discovery for Cyrodiil / ayleid_bloodline rulers
-#  • Void Nights — calendar-triggered 2E 578-579 moon vanishing
+#  • Void Nights — calendar-triggered 4E 98-100 moon vanishing
 #  • Longhouse Emperors — Reachman Imperial claimant events
 #  • Gray Host — vampire-werewolf invasion (date-window 1E 800–2E 200)
 #  • Shezarrine — divine warrior vessel (very rare, martial-gated)
@@ -199,7 +199,7 @@ on_yearly_pulse = {
         2   = worm_cult.030          # Mannimarco's Demand — worm_cult_adept rulers (worm_cult_events.txt)
         1   = dragon_break.000       # Dragon Break check — fires if active_tower_count <= 3 (dragon_break_events.txt) [very rare]
         3   = ayleid.000             # Ayleid ruin discovery — Cyrodiil rulers / ayleid_bloodline (ayleid_ruins_events.txt)
-        2   = void_nights.000        # Void Nights trigger — calendar gated 2E 578-579 (void_nights_events.txt)
+        2   = void_nights.000        # Void Nights trigger — calendar gated 4E 98-100 (void_nights_events.txt)
         2   = void_nights.004        # Void Nights meditation — learned rulers during void nights (void_nights_events.txt)
         2   = longhouse.000          # Longhouse Emperors — reachman_heritage rulers post 2E 541 (longhouse_emperors_events.txt)
         2   = gray_host.000          # Gray Host invasion check — date-window 1E 800 – 2E 200 (gray_host_events.txt)

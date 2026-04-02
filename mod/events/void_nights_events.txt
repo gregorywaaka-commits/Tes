@@ -5,16 +5,16 @@
 #
 #  EVENT LIST:
 #  ─────────────────────────────────────────────────────────────
-#  void_nights.000  Hidden — triggers at 2E 578, sets global flag
+#  void_nights.000  Hidden — triggers at 4E 98, sets global flag
 #  void_nights.001  "The Moons Have Vanished" — notification to all rulers
 #  void_nights.002  "Moon Sugar Fails" — Two Moons path rulers suffer
-#  void_nights.003  "The Moons Return" — fires at 2E 580, clears flag
+#  void_nights.003  "The Moons Return" — fires ~4E 100, clears flag
 #  void_nights.004  "The Void Teaches" — reflection event for learned rulers
 #
 #  HISTORICAL NOTE:
-#  Canonically, the Void Nights occurred in 4E 98-100, well after
-#  EK2's Second Era timeframe.  This mod adapts the event to 2E 578-579
-#  so it can be experienced in-game.  The cause is officially unknown —
+#  Canonically, the Void Nights occurred in 4E 98-100.  EK2 starts in
+#  2E 440; a long game can reach the Fourth Era, so the event fires at
+#  its true canonical date.  The cause is officially unknown —
 #  the Thalmor CLAIMED credit for restoring the moons, but most scholars
 #  believe they merely knew the moons would return and exploited the
 #  crisis for political gain.  The mod treats their culpability as
@@ -37,7 +37,7 @@ namespace = void_nights
 # ---------------------------------------------------------------
 # void_nights.000  The Sky Goes Dark
 # A hidden event that checks the calendar. When the year reaches
-# 2E 578, if the Void Nights have not yet been triggered, this
+# 4E 98, if the Void Nights have not yet been triggered, this
 # fires for a ruler and sets the global guard variable before
 # cascading void_nights.001 to all rulers.
 # ---------------------------------------------------------------
@@ -48,8 +48,8 @@ void_nights.000 = {
     trigger = {
         is_ruler = yes
         is_landed = yes
-        current_date >= 2.578.1.1
-        current_date < 2.580.1.1
+        current_date >= 4.98.1.1
+        current_date < 4.100.1.1
         NOT = { global_var:void_nights_active = 1 }
     }
 

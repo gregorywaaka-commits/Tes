@@ -1598,7 +1598,7 @@ welkynd_attunement = {
 #  Without the moons, Khajiit cannot be born and Moon Sugar fails.
 #  stewardship -2: trade in moon-based goods collapses.
 #  monthly_piety_gain_mult -0.15: the gods have abandoned us.
-#  Duration: 730 days (2 years — duration of Void Nights 2E 578-579).
+#  Duration: 730 days (2 years — duration of Void Nights 4E 98-100).
 # ---------------------------------------------------------------
 void_nights_crisis = {
     stewardship              = -2
