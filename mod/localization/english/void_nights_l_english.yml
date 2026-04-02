@@ -1,0 +1,35 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  VOID NIGHTS
+ # =====================================================================
+
+ # --- Modifiers ---
+ moon_sugar_drought: "Moon Sugar Drought"
+ moon_sugar_drought_desc: "The moons do not light the sky. The sacred moon sugar loses its blessing; the Two Moons path is severed at its source."
+
+ # --- Events ---
+
+ void_nights.001.t: "The Moons Have Vanished"
+ void_nights.001.desc_khajiit: "You are outside when it happens. The night is clear; the stars burn bright; you look up for Masser and Secunda as you have looked up for them every night of your life — and they are not there. The sky is whole and full of stars and empty of the moons that have governed every Khajiit born since the beginning of the world.\n\nWithout the moons, no Khajiit can change their furstock. Without the moons, the Two Moons path is severed. Without the moons, the unborn will be born as what, exactly? The question does not bear thinking about.\n\nWe are as unborn. The moons do not speak to us."
+ void_nights.001.desc_other: "The astronomers come to you just before dawn, white-faced and stammering. Masser and Secunda are gone. Not clouded over — gone. The sky is clear from horizon to horizon, and there are simply no moons in it.\n\nThe astronomers have checked their instruments. They have checked their calculations. They have checked each other's calculations. The moons are not behind the horizon. They are not eclipsed. They have vanished from the sky as completely as if they had never existed.\n\nSomewhere, you know, someone has done this. Someone always does this."
+ void_nights.001.a: "What has happened to the moons? How is this possible?"
+ void_nights.001.b: "We are as unborn. The moons do not speak to us."
+ void_nights.001.c: "Someone has done this. Someone can undo it. Find them."
+
+ void_nights.002.t: "Moon Sugar Fails"
+ void_nights.002.desc: "The caravans that brought moon sugar from the Tenmar Forest arrive with empty wagons and haunted faces. The plantations are intact; the plants still grow. But the crop carries none of its sacred properties. The moon sugar is simply sweet. The path is gone.\n\nFor a Mane, this is more than a material loss. The moon sugar is how the Two Moons path is walked — how the philosophies of Jone and Jode are tasted rather than merely read. Without the moons to consecrate it, the sugar is profane. The devotions ring hollow. The path exists only in memory.\n\nThe Two Moons path must be walked in the dark."
+ void_nights.002.a: "We must endure. The moons will return. Walk the path in memory until then."
+ void_nights.002.b: "Seek the Thalmor. If they caused this outrage, they can end it."
+
+ void_nights.003.t: "The Moons Return"
+ void_nights.003.desc_khajiit: "You are outside when it happens — you have been sleeping outside, or not sleeping, spending the nights watching the empty sky as though watching hard enough might bring them back. And then: Masser, orange-red and enormous on the horizon, rising as it always has and always should. And beside it, smaller and silver, Secunda.\n\nThe Two Moons are home. The path is open. The unborn will be born into the proper furstocks. The moon sugar will taste of the sacred again.\n\nAll over Elsweyr, Khajiit are crying. You are not ashamed to join them."
+ void_nights.003.desc_other: "The astronomers wake you in the middle of the night, which you would normally not forgive. But when you step outside, you see why they did it: Masser and Secunda are rising together in the west, enormous and brilliant, as though they had never been gone.\n\nThe Thalmor are already circulating the claim that their scholars restored the moons through applied magical theory. Whether that is true, partly true, or a convenient lie, the sky is whole again — and the Thalmor's influence in Elsweyr will be the price of it."
+ void_nights.003.a: "The moons have returned. The Two Moons path is open again."
+ void_nights.003.b: "The sky is whole again. May it never darken so again in my lifetime."
+
+ void_nights.004.t: "The Void Teaches"
+ void_nights.004.desc: "In the absence of the moons, you have found yourself reflecting on questions you previously had no reason to ask. What is the moon, philosophically? Is Masser a god, a shell of a dead god, or a dead world with no divinity at all? Do the Khajiit require the moons because of what the moons are — or because of what the Khajiit were made to be, shaped by whoever made them to need a thing that could be taken away?\n\nThe void teaches through absence. The emptiness of the sky where the moons should be is a space in which only questions live. For a scholar, that is not entirely without value."
+ void_nights.004.a: "Meditate on the void. Even darkness, patiently endured, teaches."
+ void_nights.004.b: "Pray for the moons' return. Faith is not philosophy, and this is not a classroom."

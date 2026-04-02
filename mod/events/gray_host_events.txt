@@ -1,0 +1,182 @@
+# =============================================================
+#  Gray Host Invasion Events
+#  Namespace: gray_host
+#  File: mod/events/gray_host_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  gray_host.000  Hidden yearly — detects date window and fires invasion
+#  gray_host.001  "The Gray Host Marches" — notification for nearby rulers
+#  gray_host.002  "Rada al-Saran's Emissary" — terms offered
+#  gray_host.010  "The Host Recedes" — 20 years after invasion, retreat
+#
+#  HISTORICAL NOTE:
+#  The Gray Host was an ancient army of vampires and werewolves
+#  led by the vampire lord Rada al-Saran during the Second Era.
+#  They swept out of the Reach to terrorise High Rock and Skyrim
+#  before eventually being defeated and bound in Grayhaven.
+# =============================================================
+
+namespace = gray_host
+
+# ---------------------------------------------------------------
+# gray_host.000  The Gray Host Stirs
+# A hidden yearly event that detects when the Gray Host's
+# historical window is active. Once per playthrough (guarded by
+# global_var), it fires notifications for rulers in High Rock
+# and Skyrim — the Host's primary hunting grounds.
+# ---------------------------------------------------------------
+gray_host.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        current_date >= 1.800.1.1
+        current_date <= 2.200.1.1
+        NOT = { global_var:gray_host_invaded = 1 }
+        OR = {
+            any_held_county = {
+                geographical_region = world_region_high_rock
+            }
+            any_held_county = {
+                geographical_region = world_region_skyrim
+            }
+            any_held_county = {
+                geographical_region = world_region_the_reach
+            }
+        }
+    }
+
+    immediate = {
+        set_global_variable = { name = gray_host_invaded value = 1 }
+        every_ruler = {
+            limit = {
+                OR = {
+                    any_held_county = {
+                        geographical_region = world_region_high_rock
+                    }
+                    any_held_county = {
+                        geographical_region = world_region_skyrim
+                    }
+                    any_held_county = {
+                        geographical_region = world_region_the_reach
+                    }
+                }
+            }
+            trigger_event = { id = gray_host.001 days = 7 }
+        }
+        # Schedule the retreat
+        trigger_event = { id = gray_host.010 years = 20 }
+    }
+}
+
+# ---------------------------------------------------------------
+# gray_host.001  The Gray Host Marches
+# The ancient army erupts from the Reach — vampires who have
+# not fed in centuries, werewolves who have not hunted in
+# generations. Rada al-Saran rides at their head, patient
+# and ancient and utterly without mercy. Rulers must respond.
+# ---------------------------------------------------------------
+gray_host.001 = {
+    type = character_event
+    title = gray_host.001.t
+    desc  = gray_host.001.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = fear
+    }
+
+    option = {
+        name = gray_host.001.a   # "Fortify the borders. Let the Host find our walls instead of our fields."
+        add_character_modifier = {
+            modifier = gray_host_prepared_defenses
+            days = 730
+        }
+        add_prestige = 100
+        add_stress = 10
+    }
+
+    option = {
+        name = gray_host.001.b   # "Send an envoy. Perhaps Rada al-Saran can be bargained with."
+        trigger_event = { id = gray_host.002 days = 14 }
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# gray_host.002  Rada al-Saran's Emissary
+# A figure dressed in grey arrives at court under a flag of
+# parley — clearly a vampire, clearly ancient, and speaking
+# with the calm certainty of someone who has watched empires
+# rise and fall and expected to watch them fall again.
+# The Gray Host offers terms. They are not generous.
+# ---------------------------------------------------------------
+gray_host.002 = {
+    type = character_event
+    title = gray_host.002.t
+    desc  = gray_host.002.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    option = {
+        name = gray_host.002.a   # "Swear fealty. A living vassal is worth more than a dead kingdom."
+        add_prestige = -200
+        add_stress = 30
+        add_trait = gray_host_commander
+    }
+
+    option = {
+        name = gray_host.002.b   # "There will be no parley. Drive the emissary from the gates."
+        trigger = { martial >= 14 }
+        add_prestige = 300
+        add_stress = 20
+        add_character_modifier = {
+            modifier = gray_host_resistance_leader
+            days = 3650
+        }
+    }
+
+    option = {
+        name = gray_host.002.c   # "Pay the tribute. Three hundred gold buys time to raise armies."
+        add_gold = -300
+        add_prestige = -100
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# gray_host.010  The Host Recedes
+# Twenty years after the invasion begins, the Gray Host's
+# momentum stalls. Whether through resistance, attrition,
+# or the inscrutable patience of Rada al-Saran, the army
+# retreats into the deep Reach. Their dead fill the valleys;
+# the stories of them will outlast everyone who fought them.
+# ---------------------------------------------------------------
+gray_host.010 = {
+    type = character_event
+    title = gray_host.010.t
+    desc  = gray_host.010.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = relief
+    }
+
+    option = {
+        name = gray_host.010.a   # "The Host has gone. Count the cost."
+        add_prestige = 200
+        add_stress = -20
+    }
+
+    option = {
+        name = gray_host.010.b   # "They will return. We must be ready when they do."
+        add_prestige = 200
+        add_martial_skill = 1
+    }
+}

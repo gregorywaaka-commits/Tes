@@ -1,0 +1,52 @@
+# =============================================================
+#  Ayleid Ruins Traits
+#  File: mod/common/traits/ayleid_ruins_traits.txt
+#
+#  These traits are gained through Ayleid ruin exploration,
+#  Welkynd stone study, and encounters with Ayleid undeath.
+# =============================================================
+
+# A scholar who has dedicated years to studying recovered Ayleid
+# texts, architecture, and the dual-faith traditions of the
+# ancient masters of Cyrodiil.
+ayleid_historian = {
+    category = lifestyle
+    learning    = 4
+    stewardship = 2
+    flag = ayleid_historian
+}
+
+# Blessed by shards of Welkynd stones — fragments of crystallised
+# Magnus-light that have shone since the Merethic Era. The bearer
+# carries something of that starlight within them.
+star_teeth_blessed = {
+    category = fame
+    monthly_prestige       = 2
+    monthly_piety_gain_mult = 0.15
+    learning               = 3
+    flag = star_teeth_blessed
+}
+
+# A rare individual who has achieved deep attunement with
+# Ayleid magical principles — the manipulation of Magnus-light
+# through Welkynd stone resonance. Their scholarship bridges
+# the gap between modern magic and the lost Merethic arts.
+welkynd_attuned = {
+    category = fame
+    learning         = 5
+    monthly_prestige = 2
+    flag = welkynd_attuned
+}
+
+# The bearer has survived a direct encounter with an Ayleid lich
+# guardian — and carries a permanent trace of that ancient,
+# crystalline undeath magic. The experience is transformative;
+# survival is not entirely unambiguous.
+ayleid_lich_touched = {
+    category = fame
+    intrigue         = 5
+    learning         = 6
+    monthly_prestige = 3
+    health           = 0.5
+    flag = ayleid_lich_touched
+}

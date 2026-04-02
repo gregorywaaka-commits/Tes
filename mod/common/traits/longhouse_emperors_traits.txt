@@ -1,0 +1,43 @@
+# =============================================================
+#  Longhouse Emperors Traits
+#  File: mod/common/traits/longhouse_emperors_traits.txt
+#
+#  These traits are gained through the Longhouse Emperor path —
+#  Reachmen who claim and hold the Ruby Throne of Cyrodiil.
+# =============================================================
+
+# A Reachman ruler who has formally claimed the Imperial
+# succession — tracing lineage or conquest right to the
+# Ruby Throne. The Colovian nobility disputes the claim;
+# the hagraven councils sing it as prophecy fulfilled.
+longhouse_pretender = {
+    category = fame
+    martial    = 3
+    diplomacy  = 2
+    monthly_prestige = 2
+    flag = longhouse_pretender
+}
+
+# A Reachman who actually controls the Ruby Throne and rules
+# as Emperor of Cyrodiil. The Longhouse Emperors were derided
+# as barbarians by the Colovian elite, but they governed for
+# over thirty years — longer than many "legitimate" dynasties.
+reachman_emperor = {
+    category = fame
+    martial    = 4
+    diplomacy  = 3
+    monthly_prestige = 4
+    flag = reachman_emperor
+}
+
+# A ruler who has earned the formal support of the hagraven
+# councils of the Reach — the ancient matriarchs who bend
+# neither to Imperial authority nor Nordic jarls, but who
+# recognise the power of one who walks both worlds.
+hagreach_authority = {
+    category = lifestyle
+    intrigue   = 3
+    diplomacy  = 2
+    monthly_piety_gain_mult = 0.1
+    flag = hagreach_authority
+}

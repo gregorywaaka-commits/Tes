@@ -1,0 +1,190 @@
+# =============================================================
+#  Dragon Break Events
+#  Namespace: dragon_break
+#  File: mod/events/dragon_break_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  dragon_break.000  Yearly hidden — detects Tower collapse threshold
+#  dragon_break.001  "The Dragon Breaks" — temporal anomaly strikes all rulers
+#  dragon_break.002  "Memories Out of Order" — aftermath, fragmented timelines
+#  dragon_break.003  "The Dragon Break Fades" — healing after 10 years
+# =============================================================
+
+namespace = dragon_break
+
+# ---------------------------------------------------------------
+# dragon_break.000  Harbinger of the Dragon Break
+# A hidden yearly event that monitors Tower integrity. When too
+# few Towers stand (active_tower_count <= 3), the Dragon —
+# the linear flow of time — grows weak. Sets a flag so that the
+# true Dragon Break (dragon_break.001) can fire only once.
+# ---------------------------------------------------------------
+dragon_break.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        NOT = { has_character_flag = dragon_break_imminent }
+        global_var:active_tower_count <= 3
+        NOT = { global_var:dragon_break_active = 1 }
+    }
+
+    weight_multiplier = {
+        base = 1
+    }
+
+    immediate = {
+        set_character_flag = { flag = dragon_break_imminent }
+        trigger_event = { id = dragon_break.001 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_break.001  The Dragon Breaks
+# A letter-style notification delivered to all rulers. Time
+# fractures. The Middle Dawn echoes once more. All rulers suffer
+# stress; random lore-appropriate trait changes ripple across
+# the world. Fires only once (guarded by global_var).
+# ---------------------------------------------------------------
+dragon_break.001 = {
+    type = character_event
+    title = dragon_break.001.t
+    desc  = dragon_break.001.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = shock
+    }
+
+    trigger = {
+        NOT = { global_var:dragon_break_active = 1 }
+    }
+
+    immediate = {
+        set_global_variable = { name = dragon_break_active value = 1 }
+        add_stress = 30
+
+        # Ripple of random temporal distortions across the character
+        random_list = {
+            20 = {
+                # A second chance at virtue
+                add_trait_xp = { trait = compassionate value = 10 }
+            }
+            20 = {
+                # Paranoia from seeing too many selves
+                add_trait_xp = { trait = paranoid value = 15 }
+            }
+            15 = {
+                # A burst of unwanted memory from another life
+                add_learning_skill = 1
+            }
+            15 = {
+                # The weight of unlived years crushes the spirit
+                add_stress = 15
+            }
+            15 = {
+                # Fortune smiles from an errant timeline
+                add_gold = 100
+            }
+            15 = {
+                # An echo of another self's martial mastery
+                add_martial_skill = 1
+            }
+        }
+
+        # Schedule aftermath and healing events
+        trigger_event = { id = dragon_break.002 days = 60 }
+        trigger_event = { id = dragon_break.003 years = 10 }
+    }
+
+    option = {
+        name = dragon_break.001.a   # "I remember… things I have never done."
+        add_stress = 10
+    }
+
+    option = {
+        name = dragon_break.001.b   # "This is the nature of CHIM — many and one."
+        trigger = { learning >= 14 }
+        add_prestige = 50
+    }
+
+    option = {
+        name = dragon_break.001.c   # "Close your eyes. Wait for time to reassert itself."
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_break.002  Memories Out of Order
+# In the days that follow the Dragon Break, rulers find fragments
+# of alternative timelines seeping into their thoughts — other
+# choices, other victories, other deaths. A moment of reflection
+# or rejection defines how they emerge.
+# ---------------------------------------------------------------
+dragon_break.002 = {
+    type = character_event
+    title = dragon_break.002.t
+    desc  = dragon_break.002.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = thinking
+    }
+
+    option = {
+        name = dragon_break.002.a   # "Embrace the visions — they are all equally real."
+        add_learning_skill = 2
+        add_prestige = 100
+        add_stress = 15
+    }
+
+    option = {
+        name = dragon_break.002.b   # "Force them out. This life — this choice — is the only one."
+        add_stress = -20
+        add_character_modifier = {
+            modifier = dragon_break_resilience
+            days = 1825   # Five years of grounded certainty
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_break.003  The Dragon Break Fades
+# Ten years after the Break, the wound in time begins to close.
+# Historians disagree on what happened. Survivors disagree on
+# what they remember. But the sun still rises, and the Dragon —
+# however scarred — still flies.
+# ---------------------------------------------------------------
+dragon_break.003 = {
+    type = character_event
+    title = dragon_break.003.t
+    desc  = dragon_break.003.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = relief
+    }
+
+    trigger = {
+        global_var:dragon_break_active = 1
+    }
+
+    immediate = {
+        clear_global_variable = dragon_break_active
+    }
+
+    option = {
+        name = dragon_break.003.a   # "Time holds. The Dragon flies once more."
+        add_stress = -15
+        add_prestige = 75
+    }
+
+    option = {
+        name = dragon_break.003.b   # "Whatever I am now — I survived the Middle Dawn."
+        add_stress = -15
+        add_learning_skill = 1
+    }
+}

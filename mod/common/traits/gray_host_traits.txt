@@ -1,0 +1,44 @@
+# =============================================================
+#  Gray Host Traits
+#  File: mod/common/traits/gray_host_traits.txt
+#
+#  These traits are associated with the Gray Host — the ancient
+#  vampire-werewolf army of the Reach, and its followers.
+# =============================================================
+
+# A military commander who has sworn to Rada al-Saran and
+# leads a warband of the Gray Host. They command the respect
+# of creatures that do not know fear — and learn, in time,
+# to think in centuries rather than seasons.
+gray_host_commander = {
+    category = fame
+    martial    = 6
+    prowess    = 5
+    monthly_prestige = 3
+    intrigue   = 4
+    flag = gray_host_commander
+}
+
+# A devoted follower of Rada al-Saran's ancient philosophy —
+# the discipline of predators who have transcended hunger
+# into something approaching art. They do not merely follow
+# the Gray Host; they believe in what it represents.
+rada_al_saran_devoted = {
+    category = lifestyle
+    martial    = 4
+    intrigue   = 3
+    monthly_piety_gain_mult = 0.1
+    flag = rada_al_saran_devoted
+}
+
+# An ancient werewolf noble — one of the founding kindred of
+# the Gray Host. They predate the Second Era, carry memories
+# of the Merethic hunt, and wear their curse as a crown.
+werewolf_lord = {
+    category = fame
+    martial    = 5
+    prowess    = 7
+    monthly_prestige = 3
+    intrigue   = 2
+    flag = werewolf_lord
+}

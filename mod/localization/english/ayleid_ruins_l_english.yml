@@ -1,0 +1,54 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  AYLEID RUINS EXPLORATION
+ # =====================================================================
+
+ # --- Traits ---
+
+ ayleid_historian: "Ayleid Historian"
+ ayleid_historian_desc: "This ruler has dedicated years to the study of Ayleid texts, architecture, and the complex dual-faith traditions of Cyrodiil's ancient masters. Their scholarship bridges the gap between the first era and the present."
+
+ star_teeth_blessed: "Star Teeth Blessed"
+ star_teeth_blessed_desc: "This ruler has been touched by the light of Welkynd stones — the crystallised Magnus-light that the Ayleids called the 'star teeth.' The warmth of that ancient magic persists within them, and does not entirely fade."
+
+ welkynd_attuned: "Welkynd Attuned"
+ welkynd_attuned_desc: "Through deep study and patient communion with Welkynd stones, this ruler has achieved true attunement with Ayleid magical principles. They perceive currents of Magnus-light that others cannot sense, and work within those currents with rare facility."
+
+ ayleid_lich_touched: "Ayleid Lich-Touched"
+ ayleid_lich_touched_desc: "This ruler has survived a direct confrontation with an Ayleid lich guardian — and carries the permanent mark of that encounter. The crystalline undeath magic of the Sorcerer-Kings leaves a trace in those it cannot consume outright: a subtle elongation of thought, a cold clarity, a faint luminescence behind the eyes."
+
+ # --- Decisions ---
+
+ explore_ayleid_ruin: "Explore an Ayleid Ruin"
+ explore_ayleid_ruin_desc: "The Ayleids — the Heartland High Elves who built Cyrodiil in the Merethic Era and ruled it through the early First Era — left ruins throughout the region that bear witness to their astonishing sophistication. Their vaults contain Welkynd stones that still glow, texts in a language few can read, and magic that has not faded in four thousand years. An expedition might return with scholarship, artifacts, or something stranger."
+
+ claim_imperial_succession: "Claim Imperial Succession"
+ claim_imperial_succession_desc: "Placeholder — see longhouse_emperors_l_english.yml for this entry."
+
+ # --- Events ---
+
+ ayleid.000.t: "The White-Gold Ruins"
+ ayleid.000.desc: "A tremor during last season's harvest split the earth near a farming village, revealing carved stonework below — not rough Nordic construction or Imperial practicality, but the flowing, organic precision of Ayleid work. White and gold, still beautiful after four thousand years of burial.\n\nThe Ayleids ruled Cyrodiil from the Merethic Era until the Slave Rebellion of 1E 242. They were gone in a generation — their great cities destroyed, their libraries burned, their people scattered into the forests. What survived went underground. This, apparently, is some of it."
+ ayleid.000.a: "Assemble a scholarly expedition at once. This find is extraordinary."
+ ayleid.000.b: "Seal it. The Ayleids enslaved our ancestors. Their secrets are best left buried."
+
+ ayleid.001.t: "Into the Ayleid Vault"
+ ayleid.001.desc: "Your expedition descends past collapsed columns of white stone and past Varla stone brackets, the star-crystals that served as Ayleid light sources still shedding their faint silver glow after four thousand years of darkness. The architecture is precise beyond any living craftsman's art — every corridor calculating, every chamber resonating with the echoes of a civilisation that believed beauty and function were the same thing.\n\nDeeper in, the expedition fans out across a central vault. The hall branches in three directions. The air is cold and still and carries the faint, impossible scent of something floral."
+ ayleid.001.a: "The expedition presses deeper. Whatever lies here, we came to find it."
+
+ ayleid.002.t: "The Welkynd Stones Glow"
+ ayleid.002.desc: "At the heart of the vault, an arrangement of Welkynd stones the size of a man's head pulses with steady, silver-gold light — Magnus-light crystallised in the Merethic Era and unchanged since. The scholars fall silent. One extends her hand, and the nearest stone brightens at her approach.\n\nThe Ayleids called these the 'star teeth.' They used them for everything: illumination, magical amplification, religious ceremony, and — in their greatest ritual spaces — direct communion with Magnus himself. Whatever was done here, it was done with precision and reverence. The stones are not merely decorative. They are listening."
+ ayleid.002.a: "Stay. Study them carefully. The star-magic wishes to be understood."
+ ayleid.002.b: "Extract the stones carefully. They will fetch a king's ransom on the market."
+
+ ayleid.003.t: "Dark Altars"
+ ayleid.003.desc: "The central chamber holds two altars side by side — clearly of different purpose, clearly of different age, but both clearly Ayleid work. The first bears the iconography of Meridia, the Daedric Prince of Infinite Energies, whose relations with the Ayleids were complex: she hated the undead they sometimes created, but loved the soul gems they worked with and the light they channelled. The second bears iconography the scholars recognise with shock: the Eight Divines. The Divines as the Ayleids knew them. Beside each other. Worshipped side by side.\n\nHistory remembers the Ayleids as Daedra-worshippers — a convenient justification for the Slave Rebellion and everything that followed. The altars suggest the truth was considerably more complicated."
+ ayleid.003.a: "Document everything. History has badly misjudged these people."
+ ayleid.003.b: "Destroy the altars. Heresy is heresy regardless of its age or beauty."
+
+ ayleid.004.t: "The Lich's Gaze"
+ ayleid.004.desc: "From the far end of the vault, something stirs on a throne of white stone. The figure is Elven in shape, dressed in Merethic-era robes that have not rotted because nothing rots in this preserved cold, and its eye sockets glow the silver-gold of Welkynd stones.\n\nAn Ayleid lich. A Sorcerer-King preserved beyond death by a phylactery sustained by the vault's own Welkynd network. It has been here since the Slave Rebellion — perhaps since before it. It has been sitting in the dark, patient and cold and carrying all the memories of a civilisation that no longer exists, waiting for something. It turns its gaze on you.\n\nIt does not speak. It does not need to. You understand its question."
+ ayleid.004.a: "Draw steel. The Ayleid dead have no rights over the living."
+ ayleid.004.b: "Back — slowly. We did not come to wake the ancient dead."

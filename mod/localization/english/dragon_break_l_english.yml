@@ -1,0 +1,30 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  DRAGON BREAKS
+ # =====================================================================
+
+ # --- Modifier ---
+ dragon_break_resilience: "Temporal Resilience"
+
+ # --- Trait-adjacent ---
+ dragon_break_imminent_flag: "The Dragon Grows Restless"
+
+ # --- Events ---
+
+ dragon_break.001.t: "The Dragon Breaks"
+ dragon_break.001.desc: "There is a sound like the world ending — not loud, but everywhere at once, as though Akatosh himself has stumbled. The sun does not move. Then it moves twice. Someone in your court is laughing at a joke they have not yet heard. Your seneschal's face is young, then old, then young again.\n\nThe scholars call it a Dragon Break — a fracture in the linear flow of time, an echo of the Middle Dawn when the Alessian Mages twisted the Dragon for over a thousand years (1E 1200-2208) and all of history happened at once, none of it, and all outcomes were equally true.\n\nTime itself fractures. The Middle Dawn echoes through history."
+ dragon_break.001.a: "I remember… things I have never done."
+ dragon_break.001.b: "This is the nature of CHIM — many and one, the Godhead dreaming itself."
+ dragon_break.001.c: "Close your eyes. Wait for time to reassert itself."
+
+ dragon_break.002.t: "Memories Out of Order"
+ dragon_break.002.desc: "In the weeks since the Dragon Break, you have been afflicted by a peculiar and unnerving gift: memories of things that did not happen. You recall the face of a child you never had. You remember a battle you never fought — a victory, glorious and hard-won, in a field you have never visited. You remember your own death, twice, in different seasons.\n\nThe scholars who survived the Middle Dawn wrote that its survivors could no longer agree on what had occurred. Some remembered victories; others, defeats. Some remembered Pelinal Whitestrake as a liberator; others, as a butcher. All of them were right. The Dragon Break makes all outcomes true at once — and then abandons you with echoes of the paths not taken."
+ dragon_break.002.a: "Embrace the visions. Every life I remember — I lived it, somewhere."
+ dragon_break.002.b: "Force them out. This life — this choice — is the only one that matters now."
+
+ dragon_break.003.t: "The Dragon Break Fades"
+ dragon_break.003.desc: "Slowly — over months, then years — time remembers how to flow. The double-shadows fade. The anachronistic laughter stops. The scholars in your court have ceased contradicting each other about the order of recent events, or if they still do, they do so no more than scholars ordinarily contradict each other, which is considerable.\n\nThe Dragon Break is over. Historians in distant libraries are already arguing about what happened — or arguing about whether anything happened at all, or arguing about whether the event that apparently just occurred is the same event recorded in fragmentary accounts from a thousand years ago, or a different one, or both.\n\nThe Dragon flies. The world is, once more, one thing at a time."
+ dragon_break.003.a: "Time holds. The Dragon flies once more."
+ dragon_break.003.b: "Whatever I am now — I survived the Middle Dawn's echo."

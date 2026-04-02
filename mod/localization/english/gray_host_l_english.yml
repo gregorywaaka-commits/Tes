@@ -1,0 +1,42 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  GRAY HOST INVASION
+ # =====================================================================
+
+ # --- Traits ---
+
+ gray_host_commander: "Gray Host Commander"
+ gray_host_commander_desc: "This ruler commands a warband of the Gray Host — the ancient army of vampires and werewolves that swept from the Reach under Rada al-Saran. They have sworn to the Host's philosophy of discipline over appetite, predation elevated to art. They think now in centuries."
+
+ rada_al_saran_devoted: "Devoted of Rada al-Saran"
+ rada_al_saran_devoted_desc: "This ruler follows the ancient discipline of Rada al-Saran — the vampire lord who forged predators into a philosophy. To be devoted to Rada al-Saran is not merely to follow a warlord; it is to believe that the hunger can be transcended, that power and restraint are not opposites but partners."
+
+ werewolf_lord: "Werewolf Lord"
+ werewolf_lord_desc: "An ancient werewolf noble — one of the founding kindred of the Gray Host, predating the Second Era and carrying memories of hunts conducted when Tamriel was young. They wear their curse as a crown: not a thing to be hidden or regretted, but the fullest expression of what they have always been."
+
+ # --- Modifiers ---
+ gray_host_prepared_defenses: "Fortified Against the Gray Host"
+ gray_host_prepared_defenses_desc: "This realm has prepared its borders against the Gray Host's advance, with additional garrisons and vampire-detection protocols in place."
+
+ gray_host_resistance_leader: "Gray Host Resistance Leader"
+ gray_host_resistance_leader_desc: "This ruler publicly refused the Gray Host's terms and has become a rallying figure for resistance against the vampire-werewolf army."
+
+ # --- Events ---
+
+ gray_host.001.t: "The Gray Host Marches"
+ gray_host.001.desc: "The reports have been arriving for two weeks — individual reports, dismissed individually, terrifying in aggregate. Villages in the Reach with their doors hanging open and their inhabitants gone. Scouts who went to investigate and didn't come back. Survivors — there are always a few, in these stories — describing an army moving at night, making no sound, leaving no fires: vampires in armour that looks ancient even by the standards of an ancient world, flanked by things that were men before the moonrise and are not men anymore.\n\nThe Gray Host. The army that Rada al-Saran built over centuries by replacing hunger with discipline and appetite with philosophy. They are moving out of the Reach, and they are moving toward you."
+ gray_host.001.a: "Fortify the borders. Let the Host find walls instead of fields."
+ gray_host.001.b: "Send an envoy. Rada al-Saran is ancient. He can be reasoned with."
+
+ gray_host.002.t: "Rada al-Saran's Emissary"
+ gray_host.002.desc: "The emissary arrives at the gate at dusk and waits. Not impatiently — the word 'impatient' does not seem to apply to them. They are dressed in grey, move with the deliberate economy of a predator who hasn't needed to hurry in centuries, and their eyes are the flat, reflective silver of a cat's in low light.\n\nThey say their name once. They say Rada al-Saran's name once. Then they present the terms: fealty, tribute, or war. The language is courteous. The meaning is not.\n\nThe Gray Host has not come to negotiate. It has come to offer you a choice about how you lose."
+ gray_host.002.a: "Swear fealty. A living vassal serves longer than a dead king."
+ gray_host.002.b: "Drive the emissary from the gates. There will be no parley."
+ gray_host.002.c: "Pay the tribute. Three hundred gold buys time to raise armies."
+
+ gray_host.010.t: "The Host Recedes"
+ gray_host.010.desc: "The Gray Host does not retreat the way armies retreat. There are no broken formations, no abandoned equipment, no desperate rearguard. One morning, the scouts report that the Host's positions are empty — perfectly, precisely empty, as though each creature that occupied them had simply stepped out of the world. Even the dead they left behind are gone.\n\nRada al-Saran has taken his army back into the deep Reach. Whether this is defeat, satisfaction, or simply a pause of indeterminate length is a question that the scholars will argue about for generations.\n\nCount the cost. The valleys are full of the Host's dead and your own. The stories of the Gray Host will outlast everyone who fought them."
+ gray_host.010.a: "The Host has gone. Count the dead. Begin rebuilding."
+ gray_host.010.b: "They will return. Everything Rada al-Saran does is preparation for something else."
