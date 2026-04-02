@@ -8,6 +8,12 @@ l_english:
  # --- Modifier ---
  dragon_break_resilience: "Temporal Resilience"
 
+ dragon_break_stress: "Dragon Break Disorientation"
+ dragon_break_stress_desc: "Time is not flowing as it should. Memories contradict each other. Learning suffers; stress accumulates."
+
+ dragon_break_aftermath: "Dragon Break Aftermath"
+ dragon_break_aftermath_desc: "The Dragon Break has faded, but its scars remain. Time has healed — mostly. The wound in history is closing."
+
  # --- Trait-adjacent ---
  dragon_break_imminent_flag: "The Dragon Grows Restless"
 

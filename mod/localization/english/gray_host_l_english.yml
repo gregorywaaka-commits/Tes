@@ -5,6 +5,13 @@ l_english:
  #  GRAY HOST INVASION
  # =====================================================================
 
+ gray_host_march: "Gray Host's March"
+ gray_host_march_desc: "The vampire-werewolf army is on the move. Its presence weighs on all rulers in its path: martial urgency rises, prestige falls."
+
+ gray_host_tribute: "Gray Host Tribute"
+ gray_host_tribute_desc: "This ruler pays tribute to Rada al-Saran. The gold buys peace — for now. The arrangement is humiliating, but the alternative was worse."
+
+
  # --- Traits ---
 
  gray_host_commander: "Gray Host Commander"

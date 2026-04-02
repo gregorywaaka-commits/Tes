@@ -1,6 +1,13 @@
 ﻿l_english:
 
  # =====================================================================
+ #  NUMIDIUM / THE BRASS GOD — MODIFIERS
+ # =====================================================================
+
+ numidium_awakeners_weight: "Awakener's Burden"
+ numidium_awakeners_weight_desc: "Knowing you set the Brass God loose is a burden without equal. Stress accumulates; prestige paradoxically rises — history will remember your name, though perhaps not fondly."
+
+ # =====================================================================
  #  NUMIDIUM / THE BRASS GOD — TRAITS
  # =====================================================================
 

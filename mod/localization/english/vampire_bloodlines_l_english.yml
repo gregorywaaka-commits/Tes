@@ -1,6 +1,16 @@
 ﻿l_english:
 
  # =====================================================================
+ #  MODIFIERS
+ # =====================================================================
+
+ blood_curse_modifier: "Blood Curse"
+ blood_curse_modifier_desc: "The vampiric taint has not yet completed the transformation. Health suffers; stress mounts. There may still be time to break it."
+
+ vampire_lord_dominance: "Vampire Lord's Dominance"
+ vampire_lord_dominance_desc: "The apex bloodline master exerts supernatural presence. Intrigue deepens; lesser undead flinch."
+
+ # =====================================================================
  #  VAMPIRE BLOODLINES — TRAITS
  # =====================================================================
 

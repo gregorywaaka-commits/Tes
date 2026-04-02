@@ -5,6 +5,10 @@ l_english:
  #  AYLEID RUINS EXPLORATION
  # =====================================================================
 
+ welkynd_attunement: "Welkynd Attunement"
+ welkynd_attunement_desc: "The star-tooth stones have left their mark on the scholar who studied them. Magnus-light resonates in the blood. Learning rises; the Ayleid legacy persists."
+
+
  # --- Traits ---
 
  ayleid_historian: "Ayleid Historian"

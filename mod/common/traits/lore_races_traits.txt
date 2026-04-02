@@ -592,43 +592,6 @@ hist_elder_bonded = {
 }
 
 # =============================================================
-#  Psijic Order Traits
-# =============================================================
-
-# ---------------------------------------------------------------
-#  PSIJIC NOVICE
-#  A ruler who has received the Psijic Order's first teaching —
-#  the practice of stilling time in the mind.  Not yet a
-#  practitioner of the Old Ways in full, but no longer a
-#  stranger to them either.  Time-stilling practices reduce
-#  the urgency of stress; the novice learns to step back from
-#  the current of events.
-# ---------------------------------------------------------------
-psijic_novice = {
-    category = lifestyle
-    learning = 2
-    stress_gain_mult = -0.10   # Time-stilling practices reduce the urgency of stress
-    flag = psijic_novice
-}
-
-# ---------------------------------------------------------------
-#  PSIJIC ADEPT
-#  A ruler who has passed the Order's test and been acknowledged
-#  as a practitioner of the Old Ways.  An adept Psijic perceives
-#  time as a river walked beside rather than a torrent carried
-#  by.  The serenity is genuine.  The learning is structural.
-#  The piety is older than any current theology.
-# ---------------------------------------------------------------
-psijic_adept = {
-    category = lifestyle
-    learning    = 4
-    stewardship = 1
-    stress_gain_mult        = -0.20   # An adept Psijic perceives time as a river, not a torrent
-    monthly_piety_gain_mult = 0.10
-    flag = psijic_adept
-}
-
-# =============================================================
 #  Nordic / Atmoran Extensions — Traits
 # =============================================================
 
@@ -732,26 +695,4 @@ endeavour_advanced = {
     monthly_prestige_gain_mult = 0.25
     monthly_piety_gain_mult    = 0.25
     flag = endeavour_advanced
-}
-
-# =============================================================
-#  Underworld — Dark Brotherhood — Traits
-# =============================================================
-
-# ---------------------------------------------------------------
-#  DARK BROTHERHOOD LISTENER
-#  The Brotherhood's highest rank: the single living person
-#  who hears the Night Mother's voice in full and carries
-#  her contracts to the guild.  The Night Mother's service
-#  does not sit well with the Divines' faithful.  The
-#  intrigue edge is real: the Listener knows things that
-#  other people have paid dearly to keep unknown.
-# ---------------------------------------------------------------
-dark_brotherhood_listener = {
-    category = lifestyle
-    intrigue = 4
-    prowess  = 2
-    monthly_prestige_gain_mult = 0.10
-    monthly_piety_gain_mult    = -0.20   # The Night Mother's service does not sit well with the Divines
-    flag = dark_brotherhood_listener
 }

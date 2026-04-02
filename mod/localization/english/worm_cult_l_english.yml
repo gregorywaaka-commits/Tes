@@ -1,6 +1,16 @@
 ﻿l_english:
 
  # =====================================================================
+ #  MODIFIERS
+ # =====================================================================
+
+ necromancers_moon_empowerment: "Necromancer's Moon Empowerment"
+ necromancers_moon_empowerment_desc: "The red moon's conjunction has supercharged the Order's necromantic workings. Death-energy flows freely. The effects are temporary — the moon does not linger."
+
+ lich_permanence: "Lich's Permanence"
+ lich_permanence_desc: "The phylactery holds. Death cannot touch what is no longer alive in the conventional sense. Health stabilises; stress fades. The transformation has completed."
+
+ # =====================================================================
  #  WORM CULT — TRAITS
  # =====================================================================
 

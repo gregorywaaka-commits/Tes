@@ -1,6 +1,16 @@
 ﻿l_english:
 
  # =====================================================================
+ #  MODIFIERS
+ # =====================================================================
+
+ ra_gada_battle_fury: "Ra Gada Battle Fury"
+ ra_gada_battle_fury_desc: "The warrior wave crashes forward. This ruler channels the Ra Gada's relentless forward momentum. Martial instincts sharpen."
+
+ sword_singers_focus: "Sword-Singer's Focus"
+ sword_singers_focus_desc: "The Shehai requires absolute presence. The sword-singer's mind is clear, intent is clean, and the spirit blade answers. Stress lifts; martial clarity holds."
+
+ # =====================================================================
  #  YOKUDA / REDGUARD EXPANSION — TRAITS
  # =====================================================================
 

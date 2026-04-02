@@ -9,6 +9,10 @@ l_english:
  moon_sugar_drought: "Moon Sugar Drought"
  moon_sugar_drought_desc: "The moons do not light the sky. The sacred moon sugar loses its blessing; the Two Moons path is severed at its source."
 
+ void_nights_crisis: "Void Nights"
+ void_nights_crisis_desc: "Masser and Secunda are gone from the sky. Khajiit are born wrong or not at all. The Two Moons path is closed. This crisis will pass — eventually."
+
+
  # --- Events ---
 
  void_nights.001.t: "The Moons Have Vanished"

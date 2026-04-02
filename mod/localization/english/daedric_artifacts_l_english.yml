@@ -1,5 +1,14 @@
 ﻿l_english:
 
+ artifact_corruption_modifier: "Daedric Artifact Corruption"
+ artifact_corruption_modifier_desc: "Prolonged contact with a Daedric artifact has left a residue of alien intent. The stress mounts; the intrigue sharpens. The artifact is patient."
+
+ mehrunes_razor_empowered: "Razor's Edge"
+ mehrunes_razor_empowered_desc: "The Razor of Mehrunes Dagon sharpens its bearer's martial instincts. The blade of change improves the one who wields it — while it lasts."
+
+ ebony_blade_corruption: "Ebony Blade's Hunger"
+ ebony_blade_corruption_desc: "Mephala's soul-drinking sword slowly hollows the bearer. Health erodes; intrigue deepens. Feeding the blade costs vitality."
+
  # =====================================================================
  #  DAEDRIC ARTIFACTS — TRAITS
  # =====================================================================
