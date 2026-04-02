@@ -1,0 +1,51 @@
+# =============================================================
+#  Mannimarco — Character Template
+#  File: mod/common/character_templates/mannimarco.txt
+#
+#  USAGE:
+#  ──────
+#  This template can be used to spawn Mannimarco, the King of
+#  Worms, as an antagonist NPC.  He is the founder of the Order
+#  of the Black Worm, the most powerful necromancer in Tamrielic
+#  history, and (in some timelines) an ascended god of death.
+#
+#  CORRUPTION MECHANIC:
+#  ─────────────────────
+#  Once spawned, Mannimarco can corrupt nearby rulers into
+#  worm_cult_initiate status via the worm_cult.030 event —
+#  "Mannimarco's Demand" — which fires for rulers within his
+#  sphere of influence who have already shown necromantic
+#  leanings.  See mod/events/worm_cult_events.txt for details.
+# =============================================================
+
+mannimarco = {
+    name      = "Mannimarco"
+
+    # Altmer of Summerset — born into the Psijic Order before his
+    # expulsion for practicing necromancy
+    culture   = altmer_culture
+
+    # Aligned with the worm cult's syncretic daedric practices;
+    # his god is power and death, not any single Daedric Prince
+    religion  = daedric_pantheon
+
+    # ── Personality & Lifestyle ──────────────────────────────
+    trait = intellect_good_1   # the sharpest mind in the Order
+    trait = arbitrary          # manipulative; others are instruments
+    trait = sadistic           # cruelty is a tool, and he enjoys using it
+    trait = scholar            # academic obsession with death and power
+
+    # ── Worm Cult Specific (from worm_cult_traits.txt) ───────
+    trait = worm_cult_adept    # Master of the Order he founded
+    trait = lich_essence       # Has undergone the full lich ritual
+
+    # ── Skill Distribution ────────────────────────────────────
+    # Mannimarco's genius is intrigue and learning — manipulation
+    # and arcane mastery.  His martial skill is low; he has not
+    # needed to hold a sword since achieving lichdom.
+    skill_diplomacy   = 14
+    skill_martial     = 8
+    skill_stewardship = 10
+    skill_intrigue    = 24
+    skill_learning    = 22
+}

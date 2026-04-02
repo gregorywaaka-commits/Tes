@@ -1,0 +1,68 @@
+# =============================================================
+#  CHIM / The Walking Ways — Traits
+#  File: mod/common/traits/chim_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  chim_seeker   — On the path to CHIM, but dangerously destabilised.
+#  chim_achieved — Has achieved CHIM — understands the nature of the Aurbis.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  CHIM is the secret syllable of royalty.  It is the understanding that
+#  one exists within a Dream — that all of Mundus is the dream of the
+#  Godhead — and yet still IS.  The paradox: if you fully accept that
+#  you are a dream-construct, you cease to exist (the Enantiomorph).
+#  If you reject the revelation, nothing changes.  CHIM is the narrow
+#  third path — the I that remains, that says "I am a dream AND I am
+#  real," without contradiction.  Those who walk this path either achieve
+#  a reality-transcending sovereignty or are simply erased from existence.
+#  Vivec and Tiber Septim are the most famous examples of its attainment.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CHIM SEEKER
+#  A ruler who has been introduced to the concept of CHIM and
+#  cannot stop thinking about it.  The Walking Ways are not
+#  safe philosophy — they are metaphysical surgery performed on
+#  one's own sense of self.  The Seeker is brilliant, driven,
+#  and increasingly unstable.  The question that haunts them
+#  is not "is this true?" — they already know it is.  The
+#  question is: "can I remain myself while knowing it?"
+# ---------------------------------------------------------------
+chim_seeker = {
+    category = lifestyle
+
+    learning = 4
+
+    stress_gain_mult = 0.20   # the destabilising pressure of metaphysical self-dissolution
+
+    flag = chim_seeker
+}
+
+# ---------------------------------------------------------------
+#  CHIM ACHIEVED
+#  A ruler who has walked the narrow path and survived with
+#  their I intact.  They have seen through the illusion of
+#  Mundus and chosen to remain real within it.  The result is
+#  something beyond ordinary mortal capacity: complete clarity,
+#  total sovereignty over self, and a life that simply does not
+#  end on the schedule mortality usually imposes.
+#  The achieved is not physically immortal, but their health
+#  is so perfected that natural death recedes almost to myth.
+# ---------------------------------------------------------------
+chim_achieved = {
+    category = fame
+
+    learning     = 10
+    diplomacy    = 5
+    martial      = 3
+    stewardship  = 5
+    intrigue     = 5
+
+    monthly_prestige = 5
+
+    health = 2.0   # CHIM transcends ordinary mortality; natural death recedes
+
+    flag = chim_achieved
+}

@@ -1,0 +1,78 @@
+# =============================================================
+#  Pelinal Whitestrake / Shezarrine — Traits
+#  File: mod/common/traits/shezarrine_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  shezarrine_vessel  — A mortal chosen as a vessel for Sheor/Shor's essence.
+#  pelinal_rage       — The uncontrolled berserker fury of Pelinal Whitestrake.
+#  elf_hate           — The Alessian hatred of elves carried in Pelinal's spirit.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Pelinal Whitestrake was the divine champion of mankind, a Shezarrine —
+#  one of many incarnations of the spirit of Lorkhan/Shor in mortal flesh.
+#  He fought alongside Alessia in the Alessian Revolt against Ayleid
+#  oppression (1E 242), renowned for his superhuman martial prowess and
+#  his deep, consuming hatred of elves.  The Shezarrine line did not end
+#  with Pelinal — Shor's spirit recurs throughout history, entering
+#  exceptional warriors who carry his fury forward.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SHEZARRINE VESSEL
+#  A mortal who has been chosen — or perhaps cursed — to carry
+#  the living essence of Shor within them.  Divine martial power
+#  floods the vessel; divine berserker rage follows close behind.
+#  The vessel is more than human and less than god: a weapon
+#  pointed at the enemies of mankind.
+# ---------------------------------------------------------------
+shezarrine_vessel = {
+    category = fame
+
+    martial  = 7
+    prowess  = 8
+
+    monthly_prestige = 3
+
+    stress_gain_mult = 0.15   # divine berserker rage builds internal pressure
+
+    flag = shezarrine_vessel
+}
+
+# ---------------------------------------------------------------
+#  PELINAL RAGE
+#  The berserker fury of Pelinal Whitestrake made manifest in a
+#  living host.  This is not ordinary battle-anger — it is a
+#  divine engine of destruction that strips away reason and leaves
+#  only the killing impulse.  Temporary, but devastating while
+#  it lasts, to friend and enemy alike.
+# ---------------------------------------------------------------
+pelinal_rage = {
+    category = lifestyle
+
+    martial  = 3
+    prowess  = 4
+
+    stress_gain_mult = 0.20   # berserk fury — the body burns itself alive from within
+
+    flag = pelinal_rage
+}
+
+# ---------------------------------------------------------------
+#  ELF HATE
+#  Pelinal Whitestrake's animosity toward elves was not merely
+#  political — it was a consuming spiritual fire that Shezarrine
+#  vessels inherit.  The hatred is older than memory, encoded
+#  in the very essence of Shor, who warred against the et'Ada
+#  that would become the Aldmeri pantheon.  Carriers of this
+#  trait find it difficult to deal diplomatically with any
+#  elven ruler.
+# ---------------------------------------------------------------
+elf_hate = {
+    category = lifestyle
+
+    martial  = 2   # hatred is a weapon, and the vessel knows how to use it
+
+    flag = elf_hate
+}

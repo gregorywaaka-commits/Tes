@@ -1,0 +1,39 @@
+﻿l_english:
+
+ # =====================================================================
+ #  SKAAL / ALL-MAKER — EVENTS
+ # =====================================================================
+
+ skaal.000.t: "The Bones of the All-Maker"
+ skaal.000.desc: "The elder came alone, which is unusual for Skaal.\n\nThey do not travel much, and when they do they travel in pairs at minimum, because Solstheim does not reward the overconfident. But this elder came alone, through the long wind, and sat across from you in your hall and explained in careful words — as if translating from a language that did not quite have the right equivalents — that the All-Maker had spoken.\n\nThe Rite of the Bones begins in seven days. The six sacred stones of Solstheim — Tree, Wind, Sun, Earth, Beast, Water — will be activated in sequence. The Skaal participate in this ceremony every generation to renew their covenant with the living creation.\n\nThe elder thinks the All-Maker wants an outsider present this time."
+ skaal.000.a: "I will attend with an open heart."
+ skaal.000.b: "I will observe the ceremony respectfully."
+ skaal.000.c: "The Skaal's customs are not mine to share."
+
+ skaal.001.t: "The Tree Stone Speaks"
+ skaal.001.desc: "The All-Maker's blessing is not a metaphor.\n\nStanding before the Tree Stone at dawn — the stone carved with roots and branches that somehow look both very old and very alive — you felt something shift in the architecture of your own thinking. Not knowledge, exactly. More like perspective. The kind of perspective that trees have, which is to say: very long, very patient, and entirely unconcerned with whether the animal standing in front of them has urgent meetings this afternoon.\n\nThe vision that followed lasted perhaps ten minutes. You are still thinking about what you saw."
+ skaal.001.a: "The All-Maker's voice carries wisdom I did not expect."
+ skaal.001.b: "I return from the vision changed. I am not sure yet into what."
+
+ skaal.002.t: "The Hirstaang Forest"
+ skaal.002.desc: "Two delegations arrived on the same morning, which was almost certainly not a coincidence.\n\nThe first were Skaal hunters — quiet, unhurried, wearing the same furs their ancestors wore, and carrying the same patience that has kept their people alive on Solstheim since before anyone else arrived. They explained, without urgency, that outlander settlers were cutting trees in the Hirstaang Forest. The Hirstaang is Skaal hunting ground. It is also, more significantly, sacred to the All-Maker.\n\nThe second were the settlers themselves — louder, carrying ledgers, pointing at maps and using words like 'viable timber.' They paid taxes. They wanted forest."
+ skaal.002.a: "The Skaal were here before any settler's grandfather was born. Their claim stands."
+ skaal.002.b: "The settlers pay taxes and the forest is not a temple. It is open."
+ skaal.002.c: "A boundary shall be drawn. Neither side will be entirely satisfied."
+
+ skaal.003.t: "The Ritual of the Bear"
+ skaal.003.desc: "The Bear ceremony happens at the turning of the season, when the cold comes properly and the ice begins to form along the shore.\n\nThe Skaal light no great fire for it. They do not sing elaborate hymns. The ceremony consists largely of standing in the cold for a long time, holding a carved bear-staff, while the elders recite the old words that no one fully translates for outsiders. The bear is not worshipped — the bear is honoured, which the Skaal treat as a significant distinction.\n\nThere is an invitation. There is always an invitation, once you have earned it."
+ skaal.003.a: "I join the Skaal in the circle."
+ skaal.003.b: "I watch from the treeline and honour the ceremony at a respectful distance."
+
+ skaal.004.t: "Hermaeus Mora's Temptation"
+ skaal.004.desc: "The ceremony was proceeding as expected — cold, quiet, the elders reciting, the stones faintly luminous in the grey dawn — and then the light changed.\n\nNot the light of the All-Maker. Something different. Something that knew it was being perceived and found that interesting.\n\n#italic 'You stand at the intersection of two ways of knowing,' said the voice that came from several directions simultaneously. #italic 'The Skaal know what things are. I know what things mean. These are not the same. I can show you what they mean, if you like.'\n\nThe Skaal elders had gone very still. One of them had closed their eyes.\n\nThe Inevitable Knower was waiting for your answer."
+ skaal.004.a: "The knowledge Hermaeus Mora offers is genuine. I will take it."
+ skaal.004.b: "The All-Maker is enough. I do not need what you offer, Inevitable Knower."
+ skaal.004.a.tooltip: "Accepting Hermaeus Mora's offer costs the All-Maker's blessing but grants significant learning."
+ skaal.004.b.tooltip: "Refusing Hermaeus Mora strengthens the All-Maker's blessing and earns considerable piety."
+
+ skaal.005.t: "Village Under Threat"
+ skaal.005.desc: "The rider came hard, which is unusual for a Skaal messenger — they prefer a pace that the horse can sustain indefinitely, because the distances are long and the road does not always go where you think it goes.\n\nThe village is threatened. Specifically: there is a force moving through the ice toward it with no good explanation for why, and the Skaal have prepared their defences as well as they can, which is to say extremely well by any reasonable standard, but there are limits to what a relatively small community of hunters can hold against a determined host.\n\nThey sent to you because you made an accord. The accord is being tested."
+ skaal.005.a: "The Skaal are under my protection. I march."
+ skaal.005.b: "I cannot commit forces to this. The Skaal must face this alone."

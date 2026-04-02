@@ -1,0 +1,277 @@
+# =============================================================
+#  Skaal / All-Maker — Events
+#  Namespace: skaal
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  Expands on the seek_skaal_accord and all_maker_blessed traits
+#  from lore_races_traits.txt.
+#
+#  • skaal.000 — "The Bones of the All-Maker" — rite invitation
+#  • skaal.001 — "The Tree Stone Speaks" — All-Maker vision
+#  • skaal.002 — "The Hirstaang Forest" — settlers vs Skaal conflict
+#  • skaal.003 — "The Ritual of the Bear" — seasonal ceremony
+#  • skaal.004 — "Hermaeus Mora's Temptation" — forbidden knowledge
+#  • skaal.005 — "Village Under Threat" — defend or abandon
+# =============================================================
+
+namespace = skaal
+
+# ---------------------------------------------------------------
+# skaal.000  The Bones of the All-Maker
+# The Skaal elders do not invite outsiders to their sacred
+# rites.  When they do, it means the All-Maker's will has been
+# made unusually clear.  A Nord ruler of learning and proximity
+# to Solstheim receives a formal invitation to the Rite of
+# the Bones — the cycle of stone, wind, sun, earth, beast,
+# and water that sustains the Skaal's covenant with creation.
+# ---------------------------------------------------------------
+skaal.000 = {
+    type = character_event
+    title = skaal.000.t
+    desc  = skaal.000.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        culture = { has_cultural_parameter = nord_culture }
+        learning >= 8
+        capital_county = { geographical_region = world_skyrim }
+        NOT = { has_character_flag = skaal_rite_invited }
+    }
+
+    option = {
+        name = skaal.000.a   # "I will attend the ceremony with an open heart."
+        if = {
+            limit = { NOT = { has_trait = all_maker_blessed } }
+            add_trait = all_maker_blessed
+        }
+        add_piety = 50
+        set_character_flag = {
+            flag = skaal_rite_attended
+            years = 100
+        }
+        set_character_flag = skaal_rite_invited
+    }
+
+    option = {
+        name = skaal.000.b   # "I will observe the ceremony, but as a guest, not a participant."
+        add_prestige = 25
+        add_piety = 15
+        set_character_flag = skaal_rite_invited
+    }
+
+    option = {
+        name = skaal.000.c   # "The Skaal's customs are not mine to share."
+        add_stress = 5
+        set_character_flag = {
+            flag = skaal_invitation_declined
+            days = 730
+        }
+        set_character_flag = skaal_rite_invited
+    }
+}
+
+# ---------------------------------------------------------------
+# skaal.001  The Tree Stone Speaks
+# The six sacred stones of Solstheim are not merely landmarks —
+# they are the All-Maker's bones, and they speak to those who
+# have been blessed.  The Tree Stone's vision comes first:
+# a forest that has never been cut, roots that reach into
+# creation's first morning.
+# ---------------------------------------------------------------
+skaal.001 = {
+    type = character_event
+    title = skaal.001.t
+    desc  = skaal.001.desc
+    theme = faith
+
+    trigger = {
+        has_trait = all_maker_blessed
+        is_adult = yes
+        NOT = { has_character_flag = tree_stone_vision }
+    }
+
+    option = {
+        name = skaal.001.a   # "The All-Maker's voice carries wisdom I did not expect."
+        add_learning_xp = 500
+        add_piety = 50
+        set_character_flag = tree_stone_vision
+    }
+
+    option = {
+        name = skaal.001.b   # "I return from the vision changed."
+        add_piety = 100
+        add_stress = -10
+        set_character_flag = tree_stone_vision
+    }
+}
+
+# ---------------------------------------------------------------
+# skaal.002  The Hirstaang Forest
+# Outlander settlers are encroaching on the Hirstaang Forest —
+# Skaal hunting ground, sacred boundary, home of creatures
+# under the All-Maker's protection.  The Skaal approach the
+# ruler with quiet dignity.  The settlers approach with
+# louder arguments and more immediate economic need.
+# The ruler must choose a side, or find a costly middle path.
+# ---------------------------------------------------------------
+skaal.002 = {
+    type = character_event
+    title = skaal.002.t
+    desc  = skaal.002.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        capital_county = { geographical_region = world_skyrim }
+        NOT = { has_character_flag = hirstaang_dispute_resolved }
+    }
+
+    option = {
+        name = skaal.002.a   # "The Skaal were here first.  Their claim stands."
+        add_trait_xp = {
+            trait = seek_skaal_accord
+            value = 200
+        }
+        add_piety = 40
+        add_gold = -25
+        set_character_flag = hirstaang_dispute_resolved
+    }
+
+    option = {
+        name = skaal.002.b   # "The settlers pay taxes.  The forest is open."
+        add_gold = 75
+        add_piety = -20
+        set_character_flag = hirstaang_dispute_resolved
+    }
+
+    option = {
+        name = skaal.002.c   # "A boundary shall be drawn.  Neither side is fully satisfied."
+        add_gold = 25
+        add_piety = 15
+        add_stress = 10
+        set_character_flag = hirstaang_dispute_resolved
+    }
+}
+
+# ---------------------------------------------------------------
+# skaal.003  The Ritual of the Bear
+# The Bear is the All-Maker's symbol of strength, endurance,
+# and the willingness to face winter without flinching.  The
+# Skaal's seasonal ceremony invites allies to participate —
+# a physical rite as much as a spiritual one.
+# ---------------------------------------------------------------
+skaal.003 = {
+    type = character_event
+    title = skaal.003.t
+    desc  = skaal.003.desc
+    theme = faith
+
+    trigger = {
+        OR = {
+            has_trait = all_maker_blessed
+            has_trait = seek_skaal_accord
+        }
+        is_adult = yes
+    }
+
+    option = {
+        name = skaal.003.a   # "I join the Skaal in the circle."
+        add_prowess_xp = 300
+        add_stress = -15
+        add_piety = 25
+    }
+
+    option = {
+        name = skaal.003.b   # "I watch from the treeline and honour the ceremony at a distance."
+        add_piety = 15
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# skaal.004  Hermaeus Mora's Temptation
+# Hermaeus Mora — the Inevitable Knower, Prince of Fate and
+# Memory — notices the Skaal ceremony and finds it interesting.
+# More specifically, He finds the mortal at the centre of it
+# interesting.  He makes an offer.  He always makes an offer.
+# The knowledge He offers is genuine.  The price is always
+# worth thinking carefully about.
+# ---------------------------------------------------------------
+skaal.004 = {
+    type = character_event
+    title = skaal.004.t
+    desc  = skaal.004.desc
+    theme = faith
+
+    trigger = {
+        OR = {
+            has_trait = all_maker_blessed
+            has_trait = seek_skaal_accord
+        }
+        is_adult = yes
+        NOT = { has_character_flag = mora_temptation_resolved }
+    }
+
+    option = {
+        name = skaal.004.a   # "What Hermaeus Mora offers, I will take."
+        remove_trait = all_maker_blessed
+        add_trait = arbitrary
+        add_learning_xp = 1000
+        add_stress = 20
+        set_character_flag = mora_temptation_resolved
+        custom_tooltip = skaal.004.a.tooltip
+    }
+
+    option = {
+        name = skaal.004.b   # "The All-Maker is enough.  I do not need what you offer."
+        add_piety = 100
+        add_stress = -10
+        set_character_flag = mora_temptation_resolved
+        custom_tooltip = skaal.004.b.tooltip
+    }
+}
+
+# ---------------------------------------------------------------
+# skaal.005  Village Under Threat
+# The Skaal village faces an external threat — raiders, a
+# hostile lord's expansion, or some darker force out of the
+# ice.  A ruler who holds seek_skaal_accord has made a promise,
+# however informal.  Now the promise is being called in.
+# ---------------------------------------------------------------
+skaal.005 = {
+    type = character_event
+    title = skaal.005.t
+    desc  = skaal.005.desc
+    theme = war
+
+    trigger = {
+        has_trait = seek_skaal_accord
+        is_ruler = yes
+        is_adult = yes
+        NOT = { has_character_flag = skaal_village_defended }
+    }
+
+    option = {
+        name = skaal.005.a   # "I will defend the Skaal.  They are under my protection."
+        add_gold = -50
+        add_prestige = 75
+        add_piety = 50
+        add_stress = -10
+        set_character_flag = {
+            flag = skaal_village_defended
+            years = 20
+        }
+    }
+
+    option = {
+        name = skaal.005.b   # "I cannot commit forces to this.  The Skaal are on their own."
+        remove_trait = seek_skaal_accord
+        add_stress = 25
+        add_prestige = -50
+        set_character_flag = skaal_village_defended
+    }
+}

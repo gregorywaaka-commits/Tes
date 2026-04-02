@@ -1,0 +1,226 @@
+# =============================================================
+#  CHIM / The Walking Ways — Events
+#  Namespace: chim
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  CHIM is the secret syllable of royalty.  It is the understanding
+#  that one exists within a Dream, and yet still IS.  The Walking
+#  Ways are the metaphysical paths toward this realisation.
+#  This system models the pursuit, the test, and both outcomes.
+#
+#  • chim.000 — "The Walking Ways" — introduction and first choice
+#  • chim.001 — "The Amaranth Question" — meditation on the I
+#  • chim.002 — "The I Remains" — SUCCESS: CHIM achieved
+#  • chim.003 — "The Enantiomorph Consumes" — FAILURE: obliteration
+#  • chim.004 — "Beyond the Mundane World" — yearly flavor for achievers
+#
+#  DECISION ENTRY:
+#  ────────────────
+#  chim.000 is triggered via the seek_walking_ways decision
+#  (see mod/common/decisions/chim_decisions.txt).
+# =============================================================
+
+namespace = chim
+
+# ---------------------------------------------------------------
+# chim.000  The Walking Ways
+# A Psijic monk or wandering metaphysical scholar arrives at
+# court — or perhaps appears in a dream — and introduces the
+# concept of CHIM.  For a ruler of sufficient learning and
+# sufficient intellectual anguish, the words land with the
+# weight of a revelation that cannot be unfelt.
+# ---------------------------------------------------------------
+chim.000 = {
+    type = character_event
+    title = chim.000.t
+    desc  = chim.000.desc
+    theme = learning
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        learning >= 18
+        stress >= 50
+        NOT = { has_trait = chim_seeker }
+        NOT = { has_trait = chim_achieved }
+        NOT = { has_character_flag = chim_dismissed }
+    }
+
+    option = {
+        name = chim.000.a   # "Teach me. I will pursue understanding."
+        add_trait = chim_seeker
+        add_stress = 15
+        set_character_flag = {
+            flag = walking_ways_begun
+            years = 100
+        }
+        trigger_event = { id = chim.001 days = 180 }
+    }
+
+    option = {
+        name = chim.000.b   # "This is heresy. I will not hear it."
+        add_piety = 50
+        add_stress = -10
+        set_character_flag = {
+            flag = chim_dismissed
+            days = 3650
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# chim.001  The Amaranth Question
+# The chim_seeker has been meditating for months.  The
+# question is simple: "What am I, if everything I am is a
+# dream someone else is dreaming?"  The answer is the
+# hardest thing a mortal mind can attempt to hold.
+# A learning check determines whether the I survives.
+# ---------------------------------------------------------------
+chim.001 = {
+    type = character_event
+    title = chim.001.t
+    desc  = chim.001.desc
+    theme = learning
+
+    trigger = {
+        has_trait = chim_seeker
+        has_character_flag = walking_ways_begun
+    }
+
+    option = {
+        name = chim.001.a   # "I embrace the Enantiomorph.  Let it come."
+        if = {
+            limit = { learning >= 20 }
+            trigger_event = { id = chim.002 days = 30 }
+            custom_tooltip = chim.001.a.success_tooltip
+        }
+        else = {
+            trigger_event = { id = chim.003 days = 30 }
+            custom_tooltip = chim.001.a.failure_tooltip
+        }
+        add_stress = 80
+    }
+
+    option = {
+        name = chim.001.b   # "I accept the zero-sum.  I am, and that must be enough."
+        add_stress = 20
+        add_learning_xp = 300
+        add_piety = 30
+        custom_tooltip = chim.001.b.tooltip
+    }
+}
+
+# ---------------------------------------------------------------
+# chim.002  The I Remains  [SUCCESS PATH]
+# The ruler's learning was sufficient.  The paradox holds.
+# They are a dream AND they are real.  Both are true.  The
+# contradiction does not collapse them — it elevates them.
+# CHIM is achieved.  A notification echoes across all rulers:
+# something has changed in the fundamental nature of one
+# person, and the world is subtly different because of it.
+# ---------------------------------------------------------------
+chim.002 = {
+    type = character_event
+    title = chim.002.t
+    desc  = chim.002.desc
+    theme = personal_discovery
+
+    trigger = {
+        has_trait = chim_seeker
+        learning >= 20
+    }
+
+    immediate = {
+        # Notify all rulers that CHIM has been achieved
+        every_ruler = {
+            limit = {
+                NOT = { this = root }
+            }
+            trigger_event = { id = chim.002 days = 3 }
+        }
+    }
+
+    option = {
+        name = chim.002.a   # "I remain.  The I that remains."
+        remove_trait = chim_seeker
+        add_trait = chim_achieved
+        add_prestige = 500
+
+        # Remove negative traits — CHIM clears the spiritual slate
+        remove_trait = arbitrary
+        remove_trait = paranoid
+        remove_trait = wrathful
+        remove_trait = craven
+        remove_trait = lazy
+        remove_trait = gluttonous
+
+        # Remove the seeker's stress burden
+        add_stress = -100
+
+        set_character_flag = {
+            flag = chim_achieved_permanent
+            years = 1000
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# chim.003  The Enantiomorph Consumes  [FAILURE PATH]
+# The ruler's learning was not enough to hold the paradox.
+# They accepted that they were a dream — and then, as dreams
+# do when the dreamer wakes, they ceased to be.  Not death.
+# Erasure.  Their subjects awoke to find the throne empty.
+# No body.  No trace.  As if they had never existed.
+# ---------------------------------------------------------------
+chim.003 = {
+    type = character_event
+    title = chim.003.t
+    desc  = chim.003.desc
+    theme = personal_discovery
+
+    trigger = {
+        has_trait = chim_seeker
+    }
+
+    option = {
+        name = chim.003.a   # [The text simply ends here.]
+        death = {
+            death_reason = death_chim_erasure
+            killer = ROOT
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# chim.004  The I That Remains  [yearly flavor for chim_achieved]
+# Living beyond the mundane world means living with the
+# knowledge of what that world truly is.  The chim_achieved
+# ruler navigates their court, their wars, their alliances —
+# and beneath all of it, sees the dream for what it is.
+# It is very good.  It is also profoundly isolating.
+# ---------------------------------------------------------------
+chim.004 = {
+    type = character_event
+    title = chim.004.t
+    desc  = chim.004.desc
+    theme = personal_discovery
+
+    trigger = {
+        has_trait = chim_achieved
+        is_adult = yes
+    }
+
+    option = {
+        name = chim.004.a   # "I walk among them.  They do not know what I have seen."
+        add_prestige = 30
+        add_stress = -20
+        add_piety = 25
+    }
+
+    option = {
+        name = chim.004.b   # "The dream is beautiful.  I am grateful to remain within it."
+        add_stress = -30
+        add_piety = 50
+    }
+}

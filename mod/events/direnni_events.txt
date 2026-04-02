@@ -1,0 +1,223 @@
+# =============================================================
+#  Direnni Hegemony — Events
+#  Namespace: direnni
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • direnni.000 — "The Hegemony's Shadow" — heritage choice
+#  • direnni.001 — "The Battle of Glenumbra Moors" — historical engagement
+#  • direnni.002 — "The Hegemony Fractures" — post-Glenumbra aftermath
+#  • direnni.003 — "Last of the Direnni" — surviving pure lineage
+#  • direnni.004 — "Lorkhan's Children" — Direnni philosophical reflection
+# =============================================================
+
+namespace = direnni
+
+# ---------------------------------------------------------------
+# direnni.000  The Hegemony's Shadow
+# Fires for rulers who carry the direnni_bloodline trait or
+# for Altmeri characters holding territory in High Rock counties.
+# The legacy of the Hegemony is inescapable in these lands —
+# every ancient tower, every old noble family, every forgotten
+# law still carries the Direnni stamp.
+# ---------------------------------------------------------------
+direnni.000 = {
+    type = character_event
+    title = direnni.000.t
+    desc  = direnni.000.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = direnni_bloodline
+            AND = {
+                culture = { has_cultural_parameter = altmer_culture }
+                any_held_title = {
+                    tier = county
+                    title_province = { geographical_region = world_high_rock }
+                }
+            }
+        }
+        NOT = { has_trait = direnni_hegemon }
+        NOT = { has_character_flag = direnni_heritage_resolved }
+    }
+
+    option = {
+        name = direnni.000.a   # "My ancestors built this land.  I will reclaim their legacy."
+        add_trait = direnni_hegemon
+        add_prestige = 75
+        set_character_flag = direnni_heritage_resolved
+    }
+
+    option = {
+        name = direnni.000.b   # "High Rock is Breton land now.  I will live as they live."
+        add_prestige = 25
+        add_piety = 25
+        set_character_flag = direnni_heritage_resolved
+    }
+}
+
+# ---------------------------------------------------------------
+# direnni.001  The Battle of Glenumbra Moors
+# For Direnni rulers during the era of the Alessian Order's
+# expansion.  The combined Alessian-Atmoran host marches on
+# High Rock.  The Direnni must decide how to meet the storm.
+# Victory at Glenumbra Moors (1E 482) saves the bloodline —
+# but the cost is the Hegemony itself.
+# ---------------------------------------------------------------
+direnni.001 = {
+    type = character_event
+    title = direnni.001.t
+    desc  = direnni.001.desc
+    theme = war
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = direnni_hegemon
+            has_trait = direnni_bloodline
+        }
+        NOT = { has_character_flag = glenumbra_moors_fought }
+    }
+
+    option = {
+        name = direnni.001.a   # "Rally the Direnni.  We hold the line."
+        if = {
+            limit = { martial >= 14 }
+            add_prestige = 150
+            add_trait = glenumbra_veteran
+            custom_tooltip = direnni.001.a.victory_tooltip
+        }
+        else = {
+            add_prestige = 50
+            add_stress = 20
+            custom_tooltip = direnni.001.a.costly_tooltip
+        }
+        set_character_flag = glenumbra_moors_fought
+        trigger_event = { id = direnni.002 days = 60 }
+    }
+
+    option = {
+        name = direnni.001.b   # "We cannot hold against that tide.  Fall back."
+        add_stress = 15
+        add_prestige = -50
+        set_character_flag = glenumbra_moors_fought
+        trigger_event = { id = direnni.002 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# direnni.002  The Hegemony Fractures
+# After Glenumbra Moors.  The Direnni have won the battle and
+# lost the century.  The Hegemony cannot sustain itself against
+# the Alessian Order's continued pressure.  A choice must be
+# made: preserve the bloodline by going underground, or open
+# the doors and let the Direnni become Breton.
+# ---------------------------------------------------------------
+direnni.002 = {
+    type = character_event
+    title = direnni.002.t
+    desc  = direnni.002.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = glenumbra_moors_fought
+    }
+
+    option = {
+        name = direnni.002.a   # "Guard the bloodline.  Our heirs will carry it forward."
+        if = {
+            limit = { exists = player_heir }
+            player_heir = {
+                add_trait = direnni_bloodline
+            }
+        }
+        add_piety = 50
+        add_prestige = 30
+        custom_tooltip = direnni.002.a.tooltip
+    }
+
+    option = {
+        name = direnni.002.b   # "The Direnni age is over.  We join the Bretons."
+        add_prestige = 50
+        add_stress = -15
+        custom_tooltip = direnni.002.b.tooltip
+    }
+}
+
+# ---------------------------------------------------------------
+# direnni.003  Last of the Direnni
+# A ruler discovers through lineage research, an old scroll, or
+# a scholar's reckoning that they carry the last surviving pure
+# Direnni bloodline.  The weight of a dead empire's legacy
+# settles on one set of shoulders.
+# ---------------------------------------------------------------
+direnni.003 = {
+    type = character_event
+    title = direnni.003.t
+    desc  = direnni.003.desc
+    theme = personal_discovery
+
+    trigger = {
+        has_trait = direnni_bloodline
+        is_ruler = yes
+        is_adult = yes
+        NOT = { has_character_flag = last_direnni_revealed }
+    }
+
+    option = {
+        name = direnni.003.a   # "Then I must be worthy of what I carry."
+        add_prestige = 150
+        add_stress = 10
+        set_character_flag = last_direnni_revealed
+    }
+
+    option = {
+        name = direnni.003.b   # "It is a burden I did not choose."
+        add_prestige = 75
+        add_stress = -10
+        set_character_flag = last_direnni_revealed
+    }
+}
+
+# ---------------------------------------------------------------
+# direnni.004  Lorkhan's Children
+# A philosophical Direnni event.  The Direnni, like all Aldmer,
+# carry the deep wound of Lorkhan — the separation from the
+# timeless Aetherial realm.  Unlike the Thalmor, the Direnni
+# did not choose denial.  They chose scholarship.  This event
+# reflects on what that choice means.
+# ---------------------------------------------------------------
+direnni.004 = {
+    type = character_event
+    title = direnni.004.t
+    desc  = direnni.004.desc
+    theme = learning
+
+    trigger = {
+        OR = {
+            has_trait = direnni_bloodline
+            has_trait = direnni_hegemon
+        }
+        learning >= 12
+        is_adult = yes
+        NOT = { has_character_flag = lorkhans_children_reflected }
+    }
+
+    option = {
+        name = direnni.004.a   # "We are diminished — but we endure.  That is its own kind of grace."
+        add_piety = 75
+        add_stress = -10
+        set_character_flag = lorkhans_children_reflected
+    }
+
+    option = {
+        name = direnni.004.b   # "I will spend my life trying to understand what we lost."
+        add_learning_xp = 500
+        add_piety = 40
+        set_character_flag = lorkhans_children_reflected
+    }
+}

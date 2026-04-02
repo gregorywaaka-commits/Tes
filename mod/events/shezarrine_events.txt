@@ -1,0 +1,194 @@
+# =============================================================
+#  Pelinal Whitestrake / Shezarrine — Events
+#  Namespace: shezarrine
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • shezarrine.000 — Hidden yearly check — marks potential vessels
+#  • shezarrine.001 — "The White Warrior Speaks" — Pelinal offers the mantle
+#  • shezarrine.002 — "Berserker's Rage" — uncontrolled fury in battle
+#  • shezarrine.003 — "The Elf-Hater's Vision" — vision of elven oppression
+#  • shezarrine.004 — "Reman's Echo" — connection to the Alessian chain
+# =============================================================
+
+namespace = shezarrine
+
+# ---------------------------------------------------------------
+# shezarrine.000  Hidden Yearly — Vessel Marking
+# Fires for rulers of exceptional martial ability and spiritual
+# character.  Pelinal's spirit is drawn to warriors who carry
+# the right qualities.  Sets the shezarrine_marked flag, which
+# triggers the dream visitation.
+# ---------------------------------------------------------------
+shezarrine.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        martial >= 18
+        OR = {
+            has_trait = brave
+            has_trait = zealous
+        }
+        NOT = { has_character_flag = shezarrine_marked }
+        NOT = { has_trait = shezarrine_vessel }
+    }
+
+    mean_time_to_happen = {
+        months = 240   # approximately 5% chance in a given year
+    }
+
+    option = {
+        name = shezarrine.000.a
+        set_character_flag = shezarrine_marked
+        trigger_event = { id = shezarrine.001 days = 7 }
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.001  The White Warrior Speaks
+# Pelinal Whitestrake's spirit appears in a dream.  The divine
+# champion of mankind stands before the ruler in full shining
+# armour, bathed in white fire, and makes his offer — or his
+# demand.  There is a reason Shezarrines do not often live
+# long, quiet lives.
+# ---------------------------------------------------------------
+shezarrine.001 = {
+    type = character_event
+    title = shezarrine.001.t
+    desc  = shezarrine.001.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = shezarrine_marked
+    }
+
+    option = {
+        name = shezarrine.001.a   # "I accept the mantle of Pelinal."
+        add_trait = shezarrine_vessel
+        add_trait = pelinal_rage
+        add_trait = elf_hate
+        add_stress = 20
+        set_character_flag = {
+            flag = shezarrine_vessel_active
+            years = 100
+        }
+    }
+
+    option = {
+        name = shezarrine.001.b   # "I refuse this burden."
+        add_prestige = 50
+        add_stress = -20
+        set_character_flag = {
+            flag = shezarrine_refused
+            days = 3650
+        }
+        remove_character_flag = shezarrine_marked
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.002  Berserker's Rage
+# The shezarrine_vessel enters an uncontrolled killing fury.
+# This is not strategy or discipline — it is divine wrath wearing
+# human flesh.  The vessel must either surrender to it or fight
+# to remain in control of their own mind.
+# ---------------------------------------------------------------
+shezarrine.002 = {
+    type = character_event
+    title = shezarrine.002.t
+    desc  = shezarrine.002.desc
+    theme = war
+
+    trigger = {
+        has_trait = shezarrine_vessel
+        is_adult = yes
+    }
+
+    option = {
+        name = shezarrine.002.a   # "Let the White Warrior take the reins."
+        add_prowess_xp = 500
+        add_stress = 30
+        custom_tooltip = shezarrine.002.a.tooltip
+    }
+
+    option = {
+        name = shezarrine.002.b   # "Fight the fury. Stay yourself."
+        add_stress = -15
+        add_prowess_xp = -100
+        custom_tooltip = shezarrine.002.b.tooltip
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.003  The Elf-Hater's Vision
+# The shezarrine_vessel receives a vision of ancient elven
+# oppression — the cages of the Ayleid masters, the screaming
+# of Nedic slaves, the white fire of Pelinal's first campaigns.
+# If neighbouring elven rulers exist, the vision may manifest
+# as a diplomatic incident.
+# ---------------------------------------------------------------
+shezarrine.003 = {
+    type = character_event
+    title = shezarrine.003.t
+    desc  = shezarrine.003.desc
+    theme = faith
+
+    trigger = {
+        has_trait = shezarrine_vessel
+        has_trait = elf_hate
+        is_adult = yes
+    }
+
+    option = {
+        name = shezarrine.003.a   # "These visions strengthen my resolve."
+        add_piety = 30
+        add_stress = 10
+    }
+
+    option = {
+        name = shezarrine.003.b   # "I must not let ancient hatred rule me."
+        add_stress = -10
+        add_piety = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.004  Reman's Echo
+# The shezarrine_vessel, when near the territories associated
+# with the Second Empire, feels the echo of Reman Cyrodiil —
+# another Shezarrine who built an empire on the same divine
+# fury.  The chain of Alessian and Remanic history flows through
+# this vessel as it flowed through those before.
+# ---------------------------------------------------------------
+shezarrine.004 = {
+    type = character_event
+    title = shezarrine.004.t
+    desc  = shezarrine.004.desc
+    theme = faith
+
+    trigger = {
+        has_trait = shezarrine_vessel
+        is_adult = yes
+        NOT = { has_character_flag = reman_echo_seen }
+    }
+
+    option = {
+        name = shezarrine.004.a   # "I will claim what Reman built."
+        add_prestige = 100
+        set_character_flag = {
+            flag = reman_legacy_claimed
+            years = 100
+        }
+        set_character_flag = reman_echo_seen
+    }
+
+    option = {
+        name = shezarrine.004.b   # "Reman's chain ends with me.  I forge my own."
+        add_prestige = 30
+        add_piety = 30
+        set_character_flag = reman_echo_seen
+    }
+}
