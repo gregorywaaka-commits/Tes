@@ -139,7 +139,7 @@ on_character_death = {
 #  YEARLY PULSE — invasion trigger + guild activity events
 #  Each year there is a small chance (weight 5) that a new
 #  invasion starts IF no invasion is active AND enough time
-#  has passed (current_date >= 2E.100).
+#  has passed (current_date >= 2E.440 — EK2 earliest start date).
 #  Guild activity events also fire yearly at low probability.
 #  NOTE: Both sets of events share ONE on_yearly_pulse block;
 #  CK3 only uses the LAST on_yearly_pulse block in the same file.
