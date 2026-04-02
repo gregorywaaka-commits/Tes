@@ -24,8 +24,7 @@ l_english:
  explore_ayleid_ruin: "Explore an Ayleid Ruin"
  explore_ayleid_ruin_desc: "The Ayleids — the Heartland High Elves who built Cyrodiil in the Merethic Era and ruled it through the early First Era — left ruins throughout the region that bear witness to their astonishing sophistication. Their vaults contain Welkynd stones that still glow, texts in a language few can read, and magic that has not faded in four thousand years. An expedition might return with scholarship, artifacts, or something stranger."
 
- claim_imperial_succession: "Claim Imperial Succession"
- claim_imperial_succession_desc: "Placeholder — see longhouse_emperors_l_english.yml for this entry."
+
 
  # --- Events ---
 

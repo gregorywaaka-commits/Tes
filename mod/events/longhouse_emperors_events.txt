@@ -117,7 +117,7 @@ longhouse.010 = {
 
     trigger = {
         has_trait = longhouse_pretender
-        any_held_county = { this = title:c_imperial_city }
+        completely_controls = title:c_imperial_city
         NOT = { has_trait = reachman_emperor }
     }
 
