@@ -84,6 +84,7 @@ seek_skaal_accord = {
 
     effect = {
         add_prestige = -200
+        add_trait = seek_skaal_accord
         set_character_flag = { flag = skaal_accord_sought days = 1825 }
         trigger_event = { id = nordic_lore.003 }
     }

@@ -221,6 +221,7 @@ nordic_lore.004 = {
 
     option = {
         name = nordic_lore.004.a   # "Eight blessings. Eight aspects. One world, and I stand in it."
+        remove_trait = seek_skaal_accord
         add_trait = all_maker_blessed
         add_piety = 200
         add_stress = -15

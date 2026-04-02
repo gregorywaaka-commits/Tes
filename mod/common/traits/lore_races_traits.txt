@@ -637,6 +637,20 @@ shor_marked = {
 #  quality of presence rather than raw power: harmony
 #  with the natural order of all things.
 # ---------------------------------------------------------------
+# ---------------------------------------------------------------
+#  SEEK SKAAL ACCORD
+#  A ruler who has formally sought an accord with the Skaal of
+#  Solstheim.  The Skaal have acknowledged the gesture; now the
+#  ruler must walk the path through the sacred ceremonies to
+#  earn the All-Maker's full blessing.  Can be lost if the
+#  ruler later betrays the Skaal's trust.
+# ---------------------------------------------------------------
+seek_skaal_accord = {
+    category = lifestyle
+    monthly_piety_gain_mult = 0.05   # Walking the Skaal's path brings modest piety
+    flag = seek_skaal_accord
+}
+
 all_maker_blessed = {
     category = lifestyle
     stewardship = 1

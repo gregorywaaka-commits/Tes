@@ -686,3 +686,38 @@ l_english:
  guild_leader_undaunted_modifier_desc: "A veteran Undaunted who has led countless delves into the deadliest ruins in Tamriel."
  guild_leader_postquest_cooldown: "Guild Leadership Cooldown"
  guild_leader_postquest_cooldown_desc: "The guild leadership quest chain has recently concluded. A new chapter cannot begin immediately."
+
+ # ---- Cooldown Modifiers ----
+
+ guild_advancement_cooldown: "Guild Advancement Cooldown"
+ guild_advancement_cooldown_desc: "This guild member has recently advanced in rank. A further promotion cannot occur for some time."
+
+ guild_recently_rejected: "Recently Rejected by Guild"
+ guild_recently_rejected_desc: "This ruler was recently refused entry into a guild. They must demonstrate further merit before applying again."
+
+ guild_research_cooldown: "Mages Guild Research Cooldown"
+ guild_research_cooldown_desc: "A major research project has recently been completed. The Mages Guild's resources need time to recover before another undertaking."
+
+ guild_contract_cooldown: "Guild Contract Cooldown"
+ guild_contract_cooldown_desc: "A contract has recently been fulfilled. Some time must pass before another commission is accepted."
+
+ guild_heist_cooldown: "Thieves Guild Heist Cooldown"
+ guild_heist_cooldown_desc: "A heist was recently carried out. The Thieves Guild requires time before another major operation can be planned."
+
+ black_sacrament_cooldown: "Black Sacrament Cooldown"
+ black_sacrament_cooldown_desc: "The Black Sacrament was recently performed. Another contract cannot be placed with the Dark Brotherhood for some time."
+
+ writ_of_execution_cooldown: "Writ of Execution Cooldown"
+ writ_of_execution_cooldown_desc: "A Morag Tong writ of execution was recently issued. Another sanctioned execution cannot be commissioned for some time."
+
+ psijic_communion_cooldown: "Psijic Communion Cooldown"
+ psijic_communion_cooldown_desc: "A communion with the Psijic Order was recently conducted. Their counsel cannot be sought again so soon."
+
+ ballad_composition_cooldown: "Bards College Composition Cooldown"
+ ballad_composition_cooldown_desc: "A ballad was recently composed and performed. The Bards College requires time before a new commission can be accepted."
+
+ guild_ruin_delve_cooldown: "Undaunted Delve Cooldown"
+ guild_ruin_delve_cooldown_desc: "An Undaunted dungeon delve was recently completed. The company needs time to recover before the next expedition."
+
+ guild_heist_caught_modifier: "Caught in the Act"
+ guild_heist_caught_modifier_desc: "This ruler was caught during a Thieves Guild heist. Their reputation has suffered, and their confidence has taken a blow."
