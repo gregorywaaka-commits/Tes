@@ -1,0 +1,248 @@
+# =============================================================
+#  Hist / Saxhleel — Deep Time Visions and the Wild Hunt
+#  Namespace: hist_vision
+#
+#  LORE:
+#  The Hist are an ancient race of sentient trees native to
+#  Black Marsh (Argonia).  They predate every known civilisation
+#  on Nirn — their roots reach back to the Dawn Era and beyond.
+#  Argonians bond with the Hist at birth by drinking sap; the
+#  hist_bonded are those whose connection runs deepest.  The
+#  An-Xileel are the militant arm of Hist-guided Argonian
+#  sovereignty.
+#
+#  The Wild Hunt is the most terrible act the Bosmer can
+#  perform — a totemic shapeshifting frenzy in which the
+#  Green Pact's most extreme adherents devour all in their
+#  path.  Here it is referenced as a catastrophic weapon
+#  available to rulers who have been called to it.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • hist_vision.000  — The Hist Remembers (yearly, hist_bonded)
+#  • hist_vision.001  — The Before-Time (hist_deep_vision_seen flag)
+#  • hist_vision.002  — The Hist's Warning (hist_bonded / an_xileel_warrior)
+#  • hist_vision.003  — Decision trigger: Hist Grand Convocation
+#  • hist_vision.010  — The Wild Hunt is Called (decision trigger)
+#  • hist_vision.011  — The Hunt Passes (730 days after .010)
+#
+#  KEY TRAITS (lore_races_traits.txt):
+#  ─────────────────────────────────────
+#  • hist_elder_bonded   — deep Hist communion; learning + piety
+#
+#  KEY MODIFIERS (lore_races_modifiers.txt):
+#  ──────────────────────────────────────────
+#  • hist_vision_insight       — ancient knowledge from the before-time
+#  • hist_warning_defensive    — defensive preparation
+#  • wild_hunt_unleashed       — the terrible transformation
+#  • wild_hunt_aftermath       — desolation that follows
+# =============================================================
+
+namespace = hist_vision
+
+# ---------------------------------------------------------------
+# hist_vision.000  The Hist Remembers
+# Fires yearly for hist_bonded rulers who have not yet received
+# the deep-time vision.  The Hist is not a god — it is a memory.
+# To drink deep of it is to know things no living being should
+# know.  To refuse is merely human.
+# ---------------------------------------------------------------
+hist_vision.000 = {
+    type = character_event
+    title = hist_vision.000.t
+    desc  = hist_vision.000.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_trait = hist_bonded
+        NOT = { has_character_flag = hist_deep_vision_seen }
+    }
+
+    option = {
+        name = hist_vision.000.a   # "I let the vision carry me. I go where the roots lead."
+        add_character_flag = { flag = hist_deep_vision_seen }
+        add_learning = 1
+    }
+
+    option = {
+        name = hist_vision.000.b   # "It is too vast. I pull back before it swallows me whole."
+        add_stress = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# hist_vision.001  The Before-Time
+# Fires for rulers who have already embraced the deep vision.
+# The Hist now shows something further — creation-era knowledge
+# that contradicts the official theological account of the world.
+# What the ruler does with it is their choice.
+# ---------------------------------------------------------------
+hist_vision.001 = {
+    type = character_event
+    title = hist_vision.001.t
+    desc  = hist_vision.001.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        has_character_flag = hist_deep_vision_seen
+        NOT = { has_character_flag = hist_before_time_seen }
+    }
+
+    option = {
+        name = hist_vision.001.a   # "I share this. The world should know what the Hist remembers."
+        add_character_flag = { flag = hist_before_time_seen }
+        add_prestige = 300
+        add_piety    = -100
+    }
+
+    option = {
+        name = hist_vision.001.b   # "This is mine alone. I carry it in silence."
+        add_character_flag = { flag = hist_before_time_seen }
+        add_modifier = {
+            modifier = hist_vision_insight
+            days     = 1825
+        }
+    }
+
+    option = {
+        name = hist_vision.001.c   # "Memory older than gods — and I cannot trust my own eyes."
+        add_character_flag = { flag = hist_before_time_seen }
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# hist_vision.002  The Hist's Warning
+# The Hist senses mass death approaching — a great conflict, a
+# betrayal, a storm.  It does not see the future; it reads the
+# present the way old wood reads weather.  The ruler must decide
+# what to do with the warning.
+# ---------------------------------------------------------------
+hist_vision.002 = {
+    type = character_event
+    title = hist_vision.002.t
+    desc  = hist_vision.002.desc
+    theme = war
+
+    trigger = {
+        is_ruler = yes
+        OR = {
+            has_trait = hist_bonded
+            has_trait = an_xileel_warrior
+        }
+    }
+
+    option = {
+        name = hist_vision.002.a   # "I prepare. Walls first — questions after."
+        add_modifier = {
+            modifier = hist_warning_defensive
+            days     = 730
+        }
+    }
+
+    option = {
+        name = hist_vision.002.b   # "I bring this to the Elders. Let them read the roots with me."
+        add_piety = 50
+    }
+
+    option = {
+        name = hist_vision.002.c   # "The Hist has been wrong before. I will not be moved by dreams."
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# hist_vision.003  The Hist Grand Convocation
+# Decision trigger event.  The ruler has travelled to Murkmire
+# and stood at the heart of the oldest Hist grove in Argonia.
+# The convocation is not a ceremony — it is a biological process.
+# The sap given here is not symbolic.  The bonding is permanent.
+# ---------------------------------------------------------------
+hist_vision.003 = {
+    type = character_event
+    title = hist_vision.003.t
+    desc  = hist_vision.003.desc
+    theme = faith
+
+    is_triggered_only = yes
+
+    option = {
+        name = hist_vision.003.a   # "I drink. I am theirs, and they are mine."
+        add_trait = hist_elder_bonded
+        add_piety  = 200
+        add_stress = -10
+    }
+
+    option = {
+        name = hist_vision.003.b   # "I cannot. The price is too complete."
+        add_piety  = 50
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# hist_vision.010  The Wild Hunt is Called
+# Decision trigger.  The ruler has reached the point of no
+# return: the transformation begins here.  The Wild Hunt is
+# not a tool.  It is a last resort that costs more than
+# whoever stands against it.
+# ---------------------------------------------------------------
+hist_vision.010 = {
+    type = character_event
+    title = hist_vision.010.t
+    desc  = hist_vision.010.desc
+    theme = war
+
+    is_triggered_only = yes
+
+    trigger = {
+        has_trait = wild_hunt_called
+        NOT = { has_character_flag = wild_hunt_activated }
+    }
+
+    option = {
+        name = hist_vision.010.a   # "It is called. May the forest forgive what comes next."
+        add_modifier = {
+            modifier = wild_hunt_unleashed
+            days     = 730
+        }
+        add_modifier = {
+            modifier = wild_hunt_aftermath
+            days     = 1825
+        }
+        add_character_flag = { flag = wild_hunt_activated days = 3650 }
+        add_stress   = 40
+        add_prestige = -500
+        trigger_event = { id = hist_vision.011 days = 730 }
+    }
+}
+
+# ---------------------------------------------------------------
+# hist_vision.011  The Hunt Passes
+# Fires 730 days after the Wild Hunt was called.  The forest is
+# silent.  Everything that stood in the way is gone.  The ruler
+# must now reckon with what was done in their name — in their
+# body — in their teeth and hands and howling.
+# ---------------------------------------------------------------
+hist_vision.011 = {
+    type = character_event
+    title = hist_vision.011.t
+    desc  = hist_vision.011.desc
+    theme = faith
+
+    is_triggered_only = yes
+
+    option = {
+        name = hist_vision.011.a   # "I account for it. I name each one and carry the weight."
+        add_piety  = 100
+        add_stress = 20
+    }
+
+    option = {
+        name = hist_vision.011.b   # "I do not mourn the necessary. The Hunt was called; it answered."
+        add_prestige = 200
+        add_piety    = -200
+    }
+}

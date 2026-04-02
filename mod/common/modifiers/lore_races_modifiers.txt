@@ -2031,3 +2031,162 @@ alduin_vision_learning = {
 world_eater_survived_modifier = {
     monthly_prestige_gain_mult = 0.20   # The courts of Tamriel have heard: someone faced the World-Eater and endured
 }
+
+# =============================================================
+#  Alessian Order / Reman Dynasty Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ALESSIAN REFORMATION ZEAL
+#  The fervour of a public purge of elven saints — piety flowing
+#  from the certainty that the Eight Divines have been restored
+#  to their true, human form.  The zeal does not last forever:
+#  it is the first bright flame of a new theology, and like all
+#  first flames it burns hottest and shortest.
+#  monthly_piety_gain_mult 0.20: the reformation has electrified
+#    the human-faith faithful and donations pour in.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+alessian_reformation_zeal = {
+    monthly_piety_gain_mult = 0.20   # The reformation has electrified the human-faith faithful
+}
+
+# ---------------------------------------------------------------
+#  REMAN CLAIM INVESTIGATION
+#  The genealogical machinery of a Reman lineage claim — archivists
+#  cross-referencing the Second Empire's dynastic records against
+#  current bloodlines, cross-checking against the Synod's sealed
+#  vaults, and navigating the political minefield of making an
+#  imperial heritage claim in a fractured world.
+#  stewardship +1: managing archivists and coordinating research
+#    across multiple institutions sharpens administrative thinking.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+reman_claim_investigation = {
+    stewardship = 1   # Coordinating dynastic archivists sharpens administrative thinking
+}
+
+# =============================================================
+#  Mythic Dawn Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MYTHIC DAWN INNER CIRCLE INSIGHT
+#  Forbidden knowledge extracted from the Commentaries on the
+#  Mysterium Xarxes — Mankar Camoran's scripture for the cult
+#  of Mehrunes Dagon.  The inner circle knows more than the
+#  uninitiated can safely hold.  The intrigue advantage is
+#  real.  So is the cost.
+#  intrigue +3: the inner circle's network of safe-houses,
+#    drop-points, and compromised contacts is genuinely useful.
+#  monthly_prestige_gain_mult 0.10: the cult's reach opens doors.
+#  stress_gain_mult 0.15: the weight of knowing what the inner
+#    circle knows is not theoretical.
+#  Duration: 1095 days (3 years).
+# ---------------------------------------------------------------
+mythic_dawn_inner_circle_insight = {
+    intrigue                   = 3
+    monthly_prestige_gain_mult = 0.10
+    stress_gain_mult           = 0.15   # The weight of knowing what the inner circle knows
+}
+
+# =============================================================
+#  Hist / Saxhleel Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  HIST VISION INSIGHT — BEFORE-TIME KNOWLEDGE
+#  Ancient knowledge carried from the Hist's creation-era
+#  memory — the Before-Time, the moment before the world was
+#  set in the form it currently holds.  Not academic knowledge:
+#  structural.  The world looks different once you have seen
+#  the argument that preceded it.
+#  learning +2: root-memory deeper than any scholar's archive.
+#  stress_gain_mult -0.10: things that would unsettle others
+#    feel like variations on something you have already seen.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+hist_vision_insight = {
+    learning         = 2
+    stress_gain_mult = -0.10
+}
+
+# ---------------------------------------------------------------
+#  HIST WARNING DEFENSIVE — CONFLICT PREPARATION
+#  The ruler has received the Hist's warning of approaching
+#  violence and responded with preparation rather than dismissal.
+#  Martial discipline is heightened.  Defensive dispositions
+#  are reviewed.  The border guards are more alert.
+#  martial +1: readiness translated into command.
+#  advantage +1: defensive edge from early preparation.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+hist_warning_defensive = {
+    martial = 1
+    command_modifier = {
+        advantage = 1
+    }
+}
+
+# ---------------------------------------------------------------
+#  WILD HUNT UNLEASHED — THE TERRIBLE TRANSFORMATION
+#  The Wild Hunt is running.  The forest-people in their
+#  transformed state are devastatingly effective combatants —
+#  the advantage and morale values reflect absolute, undirected
+#  ferocity.  The prowess reflects the physical transformation.
+#  The stress cost reflects the horror of what you have become.
+#  advantage +10, max_morale +0.30, prowess +5: the Hunt is
+#    genuinely terrifying in battle.
+#  stress_gain_mult +0.50: the horror of what you have become
+#    makes every subsequent decision more costly.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+wild_hunt_unleashed = {
+    command_modifier = {
+        advantage  = 10
+        max_morale = 0.30
+    }
+    prowess          = 5
+    stress_gain_mult = 0.50   # The horror of what you have become
+}
+
+# ---------------------------------------------------------------
+#  WILD HUNT AFTERMATH — THE DESOLATION THAT FOLLOWS
+#  The Hunt has passed.  Trade routes avoid the region.  The
+#  world absorbs what was done.  Income falls; prestige erodes;
+#  the stress of ruling in the silence left behind is real.
+#  monthly_income -0.40: economic disruption from the Hunt's
+#    passage.
+#  stress_gain_mult +0.30: the weight of what was done settles
+#    into every decision made afterward.
+#  monthly_prestige_gain_mult -0.20: the world remembers.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+wild_hunt_aftermath = {
+    monthly_income             = -0.40
+    stress_gain_mult           = 0.30
+    monthly_prestige_gain_mult = -0.20   # The world remembers what you did
+}
+
+# =============================================================
+#  Psijic Order Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  PSIJIC TIME INSIGHT — THE ADEPT'S FIRST STILLNESS IN CRISIS
+#  The adept's first successful experience of stilling time
+#  in a genuine crisis.  The martial clarity that follows is
+#  precision, not aggression.  The learning it refines is
+#  structural, not academic.
+#  martial +1: combat decisions made from stillness rather
+#    than reaction.
+#  learning +1: the structural understanding deepens.
+#  stress_gain_mult -0.15: the river is walked beside; the
+#    torrent no longer carries.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+psijic_time_insight = {
+    martial          = 1
+    learning         = 1
+    stress_gain_mult = -0.15
+}

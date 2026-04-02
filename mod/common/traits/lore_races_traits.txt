@@ -511,3 +511,119 @@ world_eater_survived = {
     monthly_prestige_gain_mult = 0.10
     flag = world_eater_survived
 }
+
+# =============================================================
+#  Alessian Order / Reman Dynasty Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ALESSIAN REFORMER
+#  A ruler who has publicly proclaimed the Eight Divines in their
+#  pure human form — purging elven saints and Aldmeri theological
+#  corruption from their chapel and court.  The Order's central
+#  argument: the Divines were always human gods, and every layer
+#  of elven influence added since the Dawn Era is a lie.
+#  The Reformation earns devotion from human vassals and hatred
+#  from elven neighbours in equal measure.
+# ---------------------------------------------------------------
+alessian_reformer = {
+    category = lifestyle
+    diplomacy = 1
+    monthly_piety_gain_mult = 0.15   # Human-faith piety for purging elven influence
+    flag = alessian_reformer
+}
+
+# ---------------------------------------------------------------
+#  REMAN HEIR
+#  A ruler who has formally claimed descent from Reman I,
+#  founder of the Second Empire, wielder of the Amulet of Kings,
+#  and the first mortal since Alessia to claim Dragonborn
+#  legitimacy over all of Cyrodiil.  The genealogical research
+#  is complete; the claim is public.  What happens next is
+#  a matter of politics, war, and the weight of history.
+# ---------------------------------------------------------------
+reman_heir = {
+    category = fame
+    diplomacy = 2
+    monthly_prestige_gain_mult = 0.15
+    flag = reman_heir
+}
+
+# =============================================================
+#  Mythic Dawn Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MYTHIC DAWN INNER CIRCLE
+#  A ruler who has ascended through the Mythic Dawn's ranks to
+#  reach the inner circle — those who have read the Commentaries
+#  on the Mysterium Xarxes in full, completed a loyalty test
+#  of blood or theft, and heard Mankar Camoran's final doctrine
+#  from a trusted Voice of the Dawn.  They know the plan.
+#  They know it is real.  The weight of that knowledge is
+#  not easily set down.
+# ---------------------------------------------------------------
+mythic_dawn_inner = {
+    category = lifestyle
+    intrigue = 2
+    monthly_piety_gain_mult = -0.15   # Dagon's mortal cult makes Aedric piety difficult
+    flag = mythic_dawn_inner
+}
+
+# =============================================================
+#  Hist / Saxhleel Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  HIST ELDER-BONDED
+#  A ruler who has made the pilgrimage to Murkmire and stood at
+#  the oldest Hist grove — and drunk the sap offered there.
+#  The Grand Convocation is not a ceremony.  It is a permanent
+#  biological deepening of the Hist bond.  The learning that
+#  follows is not bookish; it is root-memory directly inherited
+#  from a tree that was present at the Dawn Era.
+# ---------------------------------------------------------------
+hist_elder_bonded = {
+    category = lifestyle
+    learning    = 3
+    stewardship = 1
+    monthly_piety_gain_mult = 0.20   # Hist-faith piety for deep communion
+    flag = hist_elder_bonded
+}
+
+# =============================================================
+#  Psijic Order Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  PSIJIC NOVICE
+#  A ruler who has received the Psijic Order's first teaching —
+#  the practice of stilling time in the mind.  Not yet a
+#  practitioner of the Old Ways in full, but no longer a
+#  stranger to them either.  Time-stilling practices reduce
+#  the urgency of stress; the novice learns to step back from
+#  the current of events.
+# ---------------------------------------------------------------
+psijic_novice = {
+    category = lifestyle
+    learning = 2
+    stress_gain_mult = -0.10   # Time-stilling practices reduce the urgency of stress
+    flag = psijic_novice
+}
+
+# ---------------------------------------------------------------
+#  PSIJIC ADEPT
+#  A ruler who has passed the Order's test and been acknowledged
+#  as a practitioner of the Old Ways.  An adept Psijic perceives
+#  time as a river walked beside rather than a torrent carried
+#  by.  The serenity is genuine.  The learning is structural.
+#  The piety is older than any current theology.
+# ---------------------------------------------------------------
+psijic_adept = {
+    category = lifestyle
+    learning    = 4
+    stewardship = 1
+    stress_gain_mult        = -0.20   # An adept Psijic perceives time as a river, not a torrent
+    monthly_piety_gain_mult = 0.10
+    flag = psijic_adept
+}

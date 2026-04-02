@@ -1,0 +1,67 @@
+﻿l_english:
+
+ # =====================================================================
+ #  MYTHIC DAWN — MANKAR CAMORAN'S COMMENTARIES
+ # =====================================================================
+
+ # ---- mythic_dawn.000 — The Coded Message ----
+
+ mythic_dawn.000.t: "The Coded Message"
+ mythic_dawn.000.desc: "It arrives folded three times, the wax seal pressed with a device that means nothing at a glance — a stylised sunrise, or perhaps a gate, rendered in deep red wax. Anonymous courier, no name, no origin address. Most rulers would bin it with the other unsigned correspondence. But you have enough intrigue to see the secondary pattern: the fold sequence is not decorative. The creases encode a location, a date, a time, and the single word #italic#attend#! hidden in the geometric angles of the paper. The Mythic Dawn. Mehrunes Dagon's mortal cult, the hidden hand behind a dozen unsolved assassinations and one very large theological project that involves every Oblivion Gate in Tamriel opening simultaneously. They are inviting you. The question is what you do with an invitation that you were never supposed to be able to read."
+ mythic_dawn.000.a: "I attend the meeting. I want to see what they look like up close."
+ mythic_dawn.000.b: "I send a spy in my place — let someone else sit in that candlelit room."
+ mythic_dawn.000.c: "Burn it. Whatever they are selling, I am not interested."
+
+ # ---- mythic_dawn.001 — The Recruitment ----
+
+ mythic_dawn.001.t: "The Red-Robed Figure"
+ mythic_dawn.001.desc: "The cellar is clean and dry, which surprises you. You expected squalor. What you find is a single candle on a stone table and a figure in red robes who sits with the careful posture of someone who has given this speech before and found a way to believe it every time. They begin without preamble. Mehrunes Dagon is not merely a Daedric Prince of Destruction — he is the engine of #italic#change#!, the Prince of Ambition, of Revolution, of the Natural Order Corrected. The world as it stands is a prison built by gods for their own comfort. When the Gates open and Dagon walks through, the prison ends. Not death — transformation. Those who prepare, who are faithful, who have read Mankar Camoran's Commentaries, will pass through into Camoranʼs Paradise beyond the destruction. The rest of the world ends. They say this with complete calm. They are entirely certain. The candle does not flicker."
+ mythic_dawn.001.a: "I join them. The argument is insane — but I want to be inside it."
+ mythic_dawn.001.b: "I pretend to join — I will spy on every meeting from the inside."
+ mythic_dawn.001.c: "I arrest the recruiter where they sit. This ends now."
+
+ # ---- mythic_dawn.002 — The First Doctrine ----
+
+ mythic_dawn.002.t: "The Commentaries on the Mysterium Xarxes"
+ mythic_dawn.002.desc: "The text is hand-copied on heavy vellum, the ink a shade of red you decide not to think about too carefully. It is organised as a series of numbered commentaries on a source text — the Mysterium Xarxes itself — which you are told you are not yet permitted to read. What the Commentaries contain is difficult to describe. Part scripture, part cosmological argument, part record of a man who has looked at the structure of Aedric creation and found it deliberately designed to imprison mortal souls. Mankar Camoran is not raving. That is what makes it disturbing. He is rigorous. His theology is internally consistent. His argument that Dagon's destruction is not the end but the mechanism of a greater truth is made with the patience of a scholar who has had centuries to develop it and expects his readers to keep up. Whether he is correct is a question you cannot answer without first accepting his premises. You are not sure you should."
+ mythic_dawn.002.a: "I understand every word — and what frightens me is that it holds together."
+ mythic_dawn.002.b: "Most of it is impenetrable, but the faith is clear enough to follow."
+ mythic_dawn.002.c: "This text is dangerous. I burn my copy before anyone else reads it."
+
+ # ---- mythic_dawn.003 — Rising Through the Ranks ----
+
+ mythic_dawn.003.t: "The Loyalty Test"
+ mythic_dawn.003.desc: "The inner circle does not grant membership. It tests for it. The Voice of the Dawn who delivers the request does so without apology or softening: there is a name, or there is a relic. One or the other must be dealt with before the circle opens its final doors. This is not symbolic participation. The Mythic Dawn are not a philosophical society that holds theological debates over wine. They are a cult that has already committed atrocities in service of a plan they believe will end the world and begin something better, and they need to know that you have done something that cannot be undone. The choice is not between the task and refusing — the Dawn does not allow partial membership. The choice is between which task and walking away entirely."
+ mythic_dawn.003.a: "I eliminate their target. It is done."
+ mythic_dawn.003.b: "I steal the relic they want. I will not kill for this — not yet."
+ mythic_dawn.003.c: "I cannot do this. I walk away before the door fully opens."
+
+ # ---- mythic_dawn.004 — The Listener's Choice ----
+
+ mythic_dawn.004.t: "The Final Ask"
+ mythic_dawn.004.desc: "You know enough now. You have read the Commentaries, completed the test, and sat in enough candlelit rooms that the cult's architecture is clear to you — the hierarchy, the safe-houses, the network of compromised officials and loyal true-believers that extends through more courts than you initially understood. The inner circle has one final ask: begin the ritual. Open the Gate. The mechanism is in place; the site has been prepared; the incantation from the Mysterium Xarxes has been taught to you in pieces over the past months and you are only now assembling what the whole of it means. You have three options. You can do what they ask. You can destroy what they built. Or you can take what they built for yourself — if you are clever enough to do it before they realise what you are."
+ mythic_dawn.004.a: "Open the Gate. Let Mehrunes Dagon through — let the transformation begin."
+ mythic_dawn.004.b: "I betray them to every authority I can reach. This ends today."
+ mythic_dawn.004.c: "I seize their network, their gold, and their contacts — and I let them wonder what happened."
+
+ # ---- mythic_dawn.005 — Exposure ----
+
+ mythic_dawn.005.t: "The Informant's Question"
+ mythic_dawn.005.desc: "They come to you privately, which is the only reason this conversation is happening in your study rather than at the end of an accusation in open court. A steward, a clerk, a captain of the guard — someone with eyes sharp enough and access broad enough to have noticed things that did not add up. They lay out what they have pieced together: absences that coincided with certain dates, correspondence in an unfamiliar cipher, the name of a contact who was later found dead under unusual circumstances. They are not accusing you. Not yet. They are asking. The question is whether you answer it truthfully, whether you answer it at all, or whether this conversation ends before it can become anything more dangerous."
+ mythic_dawn.005.a: "Silence the informant before their question becomes an accusation."
+ mythic_dawn.005.b: "Confess and accept whatever judgment follows. I am done carrying this."
+
+ # ---- Decision ----
+
+ investigate_mythic_dawn: "Investigate the Mythic Dawn"
+ investigate_mythic_dawn_desc: "The coded invitations have been filtering through certain courts for generations — folded paper with sunrise seals and hidden geometric messages that most rulers never notice. You have noticed. The Mythic Dawn are out there, and you know enough of their methods to begin pulling threads. Whether your goal is to join them, expose them, or simply understand how deep their network reaches is a question you can answer later. Begin the investigation."
+
+ # ---- Trait ----
+
+ mythic_dawn_inner: "Mythic Dawn Inner Circle"
+ mythic_dawn_inner_desc: "This ruler has ascended through the Mythic Dawn's ranks to the inner circle — those who have read the full Commentaries on the Mysterium Xarxes, completed a loyalty test of blood or theft, and heard Mankar Camoran's final doctrine from a trusted Voice of the Dawn. They know the plan. They know it is real. The weight of that knowledge is not theoretical, and Aedric piety becomes very difficult when you have spent months inside an argument that the Aedra built your world as a prison."
+
+ # ---- Modifier ----
+
+ mythic_dawn_inner_circle_insight: "Inner Circle Insight"
+ mythic_dawn_inner_circle_insight_desc: "The Commentaries on the Mysterium Xarxes, read in full, leave a mark that is not entirely unwelcome. The Dawn's network of safe-houses, dead drops, and compromised contacts is genuinely useful — a shadow infrastructure that sits beneath official court life and opens doors that would otherwise stay closed. The intrigue advantage is real. So is the stress. Mankar Camoran did not write a comfortable text, and knowing what the inner circle knows is not a weight that sits lightly on the mind."

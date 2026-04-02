@@ -105,6 +105,14 @@ on_yearly_pulse = {
         3   = great_houses.000       # Hortator candidacy offered to worthy Dunmer ruler (great_houses_events.txt)
         2   = great_houses.010       # Telvanni wizard challenger arrives at court (great_houses_events.txt)
         2   = great_houses.020       # Dres slaving ship returns from Black Marsh (great_houses_events.txt)
+        2   = alessian.000           # Alessian Order scholar arrives — alessian_doctrine_scholar rulers (alessian_events.txt)
+        2   = alessian.010           # Reman genealogist finds imperial blood — imperial/cyrodiilic rulers (alessian_events.txt)
+        3   = mythic_dawn.000        # Mythic Dawn coded invitation — high-intrigue rulers (mythic_dawn_events.txt)
+        4   = hist_vision.000        # Hist deep-time vision — hist_bonded Argonian rulers (hist_saxhleel_events.txt)
+        2   = hist_vision.001        # Hist before-time — rulers with hist_deep_vision_seen flag (hist_saxhleel_events.txt)
+        2   = hist_vision.002        # Hist warning of conflict — Argonian hist_bonded / an_xileel_warrior rulers (hist_saxhleel_events.txt)
+        3   = psijic.000             # Psijic invitation — highly learned rulers (psijic_events.txt)
+        2   = psijic.003             # Artaeum withdraws — psijic_adept rulers (psijic_events.txt)
     }
 }
 

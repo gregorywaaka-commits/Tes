@@ -1,0 +1,82 @@
+﻿l_english:
+
+ # =====================================================================
+ #  ALESSIAN ORDER — REFORMATION & REMAN DYNASTY
+ # =====================================================================
+
+ # ---- alessian.000 — A Scholar of the Alessian Doctrine ----
+
+ alessian.000.t: "A Scholar of the Doctrine"
+ alessian.000.desc: "He arrives on foot, dusty from the road, carrying nothing but a satchel of papers and an argument the Empire has been quietly suppressing for three hundred years. He introduces himself as a scholar of the Alessian Order — the real Order, he says, not the softened version that survived the Second Empire's consolidation. The Eight Divines were never Aldmeri gods, he explains, spreading a genealogy of theology across your table. Before Altmeri missionaries arrived to write down their version of creation, the Divines were human. They were #italic#always#! human. Everything the elves added since is a layer of corruption over a truth that belongs to your people. He is either a brilliant heretic, a nuisance, or exactly right. You have not yet decided which."
+ alessian.000.a: "Fund the movement — let the truth spread."
+ alessian.000.b: "I will debate this publicly — let scholars judge the claim."
+ alessian.000.c: "I have no interest in antique theology. Leave my court."
+
+ # ---- alessian.001 — The Reformation Sermon ----
+
+ alessian.001.t: "The Reformation Sermon"
+ alessian.001.desc: "The chapel has been closed for three days. When it reopens, the altarpieces have been changed. The Aldmeri saints are gone — their carved faces chiselled smooth, their niches occupied by older iconography, older names, the Divines rendered in human proportions for the first time in a generation. You stand at the pulpit before your court and your vassals and deliver the sermon yourself. The Eight Divines, you say, were never the gods of elves. Their names were older than Aldmeri theology. Their true form was human, their covenant with mortal-kind was human, and every layer of elven interpretation placed over that truth is a corruption that ends today. The human faithful hear it the way the parched hear rain. The elven courtiers hear something else entirely."
+ alessian.001.a: "The Eight Divines are ours. Let Tamriel remember this day."
+
+ # ---- alessian.002 — Elven Backlash ----
+
+ alessian.002.t: "The Elven Response"
+ alessian.002.desc: "The delegations arrive within a month. Altmeri envoys in gold-threaded robes and Bosmer ambassadors with ink-stained fingers, all carrying the same message: what you have done in your chapel is an insult to the Divines as they are properly understood, an erasure of thousands of years of theological refinement, and an act of cultural aggression that their courts do not intend to forget quietly. They are politely furious. The question is not whether you respond — the question is how."
+ alessian.002.a: "Double down. The truth does not apologise for existing."
+ alessian.002.b: "A moderate path — truth delivered with the grace of diplomacy."
+ alessian.002.c: "Recant. The political cost is too high for a theological argument."
+
+ # ---- alessian.003 — The Marukite Path ----
+
+ alessian.003.t: "The Monomyth — Lorkhan's Treachery"
+ alessian.003.desc: "The second scholar is older and quieter than the first. He does not spread papers across your table — he sits, folds his hands, and waits until the room is empty before he speaks. What he describes is not merely the reformation of the Divines' iconography. It is the Marukite wing of the Alessian Order, and its central text is the Monomyth — a reading of creation in which Lorkhan, the Missing God, the Trickster-King of the Aurbis, is the villain of everything that has ever happened. He tricked the Aedra into giving up their immortality to make Nirn. He used the elven peoples as instruments without their knowledge. Nirn itself is his prison, and the heart of it — the red mountain at the world's centre — is his punishment, still beating. The scholar watches your face carefully as he says all of this. He has told people before. He knows what it does to them."
+ alessian.003.a: "I understand it. Lorkhan's treachery is the root of all suffering."
+ alessian.003.b: "The theology is too vast. I am not ready to hold this."
+ alessian.003.c: "This is heresy within heresy — I will not have it in my court."
+
+ # ---- alessian.010 — The Reman Bloodline ----
+
+ alessian.010.t: "The Genealogist's Discovery"
+ alessian.010.desc: "He has been in your archives for six weeks, and his hands are grey with old parchment dust. When he finally requests an audience, he is trembling — not with fear but with the particular ecstasy of someone who has found what they were looking for in a place they were not sure it would be. He places a genealogical chart on your desk. It traces backward through three generations of your family, then further, then further still, through names that grow older and more formal, until it reaches a fork in the tree that he has annotated with a single careful note: #italic#Reman blood, unbroken, confirmed by three independent sources.#! The Second Empire. The founder's line. Here. In your hall. He is either the most careful scholar you have ever met, or the most dangerous flatterer."
+ alessian.010.a: "Fund the research properly — verify every name before I act on this."
+ alessian.010.b: "Publicise the claim immediately — let the world hear it from me directly."
+ alessian.010.c: "Dismiss him. I will not build a dynasty on old genealogies and dust."
+
+ # ---- alessian.011 — The Reman Claim ----
+
+ alessian.011.t: "The Reman Claim — A Test of Legitimacy"
+ alessian.011.desc: "The claim is public now. Half the court is electrified; half is sceptical. The sceptics are not quiet. They produce counter-genealogies, archival ambiguities, the standard arsenal of anyone who wants to blunt a heritage claim without openly declaring war. The Synod's scholars have sent a letter requesting access to your research. The question before you is not whether Reman blood is in your veins — you believe it is. The question is how you prove it to the part of Tamriel that will never simply take your word."
+ alessian.011.a: "Prove it through scholarship — open the archives to all scrutiny."
+ alessian.011.b: "Defend the claim by the authority of my name — none dare question me."
+ alessian.011.c: "This was a mistake. I will let the matter drop quietly."
+
+ # ---- alessian.012 — Crowned in the Reman Tradition ----
+
+ alessian.012.t: "The Reman Investiture"
+ alessian.012.desc: "The ceremony is ancient. The words are older than the Second Empire — a formal investiture descended from Alessia's own coronation rites, preserved in sealed Synod vaults and brought out today for the first time in centuries. Your court stands in rows. Beyond the windows, your vassals' banners snap in the wind. The priest speaks the old Cyrodiilic words: not a claim of power but a claim of #italic#right#! — the divine heritage of the Dragonborn bloodline, the covenant of the Amulet of Kings, the proof that mortal rule over Tamriel is not an accident but a design. When it is done, you carry a name that has not been carried in the living memory of anyone in this room. Reman. The second time. You are not sure yet what that means. You are certain it means something."
+ alessian.012.a: "I am Reman reborn. The Second Empire breathes again in my hands."
+ alessian.012.b: "I carry this name as a duty — not a boast, but a responsibility."
+
+ # ---- Decisions ----
+
+ proclaim_alessian_reformation: "Proclaim the Alessian Reformation"
+ proclaim_alessian_reformation_desc: "The Eight Divines were never the gods of elves. Their names are older than Aldmeri theology, their covenant with mortalkind predates every text the Altmer have written about them, and the corruption of their iconography by centuries of elven theological influence ends now. Proclaim the Reformation — purge elven saints from your chapel and declare the Divines in their true, human form. The Order has waited three centuries for a ruler willing to say this out loud."
+
+ claim_reman_heritage: "Claim the Reman Heritage"
+ claim_reman_heritage_desc: "The genealogical record is confirmed. The lineage is real. Reman I — the founder of the Second Empire, the wielder of the Amulet of Kings, the man who proved that mortal rule over Cyrodiil was a divine mandate and not merely an army's ambition — his blood runs in your veins. Claim your heritage publicly, in the old Cyrodiilic investiture rite, before your court and your vassals and the histories they will write about you."
+
+ # ---- Traits ----
+
+ alessian_reformer: "Alessian Reformer"
+ alessian_reformer_desc: "This ruler has publicly proclaimed the Eight Divines in their pure, human form — purging elven saints and Aldmeri theological corruption from their chapel. The Alessian Order's core argument, suppressed for centuries, has been given a throne and a voice. Human-faith vassals are electrified; elven neighbours are not."
+
+ reman_heir: "Reman Heir"
+ reman_heir_desc: "This ruler has been formally invested as a Reman heir — carrying confirmed genealogical descent from Reman I, the founder of the Second Empire, and claiming the divine covenant of the Amulet of Kings' bloodline. Among imperial-culture courts this carries immense weight. Among everyone else, it carries the particular gravity of a name that has not been spoken in centuries."
+
+ # ---- Modifiers ----
+
+ alessian_reformation_zeal: "Alessian Reformation Zeal"
+ alessian_reformation_zeal_desc: "The reformation has electrified the human-faith faithful — donations are flowing, preachers are travelling, and for the first time in generations the Alessian Order's argument is being made openly in a court that has the authority to protect it. The zeal is real. It will not burn at this intensity forever. It burns now."
+
+ reman_claim_investigation: "Reman Lineage Investigation"
+ reman_claim_investigation_desc: "The archivists are working. The genealogical research is ongoing — cross-referencing Second Empire dynastic records against current bloodlines, navigating sealed Synod vaults, and building the documentary case for a Reman heritage claim that will survive academic scrutiny. The process is slow. It is also thorough."

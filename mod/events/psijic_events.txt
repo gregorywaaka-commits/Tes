@@ -1,0 +1,192 @@
+# =============================================================
+#  Psijic Order — Artaeum, the Old Ways, and the Flow of Time
+#  Namespace: psijic
+#
+#  LORE:
+#  The Psijic Order is the oldest monastic organisation on
+#  Nirn — predating the Mages Guild by centuries.  They
+#  occupy the isle of Artaeum, which phases in and out of
+#  the mundane world at the Order's choosing.  Their magic,
+#  the "Old Ways", deals with time, mind, and the subtle
+#  manipulation of probability.  They do not use flashy
+#  destruction magic.  They simply know things, and they
+#  choose, very carefully, who else gets to know them.
+#
+#  Canonically, Artaeum disappears from the mundane world
+#  in 2E 230 and reappears in 2E 580 — then vanishes again
+#  after the events of the Oblivion Crisis.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • psijic.000  — An Invitation from Artaeum (yearly, learned rulers)
+#  • psijic.001  — The Novice's Path (triggered, learning-gated)
+#  • psijic.002  — The Adept's Test (psijic_novice rulers)
+#  • psijic.003  — Artaeum Withdraws (psijic_adept, once)
+#
+#  KEY TRAITS (lore_races_traits.txt):
+#  ─────────────────────────────────────
+#  • psijic_novice  — first steps into the Old Ways
+#  • psijic_adept   — a practitioner of the Psijic method
+#
+#  KEY MODIFIERS (lore_races_modifiers.txt):
+#  ──────────────────────────────────────────
+#  • psijic_time_insight  — the adept's first stillness in crisis
+# =============================================================
+
+namespace = psijic
+
+# ---------------------------------------------------------------
+# psijic.000  An Invitation from Artaeum
+# Fires yearly for rulers with sufficient learning.  The monk
+# arrives without announcement — they always do.  The invitation
+# is written in a hand that appears to shift when you look at it
+# directly.  The date has already passed, but the meeting will
+# still happen if you choose to attend.
+# ---------------------------------------------------------------
+psijic.000 = {
+    type = character_event
+    title = psijic.000.t
+    desc  = psijic.000.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        learning >= 16
+        NOT = { has_character_flag = psijic_contact }
+        NOT = { has_trait = psijic_adept }
+    }
+
+    option = {
+        name = psijic.000.a   # "I accept. When do I leave?"
+        add_character_flag = { flag = psijic_contact }
+        trigger_event = { id = psijic.001 days = 30 }
+    }
+
+    option = {
+        name = psijic.000.b   # "I have no time for hermit monks and vanishing islands."
+        add_piety  = -20
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic.001  The Novice's Path
+# The monks teach the ruler to still time in the mind — not to
+# stop it, but to step sideways from the current of it and
+# observe from outside.  The experience is proportional to
+# the ruler's intellectual preparation.  The unprepared see
+# only a headache; the prepared see everything differently.
+# ---------------------------------------------------------------
+psijic.001 = {
+    type = character_event
+    title = psijic.001.t
+    desc  = psijic.001.desc
+    theme = scholarship
+
+    is_triggered_only = yes
+
+    option = {
+        name = psijic.001.a   # "I study with full rigour. I will understand this."
+        trigger = { learning >= 18 }
+        add_trait = psijic_novice
+        add_piety  = 100
+        add_stress = -10
+    }
+
+    option = {
+        name = psijic.001.b   # "I follow as much as I can. It is more than I had."
+        trigger = {
+            learning >= 14
+            NOT = { learning >= 18 }
+        }
+        add_learning = 1
+        add_piety    = 50
+    }
+
+    option = {
+        name = psijic.001.c   # "The river of time bends around me and I cannot hold onto any of it."
+        add_stress = 20
+        add_piety  = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic.002  The Adept's Test
+# The Order presents the novice with a genuinely difficult choice
+# under time pressure — then asks them to observe their own
+# decision-making process rather than merely make the decision.
+# The path they choose reflects the nature of their understanding.
+# ---------------------------------------------------------------
+psijic.002 = {
+    type = character_event
+    title = psijic.002.t
+    desc  = psijic.002.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        has_trait = psijic_novice
+        NOT = { has_trait = psijic_adept }
+    }
+
+    option = {
+        name = psijic.002.a   # "I act. A still mind in a crisis is worth every year of study."
+        trigger = { martial >= 12 }
+        add_modifier = {
+            modifier = psijic_time_insight
+            days     = 1825
+        }
+        add_prestige = 100
+    }
+
+    option = {
+        name = psijic.002.b   # "I observe the choice completely — and in observing, I understand."
+        trigger = { learning >= 16 }
+        add_trait  = psijic_adept
+        add_piety  = 200
+        add_stress = -20
+    }
+
+    option = {
+        name = psijic.002.c   # "I do not move hastily. The cautious path is the correct one."
+        trigger = { diplomacy >= 12 }
+        add_piety  = 150
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic.003  Artaeum Withdraws
+# The Order takes the island back from the world.  It happens
+# without drama — the contacts stop responding, the invitations
+# cease, and one morning the island is simply not where it was.
+# The psijic_adept must decide how to carry what they learned
+# now that the source of it has gone.
+# ---------------------------------------------------------------
+psijic.003 = {
+    type = character_event
+    title = psijic.003.t
+    desc  = psijic.003.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        has_trait = psijic_adept
+        NOT = { has_character_flag = artaeum_withdrawal_handled }
+    }
+
+    option = {
+        name = psijic.003.a   # "The teachings are in me now. An island's departure changes nothing."
+        add_character_flag = { flag = artaeum_withdrawal_handled }
+        add_piety   = 100
+        add_learning = 1
+        add_stress  = -10
+    }
+
+    option = {
+        name = psijic.003.b   # "They leave as they came — without asking. I grieve this."
+        add_character_flag = { flag = artaeum_withdrawal_handled }
+        add_piety  = 50
+        add_stress = 20
+    }
+}

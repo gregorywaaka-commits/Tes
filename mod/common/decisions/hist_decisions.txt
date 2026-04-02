@@ -1,0 +1,103 @@
+# =============================================================
+#  Hist / Saxhleel — Decisions
+#  File: mod/common/decisions/hist_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • hist_bonded       (EK2 trait)
+#  • an_xileel_warrior (EK2 trait)
+#  • hist_elder_bonded (lore_races_traits.txt)
+#  • wild_hunt_called  (EK2 trait)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  TRAVEL TO THE HIST GRAND CONVOCATION
+#  A hist_bonded or An-Xileel ruler may make the pilgrimage to
+#  Murkmire — the deep southern swamps where the oldest Hist
+#  groves still stand — to attend the Grand Convocation.  This
+#  is not a political meeting.  It is a biological one.  The Hist
+#  offers deeper bonding to those who come in sincerity.
+#  Success grants hist_elder_bonded.
+# ---------------------------------------------------------------
+travel_to_hist_convocation = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = travel_to_hist_convocation_desc
+
+    is_shown = {
+        OR = {
+            has_trait = hist_bonded
+            has_trait = an_xileel_warrior
+        }
+        NOT = { has_trait = hist_elder_bonded }
+    }
+
+    is_valid = {
+        prestige >= 300
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    effect = {
+        add_prestige = -300
+        trigger_event = { id = hist_vision.003 }
+    }
+
+    ai_will_do = {
+        base = 8
+        modifier = {
+            add = 10
+            has_trait = hist_bonded
+        }
+        modifier = {
+            add = 6
+            has_trait = an_xileel_warrior
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  CALL THE WILD HUNT
+#  The most terrible weapon in the arsenal of those called to
+#  it.  This is not a thing done lightly — the Wild Hunt
+#  transforms its callers into instruments of absolute
+#  destruction.  The enemy will be consumed.  So will something
+#  of the ruler who called it.  Available only to rulers with
+#  the wild_hunt_called trait who are currently at war and have
+#  not used this power in the past decade.
+# ---------------------------------------------------------------
+call_the_wild_hunt = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = call_the_wild_hunt_desc
+
+    is_shown = {
+        has_trait = wild_hunt_called
+        NOT = { has_character_flag = wild_hunt_activated }
+        is_at_war = yes
+    }
+
+    is_valid = {
+        martial  >= 12
+        is_adult = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        trigger_event = { id = hist_vision.010 }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = {
+            add = 5
+            martial >= 16
+        }
+    }
+}
