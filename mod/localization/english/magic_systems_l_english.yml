@@ -1,0 +1,79 @@
+﻿l_english:
+
+ # =====================================================================
+ #  MAGIC SYSTEMS — School of Julianos, Psijic Endeavour,
+ #  Tonal Architecture Expansion — Localization
+ # =====================================================================
+
+ # ---- magic_sys.000 — Julianos's Academy ----
+
+ magic_sys.000.t: "An Invitation from the Order"
+ magic_sys.000.desc: "The scholar wears the Order's seal — a stylised eye over an open book, Julianos's personal cipher. He is precise, unhurried, and clearly used to being the cleverest person in most rooms. The Order of Julianos maintains academies across Tamriel's learned cities, and their curricula are not academic exercises: they are disciplined investigations into logic, law, natural philosophy, and the arcane structures underlying the world. The invitation is specific. It has your name on it. The Order does not send these to people it is uncertain about."
+ magic_sys.000.a: "I accept. Tell the Order I will begin at once."
+ magic_sys.000.b: "I am grateful — but my duties do not permit such a commitment."
+ magic_sys.000.c: "Let us debate the matter publicly first. If the Order's logic holds, I will consider it."
+
+ # ---- magic_sys.001 — The Divine Scholar ----
+
+ magic_sys.001.t: "The Divine Scholar"
+ magic_sys.001.desc: "The Order's final assessment has been completed. The curriculum is done — not passed in the sense of examinations cleared but digested in the way that Julianos intended: structural comprehension, not memorisation. The logic of the Divine's teachings is no longer a set of principles you can recite; it is a way of approaching questions that has become involuntary. The Order's senior scholar presents the seal with less ceremony than you expected and more meaning."
+ magic_sys.001.a: "Julianos's mark is mine. Logic and faith held in one seal."
+
+ # ---- magic_sys.010 — The Psijic Endeavour Begins ----
+
+ magic_sys.010.t: "The Psijic Endeavour"
+ magic_sys.010.desc: "The Psijic masters call it the Endeavour. Not the Attempt. Not the Goal. The Endeavour — the sustained, disciplined, decades-long practice of transcending the mortal condition through perfect self-mastery. They explain it clearly: the Old Ways hold that every Aldmer carries within them the potential to become as the Aedra once were, if the degradation of mortality is patiently and methodically reversed. This is not mysticism. This is a programme. And you, they say, are advanced enough to be shown the beginning of it."
+ magic_sys.010.a: "I commit. The Endeavour is mine to attempt in full."
+ magic_sys.010.b: "I will study the early stages. Caution serves the careful mind."
+ magic_sys.010.c: "Transcending mortality is hubris. I will not walk this path."
+
+ # ---- magic_sys.011 — First Threshold ----
+
+ magic_sys.011.t: "The First Threshold"
+ magic_sys.011.desc: "You have crossed it — not dramatically but with the quiet certainty of someone who has put a foot down and found the ground on the other side is solid. The first threshold of the Endeavour is not transcendence. It is the genuine, verifiable experience of the self as something other than mortal — not deathless, not divine, but no longer entirely bounded by the ordinary expectations of a finite existence. The masters receive you at the next threshold without comment. They were waiting."
+ magic_sys.011.a: "The first threshold is crossed. The Endeavour is no longer theory."
+
+ # ---- magic_sys.012 — The Final Gamble ----
+
+ magic_sys.012.t: "The Final Gamble"
+ magic_sys.012.desc: "There is no ceremony for this step. There is no master present. The Endeavour's final threshold is crossed alone, because the thing being attempted is, by definition, solitary: the transcendence of the individual self beyond the limitations that the mortal condition imposes on it. The masters told you this step has no guidance to offer. They told you that some who attempt it return different. They told you that some do not return the same way they intended. You are standing at the edge of what you are. The next step determines what you become."
+ magic_sys.012.a: "I reach for transcendence. Whatever comes, I will meet it as what I am."
+ magic_sys.012.b: "Not yet. The Endeavour demands more from me before I can take this step."
+
+ # ---- magic_sys.020 — Tonal Architecture in Warfare ----
+
+ magic_sys.020.t: "Tonal Architecture in Warfare"
+ magic_sys.020.desc: "Kagrenac's principles are precise. They are also dangerous in the way that a blade is dangerous — the danger is in the hand holding it. You have spent years mastering tonal architecture, and you know what the resonance frequencies can do when properly applied to Dwemer animunculi: the constructs wake. Not as tools. As soldiers. The question is not whether you can do it. The question is whether you want to find out what else wakes up when the deep tones are struck in a world that has been quiet for a long time."
+ magic_sys.020.a: "Deploy the animunculi. The war does not wait for caution."
+ magic_sys.020.b: "Study the risks further. Kagrenac's principles demand precision before deployment."
+ magic_sys.020.c: "The animunculi stay buried. Some doors should remain shut."
+
+ # ---- Decisions ----
+
+ study_julianos_order_desc: "The Order of Julianos maintains rigorous academies in the discipline of logic, law, and the arcane. Their curriculum requires genuine commitment — gold for materials and instruction, time for study, and the intellectual honesty to follow an argument wherever it leads. For a ruler of sufficient learning, the reward is the Divine Scholar's mark."
+ begin_psijic_endeavour_desc: "The Psijic Endeavour is the Altmeri practice of self-transcendence — the disciplined, sustained attempt to reverse the degradation of mortality and recover something of the Aedric potential that the Aldmer believe lies dormant in every mer. It is not a ceremony. It is a programme, and it demands everything."
+ deploy_tonal_architecture_desc: "A ruler who has mastered tonal architecture may attempt to deploy Dwemer animunculi on the battlefield — summoning the deep-metal soldiers of the lost Dwemer using Kagrenac's resonance principles. The combat advantage is genuine. The cost in gold is real. What the resonance wakes besides the constructs is less certain."
+
+ # ---- Traits ----
+
+ divine_scholar: "Divine Scholar"
+ divine_scholar_desc: "This ruler has completed the Order of Julianos's full curriculum — the disciplined investigation of logic, law, natural philosophy, and arcane structure that the Divine of wisdom holds as his sacred programme. The mark is not honorary. It represents genuine structural comprehension: Julianos's way of thinking has become involuntary, applied to governance and faith alike without needing to be consciously reached for."
+
+ endeavour_seeker: "Psijic Endeavour Seeker"
+ endeavour_seeker_desc: "This ruler has crossed the first threshold of the Psijic Endeavour — the genuinely verifiable experience of the self as something other than entirely mortal. The path is not complete. The final gamble has not yet been taken. But the Endeavour is no longer theory: the seeker has walked to the edge of what they are and looked over."
+
+ endeavour_advanced: "Psijic Endeavour Advanced"
+ endeavour_advanced_desc: "This ruler has completed the Psijic Endeavour — crossed the final threshold of the Altmeri self-transcendence programme and returned as something measurably different from what they were. The masters received them without ceremony, as they promised. What was found at the edge of mortality is not easily described. What it does to a life lived afterward is visible in every decision."
+
+ # ---- Modifiers ----
+
+ tonal_war_modifier: "Tonal Architecture Deployed"
+ tonal_war_modifier_desc: "Dwemer animunculi have been summoned and deployed as a battlefield force using Kagrenac's tonal principles. The constructs fight with the precision of machines and the relentlessness of things that do not know fear or retreat. The advantage they confer is measurable. What the resonance has woken elsewhere in the deep places of the world is not yet known."
+
+ julianos_study_insight: "Julianos Study Insight"
+ julianos_study_insight_desc: "The discipline of Julianos's curriculum has sharpened something fundamental. Arguments that were previously navigated by instinct are now navigated by structure. Governance decisions that required extended deliberation arrive faster and with more clarity. The Order would say this is not intelligence improving — it is intelligence being used correctly."
+
+ # ---- Custom Tooltips ----
+
+ magic_sys_endeavour_success_tt: "The Endeavour is complete. The endeavour_advanced trait is yours. What you found at the final threshold has changed you in ways that will be visible for the rest of your reign."
+ magic_sys_endeavour_failure_tt: "The final threshold was too much. The attempt has cost you learning and left stress in its wake. The Endeavour has not ended you — but it has reminded you that some doors are not opened by will alone."

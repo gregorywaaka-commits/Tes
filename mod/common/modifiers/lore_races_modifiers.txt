@@ -2190,3 +2190,95 @@ psijic_time_insight = {
     learning         = 1
     stress_gain_mult = -0.15
 }
+
+# =============================================================
+#  Nordic / Atmoran Extensions — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  COMPANION RECOGNITION — PARTIAL LINEAGE CLAIM
+#  The Nord halls acknowledge the claim of Companion descent
+#  without full proof — the genealogy is plausible, the
+#  martial credibility is partial.  The recognition is real;
+#  what it does to those who see this ruler across a table
+#  is difficult to quantify and impossible to ignore.
+#  martial +1: the claim carries baseline warrior credibility.
+#  monthly_prestige_gain_mult +0.05: recognition ripples slowly.
+#  Duration: 1095 days (3 years).
+# ---------------------------------------------------------------
+companion_recognition = {
+    martial = 1
+    monthly_prestige_gain_mult = 0.05
+}
+
+# =============================================================
+#  Magic Systems — Tonal Architecture / Julianos — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  TONAL WAR MODIFIER — ANIMUNCULI DEPLOYMENT
+#  Dwemer animunculi have been summoned and deployed on the
+#  battlefield using Kagrenac's tonal resonance principles.
+#  The constructs fight with the precision of machines and
+#  the relentlessness of things that do not experience fear.
+#  advantage +6: tactical edge of inexhaustible constructs.
+#  max_morale +0.15: allied troops fight harder beside them.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+tonal_war_modifier = {
+    command_modifier = {
+        advantage  = 6
+        max_morale = 0.15
+    }
+}
+
+# ---------------------------------------------------------------
+#  JULIANOS STUDY INSIGHT — DISCIPLINED ARCANE STUDY
+#  The structured curriculum of Julianos's Order has produced
+#  a genuine breakthrough in how the ruler approaches both
+#  scholarship and governance.  Not intelligence improving —
+#  intelligence being used correctly.
+#  learning +1: structured comprehension applied to scholarship.
+#  stewardship +1: the same clarity applied to administration.
+#  Duration: 1095 days (3 years).
+# ---------------------------------------------------------------
+julianos_study_insight = {
+    learning    = 1
+    stewardship = 1
+}
+
+# =============================================================
+#  Underworld — Skooma Trade — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SKOOMA TRADE INCOME — MOON SUGAR SMUGGLING
+#  The Moon Sugar smuggling network is producing.  The income
+#  arrives in ways that do not appear on any public ledger.
+#  The stress of managing a criminal enterprise accumulates
+#  alongside the gold.
+#  monthly_income +0.25: the profits are real.
+#  stress_gain_mult +0.20: the moral and practical risks add up.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+skooma_trade_income = {
+    monthly_income   = 0.25    # The profits are real
+    stress_gain_mult = 0.20    # The moral and practical risks add up
+}
+
+# ---------------------------------------------------------------
+#  SKOOMA ADDICTION — PERSONAL USE OF THE PRODUCT
+#  The ruler has been using their own skooma supply.  The
+#  health cost is measurable; the learning loss is the subtler
+#  damage; the stress relief is genuine and is perhaps the
+#  most dangerous thing about it.
+#  health -0.5: the drug degrades the body steadily.
+#  stress_gain_mult -0.15: the drug numbs the edges of stress.
+#  learning -2: disciplined thought softened at the edges.
+#  Duration: 1095 days (3 years — hard to shake).
+# ---------------------------------------------------------------
+skooma_addiction = {
+    health           = -0.5
+    stress_gain_mult = -0.15   # The drug numbs the edges of stress
+    learning         = -2
+}

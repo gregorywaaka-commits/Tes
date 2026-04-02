@@ -627,3 +627,131 @@ psijic_adept = {
     monthly_piety_gain_mult = 0.10
     flag = psijic_adept
 }
+
+# =============================================================
+#  Nordic / Atmoran Extensions — Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  COMPANION OF YSGRAMOR
+#  A Nord or Atmoran ruler who has formally claimed and had
+#  acknowledged their descent from the Five Hundred Companions —
+#  Ysgramor's warriors who crossed the seas from Atmora and
+#  founded the Nordic kingdoms.  The claim requires both
+#  genealogical evidence and the martial credibility to make
+#  it credible.  Full success grants this trait.
+# ---------------------------------------------------------------
+companion_of_ysgramor = {
+    category = fame
+    martial  = 3
+    prowess  = 2
+    monthly_prestige_gain_mult = 0.15
+    flag = companion_of_ysgramor
+}
+
+# ---------------------------------------------------------------
+#  SHOR MARKED
+#  A Nord ruler who has received a vision of Sovngarde —
+#  Shor's golden meadhall — and heard the call of the God
+#  Beneath.  The mark does not compel; it simply rests on
+#  the ruler.  Sovngarde's calling eases the burden of
+#  mortal life: things that would weigh on others feel
+#  less urgent when you have seen what waits at the end.
+# ---------------------------------------------------------------
+shor_marked = {
+    category = lifestyle
+    martial  = 2
+    prowess  = 3
+    stress_gain_mult = -0.15   # Sovngarde's call eases the burden of mortal life
+    flag = shor_marked
+}
+
+# ---------------------------------------------------------------
+#  ALL-MAKER BLESSED
+#  A Nord ruler who has been acknowledged by the Skaal
+#  All-Maker's eight aspects — earth, wind, fire, water,
+#  stone, sun, flora, and beasts.  The blessing grants a
+#  quality of presence rather than raw power: harmony
+#  with the natural order of all things.
+# ---------------------------------------------------------------
+all_maker_blessed = {
+    category = lifestyle
+    stewardship = 1
+    health      = 0.5
+    stress_gain_mult        = -0.10   # The All-Maker's eight aspects bring harmony to the soul
+    monthly_piety_gain_mult = 0.10
+    flag = all_maker_blessed
+}
+
+# =============================================================
+#  Magic Systems — Julianos / Psijic Endeavour — Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DIVINE SCHOLAR
+#  A ruler who has completed the Order of Julianos's full
+#  curriculum — the disciplined investigation of logic, law,
+#  natural philosophy, and arcane structure.  Julianos's way
+#  of thinking has become structural rather than conscious:
+#  the Divine's method is applied without needing to be
+#  deliberately reached for.
+# ---------------------------------------------------------------
+divine_scholar = {
+    category = lifestyle
+    learning    = 3
+    stewardship = 1
+    monthly_piety_gain_mult = 0.10   # Julianos's favour for the devout student of reason
+    flag = divine_scholar
+}
+
+# ---------------------------------------------------------------
+#  ENDEAVOUR SEEKER
+#  A ruler who has crossed the first threshold of the Psijic
+#  Endeavour — the genuine experience of the self as something
+#  other than entirely mortal.  The path is not complete; the
+#  final gamble has not yet been taken.
+# ---------------------------------------------------------------
+endeavour_seeker = {
+    category = lifestyle
+    learning = 2
+    flag = endeavour_seeker
+}
+
+# ---------------------------------------------------------------
+#  ENDEAVOUR ADVANCED
+#  A ruler who has completed the Psijic Endeavour and crossed
+#  the final threshold of self-transcendence.  What was found
+#  at the edge of mortality is not easily described; what it
+#  does to a life lived afterward is visible in every decision.
+# ---------------------------------------------------------------
+endeavour_advanced = {
+    category = lifestyle
+    learning    = 5
+    stewardship = 2
+    health      = 1.0
+    monthly_prestige_gain_mult = 0.25
+    monthly_piety_gain_mult    = 0.25
+    flag = endeavour_advanced
+}
+
+# =============================================================
+#  Underworld — Dark Brotherhood — Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DARK BROTHERHOOD LISTENER
+#  The Brotherhood's highest rank: the single living person
+#  who hears the Night Mother's voice in full and carries
+#  her contracts to the guild.  The Night Mother's service
+#  does not sit well with the Divines' faithful.  The
+#  intrigue edge is real: the Listener knows things that
+#  other people have paid dearly to keep unknown.
+# ---------------------------------------------------------------
+dark_brotherhood_listener = {
+    category = lifestyle
+    intrigue = 4
+    prowess  = 2
+    monthly_prestige_gain_mult = 0.10
+    monthly_piety_gain_mult    = -0.20   # The Night Mother's service does not sit well with the Divines
+    flag = dark_brotherhood_listener
+}

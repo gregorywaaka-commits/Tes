@@ -1,0 +1,295 @@
+# =============================================================
+#  Magic Systems — School of Julianos, Psijic Endeavour,
+#  and Tonal Architecture Expansion
+#  File: mod/events/magic_systems_events.txt
+#  Namespace: magic_sys
+#
+#  LORE:
+#  Julianos — the Divine of wisdom, logic, and the arcane — is
+#  venerated by scholars, mages, and jurists across Tamriel.
+#  His Order (the Order of Julianos) runs academies focused on
+#  disciplined intellectual and magical development.
+#
+#  The Psijic Endeavour is the Altmeri spiritual practice of
+#  transcending mortality through perfect self-mastery — a
+#  philosophical and magical programme that the Psijic Order
+#  frames as the highest expression of the Old Ways.  It is
+#  not merely achievement: it is transformation.
+#
+#  Tonal Architecture is the Dwemer manipulation of the Earthbones
+#  via sound — Kagrenac's principles.  In warfare, a master
+#  tonal architect might attempt to summon animunculi (Dwemer
+#  automatons) to serve as shock troops.  The consequences of
+#  misuse are well documented.
+#
+#  SYSTEM OVERVIEW:
+#  ────────────────
+#  • magic_sys.000 — Julianos's Academy: invitation from the Order
+#  • magic_sys.001 — The Divine Scholar: curriculum completion
+#  • magic_sys.010 — The Psijic Endeavour Begins: Altmeri rulers
+#  • magic_sys.011 — First Threshold: first mastery level
+#  • magic_sys.012 — The Final Gamble: transcendence or failure
+#  • magic_sys.020 — Tonal Architecture in Warfare: animunculi
+#
+#  KEY TRAITS (lore_races_traits.txt):
+#  ────────────────────────────────────
+#  • divine_scholar    — Julianos's curriculum completed
+#  • endeavour_seeker  — first Psijic Endeavour threshold crossed
+#  • endeavour_advanced — Endeavour completed; transcendence achieved
+#
+#  KEY MODIFIERS (lore_races_modifiers.txt):
+#  ──────────────────────────────────────────
+#  • tonal_war_modifier    — animunculi combat bonus (730 days)
+#  • julianos_study_insight — disciplined study benefit (1095 days)
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • altmer_culture = EK2 culture identifier
+#  • tonal_architect = EK2 trait (from dwemer system)
+# =============================================================
+
+namespace = magic_sys
+
+# ---------------------------------------------------------------
+# magic_sys.000  Julianos's Academy
+# A visiting scholar arrives with a formal invitation from the
+# Order of Julianos.  For a learned ruler, this is an
+# opportunity to enter a structured curriculum in logic, law,
+# and the arcane — the Divine's preferred path.
+# ---------------------------------------------------------------
+magic_sys.000 = {
+    type = character_event
+    title = magic_sys.000.t
+    desc = magic_sys.000.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        learning >= 12
+        NOT = { has_character_flag = julianos_study }
+        NOT = { has_trait = divine_scholar }
+    }
+
+    option = {
+        name = magic_sys.000.a   # "I accept. Send word to the Order that I will begin at once."
+        add_gold = -100
+        set_character_flag = { flag = julianos_study days = 1095 }
+        add_modifier = {
+            modifier = julianos_study_insight
+            days = 1095
+        }
+        add_stress = 5
+    }
+
+    option = {
+        name = magic_sys.000.b   # "I am grateful, but my duties do not permit such a commitment."
+        add_stress = -5
+    }
+
+    option = {
+        name = magic_sys.000.c   # "Let us debate the matter publicly — if the Order's logic holds, I will consider it."
+        if = {
+            limit = { learning >= 16 }
+            add_learning = 1
+            add_prestige = 50
+        }
+        else = {
+            add_stress = 10
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# magic_sys.001  The Divine Scholar
+# Fires when the ruler's julianos_study flag is active and the
+# curriculum is complete.  The Order certifies the ruler as a
+# Divine Scholar of Julianos.
+# ---------------------------------------------------------------
+magic_sys.001 = {
+    type = character_event
+    title = magic_sys.001.t
+    desc = magic_sys.001.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        has_character_flag = julianos_study
+        NOT = { has_trait = divine_scholar }
+    }
+
+    option = {
+        name = magic_sys.001.a   # "Julianos's mark is mine. Logic and faith in one seal."
+        add_trait = divine_scholar
+        add_piety = 150
+        add_prestige = 100
+        add_stress = -10
+        remove_character_flag = julianos_study
+    }
+}
+
+# ---------------------------------------------------------------
+# magic_sys.010  The Psijic Endeavour Begins
+# An Altmeri ruler of exceptional learning is confronted by the
+# possibility the Psijic Order raises before its most advanced
+# students: the Endeavour — the attempt to transcend mortality
+# through perfect self-mastery.  The ruler must choose whether
+# to commit fully, study cautiously, or reject the path entirely.
+# ---------------------------------------------------------------
+magic_sys.010 = {
+    type = character_event
+    title = magic_sys.010.t
+    desc = magic_sys.010.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        has_culture = altmer_culture
+        learning >= 16
+        NOT = { has_character_flag = endeavour_active }
+        NOT = { has_trait = endeavour_advanced }
+    }
+
+    option = {
+        name = magic_sys.010.a   # "I commit. The Endeavour is mine to attempt in full."
+        set_character_flag = { flag = endeavour_active days = 3650 }
+        add_stress = 15
+        add_prestige = 100
+    }
+
+    option = {
+        name = magic_sys.010.b   # "I will study the early stages. Caution serves the careful mind."
+        add_learning = 1
+        add_piety = 50
+        add_stress = 5
+    }
+
+    option = {
+        name = magic_sys.010.c   # "Transcending mortality is hubris. I refuse the Endeavour."
+        add_piety = 100
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# magic_sys.011  First Threshold
+# The ruler who committed to the Endeavour achieves the first
+# major level of mastery — a genuine transformation of
+# perception and self-discipline.  The title endeavour_seeker
+# is granted: the path is now real, and the final gamble looms.
+# ---------------------------------------------------------------
+magic_sys.011 = {
+    type = character_event
+    title = magic_sys.011.t
+    desc = magic_sys.011.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        has_character_flag = endeavour_active
+        NOT = { has_trait = endeavour_seeker }
+    }
+
+    option = {
+        name = magic_sys.011.a   # "The first threshold is crossed. The Endeavour is no longer theory."
+        add_trait = endeavour_seeker
+        add_learning = 1
+        add_piety = 100
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# magic_sys.012  The Final Gamble
+# The Endeavour's ultimate step — attempt transcendence or
+# collapse under the weight of the attempt.  The outcome is
+# determined by learning versus the stress of the moment.
+# This is the point of no return.
+# ---------------------------------------------------------------
+magic_sys.012 = {
+    type = character_event
+    title = magic_sys.012.t
+    desc = magic_sys.012.desc
+    theme = scholarship
+
+    trigger = {
+        is_ruler = yes
+        has_trait = endeavour_seeker
+        NOT = { has_trait = endeavour_advanced }
+    }
+
+    option = {
+        name = magic_sys.012.a   # "I reach for transcendence. Whatever the cost."
+        if = {
+            limit = { learning >= 20 }
+            add_trait = endeavour_advanced
+            add_prestige = 600
+            add_piety = 400
+            add_stress = -30
+            remove_trait = endeavour_seeker
+            custom_tooltip = magic_sys_endeavour_success_tt
+        }
+        else = {
+            remove_trait = endeavour_seeker
+            add_learning = -2
+            add_stress = 40
+            custom_tooltip = magic_sys_endeavour_failure_tt
+        }
+    }
+
+    option = {
+        name = magic_sys.012.b   # "Not yet. The Endeavour requires more preparation."
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# magic_sys.020  Tonal Architecture in Warfare
+# A tonal_architect ruler at war considers using Kagrenac's
+# principles to summon Dwemer animunculi — automaton constructs —
+# as a battlefield force.  The power is real.  So is the risk
+# of drawing the attention of forces better left undisturbed.
+# ---------------------------------------------------------------
+magic_sys.020 = {
+    type = character_event
+    title = magic_sys.020.t
+    desc = magic_sys.020.desc
+    theme = martial
+
+    trigger = {
+        is_ruler = yes
+        has_trait = tonal_architect
+        NOT = { has_character_flag = tonal_war_attempted }
+    }
+
+    option = {
+        name = magic_sys.020.a   # "Deploy the animunculi. The war does not wait for caution."
+        add_modifier = {
+            modifier = tonal_war_modifier
+            days = 730
+        }
+        set_character_flag = { flag = tonal_war_attempted days = 3650 }
+        trigger_event = { id = dwemer.002 days = 90 }
+        add_stress = 10
+    }
+
+    option = {
+        name = magic_sys.020.b   # "Study the risks further. Kagrenac's principles demand precision."
+        if = {
+            limit = { learning >= 16 }
+            add_learning = 1
+            add_modifier = {
+                modifier = julianos_study_insight
+                days = 365
+            }
+        }
+        else = {
+            add_stress = 5
+        }
+        add_stress = 5
+    }
+
+    option = {
+        name = magic_sys.020.c   # "The animunculi stay buried. Some doors should remain shut."
+        add_piety = 50
+    }
+}

@@ -113,6 +113,15 @@ on_yearly_pulse = {
         2   = hist_vision.002        # Hist warning of conflict — Argonian hist_bonded / an_xileel_warrior rulers (hist_saxhleel_events.txt)
         3   = psijic.000             # Psijic invitation — highly learned rulers (psijic_events.txt)
         2   = psijic.003             # Artaeum withdraws — psijic_adept rulers (psijic_events.txt)
+        3   = nordic_lore.000        # Ysgramor's legacy scroll discovered — Nord/Atmoran rulers (nordic_lore_events.txt)
+        3   = nordic_lore.002        # Shor's Hall vision — martial Nord rulers (nordic_lore_events.txt)
+        2   = nordic_lore.003        # Skaal Elders approach — Nord rulers (nordic_lore_events.txt)
+        3   = magic_sys.000          # Julianos invitation — learned rulers (magic_systems_events.txt)
+        2   = magic_sys.010          # Psijic Endeavour begins — Altmeri rulers (magic_systems_events.txt)
+        2   = magic_sys.020          # Tonal Architecture warfare — tonal_architect rulers (magic_systems_events.txt)
+        3   = underworld.000         # Night Mother speaks — mephala_champion/high intrigue (underworld_events.txt)
+        2   = underworld.003         # Skooma trade offer arrives (underworld_events.txt)
+        2   = underworld.004         # Skooma addiction check — skooma_invested rulers (underworld_events.txt)
     }
 }
 

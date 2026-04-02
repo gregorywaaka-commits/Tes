@@ -1,0 +1,94 @@
+# =============================================================
+#  Nordic / Atmoran Extensions — Decisions
+#  File: mod/common/decisions/nordic_lore_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • nord_culture    = EK2 culture identifier
+#  • atmoran_culture = EK2 culture identifier
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CLAIM COMPANION LINEAGE
+#  A Nord or Atmoran ruler who has found the saga fragment
+#  (companion_claim_active flag) may formally press a claim to
+#  descent from the Five Hundred Companions.  The claim requires
+#  martial credibility as well as prestige — Ysgramor's line is
+#  remembered as a line of warriors, not scholars.
+# ---------------------------------------------------------------
+claim_companion_lineage = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = claim_companion_lineage_desc
+
+    is_shown = {
+        OR = {
+            has_culture = nord_culture
+            has_culture = atmoran_culture
+        }
+        has_character_flag = companion_claim_active
+        NOT = { has_trait = companion_of_ysgramor }
+    }
+
+    is_valid = {
+        martial  >= 10
+        prestige >= 300
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -300
+        trigger_event = { id = nordic_lore.001 }
+    }
+
+    ai_will_do = {
+        base = 6
+        modifier = {
+            add = 10
+            martial >= 16
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  SEEK THE SKAAL ACCORD
+#  A Nord ruler who has not yet approached the Skaal All-Maker
+#  priests may send an envoy to begin formal relations.  The
+#  Skaal are proud and independent; the gesture costs prestige
+#  but opens the path to the All-Maker's blessing.
+# ---------------------------------------------------------------
+seek_skaal_accord = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_skaal_accord_desc
+
+    is_shown = {
+        has_culture = nord_culture
+        NOT = { has_trait = all_maker_blessed }
+        NOT = { has_character_flag = skaal_accord_sought }
+    }
+
+    is_valid = {
+        prestige   >= 200
+        diplomacy  >= 8
+        is_adult   = yes
+        is_ruler   = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -200
+        set_character_flag = { flag = skaal_accord_sought days = 1825 }
+        trigger_event = { id = nordic_lore.003 }
+    }
+
+    ai_will_do = {
+        base = 4
+    }
+}
