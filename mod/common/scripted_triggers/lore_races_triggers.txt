@@ -264,116 +264,59 @@ world_stability_critical = {
     global_var:active_tower_count <= 1    # one or fewer Towers still standing
 }
 
-echmer_invasion_possible = {
-    NOT = { is_echmer_active_contact = yes }
-    exists = title:k_yneslea
-    current_date >= 2E.150
+# ---------------------------------------------------------------
+#  DAGOTH UR — THE AWAKENING OF THE SIXTH HOUSE
+# ---------------------------------------------------------------
+
+# Is Dagoth Ur currently awakened (the global flag is set)?
+dagoth_ur_awakened = {
+    exists = global_var:dagoth_ur_awakened
 }
 
-is_echmer_active_contact = {
-    exists = global_var:echmer_contact_established
+# Is this character a Sixth House cultist?
+is_sixth_house = {
+    has_trait = sixth_house_cultist
 }
 
-# ---- Maormer ----
-is_maormer = {
-    has_trait = maormer_heritage
-}
+# Can Dagoth Ur awaken right now?
+#
+# CANONICAL awakening (2E 882):
+#   The Tribunal made their final visit to re-energize from the
+#   Heart of Lorkhan at ~2E 882; Dagoth Ur repelled them and
+#   seized sole control.  This is the default historical date.
+#
+# EARLY awakening condition A (date >= 2E.600):
+#   If the Red Mountain Tower Stone (the Heart of Lorkhan) has
+#   NO keeper — i.e. it has NOT been claimed — Dagoth Ur seizes
+#   the Heart without opposition.  In lore, the Tribunal's power
+#   derives from regular visits to the Heart; without a keeper
+#   maintaining the Red Mountain Tower, the containment fails.
+#
+# EARLY awakening condition B (date >= 2E.700):
+#   If no Dunmer kingdom holds Morrowind, the Ghost Fence goes
+#   unmaintained.  Without a strong Tribunal-aligned empire to
+#   fund and staff the Fence, the Blight breaks free sooner.
+dagoth_ur_awakening_possible = {
+    NOT = { exists = global_var:dagoth_ur_awakened }
+    OR = {
+        # Canonical — the Tribunal's last visit fails
+        current_date >= 2E.882
 
-maormer_raid_possible = {
-    is_coastal = yes
-    NOT = { is_maormer = yes }
-    NOT = { has_modifier = maormer_truce_modifier }
-}
+        # Early condition A: Heart of Lorkhan unguarded
+        AND = {
+            current_date >= 2E.600
+            NOT = { tower_red_mountain_active = yes }
+        }
 
-orgnum_is_alive = {
-    exists = global_var:orgnum_alive
-}
-
-# ---- Sload ----
-is_sload = {
-    has_trait = sload_heritage
-}
-
-thrassian_plague_active = {
-    exists = global_var:thrassian_plague_active
-}
-
-sload_plague_can_trigger = {
-    NOT = { thrassian_plague_active = yes }
-    is_sload = yes
-    has_trait = sload_necromancer
-    stewardship >= 16
-}
-
-# ---- Kothringi ----
-is_kothringi = {
-    has_trait = kothringi_heritage
-}
-
-knahaten_flu_active = {
-    exists = global_var:knahaten_flu_active
-}
-
-knahaten_can_trigger = {
-    NOT = { knahaten_flu_active = yes }
-    NOT = { thrassian_plague_active = yes }   # only one mega-plague at a time
-    current_date >= 2E.550
-    current_date <= 2E.600
-    any_ruler = {
-        primary_title = { tier >= tier_kingdom }
-        government_has_flag = argonian_government   # Argonian rulers present
+        # Early condition B: no Dunmer kingdom controls Morrowind
+        AND = {
+            current_date >= 2E.700
+            NOT = {
+                any_ruler = {
+                    has_culture = dunmer_culture
+                    primary_title = { tier >= tier_kingdom }
+                }
+            }
+        }
     }
-}
-
-# ---- Kamal ----
-is_kamal = {
-    has_trait = kamal_heritage
-}
-
-kamal_summer_active = {
-    # CK3 uses month numbers; Kamal are active in months 3-9 (spring-autumn)
-    NOT = { current_date < 2E.100 }
-    exists = global_var:current_season_summer
-}
-
-kamal_invasion_possible = {
-    NOT = { exists = global_var:kamal_invasion_active }
-    current_date >= 2E.572    # historical: dir-Kamal invasion ~2E 572
-}
-
-# ---- Elder Towers ----
-tower_white_gold_active = {
-    title:c_imperial_city = {
-        has_variable = tower_stone_present
-    }
-}
-
-tower_adamantine_active = {
-    title:c_balfiera = {
-        has_variable = tower_stone_present
-    }
-}
-
-tower_red_mountain_active = {
-    title:c_red_mountain = {
-        has_variable = tower_stone_present
-    }
-}
-
-tower_coral_active = {
-    title:c_thras = {
-        has_variable = tower_stone_present
-    }
-}
-
-# Count of active towers (used for world stability)
-count_active_towers = {
-    # CK3 doesn't natively support counting booleans in a trigger,
-    # so we track this via global_var:active_tower_count instead
-    exists = global_var:active_tower_count
-}
-
-world_stability_critical = {
-    exists = global_var:active_tower_count
-    global_var:active_tower_count <= 1
 }

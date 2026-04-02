@@ -1,0 +1,296 @@
+# =============================================================
+#  Daedric Artifacts — Events
+#  Namespace: daedric_artifact
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • daedric_artifact.000 — hidden yearly trigger: artifact surfaces near realm
+#  • daedric_artifact.001 — "A Shimmering Blade Appears" — Mehrunes' Razor
+#  • daedric_artifact.002 — "The Fool's Sceptre" — the Wabbajack is offered
+#  • daedric_artifact.003 — "The Blade of Woe" — Ebony Blade in ruins
+#  • daedric_artifact.010 — "The Artifact Stirs" — yearly corruption creep
+#  • daedric_artifact.020 — "The Price of Power" — artifact consequence
+#  • daedric_artifact.030 — "Pass the Burden" — transfer artifact to another
+#
+#  KEY TRAITS:
+#  ───────────
+#  • mehrunes_razor_bearer / wabbajack_wielder / skull_of_corruption_bearer
+#  • ebony_blade_cursed / ring_of_namira_bearer / artifact_corruption
+# =============================================================
+
+namespace = daedric_artifact
+
+# ---------------------------------------------------------------
+# daedric_artifact.000  Hidden yearly trigger
+# A Daedric artifact stirs near the realm.  Fires for rulers
+# who are daedric_champion or have intrigue >= 12.
+# Selects which artifact event to trigger based on random chance.
+# ---------------------------------------------------------------
+daedric_artifact.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        NOT = { has_character_flag = artifact_found_flag }
+        NOT = { has_character_flag = artifact_refused_year }
+        OR = {
+            has_trait = daedric_champion
+            intrigue >= 12
+        }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = artifact_found_flag
+            days = 3650
+        }
+        random_list = {
+            35 = { trigger_event = { id = daedric_artifact.001 days = 5 } }
+            35 = { trigger_event = { id = daedric_artifact.002 days = 5 } }
+            30 = { trigger_event = { id = daedric_artifact.003 days = 5 } }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.001  A Shimmering Blade Appears
+# Mehrunes' Razor manifests in a dream — a tiny, crimson-edged
+# blade that promises absolute destruction to any foe.
+# ---------------------------------------------------------------
+daedric_artifact.001 = {
+    type = character_event
+    title = daedric_artifact.001.t
+    desc  = daedric_artifact.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = mehrunes_razor_bearer }
+    }
+
+    option = {
+        name = daedric_artifact.001.a   # "The blade is mine. I claim it."
+        add_trait = mehrunes_razor_bearer
+        add_character_modifier = {
+            modifier = daedric_artifact_new_bearer
+            days = 365
+        }
+    }
+
+    option = {
+        name = daedric_artifact.001.b   # "I will not take Mehrunes Dagon's gift."
+        add_piety = 50
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.002  The Fool's Sceptre
+# A ragged madman appears at court carrying a staff of
+# bizarre carved wood that seems to hum with suppressed laughter.
+# Sheogorath's Wabbajack seeks a new hand to hold it.
+# ---------------------------------------------------------------
+daedric_artifact.002 = {
+    type = character_event
+    title = daedric_artifact.002.t
+    desc  = daedric_artifact.002.desc
+    theme = court
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = wabbajack_wielder }
+    }
+
+    option = {
+        name = daedric_artifact.002.a   # "Take this strange gift."
+        add_trait = wabbajack_wielder
+        add_stress = -10
+    }
+
+    option = {
+        name = daedric_artifact.002.b   # "Send the madman away."
+        add_prestige = 15
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.003  The Blade of Woe
+# Explorers excavating ruins have unearthed an ancient black
+# sword.  Mephala's Ebony Blade radiates cold and hunger.
+# ---------------------------------------------------------------
+daedric_artifact.003 = {
+    type = character_event
+    title = daedric_artifact.003.t
+    desc  = daedric_artifact.003.desc
+    theme = martial
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = ebony_blade_cursed }
+    }
+
+    option = {
+        name = daedric_artifact.003.a   # "Claim the blade."
+        add_trait = ebony_blade_cursed
+        add_character_modifier = {
+            modifier = daedric_artifact_new_bearer
+            days = 365
+        }
+    }
+
+    option = {
+        name = daedric_artifact.003.b   # "Destroy it."
+        add_prestige = 75
+        add_piety    = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.010  The Artifact Stirs
+# Yearly flavor event for artifact bearers.  The Daedric
+# presence in the object grows stronger; corruption creeps in.
+# Adds artifact_corruption trait if not already present.
+# ---------------------------------------------------------------
+daedric_artifact.010 = {
+    type = character_event
+    title = daedric_artifact.010.t
+    desc  = daedric_artifact.010.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        OR = {
+            has_trait = mehrunes_razor_bearer
+            has_trait = wabbajack_wielder
+            has_trait = skull_of_corruption_bearer
+            has_trait = ebony_blade_cursed
+            has_trait = ring_of_namira_bearer
+        }
+        NOT = { has_trait = artifact_corruption }
+        NOT = { has_character_flag = artifact_corruption_check }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = artifact_corruption_check
+            days = 730
+        }
+    }
+
+    option = {
+        name = daedric_artifact.010.a   # "I can master it. The artifact does not master me."
+        add_stress = 15
+        trigger_event = { id = daedric_artifact.020 days = 180 }
+    }
+
+    option = {
+        name = daedric_artifact.010.b   # "The voices grow louder. I submit."
+        add_trait = artifact_corruption
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.020  The Price of Power
+# Artifact bearer suffers the Daedric toll.  Stress rises
+# or health falters as the artifact demands its due.
+# ---------------------------------------------------------------
+daedric_artifact.020 = {
+    type = character_event
+    title = daedric_artifact.020.t
+    desc  = daedric_artifact.020.desc
+    theme = personal_activity
+
+    trigger = {
+        is_adult = yes
+        OR = {
+            has_trait = mehrunes_razor_bearer
+            has_trait = wabbajack_wielder
+            has_trait = skull_of_corruption_bearer
+            has_trait = ebony_blade_cursed
+            has_trait = ring_of_namira_bearer
+        }
+    }
+
+    option = {
+        name = daedric_artifact.020.a   # "Endure."
+        add_stress = 25
+    }
+
+    option = {
+        name = daedric_artifact.020.b   # "Let it take what it wants from the body."
+        add_character_modifier = {
+            modifier = artifact_health_drain
+            days = 365
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.030  Pass the Burden
+# The bearer can transfer the artifact's curse to a vassal or
+# ally — ridding themselves of the trait while burdening another.
+# ---------------------------------------------------------------
+daedric_artifact.030 = {
+    type = character_event
+    title = daedric_artifact.030.t
+    desc  = daedric_artifact.030.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = mehrunes_razor_bearer
+            has_trait = wabbajack_wielder
+            has_trait = skull_of_corruption_bearer
+            has_trait = ebony_blade_cursed
+            has_trait = ring_of_namira_bearer
+        }
+        any_vassal = { is_adult = yes }
+    }
+
+    option = {
+        name = daedric_artifact.030.a   # "Pass it to a vassal."
+        if = {
+            limit = { has_trait = mehrunes_razor_bearer }
+            remove_trait = mehrunes_razor_bearer
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = mehrunes_razor_bearer
+            }
+        }
+        if = {
+            limit = { has_trait = wabbajack_wielder }
+            remove_trait = wabbajack_wielder
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = wabbajack_wielder
+            }
+        }
+        if = {
+            limit = { has_trait = ebony_blade_cursed }
+            remove_trait = ebony_blade_cursed
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = ebony_blade_cursed
+            }
+        }
+        add_prestige = -50
+        add_stress   = 10
+    }
+
+    option = {
+        name = daedric_artifact.030.b   # "Keep it. Its power is mine."
+        add_stress = -5
+    }
+}

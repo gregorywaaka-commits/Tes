@@ -348,3 +348,351 @@ nedic_elder = {
     monthly_piety = 1
     flag = nedic_elder
 }
+
+# =============================================================
+#  Clockwork City / Seven Graces / Ashlander Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CLOCKWORK INITIATE
+#  A ruler who has entered the Clockwork City and returned.
+#  Only a handful of people in all of Tamriel have ever walked
+#  Sotha Sil's Brass Halls.  The experience rewires the way
+#  the mind approaches governance, scholarship, and faith:
+#  everything is mechanism; everything can be understood if
+#  one is willing to look long enough at the gears.
+# ---------------------------------------------------------------
+clockwork_initiate = {
+    category = scholar
+
+    learning    = 3
+    stewardship = 2
+
+    monthly_piety_gain_mult = 0.10   # Sotha Sil's direct legacy carries Tribunal weight
+
+    flag = clockwork_initiate
+}
+
+# ---------------------------------------------------------------
+#  SEVEN GRACES PILGRIM
+#  A Dunmer ruler who has walked all seven canonical shrines
+#  of Vivec's graces — from Vivec City to Mount Kand — and
+#  completed each in the proper spirit.  This is a life's
+#  devotion compressed into months of hard travel: the warrior-
+#  poet's road, walked in full.  The Dunmer faithful regard
+#  a completed Seven Graces pilgrim with profound reverence.
+# ---------------------------------------------------------------
+seven_graces_pilgrim = {
+    category = lifestyle
+
+    diplomacy = 2
+
+    monthly_piety_gain_mult    = 0.25   # Vivec's graces permanently deepen the character's faith
+    monthly_prestige_gain_mult = 0.15   # Completion of all seven is widely known and admired
+
+    flag = seven_graces_pilgrim
+}
+
+# ---------------------------------------------------------------
+#  ASHLANDER NEREVARINE
+#  A Dunmer ruler who has been recognised by all four great
+#  Ashlander tribes — the Urshilaku, the Erabenimsun, the
+#  Ahemmusa, and the Zainab — as the living incarnation of
+#  the Nerevarine prophecy.  This is the fulfilment of Azura's
+#  promise to the Chimer: that Nerevar would return to defend
+#  Morrowind in its time of need.  To bear this recognition
+#  is to carry a weight that has nothing to do with politics.
+# ---------------------------------------------------------------
+ashlander_nerevarine = {
+    category = fame
+
+    martial   = 2
+    diplomacy = 2
+
+    monthly_piety_gain_mult = 0.15   # Azura's mark is unmistakable; faith follows naturally
+
+    flag = ashlander_nerevarine
+}
+
+# =============================================================
+#  Great Houses of Morrowind — Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MORROWIND HORTATOR
+#  A Dunmer ruler who has been named Hortator — war-leader of
+#  Morrowind — by all five Great House councils: Redoran,
+#  Telvanni, Indoril, Hlaalu, and Dres.  The title of Hortator
+#  predates the Tribunal; it is the oldest form of Dunmer
+#  political authority, invoked only when the threat to
+#  Morrowind is existential.  To bear it is to carry the
+#  weight of an entire people's survival in one pair of hands.
+# ---------------------------------------------------------------
+morrowind_hortator = {
+    category = fame
+
+    martial   = 3
+    diplomacy = 2
+
+    monthly_prestige_gain_mult = 0.20   # Every Great House acknowledged this ruler by name; the word spreads
+
+    flag = morrowind_hortator
+}
+
+# ---------------------------------------------------------------
+#  TELVANNI MASTER WIZARD
+#  A wizard-lord who has claimed a living mushroom tower and
+#  refused all external authority — Tribunal, house council, or
+#  vassal obligation.  Telvanni wizard-lords grow their towers
+#  from spores and their reputations from studied indifference
+#  to the rest of the world.  The isolation is deliberate.
+#  The learning it produces is profound.  The cost is real.
+# ---------------------------------------------------------------
+telvanni_master_wizard = {
+    category = scholar
+
+    learning    = 4
+    stewardship = 2
+
+    stress_gain_mult = 0.20         # Isolation is intellectually productive and personally costly
+    general_opinion  = -10          # The wizard-lord's deliberate withdrawal from society is noted
+
+    flag = telvanni_master_wizard
+}
+
+# ---------------------------------------------------------------
+#  DRES SLAVER
+#  A Dunmer lord who has engaged openly in House Dres's
+#  slave-trade — raiding Black Marsh and selling Hist-bonded
+#  Argonians into bondage in the Deshaan Plains and beyond.
+#  The Tribunal's Temple condemns the practice; the Hist
+#  remembers every name.  The gold is real.  So is everything
+#  else that comes with it.
+# ---------------------------------------------------------------
+dres_slaver = {
+    category = lifestyle
+
+    intrigue    = 2
+    stewardship = 1
+
+    monthly_piety_gain_mult = -0.20   # The Temple's condemnation is formal and ongoing
+
+    flag = dres_slaver
+}
+
+# =============================================================
+#  Dragon Priest / Alduin / Dragon Cult Traits
+# =============================================================
+
+# A ruler who has hunted and unmasked multiple Dragon Priests,
+# culminating in Konahrik — the golden Warlord's mask.
+dragon_priest_master = {
+    category = fame
+    martial   = 3
+    learning  = 2
+    prowess   = 4
+    monthly_prestige_gain_mult = 0.20
+    flag = dragon_priest_master
+}
+
+# A ruler who worships dragon-kind as gods via the hidden cult.
+dragon_cultist_devotee = {
+    category = lifestyle
+    learning  = 1
+    martial   = 1
+    monthly_piety_gain_mult = -0.15   # dragon worship is heresy to Akatosh's faithful
+    flag = dragon_cultist_devotee
+}
+
+# A ruler who faced the shadow of Alduin and survived.
+world_eater_survived = {
+    category = fame
+    martial   = 2
+    monthly_prestige_gain_mult = 0.10
+    flag = world_eater_survived
+}
+
+# =============================================================
+#  Alessian Order / Reman Dynasty Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ALESSIAN REFORMER
+#  A ruler who has publicly proclaimed the Eight Divines in their
+#  pure human form — purging elven saints and Aldmeri theological
+#  corruption from their chapel and court.  The Order's central
+#  argument: the Divines were always human gods, and every layer
+#  of elven influence added since the Dawn Era is a lie.
+#  The Reformation earns devotion from human vassals and hatred
+#  from elven neighbours in equal measure.
+# ---------------------------------------------------------------
+alessian_reformer = {
+    category = lifestyle
+    diplomacy = 1
+    monthly_piety_gain_mult = 0.15   # Human-faith piety for purging elven influence
+    flag = alessian_reformer
+}
+
+# ---------------------------------------------------------------
+#  REMAN HEIR
+#  A ruler who has formally claimed descent from Reman I,
+#  founder of the Second Empire, wielder of the Amulet of Kings,
+#  and the first mortal since Alessia to claim Dragonborn
+#  legitimacy over all of Cyrodiil.  The genealogical research
+#  is complete; the claim is public.  What happens next is
+#  a matter of politics, war, and the weight of history.
+# ---------------------------------------------------------------
+reman_heir = {
+    category = fame
+    diplomacy = 2
+    monthly_prestige_gain_mult = 0.15
+    flag = reman_heir
+}
+
+# =============================================================
+#  Mythic Dawn Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MYTHIC DAWN INNER CIRCLE
+#  A ruler who has ascended through the Mythic Dawn's ranks to
+#  reach the inner circle — those who have read the Commentaries
+#  on the Mysterium Xarxes in full, completed a loyalty test
+#  of blood or theft, and heard Mankar Camoran's final doctrine
+#  from a trusted Voice of the Dawn.  They know the plan.
+#  They know it is real.  The weight of that knowledge is
+#  not easily set down.
+# ---------------------------------------------------------------
+mythic_dawn_inner = {
+    category = lifestyle
+    intrigue = 2
+    monthly_piety_gain_mult = -0.15   # Dagon's mortal cult makes Aedric piety difficult
+    flag = mythic_dawn_inner
+}
+
+# =============================================================
+#  Hist / Saxhleel Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  HIST ELDER-BONDED
+#  A ruler who has made the pilgrimage to Murkmire and stood at
+#  the oldest Hist grove — and drunk the sap offered there.
+#  The Grand Convocation is not a ceremony.  It is a permanent
+#  biological deepening of the Hist bond.  The learning that
+#  follows is not bookish; it is root-memory directly inherited
+#  from a tree that was present at the Dawn Era.
+# ---------------------------------------------------------------
+hist_elder_bonded = {
+    category = lifestyle
+    learning    = 3
+    stewardship = 1
+    monthly_piety_gain_mult = 0.20   # Hist-faith piety for deep communion
+    flag = hist_elder_bonded
+}
+
+# =============================================================
+#  Nordic / Atmoran Extensions — Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  COMPANION OF YSGRAMOR
+#  A Nord or Atmoran ruler who has formally claimed and had
+#  acknowledged their descent from the Five Hundred Companions —
+#  Ysgramor's warriors who crossed the seas from Atmora and
+#  founded the Nordic kingdoms.  The claim requires both
+#  genealogical evidence and the martial credibility to make
+#  it credible.  Full success grants this trait.
+# ---------------------------------------------------------------
+companion_of_ysgramor = {
+    category = fame
+    martial  = 3
+    prowess  = 2
+    monthly_prestige_gain_mult = 0.15
+    flag = companion_of_ysgramor
+}
+
+# ---------------------------------------------------------------
+#  SHOR MARKED
+#  A Nord ruler who has received a vision of Sovngarde —
+#  Shor's golden meadhall — and heard the call of the God
+#  Beneath.  The mark does not compel; it simply rests on
+#  the ruler.  Sovngarde's calling eases the burden of
+#  mortal life: things that would weigh on others feel
+#  less urgent when you have seen what waits at the end.
+# ---------------------------------------------------------------
+shor_marked = {
+    category = lifestyle
+    martial  = 2
+    prowess  = 3
+    stress_gain_mult = -0.15   # Sovngarde's call eases the burden of mortal life
+    flag = shor_marked
+}
+
+# ---------------------------------------------------------------
+#  ALL-MAKER BLESSED
+#  A Nord ruler who has been acknowledged by the Skaal
+#  All-Maker's eight aspects — earth, wind, fire, water,
+#  stone, sun, flora, and beasts.  The blessing grants a
+#  quality of presence rather than raw power: harmony
+#  with the natural order of all things.
+# ---------------------------------------------------------------
+all_maker_blessed = {
+    category = lifestyle
+    stewardship = 1
+    health      = 0.5
+    stress_gain_mult        = -0.10   # The All-Maker's eight aspects bring harmony to the soul
+    monthly_piety_gain_mult = 0.10
+    flag = all_maker_blessed
+}
+
+# =============================================================
+#  Magic Systems — Julianos / Psijic Endeavour — Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DIVINE SCHOLAR
+#  A ruler who has completed the Order of Julianos's full
+#  curriculum — the disciplined investigation of logic, law,
+#  natural philosophy, and arcane structure.  Julianos's way
+#  of thinking has become structural rather than conscious:
+#  the Divine's method is applied without needing to be
+#  deliberately reached for.
+# ---------------------------------------------------------------
+divine_scholar = {
+    category = lifestyle
+    learning    = 3
+    stewardship = 1
+    monthly_piety_gain_mult = 0.10   # Julianos's favour for the devout student of reason
+    flag = divine_scholar
+}
+
+# ---------------------------------------------------------------
+#  ENDEAVOUR SEEKER
+#  A ruler who has crossed the first threshold of the Psijic
+#  Endeavour — the genuine experience of the self as something
+#  other than entirely mortal.  The path is not complete; the
+#  final gamble has not yet been taken.
+# ---------------------------------------------------------------
+endeavour_seeker = {
+    category = lifestyle
+    learning = 2
+    flag = endeavour_seeker
+}
+
+# ---------------------------------------------------------------
+#  ENDEAVOUR ADVANCED
+#  A ruler who has completed the Psijic Endeavour and crossed
+#  the final threshold of self-transcendence.  What was found
+#  at the edge of mortality is not easily described; what it
+#  does to a life lived afterward is visible in every decision.
+# ---------------------------------------------------------------
+endeavour_advanced = {
+    category = lifestyle
+    learning    = 5
+    stewardship = 2
+    health      = 1.0
+    monthly_prestige_gain_mult = 0.25
+    monthly_piety_gain_mult    = 0.25
+    flag = endeavour_advanced
+}

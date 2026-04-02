@@ -1,0 +1,370 @@
+# =============================================================
+#  The Four Ashlander Tribes of Morrowind
+#  Namespace: ashlander
+#
+#  LORE:
+#  The Ashlanders are the nomadic Dunmer who reject the Tribunal
+#  Temple and maintain the original ancestor-worship of the
+#  ancient Chimer.  There are four great tribes:
+#
+#    Urshilaku  — the wisest and most respected; keepers of the
+#                 Nerevarine prophecy; they dwell in the Ashlands
+#                 north of Red Mountain.
+#    Erabenimsun — fierce warriors from the Grazelands; aggressive,
+#                  suspicious of outsiders, testing all who approach.
+#    Ahemmusa    — the gentlest tribe; peaceful, spiritual, dwelling
+#                  near the Grazelands coast.
+#    Zainab      — pragmatic traders in the Grazelands; cunning,
+#                  materialist, not above a good deal.
+#
+#  Settled Dunmer rulers who treat with the Ashlanders navigate
+#  a complex web of obligation, prophecy, and old contempt.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • ashlander.000 — An Ambassador Arrives
+#                    (yearly, Dunmer rulers, can welcome or dismiss)
+#  • ashlander.001 — The Urshilaku Elder Speaks
+#                    (fires if nerevarine_marked + ashlander_welcomed)
+#  • ashlander.002 — Erabenimsun Challenger
+#                    (fires for martial Dunmer — win or lose)
+#  • ashlander.003 — Ahemmusa Traders Offer Rare Goods
+#                    (stewardship path — pay gold for modifier)
+#  • ashlander.004 — Zainab Wise-Woman Reads the Stars
+#                    (learning path — gain insight or unsettling vision)
+#  • ashlander.005 — Named Nerevarine by the Ashlanders
+#                    (fires when all four tribe flags + nerevarine_marked)
+#
+#  KEY TRAITS:
+#  ───────────
+#  • ashlander_nerevarine — lore_races_traits.txt (appended)
+#  • nerevarine_marked    — dagoth_ur_events.txt
+#
+#  KEY MODIFIERS:
+#  ──────────────
+#  • ashlander_welcomed_modifier — 730 days, diplomacy/piety buff
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture   — EK2 culture identifier
+#  • nerevarine_marked — dagoth_ur_events.txt
+# =============================================================
+
+namespace = ashlander
+
+# ---------------------------------------------------------------
+# ashlander.000  An Ashlander Ambassador Arrives
+# Fires yearly for Dunmer rulers.  A representative of one of
+# the four tribes has come — not armed, not hostile, but carrying
+# the careful neutrality of a people who have been dismissed and
+# betrayed by settled Dunmer too many times to trust easily.
+# The ruler may welcome them properly, dismiss them, or negotiate.
+# ---------------------------------------------------------------
+ashlander.000 = {
+    type = character_event
+    title = ashlander.000.t
+    desc = ashlander.000.desc
+    theme = diplomacy
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        NOT = { has_character_flag = ashlander_ambassador_recent }
+    }
+
+    immediate = {
+        # If all conditions met for Nerevarine recognition, fire that event
+        if = {
+            limit = {
+                has_trait = nerevarine_marked
+                has_character_flag = urshilaku_tribe_accepted
+                has_character_flag = erabenimsun_tribe_accepted
+                has_character_flag = ahemmusa_tribe_accepted
+                has_character_flag = zainab_tribe_accepted
+                NOT = { has_trait = ashlander_nerevarine }
+            }
+            trigger_event = { id = ashlander.005 }
+        }
+    }
+
+    option = {
+        name = ashlander.000.a   # "Welcome them. Give them the honour they deserve."
+        add_character_flag = { flag = ashlander_ambassador_recent days = 365 }
+        add_character_flag = { flag = ashlander_welcomed }
+        add_prestige = 100
+        add_piety    = 75
+        add_modifier = {
+            modifier = ashlander_welcomed_modifier
+            days = 730
+        }
+        # Trigger follow-on events based on character profile
+        if = {
+            limit = {
+                has_trait = nerevarine_marked
+                has_character_flag = ashlander_welcomed
+            }
+            trigger_event = { id = ashlander.001 days = 15 }
+        }
+        if = {
+            limit = {
+                martial >= 12
+                NOT = { has_character_flag = erabenimsun_tested }
+            }
+            trigger_event = { id = ashlander.002 days = 15 }
+        }
+    }
+
+    option = {
+        name = ashlander.000.b   # "Negotiate. I need what they know."
+        add_character_flag = { flag = ashlander_ambassador_recent days = 365 }
+        add_prestige = 50
+        trigger_event = { id = ashlander.003 days = 15 }
+        trigger_event = { id = ashlander.004 days = 20 }
+    }
+
+    option = {
+        name = ashlander.000.c   # "Dismiss them. I have enough politics without adding theirs."
+        add_character_flag = { flag = ashlander_ambassador_recent days = 365 }
+        add_piety  = -50
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# ashlander.001  The Urshilaku Elder Speaks of the Nerevarine
+# Fires for nerevarine_marked rulers who welcomed the ambassador.
+# The eldest Urshilaku has come in person — a rare honour.
+# She says nothing about the prophecy directly.  She asks
+# questions and listens to how the ruler answers them.  A ruler
+# who understands what is being asked may find the old woman
+# nodding slowly at the end.
+# ---------------------------------------------------------------
+ashlander.001 = {
+    type = character_event
+    title = ashlander.001.t
+    desc = ashlander.001.desc
+    theme = faith
+
+    trigger = {
+        has_trait = nerevarine_marked
+        has_character_flag = ashlander_welcomed
+        NOT = { has_character_flag = urshilaku_tribe_accepted }
+    }
+
+    option = {
+        name = ashlander.001.a   # "I speak honestly. If I am the one the prophecy names, I do not know it yet."
+        add_character_flag = { flag = urshilaku_tribe_accepted }
+        add_piety    = 200
+        add_prestige = 100
+        add_learning = 1
+        add_stress   = -10
+    }
+
+    option = {
+        name = ashlander.001.b   # "I tell her what she wants to hear. Whether it is true is another question."
+        add_character_flag = { flag = urshilaku_tribe_accepted }
+        add_piety  = 100
+        add_stress = 20
+        # half reward — the elder is not entirely fooled
+    }
+
+    option = {
+        name = ashlander.001.c   # "I am not the Nerevarine. I refuse to play the part."
+        add_piety  = 75
+        add_stress = 15
+        # does not set flag — Urshilaku remain skeptical
+    }
+}
+
+# ---------------------------------------------------------------
+# ashlander.002  The Erabenimsun Challenge
+# Fires for martial Dunmer rulers (martial >= 12) who welcomed
+# the ambassador.  The Erabenimsun do not negotiate — they test.
+# A champion of the tribe steps forward.  The settled ruler
+# who turns this down is not respected.  The one who accepts
+# and wins earns something the Erabenimsun almost never give:
+# genuine acknowledgement.
+# ---------------------------------------------------------------
+ashlander.002 = {
+    type = character_event
+    title = ashlander.002.t
+    desc = ashlander.002.desc
+    theme = war
+
+    trigger = {
+        has_culture = dunmer_culture
+        martial >= 12
+        NOT = { has_character_flag = erabenimsun_tested }
+    }
+
+    option = {
+        name = ashlander.002.a   # "I accept. Come at me."
+        trigger = { martial >= 14 }
+        add_character_flag = { flag = erabenimsun_tested }
+        add_character_flag = { flag = erabenimsun_tribe_accepted }
+        add_prestige  = 300
+        add_piety     = 100
+        add_prowess   = 1
+        add_stress    = 10
+    }
+
+    option = {
+        name = ashlander.002.b   # "I fight — but it does not go as well as I hoped."
+        trigger = {
+            martial >= 12
+            martial < 14
+        }
+        add_character_flag = { flag = erabenimsun_tested }
+        add_character_flag = { flag = erabenimsun_tribe_accepted }
+        add_prestige = 100
+        add_stress   = 20
+        # survived, barely respected — flag still set
+    }
+
+    option = {
+        name = ashlander.002.c   # "I decline the challenge. I am a ruler, not a brawler."
+        add_character_flag = { flag = erabenimsun_tested }
+        add_prestige = -100
+        add_stress   = 10
+        # Erabenimsun are not impressed — flag not set for tribe acceptance
+    }
+}
+
+# ---------------------------------------------------------------
+# ashlander.003  The Ahemmusa Offer
+# Fires after a negotiation with the ambassador.  The Ahemmusa
+# tribe carries goods from the deep ashlands — ingredients and
+# materials that settled merchants rarely see.  Their offer is
+# genuine.  A ruler who accepts and pays fairly gains a lasting
+# relationship with the most peaceable of the four tribes.
+# ---------------------------------------------------------------
+ashlander.003 = {
+    type = character_event
+    title = ashlander.003.t
+    desc = ashlander.003.desc
+    theme = stewardship
+
+    trigger = {
+        NOT = { has_character_flag = ahemmusa_tribe_accepted }
+    }
+
+    option = {
+        name = ashlander.003.a   # "I pay their price. It is fair. I know it is fair."
+        add_character_flag = { flag = ahemmusa_tribe_accepted }
+        add_gold   = -100
+        add_piety  = 150
+        add_prestige = 75
+        add_modifier = {
+            modifier = ashlander_welcomed_modifier
+            days = 365
+        }
+    }
+
+    option = {
+        name = ashlander.003.b   # "I try to bargain them down."
+        add_character_flag = { flag = ahemmusa_tribe_accepted }
+        add_gold   = -50
+        add_piety  = 75
+        add_stress = 10
+        # paid less, gained less goodwill
+    }
+
+    option = {
+        name = ashlander.003.c   # "I have no interest in their wares."
+        add_piety  = -25
+        add_stress = 5
+        # does not set flag
+    }
+}
+
+# ---------------------------------------------------------------
+# ashlander.004  The Zainab Wise-Woman Reads the Stars
+# Fires after a negotiation with the ambassador.  The Zainab
+# tribe keeps wise-women who read the constellations — not with
+# the mysticism of the Tribunal, but with the blunt accuracy
+# of people who have watched the same sky for ten thousand years.
+# A ruler with learning enough to understand what she says gains
+# insight.  A ruler unprepared for her honesty gains stress.
+# ---------------------------------------------------------------
+ashlander.004 = {
+    type = character_event
+    title = ashlander.004.t
+    desc = ashlander.004.desc
+    theme = scholarship
+
+    trigger = {
+        NOT = { has_character_flag = zainab_tribe_accepted }
+    }
+
+    option = {
+        name = ashlander.004.a   # "I hear her. It is not comfortable, but it is clarifying."
+        trigger = { learning >= 12 }
+        add_character_flag = { flag = zainab_tribe_accepted }
+        add_piety   = 125
+        add_learning = 1
+        add_stress  = -5
+    }
+
+    option = {
+        name = ashlander.004.b   # "The stars have nothing to say about my reign. I dismiss her words."
+        add_character_flag = { flag = zainab_tribe_accepted }
+        add_piety  = 50
+        add_stress = 20
+        # skeptical acknowledgement — flag set but less reward
+    }
+
+    option = {
+        name = ashlander.004.c   # "What she tells me is deeply unsettling. I do not want to hear more."
+        add_stress = 30
+        add_piety  = 50
+        # does not set flag — walked away before she finished
+    }
+}
+
+# ---------------------------------------------------------------
+# ashlander.005  Named Nerevarine by the Ashlanders
+# Fires from ashlander.000's immediate block when all four
+# tribe flags are set + nerevarine_marked + NOT ashlander_nerevarine.
+# This is the culmination of years of careful, respectful
+# engagement with every tribe.  To be named by all four — the
+# wise, the fierce, the gentle, and the pragmatic — means
+# that the prophecy has found the person it was waiting for.
+# ---------------------------------------------------------------
+ashlander.005 = {
+    type = character_event
+    title = ashlander.005.t
+    desc = ashlander.005.desc
+    theme = faith
+
+    trigger = {
+        has_trait = nerevarine_marked
+        has_character_flag = urshilaku_tribe_accepted
+        has_character_flag = erabenimsun_tribe_accepted
+        has_character_flag = ahemmusa_tribe_accepted
+        has_character_flag = zainab_tribe_accepted
+        NOT = { has_trait = ashlander_nerevarine }
+    }
+
+    option = {
+        name = ashlander.005.a   # "All four tribes. I did not plan for this moment — and now I am here."
+        if = {
+            limit = { NOT = { has_trait = ashlander_nerevarine } }
+            add_trait = ashlander_nerevarine
+        }
+        add_piety    = 500
+        add_prestige = 400
+        add_stress   = -20
+        custom_tooltip = ashlander_nerevarine_complete_tt
+    }
+
+    option = {
+        name = ashlander.005.b   # "I carry this title carefully. I know what it cost to earn."
+        if = {
+            limit = { NOT = { has_trait = ashlander_nerevarine } }
+            add_trait = ashlander_nerevarine
+        }
+        add_piety  = 600
+        add_stress = -30
+        custom_tooltip = ashlander_nerevarine_complete_tt
+    }
+}

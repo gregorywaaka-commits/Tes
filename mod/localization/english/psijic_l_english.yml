@@ -1,0 +1,53 @@
+﻿l_english:
+
+ # =====================================================================
+ #  PSIJIC ORDER — ARTAEUM, THE OLD WAYS, AND THE FLOW OF TIME
+ # =====================================================================
+
+ # ---- psijic.000 — An Invitation from Artaeum ----
+
+ psijic.000.t: "An Invitation from Artaeum"
+ psijic.000.desc: "The monk is there between one moment and the next — not as if they walked in, but as if the room rearranged itself slightly to include them.  White robes.  A calm that is not stillness but something more active than stillness, like a river seen from far above.  They place a letter on the nearest surface without ceremony.  The handwriting is clear and unambiguous.  The date on the invitation has already passed, but the monk does not seem to consider this a problem.  The Psijic Order would like your company at Artaeum for a period of study.  They do not say for how long.  They do not need to ask twice — they already know whether you will say yes."
+ psijic.000.a: "I accept. When do I leave?"
+ psijic.000.b: "I have no time for hermit monks and vanishing islands."
+
+ # ---- psijic.001 — The Novice's Path ----
+
+ psijic.001.t: "The Novice's Path"
+ psijic.001.desc: "The first lesson does not happen in a classroom.  You are sitting in a garden on an island you cannot locate on any map, and the monk beside you asks you to do one thing: stop.  Not stop moving — stop experiencing time as something that is happening to you, and begin experiencing it as something you are moving through.  It is a conceptual shift that sounds simple and is not.  The monks have been teaching it for longer than most empires have existed.  Some students arrive and find it immediately.  Some spend years circling it.  Some never quite reach it.  You begin."
+ psijic.001.a: "I study with full rigour. I will not leave until I understand this completely."
+ psijic.001.b: "I follow what I can. I carry more than I arrived with, even if not everything."
+ psijic.001.c: "The river of time bends around me on all sides and I cannot hold any of it still."
+
+ # ---- psijic.002 — The Adept's Test ----
+
+ psijic.002.t: "The Adept's Test"
+ psijic.002.desc: "The Order does not administer formal examinations.  Instead, one morning you are presented with a situation — a crisis, constructed or genuine, the monks do not clarify — and asked to respond to it while simultaneously observing your own response.  Act.  Think.  Perceive.  They want to see which of these three things you do first when time is actually running.  The teaching was always toward this: not to give you knowledge but to show you how you use knowledge when you are under pressure.  What you do next will tell the monks more about you than anything you have said in all your months on Artaeum."
+ psijic.002.a: "I act. A still mind in a crisis is the whole point of everything I have been taught."
+ psijic.002.b: "I observe the choice as completely as I can — and in observing it, I understand."
+ psijic.002.c: "I do not move hastily. The cautious path is the one that does not require repair."
+
+ # ---- psijic.003 — Artaeum Withdraws ----
+
+ psijic.003.t: "Artaeum Withdraws"
+ psijic.003.desc: "There is no announcement.  The correspondence simply stops.  The contacts you made there stop responding.  And then you hear, through the careful channels such things travel through, that someone stood on the cliff at Summerset where Artaeum should have been visible across the water and found only open sea.  The island is gone again.  It has done this before.  It will, presumably, do it again.  The Order does not ask permission; they never have.  You are a Psijic adept standing in a world that no longer contains an active Psijic Order.  What you carry from Artaeum is what you have.  The question is whether that is enough."
+ psijic.003.a: "The teachings are inside me now. An island's absence changes nothing I have learned."
+ psijic.003.b: "They came and went without asking — as they always have. I grieve this."
+
+ # ---- Decision ----
+
+ seek_psijic_tutelage: "Seek Psijic Tutelage"
+ seek_psijic_tutelage_desc: "The Psijic Order does not advertise.  They do not recruit.  They observe, from their island which cannot be found except by those they permit to find it, and when they see something worth teaching, they send a monk.  A ruler of sufficient learning and standing may make themselves findable — through scholarship, through the kind of sustained intellectual seriousness the Order has always monitored — and spend the necessary gold and prestige on the months of correspondence and preparation that precede an actual invitation.  The Order will notice.  They always do."
+
+ # ---- Traits ----
+
+ psijic_novice: "Psijic Novice"
+ psijic_novice_desc: "This ruler has begun study with the Psijic Order on Artaeum and received the first teaching of the Old Ways: the practice of stilling time in the mind — stepping sideways from the current of events to observe without being carried.  It is not a complete discipline yet.  But the first step has been taken, and the monks do not teach the first step to those they believe incapable of the second."
+
+ psijic_adept: "Psijic Adept"
+ psijic_adept_desc: "This ruler has passed the Order's test and been acknowledged as a practitioner of the Old Ways.  A Psijic adept does not experience time the way other rulers do — they perceive it as a river they walk beside rather than a current they are carried by.  The serenity this produces is genuine, not performed.  The piety they hold is deeper for being rooted in something older than any current theology.  The Order rarely produces adepts.  When it does, it notices."
+
+ # ---- Modifier ----
+
+ psijic_time_insight: "Psijic Time Insight"
+ psijic_time_insight_desc: "The adept's first successful experience of stilling time in a genuine crisis — standing at the edge of decision while the rest of the room rushed forward without them, and choosing correctly.  The martial clarity that follows is not aggression; it is precision.  The learning it refines is not academic; it is structural.  Both feel like remembering something you always knew."

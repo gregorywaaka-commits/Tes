@@ -1,0 +1,167 @@
+# =============================================================
+#  Longhouse Emperors Events
+#  Namespace: longhouse
+#  File: mod/events/longhouse_emperors_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  longhouse.000  "The Reach Claims the Ruby Throne" — path begins
+#  longhouse.001  "Blood of the Empire" — genealogical claim pressed
+#  longhouse.010  "The Ruby Throne" — Reachman controls Imperial City
+#  longhouse.020  "The Reach Divided" — hagraven councils weigh in
+#
+#  HISTORICAL NOTE:
+#  The Longhouse Emperors were a dynasty of Reachmen (Durcorach,
+#  Moricar, and Leovic) who held the Ruby Throne from roughly
+#  2E 541 to 2E 577. They were considered outsiders by the Colovian
+#  elite and were ultimately overthrown by Varen Aquilarios.
+# =============================================================
+
+namespace = longhouse
+
+# ---------------------------------------------------------------
+# longhouse.000  The Reach Claims the Ruby Throne
+# A Reachman ruler who has survived long enough to see 2E 541
+# hears the whispers of the hagraven councils: Cyrodiil is not
+# beyond reach. The Ruby Throne has been taken by outsiders
+# before. Why not by the children of the Reach?
+# ---------------------------------------------------------------
+longhouse.000 = {
+    type = character_event
+    title = longhouse.000.t
+    desc  = longhouse.000.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = scheme
+    }
+
+    trigger = {
+        has_trait = reachman_heritage
+        current_date >= 2.541.1.1
+        NOT = { has_trait = longhouse_pretender }
+        NOT = { has_trait = reachman_emperor }
+        is_ruler = yes
+        is_landed = yes
+    }
+
+    option = {
+        name = longhouse.000.a   # "The Ruby Throne was made for the strong. Cyrodiil will bow."
+        add_trait = longhouse_pretender
+        add_prestige = 200
+        add_martial_skill = 1
+        trigger_event = { id = longhouse.020 days = 30 }
+    }
+
+    option = {
+        name = longhouse.000.b   # "The Reach is my kingdom. I need no southern throne."
+        add_stress = -10
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# longhouse.001  Blood of the Empire
+# A longhouse_pretender ruler has assembled a genealogical case
+# for Imperial succession — through conquest, marriage, or a
+# chain of legitimacy the Colovian nobility will dispute but
+# cannot entirely dismiss. The moment of decision has arrived.
+# ---------------------------------------------------------------
+longhouse.001 = {
+    type = character_event
+    title = longhouse.001.t
+    desc  = longhouse.001.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = declare_war
+    }
+
+    trigger = {
+        has_trait = longhouse_pretender
+        is_ruler = yes
+    }
+
+    option = {
+        name = longhouse.001.a   # "By right of blood and conquest — march on Cyrodiil."
+        add_prestige = 300
+        add_stress = 15
+        add_martial_skill = 1
+    }
+
+    option = {
+        name = longhouse.001.b   # "Diplomacy first. Let their own nobles doubt the current heir."
+        trigger = { diplomacy >= 12 }
+        add_prestige = 150
+        add_diplomacy_skill = 1
+        add_intrigue_skill = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# longhouse.010  The Ruby Throne
+# A Reachman — a longhouse_pretender — controls the Imperial City.
+# The hagraven councils sing. The Colovians rage. History has
+# turned, and the children of the Reach sit at the heart of
+# the Empire they were never meant to rule.
+# ---------------------------------------------------------------
+longhouse.010 = {
+    type = character_event
+    title = longhouse.010.t
+    desc  = longhouse.010.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    trigger = {
+        has_trait = longhouse_pretender
+        completely_controls = title:c_imperial_city
+        NOT = { has_trait = reachman_emperor }
+    }
+
+    immediate = {
+        add_trait = reachman_emperor
+        remove_trait = longhouse_pretender
+    }
+
+    option = {
+        name = longhouse.010.a   # "The Reach has claimed what history denied us. Let Cyrodiil remember."
+        add_prestige = 500
+        add_piety = 100
+        add_stress = -20
+    }
+}
+
+# ---------------------------------------------------------------
+# longhouse.020  The Reach Divided
+# The hagraven councils of the Reach do not speak with one voice.
+# Some see an Emperor of their blood as the fulfillment of
+# ancient prophecy. Others fear losing their autonomy to Imperial
+# politics. The claimant must choose how to approach them.
+# ---------------------------------------------------------------
+longhouse.020 = {
+    type = character_event
+    title = longhouse.020.t
+    desc  = longhouse.020.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = alliance
+    }
+
+    option = {
+        name = longhouse.020.a   # "Seek their blessing. The Reach rises together or not at all."
+        add_trait = hagreach_authority
+        add_piety = 75
+        add_prestige = 100
+    }
+
+    option = {
+        name = longhouse.020.b   # "I rule by sword and will. The councils will follow or be left behind."
+        add_prestige = 200
+        add_stress = 20
+        add_martial_skill = 1
+    }
+}

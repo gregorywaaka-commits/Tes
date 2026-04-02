@@ -1,0 +1,49 @@
+﻿l_english:
+
+ # =====================================================================
+ #  MODIFIERS
+ # =====================================================================
+
+ pelinal_fury: "Pelinal's Fury"
+ pelinal_fury_desc: "The White Warrior's berserker wrath has been unleashed. Prowess surges beyond mortal limits. The price is stress and self. The rage will spend itself."
+
+ # =====================================================================
+ #  SHEZARRINE — TRAITS
+ # =====================================================================
+
+ shezarrine_vessel: "Shezarrine Vessel"
+ shezarrine_vessel_desc: "This character has been chosen as a vessel for the spirit of Shor — the divine essence that the Nords call the dead god and the Imperials call the Shezarrine principle. Pelinal Whitestrake was one such vessel. This character is another. The divine martial fury of mankind's champion floods their veins, brings superhuman prowess, and makes sleep a distant memory. The rage is always there, under the surface, waiting."
+
+ pelinal_rage: "Pelinal's Rage"
+ pelinal_rage_desc: "The berserker fury of Pelinal Whitestrake lives in this character's flesh. It is not ordinary battle-anger — it is a divine engine of destruction that strips away strategy, caution, and mercy, and leaves only the white fire of killing. While it lasts, this character is almost unstoppable. While it lasts, they are also almost uncontrollable."
+
+ elf_hate: "Elf-Hater's Creed"
+ elf_hate_desc: "The hatred of elves that Pelinal Whitestrake carried was not a political opinion — it was a spiritual inheritance from Shor himself, who warred against the et'Ada that would become the Aldmeri pantheon before Mundus was even made. This character carries that same inheritance. Their relationship with any elven ruler is coloured from the first meeting by something older than memory and harder than stone."
+
+ # =====================================================================
+ #  SHEZARRINE — EVENTS
+ # =====================================================================
+
+ shezarrine.000.a: "The marking passes unnoticed."
+
+ shezarrine.001.t: "The White Warrior Speaks"
+ shezarrine.001.desc: "The dream came without warning.\n\nA figure stood in the void — armoured in shining white plate that gave off its own light, sword in hand, visored helm turned toward you as if you were the only thing in all of creation worth looking at. The figure's voice did not come from a mouth. It came from everywhere.\n\n#italic 'I have walked in many skins. Each one broke before the work was done. You are not like the others. You are built for this.'\n\n#italic 'Will you carry what I carried?'\n\nYou stood in the dream and understood, in the way one only understands in dreams, exactly what was being offered — and exactly what it would cost."
+ shezarrine.001.a: "I accept. The mantle is mine."
+ shezarrine.001.b: "I refuse this burden. My life is my own."
+
+ shezarrine.002.t: "Berserker's Rage"
+ shezarrine.002.desc: "It started as battle-focus — the narrowing of attention that comes when steel is drawn and everything else falls away. Then it became something else.\n\nThe rage moved through your body like a tide, and you felt Pelinal Whitestrake's fury — centuries of it, compressed into a single heartbeat — begin to take over your hands."
+ shezarrine.002.a: "Surrender to it. Let the White Warrior fight."
+ shezarrine.002.b: "Fight it. Stay yourself. Hold the line of your own mind."
+ shezarrine.002.a.tooltip: "The rage increases your combat effectiveness but the internal cost is severe."
+ shezarrine.002.b.tooltip: "Resisting the rage costs prowess but preserves your sense of self."
+
+ shezarrine.003.t: "The Elf-Hater's Vision"
+ shezarrine.003.desc: "The visions came while you were awake — which is worse.\n\nAyleid slave-towers. Nedic men and women in cages built from pale elven stone. Children who had never known a world without a white-eyed master watching from above. And through those cages, a white fire moving — Pelinal Whitestrake, burning, burning, burning everything that the Ayleids had built.\n\nWhen the vision cleared, you found yourself standing in your own hall with your fists clenched and no memory of having moved."
+ shezarrine.003.a: "These visions are a reminder of what mankind once endured."
+ shezarrine.003.b: "I will not let ancient hatred govern me."
+
+ shezarrine.004.t: "Reman's Echo"
+ shezarrine.004.desc: "Standing in the old Imperial provinces — or reading their histories — something resonates at a frequency below ordinary thought.\n\nReman Cyrodiil. Another Shezarrine. Another mortal who carried Shor's fire and built an empire on it. The Second Empire grew from the same root as Pelinal's crusade. The same divine fury wore different faces across different centuries, but it was always the same essence.\n\nYou are part of a chain that began before recorded history and has not yet ended."
+ shezarrine.004.a: "I will claim what Reman built and carry it forward."
+ shezarrine.004.b: "Reman's chain ends with me. I forge a new legacy."

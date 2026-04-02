@@ -1,0 +1,68 @@
+# =============================================================
+#  The Clockwork City — Decisions
+#  File: mod/common/decisions/clockwork_city_decisions.txt
+#
+#  DECISIONS IN THIS FILE:
+#  ────────────────────────
+#  seek_clockwork_city — Attempt to enter Sotha Sil's hidden
+#                        mechanical city in the heart of Morrowind.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • sotha_sil_student  — tribunal_traits.txt (requirement)
+#  • clockwork_initiate — lore_races_traits.txt (blocks repeat)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SEEK THE CLOCKWORK CITY
+#  A student of Sotha Sil who has heard the rumour and possesses
+#  the learning, prestige, and gold to mount the search may
+#  attempt to find and enter the Brass Fortress.  The entry is
+#  hidden — even knowing it exists does not mean finding it is
+#  easy.  Success fires clockwork.001 after 60 days.
+# ---------------------------------------------------------------
+seek_clockwork_city = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_clockwork_city_desc
+
+    is_shown = {
+        has_trait = sotha_sil_student
+        NOT = { has_trait = clockwork_initiate }
+        NOT = { has_character_flag = clockwork_city_visited }
+        has_character_flag = clockwork_city_rumour_heard
+    }
+
+    is_valid = {
+        learning  >= 14
+        prestige  >= 400
+        gold      >= 100
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -400
+        add_gold     = -100
+        set_character_flag = { flag = clockwork_entry_active days = 365 }
+        trigger_event = { id = clockwork.001 days = 60 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 10
+            has_trait = sotha_sil_student
+            learning >= 18
+        }
+        modifier = {
+            add = 8
+            has_character_flag = clockwork_city_rumour_heard
+        }
+        modifier = {
+            add = 6
+            learning >= 20
+        }
+    }
+}

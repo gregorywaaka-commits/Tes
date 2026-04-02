@@ -1,0 +1,52 @@
+# =============================================================
+#  Mythic Dawn — Decisions
+#  File: mod/common/decisions/mythic_dawn_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • mythic_dawn_inner              (lore_races_traits.txt)
+#  • mythic_dawn_inner_circle_insight (lore_races_modifiers.txt)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  INVESTIGATE THE MYTHIC DAWN
+#  A ruler with sufficient intrigue may begin actively seeking
+#  out the Mythic Dawn cult — whose coded invitations have been
+#  filtering through certain courts for generations.
+#  The investigation opens the door to mythic_dawn.000.
+# ---------------------------------------------------------------
+investigate_mythic_dawn = {
+    picture = "gfx/interface/icons/decisions/decision_intrigue.dds"
+    desc = investigate_mythic_dawn_desc
+
+    is_shown = {
+        intrigue >= 10
+        NOT = { has_character_flag = mythic_dawn_contacted }
+        NOT = { has_character_flag = mythic_dawn_exposed }
+        is_ruler = yes
+    }
+
+    is_valid = {
+        is_adult = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        trigger_event = { id = mythic_dawn.000 days = 14 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 10
+            has_trait = greedy
+        }
+        modifier = {
+            add = 8
+            intrigue >= 16
+        }
+    }
+}

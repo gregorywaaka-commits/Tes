@@ -1,0 +1,77 @@
+# =============================================================
+#  Numidium / The Brass God — Traits
+#  File: mod/common/traits/numidium_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  numidium_researcher  — Scholar who has discovered and is studying Numidium.
+#  mantella_seeker      — Scholar searching for the Mantella, Numidium's heart-gem.
+#  numidium_awakener    — The catastrophic figure who reactivated the Brass God.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Numidium (also known as Anumidium, the Brass God, or the Mantella's Engine)
+#  was the ultimate creation of the Dwemer Tonal Architects.  It is a mechanical
+#  god powered by Lorkhan's heart-stone (the Mantella), capable of negating or
+#  rewriting reality itself.  Tiber Septim used it to complete his conquest of
+#  Tamriel.  When deactivated, it slumbers somewhere in Hammerfell.  Anyone who
+#  reactivates it triggers the Warp in the West — a Dragon Break in which multiple
+#  contradictory outcomes all simultaneously become true.  History literally breaks.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dwemer_scholar  = trait defined in dwemer_ruins_traits.txt (or equivalent)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  NUMIDIUM RESEARCHER
+#  A scholar who has turned their full attention to the most
+#  dangerous question in Dwemer scholarship: what was Numidium,
+#  and can it be restored?  Their research is brilliant and their
+#  notes are heresy in twelve kingdoms.
+# ---------------------------------------------------------------
+numidium_researcher = {
+    category = lifestyle
+
+    learning    = 5
+    stewardship = 2      # The research requires enormous resources and coordination
+
+    flag = numidium_researcher
+}
+
+# ---------------------------------------------------------------
+#  MANTELLA SEEKER
+#  A scholar who has narrowed their research to a terrifying
+#  conclusion: Numidium needs only one missing component, and
+#  they believe they know where to find it.  The Mantella —
+#  a bottled soul, a heart-gem — is the key to the Brass God.
+# ---------------------------------------------------------------
+mantella_seeker = {
+    category = lifestyle
+
+    learning  = 3
+    intrigue  = 3
+
+    monthly_prestige_gain_mult = 0.10   # Whispered about in Dwemer research circles
+
+    flag = mantella_seeker
+}
+
+# ---------------------------------------------------------------
+#  NUMIDIUM AWAKENER
+#  History's most catastrophic achievement.  This character has
+#  reactivated the Brass God, triggering a Dragon Break — a
+#  fracture in linear time where multiple outcomes exist at once.
+#  The power is without equal in Tamriel.  The cost is everything.
+#  Marked by stress and the weight of broken causality forever.
+# ---------------------------------------------------------------
+numidium_awakener = {
+    category = fame
+
+    learning  = 8
+
+    monthly_prestige_gain_mult = 0.50   # The one who moved the world — in every direction at once
+    stress_gain_mult           = 0.20   # Reality has fractured; so has this character's mind
+
+    flag = numidium_awakener
+}

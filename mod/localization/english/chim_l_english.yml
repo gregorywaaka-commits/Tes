@@ -1,0 +1,54 @@
+﻿l_english:
+
+ # =====================================================================
+ #  CHIM / THE WALKING WAYS — TRAITS
+ # =====================================================================
+
+ chim_seekers_strain: "Seeker's Strain"
+ chim_seekers_strain_desc: "The attempt to hold the paradox of CHIM is tearing the seeker apart from the inside. Stress climbs; learning fractures. The Enantiomorph waits at the edge of consciousness."
+
+ chim_transcendence: "CHIM Transcendence"
+ chim_transcendence_desc: "The I holds. The paradox resolves into sovereignty. This ruler sees the dream for what it is and chooses to remain within it. They are unchanged — and entirely changed."
+
+
+ chim_seeker: "CHIM Seeker"
+ chim_seeker_desc: "This character is on the path to CHIM — the secret syllable of royalty, the understanding that one exists within a Dream and yet still IS. The Walking Ways are not safe philosophy. They are metaphysical surgery performed on one's own sense of self, with no guarantee of survival. The Seeker is brilliant and increasingly unstable. The question that haunts them is not whether CHIM is true — they already know it is. The question is: can the I survive knowing it?"
+
+ chim_achieved: "CHIM Achieved"
+ chim_achieved_desc: "This character has walked the narrow path and the I has remained. They have seen through the illusion of Mundus — understood that all of creation is the dream of a Godhead who does not know it is dreaming — and rather than ceasing to exist in the face of that understanding, they chose to remain real within it. The result is something beyond ordinary mortal capacity. Complete clarity. Total sovereignty over self. A life that does not end on the schedule mortality usually imposes. Vivec knew this. Tiber Septim knew this. Now, so does this character."
+
+ # =====================================================================
+ #  CHIM / THE WALKING WAYS — DECISIONS
+ # =====================================================================
+
+ seek_walking_ways: "Seek the Walking Ways"
+ seek_walking_ways_desc: "CHIM is the secret syllable of royalty. It is the understanding that one exists within a Dream, and yet still IS. The scholars of the Psijic Order have long known of the Walking Ways — the metaphysical paths that lead, for those extraordinary enough to walk them, to a sovereign understanding of the self that transcends ordinary mortal limits. You have learned enough to know the question exists. You have suffered enough to want an answer that goes beyond what politics and war can provide. Seeking the Walking Ways will not be comfortable. It may not be survivable. It will definitely not be boring."
+
+ # =====================================================================
+ #  CHIM / THE WALKING WAYS — EVENTS
+ # =====================================================================
+
+ chim.000.t: "The Walking Ways"
+ chim.000.desc: "The scholar arrived without being announced, which your steward found deeply alarming and you found, after the first few minutes, deeply interesting.\n\nThey were either Psijic or had studied under Psijic — the robe was wrong but the methodology was right — and they had a habit of answering questions before you finished asking them, which was either precognition or very attentive listening, and you found yourself uncertain which you preferred it to be.\n\nWhat they said, over the next several hours, was this:\n\n#italic CHIM is the secret syllable of royalty. It is the understanding that one exists within a Dream, and yet still IS.\n\nThe argument was simple. The implications were staggering. The scholar seemed entirely comfortable with both. They said they would return if you decided to continue. They had not decided whether you would continue. They seemed, somewhat disconcertingly, to be waiting for you to tell them."
+ chim.000.a: "I will pursue understanding. Teach me."
+ chim.000.b: "This is heresy. I will not hear it."
+
+ chim.001.t: "The Amaranth Question"
+ chim.001.desc: "Six months of meditation. Six months of reading texts that the Psijic scholar left behind — texts that were not entirely in languages you spoke, but which the scholar had assured you the meaning of would arrive before the words did, which had seemed absurd and had subsequently proven accurate.\n\nThe question that remains, the question at the centre of all of it, is this:\n\n#italic If everything you are is a dream someone else is dreaming, what are you when you know it?\n\nThere are two answers. The first is: nothing. If you fully accept that you are a dream-construct, you become consistent with that understanding, and you cease to exist. This is the Enantiomorph — the zero-sum, the contradiction resolving itself by eliminating one of its terms.\n\nThe second answer is: the same thing you were before, which is a dream AND real, both, simultaneously, without contradiction.\n\nThat second answer is CHIM.\n\nYou have been attempting to hold it for six months. Today, you are going to find out if you can."
+ chim.001.a: "I embrace the Enantiomorph. Let it come. Let the paradox be complete."
+ chim.001.b: "I accept the zero-sum. I am, and that is enough, and I will not push further."
+ chim.001.a.success_tooltip: "Your learning is sufficient. The I holds. The paradox becomes sovereignty."
+ chim.001.a.failure_tooltip: "The paradox is beyond you. The Enantiomorph is not a metaphor."
+
+ chim.002.t: "The I Remains"
+ chim.002.desc: "There is a moment — the scholar did not describe it, because the scholar said it could not be described in advance without contaminating it — where the paradox resolves.\n\nNot by collapsing into one of its terms. Not by destroying the dreamer or the dream. By holding both simultaneously and discovering that the contradiction was never a contradiction: it was a description of reality that most minds are not equipped to read.\n\nYou are a dream. You are real. Both are true. You remain.\n\nThe I remains.\n\nOutside your window — or your window's equivalent, in whatever interior space this occurred — the ordinary world continues making ordinary demands on ordinary people who do not know what you now know.\n\nYou will have to go back to it. That is, as it happens, the point.\n\n#italic Across the courts of Tamriel, in the dreams of rulers and scholars, a phrase surfaces briefly and unexpectedly: 'A Shezarrine has achieved CHIM.'"
+ chim.002.a: "I remain. The I that remains."
+
+ chim.003.t: "The Enantiomorph Consumes"
+ chim.003.desc: "The subjects of [ROOT.GetTitledFirstName] awoke on an ordinary morning to find the throne empty.\n\nNot vacated. Not abandoned. Empty in the way that a space is empty when it has never been filled — as if no one had ever sat there, as if the advisors who remembered their liege were remembering someone from a dream that was becoming harder to hold.\n\nThere was no body. There was no letter of abdication. There were no witnesses to whatever had occurred, or if there were, they could not quite articulate what they had seen.\n\nThe steward, who was a practical person, noted in the household accounts simply: #italic 'The [ROOT.GetPrimaryTitle.GetTier] ceased to be present. No explanation available.'\n\nIt was not death. It was something older and stranger than death, and the world sealed over the absence the way water seals over a stone that has been dropped in."
+ chim.003.a: "[ROOT.GetTitledFirstName] is simply gone."
+
+ chim.004.t: "The I That Remains"
+ chim.004.desc: "Your court is conducting what passes for ordinary business.\n\nA lord is petitioning about a border dispute that has been ongoing for eleven years and involves a river that moves in spring floods. An advisor is explaining, with some passion, why the eastern granaries require attention before autumn. A messenger has arrived from a neighbouring ruler who has sent a gift and a letter that almost certainly contains a request hidden in its third paragraph.\n\nYou are attending to all of this. You are performing your function. You are, by every observable measure, a ruler doing what rulers do.\n\nUnderneath all of this, you see the dream for what it is. You know what this court is. You know what the border dispute is — a very small argument taking place inside someone else's sleeping mind. You know what the granaries are. You know what the messenger is.\n\nYou chose to remain here anyway. That is the whole of it. That is CHIM.\n\nYou find, sitting in your hall and watching your court, that you are grateful."
+ chim.004.a: "I walk among them. They do not know what I have seen, and that is fine."
+ chim.004.b: "The dream is beautiful. I am grateful to remain within it."

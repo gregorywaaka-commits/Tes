@@ -1,0 +1,107 @@
+# =============================================================
+#  Alessian Order / Reman Dynasty — Decisions
+#  File: mod/common/decisions/alessian_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • alessian_doctrine_scholar  (lore_races_traits.txt)
+#  • alessian_reformer          (lore_races_traits.txt)
+#  • reman_heir                 (lore_races_traits.txt)
+#  • alessian_reformation_zeal  (lore_races_modifiers.txt)
+#  • reman_claim_investigation  (lore_races_modifiers.txt)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  PROCLAIM THE ALESSIAN REFORMATION
+#  An Alessian doctrine scholar may formally declare the Eight
+#  Divines in their pure human form — purging elven saints from
+#  their chapel and setting the theological record straight.
+#  The decision costs piety and prestige; the event chain that
+#  follows may cost far more.
+# ---------------------------------------------------------------
+proclaim_alessian_reformation = {
+    picture = "gfx/interface/icons/decisions/decision_faith.dds"
+    desc = proclaim_alessian_reformation_desc
+
+    is_shown = {
+        has_trait = alessian_doctrine_scholar
+        NOT = { has_trait = alessian_reformer }
+        NOT = { has_character_flag = alessian_reformation_proclaimed }
+    }
+
+    is_valid = {
+        piety    >= 400
+        prestige >= 300
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    effect = {
+        add_piety    = -400
+        add_prestige = -300
+        set_character_flag = { flag = alessian_reformation_proclaimed days = 3650 }
+        trigger_event = { id = alessian.001 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 10
+            has_trait = scholar
+        }
+        modifier = {
+            add = 10
+            learning >= 18
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  CLAIM REMAN HERITAGE
+#  An imperial or Cyrodiilic ruler who has confirmed Reman
+#  lineage may formally claim descent from the Second Empire's
+#  founder — invoking divine right of rule over all Cyrodiil.
+#  Costs prestige; the ceremony is public and irrevocable.
+# ---------------------------------------------------------------
+claim_reman_heritage = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = claim_reman_heritage_desc
+
+    is_shown = {
+        OR = {
+            has_culture = imperial_culture
+            has_culture = cyrodiilic_culture
+        }
+        NOT = { has_trait = reman_heir }
+        has_character_flag = reman_lineage_confirmed
+    }
+
+    is_valid = {
+        prestige >= 600
+        is_ruler = yes
+        is_adult = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    effect = {
+        add_prestige = -600
+        trigger_event = { id = alessian.012 }
+    }
+
+    ai_will_do = {
+        base = 8
+        modifier = {
+            add = 15
+            prestige >= 1000
+        }
+    }
+}

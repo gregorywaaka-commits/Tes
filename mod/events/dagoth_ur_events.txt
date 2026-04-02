@@ -1,0 +1,337 @@
+# =============================================================
+#  Dagoth Ur — The Awakening of the Sixth House
+#  Namespace: dagoth_ur
+#
+#  LORE:
+#  Dagoth Ur (Voryn Dagoth) was a Dunmer lord slain at the
+#  Battle of Red Mountain (1E 700) — but he did not truly die.
+#  Tapping into the Heart of Lorkhan beneath Red Mountain, he
+#  slowly rebuilt his power throughout the Second Era.  At
+#  2E 882 the Tribunal made their last visit to re-energize
+#  from the Heart; Dagoth Ur repelled them, seizing sole
+#  control of Lorkhan's divine engine.  From that moment the
+#  Ghost Fence could no longer hold — Blight storms spread
+#  outward and corprus disease walked Morrowind.
+#
+#  EARLIER AWAKENING (lore-accurate conditions):
+#  Dagoth Ur can awaken before 2E 882 if:
+#   a) The Red Mountain Tower Stone (Heart of Lorkhan) is
+#      not held by a keeper (current_date >= 2E.600).
+#      The Tribunal's power derives from the Heart; without
+#      them actively maintaining the stone, Dagoth Ur seizes
+#      it unopposed and much sooner.
+#   b) No Dunmer kingdom controls Morrowind (current_date
+#      >= 2E.700).  Without a Tribunal-aligned Dunmer empire
+#      to maintain the Ghost Fence, containment fails early.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • dagoth_ur.000  — hidden world event: awakening trigger check (yearly)
+#  • dagoth_ur.001  — world notification: Dagoth Ur awakens (all rulers)
+#  • dagoth_ur.002  — Dunmer ruler flavor: Ghost Fence strains
+#  • dagoth_ur.010  — A Sixth House sleeper is discovered at court
+#  • dagoth_ur.020  — Follow-up: join or reject the Sixth House
+#  • dagoth_ur.030  — Azura calls a Dunmer champion: the Nerevarine Prophecy
+#  • dagoth_ur.050  — hidden monthly pulse: Blight storm spread tick
+#  • dagoth_ur.100  — world notification: Dagoth Ur defeated, Blight recedes
+#
+#  KEY GLOBAL VARIABLES:
+#  ─────────────────────
+#  global_var:dagoth_ur_awakened  — set when the Sleeper wakes
+#
+#  KEY TRAITS (dagoth_ur_traits.txt):
+#  ───────────────────────────────────
+#  • sixth_house_cultist  — secret follower of House Dagoth
+#  • corprus_afflicted    — infected with divine corprus disease
+#  • ash_devotee          — advanced Sixth House initiate
+#  • ghost_fence_keeper   — Dunmer lord maintaining the Ghost Fence
+#  • nerevarine_marked    — Marked by Azura as a potential Nerevarine
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture       = EK2 culture identifier
+#  • azura_champion       = trait defined in daedric_invasion_traits.txt
+# =============================================================
+
+namespace = dagoth_ur
+
+# ---------------------------------------------------------------
+# dagoth_ur.000  Awakening trigger check (hidden — fires yearly)
+# Checks dagoth_ur_awakening_possible trigger from
+# lore_races_triggers.txt (canonical date + early conditions).
+# Calls begin_dagoth_ur_awakening from lore_races_effects.txt.
+# ---------------------------------------------------------------
+dagoth_ur.000 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        dagoth_ur_awakening_possible = yes
+        NOT = { exists = global_var:dagoth_ur_awakened }
+    }
+
+    immediate = {
+        begin_dagoth_ur_awakening = yes
+    }
+}
+
+# ---------------------------------------------------------------
+# dagoth_ur.001  The Sleeper Awakens — notification to all rulers
+# Fires for every living ruler when Dagoth Ur awakens.
+# This is world-historical news that reaches all corners of Tamriel.
+# ---------------------------------------------------------------
+dagoth_ur.001 = {
+    type = character_event
+    title = dagoth_ur.001.t
+    desc = dagoth_ur.001.desc
+    theme = realm
+
+    option = {
+        name = dagoth_ur.001.a   # "The Tribunal have always contained him — they will again."
+        add_piety  = 100
+        add_stress = 10
+    }
+
+    option = {
+        name = dagoth_ur.001.b   # "Send word to the Dunmer — they must not face this alone."
+        add_prestige = 50
+        add_stress   = 5
+    }
+
+    option = {
+        name = dagoth_ur.001.c   # "An ancient power stirs beneath Red Mountain. This changes everything."
+        trigger = {
+            has_trait = ambitious
+        }
+        add_character_modifier = {
+            modifier = dagoth_ur_watching_modifier
+            days = 1825    # 5 years of watching Dagoth Ur's rise
+        }
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# dagoth_ur.002  The Ghost Fence Strains — Dunmer ruler flavor
+# Fires once for each Dunmer ruler after the awakening.
+# The Ghost Fence is the great magical barrier erected by the
+# Tribunal around Red Mountain to contain the Blight.
+# ---------------------------------------------------------------
+dagoth_ur.002 = {
+    type = character_event
+    title = dagoth_ur.002.t
+    desc = dagoth_ur.002.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        dagoth_ur_awakened = yes
+        NOT = { has_character_flag = ghost_fence_event_seen }
+    }
+
+    option = {
+        name = dagoth_ur.002.a   # "I will dedicate men and resources to the Ghost Fence."
+        add_character_flag = { flag = ghost_fence_event_seen }
+        add_trait    = ghost_fence_keeper
+        add_prestige = 200
+        add_stress   = 10
+    }
+
+    option = {
+        name = dagoth_ur.002.b   # "Vivec's power has always held the Fence. I must trust it still."
+        add_character_flag = { flag = ghost_fence_event_seen }
+        add_piety  = 150
+        add_stress = 20
+    }
+
+    option = {
+        name = dagoth_ur.002.c   # "Dagoth Ur is not a monster — he is a betrayed lord. Perhaps he can be reasoned with."
+        trigger = {
+            intrigue >= 12
+        }
+        add_character_flag = { flag = ghost_fence_event_seen }
+        add_stress   = 30
+        add_prestige = -100    # dangerously naive by Dunmer standards
+        trigger_event = { id = dagoth_ur.010 days = 365 }
+    }
+}
+
+# ---------------------------------------------------------------
+# dagoth_ur.010  A Sixth House Sleeper at Court
+# Fires for any ruler once Dagoth Ur is awakened.
+# The Sixth House infiltrates all of Tamriel, not only Morrowind.
+# Dagoth Ur sends Sleeper agents into the dreams of mortals.
+# ---------------------------------------------------------------
+dagoth_ur.010 = {
+    type = character_event
+    title = dagoth_ur.010.t
+    desc = dagoth_ur.010.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        dagoth_ur_awakened = yes
+        NOT = { has_trait = sixth_house_cultist }
+        NOT = { has_character_flag = sixth_house_approach_recent }
+    }
+
+    option = {
+        name = dagoth_ur.010.a   # "Have this agent arrested and executed."
+        add_character_flag = { flag = sixth_house_approach_recent days = 1825 }
+        add_prestige = 50
+        add_stress   = 5
+    }
+
+    option = {
+        name = dagoth_ur.010.b   # "Hear the sleeper's message — what does the Lord of Red Mountain truly want?"
+        add_character_flag = { flag = sixth_house_approach_recent days = 1825 }
+        trigger_event = { id = dagoth_ur.020 days = 15 }
+    }
+}
+
+# ---------------------------------------------------------------
+# dagoth_ur.020  The Whisper of the Sixth House
+# Follow-up to dagoth_ur.010: the sleeper delivers Dagoth Ur's message.
+# Characters may choose to join the Sixth House or refuse.
+# Dunmer can join via lore conviction; others only if cunning enough.
+# ---------------------------------------------------------------
+dagoth_ur.020 = {
+    type = character_event
+    title = dagoth_ur.020.t
+    desc = dagoth_ur.020.desc
+    theme = intrigue
+
+    option = {
+        name = dagoth_ur.020.a   # "No. I will not serve a dead god's dream."
+        add_piety    = 150
+        add_prestige = -50
+        add_stress   = 15
+    }
+
+    option = {
+        name = dagoth_ur.020.b   # "Voryn Dagoth was betrayed. The Tribunal built their godhood on his murder."
+        trigger = {
+            has_culture = dunmer_culture
+        }
+        add_trait    = sixth_house_cultist
+        add_prestige = -200
+        add_piety    = -200
+        custom_tooltip = sixth_house_joined_tt
+    }
+
+    option = {
+        name = dagoth_ur.020.c   # "The gods of Morrowind have always been mortals. I will deal with this one."
+        trigger = {
+            intrigue >= 14
+            NOT = { has_culture = dunmer_culture }
+        }
+        add_trait    = sixth_house_cultist
+        add_prestige = -100
+        add_piety    = -100
+        custom_tooltip = sixth_house_joined_tt
+    }
+}
+
+# ---------------------------------------------------------------
+# dagoth_ur.030  Azura's Call: The Nerevarine Prophecy
+# Fires for Dunmer rulers who hold the azura_champion trait
+# once Dagoth Ur has awakened.  Azura foretold that one of
+# Nerevar's blood would return to end Dagoth Ur's threat.
+# Only fires once per character.
+# ---------------------------------------------------------------
+dagoth_ur.030 = {
+    type = character_event
+    title = dagoth_ur.030.t
+    desc = dagoth_ur.030.desc
+    theme = realm
+
+    trigger = {
+        has_trait  = azura_champion
+        has_culture = dunmer_culture
+        is_ruler   = yes
+        dagoth_ur_awakened = yes
+        NOT = { has_character_flag = nerevarine_prophecy_heard }
+    }
+
+    option = {
+        name = dagoth_ur.030.a   # "I am the Nerevarine. I will face what the Tribunal cannot."
+        add_character_flag = { flag = nerevarine_prophecy_heard }
+        add_trait    = nerevarine_marked
+        add_modifier = {
+            modifier = dagoth_ur_champion_modifier
+            days = 3650    # 10-year window to confront Dagoth Ur
+        }
+        add_prestige = 500
+        add_piety    = 300
+        custom_tooltip = nerevarine_path_begin_tt
+    }
+
+    option = {
+        name = dagoth_ur.030.b   # "Azura speaks — but this burden is too great. I am not ready."
+        add_character_flag = { flag = nerevarine_prophecy_heard }
+        add_piety    = 200
+        add_stress   = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# dagoth_ur.050  Blight storm spread tick (hidden — monthly pulse)
+# Spreads blight_storm_modifier outward from counties already
+# afflicted, beginning from c_red_mountain where it seeds.
+# Only runs while Dagoth Ur is awakened.
+# One county per month maximum — slow, creeping threat.
+# ---------------------------------------------------------------
+dagoth_ur.050 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        dagoth_ur_awakened = yes
+    }
+
+    immediate = {
+        random_county = {
+            limit = {
+                any_neighboring_county = {
+                    has_province_modifier = blight_storm_modifier
+                }
+                NOT = { has_province_modifier = blight_storm_modifier }
+            }
+            add_province_modifier = {
+                modifier = blight_storm_modifier
+                days = -1    # permanent until end_dagoth_ur_era removes it
+            }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# dagoth_ur.100  The Blight Recedes — victory notification
+# Fires for every living ruler when end_dagoth_ur_era is called.
+# The Heart of Lorkhan's connection to Dagoth Ur is severed;
+# the Blight storms slowly dissipate from Morrowind.
+# ---------------------------------------------------------------
+dagoth_ur.100 = {
+    type = character_event
+    title = dagoth_ur.100.t
+    desc = dagoth_ur.100.desc
+    theme = realm
+
+    option = {
+        name = dagoth_ur.100.a   # "Morrowind endures. The Tribunal holds."
+        add_piety    = 150
+        add_prestige = 100
+    }
+
+    option = {
+        name = dagoth_ur.100.b   # "The Nerevarine has fulfilled the prophecy of Azura."
+        trigger = {
+            has_trait = nerevarine_marked
+        }
+        add_piety    = 500
+        add_prestige = 1000
+        add_stress   = -30    # The burden of prophecy is lifted
+    }
+}

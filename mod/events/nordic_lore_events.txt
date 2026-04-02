@@ -1,0 +1,228 @@
+# =============================================================
+#  Nordic / Atmoran Extensions — Lore Events
+#  File: mod/events/nordic_lore_events.txt
+#  Namespace: nordic_lore
+#
+#  LORE:
+#  The Nords trace their origins to ancient Atmora — a frozen
+#  continent to the north whose civilisation is now largely
+#  gone.  Ysgramor led the Five Hundred Companions south to
+#  Tamriel after the Night of Tears, founding the Nordic
+#  kingdoms and beginning the human era on the continent.
+#  Sovngarde — Shor's golden meadhall — awaits the honoured
+#  dead.  The Skaal of Solstheim venerate the All-Maker, an
+#  eight-aspected spirit of creation who governs earth, wind,
+#  fire, water, stone, sun, flora, and beasts.
+#
+#  SYSTEM OVERVIEW:
+#  ────────────────
+#  • nordic_lore.000 — Ysgramor's Legacy: a saga fragment
+#                      discovered in the hall (Nord/Atmoran rulers)
+#  • nordic_lore.001 — Named Among Ysgramor's Heirs: decision-
+#                      triggered claim resolution (martial check)
+#  • nordic_lore.002 — Shor's Hall Vision: a Sovngarde vision
+#                      for martial Nord rulers
+#  • nordic_lore.003 — The Skaal Elders: the All-Maker priests
+#                      approach (Nord rulers, decision-triggered)
+#  • nordic_lore.004 — The All-Maker's Blessing: reward event
+#                      after the Skaal accord
+#
+#  KEY TRAITS (lore_races_traits.txt):
+#  ────────────────────────────────────
+#  • companion_of_ysgramor — full success for Companion lineage claim
+#  • shor_marked           — marked by Sovngarde's call
+#  • all_maker_blessed     — blessed by the All-Maker's eight aspects
+#
+#  KEY MODIFIERS (lore_races_modifiers.txt):
+#  ──────────────────────────────────────────
+#  • companion_recognition — partial lineage claim acknowledged
+#                            (1095 days)
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • nord_culture    = EK2 culture identifier
+#  • atmoran_culture = EK2 culture identifier
+# =============================================================
+
+namespace = nordic_lore
+
+# ---------------------------------------------------------------
+# nordic_lore.000  Ysgramor's Legacy
+# A Nord or Atmoran ruler's thane brings a worn fragment of the
+# Ysgramor Saga into the hall — the tale of the Five Hundred
+# Companions who crossed the seas from Atmora.  The discovery
+# opens a question: is the old blood still alive in this house?
+# ---------------------------------------------------------------
+nordic_lore.000 = {
+    type = character_event
+    title = nordic_lore.000.t
+    desc = nordic_lore.000.desc
+    theme = culture
+
+    trigger = {
+        is_ruler = yes
+        OR = {
+            has_culture = nord_culture
+            has_culture = atmoran_culture
+        }
+        NOT = { has_trait = companion_of_ysgramor }
+        NOT = { has_character_flag = companion_claim_active }
+    }
+
+    option = {
+        name = nordic_lore.000.a   # "Set the scholars to work — this lineage shall be proven."
+        add_gold = -50
+        add_character_flag = { flag = companion_claim_active days = 1825 }
+        add_stress = 5
+    }
+
+    option = {
+        name = nordic_lore.000.b   # "Frame it and hang it above the fire — Ysgramor's name honours us all."
+        add_prestige = 100
+    }
+
+    option = {
+        name = nordic_lore.000.c   # "Old sagas are for old men. Set it aside."
+    }
+}
+
+# ---------------------------------------------------------------
+# nordic_lore.001  Named Among Ysgramor's Heirs
+# Fires when the ruler triggers the claim_companion_lineage
+# decision.  The outcome depends on martial prowess — the saga
+# tradition requires not merely scholarship but the strength
+# that Ysgramor's line was said to carry.
+# ---------------------------------------------------------------
+nordic_lore.001 = {
+    type = character_event
+    title = nordic_lore.001.t
+    desc = nordic_lore.001.desc
+    theme = culture
+
+    option = {
+        name = nordic_lore.001.a   # "The claim is proven. I stand among the Companions' heirs."
+        trigger = { martial >= 12 }
+        add_trait = companion_of_ysgramor
+        add_prestige = 300
+        add_stress = -10
+        custom_tooltip = nordic_lore_companion_full_tt
+    }
+
+    option = {
+        name = nordic_lore.001.b   # "The claim is acknowledged — though not all are yet convinced."
+        trigger = {
+            martial >= 8
+            NOT = { martial >= 12 }
+        }
+        add_modifier = {
+            modifier = companion_recognition
+            days = 1095
+        }
+        add_prestige = 100
+    }
+
+    option = {
+        name = nordic_lore.001.c   # "The saga speaks, but the skalds are not moved. The claim fails."
+        trigger = { NOT = { martial >= 8 } }
+        add_prestige = -50
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# nordic_lore.002  Shor's Hall Vision
+# A martial Nord ruler, either close to death or fresh from the
+# exhilaration of great battle, receives a vision of Sovngarde —
+# Shor's golden meadhall beyond the mists where the honoured
+# dead feast forever.  The choice: answer the call or refuse it.
+# ---------------------------------------------------------------
+nordic_lore.002 = {
+    type = character_event
+    title = nordic_lore.002.t
+    desc = nordic_lore.002.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_culture = nord_culture
+        martial >= 12
+        NOT = { has_trait = shor_marked }
+    }
+
+    option = {
+        name = nordic_lore.002.a   # "I hear the call. Shor's hall will know my name."
+        add_trait = shor_marked
+        add_stress = -30
+        add_prestige = 150
+    }
+
+    option = {
+        name = nordic_lore.002.b   # "Not yet. My work here is not finished."
+        add_prestige = 200
+        add_stress = -10
+    }
+
+    option = {
+        name = nordic_lore.002.c   # "Mist and dreams. I will not read omens into a vision."
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# nordic_lore.003  The Skaal Elders
+# The All-Maker priests of Solstheim send an envoy to the Nord
+# ruler's court.  The Skaal are outside the mainstream of Nordic
+# religion but command deep respect in the north.  How the ruler
+# responds to the envoy shapes the outcome.
+# ---------------------------------------------------------------
+nordic_lore.003 = {
+    type = character_event
+    title = nordic_lore.003.t
+    desc = nordic_lore.003.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_culture = nord_culture
+        NOT = { has_trait = all_maker_blessed }
+    }
+
+    option = {
+        name = nordic_lore.003.a   # "Their ways are old and true. I will walk beside them."
+        add_prestige = -100
+        trigger_event = { id = nordic_lore.004 days = 30 }
+        add_stress = -5
+    }
+
+    option = {
+        name = nordic_lore.003.b   # "Submit, or be counted as a people without a lord."
+        add_prestige = 200
+        add_stress = 20
+        custom_tooltip = nordic_lore_skaal_hostility_tt
+    }
+
+    option = {
+        name = nordic_lore.003.c   # "The All-Maker's people are not my concern."
+    }
+}
+
+# ---------------------------------------------------------------
+# nordic_lore.004  The All-Maker's Blessing
+# The All-Maker's eight aspects respond to the ruler's accord
+# with the Skaal.  Earth, wind, fire, water, stone, sun, flora,
+# and beasts — each sends a quiet sign.  The blessing settles
+# on the ruler like snowfall: unhurried, complete.
+# ---------------------------------------------------------------
+nordic_lore.004 = {
+    type = character_event
+    title = nordic_lore.004.t
+    desc = nordic_lore.004.desc
+    theme = faith
+
+    option = {
+        name = nordic_lore.004.a   # "Eight blessings. Eight aspects. One world, and I stand in it."
+        add_trait = all_maker_blessed
+        add_piety = 200
+        add_stress = -15
+    }
+}

@@ -1,0 +1,66 @@
+# =============================================================
+#  Dragon Priest Decisions
+#  File: mod/common/decisions/dragon_priest_decisions.txt
+#
+#  The hunt_dragon_priest decision allows rulers who have
+#  encountered a Dragon Priest tomb — through the yearly pulse
+#  event (dragon_priest.000), or who possess the Voice or
+#  Dragonborn traits — to formally undertake the dangerous
+#  work of descending into an ancient barrow and confronting
+#  whatever sleeps there.
+#
+#  EK2 is required.  'dragonborn' is EK2's trait.
+# =============================================================
+
+hunt_dragon_priest = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = hunt_dragon_priest_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = dragonborn
+            has_trait = thu_um_master
+            has_trait = thu_um_adept
+            has_trait = thu_um_initiate
+            has_trait = greybeard_aspirant
+            has_trait = greybeard_of_high_hrothgar
+            has_trait = first_voice_of_the_greybeards
+            has_character_flag = dragon_priest_tomb_marked
+        }
+        NOT = { has_trait = dragon_priest_master }
+        NOT = { has_character_flag = dragon_priest_hunt_active }
+    }
+
+    is_valid = {
+        is_ruler = yes
+        is_adult = yes
+        martial  >= 10
+        gold     >= 100
+        prestige >= 200
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        martial  >= 10
+    }
+
+    effect = {
+        add_gold     = -100
+        add_prestige = -200   # Prestige spent committing to the hunt; the rumour travels before the ruler does
+        add_character_flag = { flag = dragon_priest_hunt_active days = 365 }
+        remove_character_flag = dragon_priest_tomb_marked
+        trigger_event = { id = dragon_priest.001 days = 30 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = { add = 10  has_trait = dragonborn }
+        modifier = { add = 8   has_trait = thu_um_master }
+        modifier = { add = 5   has_trait = ambitious }
+        modifier = { add = 5   has_character_flag = dragon_priest_tomb_marked }
+        modifier = { add = 5   martial >= 16 }
+        modifier = { add = -5  stress >= 50 }
+    }
+}

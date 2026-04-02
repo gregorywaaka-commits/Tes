@@ -1,0 +1,284 @@
+# =============================================================
+#  Underworld — Dark Brotherhood and Skooma Trade
+#  File: mod/events/underworld_events.txt
+#  Namespace: underworld
+#
+#  LORE:
+#  The Dark Brotherhood is the secret guild of assassins who
+#  serve Sithis and the Night Mother — the Unholy Matron, the
+#  Bride of Sithis, the divine intermediary who carries
+#  contracts to the Listener.  Their sacrament (the Black
+#  Sacrament) opens contact.  The Brotherhood's highest rank
+#  is the Listener, who alone hears the Night Mother's voice.
+#
+#  Skooma is the crystallised form of Moon Sugar — the sacred
+#  narcotic of the Khajiit, processed and smuggled across
+#  Tamriel.  The trade is lucrative, politically dangerous,
+#  and personally corrosive.  The Khajiiti suppliers who move
+#  the goods have their own interests and are not passive.
+#
+#  SYSTEM OVERVIEW:
+#  ────────────────
+#  • underworld.000 — The Night Mother Speaks: first contact
+#  • underworld.001 — The First Contract: fulfil or refuse
+#  • underworld.002 — Advancing in the Brotherhood: Listener offer
+#  • underworld.003 — Skooma Trade Discovered: merchant's offer
+#  • underworld.004 — Skooma Addiction: the ruler samples their trade
+#  • underworld.005 — Khajiit Diplomacy Fallout: suppliers want a cut
+#
+#  KEY TRAITS (lore_races_traits.txt):
+#  ────────────────────────────────────
+#  • dark_brotherhood_listener — highest rank in the Brotherhood
+#
+#  KEY MODIFIERS (lore_races_modifiers.txt):
+#  ──────────────────────────────────────────
+#  • skooma_trade_income — income from Moon Sugar smuggling (1825 days)
+#  • skooma_addiction    — health cost of personal use (1095 days)
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • mephala_champion = EK2 trait (from daedric system)
+# =============================================================
+
+namespace = underworld
+
+# ---------------------------------------------------------------
+# underworld.000  The Night Mother Speaks
+# Between sleeping and waking — in that corridor where the mind
+# is unguarded — a voice arrives.  She does not announce
+# herself.  She does not need to.  The Night Mother's voice is
+# the quietest thing a person can hear and also the loudest.
+# ---------------------------------------------------------------
+underworld.000 = {
+    type = character_event
+    title = underworld.000.t
+    desc = underworld.000.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        OR = {
+            has_trait = mephala_champion
+            intrigue >= 14
+        }
+        NOT = { has_character_flag = dark_brotherhood_contact }
+        NOT = { has_character_flag = dark_brotherhood_rejected }
+    }
+
+    option = {
+        name = underworld.000.a   # "I listen. Tell me what you need."
+        add_character_flag = { flag = dark_brotherhood_contact days = 3650 }
+        add_stress = 10
+    }
+
+    option = {
+        name = underworld.000.b   # "I close the door. This voice is not welcome here."
+        add_character_flag = { flag = dark_brotherhood_rejected days = 3650 }
+        add_piety = 50
+        add_stress = 15
+    }
+
+    option = {
+        name = underworld.000.c   # "Who are you? What do you want? Tell me more."
+        add_character_flag = { flag = dark_brotherhood_contact days = 3650 }
+        add_learning = 1
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# underworld.001  The First Contract
+# The Brotherhood makes the relationship concrete: a target, a
+# price, and the expectation that the Listener-to-be will act.
+# Refusal dissolves the contact.  Acceptance deepens it.
+# ---------------------------------------------------------------
+underworld.001 = {
+    type = character_event
+    title = underworld.001.t
+    desc = underworld.001.desc
+    theme = intrigue
+
+    option = {
+        name = underworld.001.a   # "It is done. The contract is fulfilled."
+        trigger = { intrigue >= 12 }
+        add_gold = 150
+        add_intrigue = 1
+        add_character_flag = { flag = fulfilled_contract days = 3650 }
+        add_stress = 15
+    }
+
+    option = {
+        name = underworld.001.b   # "I will not be a killer on commission. The contact is severed."
+        remove_character_flag = dark_brotherhood_contact
+        add_character_flag = { flag = dark_brotherhood_rejected days = 3650 }
+        add_piety = 75
+        add_stress = -5
+    }
+
+    option = {
+        name = underworld.001.c   # "Tell me more about the target before I commit."
+        add_intrigue = 1
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# underworld.002  Advancing in the Brotherhood
+# A ruler who has fulfilled multiple contracts receives the
+# Brotherhood's highest offer: the role of Listener.  Only one
+# person at a time hears the Night Mother's voice in full.
+# ---------------------------------------------------------------
+underworld.002 = {
+    type = character_event
+    title = underworld.002.t
+    desc = underworld.002.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        has_character_flag = dark_brotherhood_contact
+        has_character_flag = fulfilled_contract
+    }
+
+    option = {
+        name = underworld.002.a   # "I accept the mantle. I will be her Listener."
+        add_trait = dark_brotherhood_listener
+        add_prestige = 200
+        add_stress = 20
+        custom_tooltip = underworld_listener_accepted_tt
+    }
+
+    option = {
+        name = underworld.002.b   # "I have come as far as I will go. The Listener's role is not mine."
+        remove_character_flag = dark_brotherhood_contact
+        add_prestige = 100
+    }
+
+    option = {
+        name = underworld.002.c   # "You are all exposed. I take your names to the guard."
+        remove_character_flag = dark_brotherhood_contact
+        add_character_flag = { flag = dark_brotherhood_rejected days = 3650 }
+        add_prestige = 400
+        add_intrigue = -2
+        add_piety = 100
+        custom_tooltip = underworld_brotherhood_betrayed_tt
+    }
+}
+
+# ---------------------------------------------------------------
+# underworld.003  Skooma Trade Discovered
+# A merchant with connections to the Moon Sugar networks arrives
+# with a discreet proposal.  The ruler can invest heavily, take
+# a cautious cut, or turn the offer away.
+# ---------------------------------------------------------------
+underworld.003 = {
+    type = character_event
+    title = underworld.003.t
+    desc = underworld.003.desc
+    theme = stewardship
+
+    trigger = {
+        is_ruler = yes
+        NOT = { has_character_flag = skooma_trade_decision }
+    }
+
+    option = {
+        name = underworld.003.a   # "Invest fully. The Moon Sugar trade moves whether I am in it or not."
+        add_gold = 200
+        set_character_flag = { flag = skooma_invested days = 1825 }
+        set_character_flag = { flag = skooma_trade_decision days = 3650 }
+        add_modifier = {
+            modifier = skooma_trade_income
+            days = 1825
+        }
+        add_stress = 15
+    }
+
+    option = {
+        name = underworld.003.b   # "A small cut only. Enough to profit without becoming responsible."
+        add_gold = 75
+        set_character_flag = { flag = skooma_trade_decision days = 3650 }
+        add_stress = 5
+    }
+
+    option = {
+        name = underworld.003.c   # "No. This trade brings suffering. I will not profit from it."
+        add_piety = 50
+        set_character_flag = { flag = skooma_trade_decision days = 3650 }
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# underworld.004  Skooma Addiction
+# The ruler who invested in the skooma trade has been sampling
+# their own product.  The habit has become visible.  The
+# question is whether to fight it or let it run.
+# ---------------------------------------------------------------
+underworld.004 = {
+    type = character_event
+    title = underworld.004.t
+    desc = underworld.004.desc
+    theme = health
+
+    trigger = {
+        is_ruler = yes
+        has_character_flag = skooma_invested
+    }
+
+    option = {
+        name = underworld.004.a   # "I stop. No matter the cost. This ends now."
+        add_stress = 30
+        remove_modifier = skooma_trade_income
+        custom_tooltip = underworld_addiction_fought_tt
+    }
+
+    option = {
+        name = underworld.004.b   # "The skooma takes the edge away. I let it."
+        add_modifier = {
+            modifier = skooma_addiction
+            days = 1095
+        }
+        add_stress = -20
+        custom_tooltip = underworld_addiction_accepted_tt
+    }
+}
+
+# ---------------------------------------------------------------
+# underworld.005  Khajiit Diplomacy Fallout
+# The Khajiiti trading network that supplied the skooma is
+# not passive.  A messenger arrives — from a merchant lord
+# or a neighbouring Khajiiti ruler — demanding a cut or
+# threatening to expose the operation.
+# ---------------------------------------------------------------
+underworld.005 = {
+    type = character_event
+    title = underworld.005.t
+    desc = underworld.005.desc
+    theme = diplomacy
+
+    trigger = {
+        is_ruler = yes
+        has_character_flag = skooma_invested
+    }
+
+    option = {
+        name = underworld.005.a   # "Pay them their cut. It is cheaper than exposure."
+        add_gold = -100
+        add_stress = 10
+    }
+
+    option = {
+        name = underworld.005.b   # "I will not be extorted. Meet their threat with my own."
+        add_prestige = 100
+        add_stress = 20
+        add_intrigue = 1
+    }
+
+    option = {
+        name = underworld.005.c   # "Cut off the network entirely. The exposure risk is too high."
+        remove_character_flag = skooma_invested
+        remove_modifier = skooma_trade_income
+        add_stress = 15
+    }
+}

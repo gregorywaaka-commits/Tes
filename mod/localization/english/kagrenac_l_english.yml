@@ -1,0 +1,162 @@
+﻿l_english:
+
+ # =============================================================
+ #  Tools of Kagrenac
+ # =============================================================
+
+ seek_tools_of_kagrenac_desc: "The Tools of Kagrenac — Sunder, Keening, and Wraithguard — are the instruments by which Dagoth Ur can be ended. As the Nerevarine, only you can wield them. The path leads into the deepest reaches of Red Mountain, past Ash Vampires and the Blight storms, to the Heart of Lorkhan itself."
+
+ # kagrenac.000
+ kagrenac.000.t: "The Tools of Kagrenac"
+ kagrenac.000.desc: "Azura's prophecy is clear: the Nerevarine must end Dagoth Ur not through mortal means alone, but by severing his divine connection to the Heart of Lorkhan.\n\nFor this, three tools must be recovered:\n\n§YSunder§! — the hammer that strikes the Heart and releases its power.\n§YKeening§! — the blade that shapes that power into a form that can be used.\n§YWraithguard§! — the gauntlet, the key, the thing that keeps the bearer from burning alive.\n\nThey were Kagrenac's tools. The Tribunal used them. Dagoth Ur seized them. And now you must take them back."
+ kagrenac.000.a: "I will find them. All three. For Nerevar and for Morrowind."
+ kagrenac.000.b: "The risk is too great. The tools are lost to the Blight — and perhaps that is for the best."
+
+ # kagrenac.010
+ kagrenac.010.t: "Sunder — The Hammer of Heaven"
+ kagrenac.010.desc: "Sunder lies somewhere in the volcanic inner sanctum of Red Mountain — near the Heart itself, guarded by Ash creatures and the poisoned air of the Blight. Kagrenac forged it from the bones of the mountain and the tone of divine silence.\n\nThe path is not clean. But the hammer is there, waiting."
+ kagrenac.010.a: "I carve a path through the ash-spawn with spear and shield. Sunder will not hide from me."
+ kagrenac.010.b: "I follow the old Dwemer maintenance passages — slower, but safer, and they lead to the same inner sanctum."
+ kagrenac.010.c: "Martial scholar I am not — but I have come too far to retreat. I press through by desperate courage."
+
+ # kagrenac.015
+ kagrenac.015.t: "Keening — The Blade of the Dreamer"
+ kagrenac.015.desc: "Keening is held by one of Dagoth Ur's Ash Vampire lieutenants — a divine undead being who shares Dagoth Ur's essence from the Heart of Lorkhan. Unlike the Ash creatures above, an Ash Vampire cannot truly die while the Heart sustains its master.\n\nBut Keening can be taken from it. The question is how."
+ kagrenac.015.a: "I destroy the Ash Vampire in single combat. It cannot be permanently slain, but it can be driven back long enough."
+ kagrenac.015.b: "I invoke Nerevar's spirit and his ancient authority over these divine servants. The Ash Vampire hesitates — and that is enough."
+ kagrenac.015.c: "I bait the Ash Vampire into a trap of Red Mountain stone. When it is pinned, I take Keening and withdraw before it recovers."
+
+ # kagrenac.020
+ kagrenac.020.t: "Wraithguard — Vivec's Gift"
+ kagrenac.020.desc: "Wraithguard is the key to everything.\n\nWithout it, Sunder and Keening will reduce any mortal who touches them to ash. Kagrenac built it to fit only Nerevar's hand. The Tribunal used it in turns, but they were gods by then.\n\nYou are not yet a god. You are something else — the Nerevarine, the one Vivec has always known would come.\n\nHe has been keeping a second Wraithguard in Vivec City. For you. The warrior-poet who helped murder your predecessor now stands ready to give you the tool to end the era he built on that murder."
+ kagrenac.020.a: "Vivec places Wraithguard in my hands without a word. His eyes know everything. He knows what comes next."
+ kagrenac.020.b: "My bond with Vivec through his vision opens the vault. The gauntlet fits my hand as though it was made for me — because it was."
+ kagrenac.020.c: "I take the original Wraithguard by force. The backlash is agonising — but I will not stop here."
+
+ # kagrenac.030
+ kagrenac.030.t: "The Heart of Lorkhan"
+ kagrenac.030.desc: "This is the place.\n\nThe Heart of Lorkhan — the divine engine that has sustained Dagoth Ur's power since before the First Era, that gave the Tribunal their immortality, that has driven the Blight outward across Morrowind for centuries.\n\nYou have Sunder in one hand and Keening in the other. Wraithguard is fitted to your arm. You know what must be done.\n\nDagoth Ur's presence fills the chamber like a heat without a source — not hot, but felt. He knows you are here. He knows why.\n\nAzura whispers: §H'Complete the prophecy, child of Nerevar. Let truth fall where it must.'§!"
+ kagrenac.030.a: "I strike the Heart with Sunder, bleed it with Keening. For Nerevar. For Morrowind. For truth."
+
+ # Traits
+ nerevarine_victor: "Nerevarine Victor"
+ nerevarine_victor_desc: "This ruler completed the ancient prophecy of Azura: retrieved the Tools of Kagrenac, descended into Red Mountain, and struck the Heart of Lorkhan to end Dagoth Ur's divine corruption. The Blight recedes. The era changes. The prophecy is fulfilled."
+ almalexias_hand: "Hand of Almalexia"
+ almalexias_hand_desc: "This warrior has been personally chosen and invested by Almalexia, the Mother of Morrowind, as one of her elite warrior-priests. They carry her divine authority and fight in her name. The goddess's presence surrounds them."
+
+ # Modifiers
+ vivec_trial_victor_modifier: "Unmasker of the Living God"
+ vivec_trial_victor_modifier_desc: "This ruler forced Vivec — a living god of the Tribunal — to acknowledge his role in the murder of Nerevar. The spiritual and political weight of that moment echoes across Morrowind."
+ almalexia_hands_blessing: "Almalexia's Blessing"
+ almalexia_hands_blessing_desc: "Freshly invested by the Mother of Morrowind herself, this Hand carries Almalexia's warmth and power into every battle and judgment."
+
+ # =============================================================
+ #  Vivec's Trial
+ # =============================================================
+
+ challenge_vivec_desc: "Vivec — the warrior-poet, the living god, the one who helped murder Nerevar — sits in his Palace above the waters of the Inner Sea. He has never truly answered for what happened at Red Mountain. You are in a position to change that."
+
+ # vivec_trial.000
+ vivec_trial.000.t: "The Charges Against the Living God"
+ vivec_trial.000.desc: "You stand before Vivec in his Palace at Vivec City — the god who was once a mortal general, who took divine power from the Heart of Lorkhan, whose 36 Lessons contain what appears to be a carefully veiled admission of Nerevar's murder.\n\nHe watches you with those gold-and-red eyes, patient and inscrutable.\n\nWhat are the charges you lay before him?"
+ vivec_trial.000.a: "You murdered Nerevar. Our greatest general, our champion — you killed him so you could use the Tools of Kagrenac unopposed."
+ vivec_trial.000.b: "You betrayed the Chimer's true heritage. You abandoned the Good Daedra and the old ways for stolen immortality."
+ vivec_trial.000.c: "You are no god. You stole divine power that was not yours to take — and you built a false religion on the theft."
+
+ # vivec_trial.010
+ vivec_trial.010.t: "The God Speaks"
+ vivec_trial.010.desc: "Vivec regards you in silence for a long moment.\n\nThen he begins to speak — and you realise immediately that this will not be a simple defense. He speaks the way his Lessons are written: in layers, in questions, in sentences that feel like answers but open onto deeper chambers.\n\n§H'I was there when the world was remade in Red Mountain's fire,'§! he says. §H'I have been saint and monster in equal measure. But murder — mortal murder — implies a victim who did not choose their path. Was Nerevar merely a victim?'§!\n\nHe is deflecting. The question is whether you can cut through it."
+ vivec_trial.010.a: "Your poetry does not answer my charge, lord. I did not come to be dazzled. I came for the truth. Speak plainly."
+ vivec_trial.010.b: "You speak in circles to obscure the blood on your hands. I see it regardless."
+ vivec_trial.010.c: "Perhaps I misunderstood. The gods are beyond mortal judgment. Forgive my presumption."
+
+ # vivec_trial.020
+ vivec_trial.020.t: "A God Humbled"
+ vivec_trial.020.desc: "Vivec goes still.\n\nFor a long moment he looks at you — not with the distant gaze of divinity but with something almost human in it: the expression of someone who has carried a secret across centuries and finds, unexpectedly, that the carrying is heavier than the telling.\n\n§H'I will say this once,'§! he says quietly. §H'Nerevar was betrayed by those who loved him. By those who believed the betrayal was necessary. That the cost of truth would be Morrowind itself.'§!\n\nHe does not say: §II killed him.§! But he says everything except that. The Ashlanders will say it was enough. Azura will say the prophecy acknowledges it.\n\nA god has humbled himself before you. That weight will not lift for years."
+ vivec_trial.020.a: "I did not expect that. But truth has its own gravity — and now it belongs to history."
+
+ # vivec_trial.021
+ vivec_trial.021.t: "The God Stands"
+ vivec_trial.021.desc: "Vivec tilts his head and regards you with what might, if you squint, be gentleness.\n\n§H'Here is a question for you,'§! he says. §H'You have come to judge me. But who made you fit to judge? The Nerevarine? Azura's prophecy? The Ashlanders who have never ruled anything?'§!\n\nAnd then, more quietly:\n\n§H'I would take the same path again. Because the alternative was the end of the Dunmer people. Do you understand? The cost is not something I carry lightly. But it is a cost I will carry rather than let my people die.'§!\n\nYou have no answer for that. Not today. But the question does not go away."
+ vivec_trial.021.a: "Not today. But the question you have not answered — it will outlast us both."
+
+ # =============================================================
+ #  Almalexia's Hands
+ # =============================================================
+
+ pledge_as_almalexias_hand_desc: "Almalexia, the Mother of Morrowind, chooses her Hands personally — warrior-priests of absolute devotion and martial excellence who carry her divine authority across Morrowind. As one devoted to the Mother, you may petition to be named among them."
+
+ # almalexia_hands.000
+ almalexia_hands.000.t: "The Investiture — A Hand of Almalexia"
+ almalexia_hands.000.desc: "The ceremony takes place in Almalexia's sanctum in Mournhold, before her throne of living gold.\n\nShe places her hands on your shoulders and looks at you with eyes that hold the full weight of the Second Era — every battle, every sacrifice, every Dunmer who died so that others could live.\n\n§H'You are my Hand now,'§! she says, and her voice is the warmth of hearthfire in a storm. §H'My strength, my blade, my voice in the places I cannot walk myself. Do not fail me. Do not fail Morrowind.'§!\n\nA weapon is pressed into your hands — its blade holds the faint light of Hopesfire, Almalexia's own divine weapon, reflected in the metal as a blessing.\n\nYou are a Hand of Almalexia. The oath is sworn."
+ almalexia_hands.000.a: "I kneel before the Mother of Morrowind and take my oath. For her. For her people. For Morrowind."
+
+ # almalexia_hands.005
+ almalexia_hands.005.t: "Almalexia Calls Her Hand"
+ almalexia_hands.005.desc: "A messenger bearing Almalexia's seal arrives — you recognise the mark of her sanctum in Mournhold.\n\nThe message is brief, as the Mother's commands always are: §H'There is a matter that requires a Hand. The Sixth House moves in the east, and the faithful are frightened. Come when you are able — which is to say, now.'§!\n\nAlmalexia does not ask. She calls. And her Hands answer."
+ almalexia_hands.005.a: "I go at once. Morrowind comes before my own plans — it always has."
+ almalexia_hands.005.b: "My other duties must come first this month. I will answer the call as soon as I can."
+
+ # =============================================================
+ #  Almalexia's Trial
+ # =============================================================
+
+ challenge_almalexia_desc: "Almalexia — the Mother of Morrowind, the fierce heart of the Tribunal — was present at Red Mountain. She conspired in Nerevar's murder as surely as Vivec did. Unlike Vivec, she will not engage with the charge as a puzzle. She will rage. And that rage may be exactly the evidence you need."
+
+ # Modifier
+ almalexia_trial_victor_modifier: "The One Who Faced the Mother"
+ almalexia_trial_victor_modifier_desc: "This ruler held firm under Almalexia's divine fury and let the witnessing court see it: a goddess who cannot endure being questioned is not the mother she claims to be. That moment will be spoken of for years."
+
+ # almalexia_trial.000
+ almalexia_trial.000.t: "The Charges Against the Mother of Morrowind"
+ almalexia_trial.000.desc: "You are in Almalexia's court in Mournhold — a hall of devotional gold and silent attendants who have learned not to breathe too loudly when the Mother is present.\n\nShe is watching you with that expression she wears like armour: warm, proud, immovable. She knows why you are here. She has always known why people come with that particular look in their eyes.\n\nShe does not look afraid. She has never looked afraid.\n\nWhat are the charges you lay before her?"
+ almalexia_trial.000.a: "You conspired in Nerevar's murder — you, who name yourself the mother of his people."
+ almalexia_trial.000.b: "You silence every voice that asks how the Tribunal came to power. That is not faith — it is fear."
+ almalexia_trial.000.c: "You rule through fear dressed as love. That is not divine — it is tyranny."
+
+ # almalexia_trial.010
+ almalexia_trial.010.t: "The Goddess Responds"
+ almalexia_trial.010.desc: "The warmth leaves her face.\n\nWhat replaces it is not cold — it is something hotter than warmth, something that fills the room the way a forge fills a smithy: all heat, no comfort.\n\n§H'You stand in my court,'§! she says, and her voice is steady in the way that water is steady before the dam breaks. §H'In my city. In my Morrowind. And you speak these words to me — to me, who bled for this people across ages, who held this land together with her own hands while others retreated to their clockwork rooms and their poetry?'§!\n\nShe is on her feet now. Her Hands have moved between you and her throne.\n\nThis is the moment. If you yield, the trial ends here. If you hold, you will be forcing a goddess to either strike you down before her court — or stand there, unable to — and let everyone present understand what that means."
+ almalexia_trial.010.a: "Your anger is the answer to my charge, Mother. If you were innocent, you would not rage."
+ almalexia_trial.010.b: "I will not be moved by divine fury. I have come for the truth, not your forgiveness."
+ almalexia_trial.010.c: "Forgive me, Mother. I spoke out of grief, not wisdom. I should not have come."
+
+ # almalexia_trial.020
+ almalexia_trial.020.t: "The Mother Exposed"
+ almalexia_trial.020.desc: "She does not strike you down.\n\nFor a long moment the entire court holds its breath — the Hands are still, the attendants are still, and Almalexia herself is still, and in that stillness something enormous shifts.\n\nEveryone present understands: she cannot strike you down. Not here. Not with the court watching. To do so would prove every word you said.\n\nHer silence is the verdict.\n\nShe holds your gaze for three long seconds — and then, with immense, terrible dignity, she turns and walks back to her throne. The audience is ended.\n\nYou walk out of Mournhold alive. Behind you, the court begins, very quietly, to talk."
+ almalexia_trial.020.a: "She did not strike me down. She could not. That silence will outlast her."
+
+ # almalexia_trial.021
+ almalexia_trial.021.t: "Silenced by the Mother"
+ almalexia_trial.021.desc: "The fury passes.\n\nAlmalexia regards you for a moment longer — and then her expression shifts, seamlessly, back to warmth: the warmth of a mother forgiving a child who has said something foolish and hurtful.\n\n§H'I understand,'§! she says, and her voice is almost gentle. §H'You are grieving. We all grieve in our own way. But grief must not be allowed to speak as accusation — not in this court, not before these people.'§!\n\nShe gestures to her Hands. The audience is ended.\n\nOutside in the sunlight of Mournhold, you feel something you cannot quite name — not shame, exactly, but something close to it, pressed against the edges of your pride."
+ almalexia_trial.021.a: "She forgave me. That should feel better than it does."
+
+ # =============================================================
+ #  Sotha Sil's Trial
+ # =============================================================
+
+ challenge_sotha_sil_desc: "Sotha Sil has not spoken to a ruler in decades. He retreated to his Clockwork City and built his silence into walls of brass and clockwork. But a message, carefully worded — formulating a charge that demands a response from an intellect that still, despite everything, respects a question genuinely asked — may find its way through."
+
+ # sotha_sil_trial.000
+ sotha_sil_trial.000.t: "A Message to the Clockwork City"
+ sotha_sil_trial.000.desc: "You spend three weeks crafting the message. Not a demand. Not a threat. A question — precise, logical, undeflectable — sent to the Clockwork City via a scholar who knows the way.\n\nTwo days later, the scholar returns with a reply.\n\nSotha Sil will hear the charges.\n\nYou had not expected that. None of your advisors expected it either. But Sotha Sil is, at his core, a mind — and a mind of that calibre still recognises a question that cannot be left unanswered.\n\nWhat do you say to the Clockwork God?"
+ sotha_sil_trial.000.a: "You helped murder Nerevar. Your Clockwork City is guilt made architecture — a place to hide from what you did."
+ sotha_sil_trial.000.b: "You abandoned Morrowind. You built a city of gears rather than face the people whose trust you betrayed."
+ sotha_sil_trial.000.c: "Your Clockwork City is not wisdom — it is an apology you never had the courage to speak aloud."
+
+ # sotha_sil_trial.010
+ sotha_sil_trial.010.t: "The Clockwork God Responds"
+ sotha_sil_trial.010.desc: "The reply comes not in a letter but in person — Sotha Sil steps out of his City to receive you, which no one living has seen him do within memory.\n\nHe is smaller than the legends suggest. Quieter.\n\nHe does not deny the charge. He says:\n\n§H'What you have described is accurate. We made a choice that cost Nerevar his life and Morrowind its foundation. I have spent the intervening years attempting to address the fundamental error — not the murder, which cannot be unmade, but the thing that made the murder feel necessary.'§!\n\nHe pauses.\n\n§H'The question I have for you is this: what would you have had us do differently? Not to exonerate us — but because the answer reveals whether justice or understanding is what you actually came here for.'§!"
+ sotha_sil_trial.010.a: "That is either the deepest wisdom or the cleverest evasion I have ever heard. I will accept it."
+ sotha_sil_trial.010.b: "I came for plain words, not a counter-question. Say it without the philosophy."
+ sotha_sil_trial.010.c: "I do not have the learning to answer that. The question is too large for me."
+
+ # sotha_sil_trial.020
+ sotha_sil_trial.020.t: "The Answer"
+ sotha_sil_trial.020.desc: "He nods — just once.\n\n§H'Nerevar was betrayed by those who believed the cost was justified. I believed it. I no longer do. That change of view does not undo what was done — it is simply what happened inside me across several hundred years of working alone in a city of my own construction.'§!\n\nHe does not ask for forgiveness. He does not offer apology. He says:\n\n§H'What I can tell you is that everything I have built here is an attempt to correct the error at a level deeper than the one on which it was made. Whether that constitutes penance is a question for philosophers. It is all I have.'§!\n\nHe turns and walks back toward the Clockwork City.\n\nYou stand there for a long time.\n\nIt is not justice. But it may be the only honest reckoning you were ever going to get from any of them."
+ sotha_sil_trial.020.a: "It is not justice. But it may be something rarer: truth without ornament."
+
+ # sotha_sil_trial.021
+ sotha_sil_trial.021.t: "Dismissed from the Clockwork City"
+ sotha_sil_trial.021.desc: "Sotha Sil looks at you for a moment.\n\nNot unkindly.\n\n§H'You came with a charge that required an answer,'§! he says. §H'But when I gave you one, you could not follow it. That is not a failure of intelligence — the question was genuinely large. Consider it at your leisure. The answer may become clearer with time.'§!\n\nHe steps back through the gate of the Clockwork City.\n\nThe gate closes. The machines continue their endless turning.\n\nYou had expected rage, or denial, or philosophical sleight of hand. You did not expect to be sent home like a student who had not yet done the reading."
+ sotha_sil_trial.021.a: "He did not mock me. He simply returned to his work. That is somehow more difficult to carry."

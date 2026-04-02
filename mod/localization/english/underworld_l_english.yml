@@ -1,0 +1,79 @@
+﻿l_english:
+
+ # =====================================================================
+ #  UNDERWORLD — Dark Brotherhood and Skooma Trade — Localization
+ # =====================================================================
+
+ # ---- underworld.000 — The Night Mother Speaks ----
+
+ underworld.000.t: "The Night Mother's Voice"
+ underworld.000.desc: "It does not come in sleep, which is the first thing that is strange about it. It comes between one thought and the next — in the middle of a sentence, in the pause before you drink, in the space between the last candle and the dark. A voice. Not loud. Not dramatic. It carries the specific intimacy of something that does not need to raise its volume because it is already inside the room with you. She does not announce herself. She does not need to. The Night Mother has been here before. She has been here many times. She is simply ready for you to be ready for her."
+ underworld.000.a: "I listen. Tell me what you need."
+ underworld.000.b: "I close the door. This voice is not welcome in my hall."
+ underworld.000.c: "Who are you? What is it you want? Tell me before I decide."
+
+ # ---- underworld.001 — The First Contract ----
+
+ underworld.001.t: "The First Contract"
+ underworld.001.desc: "It arrives in the usual way — a folded slip of paper, a name, a place, a time, and a sum of gold that acknowledges the arrangement without spelling it out. The Brotherhood's first contracts are always simple. Not easy: simple. The target is specific; the method is not prescribed. What is expected is competence and discretion and the willingness to do, without excessive internal debate, what you have agreed to do. The Night Mother does not follow up on incomplete contracts. She simply does not send more."
+ underworld.001.a: "It is done. The contract is fulfilled. Send word to the Mother."
+ underworld.001.b: "I will not be a killer on commission. The contact is severed."
+ underworld.001.c: "Tell me more about the target before I commit to action."
+
+ # ---- underworld.002 — Advancing in the Brotherhood ----
+
+ underworld.002.t: "The Listener's Mantle"
+ underworld.002.desc: "The message is delivered by a speaker who meets your eyes with the practised steadiness of someone whose profession requires absolute calm in any circumstance. The Night Mother has chosen. Only one person at a time hears the full voice — the contracts carried in her silence, the names she holds and releases like breath. The Listener is not merely an assassin at the top of a hierarchy. The Listener is the Brotherhood's ear pressed to a door that no one else in the world can open. The offer is extended once."
+ underworld.002.a: "I accept the mantle. I will be her Listener."
+ underworld.002.b: "I have come as far as I will go. This role is not mine."
+ underworld.002.c: "You are all exposed. I take every name I know to the guard."
+
+ # ---- underworld.003 — Skooma Trade Discovered ----
+
+ underworld.003.t: "The Moon Sugar Offer"
+ underworld.003.desc: "He arrives at a side entrance, at an hour when the hall is quiet, carrying nothing that identifies him and everything that implies a man who has done this before. The offer is plain: the Moon Sugar networks move through every major port city and several minor ones; the supply is steady; the demand never diminishes; the margin is excellent. He has already worked out what cut makes sense for a ruler of your position. The numbers are real. The risks — legal, political, personal — are also real, and he does not bother to understate them. He is a pragmatist. He leaves the decision entirely to you."
+ underworld.003.a: "Invest fully. This trade moves whether I am in it or not."
+ underworld.003.b: "A small cut only — enough to profit without being responsible for it."
+ underworld.003.c: "No. This trade brings suffering to real people. I will not profit from it."
+
+ # ---- underworld.004 — Skooma Addiction ----
+
+ underworld.004.t: "The Ruler's Own Supply"
+ underworld.004.desc: "It began as understanding the product — a logical, almost professional curiosity. It continued because the first time removed something that had been there a long time: a specific kind of pressure behind the eyes, a tightness in the chest that you had stopped noticing because it had always been there. The skooma took it away cleanly and returned you to your chair with the particular serenity of a person who has momentarily had their burden lifted. That was months ago. The supply is readily available. The habit has become visible to people who know what to look for. The question is what you do about it."
+ underworld.004.a: "It stops. Now. Whatever the cost of stopping, I pay it."
+ underworld.004.b: "The skooma takes the edge away. I let it do what it does."
+
+ # ---- underworld.005 — Khajiit Diplomacy Fallout ----
+
+ underworld.005.t: "The Suppliers Send Word"
+ underworld.005.desc: "The messenger does not look threatening. The message does. The Khajiiti trading house that supplied the original network has been watching the arrangement with the patient attention of people who do not miss profit leaking sideways. The language of the message is entirely civil. The implication is not. They have documentation. They have dates and figures and the names of intermediaries who would prefer those names not be spoken in a court of law. They are not angry, exactly. They are businesspeople making a business case. They want a cut, or they want the arrangement to end, or they want to have a very different kind of conversation."
+ underworld.005.a: "Pay them their cut. Exposure is more expensive than this."
+ underworld.005.b: "I will not be extorted. Meet their threat with a better one."
+ underworld.005.c: "Cut off the entire network. The exposure risk is too high."
+
+ # ---- Decisions ----
+
+ contact_dark_brotherhood: "Contact the Dark Brotherhood"
+ contact_dark_brotherhood_desc: "The Dark Brotherhood does not advertise. The Black Sacrament — a ritual of effigy and nightshade and bone meal — is the method by which the Brotherhood knows someone is willing to pay for what they provide. A ruler with the right instincts, or the right allies, can make the arrangements. Whether the Brotherhood answers is their decision. Whether to ask is yours."
+ invest_skooma_trade: "Invest in the Skooma Trade"
+ invest_skooma_trade_desc: "The Moon Sugar smuggling networks move quietly through Tamriel's ports and river-towns, and they are profitable precisely because so many respectable people pretend they do not exist. A ruler willing to put capital into the operation can expect returns. The risks — supply chain exposure, Khajiiti supplier politics, and the personal temptations that come with easy access — are the cost of doing business."
+
+ # ---- Traits ----
+
+ dark_brotherhood_listener: "Dark Brotherhood Listener"
+ dark_brotherhood_listener_desc: "This ruler has accepted the Night Mother's mantle and become the Brotherhood's Listener — the single living person who hears the Unholy Matron's voice in full and carries her contracts to the guild. The Night Mother's service does not sit easily with the Divines' faithful, and the piety cost is ongoing. The intrigue edge, however, is not theoretical: the Listener knows things that other people have paid dearly to keep unknown."
+
+ # ---- Modifiers ----
+
+ skooma_trade_income: "Skooma Trade Investment"
+ skooma_trade_income_desc: "The Moon Sugar smuggling network is producing. The income is real and arrives in ways that do not appear on any public ledger. The stress of managing a criminal enterprise — suppliers, intermediaries, exposure risk, and the creeping personal access to the product — accumulates steadily alongside the gold."
+
+ skooma_addiction: "Skooma Addiction"
+ skooma_addiction_desc: "The ruler has been using their own product. The health cost is measurable. The learning loss is the subtler damage — the drug does not destroy intelligence acutely but softens the edges of disciplined thought in ways that become apparent slowly. The stress relief is genuine and is, perhaps, the most dangerous thing about it."
+
+ # ---- Custom Tooltips ----
+
+ underworld_listener_accepted_tt: "You are now the Brotherhood's Listener. The Night Mother will speak to you in full. What she asks, you carry."
+ underworld_brotherhood_betrayed_tt: "Every name you know has been given to the authorities. The Brotherhood will not forget this — but it will take them time to respond."
+ underworld_addiction_fought_tt: "The skooma trade network is cut. The withdrawal will cost you stress for a time. What you recover will be more than gold."
+ underworld_addiction_accepted_tt: "The skooma continues. The health cost will be ongoing. For now, the pressure is gone."

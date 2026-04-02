@@ -1,0 +1,62 @@
+# =============================================================
+#  Psijic Order — Decisions
+#  File: mod/common/decisions/psijic_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • scholar   (CK3 vanilla trait)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SEEK PSIJIC TUTELAGE
+#  A ruler of sufficient learning and wealth may formally seek
+#  out the Psijic Order — not by going to Artaeum (it cannot
+#  be found by those not invited), but by demonstrating the
+#  kind of sustained scholarship that the Order monitors from
+#  their island.  The gold covers the months of correspondence,
+#  testing, and preparation.  The prestige cost reflects how
+#  unusual it is for a ruler to step back from governance to
+#  study.  The Order notices.
+# ---------------------------------------------------------------
+seek_psijic_tutelage = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = seek_psijic_tutelage_desc
+
+    is_shown = {
+        learning >= 14
+        NOT = { has_character_flag = psijic_contact }
+        NOT = { has_trait = psijic_adept }
+        is_ruler = yes
+    }
+
+    is_valid = {
+        learning >= 16
+        prestige >= 400
+        gold     >= 100
+        is_adult = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    effect = {
+        add_prestige = -400
+        add_gold     = -100
+        set_character_flag = { flag = psijic_contact days = 3650 }
+        trigger_event = { id = psijic.001 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 15
+            learning >= 20
+        }
+        modifier = {
+            add = 10
+            has_trait = scholar
+        }
+    }
+}

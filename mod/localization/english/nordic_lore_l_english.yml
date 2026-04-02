@@ -1,0 +1,71 @@
+﻿l_english:
+
+ # =====================================================================
+ #  NORDIC / ATMORAN EXTENSIONS — Localization
+ # =====================================================================
+
+ # ---- nordic_lore.000 — Ysgramor's Legacy ----
+
+ nordic_lore.000.t: "Ysgramor's Legacy"
+ nordic_lore.000.desc: "It is brought in wrapped in oiled hide — a thane who pulled it from behind a hearthstone during hall-repairs, uncertain what it was, certain that it mattered. You unroll it by firelight. The hand is old Atmoran runic script, dense with kennings and battle-names. The Ysgramor Saga. A fragment, perhaps one-tenth of the full telling, but unmistakable: the voyage south, the Five Hundred Companions, the founding war. And threaded through the lineage passages, a name. A name that could be yours, if the bloodline holds. You set the fragment down and think about what that means."
+ nordic_lore.000.a: "Set the scholars to work. If the blood is there, I want it proven."
+ nordic_lore.000.b: "Frame it and hang it above the fire. Ysgramor's name honours every Nord hall."
+ nordic_lore.000.c: "Old sagas are for old men. Set it aside."
+
+ # ---- nordic_lore.001 — Named Among Ysgramor's Heirs ----
+
+ nordic_lore.001.t: "Named Among the Companions' Heirs"
+ nordic_lore.001.desc: "The skalds have done their work. The genealogy sits before you — cross-referenced against three separate saga fragments, checked against the hall-records of Windhelm, verified by two scholars of old Atmoran who have spent a combined century studying the Five Hundred. The conclusion stands. The question now is whether you can stand with it — whether the blood of Ysgramor's line, if it flows in your veins, finds a worthy house to rest in."
+ nordic_lore.001.a: "The claim is proven and I am worthy. I stand among Ysgramor's heirs."
+ nordic_lore.001.b: "The claim is acknowledged — though not every skald is yet singing it."
+ nordic_lore.001.c: "The saga speaks, but the skalds are not moved. The claim cannot stand."
+
+ # ---- nordic_lore.002 — Shor's Hall Vision ----
+
+ nordic_lore.002.t: "Shor's Hall"
+ nordic_lore.002.desc: "It does not come in sleep. It comes between one breath and the next — a door that is not a door, and beyond it, golden light and the sound of merriment that carries the specific weight of eternity. You can see them there: the warriors who crossed first, the Companions, the dead who died well, drinking in a hall where the mead never runs cold and the fires never need feeding. Shor sits at the head of it — or a shape that is Shor, the God Beneath, the secret king who was never a king — and he is looking at you. The door is open. The question is whether you walk through it now, or hold on to the world a little longer."
+ nordic_lore.002.a: "I hear the call. Shor's hall will know my name before the end."
+ nordic_lore.002.b: "Not yet. My work here is not finished. Sovngarde can wait."
+ nordic_lore.002.c: "Mist and battle-dream. I will not read omens into a vision."
+
+ # ---- nordic_lore.003 — The Skaal Elders ----
+
+ nordic_lore.003.t: "The All-Maker's Priests"
+ nordic_lore.003.desc: "The envoy is a small man in furs who smells of pine resin and cold salt air — a Skaal elder from the village, speaking with the unhurried precision of someone who has never been in a particular hurry and does not intend to start now. The All-Maker has eight aspects, he explains: earth, wind, fire, water, stone, sun, flora, and beasts. The Skaal have kept the old rites since before the first longship sailed. They do not ask for recognition. They offer it. The question is what you do with the gesture."
+ nordic_lore.003.a: "Their ways are old and true. I will walk with them, not above them."
+ nordic_lore.003.b: "Old rites or not, they are within my borders. I require their submission."
+ nordic_lore.003.c: "The All-Maker's people are their own concern, not mine."
+
+ # ---- nordic_lore.004 — The All-Maker's Blessing ----
+
+ nordic_lore.004.t: "The All-Maker's Blessing"
+ nordic_lore.004.desc: "It does not arrive as a single thing. It arrives as eight — and you feel each one separately before they join. Earth: the solidity underfoot that has always been there and now feels acknowledged. Wind: the cold that is not merely temperature but movement with intention. Fire: warmth that burns clean rather than consuming. Water: the tide of everything that flows. Stone: the patience of what does not bend. Sun: the light that exists whether or not you are there to see it. Flora: the green patience of growing things. Beasts: the clean hunger of things that simply are. The All-Maker does not speak in words. It speaks in aspects, and all eight have recognised you."
+ nordic_lore.004.a: "Eight blessings. Eight aspects. One world — and I am standing in all of it."
+
+ # ---- Decisions ----
+
+ claim_companion_lineage: "Claim Companion Lineage"
+ claim_companion_lineage_desc: "The saga fragment has been studied and the genealogy confirms it: this house carries a thread of the old Atmoran bloodline, one of the Five Hundred who crossed the sea with Ysgramor. Formally claiming Companion descent requires more than a document — it requires the credibility that only a worthy lord can bring to the name."
+ seek_skaal_accord: "Seek the Skaal Accord"
+ seek_skaal_accord_desc: "The Skaal of Solstheim have kept the All-Maker's rites since before the first long ship rounded the northern cape. They do not petition lords for recognition — but a lord who approaches them with genuine respect may earn something older and more durable than a political alliance."
+
+ # ---- Traits ----
+
+ companion_of_ysgramor: "Companion of Ysgramor"
+ companion_of_ysgramor_desc: "This ruler has formally claimed and had acknowledged their descent from the Five Hundred Companions — the Atmoran warriors who sailed south with Ysgramor after the Night of Tears and founded the Nordic kingdoms in blood and fire. The name carries weight at every Nord table: to be Ysgramor's heir is to be the inheritor of the oldest heroic tradition in the north."
+
+ shor_marked: "Marked by Shor"
+ shor_marked_desc: "This ruler has received a vision of Sovngarde — the golden meadhall of Shor beyond the mists — and heard the call of the God Beneath. They have not yet answered it, but the mark is on them: the warriors of the hall know this face. Shor's calling eases the burden of mortal life; what must be done is done without the weight of dread that troubles lesser rulers."
+
+ all_maker_blessed: "Blessed by the All-Maker"
+ all_maker_blessed_desc: "This ruler has been acknowledged by the All-Maker's eight aspects — earth, wind, fire, water, stone, sun, flora, and beasts. The Skaal count this as the deepest honour the north can offer. The blessing does not grant power in the way that a weapon grants power. It grants a quality of presence in the world: the harmony of all things in right relation."
+
+ # ---- Modifiers ----
+
+ companion_recognition: "Companion Lineage Recognised"
+ companion_recognition_desc: "The Nord halls acknowledge the claim of Companion descent — not with full conviction, but with the measured respect that an unproven-but-credible lineage demands. The recognition is real; the proof is partial. What the claim does to those who see this ruler across a table is difficult to quantify and impossible to ignore."
+
+ # ---- Custom Tooltips ----
+
+ nordic_lore_companion_full_tt: "Your martial reputation has cemented the lineage claim. The companion_of_ysgramor trait is yours — the skalds will sing your connection to the Five Hundred."
+ nordic_lore_skaal_hostility_tt: "The Skaal will remember this. Their priests do not petition lords twice."

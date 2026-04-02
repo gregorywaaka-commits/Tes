@@ -682,14 +682,6 @@ famous_ballad_modifier = {
     diplomacy                  = 2      # Being famous makes diplomacy easier
 }
 
-# Curse for breaking a Dark Brotherhood / Clavicus Vile bargain.
-# Also used by daedric_invasion_effects.txt for Vile.
-vile_curse_modifier = {
-    monthly_prestige_gain_mult = -0.15
-    diplomacy                  = -3
-    monthly_income             = -0.1
-}
-
 # =============================================================
 #  GUILD LEADERSHIP MODIFIERS
 #  Applied permanently (days = -1) when a character becomes the
@@ -752,7 +744,7 @@ guild_leader_bards_modifier = {
     diplomacy                  = 5
     learning                   = 3
     monthly_prestige_gain_mult = 0.25  # Songs of the Bards College define Tamrielic culture
-    stress_loss_mult           = 0.15  # Music soothes the soul
+    stress_gain_mult           = -0.15  # Music soothes the soul
 }
 
 guild_leader_undaunted_modifier = {
@@ -793,7 +785,6 @@ thu_um_shout_cooldown = { }
 # Removed by: leave_greybeard_order (thuumvoi_effects.txt)
 greybeard_vow_modifier = {
     diplomacy               = -2     # Silence is not rudeness — but courts don't understand it
-    piety_mult              = 0.15
     monthly_piety_gain_mult = 0.20   # Deep contemplation and discipline build spiritual power
 }
 
@@ -801,7 +792,6 @@ greybeard_vow_modifier = {
 # Leaving the Order is a profound spiritual failure in the Way of the Voice.
 # Applied by: leave_greybeard_order (thuumvoi_effects.txt)
 greybeard_oath_broken = {
-    piety_mult              = -0.30
     monthly_piety_gain_mult = -0.25
     diplomacy               = -5     # Known as an oath-breaker; courts are suspicious
 }
@@ -810,7 +800,6 @@ greybeard_oath_broken = {
 # The First Voice is the head of the Greybeard Order.
 first_voice_modifier = {
     learning                   = 5
-    piety_mult                 = 0.30
     monthly_piety_gain_mult    = 0.30
     monthly_prestige_gain_mult = 0.20
     command_modifier = { advantage = 8 max_morale = 0.40 }
@@ -827,8 +816,8 @@ dovahkiin_full_power_modifier = {
     prowess         = 6
     learning        = 4
     martial         = 4
-    piety_mult      = 0.25
-    dread_gain_mult = 0.25   # Dragons and lore-aware mortals fear the Dragonborn
+    monthly_piety_gain_mult = 0.25
+    dread_gain_mult         = 0.25   # Dragons and lore-aware mortals fear the Dragonborn
     command_modifier = { advantage = 8 damage = 0.20 max_morale = 0.35 }
 }
 
@@ -880,8 +869,7 @@ dragon_souls_brimming_modifier = {
 # This is "the hardest shout" — choosing mortal free will over the dragon's hunger.
 # Applied by: resist_dovah_nature (thuumvoi_effects.txt)
 dovah_nature_resisted_modifier = {
-    piety_mult               = 0.20
-    stress_loss_mult         = 0.15   # Hard-won inner peace reduces ongoing stress
+    stress_gain_mult         = -0.15   # Hard-won inner peace reduces ongoing stress
     monthly_piety_gain_mult  = 0.20
 }
 
@@ -915,7 +903,7 @@ dovah_nature_dominant_modifier = {
 # Applied permanently (days = -1) by receive_amulet_of_kings.
 # Removed by lose_amulet_of_kings.
 amulet_of_kings_bearer_modifier = {
-    piety_mult                 = 0.20
+    monthly_piety_gain_mult    = 0.20
     monthly_prestige_gain_mult = 0.25
     diplomacy                  = 3      # The Amulet lends divine authority
 }
@@ -925,7 +913,7 @@ amulet_of_kings_bearer_modifier = {
 # Applied permanently (days = -1) by amulet.004 event (amulet_of_kings_events.txt).
 # Removed by lose_amulet_of_kings.
 amulet_of_kings_dragonborn_modifier = {
-    piety_mult                 = 0.40
+    monthly_piety_gain_mult    = 0.40
     monthly_prestige_gain_mult = 0.40
     diplomacy                  = 5
     learning                   = 3
@@ -943,7 +931,7 @@ amulet_of_kings_dragonborn_modifier = {
 # This is the greatest act a Dragonborn can perform — renewing Alessia's Covenant.
 # Applied by: relight_dragonfires_effect (thuumvoi_effects.txt)
 dragonfires_lit_modifier = {
-    piety_mult                 = 0.50
+    monthly_piety_gain_mult    = 0.50
     monthly_prestige_gain_mult = 0.50
     diplomacy                  = 6
     # The restored Dragonfires provide the strongest Oblivion barrier possible.
@@ -954,687 +942,492 @@ dragonfires_lit_modifier = {
 # Empty cooldown between Amulet of Kings post-events.
 # Duration: 1825 days (5 years).
 amulet_post_event_cooldown = { }
-    monthly_income = -0.2
-    supply_limit_mult = -0.1
-}
-
-maormer_truce_modifier = {
-    build_speed_mult = 0.0   # no-op; just prevents raid events
-}
-
-maormer_tempest_modifier = {
-    monthly_income = -0.15
-    supply_limit_mult = -0.2
-}
-
-repelled_maormer_modifier = {
-    monthly_prestige_gain_mult = 0.1
-}
-
-maormer_hatred_modifier = {
-    levy_size = 0.1
-    monthly_prestige_gain_mult = 0.05
-}
-
-# ---- Sload / Thrassian Plague ----
-thrassian_plague_modifier = {
-    monthly_income    = -0.4
-    supply_limit_mult = -0.3
-    development_growth_factor = -0.5
-}
-
-quarantine_modifier = {
-    monthly_income    = -0.1
-    supply_limit_mult = -0.1
-}
-
-# ---- Kothringi / Knahaten Flu ----
-knahaten_flu_modifier = {
-    monthly_income    = -0.3
-    supply_limit_mult = -0.2
-    development_growth_factor = -0.4
-}
-
-knahaten_flu_fear_modifier = {
-    monthly_prestige_gain_mult = -0.1
-}
-
-# ---- Kamal ----
-kamal_ice_curse_modifier = {
-    supply_limit_mult = -0.3
-    monthly_income    = -0.2
-    development_growth_factor = -0.3
-}
-
-# ---- Elder Towers ----
-tower_stone_active_modifier = {
-    monthly_income    = 0.2
-    development_growth_factor = 0.3
-    supply_limit_mult = 0.15
-}
-
-tower_fallen_modifier = {
-    monthly_income    = -0.2
-    development_growth_factor = -0.2
-}
-
-white_gold_keeper_modifier = {
-    monthly_prestige_gain_mult = 0.3
-    monthly_income = 0.2
-    diplomacy = 3
-}
-
-red_mountain_keeper_modifier = {
-    monthly_piety_gain_mult = 0.3
-    martial = 3
-    prowess = 4
-}
-
-reality_fracturing_modifier = {
-    monthly_prestige_gain_mult = -0.2
-    development_growth_factor  = -0.5
-    monthly_income = -0.3
-}
-
-tower_sabotage_cooldown = {
-    # Prevents repeated sabotage — no bonus/penalty, just a flag
-}
-
-# ---- Dreugh ----
-old_knocker_blessing_modifier = {
-    monthly_piety_gain_mult = 0.15
-    prowess = 3
-}
-
-# ---- Imga ----
-imga_favor_modifier = {
-    monthly_prestige_gain_mult = 0.05
-    diplomacy = 1
-}
-
-# ---- Tang Mo ----
-tang_mo_unity_modifier = {
-    levy_size = 0.15
-    supply_limit_mult = 0.1
-}
-
-ka_po_tun_alliance_modifier = {
-    monthly_prestige_gain_mult = 0.1
-    levy_size = 0.1
-}
-
-# ---- Keptu ----
-bloodroot_forge_modifier = {
-    men_at_arms_maintenance_mult = -0.1
-    monthly_income = 0.15
-}
-
-# ---- Plague cooldown ----
-plague_cooldown_modifier = {
-    # Prevents repeated unleashing — no-op flag
-}
-
-# ---- Misc ----
-rallied_against_daedra = {
-    # referenced by existing daedric invasion
-    levy_size = 0.1
-}
-
-rejected_daedric_bargain = {
-    monthly_piety_gain_mult = 0.1
-}
-
-oblivion_gate_province_modifier = {
-    monthly_income    = -0.5
-    supply_limit_mult = -0.4
-    development_growth_factor = -0.6
-}
-
-oblivion_gate_unchecked = {
-    monthly_income    = -0.3
-    supply_limit_mult = -0.2
-}
-
-oblivion_gate_daedra_surge = {
-    supply_limit_mult = -0.2
+mythic_dawn_inner_circle_insight = {
+    intrigue                   = 3
+    monthly_prestige_gain_mult = 0.10
+    stress_gain_mult           = 0.15   # The weight of knowing what the inner circle knows
 }
 
 # =============================================================
-#  Character & Province Modifiers — All 17 Daedric Princes
+#  Hist / Saxhleel Modifiers
 # =============================================================
 
-# ---- Per-Prince Invasion Province/Character Modifiers ----
-
-molag_planemeld_dread = {
-    monthly_prestige_gain_mult = -0.1
-    stress_gain_mult = 0.2
-    dread = 20
+# ---------------------------------------------------------------
+#  HIST VISION INSIGHT — BEFORE-TIME KNOWLEDGE
+#  Ancient knowledge carried from the Hist's creation-era
+#  memory — the Before-Time, the moment before the world was
+#  set in the form it currently holds.  Not academic knowledge:
+#  structural.  The world looks different once you have seen
+#  the argument that preceded it.
+#  learning +2: root-memory deeper than any scholar's archive.
+#  stress_gain_mult -0.10: things that would unsettle others
+#    feel like variations on something you have already seen.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+hist_vision_insight = {
+    learning         = 2
+    stress_gain_mult = -0.10
 }
 
-boethiah_court_conspiracy = {
-    intrigue = -2
-    monthly_prestige_gain_mult = -0.05
+# ---------------------------------------------------------------
+#  HIST WARNING DEFENSIVE — CONFLICT PREPARATION
+#  The ruler has received the Hist's warning of approaching
+#  violence and responded with preparation rather than dismissal.
+#  Martial discipline is heightened.  Defensive dispositions
+#  are reviewed.  The border guards are more alert.
+#  martial +1: readiness translated into command.
+#  advantage +1: defensive edge from early preparation.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+hist_warning_defensive = {
+    martial = 1
+    command_modifier = {
+        advantage = 1
+    }
 }
 
-mephala_web_modifier = {
-    intrigue = -3
-    monthly_prestige_gain_mult = -0.1
+# ---------------------------------------------------------------
+#  WILD HUNT UNLEASHED — THE TERRIBLE TRANSFORMATION
+#  The Wild Hunt is running.  The forest-people in their
+#  transformed state are devastatingly effective combatants —
+#  the advantage and morale values reflect absolute, undirected
+#  ferocity.  The prowess reflects the physical transformation.
+#  The stress cost reflects the horror of what you have become.
+#  advantage +10, max_morale +0.30, prowess +5: the Hunt is
+#    genuinely terrifying in battle.
+#  stress_gain_mult +0.50: the horror of what you have become
+#    makes every subsequent decision more costly.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+wild_hunt_unleashed = {
+    command_modifier = {
+        advantage  = 10
+        max_morale = 0.30
+    }
+    prowess          = 5
+    stress_gain_mult = 0.50   # The horror of what you have become
 }
 
-mephala_web_gift = {
-    intrigue = 5
-    monthly_prestige_gain_mult = 0.1
+# ---------------------------------------------------------------
+#  WILD HUNT AFTERMATH — THE DESOLATION THAT FOLLOWS
+#  The Hunt has passed.  Trade routes avoid the region.  The
+#  world absorbs what was done.  Income falls; prestige erodes;
+#  the stress of ruling in the silence left behind is real.
+#  monthly_income -0.40: economic disruption from the Hunt's
+#    passage.
+#  stress_gain_mult +0.30: the weight of what was done settles
+#    into every decision made afterward.
+#  monthly_prestige_gain_mult -0.20: the world remembers.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+wild_hunt_aftermath = {
+    monthly_income             = -0.40
+    stress_gain_mult           = 0.30
+    monthly_prestige_gain_mult = -0.20   # The world remembers what you did
 }
 
-mephala_web_curse = {
-    intrigue = -5
-    stress_gain_mult = 0.2
+# =============================================================
+#  Psijic Order Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  PSIJIC TIME INSIGHT — THE ADEPT'S FIRST STILLNESS IN CRISIS
+#  The adept's first successful experience of stilling time
+#  in a genuine crisis.  The martial clarity that follows is
+#  precision, not aggression.  The learning it refines is
+#  structural, not academic.
+#  martial +1: combat decisions made from stillness rather
+#    than reaction.
+#  learning +1: the structural understanding deepens.
+#  stress_gain_mult -0.15: the river is walked beside; the
+#    torrent no longer carries.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+psijic_time_insight = {
+    martial          = 1
+    learning         = 1
+    stress_gain_mult = -0.15
 }
 
-vaermina_nightmare_modifier = {
-    stress_gain_mult = 0.3
-    learning = -2
-}
+# =============================================================
+#  Nordic / Atmoran Extensions — Modifiers
+# =============================================================
 
-nocturnal_shadow_tithe = {
-    monthly_income = -0.15
-    stewardship = -1
-}
-
-nocturnal_shadow_favor = {
-    intrigue = 3
+# ---------------------------------------------------------------
+#  COMPANION RECOGNITION — PARTIAL LINEAGE CLAIM
+#  The Nord halls acknowledge the claim of Companion descent
+#  without full proof — the genealogy is plausible, the
+#  martial credibility is partial.  The recognition is real;
+#  what it does to those who see this ruler across a table
+#  is difficult to quantify and impossible to ignore.
+#  martial +1: the claim carries baseline warrior credibility.
+#  monthly_prestige_gain_mult +0.05: recognition ripples slowly.
+#  Duration: 1095 days (3 years).
+# ---------------------------------------------------------------
+companion_recognition = {
+    martial = 1
     monthly_prestige_gain_mult = 0.05
 }
 
-malacath_oath_curse = {
-    monthly_prestige_gain_mult = -0.2
-    prowess = -4
-    stress_gain_mult = 0.1
+# =============================================================
+#  Magic Systems — Tonal Architecture / Julianos — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  TONAL WAR MODIFIER — ANIMUNCULI DEPLOYMENT
+#  Dwemer animunculi have been summoned and deployed on the
+#  battlefield using Kagrenac's tonal resonance principles.
+#  The constructs fight with the precision of machines and
+#  the relentlessness of things that do not experience fear.
+#  advantage +6: tactical edge of inexhaustible constructs.
+#  max_morale +0.15: allied troops fight harder beside them.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+tonal_war_modifier = {
+    command_modifier = {
+        advantage  = 6
+        max_morale = 0.15
+    }
 }
 
-namira_rot_modifier = {
-    monthly_income    = -0.2
-    development_growth_factor = -0.3
-    supply_limit_mult = -0.15
+# ---------------------------------------------------------------
+#  JULIANOS STUDY INSIGHT — DISCIPLINED ARCANE STUDY
+#  The structured curriculum of Julianos's Order has produced
+#  a genuine breakthrough in how the ruler approaches both
+#  scholarship and governance.  Not intelligence improving —
+#  intelligence being used correctly.
+#  learning +1: structured comprehension applied to scholarship.
+#  stewardship +1: the same clarity applied to administration.
+#  Duration: 1095 days (3 years).
+# ---------------------------------------------------------------
+julianos_study_insight = {
+    learning    = 1
+    stewardship = 1
 }
 
-peryite_plague_modifier = {
-    monthly_income    = -0.25
-    supply_limit_mult = -0.2
-    development_growth_factor = -0.3
+# =============================================================
+#  Underworld — Skooma Trade — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SKOOMA TRADE INCOME — MOON SUGAR SMUGGLING
+#  The Moon Sugar smuggling network is producing.  The income
+#  arrives in ways that do not appear on any public ledger.
+#  The stress of managing a criminal enterprise accumulates
+#  alongside the gold.
+#  monthly_income +0.25: the profits are real.
+#  stress_gain_mult +0.20: the moral and practical risks add up.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+skooma_trade_income = {
+    monthly_income   = 0.25    # The profits are real
+    stress_gain_mult = 0.20    # The moral and practical risks add up
 }
 
-peryite_afflicted_ruler = {
-    monthly_prestige_gain_mult = -0.1
-    diplomacy = -3
+# ---------------------------------------------------------------
+#  SKOOMA ADDICTION — PERSONAL USE OF THE PRODUCT
+#  The ruler has been using their own skooma supply.  The
+#  health cost is measurable; the learning loss is the subtler
+#  damage; the stress relief is genuine and is perhaps the
+#  most dangerous thing about it.
+#  health -0.5: the drug degrades the body steadily.
+#  stress_gain_mult -0.15: the drug numbs the edges of stress.
+#  learning -2: disciplined thought softened at the edges.
+#  Duration: 1095 days (3 years — hard to shake).
+# ---------------------------------------------------------------
+skooma_addiction = {
+    health           = -0.5
+    stress_gain_mult = -0.15   # The drug numbs the edges of stress
+    learning         = -2
+}
+
+# =============================================================
+#  v1.1.0 NEW SYSTEMS — Modifiers
+# =============================================================
+
+# =============================================================
+#  Daedric Artifacts — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ARTIFACT CORRUPTION CREEP
+#  The artifact's will slowly dominates the bearer.
+#  intrigue +2: predatory cunning grows.
+#  stress_gain_mult +0.15: the artifact's demands accumulate.
+#  Duration: 365 days (1 year — reapplied yearly).
+# ---------------------------------------------------------------
+artifact_corruption_modifier = {
+    intrigue         = 2
     stress_gain_mult = 0.15
 }
 
-jyggalag_crystal_modifier = {
-    development_growth_factor = -0.4
-    monthly_income = -0.2
-    supply_limit_mult = -0.2
-}
-
-anti_jyggalag_resistance = {
-    monthly_prestige_gain_mult = 0.15
-    levy_size = 0.1
-}
-
-vile_curse_modifier = {
-    monthly_prestige_gain_mult = -0.15
-    diplomacy = -3
-    monthly_income = -0.1
-}
-
-meridia_displeasure = {
-    monthly_piety_gain_mult = -0.2
-    monthly_prestige_gain_mult = -0.1
-}
-
-meridia_purge_target = {
-    monthly_prestige_gain_mult = -0.2
-    monthly_piety_gain_mult = -0.3
-    levy_size = -0.1
-}
-
-# ---- Daedric Artifact Holder Modifiers ----
-# (These represent possessing or wielding a Daedric artifact)
-
-mehrunes_razor_holder = {
-    prowess = 4
-    intrigue = 3
-    command_modifier = { advantage = 3 damage = 0.1 }
-}
-
-azura_star_holder = {
-    monthly_piety_gain_mult = 0.2
-    learning = 3
-    diplomacy = 2
-}
-
-mace_of_molag_bal_holder = {
-    prowess = 6
-    dread_gain_mult = 0.3
-    command_modifier = { advantage = 4 damage = 0.15 }
-}
-
-ring_of_hircine_holder = {
-    prowess = 4
+# ---------------------------------------------------------------
+#  MEHRUNES RAZOR EMPOWERMENT — BLADE OF CHANGE
+#  The Razor sharpens the bearer's martial instincts.
+#  prowess +3: blade fighting mastery.
+#  martial +2: tactical aggression.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+mehrunes_razor_empowered = {
+    prowess = 3
     martial = 2
-    command_modifier = { pursuit = 0.2 }
 }
 
-saviors_hide_holder = {
-    prowess = 3
-    monthly_piety_gain_mult = 0.1
-    command_modifier = { toughness = 0.15 }
-}
-
-ebony_mail_holder = {
-    prowess = 3
-    intrigue = 4
-    dread_gain_mult = 0.2
-    command_modifier = { advantage = 3 }
-}
-
-ebony_blade_holder = {
-    prowess = 5
-    intrigue = 5
-    dread_gain_mult = 0.25
-}
-
-masque_of_clavicus_vile = {
-    diplomacy = 6
-    intrigue  = 3
-    monthly_prestige_gain_mult = 0.1
-}
-
-skull_of_corruption_modifier = {
-    intrigue = 5
-    learning = 3
-    monthly_prestige_gain_mult = 0.1
-}
-
-wabbajack_modifier = {
-    stress_gain_mult = -0.4
-    # Unpredictable outcomes handled in Sheogorath events
-}
-
-spellbreaker_modifier = {
-    prowess = 3
-    stewardship = 3
-    command_modifier = { toughness = 0.2 screen = 0.1 }
-}
-
-sanguine_rose_holder = {
-    diplomacy = 3
-    stress_gain_mult = -0.2
-    monthly_prestige_gain_mult = 0.1
-}
-
-dawnbreaker_modifier = {
-    prowess  = 5
-    martial  = 3
-    monthly_piety_gain_mult = 0.2
-    command_modifier = { advantage = 5 damage = 0.2 }
-}
-
-volendrung_bearer = {
-    prowess = 8
-    martial = 4
-    command_modifier = { advantage = 5 damage = 0.25 }
-}
-
-skeleton_key_holder = {
-    intrigue = 6
-    stewardship = 2
-}
-
-oghma_infinium_holder = {
-    learning = 8
+# ---------------------------------------------------------------
+#  EBONY BLADE CORRUPTION
+#  The soul-drinking blade slowly hollows the bearer.
+#  health -0.3: feeding the blade costs vitality.
+#  intrigue +3: predatory awareness heightens.
+#  Duration: 1095 days (3 years).
+# ---------------------------------------------------------------
+ebony_blade_corruption = {
+    health   = -0.3
     intrigue = 3
-    monthly_prestige_gain_mult = 0.1
-}
-
-ring_of_namira_holder = {
-    prowess = 4
-    intrigue = 3
-    # Cannibal synergy handled via events
-}
-
-sword_of_jyggalag_modifier = {
-    prowess = 8
-    martial = 5
-    stewardship = 3
-    command_modifier = { advantage = 8 damage = 0.3 max_morale = 0.3 }
-}
-
-# ---- Quest cooldown ----
-daedric_quest_cooldown = {
-    # Gate preventing a ruler from starting multiple Daedric quests simultaneously
 }
 
 # =============================================================
-#  Guild Modifiers — All 9 Guilds
+#  Numidium / Brass God — Modifiers
 # =============================================================
 
-# ---- Activity cooldowns ----
-guild_advancement_cooldown    = { }
-guild_recently_rejected       = { }
-guild_research_cooldown       = { }
-guild_contract_cooldown       = { }
-guild_heist_cooldown          = { }
-black_sacrament_cooldown      = { }
-writ_of_execution_cooldown    = { }
-psijic_communion_cooldown     = { }
-ballad_composition_cooldown   = { }
-guild_ruin_delve_cooldown     = { }
-guild_heist_caught_modifier   = { monthly_prestige_gain_mult = -0.1 dread = -10 }
-dark_brotherhood_marked_modifier = { monthly_prestige_gain_mult = -0.15 stress_gain_mult = 0.2 }
-psijic_warning_modifier       = { martial = 2 stewardship = 1 }
-undaunted_wounded_modifier    = { prowess = -3 }
-psijic_order_modifier         = { monthly_piety_gain_mult = 0.05 }
-
-# ---- Chapter membership bonuses (persistent while in guild) ----
-mages_guild_chapter_modifier = {
-    monthly_piety_gain_mult = 0.05
-    learning = 1
-}
-
-fighters_guild_chapter_modifier = {
-    levy_size = 0.05
-    monthly_prestige_gain_mult = 0.03
-}
-
-morag_tong_chapter_modifier = {
-    monthly_piety_gain_mult = 0.05
-    intrigue = 1
-}
-
-companions_chapter_modifier = {
-    monthly_prestige_gain_mult = 0.05
-    prowess = 1
-}
-
-bards_college_chapter_modifier = {
-    monthly_prestige_gain_mult = 0.05
-    diplomacy = 1
-}
-
-undaunted_chapter_modifier = {
-    monthly_prestige_gain_mult = 0.03
-    prowess = 1
-}
-
-# ---- Activity results ----
-famous_ballad_modifier = {
-    monthly_prestige_gain_mult = 0.15
-    diplomacy = 2
-}
-
-# ---- Curse for leaving Dark Brotherhood / Vile bargain ----
-vile_curse_modifier = {
-    monthly_prestige_gain_mult = -0.15
-    diplomacy = -3
-    monthly_income = -0.1
-}
-
-# =============================================================
-#  Guild Leadership Modifiers  — permanent bonuses for leaders
-#  Applied when the leadership trait is gained; days = -1 (permanent)
-# =============================================================
-
-guild_leader_mages_modifier = {
-    learning   = 4
-    monthly_prestige_gain_mult = 0.15
-    monthly_piety_gain_mult    = 0.15
-    # Grants access to the Guild's full magical resources
-}
-
-guild_leader_fighters_modifier = {
-    martial    = 4
-    prowess    = 4
-    levy_size  = 0.10
-    monthly_prestige_gain_mult = 0.12
-    command_modifier = { advantage = 4 damage = 0.1 max_morale = 0.25 }
-}
-
-guild_leader_thieves_modifier = {
-    intrigue   = 5
-    stewardship = 3
-    monthly_income = 0.15
-    dread_gain_mult = 0.2
-}
-
-guild_leader_db_modifier = {
-    intrigue   = 6
-    dread_gain_mult = 0.35
-    monthly_prestige_gain_mult = 0.1
-    # The Listener's dread precedes them across Tamriel
-}
-
-guild_leader_tong_modifier = {
-    intrigue   = 5
-    prowess    = 4
-    monthly_piety_gain_mult    = 0.2
-    dread_gain_mult            = 0.3
-    monthly_prestige_gain_mult = 0.12
-}
-
-guild_leader_companions_modifier = {
-    prowess    = 5
-    martial    = 4
-    monthly_prestige_gain_mult = 0.20
-    command_modifier = { advantage = 5 damage = 0.15 max_morale = 0.3 }
-}
-
-guild_leader_psijic_modifier = {
-    learning   = 6
-    diplomacy  = 4
-    monthly_piety_gain_mult    = 0.25
-    monthly_prestige_gain_mult = 0.15
-}
-
-guild_leader_bards_modifier = {
-    diplomacy  = 5
-    learning   = 3
-    monthly_prestige_gain_mult = 0.25
-    stress_loss_mult = 0.15
-}
-
-guild_leader_undaunted_modifier = {
-    prowess    = 5
-    martial    = 4
-    monthly_prestige_gain_mult = 0.18
-    command_modifier = { advantage = 5 damage = 0.12 }
-}
-
-# Post-quest cooldown (shared across all leader post-events)
-guild_leader_postquest_cooldown = { }
-
-# =============================================================
-#  Thu'um / Voice Modifiers
-# =============================================================
-
-# Applied during Voice training advancement cooldowns
-thuumvoi_advancement_cooldown = { }
-
-# Applied when a Thu'um master uses a Shout in battle
-# (prevents spamming the battle decision)
-thu_um_shout_cooldown = { }
-
-# Applied to a fully initiated Greybeard (the vow of silence)
-greybeard_vow_modifier = {
-    diplomacy  = -2         # Speaking is reserved; courtly banter is alien
-    piety_mult = 0.15
-    monthly_piety_gain_mult = 0.20
-}
-
-# Applied when someone breaks their Greybeard vows
-greybeard_oath_broken = {
-    piety_mult = -0.30
-    monthly_piety_gain_mult = -0.25
-    diplomacy  = -5         # Known as oath-breaker
-}
-
-# Applied when named First Voice of the Greybeards
-first_voice_modifier = {
-    learning  = 5
-    piety_mult = 0.30
-    monthly_piety_gain_mult    = 0.30
-    monthly_prestige_gain_mult = 0.20
-    command_modifier = { advantage = 8 max_morale = 0.40 }
-}
-
-# Cooldown between greybeard post-leadership events
-greybeard_pilgrims_cooldown = { }
-
-# Applied to Dragonborn who have absorbed their first Dragon Soul
-dovahkiin_full_power_modifier = {
-    prowess   = 6
-    learning  = 4
-    martial   = 4
-    piety_mult = 0.25
-    dread_gain_mult = 0.25
-    command_modifier = { advantage = 8 damage = 0.20 max_morale = 0.35 }
-}
-
-# Cooldown between Dragonborn recognition post-events
-dovahkiin_recognition_cooldown = { }
-
-# =============================================================
-#  Thu'um — Dragon Soul Stacking & Dovah Nature Modifiers
-# =============================================================
-
-# Prevents rapid stacking of Dragon Soul absorption
-absorb_soul_cooldown = { }
-
-# Prevents spamming the Word Wall learning decision
-dovahkiin_word_wall_cooldown = { }
-
-# Applied when the Dragonborn has absorbed 5+ Dragon Souls
-dragon_souls_growing_modifier = {
-    prowess  = 2
-    martial  = 2
-    dread_gain_mult = 0.15
-    stress_gain_mult = 0.10
-    command_modifier = { advantage = 4 damage = 0.10 }
-}
-
-# Applied when the Dragonborn has absorbed 10+ Dragon Souls
-dragon_souls_brimming_modifier = {
-    prowess  = 4
-    martial  = 4
-    dread_gain_mult = 0.30
-    stress_gain_mult = 0.20
-    command_modifier = { advantage = 6 damage = 0.15 }
-}
-
-# Applied to a Dragonborn who has resisted the Dovah nature
-dovah_nature_resisted_modifier = {
-    piety_mult = 0.20
-    stress_loss_mult = 0.15
-    monthly_piety_gain_mult = 0.20
-}
-
-# Applied to a Dragonborn whose Dovah nature has taken hold
-dovah_nature_dominant_modifier = {
-    diplomacy  = -4
-    learning   = -2
-    dread_gain_mult = 0.35
+# ---------------------------------------------------------------
+#  DRAGON BREAK TEMPORAL STRESS
+#  Time fractures. Reality disagrees with itself.
+#  stress_gain_mult +0.25: existing in multiple timelines simultaneously.
+#  learning -2: fractured memories impair clear thought.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+dragon_break_stress = {
     stress_gain_mult = 0.25
-    command_modifier = { advantage = 5 damage = 0.15 max_morale = -0.10 }
+    learning         = -2
+}
+
+# ---------------------------------------------------------------
+#  NUMIDIUM AWAKENER'S WEIGHT
+#  Knowing you set the Brass God loose is a burden without equal.
+#  stress_gain_mult +0.30: civilizational guilt.
+#  monthly_prestige_gain_mult +0.20: history will remember this.
+#  Duration: 3650 days (10 years).
+# ---------------------------------------------------------------
+numidium_awakeners_weight = {
+    stress_gain_mult             = 0.30
+    monthly_prestige_gain_mult   = 0.20
 }
 
 # =============================================================
-#  Amulet of Kings Modifiers
+#  Vampire Bloodlines — Modifiers
 # =============================================================
 
-# Base modifier: anyone who holds the Amulet of Kings
-amulet_of_kings_bearer_modifier = {
-    piety_mult = 0.20
-    monthly_prestige_gain_mult = 0.25
-    diplomacy  = 3              # The Amulet lends authority beyond any title
+# ---------------------------------------------------------------
+#  BLOOD CURSE — EARLY VAMPIRISM
+#  The curse has not fully taken hold but the body changes.
+#  health -0.2: the transformation is consuming.
+#  stress_gain_mult +0.10: the hunger is a constant distraction.
+#  Duration: 365 days (1 year — decision window before full turning).
+# ---------------------------------------------------------------
+blood_curse_modifier = {
+    health           = -0.2
+    stress_gain_mult = 0.10
 }
 
-# Enhanced modifier: Dragonborn wearing the Amulet of Kings
-# (the full Covenant is active — only for those of Dragonblood)
-amulet_of_kings_dragonborn_modifier = {
-    piety_mult = 0.40
-    monthly_prestige_gain_mult = 0.40
-    diplomacy  = 5
-    learning   = 3
+# ---------------------------------------------------------------
+#  VAMPIRE LORD'S DOMINANCE
+#  The apex bloodline master exerts supernatural presence.
+#  intrigue +3: predator among prey.
+#  dread_gain_mult +0.20: fear is a tool.
+#  Duration: -1 (permanent while trait held).
+# ---------------------------------------------------------------
+vampire_lord_dominance = {
+    intrigue        = 3
+    dread_gain_mult = 0.20
+}
+
+# ---------------------------------------------------------------
+#  GRAY HOST MARCH — VAMPIRE-WEREWOLF ARMY ON THE MOVE
+#  A province modifier applied to counties the Host crosses.
+#  supply_limit_mult -0.4: the Host consumes all provisions.
+#  monthly_income -0.3: trade collapses under the march.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+gray_host_march = {
+    supply_limit_mult = -0.4
+    monthly_income    = -0.3
+}
+
+# =============================================================
+#  Yokuda / Redguard — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  RA GADA BATTLE FURY
+#  The warrior spirit of the Wave surges before battle.
+#  command_modifier advantage +5: aggressive forward assault.
+#  Duration: 365 days (1 year).
+# ---------------------------------------------------------------
+ra_gada_battle_fury = {
     command_modifier = {
-        advantage  = 6
-        max_morale = 0.25
-        # The Amulet strengthens the barrier against Oblivion
+        advantage = 5
     }
-    # Implicit Oblivion resistance: Daedric invasions less effective
 }
 
-# Applied when the Dragonborn relights the Dragonfires
-# This is the great covenant: Mundus is protected from Oblivion
-# as long as the blood of Akatosh lights the Dragonfires.
-dragonfires_lit_modifier = {
-    piety_mult = 0.50
-    monthly_prestige_gain_mult = 0.50
-    diplomacy  = 6
-    # Massive Oblivion resistance — the barrier is at its strongest
+# ---------------------------------------------------------------
+#  SWORD SINGER'S FOCUS
+#  The Shehai requires total mental presence.
+#  stress_gain_mult -0.15: the spirit sword demands calm.
+#  prowess +4: the spirit sword is devastating.
+#  Duration: 730 days (2 years per active Shehai).
+# ---------------------------------------------------------------
+sword_singers_focus = {
+    stress_gain_mult = -0.15
+    prowess          = 4
 }
-
-# Cooldown between Amulet of Kings post-events
-amulet_post_event_cooldown = { }
 
 # =============================================================
-#  DWEMER RUINS EXPLORATION
-#  Context: The Dwemer (Deep-Elves) vanished in 1E 700 at the
-#  Battle of Red Mountain.  Their ruins — Nchuand-Zel, Blackreach,
-#  Mzinchaleft and dozens more — litter Morrowind, Skyrim, and
-#  Hammerfell, filled with animunculi (automatons), Aetherium
-#  crystal, and tonal architecture texts.
-#  Applied by: begin_dwemer_excavation, trigger_ruin_collapse,
-#               activate_animunculi_guard, grant_aetherium_attunement
-#               (dwemer_ruins_effects.txt)
-#  Checked by: dwemer_ruins_triggers.txt
+#  Worm Cult — Modifiers
 # =============================================================
 
-# Applied to a county where a successful Dwemer excavation has begun.
-# Scholars and merchants flock to the ruin site.
-# Duration: 1825 days (5 years).
-dwemer_ruin_excavated_modifier = {
-    development_growth_factor  = 0.15   # Scholars and engineers settle nearby
-    monthly_income             = 0.10   # Trade in recovered mechanisms and texts
+# ---------------------------------------------------------------
+#  NECROMANCER'S MOON — RED MOON EMPOWERMENT
+#  The Necromancer's Moon feeds all Worm Cult members.
+#  intrigue +2: the cult's network sharpens.
+#  learning +2: forbidden knowledge flows freely.
+#  Duration: 365 days (1 year — the moon's cycle).
+# ---------------------------------------------------------------
+necromancers_moon_empowerment = {
+    intrigue = 2
+    learning = 2
 }
 
-# Applied to a county defended by reactivated Dwemer animunculi
-# (spheres, spiders, centurions stationed by an animunculi_master).
-# Duration: 1825 days — until the automatons wind down.
-animunculi_guard_modifier = {
-    garrison_size     = 0.20            # Automaton patrols bolster the garrison
-    supply_limit_mult = 0.10            # Efficient Dwemer storage systems
-    monthly_income    = -0.05           # Maintenance: oil, replacement parts, tonal upkeep
+# ---------------------------------------------------------------
+#  LICH ESSENCE PERMANENCE
+#  The lich's undying state grants terrifying resilience.
+#  health +1.0: undeath is the ultimate health.
+#  stress_gain_mult -0.20: beyond mortal anxiety.
+#  Duration: -1 (permanent while lich_essence trait held).
+# ---------------------------------------------------------------
+lich_permanence = {
+    health           = 1.0
+    stress_gain_mult = -0.20
 }
 
-# Applied to a character who has gained meaningful insight into
-# Dwemer tonal architecture principles from excavated texts.
-# Duration: 730 days (2 years) while the insight is fresh.
-tonal_architecture_insight_modifier = {
-    learning                   = 3
-    monthly_prestige_gain_mult = 0.10
-    stress_gain_mult           = -0.10  # Deep intellectual absorption reduces daily stress
+# =============================================================
+#  Dragon Breaks — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DRAGON BREAK AFTERMATH
+#  The temporal fracture has not fully healed.
+#  stress_gain_mult +0.15: fragmented timeline memories.
+#  learning -1: certainty of knowledge shaken.
+#  Duration: 3650 days (10 years — long recovery).
+# ---------------------------------------------------------------
+dragon_break_aftermath = {
+    stress_gain_mult = 0.15
+    learning         = -1
 }
 
-# Applied to a county where an unstable Dwemer ruin has partially
-# collapsed during excavation — dangerous rubble and gas-pockets.
-# Duration: 730 days (2 years) to clear.
-dwemer_ruin_collapse_modifier = {
-    monthly_income            = -0.15   # Area cordoned off; merchants avoid it
-    development_growth_factor = -0.20   # Construction near the collapse is impossible
-    supply_limit_mult         = -0.10   # Supply routes disrupted by debris
+# =============================================================
+#  Ayleid Ruins — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  WELKYND STONE ATTUNEMENT
+#  The Ayleid star-magic crystals have attuned to the bearer.
+#  learning +3: ancient magical resonance.
+#  monthly_piety_gain_mult +0.1: spiritual resonance with Ayleid faith.
+#  Duration: 1095 days (3 years).
+# ---------------------------------------------------------------
+welkynd_attunement = {
+    learning                 = 3
+    monthly_piety_gain_mult  = 0.10
 }
 
-# Cooldown: prevents a ruler from immediately repeating a Dwemer
-# expedition after one concludes (success or collapse).
-# Duration varies — set by begin_dwemer_excavation / trigger_ruin_collapse.
-dwemer_expedition_cooldown = { }
+# =============================================================
+#  Void Nights — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  VOID NIGHTS KHAJIIT CRISIS
+#  Without the moons, Khajiit cannot be born and Moon Sugar fails.
+#  stewardship -2: trade in moon-based goods collapses.
+#  monthly_piety_gain_mult -0.15: the gods have abandoned us.
+#  Duration: 730 days (2 years — duration of Void Nights 2E 578-579).
+# ---------------------------------------------------------------
+void_nights_crisis = {
+    stewardship              = -2
+    monthly_piety_gain_mult  = -0.15
+}
+
+# ---------------------------------------------------------------
+#  MOON SUGAR DROUGHT
+#  Moon Sugar production fails without the lunar tides.
+#  Province modifier.
+#  monthly_income -0.20: the export trade collapses.
+#  Duration: 730 days.
+# ---------------------------------------------------------------
+moon_sugar_drought = {
+    monthly_income = -0.20
+}
+
+# =============================================================
+#  Gray Host — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  GRAY HOST TRIBUTE PAID
+#  The ruler has paid tribute to keep the Host from raiding.
+#  monthly_prestige_gain_mult -0.10: the shame of paying.
+#  monthly_income -0.05: the ongoing cost of tribute.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+gray_host_tribute = {
+    monthly_prestige_gain_mult = -0.10
+    monthly_income             = -0.05
+}
+
+# =============================================================
+#  Shezarrine — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  PELINAL'S BERSERKER FURY
+#  The divine warrior spirit overtakes reason.
+#  prowess +5: superhuman martial power in this state.
+#  stress_gain_mult +0.25: the rage consumes.
+#  Duration: 30 days (1 battle fury — short).
+# ---------------------------------------------------------------
+pelinal_fury = {
+    prowess          = 5
+    stress_gain_mult = 0.25
+}
+
+# =============================================================
+#  CHIM / Walking Ways — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CHIM SEEKER'S DESTABILIZATION
+#  The pursuit of CHIM fractures normal perception.
+#  stress_gain_mult +0.20: existence itself becomes uncomfortable.
+#  learning +2: understanding deepens even as sanity frays.
+#  Duration: -1 (permanent while chim_seeker trait held).
+# ---------------------------------------------------------------
+chim_seekers_strain = {
+    stress_gain_mult = 0.20
+    learning         = 2
+}
+
+# ---------------------------------------------------------------
+#  CHIM ACHIEVED — BEYOND MUNDUS
+#  The ruler has achieved CHIM — they understand the Dream.
+#  All stats boosted: they see the puppet strings clearly.
+#  Duration: -1 (permanent while chim_achieved trait held).
+# ---------------------------------------------------------------
+chim_transcendence = {
+    learning     = 5
+    diplomacy    = 3
+    martial      = 2
+    stewardship  = 3
+    intrigue     = 3
+    monthly_prestige_gain_mult = 0.25
+    stress_gain_mult           = -0.30
+}

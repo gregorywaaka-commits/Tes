@@ -1,0 +1,71 @@
+# =============================================================
+#  CHIM / The Walking Ways — Decisions
+#  File: mod/common/decisions/chim_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ──────────────────────
+#  • chim_seeker     (mod/common/traits/chim_traits.txt)
+#  • chim_achieved   (mod/common/traits/chim_traits.txt)
+#  • chim.000        (mod/events/chim_events.txt)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SEEK THE WALKING WAYS
+#  A ruler of extraordinary learning who has been worn down
+#  by the intellectual weight of governance may seek the
+#  deeper truths that lie beyond politics and war.  The
+#  Walking Ways are not found in any library — but a mind
+#  trained enough and a spirit pressured enough may attract
+#  a teacher, or become one without needing one.
+#  The gold represents patronage of scholars and months of
+#  study materials; the stress threshold is not a
+#  requirement so much as a sign that the seeker is ready
+#  to be broken open.
+# ---------------------------------------------------------------
+seek_walking_ways = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = seek_walking_ways_desc
+
+    is_shown = {
+        learning >= 18
+        stress >= 50
+        NOT = { has_trait = chim_seeker }
+        NOT = { has_trait = chim_achieved }
+        NOT = { has_character_flag = chim_dismissed }
+        is_ruler = yes
+    }
+
+    is_valid = {
+        learning >= 18
+        stress >= 50
+        gold >= 75
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    effect = {
+        add_gold = -75
+        trigger_event = { id = chim.000 }
+    }
+
+    ai_will_do = {
+        base = 2   # very few rulers attempt this; the wise ones are cautious
+        modifier = {
+            add = 10
+            learning >= 22
+        }
+        modifier = {
+            add = 8
+            has_trait = scholar
+        }
+        modifier = {
+            add = 5
+            stress >= 75
+        }
+    }
+}

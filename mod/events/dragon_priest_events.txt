@@ -1,0 +1,812 @@
+# =============================================================
+#  Dragon Priest / Alduin / Dragon Cult Events
+#  Namespace: dragon_priest
+#
+#  Three interconnected systems:
+#
+#  SYSTEM 1 — Dragon Priest Masks (dragon_priest.000–005)
+#    The eight Dragon Priests of the Merethic Era still haunt
+#    their barrow tombs.  Their masks hold real power — and
+#    real cost.  The Dragonborn and Voice-trained rulers are
+#    most likely to sense their presence and hunt them.
+#
+#  SYSTEM 2 — Alduin the World-Eater (dragon_priest.010–012)
+#    The firstborn of Akatosh.  He was cast into the timestream
+#    at the close of the Merethic Era by the ancient Nord heroes
+#    using Dragonrend.  His shadow crosses the dreams of the
+#    Dragonborn and the most powerful Voice-users even now.
+#
+#  SYSTEM 3 — Dragon Cults (dragon_priest.020–022)
+#    Before the Alduin rebellion was broken, mortals worshipped
+#    dragons as gods.  These cults persist in hidden corners of
+#    Nordic lands, preserving corrupted fragments of the Thu'um
+#    and the old devotion to dragon-kind.
+#
+#  EK2 is required.  'dragonborn' is EK2's trait.
+#  All traits and modifiers are defined in lore_races files.
+#  Lore timeframe: 2E 440–896 (the Interregnum)
+#
+#  TRACKING:
+#  ─────────
+#  • dragon_masks_count   — character variable; total masks held
+#  • dragon_priest_hunt_active  — currently pursuing a tomb (timed)
+#  • dragon_priest_tomb_marked  — a tomb was located but not yet entered
+#  • dragon_priest_stir_seen    — dragon_priest.004 already fired
+#  • dragon_priest_hunted_3     — flag set when third mask is taken
+#  • alduin_vision_seen         — dragon_priest.010 already fired
+#  • alduin_shadow_seen         — dragon_priest.011 already fired
+#  • alduin_aftermath_seen      — dragon_priest.012 already fired
+#  • dragon_cult_member         — is an active dragon cult member
+#  • dragon_cult_exposed        — cult has been exposed/renounced
+# =============================================================
+
+namespace = dragon_priest
+
+# ---------------------------------------------------------------
+# dragon_priest.000  —  The Barrow Disturbed
+# Yearly pulse event.  A Dragon Priest's tomb stirs — felt only
+# by those attuned to the Voice or the blood of a Dovahkiin.
+# The ancient undead inside have not truly rested since the
+# Merethic Era.  Something has woken them.  Something always does.
+# Trigger conditions set in lore_races_on_actions.txt
+# ---------------------------------------------------------------
+dragon_priest.000 = {
+    type  = character_event
+    title = dragon_priest.000.t
+    desc  = dragon_priest.000.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = dragonborn
+            has_trait = thu_um_master
+            has_trait = thu_um_adept
+            has_trait = thu_um_initiate
+            has_trait = greybeard_aspirant
+            has_trait = greybeard_of_high_hrothgar
+            has_trait = first_voice_of_the_greybeards
+        }
+        NOT = { has_character_flag = dragon_priest_hunt_active }
+        NOT = { has_character_flag = dragon_priest_tomb_marked }
+        NOT = { has_trait = dragon_priest_master }
+    }
+
+    option = {
+        name = dragon_priest.000.a   # "Investigate. I can feel the power from here."
+        trigger = { gold >= 100 }
+        add_gold = -100
+        add_character_flag = { flag = dragon_priest_hunt_active days = 365 }
+        trigger_event = { id = dragon_priest.001 days = 30 }
+        add_prestige = -50
+        add_stress   = 10
+    }
+
+    option = {
+        name = dragon_priest.000.b   # "Mark the barrow's location. I will return when prepared."
+        add_character_flag = dragon_priest_tomb_marked
+        add_stress = 5
+    }
+
+    option = {
+        name = dragon_priest.000.c   # "Let the dead lie. There is enough trouble among the living."
+        add_stress = 10
+        add_piety  = 50   # The wise know when to leave ancient things undisturbed
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_priest.001  —  Into the Tomb
+# Fired by hunt_dragon_priest decision (or dragon_priest.000 option A).
+# The ruler has descended into a Dragon Priest's barrow.
+# The air is wrong.  The walls are covered in carved dragon script.
+# Something behind the final door has been awake for a very long time.
+# Four paths determine the outcome — and the mask earned.
+# ---------------------------------------------------------------
+dragon_priest.001 = {
+    type  = character_event
+    title = dragon_priest.001.t
+    desc  = dragon_priest.001.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = dragon_priest_hunt_active
+        NOT = { has_character_flag = dragon_priest_tomb_cleared }
+    }
+
+    option = {
+        # Overwhelm with Voice — speaks Dragonrend's conceptual opposite
+        # into the tomb and unmakes the Dragon Priest's immortality.
+        name = dragon_priest.001.a   # "I speak the Voice into the dark. Let the ancient one hear what has come for it."
+        trigger = {
+            OR = {
+                has_trait = dragonborn
+                has_trait = thu_um_master
+                has_trait = greybeard_of_high_hrothgar
+                has_trait = first_voice_of_the_greybeards
+            }
+            martial >= 14
+        }
+        add_character_flag = dragon_priest_tomb_cleared
+        remove_character_flag = dragon_priest_hunt_active
+        add_prestige = 500
+        add_stress   = -10
+        trigger_event = { id = dragon_priest.002 days = 7 }
+    }
+
+    option = {
+        # Dispel its power — scholarly unravelling of the undead priest's
+        # tether to the material world.  Requires deep understanding of
+        # the magical principles that underpin Dragon Priest lichdom.
+        name = dragon_priest.001.b   # "These bindings are ancient tonal architecture. I know how to unmake them."
+        trigger = { learning >= 16 }
+        add_character_flag = dragon_priest_tomb_cleared
+        remove_character_flag = dragon_priest_hunt_active
+        add_prestige = 400
+        add_stress   = 5
+        trigger_event = { id = dragon_priest.003 days = 7 }
+    }
+
+    option = {
+        # Brute force — martial power and determination carry the ruler
+        # through a brutal physical confrontation.  The priest is defeated
+        # but not fully unmade.  A lesser prize is seized from the dust.
+        name = dragon_priest.001.c   # "I have fought worse than animated corpses. I press through with steel and will."
+        trigger = { martial >= 12 }
+        add_character_flag = dragon_priest_tomb_cleared
+        remove_character_flag = dragon_priest_hunt_active
+        add_prowess  = -1   # the fight costs something; even victors carry their wounds
+        add_prestige = 200
+        add_stress   = 15
+        # Partial victory — Otar's mask, the Priest of Storms
+        add_modifier = {
+            modifier = dragon_priest_mask_otar
+            days = 3650
+        }
+        # Increment mask count for Konahrik threshold
+        if = {
+            limit = { NOT = { has_variable = dragon_masks_count } }
+            set_variable = { name = dragon_masks_count value = 1 }
+        }
+        if = {
+            limit = { has_variable = dragon_masks_count }
+            change_variable = { name = dragon_masks_count add = 1 }
+        }
+        if = {
+            limit = { check_variable = { name = dragon_masks_count value >= 2 } }
+            add_character_flag = dragon_priest_hunted_2
+        }
+        if = {
+            limit = { check_variable = { name = dragon_masks_count value >= 3 } }
+            add_character_flag = dragon_priest_hunted_3
+        }
+    }
+
+    option = {
+        # Retreat — the living should not descend into the barrows of things
+        # that have outlasted entire civilisations.  There is no shame
+        # in knowing when to leave.  There is, however, considerable stress.
+        name = dragon_priest.001.d   # "Not today. The tomb is sealed again. We leave."
+        remove_character_flag = dragon_priest_hunt_active
+        remove_character_flag = dragon_priest_tomb_cleared
+        add_stress   = 25
+        add_prestige = -100   # Word gets around that one fled a barrow
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_priest.002  —  The Mask of Volsung
+# The Dragon Priest of Speech and Sea — Volsung's mask is carved
+# in the likeness of a horned beast and set with deep-blue stones
+# that seem to catch distant waves.  It whispers of courts, of
+# crowds, of every ear that will turn when the wearer speaks.
+# The whisper never stops.
+# ---------------------------------------------------------------
+dragon_priest.002 = {
+    type  = character_event
+    title = dragon_priest.002.t
+    desc  = dragon_priest.002.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = dragon_priest_tomb_cleared
+        NOT = { has_character_flag = dragon_priest_volsung_seen }
+    }
+
+    option = {
+        name = dragon_priest.002.a   # "I wear it. Let the world hear what Volsung heard."
+        add_character_flag = dragon_priest_volsung_seen
+        add_modifier = {
+            modifier = dragon_priest_mask_volsung
+            days = 3650
+        }
+        add_prestige = 400
+        # Track total masks for Konahrik
+        if = {
+            limit = { NOT = { has_variable = dragon_masks_count } }
+            set_variable = { name = dragon_masks_count value = 1 }
+        }
+        if = {
+            limit = { has_variable = dragon_masks_count }
+            change_variable = { name = dragon_masks_count add = 1 }
+        }
+        if = {
+            limit = { check_variable = { name = dragon_masks_count value >= 2 } }
+            add_character_flag = dragon_priest_hunted_2
+        }
+        if = {
+            limit = { check_variable = { name = dragon_masks_count value >= 3 } }
+            add_character_flag = dragon_priest_hunted_3
+        }
+        add_stress = 10   # the mask's whispers begin immediately
+    }
+
+    option = {
+        name = dragon_priest.002.b   # "I take the mask but keep it at arm's length. No one should wear this."
+        add_character_flag = dragon_priest_volsung_seen
+        add_prestige = 300
+        if = {
+            limit = { NOT = { has_variable = dragon_masks_count } }
+            set_variable = { name = dragon_masks_count value = 1 }
+        }
+        if = {
+            limit = { has_variable = dragon_masks_count }
+            change_variable = { name = dragon_masks_count add = 1 }
+        }
+        if = {
+            limit = { check_variable = { name = dragon_masks_count value >= 2 } }
+            add_character_flag = dragon_priest_hunted_2
+        }
+        if = {
+            limit = { check_variable = { name = dragon_masks_count value >= 3 } }
+            add_character_flag = dragon_priest_hunted_3
+        }
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_priest.003  —  The Mask of Morokei
+# The Dragon Priest of Magicka — Morokei's mask is stark white,
+# featureless save for the eye-slit, and set with no adornment
+# at all.  What adornment could a thing of pure knowledge need?
+# The mask grants clarity.  The clarity is not always comfortable.
+# ---------------------------------------------------------------
+dragon_priest.003 = {
+    type  = character_event
+    title = dragon_priest.003.t
+    desc  = dragon_priest.003.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = dragon_priest_tomb_cleared
+        NOT = { has_character_flag = dragon_priest_morokei_seen }
+        NOT = { has_character_flag = dragon_priest_volsung_seen }
+    }
+
+    option = {
+        name = dragon_priest.003.a   # "The knowledge stored in this mask is worth any discomfort."
+        add_character_flag = dragon_priest_morokei_seen
+        add_modifier = {
+            modifier = dragon_priest_mask_morokei
+            days = 3650
+        }
+        add_prestige = 350
+        add_piety    = 100
+        if = {
+            limit = { NOT = { has_variable = dragon_masks_count } }
+            set_variable = { name = dragon_masks_count value = 1 }
+        }
+        if = {
+            limit = { has_variable = dragon_masks_count }
+            change_variable = { name = dragon_masks_count add = 1 }
+        }
+        if = {
+            limit = { check_variable = { name = dragon_masks_count value >= 2 } }
+            add_character_flag = dragon_priest_hunted_2
+        }
+        if = {
+            limit = { check_variable = { name = dragon_masks_count value >= 3 } }
+            add_character_flag = dragon_priest_hunted_3
+        }
+        add_stress = 10
+    }
+
+    option = {
+        name = dragon_priest.003.b   # "I study it from a distance. The knowledge can be extracted without wearing the thing."
+        add_character_flag = dragon_priest_morokei_seen
+        add_prestige = 250
+        add_learning = 1
+        if = {
+            limit = { NOT = { has_variable = dragon_masks_count } }
+            set_variable = { name = dragon_masks_count value = 1 }
+        }
+        if = {
+            limit = { has_variable = dragon_masks_count }
+            change_variable = { name = dragon_masks_count add = 1 }
+        }
+        if = {
+            limit = { check_variable = { name = dragon_masks_count value >= 2 } }
+            add_character_flag = dragon_priest_hunted_2
+        }
+        if = {
+            limit = { check_variable = { name = dragon_masks_count value >= 3 } }
+            add_character_flag = dragon_priest_hunted_3
+        }
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_priest.004  —  The Dragon Priests Stir
+# Something has shifted in the old barrows.  A hunter has come —
+# someone with the Voice or the Dragonblood in them, someone the
+# ancient priests can sense the way they once sensed Alduin's
+# great will pressing on all things.  They cannot cross back yet.
+# But they are aware.  And they are hungry.
+# Fires when dragon_masks_count reaches 2 for a ruler.
+# ---------------------------------------------------------------
+dragon_priest.004 = {
+    type  = character_event
+    title = dragon_priest.004.t
+    desc  = dragon_priest.004.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        check_variable = { name = dragon_masks_count value >= 2 }
+        NOT = { has_character_flag = dragon_priest_stir_seen }
+    }
+
+    option = {
+        name = dragon_priest.004.a   # "Then I will find them first. Let the hunt continue."
+        add_character_flag = dragon_priest_stir_seen
+        add_stress   = 20
+        add_prestige = 200
+        # The hunt sharpens them
+        add_martial  = 1
+    }
+
+    option = {
+        name = dragon_priest.004.b   # "I will fortify my halls and wait. Let them come to me."
+        add_character_flag = dragon_priest_stir_seen
+        add_stress   = 30
+        # Fear and vigilance are heavy companions
+    }
+
+    option = {
+        name = dragon_priest.004.c   # "There is lore in this. What do the Dragon Priests know that I do not?"
+        add_character_flag = dragon_priest_stir_seen
+        add_stress   = 15
+        add_learning = 2   # Engaging with the knowledge rather than the threat
+        add_piety    = -50   # This interest is not spiritually safe
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_priest.005  —  Konahrik, the Mask of the Warlord
+# The eighth mask.  The golden one.  In the lore, Konahrik can
+# only be earned if all eight Dragon Priests are present at once —
+# it summons the Warlord, the guardian of the mask, and the fight
+# is the price of wearing the ultimate prize.
+# In this system: the ruler has hunted enough priests to know
+# how they think.  Now, at the site of the ancient dragon cult's
+# greatest ritual chamber, all the masks together form a key.
+# ---------------------------------------------------------------
+dragon_priest.005 = {
+    type  = character_event
+    title = dragon_priest.005.t
+    desc  = dragon_priest.005.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        has_character_flag = dragon_priest_hunted_3
+        NOT = { has_trait = dragon_priest_master }
+        NOT = { has_character_flag = dragon_priest_konahrik_seen }
+    }
+
+    option = {
+        name = dragon_priest.005.a   # "The masks together form the lock. I speak the last Word and the golden mask falls."
+        trigger = {
+            OR = {
+                has_trait = dragonborn
+                has_trait = thu_um_master
+                has_trait = first_voice_of_the_greybeards
+            }
+        }
+        add_character_flag = dragon_priest_konahrik_seen
+        add_trait    = dragon_priest_master
+        add_prestige = 1000
+        add_piety    = -200   # The accumulation of Dragon Priest power is spiritually costly
+        add_stress   = 30
+    }
+
+    option = {
+        name = dragon_priest.005.b   # "The ritual is complete. The golden mask is mine — its price, already paid."
+        trigger = {
+            martial  >= 16
+            learning >= 14
+        }
+        add_character_flag = dragon_priest_konahrik_seen
+        add_trait    = dragon_priest_master
+        add_prestige = 800
+        add_piety    = -200
+        add_stress   = 40   # The weight of Konahrik is heavier than all the others together
+        add_prowess  = -1   # The ritual demanded its physical toll
+    }
+
+    option = {
+        name = dragon_priest.005.c   # "This is enough. I take what I have. The golden mask will wait."
+        add_character_flag = dragon_priest_konahrik_seen
+        add_prestige = 300
+        add_stress   = 20
+        # No Konahrik — the moment passed, and the vault sealed again
+    }
+}
+
+# =============================================================
+#  SYSTEM 2 — ALDUIN THE WORLD-EATER
+# =============================================================
+
+# ---------------------------------------------------------------
+# dragon_priest.010  —  A Vision of the World-Eater
+# The Dragonborn or a powerful Voice-user sees Alduin in a dream.
+# Bone-white.  Enormous.  Every soul it swallows becomes part of
+# the thing that will eat the world when the time finally comes.
+# The dream is not prophecy.  It is memory.  Alduin was here once.
+# He will be here again.  The question is what to do with the
+# knowledge.
+# ---------------------------------------------------------------
+dragon_priest.010 = {
+    type  = character_event
+    title = dragon_priest.010.t
+    desc  = dragon_priest.010.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = dragonborn
+            has_trait = thu_um_master
+            has_trait = first_voice_of_the_greybeards
+            has_trait = greybeard_of_high_hrothgar
+        }
+        NOT = { has_character_flag = alduin_vision_seen }
+    }
+
+    option = {
+        # Study the vision — scholarly interpretation of a prophetic dream
+        name = dragon_priest.010.a   # "This vision is a record. I will learn from it."
+        add_character_flag = alduin_vision_seen
+        add_modifier = {
+            modifier = alduin_vision_learning
+            days = 1095
+        }
+        add_piety    = 150
+        add_learning = 1
+        add_stress   = 10
+    }
+
+    option = {
+        # Prepare for war — Alduin is the ultimate enemy; knowing he
+        # will come is the only advantage one can have against him
+        name = dragon_priest.010.b   # "The World-Eater will come again. I will be ready."
+        add_character_flag = alduin_vision_seen
+        add_modifier = {
+            modifier = alduin_vision_martial
+            days = 1095
+        }
+        add_prestige = 200
+        add_stress   = 20
+        add_martial  = 1
+    }
+
+    option = {
+        # Share with the Greybeards — the Order has been studying the
+        # Alduin prophecy for centuries.  Sharing it is the right thing.
+        name = dragon_priest.010.c   # "The Greybeards must know of this. It concerns the Way itself."
+        add_character_flag = alduin_vision_seen
+        add_piety    = 250
+        add_prestige = 150
+        add_stress   = 5
+        # The Greybeards' confirmation deepens spiritual clarity
+        add_learning = 2
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_priest.011  —  The Shadow of Alduin
+# The World-Eater's presence crosses the Throat of the World
+# like a second storm.  Those with the Dragonblood feel it as
+# physical weight; other rulers simply feel the inexplicable
+# certainty that something enormous and hungry is looking in
+# the direction of everything they have built.
+# ---------------------------------------------------------------
+dragon_priest.011 = {
+    type  = character_event
+    title = dragon_priest.011.t
+    desc  = dragon_priest.011.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_character_flag = alduin_vision_seen
+        NOT = { has_character_flag = alduin_shadow_seen }
+    }
+
+    # Option A — Dragonborn path: ascend the Throat of the World
+    option = {
+        name = dragon_priest.011.a   # "I ascend. The Dovahkiin does not wait for the World-Eater to come to them."
+        trigger = {
+            OR = {
+                has_trait = dragonborn
+                has_trait = thu_um_master
+                has_trait = first_voice_of_the_greybeards
+            }
+        }
+        add_character_flag = alduin_shadow_seen
+        add_prestige = 600
+        add_stress   = 20
+        add_piety    = 200
+        trigger_event = { id = dragon_priest.012 days = 60 }
+    }
+
+    # Option B — Endure and hold: the ruler stays and organises their realm
+    option = {
+        name = dragon_priest.011.b   # "My realm will stand. Whatever comes, it will find me here, not fleeing."
+        add_character_flag = alduin_shadow_seen
+        add_prestige = 300
+        add_stress   = 30
+        trigger_event = { id = dragon_priest.012 days = 90 }
+    }
+
+    # Option C — Flee: the shadow is too much; the ruler abandons their post
+    option = {
+        name = dragon_priest.011.c   # "The World-Eater is beyond any one ruler's power to face. We move our court."
+        add_character_flag = alduin_shadow_seen
+        add_prestige = -400   # The court will not forget this
+        add_stress   = 40
+        trigger_event = { id = dragon_priest.012 days = 120 }
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_priest.012  —  After Alduin
+# The shadow has passed — or has not come yet.  Either way there
+# is a stillness now, a held-breath quality to the world.
+# Those who faced the coming of the World-Eater and are still
+# standing carry something in them that cannot be taken away.
+# ---------------------------------------------------------------
+dragon_priest.012 = {
+    type  = character_event
+    title = dragon_priest.012.t
+    desc  = dragon_priest.012.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = alduin_shadow_seen
+        NOT = { has_character_flag = alduin_aftermath_seen }
+    }
+
+    option = {
+        name = dragon_priest.012.a   # "I survived it. Whatever form it took — I survived it."
+        add_character_flag = alduin_aftermath_seen
+        add_trait    = world_eater_survived
+        add_modifier = {
+            modifier = world_eater_survived_modifier
+            days = 1825
+        }
+        add_prestige = 500
+        add_piety    = 300
+        add_stress   = -20   # The weight of it lifts, at least for now
+    }
+
+    option = {
+        name = dragon_priest.012.b   # "Let this be recorded. What was faced, and that it was faced."
+        add_character_flag = alduin_aftermath_seen
+        add_trait    = world_eater_survived
+        add_modifier = {
+            modifier = world_eater_survived_modifier
+            days = 1825
+        }
+        add_prestige = 600
+        add_learning = 2   # Recording the experience crystallises the knowledge
+        add_stress   = -10
+    }
+
+    option = {
+        name = dragon_priest.012.c   # "What comes next? Alduin does not end with one passing of the shadow."
+        add_character_flag = alduin_aftermath_seen
+        add_trait    = world_eater_survived
+        add_prestige = 300
+        add_stress   = 10   # The knowledge that this was not the end
+        add_martial  = 1
+    }
+}
+
+# =============================================================
+#  SYSTEM 3 — DRAGON CULTS
+# =============================================================
+
+# ---------------------------------------------------------------
+# dragon_priest.020  —  The Invitation
+# A sealed letter arrives at court — no wax seal that can be
+# identified, no courier who can be traced.  Inside, in careful
+# script, an invitation to witness a ritual older than the Septim
+# line and quieter than anything the Tribunal Temple would permit.
+# The Dragon Cult has been here since before the First Era.
+# It is still here.
+# ---------------------------------------------------------------
+dragon_priest.020 = {
+    type  = character_event
+    title = dragon_priest.020.t
+    desc  = dragon_priest.020.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        NOT = { has_trait = dragonborn }
+        NOT = { has_trait = thu_um_master }
+        NOT = { has_trait = thu_um_adept }
+        NOT = { has_trait = thu_um_initiate }
+        NOT = { has_trait = greybeard_aspirant }
+        NOT = { has_trait = greybeard_of_high_hrothgar }
+        NOT = { has_trait = first_voice_of_the_greybeards }
+        OR = {
+            has_trait = curious
+            has_trait = greedy
+            has_trait = ambitious
+        }
+        NOT = { has_character_flag = dragon_cult_member }
+        NOT = { has_character_flag = dragon_cult_invitation_seen }
+    }
+
+    option = {
+        # Join the cult — curiosity and ambition outweigh caution
+        name = dragon_priest.020.a   # "The dragons were gods before men decided otherwise. I will attend."
+        add_character_flag = dragon_cult_invitation_seen
+        add_character_flag = dragon_cult_member
+        add_stress   = 15
+        add_piety    = -100   # This is not acceptable worship to mainstream faiths
+        trigger_event = { id = dragon_priest.021 days = 30 }
+    }
+
+    option = {
+        # Report to Nordic rulers — gain prestige from the orthodox
+        name = dragon_priest.020.b   # "This cult is a danger to the peace. I will report it."
+        add_character_flag = dragon_cult_invitation_seen
+        add_character_flag = dragon_cult_exposed
+        add_prestige = 200
+        add_piety    = 150   # Reporting heresy is well regarded
+        add_stress   = 5
+    }
+
+    option = {
+        # Ignore — the safest option; the invitation disappears
+        name = dragon_priest.020.c   # "I did not receive this letter. It does not exist."
+        add_character_flag = dragon_cult_invitation_seen
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_priest.021  —  The Cult's Ritual
+# In a torchlit hall deep beneath a ruin the cult calls sacred,
+# the faithful gather to recite fragments of the Thu'um in a
+# form that would make the Greybeards weep.  The words are real.
+# They carry power.  It is the power of worship, not mastery —
+# but in a dark hall, under ancient stone, the difference is
+# difficult to feel.
+# ---------------------------------------------------------------
+dragon_priest.021 = {
+    type  = character_event
+    title = dragon_priest.021.t
+    desc  = dragon_priest.021.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = dragon_cult_member
+        NOT = { has_character_flag = dragon_cult_ritual_seen }
+    }
+
+    option = {
+        # Full participation — the devotion takes hold completely
+        name = dragon_priest.021.a   # "I join the chant. The Words are mangled but their power is real."
+        add_character_flag = dragon_cult_ritual_seen
+        add_trait    = dragon_cultist_devotee
+        add_modifier = {
+            modifier = dragon_cult_blessing
+            days = 730
+        }
+        add_piety    = -200   # Dragon worship is heresy of the deepest kind
+        add_prestige = 100    # Within the cult, full devotion brings status
+        add_stress   = 20
+    }
+
+    option = {
+        # Partial participation — watching but not fully joining the chant
+        name = dragon_priest.021.b   # "I observe. I learn. But the words themselves — I do not speak them."
+        add_character_flag = dragon_cult_ritual_seen
+        add_modifier = {
+            modifier = dragon_cult_blessing
+            days = 365
+        }
+        add_learning = 1   # Witnessing the ritual has scholarly value
+        add_piety    = -100
+        add_stress   = 15
+    }
+
+    option = {
+        # Expose the cult from within — information gathered, now used
+        name = dragon_priest.021.c   # "I have seen enough. The cult is now fully known to me — and to my guards."
+        add_character_flag = dragon_cult_ritual_seen
+        add_character_flag = dragon_cult_exposed
+        remove_character_flag = dragon_cult_member
+        add_prestige = 300
+        add_piety    = 200   # Exposing a dragon cult from within is a genuine service
+        add_stress   = 30   # The risk and the memory of what was witnessed
+    }
+}
+
+# ---------------------------------------------------------------
+# dragon_priest.022  —  The Greybeards Send Word
+# A monk of High Hrothgar arrives at the ruler's court bearing
+# no weapon and no formal title — only a letter written in the
+# spare, precise hand of the Greybeard Order.  The letter does
+# not accuse.  It asks.  But the question inside it is the
+# kind that can only be answered one way.
+# ---------------------------------------------------------------
+dragon_priest.022 = {
+    type  = character_event
+    title = dragon_priest.022.t
+    desc  = dragon_priest.022.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        has_character_flag = dragon_cult_member
+        NOT = { has_character_flag = dragon_cult_greybeard_seen }
+        OR = {
+            has_trait = greybeard_aspirant
+            has_character_flag = greybeard_quest_1_seen
+            has_character_flag = greybeard_quest_2_seen
+            has_character_flag = greybeard_quest_4_seen
+        }
+    }
+
+    option = {
+        # Renounce the cult — honesty, stress, loss of the cult's favour
+        name = dragon_priest.022.a   # "The monk is right. I renounce it. Every part of it."
+        add_character_flag = dragon_cult_greybeard_seen
+        add_character_flag = dragon_cult_exposed
+        remove_character_flag = dragon_cult_member
+        add_piety    = 200
+        add_prestige = -100   # Renouncing a path is public; the court notices
+        add_stress   = 40
+    }
+
+    option = {
+        # Deny — intrigue check; lie convincingly to the Greybeard monk
+        name = dragon_priest.022.b   # "A misunderstanding. I have never attended any such gathering."
+        add_character_flag = dragon_cult_greybeard_seen
+        trigger = { intrigue >= 12 }
+        add_piety    = -100   # The lie costs something even if it succeeds
+        add_stress   = 30
+        # The cult membership persists — and so does the danger
+    }
+
+    option = {
+        # Fight — removing the evidence entirely; a poor choice
+        name = dragon_priest.022.c   # "The monk will not leave this court with what they know."
+        add_character_flag = dragon_cult_greybeard_seen
+        add_piety    = -400   # Harming a Greybeard monk is beyond ordinary transgression
+        add_prestige = -300
+        add_stress   = 50
+        add_dread    = 20
+    }
+}

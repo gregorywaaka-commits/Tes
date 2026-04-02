@@ -1,0 +1,55 @@
+﻿l_english:
+
+ # =====================================================================
+ #  THE CLOCKWORK CITY — SOTHA SIL'S HIDDEN BRASS WORLD
+ # =====================================================================
+
+ # ---- clockwork.000 — A Rumour of the Hidden Entrance ----
+
+ clockwork.000.t: "A Rumour of the Brass City"
+ clockwork.000.desc: "It comes in pieces, the way real things always do: a fragment of a merchant's story that doesn't quite fit the map; a phrase in an old letter that means more than it should; a correction made in the margin of a treatise on Sotha Sil by someone who was clearly there. You are, by any reasonable measure, one of the few people in Morrowind who has read enough to notice. There is an entrance somewhere. It is hidden by design — Sotha Sil has been retreating from the world since before the Tribunal took their thrones. He did not build the Clockwork City to be found. You have found the rumour of it anyway."
+ clockwork.000.a: "I will find the entrance. Sotha Sil chose me to be his student for a reason."
+ clockwork.000.b: "The Clockwork City belongs to its maker alone. I will not intrude on a god's seclusion."
+
+ # ---- clockwork.001 — The Brass Halls ----
+
+ clockwork.001.t: "The Brass Halls of Sotha Sil"
+ clockwork.001.desc: "You are inside. You do not entirely remember how — the sequence of events between the hidden entrance and this moment has a dreamlike quality, as though the City itself decided you were allowed in and simply opened. The halls are brass and bronze and something older than both: metal that hums at a frequency you can feel in your back teeth, gears turning in patterns that almost resolve into language if you stare long enough. There is no sun here, but light comes from everywhere. The silence is total except for mechanism. You do not see Sotha Sil. You are not sure you are supposed to. You are inside the thing he built — that may be the only acknowledgement you will receive."
+ clockwork.001.a: "I came to understand. Show me the mechanisms — I am prepared to learn."
+ clockwork.001.b: "Something is wrong here. I can feel it. I will observe the threat and be ready."
+ clockwork.001.c: "I will be still. I will listen to what the silence between the gears says."
+ clockwork.001.d: "I am simply overwhelmed. I stand and try to absorb what I can."
+
+ # ---- clockwork.002 — Molag Bal's Dremora ----
+
+ clockwork.002.t: "The Dremora of Molag Bal"
+ clockwork.002.desc: "You feel it before you see it: a wrongness in the air of the Brass Halls, a vibration that is not mechanical — it is intentional, directed, hostile. Through one of the high arched corridors comes a sound that has no business being here: the clatter of Daedric armour, the smell of burning Oblivion-iron. Molag Bal has sent his servants. How they found an entrance is a question you have no time to answer. The City is under siege. You are a Tower Stone keeper — you understand what anchors reality and what threatens it. The question is whether you have anything to send."
+ clockwork.002.a: "I send everything I can spare. The Clockwork City must stand — whatever it costs."
+ clockwork.002.b: "I cannot fight Molag Bal's servants with men and steel. I observe. I survive."
+
+ # ---- clockwork.003 — Return ----
+
+ clockwork.003.t: "Return from the Clockwork City"
+ clockwork.003.desc: "You emerge into daylight — Morrowind sunlight, grey and ash-filtered, immediately more comprehensible than anything you spent the last weeks inside. The Clockwork City is already taking on the quality of a dream: the details precise, the whole impossible to hold. But something has changed. You are changed. You can feel the mechanism behind things now — the underlying gear-logic of governance, of strategy, of learning itself. Sotha Sil did not speak to you. He did not need to. You were inside. That is the only initiation there is."
+ clockwork.003.a: "I carry the City with me now. That will have to be enough."
+
+ # ---- Decisions ----
+
+ seek_clockwork_city_desc: "The Clockwork City exists — you are certain of it now. Sotha Sil's hidden brass world, somewhere in the heart of Morrowind, waiting for someone learned enough to find the entrance. The search will cost prestige and gold and the willingness to look for a door that was built to remain hidden. What happens inside is a separate question."
+
+ begin_seven_graces_pilgrimage_desc: "The Seven Graces of Vivec are the canonical path of Dunmer devotion — seven shrines, seven virtues, a journey from Vivec City to the peak of Mount Kand. To walk them all in proper spirit is to complete the road the warrior-poet laid down for his people. You bear his blessing. You have the standing. The rest is will."
+
+ # ---- Traits ----
+
+ clockwork_initiate: "Clockwork Initiate"
+ clockwork_initiate_desc: "This ruler has walked the Brass Halls of Sotha Sil's hidden city and returned. Fewer than a dozen people in all of Tamriel can claim as much. The Clockwork God did not speak; he did not need to. The experience of existing inside the thing he built — the impossible gears, the light without a source, the hum of a world being understood one mechanism at a time — rewires the mind in ways that persist long after the visit ends. Governance, scholarship, and faith all become, in some indefinable way, more exact."
+
+ # ---- Modifiers ----
+
+ clockwork_city_vision: "The Clockwork City's Mark"
+ clockwork_city_vision_desc: "Having stood inside Sotha Sil's brass world, this ruler understands — at a level below conscious thought — the mechanism behind things. Every project, every judgement, every lesson carries the faint hum of a gear that is turning in the right direction."
+
+ # ---- Custom Tooltips ----
+
+ clockwork_city_seek_decision_tt: "The seek_clockwork_city decision is now available. It will require learning 14, prestige 400, and gold 100."
+ clockwork_initiate_complete_tt: "You are now a Clockwork Initiate — one of the handful of living beings to have walked Sotha Sil's Brass Halls and returned. The clockwork_city_vision modifier has been applied for 1825 days."

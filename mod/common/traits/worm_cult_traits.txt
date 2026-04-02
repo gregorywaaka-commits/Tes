@@ -1,0 +1,96 @@
+# =============================================================
+#  Worm Cult — Traits
+#  File: mod/common/traits/worm_cult_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  worm_cult_initiate      — New member of the Order of the Black Worm.
+#  worm_cult_adept         — Experienced necromancer-practitioner within the cult.
+#  lich_essence            — Character who has undergone the lich ritual; near-immortal.
+#  necromancers_moon_marked — Blessed by the Necromancer's Moon, Arkay's rival cycle.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Mannimarco, the King of Worms, founded the Order of the Black Worm as the dark
+#  counterpart to the Mages Guild.  Where the Guild studies magic for knowledge,
+#  the Order studies death for power.  At its apex, the most devoted practitioners
+#  perform the lich ritual — transcending mortality entirely.  Mannimarco himself
+#  eventually transcended lichdom to become a god of necromancy in some timelines.
+#  The Necromancer's Moon is a cyclic celestial event tied to Mannimarco's power
+#  that corrupts Aetherial light into necrotic energy, strengthening all undead.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  WORM CULT INITIATE
+#  A new member of the Order of the Black Worm — drawn in by
+#  promises of secret knowledge and the abolition of death's
+#  finality.  They know enough to be useful and not enough to
+#  be dangerous.  Yet.
+# ---------------------------------------------------------------
+worm_cult_initiate = {
+    category = lifestyle
+
+    intrigue = 3
+    learning = 2
+
+    monthly_piety_gain_mult = 0.10   # Mannimarco's blessings flow even to new recruits
+
+    flag = worm_cult_initiate
+}
+
+# ---------------------------------------------------------------
+#  WORM CULT ADEPT
+#  A seasoned practitioner within the Order — one who has moved
+#  past initiation into genuine necromantic power.  The Adept
+#  can raise and command the dead, read the currents of death-
+#  energy, and understand the deeper doctrines of the Black Worm.
+# ---------------------------------------------------------------
+worm_cult_adept = {
+    category = fame
+
+    intrigue = 5
+    learning = 4
+
+    monthly_prestige_gain_mult = 0.20   # The Adept is known — and feared — in certain circles
+
+    flag = worm_cult_adept
+}
+
+# ---------------------------------------------------------------
+#  LICH ESSENCE
+#  The most extreme transformation the Order of the Black Worm
+#  offers: the lich ritual.  Soul bound to a phylactery, body
+#  preserved beyond death, mind freed from mortal limitation.
+#  Near-immortal.  Utterly devoted to Mannimarco's vision.
+#  The body no longer ages.  The eyes no longer need sleep.
+#  There is no longer any need to pretend at humanity.
+# ---------------------------------------------------------------
+lich_essence = {
+    category = fame
+
+    intrigue = 7
+    learning = 6
+
+    monthly_prestige_gain_mult = 0.30   # A living lich commands the deepest dread and respect
+    health                     = 1.0    # Near-immortality via necromantic soul-binding
+
+    flag = lich_essence
+}
+
+# ---------------------------------------------------------------
+#  NECROMANCER'S MOON MARKED
+#  When the Necromancer's Moon rises — a cyclic celestial event
+#  tied to Mannimarco's power — it marks those in the Order who
+#  were active during its conjunction.  The Marked carry a
+#  fraction of that necrotic energy permanently in their blood.
+# ---------------------------------------------------------------
+necromancers_moon_marked = {
+    category = lifestyle
+
+    intrigue = 2
+    learning = 2
+
+    monthly_piety_gain_mult = 0.15   # Marked by a moon that answers to the King of Worms
+
+    flag = necromancers_moon_marked
+}

@@ -1,0 +1,239 @@
+# =============================================================
+#  Void Nights Events
+#  Namespace: void_nights
+#  File: mod/events/void_nights_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  void_nights.000  Hidden — triggers at 2E 578, sets global flag
+#  void_nights.001  "The Moons Have Vanished" — notification to all rulers
+#  void_nights.002  "Moon Sugar Fails" — Two Moons path rulers suffer
+#  void_nights.003  "The Moons Return" — fires at 2E 580, clears flag
+#  void_nights.004  "The Void Teaches" — reflection event for learned rulers
+#
+#  HISTORICAL NOTE:
+#  The Void Nights (2E 578-579) occurred when Thalmor mages caused
+#  Masser and Secunda to vanish from the sky for two years. Without
+#  the moons, Khajiit furstocks cannot transform, and the Two Moons
+#  path is broken. The Thalmor used this crisis to consolidate power
+#  over Elsweyr, claiming credit for the moons' return.
+# =============================================================
+
+namespace = void_nights
+
+# ---------------------------------------------------------------
+# void_nights.000  The Sky Goes Dark
+# A hidden event that checks the calendar. When the year reaches
+# 2E 578, if the Void Nights have not yet been triggered, this
+# fires for a ruler and sets the global guard variable before
+# cascading void_nights.001 to all rulers.
+# ---------------------------------------------------------------
+void_nights.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        current_date >= 2.578.1.1
+        current_date < 2.580.1.1
+        NOT = { global_var:void_nights_active = 1 }
+    }
+
+    immediate = {
+        set_global_variable = { name = void_nights_active value = 1 }
+        every_ruler = {
+            trigger_event = { id = void_nights.001 days = 1 }
+        }
+        # Schedule the return of the moons
+        trigger_event = { id = void_nights.003 years = 2 }
+    }
+}
+
+# ---------------------------------------------------------------
+# void_nights.001  The Moons Have Vanished
+# Masser and Secunda are gone. The sky is empty. The night is
+# darker than any night living memory knows. This fires for ALL
+# rulers — Khajiit react with existential dread; others with
+# fear and confusion.
+# ---------------------------------------------------------------
+void_nights.001 = {
+    type = character_event
+    title = void_nights.001.t
+    desc = {
+        triggered_desc = {
+            trigger = { has_trait = khajiit_heritage }
+            desc = void_nights.001.desc_khajiit
+        }
+        triggered_desc = {
+            trigger = { NOT = { has_trait = khajiit_heritage } }
+            desc = void_nights.001.desc_other
+        }
+    }
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = shock
+    }
+
+    immediate = {
+        if = {
+            limit = { has_trait = khajiit_heritage }
+            add_stress = 30
+            add_piety = -50
+        }
+        else = {
+            add_stress = 15
+        }
+        # Trigger secondary consequences
+        if = {
+            limit = {
+                OR = {
+                    has_trait = the_mane
+                    has_trait = moonsugar_devotee
+                }
+            }
+            trigger_event = { id = void_nights.002 days = 14 }
+        }
+        if = {
+            limit = { learning >= 14 }
+            trigger_event = { id = void_nights.004 days = 30 }
+        }
+    }
+
+    option = {
+        name = void_nights.001.a   # "What has happened to the moons?"
+        trigger = { NOT = { has_trait = khajiit_heritage } }
+    }
+
+    option = {
+        name = void_nights.001.b   # "We are as unborn. The moons do not speak to us."
+        trigger = { has_trait = khajiit_heritage }
+        add_stress = 10
+    }
+
+    option = {
+        name = void_nights.001.c   # "Someone has done this. Someone can undo it."
+        trigger = { has_trait = khajiit_heritage }
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# void_nights.002  Moon Sugar Fails
+# For the Mane and devoted followers of the Two Moons path, the
+# vanishing of Masser and Secunda means far more than dark skies.
+# The sacred moon sugar loses its blessing. The path is severed.
+# ---------------------------------------------------------------
+void_nights.002 = {
+    type = character_event
+    title = void_nights.002.t
+    desc  = void_nights.002.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = despair
+    }
+
+    option = {
+        name = void_nights.002.a   # "We must endure. The moons will return."
+        add_piety = -100
+        add_stress = 20
+        add_character_modifier = {
+            modifier = moon_sugar_drought
+            days = 730
+        }
+    }
+
+    option = {
+        name = void_nights.002.b   # "Seek the Thalmor. If they caused this, they can end it."
+        add_prestige = -50
+        add_stress = 30
+    }
+}
+
+# ---------------------------------------------------------------
+# void_nights.003  The Moons Return
+# Two years of darkness end. Masser and Secunda rise once more
+# on the horizon — the Thalmor claim the credit, but those who
+# watched the Towers know the truth is more complex. For Khajiit,
+# this is the greatest joy imaginable.
+# ---------------------------------------------------------------
+void_nights.003 = {
+    type = character_event
+    title = void_nights.003.t
+    desc = {
+        triggered_desc = {
+            trigger = { has_trait = khajiit_heritage }
+            desc = void_nights.003.desc_khajiit
+        }
+        triggered_desc = {
+            trigger = { NOT = { has_trait = khajiit_heritage } }
+            desc = void_nights.003.desc_other
+        }
+    }
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = joy
+    }
+
+    immediate = {
+        clear_global_variable = void_nights_active
+        if = {
+            limit = { has_character_modifier = moon_sugar_drought }
+            remove_character_modifier = moon_sugar_drought
+        }
+    }
+
+    option = {
+        name = void_nights.003.a   # "The moons have returned. Praise the Two Moons path."
+        trigger = { has_trait = khajiit_heritage }
+        add_piety = 100
+        add_prestige = 50
+        add_stress = -30
+    }
+
+    option = {
+        name = void_nights.003.b   # "The sky is whole again. May it never darken so."
+        trigger = { NOT = { has_trait = khajiit_heritage } }
+        add_piety = 50
+        add_stress = -15
+    }
+}
+
+# ---------------------------------------------------------------
+# void_nights.004  The Void Teaches
+# A scholar who endures the Void Nights is presented with a
+# unique philosophical crucible: what does the absence of the
+# moons reveal about the nature of creation, and of faith?
+# Only the most learned rulers are offered this reflection.
+# ---------------------------------------------------------------
+void_nights.004 = {
+    type = character_event
+    title = void_nights.004.t
+    desc  = void_nights.004.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = thinking
+    }
+
+    trigger = {
+        learning >= 14
+        global_var:void_nights_active = 1
+    }
+
+    option = {
+        name = void_nights.004.a   # "Meditate upon the void. Even darkness teaches."
+        add_learning_skill = 1
+        add_stress = -10
+        add_piety = 25
+    }
+
+    option = {
+        name = void_nights.004.b   # "Pray for the moons' return. Faith is not philosophy."
+        add_piety = 75
+        add_stress = 10
+    }
+}

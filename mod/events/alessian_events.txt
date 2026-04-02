@@ -1,0 +1,410 @@
+# =============================================================
+#  Alessian Order — Reformation & Reman Dynasty Events
+#  Namespace: alessian
+#
+#  LORE:
+#  The Alessian Order was a radical religious movement that
+#  swept the First Era Cyrodilic Empire, purging elven saints
+#  and influences from the Eight Divines faith.  Founded after
+#  Alessia's slave revolt, it held that the Divines were
+#  originally human gods — corrupted and obscured by Aldmeri
+#  theological domination.  The Order's Marukite wing went
+#  further: the Monomyth held Lorkhan as the true villain of
+#  creation, and the Aldmeri as his unwitting instruments.
+#
+#  Reman I (1E 2703) founded the Second Empire, wielding the
+#  Amulet of Kings as proof of Cyrodilic divine right.  His
+#  bloodline — the Remans — ruled until Reman III's death in
+#  2E 0, ending the dynasty and beginning the Interregnum.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • alessian.000  — Yearly: Alessian scholar arrives at court
+#  • alessian.001  — Decision trigger: Reformation Sermon
+#  • alessian.002  — Elven Backlash after Reformation
+#  • alessian.003  — The Marukite Path: Monomyth revelation
+#  • alessian.010  — Yearly: Genealogist finds Reman blood
+#  • alessian.011  — The Reman Claim: proving lineage
+#  • alessian.012  — Decision trigger: Crowned in Reman tradition
+#
+#  KEY TRAITS:
+#  ───────────
+#  • alessian_doctrine_scholar  (EK2 existing)
+#  • alessian_reformer          (new — lore_races_traits.txt)
+#  • reman_heir                 (new — lore_races_traits.txt)
+#
+#  KEY MODIFIERS:
+#  ──────────────
+#  • alessian_reformation_zeal   (lore_races_modifiers.txt)
+#  • reman_claim_investigation   (lore_races_modifiers.txt)
+# =============================================================
+
+namespace = alessian
+
+# ---------------------------------------------------------------
+# alessian.000  A Scholar of the Alessian Doctrine
+# Fires yearly for rulers with the alessian_doctrine_scholar trait.
+# A travelling scholar arrives promoting the Eight Divines as
+# originally human gods — before Aldmeri theological corruption
+# rewrote the divine hierarchy.  Three paths: fund the movement,
+# debate publicly, or dismiss the man entirely.
+# ---------------------------------------------------------------
+alessian.000 = {
+    type = character_event
+    title = alessian.000.t
+    desc = alessian.000.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_trait = alessian_doctrine_scholar
+        NOT = { has_character_flag = alessian_scholar_visited }
+        NOT = { has_trait = alessian_reformer }
+    }
+
+    option = {
+        name = alessian.000.a   # "Fund the movement — let the truth spread."
+        add_character_flag = { flag = alessian_scholar_visited days = 1825 }
+        add_gold = -50
+        add_modifier = {
+            modifier = alessian_reformation_zeal
+            days = 730
+        }
+        add_piety = 100
+    }
+
+    option = {
+        name = alessian.000.b   # "I will debate this publicly — let scholars judge."
+        add_character_flag = { flag = alessian_scholar_visited days = 1825 }
+        random_list = {
+            60 = {
+                modifier = { add = 20 learning >= 14 }
+                # Success: learning check passed — the argument holds
+                add_piety     = 150
+                add_prestige  = 100
+            }
+            40 = {
+                modifier = { add = -20 learning >= 14 }
+                # Failure: the debate turns against you
+                add_piety    = -50
+                add_stress   = 15
+            }
+        }
+    }
+
+    option = {
+        name = alessian.000.c   # "I have no interest in antique theology. Leave."
+        add_character_flag = { flag = alessian_scholar_visited days = 1825 }
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# alessian.001  The Reformation Sermon
+# Triggered by the proclaim_alessian_reformation decision.
+# The ruler publicly purges elven saints from their chapel,
+# declaring the Eight Divines in their pure, human form.
+# Human vassals cheer.  Elven courtiers do not.
+# ---------------------------------------------------------------
+alessian.001 = {
+    type = character_event
+    title = alessian.001.t
+    desc = alessian.001.desc
+    theme = faith
+
+    immediate = {
+        add_character_flag = { flag = alessian_reformation_proclaimed days = 1825 }
+        add_trait = alessian_reformer
+        add_modifier = {
+            modifier = alessian_reformation_zeal
+            days = 1825
+        }
+    }
+
+    option = {
+        name = alessian.001.a   # "The Eight Divines are ours. Let Tamriel remember."
+        add_piety    = 300
+        add_prestige = 200
+        # Negative opinion from elven-culture characters at court
+        every_courtier = {
+            limit = {
+                OR = {
+                    has_culture = altmer_culture
+                    has_culture = bosmer_culture
+                    has_culture = dunmer_culture
+                    has_culture = orsimer_culture
+                    has_culture = maormer_culture
+                }
+            }
+            add_opinion = {
+                modifier = reformer_elven_resentment_opinion
+                target = root
+            }
+        }
+        # Trigger the elven backlash after a short delay
+        trigger_event = {
+            id = alessian.002
+            days = 30
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# alessian.002  Elven Backlash
+# Fires 30 days after alessian.001.
+# Nearby Altmeri and Bosmer rulers send protest delegations.
+# Three choices: double down, moderate, or recant.
+# ---------------------------------------------------------------
+alessian.002 = {
+    type = character_event
+    title = alessian.002.t
+    desc = alessian.002.desc
+    theme = diplomacy
+
+    option = {
+        name = alessian.002.a   # "Double down — the truth does not apologise."
+        add_prestige  = 200
+        add_piety     = 100
+        every_ruler = {
+            limit = {
+                OR = {
+                    has_culture = altmer_culture
+                    has_culture = bosmer_culture
+                }
+                is_neighbour_of_root = yes
+            }
+            add_opinion = {
+                modifier = alessian_double_down_opinion
+                target = root
+            }
+        }
+        # Trigger the Marukite deeper path after delay
+        trigger_event = {
+            id = alessian.003
+            days = 60
+        }
+    }
+
+    option = {
+        name = alessian.002.b   # "A moderate path — truth delivered with diplomacy."
+        add_prestige = 50
+        random_list = {
+            65 = {
+                modifier = { add = 20 diplomacy >= 12 }
+                add_piety    = 50
+                add_prestige = 100
+            }
+            35 = {
+                modifier = { add = -20 diplomacy >= 12 }
+                add_stress = 10
+            }
+        }
+    }
+
+    option = {
+        name = alessian.002.c   # "Recant — the political cost is too high."
+        remove_trait = alessian_reformer
+        remove_modifier = alessian_reformation_zeal
+        add_piety    = -150
+        add_prestige = -100
+        add_stress   = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# alessian.003  The Marukite Path — The Monomyth
+# Fires for rulers who doubled down after the Reformation.
+# A deeper Alessian scholar reveals the mystical Monomyth:
+# Lorkhan as the villain of creation, his heart the engine of
+# Nirn's prison.  High learning unlocks full understanding
+# and grants the alessian_reformer trait upgrade.
+# ---------------------------------------------------------------
+alessian.003 = {
+    type = character_event
+    title = alessian.003.t
+    desc = alessian.003.desc
+    theme = faith
+
+    trigger = {
+        has_trait = alessian_reformer
+        NOT = { has_character_flag = marukite_path_offered }
+    }
+
+    option = {
+        name = alessian.003.a   # "I understand it. Lorkhan's treachery is the root of all."
+        add_character_flag = { flag = marukite_path_offered }
+        random_list = {
+            70 = {
+                modifier = { add = 25 learning >= 14 }
+                # Full understanding
+                add_piety   = 250
+                add_learning = 1
+                add_modifier = {
+                    modifier = alessian_reformation_zeal
+                    days = 730
+                }
+            }
+            30 = {
+                modifier = { add = -25 learning >= 14 }
+                # Too vast to grasp
+                add_stress = 20
+                add_piety  = 50
+            }
+        }
+    }
+
+    option = {
+        name = alessian.003.b   # "I am not ready for this depth of theology."
+        add_character_flag = { flag = marukite_path_offered }
+        add_stress = 10
+    }
+
+    option = {
+        name = alessian.003.c   # "This is heresy within heresy — I will not hear it."
+        add_character_flag = { flag = marukite_path_offered }
+        add_piety = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# alessian.010  The Reman Bloodline
+# Fires yearly for imperial-culture or Cyrodiilic rulers
+# with stewardship >= 12.  A genealogist claims to have found
+# evidence of Reman blood — the Second Empire's founding line.
+# ---------------------------------------------------------------
+alessian.010 = {
+    type = character_event
+    title = alessian.010.t
+    desc = alessian.010.desc
+    theme = diplomacy
+
+    trigger = {
+        is_ruler = yes
+        stewardship >= 12
+        OR = {
+            has_culture = imperial_culture
+            has_culture = cyrodiilic_culture
+            culture = { has_cultural_parameter = cyrodiil_heartlands_culture }
+        }
+        NOT = { has_character_flag = reman_genealogist_visited }
+        NOT = { has_trait = reman_heir }
+        NOT = { has_character_flag = reman_lineage_confirmed }
+    }
+
+    option = {
+        name = alessian.010.a   # "Fund the research — this could change everything."
+        add_character_flag = { flag = reman_genealogist_visited days = 730 }
+        add_gold = -80
+        add_modifier = {
+            modifier = reman_claim_investigation
+            days = 730
+        }
+        trigger_event = {
+            id = alessian.011
+            days = 90
+        }
+    }
+
+    option = {
+        name = alessian.010.b   # "Publicise the claim immediately — let the world know."
+        add_character_flag = { flag = reman_genealogist_visited days = 730 }
+        add_prestige = 100
+        trigger_event = {
+            id = alessian.011
+            days = 30
+        }
+    }
+
+    option = {
+        name = alessian.010.c   # "Dismiss him — I will not build legitimacy on old bones."
+        add_character_flag = { flag = reman_genealogist_visited days = 730 }
+    }
+}
+
+# ---------------------------------------------------------------
+# alessian.011  The Reman Claim — Proving the Lineage
+# A ruler who publicised or funded Reman descent must face
+# sceptics.  Learning check to prove it authentically;
+# martial check to defend by force of authority.
+# ---------------------------------------------------------------
+alessian.011 = {
+    type = character_event
+    title = alessian.011.t
+    desc = alessian.011.desc
+    theme = diplomacy
+
+    option = {
+        name = alessian.011.a   # "Prove it through scholarship — open the archives."
+        random_list = {
+            65 = {
+                modifier = { add = 20 learning >= 14 }
+                # Learning check success
+                add_character_flag = { flag = reman_lineage_confirmed }
+                add_prestige = 300
+                add_piety    = 100
+            }
+            35 = {
+                modifier = { add = -20 learning >= 14 }
+                # Failure — the archives are ambiguous
+                add_prestige = -100
+                add_stress   = 20
+            }
+        }
+    }
+
+    option = {
+        name = alessian.011.b   # "Defend the claim by force of authority — none dare question me."
+        random_list = {
+            60 = {
+                modifier = { add = 20 martial >= 14 }
+                add_character_flag = { flag = reman_lineage_confirmed }
+                add_prestige = 250
+            }
+            40 = {
+                modifier = { add = -20 martial >= 14 }
+                add_prestige = -150
+                add_stress   = 15
+            }
+        }
+    }
+
+    option = {
+        name = alessian.011.c   # "This was a mistake. I will quietly let the matter drop."
+        add_prestige = -50
+        add_stress   = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# alessian.012  Crowned in the Reman Tradition
+# Triggered by the claim_reman_heritage decision.
+# The ruler formally claims the title of Reman Heir, invoking
+# the Second Empire's divine right of rule.
+# ---------------------------------------------------------------
+alessian.012 = {
+    type = character_event
+    title = alessian.012.t
+    desc = alessian.012.desc
+    theme = realm
+
+    immediate = {
+        add_trait = reman_heir
+        add_prestige = 500
+    }
+
+    option = {
+        name = alessian.012.a   # "I am Reman reborn. The Second Empire breathes again."
+        add_piety    = 200
+        add_prestige = 200
+        add_modifier = {
+            modifier = reman_claim_investigation
+            days = 1825
+        }
+    }
+
+    option = {
+        name = alessian.012.b   # "I carry the name as a duty, not a boast."
+        add_piety  = 150
+        add_stress = -10
+    }
+}

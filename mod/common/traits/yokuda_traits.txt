@@ -1,0 +1,113 @@
+# =============================================================
+#  Yokuda / Redguard Expansion — Traits
+#  File: mod/common/traits/yokuda_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  ra_gada_warrior     — Warrior of the Ra Gada, the Wave that conquered Hammerfell.
+#  sword_singer        — Master of the Shehai, the Yokudan spirit sword.
+#  ruptga_devoted      — Devoted follower of Ruptga / Tall Papa, chief of the Yokudan gods.
+#  sep_cultist         — Follower of Sep the Thief, the Yokudan face of Lorkhan.
+#  yokudan_heritage    — Character of Yokudan descent, heir to the drowned civilisation.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Yokuda was a continent west of Tamriel that sank beneath the waves around 1E 792
+#  following the Ra Gada — the great warrior wave of Redguard migration into Hammerfell.
+#  The Yokudans worshipped their own pantheon led by Ruptga (Tall Papa), and were
+#  renowned for their Shehai: the spirit sword, a blade of pure will and memory that
+#  only the greatest warrior-scholars (Sword-Singers) could manifest.  Sep, the trickster
+#  and thief, is their equivalent of Lorkhan — the god who stole the heart of the world.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  RA GADA WARRIOR
+#  A warrior of the Ra Gada — the Wave of Warriors who swept
+#  across Hammerfell before the main Redguard migration.  They
+#  cleared the land with fire and sword, and their name became
+#  a legend that subsequent generations strive to live up to.
+# ---------------------------------------------------------------
+ra_gada_warrior = {
+    category = fame
+
+    martial  = 4
+    prowess  = 5
+
+    monthly_prestige_gain_mult = 0.20   # The Ra Gada are remembered as the vanguard of a people
+
+    flag = ra_gada_warrior
+}
+
+# ---------------------------------------------------------------
+#  SWORD-SINGER
+#  The pinnacle of Yokudan martial philosophy — a warrior who
+#  has mastered the Shehai, the spirit sword.  The Shehai is a
+#  blade of pure will, summoned from memory and intent.  It can
+#  cut what physical steel cannot.  Sword-Singers reportedly
+#  destroyed Numidium at the Sword-Meeting of Red Mountain.
+# ---------------------------------------------------------------
+sword_singer = {
+    category = fame
+
+    martial  = 6
+    prowess  = 8
+
+    monthly_prestige_gain_mult = 0.30   # Sword-Singers are legends in Hammerfell and beyond
+
+    flag = sword_singer
+}
+
+# ---------------------------------------------------------------
+#  RUPTGA DEVOTED
+#  A devout follower of Ruptga — Tall Papa — the chief god of
+#  the Yokudan pantheon.  Ruptga created the "Walkabout," the
+#  path souls must follow through Oblivion.  His devoted serve
+#  as spiritual guides, warriors of light, and keepers of the
+#  old traditions.
+# ---------------------------------------------------------------
+ruptga_devoted = {
+    category = lifestyle
+
+    martial   = 2
+    diplomacy = 2
+
+    monthly_piety_gain_mult = 0.20   # Ruptga's blessing flows through daily devotion
+
+    flag = ruptga_devoted
+}
+
+# ---------------------------------------------------------------
+#  SEP CULTIST
+#  A follower of Sep the Thief — the Yokudan equivalent of
+#  Lorkhan.  Sep stole the Heart of Creation and was punished
+#  by the gods, his body scattered across the heavens.  His
+#  cultists follow his philosophy of taking what they need and
+#  trusting that the world will not miss it.
+# ---------------------------------------------------------------
+sep_cultist = {
+    category = lifestyle
+
+    intrigue         = 4
+    stress_gain_mult = -0.10   # Sep's philosophy: take what you want, regret nothing
+
+    flag = sep_cultist
+}
+
+# ---------------------------------------------------------------
+#  YOKUDAN HERITAGE
+#  A character of Yokudan descent — heir to the drowned
+#  continent west of Tamriel.  Their ancestors crossed the
+#  Sea of Pearls after Yokuda sank, bringing with them a
+#  martial tradition and a set of gods the rest of Tamriel
+#  is only beginning to understand.
+# ---------------------------------------------------------------
+yokudan_heritage = {
+    category = special
+
+    martial   = 2
+    diplomacy = 1
+
+    monthly_prestige_gain_mult = 0.10   # The legacy of a drowned world carries weight
+
+    flag = yokudan_heritage
+}

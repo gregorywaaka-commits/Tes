@@ -1,0 +1,47 @@
+﻿l_english:
+
+ # =====================================================================
+ #  DIRENNI HEGEMONY — TRAITS
+ # =====================================================================
+
+ direnni_bloodline: "Direnni Bloodline"
+ direnni_bloodline_desc: "This character carries Altmeri blood from the Direnni Hegemony — the elven ruling power that shaped High Rock before the Alessian Order's expansion westward. The Direnni were scholars and administrators of exceptional quality, and those qualities persist in their descendants. The bloodline is old enough that most who carry it do not know they carry it until someone points at the cheekbones and says: those are Direnni cheekbones."
+
+ direnni_hegemon: "Direnni Hegemon"
+ direnni_hegemon_desc: "This character holds or held genuine authority within the tradition of the Direnni Hegemony — the kind of ruler who governs through administrative mastery and arcane superiority rather than brute force. The Hegemons built towers across High Rock that still stand. The laws they wrote are still cited in courts that have forgotten who wrote them."
+
+ glenumbra_veteran: "Glenumbra Veteran"
+ glenumbra_veteran_desc: "This character fought at the Battle of Glenumbra Moors in 1E 482 — the engagement where the Direnni held the line against the combined Alessian-Atmoran host. They won. The Hegemony then spent the next century slowly dying from the wounds of that victory. Those who survived Glenumbra Moors earned a kind of prestige that could not be granted by any title — only by having been there."
+
+ # =====================================================================
+ #  DIRENNI HEGEMONY — EVENTS
+ # =====================================================================
+
+ direnni.000.t: "The Hegemony's Shadow"
+ direnni.000.desc: "High Rock does not forget its makers.\n\nEvery tower on a ridge, every old covenant written in a language that Breton lords struggle to parse, every ruling family whose ears come to a slightly unusual point — these are the fingerprints of the Direnni Hegemony. The elves are gone, or mostly gone, or gone to the degree that polite society finds convenient. But their architecture remains. Their laws remain. Their blood remains, thinned by centuries of intermarriage but still present in the right bloodlines.\n\nYour bloodline, as it happens."
+ direnni.000.a: "My ancestors built this land. I will reclaim their legacy."
+ direnni.000.b: "High Rock belongs to its people now. I will live as they live."
+
+ direnni.001.t: "The Battle of Glenumbra Moors"
+ direnni.001.desc: "The storm has arrived.\n\nThe Alessian Order — that theological juggernaut that marched out of Cyrodiil on the back of Alessia's covenant and Pelinal's fire — has allied with Atmoran reinforcements and turned its attention west toward High Rock. Toward your lands. Toward everything the Direnni have built.\n\nThe combined host is vast. But the Moors have always favoured defenders who know them, and the Direnni have been defending these lands since before the Alessians learned to write."
+ direnni.001.a: "Rally the Direnni. We hold the Moors."
+ direnni.001.b: "We cannot hold against that tide. Fall back and preserve what we can."
+ direnni.001.a.victory_tooltip: "Your martial skill carries the day. The Alessian host is broken on the Moors."
+ direnni.001.a.costly_tooltip: "The line holds, but barely. The Hegemony will not survive many victories like this one."
+
+ direnni.002.t: "The Hegemony Fractures"
+ direnni.002.desc: "Glenumbra Moors is won.\n\nThe Alessian host is broken. The Atmorans have retreated. The Direnni hold the field. By every conventional measure, this was a victory.\n\nAnd yet the court is quieter than it should be. The tallies come back from the field officers: the losses are severe. Not catastrophic — not yet — but the kind of severe that compounds, year by year, until a dynasty that once counted its towers across all of High Rock is counting them across a single province.\n\nSomething must be decided about the bloodline."
+ direnni.002.a: "Guard the bloodline. Our heirs will carry what we cannot hold."
+ direnni.002.b: "The Direnni age is over. We become Breton."
+ direnni.002.a.tooltip: "The Direnni bloodline will be passed to your heir."
+ direnni.002.b.tooltip: "The Hegemony dissolves, but the people endure."
+
+ direnni.003.t: "Last of the Direnni"
+ direnni.003.desc: "The scholar's news arrived in a letter sealed with old wax, written in a hand that shook slightly toward the end of long passages.\n\nThe genealogy is complete. Cross-referenced, verified, argued over for the better part of a decade by men and women who do this professionally and take it seriously. The conclusion is unambiguous.\n\nYou are the last living bearer of pure Direnni blood. The last link in a chain that stretches back to the Merethic Era. The last point at which the Hegemony still exists in any form that is not purely architectural.\n\nThe scholar wanted to know what you intended to do about it."
+ direnni.003.a: "Then I must be worthy of what I carry."
+ direnni.003.b: "It is a burden I did not ask for."
+
+ direnni.004.t: "Lorkhan's Children"
+ direnni.004.desc: "There is a question that all mer eventually arrive at, if they think long enough and carefully enough about what their existence means.\n\nThe Aldmer were beings of the Aetherial realm — timeless, perfect, without beginning or end. They came to Mundus, either willingly or through Lorkhan's deception depending on which theological tradition you credit, and they became something diminished. Mortal. Divided. Subject to time.\n\nThe Thalmor's answer is to hate Lorkhan and seek return. The Direnni's answer was different: to study. To understand. To find what could be made from what was lost.\n\nSitting in an old tower that your ancestors built on a High Rock ridge, you find yourself arriving at the question again."
+ direnni.004.a: "We are diminished — but we endure. That is its own kind of grace."
+ direnni.004.b: "I will spend my life trying to understand what we lost — and what we gained."

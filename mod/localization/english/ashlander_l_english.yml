@@ -1,0 +1,95 @@
+﻿l_english:
+
+ # =====================================================================
+ #  THE ASHLANDER TRIBES / THE ALMSIVI INTERDICT
+ # =====================================================================
+
+ # ---- ashlander.000 — An Ashlander Ambassador Arrives ----
+
+ ashlander.000.t: "An Ashlander Ambassador"
+ ashlander.000.desc: "The figure at your gate is dressed in the way of the nomads: ash-grey wrappings, bone fetishes at the belt, the careful stillness of someone who has learned to move without disturbing whatever might be watching. They bear no standard — the Ashlanders have no use for standards — but the carved token at their throat marks them as a representative of one of the four great tribes. They are not armed in any way that would cause trouble, but you get the feeling they are armed in other ways. They have come to speak. They are waiting to learn whether you are worth speaking to."
+ ashlander.000.a: "Welcome them properly. Give them the courtesy they deserve and the seat they are not expecting."
+ ashlander.000.b: "Negotiate. I need what they know, and they probably need what I can offer."
+ ashlander.000.c: "Dismiss them politely. I have enough political weight without adding theirs."
+
+ # ---- ashlander.001 — The Urshilaku Elder ----
+
+ ashlander.001.t: "The Urshilaku Elder"
+ ashlander.001.desc: "She is old in the way that the Ashlanders mean old — not merely aged but seasoned past the point where ordinary people stop accumulating understanding. The Urshilaku keep the Nerevarine prophecy; they have kept it since before the Tribunal took their thrones, since before the Chimer became the Dunmer, since the days when Azura spoke to the people directly without the intermediary of three living gods. The elder is not hostile. She is simply watching you with the particular attention of someone who has been waiting for a specific person for a very long time, and is now determining whether you are that person or merely someone who resembles them."
+ ashlander.001.a: "I speak honestly. If I am the one the prophecy names, I do not know it yet — and I want to."
+ ashlander.001.b: "I tell her what seems expected. Whether it is entirely true is a separate question."
+ ashlander.001.c: "I am not the Nerevarine. I refuse to play the part, however much she needs me to."
+
+ # ---- ashlander.002 — The Erabenimsun Challenge ----
+
+ ashlander.002.t: "The Erabenimsun Challenge"
+ ashlander.002.desc: "The Erabenimsun do not negotiate, exactly. They assess. The champion steps forward before the introductions are complete — young, fast, deliberate in the way that suggests training rather than aggression. The challenge is old: a settled lord, if they want the Erabenimsun's acknowledgement, demonstrates that they deserve it. Not through politics. Not through wealth. Through the thing the tribe has always respected: the ability to stand in front of someone who intends to hurt you and do something useful about it. You are a ruler. This is not normally your problem. Today it is."
+ ashlander.002.a: "I accept. Come at me, then — let us see what this is worth."
+ ashlander.002.b: "I fight. It does not go as cleanly as I would have liked, but I do not go down."
+ ashlander.002.c: "I decline. I am a ruler, not a brawler — they can respect me for what I am or not at all."
+
+ # ---- ashlander.003 — The Ahemmusa Offer ----
+
+ ashlander.003.t: "The Ahemmusa Traders"
+ ashlander.003.desc: "The Ahemmusa are the most peaceable of the four tribes and arguably the best at carrying things a long distance without breaking them. The goods the trader spreads on the cloth before you are not flashy — no Daedric weaponry, no ancient enchantments. What they have is rare in a different way: ashland ingredients that settled merchants simply do not see, dyes from deep-coast shellfish, dried fungi from under-mountain caverns that no settled supplier reaches. The price they name is specific and not negotiable in the Ahemmusa way: you pay it fully and honestly, or you don't, and they will know the difference."
+ ashlander.003.a: "I pay their price. It is fair. I know it is fair and I am glad it is fair."
+ ashlander.003.b: "I offer less. They drive a harder bargain than I expected, but we reach something."
+ ashlander.003.c: "I have no interest in what they are carrying. I send them on their way with courtesy."
+
+ # ---- ashlander.004 — The Zainab Wise-Woman ----
+
+ ashlander.004.t: "The Zainab Wise-Woman"
+ ashlander.004.desc: "The Zainab are the most practical of the four tribes — they have been trading with settled Dunmer and outsiders for centuries, and they have developed the kind of clear-eyed assessment of the world that comes from spending that long making deals with people who do not share your values. The wise-woman who reads the stars for your court does so without ceremony: she looks at the sky, she looks at you, and she says what she sees. No ritual phrasing, no comfortable ambiguity. The Zainab have been watching the same sky since the Merethic Era. They have had a long time to stop being polite about what it says."
+ ashlander.004.a: "I hear her. It is not comfortable, but it is the most honest thing I have been told in years."
+ ashlander.004.b: "The stars have nothing to tell me about my reign that I do not already know. I hear her out."
+ ashlander.004.c: "What she is telling me is deeply unsettling. I make an excuse and leave before she finishes."
+
+ # ---- ashlander.005 — Named Nerevarine ----
+
+ ashlander.005.t: "Named Nerevarine by the Ashlanders"
+ ashlander.005.desc: "All four tribes have spoken, and what they have spoken is the same word. The Urshilaku said it first — carefully, in the old formulation, with the particular weight that comes from people who have kept a prophecy for three thousand years. The Erabenimsun said it differently: with fewer words and more certainty, the way warriors name things. The Ahemmusa said it quietly, almost gently. The Zainab said it as a matter of recorded fact, the way you note a transaction. Four tribes. Four assessments. One conclusion. The prophecy has found the person it was waiting for. You are not entirely sure what that means — but you understand, standing here, that not being sure is probably part of the point."
+ ashlander.005.a: "All four tribes. I did not plan for this moment — and now I am inside it."
+ ashlander.005.b: "I carry this title with care. I know what it cost four tribes to say it."
+
+ # =====================================================================
+ #  THE ALMSIVI INTERDICT
+ # =====================================================================
+
+ # ---- almsivi.000 — The Temple Messenger ----
+
+ almsivi.000.t: "A Messenger from the Temple"
+ almsivi.000.desc: "The Temple messenger is dressed in formal robes and carries a sealed document with the three-bar mark of ALMSIVI at the wax — the combined sigil of all three Tribunal gods, used only when the Temple is speaking with its full authority rather than institutional routine. What they read aloud is a formal notification: the Tribunal Temple has taken note of certain aspects of your conduct, and requests — in the formal language that means demands — a public act of recantation. They are scrupulously polite. They are also certain. The Temple has done this before. It ends one of two ways."
+ almsivi.000.a: "I recant. Publicly. Whatever it costs to my standing — I will not carry this fight."
+ almsivi.000.b: "Tell the Temple I received their message. Tell them I decline to comply."
+
+ # ---- almsivi.001 — The Interdict Proclaimed ----
+
+ almsivi.001.t: "The ALMSIVI Interdict"
+ almsivi.001.desc: "The proclamation comes quickly — the Temple had it prepared. It is read from pulpits in every major Dunmer settlement within a fortnight: this ruler has been formally declared outside the protection and favour of ALMSIVI, cut off from the divine covenant of the three-faced god, until they recant their heresy before the Temple's satisfaction. The effects are immediate and social before they are spiritual: vassals who are devout Dunmer begin to shift in their seats. Tribute from shrines goes elsewhere. There is a particular cold quality to being told, in public and in writing, that the gods have officially stopped watching over you."
+ almsivi.001.a: "Let them proclaim it. I stand behind what I have done. The Temple does not own my conscience."
+ almsivi.001.b: "I will pay whatever piety the Temple requires to end this immediately."
+ almsivi.001.c: "I have reconsidered. I recant. End this — I will not carry the weight of an Interdict."
+
+ # ---- almsivi.002 — The Recantation ----
+
+ almsivi.002.t: "The Recantation"
+ almsivi.002.desc: "The formal recantation is read from the same pulpits that read the Interdict. It is shorter. The Temple does not gloat — they do not need to. The document is simply a reversal: the concerns that prompted the Interdict have been addressed to the Temple's satisfaction; the ALMSIVI Interdict is lifted; this ruler is once again under the divine covenant of the three-faced god. You listen to it being read to your court. You keep your expression neutral. You have said the words they wanted. Whether you meant them is, as it turns out, not one of the Temple's requirements."
+ almsivi.002.a: "It is done. I have said the words. Now I live with having said them."
+
+ # ---- Traits ----
+
+ ashlander_nerevarine: "Named Nerevarine"
+ ashlander_nerevarine_desc: "This ruler has been recognised by all four great Ashlander tribes — the wise Urshilaku, the fierce Erabenimsun, the gentle Ahemmusa, and the pragmatic Zainab — as the living incarnation of the Nerevarine prophecy. This is the fulfilment of Azura's promise to the Chimer people: that Nerevar Indoril, the greatest of Dunmer heroes, would return in the hour of Morrowind's need. To carry this recognition is to carry a weight that is three thousand years old and counting. The Ashlanders know what they are naming. They do not name it lightly."
+
+ # ---- Modifiers ----
+
+ ashlander_welcomed_modifier: "Welcomed by the Ashlanders"
+ ashlander_welcomed_modifier_desc: "This ruler received Ashlander representatives with genuine honour rather than dismissal. The tribes note such things. There is a quiet, unspoken reciprocity — the nomads and the settled lord are not friends, but they are, for now, watching each other with something other than contempt."
+
+ almsivi_interdict_modifier: "Under the ALMSIVI Interdict"
+ almsivi_interdict_modifier_desc: "The Tribunal Temple has formally declared this ruler outside the protection of ALMSIVI — cut off from the divine covenant of the three-faced god until a satisfactory recantation is offered. Shrines are cold. Piety accrues slowly. Loyal Dunmer vassals are uncertain and uneasy, unwilling to be seen standing too close to a ruler the Temple has publicly censured."
+
+ # ---- Custom Tooltips ----
+
+ ashlander_nerevarine_complete_tt: "All four Ashlander tribes have named you Nerevarine. The ashlander_nerevarine trait is now yours — a recognition three thousand years in the making."
+ almsivi_recantation_complete_tt: "The ALMSIVI Interdict has been lifted. The almsivi_interdict_modifier has been removed. You have paid the Temple's price. Whether the cost was worth it is a question only you can answer."

@@ -1,0 +1,79 @@
+# =============================================================
+#  Direnni Hegemony — Traits
+#  File: mod/common/traits/direnni_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  direnni_bloodline  — Altmeri lineage of the pre-Alessian Hegemony in High Rock.
+#  direnni_hegemon    — A ruler who holds or held dominion within the Hegemony.
+#  glenumbra_veteran  — Survivor of the Battle of Glenumbra Moors (1E 482).
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Direnni Hegemony was an Altmeri ruling power that dominated High Rock
+#  in the early First Era, preceding the Alessian Order's expansion westward.
+#  The Direnni were master scholars and diplomats who maintained control
+#  through administrative genius and arcane superiority rather than brute
+#  martial force.  At the Battle of Glenumbra Moors (1E 482) they defeated
+#  the combined Alessian-Atmoran armies, but were so weakened that they
+#  could not maintain dominion and gradually assimilated into Breton culture.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DIRENNI BLOODLINE
+#  A character who carries Altmeri Direnni ancestry from the
+#  pre-Alessian Hegemony in High Rock.  The bloodline confers
+#  the Direnni's characteristic scholastic brilliance and
+#  diplomatic sophistication — the traits that built an empire
+#  without drawing a sword.
+# ---------------------------------------------------------------
+direnni_bloodline = {
+    category = special
+
+    learning   = 4
+    diplomacy  = 3
+
+    monthly_prestige = 2   # ancient lineage carries social weight
+
+    flag = direnni_bloodline
+}
+
+# ---------------------------------------------------------------
+#  DIRENNI HEGEMON
+#  A ruler who holds or held authority within the Direnni
+#  Hegemony.  The Hegemon combines the Direnni's intellectual
+#  heritage with the administrative and martial requirements of
+#  actual governance — more rounded than the pure scholar,
+#  more refined than the mere warlord.
+# ---------------------------------------------------------------
+direnni_hegemon = {
+    category = fame
+
+    learning   = 5
+    diplomacy  = 5
+    martial    = 2
+
+    monthly_prestige = 3   # Hegemons are lords of ancient right
+
+    flag = direnni_hegemon
+}
+
+# ---------------------------------------------------------------
+#  GLENUMBRA VETERAN
+#  A character who fought at the Battle of Glenumbra Moors
+#  (1E 482) — the engagement where the Direnni turned back the
+#  Alessian Order and Atmoran reinforcements at tremendous cost.
+#  They won the field and lost the future: the Hegemony never
+#  recovered.  Those who survived carry the weight of that
+#  victory-that-was-also-a-death.
+# ---------------------------------------------------------------
+glenumbra_veteran = {
+    category = fame
+
+    martial   = 4
+    prowess   = 3
+
+    monthly_prestige = 2   # having survived Glenumbra Moors is itself a prestige
+
+    flag = glenumbra_veteran
+}

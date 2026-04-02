@@ -43,6 +43,22 @@
 #  • Greybeard Order — First Voice pilgrimage events
 #  • Amulet of Kings — bearer rejection, political attention
 #  • Dwemer Ruins — ruin discovery rumours, tonal breakthrough
+#  • Dagoth Ur — Sixth House awakening, Blight spread, Nerevarine prophecy
+#  • Tribunal — Vivec/Almalexia/Sotha Sil visions for devout Dunmer (and scholars)
+#  • Daedric Artifacts — artifact surfaces near realm (yearly check)
+#  • Numidium — Brass God scholarly discovery (very rare, learning-gated)
+#  • Vampire Bloodlines — bloodline emissary contacts (yearly check)
+#  • Yokuda / Redguard — Ra Gada legacy events for Redguard rulers
+#  • Worm Cult — Black Worm invitation for high-intrigue rulers
+#  • Dragon Breaks — temporal anomaly when too many Towers fall (very rare)
+#  • Ayleid Ruins — ruin discovery for Cyrodiil / ayleid_bloodline rulers
+#  • Void Nights — calendar-triggered 2E 578-579 moon vanishing
+#  • Longhouse Emperors — Reachman Imperial claimant events
+#  • Gray Host — vampire-werewolf invasion (date-window 1E 800–2E 200)
+#  • Shezarrine — divine warrior vessel (very rare, martial-gated)
+#  • Direnni Hegemony — Altmer High Rock legacy events
+#  • Skaal / All-Maker — Solstheim sacred rites for Nord rulers
+#  • CHIM / Walking Ways — philosophical quest (very rare, learning+stress gated)
 #
 #  CROSS-REFERENCES:
 #  ─────────────────
@@ -51,10 +67,21 @@
 #  • Individual event files: echmer_events.txt, maormer_events.txt,
 #    sload_events.txt, kothringi_events.txt, kamal_events.txt,
 #    minor_lore_races_events.txt, towers_events.txt,
-#    thuumvoi_events.txt, amulet_of_kings_events.txt.
+#    thuumvoi_events.txt, amulet_of_kings_events.txt,
+#    tribunal_events.txt, daedric_artifacts_events.txt,
+#    numidium_events.txt, vampire_bloodlines_events.txt,
+#    yokuda_events.txt, worm_cult_events.txt,
+#    dragon_break_events.txt, ayleid_ruins_events.txt,
+#    void_nights_events.txt, longhouse_emperors_events.txt,
+#    gray_host_events.txt, shezarrine_events.txt,
+#    direnni_events.txt, skaal_allmaker_events.txt,
+#    chim_events.txt.
 #  • Systems triggered here read global_vars set by their effects:
 #    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
-#    global_var:thrassian_plague_active, global_var:active_tower_count.
+#    global_var:thrassian_plague_active, global_var:active_tower_count,
+#    global_var:dagoth_ur_awakened, global_var:numidium_awakened,
+#    global_var:dragon_break_active, global_var:void_nights_active,
+#    global_var:gray_host_invaded, global_var:necromancers_moon_active.
 # =============================================================
 
 # ---------------------------------------------------------------
@@ -83,6 +110,68 @@ on_yearly_pulse = {
         4   = amulet.post_001        # Amulet of Kings draws political/religious attention (amulet_of_kings_events.txt)
         3   = dwemer.000             # Rumours of a nearby Dwemer ruin reach court (dwemer_ruins_events.txt)
         5   = dwemer.004             # Tonal Architecture breakthrough for active scholars (dwemer_ruins_events.txt)
+        5   = dagoth_ur.000          # Sixth House awakening check — fires once when dagoth_ur_awakening_possible (dagoth_ur_events.txt)
+        5   = dagoth_ur.002          # Ghost Fence Strains — Dunmer ruler flavor post-awakening (dagoth_ur_events.txt)
+        4   = dagoth_ur.010          # A Sixth House sleeper is discovered at court (dagoth_ur_events.txt)
+        3   = dagoth_ur.030          # Azura's call: Nerevarine Prophecy for azura_champion Dunmer (dagoth_ur_events.txt)
+        4   = tribunal.000           # Vision of Vivec — warrior-poet aspect for martial Dunmer rulers (tribunal_events.txt)
+        3   = tribunal.010           # Almalexia's Grace — mother-protector aspect for diplomatic Dunmer rulers (tribunal_events.txt)
+        3   = tribunal.020           # Sotha Sil's Revelation — clockwork philosophy for learned rulers (tribunal_events.txt)
+        2   = tribunal.030           # The Blessed of Three — all three Tribunal visions completed (tribunal_events.txt)
+        3   = dragon_priest.000      # Dragon Priest tomb stirring — Dragonborn/Voice users (dragon_priest_events.txt)
+        2   = dragon_priest.010      # Alduin vision — Dragonborn and Voice masters (dragon_priest_events.txt)
+        2   = dragon_priest.020      # Dragon Cult invitation — curious/greedy non-Voice rulers (dragon_priest_events.txt)
+        3   = almalexia_hands.005    # Almalexia's Command — yearly call to a Hand of Almalexia (almalexia_hands_events.txt)
+        3   = clockwork.000          # Clockwork City rumour — sotha_sil_student rulers with learning >= 14 (clockwork_city_events.txt)
+        3   = seven_graces.000       # Seven Graces First Grace — vivec_blessed Dunmer (seven_graces_events.txt)
+        3   = ashlander.000          # Ashlander ambassador arrives — Dunmer rulers (ashlander_events.txt)
+        4   = almsivi.000            # ALMSIVI Interdict threat — heretical Dunmer rulers (almsivi_interdict_events.txt)
+        3   = great_houses.000       # Hortator candidacy offered to worthy Dunmer ruler (great_houses_events.txt)
+        2   = great_houses.010       # Telvanni wizard challenger arrives at court (great_houses_events.txt)
+        2   = great_houses.020       # Dres slaving ship returns from Black Marsh (great_houses_events.txt)
+        2   = alessian.000           # Alessian Order scholar arrives — alessian_doctrine_scholar rulers (alessian_events.txt)
+        2   = alessian.010           # Reman genealogist finds imperial blood — imperial/cyrodiilic rulers (alessian_events.txt)
+        3   = mythic_dawn.000        # Mythic Dawn coded invitation — high-intrigue rulers (mythic_dawn_events.txt)
+        4   = hist_vision.000        # Hist deep-time vision — hist_bonded Argonian rulers (hist_saxhleel_events.txt)
+        2   = hist_vision.001        # Hist before-time — rulers with hist_deep_vision_seen flag (hist_saxhleel_events.txt)
+        2   = hist_vision.002        # Hist warning of conflict — Argonian hist_bonded / an_xileel_warrior rulers (hist_saxhleel_events.txt)
+        3   = psijic.000             # Psijic invitation — highly learned rulers (psijic_events.txt)
+        2   = psijic.003             # Artaeum withdraws — psijic_adept rulers (psijic_events.txt)
+        3   = nordic_lore.000        # Ysgramor's legacy scroll discovered — Nord/Atmoran rulers (nordic_lore_events.txt)
+        3   = nordic_lore.002        # Shor's Hall vision — martial Nord rulers (nordic_lore_events.txt)
+        2   = nordic_lore.003        # Skaal Elders approach — Nord rulers (nordic_lore_events.txt)
+        3   = magic_sys.000          # Julianos invitation — learned rulers (magic_systems_events.txt)
+        2   = magic_sys.010          # Psijic Endeavour begins — Altmeri rulers (magic_systems_events.txt)
+        2   = magic_sys.020          # Tonal Architecture warfare — tonal_architect rulers (magic_systems_events.txt)
+        3   = underworld.000         # Night Mother speaks — mephala_champion/high intrigue (underworld_events.txt)
+        2   = underworld.003         # Skooma trade offer arrives (underworld_events.txt)
+        2   = underworld.004         # Skooma addiction check — skooma_invested rulers (underworld_events.txt)
+        # --- v1.1.0 NEW SYSTEMS ---
+        2   = daedric_artifact.000   # Daedric artifact surfaces near realm — daedric champions / high-intrigue (daedric_artifacts_events.txt)
+        3   = daedric_artifact.010   # Artifact corruption creep — existing artifact bearers (daedric_artifacts_events.txt)
+        2   = daedric_artifact.020   # Price of Power — artifact bearer suffers consequence (daedric_artifacts_events.txt)
+        1   = numidium.000           # Brass God scholarly discovery — dwemer_scholar + learning>=16 (numidium_events.txt) [very rare]
+        3   = vampire.000            # Vampire bloodline emissary contact — yearly check (vampire_bloodlines_events.txt)
+        2   = vampire.010            # Vampire lord ascension — existing bloodline holders (vampire_bloodlines_events.txt)
+        3   = yokuda.000             # Ra Gada legacy — yokudan_heritage / Redguard rulers (yokuda_events.txt)
+        2   = yokuda.002             # Ruptga's Blessing vision — ruptga_devoted rulers (yokuda_events.txt)
+        2   = worm_cult.000          # Black Worm invitation — high-intrigue rulers (worm_cult_events.txt)
+        2   = worm_cult.030          # Mannimarco's Demand — worm_cult_adept rulers (worm_cult_events.txt)
+        1   = dragon_break.000       # Dragon Break check — fires if active_tower_count <= 3 (dragon_break_events.txt) [very rare]
+        3   = ayleid.000             # Ayleid ruin discovery — Cyrodiil rulers / ayleid_bloodline (ayleid_ruins_events.txt)
+        2   = void_nights.000        # Void Nights trigger — calendar gated 2E 578-579 (void_nights_events.txt)
+        2   = void_nights.004        # Void Nights meditation — learned rulers during void nights (void_nights_events.txt)
+        2   = longhouse.000          # Longhouse Emperors — reachman_heritage rulers post 2E 541 (longhouse_emperors_events.txt)
+        2   = gray_host.000          # Gray Host invasion check — date-window 1E 800 – 2E 200 (gray_host_events.txt)
+        1   = shezarrine.000         # Shezarrine vessel check — martial>=18 + brave/zealous (shezarrine_events.txt) [very rare]
+        2   = shezarrine.002         # Berserker's Rage — existing shezarrine_vessel rulers (shezarrine_events.txt)
+        2   = direnni.000            # Direnni Hegemony legacy — direnni_bloodline / Altmer in High Rock (direnni_events.txt)
+        2   = direnni.004            # Lorkhan's Children — Direnni philosophical event (direnni_events.txt)
+        2   = skaal.000              # Bones of the All-Maker — Nord rulers near Solstheim (skaal_allmaker_events.txt)
+        2   = skaal.002              # Hirstaang Forest conflict — seek_skaal_accord rulers (skaal_allmaker_events.txt)
+        2   = skaal.004              # Hermaeus Mora's Temptation during Skaal ceremony (skaal_allmaker_events.txt)
+        1   = chim.000               # Walking Ways introduction — learning>=18 + stress>=50 (chim_events.txt) [very rare]
+        2   = chim.004               # CHIM bearer yearly flavor — chim_achieved rulers (chim_events.txt)
     }
 }
 
@@ -97,6 +186,9 @@ on_monthly_pulse = {
     events = {
         kothringi.050    # Knahaten Flu spread tick — infects new counties if global_var:knahaten_flu_active is set
         kamal.050        # Kamal seasonal freeze/thaw tick — checks current month to apply/remove ice modifiers
+        dagoth_ur.050    # Blight storm spread tick — spreads blight_storm_modifier if global_var:dagoth_ur_awakened is set
+        void_nights.002  # Moon Sugar fails — monthly penalty for Two Moons rulers during Void Nights
+        dragon_break.003 # Dragon Break fading — clears dragon_break_active after 10 years
     }
 }
 

@@ -1,0 +1,202 @@
+# =============================================================
+#  Ayleid Ruins Exploration Events
+#  Namespace: ayleid
+#  File: mod/events/ayleid_ruins_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  ayleid.000  "The White-Gold Ruins" — discovery of an Ayleid site
+#  ayleid.001  "Into the Ayleid Vault" — expedition enters the ruins
+#  ayleid.002  "The Welkynd Stones Glow" — star-magic crystals found
+#  ayleid.003  "Dark Altars" — evidence of dual Daedric/Divine worship
+#  ayleid.004  "The Lich's Gaze" — Ayleid lich guardian awakened
+# =============================================================
+
+namespace = ayleid
+
+# ---------------------------------------------------------------
+# ayleid.000  The White-Gold Ruins
+# A scholar, a wandering pilgrim, or a tremor in the earth
+# reveals an Ayleid site beneath a Cyrodilic county. The ancient
+# masters of Cyrodiil left their mark everywhere — beautiful,
+# dangerous, and saturated with Varla stone light.
+# ---------------------------------------------------------------
+ayleid.000 = {
+    type = character_event
+    title = ayleid.000.t
+    desc  = ayleid.000.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = wonder
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        OR = {
+            any_held_county = { this = title:c_imperial_city }
+            any_held_county = {
+                any_neighboring_county = { this = title:c_imperial_city }
+            }
+            has_trait = ayleid_bloodline
+            learning >= 10
+        }
+        NOT = { has_character_flag = ayleid_ruin_explored }
+    }
+
+    option = {
+        name = ayleid.000.a   # "Assemble a scholarly expedition at once."
+        set_character_flag = { flag = ayleid_ruin_explored days = 1825 }
+        trigger_event = { id = ayleid.001 days = 14 }
+        add_prestige = 50
+    }
+
+    option = {
+        name = ayleid.000.b   # "Seal it. The Ayleids' secrets are best left buried."
+        add_piety = 25
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# ayleid.001  Into the Ayleid Vault
+# The expedition descends past collapsed columns and Varla stone
+# brackets still faintly glowing after thousands of years. The
+# ruins are vast. What lies at the heart changes everything.
+# ---------------------------------------------------------------
+ayleid.001 = {
+    type = character_event
+    title = ayleid.001.t
+    desc  = ayleid.001.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = investigate
+    }
+
+    option = {
+        name = ayleid.001.a   # "The expedition presses deeper into the vault."
+
+        random_list = {
+            40 = {
+                # Welkynd stones — benevolent discovery
+                trigger_event = { id = ayleid.002 days = 7 }
+            }
+            35 = {
+                # Dark altars — lore and moral discovery
+                trigger_event = { id = ayleid.003 days = 7 }
+            }
+            25 = {
+                # Lich guardian — dangerous encounter
+                trigger_event = { id = ayleid.004 days = 7 }
+            }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# ayleid.002  The Welkynd Stones Glow
+# In the deepest chamber, Welkynd stones — crystallised Magnus-
+# light — pulse with a warmth that has not faltered since the
+# Merethic Era. The star-magic responds to touch.
+# ---------------------------------------------------------------
+ayleid.002 = {
+    type = character_event
+    title = ayleid.002.t
+    desc  = ayleid.002.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = admiration
+    }
+
+    option = {
+        name = ayleid.002.a   # "Stay. Study them. The star-magic wishes to be understood."
+        if = {
+            limit = { learning >= 14 }
+            add_trait = welkynd_attuned
+        }
+        else = {
+            add_trait = star_teeth_blessed
+        }
+        add_prestige = 150
+    }
+
+    option = {
+        name = ayleid.002.b   # "Carefully extract the stones. They will fetch a king's ransom."
+        add_gold = 400
+        add_prestige = 50
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# ayleid.003  Dark Altars
+# Side by side: an altar to Meridia — Lady of Infinite Energies —
+# and beside it, a shrine whose iconography is unmistakably that
+# of the Eight Divines. The Ayleids were not the Daedra-
+# worshippers history remembers. They were more complicated.
+# ---------------------------------------------------------------
+ayleid.003 = {
+    type = character_event
+    title = ayleid.003.t
+    desc  = ayleid.003.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = thinking
+    }
+
+    option = {
+        name = ayleid.003.a   # "Document everything. History has misjudged these people."
+        add_trait = ayleid_historian
+        add_prestige = 200
+        add_learning_skill = 1
+    }
+
+    option = {
+        name = ayleid.003.b   # "Destroy the altars. Heresy is heresy, whatever its age."
+        add_piety = 75
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# ayleid.004  The Lich's Gaze
+# An Ayleid lich — a Sorcerer-King preserved beyond death by
+# Welkynd-sustained phylactery magic — stirs on its throne. Its
+# eye sockets glow the colour of starlight. It has been waiting.
+# It is patient. It remembers the Slave Rebellion.
+# ---------------------------------------------------------------
+ayleid.004 = {
+    type = character_event
+    title = ayleid.004.t
+    desc  = ayleid.004.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = war_attacker
+    }
+
+    option = {
+        name = ayleid.004.a   # "Draw steel. The Ayleid dead have no rights over these halls."
+        if = {
+            limit = { martial >= 14 }
+            add_trait = ayleid_lich_touched
+            add_prestige = 350
+            add_prowess_skill = 2
+        }
+        else = {
+            add_stress = 30
+            add_prestige = -100
+            add_health = -0.5
+        }
+    }
+
+    option = {
+        name = ayleid.004.b   # "Back — slowly. We did not come to wake the ancient dead."
+        add_prestige = -150
+        add_stress = 20
+    }
+}

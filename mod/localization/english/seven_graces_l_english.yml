@@ -1,0 +1,68 @@
+﻿l_english:
+
+ # =====================================================================
+ #  THE SEVEN GRACES PILGRIMAGES — THE CANONICAL PATH OF VIVEC
+ # =====================================================================
+
+ # ---- seven_graces.000 — The First Grace: Vivec City ----
+
+ seven_graces.000.t: "The First Grace — Vivec City"
+ seven_graces.000.desc: "You have come to the city that bears the god's name, to the shrine that begins the canonical walk. The First Grace is the simplest: proper worship. Coming here, kneeling, and meaning it. There is no test of skill or courage — only the question of whether you are actually here, in the full sense, or only going through the form. The shrine is unremarkable from outside: polished stone, a carved face that has been copied a thousand times on a thousand household altars. Up close, in person, it is somehow more serious than its copies. You kneel."
+ seven_graces.000.a: "I kneel. Genuinely. Whatever that is worth to a god who has seen everything."
+ seven_graces.000.b: "I come, and I am not entirely certain what I am coming for. I kneel anyway."
+
+ # ---- seven_graces.001 — The Second Grace: Gnisis ----
+
+ seven_graces.001.t: "The Second Grace — Gnisis"
+ seven_graces.001.desc: "The shrine at Gnisis sits at the edge of a village that smells of salt and saltmarsh. The grace taught here is humility — not the false variety that is really self-contempt dressed up, but the genuine article: the recognition that gods do not require your admiration, and that your own importance in the grand equation is probably smaller than you think. For a ruler, this is not a comfortable thought. You have spent your life being told that your decisions matter — which they do — without being told that the universe did not arrange itself to hear about them."
+ seven_graces.001.a: "I bow — not because I must, but because it is simply and literally true."
+ seven_graces.001.b: "Humility is harder than it looks when you are a ruler. I try, and I mostly manage."
+
+ # ---- seven_graces.002 — The Third Grace: Maar Gan ----
+
+ seven_graces.002.t: "The Third Grace — Maar Gan"
+ seven_graces.002.desc: "At Maar Gan, there was once a confrontation. A Nord warrior came to the shrine to prove something about Dunmer gods — that they were either fake or cowardly — and Vivec let him strike. The warrior-poet did not raise his hands. He stood and received the blow without retaliation. This is not the story of a god who couldn't fight back. It is the story of a god who understood that the courage to endure is a different thing entirely from the courage to retaliate, and that sometimes the first kind is harder. The shrine tests this — not in a duel, but in the discipline that makes it possible to stand still when everything in you says move."
+ seven_graces.002.a: "I stand without defending myself. I understand now what Vivec was teaching."
+ seven_graces.002.b: "I struggle with this. The instinct to fight is very old, and mine is older than my piety."
+
+ # ---- seven_graces.003 — The Fourth Grace: Ald'ruhn ----
+
+ seven_graces.003.t: "The Fourth Grace — Ald'ruhn"
+ seven_graces.003.desc: "Under a sky the colour of old bone, beneath the shell of a dead emperor crab turned into the city's great hall, the shrine at Ald'ruhn teaches wisdom. Specifically: that the Thirty-Six Lessons of Vivec are not a history of events. They contain history, but they are not reporting. The Lessons are a framework — a way of understanding the universe that requires reading them the way you read a poem, not the way you read a census. A ruler who has read them literally and wondered why they make no sense is at this shrine for a reason. A ruler who has read them correctly is here to confirm what they already know."
+ seven_graces.003.a: "The Lessons are not history. I understand what they are — and what they are is enough."
+ seven_graces.003.b: "I do not understand all of it. There are passages that still resist me. I continue regardless."
+
+ # ---- seven_graces.004 — The Fifth Grace: Molag Mar ----
+
+ seven_graces.004.t: "The Fifth Grace — Molag Mar"
+ seven_graces.004.desc: "The shrine at Molag Mar is not a quiet one. It serves the living — pilgrims, the poor, the people who have come a long way with nothing left to give. The grace here is charity, and the temple is specific about what that means: it means giving what you have to people who need it more. The collections are not symbolic. The shrine functions because of them. You have arrived with wealth. That is the whole of the arithmetic."
+ seven_graces.004.a: "I give what I can give. It is a small thing measured against what I have, and I know it."
+ seven_graces.004.b: "I give the minimum the grace requires. It is still giving. I count that."
+ seven_graces.004.c: "I cannot spare this right now. I will return to this shrine when my circumstances change."
+
+ # ---- seven_graces.005 — The Sixth Grace: Ghostgate ----
+
+ seven_graces.005.t: "The Sixth Grace — Ghostgate"
+ seven_graces.005.desc: "The Ghostgate stands at the outer edge of the Ghostfence, and the wind here is something that has been filtered through three hundred years of magical containment without ever quite losing the smell of what it is containing. You are exhausted. The pilgrimage has taken longer than you planned; several of the graces required more of you than they seemed to demand from outside. And now you are at the Ghostgate, looking at the Fence itself, understanding that the Dunmer have been standing in this wind and holding this line since before your great-grandparents were born. The grace here is resolve. The test is whether you continue."
+ seven_graces.005.a: "I press forward. One more shrine. I have not come this far to stop at the second to last."
+ seven_graces.005.b: "I rest today. The Ghostfence will hold without my witness for one more day."
+
+ # ---- seven_graces.006 — The Seventh Grace: Mount Kand ----
+
+ seven_graces.006.t: "The Seventh Grace — Mount Kand"
+ seven_graces.006.desc: "The peak of Mount Kand is high enough that the ashlands below look theoretical — a map of themselves, accurate but not quite real. The shrine here has no elaborate carvings, no attendants, no donation collection. It is a stone marker and the view. The seventh grace has no virtue explicitly attached to it, no lesson named and labelled. You have walked all the others: proper worship, humility, courage, wisdom, charity, resolve. The seventh is simply arrival. The path was the lesson. You have completed the path. You stand at the top of a mountain in Morrowind, having done what the warrior-poet asked, and somewhere below you the world continues being the thing you are going to go back down and govern."
+ seven_graces.006.a: "I have walked all seven. I am done. I am genuinely glad it is done."
+
+ # ---- Traits ----
+
+ seven_graces_pilgrim: "Seven Graces Pilgrim"
+ seven_graces_pilgrim_desc: "This ruler has completed the canonical Seven Graces pilgrimage of Vivec — all seven shrines, from the First Grace at Vivec City to the Seventh at Mount Kand, walked in proper spirit. This is not merely observance: it is a full engagement with the teaching behind the teaching, the virtues that Vivec embedded in the path for the people who pay attention. Among the Dunmer faithful, a completed Seven Graces pilgrim is regarded with profound reverence. The warrior-poet's road has been walked, end to end."
+
+ # ---- Modifiers ----
+
+ seven_graces_blessing: "The Blessing of Seven Graces"
+ seven_graces_blessing_desc: "The Seven Graces have settled into this ruler's understanding of themselves and their faith. Piety accrues more deeply; stressful choices carry less weight than they would for someone who has not walked the whole path. Vivec's teaching was not comfort — but it was, in the end, the kind of clarity that makes hardship easier to carry."
+
+ # ---- Custom Tooltips ----
+
+ seven_graces_complete_tt: "The Seven Graces pilgrimage is complete. The seven_graces_pilgrim trait is now yours. The seven_graces_blessing modifier has been applied for 1825 days — five years of Vivec's graces working in you."

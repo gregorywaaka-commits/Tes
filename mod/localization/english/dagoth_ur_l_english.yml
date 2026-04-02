@@ -1,0 +1,79 @@
+﻿l_english:
+
+ # =====================================================================
+ #  DAGOTH UR — THE AWAKENING OF THE SIXTH HOUSE
+ # =====================================================================
+
+ # ---- Events ----
+
+ dagoth_ur.001.t: "The Sleeper Awakens"
+ dagoth_ur.001.desc: "Word reaches every court in Tamriel like a tremor through deep stone: Dagoth Ur — Voryn Dagoth, the Sharmat, the dreamer beneath Red Mountain — has awakened. For eras he lay dormant while the Tribunal held dominion over Morrowind, but the Heart of Lorkhan beats to his will now, not theirs. The Ghost Fence strains. The Blight is spreading. A god who should be dead has returned, and the Tribunal may not be strong enough to stop him."
+ dagoth_ur.001.a: "The Tribunal have always contained him. They will again."
+ dagoth_ur.001.b: "Send word to the Dunmer — they must not face this alone."
+ dagoth_ur.001.c: "An ancient power stirs beneath Red Mountain. This changes everything."
+
+ dagoth_ur.002.t: "The Ghost Fence Strains"
+ dagoth_ur.002.desc: "The great magical barrier that Vivec, Almalexia, and Sotha Sil erected around Red Mountain — the Ghost Fence — was meant to be eternal. Now its wardings flicker. The Tribunal gods have been repelled from the Heart of Lorkhan, and without their divine power renewing the Fence with each visit, it begins to buckle. Blight storms push against it from within. Corprus-touched creatures shamble where once there was only silence. As a lord of Morrowind, the defense of the Fence falls partly on you."
+ dagoth_ur.002.a: "I will dedicate men and resources to the Ghost Fence. Morrowind must hold."
+ dagoth_ur.002.b: "Vivec's power has always held the Fence. I must trust it still holds."
+ dagoth_ur.002.c: "Dagoth Ur is not a monster — he is a betrayed lord. Perhaps he can be reasoned with."
+
+ dagoth_ur.010.t: "A Sleeper in Your Court"
+ dagoth_ur.010.desc: "Your chamberlain reports a stranger arrived at court three days ago — quiet, courteous, and strangely hard to remember clearly. This morning he was found in your private garden, staring toward the east, murmuring in a tongue that is not quite Dunmeri but sounds like it remembers being so. When questioned, he claims to carry a message from 'the Lord of Red Mountain.' He is, almost certainly, a Sixth House sleeper agent."
+ dagoth_ur.010.a: "Have this agent arrested and executed. I want no part of Dagoth Ur's whispers."
+ dagoth_ur.010.b: "Hear the sleeper's message. What does the Lord of Red Mountain truly want?"
+
+ dagoth_ur.020.t: "The Whisper of the Sixth House"
+ dagoth_ur.020.desc: "The sleeper speaks quietly, without urgency, as if relaying words he has known since birth. Dagoth Ur does not offer wealth or armies. He offers truth: that the Tribunal slew Nerevar at Red Mountain, that they built their godhood on betrayal and murder, and that the age of their false divinity is ending. The Sixth House — House Dagoth, the sixth of the Great Houses of Morrowind — survived in secret. Now the Sharmat calls his children home."
+ dagoth_ur.020.a: "No. I will not serve a dead god's dream, however true his grievances."
+ dagoth_ur.020.b: "Voryn Dagoth was betrayed. The Tribunal built their godhood on his murder. I hear the call."
+ dagoth_ur.020.c: "The gods of Morrowind have always been mortals who seized power. I will deal with this one on his own terms."
+
+ dagoth_ur.030.t: "Azura's Call: The Nerevarine Prophecy"
+ dagoth_ur.030.desc: "At the hour of the Sleeper's awakening, Azura — the Daedric Prince of dusk and dawn, patron of the Dunmer people — speaks through your champion's gift. Her voice is cold and certain. She names a prophecy written before the First Era: that Nerevar Indoril, the great Chimer general betrayed at Red Mountain, would be reborn to challenge the false gods of Morrowind and end the threat of Dagoth Ur. She names you. The Nerevarine Prophecy has found its vessel."
+ dagoth_ur.030.a: "I am the Nerevarine. I will face what the Tribunal cannot. Red Mountain awaits me."
+ dagoth_ur.030.b: "Azura speaks — but this burden is too great. I am not the one. Not yet."
+
+ # ---- Traits ----
+
+ sixth_house_cultist: "Sixth House Cultist"
+ sixth_house_cultist_desc: "A secret follower of House Dagoth — the Sixth House of Morrowind that the Tribunal declared destroyed. This character has heard Dagoth Ur's dream-whisper and answered it. Their loyalties lie with the Sharmat, not with the gods of the Tribunal or the thrones of Tamriel."
+
+ corprus_afflicted: "Corprus Afflicted"
+ corprus_afflicted_desc: "Infected with Dagoth Ur's divine disease — a supernatural plague created by drawing on the Heart of Lorkhan. Corprus twists the body and mind, transforming victims into monsters. Paradoxically, a corprus sufferer becomes immune to all other diseases; the affliction consumes them entirely."
+
+ ash_devotee: "Ash Devotee"
+ ash_devotee_desc: "An advanced initiate of the Sixth House who has partially embraced the Blight-touched transformation. Skin dusted grey, eyes lit by Dagoth Ur's dream-fire — still recognisably mortal, but only barely. The ash grows with devotion."
+
+ ghost_fence_keeper: "Ghost Fence Keeper"
+ ghost_fence_keeper_desc: "A Dunmer lord who has committed soldiers, resources, and prayer to maintaining the great Ghost Fence around Red Mountain. Without such dedication, the Blight spreads unchecked. The Tribunal regard such lords as true champions of Morrowind."
+
+ nerevarine_marked: "Nerevarine Marked"
+ nerevarine_marked_desc: "Marked by the Daedric Prince Azura as the potential reincarnation of Nerevar Indoril — the Chimer general whose betrayal at Red Mountain gave birth to the Tribunal's false divinity. The Nerevarine is prophesied to end Dagoth Ur's threat and perhaps reshape Morrowind itself."
+
+ # ---- Modifiers ----
+
+ blight_storm_modifier: "Blight Storm"
+ blight_storm_modifier_desc: "Dagoth Ur's supernatural plague spreads from Red Mountain, blanketing this region in Blight storms. Crops fail, livestock sicken, and soldiers who linger too long begin to show the signs of corprus."
+
+ ghost_fence_weakening_modifier: "Ghost Fence Weakening"
+ ghost_fence_weakening_modifier_desc: "The great Tribunal barrier around Red Mountain is losing power. Trade and supply routes near the Fence are disrupted as refugees flee and merchants avoid the uncertain border."
+
+ sixth_house_spreading_modifier: "Sixth House Influence"
+ sixth_house_spreading_modifier_desc: "The secret cult of House Dagoth has established a presence here. Dream-whispers trouble the sleep of commoners, and ash-icons appear in unexpected places."
+
+ dagoth_ur_watching_modifier: "Watching the Sharmat"
+ dagoth_ur_watching_modifier_desc: "Rather than fearing Dagoth Ur's awakening, this ruler watches with calculated interest. The chaos that follows an ancient god's return creates opportunities for those bold enough to exploit them."
+
+ dagoth_ur_champion_modifier: "Azura's Guidance"
+ dagoth_ur_champion_modifier_desc: "The Daedric Prince Azura walks beside the Nerevarine-marked, lending her foresight and the weight of ancient prophecy to their every decision. Purpose makes this ruler formidable."
+
+ # ---- Custom Tooltips ----
+
+ sixth_house_joined_tt: "You have joined the Sixth House. Dagoth Ur's dream-whisper reaches you with new clarity. Your allegiances are now to the Sharmat."
+ nerevarine_path_begin_tt: "The path of the Nerevarine opens before you. Azura's prophecy is in motion. You will need the Tools of Kagrenac — Sunder, Keening, and Wraithguard — to challenge Dagoth Ur at the Heart of Lorkhan."
+
+ dagoth_ur.100.t: "The Blight Recedes"
+ dagoth_ur.100.desc: "A tremor passes through Morrowind — not the deep shuddering of Red Mountain's anger, but something stranger: a sudden stillness. The Blight storms that have ravaged the ashlands slow. The Ghost Fence, so long under strain, steadies. The Heart of Lorkhan still beats beneath Red Mountain, but its dreamer no longer answers. Dagoth Ur — Voryn Dagoth, the Sharmat who should never have woken — is defeated. Morrowind will recover. The age of the Sixth House is over."
+ dagoth_ur.100.a: "Morrowind endures. The Tribunal holds — for now."
+ dagoth_ur.100.b: "The prophecy of Azura is fulfilled. The Nerevarine has done what the gods could not."

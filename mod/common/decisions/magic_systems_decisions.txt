@@ -1,0 +1,138 @@
+# =============================================================
+#  Magic Systems — Decisions
+#  File: mod/common/decisions/magic_systems_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • altmer_culture  = EK2 culture identifier
+#  • tonal_architect = EK2 trait (from dwemer system)
+#  • scholar         = CK3 vanilla trait
+# =============================================================
+
+# ---------------------------------------------------------------
+#  STUDY THE ORDER OF JULIANOS
+#  Any sufficiently learned ruler may seek out the Order of
+#  Julianos and begin the Divine's formal curriculum.
+#  The cost is gold and time; the reward is the divine_scholar
+#  trait for those who complete it.
+# ---------------------------------------------------------------
+study_julianos_order = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = study_julianos_order_desc
+
+    is_shown = {
+        learning >= 12
+        NOT = { has_character_flag = julianos_study }
+        NOT = { has_trait = divine_scholar }
+        is_ruler = yes
+    }
+
+    is_valid = {
+        learning >= 14
+        gold     >= 100
+        is_adult = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_gold = -100
+        set_character_flag = { flag = julianos_study days = 1095 }
+        trigger_event = { id = magic_sys.000 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 10
+            has_trait = scholar
+        }
+        modifier = {
+            add = 8
+            learning >= 20
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  BEGIN THE PSIJIC ENDEAVOUR
+#  An Altmeri ruler of exceptional learning may commit to the
+#  Psijic Endeavour — the attempt to transcend mortality through
+#  perfect self-mastery.  The path demands prestige and time.
+# ---------------------------------------------------------------
+begin_psijic_endeavour = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = begin_psijic_endeavour_desc
+
+    is_shown = {
+        has_culture = altmer_culture
+        learning >= 16
+        NOT = { has_character_flag = endeavour_active }
+        NOT = { has_trait = endeavour_advanced }
+        is_ruler = yes
+    }
+
+    is_valid = {
+        learning >= 18
+        prestige >= 600
+        is_adult = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -600
+        set_character_flag = { flag = endeavour_active days = 3650 }
+        trigger_event = { id = magic_sys.010 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 10
+            learning >= 22
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  DEPLOY TONAL ARCHITECTURE
+#  A tonal_architect ruler who is currently at war may spend
+#  gold to deploy Dwemer animunculi on the battlefield using
+#  Kagrenac's tonal principles.  The advantage is real.
+#  So is the threat of what the resonance awakens.
+# ---------------------------------------------------------------
+deploy_tonal_architecture = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = deploy_tonal_architecture_desc
+
+    is_shown = {
+        has_trait = tonal_architect
+        NOT = { has_character_flag = tonal_war_attempted }
+        is_ruler = yes
+    }
+
+    is_valid = {
+        gold      >= 300
+        is_adult  = yes
+        is_at_war = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_gold = -300
+        set_character_flag = { flag = tonal_war_attempted days = 3650 }
+        trigger_event = { id = magic_sys.020 }
+    }
+
+    ai_will_do = {
+        base = 3
+    }
+}

@@ -1,0 +1,65 @@
+# =============================================================
+#  Longhouse Emperors — Decisions
+#  File: mod/common/decisions/longhouse_emperors_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • reachman_heritage (lore race trait from Elder Kings 2)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CLAIM IMPERIAL SUCCESSION
+#  A Reachman ruler with sufficient military reputation can
+#  formally declare their intention to press an Imperial claim —
+#  beginning the Longhouse Emperor path.
+# ---------------------------------------------------------------
+claim_imperial_succession = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = claim_imperial_succession_desc
+
+    is_shown = {
+        has_trait = reachman_heritage
+        is_ruler = yes
+        is_landed = yes
+        current_date >= 2.541.1.1
+        NOT = { has_trait = longhouse_pretender }
+        NOT = { has_trait = reachman_emperor }
+    }
+
+    is_valid = {
+        has_trait = reachman_heritage
+        martial >= 12
+        prestige >= 500
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        NOT = { has_character_flag = longhouse_claim_pressed }
+    }
+
+    effect = {
+        set_character_flag = { flag = longhouse_claim_pressed }
+        add_prestige = -500
+        trigger_event = { id = longhouse.000 days = 1 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 20
+            martial >= 16
+        }
+        modifier = {
+            add = 10
+            prestige >= 1000
+        }
+        modifier = {
+            add = 8
+            diplomacy >= 14
+        }
+        modifier = {
+            add = 15
+            has_trait = ambitious
+        }
+    }
+}

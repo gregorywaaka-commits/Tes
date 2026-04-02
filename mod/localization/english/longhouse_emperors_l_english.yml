@@ -1,0 +1,43 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  LONGHOUSE EMPERORS
+ # =====================================================================
+
+ # --- Traits ---
+
+ longhouse_pretender: "Longhouse Pretender"
+ longhouse_pretender_desc: "This ruler has formally declared a claim to the Imperial succession — pressing Reachman lineage or right of conquest against the Ruby Throne. The Colovian nobility disputes every word of it. The hagraven councils sing it as ancient prophecy fulfilled."
+
+ reachman_emperor: "Reachman Emperor"
+ reachman_emperor_desc: "This ruler holds the Ruby Throne of Cyrodiil — a Reachman on the Imperial seat, continuing the dynasty of Durcorach, Moricar, and Leovic. The elder nobility calls it an aberration. History will decide whether they were right."
+
+ hagreach_authority: "Hagreach Authority"
+ hagreach_authority_desc: "This ruler has earned the formal sanction of the hagraven councils of the Reach — the ancient matriarchs who bend to no Empire, no Nordic jarldom, and no foreign faith. Their support is not given lightly, and not withdrawn without consequence."
+
+ # --- Decisions ---
+
+ claim_imperial_succession: "Claim Imperial Succession"
+ claim_imperial_succession_desc: "You are a Reachman, and the Reachmen have ruled Cyrodiil before. Durcorach the Black Drake took the Ruby Throne in 2E 541; his successors held it for a generation. The Colovian elite called them barbarians. The Cyrodilic citizens, for the most part, found them indistinguishable from any other Emperor in their daily lives. The precedent exists. The claim can be pressed."
+
+ # --- Events ---
+
+ longhouse.000.t: "The Reach Claims the Ruby Throne"
+ longhouse.000.desc: "The hagraven councils have been meeting in the deep forest for three months. Their messengers arrive at your hall at intervals, carrying no written words — only spoken ones, delivered with the formal cadence of the old Reachman bardic tradition.\n\nTheir message, assembled from its fragments, is this: Durcorach the Black Drake took the Ruby Throne in 2E 541 from a position no stronger than yours. His descendants held it for thirty-six years. The Colovian elite that ousted his last heir, Leovic, is fractured and weakened. The Reach has produced Emperors before. The question is whether you have the will to be one.\n\nThe question hangs in the air of your hall long after the messengers have left."
+ longhouse.000.a: "The Ruby Throne was built for the strong. Cyrodiil will bow."
+ longhouse.000.b: "The Reach is my kingdom. I need no southern throne to prove my worth."
+
+ longhouse.001.t: "Blood of the Empire"
+ longhouse.001.desc: "Your genealogists have produced a document — careful, thorough, and only slightly creative in its interpretation of certain marriages — establishing your claim to the Imperial succession through a chain of Reachman lineage tracing back to Durcorach's line. The document will not convince every Colovian count. It is not meant to. It is meant to give those counts who want to be convinced a reason to be convinced.\n\nThe Ruby Throne waits in the White-Gold Tower. The road to it runs through other people's armies, other people's loyalties, and a great deal of other people's blood. None of this is new. Emperors have always been made this way."
+ longhouse.001.a: "By right of blood and conquest — march on Cyrodiil."
+ longhouse.001.b: "Let the Colovian nobility doubt itself first. Then march."
+
+ longhouse.010.t: "The Ruby Throne"
+ longhouse.010.desc: "The White-Gold Tower rises above the Imperial City, and you are standing in it. The Ruby Throne is not, in truth, especially comfortable — it was designed to be imposing rather than functional, which is perhaps a metaphor for the Empire as a whole. But you are sitting in it.\n\nA Reachman on the Ruby Throne. The hagraven councils will feast for a year when they hear. The Colovian counts are composing their expressions of loyal congratulation with the careful insincerity of men who are already planning something.\n\nLet them plan. You are Emperor of Cyrodiil, which is a thing that has been said before, and will be said again, and is currently, right now, true."
+ longhouse.010.a: "The Reach has claimed what history denied us. Let Cyrodiil remember our names."
+
+ longhouse.020.t: "The Reach Divided"
+ longhouse.020.desc: "The hagraven councils of the Reach do not speak with one voice — they never have, and any Reachman who expected otherwise was not paying attention. Three of the seven major councils have sent formal congratulations on your Imperial ambitions. Two have sent politely worded statements of neutrality. One has sent nothing at all, which means something.\n\nThe seventh council — the oldest, the most influential, the one whose hagraven matriarch has been conducting her particular ceremonies since before your grandfather's grandfather was born — has sent a single crow carrying a single feather dyed in the old Reachman war-colours.\n\nYou know what that means. The question is whether you answer it."
+ longhouse.020.a: "Seek their blessing. The Reach rises together, or it does not rise."
+ longhouse.020.b: "I rule by sword and will. The councils will follow, or be left behind."

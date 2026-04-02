@@ -1,0 +1,148 @@
+# =============================================================
+#  Dagoth Ur — Traits
+#  File: mod/common/traits/dagoth_ur_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  sixth_house_cultist — Secret follower of the Sixth House (House Dagoth).
+#                        Hidden loyalties, strong intrigue, piety/prestige penalty.
+#  corprus_afflicted   — Infected with Dagoth Ur's divine corprus disease.
+#                        Severe penalties but immunity to other diseases (lore accurate).
+#  ash_devotee         — Advanced Sixth House initiate undergoing Blight-touched
+#                        transformation.  Locked to Sixth House cultists.
+#  ghost_fence_keeper  — A Dunmer lord who commits forces to maintaining the Ghost
+#                        Fence around Red Mountain.  Defensive and devotional bonuses.
+#  nerevarine_marked   — Marked by Azura as a potential incarnation of the Nerevarine.
+#                        Combat and learning bonuses; the prophecy drives them forward.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Sixth House (House Dagoth) never truly died after the Battle of Red Mountain.
+#  Voryn Dagoth kept the Sharmat's inner fire alive, slowly amassing sleeper agents
+#  across Tamriel.  Those who hear the Dreamer's whisper become sixth_house_cultists;
+#  those who go further embrace corprus transformation; the truly devoted become
+#  ash_devotees touched by the Blight itself.  On the other side, ghost_fence_keepers
+#  are the Dunmer lords who sacrifice resources to hold back the Blight, while the
+#  nerevarine_marked is the prophesied hero who will end Dagoth Ur's threat.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SIXTH HOUSE CULTIST
+#  A ruler who has answered Dagoth Ur's call and joined the
+#  secret remnant of House Dagoth.  Powerful in the shadows
+#  but shunned by the pious and the Tribunal alike.
+# ---------------------------------------------------------------
+sixth_house_cultist = {
+    category = personality
+    is_good   = no
+
+    intrigue       = 3
+    learning       = 1           # The Sixth House's dream-teachings grant forbidden knowledge
+
+    monthly_prestige_gain_mult = -0.10   # Shunned by respectable society
+    monthly_piety_gain_mult    = -0.20   # Anathema to the Tribunal and Divine faiths
+    dread_gain_mult             = 0.10   # The shadow of the Sixth House frightens rivals
+
+    flag = sixth_house_cultist
+}
+
+# ---------------------------------------------------------------
+#  CORPRUS AFFLICTED
+#  A character infected with Dagoth Ur's divine disease — a
+#  supernatural plague created by drawing on the Heart of Lorkhan.
+#  Most who contract it die or become monsters.  In lore, corprus
+#  provides total immunity to ALL other diseases (the body is
+#  already entirely subsumed by Lorkhan's power).
+# ---------------------------------------------------------------
+corprus_afflicted = {
+    category = health
+    is_good   = no
+
+    health       = -3
+    prowess      = -4
+    diplomacy    = -3
+    learning     = -2
+    stress_gain_mult = 0.30    # The disease eats at mind and body
+
+    # Lore: corprus confers complete immunity to other diseases
+    # (no clean mechanical equivalent in CK3 — represented by
+    # the health penalty partially offset by disease resistance)
+
+    flag = corprus_afflicted
+}
+
+# ---------------------------------------------------------------
+#  ASH DEVOTEE
+#  An advanced Sixth House initiate who has partly embraced
+#  the Blight-touched transformation — skin dusted grey,
+#  eyes lit by Dagoth Ur's dream-fire.  They are still
+#  recognisably mortal, but barely.  Gained through prolonged
+#  Sixth House devotion (see dagoth_ur.020).
+# ---------------------------------------------------------------
+ash_devotee = {
+    category = health
+    is_good   = no
+
+    health         = -1
+    intrigue       = 4
+    learning       = 2           # Blight-visions grant strange insight
+    prowess        = 3           # Dagoth Ur's power strengthens the body even as it twists it
+
+    monthly_prestige_gain_mult = -0.20   # A visibly Blight-touched character is feared
+    monthly_piety_gain_mult    = -0.30   # Viewed as a monster by the Tribunal and Divines
+
+    flag = ash_devotee
+}
+
+# ---------------------------------------------------------------
+#  GHOST FENCE KEEPER
+#  A Dunmer lord who has committed men, prayer, and resources
+#  to maintaining the Ghost Fence — the great Tribunal barrier
+#  that holds the Blight within Red Mountain.  Defensive bonuses
+#  reflect the hardened, faith-tempered warriors of the Fence.
+# ---------------------------------------------------------------
+ghost_fence_keeper = {
+    category = lifestyle
+
+    monthly_piety_gain_mult    = 0.15    # The Ghost Fence is an act of Tribunal devotion
+    monthly_prestige_gain_mult = 0.10    # Respected by all Dunmer as a defender of Morrowind
+    martial   = 2
+    prowess   = 2
+    command_modifier = {
+        advantage  = 3
+        max_morale = 0.10    # Defending home and faith inspires extraordinary courage
+    }
+
+    flag = ghost_fence_keeper
+}
+
+# ---------------------------------------------------------------
+#  NEREVARINE MARKED
+#  Marked by Azura as the potential reincarnation of Nerevar — the
+#  great Chimer general whose murder at Red Mountain the Tribunal
+#  has concealed for eras.  The Nerevarine is prophesied to challenge
+#  the false gods and end Dagoth Ur's threat to Morrowind.
+#  Gained via dagoth_ur.030 (Azura's call, for azura_champion Dunmer).
+# ---------------------------------------------------------------
+nerevarine_marked = {
+    category = commander
+
+    martial   = 4
+    learning  = 3
+    intrigue  = 2
+    prowess   = 5
+
+    monthly_piety_gain_mult    = 0.20   # Azura's favour
+    monthly_prestige_gain_mult = 0.25   # The weight of prophecy draws followers
+
+    command_modifier = {
+        advantage = 4
+        damage    = 0.10    # The Nerevarine strikes with prophetic purpose
+    }
+
+    flag = nerevarine_marked
+}

@@ -1,0 +1,155 @@
+﻿l_english:
+
+ # =====================================================================
+ #  GREAT HOUSES OF MORROWIND
+ # =====================================================================
+
+ # ---- great_houses.000 — The Council Approaches ----
+
+ great_houses.000.t: "A Great House Council Approaches"
+ great_houses.000.desc: "They arrive without announcement — five outriders bearing house banners you recognise from maps and history books, followed by a small council of grey-robed figures whose composure suggests they have walked into stranger halls than yours.  The representative who steps forward is old.  Not Old-Dunmer-middle-age old; genuinely old, with the weight of two centuries behind their red eyes.  They do not waste time with pleasantries.'The five Great Houses of Morrowind have spoken your name,' they say, 'at the same table, at the same time.  That has not happened in living memory.  We are seeking a Hortator.  We are looking at you.'"
+ great_houses.000.a: "I accept the honour. Tell the council what I have already begun to plan."
+ great_houses.000.b: "I am not the name you want. Let the council look elsewhere."
+ great_houses.000.c: "An honour like this deserves recognition in more than words. A Hortator requires resources."
+
+ # ---- great_houses.001 — The Redoran Test ----
+
+ great_houses.001.t: "The Redoran Test"
+ great_houses.001.desc: "House Redoran's councillor is a soldier first and a lord somewhere after that.  She is armoured in the hall, which is either a statement or simply a habit she has never broken.  The house badge on her shoulder is worn smooth with use.  When she speaks, she speaks the way orders sound: not unkind, but without room for misinterpretation.'Redoran does not follow oaths sworn by scholars or merchants,' she says.  'We follow warriors.  And we name Hortators from among those who can prove they understand what Morrowind's border actually costs.'  She gestures toward the yard.  Her champion is already waiting."
+ great_houses.001.a: "I will face your champion personally. Let the duel settle the question."
+ great_houses.001.b: "My battle record speaks louder than any single combat. I have not avoided war."
+ great_houses.001.c: "My lineage is Redoran. My blood already answered this question."
+
+ # ---- great_houses.002 — Telvanni Negotiation ----
+
+ great_houses.002.t: "The Telvanni Negotiation"
+ great_houses.002.desc: "The Telvanni representative arrived alone and unannounced, which you are told is normal.  He is impossibly tall, dressed in robes that seem to have been grown rather than sewn, and he has the particular calm of a man who has not asked for permission to do anything in decades.  He looks around your hall with the expression of someone evaluating real estate.'I am here because the other four houses found it convenient to send me,' he says.  'Telvanni does not find things convenient.  We find them interesting or we do not find them at all.  Convince me that you are interesting.  I have perhaps three minutes of patience available for this conversation.'"
+ great_houses.002.a: "Observe what I have studied. My magical knowledge is not theoretical — I have worked it."
+ great_houses.002.b: "I carry a Dwemer secret the Telvanni council has not heard spoken aloud. I am prepared to share it."
+ great_houses.002.c: "Gold is the universal language. Even in a mushroom tower, that is still true."
+
+ # ---- great_houses.003 — Indoril Piety ----
+
+ great_houses.003.t: "Indoril Piety"
+ great_houses.003.desc: "The Indoril delegation is three people: a Tribunal priestess in formal robes, an elderly scholar carrying a copy of the Thirty-Six Lessons so old the cover has been replaced twice, and a young novice who has not looked up from the floor since entering.  The priestess does not sit.  She stands at the precise centre of the room and regards you with the focused attention of someone who has spent a lifetime reading sincerity.'The Hortator title was created to serve Morrowind,' she says.  'Morrowind is held together by the Tribunal's covenant.  House Indoril will not endorse a war-leader who carries that covenant in name only.  We have heard that you know the Lessons.  We wish to know how well.'"
+ great_houses.003.a: "The Thirty-Six Lessons are not text to me. I have lived what Vivec described."
+ great_houses.003.b: "I have walked every shrine of the Seven Graces. Ask any pilgrim-keeper in Vivec City."
+ great_houses.003.c: "I submit to your examination. Ask me anything of the Temple's teaching — I will answer honestly."
+
+ # ---- great_houses.004 — The Hlaalu Bargain ----
+
+ great_houses.004.t: "The Hlaalu Bargain"
+ great_houses.004.desc: "The Hlaalu representative is the youngest of the five — which means she is perhaps eighty, still quick on her feet, with the kind of smile that makes you want to count your rings afterward.  She has already arranged for tea to appear from somewhere, and she pours without being asked, which establishes something about how she understands the room.'House Hlaalu supports whoever makes Morrowind work,' she says, handing you a cup.  'We have supported Tribunal authority, Imperial authority, and for approximately three years in the Second Era, a very organised smugglers' collective.  What we do not do is support things for free.  I am here to determine what form your appreciation will take.'"
+ great_houses.004.a: "We will formalise a trade agreement. Hlaalu merchants gain preferred terms through my domain."
+ great_houses.004.b: "I will send a member of my household to serve as a Hlaalu guest and liaison."
+ great_houses.004.c: "Name your price in coin. I will pay it. I will not be indebted in any other currency."
+
+ # ---- great_houses.005 — Dres Compliance ----
+
+ great_houses.005.t: "The Dres Compliance"
+ great_houses.005.desc: "The Dres representative has not offered his name.  He sits at the far end of the table with the patience of a man who knows he is the most controversial figure in the room and has decided to make you say it first.  He is not unpleasant.  That almost makes it worse.'The other houses have spoken,' he says.  'I am told you are to be Hortator.  Dres will support any authority that does not threaten the economic foundations of the Deshaan.  The slave trade is an institution older than the Tribunal.  We require only an acknowledgment — formal or informal — that a Hortator of Morrowind understands what holds the south together.'  He waits.  He has time."
+ great_houses.005.a: "The slave trade is a Deshaan institution. I will not disrupt what I did not build."
+ great_houses.005.b: "I will not endorse it. Record my opposition. Give Dres their answer."
+ great_houses.005.c: "There is a middle path between endorsement and condemnation. Let us find it."
+
+ # ---- great_houses.006 — Named Hortator ----
+
+ great_houses.006.t: "Named Hortator of Morrowind"
+ great_houses.006.desc: "Five seals arrive by separate messengers within the same hour — Redoran's crossed spears, Telvanni's amber glyph, Indoril's Temple sigil, Hlaalu's merchant mark, Dres's iron circle.  They are arranged on the table in front of you.  Your chamberlain has stopped pretending to have other work to do and is standing in the doorway.  The seals are old wax pressed with old authority.  You count them.  There are five.  There are supposed to be five.  You are the Hortator of Morrowind.  Whatever you thought that meant before the seals arrived, it means something more specific now: Morrowind has handed you a weapon, and it is called their trust, and you are the only one who can carry it."
+ great_houses.006.a: "Five houses. One name. I will not waste what they have placed in my hands."
+ great_houses.006.b: "I carry Morrowind's hope now. That is the only thought I have room for."
+
+ # ---- great_houses.010 — Telvanni Wizard at Court ----
+
+ great_houses.010.t: "A Telvanni Wizard at Court"
+ great_houses.010.desc: "He did not knock.  Your guards did not stop him — which implies either that he walked past them without their registering it, or that they registered it and made a professional judgement about intervention.  Either way, he is standing in your library at two hours past midnight, reading a manuscript you did not know you had, with the particular absorption of a man for whom time belongs to him and not the other way around.  When you enter, he closes the manuscript without marking his place — which means he has already memorised it — and looks at you with the calm appraisal of someone grading an exam they did not announce.'Your reputation reached the tower,' he says.  'I am here to determine whether it is accurate.'"
+ great_houses.010.a: "I accept. Let the wizard ask his questions."
+ great_houses.010.b: "I decline to be tested in my own hall by an uninvited guest."
+
+ # ---- great_houses.011 — Claiming a Telvanni Tower ----
+
+ great_houses.011.t: "A Mushroom Tower, Claimed"
+ great_houses.011.desc: "The tower is older than any building you have ever owned.  It grew from a spore planted by a Telvanni master wizard who has been dead for four centuries, and it has been growing since — slowly, amber-lit, reaching toward a sky that does not particularly care about its ambitions.  Inside, the walls curve with organic certainty; the stairs spiral without visible support; every surface hums faintly at a frequency just below hearing.  The Telvanni wizard who tested you is gone.  He left without explanation.  The tower's door is open.  This, apparently, is your answer.  The question of what you do with the answer remains entirely yours."
+ great_houses.011.a: "I will use it as it was meant — for study. This tower will become a seat of scholarship."
+ great_houses.011.b: "A tower is eyes as much as walls. I will use it to watch what my rivals think I cannot see."
+
+ # ---- great_houses.012 — Telvanni Isolation ----
+
+ great_houses.012.t: "Demands from Beyond the Tower"
+ great_houses.012.desc: "The letter is polite, which is how you know it is serious.  It bears three seals — two house sigils and a Tribunal mark — and its language has the careful precision of a document written by someone who knows it may become evidence.  The substance of it is simple: your tower, your isolation, and your refusal to attend council sessions, pay certain levies, or acknowledge certain authorities has become a matter of formal concern.  A response is requested.  The word 'requested' is doing a great deal of work in that sentence.  Outside, your tower hums its ancient hum.  It has outlasted every authority that has ever addressed letters to it.  You are less certain that you will."
+ great_houses.012.a: "I answer to no council, no temple, and no house but my own. Let them record that."
+ great_houses.012.b: "A strategic compliance on minor matters costs me nothing essential. I will bend slightly."
+
+ # ---- great_houses.020 — A Dres Slaving Ship Returns ----
+
+ great_houses.020.t: "A Dres Ship Makes Port"
+ great_houses.020.desc: "The ship flies Dres colours and it makes port at the hour before dawn, which is traditional — not because the trade is illegal in Morrowind's south, but because some things benefit from the courtesy of not being witnessed by everyone.  Your harbourmaster sends a runner with the manifest.  The manifest does not describe people, because the manifest was written by a Dres accountant, and Dres accountants have a professional vocabulary for this.  You know what the numbers mean.  The ship is in your harbour.  The question that arrives with the manifest is whether any of this is yours to answer for, and in what direction."
+ great_houses.020.a: "Take the tribute. A southern lord cannot afford sentiment, and this is how the south works."
+ great_houses.020.b: "Release them. All of them. I will cover the loss myself. Get it done before dawn."
+ great_houses.020.c: "This ship docked at the wrong harbour. Move it along before the morning watch changes."
+
+ # ---- great_houses.021 — The Hist Retaliates ----
+
+ great_houses.021.t: "A Warning from the Hist"
+ great_houses.021.desc: "It begins with a courtier who has been behaving oddly for three days — quiet in a way that has nothing to do with personality, eyes tracking something no one else can see, stopping mid-sentence as though interrupted by a voice only she hears.  You are told that she touched a piece of Hist-root on a trade mission to the border.  You are told the Hist-root was small.  You are also told that the Hist remembers everything.  Every raid.  Every ship.  Every manifest with numbers that mean something other than what they say.  The courtier delivers a message she cannot explain having received.  Its contents are brief.  The Hist does not threaten.  It simply describes what it has decided to do."
+ great_houses.021.a: "I hear it. I will withdraw from the Dres trade. The Hist's patience has a limit and I have found it."
+ great_houses.021.b: "A tree's dream does not govern my domain. I will not be moved by sap and root-memory."
+
+ # ---- great_houses.022 — The Argonian Uprising ----
+
+ great_houses.022.t: "The Argonian Uprising"
+ great_houses.022.desc: "The first reports use the word 'disturbance.' The second use 'incident.' By the third set of riders you have stopped reading the diplomatic language and started reading the numbers: two thousand, spread across four border counties, moving with a coordination that has nothing to do with desperation and everything to do with patience.  The Argonians have been waiting.  Not planning — waiting.  There is a difference, and you understand it now at the worst possible moment.  They have the Hist behind them, which means they have something older and more patient than anything in your arsenal.  The question is no longer whether the uprising will succeed.  The question is what kind of authority you want to be when it is over."
+ great_houses.022.a: "Crush it. Morrowind's order holds, or it does not hold at all."
+ great_houses.022.b: "Negotiate. I want terms, not a monument to stubbornness."
+ great_houses.022.c: "Withdraw from the border counties. Let them be."
+
+ # ---- Traits ----
+
+ morrowind_hortator: "Hortator of Morrowind"
+ morrowind_hortator_desc: "This ruler has been named Hortator — war-leader of Morrowind — by all five Great House councils: Redoran, Telvanni, Indoril, Hlaalu, and Dres.  The title is ancient, predating the Tribunal itself; it is invoked only when the threat to Morrowind is existential and requires a single authority to answer for.  Every Great House sealed the endorsement in the same hour.  Every Great House now watches to see what the Hortator does with the weight they have placed in their hands."
+
+ telvanni_master_wizard: "Telvanni Master Wizard"
+ telvanni_master_wizard_desc: "This ruler has claimed a living Telvanni mushroom tower and declared their independence from all external authority — Tribunal mandate, house obligation, or liege demand.  Telvanni wizard-lords are the most powerful and the least sociable figures in Morrowind; they answer to no one and they mean it in writing.  The tower grows.  The scholar within it grows with it.  Everything else is someone else's concern."
+
+ dres_slaver: "Dres Slaver"
+ dres_slaver_desc: "This ruler has engaged openly in House Dres's slave trade — the oldest and most lucrative institution in the Deshaan Plains, built on generations of Argonian bondage.  The Tribunal's Temple condemns the practice in formal language it has never backed with enforcement.  The Hist remembers every name attached to every manifest.  The gold arrives on schedule.  So does everything that comes with having made that choice."
+
+ # ---- Modifiers ----
+
+ hortator_redoran_support: "Redoran Warriors Stand Ready"
+ hortator_redoran_support_desc: "House Redoran has pledged its martial support to the Hortator.  The border-guard's backing translates directly to battlefield clarity — when you fight, you fight with Morrowind's oldest warrior tradition standing behind you."
+
+ hortator_telvanni_knowledge: "Telvanni Magical Secrets"
+ hortator_telvanni_knowledge_desc: "The Telvanni wizard-lords have shared something they share with almost no one: a fragment of their hoarded magical knowledge.  What they revealed is worth years of ordinary scholarship.  It sits in the mind like a light that was not there before."
+
+ hortator_indoril_blessing: "Blessed by the Tribunal's Clergy"
+ hortator_indoril_blessing_desc: "House Indoril's Temple priesthood has formally blessed the Hortator's candidacy.  The blessing is not merely symbolic — the faithful respond to Tribunal endorsement with the particular intensity of a people whose gods are real and recently active."
+
+ hortator_hlaalu_network: "Hlaalu Trade Connections"
+ hortator_hlaalu_network_desc: "House Hlaalu has opened their merchant networks to the Hortator.  Preferred trade routes, guild contacts, and the particular advantage that comes from being associated with the house that always knows which way the political wind is turning."
+
+ hortator_dres_compliance: "The Moral Cost of Compliance"
+ hortator_dres_compliance_desc: "The Hortator accepted House Dres's institution in exchange for the house's endorsement.  The endorsement is real.  So is the weight that arrived with it — a low, persistent unease that surfaces at the wrong moments and does not respond to political rationalisation."
+
+ telvanni_tower_research: "Mushroom Tower Research"
+ telvanni_tower_research_desc: "The living tower serves as a permanent seat of magical research.  Its influence is slow and structural — the scholarship it enables radiates outward into the surrounding domain like warmth from a hearthstone that never quite goes cold."
+
+ dres_slave_tribute: "Dres Slave-Trade Returns"
+ dres_slave_tribute_desc: "The accounting from House Dres's Black Marsh operations has been entered into the household ledger.  The numbers are good.  They are also the numbers of a specific kind of commerce, and commerce of that kind has specific accounting that does not appear in the ledger."
+
+ argonian_uprising_aftermath: "Border Counties in Ruins"
+ argonian_uprising_aftermath_desc: "The slave rebellion has left four border counties with broken infrastructure, disrupted trade routes, and a labour base that is either dead, fled, or unwilling to be counted.  Recovery will take years.  The armies that could occupy the space are limited by what the land can no longer sustain."
+
+ # ---- Custom Tooltips ----
+
+ great_houses_hortator_complete_tt: "You have been named Hortator by all five Great Houses. The morrowind_hortator trait is now yours — and the path to Kagrenac's deeper secrets has opened before you."
+ great_houses_redoran_duel_failed_tt: "Your martial skill was insufficient to overcome the Redoran champion. House Redoran remains unconvinced. The Hortator chain stalls here until you prove yourself worthy in another way."
+ great_houses_redoran_record_failed_tt: "Your battle record did not satisfy House Redoran's standard. The warrior house requires more than you have yet demonstrated."
+ great_houses_telvanni_knowledge_failed_tt: "The Telvanni wizard found your learning insufficient. He left without further comment, which is its own kind of verdict."
+ great_houses_telvanni_isolation_hold_tt: "You have refused to comply with the demands. Your independence holds — for now. The pressure will return."
+ great_houses_telvanni_isolation_comply_tt: "You have conceded on minor matters to preserve your essential independence. Some of your Telvanni standing diminishes, but the tower remains yours."
+ great_houses_dres_condemned_tt: "You have publicly condemned the Dres slave trade. House Dres has noted your position. Their endorsement of your Hortator candidacy is formally withdrawn — though all four other houses have spoken, the fifth seal will not arrive."
+ great_houses_dres_negotiation_failed_tt: "Your stewardship was insufficient to find the middle path. House Dres accepted neither condemnation nor endorsement, and walked away from the table."
+ great_houses_dres_freed_tt: "The manifest was voided. The hold was opened. This cost gold and whatever relationships you had with the Dres trade network — both of which you have chosen to pay."
+ great_houses_hist_warning_ignored_tt: "The Hist's warning has been dismissed. The roots remember. Something is coming that moves on a longer timeline than politics."
+ great_houses_uprising_crushed_tt: "The uprising has been broken. The border holds. The cost in lives — on both sides — will not appear in any formal record, but it is there."

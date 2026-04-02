@@ -1,0 +1,66 @@
+﻿l_english:
+
+ artifact_corruption_modifier: "Daedric Artifact Corruption"
+ artifact_corruption_modifier_desc: "Prolonged contact with a Daedric artifact has left a residue of alien intent. The stress mounts; the intrigue sharpens. The artifact is patient."
+
+ mehrunes_razor_empowered: "Razor's Edge"
+ mehrunes_razor_empowered_desc: "The Razor of Mehrunes Dagon sharpens its bearer's martial instincts. The blade of change improves the one who wields it — while it lasts."
+
+ ebony_blade_corruption: "Ebony Blade's Hunger"
+ ebony_blade_corruption_desc: "Mephala's soul-drinking sword slowly hollows the bearer. Health erodes; intrigue deepens. Feeding the blade costs vitality."
+
+ # =====================================================================
+ #  DAEDRIC ARTIFACTS — TRAITS
+ # =====================================================================
+
+ mehrunes_razor_bearer: "Razor-Bearer"
+ mehrunes_razor_bearer_desc: "This character wields Mehrunes' Razor, the Daedric artifact of Mehrunes Dagon, Prince of Destruction. The tiny blade has cut through the greatest of men. Its bearer craves blood and grows more dangerous by the day."
+
+ wabbajack_wielder: "Wabbajack Wielder"
+ wabbajack_wielder_desc: "This character possesses the Wabbajack — Sheogorath's staff of infinite, gloriously pointless transformation. The Mad God's gift unsettles friend and foe alike, and its wielder has stopped worrying about consequences."
+
+ skull_of_corruption_bearer: "Skull-Bearer"
+ skull_of_corruption_bearer_desc: "This character bears the Skull of Corruption, Vaermina's artifact that steals dreams and shapes them into waking nightmares. They see the fears of others as clearly as their own, and they are not above using them."
+
+ ebony_blade_cursed: "Cursed Blade-Bearer"
+ ebony_blade_cursed_desc: "This character is bound to the Ebony Blade — Mephala's black sword of betrayal. The blade grows stronger with each friend slain. It is slowly consuming its bearer, but the power it grants is undeniable."
+
+ ring_of_namira_bearer: "Ring of Namira"
+ ring_of_namira_bearer_desc: "This character wears Namira's ring — the Lady of Decay's gift to those who partake in forbidden rites. The ring sustains the body at a price the soul may not bear."
+
+ artifact_corruption: "Artifact-Corrupted"
+ artifact_corruption_desc: "Long contact with a Daedric artifact has left its mark on this character. Alien voices whisper at the edge of thought, and the Daedric creator's will slowly supplants their own judgment. The corruption has not yet consumed them — but it is patient."
+
+ # =====================================================================
+ #  DAEDRIC ARTIFACTS — EVENTS
+ # =====================================================================
+
+ daedric_artifact.001.t: "A Shimmering Blade Appears"
+ daedric_artifact.001.desc: "The dream comes three nights running — the same vision each time. A mountainside wreathed in volcanic smoke, and at its heart a small blade no longer than your forearm, its edge the colour of frozen blood. You wake each morning with the taste of ash and iron on your tongue. Your court scholar, pale-faced, confirms what you suspected: the blade has been sighted in waking life too, in the possession of a traveler who arrived yesterday asking for an audience. Mehrunes Dagon's Razor has found you. The Prince of Destruction does not knock twice."
+ daedric_artifact.001.a: "The blade is mine. I claim it."
+ daedric_artifact.001.b: "I will not take Mehrunes Dagon's poisoned gift."
+
+ daedric_artifact.002.t: "The Fool's Sceptre"
+ daedric_artifact.002.desc: "He arrived at the gates at dawn — a ragged, laughing man in a coat of mismatched colours, carrying a staff carved with spirals that seemed to move if you didn't look directly at them. He asked for you by name, your full name, the one you haven't heard in years. When your guards searched him he had nothing else — no food, no coin, no weapon beyond the staff. When your chamberlain asked his business, the man smiled and said: 'The Madgod sends his regards, and a housewarming gift.' The Wabbajack. You know the stories. The question is whether you are mad enough to touch it."
+ daedric_artifact.002.a: "Take the staff. What is the worst that could happen?"
+ daedric_artifact.002.b: "Send the madman away. I want no part of Sheogorath's games."
+
+ daedric_artifact.003.t: "The Blade of Woe"
+ daedric_artifact.003.desc: "Your surveyors broke through into a collapsed chamber while investigating the ruins to the east. Inside they found it: a sword of absolute black, its blade untouched by rust or age, inscribed with spiralling patterns too fine to read. One of the surveyors touched it on a dare and was found the next morning staring at the wall, whispering to someone who wasn't there. The blade is Mephala's — the Whisperer, the Ebony Blade. You can feel its hunger even through the stone walls that separate you. It waits. It has been waiting a very long time."
+ daedric_artifact.003.a: "Claim the blade. Its power is mine to wield."
+ daedric_artifact.003.b: "Destroy it. Mephala's gifts are always paid for in betrayal."
+
+ daedric_artifact.010.t: "The Artifact Stirs"
+ daedric_artifact.010.desc: "You first noticed it a season ago — small things. A dream that lingered too long. A decision made that you cannot quite recall making. A voice at the threshold of sleep, speaking in a cadence not entirely unlike your own but wrong in ways you cannot name. The artifact is alive in a way tools should not be, and it has been learning you the way you might learn a foreign tongue. It knows what you want. It is beginning to offer it. The question is what it will want in return."
+ daedric_artifact.010.a: "I am stronger than it. The artifact does not master me."
+ daedric_artifact.010.b: "The voices are... not unpleasant. I let them closer."
+
+ daedric_artifact.020.t: "The Price of Power"
+ daedric_artifact.020.desc: "There is no such thing as a Daedric gift without a Daedric price. You knew this when you took it up. The artifact does not bargain or negotiate — it simply takes, the way a fire takes wood, the way the sea takes a shore. Tonight it took sleep. Last month it took something harder to name — a certainty you once had about who you were. You can feel the shape of what it is becoming, the hole it is making in you. The power remains. It always remains. But there is less of you to hold it."
+ daedric_artifact.020.a: "Endure. This is the cost of what I carry."
+ daedric_artifact.020.b: "Let it drain the body. The mind at least stays clear."
+
+ daedric_artifact.030.t: "Pass the Burden"
+ daedric_artifact.030.desc: "You have borne it long enough to know what it is doing, and long enough to wonder whether you can be rid of it. The artifact does not want to leave — you can feel its reluctance like a cold hand at the back of your neck — but it is a thing of will and of opportunity, and there is a vassal in your court who has been watching it with the exact expression you wore the day you first saw it. Hunger mixed with fear mixed with the certainty that they could handle it better than you. They cannot. But the artifact does not know that yet."
+ daedric_artifact.030.a: "Pass the artifact on. Let another carry this weight."
+ daedric_artifact.030.b: "No. Its power is mine, and I will hold it yet."

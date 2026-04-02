@@ -1,0 +1,311 @@
+# =============================================================
+#  The Tools of Kagrenac — The Nerevarine's Final Trial
+#  Namespace: kagrenac
+#
+#  LORE:
+#  Kagrenac was the Chief Tonal Architect of the Dwemer — the
+#  master craftsman who forged three legendary tools to tap the
+#  divine power of the Heart of Lorkhan buried beneath Red Mountain:
+#
+#    Sunder    — the Hammer; strikes the Heart to release
+#                 pure divine power in a controlled burst.
+#    Keening   — the Blade; cuts and bleeds the Heart's power
+#                 into a form that mortals can absorb.
+#    Wraithguard — the Gauntlet; protects the bearer from the
+#                 catastrophic backlash of wielding the other two.
+#                 Without it, Sunder and Keening destroy the user.
+#
+#  At the Battle of Red Mountain (1E 700) the tools were captured.
+#  The Tribunal used Sunder and Keening (protected by Wraithguard)
+#  on the Heart to transform themselves into gods.  Dagoth Ur —
+#  who fought alongside Nerevar before his murder — seized the
+#  tools when the Tribunal abandoned their Heart-commune in 2E 882.
+#
+#  Only the Nerevarine — the reincarnation of Nerevar — can safely
+#  receive Wraithguard and complete what was started at Red Mountain.
+#  Vivec himself shaped a second Wraithguard to fit the Nerevarine's
+#  hand, knowing the prophecy would demand it.
+#
+#  SEQUENCE:
+#  ─────────
+#  seek_tools_of_kagrenac (decision) → kagrenac.000 → kagrenac.010
+#      → kagrenac.015 → kagrenac.020 → kagrenac.030
+#
+#  • kagrenac.000  — "The Tools of Kagrenac": the quest begins
+#  • kagrenac.010  — "Sunder": found in the depths of Red Mountain
+#  • kagrenac.015  — "Keening": held by an Ash Vampire of the Sixth House
+#  • kagrenac.020  — "Wraithguard": Vivec's gift to the Nerevarine
+#  • kagrenac.030  — "The Heart of Lorkhan": the final confrontation
+#
+#  KEY FLAGS:
+#  ──────────
+#  • kagrenac_quest_started   — the Nerevarine has begun seeking the tools
+#  • sunder_found             — Sunder recovered
+#  • keening_found            — Keening recovered
+#  • wraithguard_found        — Wraithguard received
+#
+#  KEY TRAITS:
+#  ──────────
+#  • nerevarine_victor — the Nerevarine who severed Dagoth Ur's divine
+#                        connection and ended the Blight (kagrenac_traits.txt)
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture           = EK2 culture identifier
+#  • nerevarine_marked        = trait in dagoth_ur_traits.txt
+#  • dagoth_ur_awakened       = scripted trigger in lore_races_triggers.txt
+#  • end_dagoth_ur_era        = scripted effect in lore_races_effects.txt
+#  • sixth_house_cultist      = trait in dagoth_ur_traits.txt
+# =============================================================
+
+namespace = kagrenac
+
+# ---------------------------------------------------------------
+# kagrenac.000  The Quest Begins — The Tools of Kagrenac
+# Triggered by the seek_tools_of_kagrenac decision.
+# The Nerevarine learns the full scope of what must be done:
+# three tools, scattered across Red Mountain and Dagoth Ur's
+# domain, must be retrieved before the Heart can be struck.
+# ---------------------------------------------------------------
+kagrenac.000 = {
+    type = character_event
+    title = kagrenac.000.t
+    desc = kagrenac.000.desc
+    theme = faith
+
+    option = {
+        name = kagrenac.000.a   # "I will find them — all three. Sunder, Keening, Wraithguard."
+        add_character_flag = { flag = kagrenac_quest_started }
+        add_stress = 15
+        add_prestige = 200
+        trigger_event = { id = kagrenac.010 days = 30 }
+    }
+
+    option = {
+        name = kagrenac.000.b   # "The risks are too great. The tools are lost to the Blight."
+        add_stress = 30
+        add_piety  = -100     # Turning from the prophecy costs piety with Azura
+    }
+}
+
+# ---------------------------------------------------------------
+# kagrenac.010  Sunder — The Hammer of Heaven
+# The first tool.  Sunder lies somewhere in the volcanic depths
+# near the Heart of Lorkhan.  Two paths to retrieve it:
+# a martial approach (fighting through Ash creatures to reach
+# the inner sanctum) or a scholar's approach (following old
+# Dwemer maps through forgotten passages).
+# Lore: Without Wraithguard, even touching Sunder would be
+# lethal — but the character retrieves it without activating
+# it against the Heart.  The backlash only occurs when all three
+# tools are used together.  The real danger comes at kagrenac.030.
+# ---------------------------------------------------------------
+kagrenac.010 = {
+    type = character_event
+    title = kagrenac.010.t
+    desc = kagrenac.010.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = kagrenac_quest_started
+        NOT = { has_character_flag = sunder_found }
+    }
+
+    option = {
+        name = kagrenac.010.a   # "I carve through the ash-spawn with spear and shield."
+        trigger = {
+            martial >= 14
+        }
+        add_character_flag = { flag = sunder_found }
+        add_martial = 1
+        add_stress = 20
+        add_prestige = 250
+        trigger_event = { id = kagrenac.015 days = 30 }
+    }
+
+    option = {
+        name = kagrenac.010.b   # "I follow the old Dwemer passages — the safe way, if slower."
+        trigger = {
+            learning >= 16
+        }
+        add_character_flag = { flag = sunder_found }
+        add_learning = 1
+        add_stress = 10
+        add_prestige = 150
+        trigger_event = { id = kagrenac.015 days = 30 }
+    }
+
+    option = {
+        name = kagrenac.010.c   # "Brute strength and desperate courage — it must be enough."
+        trigger = {
+            NOR = {
+                martial  >= 14
+                learning >= 16
+            }
+        }
+        add_character_flag = { flag = sunder_found }
+        add_health = -1
+        add_stress = 35
+        add_prestige = 100
+        trigger_event = { id = kagrenac.015 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# kagrenac.015  Keening — The Blade of the Dreamer
+# The second tool.  Keening was seized by one of Dagoth Ur's
+# Ash Vampire lieutenants — the divine undead who serve as
+# Dagoth Ur's corporeal agents.  Unlike Sunder, this requires
+# direct confrontation with a being of divine corruption.
+# Lore: Ash Vampires are named aspects of Dagoth Ur himself,
+# sharing his divine essence from the Heart of Lorkhan.
+# They cannot truly die while the Heart sustains Dagoth Ur.
+# ---------------------------------------------------------------
+kagrenac.015 = {
+    type = character_event
+    title = kagrenac.015.t
+    desc = kagrenac.015.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = sunder_found
+        NOT = { has_character_flag = keening_found }
+    }
+
+    option = {
+        name = kagrenac.015.a   # "I destroy the Ash Vampire in single combat. Keening is mine."
+        trigger = {
+            prowess >= 14
+        }
+        add_character_flag = { flag = keening_found }
+        add_prowess = 1
+        add_stress = 25
+        add_prestige = 300
+        trigger_event = { id = kagrenac.020 days = 30 }
+    }
+
+    option = {
+        name = kagrenac.015.b   # "I invoke Nerevar's spirit to unmask the Ash Vampire's deception."
+        trigger = {
+            has_trait = nerevarine_marked
+            learning >= 14
+        }
+        add_character_flag = { flag = keening_found }
+        add_piety = 200       # Nerevar's name carries real power
+        add_stress = 15
+        add_prestige = 250
+        trigger_event = { id = kagrenac.020 days = 30 }
+    }
+
+    option = {
+        name = kagrenac.015.c   # "Treacherous work — I bait the Ash Vampire into a trap of Red Mountain stone."
+        trigger = {
+            intrigue >= 14
+        }
+        add_character_flag = { flag = keening_found }
+        add_intrigue = 1
+        add_stress = 20
+        add_prestige = 200
+        trigger_event = { id = kagrenac.020 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# kagrenac.020  Wraithguard — Vivec's Gift
+# The third tool — and the key to wielding the other two safely.
+# Wraithguard was Kagrenac's gauntlet, shaped to fit Nerevar's
+# hand alone.  Vivec — knowing the Nerevarine would come —
+# crafted a second Wraithguard in secret and kept it in Vivec City.
+# Without Wraithguard, striking the Heart with Sunder and Keening
+# would reduce the wielder to ash.
+# Lore: Vivec's willingness to give Wraithguard is an implicit
+# admission that the Nerevarine prophecy is real and that the
+# warrior-poet knows his own rule may be ending.
+# ---------------------------------------------------------------
+kagrenac.020 = {
+    type = character_event
+    title = kagrenac.020.t
+    desc = kagrenac.020.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = sunder_found
+        has_character_flag = keening_found
+        NOT = { has_character_flag = wraithguard_found }
+    }
+
+    option = {
+        name = kagrenac.020.a   # "Vivec places Wraithguard in my hands. He says nothing. He knows."
+        trigger = {
+            has_trait = nerevarine_marked
+        }
+        add_character_flag = { flag = wraithguard_found }
+        add_piety = 300         # Vivec's implicit acceptance is a profound spiritual moment
+        add_prestige = 400
+        add_stress = 20
+        trigger_event = { id = kagrenac.030 days = 30 }
+    }
+
+    option = {
+        name = kagrenac.020.b   # "My bond with Vivec opens the vault. The gauntlet fits perfectly."
+        trigger = {
+            has_trait = vivec_blessed
+        }
+        add_character_flag = { flag = wraithguard_found }
+        add_piety = 200
+        add_prestige = 300
+        add_stress = 15
+        trigger_event = { id = kagrenac.030 days = 30 }
+    }
+
+    option = {
+        name = kagrenac.020.c   # "I take the original Wraithguard. The backlash burns, but I endure."
+        add_character_flag = { flag = wraithguard_found }
+        add_health = -2         # Using the wrong Wraithguard is deeply harmful
+        add_stress = 40
+        add_prestige = 200
+        add_piety = 100
+        trigger_event = { id = kagrenac.030 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# kagrenac.030  The Heart of Lorkhan — The Final Blow
+# With all three tools in hand, the Nerevarine descends into the
+# Ghostfence to face Dagoth Ur at the Heart of Lorkhan itself.
+# The tools must be used in sequence: Sunder to release, Keening
+# to cut, Wraithguard to survive the divine cascade.
+# Lore: Striking the Heart severs Dagoth Ur's connection to it
+# permanently and also ends the Tribunal's access — their
+# immortality will begin to fade.  The Nerevarine ends an era
+# not just for Dagoth Ur but for the Tribunal itself.
+# ---------------------------------------------------------------
+kagrenac.030 = {
+    type = character_event
+    title = kagrenac.030.t
+    desc = kagrenac.030.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = sunder_found
+        has_character_flag = keening_found
+        has_character_flag = wraithguard_found
+    }
+
+    # Only the confirmed option is shown — you have all three tools.
+    # The player has committed to this path by arriving here.
+
+    option = {
+        name = kagrenac.030.a   # "I strike the Heart. For Nerevar. For Morrowind. For truth."
+        add_trait = nerevarine_victor
+        add_piety    = 1000      # The prophecy of Azura fulfilled — divine recognition is enormous
+        add_prestige = 2000      # The Nerevarine is now the most celebrated figure in Dunmer history
+        add_stress   = -50       # The burden of the prophecy is lifted at last
+        remove_modifier = dagoth_ur_champion_modifier   # The 10-year window closes — the deed is done
+        end_dagoth_ur_era = yes   # Blight recedes, Dagoth Ur is ended, dagoth_ur.100 fires for all rulers
+        remove_character_flag = kagrenac_quest_started
+        remove_character_flag = sunder_found
+        remove_character_flag = keening_found
+        remove_character_flag = wraithguard_found
+    }
+}

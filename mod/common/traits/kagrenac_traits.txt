@@ -1,0 +1,91 @@
+# =============================================================
+#  Kagrenac and Almalexia's Hands — Traits
+#  File: mod/common/traits/kagrenac_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  nerevarine_victor — The Nerevarine who struck the Heart of Lorkhan,
+#                      severed Dagoth Ur's divine connection, and ended
+#                      the Blight.  The fulfilment of Azura's prophecy.
+#  almalexias_hand   — A Hand of Almalexia: one of the elite warrior-
+#                      priests personally invested by the Mother of
+#                      Morrowind.  Martial and diplomatic bonuses;
+#                      the goddess's presence surrounds them.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The nerevarine_victor trait represents the completion of the Nerevarine
+#  prophecy — the moment the protagonist of Morrowind fulfils their destiny.
+#  The Blight recedes, the Heart is severed from Dagoth Ur, and the era of
+#  the Tribunal's divine dependency on Lorkhan's Heart begins to end.  This
+#  is the most significant thing any individual Dunmer can do in the Second Era.
+#
+#  The almalexias_hand trait is given by the pledge_as_almalexias_hand decision.
+#  The Hands were Almalexia's elite agents throughout the Second and early
+#  Third Era — respected, feared, and utterly loyal to the Mother of Morrowind.
+#  By the time of Morrowind (3E 427) they had all been slain by Almalexia in her
+#  madness.  In the Second Era setting they are still an active institution.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  NEREVARINE VICTOR
+#  The Nerevarine who completed the ancient prophecy of Azura:
+#  retrieved the Tools of Kagrenac, descended into Red Mountain,
+#  and struck the Heart of Lorkhan to end Dagoth Ur's divine
+#  corruption.  An epoch-defining act.  The Blight is gone.
+#  The Tribunal's immortality now slowly fades without the Heart.
+#  Gained via kagrenac.030 only.
+# ---------------------------------------------------------------
+nerevarine_victor = {
+    category = commander
+
+    martial     = 5
+    learning    = 3
+    diplomacy   = 2
+    intrigue    = 2
+    prowess     = 5
+
+    monthly_piety_gain_mult    = 0.30    # Azura's prophecy fulfilled — a living saint
+    monthly_prestige_gain_mult = 0.30    # The most celebrated figure in Dunmer history
+    health = 1                            # Completing the prophecy lifts a spiritual weight
+
+    command_modifier = {
+        advantage  = 5
+        damage     = 0.15               # The Nerevarine strikes with the weight of destiny
+        max_morale = 0.15
+    }
+
+    flag = nerevarine_victor
+}
+
+# ---------------------------------------------------------------
+#  ALMALEXIA'S HAND
+#  A warrior-priest personally chosen and invested by Almalexia
+#  herself — one of the elite Hand who carry her divine authority
+#  across Morrowind.  The goddess's blessing sharpens their blade
+#  and their diplomacy alike: they speak with her voice and fight
+#  with her strength.
+#  Gained via pledge_as_almalexias_hand decision and
+#  almalexia_hands.000 investiture event.
+# ---------------------------------------------------------------
+almalexias_hand = {
+    category = lifestyle
+
+    martial   = 3
+    prowess   = 3
+    diplomacy = 2
+
+    monthly_piety_gain_mult    = 0.20    # Directly invested by Almalexia — highest Tribunal honour
+    monthly_prestige_gain_mult = 0.15    # The Hands are known and respected across Morrowind
+
+    command_modifier = {
+        advantage  = 3
+        max_morale = 0.10    # Almalexia's blessing sustains the faithful in extremis
+    }
+
+    flag = almalexias_hand
+}

@@ -1,0 +1,61 @@
+﻿l_english:
+
+ # =====================================================================
+ #  MODIFIERS
+ # =====================================================================
+
+ ra_gada_battle_fury: "Ra Gada Battle Fury"
+ ra_gada_battle_fury_desc: "The warrior wave crashes forward. This ruler channels the Ra Gada's relentless forward momentum. Martial instincts sharpen."
+
+ sword_singers_focus: "Sword-Singer's Focus"
+ sword_singers_focus_desc: "The Shehai requires absolute presence. The sword-singer's mind is clear, intent is clean, and the spirit blade answers. Stress lifts; martial clarity holds."
+
+ # =====================================================================
+ #  YOKUDA / REDGUARD EXPANSION — TRAITS
+ # =====================================================================
+
+ ra_gada_warrior: "Ra Gada Warrior"
+ ra_gada_warrior_desc: "This character embodies the legacy of the Ra Gada — the warrior wave that swept Hammerfell ahead of the main Redguard migration. The Ra Gada were not merely soldiers. They were the edge of a civilization's advance, and their name became synonymous with righteous, unstoppable conquest."
+
+ sword_singer: "Sword-Singer"
+ sword_singer_desc: "This character has mastered the Shehai — the spirit sword of the Yokudan warrior tradition. A blade of pure will, manifested from memory and intent, capable of cutting what physical steel cannot. Sword-Singers are the pinnacle of Yokudan martial philosophy and among the most dangerous individuals in Tamriel."
+
+ ruptga_devoted: "Ruptga-Devoted"
+ ruptga_devoted_desc: "This character is a devoted follower of Ruptga — Tall Papa — the chief god of the Yokudan pantheon. Ruptga created the Walkabout, the path all souls must travel through Oblivion. His devoted serve as spiritual guides and warriors of light, keepers of the traditions that survived the drowning of Yokuda."
+
+ sep_cultist: "Sep Cultist"
+ sep_cultist_desc: "This character follows Sep the Thief — the Yokudan equivalent of Lorkhan, the god who stole the heart of the world and was punished by having his body scattered across the heavens. Sep's followers take what they want and trust that the world will not miss it."
+
+ yokudan_heritage: "Yokudan Heritage"
+ yokudan_heritage_desc: "This character descends from the survivors of Yokuda — the drowned continent that lies beneath the Sea of Pearls west of Tamriel. Their ancestors crossed the ocean after Yokuda sank, bringing with them a martial tradition, a complete pantheon, and the memory of a civilisation that the sea has swallowed whole."
+
+ # =====================================================================
+ #  YOKUDA / REDGUARD EXPANSION — DECISIONS
+ # =====================================================================
+
+ seek_sword_singing: "Seek Sword-Singing Instruction"
+ seek_sword_singing_desc: "The Shehai — the spirit sword — is not a weapon that can be bought or stolen. It must be learned from a master and earned through absolute discipline. Somewhere in Hammerfell, the last Sword-Singer masters still live and teach. Seek them out."
+
+ # =====================================================================
+ #  YOKUDA / REDGUARD EXPANSION — EVENTS
+ # =====================================================================
+
+ yokuda.000.t: "Legacy of the Ra Gada"
+ yokuda.000.desc: "The ancestors are not quiet tonight. Your dreams — or your waking hours, or the space between the two — fill with ships and steel, the sound of the Ra Gada landing on the shores of a land that was not yet Hammerfell, cutting through resistance with the calm efficiency of water cutting stone. The Ra Gada were not conquerors, not exactly. They were the edge of a civilisation in motion — the sword that cleared the path before the hand and the heart arrived. The memory of their purpose has found you. What you do with it is your choice."
+ yokuda.000.a: "I take up the mantle of the Ra Gada. Their purpose becomes mine."
+ yokuda.000.b: "Hammerfell needs builders now, not warriors. I choose peace."
+
+ yokuda.001.t: "The Shehai Calls"
+ yokuda.001.desc: "The old master is not what you expected — small, unhurried, with hands that look like they have not held a weapon in decades. But when they demonstrate, you understand immediately. The Shehai does not flash or thunder. It simply is, the way a thought is, the way memory is: present and precise, cutting without effort because the cut has already been decided. They have watched you for a season and they believe you have the foundation. The question is whether you have the will. 'The spirit sword,' they say, 'comes to those who have already decided.' They are waiting to see what you have decided."
+ yokuda.001.a: "Train. I will not stop until the Shehai answers."
+ yokuda.001.b: "Decline. The spirit sword is not my path."
+
+ yokuda.002.t: "Ruptga's Blessing"
+ yokuda.002.desc: "The vision comes at noon — which your scholars tell you is significant, that Ruptga is a god of light and number and the careful ordering of things. You see a figure impossibly tall walking among stars, counting them, and each star it touches blinks into a soul that begins its journey on the Walkabout — the path through Oblivion that Ruptga himself carved to give mortals a way through the dark. The vision asks nothing. It shows you only what is: that the cosmos has a shape, that the shape was made by a god who still walks it, and that there is a place in that shape for you, if you choose it."
+ yokuda.002.a: "I embrace Tall Papa's faith. The Walkabout has a place for me."
+ yokuda.002.b: "The old ways are enough. I honour without binding."
+
+ yokuda.003.t: "Sep's Whisper"
+ yokuda.003.desc: "It comes at the hour before dawn, when the mind is least defended: a voice that is almost yours, almost your own internal reasoning, almost the sensible conclusion of a line of thinking that you didn't remember beginning. 'They took Yokuda from us,' it says. 'They took the heart out of the world and called the wound a sky. Take it back. Take what you want. You are not owed anything — neither is anyone else. The Thief teaches only this: there is no sin in hunger, only in pretending you don't feel it.' Sep. The Trickster. The Yokudan Lorkhan. He is very patient, and he has been waiting for a moment exactly like this one."
+ yokuda.003.a: "Sep speaks a truth I have been afraid to acknowledge. I listen."
+ yokuda.003.b: "The Thief's logic leads only to an empty hand. I reject him."
