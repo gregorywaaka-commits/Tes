@@ -1,0 +1,172 @@
+﻿l_english:
+ # ============================================================
+ #  Dragon Priest / Alduin / Dragon Cults — Localization
+ # ============================================================
+
+ # ---- Traits ----
+ dragon_priest_master: "Konahrik's Bearer"
+ dragon_priest_master_desc: "Has hunted and unmasked the Dragon Priests of the ancient Nord barrows, culminating in the golden mask Konahrik — the Warlord's prize, worn only by those who have walked through the tombs of the Merethic Era and emerged with more than their life. The masks have left their mark. There is something in the eyes now that was not there before."
+
+ dragon_cultist_devotee: "Dragon Cultist"
+ dragon_cultist_devotee_desc: "Worships dragon-kind in the old way — as gods, as masters, as the rightful rulers of all things that walk and breathe. The cult's ritual shouts are mangled fragments of the real Thu'um, but the devotion is genuine and its power is not nothing. The faith communities of the Divine Worship regard this as heresy of the most fundamental kind. They are correct."
+
+ world_eater_survived: "Survivor of Alduin's Shadow"
+ world_eater_survived_desc: "Faced the shadow of Alduin the World-Eater — the firstborn of Akatosh, the dragon who will one day eat the souls of the dead and unmake the world — and did not break. Whatever that weight is, this character carries it differently now. There is a quality to the way they hold themselves in a crisis that others notice without being able to name it."
+
+ # ---- Modifiers ----
+ dragon_priest_mask_volsung: "Mask of Volsung"
+ dragon_priest_mask_volsung_desc: "The mask of the Dragon Priest Volsung — Priest of Speech and Sea. Its bearer speaks and rooms go quiet. Courts lean in. Distant harbours report the rumours of a new power rising. The mask also whispers, constantly, about every ear that is not yet listening. It does not stop."
+
+ dragon_priest_mask_morokei: "Mask of Morokei"
+ dragon_priest_mask_morokei_desc: "The mask of the Dragon Priest Morokei — Priest of Magicka and Knowledge. The blank white face carries within it centuries of accumulated magical understanding from the height of the ancient Dragon Cult. It sharpens the mind into something that barely resembles its old shape. The clarity is not always comfortable."
+
+ dragon_priest_mask_otar: "Mask of Otar"
+ dragon_priest_mask_otar_desc: "The mask of the Dragon Priest Otar — Priest of Storms and Stone. Seized in a brutal confrontation rather than full ritual unmaking. The mask's full gifts are partially withheld — Otar's tomb did not give up its prize willingly — but what remains is a hardening of the body against the forces that once attended Otar's service: fire, frost, the crack of lightning."
+
+ dragon_cult_blessing: "Dragon Cult Blessing"
+ dragon_cult_blessing_desc: "The Dragon Cult's ritual has left its mark. The mangled Words of Power carry genuine force when spoken in concert with true believers. The orthodox faithful would call this defilement; those who attended the ritual know only that something in the air of the hall was undeniably real."
+
+ alduin_vision_martial: "Prepared for the World-Eater"
+ alduin_vision_martial_desc: "Saw Alduin the World-Eater in a dream and chose to prepare rather than to interpret. The vision has sharpened every tactical instinct: if the apocalypse is the ultimate enemy, every lesser battle is training. There is a clarity to the battlefield now that was not there before."
+
+ alduin_vision_learning: "Interpreter of the World-Eater"
+ alduin_vision_learning_desc: "Saw Alduin the World-Eater in a dream and chose to understand rather than to fight. The theological and historical layers of the vision have been carefully unravelled: what Alduin means, what he represents in Akatosh's design, and what mortal response is appropriate. The understanding is partial. It is still more than most people have."
+
+ world_eater_survived_modifier: "The World-Eater Passed"
+ world_eater_survived_modifier_desc: "Faced the shadow of Alduin the World-Eater and survived the encounter — or endured the absence of the encounter and its implications. Either way, the courts of Tamriel have heard of it. The weight of having faced apocalypse and continued carries its own form of authority."
+
+ # ---- Decisions ----
+ hunt_dragon_priest: "Hunt the Dragon Priest"
+ hunt_dragon_priest_desc: "The Dragon Priests of the ancient Nord barrows are not truly dead. They are liches of the oldest kind — creatures who traded their mortality to serve Alduin's Dragon Cult in the Merethic Era and have been waiting in their tombs ever since for the dragons to return and reclaim what was taken from them.
+
+Eight named Dragon Priests remain. Each holds a mask carved with the power of their specific dominion: speech, magicka, storm, strength, shadow. The masks are real. Their power is real. So is the thing behind the final door of every barrow.
+
+The question is whether one is ready to go in."
+
+ # ---- Events — System 1: Dragon Priest Masks ----
+ dragon_priest.000.t: "The Barrow Disturbed"
+ dragon_priest.000.desc: "The sensation comes without warning — or rather with exactly the kind of warning that is easy to dismiss until it cannot be dismissed any longer. An ancient Nord barrow nearby has shifted. Not in the sense that the stones have moved. In the sense that something inside it has.
+
+The Dragon Priests have been in their tombs since before the First Era began. They were the mortal servants of the dragons in the age when Alduin's Cult held dominion over all of Nord culture — when to serve a Dragon Priest was the highest aspiration a mortal could hold. The priests gave everything: mortality, will, and eventually even their names to the service of their masters. In exchange the dragons gave them their tombs. The arrangement has lasted for millennia.
+
+Something has disturbed this one. The Voice feels it. The Dovahkiin blood feels it even more clearly. It is very old. It is very hungry. And it knows that someone nearby can hear it."
+ dragon_priest.000.a: "Descend into the barrow now. The dead will answer for their presence."
+ dragon_priest.000.b: "Mark the location. I will return when the time is right."
+ dragon_priest.000.c: "The dead have their place and the living have theirs. Let the barrow lie."
+
+ dragon_priest.001.t: "Into the Dragon Priest's Tomb"
+ dragon_priest.001.desc: "The barrow's entrance is carved with dragon script that the Voice-trained eye can read in fragments: titles, dominions, the names of the priest's long-dead masters. The air inside is the specific cold of a place that has not changed in five thousand years. Torches go out here, not from wind, but from something that does not want them lit.
+
+At the final chamber the Dragon Priest waits. It has been here the entire time — patient in the way that only things without any remaining biological need to hurry can be patient. It knows why you have come. It knew before you entered the first passage. The mask catches what little light the room provides and holds it, carved stone and old magic and the accumulated devotion of an age when dragons were still gods.
+
+There are ways through this. There are no easy ones."
+ dragon_priest.001.a: "Speak the Voice into the dark. The Dragon Priest will hear what has come for it."
+ dragon_priest.001.b: "Unmake the tonal bindings. The undead is a magical construction; it can be unwound."
+ dragon_priest.001.c: "Force of arms. The dead can be broken like anything else that stands in the way."
+ dragon_priest.001.d: "Seal the tomb and leave. There are some doors that should not be opened."
+
+ dragon_priest.002.t: "The Mask of Volsung"
+ dragon_priest.002.desc: "The mask lies in the dust where Volsung fell. It is larger than expected — carved stone worked with a skill that has not existed since the Merethic Era, set with deep-blue stones that catch light the way open water does. Volsung was the Dragon Priest of Speech and Sea: the one who turned words into commands and commands into conquered coasts.
+
+Holding it is strange. There is a warmth in the stone that should not be there. A vibration that is almost but not quite a sound. The mask is paying attention to whoever holds it. It has been waiting a very long time for someone worth addressing.
+
+The whispers begin almost immediately. Not voices, exactly. More like the awareness that somewhere behind every conversation is an audience that is not visible, and the mask knows exactly how to reach them."
+ dragon_priest.002.a: "I wear it. The court will feel the difference."
+ dragon_priest.002.b: "I take it, but I do not put it on. The mask can wait."
+
+ dragon_priest.003.t: "The Mask of Morokei"
+ dragon_priest.003.desc: "Morokei's mask is nothing like what was expected. Where the other Dragon Priests wear carved beast-faces and horned visages, Morokei's is white and plain — almost featureless, a smooth oval with narrow eye-slits and no adornment at all. It is the face of something that has moved beyond the need for expression entirely.
+
+Morokei was the Dragon Priest of Magicka and Knowledge. His tomb is the coldest of all the barrows, as if the accumulated scholarship within has drawn the heat out of the stone. The books on the shelves are in Dragon script and something older — the notation of a magical tradition that will not be rediscovered for centuries.
+
+The mask's blank face turns toward its new holder with a quality that is not quite sight but is definitely attention. Everything seems slightly clearer in its presence. Every problem has more visible angles. The clarity is not always comfortable. It was not designed for comfort. It was designed for knowledge, and knowledge does not care what else has to move to make room for it."
+ dragon_priest.003.a: "The knowledge in this mask is worth any discomfort. I take it fully."
+ dragon_priest.003.b: "I study it from a distance. The knowledge can be extracted without wearing the thing."
+
+ dragon_priest.004.t: "The Dragon Priests Stir"
+ dragon_priest.004.desc: "In the old barrows across the ancient Nord lands, something has shifted. Not the individual disturbance of one tomb disturbed or one priest's sleep disrupted — this is collective. A ripple through the network of tombs that connects every Dragon Priest burial site in a web of tonal resonance that the ancient Cult maintained for exactly this purpose.
+
+Something has hunted two of the priests. Unmasked them. Taken what they carried. The remaining Dragon Priests cannot cross back from whatever place between-living-and-dead they inhabit — not yet, not fully — but they are aware. They are aware of each other's absence, and they are aware of the direction from which the hunter came.
+
+The sensation of being watched by ancient, patient, very thoroughly dead things is not a comfortable one. They know your name. They know your Voice. They have been waiting since the Merethic Era for someone like you to enter their halls. They simply did not expect to be the ones being hunted."
+ dragon_priest.004.a: "Then I will find them first. The hunt continues."
+ dragon_priest.004.b: "I will fortify my halls. Let them come to me instead."
+ dragon_priest.004.c: "What do the Dragon Priests know? There is lore here that has not been seen in millennia."
+
+ dragon_priest.005.t: "Konahrik — The Warlord's Mask"
+ dragon_priest.005.desc: "In the ancient Dragon Cult's theology there was a ninth figure above the eight Dragon Priests: Konahrik, the Warlord, whose golden mask was kept in the ritual chamber that all eight priests' tombs were oriented toward. Not a priest but a rank — the figure invoked when all eight priests gathered, the face worn by the Cult's supreme martial servant when the dragons themselves called the full muster.
+
+The chamber is here. Three of the eight priests have been unmade and their masks taken. The remaining five are absent, but their absence is felt as the chamber's wards recognise that what was required to open this door has been fulfilled: the presence of enough taken masks, enough accumulated knowledge of the Dragon Priest's ways, enough Voice or Dragonblood to make the ritual coherent.
+
+The golden mask rests on a plinth in the centre of the chamber. It is larger than any of the others. It has not been touched since before the First Era began."
+ dragon_priest.005.a: "The masks together form the lock. I speak the last Word and claim Konahrik."
+ dragon_priest.005.b: "The ritual is complete. The golden mask is mine."
+ dragon_priest.005.c: "This is enough. Konahrik can wait. I take what I have."
+
+ # ---- Events — System 2: Alduin ----
+ dragon_priest.010.t: "The World-Eater"
+ dragon_priest.010.desc: "The dream does not announce itself. There is no transition from ordinary sleep to this — one moment there is the familiar dark behind closed eyes and then there is Alduin.
+
+Bone-white. Enormous in the way that things in dreams are enormous — not merely large but filling the sky, the horizon, the entire concept of above. Below him the souls of the dead are moving in a slow drift, not toward any light or destination but toward his mouth. He swallows them. Each one is a life: a face, a set of memories, a story that ends in that enormous jaw. He does not notice this. It is eating to him what breathing is to everything else.
+
+Alduin is the firstborn of Akatosh. He was cast into the timestream at the close of the Merethic Era by the ancient Nord heroes using a shout that no living being knows — Dragonrend, which forced a dragon to understand mortality, which Alduin's nature could not survive. He went into time rather than face what the shout meant. He has not come back. Not yet. But the dream is not prophecy. It is memory. He was here once. He will be here again."
+ dragon_priest.010.a: "This is a record, not a warning. I will understand everything it contains."
+ dragon_priest.010.b: "The World-Eater will come again. I will be ready when that day arrives."
+ dragon_priest.010.c: "The Greybeards must know of this. It concerns the Way of the Voice itself."
+
+ dragon_priest.011.t: "The Shadow of Alduin"
+ dragon_priest.011.desc: "There is no visible change. The sky is the same colour it was yesterday. The Throat of the World stands where it has always stood. The court goes about its business and the guards stand at their posts and everything that should be ordinary continues to be ordinary.
+
+And yet.
+
+There is a quality to the light coming through the windows today that is not quite right. A weight in the air that is not weather. Those with the Dragonblood feel it as something close to physical pressure — a presence enormous and old and currently in the process of orienting itself toward everything they have ever built. Other rulers feel simply and inexplicably that something has changed, that the world has moved a degree that does not correspond to any season or political event, and that whatever has moved is looking in their direction.
+
+The Throat of the World is visible on a clear day from here. On a clear day it is simply the tallest mountain in Tamriel. Today it is not simply anything at all."
+ dragon_priest.011.a: "I ascend. The Dovahkiin does not wait for the World-Eater to come to them."
+ dragon_priest.011.b: "My realm will stand. Whatever comes will find me here, at my post."
+ dragon_priest.011.c: "No ruler can face what is coming alone. We move the court to safety."
+
+ dragon_priest.012.t: "After Alduin"
+ dragon_priest.012.desc: "The shadow has passed. Whether it was the coming of the World-Eater or only his shadow moving across the sky before he returns to time — whether the threat was met, endured, or outlasted — the specific quality of dread that has been living in the back of the throat for weeks is gone.
+
+What remains is harder to name. The world looks the same as it did before the dream and before the shadow fell across the Throat of the World. The court has noticed that something has changed in the ruler and has not asked about it, which is the court's way of indicating that they noticed and will not push. The soldiers who march in the yard below have not been told what was faced. They do not need to be.
+
+Something was faced. Something was endured. The world on the other side of it is lighter, somehow. Or perhaps it is only that having looked directly at the thing that was always going to come eventually — the World-Eater, the end of this age, the first and last dragon — and not broken makes everything else feel manageable. Even the things that are not, quite."
+ dragon_priest.012.a: "It is survived. That is the only record that matters right now."
+ dragon_priest.012.b: "Let this be written down. What was faced, and what it meant, and that it was faced."
+ dragon_priest.012.c: "This was not the end. Alduin does not end with one passing of the shadow."
+
+ # ---- Events — System 3: Dragon Cults ----
+ dragon_priest.020.t: "An Unsigned Invitation"
+ dragon_priest.020.desc: "The letter arrives among the ordinary correspondence of the court — not by courier anyone can identify, not sealed with any wax mark that the chamberlain recognises, written in a hand that is careful in the specific way of someone who has learned to be careful over decades of writing things that must not be attributed.
+
+The contents, once deciphered through the formal language in which they are wrapped, are an invitation. To a gathering. At a location that is described only in terms of landmarks older than any current map. At a time that is described only as 'when the stars that the dragons named are visible in the northern sky.'
+
+The Dragon Cult has been here since before the First Era began. Longer, perhaps, than any living institution in Tamriel. In the Merethic Era it was the dominant religion of all Nordic culture — the worship of dragons as gods, with Dragon Priests as their living intermediaries. Jurgen Windcaller's Way of the Voice was, in part, a reformation against the Cult's worst excesses. The orthodox have been stamping it out ever since.
+
+And yet. The invitation is here. The invitation is real. And whoever sent it clearly believes that this particular ruler might attend."
+ dragon_priest.020.a: "The dragons were gods before mortals decided otherwise. I will attend."
+ dragon_priest.020.b: "This cult is a danger to the peace. I will report it to the proper authorities."
+ dragon_priest.020.c: "I did not receive this letter. It does not exist."
+
+ dragon_priest.021.t: "The Cult's Ritual"
+ dragon_priest.021.desc: "The gathering is held in a hall beneath a ruin that the cult calls the Hall of the Dragon's Name — a chamber carved in the Merethic Era and sealed against the orthodox by the cult's continuous presence, generation after generation of keepers who have never let the old altar go dark.
+
+There are perhaps twenty people present. They are not remarkable. A minor lord. A successful merchant. A scholar who writes under a name that appears in respectable academic collections. A soldier who has fought in six campaigns and retired with a good pension and a bad knee. People who have lives that coexist, quietly, with this other thing they carry.
+
+The ritual begins with recitation: fragments of the Thu'um in a form that would make the Greybeards weep. The Dragon Language, rendered in worship rather than mastery — the sounds are approximately correct, the grammar of the ancient script mangled by centuries of imperfect transmission. And yet. The power in the room is real. When the chant reaches its peak the air is wrong in the specific way that indicates something genuinely tonal is happening. Corrupted, limited, a pale ghost of true Shouting — but real.
+
+The cult's high priest looks directly at the new arrival. Waits."
+ dragon_priest.021.a: "I join the chant. The Words are mangled, but the devotion is real."
+ dragon_priest.021.b: "I observe. I learn. But the Words themselves — I will not speak them."
+ dragon_priest.021.c: "I have seen enough. The guards outside will hear about this hall tonight."
+
+ dragon_priest.022.t: "The Greybeard's Question"
+ dragon_priest.022.desc: "The monk of High Hrothgar is perhaps thirty years old, which means they have been climbing the 7,000 Steps since adolescence. They carry no weapon. They have the quality of stillness that the Greybeard Order produces in its members — a patience so deep it barely resembles patience anymore and has become something more like geological fact.
+
+The letter they carry is brief. Three sentences in the spare, exact hand of the Order. The first sentence acknowledges that the court of this ruler has been receiving unusual correspondence. The second sentence asks whether that correspondence has been acted upon. The third sentence notes that the Way of the Voice and the Dragon Cult have never coexisted peacefully, that the historical record on this point is unambiguous, and that the Order would very much appreciate an honest answer.
+
+The monk waits. They will wait as long as necessary. They climbed seven thousand steps to get here and they are not in any kind of hurry at all."
+ dragon_priest.022.a: "The monk is right. I renounce the cult — every part of it."
+ dragon_priest.022.b: "A misunderstanding. I have never attended any such gathering."
+ dragon_priest.022.c: "The monk will not leave this court with what they know."

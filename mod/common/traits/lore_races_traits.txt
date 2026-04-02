@@ -479,3 +479,35 @@ dres_slaver = {
 
     flag = dres_slaver
 }
+
+# =============================================================
+#  Dragon Priest / Alduin / Dragon Cult Traits
+# =============================================================
+
+# A ruler who has hunted and unmasked multiple Dragon Priests,
+# culminating in Konahrik — the golden Warlord's mask.
+dragon_priest_master = {
+    category = fame
+    martial   = 3
+    learning  = 2
+    prowess   = 4
+    monthly_prestige_gain_mult = 0.20
+    flag = dragon_priest_master
+}
+
+# A ruler who worships dragon-kind as gods via the hidden cult.
+dragon_cultist_devotee = {
+    category = lifestyle
+    learning  = 1
+    martial   = 1
+    monthly_piety_gain_mult = -0.15   # dragon worship is heresy to Akatosh's faithful
+    flag = dragon_cultist_devotee
+}
+
+# A ruler who faced the shadow of Alduin and survived.
+world_eater_survived = {
+    category = fame
+    martial   = 2
+    monthly_prestige_gain_mult = 0.10
+    flag = world_eater_survived
+}

@@ -1908,3 +1908,126 @@ argonian_uprising_aftermath = {
     monthly_income   = -0.30   # Counties in ruins; trade routes broken; labour fled or dead
     supply_limit_mult = -0.20  # Disrupted infrastructure limits what armies can sustain in the field
 }
+
+# =============================================================
+#  Dragon Priest / Alduin / Dragon Cult Modifiers
+#  System: dragon_priest_events.txt
+#  Added by: Dragon Priest Masks, Alduin visions, Dragon Cult
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DRAGON PRIEST MASK — VOLSUNG
+#  The mask of the Dragon Priest of Speech and Sea.
+#  diplomacy +3: Volsung's dominion over command and persuasion
+#    is baked into the carved stone — the wearer speaks and
+#    courts listen with an attention they cannot fully explain.
+#  monthly_prestige_gain_mult 0.15: every ear that turns is a
+#    court that hears the wearer's name more clearly.
+#  stress_gain_mult 0.10: the mask whispers about every audience
+#    not yet addressed.  It never stops.
+#  Duration: 3650 days (10 years).
+# ---------------------------------------------------------------
+dragon_priest_mask_volsung = {
+    diplomacy                  = 3
+    monthly_prestige_gain_mult = 0.15
+    stress_gain_mult           = 0.10   # The mask's whispers are a constant companion
+}
+
+# ---------------------------------------------------------------
+#  DRAGON PRIEST MASK — MOROKEI
+#  The mask of the Dragon Priest of Magicka and Knowledge.
+#  learning +4: Morokei's accumulated scholarship of the ancient
+#    Dragon Cult's highest magical traditions presses into the
+#    wearer's mind whether invited or not.
+#  stress_gain_mult 0.10: the clarity is not comfortable.
+#  Duration: 3650 days (10 years).
+# ---------------------------------------------------------------
+dragon_priest_mask_morokei = {
+    learning         = 4
+    stress_gain_mult = 0.10   # Morokei's knowledge reorganises the mind around its own priorities
+}
+
+# ---------------------------------------------------------------
+#  DRAGON PRIEST MASK — OTAR
+#  The mask of the Dragon Priest of Storms and Stone — taken
+#  by brute force rather than ritual unmaking.  The full gift
+#  of Otar's dominion over fire, frost, and lightning is
+#  partially withheld: the priest was not fully unmade.
+#  prowess +3: Otar's physical resilience in combat transfers
+#    partially even in this incomplete claim.
+#  health +0.5: resistance to the elements the priest commanded.
+#  stress_gain_mult 0.10: Otar's tomb was not given up willingly;
+#    the mask carries that memory.
+#  Duration: 3650 days (10 years).
+# ---------------------------------------------------------------
+dragon_priest_mask_otar = {
+    prowess          = 3
+    health           = 0.5
+    stress_gain_mult = 0.10   # The partial unmaking leaves a residue that presses on the mind
+}
+
+# ---------------------------------------------------------------
+#  DRAGON CULT BLESSING
+#  The blessing of the Dragon Cult's collective ritual.  The
+#  chant is a corrupted fragment of the Thu'um — not mastery,
+#  not the true Voice, but something real nonetheless.  The
+#  faithful's combined devotion to dragon-kind generates a
+#  genuine martial and intellectual resonance.
+#  martial +1, learning +1: the cult's fragments of knowledge
+#    and their martial orientation in worship of warrior gods.
+#  monthly_piety_gain_mult -0.10: dragon worship is heresy.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+dragon_cult_blessing = {
+    martial                 = 1
+    learning                = 1
+    monthly_piety_gain_mult = -0.10   # Dragon worship is not accepted by the Divine or the Tribunal faithful
+}
+
+# ---------------------------------------------------------------
+#  ALDUIN VISION — MARTIAL
+#  Applied when a ruler faces the Alduin vision and chooses
+#  to prepare for battle rather than interpret.  The World-Eater
+#  becomes the ultimate benchmark: every enemy is smaller,
+#  every battle more winnable by comparison.
+#  martial +2: sharper tactical thinking born of ultimate dread.
+#  command_modifier.advantage +2: the battlefield clarity
+#    that comes from having calibrated against apocalypse.
+#  Duration: 1095 days (3 years).
+# ---------------------------------------------------------------
+alduin_vision_martial = {
+    martial = 2
+    command_modifier = {
+        advantage = 2   # "If the World-Eater is the scale, every mortal enemy is manageable"
+    }
+}
+
+# ---------------------------------------------------------------
+#  ALDUIN VISION — LEARNING
+#  Applied when a ruler faces the Alduin vision and chooses
+#  to understand and interpret rather than prepare for war.
+#  learning +2: the careful unravelling of a prophetic vision
+#    about the firstborn of Akatosh is genuinely instructive.
+#  monthly_piety_gain_mult 0.10: Akatosh's design is complex
+#    and understanding it, even partially, deepens faith.
+#  Duration: 1095 days (3 years).
+# ---------------------------------------------------------------
+alduin_vision_learning = {
+    learning                = 2
+    monthly_piety_gain_mult = 0.10   # Understanding Akatosh's design, even partially, deepens the faith
+}
+
+# ---------------------------------------------------------------
+#  WORLD-EATER SURVIVED
+#  Applied after a ruler has faced Alduin's shadow and endured.
+#  The authority this carries is not political but existential —
+#  something was faced that could have ended everything, and
+#  the realm is still standing.
+#  monthly_prestige_gain_mult 0.20: the courts of Tamriel have
+#    heard that someone stared into the World-Eater's shadow
+#    and kept their feet under them.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+world_eater_survived_modifier = {
+    monthly_prestige_gain_mult = 0.20   # The courts of Tamriel have heard: someone faced the World-Eater and endured
+}
