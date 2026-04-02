@@ -45,6 +45,20 @@
 #  • Dwemer Ruins — ruin discovery rumours, tonal breakthrough
 #  • Dagoth Ur — Sixth House awakening, Blight spread, Nerevarine prophecy
 #  • Tribunal — Vivec/Almalexia/Sotha Sil visions for devout Dunmer (and scholars)
+#  • Daedric Artifacts — artifact surfaces near realm (yearly check)
+#  • Numidium — Brass God scholarly discovery (very rare, learning-gated)
+#  • Vampire Bloodlines — bloodline emissary contacts (yearly check)
+#  • Yokuda / Redguard — Ra Gada legacy events for Redguard rulers
+#  • Worm Cult — Black Worm invitation for high-intrigue rulers
+#  • Dragon Breaks — temporal anomaly when too many Towers fall (very rare)
+#  • Ayleid Ruins — ruin discovery for Cyrodiil / ayleid_bloodline rulers
+#  • Void Nights — calendar-triggered 2E 578-579 moon vanishing
+#  • Longhouse Emperors — Reachman Imperial claimant events
+#  • Gray Host — vampire-werewolf invasion (date-window 1E 800–2E 200)
+#  • Shezarrine — divine warrior vessel (very rare, martial-gated)
+#  • Direnni Hegemony — Altmer High Rock legacy events
+#  • Skaal / All-Maker — Solstheim sacred rites for Nord rulers
+#  • CHIM / Walking Ways — philosophical quest (very rare, learning+stress gated)
 #
 #  CROSS-REFERENCES:
 #  ─────────────────
@@ -54,10 +68,20 @@
 #    sload_events.txt, kothringi_events.txt, kamal_events.txt,
 #    minor_lore_races_events.txt, towers_events.txt,
 #    thuumvoi_events.txt, amulet_of_kings_events.txt,
-#    tribunal_events.txt.
+#    tribunal_events.txt, daedric_artifacts_events.txt,
+#    numidium_events.txt, vampire_bloodlines_events.txt,
+#    yokuda_events.txt, worm_cult_events.txt,
+#    dragon_break_events.txt, ayleid_ruins_events.txt,
+#    void_nights_events.txt, longhouse_emperors_events.txt,
+#    gray_host_events.txt, shezarrine_events.txt,
+#    direnni_events.txt, skaal_allmaker_events.txt,
+#    chim_events.txt.
 #  • Systems triggered here read global_vars set by their effects:
 #    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
-#    global_var:thrassian_plague_active, global_var:active_tower_count, global_var:dagoth_ur_awakened.
+#    global_var:thrassian_plague_active, global_var:active_tower_count,
+#    global_var:dagoth_ur_awakened, global_var:numidium_awakened,
+#    global_var:dragon_break_active, global_var:void_nights_active,
+#    global_var:gray_host_invaded, global_var:necromancers_moon_active.
 # =============================================================
 
 # ---------------------------------------------------------------
@@ -122,6 +146,32 @@ on_yearly_pulse = {
         3   = underworld.000         # Night Mother speaks — mephala_champion/high intrigue (underworld_events.txt)
         2   = underworld.003         # Skooma trade offer arrives (underworld_events.txt)
         2   = underworld.004         # Skooma addiction check — skooma_invested rulers (underworld_events.txt)
+        # --- v1.1.0 NEW SYSTEMS ---
+        2   = daedric_artifact.000   # Daedric artifact surfaces near realm — daedric champions / high-intrigue (daedric_artifacts_events.txt)
+        3   = daedric_artifact.010   # Artifact corruption creep — existing artifact bearers (daedric_artifacts_events.txt)
+        2   = daedric_artifact.020   # Price of Power — artifact bearer suffers consequence (daedric_artifacts_events.txt)
+        1   = numidium.000           # Brass God scholarly discovery — dwemer_scholar + learning>=16 (numidium_events.txt) [very rare]
+        3   = vampire.000            # Vampire bloodline emissary contact — yearly check (vampire_bloodlines_events.txt)
+        2   = vampire.010            # Vampire lord ascension — existing bloodline holders (vampire_bloodlines_events.txt)
+        3   = yokuda.000             # Ra Gada legacy — yokudan_heritage / Redguard rulers (yokuda_events.txt)
+        2   = yokuda.002             # Ruptga's Blessing vision — ruptga_devoted rulers (yokuda_events.txt)
+        2   = worm_cult.000          # Black Worm invitation — high-intrigue rulers (worm_cult_events.txt)
+        2   = worm_cult.030          # Mannimarco's Demand — worm_cult_adept rulers (worm_cult_events.txt)
+        1   = dragon_break.000       # Dragon Break check — fires if active_tower_count <= 3 (dragon_break_events.txt) [very rare]
+        3   = ayleid.000             # Ayleid ruin discovery — Cyrodiil rulers / ayleid_bloodline (ayleid_ruins_events.txt)
+        2   = void_nights.000        # Void Nights trigger — calendar gated 2E 578-579 (void_nights_events.txt)
+        2   = void_nights.004        # Void Nights meditation — learned rulers during void nights (void_nights_events.txt)
+        2   = longhouse.000          # Longhouse Emperors — reachman_heritage rulers post 2E 541 (longhouse_emperors_events.txt)
+        2   = gray_host.000          # Gray Host invasion check — date-window 1E 800 – 2E 200 (gray_host_events.txt)
+        1   = shezarrine.000         # Shezarrine vessel check — martial>=18 + brave/zealous (shezarrine_events.txt) [very rare]
+        2   = shezarrine.002         # Berserker's Rage — existing shezarrine_vessel rulers (shezarrine_events.txt)
+        2   = direnni.000            # Direnni Hegemony legacy — direnni_bloodline / Altmer in High Rock (direnni_events.txt)
+        2   = direnni.004            # Lorkhan's Children — Direnni philosophical event (direnni_events.txt)
+        2   = skaal.000              # Bones of the All-Maker — Nord rulers near Solstheim (skaal_allmaker_events.txt)
+        2   = skaal.002              # Hirstaang Forest conflict — seek_skaal_accord rulers (skaal_allmaker_events.txt)
+        2   = skaal.004              # Hermaeus Mora's Temptation during Skaal ceremony (skaal_allmaker_events.txt)
+        1   = chim.000               # Walking Ways introduction — learning>=18 + stress>=50 (chim_events.txt) [very rare]
+        2   = chim.004               # CHIM bearer yearly flavor — chim_achieved rulers (chim_events.txt)
     }
 }
 
@@ -137,6 +187,8 @@ on_monthly_pulse = {
         kothringi.050    # Knahaten Flu spread tick — infects new counties if global_var:knahaten_flu_active is set
         kamal.050        # Kamal seasonal freeze/thaw tick — checks current month to apply/remove ice modifiers
         dagoth_ur.050    # Blight storm spread tick — spreads blight_storm_modifier if global_var:dagoth_ur_awakened is set
+        void_nights.002  # Moon Sugar fails — monthly penalty for Two Moons rulers during Void Nights
+        dragon_break.003 # Dragon Break fading — clears dragon_break_active after 10 years
     }
 }
 

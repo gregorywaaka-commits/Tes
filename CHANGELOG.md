@@ -4,6 +4,114 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [1.1.0] — Major Content Expansion
+
+### Added — Daedric Artifacts System
+- **6 new traits**: `mehrunes_razor_bearer`, `wabbajack_wielder`, `skull_of_corruption_bearer`, `ebony_blade_cursed`, `ring_of_namira_bearer`, `artifact_corruption`
+- **7 new events** (`daedric_artifact.000–.030`): artifact surfaces near realm, discovery events for Mehrunes' Razor / Wabbajack / Ebony Blade, corruption creep, the price of power, passing the burden to another ruler
+- Artifacts can be transferred between rulers; corruption builds over time
+
+### Added — Numidium / Brass God System
+- **3 new traits**: `numidium_researcher`, `mantella_seeker`, `numidium_awakener`
+- **5 new events** (`numidium.000–.011`): scholarly discovery (very rare, `dwemer_scholar` + learning ≥ 16), Brass God texts, Mantella soul-gem reveal, **Warp in the West** (one-time global catastrophe), Dragon Break all-rulers notification
+- Numidium reactivation triggers a once-only `global_var:numidium_awakened` Dragon Break affecting all rulers
+
+### Added — Vampire Bloodlines System
+- **6 new traits**: `volkihar_bloodline` (Nord), `vampyrum_order` (Cyrodilic), `lamae_bal_bloodline` (original curse), `gray_host_remnant`, `vampire_lord`, `blood_curse`
+- **6 new events** (`vampire.000–.030`): emissary contact, bloodline selection with culture gating, apex vampire lord ascension, Gray Host global trigger, summer sun burn
+- The Turning event offers three choices: join, refuse, or attempt to expose the bloodline
+
+### Added — Yokuda / Redguard Expansion
+- **5 new traits**: `ra_gada_warrior`, `sword_singer`, `ruptga_devoted`, `sep_cultist`, `yokudan_heritage`
+- **4 new events** (`yokuda.000–.003`): Ra Gada legacy, Shehai spirit-sword training (martial ≥ 14 check), Ruptga's blessing, Sep the Thief temptation
+- **1 new decision**: `seek_sword_singing` — costs prestige, requires `ra_gada_warrior` + martial ≥ 14
+- First Redguard-specific mechanics in the mod; Yokudan pantheon (Ruptga/Tu'whacca/Sep) introduced
+
+### Added — Worm Cult / Order of the Black Worm
+- **4 new traits**: `worm_cult_initiate`, `worm_cult_adept`, `lich_essence`, `necromancers_moon_marked`
+- **5 new events** (`worm_cult.000–.030`): coded letter invitation, Order of the Black Worm introduction (join/report to Mages Guild/refuse), **Necromancer's Moon** (one-time global), path to lichdom (learning ≥ 18), Mannimarco's gold demand
+- Rival faction to the Mages Guild; escalates to Necromancer's Moon global event
+
+### Added — Dragon Breaks
+- **4 new events** (`dragon_break.000–.003`): hidden Tower-count trigger, temporal anomaly striking all rulers (stress +30, random trait changes), aftermath reflection, 10-year healing event
+- Dragon Breaks become more likely as Elder Towers fall (`active_tower_count ≤ 3`)
+- References the Middle Dawn (1E 1200–2208) lore
+
+### Added — Ayleid Ruins Exploration
+- **4 new traits**: `ayleid_historian`, `star_teeth_blessed`, `welkynd_attuned`, `ayleid_lich_touched`
+- **5 new events** (`ayleid.000–.004`): ruin discovery, vault expedition, Welkynd stone attunement, dark altar discovery (Ayleids worshipped both Daedra and Divines), Ayleid lich guardian encounter
+- **1 new decision**: `explore_ayleid_ruin` — gated on learning ≥ 8 or `ayleid_bloodline`
+
+### Added — Void Nights
+- **5 new events** (`void_nights.000–.004`): calendar-triggered 2E 578–579 moon vanishing, all-rulers notification, Moon Sugar failure for Two Moons path rulers, moons' return (2E 580), void meditation for learned rulers
+- Khajiit rulers receive culture-specific stress +30 ("We are as unborn")
+- `moon_sugar_drought` province modifier and `void_nights_crisis` character modifier applied during event window
+
+### Added — Longhouse Emperors
+- **3 new traits**: `longhouse_pretender`, `reachman_emperor`, `hagreach_authority`
+- **4 new events** (`longhouse.000–.020`): Reachman claimant path, genealogical claim to Cyrodiil, Ruby Throne achievement, hagraven council blessing
+- **1 new decision**: `claim_imperial_succession` — requires `reachman_heritage` + martial ≥ 12
+
+### Added — Gray Host Invasion
+- **3 new traits**: `gray_host_commander`, `rada_al_saran_devoted`, `werewolf_lord`
+- **4 new events** (`gray_host.000–.010`): date-window invasion (1E 800 – 2E 200), march notification, Rada al-Saran emissary parley (fealty / fight / tribute), 20-year retreat
+- Second historical invasion type alongside Kamal; drawn from ancient Reach vampire-werewolf lore
+
+### Added — Pelinal Whitestrake / Shezarrine
+- **3 new traits**: `shezarrine_vessel`, `pelinal_rage`, `elf_hate`
+- **5 new events** (`shezarrine.000–.004`): hidden divine-warrior selection (very rare, martial ≥ 18 + brave/zealous), Pelinal's spirit appearance, berserker rage episode, elf-hater vision, Reman's Echo connection to Alessian chain
+- Deliberate near-impossibility: `shezarrine_vessel` is one of the rarest traits in the mod
+
+### Added — Direnni Hegemony
+- **3 new traits**: `direnni_bloodline`, `direnni_hegemon`, `glenumbra_veteran`
+- **5 new events** (`direnni.000–.004`): Hegemony legacy trigger, Battle of Glenumbra Moors (1E 482), Hegemony fracture, last Direnni bloodline, Lorkhan's Children philosophical event
+- Canonical date 1E 482 (Battle of Glenumbra Moors) used as trigger gate
+
+### Added — Mannimarco Character Template
+- New character template `mannimarco.txt` — King of Worms spawnable as wandering NPC/antagonist
+- Intrigue 24, learning 22; traits include `worm_cult_adept` and `lich_essence`
+- Can corrupt nearby rulers into Worm Cult membership via `worm_cult.030`
+
+### Added — Skaal / All-Maker Expansion
+- **6 new events** (`skaal.000–.005`): Bones of the All-Maker ceremony, Tree Stone vision, Hirstaang Forest hunter conflict, Ritual of the Bear, Hermaeus Mora's temptation during sacred ceremony, Skaal village defense
+- Expands existing `seek_skaal_accord` and `all_maker_blessed` traits with full event chain
+- Hermaeus Mora appears as antagonist to All-Maker faith — accepting his knowledge removes `all_maker_blessed`
+
+### Added — CHIM / Walking Ways
+- **2 new traits**: `chim_seeker` (destabilizing but deepening), `chim_achieved` (all stats +, near-immortal)
+- **5 new events** (`chim.000–.004`): Walking Ways introduction, Amaranth Question meditation, **CHIM achieved** (success path — global notification fires), **Enantiomorph undone** (failure path — character ceases to exist), CHIM bearer's ongoing isolation
+- **1 new decision**: `seek_walking_ways` — requires learning ≥ 18 AND stress ≥ 50
+- Deliberately near-impossible; failure results in character death ("The throne was simply empty")
+
+---
+
+### Technical — v1.1.0
+- **15 new event files** (180+ new events total)
+- **12 new trait files** (60+ new traits)
+- **5 new decision files** (6 new player decisions)
+- **1 new character template** (Mannimarco)
+- **26 new modifiers** appended to `lore_races_modifiers.txt`
+- `lore_races_on_actions.txt` `on_yearly_pulse` expanded from 41 to 68 event entries
+- `on_monthly_pulse` expanded with Void Nights and Dragon Break healing ticks
+- All 15 new localization files use correct UTF-8 BOM encoding
+- All new `global_var` guards: `numidium_awakened`, `dragon_break_active`, `void_nights_active`, `gray_host_invaded`, `necromancers_moon_active`
+
+---
+
+### Lore Notes — v1.1.0
+| Fact | Source |
+|------|--------|
+| Void Nights = 2E 578–579, caused by Thalmor magical interference | ESO lore |
+| Ra Gada wave invasion of Hammerfell = 1E 808+ | Redguard / Pocket Guide |
+| Battle of Glenumbra Moors = 1E 482 (Direnni vs. Alessian Order) | Pocket Guide |
+| Gray Host = ancient vampire-werewolf army of Rada al-Saran, Reach-based | ESO: Greymoor |
+| Mannimarco = Altmer lich, King of Worms, founder of Order of the Black Worm | Daggerfall / Oblivion |
+| Numidium / Warp in the West = catastrophic Dragon Break at 3E 417 | Daggerfall Covenant |
+| CHIM = "secret syllable of royalty"; failure = Enantiomorph (erasure) | 36 Lessons of Vivec / Kirkbride |
+| Pelinal Whitestrake = Shezarrine, divine berserker champion of Alessia | The Song of Pelinal |
+
+---
+
 ## [1.0.0] — Initial Release
 
 > **EK2 — Daedric Invasion & Obscure Lore Submod**  
