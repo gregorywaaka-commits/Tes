@@ -1,0 +1,37 @@
+﻿l_english:
+
+ # =====================================================================
+ #  NUMIDIUM / THE BRASS GOD — TRAITS
+ # =====================================================================
+
+ numidium_researcher: "Numidium Researcher"
+ numidium_researcher_desc: "This character has dedicated their scholarship to the most dangerous question in Dwemer studies: the nature and whereabouts of Numidium, the Brass God, the god-killing machine that the Dwemer built to negate divinity itself."
+
+ mantella_seeker: "Mantella Seeker"
+ mantella_seeker_desc: "This character knows the truth the Dwemer buried beneath stone and silence: Numidium requires a heart-gem, a bottled soul called the Mantella. They are searching for it. Whether they intend to use it or destroy it is a question they have not yet answered honestly."
+
+ numidium_awakener: "Awakener of Numidium"
+ numidium_awakener_desc: "This character has done the impossible and the catastrophic: they reactivated Numidium, the Brass God, triggering the Warp in the West — a Dragon Break in which multiple contradictory histories became simultaneously real. Time has not fully healed the wound they made in it."
+
+ # =====================================================================
+ #  NUMIDIUM / THE BRASS GOD — EVENTS
+ # =====================================================================
+
+ numidium.001.t: "The Brass God Sleeps"
+ numidium.001.desc: "The text is old — far older than most Dwemer scholarship you have encountered, written in a dialect that even your training struggles with. But you can read enough. Anumidium. The Brass Tower. A construct the size of a mountain, built to channel the Heart of Lorkhan directly. Not a golem. Not an automaton. A Numidium — a numidium — a brass god, inert and waiting somewhere in the sands of Hammerfell, dormant since the Dwemer vanished. The mathematics at the end of the last chapter are not theoretical. They are instructions."
+ numidium.001.a: "I must follow these references wherever they lead."
+ numidium.001.b: "Some questions are too dangerous to answer. I burn the texts."
+
+ numidium.002.t: "The Mantella"
+ numidium.002.desc: "Three seasons of research have brought you to a conclusion you did not want. Numidium does not merely need power — it needs a soul. Not a simple binding or an enchantment. A soul, entire and screaming, bottled and compressed into a gem the Dwemer called the Mantella. Their records list it as the 'heart-gem of the god-machine.' It was removed before the Disappearance, kept separate from Numidium's dormant frame as a safeguard. Someone took it. The trail goes cold four hundred years ago, deep in what is now the western reaches. But it is not gone. The Mantella is real, and it still exists somewhere, and you now know what it is for."
+ numidium.002.a: "I will find the Mantella. History will remember my name."
+ numidium.002.b: "No. Some doors should never be opened. I end this research here."
+
+ numidium.010.t: "The Warp in the West"
+ numidium.010.desc: "The Mantella fits. You felt it in the moment of contact — not a click of mechanism but a shudder of reality, as if the world itself remembered what this meant. Numidium rises. The Brass God is seven hundred feet of ancient fury and absolute negation, and it is awake, and it is moving, and multiple things are simultaneously true: you have stopped it, you have used it, you have been destroyed by it, and it has remade the political map of Tamriel in a dozen different configurations at once. The scholars called it a Dragon Break — a fracture in linear time. Every outcome has happened. History is bleeding."
+ numidium.010.a: "What have I done. What have I done to the world."
+
+ numidium.011.t: "Time Fractures"
+ numidium.011.desc: "The sky changed at the third hour after midnight. You watched from the tower window — or from the great hall, or from your bedchamber, depending on which memory you trust — as the stars stuttered. Not moved. Stuttered, like a torch in wind, and then snapped back to positions that were almost but not quite the same. Your court woke screaming. Your council has conflicting accounts of what they were doing when it happened. One of your advisors insists that a battle that hasn't been fought yet has already been won. Another insists it was lost. Both are reading from the same dispatch. Somewhere to the west, something enormous has reactivated. The scholars have a name for this. They call it a Dragon Break."
+ numidium.011.a: "What is happening to the sky? What has happened to time?"
+ numidium.011.b: "The Dragon Break. The scholars warned us what Numidium would mean."

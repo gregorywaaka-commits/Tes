@@ -1,0 +1,198 @@
+# =============================================================
+#  Yokuda / Redguard Expansion — Events
+#  Namespace: yokuda
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • yokuda.000 — "Legacy of the Ra Gada" — Redguard rulers remember the Wave
+#  • yokuda.001 — "The Shehai Calls" — Sword-Singer training offered
+#  • yokuda.002 — "Ruptga's Blessing" — vision of the Yokudan pantheon
+#  • yokuda.003 — "Sep's Whisper" — the trickster god tempts the ruler
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • yokudan_heritage / ra_gada_warrior / sword_singer (yokuda_traits.txt)
+#  • ruptga_devoted / sep_cultist (yokuda_traits.txt)
+# =============================================================
+
+namespace = yokuda
+
+# ---------------------------------------------------------------
+# yokuda.000  Legacy of the Ra Gada
+# Fires for Redguard / yokudan_heritage rulers.  The memory of
+# the great wave invasion — the Ra Gada — surfaces in dreams
+# and deeds.  Options to embrace the warrior heritage or take
+# a more peaceful path.
+# ---------------------------------------------------------------
+yokuda.000 = {
+    type = character_event
+    title = yokuda.000.t
+    desc  = yokuda.000.desc
+    theme = martial
+
+    trigger = {
+        is_adult = yes
+        is_ruler = yes
+        OR = {
+            has_trait = yokudan_heritage
+            culture = { has_cultural_parameter = redguard_heritage }
+        }
+        NOT = { has_trait = ra_gada_warrior }
+        NOT = { has_character_flag = yokuda_legacy_offered }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = yokuda_legacy_offered
+            days = 1825
+        }
+    }
+
+    option = {
+        name = yokuda.000.a   # "Honor the Ra Gada. I take up their mantle."
+        add_trait = ra_gada_warrior
+        add_prestige = 50
+        add_stress   = 5
+    }
+
+    option = {
+        name = yokuda.000.b   # "Embrace peace. Hammerfell needs builders now, not warriors."
+        add_piety    = 50
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# yokuda.001  The Shehai Calls
+# A Sword-Singer training offer for ra_gada_warrior rulers.
+# Mastering the Shehai requires a martial check — the spirit
+# sword only comes to those with the will to hold it.
+# ---------------------------------------------------------------
+yokuda.001 = {
+    type = character_event
+    title = yokuda.001.t
+    desc  = yokuda.001.desc
+    theme = martial
+
+    trigger = {
+        is_adult = yes
+        has_trait = ra_gada_warrior
+        NOT = { has_trait = sword_singer }
+        martial >= 14
+        NOT = { has_character_flag = shehai_training_offered }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = shehai_training_offered
+            days = 3650
+        }
+    }
+
+    option = {
+        name = yokuda.001.a   # "I will train until the Shehai answers."
+        if = {
+            limit = { martial >= 16 }
+            add_trait = sword_singer
+            add_prestige = 100
+        }
+        else = {
+            add_martial  = 2
+            add_stress   = 10
+            # The blade came close but did not fully manifest
+        }
+    }
+
+    option = {
+        name = yokuda.001.b   # "Decline. The spirit sword is not for me."
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# yokuda.002  Ruptga's Blessing
+# A vision of the Yokudan pantheon — Ruptga leading souls
+# along the Walkabout.  A deeply spiritual experience.
+# ---------------------------------------------------------------
+yokuda.002 = {
+    type = character_event
+    title = yokuda.002.t
+    desc  = yokuda.002.desc
+    theme = faith
+
+    trigger = {
+        is_adult = yes
+        OR = {
+            has_trait = yokudan_heritage
+            has_trait = ra_gada_warrior
+            has_trait = sword_singer
+        }
+        NOT = { has_trait = ruptga_devoted }
+        NOT = { has_trait = sep_cultist }
+        NOT = { has_character_flag = ruptga_vision_had }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = ruptga_vision_had
+            days = 1825
+        }
+    }
+
+    option = {
+        name = yokuda.002.a   # "Embrace Tall Papa's faith."
+        add_trait  = ruptga_devoted
+        add_piety  = 75
+        add_stress = -10
+    }
+
+    option = {
+        name = yokuda.002.b   # "Remain traditional. The old ways are enough."
+        add_piety  = 40
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# yokuda.003  Sep's Whisper
+# The trickster god of the Yokudan pantheon speaks in the dark.
+# Sep — the Thief, the Yokudan Lorkhan — offers a simpler truth:
+# take what you want, ask forgiveness from no one.
+# ---------------------------------------------------------------
+yokuda.003 = {
+    type = character_event
+    title = yokuda.003.t
+    desc  = yokuda.003.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        OR = {
+            has_trait = yokudan_heritage
+            has_trait = ra_gada_warrior
+        }
+        NOT = { has_trait = sep_cultist }
+        NOT = { has_trait = ruptga_devoted }
+        NOT = { has_character_flag = sep_whisper_heard }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = sep_whisper_heard
+            days = 1825
+        }
+    }
+
+    option = {
+        name = yokuda.003.a   # "Listen to the Thief. His logic is compelling."
+        add_trait   = sep_cultist
+        add_intrigue = 2
+        add_piety   = -25
+    }
+
+    option = {
+        name = yokuda.003.b   # "Reject the trickster's whisper."
+        add_piety  = 30
+        add_stress = 5
+    }
+}

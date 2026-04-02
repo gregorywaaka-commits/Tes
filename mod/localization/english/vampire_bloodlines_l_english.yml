@@ -1,0 +1,53 @@
+﻿l_english:
+
+ # =====================================================================
+ #  VAMPIRE BLOODLINES — TRAITS
+ # =====================================================================
+
+ volkihar_bloodline: "Volkihar Vampire"
+ volkihar_bloodline_desc: "This character carries the blood of the Volkihar — the ancient Nordic vampire clan rumoured to dwell beneath frozen lakes in Skyrim and Solstheim. Their gift is martial and physical: a hunter's strength, a predator's patience, and a body that laughs at wounds that would kill mortal men."
+
+ vampyrum_order: "Vampyrum Order"
+ vampyrum_order_desc: "This character is a member of the Vampyrum Order — Molag Bal's favoured vampires in Cyrodiil. Sophisticated, courtly, and utterly merciless. They have learned to wear the mask of civilisation better than anyone, and they use it to feed on the powerful rather than the weak."
+
+ lamae_bal_bloodline: "Lamae's Bloodline"
+ lamae_bal_bloodline_desc: "This character descends from the oldest vampiric curse in Tamriel — the line that began when Molag Bal created the first undead. Lamae Bal's children carry the purest and most terrible form of the dark gift: ancient, patient, and beyond most comprehension of what a vampire truly is."
+
+ gray_host_remnant: "Gray Host Remnant"
+ gray_host_remnant_desc: "This character carries the blood of the Gray Host — the catastrophic army of vampires and werewolves that ravaged Tamriel in the early Second Era. Something ancient and terrible runs in their veins: the union of vampiric darkness and beast-blood, undefeated and unbroken across the centuries."
+
+ vampire_lord: "Vampire Lord"
+ vampire_lord_desc: "This character has transcended ordinary undead power entirely. A Vampire Lord commands the lesser dead as a general commands soldiers, wields magic no living mage can learn, and possesses a resilience so profound that only the most extreme measures can end them. They are a power unto themselves."
+
+ blood_curse: "Blood-Cursed"
+ blood_curse_desc: "The vampiric taint has entered this character's blood, but the transformation is not yet complete. They are neither fully mortal nor truly undead — weakening, thirsting, dreaming of blood. There may still be time to break the curse, or this may be the beginning of something that cannot be undone."
+
+ # =====================================================================
+ #  VAMPIRE BLOODLINES — EVENTS
+ # =====================================================================
+
+ vampire.001.t: "Blood of the Old Night"
+ vampire.001.desc: "The visitor arrived after sunset — which should not have been remarkable, but your chamberlain noted that no one saw them enter, and the guards on the gate have no recollection of opening it. The figure is still: composed, watchful, pale in the torchlight with an absence that is not quite human. They carry no weapons. They carry no credentials. They carry only a message, which they will only deliver to you, and they have asked for nothing except a private audience. You know what they are. The question is whether you want to know what they have come to offer."
+ vampire.001.a: "Grant the audience. I will hear what the bloodline has to say."
+ vampire.001.b: "Turn them away. I want no dealings with the undead."
+
+ vampire.002.t: "The Turning"
+ vampire.002.desc: "The offer is specific. Clear. Almost businesslike. The bloodline has been watching you for some time — your strength, your discretion, your capacity for the long view. They do not offer this to everyone. The gift they are holding out would mean the end of one kind of life and the beginning of another: the hunger would come first, and then the power, and then — slowly, over years — the full understanding of what you have become. You can refuse. You can try to destroy the emissary sitting calmly across from you, which would be dangerous. Or you can say yes."
+ vampire.002.a: "Yes. I accept the turning."
+ vampire.002.b: "No. I remain what I am."
+ vampire.002.c: "This meeting ends with their destruction."
+
+ vampire.010.t: "The Blood Lord's Gift"
+ vampire.010.desc: "The power has been building for months — you could feel it, the way a storm is felt before it arrives. The blood in your veins that is no longer quite blood runs with something older and heavier than it used to. The night feels different. The lesser undead flinch when you pass. Your bloodline elders have sent word that what you are becoming has a name, and that the path to it is a choice and not merely a change. Vampire Lord. The apex of what your kind can become. The door stands open. It is waiting for you to decide whether to walk through."
+ vampire.010.a: "I embrace the full power. I become what I was made to be."
+ vampire.010.b: "Not yet. Perhaps not ever. I keep what still remains of who I was."
+
+ vampire.020.t: "The Gray Host Stirs"
+ vampire.020.desc: "The dream is always the same: an army stretching to the horizon, and at its heart the intermingled shapes of beast and shadow, vampire and werewolf locked in mutual purpose that has no name in any living tongue. You wake with the sound of thousands of feet on stone in your ears. Then you realise you are not dreaming. The feeling has not faded. Something in the blood — the old blood, the Gray Host blood — is resonating with a call that the rational mind insists is only history. The Host was destroyed. Scattered. The survivors went to ground and stayed there. But something is waking. And it is calling you home."
+ vampire.020.a: "Answer the call. The Gray Host rides again."
+ vampire.020.b: "The Host's time is over. I am the last, and I lead alone."
+
+ vampire.030.t: "The Sun's Burn"
+ vampire.030.desc: "Midsummer. The light comes too early and stays too long, and your body, which is no longer precisely the body it was born with, registers its objection at a level below language. The skin crawls. The eyes ache against even reflected light. You have learned to manage this — shuttered rooms, deep riding cloaks, appointments scheduled for evening — but there are moments, crossing an open courtyard, sitting at a banquet where the windows face west, when the sun finds you anyway. The sun always finds you eventually. And it always reminds you what you are."
+ vampire.030.a: "Endure. The night will come, and the sun will have nothing to say."
+ vampire.030.b: "Remain within the shadow. The night is more than sufficient."

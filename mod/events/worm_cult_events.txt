@@ -1,0 +1,251 @@
+# =============================================================
+#  Worm Cult — Events
+#  Namespace: worm_cult
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • worm_cult.000 — "The Black Worm's Invitation" — coded letter arrives
+#  • worm_cult.001 — "The Order of the Black Worm" — formal introduction
+#  • worm_cult.010 — "Necromancer's Moon" — global once-per-cycle blessing
+#  • worm_cult.020 — "The Path to Lichdom" — apex necromancer ritual
+#  • worm_cult.030 — "Mannimarco's Demand" — cult exacts its price
+#
+#  KEY GLOBAL VARIABLES:
+#  ─────────────────────
+#  global_var:necromancers_moon_risen  — set when the moon event fires
+# =============================================================
+
+namespace = worm_cult
+
+# ---------------------------------------------------------------
+# worm_cult.000  The Black Worm's Invitation
+# A coded letter arrives — ciphered, unsigned, but unmistakably
+# from the Order of the Black Worm.  High-intrigue rulers and
+# those with necromantic traits receive the invitation.
+# ---------------------------------------------------------------
+worm_cult.000 = {
+    type = character_event
+    title = worm_cult.000.t
+    desc  = worm_cult.000.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            intrigue >= 14
+            has_trait = necromancer
+            has_trait = mages_guild_wizard
+        }
+        NOT = { has_trait = worm_cult_initiate }
+        NOT = { has_trait = worm_cult_adept }
+        NOT = { has_trait = lich_essence }
+        NOT = { has_character_flag = worm_cult_contact }
+        NOT = { has_character_flag = worm_cult_refused }
+    }
+
+    option = {
+        name = worm_cult.000.a   # "Investigate the letter."
+        set_character_flag = worm_cult_contact
+        add_stress = 5
+        trigger_event = { id = worm_cult.001 days = 14 }
+    }
+
+    option = {
+        name = worm_cult.000.b   # "Burn it."
+        add_piety = 25
+        set_character_flag = {
+            flag = worm_cult_refused
+            days = 1825
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_cult.001  The Order of the Black Worm
+# Formal introduction to Mannimarco's organisation.  The contact
+# explains what the Order is, what it offers, and what it costs.
+# Three paths: join, report to the Mages Guild, or refuse quietly.
+# ---------------------------------------------------------------
+worm_cult.001 = {
+    type = character_event
+    title = worm_cult.001.t
+    desc  = worm_cult.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = worm_cult_contact
+    }
+
+    option = {
+        name = worm_cult.001.a   # "Join the Order."
+        add_trait = worm_cult_initiate
+        remove_character_flag = worm_cult_contact
+        add_stress = 10
+    }
+
+    option = {
+        name = worm_cult.001.b   # "Report to the Mages Guild."
+        trigger = {
+            OR = {
+                has_trait = mages_guild_associate
+                has_trait = mages_guild_member
+                has_trait = mages_guild_wizard
+                has_trait = mages_guild_archmagister
+            }
+        }
+        add_prestige  = 75
+        add_piety     = 50
+        remove_character_flag = worm_cult_contact
+        set_character_flag = {
+            flag = worm_cult_refused
+            days = 3650
+        }
+    }
+
+    option = {
+        name = worm_cult.001.c   # "Refuse quietly."
+        remove_character_flag = worm_cult_contact
+        add_piety  = 20
+        add_stress = 5
+        set_character_flag = {
+            flag = worm_cult_refused
+            days = 1825
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_cult.010  Necromancer's Moon
+# GLOBAL EVENT — fires once per cycle (global_var:necromancers_moon_risen).
+# A red moon rises over Tamriel.  All worm_cult_initiate rulers
+# receive the necromancers_moon_marked trait.  Arkay's priesthood
+# is in uproar.  The dead stir everywhere.
+# ---------------------------------------------------------------
+worm_cult.010 = {
+    type = character_event
+    title = worm_cult.010.t
+    desc  = worm_cult.010.desc
+    theme = realm
+
+    trigger = {
+        is_adult = yes
+        has_trait = worm_cult_initiate
+        NOT = { exists = global_var:necromancers_moon_risen }
+    }
+
+    immediate = {
+        set_global_variable = {
+            name = necromancers_moon_risen
+            value = yes
+        }
+        every_ruler = {
+            limit = {
+                is_adult = yes
+                has_trait = worm_cult_initiate
+            }
+            add_trait = necromancers_moon_marked
+        }
+    }
+
+    option = {
+        name = worm_cult.010.a   # "The Moon marks me. I am blessed."
+        add_prestige  = 50
+        add_piety     = 25
+        add_stress    = -10
+    }
+
+    option = {
+        name = worm_cult.010.b   # "What is that color in the sky?"
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_cult.020  The Path to Lichdom
+# A worm_cult_adept with learning >= 18 is offered the lich ritual.
+# The ritual binds the soul to a phylactery and transcends death.
+# ---------------------------------------------------------------
+worm_cult.020 = {
+    type = character_event
+    title = worm_cult.020.t
+    desc  = worm_cult.020.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        has_trait = worm_cult_adept
+        learning >= 18
+        NOT = { has_trait = lich_essence }
+        NOT = { has_character_flag = lich_ritual_offered }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = lich_ritual_offered
+            days = 3650
+        }
+    }
+
+    option = {
+        name = worm_cult.020.a   # "Undergo the ritual. Death will not have me."
+        add_trait = lich_essence
+        remove_trait = worm_cult_adept
+        add_learning = 3
+        add_stress   = 20
+    }
+
+    option = {
+        name = worm_cult.020.b   # "Refuse. I am not yet ready to die to become immortal."
+        add_stress = 20
+        add_piety  = -30
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_cult.030  Mannimarco's Demand
+# The King of Worms exacts a price from an active cult member.
+# The demand is material — gold — but refusal invites retaliation.
+# ---------------------------------------------------------------
+worm_cult.030 = {
+    type = character_event
+    title = worm_cult.030.t
+    desc  = worm_cult.030.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        OR = {
+            has_trait = worm_cult_initiate
+            has_trait = worm_cult_adept
+        }
+        gold >= 50
+        NOT = { has_character_flag = mannimarco_paid_year }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = mannimarco_paid_year
+            days = 365
+        }
+    }
+
+    option = {
+        name = worm_cult.030.a   # "Pay. The King of Worms demands; I comply."
+        add_gold   = -200
+        add_stress = -5
+        add_prestige = 25   # Loyalty within the Order is noted
+    }
+
+    option = {
+        name = worm_cult.030.b   # "Refuse. The King of Worms is not my lord."
+        add_stress  = 30
+        add_piety   = 25
+        remove_trait = worm_cult_initiate
+        add_character_modifier = {
+            modifier = worm_cult_marked_for_death
+            days = 730
+        }
+    }
+}

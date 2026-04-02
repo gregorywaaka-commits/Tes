@@ -1,0 +1,47 @@
+﻿l_english:
+
+ # =====================================================================
+ #  WORM CULT — TRAITS
+ # =====================================================================
+
+ worm_cult_initiate: "Black Worm Initiate"
+ worm_cult_initiate_desc: "This character has joined the Order of the Black Worm — Mannimarco's necromantic organisation. They know enough of the Order's secrets to be useful, and they have demonstrated enough loyalty to be trusted with further knowledge. Death, they are learning, is not the end — it is merely a threshold."
+
+ worm_cult_adept: "Black Worm Adept"
+ worm_cult_adept_desc: "This character is a seasoned practitioner within the Order of the Black Worm. They can raise and command the dead, read the currents of death-energy in the earth, and recite the deeper doctrines of the Black Worm from memory. Mannimarco notices the capable ones. He uses them accordingly."
+
+ lich_essence: "Lich-Essence"
+ lich_essence_desc: "This character has undergone the lich ritual — the ultimate transformation the Order of the Black Worm offers. Their soul is bound to a phylactery hidden somewhere safe; their body is preserved beyond death's reach; their mind is freed from the limitations of the mortal frame. They have stopped aging. They have stopped sleeping. They are in the process of becoming something that is no longer quite human."
+
+ necromancers_moon_marked: "Necromancer's Moon Marked"
+ necromancers_moon_marked_desc: "When the Necromancer's Moon rose — that red, wrong light that Arkay's priests spent three days screaming about — this character was active in the Order and stood under its conjunction. The necrotic energy of Mannimarco's celestial cycle left a permanent mark in their blood. They feel it still, especially at night."
+
+ # =====================================================================
+ #  WORM CULT — EVENTS
+ # =====================================================================
+
+ worm_cult.000.t: "The Black Worm's Invitation"
+ worm_cult.000.desc: "The letter has no seal, no signature, and no return address. It is written in a cipher that your best scholar spent two days on before admitting defeat — and then spent a third day on before producing a partial translation that they immediately asked to destroy afterward. What you can read is enough: it is an invitation. Something calling itself the Order of the Black Worm wishes to discuss matters of mutual interest. The phrasing is courtly, even elegant. The content — what little you can parse — touches on death, and the abolition of its necessity. Someone out there believes you might be interested. The letter is still warm, as if it arrived only a moment ago, though no messenger has been seen."
+ worm_cult.000.a: "Investigate. I want to know who wrote this."
+ worm_cult.000.b: "Burn it. I want no part of whatever this is."
+
+ worm_cult.001.t: "The Order of the Black Worm"
+ worm_cult.001.desc: "The contact is not what you expected — educated, quiet, with the look of a court scholar rather than a graverobber. They explain the Order of the Black Worm precisely, without drama: Mannimarco founded it as the answer to the Mages Guild's cowardice around the question of death. The Guild studies magic but flinches from its deepest application. The Order does not flinch. They study death — its causes, its reversal, its transcendence — with the same rigour the Guild applies to fire and storm, and with considerably more honest results. They offer three things: knowledge, protection, and eventually, if you prove capable, the removal of death as a personal concern. They would like to know if you are interested."
+ worm_cult.001.a: "I join the Order of the Black Worm."
+ worm_cult.001.b: "I report this to the Mages Guild immediately."
+ worm_cult.001.c: "I refuse. Leave, and do not contact me again."
+
+ worm_cult.010.t: "The Necromancer's Moon"
+ worm_cult.010.desc: "The moon rose red at the third hour of the night — not the red of dust or fire but the red of something else entirely, a light that did not seem to come from reflected sunlight but from somewhere deeper and older. Arkay's priests were in the streets before it was fully risen, screaming about abomination and cycle-breaking. By morning three of them had collapsed from exhaustion. You stood under that light and felt it — a warmth in the blood that had nothing to do with temperature, a sense of Mannimarco's regard passing over you like a hand moving over a map. The dead stirred in the graveyards across your realm. Most of them did not rise. But they stirred. The Order calls this the Necromancer's Moon. It does not come often. It marks everyone it touches."
+ worm_cult.010.a: "The Moon has marked me. I accept its blessing."
+ worm_cult.010.b: "What was that colour in the sky?"
+
+ worm_cult.020.t: "The Path to Lichdom"
+ worm_cult.020.desc: "Mannimarco's representative does not waste time on ceremony. They place the documents on the table in front of you — the ritual's components, its requirements, its outcomes — and they wait. You have spent years learning the theory. You know what the ritual involves: the binding of the soul to a phylactery, the suspension of physical decay, the severing of the mortal frame's dependency on continued life. You would not die. Technically. You would simply stop being alive in the way that you currently are and begin being something else instead. The Order calls it the lich's transition. The rest of Tamriel calls it an abomination. You have fourteen days to decide."
+ worm_cult.020.a: "Undergo the ritual. Death will not have me on its terms."
+ worm_cult.020.b: "Not yet. I am not ready to die in order to stop dying."
+
+ worm_cult.030.t: "Mannimarco's Demand"
+ worm_cult.030.desc: "The demand arrives without preamble: gold, in a specific amount, delivered to a specific location by a specific date. No explanation is given. None is asked for. This is how the Order operates — Mannimarco's requests are not requests in any usual sense of the word; they are instructions delivered with the polite fiction of choice attached. The gold will go to fund something you will not be told about. In return, you will receive continued standing within the Order, continued access to its knowledge, and the continued goodwill of the King of Worms. Refusal is, technically, an option. The Order's response to refusal is not specified in the message, but you have heard things."
+ worm_cult.030.a: "Pay. The King of Worms is owed what he is owed."
+ worm_cult.030.b: "Refuse. No one commands me — not even Mannimarco."

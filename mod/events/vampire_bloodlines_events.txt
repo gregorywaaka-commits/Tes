@@ -1,0 +1,269 @@
+# =============================================================
+#  Vampire Bloodlines — Events
+#  Namespace: vampire
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • vampire.000 — hidden yearly: bloodline rulers, flavor trigger
+#  • vampire.001 — "Blood of the Old Night" — bloodline emissary arrives
+#  • vampire.002 — "The Turning" — offer to join a bloodline
+#  • vampire.010 — "The Blood Lord's Gift" — vampire lord gains power
+#  • vampire.020 — "Gray Host Stirs" — gray_host_remnant army event
+#  • vampire.030 — "The Sun's Burn" — vampire summer penalty
+#
+#  KEY FLAGS:
+#  ─────────
+#  vampire_contact      — character has met a bloodline emissary
+#  gray_host_active     — global var: Gray Host is moving
+# =============================================================
+
+namespace = vampire
+
+# ---------------------------------------------------------------
+# vampire.000  Hidden yearly check
+# Fires for rulers carrying any vampire bloodline trait.
+# Triggers flavor events and sets up further interactions.
+# ---------------------------------------------------------------
+vampire.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = volkihar_bloodline
+            has_trait = vampyrum_order
+            has_trait = lamae_bal_bloodline
+            has_trait = gray_host_remnant
+            has_trait = vampire_lord
+        }
+        NOT = { has_character_flag = vampire_yearly_fired }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = vampire_yearly_fired
+            days = 365
+        }
+        random_list = {
+            40 = { trigger_event = { id = vampire.030 days = 10 } }
+            35 = { trigger_event = { id = vampire.010 days = 10 } }
+            25 = { }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# vampire.001  Blood of the Old Night
+# A mysterious emissary arrives from a vampire bloodline,
+# offering an audience and hinting at secrets and power.
+# ---------------------------------------------------------------
+vampire.001 = {
+    type = character_event
+    title = vampire.001.t
+    desc  = vampire.001.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        NOT = { has_trait = vampire_lord }
+        NOT = { has_trait = volkihar_bloodline }
+        NOT = { has_trait = vampyrum_order }
+        NOT = { has_trait = lamae_bal_bloodline }
+        NOT = { has_character_flag = vampire_contact }
+        NOT = { has_character_flag = vampire_refused_year }
+    }
+
+    option = {
+        name = vampire.001.a   # "Accept the meeting."
+        set_character_flag = vampire_contact
+        add_stress = 5
+    }
+
+    option = {
+        name = vampire.001.b   # "Refuse and take the prestige of defiance."
+        add_prestige = 25
+        set_character_flag = {
+            flag = vampire_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# vampire.002  The Turning
+# After making contact, the bloodline offers the full gift.
+# Culture determines which bloodline the character may join.
+# A third option allows an attempt to expose and destroy them.
+# ---------------------------------------------------------------
+vampire.002 = {
+    type = character_event
+    title = vampire.002.t
+    desc  = vampire.002.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = vampire_contact
+        NOT = { has_trait = vampire_lord }
+        NOT = { has_trait = volkihar_bloodline }
+        NOT = { has_trait = vampyrum_order }
+        NOT = { has_trait = lamae_bal_bloodline }
+    }
+
+    option = {
+        name = vampire.002.a   # "Accept the turning."
+        if = {
+            limit = { culture = { has_cultural_parameter = norse_heritage } }
+            add_trait = volkihar_bloodline
+        }
+        else_if = {
+            limit = { culture = { has_cultural_parameter = imperial_heritage } }
+            add_trait = vampyrum_order
+        }
+        else = {
+            add_trait = lamae_bal_bloodline
+        }
+        remove_character_flag = vampire_contact
+        add_trait = blood_curse
+        add_stress = 20
+    }
+
+    option = {
+        name = vampire.002.b   # "Refuse."
+        remove_character_flag = vampire_contact
+        add_prestige = 15
+    }
+
+    option = {
+        name = vampire.002.c   # "Attempt to expose and destroy the emissary."
+        trigger = {
+            intrigue >= 14
+        }
+        if = {
+            limit = { intrigue >= 16 }
+            add_prestige = 100
+            add_piety    = 50
+        }
+        else = {
+            add_stress   = 30
+            add_health   = -0.5
+        }
+        remove_character_flag = vampire_contact
+    }
+}
+
+# ---------------------------------------------------------------
+# vampire.010  The Blood Lord's Gift
+# An existing bloodline vampire senses the path to greater power.
+# If they already carry a bloodline, they may ascend to vampire_lord.
+# ---------------------------------------------------------------
+vampire.010 = {
+    type = character_event
+    title = vampire.010.t
+    desc  = vampire.010.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        OR = {
+            has_trait = volkihar_bloodline
+            has_trait = vampyrum_order
+            has_trait = lamae_bal_bloodline
+        }
+        NOT = { has_trait = vampire_lord }
+        NOT = { has_character_flag = vampire_lord_offered }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = vampire_lord_offered
+            days = 1825
+        }
+    }
+
+    option = {
+        name = vampire.010.a   # "Embrace the full power."
+        add_trait = vampire_lord
+        add_stress = 15
+    }
+
+    option = {
+        name = vampire.010.b   # "Resist. Keep what remains of who I was."
+        add_stress = -10
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# vampire.020  Gray Host Stirs
+# A gray_host_remnant ruler senses the ancient army stirring.
+# Sets the gray_host_active global variable.  Flavor and dread.
+# ---------------------------------------------------------------
+vampire.020 = {
+    type = character_event
+    title = vampire.020.t
+    desc  = vampire.020.desc
+    theme = martial
+
+    trigger = {
+        is_adult = yes
+        has_trait = gray_host_remnant
+        NOT = { exists = global_var:gray_host_active }
+    }
+
+    immediate = {
+        set_global_variable = {
+            name = gray_host_active
+            value = yes
+        }
+    }
+
+    option = {
+        name = vampire.020.a   # "The Gray Host rides again."
+        add_prestige  = 100
+        add_stress    = 10
+        add_martial   = 2
+    }
+
+    option = {
+        name = vampire.020.b   # "The Host's time is over. I lead alone."
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# vampire.030  The Sun's Burn
+# Summer arrives and a vampire bearer suffers solar exposure.
+# Flavor event with health cost.
+# ---------------------------------------------------------------
+vampire.030 = {
+    type = character_event
+    title = vampire.030.t
+    desc  = vampire.030.desc
+    theme = personal_activity
+
+    trigger = {
+        is_adult = yes
+        OR = {
+            has_trait = volkihar_bloodline
+            has_trait = vampyrum_order
+            has_trait = lamae_bal_bloodline
+            has_trait = gray_host_remnant
+            has_trait = vampire_lord
+        }
+    }
+
+    option = {
+        name = vampire.030.a   # "Endure the sun's hatred."
+        add_health = -0.2
+        add_stress =  10
+    }
+
+    option = {
+        name = vampire.030.b   # "Remain within. The night will come."
+        add_stress = -5
+    }
+}

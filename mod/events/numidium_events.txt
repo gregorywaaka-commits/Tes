@@ -1,0 +1,192 @@
+# =============================================================
+#  Numidium / The Brass God — Events
+#  Namespace: numidium
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • numidium.000 — hidden yearly: Dwemer scholar discovers Numidium refs
+#  • numidium.001 — "The Brass God Sleeps" — scholar finds Dwemer texts
+#  • numidium.002 — "The Mantella" — researcher learns the heart-gem exists
+#  • numidium.010 — "The Warp in the West" — CATASTROPHIC Dragon Break
+#  • numidium.011 — "Time Fractures" — all rulers receive Dragon Break notice
+#
+#  KEY GLOBAL VARIABLES:
+#  ─────────────────────
+#  global_var:numidium_awakened  — set when the Brass God is reactivated
+#  has_character_flag:has_numidium_knowledge — scholar has found the texts
+# =============================================================
+
+namespace = numidium
+
+# ---------------------------------------------------------------
+# numidium.000  Hidden yearly discovery check
+# A dwemer_scholar with learning >= 16 has a 10% chance each
+# year to stumble on references to Numidium in their research.
+# ---------------------------------------------------------------
+numidium.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_adult = yes
+        has_trait = dwemer_scholar
+        learning >= 16
+        NOT = { has_character_flag = has_numidium_knowledge }
+    }
+
+    immediate = {
+        random_list = {
+            10 = {
+                set_character_flag = has_numidium_knowledge
+                trigger_event = { id = numidium.001 days = 7 }
+            }
+            90 = { }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# numidium.001  The Brass God Sleeps
+# The scholar has found references to Numidium buried in Dwemer
+# texts.  A machine god.  A god-killer.  A reality engine.
+# ---------------------------------------------------------------
+numidium.001 = {
+    type = character_event
+    title = numidium.001.t
+    desc  = numidium.001.desc
+    theme = education_learning
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = has_numidium_knowledge
+    }
+
+    option = {
+        name = numidium.001.a   # "I must investigate further."
+        add_trait = numidium_researcher
+        add_stress = 10
+    }
+
+    option = {
+        name = numidium.001.b   # "This knowledge is too dangerous."
+        add_stress = -5
+        add_prestige = 25
+        remove_character_flag = has_numidium_knowledge
+    }
+}
+
+# ---------------------------------------------------------------
+# numidium.002  The Mantella
+# A numidium_researcher has uncovered the truth: Numidium runs on
+# a bottled soul — the Mantella.  It is not merely a machine.
+# It is a god powered by a screaming heart.
+# ---------------------------------------------------------------
+numidium.002 = {
+    type = character_event
+    title = numidium.002.t
+    desc  = numidium.002.desc
+    theme = education_learning
+
+    trigger = {
+        is_adult = yes
+        has_trait = numidium_researcher
+        NOT = { has_trait = mantella_seeker }
+        NOT = { has_character_flag = numidium_mantella_known }
+    }
+
+    immediate = {
+        set_character_flag = numidium_mantella_known
+    }
+
+    option = {
+        name = numidium.002.a   # "I must find the Mantella."
+        add_trait = mantella_seeker
+        add_stress = 15
+    }
+
+    option = {
+        name = numidium.002.b   # "No. Some things must stay buried."
+        add_piety    = 50
+        add_stress   = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# numidium.010  The Warp in the West
+# CATASTROPHIC EVENT — fires only once (global_var:numidium_awakened).
+# A mantella_seeker with learning >= 20 has assembled the pieces.
+# The Brass God reactivates.  Dragon Break.  Reality fractures.
+# All living rulers are sent numidium.011.
+# ---------------------------------------------------------------
+numidium.010 = {
+    type = character_event
+    title = numidium.010.t
+    desc  = numidium.010.desc
+    theme = realm
+
+    trigger = {
+        is_adult = yes
+        has_trait = mantella_seeker
+        learning >= 20
+        NOT = { exists = global_var:numidium_awakened }
+    }
+
+    immediate = {
+        set_global_variable = {
+            name = numidium_awakened
+            value = yes
+        }
+        add_trait = numidium_awakener
+        add_stress = 30
+        every_ruler = {
+            limit = { is_adult = yes }
+            trigger_event = { id = numidium.011 days = 3 }
+        }
+    }
+
+    option = {
+        name = numidium.010.a   # "What have I done."
+        add_stress = 30
+    }
+}
+
+# ---------------------------------------------------------------
+# numidium.011  Time Fractures — Dragon Break notification
+# All rulers receive this event when Numidium reactivates.
+# The Warp in the West has fired.  Time is breaking.
+# Multiple outcomes are simultaneously true.  History shatters.
+# ---------------------------------------------------------------
+numidium.011 = {
+    type = character_event
+    title = numidium.011.t
+    desc  = numidium.011.desc
+    theme = realm
+
+    option = {
+        name = numidium.011.a   # "What is happening to the sky?"
+        add_stress = 20
+        random_list = {
+            30 = {
+                # Memory loss — a random skill trait is forgotten
+                random_list = {
+                    25 = { remove_trait = brave }
+                    25 = { remove_trait = ambitious }
+                    25 = { remove_trait = diligent }
+                    25 = { add_trait = paranoid }
+                }
+            }
+            40 = {
+                add_prestige = -50
+            }
+            30 = {
+                add_prestige = 50
+            }
+        }
+    }
+
+    option = {
+        name = numidium.011.b   # "The Dragon Break. Every scholar warned us."
+        add_stress = 10
+        add_learning = 2
+    }
+}

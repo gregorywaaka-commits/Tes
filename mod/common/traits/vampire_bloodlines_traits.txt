@@ -1,0 +1,133 @@
+# =============================================================
+#  Vampire Bloodlines — Traits
+#  File: mod/common/traits/vampire_bloodlines_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  volkihar_bloodline   — Nordic vampire clan of great martial and physical power.
+#  vampyrum_order       — Molag Bal's favoured Cyrodilic vampires; masters of intrigue.
+#  lamae_bal_bloodline  — The first vampiric line, cursed by Lamae Bal at creation.
+#  gray_host_remnant    — Ancient vampire-werewolf warrior of the Gray Host.
+#  vampire_lord         — Apex bloodline master of supreme power.
+#  blood_curse          — Early-stage vampirism before full turning.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Vampirism in Tamriel was born when Molag Bal defiled the monk Lamae Beolfag,
+#  creating the first vampire — Lamae Bal herself.  Her bloodline has since
+#  fractured into regional clans: the Nordic Volkihar lurk beneath frozen lakes;
+#  the Cyrodilic Vampyrum Order serve Molag Bal at the pinnacle of his mortal
+#  hierarchy; the Gray Host was an army of vampires and werewolves that plagued
+#  the Second Era.  Apex members — Vampire Lords — command all lesser undead.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  VOLKIHAR BLOODLINE
+#  The ancient Nordic vampire clan, rumoured to dwell beneath
+#  frozen lakes in Skyrim and Solstheim.  Powerful hunters with
+#  great physical gifts.  Resistant to cold; scorched by sunlight.
+# ---------------------------------------------------------------
+volkihar_bloodline = {
+    category = fame
+
+    martial  = 3
+    prowess  = 4
+    intrigue = 2
+
+    monthly_prestige_gain_mult = 0.20   # Feared across the north
+    health                     = 0.5    # Vampiric resilience
+
+    flag = volkihar_bloodline
+}
+
+# ---------------------------------------------------------------
+#  VAMPYRUM ORDER
+#  Molag Bal's chosen vampires in Cyrodiil — sophisticated,
+#  courtly, and utterly merciless.  Masters of manipulation
+#  who have embedded themselves in Imperial high society.
+# ---------------------------------------------------------------
+vampyrum_order = {
+    category = fame
+
+    intrigue  = 6
+    learning  = 3
+    diplomacy = 2
+
+    monthly_prestige_gain_mult = 0.30   # The most socially powerful bloodline in the Empire
+
+    flag = vampyrum_order
+}
+
+# ---------------------------------------------------------------
+#  LAMAE BAL BLOODLINE
+#  The first vampiric line — Lamae Bal's own children, cursed
+#  at the moment of vampirism's creation.  Ancient beyond reckoning,
+#  carrying Molag Bal's first dark gift in its purest and most
+#  terrible form.
+# ---------------------------------------------------------------
+lamae_bal_bloodline = {
+    category = fame
+
+    intrigue = 4
+    martial  = 2
+
+    monthly_prestige_gain_mult = 0.20   # The oldest bloodline commands deep respect among the undead
+    health                     = 0.3    # Ancient vampiric resilience
+
+    flag = lamae_bal_bloodline
+}
+
+# ---------------------------------------------------------------
+#  GRAY HOST REMNANT
+#  A survivor — or a descendant of a survivor — of the Gray Host,
+#  the catastrophic vampire-werewolf army that ravaged Tamriel
+#  in the early Second Era.  Formidable beyond normal undead,
+#  touched by both vampiric darkness and the beast-blood of Hircine.
+# ---------------------------------------------------------------
+gray_host_remnant = {
+    category = fame
+
+    martial  = 4
+    prowess  = 5
+    intrigue = 3
+
+    monthly_prestige_gain_mult = 0.20   # The Gray Host's legend endures
+
+    flag = gray_host_remnant
+}
+
+# ---------------------------------------------------------------
+#  VAMPIRE LORD
+#  The apex of any bloodline — a Vampire Lord is no longer merely
+#  undead nobility.  They are a power unto themselves, commanding
+#  the lesser dead, wielding magic no mortal mage can learn, and
+#  possessed of near-unkillable resilience.
+# ---------------------------------------------------------------
+vampire_lord = {
+    category = fame
+
+    martial  = 5
+    intrigue = 5
+    learning = 3
+    prowess  = 6
+
+    monthly_prestige_gain_mult = 0.40   # An apex predator feared by mortal and undead alike
+
+    flag = vampire_lord
+}
+
+# ---------------------------------------------------------------
+#  BLOOD CURSE
+#  The earliest stage of vampirism — the blood-taint has taken
+#  hold but the full transformation has not yet completed.
+#  The victim is neither mortal nor truly undead: weakening,
+#  craving blood, but still alive enough to be saved.
+# ---------------------------------------------------------------
+blood_curse = {
+    category = lifestyle
+
+    health           = -0.2   # The body is struggling against the transformation
+    stress_gain_mult =  0.10  # The hunger is maddening; the change is terrifying
+
+    flag = blood_curse
+}

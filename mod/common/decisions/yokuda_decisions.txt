@@ -1,0 +1,71 @@
+# =============================================================
+#  Yokuda / Redguard Expansion — Decisions
+#  File: mod/common/decisions/yokuda_decisions.txt
+#
+#  DECISIONS IN THIS FILE:
+#  ────────────────────────
+#  seek_sword_singing  — ra_gada_warrior rulers with martial>=14 may
+#                        seek out a Sword-Singer master to begin training.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • ra_gada_warrior / sword_singer (yokuda_traits.txt)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SEEK SWORD-SINGING INSTRUCTION
+#  A Ra Gada warrior of sufficient martial skill may seek out the
+#  last living Sword-Singer masters and request instruction in
+#  the Shehai — the spirit sword of the Yokudan warrior tradition.
+#  The training is gruelling, the masters are few, and the blade
+#  only manifests for those with absolute will.
+# ---------------------------------------------------------------
+seek_sword_singing = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_sword_singing_desc
+
+    is_shown = {
+        has_trait = ra_gada_warrior
+        NOT = { has_trait = sword_singer }
+        is_adult  = yes
+        is_ruler  = yes
+    }
+
+    is_valid = {
+        is_adult  = yes
+        martial   >= 14
+        prestige  >= 200
+        NOT = { has_character_flag = shehai_training_offered }
+        NOT = { has_character_flag = shehai_training_in_progress }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult  = yes
+        martial   >= 14
+    }
+
+    effect = {
+        add_prestige = -200
+        set_character_flag = {
+            flag = shehai_training_in_progress
+            days = 365
+        }
+        trigger_event = { id = yokuda.001 days = 30 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 10
+            martial >= 16
+        }
+        modifier = {
+            add = 8
+            has_trait = ambitious
+        }
+        modifier = {
+            add = 5
+            prowess >= 16
+        }
+    }
+}

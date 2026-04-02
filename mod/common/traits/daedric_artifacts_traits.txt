@@ -1,0 +1,130 @@
+# =============================================================
+#  Daedric Artifacts — Traits
+#  File: mod/common/traits/daedric_artifacts_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  mehrunes_razor_bearer    — Wielder of Mehrunes' Razor, Daedric Prince of Destruction's blade.
+#  wabbajack_wielder        — Possessor of Sheogorath's chaotic staff of transformation.
+#  skull_of_corruption_bearer — Bearer of Vaermina's dream-stealing skull.
+#  ebony_blade_cursed       — Corrupted by the Ebony Blade of Mephala, drinker of betrayal.
+#  ring_of_namira_bearer    — Wearer of Namira's ring, granting life through death.
+#  artifact_corruption      — The slow corruption that seeps from prolonged artifact contact.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Daedric Princes do not give gifts freely. Each artifact carries the will
+#  of its creator: Mehrunes Dagon's blade craves blood and destruction; the Wabbajack
+#  reflects Sheogorath's infinite madness; the Skull of Corruption twists dreams
+#  into weapons; the Ebony Blade feeds on betrayal, growing stronger with each
+#  broken oath; the Ring of Namira binds the wearer to the Lady of Decay.
+#  Even artifacts of boon eventually corrupt the soul.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MEHRUNES' RAZOR BEARER
+#  The blade of Mehrunes Dagon, Prince of Destruction. Small,
+#  unassuming — but it can slay any being instantly if fate
+#  wills it. Its bearer grows more violent, more cunning, and
+#  more hungry for conflict with every passing moon.
+# ---------------------------------------------------------------
+mehrunes_razor_bearer = {
+    category = fame
+
+    intrigue  = 4
+    martial   = 3
+    prowess   = 5
+
+    monthly_prestige_gain_mult = 0.20   # The razor-bearer is feared and renowned
+
+    flag = mehrunes_razor_bearer
+}
+
+# ---------------------------------------------------------------
+#  WABBAJACK WIELDER
+#  Sheogorath's sceptre of infinite chaos. It transforms anything
+#  it strikes into something entirely random — cheese, a mudcrab,
+#  a noble, or nothing at all. Its owner stops fearing
+#  consequence, which paradoxically makes them harder to shake.
+# ---------------------------------------------------------------
+wabbajack_wielder = {
+    category = fame
+
+    learning  = 2
+    intrigue  = 3
+
+    monthly_prestige_gain_mult = 0.20   # Notorious for possessing the Mad God's gift
+    stress_gain_mult           = -0.10  # Sheogorath's touch makes the mind slippery — stress slides off
+
+    flag = wabbajack_wielder
+}
+
+# ---------------------------------------------------------------
+#  SKULL OF CORRUPTION BEARER
+#  Vaermina's artifact, a skull that steals dreams and twists them
+#  into waking nightmares. The bearer can weaponise the fears of
+#  their enemies — but their own sleep is never truly restful.
+# ---------------------------------------------------------------
+skull_of_corruption_bearer = {
+    category = fame
+
+    intrigue  = 5
+    learning  = 3
+
+    monthly_prestige_gain_mult = 0.20   # The dream-thief is both feared and morbidly respected
+
+    flag = skull_of_corruption_bearer
+}
+
+# ---------------------------------------------------------------
+#  EBONY BLADE CURSED
+#  Mephala's great black sword, the Whisperer. It grows stronger
+#  with each trusted ally the bearer slays, feeding on betrayal.
+#  The blade corrupts its wielder slowly, gnawing at health and
+#  conscience alike, but makes them a terror on the battlefield.
+# ---------------------------------------------------------------
+ebony_blade_cursed = {
+    category = fame
+
+    martial  = 4
+    prowess  = 4
+
+    monthly_prestige_gain_mult = 0.20   # The cursed blade's reputation precedes its bearer
+    health                     = -0.3   # Mephala's corruption eats the body from within
+
+    flag = ebony_blade_cursed
+}
+
+# ---------------------------------------------------------------
+#  RING OF NAMIRA BEARER
+#  Namira, the Lady of Decay, grants her ring to those willing
+#  to partake in the most profane rites. The wearer feeds on
+#  the fallen, healing their own wounds and growing stronger —
+#  but the ring binds them to the ancient darkness forever.
+# ---------------------------------------------------------------
+ring_of_namira_bearer = {
+    category = fame
+
+    intrigue = 4
+
+    monthly_prestige_gain_mult = 0.10   # Whispered about in dark courts; not entirely respectable
+    health                     = 0.5    # The ring's dread sustenance keeps the body vital
+
+    flag = ring_of_namira_bearer
+}
+
+# ---------------------------------------------------------------
+#  ARTIFACT CORRUPTION
+#  The slow, creeping taint that comes from prolonged contact
+#  with Daedric artifacts. The bearer's dreams fill with alien
+#  voices; their judgment is subtly warped toward the artifact's
+#  Daedric creator. Not yet fully corrupted — but building.
+# ---------------------------------------------------------------
+artifact_corruption = {
+    category = lifestyle
+
+    intrigue         = 2                # The artifact whispers dark counsel
+    stress_gain_mult = 0.15             # The Daedric presence frays the nerves
+
+    flag = artifact_corruption
+}
