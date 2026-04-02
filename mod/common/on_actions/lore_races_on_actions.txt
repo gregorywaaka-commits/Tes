@@ -94,6 +94,7 @@ on_yearly_pulse = {
         3   = tribunal.010           # Almalexia's Grace — mother-protector aspect for diplomatic Dunmer rulers (tribunal_events.txt)
         3   = tribunal.020           # Sotha Sil's Revelation — clockwork philosophy for learned rulers (tribunal_events.txt)
         2   = tribunal.030           # The Blessed of Three — all three Tribunal visions completed (tribunal_events.txt)
+        3   = almalexia_hands.005    # Almalexia's Command — yearly call to a Hand of Almalexia (almalexia_hands_events.txt)
     }
 }
 

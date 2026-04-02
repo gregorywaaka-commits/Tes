@@ -1,0 +1,215 @@
+# =============================================================
+#  Vivec's Trial — Challenging the Living God
+#  Namespace: vivec_trial
+#
+#  LORE:
+#  Vivec is worshipped as one of the three living gods of the
+#  Tribunal Temple.  But beneath that divine mask lies a deeply
+#  complicated truth: Vivec was present at the murder of Nerevar,
+#  the greatest Chimer general, at the Battle of Red Mountain
+#  (1E 700).  The Tribunal's official history claims Nerevar died
+#  fighting Dumac.  The Ashlanders — and the hidden texts of the
+#  36 Lessons of Vivec — suggest otherwise: that the Tribunal
+#  killed Nerevar to use the Tools of Kagrenac unopposed.
+#
+#  "I have a secret for you, Nerevar. I know what you are.
+#   Do you know what I am?"  — 36 Lessons of Vivec, Sermon 36
+#
+#  Vivec never fully denies the accusation.  He layers it in
+#  metaphor and paradox, but the admission is there for those who
+#  read with clear eyes.  A Sixth House cultist (who reveres the
+#  memory of Nerevar and Dagoth Ur) or the Nerevarine themselves
+#  may choose to formally confront Vivec — not as a supplicant,
+#  but as an accuser.
+#
+#  SEQUENCE:
+#  ─────────
+#  challenge_vivec (decision) → vivec_trial.000 → vivec_trial.010
+#      → vivec_trial.020 (humbled) or vivec_trial.021 (fractured)
+#
+#  • vivec_trial.000  — "The Charges": the accusations are laid
+#  • vivec_trial.010  — "The God Speaks": Vivec's response
+#  • vivec_trial.020  — "A God Humbled": Vivec admits his role
+#  • vivec_trial.021  — "The Tribunal Fractures": Vivec defends himself
+#
+#  KEY FLAGS:
+#  ──────────
+#  • vivec_trial_begun        — the trial is in progress
+#  • vivec_charged_murder     — the charge of murdering Nerevar is laid
+#  • vivec_charged_betrayal   — the charge of betraying Dunmer heritage
+#  • vivec_charged_false_god  — the charge of false divine ascension
+#  • vivec_humbled            — outcome: Vivec acknowledges the truth
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture       = EK2 culture identifier
+#  • sixth_house_cultist  = trait in dagoth_ur_traits.txt
+#  • nerevarine_marked    = trait in dagoth_ur_traits.txt
+#  • vivec_blessed        = trait in tribunal_traits.txt
+#  • dagoth_ur_awakened   = scripted trigger in lore_races_triggers.txt
+# =============================================================
+
+namespace = vivec_trial
+
+# ---------------------------------------------------------------
+# vivec_trial.000  The Charges — Confronting Vivec
+# The character steps forward to formally accuse Vivec.
+# Three possible charges: the murder of Nerevar, the betrayal
+# of the old Dunmer ways, or the theft of false godhood.
+# All are lore-grounded accusations; the charge shapes how
+# Vivec defends himself in the next event.
+# ---------------------------------------------------------------
+vivec_trial.000 = {
+    type = character_event
+    title = vivec_trial.000.t
+    desc = vivec_trial.000.desc
+    theme = faith
+
+    option = {
+        name = vivec_trial.000.a   # "You murdered Nerevar — our greatest general, our champion."
+        trigger = {
+            has_trait = nerevarine_marked
+        }
+        add_character_flag = { flag = vivec_trial_begun }
+        add_character_flag = { flag = vivec_charged_murder }
+        add_piety = 150          # Invoking the Nerevarine prophecy openly draws Azura's favour
+        add_stress = 25
+        trigger_event = { id = vivec_trial.010 days = 10 }
+    }
+
+    option = {
+        name = vivec_trial.000.b   # "You betrayed the Chimer's true path and the Daedra who made us."
+        trigger = {
+            has_trait = sixth_house_cultist
+        }
+        add_character_flag = { flag = vivec_trial_begun }
+        add_character_flag = { flag = vivec_charged_betrayal }
+        add_intrigue = 1         # The Sixth House's accusation is politically sharp
+        add_stress = 20
+        trigger_event = { id = vivec_trial.010 days = 10 }
+    }
+
+    option = {
+        name = vivec_trial.000.c   # "You are no god. You stole divine power that was not yours to take."
+        add_character_flag = { flag = vivec_trial_begun }
+        add_character_flag = { flag = vivec_charged_false_god }
+        add_piety = 100
+        add_stress = 30
+        trigger_event = { id = vivec_trial.010 days = 10 }
+    }
+}
+
+# ---------------------------------------------------------------
+# vivec_trial.010  The God Speaks — Vivec's Defense
+# Vivec responds to the charges.  He does not rage or deny
+# outright — that is not his nature.  He layers truth in paradox.
+# The character must decide whether to press harder (seeking a
+# true admission and humbling the god) or to accept the
+# deflection (granting Vivec his dignity but gaining nothing).
+# ---------------------------------------------------------------
+vivec_trial.010 = {
+    type = character_event
+    title = vivec_trial.010.t
+    desc = vivec_trial.010.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = vivec_trial_begun
+    }
+
+    option = {
+        name = vivec_trial.010.a   # "Your poetry does not answer my charge. Speak plainly, god."
+        trigger = {
+            learning >= 12   # Cutting through Vivec's metaphor requires learned insight
+        }
+        add_stress = 20
+        add_learning = 1
+        trigger_event = { id = vivec_trial.020 days = 10 }    # Vivec is pressed — and humbled
+    }
+
+    option = {
+        name = vivec_trial.010.b   # "You speak in circles to obscure the blood on your hands."
+        trigger = {
+            martial >= 12
+        }
+        add_stress = 15
+        add_prestige = 100
+        trigger_event = { id = vivec_trial.020 days = 10 }    # Pressure through will — also succeeds
+    }
+
+    option = {
+        name = vivec_trial.010.c   # "Perhaps I misunderstood. The gods are beyond mortal judgment."
+        add_stress = -10           # Accepting the deflection relieves stress — but gains nothing
+        add_piety = 50             # The Tribunal Temple approves of your deference
+        remove_character_flag = vivec_trial_begun
+        remove_character_flag = vivec_charged_murder
+        remove_character_flag = vivec_charged_betrayal
+        remove_character_flag = vivec_charged_false_god
+        trigger_event = { id = vivec_trial.021 days = 10 }    # Vivec "wins" — the fracture does not come
+    }
+}
+
+# ---------------------------------------------------------------
+# vivec_trial.020  A God Humbled — The Admission
+# Vivec, pressed by a genuine Nerevarine or an accuser who
+# will not let him escape into metaphor, makes an admission.
+# He does not confess outright — but he allows the truth to be
+# seen.  The moment is enormous: a god, however cryptically,
+# acknowledging that the Tribunal's origin was not pure.
+# This weakens the Tribunal Temple's hold over Morrowind.
+# Lore note: Vivec is the only Tribunal member who engages
+# meaningfully with his own contradictions.  Almalexia would
+# rage; Sotha Sil would close his door.  Only Vivec allows this.
+# ---------------------------------------------------------------
+vivec_trial.020 = {
+    type = character_event
+    title = vivec_trial.020.t
+    desc = vivec_trial.020.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = vivec_trial_begun
+    }
+
+    option = {
+        name = vivec_trial.020.a   # "I did not expect that. But truth has its own gravity."
+        add_character_flag = { flag = vivec_humbled }
+        add_piety    = 500          # Azura's prophecy acknowledged — enormous spiritual reward
+        add_prestige = 800          # The Nerevarine who cornered a god earns lasting renown
+        add_stress   = -20          # Resolution, however painful, relieves the weight
+        add_modifier = {
+            modifier = vivec_trial_victor_modifier
+            days = 1825    # 5-year period of heightened Dunmer political respect
+        }
+        remove_character_flag = vivec_trial_begun
+        remove_character_flag = vivec_charged_murder
+        remove_character_flag = vivec_charged_betrayal
+        remove_character_flag = vivec_charged_false_god
+    }
+}
+
+# ---------------------------------------------------------------
+# vivec_trial.021  The Tribunal Fractures — Vivec Defiant
+# The deflection outcome: Vivec neither admits nor is broken.
+# He turns the trial back on the accuser with a question so
+# large that no answer is satisfying.  The character backs down.
+# Mechanically: the accuser loses prestige (seen as overreaching)
+# but gains the Sixth House's admiration (for daring to try).
+# ---------------------------------------------------------------
+vivec_trial.021 = {
+    type = character_event
+    title = vivec_trial.021.t
+    desc = vivec_trial.021.desc
+    theme = faith
+
+    option = {
+        name = vivec_trial.021.a   # "Not today. But the question does not go away."
+        add_prestige = -200         # The failure to press the charge is seen as weakness
+        add_piety    = 100          # The Tribunal Temple is relieved — piety with them rises
+        add_stress   = 15
+        remove_character_flag = vivec_trial_begun
+        remove_character_flag = vivec_charged_murder
+        remove_character_flag = vivec_charged_betrayal
+        remove_character_flag = vivec_charged_false_god
+    }
+}

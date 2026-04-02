@@ -381,3 +381,145 @@ sabotage_tower_stone = {
         }
     }
 }
+
+# ============================================================
+#  TOOLS OF KAGRENAC
+# ============================================================
+
+# Seek the three Tools of Kagrenac to fulfil the Nerevarine prophecy
+seek_tools_of_kagrenac = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_tools_of_kagrenac_desc
+
+    is_shown = {
+        is_ruler = yes
+        has_trait = nerevarine_marked
+        has_culture = dunmer_culture
+        dagoth_ur_awakened = yes
+        NOT = { has_trait = nerevarine_victor }
+        NOT = { has_character_flag = kagrenac_quest_started }
+    }
+
+    is_valid = {
+        learning >= 14
+        prestige >= 1000
+        NOT = { has_character_flag = kagrenac_quest_started }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_alive = yes
+    }
+
+    effect = {
+        add_prestige = -1000
+        trigger_event = { id = kagrenac.000 }
+    }
+
+    ai_will_do = {
+        base = 20
+        modifier = {
+            add = 30
+            has_trait = brave
+        }
+        modifier = {
+            add = 15
+            learning >= 18
+        }
+    }
+}
+
+# ============================================================
+#  VIVEC'S TRIAL
+# ============================================================
+
+# Challenge Vivec to answer for his role in Nerevar's murder
+challenge_vivec = {
+    picture = "gfx/interface/icons/decisions/decision_faith.dds"
+    desc = challenge_vivec_desc
+
+    is_shown = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        dagoth_ur_awakened = yes
+        OR = {
+            has_trait = sixth_house_cultist
+            has_trait = nerevarine_marked
+        }
+        NOT = { has_character_flag = vivec_trial_begun }
+        NOT = { has_character_flag = vivec_humbled }
+    }
+
+    is_valid = {
+        martial >= 12
+        prestige >= 500
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -500
+        trigger_event = { id = vivec_trial.000 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 15
+            has_trait = nerevarine_marked
+        }
+        modifier = {
+            add = 10
+            has_trait = sixth_house_cultist
+        }
+    }
+}
+
+# ============================================================
+#  ALMALEXIA'S HANDS
+# ============================================================
+
+# Pledge yourself as a Hand of Almalexia — her elite warrior-priest
+pledge_as_almalexias_hand = {
+    picture = "gfx/interface/icons/decisions/decision_faith.dds"
+    desc = pledge_as_almalexias_hand_desc
+
+    is_shown = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        has_trait = almalexia_devoted
+        NOT = { has_trait = almalexias_hand }
+    }
+
+    is_valid = {
+        martial    >= 14
+        diplomacy  >= 10
+        piety      >= 500
+        prestige   >= 500
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_alive = yes
+    }
+
+    effect = {
+        add_piety    = -500
+        add_prestige = -500
+        trigger_event = { id = almalexia_hands.000 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = {
+            add = 20
+            martial >= 18
+        }
+        modifier = {
+            add = 10
+            has_trait = brave
+        }
+    }
+}

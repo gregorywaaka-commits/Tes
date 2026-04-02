@@ -1,0 +1,101 @@
+# =============================================================
+#  Almalexia's Hands — Champions of the Mother of Morrowind
+#  Namespace: almalexia_hands
+#
+#  LORE:
+#  The Hands of Almalexia were Almalexia's elite personal guard —
+#  warrior-priests of the highest calibre, each personally chosen
+#  and invested by the Mother of Morrowind herself.  They carried
+#  weapons blessed by Almalexia's own divine touch and served as
+#  her agents across Morrowind, enforcing the Tribunal's will and
+#  defending the faithful from threats no ordinary army could face.
+#
+#  During the Second Era the Hands were active and feared: they
+#  fought against Akaviri invaders, suppressed Sixth House unrest,
+#  and stood at Almalexia's side at the Battle of Vivec City
+#  during Dir-Kamal's attack (2E 572).
+#
+#  By the late Third Era the Hands were dead — Almalexia, having
+#  lost her connection to the Heart of Lorkhan and her immortality,
+#  descended into paranoid madness and slew them herself.  In the
+#  Second Era they are still a proud and living institution.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • almalexia_hands.000  — The Investiture: the ceremony of becoming
+#                           a Hand of Almalexia
+#  • almalexia_hands.005  — yearly flavor: a Hand receives Almalexia's
+#                           direct command to defend Morrowind
+#
+#  KEY TRAITS:
+#  ──────────
+#  • almalexias_hand — A Hand of Almalexia (kagrenac_traits.txt)
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture     = EK2 culture identifier
+#  • almalexia_devoted  = trait in tribunal_traits.txt
+# =============================================================
+
+namespace = almalexia_hands
+
+# ---------------------------------------------------------------
+# almalexia_hands.000  The Investiture — Becoming a Hand
+# Triggered by the pledge_as_almalexias_hand decision.
+# Almalexia personally consecrates the new Hand — a ceremony
+# of kneeling before the goddess in her sanctum in Mournhold.
+# The Hand is granted a blade blessed by Hopesfire's light
+# (Almalexia's own divine weapon) and sworn to her service alone.
+# ---------------------------------------------------------------
+almalexia_hands.000 = {
+    type = character_event
+    title = almalexia_hands.000.t
+    desc = almalexia_hands.000.desc
+    theme = faith
+
+    option = {
+        name = almalexia_hands.000.a   # "I kneel before the Mother of Morrowind and take my oath."
+        add_trait = almalexias_hand
+        add_piety    = 400
+        add_prestige = 500
+        add_stress = 10              # The weight of the oath is real
+        add_modifier = {
+            modifier = almalexia_hands_blessing
+            days = 1825    # 5 years — the goddess's freshly-given blessing
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# almalexia_hands.005  Almalexia's Command — A Hand Is Called
+# Fires yearly for rulers who bear the almalexias_hand trait.
+# Almalexia has seen something — a threat in the Blight, a
+# Sixth House nest, an Ashlander band moving against her temple —
+# and calls her Hand to act.  The player may comply (gaining
+# piety and the goddess's favour) or delay (losing piety,
+# as Almalexia does not wait patiently).
+# ---------------------------------------------------------------
+almalexia_hands.005 = {
+    type = character_event
+    title = almalexia_hands.005.t
+    desc = almalexia_hands.005.desc
+    theme = faith
+
+    trigger = {
+        has_trait = almalexias_hand
+        is_ruler  = yes
+    }
+
+    option = {
+        name = almalexia_hands.005.a   # "I go at once. Morrowind comes before my own plans."
+        add_piety    = 200
+        add_prestige = 150
+        add_stress   = 15
+    }
+
+    option = {
+        name = almalexia_hands.005.b   # "My other duties must come first. I will answer when I can."
+        add_piety    = -150             # Almalexia does not accept excuses from her Hands
+        add_stress   = 25
+    }
+}

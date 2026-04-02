@@ -1737,3 +1737,34 @@ sotha_sil_insight = {
     learning                  = 2
     development_growth_factor = 0.10   # The Clockwork God's students build and plan with greater precision
 }
+
+# ---------------------------------------------------------------
+#  TOOLS OF KAGRENAC / VIVEC'S TRIAL / ALMALEXIA'S HANDS
+#  Context: Rewards from completing the Nerevarine path,
+#           winning Vivec's trial, and serving as Almalexia's Hand.
+# ---------------------------------------------------------------
+
+# Applied to the character who won Vivec's Trial — forced his admission.
+# Represents the massive political and spiritual weight of having made
+# a living god acknowledge his complicity in Nerevar's fate.
+# Duration: 1825 days (5 years).
+vivec_trial_victor_modifier = {
+    diplomacy  = 3
+    learning   = 2
+    monthly_piety_gain_mult    = 0.20   # Azura approves — so does the Ashlander faithful
+    monthly_prestige_gain_mult = 0.20   # The ruler who cornered Vivec is admired and feared
+}
+
+# Applied immediately after investiture as a Hand of Almalexia.
+# Represents the goddess's freshly-given blessing — warm, fierce, and protective.
+# Duration: 1825 days (5 years).
+almalexia_hands_blessing = {
+    martial   = 2
+    prowess   = 2
+    health    = 0.5
+    monthly_piety_gain_mult    = 0.15   # Almalexia's direct blessing carries enormous spiritual weight
+    command_modifier = {
+        advantage  = 2
+        max_morale = 0.10   # Fighting under Almalexia's blessing sustains the faithful
+    }
+}
