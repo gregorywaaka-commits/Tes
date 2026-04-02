@@ -1,0 +1,102 @@
+# =============================================================
+#  Dwemer Ruins Scripted Effects
+#  File: mod/common/scripted_effects/dwemer_ruins_effects.txt
+#
+#  CALL GRAPH (who calls what):
+#  ────────────────────────────
+#  begin_dwemer_excavation   ← dwemer.001 (successful expedition)
+#  trigger_ruin_collapse     ← dwemer.005 (excavation disaster)
+#  activate_animunculi_guard ← dwemer.002 (animunculi tamed option)
+#  grant_aetherium_attunement← dwemer.007 (aetherium cache found)
+#
+#  SCOPE REQUIREMENTS:
+#  ───────────────────
+#  All effects: called on root (the character scope).
+#  Province modifiers applied to root.capital_county.
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BEGIN DWEMER EXCAVATION
+#  Called when an expedition successfully catalogues a ruin.
+#  Grants the dwemer_scholar trait and marks the capital county
+#  as an excavated ruin site (enables animunculi guard decision).
+# ---------------------------------------------------------------
+begin_dwemer_excavation = {
+    if = {
+        limit = { NOT = { has_trait = dwemer_scholar } }
+        add_trait = dwemer_scholar
+    }
+    add_modifier = {
+        modifier = tonal_architecture_insight_modifier
+        days = 730
+    }
+    capital_county = {
+        set_variable = { name = dwemer_ruin_excavated value = yes }
+        add_province_modifier = {
+            modifier = dwemer_ruin_excavated_modifier
+            days     = 1825    # 5 years of active scholarship at the site
+        }
+    }
+    # Apply an expedition cooldown so the same ruler cannot
+    # immediately repeat the decision (prevents event spam).
+    add_modifier = {
+        modifier = dwemer_expedition_cooldown
+        days = 1825
+    }
+}
+
+# ---------------------------------------------------------------
+#  TRIGGER RUIN COLLAPSE
+#  Called when the ruin becomes unstable during excavation.
+#  Applies a penalty modifier to the capital county and
+#  costs the ruler prestige and stress.
+# ---------------------------------------------------------------
+trigger_ruin_collapse = {
+    capital_county = {
+        add_province_modifier = {
+            modifier = dwemer_ruin_collapse_modifier
+            days     = 730    # 2 years for debris to be cleared
+        }
+    }
+    add_prestige = -150
+    add_stress   = 25
+    # Apply a shorter cooldown so the ruler can try again — cautiously.
+    add_modifier = {
+        modifier = dwemer_expedition_cooldown
+        days = 730
+    }
+}
+
+# ---------------------------------------------------------------
+#  ACTIVATE ANIMUNCULI GUARD
+#  Called when the expedition tames Dwemer automatons.
+#  Grants the animunculi_master trait and adds a garrison bonus
+#  to the ruler's capital county.
+# ---------------------------------------------------------------
+activate_animunculi_guard = {
+    if = {
+        limit = { NOT = { has_trait = animunculi_master } }
+        add_trait = animunculi_master
+    }
+    capital_county = {
+        add_province_modifier = {
+            modifier = animunculi_guard_modifier
+            days     = 1825    # Automatons run until they wind down
+        }
+    }
+    add_prestige = 200
+}
+
+# ---------------------------------------------------------------
+#  GRANT AETHERIUM ATTUNEMENT
+#  Called when a ruler touches raw Aetherium crystals deep in
+#  the ruin.  Rare — grants the aetherium_attuned trait.
+# ---------------------------------------------------------------
+grant_aetherium_attunement = {
+    if = {
+        limit = { NOT = { has_trait = aetherium_attuned } }
+        add_trait = aetherium_attuned
+    }
+    add_piety    = 300
+    add_prestige = 200
+}

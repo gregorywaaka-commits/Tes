@@ -42,6 +42,7 @@
 #  • Dragonborn — Dovahkiin recognition, Akatosh visions
 #  • Greybeard Order — First Voice pilgrimage events
 #  • Amulet of Kings — bearer rejection, political attention
+#  • Dwemer Ruins — ruin discovery rumours, tonal breakthrough
 #
 #  CROSS-REFERENCES:
 #  ─────────────────
@@ -80,6 +81,8 @@ on_yearly_pulse = {
         4   = thuumvoi.016           # Akatosh's vision for post-awakening Dragonborn (thuumvoi_events.txt)
         3   = amulet.005             # Amulet of Kings rejects a non-Dragonborn bearer (amulet_of_kings_events.txt)
         4   = amulet.post_001        # Amulet of Kings draws political/religious attention (amulet_of_kings_events.txt)
+        3   = dwemer.000             # Rumours of a nearby Dwemer ruin reach court (dwemer_ruins_events.txt)
+        5   = dwemer.004             # Tonal Architecture breakthrough for active scholars (dwemer_ruins_events.txt)
     }
 }
 

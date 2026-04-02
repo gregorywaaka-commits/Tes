@@ -1,0 +1,102 @@
+# =============================================================
+#  Dwemer Ruins — Decisions
+#  File: mod/common/decisions/dwemer_ruins_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • curious  (CK3 vanilla trait)
+#  • scholar  (CK3 vanilla trait)
+# =============================================================
+
+# ---------------------------------------------------------------
+#  EXPLORE A DWEMER RUIN
+#  Any sufficiently learned ruler can commission a survey of their
+#  lands for Dwemer ruin sites and mount an expedition.
+#  Success grants dwemer_scholar; failure risks collapse or ambush.
+# ---------------------------------------------------------------
+explore_dwemer_ruin = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = explore_dwemer_ruin_desc
+
+    is_shown = {
+        can_explore_dwemer_ruin = yes
+    }
+
+    is_valid = {
+        learning  >= 10
+        prestige  >= 300
+        gold      >= 150
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_gold     = -150
+        add_prestige = -300
+        set_character_flag = { flag = dwemer_expedition_active days = 365 }
+        trigger_event = { id = dwemer.001 days = 30 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 10
+            has_trait = curious
+        }
+        modifier = {
+            add = 8
+            has_trait = scholar
+        }
+        modifier = {
+            add = 10
+            is_dwemer_scholar = yes
+        }
+        modifier = {
+            add = 8
+            learning >= 18
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  STUDY TONAL ARCHITECTURE
+#  A dwemer_scholar ruler can spend years deciphering Kagrenac's
+#  fundamental principles, potentially achieving true mastery.
+# ---------------------------------------------------------------
+study_tonal_architecture = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = study_tonal_architecture_desc
+
+    is_shown = {
+        can_study_tonal_architecture = yes
+    }
+
+    is_valid = {
+        learning >= 16
+        gold     >= 200
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_gold = -200
+        set_character_flag = { flag = tonal_study_active days = 730 }
+        trigger_event = { id = dwemer.003 }
+    }
+
+    ai_will_do = {
+        base = 8
+        modifier = {
+            add = 15
+            learning >= 20
+        }
+        modifier = {
+            add = 10
+            has_trait = scholar
+        }
+    }
+}

@@ -1,0 +1,89 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  DWEMER RUINS EXPLORATION
+ # =====================================================================
+
+ # --- Decisions ---
+
+ explore_dwemer_ruin: "Explore a Dwemer Ruin"
+ explore_dwemer_ruin_desc: "Your lands hold the echoed legacy of the Dwemer — the Deep-Elves who vanished in 1E 700. Their brass halls and tonal mechanisms lie beneath the earth, waiting. An expedition of scholars and soldiers might recover texts, artifacts, and secrets buried for a thousand years."
+
+ study_tonal_architecture: "Study Tonal Architecture"
+ study_tonal_architecture_desc: "You have excavated Dwemer texts describing Kagrenac's principles — the manipulation of sound as creation itself. Years of dedicated study might grant you mastery of tonal architecture, the Dwemer's most fundamental art."
+
+ # --- Events ---
+
+ dwemer.000.t: "The Brass Halls Beckon"
+ dwemer.000.desc: "A wandering scholar arrives at court, travel-stained and wide-eyed. She has found the entrance to a Dwemer ruin in your lands — brass doors half-buried, tonal chimes still sounding after a thousand years of silence. The Dwemer are gone, but their halls are not."
+ dwemer.000.a: "Gather what maps and lanterns you can."
+ dwemer.000.b: "Such places are best left to the dead."
+
+ dwemer.001.t: "Into the Depths"
+ dwemer.001.desc: "Your expedition descends through tiered halls of tarnished brass and cold Aetherium light. The architecture is precise beyond any living craftsman's art — every surface calculated, every doorway a resonating chamber. Then, far below, something shifts in the dark."
+ dwemer.001.a: "Press deeper — the brass doors are opening."
+ dwemer.001.b: "Careful — something stirs in the lower hall."
+ dwemer.001.c: "The floor is giving way — retreat now!"
+
+ dwemer.002.t: "The Animunculi Awaken"
+ dwemer.002.desc: "From the walls emerge things of brass and soul-gem fire: Dwemer animunculi — sphere-bodied constructs the size of men, chittering spider-forms, and looming behind them, a centurion whose limbs are wider than an ox. They do not speak. They do not hesitate."
+ dwemer.002.a: "Hold formation — destroy them!"
+ dwemer.002.b: "I have studied their mechanisms — let me try."
+ dwemer.002.c: "Fall back — this was a mistake."
+
+ dwemer.003.t: "The Weight of Ages"
+ dwemer.003.desc: "The recovered Dwemer texts fill a chamber to the ceiling. Symbols spiral across brass plates in a language of resonance — not read with the eye but heard with the bones. You understand perhaps one word in ten. But you intend to understand all of them."
+ dwemer.003.a: "I will not rest until I understand."
+ dwemer.003.b: "I begin the work — but cautiously."
+
+ dwemer.004.t: "The Tonal Breakthrough"
+ dwemer.004.desc: "It arrives not as a thought but as a vibration in the chest — a fundamental frequency that reorganises everything you thought you knew about craft, sound, and creation. Kagrenac was not an engineer. He was a theologian of the physical world. And you have begun to hear what he heard."
+ dwemer.004.a: "I understand now. The Dwemer did not create — they resonated."
+
+ dwemer.005.t: "The Ruin Collapses"
+ dwemer.005.desc: "Deep in the ruin the tension-stones fail — a chain of resonant collapse that the Dwemer built in as a fail-safe against trespassers, or perhaps against themselves. The halls fall. Your scholars scramble for the surface through a cascade of brass and steam."
+ dwemer.005.a: "We are fortunate to escape with our lives."
+ dwemer.005.b: "We will return when the rubble is cleared."
+
+ dwemer.006.t: "The Memory Stone"
+ dwemer.006.desc: "In a sealed alcove, untouched for a millennium, sits a sphere of pale blue stone etched with tonal notation. When your scholar brushes it with a finger it sings — a voice, clear and immediate, speaking in Dwemeris. The tone is measured. Academic. Whatever was said here was said for posterity. You cannot understand most of it. But you cannot stop listening."
+ dwemer.006.a: "Transcribe every word — even the untranslatable ones."
+ dwemer.006.b: "It speaks of things I cannot grasp — but it is beautiful."
+
+ dwemer.007.t: "The Aetherium Cache"
+ dwemer.007.desc: "Below the lowest excavated level, your surveyors break through into a natural fissure filled with pale blue crystal — Aetherium, the rarest mineral in Tamriel, prized by the Dwemer above all others for its capacity to hold and amplify tonal resonance. The deposit is vast. The crystals hum at a frequency that makes your teeth ache and your mind inexplicably clear."
+ dwemer.007.a: "Touch it — and understand."
+ dwemer.007.b: "Mine it carefully and sell what we extract."
+ dwemer.007.c: "Leave it. Some things the Dwemer kept for good reason."
+
+ # --- Traits ---
+
+ dwemer_scholar: "Dwemer Scholar"
+ dwemer_scholar_desc: "This ruler has personally excavated and studied Dwemer ruins, gaining deep familiarity with the Deep-Elves' mechanisms, tonal notation, and philosophical texts."
+
+ animunculi_master: "Animunculi Master"
+ animunculi_master_desc: "Through study and direct confrontation, this ruler has learned to reactivate and command Dwemer animunculi — the brass sphere-warriors, spider-constructs, and steam centurions that guard the Deep-Elves' halls."
+
+ tonal_architect: "Tonal Architect"
+ tonal_architect_desc: "A rare and profound achievement: this scholar has decoded the fundamental principles of Kagrenac's tonal architecture — the Dwemer art of shaping reality through resonance. The Dwemer are gone; their art lives on through this mind."
+
+ aetherium_attuned: "Aetherium-Attuned"
+ aetherium_attuned_desc: "Direct contact with raw Aetherium crystal has left this character subtly changed — mentally sharper, spiritually resonant, and uniquely sensitive to the tonal frequencies that underlie all Dwemer craft."
+
+ # --- Modifiers ---
+
+ dwemer_ruin_excavated_modifier: "Dwemer Ruin Excavated"
+ dwemer_ruin_excavated_modifier_desc: "Scholars, engineers, and merchants flock to a newly excavated Dwemer ruin site in this county, driving growth and trade in recovered artifacts."
+
+ animunculi_guard_modifier: "Animunculi Guard"
+ animunculi_guard_modifier_desc: "Reactivated Dwemer automatons patrol this county, supplementing the garrison with tireless brass sentinels that do not sleep, do not defect, and do not fear."
+
+ tonal_architecture_insight_modifier: "Tonal Architecture Insight"
+ tonal_architecture_insight_modifier_desc: "Fresh from the Dwemer ruins, this ruler's mind hums with the resonant principles of tonal architecture. The clarity is remarkable — and temporary."
+
+ dwemer_ruin_collapse_modifier: "Ruin Collapse"
+ dwemer_ruin_collapse_modifier_desc: "A Dwemer ruin has partially collapsed in this county. The debris, gas vents, and unstable foundations make the area dangerous and disrupt trade routes."
+
+ dwemer_expedition_cooldown: "Recent Dwemer Expedition"
+ dwemer_expedition_cooldown_desc: "A Dwemer expedition recently concluded. Time is needed to regroup, process what was found, and repair equipment before another descent can be mounted."

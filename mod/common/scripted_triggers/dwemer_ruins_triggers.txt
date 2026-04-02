@@ -1,0 +1,33 @@
+# =============================================================
+#  Dwemer Ruins Scripted Triggers
+#  File: mod/common/scripted_triggers/dwemer_ruins_triggers.txt
+# =============================================================
+
+# True when the character has the dwemer_scholar trait.
+is_dwemer_scholar = {
+    has_trait = dwemer_scholar
+}
+
+# True when a character holds at least one county whose ruins
+# have been excavated (variable set by begin_dwemer_excavation).
+has_excavated_ruin_in_demesne = {
+    any_demesne_county = { has_variable = dwemer_ruin_excavated }
+}
+
+# True when this character is eligible to launch a ruin expedition.
+# Checks: ruler, adult, not already on an expedition or in cooldown.
+can_explore_dwemer_ruin = {
+    is_ruler = yes
+    is_adult = yes
+    NOT = { has_character_flag = dwemer_expedition_active }
+    NOT = { has_modifier = dwemer_expedition_cooldown }
+}
+
+# True when a character is eligible to begin tonal architecture study.
+can_study_tonal_architecture = {
+    is_dwemer_scholar = yes
+    NOT = { has_trait = tonal_architect }
+    NOT = { has_character_flag = tonal_study_active }
+    is_ruler = yes
+    is_adult = yes
+}
