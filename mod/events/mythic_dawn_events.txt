@@ -1,0 +1,260 @@
+# =============================================================
+#  Mythic Dawn Events
+#  Namespace: mythic_dawn
+#
+#  LORE:
+#  The Mythic Dawn was Mehrunes Dagon's mortal cult — an
+#  intrigue-heavy secret society that plotted for centuries
+#  to simultaneously open every Oblivion Gate in Tamriel.
+#  Their scripture, the Commentaries on the Mysterium Xarxes
+#  by Mankar Camoran, is banned throughout the Empire.
+#  They are mortals, not Daedra — dangerous, brilliant, and
+#  utterly devoted to the Prince of Destruction.
+#
+#  EVENT LIST:
+#  ────────────────────────────────────────────────────────────
+#  mythic_dawn.000  A coded message — the first contact
+#  mythic_dawn.001  The Recruitment meeting
+#  mythic_dawn.002  Studying the Commentaries — the First Doctrine
+#  mythic_dawn.003  Rising through the Ranks — a test of loyalty
+#  mythic_dawn.004  The Listener's Choice — the inner circle's final ask
+#  mythic_dawn.005  Exposure — the cult is discovered at court
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • mehrunes_dagon_aspect (daedric_invasion_traits.txt — this mod)
+#  • oblivion_gate trigger in oblivion_gate_events.txt (this mod)
+# =============================================================
+
+namespace = mythic_dawn
+
+# ---------------------------------------------------------------
+# mythic_dawn.000  The Coded Message
+# A folded note arrives by anonymous courier. The wax seal
+# means nothing to most — but to someone with intrigue enough
+# to read the pattern hidden in the folds, it is an invitation.
+# ---------------------------------------------------------------
+mythic_dawn.000 = {
+    type = character_event
+    title = mythic_dawn.000.t
+    desc  = mythic_dawn.000.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        intrigue >= 12
+        NOT = { has_character_flag = mythic_dawn_contacted }
+        NOT = { has_character_flag = mythic_dawn_exposed }
+    }
+
+    option = {
+        name = mythic_dawn.000.a   # "I attend the meeting."
+        add_character_flag = { flag = mythic_dawn_contacted days = 3650 }
+        trigger_event = { id = mythic_dawn.001 days = 14 }
+    }
+
+    option = {
+        name = mythic_dawn.000.b   # "I send a spy in my place."
+        add_intrigue = 1
+        add_character_flag = { flag = mythic_dawn_contacted days = 3650 }
+    }
+
+    option = {
+        name = mythic_dawn.000.c   # "Burn it."
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# mythic_dawn.001  The Recruitment
+# In a candlelit cellar, a red-robed figure explains the Dawn's
+# purpose with calm certainty: the Gates will open, Mehrunes
+# Dagon will consume all creation, and only the faithful
+# will pass through into Paradise beyond.
+# ---------------------------------------------------------------
+mythic_dawn.001 = {
+    type = character_event
+    title = mythic_dawn.001.t
+    desc  = mythic_dawn.001.desc
+    theme = intrigue
+
+    option = {
+        name = mythic_dawn.001.a   # "I join them."
+        add_character_flag = { flag = mythic_dawn_initiate days = 3650 }
+        add_intrigue = 2
+        trigger_event = { id = mythic_dawn.002 days = 60 }
+    }
+
+    option = {
+        name = mythic_dawn.001.b   # "I pretend to join — to spy on them."
+        trigger = { intrigue >= 14 }
+        add_intrigue = 3
+        add_prestige = 100
+    }
+
+    option = {
+        name = mythic_dawn.001.c   # "I arrest the recruiter."
+        add_prestige = 150
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# mythic_dawn.002  The First Doctrine
+# The Commentaries on the Mysterium Xarxes are unlike any
+# text the ruler has read — part scripture, part madness,
+# part genuine cosmological argument. Understanding them
+# requires a sharp mind and a willingness to be disturbed.
+# ---------------------------------------------------------------
+mythic_dawn.002 = {
+    type = character_event
+    title = mythic_dawn.002.t
+    desc  = mythic_dawn.002.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = mythic_dawn_initiate
+    }
+
+    option = {
+        name = mythic_dawn.002.a   # "I understand every word — and it frightens me."
+        trigger = { learning >= 14 }
+        add_character_flag = { flag = mythic_dawn_adept days = 3650 }
+        add_learning = 1
+        add_stress = 15
+    }
+
+    option = {
+        name = mythic_dawn.002.b   # "Most of it is impenetrable — but the faith is clear."
+        add_character_flag = { flag = mythic_dawn_adept days = 3650 }
+        add_stress = 5
+    }
+
+    option = {
+        name = mythic_dawn.002.c   # "This text is dangerous. I burn my copy."
+        remove_character_flag = mythic_dawn_initiate
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# mythic_dawn.003  Rising Through the Ranks
+# The inner circle has a task for those who prove themselves.
+# It is not symbolic. It is not a ritual. Someone must die,
+# or something must be taken. The Dawn does not accept
+# partial membership.
+# ---------------------------------------------------------------
+mythic_dawn.003 = {
+    type = character_event
+    title = mythic_dawn.003.t
+    desc  = mythic_dawn.003.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = mythic_dawn_adept
+        NOT = { has_character_flag = mythic_dawn_inner_circle }
+    }
+
+    option = {
+        name = mythic_dawn.003.a   # "I eliminate their target."
+        trigger = { intrigue >= 14 }
+        add_character_flag = { flag = mythic_dawn_inner_circle days = 3650 }
+        add_modifier = {
+            modifier = mythic_dawn_inner_circle_insight
+            days = 1095
+        }
+        add_stress = 20
+        trigger_event = { id = mythic_dawn.004 days = 180 }
+    }
+
+    option = {
+        name = mythic_dawn.003.b   # "I steal the relic they want."
+        trigger = { intrigue >= 12 }
+        add_character_flag = { flag = mythic_dawn_inner_circle days = 3650 }
+        add_modifier = {
+            modifier = mythic_dawn_inner_circle_insight
+            days = 1095
+        }
+        trigger_event = { id = mythic_dawn.004 days = 180 }
+    }
+
+    option = {
+        name = mythic_dawn.003.c   # "I cannot do this. I walk away."
+        remove_character_flag = mythic_dawn_initiate
+        remove_character_flag = mythic_dawn_adept
+        add_prestige = -100
+    }
+}
+
+# ---------------------------------------------------------------
+# mythic_dawn.004  The Listener's Choice
+# The inner circle has one final ask: begin the ritual to open
+# a Gate. But the ruler has learned enough to know they have
+# other options — betray the cult, or seize control.
+# ---------------------------------------------------------------
+mythic_dawn.004 = {
+    type = character_event
+    title = mythic_dawn.004.t
+    desc  = mythic_dawn.004.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = mythic_dawn_inner_circle
+    }
+
+    option = {
+        name = mythic_dawn.004.a   # "Open the Gate. Let Mehrunes Dagon in."
+        trigger_event = { id = oblivion_gate.000 }
+        add_prestige = -300
+        add_stress = 40
+        remove_character_flag = mythic_dawn_initiate
+        remove_character_flag = mythic_dawn_adept
+        remove_character_flag = mythic_dawn_inner_circle
+    }
+
+    option = {
+        name = mythic_dawn.004.b   # "I betray them to the authorities."
+        add_prestige = 400
+        add_piety = 200
+        remove_character_flag = mythic_dawn_initiate
+        remove_character_flag = mythic_dawn_adept
+        remove_character_flag = mythic_dawn_inner_circle
+    }
+
+    option = {
+        name = mythic_dawn.004.c   # "I seize the cult's resources for myself."
+        trigger = { intrigue >= 16 }
+        add_gold = 300
+        add_intrigue = 2
+        add_character_flag = { flag = mythic_dawn_exposed days = 3650 }
+        trigger_event = { id = mythic_dawn.005 days = 90 }
+    }
+}
+
+# ---------------------------------------------------------------
+# mythic_dawn.005  Exposure
+# The cult's secrets do not stay secret. Someone at court
+# has pieced together enough to ask very uncomfortable questions.
+# ---------------------------------------------------------------
+mythic_dawn.005 = {
+    type = character_event
+    title = mythic_dawn.005.t
+    desc  = mythic_dawn.005.desc
+    theme = intrigue
+
+    option = {
+        name = mythic_dawn.005.a   # "Silence the informant."
+        trigger = { intrigue >= 14 }
+        add_prestige = -100
+        add_stress = 20
+    }
+
+    option = {
+        name = mythic_dawn.005.b   # "Confess and accept the consequences."
+        add_prestige = -300
+        add_piety = 100
+        remove_character_flag = mythic_dawn_initiate
+        remove_character_flag = mythic_dawn_adept
+        remove_character_flag = mythic_dawn_inner_circle
+    }
+}
