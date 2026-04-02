@@ -49,6 +49,33 @@
 #  • dagoth_ur_awakened   = scripted trigger in lore_races_triggers.txt
 # =============================================================
 
+# =============================================================
+#  LORE NOTES — ALL THREE TRIBUNAL TRIALS
+#
+#  Each god responds in a way consistent with their character:
+#
+#  VIVEC       — the warrior-poet.  He engages with his own
+#                contradictions.  He will not rage or deny outright.
+#                He layers truth in paradox and may, if pressed, allow
+#                something close to an admission.  The most nuanced trial.
+#
+#  ALMALEXIA   — the mother-protector.  She does not philosophise.
+#                She regards the accusation as a personal betrayal and
+#                responds with fury.  Pressing her is genuinely dangerous —
+#                but a ruler who holds firm exposes that a goddess who
+#                cannot bear judgment is no god at all.
+#
+#  SOTHA SIL   — the Clockwork God.  He is a recluse who barely
+#                interacts with mortals.  He does not deny his complicity;
+#                he simply does not accept that mortal justice is the
+#                correct frame.  His trial is the most unsettling: he
+#                might answer your charges fully and still leave you with
+#                nothing that feels like resolution.  Lore note: Sotha
+#                Sil retreated to his Clockwork City partly out of
+#                genuine shame over Nerevar's murder — scholars debate
+#                whether this constitutes remorse or avoidance.
+# =============================================================
+
 namespace = vivec_trial
 
 # ---------------------------------------------------------------
@@ -211,5 +238,391 @@ vivec_trial.021 = {
         remove_character_flag = vivec_charged_murder
         remove_character_flag = vivec_charged_betrayal
         remove_character_flag = vivec_charged_false_god
+    }
+}
+
+# =============================================================
+#  ALMALEXIA'S TRIAL — Confronting the Mother of Morrowind
+#  Namespace: almalexia_trial
+#
+#  LORE:
+#  Almalexia — Ayem — is the most politically aggressive of the
+#  Tribunal.  She ruled Morrowind directly from Mournhold, held
+#  court, granted audiences, and crushed dissent with her own
+#  Hands.  She was present at the murder of Nerevar — as much a
+#  conspirator as Vivec and Sotha Sil.
+#
+#  Unlike Vivec, Almalexia does not engage with the charge as a
+#  philosophical puzzle.  She experiences it as a personal
+#  affront: how dare a mortal question the Mother of Morrowind?
+#  Her response is fury — which, paradoxically, is exactly what
+#  an accuser needs.  A god who cannot bear judgment is no god
+#  at all.  That fury, visible to all, is the evidence.
+#
+#  Pressing the charge against Almalexia requires more raw
+#  courage than Vivec's trial — she will not deflect gently.
+#
+#  SEQUENCE:
+#  ─────────
+#  challenge_almalexia (decision) → almalexia_trial.000 →
+#      almalexia_trial.010 → almalexia_trial.020 (exposed)
+#                          or almalexia_trial.021 (silenced)
+#
+#  KEY FLAGS:
+#  ──────────
+#  • almalexia_trial_begun     — the trial is in progress
+#  • almalexia_charged         — charges laid against Almalexia
+#  • almalexia_exposed         — outcome: Almalexia's fury proves the charge
+# =============================================================
+
+namespace = almalexia_trial
+
+# ---------------------------------------------------------------
+# almalexia_trial.000  The Charges — Confronting Almalexia
+# Almalexia holds court in Mournhold.  The accuser must choose
+# which charge to press: her role in Nerevar's murder, her
+# suppression of those who question the Tribunal's origin, or
+# her abuse of divine power to rule through fear rather than love.
+# ---------------------------------------------------------------
+almalexia_trial.000 = {
+    type = character_event
+    title = almalexia_trial.000.t
+    desc = almalexia_trial.000.desc
+    theme = faith
+
+    option = {
+        name = almalexia_trial.000.a   # "You conspired in Nerevar's murder — you, who call yourself his people's mother."
+        trigger = {
+            has_trait = nerevarine_marked
+        }
+        add_character_flag = { flag = almalexia_trial_begun }
+        add_character_flag = { flag = almalexia_charged }
+        add_piety = 150
+        add_stress = 30
+        trigger_event = { id = almalexia_trial.010 days = 10 }
+    }
+
+    option = {
+        name = almalexia_trial.000.b   # "You silence every voice that questions how the Tribunal came to power."
+        trigger = {
+            has_trait = sixth_house_cultist
+        }
+        add_character_flag = { flag = almalexia_trial_begun }
+        add_character_flag = { flag = almalexia_charged }
+        add_intrigue = 1
+        add_stress = 25
+        trigger_event = { id = almalexia_trial.010 days = 10 }
+    }
+
+    option = {
+        name = almalexia_trial.000.c   # "You rule through fear dressed as love. That is not divine — it is tyranny."
+        add_character_flag = { flag = almalexia_trial_begun }
+        add_character_flag = { flag = almalexia_charged }
+        add_stress = 35
+        trigger_event = { id = almalexia_trial.010 days = 10 }
+    }
+}
+
+# ---------------------------------------------------------------
+# almalexia_trial.010  The Goddess Responds — Almalexia's Fury
+# Almalexia does not deflect with poetry or clockwork philosophy.
+# She rages.  Her response is immediate and visceral — how dare
+# you stand in her court and accuse her, the Mother of Morrowind,
+# who has bled for her people across centuries?
+# The character must choose: hold firm (the hard path) or yield
+# before the full weight of her wrath.
+# ---------------------------------------------------------------
+almalexia_trial.010 = {
+    type = character_event
+    title = almalexia_trial.010.t
+    desc = almalexia_trial.010.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = almalexia_trial_begun
+    }
+
+    option = {
+        name = almalexia_trial.010.a   # "Your anger is the answer to my charge. If you were innocent, you would not rage."
+        trigger = {
+            martial >= 14   # It takes genuine courage to hold your ground under Almalexia's fury
+        }
+        add_stress = 30
+        add_prowess = 1
+        trigger_event = { id = almalexia_trial.020 days = 10 }   # Fury is exposed — she cannot strike you down without proving everything
+    }
+
+    option = {
+        name = almalexia_trial.010.b   # "I will not be moved by divine rage. The charge stands."
+        trigger = {
+            has_trait = brave
+        }
+        add_stress = 25
+        trigger_event = { id = almalexia_trial.020 days = 10 }   # Bravery carries the trial
+    }
+
+    option = {
+        name = almalexia_trial.010.c   # "Forgive me, Mother. I spoke out of grief, not wisdom."
+        add_piety    = 75              # Capitulating earns her temple's approval
+        add_stress   = -10
+        add_prestige = -300            # Backing down before Almalexia is seen as weakness
+        remove_character_flag = almalexia_trial_begun
+        remove_character_flag = almalexia_charged
+        trigger_event = { id = almalexia_trial.021 days = 10 }   # She wins — you are silenced
+    }
+}
+
+# ---------------------------------------------------------------
+# almalexia_trial.020  The Mother Exposed
+# Almalexia's fury is her undoing.  A god who cannot endure
+# being questioned — who threatens rather than answers — has
+# revealed exactly what the accuser claimed: her authority rests
+# on fear, not truth.  The witnessing court sees it.
+# She cannot strike you down without destroying the facade entirely.
+# She does nothing.  And that silence is the verdict.
+# ---------------------------------------------------------------
+almalexia_trial.020 = {
+    type = character_event
+    title = almalexia_trial.020.t
+    desc = almalexia_trial.020.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = almalexia_trial_begun
+    }
+
+    option = {
+        name = almalexia_trial.020.a   # "She did not strike me down. She could not. That was the answer."
+        add_character_flag = { flag = almalexia_exposed }
+        add_piety    = 600              # A profound spiritual act — challenging a "goddess" and surviving
+        add_prestige = 1000             # The court witnessed it; it will be spoken of across Morrowind
+        add_stress   = -25              # Resolution, however hard-won, lifts a weight
+        add_modifier = {
+            modifier = almalexia_trial_victor_modifier
+            days = 1825   # 5-year recognition
+        }
+        remove_character_flag = almalexia_trial_begun
+        remove_character_flag = almalexia_charged
+    }
+}
+
+# ---------------------------------------------------------------
+# almalexia_trial.021  Silenced by the Mother
+# The accuser yielded.  Almalexia reasserts her divine authority
+# with cold precision — her earlier fury gone, replaced by the
+# measured warmth of a mother who has forgiven a wayward child.
+# It is, somehow, worse than her rage.
+# ---------------------------------------------------------------
+almalexia_trial.021 = {
+    type = character_event
+    title = almalexia_trial.021.t
+    desc = almalexia_trial.021.desc
+    theme = faith
+
+    option = {
+        name = almalexia_trial.021.a   # "She has forgiven me. That should feel better than it does."
+        add_prestige = -300             # You were publicly dismissed by a goddess
+        add_piety    = 75               # Almalexia's temple approves of the reconciliation
+        add_stress   = 20               # Being publicly silenced by a god is not easy to process
+        remove_character_flag = almalexia_trial_begun
+        remove_character_flag = almalexia_charged
+    }
+}
+
+# =============================================================
+#  SOTHA SIL'S TRIAL — Confronting the Clockwork God
+#  Namespace: sotha_sil_trial
+#
+#  LORE:
+#  Sotha Sil retreated to his Clockwork City almost immediately
+#  after the Battle of Red Mountain and rarely emerged.  In lore,
+#  scholars believe his retreat was partly motivated by genuine
+#  shame over Nerevar's murder — though whether that constitutes
+#  remorse or mere discomfort is debated.
+#
+#  Unlike Vivec (who philosophises) or Almalexia (who rages),
+#  Sotha Sil is indifferent — not callously, but cosmically.
+#  He has stepped back from mortal affairs to work on what he
+#  believes is the real problem: the fundamental nature of reality.
+#  Mortal justice, in his view, is not the correct frame for
+#  what happened.  He might acknowledge the murder fully — and
+#  then ask whether that acknowledgment changes anything.
+#
+#  The charge reaches him via a message to the Clockwork City.
+#  Remarkably, he responds — because Sotha Sil is, at his core,
+#  an intellectual who respects a question genuinely asked.
+#
+#  Requires learning >= 16 to formulate a charge that can reach
+#  him across the conceptual distance of the Clockwork City.
+#
+#  SEQUENCE:
+#  ─────────
+#  challenge_sotha_sil (decision) → sotha_sil_trial.000 →
+#      sotha_sil_trial.010 → sotha_sil_trial.020 (answered)
+#                          or sotha_sil_trial.021 (dismissed)
+#
+#  KEY FLAGS:
+#  ──────────
+#  • sotha_sil_trial_begun  — the challenge has been issued
+#  • sotha_sil_charged      — the charges have been laid
+#  • sotha_sil_answered     — Sotha Sil answered the charge fully
+# =============================================================
+
+namespace = sotha_sil_trial
+
+# ---------------------------------------------------------------
+# sotha_sil_trial.000  The Charges — Reaching the Clockwork God
+# A message is sent to the Clockwork City — which, surprisingly,
+# receives a reply.  Sotha Sil agrees to hear the charges.
+# The accuser must choose which charge to press: his complicity
+# in Nerevar's murder, his abandonment of divine responsibility,
+# or his use of the Clockwork City as a place to hide from
+# the consequences of what the Tribunal did.
+# ---------------------------------------------------------------
+sotha_sil_trial.000 = {
+    type = character_event
+    title = sotha_sil_trial.000.t
+    desc = sotha_sil_trial.000.desc
+    theme = faith
+
+    option = {
+        name = sotha_sil_trial.000.a   # "You helped murder Nerevar. Your silence since is not innocence — it is guilt made architecture."
+        trigger = {
+            has_trait = nerevarine_marked
+        }
+        add_character_flag = { flag = sotha_sil_trial_begun }
+        add_character_flag = { flag = sotha_sil_charged }
+        add_learning = 1
+        add_stress = 20
+        trigger_event = { id = sotha_sil_trial.010 days = 14 }
+    }
+
+    option = {
+        name = sotha_sil_trial.000.b   # "You abandoned your people. You built a city of gears rather than face what you had done."
+        add_character_flag = { flag = sotha_sil_trial_begun }
+        add_character_flag = { flag = sotha_sil_charged }
+        add_piety = 100
+        add_stress = 15
+        trigger_event = { id = sotha_sil_trial.010 days = 14 }
+    }
+
+    option = {
+        name = sotha_sil_trial.000.c   # "Your Clockwork City is not wisdom — it is an apology you never had the courage to speak aloud."
+        trigger = {
+            has_trait = sixth_house_cultist
+        }
+        add_character_flag = { flag = sotha_sil_trial_begun }
+        add_character_flag = { flag = sotha_sil_charged }
+        add_intrigue = 1
+        add_stress = 25
+        trigger_event = { id = sotha_sil_trial.010 days = 14 }
+    }
+}
+
+# ---------------------------------------------------------------
+# sotha_sil_trial.010  The Clockwork God Responds
+# Sotha Sil's reply arrives — it is not what the accuser expected.
+# He does not deny the charges.  He does not rage.  He speaks with
+# the calm of someone who has already adjudicated this question
+# himself, privately, many times.  He asks a question in return
+# that is either a dodge or a genuine philosophical problem —
+# it is not easy to tell which.
+# The character must choose: accept the answer as the most honest
+# thing a god has ever said (a strange kind of satisfaction),
+# or push for something that feels more like justice.
+# ---------------------------------------------------------------
+sotha_sil_trial.010 = {
+    type = character_event
+    title = sotha_sil_trial.010.t
+    desc = sotha_sil_trial.010.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = sotha_sil_trial_begun
+    }
+
+    option = {
+        name = sotha_sil_trial.010.a   # "That is either wisdom or cowardice. I am not sure which — but I will accept it."
+        trigger = {
+            learning >= 16
+        }
+        add_stress = 15
+        trigger_event = { id = sotha_sil_trial.020 days = 10 }   # Sotha Sil answers fully — unsettling but honest
+    }
+
+    option = {
+        name = sotha_sil_trial.010.b   # "Philosophy is not absolution. I want you to say it plainly."
+        trigger = {
+            martial >= 12
+        }
+        add_stress = 25
+        trigger_event = { id = sotha_sil_trial.020 days = 10 }   # He answers plainly — and it is stranger still
+    }
+
+    option = {
+        name = sotha_sil_trial.010.c   # "I do not have the learning to answer that. The question overwhelms me."
+        add_stress = 20
+        add_prestige = -150            # Retreating from the Clockwork God's counter-question reads as defeat
+        remove_character_flag = sotha_sil_trial_begun
+        remove_character_flag = sotha_sil_charged
+        trigger_event = { id = sotha_sil_trial.021 days = 10 }   # Dismissed — not unkindly, but conclusively
+    }
+}
+
+# ---------------------------------------------------------------
+# sotha_sil_trial.020  The Answer
+# Sotha Sil answers.  He acknowledges the murder plainly — in
+# a way neither Vivec (metaphor) nor Almalexia (fury) would.
+# But his answer is not redemptive.  He says: yes, Nerevar was
+# betrayed.  Yes, the Tribunal built their divinity on that betrayal.
+# And he is trying to fix what was broken — not in Morrowind,
+# but in the fabric of reality itself, which the Heart of Lorkhan
+# has distorted.  His Clockwork City is the attempt at penance,
+# however incomprehensible to mortal eyes.
+# It is not satisfying.  It is not justice.  But it is the most
+# honest thing any Tribunal god has ever said about Red Mountain.
+# ---------------------------------------------------------------
+sotha_sil_trial.020 = {
+    type = character_event
+    title = sotha_sil_trial.020.t
+    desc = sotha_sil_trial.020.desc
+    theme = faith
+
+    trigger = {
+        has_character_flag = sotha_sil_trial_begun
+    }
+
+    option = {
+        name = sotha_sil_trial.020.a   # "That is not justice. But it may be something rarer — truth."
+        add_character_flag = { flag = sotha_sil_answered }
+        add_piety    = 400              # A genuine answer from a god — Azura acknowledges it
+        add_prestige = 600              # The account of this exchange will be debated for generations
+        add_learning = 2                # What Sotha Sil said will not stop echoing
+        add_stress   = 20               # The answer is honest — but not comforting
+        remove_character_flag = sotha_sil_trial_begun
+        remove_character_flag = sotha_sil_charged
+    }
+}
+
+# ---------------------------------------------------------------
+# sotha_sil_trial.021  Dismissed from the Clockwork City
+# The accuser could not follow Sotha Sil's question to its end.
+# The Clockwork God does not pursue or punish — he simply
+# returns to his work.  There is no malice in his dismissal.
+# That makes it harder, not easier.
+# ---------------------------------------------------------------
+sotha_sil_trial.021 = {
+    type = character_event
+    title = sotha_sil_trial.021.t
+    desc = sotha_sil_trial.021.desc
+    theme = faith
+
+    option = {
+        name = sotha_sil_trial.021.a   # "He did not mock me. He simply went back to his machines. That stings more."
+        add_prestige = -100             # Failed to hold Sotha Sil's attention
+        add_learning = 1                # Even the failed exchange leaves something behind
+        add_stress   = 15
+        remove_character_flag = sotha_sil_trial_begun
+        remove_character_flag = sotha_sil_charged
     }
 }

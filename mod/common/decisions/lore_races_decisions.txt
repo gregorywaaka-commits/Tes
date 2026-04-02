@@ -523,3 +523,91 @@ pledge_as_almalexias_hand = {
         }
     }
 }
+
+# Challenge Almalexia to answer for her role in Nerevar's murder
+challenge_almalexia = {
+    picture = "gfx/interface/icons/decisions/decision_faith.dds"
+    desc = challenge_almalexia_desc
+
+    is_shown = {
+        is_ruler = yes
+        has_culture = dunmer_culture
+        dagoth_ur_awakened = yes
+        OR = {
+            has_trait = sixth_house_cultist
+            has_trait = nerevarine_marked
+        }
+        NOT = { has_character_flag = almalexia_trial_begun }
+        NOT = { has_character_flag = almalexia_exposed }
+    }
+
+    is_valid = {
+        martial  >= 14    # Almalexia demands more courage than Vivec — she rages, not deflects
+        prestige >= 500
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -500
+        trigger_event = { id = almalexia_trial.000 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 15
+            has_trait = nerevarine_marked
+        }
+        modifier = {
+            add = 10
+            has_trait = brave
+        }
+    }
+}
+
+# Challenge Sotha Sil to answer for his complicity in Nerevar's murder
+challenge_sotha_sil = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = challenge_sotha_sil_desc
+
+    is_shown = {
+        is_ruler = yes
+        dagoth_ur_awakened = yes
+        OR = {
+            has_trait = sixth_house_cultist
+            has_trait = nerevarine_marked
+        }
+        NOT = { has_character_flag = sotha_sil_trial_begun }
+        NOT = { has_character_flag = sotha_sil_answered }
+    }
+
+    is_valid = {
+        learning >= 16    # The highest skill gate of all three Tribunal trials — Sotha Sil
+                          # only engages with a question formulated at the level of a true scholar
+        prestige >= 300
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -300
+        trigger_event = { id = sotha_sil_trial.000 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 20
+            learning >= 20
+        }
+        modifier = {
+            add = 10
+            has_trait = nerevarine_marked
+        }
+    }
+}

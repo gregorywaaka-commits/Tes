@@ -1755,6 +1755,19 @@ vivec_trial_victor_modifier = {
     monthly_prestige_gain_mult = 0.20   # The ruler who cornered Vivec is admired and feared
 }
 
+# Applied when the accuser exposed Almalexia — held firm under her fury and let
+# the court witness that a goddess who cannot bear judgment is no goddess at all.
+# Duration: 1825 days (5 years).
+almalexia_trial_victor_modifier = {
+    martial    = 2
+    diplomacy  = 2
+    monthly_piety_gain_mult    = 0.20   # Azura and the Ashlanders revere this act of courage
+    monthly_prestige_gain_mult = 0.25   # The court of Morrowind watched — the story spreads fast
+    command_modifier = {
+        advantage  = 2    # "The one who faced Almalexia's fury and did not flinch"
+    }
+}
+
 # Applied immediately after investiture as a Hand of Almalexia.
 # Represents the goddess's freshly-given blessing — warm, fierce, and protective.
 # Duration: 1825 days (5 years).

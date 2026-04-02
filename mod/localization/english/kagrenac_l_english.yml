@@ -96,3 +96,67 @@
  almalexia_hands.005.desc: "A messenger bearing Almalexia's seal arrives — you recognise the mark of her sanctum in Mournhold.\n\nThe message is brief, as the Mother's commands always are: §H'There is a matter that requires a Hand. The Sixth House moves in the east, and the faithful are frightened. Come when you are able — which is to say, now.'§!\n\nAlmalexia does not ask. She calls. And her Hands answer."
  almalexia_hands.005.a: "I go at once. Morrowind comes before my own plans — it always has."
  almalexia_hands.005.b: "My other duties must come first this month. I will answer the call as soon as I can."
+
+ # =============================================================
+ #  Almalexia's Trial
+ # =============================================================
+
+ challenge_almalexia_desc: "Almalexia — the Mother of Morrowind, the fierce heart of the Tribunal — was present at Red Mountain. She conspired in Nerevar's murder as surely as Vivec did. Unlike Vivec, she will not engage with the charge as a puzzle. She will rage. And that rage may be exactly the evidence you need."
+
+ # Modifier
+ almalexia_trial_victor_modifier: "The One Who Faced the Mother"
+ almalexia_trial_victor_modifier_desc: "This ruler held firm under Almalexia's divine fury and let the witnessing court see it: a goddess who cannot endure being questioned is not the mother she claims to be. That moment will be spoken of for years."
+
+ # almalexia_trial.000
+ almalexia_trial.000.t: "The Charges Against the Mother of Morrowind"
+ almalexia_trial.000.desc: "You are in Almalexia's court in Mournhold — a hall of devotional gold and silent attendants who have learned not to breathe too loudly when the Mother is present.\n\nShe is watching you with that expression she wears like armour: warm, proud, immovable. She knows why you are here. She has always known why people come with that particular look in their eyes.\n\nShe does not look afraid. She has never looked afraid.\n\nWhat are the charges you lay before her?"
+ almalexia_trial.000.a: "You conspired in Nerevar's murder — you, who name yourself the mother of his people."
+ almalexia_trial.000.b: "You silence every voice that asks how the Tribunal came to power. That is not faith — it is fear."
+ almalexia_trial.000.c: "You rule through fear dressed as love. That is not divine — it is tyranny."
+
+ # almalexia_trial.010
+ almalexia_trial.010.t: "The Goddess Responds"
+ almalexia_trial.010.desc: "The warmth leaves her face.\n\nWhat replaces it is not cold — it is something hotter than warmth, something that fills the room the way a forge fills a smithy: all heat, no comfort.\n\n§H'You stand in my court,'§! she says, and her voice is steady in the way that water is steady before the dam breaks. §H'In my city. In my Morrowind. And you speak these words to me — to me, who bled for this people across ages, who held this land together with her own hands while others retreated to their clockwork rooms and their poetry?'§!\n\nShe is on her feet now. Her Hands have moved between you and her throne.\n\nThis is the moment. If you yield, the trial ends here. If you hold, you will be forcing a goddess to either strike you down before her court — or stand there, unable to — and let everyone present understand what that means."
+ almalexia_trial.010.a: "Your anger is the answer to my charge, Mother. If you were innocent, you would not rage."
+ almalexia_trial.010.b: "I will not be moved by divine fury. I have come for the truth, not your forgiveness."
+ almalexia_trial.010.c: "Forgive me, Mother. I spoke out of grief, not wisdom. I should not have come."
+
+ # almalexia_trial.020
+ almalexia_trial.020.t: "The Mother Exposed"
+ almalexia_trial.020.desc: "She does not strike you down.\n\nFor a long moment the entire court holds its breath — the Hands are still, the attendants are still, and Almalexia herself is still, and in that stillness something enormous shifts.\n\nEveryone present understands: she cannot strike you down. Not here. Not with the court watching. To do so would prove every word you said.\n\nHer silence is the verdict.\n\nShe holds your gaze for three long seconds — and then, with immense, terrible dignity, she turns and walks back to her throne. The audience is ended.\n\nYou walk out of Mournhold alive. Behind you, the court begins, very quietly, to talk."
+ almalexia_trial.020.a: "She did not strike me down. She could not. That silence will outlast her."
+
+ # almalexia_trial.021
+ almalexia_trial.021.t: "Silenced by the Mother"
+ almalexia_trial.021.desc: "The fury passes.\n\nAlmalexia regards you for a moment longer — and then her expression shifts, seamlessly, back to warmth: the warmth of a mother forgiving a child who has said something foolish and hurtful.\n\n§H'I understand,'§! she says, and her voice is almost gentle. §H'You are grieving. We all grieve in our own way. But grief must not be allowed to speak as accusation — not in this court, not before these people.'§!\n\nShe gestures to her Hands. The audience is ended.\n\nOutside in the sunlight of Mournhold, you feel something you cannot quite name — not shame, exactly, but something close to it, pressed against the edges of your pride."
+ almalexia_trial.021.a: "She forgave me. That should feel better than it does."
+
+ # =============================================================
+ #  Sotha Sil's Trial
+ # =============================================================
+
+ challenge_sotha_sil_desc: "Sotha Sil has not spoken to a ruler in decades. He retreated to his Clockwork City and built his silence into walls of brass and clockwork. But a message, carefully worded — formulating a charge that demands a response from an intellect that still, despite everything, respects a question genuinely asked — may find its way through."
+
+ # sotha_sil_trial.000
+ sotha_sil_trial.000.t: "A Message to the Clockwork City"
+ sotha_sil_trial.000.desc: "You spend three weeks crafting the message. Not a demand. Not a threat. A question — precise, logical, undeflectable — sent to the Clockwork City via a scholar who knows the way.\n\nTwo days later, the scholar returns with a reply.\n\nSotha Sil will hear the charges.\n\nYou had not expected that. None of your advisors expected it either. But Sotha Sil is, at his core, a mind — and a mind of that calibre still recognises a question that cannot be left unanswered.\n\nWhat do you say to the Clockwork God?"
+ sotha_sil_trial.000.a: "You helped murder Nerevar. Your Clockwork City is guilt made architecture — a place to hide from what you did."
+ sotha_sil_trial.000.b: "You abandoned Morrowind. You built a city of gears rather than face the people whose trust you betrayed."
+ sotha_sil_trial.000.c: "Your Clockwork City is not wisdom — it is an apology you never had the courage to speak aloud."
+
+ # sotha_sil_trial.010
+ sotha_sil_trial.010.t: "The Clockwork God Responds"
+ sotha_sil_trial.010.desc: "The reply comes not in a letter but in person — Sotha Sil steps out of his City to receive you, which no one living has seen him do within memory.\n\nHe is smaller than the legends suggest. Quieter.\n\nHe does not deny the charge. He says:\n\n§H'What you have described is accurate. We made a choice that cost Nerevar his life and Morrowind its foundation. I have spent the intervening years attempting to address the fundamental error — not the murder, which cannot be unmade, but the thing that made the murder feel necessary.'§!\n\nHe pauses.\n\n§H'The question I have for you is this: what would you have had us do differently? Not to exonerate us — but because the answer reveals whether justice or understanding is what you actually came here for.'§!"
+ sotha_sil_trial.010.a: "That is either the deepest wisdom or the cleverest evasion I have ever heard. I will accept it."
+ sotha_sil_trial.010.b: "I came for plain words, not a counter-question. Say it without the philosophy."
+ sotha_sil_trial.010.c: "I do not have the learning to answer that. The question is too large for me."
+
+ # sotha_sil_trial.020
+ sotha_sil_trial.020.t: "The Answer"
+ sotha_sil_trial.020.desc: "He nods — just once.\n\n§H'Nerevar was betrayed by those who believed the cost was justified. I believed it. I no longer do. That change of view does not undo what was done — it is simply what happened inside me across several hundred years of working alone in a city of my own construction.'§!\n\nHe does not ask for forgiveness. He does not offer apology. He says:\n\n§H'What I can tell you is that everything I have built here is an attempt to correct the error at a level deeper than the one on which it was made. Whether that constitutes penance is a question for philosophers. It is all I have.'§!\n\nHe turns and walks back toward the Clockwork City.\n\nYou stand there for a long time.\n\nIt is not justice. But it may be the only honest reckoning you were ever going to get from any of them."
+ sotha_sil_trial.020.a: "It is not justice. But it may be something rarer: truth without ornament."
+
+ # sotha_sil_trial.021
+ sotha_sil_trial.021.t: "Dismissed from the Clockwork City"
+ sotha_sil_trial.021.desc: "Sotha Sil looks at you for a moment.\n\nNot unkindly.\n\n§H'You came with a charge that required an answer,'§! he says. §H'But when I gave you one, you could not follow it. That is not a failure of intelligence — the question was genuinely large. Consider it at your leisure. The answer may become clearer with time.'§!\n\nHe steps back through the gate of the Clockwork City.\n\nThe gate closes. The machines continue their endless turning.\n\nYou had expected rage, or denial, or philosophical sleight of hand. You did not expect to be sent home like a student who had not yet done the reading."
+ sotha_sil_trial.021.a: "He did not mock me. He simply returned to his work. That is somehow more difficult to carry."
