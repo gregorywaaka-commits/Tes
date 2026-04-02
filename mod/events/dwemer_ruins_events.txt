@@ -1,0 +1,296 @@
+# =============================================================
+#  Dwemer Ruins Events
+#  Namespace: dwemer
+#  File: mod/events/dwemer_ruins_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  dwemer.000  Yearly flavour — rumours of a ruin reach court
+#  dwemer.001  Expedition descends into the depths (decision trigger)
+#  dwemer.002  The Animunculi Awaken — combat encounter mid-expedition
+#  dwemer.003  Tonal Architecture study begins (decision trigger)
+#  dwemer.004  The Tonal Breakthrough — mastery achieved
+#  dwemer.005  The Ruin Collapses — excavation disaster
+#  dwemer.006  Dwemer Memory Stone — a tonal recording discovered
+#  dwemer.007  The Aetherium Cache — rare crystal deposit found
+# =============================================================
+
+namespace = dwemer
+
+# ---------------------------------------------------------------
+# dwemer.000  Rumours of the Brass Halls
+# A yearly flavour event — a traveller or scholar brings news of
+# a nearby Dwemer ruin.  Gates the explore_dwemer_ruin decision.
+# Fires from on_yearly_pulse (lore_races_on_actions.txt).
+# ---------------------------------------------------------------
+dwemer.000 = {
+    type = character_event
+    title = dwemer.000.t
+    desc  = dwemer.000.desc
+    theme = learning
+
+    trigger = {
+        can_explore_dwemer_ruin = yes
+        learning >= 8
+    }
+
+    option = {
+        name = dwemer.000.a   # "Gather what maps and lanterns you can."
+        add_prestige = 50
+        # This event is purely a flavour notice — the player now sees
+        # the explore_dwemer_ruin decision in their decision panel.
+    }
+
+    option = {
+        name = dwemer.000.b   # "Such places are best left to the dead."
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# dwemer.001  Into the Depths
+# Triggered by the explore_dwemer_ruin decision (days = 30).
+# Three possible outcomes: discovery, animunculi ambush, collapse.
+# ---------------------------------------------------------------
+dwemer.001 = {
+    type = character_event
+    title = dwemer.001.t
+    desc  = dwemer.001.desc
+    theme = learning
+
+    option = {
+        name = dwemer.001.a   # "Press deeper — the brass doors are opening."
+        # Success path — rewards scholarship and excavation bonus
+        trigger = { learning >= 12 }
+        begin_dwemer_excavation = yes
+        add_prestige = 300
+        trigger_event = { id = dwemer.006 days = 90 }
+    }
+
+    option = {
+        name = dwemer.001.b   # "Careful — something stirs in the lower hall."
+        # Animunculi encounter — leads to dwemer.002
+        trigger = { martial >= 10 }
+        trigger_event = { id = dwemer.002 }
+    }
+
+    option = {
+        name = dwemer.001.c   # "The floor is giving way — retreat now!"
+        # Collapse path — worst outcome
+        trigger_ruin_collapse = yes
+        trigger_event = { id = dwemer.005 days = 10 }
+    }
+}
+
+# ---------------------------------------------------------------
+# dwemer.002  The Animunculi Awaken
+# The expedition encounters active Dwemer automatons.
+# The ruler can fight, attempt to reprogram them, or flee.
+# ---------------------------------------------------------------
+dwemer.002 = {
+    type = character_event
+    title = dwemer.002.t
+    desc  = dwemer.002.desc
+    theme = martial
+
+    option = {
+        name = dwemer.002.a   # "Hold formation — destroy them!"
+        # Combat choice — prestige reward, some casualties
+        trigger = { martial >= 12 }
+        add_prestige = 200
+        add_stress   = 15
+        # The expedition fights through; ruin yields its secrets
+        begin_dwemer_excavation = yes
+    }
+
+    option = {
+        name = dwemer.002.b   # "I have studied their mechanisms — let me try."
+        # Scholar option — learn to control them
+        trigger = { learning >= 14 }
+        activate_animunculi_guard = yes
+        begin_dwemer_excavation   = yes
+        add_prestige = 400
+        # Rare chance to discover the Aetherium cache while reprogramming
+        random = {
+            chance = 20
+            trigger_event = { id = dwemer.007 days = 30 }
+        }
+    }
+
+    option = {
+        name = dwemer.002.c   # "Fall back — this was a mistake."
+        # Retreat — costs prestige, minor stress
+        add_prestige = -100
+        add_stress   = 10
+        add_modifier = {
+            modifier = dwemer_expedition_cooldown
+            days     = 365
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# dwemer.003  The Weight of Ages
+# Triggered by study_tonal_architecture decision.
+# Marks the start of years of deep Dwemer study.
+# ---------------------------------------------------------------
+dwemer.003 = {
+    type = character_event
+    title = dwemer.003.t
+    desc  = dwemer.003.desc
+    theme = learning
+
+    option = {
+        name = dwemer.003.a   # "I will not rest until I understand."
+        add_learning = 2
+        add_stress   = 10    # The commitment is demanding
+        # After 2 years the tonal_study_active flag expires;
+        # dwemer.004 fires from on_yearly_pulse if flag is still active and learning is high enough.
+    }
+
+    option = {
+        name = dwemer.003.b   # "I begin the work — but cautiously."
+        add_learning = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# dwemer.004  The Tonal Breakthrough
+# Fires from on_yearly_pulse if tonal_study_active is set
+# and the ruler has achieved sufficient learning.
+# Grants the tonal_architect trait.
+# ---------------------------------------------------------------
+dwemer.004 = {
+    type = character_event
+    title = dwemer.004.t
+    desc  = dwemer.004.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = tonal_study_active
+        is_dwemer_scholar  = yes
+        NOT = { has_trait = tonal_architect }
+        learning >= 20
+        age >= 25
+    }
+
+    option = {
+        name = dwemer.004.a   # "I understand now. The Dwemer did not create — they resonated."
+        remove_character_flag = tonal_study_active
+        add_trait    = tonal_architect
+        add_prestige = 500
+        add_piety    = 200
+        add_learning = 3
+    }
+}
+
+# ---------------------------------------------------------------
+# dwemer.005  The Ruin Collapses
+# Flavour event that fires after trigger_ruin_collapse.
+# ---------------------------------------------------------------
+dwemer.005 = {
+    type = character_event
+    title = dwemer.005.t
+    desc  = dwemer.005.desc
+    theme = martial
+
+    option = {
+        name = dwemer.005.a   # "We are fortunate to escape with our lives."
+        add_stress = 20
+    }
+
+    option = {
+        name = dwemer.005.b   # "We will return when the rubble is cleared."
+        add_prestige = -50
+    }
+}
+
+# ---------------------------------------------------------------
+# dwemer.006  The Memory Stone
+# A tonal recording device found in the excavated ruin.
+# A ghost of a Dwemer scholar speaks — in a language no living
+# person fully understands.
+# ---------------------------------------------------------------
+dwemer.006 = {
+    type = character_event
+    title = dwemer.006.t
+    desc  = dwemer.006.desc
+    theme = learning
+
+    trigger = {
+        has_excavated_ruin_in_demesne = yes
+        NOT = { has_variable = dwemer_memory_stone_found }
+    }
+
+    immediate = {
+        set_variable = { name = dwemer_memory_stone_found value = yes }
+    }
+
+    option = {
+        name = dwemer.006.a   # "Transcribe every word — even the untranslatable ones."
+        add_learning = 2
+        add_prestige = 150
+        # Studying the stone pushes a scholar toward tonal mastery
+        if = {
+            limit = {
+                is_dwemer_scholar = yes
+                learning >= 16
+                NOT = { has_trait = tonal_architect }
+                NOT = { has_character_flag = tonal_study_active }
+            }
+            add_modifier = {
+                modifier = tonal_architecture_insight_modifier
+                days     = 365
+            }
+        }
+    }
+
+    option = {
+        name = dwemer.006.b   # "It speaks of things I cannot grasp — but it is beautiful."
+        add_piety    = 100
+        add_prestige = 75
+        add_stress   = -10    # The experience is strangely peaceful
+    }
+}
+
+# ---------------------------------------------------------------
+# dwemer.007  The Aetherium Cache
+# Deep in the ruin, the expedition discovers a vein of raw
+# Aetherium crystals.  A rare and profound discovery.
+# ---------------------------------------------------------------
+dwemer.007 = {
+    type = character_event
+    title = dwemer.007.t
+    desc  = dwemer.007.desc
+    theme = learning
+
+    trigger = {
+        has_excavated_ruin_in_demesne = yes
+        NOT = { has_variable = dwemer_aetherium_found }
+    }
+
+    immediate = {
+        set_variable = { name = dwemer_aetherium_found value = yes }
+    }
+
+    option = {
+        name = dwemer.007.a   # "Touch it — and understand."
+        # Risk: Aetherium attunement is powerful but unpredictable
+        trigger = { learning >= 14 }
+        grant_aetherium_attunement = yes
+        add_prestige = 300
+    }
+
+    option = {
+        name = dwemer.007.b   # "Mine it carefully and sell what we extract."
+        # Safer choice — wealth but no attunement
+        add_gold     = 500
+        add_prestige = 200
+    }
+
+    option = {
+        name = dwemer.007.c   # "Leave it. Some things the Dwemer kept for good reason."
+        add_piety    = 100
+        add_stress   = -10
+    }
+}

@@ -1585,3 +1585,56 @@ dragonfires_lit_modifier = {
 
 # Cooldown between Amulet of Kings post-events
 amulet_post_event_cooldown = { }
+
+# =============================================================
+#  DWEMER RUINS EXPLORATION
+#  Context: The Dwemer (Deep-Elves) vanished in 1E 700 at the
+#  Battle of Red Mountain.  Their ruins — Nchuand-Zel, Blackreach,
+#  Mzinchaleft and dozens more — litter Morrowind, Skyrim, and
+#  Hammerfell, filled with animunculi (automatons), Aetherium
+#  crystal, and tonal architecture texts.
+#  Applied by: begin_dwemer_excavation, trigger_ruin_collapse,
+#               activate_animunculi_guard, grant_aetherium_attunement
+#               (dwemer_ruins_effects.txt)
+#  Checked by: dwemer_ruins_triggers.txt
+# =============================================================
+
+# Applied to a county where a successful Dwemer excavation has begun.
+# Scholars and merchants flock to the ruin site.
+# Duration: 1825 days (5 years).
+dwemer_ruin_excavated_modifier = {
+    development_growth_factor  = 0.15   # Scholars and engineers settle nearby
+    monthly_income             = 0.10   # Trade in recovered mechanisms and texts
+}
+
+# Applied to a county defended by reactivated Dwemer animunculi
+# (spheres, spiders, centurions stationed by an animunculi_master).
+# Duration: 1825 days — until the automatons wind down.
+animunculi_guard_modifier = {
+    garrison_size     = 0.20            # Automaton patrols bolster the garrison
+    supply_limit_mult = 0.10            # Efficient Dwemer storage systems
+    monthly_income    = -0.05           # Maintenance: oil, replacement parts, tonal upkeep
+}
+
+# Applied to a character who has gained meaningful insight into
+# Dwemer tonal architecture principles from excavated texts.
+# Duration: 730 days (2 years) while the insight is fresh.
+tonal_architecture_insight_modifier = {
+    learning                   = 3
+    monthly_prestige_gain_mult = 0.10
+    stress_gain_mult           = -0.10  # Deep intellectual absorption reduces daily stress
+}
+
+# Applied to a county where an unstable Dwemer ruin has partially
+# collapsed during excavation — dangerous rubble and gas-pockets.
+# Duration: 730 days (2 years) to clear.
+dwemer_ruin_collapse_modifier = {
+    monthly_income            = -0.15   # Area cordoned off; merchants avoid it
+    development_growth_factor = -0.20   # Construction near the collapse is impossible
+    supply_limit_mult         = -0.10   # Supply routes disrupted by debris
+}
+
+# Cooldown: prevents a ruler from immediately repeating a Dwemer
+# expedition after one concludes (success or collapse).
+# Duration varies — set by begin_dwemer_excavation / trigger_ruin_collapse.
+dwemer_expedition_cooldown = { }

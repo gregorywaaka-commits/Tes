@@ -1,0 +1,59 @@
+# =============================================================
+#  Dwemer Ruins Traits
+#  File: mod/common/traits/dwemer_ruins_traits.txt
+#
+#  These traits are gained through Dwemer ruin exploration,
+#  tonal architecture study, and animunculi mastery.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • curious (CK3 vanilla trait) — referenced in decisions
+#  • scholar  (CK3 vanilla trait) — referenced in decisions
+# =============================================================
+
+# A ruler who has studied recovered Dwemer texts and mechanisms.
+# Prerequisite for tonal architecture study.
+dwemer_scholar = {
+    category = lifestyle
+    learning    = 4
+    stewardship = 2
+    monthly_prestige = 1
+    flag = dwemer_scholar
+}
+
+# A warrior-engineer who has learned to reactivate and command
+# Dwemer animunculi (spheres, spiders, centurions).
+animunculi_master = {
+    category = lifestyle
+    learning = 3
+    martial  = 3
+    command_modifier = {
+        advantage = 3      # Automaton cohorts in battle are a decisive edge
+    }
+    flag = animunculi_master
+}
+
+# A rare scholar who has decoded Kagrenac's fundamental principles —
+# the manipulation of sound-as-creation that underpinned all Dwemer craft.
+# Only gained after years of deep study (see study_tonal_architecture decision).
+tonal_architect = {
+    category = fame
+    learning    = 7
+    diplomacy   = 2
+    # monthly_prestige_gain_mult (multiplicative) is intentional here — tonal_architect is a
+    # fame-tier trait whose prestige benefit scales with the ruler's existing prestige income,
+    # unlike the flat monthly_prestige = 1 used on entry-level lifestyle traits above.
+    monthly_prestige_gain_mult = 0.15
+    monthly_piety_gain_mult    = 0.10
+    flag = tonal_architect
+}
+
+# A character who has been physically attuned to raw Aetherium crystals
+# found deep in Dwemer ruins. The attunement grants arcane sensitivity.
+aetherium_attuned = {
+    category = special
+    learning = 2
+    monthly_piety_gain_mult = 0.10
+    stress_gain_mult = -0.10    # The crystal's resonance calms the mind
+    flag = aetherium_attuned
+}
