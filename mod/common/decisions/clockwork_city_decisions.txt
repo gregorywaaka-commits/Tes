@@ -21,6 +21,25 @@
 #  hidden — even knowing it exists does not mean finding it is
 #  easy.  Success fires clockwork.001 after 60 days.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/clockwork_city_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • seek_clockwork_city
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → clockwork_initiate
+#    common/traits/tribunal_traits.txt
+#      → sotha_sil_student
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/clockwork_city_events.txt
+#      → seek_clockwork_city
+# =============================================================
+
 seek_clockwork_city = {
     picture = "gfx/interface/icons/decisions/decision_personal.dds"
     desc = seek_clockwork_city_desc

@@ -14,6 +14,28 @@
 #  lands for Dwemer ruin sites and mount an expedition.
 #  Success grants dwemer_scholar; failure risks collapse or ambush.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/dwemer_ruins_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • explore_dwemer_ruin
+#    • study_tonal_architecture
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/scripted_triggers/dwemer_ruins_triggers.txt
+#      → can_explore_dwemer_ruin, can_study_tonal_architecture, is_dwemer_scholar
+#    common/traits/dwemer_ruins_traits.txt
+#      → dwemer_scholar
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/traits/dwemer_ruins_traits.txt
+#      → study_tonal_architecture
+#    events/dwemer_ruins_events.txt
+#      → explore_dwemer_ruin, study_tonal_architecture
+# =============================================================
+
 explore_dwemer_ruin = {
     picture = "gfx/interface/icons/decisions/decision_realm.dds"
     desc = explore_dwemer_ruin_desc

@@ -11,10 +11,24 @@
 #  gray_host.010  "The Host Recedes" — 20 years after invasion, retreat
 #
 #  HISTORICAL NOTE:
-#  The Gray Host was an ancient army of vampires and werewolves
-#  led by the vampire lord Rada al-Saran during the Second Era.
-#  They swept out of the Reach to terrorise High Rock and Skyrim
-#  before eventually being defeated and bound in Grayhaven.
+#  The Gray Host was an army of vampires and werewolves originally led
+#  by King Styriche of Verkarth (who sealed a deal with Molag Bal binding
+#  their souls to Coldharbour on death).  Rada al-Saran, the Ashen Lord,
+#  a Yokudan-born Vampire Lord, became their driving force after Styriche.
+#  They swept out of the Reach into High Rock and Skyrim and were defeated
+#  at Bangkorai Garrison c. 1E 1029.  The canonical date is late First Era;
+#  this mod places their resurgence window in the 1E 800–2E 200 range for
+#  EK2 playability.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/gray_host_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/gray_host_traits.txt
+#      → gray_host_commander
 # =============================================================
 
 namespace = gray_host

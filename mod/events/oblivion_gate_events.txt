@@ -3,6 +3,20 @@
 #  Namespace: oblivion_gate
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/oblivion_gate_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → oblivion_gate_daedra_surge, oblivion_gate_unchecked
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → close_oblivion_gate_effect, open_oblivion_gate_effect
+#    common/scripted_triggers/daedric_invasion_triggers.txt
+#      → daedric_invasion_at_full_power, is_daedric_invasion_active
+# =============================================================
+
 namespace = oblivion_gate
 
 # ------------------------------------------------------------

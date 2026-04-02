@@ -5,6 +5,132 @@
 # =============================================================
 
 # Marks a character as a true Echmer
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/lore_races_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • alessian_reformer
+#    • all_maker_blessed
+#    • altmer_imitator
+#    • ashlander_nerevarine
+#    • clavicus_bargain_made
+#    • clockwork_initiate
+#    • companion_of_ysgramor
+#    • crimson_ship_survivor
+#    • dir_kamal_herald
+#    • divine_scholar
+#    • dragon_cultist_devotee
+#    • dragon_priest_master
+#    • dres_slaver
+#    • dreugh_heritage
+#    • dreugh_land_phase
+#    • dreugh_sea_phase
+#    • dwemer_uplifted_lineage
+#    • echmer_heritage
+#    • echolalia_adept
+#    • echolalia_master
+#    • endeavour_advanced
+#    • endeavour_seeker
+#    • hist_elder_bonded
+#    • imga_heritage
+#    • invasion_repeller
+#    • kamal_heritage
+#    • kamal_thawed
+#    • keptu_lineage
+#    • knahaten_immune
+#    • kothringi_heritage
+#    • maormer_heritage
+#    • morrowind_hortator
+#    • mythic_dawn_inner
+#    • nedic_elder
+#    • orgnum_blessed
+#    • plague_bearer
+#    • pyandonean_sea_witch
+#    • reman_heir
+#    • sea_serpent_master
+#    • seek_skaal_accord
+#    • seven_graces_pilgrim
+#    • shor_marked
+#    • sload_heritage
+#    • sload_high_necromancer
+#    • sload_necromancer
+#    • snake_magic_adept
+#    • tang_mo_heritage
+#    • telvanni_master_wizard
+#    • tower_stone_keeper
+#    • tower_stone_lost
+#    • world_eater_survived
+#    • yneslea_scholar
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/nordic_lore_decisions.txt
+#      → seek_skaal_accord
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/character_templates/lore_races.txt
+#      → altmer_imitator, dir_kamal_herald, dreugh_heritage, dreugh_land_phase, dwemer_uplifted_lineage, echmer_heritage, echolalia_adept, echolalia_master, imga_heritage, kamal_heritage, kamal_thawed, kothringi_heritage … (21 total)
+#    common/decisions/alessian_decisions.txt
+#      → alessian_reformer, reman_heir
+#    common/decisions/clockwork_city_decisions.txt
+#      → clockwork_initiate
+#    common/decisions/dragon_priest_decisions.txt
+#      → dragon_priest_master
+#    common/decisions/great_houses_decisions.txt
+#      → morrowind_hortator, telvanni_master_wizard
+#    common/decisions/hist_decisions.txt
+#      → hist_elder_bonded
+#    common/decisions/lore_races_decisions.txt
+#      → clavicus_bargain_made, crimson_ship_survivor, echolalia_adept, echolalia_master, knahaten_immune, orgnum_blessed, sea_serpent_master, tower_stone_keeper
+#    common/decisions/magic_systems_decisions.txt
+#      → divine_scholar, endeavour_advanced
+#    common/decisions/mythic_dawn_decisions.txt
+#      → mythic_dawn_inner
+#    common/decisions/nordic_lore_decisions.txt
+#      → all_maker_blessed, companion_of_ysgramor, seek_skaal_accord
+#    common/decisions/seven_graces_decisions.txt
+#      → seven_graces_pilgrim
+#    common/on_actions/lore_races_on_actions.txt
+#      → knahaten_immune, seek_skaal_accord
+#    common/scripted_effects/lore_races_effects.txt
+#      → clavicus_bargain_made, crimson_ship_survivor, knahaten_immune, sea_serpent_master, tower_stone_keeper
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → echmer_heritage, kamal_heritage, kothringi_heritage, maormer_heritage, sload_heritage, sload_necromancer
+#    events/alessian_events.txt
+#      → alessian_reformer, reman_heir
+#    events/ashlander_events.txt
+#      → ashlander_nerevarine
+#    events/clockwork_city_events.txt
+#      → clockwork_initiate, tower_stone_keeper
+#    events/dragon_priest_events.txt
+#      → dragon_cultist_devotee, dragon_priest_master, world_eater_survived
+#    events/echmer_events.txt
+#      → echolalia_adept, echolalia_master
+#    events/great_houses_events.txt
+#      → dres_slaver, morrowind_hortator, seven_graces_pilgrim, telvanni_master_wizard
+#    events/hist_saxhleel_events.txt
+#      → hist_elder_bonded
+#    events/kothringi_events.txt
+#      → clavicus_bargain_made, crimson_ship_survivor, knahaten_immune, kothringi_heritage
+#    events/magic_systems_events.txt
+#      → divine_scholar, endeavour_advanced, endeavour_seeker
+#    events/maormer_events.txt
+#      → orgnum_blessed, pyandonean_sea_witch
+#    events/minor_lore_races_events.txt
+#      → altmer_imitator, dreugh_heritage, dreugh_land_phase, dreugh_sea_phase, imga_heritage, invasion_repeller, keptu_lineage, nedic_elder, tang_mo_heritage
+#    events/nordic_lore_events.txt
+#      → all_maker_blessed, companion_of_ysgramor, seek_skaal_accord, shor_marked
+#    events/seven_graces_events.txt
+#      → seven_graces_pilgrim
+#    events/skaal_allmaker_events.txt
+#      → all_maker_blessed, seek_skaal_accord
+#    events/sload_events.txt
+#      → sload_high_necromancer, sload_necromancer
+#    events/towers_events.txt
+#      → tower_stone_keeper
+# =============================================================
+
 echmer_heritage = {
     category = special
     is_immortal = no
@@ -642,8 +768,11 @@ shor_marked = {
 #  A ruler who has formally sought an accord with the Skaal of
 #  Solstheim.  The Skaal have acknowledged the gesture; now the
 #  ruler must walk the path through the sacred ceremonies to
-#  earn the All-Maker's full blessing.  Can be lost if the
-#  ruler later betrays the Skaal's trust.
+#  earn the All-Maker's full blessing.
+#  REMOVAL:
+#    • nordic_lore.004  — replaced by all_maker_blessed on success
+#    • skaal.005.b      — removed if the ruler abandons the Skaal
+#                         village when the Host threatens it
 # ---------------------------------------------------------------
 seek_skaal_accord = {
     category = lifestyle

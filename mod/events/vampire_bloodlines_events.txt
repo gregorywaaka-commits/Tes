@@ -2,6 +2,19 @@
 #  Vampire Bloodlines — Events
 #  Namespace: vampire
 #
+#  LORE:
+#  Vampirism in Tamriel is caused by Sanguinare Vampiris, a
+#  disease tied to Molag Bal.  Lamae Bal was the first vampire,
+#  created by Molag Bal's assault on the Nedic healer Lamae
+#  Beolfag during the Merethic Era.  Different bloodlines have
+#  distinct abilities:
+#    • Volkihar (Skyrim)    — isolationist ice-blood vampires
+#    • Lamae Bal (original) — the purest, most feral descent
+#    • Vampyrum Order (Morrowind) — Mephala-linked, court predators
+#    • Gray Host remnants    — Molag Bal-bound soldier-vampires
+#  The Worm Cult (Mannimarco) holds vampirism as an inferior
+#  form of immortality compared to lichdom.
+#
 #  SYSTEM OVERVIEW:
 #  ─────────────────
 #  • vampire.000 — hidden yearly: bloodline rulers, flavor trigger
@@ -15,6 +28,16 @@
 #  ─────────
 #  vampire_contact      — character has met a bloodline emissary
 #  gray_host_active     — global var: Gray Host is moving
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/vampire_bloodlines_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/vampire_bloodlines_traits.txt
+#      → blood_curse, gray_host_remnant, lamae_bal_bloodline, vampire_lord, vampyrum_order, volkihar_bloodline
 # =============================================================
 
 namespace = vampire

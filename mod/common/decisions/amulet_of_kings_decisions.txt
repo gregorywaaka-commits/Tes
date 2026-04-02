@@ -20,6 +20,29 @@
 #  1. SEEK THE AMULET OF KINGS
 # ================================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/amulet_of_kings_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • attempt_relight_dragonfires
+#    • claim_the_amulet_of_kings
+#    • seek_the_amulet_of_kings
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/scripted_triggers/thuumvoi_triggers.txt
+#      → can_relight_dragonfires, can_seek_amulet_of_kings, has_amulet_of_kings
+#    common/traits/thuumvoi_traits.txt
+#      → dovahkiin_soul_awakened
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/scripted_effects/thuumvoi_effects.txt
+#      → claim_the_amulet_of_kings
+#    common/scripted_triggers/thuumvoi_triggers.txt
+#      → attempt_relight_dragonfires, seek_the_amulet_of_kings
+# =============================================================
+
 seek_the_amulet_of_kings = {
     picture = "gfx/interface/icons/decisions/decision_personal.dds"
     desc    = seek_the_amulet_of_kings_desc

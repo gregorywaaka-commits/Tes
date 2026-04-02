@@ -44,6 +44,20 @@
 #  • atmoran_culture = EK2 culture identifier
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/nordic_lore_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/nordic_lore_decisions.txt
+#      → claim_companion_lineage, seek_skaal_accord
+#    common/modifiers/lore_races_modifiers.txt
+#      → companion_recognition
+#    common/traits/lore_races_traits.txt
+#      → all_maker_blessed, companion_of_ysgramor, seek_skaal_accord, shor_marked
+# =============================================================
+
 namespace = nordic_lore
 
 # ---------------------------------------------------------------

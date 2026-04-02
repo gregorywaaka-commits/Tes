@@ -50,6 +50,254 @@
 
 # Applied to a county that has been raided by Maormer sea-elves.
 # Duration: 730 days (2 years) — time to recover trade routes.
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/modifiers/lore_races_modifiers.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • absorb_soul_cooldown
+#    • amulet_of_kings_bearer_modifier
+#    • amulet_of_kings_dragonborn_modifier
+#    • amulet_post_event_cooldown
+#    • anti_jyggalag_resistance
+#    • artifact_corruption_modifier
+#    • azura_star_holder
+#    • ballad_composition_cooldown
+#    • bards_college_chapter_modifier
+#    • black_sacrament_cooldown
+#    • blood_curse_modifier
+#    • bloodroot_forge_modifier
+#    • boethiah_court_conspiracy
+#    • chim_seekers_strain
+#    • chim_transcendence
+#    • companion_recognition
+#    • companions_chapter_modifier
+#    • daedric_quest_cooldown
+#    • dark_brotherhood_marked_modifier
+#    • dawnbreaker_modifier
+#    • dovah_nature_dominant_modifier
+#    • dovah_nature_resisted_modifier
+#    • dovahkiin_full_power_modifier
+#    • dovahkiin_recognition_cooldown
+#    • dovahkiin_word_wall_cooldown
+#    • dragon_break_aftermath
+#    • dragon_break_stress
+#    • dragon_souls_brimming_modifier
+#    • dragon_souls_growing_modifier
+#    • dragonfires_lit_modifier
+#    • ebony_blade_corruption
+#    • ebony_blade_holder
+#    • ebony_mail_holder
+#    • famous_ballad_modifier
+#    • fighters_guild_chapter_modifier
+#    • first_voice_modifier
+#    • gray_host_march
+#    • gray_host_tribute
+#    • greybeard_oath_broken
+#    • greybeard_pilgrims_cooldown
+#    • greybeard_vow_modifier
+#    • guild_advancement_cooldown
+#    • guild_contract_cooldown
+#    • guild_heist_caught_modifier
+#    • guild_heist_cooldown
+#    • guild_leader_bards_modifier
+#    • guild_leader_companions_modifier
+#    • guild_leader_db_modifier
+#    • guild_leader_fighters_modifier
+#    • guild_leader_mages_modifier
+#    • guild_leader_postquest_cooldown
+#    • guild_leader_psijic_modifier
+#    • guild_leader_thieves_modifier
+#    • guild_leader_tong_modifier
+#    • guild_leader_undaunted_modifier
+#    • guild_recently_rejected
+#    • guild_research_cooldown
+#    • guild_ruin_delve_cooldown
+#    • hist_vision_insight
+#    • hist_warning_defensive
+#    • imga_favor_modifier
+#    • julianos_study_insight
+#    • jyggalag_crystal_modifier
+#    • ka_po_tun_alliance_modifier
+#    • kamal_ice_curse_modifier
+#    • knahaten_flu_fear_modifier
+#    • knahaten_flu_modifier
+#    • lich_permanence
+#    • mace_of_molag_bal_holder
+#    • mages_guild_chapter_modifier
+#    • malacath_oath_curse
+#    • maormer_hatred_modifier
+#    • maormer_raided_modifier
+#    • maormer_tempest_modifier
+#    • maormer_truce_modifier
+#    • masque_of_clavicus_vile
+#    • mehrunes_razor_empowered
+#    • mehrunes_razor_holder
+#    • mephala_web_curse
+#    • mephala_web_gift
+#    • mephala_web_modifier
+#    • meridia_displeasure
+#    • meridia_purge_target
+#    • molag_planemeld_dread
+#    • moon_sugar_drought
+#    • morag_tong_chapter_modifier
+#    • mythic_dawn_inner_circle_insight
+#    • namira_rot_modifier
+#    • necromancers_moon_empowerment
+#    • nocturnal_shadow_favor
+#    • nocturnal_shadow_tithe
+#    • numidium_awakeners_weight
+#    • oblivion_gate_daedra_surge
+#    • oblivion_gate_province_modifier
+#    • oblivion_gate_unchecked
+#    • oghma_infinium_holder
+#    • old_knocker_blessing_modifier
+#    • pelinal_fury
+#    • peryite_afflicted_ruler
+#    • peryite_plague_modifier
+#    • plague_cooldown_modifier
+#    • psijic_communion_cooldown
+#    • psijic_order_modifier
+#    • psijic_time_insight
+#    • psijic_warning_modifier
+#    • quarantine_modifier
+#    • ra_gada_battle_fury
+#    • rallied_against_daedra
+#    • reality_fracturing_modifier
+#    • red_mountain_keeper_modifier
+#    • rejected_daedric_bargain
+#    • repelled_maormer_modifier
+#    • ring_of_hircine_holder
+#    • ring_of_namira_holder
+#    • sanguine_rose_holder
+#    • saviors_hide_holder
+#    • skeleton_key_holder
+#    • skooma_addiction
+#    • skooma_trade_income
+#    • skull_of_corruption_modifier
+#    • spellbreaker_modifier
+#    • sword_of_jyggalag_modifier
+#    • sword_singers_focus
+#    • tang_mo_unity_modifier
+#    • thrassian_plague_modifier
+#    • thu_um_shout_cooldown
+#    • thuumvoi_advancement_cooldown
+#    • tonal_war_modifier
+#    • tower_fallen_modifier
+#    • tower_sabotage_cooldown
+#    • tower_stone_active_modifier
+#    • undaunted_chapter_modifier
+#    • undaunted_wounded_modifier
+#    • vaermina_nightmare_modifier
+#    • vampire_lord_dominance
+#    • vile_curse_modifier
+#    • void_nights_crisis
+#    • volendrung_bearer
+#    • wabbajack_modifier
+#    • welkynd_attunement
+#    • white_gold_keeper_modifier
+#    • wild_hunt_aftermath
+#    • wild_hunt_unleashed
+#    • writ_of_execution_cooldown
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/daedric_invasion_decisions.txt
+#      → rally_against_daedric_invasion
+#    common/decisions/thuumvoi_decisions.txt
+#      → resist_dovah_nature_decision, use_thu_um_in_battle
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → begin_daedric_invasion, close_oblivion_gate_effect, end_daedric_invasion, open_oblivion_gate_effect
+#    common/scripted_effects/lore_races_effects.txt
+#      → activate_tower_stone_effect, deactivate_tower_stone_effect, destroy_thras_effect, end_kamal_invasion, maormer_raid_effect, trigger_knahaten_flu, unleash_thrassian_plague
+#    common/scripted_effects/thuumvoi_effects.txt
+#      → absorb_additional_dragon_soul, absorb_dragon_soul, advance_voice_training, initiate_greybeard, learn_from_word_wall_effect, leave_greybeard_order, lose_amulet_of_kings, receive_amulet_of_kings, relight_dragonfires_effect, resist_dovah_nature, submit_to_dovah_nature
+#    common/scripted_triggers/daedric_invasion_triggers.txt
+#      → daedric_invasion_trigger_conditions
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → knahaten_can_trigger, knahaten_flu_active, maormer_raid_possible, thrassian_plague_active, world_stability_critical
+#    common/traits/chim_traits.txt
+#      → chim_achieved, chim_seeker
+#    common/traits/daedric_invasion_traits.txt
+#      → daedric_champion
+#    common/traits/thuumvoi_traits.txt
+#      → dovahkiin_soul_awakened, dragon_souls_brimming, dragon_souls_growing
+#    common/traits/worm_cult_traits.txt
+#      → lich_essence
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/daedric_invasion_decisions.txt
+#      → rallied_against_daedra
+#    common/decisions/daedric_prince_decisions.txt
+#      → daedric_quest_cooldown
+#    common/decisions/guild_decisions.txt
+#      → ballad_composition_cooldown, black_sacrament_cooldown, guild_advancement_cooldown, guild_contract_cooldown, guild_heist_cooldown, guild_recently_rejected, guild_research_cooldown, guild_ruin_delve_cooldown, psijic_communion_cooldown, writ_of_execution_cooldown
+#    common/decisions/lore_races_decisions.txt
+#      → plague_cooldown_modifier, rejected_daedric_bargain, tower_sabotage_cooldown
+#    common/decisions/mythic_dawn_decisions.txt
+#      → mythic_dawn_inner_circle_insight
+#    common/decisions/thuumvoi_decisions.txt
+#      → thu_um_shout_cooldown
+#    common/on_actions/daedric_invasion_on_actions.txt
+#      → oblivion_gate_province_modifier
+#    common/on_actions/lore_races_on_actions.txt
+#      → kamal_ice_curse_modifier
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → boethiah_court_conspiracy, jyggalag_crystal_modifier, malacath_oath_curse, mephala_web_modifier, molag_planemeld_dread, namira_rot_modifier, nocturnal_shadow_tithe, oblivion_gate_province_modifier, peryite_plague_modifier, vaermina_nightmare_modifier
+#    common/scripted_effects/guild_effects.txt
+#      → bards_college_chapter_modifier, companions_chapter_modifier, dark_brotherhood_marked_modifier, fighters_guild_chapter_modifier, guild_advancement_cooldown, mages_guild_chapter_modifier, morag_tong_chapter_modifier, psijic_order_modifier, undaunted_chapter_modifier
+#    common/scripted_effects/lore_races_effects.txt
+#      → knahaten_flu_modifier, maormer_raided_modifier, thrassian_plague_modifier, tower_fallen_modifier, tower_stone_active_modifier
+#    common/scripted_effects/thuumvoi_effects.txt
+#      → absorb_soul_cooldown, amulet_of_kings_bearer_modifier, amulet_of_kings_dragonborn_modifier, dovahkiin_full_power_modifier, dovahkiin_word_wall_cooldown, dragonfires_lit_modifier, greybeard_oath_broken, greybeard_vow_modifier, thuumvoi_advancement_cooldown
+#    common/scripted_triggers/guild_triggers.txt
+#      → guild_advancement_cooldown
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → maormer_truce_modifier, plague_cooldown_modifier, reality_fracturing_modifier
+#    common/scripted_triggers/thuumvoi_triggers.txt
+#      → absorb_soul_cooldown, dovahkiin_word_wall_cooldown, thuumvoi_advancement_cooldown
+#    events/amulet_of_kings_events.txt
+#      → amulet_of_kings_dragonborn_modifier, amulet_post_event_cooldown
+#    events/daedric_champion_events.txt
+#      → azura_star_holder, dawnbreaker_modifier, ebony_blade_holder, ebony_mail_holder, mace_of_molag_bal_holder, masque_of_clavicus_vile, mehrunes_razor_holder, oghma_infinium_holder, ring_of_hircine_holder, ring_of_namira_holder, sanguine_rose_holder, saviors_hide_holder … (19 total)
+#    events/daedric_prince_invasion_events.txt
+#      → anti_jyggalag_resistance, azura_star_holder, dawnbreaker_modifier, jyggalag_crystal_modifier, malacath_oath_curse, masque_of_clavicus_vile, mephala_web_curse, mephala_web_gift, meridia_displeasure, meridia_purge_target, nocturnal_shadow_favor, oghma_infinium_holder … (24 total)
+#    events/guild_events.txt
+#      → dark_brotherhood_marked_modifier, famous_ballad_modifier, guild_heist_caught_modifier, guild_recently_rejected, psijic_warning_modifier, undaunted_wounded_modifier
+#    events/guild_leadership_events.txt
+#      → guild_leader_bards_modifier, guild_leader_companions_modifier, guild_leader_db_modifier, guild_leader_fighters_modifier, guild_leader_mages_modifier, guild_leader_postquest_cooldown, guild_leader_psijic_modifier, guild_leader_thieves_modifier, guild_leader_tong_modifier, guild_leader_undaunted_modifier, guild_recently_rejected
+#    events/hist_saxhleel_events.txt
+#      → hist_vision_insight, hist_warning_defensive, wild_hunt_aftermath, wild_hunt_unleashed
+#    events/kamal_events.txt
+#      → kamal_ice_curse_modifier
+#    events/kothringi_events.txt
+#      → knahaten_flu_fear_modifier, knahaten_flu_modifier, quarantine_modifier
+#    events/magic_systems_events.txt
+#      → julianos_study_insight, tonal_war_modifier
+#    events/maormer_events.txt
+#      → maormer_hatred_modifier, maormer_tempest_modifier, maormer_truce_modifier, repelled_maormer_modifier
+#    events/minor_lore_races_events.txt
+#      → bloodroot_forge_modifier, imga_favor_modifier, ka_po_tun_alliance_modifier, old_knocker_blessing_modifier, tang_mo_unity_modifier
+#    events/mythic_dawn_events.txt
+#      → mythic_dawn_inner_circle_insight
+#    events/nordic_lore_events.txt
+#      → companion_recognition
+#    events/oblivion_gate_events.txt
+#      → oblivion_gate_daedra_surge, oblivion_gate_unchecked
+#    events/psijic_events.txt
+#      → psijic_time_insight
+#    events/sload_events.txt
+#      → quarantine_modifier
+#    events/thuumvoi_events.txt
+#      → dovahkiin_recognition_cooldown, first_voice_modifier, greybeard_pilgrims_cooldown, thu_um_shout_cooldown
+#    events/towers_events.txt
+#      → reality_fracturing_modifier, red_mountain_keeper_modifier, tower_sabotage_cooldown, white_gold_keeper_modifier
+#    events/underworld_events.txt
+#      → skooma_addiction, skooma_trade_income
+#    events/void_nights_events.txt
+#      → moon_sugar_drought
+# =============================================================
+
 maormer_raided_modifier = {
     monthly_income    = -0.2    # Raided merchants and warehouses
     supply_limit_mult = -0.1    # Disrupted grain stores

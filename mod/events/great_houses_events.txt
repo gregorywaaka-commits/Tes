@@ -82,6 +82,22 @@
 #  • hist_bonded               = EK2 Argonian trait
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/great_houses_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dagoth_ur_traits.txt
+#      → nerevarine_marked
+#    common/traits/dwemer_ruins_traits.txt
+#      → dwemer_scholar, tonal_architect
+#    common/traits/lore_races_traits.txt
+#      → dres_slaver, morrowind_hortator, seven_graces_pilgrim, telvanni_master_wizard
+#    common/traits/tribunal_traits.txt
+#      → almalexia_devoted, sotha_sil_student, vivec_blessed
+# =============================================================
+
 namespace = great_houses
 
 # ---------------------------------------------------------------

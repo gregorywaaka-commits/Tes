@@ -16,6 +16,23 @@
 #  The cost is gold and time; the reward is the divine_scholar
 #  trait for those who complete it.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/magic_systems_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • begin_psijic_endeavour
+#    • deploy_tonal_architecture
+#    • study_julianos_order
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dwemer_ruins_traits.txt
+#      → tonal_architect
+#    common/traits/lore_races_traits.txt
+#      → divine_scholar, endeavour_advanced
+# =============================================================
+
 study_julianos_order = {
     picture = "gfx/interface/icons/decisions/decision_personal.dds"
     desc = study_julianos_order_desc

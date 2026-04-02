@@ -46,6 +46,16 @@
 #  • dunmer_culture  = EK2 culture identifier
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/tribunal_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/tribunal_traits.txt
+#      → almalexia_devoted, sotha_sil_student, tribunal_champion, vivec_blessed
+# =============================================================
+
 namespace = tribunal
 
 # ---------------------------------------------------------------

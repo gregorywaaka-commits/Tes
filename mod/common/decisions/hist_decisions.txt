@@ -19,6 +19,20 @@
 #  offers deeper bonding to those who come in sincerity.
 #  Success grants hist_elder_bonded.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/hist_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • call_the_wild_hunt
+#    • travel_to_hist_convocation
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → hist_elder_bonded
+# =============================================================
+
 travel_to_hist_convocation = {
     picture = "gfx/interface/icons/decisions/decision_realm.dds"
     desc    = travel_to_hist_convocation_desc

@@ -2,6 +2,32 @@
 #  Opinion Modifiers — Daedric Invasion & Champion System
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/opinion_modifiers/daedric_opinion_modifiers.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • dark_brotherhood_target_opinion
+#    • exposed_secrets_opinion
+#    • guild_betrayed_opinion
+#    • guild_rival_opinion
+#    • ignored_call_opinion
+#    • mora_knows_all_opinion
+#    • rallied_together_opinion
+#    • reason_echmer_envoy
+#    • same_guild_opinion
+#    • submitted_to_daedra_opinion
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/scripted_effects/lore_races_effects.txt
+#      → reason_echmer_envoy
+#    events/daedric_invasion_events.txt
+#      → ignored_call_opinion, rallied_together_opinion, submitted_to_daedra_opinion
+#    events/daedric_prince_invasion_events.txt
+#      → exposed_secrets_opinion, mora_knows_all_opinion
+# =============================================================
+
 rallied_together_opinion = {
     opinion = 20
     decay_rate = 1

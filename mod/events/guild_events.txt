@@ -4,6 +4,22 @@
 #  Covers join, advancement, activity, and leave events.
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/guild_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → dark_brotherhood_marked_modifier, famous_ballad_modifier, guild_heist_caught_modifier, guild_recently_rejected, psijic_warning_modifier, undaunted_wounded_modifier
+#    common/scripted_effects/guild_effects.txt
+#      → advance_companions, join_psijic_order
+#    common/traits/daedric_invasion_traits.txt
+#      → hircine_werewolf
+#    common/traits/guild_traits.txt
+#      → bards_college_bard, bards_college_master_bard, companions_circle, companions_harbinger, companions_veteran, dark_brotherhood_assassin, dark_brotherhood_listener, dark_brotherhood_speaker, fighters_guild_guardian, fighters_guild_guildmaster, fighters_guild_journeyman, mages_guild_archmagister … (24 total)
+# =============================================================
+
 namespace = guild
 
 # ================================================================

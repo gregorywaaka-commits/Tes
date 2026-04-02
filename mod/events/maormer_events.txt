@@ -3,6 +3,22 @@
 #  Namespace: maormer
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/maormer_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → maormer_hatred_modifier, maormer_tempest_modifier, maormer_truce_modifier, repelled_maormer_modifier
+#    common/scripted_effects/lore_races_effects.txt
+#      → maormer_raid_effect, tame_sea_serpent_effect
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → is_maormer, maormer_raid_possible
+#    common/traits/lore_races_traits.txt
+#      → orgnum_blessed, pyandonean_sea_witch
+# =============================================================
+
 namespace = maormer
 
 # ---------------------------------------------------------------

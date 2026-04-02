@@ -18,6 +18,19 @@
 #  leanings.  See mod/events/worm_cult_events.txt for details.
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/character_templates/mannimarco.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • mannimarco
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/worm_cult_traits.txt
+#      → lich_essence, worm_cult_adept, worm_cult_initiate
+# =============================================================
+
 mannimarco = {
     name      = "Mannimarco"
 

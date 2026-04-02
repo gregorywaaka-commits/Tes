@@ -12,11 +12,24 @@
 #  void_nights.004  "The Void Teaches" — reflection event for learned rulers
 #
 #  HISTORICAL NOTE:
-#  The Void Nights (2E 578-579) occurred when Thalmor mages caused
-#  Masser and Secunda to vanish from the sky for two years. Without
-#  the moons, Khajiit furstocks cannot transform, and the Two Moons
-#  path is broken. The Thalmor used this crisis to consolidate power
-#  over Elsweyr, claiming credit for the moons' return.
+#  Canonically, the Void Nights occurred in 4E 98-100, well after
+#  EK2's Second Era timeframe.  This mod adapts the event to 2E 578-579
+#  so it can be experienced in-game.  The cause is officially unknown —
+#  the Thalmor CLAIMED credit for restoring the moons, but most scholars
+#  believe they merely knew the moons would return and exploited the
+#  crisis for political gain.  The mod treats their culpability as
+#  ambiguous, consistent with community consensus.  Without the moons,
+#  Khajiit furstocks cannot transform and the Two Moons path is severed.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/void_nights_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → moon_sugar_drought
 # =============================================================
 
 namespace = void_nights

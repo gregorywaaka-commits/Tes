@@ -3,6 +3,24 @@
 #  Namespace: daedric_invasion
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/daedric_invasion_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/character_templates/daedric_princes.txt
+#      → azura_template, boethiah_template, clavicus_vile_template, hermaeus_mora_template, hircine_template, jyggalag_template, malacath_template, mehrunes_dagon_template, mephala_template, meridia_template, molag_bal_template, namira_template … (17 total)
+#    common/opinion_modifiers/daedric_opinion_modifiers.txt
+#      → ignored_call_opinion, rallied_together_opinion, submitted_to_daedra_opinion
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → begin_daedric_invasion, end_daedric_invasion, escalate_daedric_invasion
+#    common/scripted_triggers/daedric_invasion_triggers.txt
+#      → daedric_invasion_can_escalate, daedric_invasion_trigger_conditions, is_daedric_invasion_active
+#    common/traits/daedric_invasion_traits.txt
+#      → daedric_champion, daedric_vassal
+# =============================================================
+
 namespace = daedric_invasion
 
 # ------------------------------------------------------------

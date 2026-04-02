@@ -7,6 +7,22 @@
 #  EK2 is required.
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/amulet_of_kings_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → amulet_of_kings_dragonborn_modifier, amulet_post_event_cooldown
+#    common/scripted_effects/thuumvoi_effects.txt
+#      → lose_amulet_of_kings, receive_amulet_of_kings, relight_dragonfires_effect
+#    common/scripted_triggers/thuumvoi_triggers.txt
+#      → can_relight_dragonfires, has_amulet_of_kings, is_dragonborn
+#    common/traits/thuumvoi_traits.txt
+#      → dovahkiin_soul_awakened, first_voice_of_the_greybeards, greybeard_of_high_hrothgar, thu_um_master
+# =============================================================
+
 namespace = amulet
 
 # ----------------------------------------------------------------

@@ -7,6 +7,54 @@
 # ============================================================
 
 # Send an expedition to Yneslea to make contact with the Echmer
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/lore_races_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • bargain_with_clavicus_vile
+#    • board_crimson_ship
+#    • challenge_almalexia
+#    • challenge_sotha_sil
+#    • challenge_vivec
+#    • claim_tower_stone
+#    • pledge_as_almalexias_hand
+#    • sabotage_tower_stone
+#    • seek_orgnum_blessing
+#    • seek_tools_of_kagrenac
+#    • send_yneslea_expedition
+#    • study_echolalia_fantasia
+#    • tame_pyandonean_sea_serpent
+#    • unleash_sload_plague
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → plague_cooldown_modifier, rejected_daedric_bargain, tower_sabotage_cooldown
+#    common/scripted_effects/lore_races_effects.txt
+#      → accept_clavicus_bargain, activate_tower_stone_effect, depart_crimson_ship, unleash_thrassian_plague
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → dagoth_ur_awakened, is_echmer_active_contact, is_kothringi, is_maormer, is_sload, knahaten_flu_active, orgnum_is_alive, sload_plague_can_trigger
+#    common/traits/dagoth_ur_traits.txt
+#      → nerevarine_marked, sixth_house_cultist
+#    common/traits/kagrenac_traits.txt
+#      → almalexias_hand, nerevarine_victor
+#    common/traits/lore_races_traits.txt
+#      → clavicus_bargain_made, crimson_ship_survivor, echolalia_adept, echolalia_master, knahaten_immune, orgnum_blessed, sea_serpent_master, tower_stone_keeper
+#    common/traits/tribunal_traits.txt
+#      → almalexia_devoted
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/traits/kagrenac_traits.txt
+#      → pledge_as_almalexias_hand
+#    events/almalexia_hands_events.txt
+#      → pledge_as_almalexias_hand
+#    events/kagrenac_events.txt
+#      → seek_tools_of_kagrenac
+#    events/vivec_trial_events.txt
+#      → challenge_almalexia, challenge_sotha_sil, challenge_vivec
+# =============================================================
+
 send_yneslea_expedition = {
     picture = "gfx/interface/icons/decisions/decision_realm.dds"
     desc = send_yneslea_expedition_desc

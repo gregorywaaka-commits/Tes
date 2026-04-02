@@ -64,6 +64,45 @@
 #  PREREQUISITE: global_var:chosen_prince_key must be set before calling.
 #  (This is done by daedric_invasion.000 which picks a Prince.)
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/scripted_effects/daedric_invasion_effects.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • begin_daedric_invasion
+#    • close_oblivion_gate_effect
+#    • end_daedric_invasion
+#    • escalate_daedric_invasion
+#    • open_oblivion_gate_effect
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/character_templates/daedric_princes.txt
+#      → azura_template, boethiah_template, clavicus_vile_template, hermaeus_mora_template, hircine_template, jyggalag_template, malacath_template, mehrunes_dagon_template, mephala_template, meridia_template, molag_bal_template, namira_template … (17 total)
+#    common/men_at_arms_types/daedric_units.txt
+#      → clannfear, daedra_cavalry, daedra_footsoldiers, dark_seducer, dremora, golden_saint, hermaeus_lurker, hermaeus_seeker, hircine_werewolf_pack, knight_of_order, peryite_afflicted_unit
+#    common/modifiers/lore_races_modifiers.txt
+#      → boethiah_court_conspiracy, jyggalag_crystal_modifier, malacath_oath_curse, mephala_web_modifier, molag_planemeld_dread, namira_rot_modifier, nocturnal_shadow_tithe, oblivion_gate_province_modifier, peryite_plague_modifier, vaermina_nightmare_modifier
+#    common/traits/daedric_invasion_traits.txt
+#      → oblivion_slayer
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/casus_belli_types/daedric_invasion_cb.txt
+#      → end_daedric_invasion, escalate_daedric_invasion
+#    common/modifiers/lore_races_modifiers.txt
+#      → begin_daedric_invasion, close_oblivion_gate_effect, end_daedric_invasion, open_oblivion_gate_effect
+#    common/on_actions/daedric_invasion_on_actions.txt
+#      → begin_daedric_invasion, end_daedric_invasion, escalate_daedric_invasion
+#    common/scripted_triggers/daedric_invasion_triggers.txt
+#      → begin_daedric_invasion, close_oblivion_gate_effect, end_daedric_invasion, escalate_daedric_invasion, open_oblivion_gate_effect
+#    events/daedric_invasion_events.txt
+#      → begin_daedric_invasion, end_daedric_invasion, escalate_daedric_invasion
+#    events/daedric_prince_invasion_events.txt
+#      → end_daedric_invasion
+#    events/oblivion_gate_events.txt
+#      → close_oblivion_gate_effect, open_oblivion_gate_effect
+# =============================================================
+
 begin_daedric_invasion = {
     # Set the three core global variables that track invasion state
     set_global_variable = { name = active_daedric_prince value = global_var:chosen_prince_key }

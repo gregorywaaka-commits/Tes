@@ -12,6 +12,16 @@
 #  ayleid.004  "The Lich's Gaze" — Ayleid lich guardian awakened
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/ayleid_ruins_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/ayleid_ruins_traits.txt
+#      → ayleid_historian, ayleid_lich_touched, star_teeth_blessed, welkynd_attuned
+# =============================================================
+
 namespace = ayleid
 
 # ---------------------------------------------------------------

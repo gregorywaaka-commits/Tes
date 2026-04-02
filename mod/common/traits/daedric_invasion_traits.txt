@@ -3,6 +3,95 @@
 # =============================================================
 
 # ---- Prince marker ----
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/daedric_invasion_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • azura_aspect
+#    • azura_champion
+#    • boethiah_aspect
+#    • clavicus_bargain_keeper
+#    • clavicus_vile_aspect
+#    • clavicus_vile_champion
+#    • daedric_champion
+#    • daedric_prince
+#    • daedric_vassal
+#    • hermaeus_mora_aspect
+#    • hermaeus_mora_champion
+#    • hircine_aspect
+#    • hircine_werewolf
+#    • jyggalag_aspect
+#    • jyggalag_champion
+#    • jyggalag_crystal_knight
+#    • malacath_aspect
+#    • malacath_champion
+#    • mehrunes_dagon_aspect
+#    • mephala_aspect
+#    • mephala_champion
+#    • meridia_aspect
+#    • meridia_champion
+#    • molag_bal_aspect
+#    • molag_bal_vampire
+#    • mora_knowledge_seeker
+#    • namira_aspect
+#    • nocturnal_aspect
+#    • nocturnal_champion
+#    • oblivion_slayer
+#    • oblivion_touched
+#    • peryite_afflicted
+#    • peryite_aspect
+#    • peryite_champion
+#    • sanguine_aspect
+#    • sanguine_champion
+#    • sheogorath_aspect
+#    • sheogorath_champion
+#    • vaermina_aspect
+#    • vaermina_champion
+#    • vaermina_dreamt
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/casus_belli_types/daedric_invasion_cb.txt
+#      → daedric_prince
+#    common/character_templates/daedric_princes.txt
+#      → azura_aspect, boethiah_aspect, clavicus_vile_aspect, daedric_prince, hermaeus_mora_aspect, hircine_aspect, jyggalag_aspect, malacath_aspect, mehrunes_dagon_aspect, mephala_aspect, meridia_aspect, molag_bal_aspect … (18 total)
+#    common/decisions/daedric_invasion_decisions.txt
+#      → daedric_champion, daedric_vassal, oblivion_slayer
+#    common/decisions/daedric_prince_decisions.txt
+#      → azura_champion, clavicus_bargain_keeper, clavicus_vile_champion, daedric_champion, hermaeus_mora_champion, hircine_werewolf, jyggalag_champion, malacath_champion, mephala_champion, meridia_champion, molag_bal_vampire, nocturnal_champion … (16 total)
+#    common/decisions/underworld_decisions.txt
+#      → mephala_champion
+#    common/modifiers/lore_races_modifiers.txt
+#      → daedric_champion
+#    common/on_actions/daedric_invasion_on_actions.txt
+#      → daedric_champion, daedric_prince, daedric_vassal, oblivion_slayer
+#    common/on_actions/lore_races_on_actions.txt
+#      → azura_champion, mephala_champion
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → oblivion_slayer
+#    common/scripted_triggers/daedric_invasion_triggers.txt
+#      → azura_champion, clavicus_vile_champion, daedric_champion, daedric_prince, daedric_vassal, hermaeus_mora_champion, jyggalag_champion, malacath_champion, mephala_champion, meridia_champion, nocturnal_champion, peryite_champion … (15 total)
+#    common/traits/dagoth_ur_traits.txt
+#      → azura_champion
+#    events/daedric_artifacts_events.txt
+#      → daedric_champion
+#    events/daedric_champion_events.txt
+#      → azura_champion, clavicus_vile_champion, daedric_champion, hermaeus_mora_champion, hircine_werewolf, jyggalag_champion, malacath_champion, mephala_champion, meridia_champion, molag_bal_vampire, nocturnal_champion, peryite_afflicted … (16 total)
+#    events/daedric_invasion_events.txt
+#      → daedric_champion, daedric_vassal
+#    events/daedric_prince_invasion_events.txt
+#      → azura_champion, clavicus_bargain_keeper, clavicus_vile_champion, hermaeus_mora_champion, jyggalag_champion, jyggalag_crystal_knight, malacath_champion, mephala_champion, meridia_champion, mora_knowledge_seeker, nocturnal_champion, peryite_afflicted … (17 total)
+#    events/dagoth_ur_events.txt
+#      → azura_champion
+#    events/guild_events.txt
+#      → hircine_werewolf
+#    events/mythic_dawn_events.txt
+#      → mehrunes_dagon_aspect
+#    events/underworld_events.txt
+#      → mephala_champion
+# =============================================================
+
 daedric_prince = {
     category = special
     is_immortal = yes

@@ -12,6 +12,25 @@
 #  EK2 is required.  'dragonborn' is EK2's trait.
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/dragon_priest_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • hunt_dragon_priest
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → dragon_priest_master
+#    common/traits/thuumvoi_traits.txt
+#      → first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_adept, thu_um_initiate, thu_um_master
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/dragon_priest_events.txt
+#      → hunt_dragon_priest
+# =============================================================
+
 hunt_dragon_priest = {
     picture = "gfx/interface/icons/decisions/decision_realm.dds"
     desc    = hunt_dragon_priest_desc

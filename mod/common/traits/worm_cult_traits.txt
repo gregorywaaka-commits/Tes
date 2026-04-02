@@ -27,6 +27,28 @@
 #  finality.  They know enough to be useful and not enough to
 #  be dangerous.  Yet.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/worm_cult_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • lich_essence
+#    • necromancers_moon_marked
+#    • worm_cult_adept
+#    • worm_cult_initiate
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/character_templates/mannimarco.txt
+#      → lich_essence, worm_cult_adept, worm_cult_initiate
+#    common/modifiers/lore_races_modifiers.txt
+#      → lich_essence
+#    common/on_actions/lore_races_on_actions.txt
+#      → worm_cult_adept
+#    events/worm_cult_events.txt
+#      → lich_essence, necromancers_moon_marked, worm_cult_adept, worm_cult_initiate
+# =============================================================
+
 worm_cult_initiate = {
     category = lifestyle
 

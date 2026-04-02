@@ -4,6 +4,24 @@
 #  Covers unique events for all 17 Princes during their invasions.
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/daedric_prince_invasion_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → anti_jyggalag_resistance, azura_star_holder, dawnbreaker_modifier, jyggalag_crystal_modifier, malacath_oath_curse, masque_of_clavicus_vile, mephala_web_curse, mephala_web_gift, meridia_displeasure, meridia_purge_target, nocturnal_shadow_favor, oghma_infinium_holder … (24 total)
+#    common/opinion_modifiers/daedric_opinion_modifiers.txt
+#      → exposed_secrets_opinion, mora_knows_all_opinion
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → end_daedric_invasion
+#    common/scripted_triggers/daedric_invasion_triggers.txt
+#      → is_azura_invasion, is_clavicus_vile_invasion, is_hermaeus_mora_invasion, is_jyggalag_invasion, is_malacath_invasion, is_mephala_invasion, is_meridia_invasion, is_nocturnal_invasion, is_peryite_invasion, is_sanguine_invasion, is_sheogorath_invasion, is_vaermina_invasion
+#    common/traits/daedric_invasion_traits.txt
+#      → azura_champion, clavicus_bargain_keeper, clavicus_vile_champion, hermaeus_mora_champion, jyggalag_champion, jyggalag_crystal_knight, malacath_champion, mephala_champion, meridia_champion, mora_knowledge_seeker, nocturnal_champion, peryite_afflicted … (17 total)
+# =============================================================
+
 namespace = daedric_prince_invasion
 
 # ================================================================

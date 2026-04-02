@@ -5,12 +5,18 @@
 #  LORE:
 #  The Alessian Order was a radical religious movement that
 #  swept the First Era Cyrodilic Empire, purging elven saints
-#  and influences from the Eight Divines faith.  Founded after
-#  Alessia's slave revolt, it held that the Divines were
-#  originally human gods — corrupted and obscured by Aldmeri
-#  theological domination.  The Order's Marukite wing went
-#  further: the Monomyth held Lorkhan as the true villain of
-#  creation, and the Aldmeri as his unwitting instruments.
+#  and influences from the Eight Divines faith.  Founded by the
+#  prophet Marukh after Alessia's slave revolt, it held that
+#  the Divines were originally human gods — corrupted and
+#  obscured by Aldmeri theological domination.  The Order's
+#  rigid "Seventy-Seven Inflexible Doctrines" governed Imperial
+#  faith and law; it seized de-facto control of the Empire in
+#  1E 361, turning the First Era into a theocratic dark age.
+#  The Marukite wing went further: the Monomyth held Lorkhan
+#  as the true villain of creation, and the Marukhati Selective
+#  later attempted to purge even the name of Auri-El from
+#  Akatosh — triggering the Middle Dawn Dragon Break (1E 1200-
+#  2208, in which time shattered across Tamriel for a millennium).
 #
 #  Reman I (1E 2703) founded the Second Empire, wielding the
 #  Amulet of Kings as proof of Cyrodilic divine right.  His
@@ -37,6 +43,18 @@
 #  ──────────────
 #  • alessian_reformation_zeal   (lore_races_modifiers.txt)
 #  • reman_claim_investigation   (lore_races_modifiers.txt)
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/alessian_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/alessian_decisions.txt
+#      → claim_reman_heritage, proclaim_alessian_reformation
+#    common/traits/lore_races_traits.txt
+#      → alessian_reformer, reman_heir
 # =============================================================
 
 namespace = alessian

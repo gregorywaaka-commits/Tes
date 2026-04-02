@@ -39,6 +39,18 @@
 #  • tribunal_champion         — tribunal_traits.txt
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/almsivi_interdict_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dagoth_ur_traits.txt
+#      → sixth_house_cultist
+#    common/traits/tribunal_traits.txt
+#      → tribunal_champion
+# =============================================================
+
 namespace = almsivi
 
 # ---------------------------------------------------------------

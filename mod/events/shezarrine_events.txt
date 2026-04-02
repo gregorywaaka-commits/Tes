@@ -11,6 +11,16 @@
 #  • shezarrine.004 — "Reman's Echo" — connection to the Alessian chain
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/shezarrine_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/shezarrine_traits.txt
+#      → elf_hate, pelinal_rage, shezarrine_vessel
+# =============================================================
+
 namespace = shezarrine
 
 # ---------------------------------------------------------------

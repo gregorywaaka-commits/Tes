@@ -40,6 +40,20 @@
 #  • dragon_cult_exposed        — cult has been exposed/renounced
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/dragon_priest_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/dragon_priest_decisions.txt
+#      → hunt_dragon_priest
+#    common/traits/lore_races_traits.txt
+#      → dragon_cultist_devotee, dragon_priest_master, world_eater_survived
+#    common/traits/thuumvoi_traits.txt
+#      → first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_adept, thu_um_initiate, thu_um_master
+# =============================================================
+
 namespace = dragon_priest
 
 # ---------------------------------------------------------------

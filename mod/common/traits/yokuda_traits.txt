@@ -27,6 +27,27 @@
 #  cleared the land with fire and sword, and their name became
 #  a legend that subsequent generations strive to live up to.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/yokuda_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • ra_gada_warrior
+#    • ruptga_devoted
+#    • sep_cultist
+#    • sword_singer
+#    • yokudan_heritage
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/yokuda_decisions.txt
+#      → ra_gada_warrior, sword_singer
+#    common/on_actions/lore_races_on_actions.txt
+#      → ruptga_devoted, yokudan_heritage
+#    events/yokuda_events.txt
+#      → ra_gada_warrior, ruptga_devoted, sep_cultist, sword_singer, yokudan_heritage
+# =============================================================
+
 ra_gada_warrior = {
     category = fame
 

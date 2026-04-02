@@ -13,6 +13,38 @@
 #  MAGES GUILD  — Arch-Magister questline
 # ================================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/guild_leadership_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • begin_bards_master_quest
+#    • begin_companions_harbinger_quest
+#    • begin_dark_brotherhood_leadership_quest
+#    • begin_fighters_guild_leadership_quest
+#    • begin_mages_guild_leadership_quest
+#    • begin_morag_tong_leadership_quest
+#    • begin_psijic_master_quest
+#    • begin_thieves_guild_leadership_quest
+#    • begin_undaunted_elite_quest
+#    • claim_bards_master
+#    • claim_companions_harbinger
+#    • claim_dark_brotherhood_listener
+#    • claim_fighters_guild_leadership
+#    • claim_mages_guild_leadership
+#    • claim_morag_tong_grandmaster
+#    • claim_psijic_master
+#    • claim_thieves_guild_leadership
+#    • claim_undaunted_elite
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/scripted_triggers/guild_triggers.txt
+#      → is_bards_college_member, is_companions_member, is_dark_brotherhood_member, is_fighters_guild_member, is_mages_guild_member, is_morag_tong_member, is_psijic_member, is_thieves_guild_member, is_undaunted_member_trigger
+#    common/traits/guild_traits.txt
+#      → bards_college_bard, bards_college_master_bard, companions_circle, companions_harbinger, dark_brotherhood_listener, dark_brotherhood_speaker, fighters_guild_guardian, fighters_guild_guildmaster, mages_guild_archmagister, mages_guild_wizard, morag_tong_grandmaster, morag_tong_master … (18 total)
+# =============================================================
+
 begin_mages_guild_leadership_quest = {
     picture = "gfx/interface/icons/decisions/decision_realm.dds"
     desc    = begin_mages_guild_leadership_quest_desc

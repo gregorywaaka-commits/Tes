@@ -26,6 +26,18 @@
 #  • oblivion_gate trigger in oblivion_gate_events.txt (this mod)
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/mythic_dawn_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → mythic_dawn_inner_circle_insight
+#    common/traits/daedric_invasion_traits.txt
+#      → mehrunes_dagon_aspect
+# =============================================================
+
 namespace = mythic_dawn
 
 # ---------------------------------------------------------------

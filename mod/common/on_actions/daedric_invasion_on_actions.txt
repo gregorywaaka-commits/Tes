@@ -75,6 +75,35 @@
 #  • Calls end_daedric_invasion if the Prince's army has been defeated
 #    (detected via death of scope:daedric_prince_char)
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/on_actions/daedric_invasion_on_actions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • on_character_death
+#    • on_county_occupied
+#    • on_decade_pulse_character
+#    • on_five_year_pulse_character
+#    • on_monthly_pulse
+#    • on_yearly_pulse
+#    • on_yearly_pulse_character
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/character_templates/daedric_princes.txt
+#      → molag_bal_template
+#    common/decisions/daedric_invasion_decisions.txt
+#      → attempt_to_banish_daedric_prince
+#    common/modifiers/lore_races_modifiers.txt
+#      → oblivion_gate_province_modifier
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → begin_daedric_invasion, end_daedric_invasion, escalate_daedric_invasion
+#    common/scripted_triggers/daedric_invasion_triggers.txt
+#      → daedric_invasion_can_escalate, daedric_invasion_trigger_conditions, is_daedric_invasion_active
+#    common/traits/daedric_invasion_traits.txt
+#      → daedric_champion, daedric_prince, daedric_vassal, oblivion_slayer
+# =============================================================
+
 on_monthly_pulse = {
     events = {
         daedric_invasion.050   # invasion phase tick / escalation check (hidden)

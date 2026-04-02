@@ -33,6 +33,18 @@
 #  • psijic_time_insight  — the adept's first stillness in crisis
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/psijic_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → psijic_time_insight
+#    common/traits/guild_traits.txt
+#      → psijic_adept, psijic_novice
+# =============================================================
+
 namespace = psijic
 
 # ---------------------------------------------------------------

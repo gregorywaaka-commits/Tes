@@ -48,6 +48,20 @@
 #  • tonal_architect = EK2 trait (from dwemer system)
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/magic_systems_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → julianos_study_insight, tonal_war_modifier
+#    common/traits/dwemer_ruins_traits.txt
+#      → tonal_architect
+#    common/traits/lore_races_traits.txt
+#      → divine_scholar, endeavour_advanced, endeavour_seeker
+# =============================================================
+
 namespace = magic_sys
 
 # ---------------------------------------------------------------

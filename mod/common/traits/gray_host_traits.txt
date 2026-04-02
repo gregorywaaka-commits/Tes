@@ -3,13 +3,32 @@
 #  File: mod/common/traits/gray_host_traits.txt
 #
 #  These traits are associated with the Gray Host — the ancient
-#  vampire-werewolf army of the Reach, and its followers.
+#  vampire-werewolf army of the Reach, led by King Styriche of
+#  Verkarth (who bound their souls to Coldharbour via Molag Bal's
+#  pact) and later driven by Rada al-Saran, the Ashen Lord, a
+#  Yokudan-born Vampire Lord.  They were defeated at Bangkorai
+#  Garrison c. 1E 1029.  Source: ESO Greymoor / Markarth DLC.
 # =============================================================
 
 # A military commander who has sworn to Rada al-Saran and
 # leads a warband of the Gray Host. They command the respect
 # of creatures that do not know fear — and learn, in time,
 # to think in centuries rather than seasons.
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/gray_host_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • gray_host_commander
+#    • rada_al_saran_devoted
+#    • werewolf_lord
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/gray_host_events.txt
+#      → gray_host_commander
+# =============================================================
+
 gray_host_commander = {
     category = fame
     martial    = 6

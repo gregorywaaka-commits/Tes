@@ -1,6 +1,33 @@
 # =============================================================
 #  Kamal Events  (Akaviri Snow Demons / Seasonal Invaders)
 #  Namespace: kamal
+#
+#  LORE:
+#  The Kamal ("Snow Hell") are one of the four Akaviri nations.
+#  In Akavir, they freeze through the winter and thaw in summer,
+#  promptly raiding their neighbours — primarily the Tang Mo.
+#  Their greatest invasion of Tamriel was the 2E 572 campaign
+#  led by Ada'Soom Dir-Kamal, which landed near Windhelm and
+#  drove deep into Morrowind before the nascent Ebonheart Pact
+#  (Nords, Dunmer, Argonians) — bolstered by the Tribunal —
+#  killed Dir-Kamal at the Battle of Vivec's Antlers.
+#  See also: lore_races_effects.txt (begin_kamal_invasion /
+#  end_kamal_invasion) and lore_races_triggers.txt
+#  (kamal_invasion_possible).
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/kamal_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → kamal_ice_curse_modifier
+#    common/scripted_effects/lore_races_effects.txt
+#      → begin_kamal_invasion, end_kamal_invasion
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → kamal_invasion_possible
 # =============================================================
 
 namespace = kamal

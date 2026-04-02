@@ -27,6 +27,24 @@
 #  frozen lakes in Skyrim and Solstheim.  Powerful hunters with
 #  great physical gifts.  Resistant to cold; scorched by sunlight.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/vampire_bloodlines_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • blood_curse
+#    • gray_host_remnant
+#    • lamae_bal_bloodline
+#    • vampire_lord
+#    • vampyrum_order
+#    • volkihar_bloodline
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/vampire_bloodlines_events.txt
+#      → blood_curse, gray_host_remnant, lamae_bal_bloodline, vampire_lord, vampyrum_order, volkihar_bloodline
+# =============================================================
+
 volkihar_bloodline = {
     category = fame
 

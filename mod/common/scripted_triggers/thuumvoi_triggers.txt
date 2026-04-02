@@ -61,6 +61,55 @@
 # True if the character is on ANY level of the Voice training path
 # (initiate, adept, master) — does NOT include Greybeard Order.
 # Used to block re-entering training and to check for the leave decision.
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/scripted_triggers/thuumvoi_triggers.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • can_absorb_another_soul
+#    • can_advance_thu_um
+#    • can_begin_greybeard_leadership
+#    • can_harness_dovah_blood
+#    • can_learn_from_word_wall
+#    • can_learn_thu_um
+#    • can_relight_dragonfires
+#    • can_seek_amulet_of_kings
+#    • can_seek_greybeards
+#    • dovah_nature_at_risk
+#    • has_amulet_of_kings
+#    • has_many_dragon_souls
+#    • has_multiple_dragon_souls
+#    • is_dragonborn
+#    • is_first_voice
+#    • is_greybeard
+#    • is_on_voice_path
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/amulet_of_kings_decisions.txt
+#      → attempt_relight_dragonfires, seek_the_amulet_of_kings
+#    common/decisions/thuumvoi_decisions.txt
+#      → absorb_another_dragon_soul, advance_thu_um_training, begin_greybeard_leadership_quest, harness_dovah_blood, learn_from_word_wall, leave_greybeard_order_decision, leave_voice_path_decision, resist_dovah_nature_decision, seek_the_greybeard_order, seek_thu_um_training
+#    common/modifiers/lore_races_modifiers.txt
+#      → absorb_soul_cooldown, dovahkiin_word_wall_cooldown, thuumvoi_advancement_cooldown
+#    common/scripted_effects/thuumvoi_effects.txt
+#      → absorb_additional_dragon_soul, absorb_dragon_soul, lose_amulet_of_kings, receive_amulet_of_kings
+#    common/traits/thuumvoi_traits.txt
+#      → dovah_nature_dominant, dovah_nature_resisted, dovahkiin_soul_awakened, dragon_souls_brimming, dragon_souls_growing, first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_adept, thu_um_initiate, thu_um_master
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/amulet_of_kings_decisions.txt
+#      → can_relight_dragonfires, can_seek_amulet_of_kings, has_amulet_of_kings
+#    common/decisions/thuumvoi_decisions.txt
+#      → can_absorb_another_soul, can_advance_thu_um, can_begin_greybeard_leadership, can_harness_dovah_blood, can_learn_from_word_wall, can_learn_thu_um, can_seek_greybeards, dovah_nature_at_risk, is_greybeard, is_on_voice_path
+#    common/scripted_effects/thuumvoi_effects.txt
+#      → can_relight_dragonfires, has_amulet_of_kings, is_dragonborn
+#    events/amulet_of_kings_events.txt
+#      → can_relight_dragonfires, has_amulet_of_kings, is_dragonborn
+#    events/thuumvoi_events.txt
+#      → is_dragonborn
+# =============================================================
+
 is_on_voice_path = {
     OR = {
         has_trait = thu_um_initiate

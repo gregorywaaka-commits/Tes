@@ -21,6 +21,28 @@
 #  Grants the dwemer_scholar trait and marks the capital county
 #  as an excavated ruin site (enables animunculi guard decision).
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/scripted_effects/dwemer_ruins_effects.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • activate_animunculi_guard
+#    • begin_dwemer_excavation
+#    • grant_aetherium_attunement
+#    • trigger_ruin_collapse
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dwemer_ruins_traits.txt
+#      → aetherium_attuned, animunculi_master, dwemer_scholar
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/scripted_triggers/dwemer_ruins_triggers.txt
+#      → begin_dwemer_excavation
+#    events/dwemer_ruins_events.txt
+#      → activate_animunculi_guard, begin_dwemer_excavation, grant_aetherium_attunement, trigger_ruin_collapse
+# =============================================================
+
 begin_dwemer_excavation = {
     if = {
         limit = { NOT = { has_trait = dwemer_scholar } }

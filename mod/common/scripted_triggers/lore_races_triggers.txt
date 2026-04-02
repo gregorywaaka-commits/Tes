@@ -39,6 +39,76 @@
 
 # Is this character of Echmer heritage?
 # (has the echmer_heritage trait from lore_races_traits.txt)
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/scripted_triggers/lore_races_triggers.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • count_active_towers
+#    • dagoth_ur_awakened
+#    • dagoth_ur_awakening_possible
+#    • echmer_invasion_possible
+#    • is_echmer
+#    • is_echmer_active_contact
+#    • is_kamal
+#    • is_kothringi
+#    • is_maormer
+#    • is_sixth_house
+#    • is_sload
+#    • kamal_invasion_possible
+#    • kamal_summer_active
+#    • knahaten_can_trigger
+#    • knahaten_flu_active
+#    • maormer_raid_possible
+#    • orgnum_is_alive
+#    • sload_plague_can_trigger
+#    • thrassian_plague_active
+#    • tower_adamantine_active
+#    • tower_coral_active
+#    • tower_red_mountain_active
+#    • tower_white_gold_active
+#    • world_stability_critical
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → maormer_truce_modifier, plague_cooldown_modifier, reality_fracturing_modifier
+#    common/scripted_effects/lore_races_effects.txt
+#      → activate_tower_stone_effect, begin_kamal_invasion, deactivate_tower_stone_effect, destroy_thras_effect, establish_echmer_contact, trigger_knahaten_flu, unleash_thrassian_plague
+#    common/traits/dagoth_ur_traits.txt
+#      → sixth_house_cultist
+#    common/traits/lore_races_traits.txt
+#      → echmer_heritage, kamal_heritage, kothringi_heritage, maormer_heritage, sload_heritage, sload_necromancer
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/lore_races_decisions.txt
+#      → dagoth_ur_awakened, is_echmer_active_contact, is_kothringi, is_maormer, is_sload, knahaten_flu_active, orgnum_is_alive, sload_plague_can_trigger
+#    common/modifiers/lore_races_modifiers.txt
+#      → knahaten_can_trigger, knahaten_flu_active, maormer_raid_possible, thrassian_plague_active, world_stability_critical
+#    common/on_actions/lore_races_on_actions.txt
+#      → dagoth_ur_awakened, dagoth_ur_awakening_possible, knahaten_flu_active, thrassian_plague_active
+#    common/scripted_effects/lore_races_effects.txt
+#      → dagoth_ur_awakened, dagoth_ur_awakening_possible, is_sload, knahaten_flu_active, thrassian_plague_active, world_stability_critical
+#    events/dagoth_ur_events.txt
+#      → dagoth_ur_awakened, dagoth_ur_awakening_possible
+#    events/echmer_events.txt
+#      → is_echmer_active_contact
+#    events/kagrenac_events.txt
+#      → dagoth_ur_awakened
+#    events/kamal_events.txt
+#      → kamal_invasion_possible
+#    events/kothringi_events.txt
+#      → is_kothringi, knahaten_flu_active
+#    events/maormer_events.txt
+#      → is_maormer, maormer_raid_possible
+#    events/sload_events.txt
+#      → is_sload, thrassian_plague_active
+#    events/towers_events.txt
+#      → count_active_towers, world_stability_critical
+#    events/vivec_trial_events.txt
+#      → dagoth_ur_awakened
+# =============================================================
+
 is_echmer = {
     has_trait = echmer_heritage
 }

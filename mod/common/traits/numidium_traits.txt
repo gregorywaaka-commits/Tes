@@ -30,6 +30,25 @@
 #  and can it be restored?  Their research is brilliant and their
 #  notes are heresy in twelve kingdoms.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/numidium_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • mantella_seeker
+#    • numidium_awakener
+#    • numidium_researcher
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dwemer_ruins_traits.txt
+#      → dwemer_scholar
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/numidium_events.txt
+#      → mantella_seeker, numidium_awakener, numidium_researcher
+# =============================================================
+
 numidium_researcher = {
     category = lifestyle
 

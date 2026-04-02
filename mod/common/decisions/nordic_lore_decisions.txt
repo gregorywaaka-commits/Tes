@@ -16,6 +16,30 @@
 #  martial credibility as well as prestige — Ysgramor's line is
 #  remembered as a line of warriors, not scholars.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/nordic_lore_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • claim_companion_lineage
+#    • seek_skaal_accord
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → all_maker_blessed, companion_of_ysgramor, seek_skaal_accord
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/on_actions/lore_races_on_actions.txt
+#      → seek_skaal_accord
+#    common/traits/lore_races_traits.txt
+#      → seek_skaal_accord
+#    events/nordic_lore_events.txt
+#      → claim_companion_lineage, seek_skaal_accord
+#    events/skaal_allmaker_events.txt
+#      → seek_skaal_accord
+# =============================================================
+
 claim_companion_lineage = {
     picture = "gfx/interface/icons/decisions/decision_realm.dds"
     desc = claim_companion_lineage_desc

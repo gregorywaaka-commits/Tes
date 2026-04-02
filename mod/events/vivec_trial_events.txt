@@ -76,6 +76,22 @@
 #                whether this constitutes remorse or avoidance.
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/vivec_trial_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/lore_races_decisions.txt
+#      → challenge_almalexia, challenge_sotha_sil, challenge_vivec
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → dagoth_ur_awakened
+#    common/traits/dagoth_ur_traits.txt
+#      → nerevarine_marked, sixth_house_cultist
+#    common/traits/tribunal_traits.txt
+#      → vivec_blessed
+# =============================================================
+
 namespace = vivec_trial
 
 # ---------------------------------------------------------------

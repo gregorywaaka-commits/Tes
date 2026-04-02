@@ -14,6 +14,19 @@
 #  can commission a survey of Cyrodilic lands for Ayleid ruin
 #  sites and mount a scholarly expedition into the depths.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/ayleid_ruins_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • explore_ayleid_ruin
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/ayleid_ruins_traits.txt
+#      → ayleid_historian
+# =============================================================
+
 explore_ayleid_ruin = {
     picture = "gfx/interface/icons/decisions/decision_realm.dds"
     desc = explore_ayleid_ruin_desc

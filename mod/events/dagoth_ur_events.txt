@@ -53,6 +53,22 @@
 #  • azura_champion       = trait defined in daedric_invasion_traits.txt
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/dagoth_ur_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/scripted_effects/lore_races_effects.txt
+#      → begin_dagoth_ur_awakening, end_dagoth_ur_era
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → dagoth_ur_awakened, dagoth_ur_awakening_possible
+#    common/traits/daedric_invasion_traits.txt
+#      → azura_champion
+#    common/traits/dagoth_ur_traits.txt
+#      → ash_devotee, corprus_afflicted, ghost_fence_keeper, nerevarine_marked, sixth_house_cultist
+# =============================================================
+
 namespace = dagoth_ur
 
 # ---------------------------------------------------------------

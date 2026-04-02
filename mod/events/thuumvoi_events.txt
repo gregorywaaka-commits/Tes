@@ -9,6 +9,24 @@
 #  Lore timeframe: 2E 440–896 (the Interregnum)
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/thuumvoi_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/thuumvoi_decisions.txt
+#      → resist_dovah_nature_decision, seek_thu_um_training, use_thu_um_in_battle
+#    common/modifiers/lore_races_modifiers.txt
+#      → dovahkiin_recognition_cooldown, first_voice_modifier, greybeard_pilgrims_cooldown, thu_um_shout_cooldown
+#    common/scripted_effects/thuumvoi_effects.txt
+#      → absorb_dragon_soul, awaken_dovah_blood, begin_voice_training, initiate_greybeard, join_greybeard_order, learn_from_word_wall_effect, resist_dovah_nature, submit_to_dovah_nature
+#    common/scripted_triggers/thuumvoi_triggers.txt
+#      → is_dragonborn
+#    common/traits/thuumvoi_traits.txt
+#      → dovah_nature_dominant, dovah_nature_resisted, dovahkiin_soul_awakened, dragon_souls_brimming, dragon_souls_growing, first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_adept, thu_um_initiate, thu_um_master
+# =============================================================
+
 namespace = thuumvoi
 
 # ----------------------------------------------------------------

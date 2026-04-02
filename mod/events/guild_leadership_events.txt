@@ -12,6 +12,20 @@
 #    guild_X_quest_done — questline complete; claim decision unlocked
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/guild_leadership_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → guild_leader_bards_modifier, guild_leader_companions_modifier, guild_leader_db_modifier, guild_leader_fighters_modifier, guild_leader_mages_modifier, guild_leader_postquest_cooldown, guild_leader_psijic_modifier, guild_leader_thieves_modifier, guild_leader_tong_modifier, guild_leader_undaunted_modifier, guild_recently_rejected
+#    common/scripted_triggers/guild_triggers.txt
+#      → is_bards_college_member, is_companions_member, is_dark_brotherhood_member, is_fighters_guild_member, is_mages_guild_member, is_morag_tong_member, is_psijic_member, is_thieves_guild_member, is_undaunted_member_trigger
+#    common/traits/guild_traits.txt
+#      → bards_college_bard, bards_college_master_bard, companions_circle, companions_harbinger, dark_brotherhood_listener, dark_brotherhood_speaker, fighters_guild_guardian, fighters_guild_guildmaster, mages_guild_archmagister, mages_guild_wizard, morag_tong_grandmaster, morag_tong_master … (18 total)
+# =============================================================
+
 namespace = guild_leader
 
 # ================================================================

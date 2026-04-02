@@ -4,6 +4,23 @@
 #  Prince) to declare war with unique CB mechanics.
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/casus_belli_types/daedric_invasion_cb.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • daedric_invasion_cb
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → end_daedric_invasion, escalate_daedric_invasion
+#    common/scripted_triggers/daedric_invasion_triggers.txt
+#      → is_daedric_invasion_active
+#    common/traits/daedric_invasion_traits.txt
+#      → daedric_prince
+# =============================================================
+
 daedric_invasion_cb = {
     group = daedric
 

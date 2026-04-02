@@ -27,6 +27,23 @@
 #  diplomatic sophistication — the traits that built an empire
 #  without drawing a sword.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/direnni_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • direnni_bloodline
+#    • direnni_hegemon
+#    • glenumbra_veteran
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/on_actions/lore_races_on_actions.txt
+#      → direnni_bloodline
+#    events/direnni_events.txt
+#      → direnni_bloodline, direnni_hegemon, glenumbra_veteran
+# =============================================================
+
 direnni_bloodline = {
     category = special
 
