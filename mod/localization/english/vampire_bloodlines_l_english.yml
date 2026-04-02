@@ -61,3 +61,16 @@
  vampire.030.desc: "Midsummer. The light comes too early and stays too long, and your body, which is no longer precisely the body it was born with, registers its objection at a level below language. The skin crawls. The eyes ache against even reflected light. You have learned to manage this — shuttered rooms, deep riding cloaks, appointments scheduled for evening — but there are moments, crossing an open courtyard, sitting at a banquet where the windows face west, when the sun finds you anyway. The sun always finds you eventually. And it always reminds you what you are."
  vampire.030.a: "Endure. The night will come, and the sun will have nothing to say."
  vampire.030.b: "Remain within the shadow. The night is more than sufficient."
+
+ # =====================================================================
+ #  MORROWIND VAMPIRE CLANS — TRAITS (TES3)
+ # =====================================================================
+
+ quarra_clan: "Quarra Clan"
+ quarra_clan_desc: "This character is a member of the Quarra — one of the three great vampire clans of Vvardenfell. The Quarra are warriors who make their lair in the Dwemer ruins of Druscashti. They revel in strength and direct confrontation, disdaining the subtlety of the other clans. Among the vampires of Morrowind, they are the most feared in open battle."
+
+ aundae_clan: "Aundae Clan"
+ aundae_clan_desc: "This character is a member of the Aundae — one of the three great vampire clans of Vvardenfell. The Aundae are scholarly and elitist, making their base at Ashmelech on an island west of Dagon Fel. They prefer illusion and mysticism over brute force, and they regard most other vampires with a certain academic condescension. Their membership leans toward the Altmeri."
+
+ berne_clan: "Berne Clan"
+ berne_clan_desc: "This character is a member of the Berne — one of the three great vampire clans of Vvardenfell. The Berne are hunters: patient, silent, specialising in ambush and the slow attrition of isolated prey. They make their lair in the Dwemer ruin Galom Daeus. Of the three Morrowind clans, the Berne are the most feared by those who know enough to be afraid before they see them coming."

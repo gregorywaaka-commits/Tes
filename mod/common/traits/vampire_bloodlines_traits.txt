@@ -10,6 +10,9 @@
 #  gray_host_remnant    — Ancient vampire-werewolf warrior of the Gray Host.
 #  vampire_lord         — Apex bloodline master of supreme power.
 #  blood_curse          — Early-stage vampirism before full turning.
+#  quarra_clan          — Warrior vampires of Vvardenfell (Morrowind); combat-focused.
+#  aundae_clan          — Mage vampires of Vvardenfell (Morrowind); learning-focused.
+#  berne_clan           — Assassin vampires of Vvardenfell (Morrowind); intrigue-focused.
 #
 #  LORE CONTEXT:
 #  ─────────────
@@ -19,6 +22,10 @@
 #  the Cyrodilic Vampyrum Order serve Molag Bal at the pinnacle of his mortal
 #  hierarchy; the Gray Host was an army of vampires and werewolves that plagued
 #  the Second Era.  Apex members — Vampire Lords — command all lesser undead.
+#  Morrowind's three Vvardenfell clans — Quarra (warriors), Aundae (mages),
+#  and Berne (assassins) — are the canonical bloodlines of TES3 Morrowind.
+#  They are hostile to each other and shunned even by Dunmer society.
+#  Source: TES3 Morrowind / UESP Morrowind:Vampire Clan pages.
 # =============================================================
 
 # ---------------------------------------------------------------
@@ -33,16 +40,21 @@
 # =============================================================
 #
 #  DEFINES — identifiers this file exports to the mod:
+#    • aundae_clan
+#    • berne_clan
 #    • blood_curse
 #    • gray_host_remnant
 #    • lamae_bal_bloodline
+#    • quarra_clan
 #    • vampire_lord
 #    • vampyrum_order
 #    • volkihar_bloodline
 #
 #  REFERENCED BY — other files that import this file's definitions:
 #    events/vampire_bloodlines_events.txt
-#      → blood_curse, gray_host_remnant, lamae_bal_bloodline, vampire_lord, vampyrum_order, volkihar_bloodline
+#      → aundae_clan, berne_clan, blood_curse, gray_host_remnant,
+#         lamae_bal_bloodline, quarra_clan, vampire_lord, vampyrum_order,
+#         volkihar_bloodline
 # =============================================================
 
 volkihar_bloodline = {
@@ -148,4 +160,68 @@ blood_curse = {
     stress_gain_mult =  0.10  # The hunger is maddening; the change is terrifying
 
     flag = blood_curse
+}
+
+# ---------------------------------------------------------------
+#  QUARRA CLAN
+#  The warrior vampire bloodline of Vvardenfell, headquartered
+#  in the Dwemer ruins of Druscashti (northwest Vvardenfell).
+#  Quarra vampires prize physical strength and open combat above
+#  all else.  They are the most aggressive of the three
+#  Morrowind clans and the most likely to be found hunting
+#  rather than hiding.  Membership spans races but leans Nordic.
+#  Source: TES3 Morrowind, Morrowind:Quarra Clan (UESP).
+# ---------------------------------------------------------------
+quarra_clan = {
+    category = fame
+
+    martial  = 5
+    prowess  = 6
+    health   = 0.3   # Vampiric resilience matched with brute durability
+
+    monthly_prestige_gain_mult = 0.20   # Feared for strength, not subtlety
+
+    flag = quarra_clan
+}
+
+# ---------------------------------------------------------------
+#  AUNDAE CLAN
+#  The mage vampire bloodline of Vvardenfell, based at Ashmelech
+#  on an island west of Dagon Fel.  Aundae vampires are elitist
+#  and scholarly — they use illusion and mysticism to control
+#  prey rather than physical power.  Membership is predominantly
+#  High Elven (Altmeri); they carry a certain academic disdain
+#  for the other clans.
+#  Source: TES3 Morrowind, Morrowind:Aundae Clan (UESP).
+# ---------------------------------------------------------------
+aundae_clan = {
+    category = fame
+
+    learning  = 5
+    intrigue  = 3
+    diplomacy = 2   # Manipulation through silver tongues and illusion
+
+    monthly_prestige_gain_mult = 0.25   # Arcane reputation keeps rivals at distance
+
+    flag = aundae_clan
+}
+
+# ---------------------------------------------------------------
+#  BERNE CLAN
+#  The stealth and assassination vampire bloodline of Vvardenfell,
+#  based in the Dwemer ruin Galom Daeus (south-central Vvardenfell).
+#  Berne vampires are hunters in the truest sense — speed, poison,
+#  ambush, and the slow patient feed on isolated victims.
+#  Membership tends toward Imperial stock.
+#  Source: TES3 Morrowind, Morrowind:Berne Clan (UESP).
+# ---------------------------------------------------------------
+berne_clan = {
+    category = fame
+
+    intrigue = 6
+    prowess  = 3   # Not brutes — precise and surgical
+
+    monthly_prestige_gain_mult = 0.20   # Silent reputation; those who know fear them
+
+    flag = berne_clan
 }

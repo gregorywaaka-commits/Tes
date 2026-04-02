@@ -108,7 +108,7 @@ seek_skaal_accord = {
 
     effect = {
         add_prestige = -200
-        add_trait = seek_skaal_accord
+        add_trait = seek_skaal_accord   # Removed by nordic_lore.004 (→ all_maker_blessed) or skaal.005.b (betrayal)
         set_character_flag = { flag = skaal_accord_sought days = 1825 }
         trigger_event = { id = nordic_lore.003 }
     }
