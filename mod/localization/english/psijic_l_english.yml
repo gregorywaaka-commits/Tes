@@ -36,6 +36,7 @@
 
  # ---- Decision ----
 
+ seek_psijic_tutelage: "Seek Psijic Tutelage"
  seek_psijic_tutelage_desc: "The Psijic Order does not advertise.  They do not recruit.  They observe, from their island which cannot be found except by those they permit to find it, and when they see something worth teaching, they send a monk.  A ruler of sufficient learning and standing may make themselves findable — through scholarship, through the kind of sustained intellectual seriousness the Order has always monitored — and spend the necessary gold and prestige on the months of correspondence and preparation that precede an actual invitation.  The Order will notice.  They always do."
 
  # ---- Traits ----

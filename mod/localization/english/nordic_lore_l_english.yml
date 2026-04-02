@@ -44,7 +44,9 @@
 
  # ---- Decisions ----
 
+ claim_companion_lineage: "Claim Companion Lineage"
  claim_companion_lineage_desc: "The saga fragment has been studied and the genealogy confirms it: this house carries a thread of the old Atmoran bloodline, one of the Five Hundred who crossed the sea with Ysgramor. Formally claiming Companion descent requires more than a document — it requires the credibility that only a worthy lord can bring to the name."
+ seek_skaal_accord: "Seek the Skaal Accord"
  seek_skaal_accord_desc: "The Skaal of Solstheim have kept the All-Maker's rites since before the first long ship rounded the northern cape. They do not petition lords for recognition — but a lord who approaches them with genuine respect may earn something older and more durable than a political alliance."
 
  # ---- Traits ----

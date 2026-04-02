@@ -53,7 +53,9 @@
 
  # ---- Decisions ----
 
+ contact_dark_brotherhood: "Contact the Dark Brotherhood"
  contact_dark_brotherhood_desc: "The Dark Brotherhood does not advertise. The Black Sacrament — a ritual of effigy and nightshade and bone meal — is the method by which the Brotherhood knows someone is willing to pay for what they provide. A ruler with the right instincts, or the right allies, can make the arrangements. Whether the Brotherhood answers is their decision. Whether to ask is yours."
+ invest_skooma_trade: "Invest in the Skooma Trade"
  invest_skooma_trade_desc: "The Moon Sugar smuggling networks move quietly through Tamriel's ports and river-towns, and they are profitable precisely because so many respectable people pretend they do not exist. A ruler willing to put capital into the operation can expect returns. The risks — supply chain exposure, Khajiiti supplier politics, and the personal temptations that come with easy access — are the cost of doing business."
 
  # ---- Traits ----

@@ -139,7 +139,6 @@ alessian.001 = {
             add_opinion = {
                 modifier = reformer_elven_resentment_opinion
                 target = root
-                opinion = -30
             }
         }
         # Trigger the elven backlash after a short delay
@@ -177,7 +176,6 @@ alessian.002 = {
             add_opinion = {
                 modifier = alessian_double_down_opinion
                 target = root
-                opinion = -25
             }
         }
         # Trigger the Marukite deeper path after delay

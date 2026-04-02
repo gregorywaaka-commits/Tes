@@ -49,7 +49,9 @@
 
  # ---- Decisions ----
 
+ travel_to_hist_convocation: "Travel to the Hist Grand Convocation"
  travel_to_hist_convocation_desc: "The Hist Grand Convocation is held in the oldest grove in Murkmire — deeper into Black Marsh than most maps acknowledge.  To attend is to offer the Hist your full attention, and to receive, if you are found worthy, a deeper bonding than any surface-world connection allows.  The journey costs three hundred prestige — not in gold but in the political time a ruler must take from governance.  What waits at the end is permanent."
+ call_the_wild_hunt: "Call the Wild Hunt"
  call_the_wild_hunt_desc: "The Wild Hunt is the most absolute weapon in the arsenal of those called to it.  It cannot be aimed precisely.  It cannot be recalled early.  It transforms its callers and is not obligated to transform them back.  Enemies in its path will not survive.  Nor will the landscape.  Nor will whatever part of you believed you would never do this.  Call it only when you are certain — not that it is just, but that it is necessary."
 
  # ---- Traits ----

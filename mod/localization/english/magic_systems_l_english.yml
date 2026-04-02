@@ -50,8 +50,11 @@
 
  # ---- Decisions ----
 
+ study_julianos_order: "Study the Order of Julianos"
  study_julianos_order_desc: "The Order of Julianos maintains rigorous academies in the discipline of logic, law, and the arcane. Their curriculum requires genuine commitment — gold for materials and instruction, time for study, and the intellectual honesty to follow an argument wherever it leads. For a ruler of sufficient learning, the reward is the Divine Scholar's mark."
+ begin_psijic_endeavour: "Begin the Psijic Endeavour"
  begin_psijic_endeavour_desc: "The Psijic Endeavour is the Altmeri practice of self-transcendence — the disciplined, sustained attempt to reverse the degradation of mortality and recover something of the Aedric potential that the Aldmer believe lies dormant in every mer. It is not a ceremony. It is a programme, and it demands everything."
+ deploy_tonal_architecture: "Deploy Tonal Architecture"
  deploy_tonal_architecture_desc: "A ruler who has mastered tonal architecture may attempt to deploy Dwemer animunculi on the battlefield — summoning the deep-metal soldiers of the lost Dwemer using Kagrenac's resonance principles. The combat advantage is genuine. The cost in gold is real. What the resonance wakes besides the constructs is less certain."
 
  # ---- Traits ----
