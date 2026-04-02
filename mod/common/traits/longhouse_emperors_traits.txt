@@ -10,6 +10,23 @@
 # succession — tracing lineage or conquest right to the
 # Ruby Throne. The Colovian nobility disputes the claim;
 # the hagraven councils sing it as prophecy fulfilled.
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/longhouse_emperors_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • hagreach_authority
+#    • longhouse_pretender
+#    • reachman_emperor
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/longhouse_emperors_decisions.txt
+#      → longhouse_pretender, reachman_emperor
+#    events/longhouse_emperors_events.txt
+#      → hagreach_authority, longhouse_pretender, reachman_emperor
+# =============================================================
+
 longhouse_pretender = {
     category = fame
     martial    = 3

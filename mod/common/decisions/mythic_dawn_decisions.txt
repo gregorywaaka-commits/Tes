@@ -15,6 +15,21 @@
 #  filtering through certain courts for generations.
 #  The investigation opens the door to mythic_dawn.000.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/mythic_dawn_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • investigate_mythic_dawn
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → mythic_dawn_inner_circle_insight
+#    common/traits/lore_races_traits.txt
+#      → mythic_dawn_inner
+# =============================================================
+
 investigate_mythic_dawn = {
     picture = "gfx/interface/icons/decisions/decision_intrigue.dds"
     desc = investigate_mythic_dawn_desc

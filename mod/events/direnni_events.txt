@@ -11,6 +11,16 @@
 #  • direnni.004 — "Lorkhan's Children" — Direnni philosophical reflection
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/direnni_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/direnni_traits.txt
+#      → direnni_bloodline, direnni_hegemon, glenumbra_veteran
+# =============================================================
+
 namespace = direnni
 
 # ---------------------------------------------------------------

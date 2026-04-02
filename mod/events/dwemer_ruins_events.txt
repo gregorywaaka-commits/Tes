@@ -15,6 +15,22 @@
 #  dwemer.007  The Aetherium Cache — rare crystal deposit found
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/dwemer_ruins_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/dwemer_ruins_decisions.txt
+#      → explore_dwemer_ruin, study_tonal_architecture
+#    common/scripted_effects/dwemer_ruins_effects.txt
+#      → activate_animunculi_guard, begin_dwemer_excavation, grant_aetherium_attunement, trigger_ruin_collapse
+#    common/scripted_triggers/dwemer_ruins_triggers.txt
+#      → can_explore_dwemer_ruin, has_excavated_ruin_in_demesne, is_dwemer_scholar
+#    common/traits/dwemer_ruins_traits.txt
+#      → tonal_architect
+# =============================================================
+
 namespace = dwemer
 
 # ---------------------------------------------------------------

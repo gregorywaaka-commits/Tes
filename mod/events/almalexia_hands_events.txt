@@ -37,6 +37,20 @@
 #  • almalexia_devoted  = trait in tribunal_traits.txt
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/almalexia_hands_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/lore_races_decisions.txt
+#      → pledge_as_almalexias_hand
+#    common/traits/kagrenac_traits.txt
+#      → almalexias_hand
+#    common/traits/tribunal_traits.txt
+#      → almalexia_devoted
+# =============================================================
+
 namespace = almalexia_hands
 
 # ---------------------------------------------------------------

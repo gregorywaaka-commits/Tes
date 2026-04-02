@@ -38,6 +38,18 @@
 #  • wild_hunt_aftermath       — desolation that follows
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/hist_saxhleel_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → hist_vision_insight, hist_warning_defensive, wild_hunt_aftermath, wild_hunt_unleashed
+#    common/traits/lore_races_traits.txt
+#      → hist_elder_bonded
+# =============================================================
+
 namespace = hist_vision
 
 # ---------------------------------------------------------------

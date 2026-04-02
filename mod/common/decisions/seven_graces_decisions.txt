@@ -24,6 +24,21 @@
 #  takes months and demands sacrifice at every step.
 #  Triggers seven_graces.000 immediately.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/seven_graces_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • begin_seven_graces_pilgrimage
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → seven_graces_pilgrim
+#    common/traits/tribunal_traits.txt
+#      → almalexia_devoted, tribunal_champion, vivec_blessed
+# =============================================================
+
 begin_seven_graces_pilgrimage = {
     picture = "gfx/interface/icons/decisions/decision_faith.dds"
     desc = begin_seven_graces_pilgrimage_desc

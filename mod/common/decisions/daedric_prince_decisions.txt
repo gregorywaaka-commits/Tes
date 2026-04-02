@@ -5,6 +5,37 @@
 # =============================================================
 
 # ---- Seek Mehrunes Dagon's Power ----
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/daedric_prince_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • seek_azura
+#    • seek_boethiah
+#    • seek_clavicus_vile
+#    • seek_hermaeus_mora
+#    • seek_hircine
+#    • seek_jyggalag
+#    • seek_malacath
+#    • seek_mehrunes_dagon
+#    • seek_mephala
+#    • seek_meridia
+#    • seek_molag_bal
+#    • seek_namira
+#    • seek_nocturnal
+#    • seek_peryite
+#    • seek_sanguine
+#    • seek_sheogorath
+#    • seek_vaermina
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → daedric_quest_cooldown
+#    common/traits/daedric_invasion_traits.txt
+#      → azura_champion, clavicus_bargain_keeper, clavicus_vile_champion, daedric_champion, hermaeus_mora_champion, hircine_werewolf, jyggalag_champion, malacath_champion, mephala_champion, meridia_champion, molag_bal_vampire, nocturnal_champion … (16 total)
+# =============================================================
+
 seek_mehrunes_dagon = {
     picture = "gfx/interface/icons/decisions/decision_war.dds"
     desc = seek_mehrunes_dagon_desc

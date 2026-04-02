@@ -6,6 +6,22 @@
 #  begins to fracture.
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/towers_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → reality_fracturing_modifier, red_mountain_keeper_modifier, tower_sabotage_cooldown, white_gold_keeper_modifier
+#    common/scripted_effects/lore_races_effects.txt
+#      → deactivate_tower_stone_effect
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → count_active_towers, world_stability_critical
+#    common/traits/lore_races_traits.txt
+#      → tower_stone_keeper
+# =============================================================
+
 namespace = towers
 
 # ---------------------------------------------------------------

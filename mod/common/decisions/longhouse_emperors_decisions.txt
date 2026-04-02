@@ -13,6 +13,19 @@
 #  formally declare their intention to press an Imperial claim —
 #  beginning the Longhouse Emperor path.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/longhouse_emperors_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • claim_imperial_succession
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/longhouse_emperors_traits.txt
+#      → longhouse_pretender, reachman_emperor
+# =============================================================
+
 claim_imperial_succession = {
     picture = "gfx/interface/icons/decisions/decision_war.dds"
     desc = claim_imperial_succession_desc

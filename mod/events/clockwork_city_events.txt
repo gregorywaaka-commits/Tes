@@ -38,6 +38,20 @@
 #  • clockwork_initiate — lore_races_traits.txt (appended)
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/clockwork_city_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/clockwork_city_decisions.txt
+#      → seek_clockwork_city
+#    common/traits/lore_races_traits.txt
+#      → clockwork_initiate, tower_stone_keeper
+#    common/traits/tribunal_traits.txt
+#      → sotha_sil_student
+# =============================================================
+
 namespace = clockwork
 
 # ---------------------------------------------------------------

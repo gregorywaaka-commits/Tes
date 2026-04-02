@@ -41,6 +41,66 @@
 # The presence of global_var:active_daedric_prince is the sole
 # source of truth for invasion state — all other checks build on this.
 # If this is false, no invasion-specific decisions/events should show.
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/scripted_triggers/daedric_invasion_triggers.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • daedric_invasion_at_full_power
+#    • daedric_invasion_can_escalate
+#    • daedric_invasion_trigger_conditions
+#    • is_any_daedric_champion
+#    • is_azura_invasion
+#    • is_boethiah_invasion
+#    • is_clavicus_vile_invasion
+#    • is_daedra_worshipper
+#    • is_daedric_invasion_active
+#    • is_daedric_prince_invader
+#    • is_hermaeus_mora_invasion
+#    • is_hircine_invasion
+#    • is_jyggalag_invasion
+#    • is_malacath_invasion
+#    • is_mehrunes_dagon_invasion
+#    • is_mephala_invasion
+#    • is_meridia_invasion
+#    • is_molag_bal_invasion
+#    • is_namira_invasion
+#    • is_nocturnal_invasion
+#    • is_peryite_invasion
+#    • is_sanguine_invasion
+#    • is_sheogorath_invasion
+#    • is_vaermina_invasion
+#    • province_has_oblivion_gate
+#    • ruler_threatened_by_oblivion_gate
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/character_templates/daedric_princes.txt
+#      → azura_template, boethiah_template, clavicus_vile_template, hermaeus_mora_template, hircine_template, jyggalag_template, malacath_template, mehrunes_dagon_template, mephala_template, meridia_template, molag_bal_template, namira_template … (17 total)
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → begin_daedric_invasion, close_oblivion_gate_effect, end_daedric_invasion, escalate_daedric_invasion, open_oblivion_gate_effect
+#    common/traits/daedric_invasion_traits.txt
+#      → azura_champion, clavicus_vile_champion, daedric_champion, daedric_prince, daedric_vassal, hermaeus_mora_champion, jyggalag_champion, malacath_champion, mephala_champion, meridia_champion, nocturnal_champion, peryite_champion … (15 total)
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/casus_belli_types/daedric_invasion_cb.txt
+#      → is_daedric_invasion_active
+#    common/decisions/daedric_invasion_decisions.txt
+#      → daedric_invasion_at_full_power, is_daedric_invasion_active
+#    common/modifiers/lore_races_modifiers.txt
+#      → daedric_invasion_trigger_conditions
+#    common/on_actions/daedric_invasion_on_actions.txt
+#      → daedric_invasion_can_escalate, daedric_invasion_trigger_conditions, is_daedric_invasion_active
+#    events/daedric_champion_events.txt
+#      → is_daedric_invasion_active
+#    events/daedric_invasion_events.txt
+#      → daedric_invasion_can_escalate, daedric_invasion_trigger_conditions, is_daedric_invasion_active
+#    events/daedric_prince_invasion_events.txt
+#      → is_azura_invasion, is_clavicus_vile_invasion, is_hermaeus_mora_invasion, is_jyggalag_invasion, is_malacath_invasion, is_mephala_invasion, is_meridia_invasion, is_nocturnal_invasion, is_peryite_invasion, is_sanguine_invasion, is_sheogorath_invasion, is_vaermina_invasion
+#    events/oblivion_gate_events.txt
+#      → daedric_invasion_at_full_power, is_daedric_invasion_active
+# =============================================================
+
 is_daedric_invasion_active = {
     exists = global_var:active_daedric_prince
 }

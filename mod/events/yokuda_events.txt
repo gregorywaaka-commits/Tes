@@ -2,6 +2,21 @@
 #  Yokuda / Redguard Expansion — Events
 #  Namespace: yokuda
 #
+#  LORE:
+#  Yokuda was the Redguard homeland, a continent west of Tamriel
+#  that sank beneath the sea c. 1E 792 (the Orichalc Tower fell
+#  first; whether its destruction caused the sinking or merely
+#  failed to prevent it is debated).  The Ra Gada ("warrior wave")
+#  were the vanguard armies of the Yokudan Redguard who arrived
+#  on Hammerfell's shores in the First Era, slaughtering the Nedic
+#  and native peoples before the main colonist fleets landed.
+#  Ruptga ("Tall Papa") is the chief god of the Yokudan pantheon;
+#  Sep is the Yokudan equivalent of Lorkhan — a trickster who
+#  convinced the other gods to make the mortal world.
+#  The Shehai is the "spirit sword" — a Sword-Singer conjures a
+#  blade of pure will.  The greatest known use was Frandar Hunding
+#  destroying the Lefthanded Elves during the War of Succession.
+#
 #  SYSTEM OVERVIEW:
 #  ─────────────────
 #  • yokuda.000 — "Legacy of the Ra Gada" — Redguard rulers remember the Wave
@@ -13,6 +28,16 @@
 #  ─────────────────────
 #  • yokudan_heritage / ra_gada_warrior / sword_singer (yokuda_traits.txt)
 #  • ruptga_devoted / sep_cultist (yokuda_traits.txt)
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/yokuda_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/yokuda_traits.txt
+#      → ra_gada_warrior, ruptga_devoted, sep_cultist, sword_singer, yokudan_heritage
 # =============================================================
 
 namespace = yokuda

@@ -15,6 +15,18 @@
 #  • skaal.005 — "Village Under Threat" — defend or abandon
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/skaal_allmaker_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/nordic_lore_decisions.txt
+#      → seek_skaal_accord
+#    common/traits/lore_races_traits.txt
+#      → all_maker_blessed, seek_skaal_accord
+# =============================================================
+
 namespace = skaal
 
 # ---------------------------------------------------------------

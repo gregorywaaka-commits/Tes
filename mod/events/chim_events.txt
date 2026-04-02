@@ -21,6 +21,18 @@
 #  (see mod/common/decisions/chim_decisions.txt).
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/chim_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/chim_decisions.txt
+#      → seek_walking_ways
+#    common/traits/chim_traits.txt
+#      → chim_achieved, chim_seeker
+# =============================================================
+
 namespace = chim
 
 # ---------------------------------------------------------------

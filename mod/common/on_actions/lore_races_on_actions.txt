@@ -91,6 +91,46 @@
 #  Add new yearly flavour events HERE — keep the no-op weight high
 #  enough that events remain rare (current no-op weight = 200).
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/on_actions/lore_races_on_actions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • on_character_death
+#    • on_county_occupied
+#    • on_monthly_pulse
+#    • on_yearly_pulse
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/nordic_lore_decisions.txt
+#      → seek_skaal_accord
+#    common/modifiers/lore_races_modifiers.txt
+#      → kamal_ice_curse_modifier
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → dagoth_ur_awakened, dagoth_ur_awakening_possible, knahaten_flu_active, thrassian_plague_active
+#    common/traits/chim_traits.txt
+#      → chim_achieved
+#    common/traits/daedric_invasion_traits.txt
+#      → azura_champion, mephala_champion
+#    common/traits/direnni_traits.txt
+#      → direnni_bloodline
+#    common/traits/dwemer_ruins_traits.txt
+#      → dwemer_scholar, tonal_architect
+#    common/traits/guild_traits.txt
+#      → psijic_adept
+#    common/traits/lore_races_traits.txt
+#      → knahaten_immune, seek_skaal_accord
+#    common/traits/shezarrine_traits.txt
+#      → shezarrine_vessel
+#    common/traits/tribunal_traits.txt
+#      → sotha_sil_student, vivec_blessed
+#    common/traits/worm_cult_traits.txt
+#      → worm_cult_adept
+#    common/traits/yokuda_traits.txt
+#      → ruptga_devoted, yokudan_heritage
+# =============================================================
+
 on_yearly_pulse = {
     random_events = {
         200 = 0                      # no-op — most years, nothing fires (keeps events meaningful)

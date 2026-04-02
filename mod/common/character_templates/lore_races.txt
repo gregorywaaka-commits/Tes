@@ -4,6 +4,32 @@
 
 # ---- Echmer ----
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/character_templates/lore_races.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • dir_kamal_template
+#    • dreugh_elder_template
+#    • echmer_scholar_template
+#    • echmer_warlord_template
+#    • imga_aristocrat_template
+#    • king_orgnum_template
+#    • kothringi_chief_template
+#    • maormer_sea_witch_template
+#    • sload_archmaster_template
+#    • tang_mo_hero_template
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → altmer_imitator, dir_kamal_herald, dreugh_heritage, dreugh_land_phase, dwemer_uplifted_lineage, echmer_heritage, echolalia_adept, echolalia_master, imga_heritage, kamal_heritage, kamal_thawed, kothringi_heritage … (21 total)
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/scripted_effects/lore_races_effects.txt
+#      → dir_kamal_template, echmer_scholar_template
+# =============================================================
+
 echmer_warlord_template = {
     name = "Echmer_Warlord"
     dynasty = echmer_dynasty

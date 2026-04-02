@@ -40,6 +40,20 @@
 #  • mephala_champion = EK2 trait (from daedric system)
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/underworld_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → skooma_addiction, skooma_trade_income
+#    common/traits/daedric_invasion_traits.txt
+#      → mephala_champion
+#    common/traits/guild_traits.txt
+#      → dark_brotherhood_listener
+# =============================================================
+
 namespace = underworld
 
 # ---------------------------------------------------------------

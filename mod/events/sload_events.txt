@@ -3,6 +3,22 @@
 #  Namespace: sload
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/sload_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → quarantine_modifier
+#    common/scripted_effects/lore_races_effects.txt
+#      → destroy_thras_effect, form_all_flags_navy_effect
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → is_sload, thrassian_plague_active
+#    common/traits/lore_races_traits.txt
+#      → sload_high_necromancer, sload_necromancer
+# =============================================================
+
 namespace = sload
 
 # ---------------------------------------------------------------

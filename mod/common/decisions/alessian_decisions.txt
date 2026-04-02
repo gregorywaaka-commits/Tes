@@ -19,6 +19,24 @@
 #  The decision costs piety and prestige; the event chain that
 #  follows may cost far more.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/alessian_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • claim_reman_heritage
+#    • proclaim_alessian_reformation
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → alessian_reformer, reman_heir
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/alessian_events.txt
+#      → claim_reman_heritage, proclaim_alessian_reformation
+# =============================================================
+
 proclaim_alessian_reformation = {
     picture = "gfx/interface/icons/decisions/decision_faith.dds"
     desc = proclaim_alessian_reformation_desc

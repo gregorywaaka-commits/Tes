@@ -30,6 +30,26 @@
 #  is not "is this true?" — they already know it is.  The
 #  question is: "can I remain myself while knowing it?"
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/chim_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • chim_achieved
+#    • chim_seeker
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/chim_decisions.txt
+#      → chim_achieved, chim_seeker
+#    common/modifiers/lore_races_modifiers.txt
+#      → chim_achieved, chim_seeker
+#    common/on_actions/lore_races_on_actions.txt
+#      → chim_achieved
+#    events/chim_events.txt
+#      → chim_achieved, chim_seeker
+# =============================================================
+
 chim_seeker = {
     category = lifestyle
 

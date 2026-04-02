@@ -28,6 +28,24 @@
 #  wills it. Its bearer grows more violent, more cunning, and
 #  more hungry for conflict with every passing moon.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/daedric_artifacts_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • artifact_corruption
+#    • ebony_blade_cursed
+#    • mehrunes_razor_bearer
+#    • ring_of_namira_bearer
+#    • skull_of_corruption_bearer
+#    • wabbajack_wielder
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/daedric_artifacts_events.txt
+#      → artifact_corruption, ebony_blade_cursed, mehrunes_razor_bearer, ring_of_namira_bearer, skull_of_corruption_bearer, wabbajack_wielder
+# =============================================================
+
 mehrunes_razor_bearer = {
     category = fame
 

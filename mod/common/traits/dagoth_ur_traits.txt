@@ -36,6 +36,43 @@
 #  secret remnant of House Dagoth.  Powerful in the shadows
 #  but shunned by the pious and the Tribunal alike.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/dagoth_ur_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • ash_devotee
+#    • corprus_afflicted
+#    • ghost_fence_keeper
+#    • nerevarine_marked
+#    • sixth_house_cultist
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/daedric_invasion_traits.txt
+#      → azura_champion
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/great_houses_decisions.txt
+#      → nerevarine_marked
+#    common/decisions/lore_races_decisions.txt
+#      → nerevarine_marked, sixth_house_cultist
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → sixth_house_cultist
+#    events/almsivi_interdict_events.txt
+#      → sixth_house_cultist
+#    events/ashlander_events.txt
+#      → nerevarine_marked
+#    events/dagoth_ur_events.txt
+#      → ash_devotee, corprus_afflicted, ghost_fence_keeper, nerevarine_marked, sixth_house_cultist
+#    events/great_houses_events.txt
+#      → nerevarine_marked
+#    events/kagrenac_events.txt
+#      → nerevarine_marked, sixth_house_cultist
+#    events/vivec_trial_events.txt
+#      → nerevarine_marked, sixth_house_cultist
+# =============================================================
+
 sixth_house_cultist = {
     category = personality
     is_good   = no

@@ -25,6 +25,45 @@
 # ================================================================
 
 # Has spoken a first Word of Power — the Voice stirs within them.
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/thuumvoi_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • dovah_nature_dominant
+#    • dovah_nature_resisted
+#    • dovahkiin_soul_awakened
+#    • dragon_souls_brimming
+#    • dragon_souls_growing
+#    • first_voice_of_the_greybeards
+#    • greybeard_aspirant
+#    • greybeard_of_high_hrothgar
+#    • thu_um_adept
+#    • thu_um_initiate
+#    • thu_um_master
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/amulet_of_kings_decisions.txt
+#      → dovahkiin_soul_awakened
+#    common/decisions/dragon_priest_decisions.txt
+#      → first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_adept, thu_um_initiate, thu_um_master
+#    common/decisions/thuumvoi_decisions.txt
+#      → dovah_nature_dominant, dovahkiin_soul_awakened, dragon_souls_brimming, dragon_souls_growing, first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_master
+#    common/modifiers/lore_races_modifiers.txt
+#      → dovahkiin_soul_awakened, dragon_souls_brimming, dragon_souls_growing
+#    common/scripted_effects/thuumvoi_effects.txt
+#      → dovah_nature_dominant, dovah_nature_resisted, dovahkiin_soul_awakened, dragon_souls_brimming, dragon_souls_growing, first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_adept, thu_um_initiate, thu_um_master
+#    common/scripted_triggers/thuumvoi_triggers.txt
+#      → dovah_nature_dominant, dovah_nature_resisted, dovahkiin_soul_awakened, dragon_souls_brimming, dragon_souls_growing, first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_adept, thu_um_initiate, thu_um_master
+#    events/amulet_of_kings_events.txt
+#      → dovahkiin_soul_awakened, first_voice_of_the_greybeards, greybeard_of_high_hrothgar, thu_um_master
+#    events/dragon_priest_events.txt
+#      → first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_adept, thu_um_initiate, thu_um_master
+#    events/thuumvoi_events.txt
+#      → dovah_nature_dominant, dovah_nature_resisted, dovahkiin_soul_awakened, dragon_souls_brimming, dragon_souls_growing, first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_adept, thu_um_initiate, thu_um_master
+# =============================================================
+
 thu_um_initiate = {
     category = lifestyle
     opposites = { thu_um_adept thu_um_master }

@@ -18,6 +18,71 @@
 #  Ranks: Associate → Member → Wizard → Arch-Mage
 # ================================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/guild_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • bards_college_apprentice
+#    • bards_college_bard
+#    • bards_college_master_bard
+#    • companions_circle
+#    • companions_harbinger
+#    • companions_shield_brother
+#    • companions_veteran
+#    • dark_brotherhood_assassin
+#    • dark_brotherhood_initiate
+#    • dark_brotherhood_listener
+#    • dark_brotherhood_speaker
+#    • fighters_guild_associate
+#    • fighters_guild_guardian
+#    • fighters_guild_guildmaster
+#    • fighters_guild_journeyman
+#    • mages_guild_archmagister
+#    • mages_guild_associate
+#    • mages_guild_member
+#    • mages_guild_wizard
+#    • morag_tong_assassin
+#    • morag_tong_grandmaster
+#    • morag_tong_master
+#    • psijic_adept
+#    • psijic_initiate
+#    • psijic_master
+#    • psijic_novice
+#    • thieves_guild_footpad
+#    • thieves_guild_guildmaster_thief
+#    • thieves_guild_prowler
+#    • thieves_guild_shadowfoot
+#    • undaunted_elite
+#    • undaunted_member
+#    • undaunted_veteran
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/guild_decisions.txt
+#      → bards_college_master_bard, companions_circle, companions_harbinger, companions_veteran, dark_brotherhood_listener, fighters_guild_guildmaster, mages_guild_archmagister, morag_tong_grandmaster, psijic_master, thieves_guild_guildmaster_thief, undaunted_elite
+#    common/decisions/guild_leadership_decisions.txt
+#      → bards_college_bard, bards_college_master_bard, companions_circle, companions_harbinger, dark_brotherhood_listener, dark_brotherhood_speaker, fighters_guild_guardian, fighters_guild_guildmaster, mages_guild_archmagister, mages_guild_wizard, morag_tong_grandmaster, morag_tong_master … (18 total)
+#    common/decisions/psijic_decisions.txt
+#      → psijic_adept
+#    common/on_actions/lore_races_on_actions.txt
+#      → psijic_adept
+#    common/scripted_effects/guild_effects.txt
+#      → bards_college_apprentice, bards_college_bard, bards_college_master_bard, companions_circle, companions_harbinger, companions_shield_brother, companions_veteran, dark_brotherhood_assassin, dark_brotherhood_initiate, dark_brotherhood_listener, dark_brotherhood_speaker, fighters_guild_associate … (33 total)
+#    common/scripted_triggers/guild_triggers.txt
+#      → bards_college_master_bard, companions_harbinger, dark_brotherhood_listener, fighters_guild_guildmaster, mages_guild_archmagister, morag_tong_grandmaster, psijic_master, thieves_guild_guildmaster_thief, undaunted_elite
+#    events/guild_events.txt
+#      → bards_college_bard, bards_college_master_bard, companions_circle, companions_harbinger, companions_veteran, dark_brotherhood_assassin, dark_brotherhood_listener, dark_brotherhood_speaker, fighters_guild_guardian, fighters_guild_guildmaster, fighters_guild_journeyman, mages_guild_archmagister … (24 total)
+#    events/guild_leadership_events.txt
+#      → bards_college_bard, bards_college_master_bard, companions_circle, companions_harbinger, dark_brotherhood_listener, dark_brotherhood_speaker, fighters_guild_guardian, fighters_guild_guildmaster, mages_guild_archmagister, mages_guild_wizard, morag_tong_grandmaster, morag_tong_master … (18 total)
+#    events/psijic_events.txt
+#      → psijic_adept, psijic_novice
+#    events/underworld_events.txt
+#      → dark_brotherhood_listener
+#    events/worm_cult_events.txt
+#      → mages_guild_archmagister, mages_guild_associate, mages_guild_member, mages_guild_wizard
+# =============================================================
+
 mages_guild_associate = {
     category = lifestyle
     opposites = { mages_guild_member mages_guild_wizard mages_guild_archmagister }

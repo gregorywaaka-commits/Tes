@@ -7,6 +7,53 @@
 #  MAGES GUILD
 # ================================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/scripted_effects/guild_effects.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • advance_bards_college
+#    • advance_companions
+#    • advance_dark_brotherhood
+#    • advance_fighters_guild
+#    • advance_mages_guild
+#    • advance_morag_tong
+#    • advance_psijic_order
+#    • advance_thieves_guild
+#    • advance_undaunted
+#    • join_bards_college
+#    • join_companions
+#    • join_dark_brotherhood
+#    • join_fighters_guild
+#    • join_mages_guild
+#    • join_morag_tong
+#    • join_psijic_order
+#    • join_thieves_guild
+#    • join_undaunted
+#    • leave_bards_college
+#    • leave_companions
+#    • leave_dark_brotherhood
+#    • leave_fighters_guild
+#    • leave_mages_guild
+#    • leave_morag_tong
+#    • leave_psijic_order
+#    • leave_thieves_guild
+#    • leave_undaunted
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → bards_college_chapter_modifier, companions_chapter_modifier, dark_brotherhood_marked_modifier, fighters_guild_chapter_modifier, guild_advancement_cooldown, mages_guild_chapter_modifier, morag_tong_chapter_modifier, psijic_order_modifier, undaunted_chapter_modifier
+#    common/traits/guild_traits.txt
+#      → bards_college_apprentice, bards_college_bard, bards_college_master_bard, companions_circle, companions_harbinger, companions_shield_brother, companions_veteran, dark_brotherhood_assassin, dark_brotherhood_initiate, dark_brotherhood_listener, dark_brotherhood_speaker, fighters_guild_associate … (33 total)
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/guild_decisions.txt
+#      → advance_bards_college, advance_companions, advance_dark_brotherhood, advance_fighters_guild, advance_mages_guild, advance_morag_tong, advance_psijic_order, advance_thieves_guild, advance_undaunted, join_bards_college, join_companions, join_dark_brotherhood … (26 total)
+#    events/guild_events.txt
+#      → advance_companions, join_psijic_order
+# =============================================================
+
 join_mages_guild = {
     add_character_flag = guild_mages_member
     set_variable = { name = guild_mages_rank value = 1 }

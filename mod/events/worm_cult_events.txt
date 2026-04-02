@@ -15,6 +15,18 @@
 #  global_var:necromancers_moon_risen  — set when the moon event fires
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/worm_cult_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/guild_traits.txt
+#      → mages_guild_archmagister, mages_guild_associate, mages_guild_member, mages_guild_wizard
+#    common/traits/worm_cult_traits.txt
+#      → lich_essence, necromancers_moon_marked, worm_cult_adept, worm_cult_initiate
+# =============================================================
+
 namespace = worm_cult
 
 # ---------------------------------------------------------------

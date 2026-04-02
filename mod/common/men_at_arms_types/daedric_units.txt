@@ -6,6 +6,29 @@
 # =============================================================
 
 # ---- Daedric Footsoldiers (generic Daedra rank-and-file) ----
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/men_at_arms_types/daedric_units.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • clannfear
+#    • daedra_cavalry
+#    • daedra_footsoldiers
+#    • dark_seducer
+#    • dremora
+#    • golden_saint
+#    • hermaeus_lurker
+#    • hermaeus_seeker
+#    • hircine_werewolf_pack
+#    • knight_of_order
+#    • peryite_afflicted_unit
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → clannfear, daedra_cavalry, daedra_footsoldiers, dark_seducer, dremora, golden_saint, hermaeus_lurker, hermaeus_seeker, hircine_werewolf_pack, knight_of_order, peryite_afflicted_unit
+# =============================================================
+
 daedra_footsoldiers = {
     type = infantry
     damage = 30

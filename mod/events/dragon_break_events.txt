@@ -3,12 +3,29 @@
 #  Namespace: dragon_break
 #  File: mod/events/dragon_break_events.txt
 #
+#  LORE:
+#  A Dragon Break is a metaphysical catastrophe in which linear
+#  time fractures — multiple contradictory timelines co-exist
+#  simultaneously, all equally "true."  The most famous is the
+#  Middle Dawn (1E 1200-2208) caused by the Marukhati Selective's
+#  ritual to sever Akatosh from Auri-El.  The Warp in the West
+#  (3E 417) is another Dragon Break.  In this mod the Dragon Break
+#  is triggered mechanically when too few Towers are still active
+#  (active_tower_count <= 3), reflecting the lore principle that
+#  the Towers anchor reality and time.
+#
 #  EVENT LIST:
 #  ─────────────────────────────────────────────────────────────
 #  dragon_break.000  Yearly hidden — detects Tower collapse threshold
 #  dragon_break.001  "The Dragon Breaks" — temporal anomaly strikes all rulers
 #  dragon_break.002  "Memories Out of Order" — aftermath, fragmented timelines
 #  dragon_break.003  "The Dragon Break Fades" — healing after 10 years
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/dragon_break_events.txt
+# =============================================================
 # =============================================================
 
 namespace = dragon_break

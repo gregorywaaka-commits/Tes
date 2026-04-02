@@ -18,6 +18,18 @@
 #  • ebony_blade_cursed / ring_of_namira_bearer / artifact_corruption
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/daedric_artifacts_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/daedric_artifacts_traits.txt
+#      → artifact_corruption, ebony_blade_cursed, mehrunes_razor_bearer, ring_of_namira_bearer, skull_of_corruption_bearer, wabbajack_wielder
+#    common/traits/daedric_invasion_traits.txt
+#      → daedric_champion
+# =============================================================
+
 namespace = daedric_artifact
 
 # ---------------------------------------------------------------

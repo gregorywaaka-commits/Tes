@@ -27,6 +27,23 @@
 #  The vessel is more than human and less than god: a weapon
 #  pointed at the enemies of mankind.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/shezarrine_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • elf_hate
+#    • pelinal_rage
+#    • shezarrine_vessel
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/on_actions/lore_races_on_actions.txt
+#      → shezarrine_vessel
+#    events/shezarrine_events.txt
+#      → elf_hate, pelinal_rage, shezarrine_vessel
+# =============================================================
+
 shezarrine_vessel = {
     category = fame
 

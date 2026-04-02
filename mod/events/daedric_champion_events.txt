@@ -9,6 +9,20 @@
 #  these extend and complement that system.
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/daedric_champion_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → azura_star_holder, dawnbreaker_modifier, ebony_blade_holder, ebony_mail_holder, mace_of_molag_bal_holder, masque_of_clavicus_vile, mehrunes_razor_holder, oghma_infinium_holder, ring_of_hircine_holder, ring_of_namira_holder, sanguine_rose_holder, saviors_hide_holder … (19 total)
+#    common/scripted_triggers/daedric_invasion_triggers.txt
+#      → is_daedric_invasion_active
+#    common/traits/daedric_invasion_traits.txt
+#      → azura_champion, clavicus_vile_champion, daedric_champion, hermaeus_mora_champion, hircine_werewolf, jyggalag_champion, malacath_champion, mephala_champion, meridia_champion, molag_bal_vampire, nocturnal_champion, peryite_afflicted … (16 total)
+# =============================================================
+
 namespace = daedric_champion
 
 # ================================================================

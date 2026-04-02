@@ -2,6 +2,25 @@
 #  Vampire Bloodlines — Events
 #  Namespace: vampire
 #
+#  LORE:
+#  Vampirism in Tamriel is caused by Sanguinare Vampiris, a
+#  disease tied to Molag Bal.  Lamae Bal was the first vampire,
+#  created by Molag Bal's assault on the Nedic healer Lamae
+#  Beolfag during the Merethic Era.  Different bloodlines have
+#  distinct abilities:
+#    • Volkihar (Skyrim)    — isolationist ice-blood vampires
+#    • Lamae Bal (original) — the purest, most feral descent
+#    • Vampyrum Order (Cyrodiil)  — Molag Bal-linked, court predators
+#    • Gray Host remnants    — Molag Bal-bound soldier-vampires
+#    • Quarra Clan (Morrowind)    — warrior vampires; strength and combat
+#    • Aundae Clan (Morrowind)    — elitist mage vampires; magic and learning
+#    • Berne Clan (Morrowind)     — stealth assassins; agility and intrigue
+#  The three Vvardenfell clans are the canonical bloodlines of TES3
+#  Morrowind.  Dunmer characters are assigned to one based on their
+#  highest attribute (martial → Quarra, learning → Aundae, intrigue → Berne).
+#  The Worm Cult (Mannimarco) holds vampirism as an inferior
+#  form of immortality compared to lichdom.
+#
 #  SYSTEM OVERVIEW:
 #  ─────────────────
 #  • vampire.000 — hidden yearly: bloodline rulers, flavor trigger
@@ -15,6 +34,18 @@
 #  ─────────
 #  vampire_contact      — character has met a bloodline emissary
 #  gray_host_active     — global var: Gray Host is moving
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/vampire_bloodlines_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/vampire_bloodlines_traits.txt
+#      → aundae_clan, berne_clan, blood_curse, gray_host_remnant,
+#         lamae_bal_bloodline, quarra_clan, vampire_lord, vampyrum_order,
+#         volkihar_bloodline
 # =============================================================
 
 namespace = vampire
@@ -37,6 +68,9 @@ vampire.000 = {
             has_trait = lamae_bal_bloodline
             has_trait = gray_host_remnant
             has_trait = vampire_lord
+            has_trait = quarra_clan
+            has_trait = aundae_clan
+            has_trait = berne_clan
         }
         NOT = { has_character_flag = vampire_yearly_fired }
     }
@@ -72,6 +106,9 @@ vampire.001 = {
         NOT = { has_trait = volkihar_bloodline }
         NOT = { has_trait = vampyrum_order }
         NOT = { has_trait = lamae_bal_bloodline }
+        NOT = { has_trait = quarra_clan }
+        NOT = { has_trait = aundae_clan }
+        NOT = { has_trait = berne_clan }
         NOT = { has_character_flag = vampire_contact }
         NOT = { has_character_flag = vampire_refused_year }
     }
@@ -111,6 +148,9 @@ vampire.002 = {
         NOT = { has_trait = volkihar_bloodline }
         NOT = { has_trait = vampyrum_order }
         NOT = { has_trait = lamae_bal_bloodline }
+        NOT = { has_trait = quarra_clan }
+        NOT = { has_trait = aundae_clan }
+        NOT = { has_trait = berne_clan }
     }
 
     option = {
@@ -122,6 +162,27 @@ vampire.002 = {
         else_if = {
             limit = { culture = { has_cultural_parameter = imperial_heritage } }
             add_trait = vampyrum_order
+        }
+        else_if = {
+            # Dunmer → one of the three Vvardenfell clans based on dominant attribute
+            limit = { has_culture = dunmer_culture }
+            if = {
+                # Quarra: martial is highest or tied-highest
+                limit = {
+                    martial >= learning
+                    martial >= intrigue
+                }
+                add_trait = quarra_clan
+            }
+            else_if = {
+                # Aundae: learning is strictly highest
+                limit = { learning > intrigue }
+                add_trait = aundae_clan
+            }
+            else = {
+                # Berne: intrigue dominant (or tie between learning/intrigue)
+                add_trait = berne_clan
+            }
         }
         else = {
             add_trait = lamae_bal_bloodline
@@ -172,6 +233,9 @@ vampire.010 = {
             has_trait = volkihar_bloodline
             has_trait = vampyrum_order
             has_trait = lamae_bal_bloodline
+            has_trait = quarra_clan
+            has_trait = aundae_clan
+            has_trait = berne_clan
         }
         NOT = { has_trait = vampire_lord }
         NOT = { has_character_flag = vampire_lord_offered }
@@ -253,6 +317,9 @@ vampire.030 = {
             has_trait = lamae_bal_bloodline
             has_trait = gray_host_remnant
             has_trait = vampire_lord
+            has_trait = quarra_clan
+            has_trait = aundae_clan
+            has_trait = berne_clan
         }
     }
 

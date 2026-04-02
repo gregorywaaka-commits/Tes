@@ -40,6 +40,28 @@
 #  The Tribunal's immortality now slowly fades without the Heart.
 #  Gained via kagrenac.030 only.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/kagrenac_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • almalexias_hand
+#    • nerevarine_victor
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/lore_races_decisions.txt
+#      → pledge_as_almalexias_hand
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/lore_races_decisions.txt
+#      → almalexias_hand, nerevarine_victor
+#    events/almalexia_hands_events.txt
+#      → almalexias_hand
+#    events/kagrenac_events.txt
+#      → nerevarine_victor
+# =============================================================
+
 nerevarine_victor = {
     category = commander
 

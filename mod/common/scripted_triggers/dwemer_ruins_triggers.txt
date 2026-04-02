@@ -4,6 +4,30 @@
 # =============================================================
 
 # True when the character has the dwemer_scholar trait.
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/scripted_triggers/dwemer_ruins_triggers.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • can_explore_dwemer_ruin
+#    • can_study_tonal_architecture
+#    • has_excavated_ruin_in_demesne
+#    • is_dwemer_scholar
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/scripted_effects/dwemer_ruins_effects.txt
+#      → begin_dwemer_excavation
+#    common/traits/dwemer_ruins_traits.txt
+#      → dwemer_scholar, tonal_architect
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/dwemer_ruins_decisions.txt
+#      → can_explore_dwemer_ruin, can_study_tonal_architecture, is_dwemer_scholar
+#    events/dwemer_ruins_events.txt
+#      → can_explore_dwemer_ruin, has_excavated_ruin_in_demesne, is_dwemer_scholar
+# =============================================================
+
 is_dwemer_scholar = {
     has_trait = dwemer_scholar
 }

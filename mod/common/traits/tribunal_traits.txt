@@ -33,6 +33,46 @@
 #  blessing is dual: it sharpens the spear-hand and the quill-hand
 #  in equal measure.  Warriors and scholars both may bear it.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/tribunal_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • almalexia_devoted
+#    • sotha_sil_student
+#    • tribunal_champion
+#    • vivec_blessed
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/clockwork_city_decisions.txt
+#      → sotha_sil_student
+#    common/decisions/great_houses_decisions.txt
+#      → sotha_sil_student
+#    common/decisions/lore_races_decisions.txt
+#      → almalexia_devoted
+#    common/decisions/seven_graces_decisions.txt
+#      → almalexia_devoted, tribunal_champion, vivec_blessed
+#    common/on_actions/lore_races_on_actions.txt
+#      → sotha_sil_student, vivec_blessed
+#    events/almalexia_hands_events.txt
+#      → almalexia_devoted
+#    events/almsivi_interdict_events.txt
+#      → tribunal_champion
+#    events/clockwork_city_events.txt
+#      → sotha_sil_student
+#    events/great_houses_events.txt
+#      → almalexia_devoted, sotha_sil_student, vivec_blessed
+#    events/kagrenac_events.txt
+#      → vivec_blessed
+#    events/seven_graces_events.txt
+#      → vivec_blessed
+#    events/tribunal_events.txt
+#      → almalexia_devoted, sotha_sil_student, tribunal_champion, vivec_blessed
+#    events/vivec_trial_events.txt
+#      → vivec_blessed
+# =============================================================
+
 vivec_blessed = {
     category = lifestyle
 

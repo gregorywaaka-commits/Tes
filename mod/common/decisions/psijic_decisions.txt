@@ -18,6 +18,19 @@
 #  unusual it is for a ruler to step back from governance to
 #  study.  The Order notices.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/psijic_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • seek_psijic_tutelage
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/guild_traits.txt
+#      → psijic_adept
+# =============================================================
+
 seek_psijic_tutelage = {
     picture = "gfx/interface/icons/decisions/decision_personal.dds"
     desc    = seek_psijic_tutelage_desc

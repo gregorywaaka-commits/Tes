@@ -8,6 +8,61 @@
 #  MAGES GUILD
 # ================================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/guild_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • commune_with_the_order
+#    • compose_epic_ballad
+#    • conduct_magical_research
+#    • delve_dangerous_ruin
+#    • issue_writ_of_execution
+#    • join_bards_college_decision
+#    • join_companions_decision
+#    • join_dark_brotherhood_decision
+#    • join_fighters_guild_decision
+#    • join_mages_guild_decision
+#    • join_morag_tong_decision
+#    • join_thieves_guild_decision
+#    • join_undaunted_decision
+#    • leave_bards_college_decision
+#    • leave_companions_decision
+#    • leave_dark_brotherhood_decision
+#    • leave_fighters_guild_decision
+#    • leave_mages_guild_decision
+#    • leave_morag_tong_decision
+#    • leave_psijic_order_decision
+#    • leave_thieves_guild_decision
+#    • leave_undaunted_decision
+#    • perform_black_sacrament
+#    • plan_heist
+#    • seek_bards_college_advancement
+#    • seek_companions_advancement
+#    • seek_companions_circle_rite
+#    • seek_dark_brotherhood_advancement
+#    • seek_fighters_guild_advancement
+#    • seek_mages_guild_advancement
+#    • seek_morag_tong_advancement
+#    • seek_psijic_advancement
+#    • seek_psijic_invitation
+#    • seek_thieves_guild_advancement
+#    • seek_undaunted_advancement
+#    • take_companions_contract
+#    • take_guild_contract
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → ballad_composition_cooldown, black_sacrament_cooldown, guild_advancement_cooldown, guild_contract_cooldown, guild_heist_cooldown, guild_recently_rejected, guild_research_cooldown, guild_ruin_delve_cooldown, psijic_communion_cooldown, writ_of_execution_cooldown
+#    common/scripted_effects/guild_effects.txt
+#      → advance_bards_college, advance_companions, advance_dark_brotherhood, advance_fighters_guild, advance_mages_guild, advance_morag_tong, advance_psijic_order, advance_thieves_guild, advance_undaunted, join_bards_college, join_companions, join_dark_brotherhood … (26 total)
+#    common/scripted_triggers/guild_triggers.txt
+#      → can_advance_bards, can_advance_companions, can_advance_dark_brotherhood, can_advance_fighters_guild, can_advance_mages_guild, can_advance_morag_tong, can_advance_psijic, can_advance_thieves_guild, can_advance_undaunted, can_join_bards_college, can_join_companions, can_join_dark_brotherhood … (28 total)
+#    common/traits/guild_traits.txt
+#      → bards_college_master_bard, companions_circle, companions_harbinger, companions_veteran, dark_brotherhood_listener, fighters_guild_guildmaster, mages_guild_archmagister, morag_tong_grandmaster, psijic_master, thieves_guild_guildmaster_thief, undaunted_elite
+# =============================================================
+
 join_mages_guild_decision = {
     picture = "gfx/interface/icons/decisions/decision_realm.dds"
     desc = join_mages_guild_decision_desc

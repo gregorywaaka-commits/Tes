@@ -15,6 +15,20 @@
 #  Brotherhood.  No cost beyond the act itself — the Brotherhood
 #  decides whether to answer.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/underworld_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • contact_dark_brotherhood
+#    • invest_skooma_trade
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/daedric_invasion_traits.txt
+#      → mephala_champion
+# =============================================================
+
 contact_dark_brotherhood = {
     picture = "gfx/interface/icons/decisions/decision_personal.dds"
     desc = contact_dark_brotherhood_desc

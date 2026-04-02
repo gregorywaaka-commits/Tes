@@ -14,6 +14,47 @@
 #  1. VOICE TRAINING PATH
 # ================================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/thuumvoi_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • absorb_another_dragon_soul
+#    • advance_thu_um_training
+#    • begin_greybeard_leadership_quest
+#    • claim_first_voice_of_greybeards
+#    • harness_dovah_blood
+#    • learn_from_word_wall
+#    • leave_greybeard_order_decision
+#    • leave_voice_path_decision
+#    • resist_dovah_nature_decision
+#    • seek_the_greybeard_order
+#    • seek_thu_um_training
+#    • take_greybeard_vows
+#    • use_thu_um_in_battle
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → thu_um_shout_cooldown
+#    common/scripted_effects/thuumvoi_effects.txt
+#      → absorb_additional_dragon_soul, advance_voice_training, awaken_dovah_blood, begin_voice_training, initiate_greybeard, join_greybeard_order, learn_from_word_wall_effect, leave_greybeard_order, leave_voice_path, resist_dovah_nature
+#    common/scripted_triggers/thuumvoi_triggers.txt
+#      → can_absorb_another_soul, can_advance_thu_um, can_begin_greybeard_leadership, can_harness_dovah_blood, can_learn_from_word_wall, can_learn_thu_um, can_seek_greybeards, dovah_nature_at_risk, is_greybeard, is_on_voice_path
+#    common/traits/thuumvoi_traits.txt
+#      → dovah_nature_dominant, dovahkiin_soul_awakened, dragon_souls_brimming, dragon_souls_growing, first_voice_of_the_greybeards, greybeard_aspirant, greybeard_of_high_hrothgar, thu_um_master
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/modifiers/lore_races_modifiers.txt
+#      → resist_dovah_nature_decision, use_thu_um_in_battle
+#    common/scripted_effects/thuumvoi_effects.txt
+#      → absorb_another_dragon_soul, advance_thu_um_training, harness_dovah_blood, learn_from_word_wall, leave_greybeard_order_decision, leave_voice_path_decision, resist_dovah_nature_decision, seek_the_greybeard_order, seek_thu_um_training, take_greybeard_vows
+#    common/scripted_triggers/thuumvoi_triggers.txt
+#      → absorb_another_dragon_soul, advance_thu_um_training, begin_greybeard_leadership_quest, harness_dovah_blood, learn_from_word_wall, leave_greybeard_order_decision, leave_voice_path_decision, resist_dovah_nature_decision, seek_the_greybeard_order, seek_thu_um_training
+#    events/thuumvoi_events.txt
+#      → resist_dovah_nature_decision, seek_thu_um_training, use_thu_um_in_battle
+# =============================================================
+
 seek_thu_um_training = {
     picture = "gfx/interface/icons/decisions/decision_realm.dds"
     desc    = seek_thu_um_training_desc

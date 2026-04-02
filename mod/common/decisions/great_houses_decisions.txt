@@ -26,6 +26,24 @@
 #  to walk into five different rooms of powerful people and
 #  convince each that you are worth following.
 # ---------------------------------------------------------------
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/great_houses_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • claim_telvanni_tower
+#    • petition_great_house_hortator
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dagoth_ur_traits.txt
+#      → nerevarine_marked
+#    common/traits/lore_races_traits.txt
+#      → morrowind_hortator, telvanni_master_wizard
+#    common/traits/tribunal_traits.txt
+#      → sotha_sil_student
+# =============================================================
+
 petition_great_house_hortator = {
     picture = "gfx/interface/icons/decisions/decision_realm.dds"
     desc = petition_great_house_hortator_desc

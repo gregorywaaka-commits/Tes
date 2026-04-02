@@ -9,6 +9,24 @@
 # A scholar who has dedicated years to studying recovered Ayleid
 # texts, architecture, and the dual-faith traditions of the
 # ancient masters of Cyrodiil.
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/ayleid_ruins_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • ayleid_historian
+#    • ayleid_lich_touched
+#    • star_teeth_blessed
+#    • welkynd_attuned
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/ayleid_ruins_decisions.txt
+#      → ayleid_historian
+#    events/ayleid_ruins_events.txt
+#      → ayleid_historian, ayleid_lich_touched, star_teeth_blessed, welkynd_attuned
+# =============================================================
+
 ayleid_historian = {
     category = lifestyle
     learning    = 4

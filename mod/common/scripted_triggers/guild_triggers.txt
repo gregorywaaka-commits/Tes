@@ -3,6 +3,60 @@
 # =============================================================
 
 # ---- Membership checks ----
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/scripted_triggers/guild_triggers.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • can_advance_bards
+#    • can_advance_companions
+#    • can_advance_dark_brotherhood
+#    • can_advance_fighters_guild
+#    • can_advance_mages_guild
+#    • can_advance_morag_tong
+#    • can_advance_psijic
+#    • can_advance_thieves_guild
+#    • can_advance_undaunted
+#    • can_join_bards_college
+#    • can_join_companions
+#    • can_join_dark_brotherhood
+#    • can_join_fighters_guild
+#    • can_join_mages_guild
+#    • can_join_morag_tong
+#    • can_join_psijic_order
+#    • can_join_thieves_guild
+#    • can_join_undaunted
+#    • fighters_guild_exists
+#    • is_any_guild_member
+#    • is_bards_college_member
+#    • is_companions_member
+#    • is_dark_brotherhood_member
+#    • is_fighters_guild_member
+#    • is_mages_guild_member
+#    • is_morag_tong_member
+#    • is_psijic_member
+#    • is_thieves_guild_member
+#    • is_undaunted_member_trigger
+#    • mages_guild_exists
+#    • psijic_order_accessible
+#    • undaunted_exist
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → guild_advancement_cooldown
+#    common/traits/guild_traits.txt
+#      → bards_college_master_bard, companions_harbinger, dark_brotherhood_listener, fighters_guild_guildmaster, mages_guild_archmagister, morag_tong_grandmaster, psijic_master, thieves_guild_guildmaster_thief, undaunted_elite
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/guild_decisions.txt
+#      → can_advance_bards, can_advance_companions, can_advance_dark_brotherhood, can_advance_fighters_guild, can_advance_mages_guild, can_advance_morag_tong, can_advance_psijic, can_advance_thieves_guild, can_advance_undaunted, can_join_bards_college, can_join_companions, can_join_dark_brotherhood … (28 total)
+#    common/decisions/guild_leadership_decisions.txt
+#      → is_bards_college_member, is_companions_member, is_dark_brotherhood_member, is_fighters_guild_member, is_mages_guild_member, is_morag_tong_member, is_psijic_member, is_thieves_guild_member, is_undaunted_member_trigger
+#    events/guild_leadership_events.txt
+#      → is_bards_college_member, is_companions_member, is_dark_brotherhood_member, is_fighters_guild_member, is_mages_guild_member, is_morag_tong_member, is_psijic_member, is_thieves_guild_member, is_undaunted_member_trigger
+# =============================================================
+
 is_mages_guild_member = {
     has_character_flag = guild_mages_member
 }

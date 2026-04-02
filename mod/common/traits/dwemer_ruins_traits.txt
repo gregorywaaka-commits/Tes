@@ -13,6 +13,44 @@
 
 # A ruler who has studied recovered Dwemer texts and mechanisms.
 # Prerequisite for tonal architecture study.
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/dwemer_ruins_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • aetherium_attuned
+#    • animunculi_master
+#    • dwemer_scholar
+#    • tonal_architect
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/decisions/dwemer_ruins_decisions.txt
+#      → study_tonal_architecture
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/dwemer_ruins_decisions.txt
+#      → dwemer_scholar
+#    common/decisions/magic_systems_decisions.txt
+#      → tonal_architect
+#    common/on_actions/lore_races_on_actions.txt
+#      → dwemer_scholar, tonal_architect
+#    common/scripted_effects/dwemer_ruins_effects.txt
+#      → aetherium_attuned, animunculi_master, dwemer_scholar
+#    common/scripted_triggers/dwemer_ruins_triggers.txt
+#      → dwemer_scholar, tonal_architect
+#    common/traits/numidium_traits.txt
+#      → dwemer_scholar
+#    events/dwemer_ruins_events.txt
+#      → tonal_architect
+#    events/great_houses_events.txt
+#      → dwemer_scholar, tonal_architect
+#    events/magic_systems_events.txt
+#      → tonal_architect
+#    events/numidium_events.txt
+#      → dwemer_scholar
+# =============================================================
+
 dwemer_scholar = {
     category = lifestyle
     learning    = 4

@@ -5,6 +5,45 @@
 #  These are spawned by scripted effects when an invasion begins.
 # =============================================================
 
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/character_templates/daedric_princes.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • azura_template
+#    • boethiah_template
+#    • clavicus_vile_template
+#    • hermaeus_mora_template
+#    • hircine_template
+#    • jyggalag_template
+#    • malacath_template
+#    • mehrunes_dagon_template
+#    • mephala_template
+#    • meridia_template
+#    • molag_bal_template
+#    • namira_template
+#    • nocturnal_template
+#    • peryite_template
+#    • sanguine_template
+#    • sheogorath_template
+#    • vaermina_template
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/daedric_invasion_traits.txt
+#      → azura_aspect, boethiah_aspect, clavicus_vile_aspect, daedric_prince, hermaeus_mora_aspect, hircine_aspect, jyggalag_aspect, malacath_aspect, mehrunes_dagon_aspect, mephala_aspect, meridia_aspect, molag_bal_aspect … (18 total)
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/on_actions/daedric_invasion_on_actions.txt
+#      → molag_bal_template
+#    common/scripted_effects/daedric_invasion_effects.txt
+#      → azura_template, boethiah_template, clavicus_vile_template, hermaeus_mora_template, hircine_template, jyggalag_template, malacath_template, mehrunes_dagon_template, mephala_template, meridia_template, molag_bal_template, namira_template … (17 total)
+#    common/scripted_triggers/daedric_invasion_triggers.txt
+#      → azura_template, boethiah_template, clavicus_vile_template, hermaeus_mora_template, hircine_template, jyggalag_template, malacath_template, mehrunes_dagon_template, mephala_template, meridia_template, molag_bal_template, namira_template … (17 total)
+#    events/daedric_invasion_events.txt
+#      → azura_template, boethiah_template, clavicus_vile_template, hermaeus_mora_template, hircine_template, jyggalag_template, malacath_template, mehrunes_dagon_template, mephala_template, meridia_template, molag_bal_template, namira_template … (17 total)
+# =============================================================
+
 mehrunes_dagon_template = {
     name = "Mehrunes_Dagon"
     dynasty = daedric_dynasty
