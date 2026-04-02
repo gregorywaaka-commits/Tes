@@ -377,3 +377,60 @@ world_stability_critical = {
     exists = global_var:active_tower_count
     global_var:active_tower_count <= 1
 }
+
+# ---------------------------------------------------------------
+#  DAGOTH UR — THE AWAKENING OF THE SIXTH HOUSE
+# ---------------------------------------------------------------
+
+# Is Dagoth Ur currently awakened (the global flag is set)?
+dagoth_ur_awakened = {
+    exists = global_var:dagoth_ur_awakened
+}
+
+# Is this character a Sixth House cultist?
+is_sixth_house = {
+    has_trait = sixth_house_cultist
+}
+
+# Can Dagoth Ur awaken right now?
+#
+# CANONICAL awakening (2E 882):
+#   The Tribunal made their final visit to re-energize from the
+#   Heart of Lorkhan at ~2E 882; Dagoth Ur repelled them and
+#   seized sole control.  This is the default historical date.
+#
+# EARLY awakening condition A (date >= 2E.600):
+#   If the Red Mountain Tower Stone (the Heart of Lorkhan) has
+#   NO keeper — i.e. it has NOT been claimed — Dagoth Ur seizes
+#   the Heart without opposition.  In lore, the Tribunal's power
+#   derives from regular visits to the Heart; without a keeper
+#   maintaining the Red Mountain Tower, the containment fails.
+#
+# EARLY awakening condition B (date >= 2E.700):
+#   If no Dunmer kingdom holds Morrowind, the Ghost Fence goes
+#   unmaintained.  Without a strong Tribunal-aligned empire to
+#   fund and staff the Fence, the Blight breaks free sooner.
+dagoth_ur_awakening_possible = {
+    NOT = { exists = global_var:dagoth_ur_awakened }
+    OR = {
+        # Canonical — the Tribunal's last visit fails
+        current_date >= 2E.882
+
+        # Early condition A: Heart of Lorkhan unguarded
+        AND = {
+            current_date >= 2E.600
+            NOT = { tower_red_mountain_active = yes }
+        }
+
+        # Early condition B: no Dunmer kingdom controls Morrowind
+        AND = {
+            current_date >= 2E.700
+            NOT = {
+                any_ruler = {
+                    has_culture = dunmer_culture
+                    primary_title = { tier >= tier_kingdom }
+                }
+            }
+        }
+    }
+}

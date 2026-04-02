@@ -530,3 +530,52 @@ deactivate_tower_stone_effect = {
         }
     }
 }
+
+# ---------------------------------------------------------------
+#  DAGOTH UR — Begin the Awakening
+#  Called by dagoth_ur.000 when dagoth_ur_awakening_possible = yes.
+#  Sets the global flag, seeds the Blight at Red Mountain, and
+#  notifies every living ruler via dagoth_ur.001.
+# ---------------------------------------------------------------
+begin_dagoth_ur_awakening = {
+    set_global_variable = { name = dagoth_ur_awakened value = yes }
+
+    # Seed the Blight at Red Mountain — spread begins here
+    title:c_red_mountain = {
+        add_province_modifier = {
+            modifier = blight_storm_modifier
+            days = -1    # permanent until end_dagoth_ur_era
+        }
+    }
+
+    # Notify all living rulers — the Sleeper has awoken
+    every_ruler = {
+        limit = { is_alive = yes }
+        trigger_event = { id = dagoth_ur.001 }
+    }
+}
+
+# ---------------------------------------------------------------
+#  DAGOTH UR — End the Era (Nerevarine victory)
+#  Called when the Nerevarine (or another champion) defeats
+#  Dagoth Ur by destroying the Heart of Lorkhan's connection.
+#  Removes the global flag and clears all Blight storm modifiers.
+#  NOTE: This effect is a stub — the trigger condition for
+#  "Dagoth Ur defeated" is left to future implementation of a
+#  full Nerevarine vs Dagoth Ur war/decision chain.
+# ---------------------------------------------------------------
+end_dagoth_ur_era = {
+    remove_global_variable = dagoth_ur_awakened
+
+    # Clear the Blight from every afflicted county
+    every_county = {
+        limit = { has_province_modifier = blight_storm_modifier }
+        remove_province_modifier = blight_storm_modifier
+    }
+
+    # Notify all living rulers — the Blight recedes
+    every_ruler = {
+        limit = { is_alive = yes }
+        trigger_event = { id = dagoth_ur.100 }    # "The Blight Recedes" victory notification
+    }
+}

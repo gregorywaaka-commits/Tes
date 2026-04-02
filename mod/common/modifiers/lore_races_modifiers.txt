@@ -1638,3 +1638,64 @@ dwemer_ruin_collapse_modifier = {
 # expedition after one concludes (success or collapse).
 # Duration varies — set by begin_dwemer_excavation / trigger_ruin_collapse.
 dwemer_expedition_cooldown = { }
+
+# =============================================================
+#  DAGOTH UR — THE AWAKENING OF THE SIXTH HOUSE
+#  Context: Dagoth Ur (Voryn Dagoth) seizes the Heart of Lorkhan
+#  beneath Red Mountain and unleashes the Blight across Morrowind.
+#  Applied by: begin_dagoth_ur_awakening (lore_races_effects.txt)
+#  Checked by: dagoth_ur_awakened trigger (lore_races_triggers.txt)
+# =============================================================
+
+# Applied to every county that the Blight storms have reached.
+# Starts at c_red_mountain and spreads outward (dagoth_ur.050 tick).
+# Duration: permanent until end_dagoth_ur_era removes it (days = -1).
+# The Blight is a supernatural magical disease — crops fail, livestock
+# die, and soldiers succumb to corprus if they linger too long.
+blight_storm_modifier = {
+    monthly_income            = -0.35   # Agriculture collapses; trade routes abandoned
+    supply_limit_mult         = -0.25   # Blight-dead land cannot support armies
+    development_growth_factor = -0.40   # No construction while the Blight rages
+    garrison_size             = -0.15   # Garrison soldiers flee or fall to corprus
+}
+
+# Applied to Morrowind counties near the Ghost Fence when it is
+# weakening (before Dagoth Ur is fully contained or ended).
+# Duration: 1825 days (5 years) per application.
+ghost_fence_weakening_modifier = {
+    monthly_income    = -0.10   # Merchants avoid the uncertain border zone
+    supply_limit_mult = -0.10   # Patrols thinned; supply caravans intercepted
+}
+
+# Applied to a county where the Sixth House cult has begun
+# spreading its influence — dream-whispers, cell meetings, ash-icons.
+# Duration: 1825 days (5 years).
+sixth_house_spreading_modifier = {
+    monthly_income            = -0.05   # Subtle unease suppresses trade
+    monthly_piety_gain_mult   = -0.05   # Rival faith quietly erodes devotion
+    development_growth_factor = -0.05   # Cult activity disrupts normal civic life
+}
+
+# Applied to a character who is watching Dagoth Ur's awakening
+# with ambition rather than fear — they see the chaos as opportunity.
+# Duration: 1825 days (5 years).
+dagoth_ur_watching_modifier = {
+    intrigue  = 2
+    learning  = 1
+    monthly_prestige_gain_mult = 0.05   # Knowledge of this hidden power grants subtle authority
+}
+
+# Applied to the Nerevarine-marked character (via dagoth_ur.030).
+# Represents Azura's active guidance and prophetic purpose.
+# Duration: 3650 days (10 years).
+dagoth_ur_champion_modifier = {
+    martial   = 3
+    intrigue  = 2
+    learning  = 2
+    monthly_piety_gain_mult    = 0.15   # Azura walks with the Nerevarine
+    monthly_prestige_gain_mult = 0.15   # The prophecy commands respect across Morrowind
+    command_modifier = {
+        advantage  = 3
+        max_morale = 0.10
+    }
+}
