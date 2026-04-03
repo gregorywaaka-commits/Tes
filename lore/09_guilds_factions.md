@@ -142,4 +142,51 @@
 
 ---
 
+## Three Alliances (Second Era Interregnum) `[CANON — ESO / UESP]`
+> **Source:** UESP Lore:Three Banners War — https://en.uesp.net/wiki/Lore:Three_Banners_War  
+> **Source:** ESO in-game sources (quest dialogue, loading screen text, in-game books)
+
+Three major alliances contested for control of the **Ruby Throne** during the Alliance War (the setting of *The Elder Scrolls Online*, c. 2E 582). All three were formed during the **Interregnum**, driven by the power vacuum left after the fall of the Longhouse Emperors.
+
+### Aldmeri Dominion `[CANON — ESO]`
+- **Formed:** 2E 580 (the Elden Accord, signed on Valenwood)
+- **Member races:** Altmer (Summerset Isles), Bosmer (Valenwood), Khajiit (Elsweyr)
+- **Leader:** Queen **Ayrenn** (Altmer of House Aldmeri)
+- **Motivation:** Restore elven governance to Tamriel; protect the continent from the perceived chaos of men; the Aldmer believe they are the best suited to rule
+- **Territories:** Summerset Isles, Valenwood, Elsweyr, southern Cyrodiil
+
+### Daggerfall Covenant `[CANON — ESO]`
+- **Formed:** 2E 566 (following Ranser's War)
+- **Member races:** Bretons (High Rock), Redguards (Hammerfell), Orcs (Orsinium)
+- **Leader:** High King **Emeric** of Wayrest
+- **Motivation:** Establish a stable, trade-focused empire; restore the Second Empire under Breton/Redguard leadership; secure the Ruby Throne to protect commerce and security
+- **Territories:** High Rock, Hammerfell, Wrothgar (Orsinium), northwestern Cyrodiil
+
+### Ebonheart Pact `[CANON — ESO]`
+- **Formed:** 2E 572 (following the Akaviri invasion and Dir-Kamal's defeat)
+- **Member races:** Nords (Skyrim), Dunmer (Morrowind), Argonians (Black Marsh)
+- **Leader:** Jorunn the **Skald-King** (Nord); governed by the **Great Moot** — a council of all three races
+- **Motivation:** Mutual defence forged by necessity; the three races were enemies before the Kamal invasion. The Dunmer and Argonians had a history of slavery; the Pact required both peoples to set this aside formally.
+- **Territories:** Skyrim, Morrowind, Black Marsh, eastern Cyrodiil
+- **Internal tension:** The Nord-Dunmer-Argonian alliance is explicitly described as fragile and unlikely — only continued shared threat kept it intact. `[CANON — ESO]`
+
+---
+
+## Longhouse Emperors `[CANON — UESP / ESO]`
+> **Source:** UESP Lore:Longhouse Emperors — https://en.uesp.net/wiki/Lore:Longhouse_Emperors  
+> **Source:** In-game book: Secret History of the Longhouse Emperors
+
+A dynasty of **Reachmen** who ruled Cyrodiil during the mid-Interregnum; the only instance in canon of a Reach-origin dynasty on the Ruby Throne.
+
+| Emperor | Reign | Notes |
+|---|---|---|
+| **Durcorach the Black Drake** | 2E 533–541 | Founded the dynasty by military conquest; married Veraxia Tharn (Nibenese). Killed during a failed invasion of High Rock by King Emeric outside Daggerfall. |
+| **Moricar** | 2E 541–564 | Durcorach's son; educated in both Reach and Imperial cultures. Less warlike but staged a disastrous Western Skyrim campaign. |
+| **Leovic** | 2E 564–577 | Durcorach's grandson; **legalised Daedra worship**, triggering the Colovian nobility revolt. Killed by **Varen Aquilarios** (Duke of Chorrol) in the Imperial Throne Room. |
+
+- **Legacy:** After Leovic's death, Varen Aquilarios briefly ruled before the catastrophic **Soulburst** event (caused by a misuse of the Amulet of Kings to try to re-light the Dragonfires) began Molag Bal's Planemeld and Varen disappeared. `[CANON — ESO main quest]`
+- **Canon note:** The dynasty's association with Daedra (especially Mehrunes Dagon) is a recurring theme. The Reach clans with the strongest Daedric pacts provided much of Durcorach's initial military strength. `[CANON — UESP]`
+
+---
+
 *Back to [Index](README.md)*
