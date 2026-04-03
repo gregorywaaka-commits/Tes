@@ -207,13 +207,13 @@ l_english:
  kamal.001.b: "Pray the Tribunal can intervene as before."
 
  kamal.010.t: "Vivec Intervenes"
- kamal.010.desc: "The god-warrior Vivec descends upon the battlefield in a column of golden light. He confronts Dir-Kamal directly, driving the demon king back with a word. The Kamal host falters, freezes — and retreats to their ships. Vivec turns without looking back and vanishes."
- kamal.010.a: "Vivec has spoken — the demons retreat!"
+ kamal.010.desc: "The god-warrior Vivec descends upon the battlefield in a column of golden light. He confronts Dir-Kamal directly and slays him with a single utterance. The demon king crumbles, his body frozen solid and shattered. The Kamal host falters, leaderless — and breaks for their ships. Vivec turns without looking back and vanishes."
+ kamal.010.a: "Dir-Kamal is destroyed — the Kamal flee!"
  kamal.010.b: "A narrow victory — do not rely on the Tribunal again."
 
- kamal.020.t: "The Kamal Retreat"
- kamal.020.desc: "The Kamal armies dissolve as winter returns. Ada'Soom Dir-Kamal stands at the ocean's edge, his ice-armour already stiffening, and looks one last time at Tamriel before the sea takes him. He will thaw again."
- kamal.020.a: "They return to their frozen realm — for now."
+ kamal.020.t: "The Kamal Broken"
+ kamal.020.desc: "With Ada'Soom Dir-Kamal destroyed at the Battle of Vivec's Antlers in 2E 572, the leaderless Kamal armies crumble. The combined forces of the Ebonheart Pact and the Tribunal drive them back to the sea. The invasion is over."
+ kamal.020.a: "The Kamal are finished — for this age."
 
  kamal_invasion_coming_tt: "A Kamal invasion has begun. Ada'Soom Dir-Kamal will march unless repelled or Vivec intervenes."
 
