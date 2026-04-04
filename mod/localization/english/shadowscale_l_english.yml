@@ -39,3 +39,31 @@
 
  shadowscale_patron: "Shadowscale Patron"
  shadowscale_patron_desc: "This ruler employs the Shadowscales through the Hist's approval — maintaining the old ways of Argonian power and gaining access to a lethal resource that no enemy can predict or prevent. The Hist watches how the resource is used."
+
+ # ---- shadowscale.040 — The Naming Day ----
+
+ shadowscale.040.t: "The Naming Day"
+ shadowscale.040.desc: "A Hist elder comes to you with the kind of news that is delivered quietly and without ceremony because the ceremony already happened in the deep marsh, without you: an Argonian child in your realm was born under the sign of the Shadow. The naming took place before dawn, in the oldest grove, attended by the family and three elders who read the Hist's intention in the sap before the child had opened their eyes for the first time. The child has been given to the Hist. Not permanently — they will be trained, not imprisoned. But the path is set. In a decade, perhaps two, there will be another blade. You are being told because the Hist considers it appropriate to inform the patron of such things. You are not being asked for your approval."
+ shadowscale.040.a: "The Hist has chosen. I honour the naming and the child's path."
+ shadowscale.040.b: "A life shaped before it began. I note it and carry the weight of knowing."
+
+ # ---- shadowscale.050 — Sithis Speaks ----
+
+ shadowscale.050.t: "Sithis Speaks"
+ shadowscale.050.desc: "It comes between the root-pulses — in the silence between one Hist communication and the next, a space so small you would not normally notice it. But tonight you are paying attention, and in the space between heartbeats of the marsh, something else is present. Not the Hist. The Hist has a particular quality: old, patient, warm in the way that wood is warm. This is different. Cold, also patient, also old — older, perhaps, than the Hist, or at least differently old. The Void is not hostile to the Hist. They have a working arrangement that predates the memory of anyone living. Sithis is not speaking to you as an enemy. Sithis is acknowledging you as someone who has been incorporated into the arrangement. The communication is not words. It is a recognition."
+ shadowscale.050.a: "Sithis has acknowledged me. The Void and the Hist — different roots of the same darkness."
+ shadowscale.050.b: "The Void is not something to commune with. I close the space between pulses and breathe."
+
+ # ---- shadowscale.060 — The Difficult Mission ----
+
+ shadowscale.060.t: "The Difficult Mission"
+ shadowscale.060.desc: "The Shadowscale comes in the usual hour, but something is different in their posture — not reluctance exactly, but a precision that suggests the request they are carrying is heavier than usual. The Hist has reviewed a situation. The Hist has reached a conclusion. The conclusion involves a target you know. Perhaps personally. Perhaps politically. Perhaps both. The Hist does not explain its reasoning any more than a river explains why it chooses a particular path — it simply goes where it goes, and the going is efficient. The Shadowscale is waiting. The forms are available. The mission is legal under the arrangement you made when you accepted patronage. The question is whether your acceptance was unconditional or merely convenient."
+ shadowscale.060.a: "The Hist has asked. I trust the asking. Send the blade."
+ shadowscale.060.b: "There are lines the Hist should not ask me to cross. Not this target."
+
+ # ---- shadowscale.070 — Death Rites ----
+
+ shadowscale.070.t: "The Death Rites"
+ shadowscale.070.desc: "An elder brings the news in the way the Hist communicates all endings: directly, without softening, because the Hist does not believe that softening helps. A Shadowscale died in service. Their body was returned to the marsh, placed among the roots of the naming-grove where they were first identified as what they were going to be. Their memory — the accumulated experience of their training, their missions, their years of service — has been absorbed by the Hist and will inform the training of the next. Their soul has not gone to Sithis, which is the unusual part: the Hist has kept them, folded their awareness into the root-memory, made them part of the dreaming. They are not gone. They are simply unreachable in the ordinary way. You are not sure if this is a mercy or a continuation of service under a different description."
+ shadowscale.070.a: "The Hist takes them back. Their service is complete. I honour the return."
+ shadowscale.070.b: "A life spent entirely in service — never choosing anything else. I carry the weight of knowing that."

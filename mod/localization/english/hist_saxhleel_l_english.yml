@@ -83,3 +83,38 @@
  hist_vision.004.desc: "The vision comes while you are awake, which the Hist prefers — it believes in efficiency and sleeping people take longer to receive information. What it shows you is not a battlefield or a specific place but a direction and a quality: something cold and very old is looking toward Mundus from somewhere that is not Mundus, and the looking is the first stage of reaching. Coldharbour. Molag Bal. The Hist cannot tell you exactly when or how because the Hist perceives time as a broad thing rather than a specific one, but the texture of the warning is unmistakable: something is coming. The Dragonfires are failing or will fail. The barrier between worlds is thinning. The Argonians will feel it before anyone else does, because the Hist felt it first."
  hist_vision.004.a: "Something is coming from Coldharbour. The Hist has warned us. We prepare."
  hist_vision.004.b: "I carry this warning. But I cannot stop what is already moving — only survive it."
+
+ # ---- hist_vision.005 — The An-Xileel Rising ----
+
+ hist_vision.005.t: "The An-Xileel Rising"
+ hist_vision.005.desc: "The sap is different today — not warmer or cooler but more purposeful, as if it has somewhere specific to go. The Hist communicates in intention rather than instruction, and the intention today is unmistakable: the marsh is surrounded. Imperial pressure from the west and north. Daedric incursion from the void. Trade routes that drain Argonian wealth without investing in Argonian sovereignty. The Hist is not panicking — trees do not panic — but the roots have reached a conclusion that they are sharing simultaneously with every An-Xileel warrior and every elder-bonded ruler in Black Marsh. The conclusion is: it is time. Not for war, not exactly. For unification. For the An-Xileel to become not a warrior tradition but a political mandate. You are among those who have heard this. You must decide what hearing it means."
+ hist_vision.005.a: "The Hist calls. I take up the An-Xileel mandate. Black Marsh will be unified."
+ hist_vision.005.b: "The mandate is clear — but the time is not yet right. I hear the Hist and wait."
+
+ # ---- hist_vision.006 — The Dreaming Root ----
+
+ hist_vision.006.t: "The Dreaming Root"
+ hist_vision.006.desc: "It begins as your own dreaming and then expands. The walls of your mind — the boundaries of self that you have maintained since birth — dissolve not violently but the way ice dissolves in water: gradually, then completely. You are in the root-network. Not one root. All of them. Every Hist tree in every grove across every inch of Black Marsh is dreaming simultaneously, and you are in the dream with them. The Argonians call this the Dreaming Root — the mythopoeic layer where the Hist's memory becomes something older than memory: prophecy, or instinct, or the thing that lives below both. The species is dreaming. You are dreaming with it. The question is whether you come back."
+ hist_vision.006.a: "I enter the dreaming completely. Whatever the species knows, I will carry it back."
+ hist_vision.006.b: "The individual mind must not dissolve entirely. I remain myself at the root's edge."
+
+ # ---- hist_vision.007 — The Saxhleel Exodus Dream ----
+
+ hist_vision.007.t: "The Saxhleel Exodus Dream"
+ hist_vision.007.desc: "The Hist shows you something that has not happened yet. You see the borderlands of Black Marsh — the marshes where Argonian territory meets the roads that connect to Cyrodiil and Morrowind — and you see them emptying. Not from violence: there is no army, no disaster. The Argonians are simply leaving. Walking south and deeper, abandoning the outposts and trading towns that were built for the benefit of outsider commerce, returning to the deep marsh where the Hist's roots run thickest and no outsider goes willingly. The roads close behind them. The border seals. Black Marsh becomes, for the first time in its recorded history, genuinely unreachable. The Hist does not show you this as a command. It shows you as a possibility. The choice is still yours to make — or refuse."
+ hist_vision.007.a: "The deep marsh calls. I pursue the vision: Black Marsh seals itself."
+ hist_vision.007.b: "The Hist shows what is possible. Not what is necessary. Argonia remains present in the world."
+
+ # ---- hist_vision.008 — Black Marsh Stands ----
+
+ hist_vision.008.t: "Black Marsh Stands"
+ hist_vision.008.desc: "The sap communicates formally today — in the way the Hist uses when it wants to ensure there is no ambiguity. You feel it in every tree you walk past, in the particular quality of the light through the canopy, in the fact that the marsh birds are all facing the same direction. The An-Xileel's mandate is acknowledged. The Hist has observed the work done over the past years and found it sufficient. This is not celebration — the Hist does not celebrate — but it is acknowledgement, which from a consciousness older than Tamriel's current geography, carries considerable weight. Black Marsh's political future has a shape. You have helped give it that shape. The roots remember."
+ hist_vision.008.a: "The mandate is fulfilled. Black Marsh stands under the An-Xileel — as the Hist intended."
+ hist_vision.008.b: "The work is acknowledged. But it is never finished. The Hist waits for the next necessity."
+
+ # ---- hist_vision.009 — The Hist's Long Memory ----
+
+ hist_vision.009.t: "The Hist's Long Memory"
+ hist_vision.009.desc: "At the deepest layer of the Dreaming Root — past the species-memory, past the war-memories, past the memories that predate every civilisation in Tamriel — the Hist shows you something it almost never shows anyone: the Before-Before. An age when the distinction between Hist and Argonian did not exist, when there was only one consciousness wearing different bodies, when sap and blood were the same substance and separation was unimaginable. The Hist remembers this without grief. Trees do not grieve separation the way mortals do. But it remembers — and showing it to you is a kind of intimacy that the Hist extends to very few. You do not know how to respond to being trusted by something this ancient. But you carry it home."
+ hist_vision.009.a: "The memory changes nothing about the present. But understanding it changes me."
+ hist_vision.009.b: "I carry this memory back to the sap. Let it teach the next who reaches this deep."

@@ -38,3 +38,13 @@
  flu.020.t: "The Silver-Skins Are Gone"
  flu.020.desc: "There are no more Kothringi. This is not a metaphor or a diplomatic assessment or a general statement about decline — it is a historical fact that has become true while everyone was occupied with trying not to die of the same plague that accomplished it. The silver-skinned people of Black Marsh, who built the reef temples and navigated the inner tidal channels and spent the last years of their existence on a red-hulled ship being turned away from every harbour in Tamriel, are gone. The Knahaten Flu erased them from the map as surely as any army could have, and with considerably less political paperwork. What remains are their ruins, their routes, and a ship no one has seen for months."
  flu.020.a: "A people erased."
+
+ # =====================================================================
+ #  KNAHATEN FLU — TRAIT LOCALIZATION
+ # =====================================================================
+
+ flu_refugee: "Plague Refugee"
+ flu_refugee_desc: "This character fled their homeland ahead of the Knahaten Flu — or arrived from a county that has since been consumed by it. They carry the particular wariness of someone who has watched an ordinary journey turn lethal, and the particular distance of someone who does not know whether they will ever be able to go back. They are alive, which is more than many who were in the same place at the same time can say. The cost of being alive is knowing what they left behind."
+
+ knahaten_survivor: "Knahaten Survivor"
+ knahaten_survivor_desc: "This character contracted the Knahaten Flu and lived. This is statistically unusual. The physicians who have studied their recovery have not reached consensus on why — constitutional resilience, a favourable humour, the intervention of something less explicable. What is certain is that they carry a partial immunity now, and a scar in the memory of every room they walk into where the word 'survivor' is understood to mean exactly what it sounds like: someone who was there when the dying happened, and came back from it."

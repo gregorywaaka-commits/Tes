@@ -221,3 +221,101 @@ yokuda.003 = {
         add_stress = 5
     }
 }
+
+# ---------------------------------------------------------------
+# yokuda.004  The Ansei Path
+# For sword_singer rulers whose martial skill has reached 18+.
+# The spirit sword has answered — now the question is whether
+# it becomes a permanent nature or remains a technique.  The
+# path to Ansei is not taught: it is recognised.  An elder
+# who has seen this moment before comes to acknowledge it.
+# ---------------------------------------------------------------
+yokuda.004 = {
+    type = character_event
+    title = yokuda.004.t
+    desc  = yokuda.004.desc
+    theme = martial
+
+    trigger = {
+        is_adult = yes
+        has_trait = sword_singer
+        NOT = { has_trait = ansei_swordmaster }
+        martial >= 18
+        NOT = { has_character_flag = ansei_path_offered }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = ansei_path_offered
+            days = 3650
+        }
+    }
+
+    option = {
+        name = yokuda.004.a   # "Accept the recognition. The Shehai is no longer a tool — it is me."
+        add_trait = ansei_swordmaster
+        remove_trait = sword_singer
+        add_prestige = 500
+        add_stress   = -20
+    }
+
+    option = {
+        name = yokuda.004.b   # "Not yet. The path has more to teach me."
+        add_martial  = 1
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# yokuda.005  Tu'whacca's Far Shore Vision
+# A vision of the afterlife for Yokudan characters who have
+# faced death closely — either a near-death experience, the
+# loss of someone significant, or an accumulation of mortality
+# in their reign that finally tips into spiritual awareness.
+# Tu'whacca — the psychopomp of the Yokudan pantheon, keeper
+# of the Far Shores — appears not as a king but as a ferryman.
+# ---------------------------------------------------------------
+yokuda.005 = {
+    type = character_event
+    title = yokuda.005.t
+    desc  = yokuda.005.desc
+    theme = faith
+
+    trigger = {
+        is_adult = yes
+        OR = {
+            has_trait = yokudan_heritage
+            has_trait = ra_gada_warrior
+            has_trait = sword_singer
+            has_trait = ansei_swordmaster
+        }
+        NOT = { has_trait = tu_whacca_faithful }
+        NOT = { has_trait = sep_cultist }
+        NOT = { has_character_flag = tu_whacca_vision_had }
+        OR = {
+            health <= 2
+            num_of_knights >= 5
+            any_dead_friend = { always = yes }
+        }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = tu_whacca_vision_had
+            days = 1825
+        }
+    }
+
+    option = {
+        name = yokuda.005.a   # "Embrace the Far Shore's keeper. He who tends the dead tends the living too."
+        add_trait   = tu_whacca_faithful
+        add_piety   = 100
+        add_stress  = -15
+    }
+
+    option = {
+        name = yokuda.005.b   # "Honour Tu'whacca without binding. Death will come regardless."
+        add_piety  = 50
+        add_stress = -10
+    }
+}

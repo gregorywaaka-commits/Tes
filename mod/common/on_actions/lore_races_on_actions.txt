@@ -160,7 +160,7 @@
 #    common/traits/alliance_war_traits.txt
 #      → aldmeri_banner, covenant_banner, pact_banner
 #    common/traits/yokuda_traits.txt
-#      → ruptga_devoted, yokudan_heritage
+#      → ansei_swordmaster, ruptga_devoted, sword_singer, tu_whacca_faithful, yokudan_heritage
 # =============================================================
 
 on_yearly_pulse = {
@@ -207,6 +207,10 @@ on_yearly_pulse = {
         4   = hist_vision.000        # Hist deep-time vision — hist_bonded Argonian rulers (hist_saxhleel_events.txt)
         2   = hist_vision.001        # Hist before-time — rulers with hist_deep_vision_seen flag (hist_saxhleel_events.txt)
         2   = hist_vision.002        # Hist warning of conflict — Argonian hist_bonded / an_xileel_warrior rulers (hist_saxhleel_events.txt)
+        2   = hist_vision.005        # An-Xileel Rising — an_xileel_warrior/hist_elder_bonded Black Marsh rulers (hist_saxhleel_events.txt)
+        2   = hist_vision.006        # Dreaming Root — hist_bonded rulers who saw hist_before_time (hist_saxhleel_events.txt)
+        2   = hist_vision.007        # Saxhleel Exodus Dream — hist_elder_bonded / An-Xileel rulers (hist_saxhleel_events.txt)
+        2   = hist_vision.009        # Hist Long Memory — hist_elder_bonded + dreaming_root rulers (hist_saxhleel_events.txt)
         3   = psijic.000             # Psijic invitation — highly learned rulers (psijic_events.txt)
         2   = psijic.003             # Artaeum withdraws — psijic_adept rulers (psijic_events.txt)
         3   = nordic_lore.000        # Ysgramor's legacy scroll discovered — Nord/Atmoran rulers (nordic_lore_events.txt)
@@ -227,6 +231,8 @@ on_yearly_pulse = {
         2   = vampire.010            # Vampire lord ascension — existing bloodline holders (vampire_bloodlines_events.txt)
         3   = yokuda.000             # Ra Gada legacy — yokudan_heritage / Redguard rulers (yokuda_events.txt)
         2   = yokuda.002             # Ruptga's Blessing vision — ruptga_devoted rulers (yokuda_events.txt)
+        2   = yokuda.004             # Ansei Path — sword_singer rulers with martial>=18 (yokuda_events.txt)
+        2   = yokuda.005             # Tu'whacca's Far Shore — Yokudan rulers who faced death (yokuda_events.txt)
         2   = worm_cult.000          # Black Worm invitation — high-intrigue rulers (worm_cult_events.txt)
         2   = worm_cult.030          # Mannimarco's Demand — worm_cult_adept rulers (worm_cult_events.txt)
         1   = dragon_break.000       # Dragon Break check — fires if active_tower_count <= 3 (dragon_break_events.txt) [very rare]
@@ -262,6 +268,10 @@ on_yearly_pulse = {
         3   = soul_shriven.010       # Soul Shriven courtier discovered at court (soul_shriven_events.txt)
         3   = shadowscale.000        # Hist offers Shadowscale patronage — Argonian rulers (shadowscale_events.txt)
         2   = shadowscale.010        # Shadowscale mission available — patron rulers (shadowscale_events.txt)
+        2   = shadowscale.040        # Naming Day — Shadowscale patron rulers (shadowscale_events.txt)
+        2   = shadowscale.050        # Sithis Speaks — deep Hist-bonded patron rulers (shadowscale_events.txt)
+        2   = shadowscale.060        # Difficult Mission — patron rulers post naming-day (shadowscale_events.txt)
+        2   = shadowscale.070        # Death Rites — patron rulers post naming-day (shadowscale_events.txt)
         2   = orsinium.000           # Found Orsinium proposal — Orcish rulers (orsinium_events.txt) [decision-linked]
         3   = orsinium.030           # Trinimac heresy revealed — learned Orcish rulers (orsinium_events.txt)
         3   = silvenar.000           # Silvenar declaration — diplomatic Bosmer rulers (silvenar_events.txt)
