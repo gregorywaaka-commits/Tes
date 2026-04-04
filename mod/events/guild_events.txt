@@ -240,7 +240,7 @@ guild.thieves.heist = {
                 # Caught!
                 add_gold     = -200
                 add_stress   = 20
-                add_modifier = { modifier = guild_heist_caught_modifier days = 365 }
+                add_character_modifier = { modifier = guild_heist_caught_modifier days = 365 }
             }
         }
     }
@@ -336,7 +336,7 @@ guild.dark_brotherhood.leave = {
         name = guild.dark_brotherhood.leave.a  # "I accept the consequences."
         add_stress   = 20
         add_prestige = -300
-        add_modifier = { modifier = dark_brotherhood_marked_modifier days = 1825 }
+        add_character_modifier = { modifier = dark_brotherhood_marked_modifier days = 1825 }
     }
 }
 
@@ -517,7 +517,7 @@ guild.psijic.invitation = {
     option = {
         name = guild.psijic.invitation.b  # "The world needs me — I cannot retreat to Artaeum."
         add_prestige = 100
-        add_modifier = { modifier = guild_recently_rejected days = 1825 }
+        add_character_modifier = { modifier = guild_recently_rejected days = 1825 }
     }
 }
 
@@ -582,7 +582,7 @@ guild.psijic.commune = {
         name = guild.psijic.commune.b  # "They warn of a coming danger."
         add_learning = 2
         add_stress   = 10
-        add_modifier = { modifier = psijic_warning_modifier days = 730 }
+        add_character_modifier = { modifier = psijic_warning_modifier days = 730 }
     }
 }
 
@@ -640,7 +640,7 @@ guild.bards.ballad = {
     option = {
         name = guild.bards.ballad.a  # "A ballad of our own deeds."
         add_prestige = 400
-        add_modifier = { modifier = famous_ballad_modifier days = 1825 }
+        add_character_modifier = { modifier = famous_ballad_modifier days = 1825 }
     }
     option = {
         name = guild.bards.ballad.b  # "A ballad praising a great historical hero."
@@ -723,7 +723,7 @@ guild.undaunted.delve = {
                 # Wounded in the ruins
                 add_stress   = 20
                 add_prestige = -100
-                add_modifier = { modifier = undaunted_wounded_modifier days = 365 }
+                add_character_modifier = { modifier = undaunted_wounded_modifier days = 365 }
             }
         }
     }

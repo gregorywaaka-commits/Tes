@@ -1,4 +1,3 @@
-﻿ # Encoding: UTF-8-BOM
 l_english:
 
  # =====================================================================
@@ -10,34 +9,11 @@ l_english:
  study_echolalia_fantasia: "Study Echolalia Fantasia"
  study_echolalia_fantasia_desc: "An Echmer scholar at court offers to teach you the fundamentals of Echolalia Fantasia — the Echmer's unique sound-based magical discipline, inherited from their Dwemer creators' tonal architecture."
 
- echmer.000.t: "Whispers from the East"
- echmer.000.desc: "Sailors returning from the Padomaic Ocean speak of a fog-shrouded archipelago where bat-winged people build spires of sound. They call it Yneslea. The Echmer who dwell there are said to be reclusive, brilliant, and deeply suspicious of outsiders — yet hungry for knowledge of the wider world."
- echmer.000.a: "Send ships east — find this Yneslea!"
- echmer.000.b: "An interesting rumour, nothing more."
 
- echmer.001.t: "An Echmer Envoy Arrives"
- echmer.001.desc: "A slight, fur-covered figure with enormous bat-ears and split-upturned nose stands in your throne room. The Echmer envoy bows — a strangely precise, academic bow — and presents a scroll in a language of humming tones. Your translators scramble."
- echmer.001.a: "Welcome — tell me of Yneslea."
- echmer.001.b: "A bat-person? Curious indeed..."
 
- echmer.002.t: "The Dwemer's Living Legacy"
- echmer.002.desc: "The Echmer envoy reveals a truth hidden in Yneslea's oldest annals: the Echmer are not a natural race. Long ago, the Noraken clan of Dwemer used tonal architecture — sound-as-creation — to uplift bats into sapient beings, granting them black souls, humanoid bodies, and the gift of Echolalia Fantasia. They are, in a sense, the Dwemer's most enduring creation."
- echmer.002.a: "The Dwemer uplifted them? Remarkable."
- echmer.002.b: "Does the Noraken clan still live?"
 
- echmer.003.t: "The Art of Echolalia Fantasia"
- echmer.003.desc: "The envoy demonstrates Echolalia Fantasia — a discipline of pure sound-manipulation that blurs the lines between science and magic. They shape stone with a hum, map an entire room blindfolded by clicks and echoes, and transmit a complex message across a vast hall without speaking a word."
- echmer.003.a: "I will dedicate myself to this art."
- echmer.003.b: "Perhaps in time — for now, other duties call."
 
- echmer.004.t: "The Echoes Speak Clearly Now"
- echmer.004.desc: "You close your eyes, and the world resolves into a perfect map of echoes. The tap of a courier's boot, the creak of a distant gate, the heartbeat of your court. Echolalia Fantasia is no longer a curiosity — it is a lens through which you perceive everything."
- echmer.004.a: "The echoes speak to me now."
 
- echmer.005.t: "The First Lesson"
- echmer.005.desc: "The Echmer scholar unrolls a long scroll covered in spiralling tonal notation, and begins to hum. You follow, clumsily at first — your throat is not shaped like theirs — but something resonates."
- echmer.005.a: "Begin the lessons."
- echmer.005.b: "I've changed my mind."
 
  # Traits
  echmer_heritage: "Echmer"
@@ -60,37 +36,12 @@ l_english:
  seek_orgnum_blessing: "Seek Orgnum's Blessing"
  seek_orgnum_blessing_desc: "King Orgnum, the immortal ruler of Pyandonea who grows younger with each passing year, is said to grant longevity to those he deems worthy. To stand before him is to stand before living history."
 
- maormer.001.t: "Maormer Raiders!"
- maormer.001.desc: "Ships bearing serpentine banners emerge from the mist. Maormer raiders, pale as seafoam and armed with snake-engraved blades, storm your coastal villages. Their war cries sound like hissing serpents. Mounted on great sea-beasts, their cavalry sinks fishing boats and burns docks."
- maormer.001.a: "Drive them back into the sea!"
- maormer.001.b: "Pay them tribute — buy their silence."
 
- maormer.003.t: "Call the Storm"
- maormer.003.desc: "The sea witch raises her staff. The Pyandonean horizon darkens as clouds spiral inward, and the sea churns with unnatural fury. This is the storm magic of the Maormer — elemental and ancient."
- maormer.003.a: "Summon the storm — sink their fleets!"
- maormer.003.b: "Save the magic for greater need."
 
- maormer.004.t: "The Ancient Hatred"
- maormer.004.desc: "For thousands of years, the Maormer have sought to reclaim what was taken from them by the Altmer. Every raid is an act of ancestral vengeance. The blood of the first exiles still calls for retribution."
- maormer.004.a: "The exile shall be avenged!"
 
- maormer.005.t: "Face the Serpent"
- maormer.005.desc: "The sea serpent coils in the shallows before you — sixty feet of scaled muscle and ancient intelligence. Its head rises to meet your gaze. This is the moment that defines a Maormer warrior."
- maormer.005.a: "Stare it down — project dominance!"
- maormer.005.b: "The beast throws me — I barely escape."
 
- maormer.010.t: "Bonded with a Sea Serpent"
- maormer.010.desc: "The great serpent lowers its head and allows you to place your hand upon its scales. A bond is formed — the kind that Pyandonean legends are made of. The creature is yours now, and you are, in some way, its."
- maormer.010.a: "Together we shall rule the sea-lanes."
 
- maormer.015.t: "Before the Immortal King"
- maormer.015.desc: "King Orgnum holds court in his kelp-draped throne room, his ancient eyes bright with a youth they should not possess. He studies you for a long moment, then nods. 'You have proven yourself worthy of the gift,' he says. 'Do you accept what comes with it?'"
- maormer.015.a: "Grant me longevity, great Orgnum."
- maormer.015.b: "I am not yet ready for such a burden."
 
- maormer.016.t: "Orgnum Grows Younger"
- maormer.016.desc: "Word reaches you that King Orgnum has shed decades. He appears younger now than he did a century ago. The wizards of Pyandonea whisper that his power is growing — that the day he becomes a child once more, he will ascend beyond mortality entirely."
- maormer.016.a: "The king grows stronger with each passing year..."
 
  # Traits
  maormer_heritage: "Maormer"
@@ -110,37 +61,12 @@ l_english:
  unleash_sload_plague: "Unleash a Sload Plague"
  unleash_sload_plague_desc: "The Sload's mastery of necromancy extends to the creation of engineered plagues. To unleash such a pestilence is an act of warfare that all of Tamriel will remember — and hate you for."
 
- sload.000.t: "A Sload Necromancer in Our Midst"
- sload.000.desc: "A slug-like figure wrapped in dark robes has been found conducting experiments on the body of a recently-deceased courtier. The creature is a Sload — one of the necromantic slug-folk of Thras. Their presence in any court is viewed with deep suspicion."
- sload.000.a: "Expel this creature from our court!"
- sload.000.b: "Their knowledge is too valuable to waste."
 
- sload.001.t: "The Thrassian Plague"
- sload.001.desc: "A horror has spread from the Abecean Sea. Ports are filling with the dead. The disease moves with terrible speed and terrible purpose — it is not natural. The Sload of Thras have engineered a plague, and they are using it to raze Tamriel's coasts for slaves and plunder."
- sload.001.a: "Close the ports — let nothing in or out."
- sload.001.b: "The Sload will pay for this."
 
- sload.005.t: "The All-Flags Navy"
- sload.005.desc: "Never before have Tamriel's naval powers united. Never before has the provocation been so total. An unprecedented alliance — Altmer, Imperials, Redguards, Bretons, and more — is forming to sail against Thras and destroy it utterly. The Sload must answer for the Thrassian Plague."
- sload.005.a: "We will join the fleet!"
- sload.005.b: "Let others deal with Thras."
 
- sload.010.t: "The Fleet Departs"
- sload.010.desc: "A thousand sails fill the Abecean. The All-Flags Navy is the largest armada Tamriel has ever assembled. The target is the coral-spired island of Thras, and none who sail expect to offer mercy."
- sload.010.a: "Sail for Thras — let us end this."
 
- sload.015.t: "The Coral Tower"
- sload.015.desc: "Before the fleet looms the Coral Tower of Thras — a blood-red spire of living coral that claws into the sky, its summit crowned with a flickering blue light. Scholars say that light is a portal to Coldharbour, Molag Bal's realm. The Sload's dying cries echo from within. They are calling on something."
- sload.015.a: "Attack the Coral Tower directly!"
- sload.015.b: "Pull back — the tower's magic is too powerful."
 
- sload.020.t: "Thras Sinks"
- sload.020.desc: "A whirlpool opens where Thras once stood, consuming the island, its coral spires, its undead legions, and — mercifully — the Thrassian Plague with it. The All-Flags Navy has done what no single nation could: erased Thras from the map. For now."
- sload.020.a: "Thras is no more. Let the healing begin."
 
- sload.025.t: "The Coral Tower Whispers"
- sload.025.desc: "You press your hand against the Coral Tower's base and it thrums with a frequency that bypasses your ears entirely, vibrating in your mind. The Tower speaks — not in words, but in the language of undeath and dominion. It recognises you as its master."
- sload.025.a: "Channel the Coral Tower's power."
 
  # Traits
  sload_heritage: "Sload"
@@ -161,28 +87,10 @@ l_english:
  bargain_with_clavicus_vile: "Bargain with Clavicus Vile"
  bargain_with_clavicus_vile_desc: "The Daedric Prince Clavicus Vile offers a way out: survive the Knahaten Flu in exchange for a price you cannot yet guess. The people of Stillrise Village took this bargain. They survived. They also stopped being entirely mortal."
 
- kothringi.001.t: "The Knahaten Flu"
- kothringi.001.desc: "It begins with the silver-skinned fishermen at the river's edge. By noon they are feverish. By nightfall they are dead. The Knahaten Flu has come — a disease seemingly tailored to destroy the Kothringi people, immune to all known cures and spreading with terrifying speed. Some whisper that the Hist trees engineered it."
- kothringi.001.a: "Seal the borders — no one leaves the marsh!"
- kothringi.001.b: "Flee while we can — this sickness will consume us all."
 
- kothringi.002.t: "The Flu Spreads"
- kothringi.002.desc: "The Knahaten Flu has been sighted in counties beyond Black Marsh. The silver-skinned dead are stacked at the borders. Other races seem resistant, but no one truly knows — and fear spreads faster than the disease itself."
- kothringi.002.a: "Pray this passes us by."
- kothringi.002.b: "Burn the infected villages — harsh but necessary."
 
- kothringi.010.t: "Setting Sail on the Crimson Ship"
- kothringi.010.desc: "The docks are choked with frightened faces. You watch your homeland recede into the mist. The ship holds perhaps two hundred Kothringi — all that might survive. There is no certainty of welcome anywhere. There is only the sea, and the hope that somewhere, someone will not turn you away."
- kothringi.010.a: "We sail west — perhaps we will find safe harbour."
 
- kothringi.011.t: "Turned Away"
- kothringi.011.desc: "The first port flies quarantine flags before the Crimson Ship even clears the headland. The second fires warning shots. The third sends a diplomatic envoy — who delivers the same message: 'You carry death. Sail on.' The Kothringi sail on."
- kothringi.011.a: "We sail on. There must be safe land somewhere."
 
- kothringi.020.t: "Clavicus Vile's Bargain"
- kothringi.020.desc: "Clavicus Vile appears — smiling, always smiling — with his Hound Barbas at his side. 'Survival,' he says, 'is a simple thing. I offer it to each of you. You need only accept what you become in accepting.' The village of Stillrise waits. The flu waits too, outside the door."
- kothringi.020.a: "We accept — survival above all."
- kothringi.020.b: "We refuse — better true death than Vile's mercy."
 
  # Traits
  kothringi_heritage: "Kothringi"
@@ -197,23 +105,9 @@ l_english:
  # =====================================================================
  #  KAMAL  (Akaviri Snow Demons)
  # =====================================================================
- kamal.000.t: "The Demons Thaw"
- kamal.000.desc: "Across the Padomaic Ocean, in the land of 'Snow Hell,' something stirs. The Kamal — snow demons frozen solid each winter, thawed each summer — are waking. This year they will not merely raid the Tang Mo. This year they are coming west. Ada'Soom Dir-Kamal rides at their head."
- kamal.000.a: "Let them come — Tamriel will not bow."
 
- kamal.001.t: "Ada'Soom Dir-Kamal"
- kamal.001.desc: "A name not heard since the Second Era echoes out of the east: Ada'Soom Dir-Kamal. The greatest of Kamal warlords — a snow demon of terrifying martial genius — has thawed. His armies fill the sea horizon. They make no demands, offer no terms. They come to conquer."
- kamal.001.a: "Ada'Soom Dir-Kamal — we will stop you here!"
- kamal.001.b: "Pray the Tribunal can intervene as before."
 
- kamal.010.t: "Vivec Intervenes"
- kamal.010.desc: "The god-warrior Vivec descends upon the battlefield in a column of golden light. He confronts Dir-Kamal directly and slays him with a single utterance. The demon king crumbles, his body frozen solid and shattered. The Kamal host falters, leaderless — and breaks for their ships. Vivec turns without looking back and vanishes."
- kamal.010.a: "Dir-Kamal is destroyed — the Kamal flee!"
- kamal.010.b: "A narrow victory — do not rely on the Tribunal again."
 
- kamal.020.t: "The Kamal Broken"
- kamal.020.desc: "With Ada'Soom Dir-Kamal destroyed at the Battle of Vivec's Antlers in 2E 572, the leaderless Kamal armies crumble. The combined forces of the Ebonheart Pact and the Tribunal drive them back to the sea. The invasion is over."
- kamal.020.a: "The Kamal are finished — for this age."
 
  kamal_invasion_coming_tt: "A Kamal invasion has begun. Ada'Soom Dir-Kamal will march unless repelled or Vivec intervenes."
 
@@ -228,14 +122,7 @@ l_english:
  # =====================================================================
  #  TANG MO  (Monkey-Folk of Akavir)
  # =====================================================================
- tang_mo.001.t: "The Community Stands"
- tang_mo.001.desc: "The Kamal come every summer. Every summer, the Tang Mo die, suffer, and endure. But they have never been enslaved. Not for long. When the drumming starts in the deep jungle, when the monkey-folk respond as one, the Kamal remember why this land is never truly theirs."
- tang_mo.001.a: "The community stands as one — repel the demons!"
- tang_mo.001.b: "Seek shelter in the deep jungle — let the demons pass."
 
- tang_mo.002.t: "The Alliance with Ka Po' Tun"
- tang_mo.002.desc: "The tiger-dragons of Ka Po' Tun have never been friends of Tamriel, but they have always been friends of the Tang Mo. Together, the two peoples have survived eons of Kamal aggression. Now the great tiger-dragons offer renewed alliance."
- tang_mo.002.a: "Together we are stronger than any Kamal horde."
 
  # Traits
  tang_mo_heritage: "Tang Mo"
@@ -291,14 +178,7 @@ l_english:
  # =====================================================================
  #  DREUGH
  # =====================================================================
- dreugh.001.t: "The Life-Cycle Turns"
- dreugh.001.desc: "The pull of the deep water calls — or the pull of dry stone calls. The Dreugh life-cycle is unlike any other sentient being's. The transition between sea phase and land phase is a renewal, a rebirth, a shedding of one self for another."
- dreugh.001.a: "I feel the pull of the sea..."
- dreugh.001.b: "I emerge from the depths, renewed."
 
- dreugh.002.t: "Homage to Old Knocker"
- dreugh.002.desc: "Old Knocker — the ancient Dreugh god, a being of the deep ocean who pre-dates memory — is honoured with the traditional Dreugh rite: a vigil held at the lowest reachable depth, in perfect darkness, where the only sound is the pressure of fathoms of water."
- dreugh.002.a: "Ancient Knocker, hear us from the deep."
 
  # Traits
  dreugh_heritage: "Dreugh"
@@ -311,15 +191,7 @@ l_english:
  # =====================================================================
  #  IMGA
  # =====================================================================
- imga.001.t: "An Imga Aristocrat at Court"
- imga.001.desc: "The great ape enters your throne room with impeccable posture, fur powdered bone-white in the Altmeri fashion, wearing robes cut in the high style of Summerset. Their bearing is entirely, deliberately, earnestly Aldmeri. The Imga of Valenwood have always admired the Mer."
- imga.001.a: "Welcome, great ape — your powder and poise are appreciated."
- imga.001.b: "Their imitation of our ways is... unsettling."
 
- imga.002.t: "Marukh's Legacy"
- imga.002.desc: "Marukh of the Imga — the prophet who sparked the Alessian Order, who changed the face of the First Empire — began as a great ape in Valenwood who looked at the Altmer and saw something to aspire to. The tension between emulation and self-determination still shapes Imga society."
- imga.002.a: "Marukh spoke truth — the Aldmer are the pinnacle."
- imga.002.b: "Marukh's path is not mine — we are our own people."
 
  # Traits
  imga_heritage: "Imga"
@@ -330,13 +202,7 @@ l_english:
  # =====================================================================
  #  KEPTU / NEDES
  # =====================================================================
- keptu.001.t: "The Bloodroot Forge"
- keptu.001.desc: "Buried under a collapsed Reach hillfort, your excavators find it: a forge of dark metal and living roots, its fires still smouldering after centuries. This is the Bloodroot Forge of the Keptu — said to rival the Ayleid and Dwemer in its metallurgical output. Its secrets await."
- keptu.001.a: "The Forge's secrets are mine to revive."
 
- nedes.001.t: "The Old Ways"
- nedes.001.desc: "An elder of Nedic lineage, keeper of a vast oral tradition, sits by your fire and begins to speak. They tell of the pre-merethic world: of the Ehlnofey from which all life descended, of the first migrations from Atmora, of a Tamriel so different from today it might as well be another world."
- nedes.001.a: "Their oral histories predate the First Era."
 
  # Traits
  keptu_lineage: "Keptu Lineage"
@@ -406,31 +272,137 @@ l_english:
  #  PROPHET VELOTH VENERATION --- Traits
  # =====================================================================
 
- veloth_pilgrim: "Veloth Pilgrim"
- veloth_pilgrim_desc: "This character has walked some portion of Veloth's original exodus route and carries its spiritual weight."
 
- veloth_devotee: "Veloth Devotee"
- veloth_devotee_desc: "This character is a devoted follower of Prophet Veloth's teachings and the spiritual foundation beneath the Tribunal."
 
  # =====================================================================
  #  SILVER HAND --- Traits
  # =====================================================================
 
- silver_hand_hunter: "Silver Hand Hunter"
- silver_hand_hunter_desc: "This character has been trained in the old Nordic hunting rites used against the beast-blooded. Hircine does not forget."
 
- wolfsbane_alchemist: "Wolfsbane Alchemist"
- wolfsbane_alchemist_desc: "This character has learned to brew wolfsbane, the herb that weakens and reveals those carrying beast blood."
 
  # =====================================================================
  #  GUILD CHARTER / COLOVIAN-NIBENAY --- Modifiers
  # =====================================================================
 
- guild_charter_paid_modifier: "Guild Charter: Honoured"
- guild_charter_paid_modifier_desc: "This ruler paid the Guild tithe in full. Guild branches operate efficiently here, providing a small income supplement from Guild commercial activity."
 
- colovian_martial_law_modifier: "Colovian Military Consolidation"
- colovian_martial_law_modifier_desc: "Military authority over the Colovian Estates has been consolidated. Soldiers are loyal. Merchants are nervous. The western roads are secured."
 
- nibenay_council_edict_modifier: "Nibenay Council Edict"
- nibenay_council_edict_modifier_desc: "A formal edict through the Nibenay mercantile councils has established authority over the eastern trade networks. Income grows steadily from the road tolls."
+
+ # =====================================================================
+ #  Wild Hunt Traits
+ # =====================================================================
+
+ wild_hunt_called: "Wild Hunt Called"
+ wild_hunt_called_desc: "This Bosmer ruler has undergone Y'ffre's most extreme gift — the Green-Pact ritual that allows them to Call the Wild Hunt. The Hunt does not stop until it chooses to. Those who survive rarely return wholly to themselves."
+
+ # =====================================================================
+ #  Daedric Artifacts — Modifiers
+ # =====================================================================
+
+ artifact_health_drain: "Artifact Consumption"
+ artifact_health_drain_desc: "A malevolent Daedric artifact is slowly consuming its bearer. The Daedric power sustains itself at the wielder's expense."
+
+ daedric_artifact_new_bearer: "New Artifact Bond"
+ daedric_artifact_new_bearer_desc: "The exhilaration of a freshly-bonded Daedric artifact. The Prince's attention is new; the bond is not yet corrupted."
+
+ # =====================================================================
+ #  Dagoth Ur — Modifiers
+ # =====================================================================
+
+
+ # =====================================================================
+ #  Dragon Break — Modifiers
+ # =====================================================================
+
+ dragon_break_resilience_desc: "A ruler who has forcibly rejected the Dragon Break's temporal paradox and grounded themselves in a single chosen timeline. Clarity hardens; confusion retreats."
+
+ # =====================================================================
+ #  Gray Host — Modifiers
+ # =====================================================================
+
+
+
+ # =====================================================================
+ #  Worm Cult — Modifiers
+ # =====================================================================
+
+ worm_cult_marked_for_death: "Marked by Mannimarco"
+ worm_cult_marked_for_death_desc: "The King of Worms does not forget apostasy. Mannimarco has placed a death-mark on this ruler; his cult agents will seek them out."
+
+ # =====================================================================
+ #  Dragon Priest Modifiers
+ # =====================================================================
+
+
+
+
+
+
+
+
+ # =====================================================================
+ #  Tribunal & Vivec Trial Modifiers
+ # =====================================================================
+
+
+
+
+
+
+
+ # =====================================================================
+ #  Almsivi Interdict Modifier
+ # =====================================================================
+
+
+ # =====================================================================
+ #  Alessian System Modifiers
+ # =====================================================================
+
+
+
+ # =====================================================================
+ #  Ashlander System Modifiers
+ # =====================================================================
+
+
+ # =====================================================================
+ #  Clockwork City Modifiers
+ # =====================================================================
+
+
+ # =====================================================================
+ #  Dagoth Ur System Modifiers
+ # =====================================================================
+
+
+ # =====================================================================
+ #  Dwemer Ruins Modifiers
+ # =====================================================================
+
+
+
+ # =====================================================================
+ #  Great Houses Modifiers
+ # =====================================================================
+
+
+
+
+
+
+
+
+
+
+ # =====================================================================
+ #  Seven Graces Modifier
+ # =====================================================================
+
+
+ # =====================================================================
+ #  Wounded Modifier
+ # =====================================================================
+
+ wounded: "Wounded"
+ wounded_desc: "This character has sustained significant wounds. They recover — but it takes time, and the pain lingers."
+

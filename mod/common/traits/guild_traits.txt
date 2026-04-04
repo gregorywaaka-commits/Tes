@@ -277,48 +277,6 @@ morag_tong_grandmaster = {
 }
 
 # ================================================================
-#  COMPANIONS  (Nordic; ancient; active throughout Tamrielic history)
-#  Ranks: Shield-Brother → Veteran Companion → Circle Member → Harbinger
-# ================================================================
-
-companions_shield_brother = {
-    category = lifestyle
-    opposites = { companions_veteran companions_circle companions_harbinger }
-    prowess  = 3
-    martial  = 1
-    flag = companions_shield_brother
-}
-
-companions_veteran = {
-    category = lifestyle
-    opposites = { companions_shield_brother companions_circle companions_harbinger }
-    prowess  = 5
-    martial  = 3
-    monthly_prestige_gain_mult = 0.05
-    flag = companions_veteran
-}
-
-companions_circle = {
-    category = lifestyle
-    opposites = { companions_shield_brother companions_veteran companions_harbinger }
-    prowess  = 7
-    martial  = 4
-    command_modifier = { advantage = 2 damage = 0.08 }
-    monthly_prestige_gain_mult = 0.1
-    flag = companions_circle
-}
-
-companions_harbinger = {
-    category = fame
-    opposites = { companions_shield_brother companions_veteran companions_circle }
-    prowess  = 10
-    martial  = 6
-    command_modifier = { advantage = 4 damage = 0.15 max_morale = 0.2 }
-    monthly_prestige_gain_mult = 0.2
-    flag = companions_harbinger
-}
-
-# ================================================================
 #  PSIJIC ORDER  (Mythic Era; insular; absent 2E 230–580 from Artaeum)
 #  Ranks: Novice → Initiate → Adept → Master of the Order
 # ================================================================

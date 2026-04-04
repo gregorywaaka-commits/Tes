@@ -71,7 +71,7 @@ sload.001 = {
 
     option = {
         name = sload.001.a   # "Close the ports — let nothing in or out."
-        add_modifier = { modifier = quarantine_modifier days = 365 }
+        add_character_modifier = { modifier = quarantine_modifier days = 365 }
         add_prestige = 50
     }
 

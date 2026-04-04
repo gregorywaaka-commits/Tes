@@ -1,4 +1,4 @@
-﻿l_english:
+l_english:
 
  # =====================================================================
  #  THE ASHLANDER TRIBES / THE ALMSIVI INTERDICT
@@ -57,24 +57,12 @@
 
  # ---- almsivi.000 — The Temple Messenger ----
 
- almsivi.000.t: "A Messenger from the Temple"
- almsivi.000.desc: "The Temple messenger is dressed in formal robes and carries a sealed document with the three-bar mark of ALMSIVI at the wax — the combined sigil of all three Tribunal gods, used only when the Temple is speaking with its full authority rather than institutional routine. What they read aloud is a formal notification: the Tribunal Temple has taken note of certain aspects of your conduct, and requests — in the formal language that means demands — a public act of recantation. They are scrupulously polite. They are also certain. The Temple has done this before. It ends one of two ways."
- almsivi.000.a: "I recant. Publicly. Whatever it costs to my standing — I will not carry this fight."
- almsivi.000.b: "Tell the Temple I received their message. Tell them I decline to comply."
 
  # ---- almsivi.001 — The Interdict Proclaimed ----
 
- almsivi.001.t: "The ALMSIVI Interdict"
- almsivi.001.desc: "The proclamation comes quickly — the Temple had it prepared. It is read from pulpits in every major Dunmer settlement within a fortnight: this ruler has been formally declared outside the protection and favour of ALMSIVI, cut off from the divine covenant of the three-faced god, until they recant their heresy before the Temple's satisfaction. The effects are immediate and social before they are spiritual: vassals who are devout Dunmer begin to shift in their seats. Tribute from shrines goes elsewhere. There is a particular cold quality to being told, in public and in writing, that the gods have officially stopped watching over you."
- almsivi.001.a: "Let them proclaim it. I stand behind what I have done. The Temple does not own my conscience."
- almsivi.001.b: "I will pay whatever piety the Temple requires to end this immediately."
- almsivi.001.c: "I have reconsidered. I recant. End this — I will not carry the weight of an Interdict."
 
  # ---- almsivi.002 — The Recantation ----
 
- almsivi.002.t: "The Recantation"
- almsivi.002.desc: "The formal recantation is read from the same pulpits that read the Interdict. It is shorter. The Temple does not gloat — they do not need to. The document is simply a reversal: the concerns that prompted the Interdict have been addressed to the Temple's satisfaction; the ALMSIVI Interdict is lifted; this ruler is once again under the divine covenant of the three-faced god. You listen to it being read to your court. You keep your expression neutral. You have said the words they wanted. Whether you meant them is, as it turns out, not one of the Temple's requirements."
- almsivi.002.a: "It is done. I have said the words. Now I live with having said them."
 
  # ---- Traits ----
 

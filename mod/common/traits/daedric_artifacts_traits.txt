@@ -27,6 +27,11 @@
 #  unassuming — but it can slay any being instantly if fate
 #  wills it. Its bearer grows more violent, more cunning, and
 #  more hungry for conflict with every passing moon.
+#
+#  FUTURE ARTIFACT: Mehrunes' Razor
+#    Every artifact-bearing trait in this file should eventually
+#    be replaced by a proper CK3 artifact item.  See ARTIFACTS_TODO.md
+#    for the full candidate list and implementation notes.
 # ---------------------------------------------------------------
 
 # =============================================================
@@ -55,6 +60,13 @@ mehrunes_razor_bearer = {
 
     monthly_prestige_gain_mult = 0.20   # The razor-bearer is feared and renowned
 
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: mehrunes_razor
+    #   Slot: weapon (one-handed blade)
+    #   Special effect: small % chance on kill to proc an instant-kill modifier
+    #   Lore source: UESP Lore:Mehrunes' Razor; in-game book "The Fall of Orsinium"
+    #   See: ARTIFACTS_TODO.md
+
     flag = mehrunes_razor_bearer
 }
 
@@ -74,6 +86,13 @@ wabbajack_wielder = {
     monthly_prestige_gain_mult = 0.20   # Notorious for possessing the Mad God's gift
     stress_gain_mult           = -0.10  # Sheogorath's touch makes the mind slippery — stress slides off
 
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: wabbajack
+    #   Slot: weapon (staff)
+    #   Special effect: random positive/negative effect on equipped character each year
+    #   Lore source: UESP Lore:Wabbajack; Shivering Isles DLC
+    #   See: ARTIFACTS_TODO.md
+
     flag = wabbajack_wielder
 }
 
@@ -90,6 +109,13 @@ skull_of_corruption_bearer = {
     learning  = 3
 
     monthly_prestige_gain_mult = 0.20   # The dream-thief is both feared and morbidly respected
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: skull_of_corruption
+    #   Slot: trinket / off-hand relic
+    #   Special effect: can use as a scheme-power bonus (dream manipulation)
+    #   Lore source: UESP Lore:Skull of Corruption; Vaermina's artifact
+    #   See: ARTIFACTS_TODO.md
 
     flag = skull_of_corruption_bearer
 }
@@ -110,6 +136,13 @@ ebony_blade_cursed = {
     monthly_prestige_gain_mult = 0.20   # The cursed blade's reputation precedes its bearer
     health                     = -0.3   # Mephala's corruption eats the body from within
 
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: ebony_blade
+    #   Slot: weapon (great sword / two-handed)
+    #   Special effect: gains prowess for every close-relation killed; loses health
+    #   Lore source: UESP Lore:Ebony Blade; Mephala's artifact — feeds on betrayal
+    #   See: ARTIFACTS_TODO.md
+
     flag = ebony_blade_cursed
 }
 
@@ -127,6 +160,13 @@ ring_of_namira_bearer = {
 
     monthly_prestige_gain_mult = 0.10   # Whispered about in dark courts; not entirely respectable
     health                     = 0.5    # The ring's dread sustenance keeps the body vital
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: ring_of_namira
+    #   Slot: ring / accessory
+    #   Special effect: health bonus; cannibal trait synergy; Namira piety gain
+    #   Lore source: UESP Lore:Ring of Namira; grants increased stamina via profane rites
+    #   See: ARTIFACTS_TODO.md
 
     flag = ring_of_namira_bearer
 }

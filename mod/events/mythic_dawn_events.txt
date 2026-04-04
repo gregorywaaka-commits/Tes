@@ -171,7 +171,7 @@ mythic_dawn.003 = {
         name = mythic_dawn.003.a   # "I eliminate their target."
         trigger = { intrigue >= 14 }
         add_character_flag = { flag = mythic_dawn_inner_circle days = 3650 }
-        add_modifier = {
+        add_character_modifier = {
             modifier = mythic_dawn_inner_circle_insight
             days = 1095
         }
@@ -183,7 +183,7 @@ mythic_dawn.003 = {
         name = mythic_dawn.003.b   # "I steal the relic they want."
         trigger = { intrigue >= 12 }
         add_character_flag = { flag = mythic_dawn_inner_circle days = 3650 }
-        add_modifier = {
+        add_character_modifier = {
             modifier = mythic_dawn_inner_circle_insight
             days = 1095
         }

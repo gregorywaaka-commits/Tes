@@ -14,7 +14,22 @@
 #    finds and wears it can attempt to restore Alessia's Covenant.
 #
 #  EK2 Timeframe: 2E 440–896 (the Interregnum)
-# =============================================================
+#
+#  FUTURE ARTIFACT: amulet_of_kings
+#    The Amulet of Kings is currently implemented as a character
+#    flag (amulet_of_kings_bearer) and modifier system.  It should
+#    eventually be a full CK3 legendary artifact:
+#      Slot: necklace / amulet
+#      Special effect:
+#        • Dragonborn bearer: +monthly_piety, +legitimacy, blocks
+#          Daedric invasions while held
+#        • Non-Dragonborn bearer: random rejection event chain
+#      Unique mechanic: relight_dragonfires_effect triggers a realm-
+#        wide notification and permanent buff
+#      Lore: UESP Lore:Amulet of Kings — Alessia's Covenant;
+#        in-game books "The Adabal-a" and "Of Jephre and the Green"
+#      See: ARTIFACTS_TODO.md
+# =============================================================#
 
 # ================================================================
 #  1. SEEK THE AMULET OF KINGS

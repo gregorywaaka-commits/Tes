@@ -83,7 +83,7 @@ tribunal.000 = {
         name = tribunal.000.a   # "I am a warrior. Bless my spear, lord."
         add_character_flag = { flag = vivec_vision_seen }
         add_trait = vivec_blessed
-        add_modifier = {
+        add_character_modifier = {
             modifier = vivec_warrior_blessing
             days = 730
         }
@@ -95,7 +95,7 @@ tribunal.000 = {
         name = tribunal.000.b   # "Speak to me as a poet. I seek meaning, not victory."
         add_character_flag = { flag = vivec_vision_seen }
         add_trait = vivec_blessed
-        add_modifier = {
+        add_character_modifier = {
             modifier = vivec_poet_blessing
             days = 730
         }
@@ -135,7 +135,7 @@ tribunal.010 = {
         name = tribunal.010.a   # "Mother Morrowind — guide my rule and heal my people."
         add_character_flag = { flag = almalexia_vision_seen }
         add_trait = almalexia_devoted
-        add_modifier = {
+        add_character_modifier = {
             modifier = almalexia_grace
             days = 730
         }
@@ -184,7 +184,7 @@ tribunal.020 = {
         name = tribunal.020.a   # "Show me the mechanisms. I am ready to understand."
         add_character_flag = { flag = sotha_sil_vision_seen }
         add_trait = sotha_sil_student
-        add_modifier = {
+        add_character_modifier = {
             modifier = sotha_sil_insight
             days = 730
         }

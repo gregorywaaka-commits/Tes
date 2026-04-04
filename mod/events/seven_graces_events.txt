@@ -295,7 +295,7 @@ seven_graces.006 = {
             limit = { NOT = { has_trait = seven_graces_pilgrim } }
             add_trait = seven_graces_pilgrim
         }
-        add_modifier = {
+        add_character_modifier = {
             modifier = seven_graces_blessing
             days = 1825
         }

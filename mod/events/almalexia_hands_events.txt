@@ -73,7 +73,7 @@ almalexia_hands.000 = {
         add_piety    = 400
         add_prestige = 500
         add_stress = 10              # The weight of the oath is real
-        add_modifier = {
+        add_character_modifier = {
             modifier = almalexia_hands_blessing
             days = 1825    # 5 years — the goddess's freshly-given blessing
         }

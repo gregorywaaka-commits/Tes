@@ -58,7 +58,7 @@ daedric_prince_invasion.azura.002 = {
     option = {
         name = daedric_prince_invasion.azura.002.a  # "Accept the Star as her gift."
         add_piety    = 300
-        add_modifier = { modifier = azura_star_holder days = 3650 }
+        add_character_modifier = { modifier = azura_star_holder days = 3650 }
     }
     option = {
         name = daedric_prince_invasion.azura.002.b  # "Return it — her gifts come with conditions."
@@ -107,11 +107,11 @@ daedric_prince_invasion.mephala.001 = {
         # 50/50 — gift or curse
         random_list = {
             50 = {
-                add_modifier = { modifier = mephala_web_gift days = 1825 }
+                add_character_modifier = { modifier = mephala_web_gift days = 1825 }
                 add_intrigue = 4
             }
             50 = {
-                add_modifier = { modifier = mephala_web_curse days = 730 }
+                add_character_modifier = { modifier = mephala_web_curse days = 730 }
                 add_stress   = 20
             }
         }
@@ -226,7 +226,7 @@ daedric_prince_invasion.clavicus.002 = {
         name = daedric_prince_invasion.clavicus.002.b  # "Refuse — and face his wrath."
         add_dread    = -20
         add_prestige = -200
-        add_modifier = { modifier = vile_curse_modifier days = 730 }
+        add_character_modifier = { modifier = vile_curse_modifier days = 730 }
         remove_trait = clavicus_bargain_keeper
     }
 }
@@ -248,7 +248,7 @@ daedric_prince_invasion.clavicus.003 = {
         name = daedric_prince_invasion.clavicus.003.a  # "Don the Masque."
         add_trait    = clavicus_vile_champion
         add_prestige = 500
-        add_modifier = { modifier = masque_of_clavicus_vile days = 3650 }
+        add_character_modifier = { modifier = masque_of_clavicus_vile days = 3650 }
     }
     option = {
         name = daedric_prince_invasion.clavicus.003.b  # "Leave it — Vile's vanity is a trap."
@@ -280,7 +280,7 @@ daedric_prince_invasion.vaermina.001 = {
     option = {
         name = daedric_prince_invasion.vaermina.001.b  # "Endure them — they are only dreams."
         add_stress   = 30
-        add_modifier = { modifier = vaermina_nightmare_modifier days = 365 }
+        add_character_modifier = { modifier = vaermina_nightmare_modifier days = 365 }
     }
 }
 
@@ -328,7 +328,7 @@ daedric_prince_invasion.vaermina.003 = {
     option = {
         name = daedric_prince_invasion.vaermina.003.a  # "Take the Skull — turn nightmares into a weapon."
         add_trait    = vaermina_champion
-        add_modifier = { modifier = skull_of_corruption_modifier days = 3650 }
+        add_character_modifier = { modifier = skull_of_corruption_modifier days = 3650 }
         add_prestige = 400
     }
     option = {
@@ -376,13 +376,13 @@ daedric_prince_invasion.sheogorath.002 = {
         name = daedric_prince_invasion.sheogorath.002.a  # "Accept the Wabbajack."
         add_trait    = sheogorath_champion
         add_prestige = 300
-        add_modifier = { modifier = wabbajack_modifier days = 3650 }
+        add_character_modifier = { modifier = wabbajack_modifier days = 3650 }
     }
     option = {
         name = daedric_prince_invasion.sheogorath.002.b  # "Refuse."
         # Sheogorath ignores refusals — fire the same outcome anyway
         add_trait    = sheogorath_champion
-        add_modifier = { modifier = wabbajack_modifier days = 3650 }
+        add_character_modifier = { modifier = wabbajack_modifier days = 3650 }
         add_stress = 10
         custom_tooltip = sheogorath_ignores_refusal_tt
     }
@@ -444,7 +444,7 @@ daedric_prince_invasion.peryite.001 = {
     option = {
         name = daedric_prince_invasion.peryite.001.b  # "Allow the afflicted to spread — Peryite's will."
         add_trait = peryite_afflicted
-        add_modifier = { modifier = peryite_afflicted_ruler days = 730 }
+        add_character_modifier = { modifier = peryite_afflicted_ruler days = 730 }
         trigger_event = { id = daedric_prince_invasion.peryite.002 days = 90 }
     }
 }
@@ -464,7 +464,7 @@ daedric_prince_invasion.peryite.002 = {
         name = daedric_prince_invasion.peryite.002.a  # "Accept Spellbreaker and become Peryite's champion."
         add_trait    = peryite_champion
         remove_trait = peryite_afflicted
-        add_modifier = { modifier = spellbreaker_modifier days = 3650 }
+        add_character_modifier = { modifier = spellbreaker_modifier days = 3650 }
         add_prestige = 500
     }
     option = {
@@ -514,7 +514,7 @@ daedric_prince_invasion.sanguine.002 = {
         add_stress  = 10
         add_prestige = -100
         random_list = {
-            50 = { add_modifier = { modifier = sanguine_rose_holder days = 1825 } }
+            50 = { add_character_modifier = { modifier = sanguine_rose_holder days = 1825 } }
             50 = { add_dread = -15 add_gold = -200 }
         }
     }
@@ -536,7 +536,7 @@ daedric_prince_invasion.sanguine.003 = {
     option = {
         name = daedric_prince_invasion.sanguine.003.a  # "Accept the Rose and revel in his service."
         add_trait    = sanguine_champion
-        add_modifier = { modifier = sanguine_rose_holder days = 3650 }
+        add_character_modifier = { modifier = sanguine_rose_holder days = 3650 }
         add_prestige = 400
     }
     option = {
@@ -573,7 +573,7 @@ daedric_prince_invasion.meridia.001 = {
     option = {
         name = daedric_prince_invasion.meridia.001.b  # "We cannot allow even a Daedra to cull our people."
         add_prestige = 200
-        add_modifier = { modifier = meridia_displeasure days = 730 }
+        add_character_modifier = { modifier = meridia_displeasure days = 730 }
     }
 }
 
@@ -593,7 +593,7 @@ daedric_prince_invasion.meridia.002 = {
     option = {
         name = daedric_prince_invasion.meridia.002.a  # "Take up Dawnbreaker for Meridia."
         add_trait    = meridia_champion
-        add_modifier = { modifier = dawnbreaker_modifier days = 3650 }
+        add_character_modifier = { modifier = dawnbreaker_modifier days = 3650 }
         add_prestige = 600
         add_piety    = 400
     }
@@ -618,7 +618,7 @@ daedric_prince_invasion.meridia.003 = {
 
     option = {
         name = daedric_prince_invasion.meridia.003.a  # "Face Meridia's wrath."
-        add_modifier = { modifier = meridia_purge_target days = 1095 }
+        add_character_modifier = { modifier = meridia_purge_target days = 1095 }
         add_piety = -300
     }
     option = {
@@ -647,7 +647,7 @@ daedric_prince_invasion.malacath.001 = {
 
     option = {
         name = daedric_prince_invasion.malacath.001.a  # "Endure the curse."
-        add_modifier = { modifier = malacath_oath_curse days = 1825 }
+        add_character_modifier = { modifier = malacath_oath_curse days = 1825 }
         add_stress   = 20
     }
     option = {
@@ -655,7 +655,7 @@ daedric_prince_invasion.malacath.001 = {
         add_prestige = -500
         add_piety    = 300
         remove_trait = oathbreaker
-        remove_modifier = malacath_oath_curse
+        remove_character_modifier = malacath_oath_curse
     }
 }
 
@@ -678,7 +678,7 @@ daedric_prince_invasion.malacath.002 = {
     option = {
         name = daedric_prince_invasion.malacath.002.a  # "March under Malacath's banner."
         add_trait    = malacath_champion
-        add_modifier = { modifier = volendrung_bearer days = 3650 }
+        add_character_modifier = { modifier = volendrung_bearer days = 3650 }
         add_prestige = 600
         add_piety    = 300
     }
@@ -704,7 +704,7 @@ daedric_prince_invasion.malacath.003 = {
     option = {
         name = daedric_prince_invasion.malacath.003.a  # "Claim Volendrung."
         add_trait    = malacath_champion
-        add_modifier = { modifier = volendrung_bearer days = 3650 }
+        add_character_modifier = { modifier = volendrung_bearer days = 3650 }
         add_prestige = 500
     }
     option = {
@@ -737,7 +737,7 @@ daedric_prince_invasion.nocturnal.001 = {
     option = {
         name = daedric_prince_invasion.nocturnal.001.b  # "Let the shadows have their tithe."
         add_gold = -300
-        add_modifier = { modifier = nocturnal_shadow_favor days = 730 }
+        add_character_modifier = { modifier = nocturnal_shadow_favor days = 730 }
     }
 }
 
@@ -757,7 +757,7 @@ daedric_prince_invasion.nocturnal.002 = {
     option = {
         name = daedric_prince_invasion.nocturnal.002.a  # "Become a Nightingale."
         add_trait    = nocturnal_champion
-        add_modifier = { modifier = skeleton_key_holder days = 3650 }
+        add_character_modifier = { modifier = skeleton_key_holder days = 3650 }
         add_prestige = 500
         add_intrigue = 3
     }
@@ -839,7 +839,7 @@ daedric_prince_invasion.hermaeus.002 = {
             50 = {
                 # Trapped — Mora has a new servant
                 add_trait    = hermaeus_mora_champion
-                add_modifier = { modifier = oghma_infinium_holder days = 3650 }
+                add_character_modifier = { modifier = oghma_infinium_holder days = 3650 }
                 add_stress   = 20
             }
         }
@@ -847,7 +847,7 @@ daedric_prince_invasion.hermaeus.002 = {
     option = {
         name = daedric_prince_invasion.hermaeus.002.b  # "Surrender to Mora's will."
         add_trait    = hermaeus_mora_champion
-        add_modifier = { modifier = oghma_infinium_holder days = 3650 }
+        add_character_modifier = { modifier = oghma_infinium_holder days = 3650 }
         add_learning = 8
     }
 }
@@ -914,14 +914,14 @@ daedric_prince_invasion.jyggalag.002 = {
     option = {
         name = daedric_prince_invasion.jyggalag.002.a  # "Submit to the perfect order."
         add_trait    = jyggalag_crystal_knight
-        add_modifier = { modifier = jyggalag_crystal_modifier days = 1825 }
+        add_character_modifier = { modifier = jyggalag_crystal_modifier days = 1825 }
         add_stress   = -10
     }
     option = {
         name = daedric_prince_invasion.jyggalag.002.b  # "Resist — madness and chaos are our shield."
         add_prestige = 400
         add_stress   = 25
-        add_modifier = { modifier = anti_jyggalag_resistance days = 730 }
+        add_character_modifier = { modifier = anti_jyggalag_resistance days = 730 }
     }
 }
 
@@ -942,7 +942,7 @@ daedric_prince_invasion.jyggalag.003 = {
     option = {
         name = daedric_prince_invasion.jyggalag.003.a  # "Accept Jyggalag's perfect blade."
         add_trait    = jyggalag_champion
-        add_modifier = { modifier = sword_of_jyggalag_modifier days = 3650 }
+        add_character_modifier = { modifier = sword_of_jyggalag_modifier days = 3650 }
         add_prestige = 700
         add_piety    = 200
     }

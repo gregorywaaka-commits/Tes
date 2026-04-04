@@ -137,7 +137,7 @@ high_rock.010 = {
 
     option = {
         name = high_rock.010.b   # "Pay the toll. One season of tribute buys three of peace."
-        add_modifier = { modifier = reach_raid_damage_modifier days = 365 }
+        add_character_modifier = { modifier = reach_raid_damage_modifier days = 365 }
         add_gold = -50
         add_prestige = -25
     }
@@ -177,7 +177,7 @@ high_rock.020 = {
 
     option = {
         name = high_rock.020.a   # "Invest in the Wayrest routes. Coin builds kingdoms."
-        add_modifier = { modifier = wayrest_market_bond_modifier days = 1825 }
+        add_character_modifier = { modifier = wayrest_market_bond_modifier days = 1825 }
         add_stewardship_skill = 1
         add_gold = -30
         add_prestige = 75

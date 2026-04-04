@@ -1,4 +1,4 @@
-﻿l_english:
+l_english:
  # ============================================================
  #  Daedric Princes — Extended Localization (All 17 Princes)
  # ============================================================
@@ -104,366 +104,93 @@
  # ============================================================
 
  # ---- Azura Invasion ----
- daedric_prince_invasion.azura.001.t: "A Twilight Prophecy"
- daedric_prince_invasion.azura.001.desc: "A vision arrives at court like the shifting of dusk to dawn — Azura, the Lady of Twilight, sends a prophecy. She speaks of the other Princes and of a Tamriel that balances on a knife's edge. She asks for nothing. That alone is suspect."
- daedric_prince_invasion.azura.001.a: "We heed the Twilight Queen's warning."
- daedric_prince_invasion.azura.001.b: "A Daedra's prophecy is a snare."
 
- daedric_prince_invasion.azura.002.t: "Azura's Star"
- daedric_prince_invasion.azura.002.desc: "On the threshold of the throne room, at the hour between dusk and night, a star descends. Azura's Star — a soul gem that never fills and never empties — rests in our hands. The Queen of Dusk and Dawn watches from the edge of evening."
- daedric_prince_invasion.azura.002.a: "Accept the Star as her gift."
- daedric_prince_invasion.azura.002.b: "Return it — her gifts come with conditions."
 
- daedric_prince_invasion.azura.003.t: "Children of the Twilight March"
- daedric_prince_invasion.azura.003.desc: "Azura's twilight servants — half-light, half-shadow — assemble on the border of our realm. They do not threaten us. They offer battle against the other Daedric forces, guided by Azura's prophetic gaze."
- daedric_prince_invasion.azura.003.a: "March with Azura's Children!"
 
  # ---- Mephala Invasion ----
- daedric_prince_invasion.mephala.001.t: "The Package of Spider-Silk"
- daedric_prince_invasion.mephala.001.desc: "A package arrives at court wrapped in spider-silk that moves of its own accord. There is no sender. No note. Only a faint sensation that something is watching."
- daedric_prince_invasion.mephala.001.a: "Open it."
- daedric_prince_invasion.mephala.001.b: "Burn it unopened."
 
- daedric_prince_invasion.mephala.002.t: "The Ebony Blade Awakens"
- daedric_prince_invasion.mephala.002.desc: "The Ebony Blade — Mephala's life-stealing katana — surfaces at our court. The Webspinner's voice is a whisper in the mind: 'It is hungry. Feed it betrayal, and it will serve you loyally.'"
- daedric_prince_invasion.mephala.002.a: "Take up the Ebony Blade."
- daedric_prince_invasion.mephala.002.b: "Such a blade feeds on betrayal — refuse."
 
- daedric_prince_invasion.mephala.003.t: "The Webspinner's Strike"
- daedric_prince_invasion.mephala.003.desc: "Mephala offers us the use of her Morag Tong assassins. A single enemy, anywhere in Tamriel, can be removed from the board. The Webspinner asks only that we acknowledge whose hand did the work."
- daedric_prince_invasion.mephala.003.a: "Direct the spider's strike at an enemy."
- daedric_prince_invasion.mephala.003.b: "Deny her the kill."
 
  # ---- Clavicus Vile Invasion ----
- daedric_prince_invasion.clavicus.001.t: "The Smiling Prince Makes an Offer"
- daedric_prince_invasion.clavicus.001.desc: "Clavicus Vile — wearing the grin of a man who has already won — extends his hand. 'I'll give you exactly what you ask for,' he says pleasantly. 'The precise words matter, naturally.' His dog Barbas sits nearby, looking embarrassed."
- daedric_prince_invasion.clavicus.001.a: "Accept his bargain."
- daedric_prince_invasion.clavicus.001.b: "Refuse — no good comes from Vile's deals."
 
- daedric_prince_invasion.clavicus.002.t: "The Catch Arrives"
- daedric_prince_invasion.clavicus.002.desc: "As Clavicus Vile promised, the wish was granted precisely as stated. Unfortunately, 'precisely as stated' turned out to be significantly worse than what was actually intended. The Prince sends a letter. It reads simply: 'Told you.'"
- daedric_prince_invasion.clavicus.002.a: "Pay the price."
- daedric_prince_invasion.clavicus.002.b: "Refuse — and face his wrath."
 
- daedric_prince_invasion.clavicus.003.t: "The Masque of Clavicus Vile"
- daedric_prince_invasion.clavicus.003.desc: "A golden mask arrives at court — the Masque of Clavicus Vile, which makes the wearer irresistibly persuasive. Clavicus's voice drifts from it: 'Try it on. Just for a moment. Don't worry about what it costs.'"
- daedric_prince_invasion.clavicus.003.a: "Don the Masque."
- daedric_prince_invasion.clavicus.003.b: "Leave it — Vile's vanity is a trap."
 
  # ---- Vaermina Invasion ----
- daedric_prince_invasion.vaermina.001.t: "Nightmares Grip the Realm"
- daedric_prince_invasion.vaermina.001.desc: "Sleep has become a battlefield. Every night, Vaermina's tendril reaches into the minds of our people, and what they see there wakes them screaming. Productivity falters. Children weep. Even the dogs howl at nothing."
- daedric_prince_invasion.vaermina.001.a: "Seek a remedy for the nightmares."
- daedric_prince_invasion.vaermina.001.b: "Endure them — they are only dreams."
 
- daedric_prince_invasion.vaermina.002.t: "Vaermina Steals a Memory"
- daedric_prince_invasion.vaermina.002.desc: "In the dream, Vaermina extends a grey hand. 'Give me one memory,' she says. 'Just one. You won't even miss it.' In the dream, one cannot refuse easily."
- daedric_prince_invasion.vaermina.002.a: "Fight to keep the memory."
- daedric_prince_invasion.vaermina.002.b: "Let it go — better to forget."
 
- daedric_prince_invasion.vaermina.003.t: "The Skull of Corruption"
- daedric_prince_invasion.vaermina.003.desc: "Vaermina offers the Skull of Corruption — a staff that fires nightmare energy distilled from stolen dreams. 'It belongs to someone who understands the power of fear,' she whispers."
- daedric_prince_invasion.vaermina.003.a: "Take the Skull — turn nightmares into a weapon."
- daedric_prince_invasion.vaermina.003.b: "Refuse — its power would drive me mad."
 
  # ---- Sheogorath Invasion ----
- daedric_prince_invasion.sheogorath.001.t: "Something Strange Has Happened"
- daedric_prince_invasion.sheogorath.001.desc: "The court jester has been replaced by a wheel of cheese. The treasury is full of butterflies. The court mage speaks only backwards. A pleasant elderly gentleman in a purple coat is sitting on the throne, eating a sweet roll. He looks up. 'Oh good, you're here. I was wondering when the cheese would arrive.'"
- daedric_prince_invasion.sheogorath.001.a: "Embrace the madness!"
- daedric_prince_invasion.sheogorath.001.b: "This is not right. This is very not right."
 
- daedric_prince_invasion.sheogorath.002.t: "The Wabbajack"
- daedric_prince_invasion.sheogorath.002.desc: "Sheogorath produces a staff of ridiculous design and enormous magical power. 'The Wabbajack!' he declares. 'It does... well, SOMETHING. Always. To everything. Isn't that wonderful?' He holds it out. You reach for it. You are not sure you had a choice."
- daedric_prince_invasion.sheogorath.002.a: "Accept the Wabbajack."
- daedric_prince_invasion.sheogorath.002.b: "Refuse."
 
- daedric_prince_invasion.sheogorath.003.t: "A Random Blessing (or Curse) from the Mad God"
- daedric_prince_invasion.sheogorath.003.desc: "Without warning, without reason, and without apology, Sheogorath's attention falls upon us. Something is about to happen. Whether it is good or bad depends entirely on what mood the Mad God is in today."
- daedric_prince_invasion.sheogorath.003.a: "...so it goes."
 
  sheogorath_ignores_refusal_tt: "Sheogorath is not known for respecting the wishes of others."
 
  # ---- Peryite Invasion ----
- daedric_prince_invasion.peryite.001.t: "Peryite's Plague Takes Hold"
- daedric_prince_invasion.peryite.001.desc: "Counties across the realm report a new affliction — the Afflicted, followers of Peryite, bring a daedric strain of disease in their wake. It does not kill quickly. It transforms slowly. The Taskmaster's plague has a purpose: to impose order through illness."
- daedric_prince_invasion.peryite.001.a: "Quarantine the afflicted."
- daedric_prince_invasion.peryite.001.b: "Allow the afflicted to spread — Peryite's will."
 
- daedric_prince_invasion.peryite.002.t: "Spellbreaker's Reward"
- daedric_prince_invasion.peryite.002.desc: "The Afflicted gather. They look upon us — now one of their own — with something approaching reverence. A shield materialises: Spellbreaker, Peryite's artefact, a reflection of his domain of ordered pestilence. They offer it. We are his Chosen."
- daedric_prince_invasion.peryite.002.a: "Accept Spellbreaker and become Peryite's champion."
- daedric_prince_invasion.peryite.002.b: "Reject his 'gift'."
 
  # ---- Sanguine Invasion ----
- daedric_prince_invasion.sanguine.001.t: "A Mysterious Reveller"
- daedric_prince_invasion.sanguine.001.desc: "A cheerful, red-faced gentleman arrives at court unannounced and immediately begins distributing wine. He knows everyone's name. He laughs loudly. The court is immediately and completely charmed. Something about him suggests this is not coincidence."
- daedric_prince_invasion.sanguine.001.a: "Indulge in the feast."
- daedric_prince_invasion.sanguine.001.b: "This is a daedric trap — expel the stranger."
 
- daedric_prince_invasion.sanguine.002.t: "The Morning After"
- daedric_prince_invasion.sanguine.002.desc: "The morning arrives like a siege weapon. The mysterious reveller is gone. So are several guards' clothes, the court astrologer's dignity, and apparently a significant portion of last night's treasury. On the table sits either a Sanguine Rose or an embarrassing note. It is unclear which is worse."
- daedric_prince_invasion.sanguine.002.a: "What happened last night...?"
 
- daedric_prince_invasion.sanguine.003.t: "The Sanguine Rose"
- daedric_prince_invasion.sanguine.003.desc: "Sanguine, looking unreasonably cheerful for someone whose followers are spreading debauchery across the realm, proffers his Rose. 'For you, dear friend! It summons a Daedra to do your bidding. Mostly. Sometimes they just dance. It varies.'"
- daedric_prince_invasion.sanguine.003.a: "Accept the Rose and revel in his service."
- daedric_prince_invasion.sanguine.003.b: "Sober up and refuse."
 
  # ---- Meridia Invasion ----
- daedric_prince_invasion.meridia.001.t: "Meridia's Beacon Burns"
- daedric_prince_invasion.meridia.001.desc: "A column of golden light tears through the night sky — Meridia's beacon, burning away the Coldharbour-tainted darkness. She does not ask for permission. She cleanses what she finds, and what she finds is the undead in our realm."
- daedric_prince_invasion.meridia.001.a: "The undead in our realm are destroyed — Meridia cleanses us."
- daedric_prince_invasion.meridia.001.b: "We cannot allow even a Daedra to cull our people."
 
- daedric_prince_invasion.meridia.002.t: "Dawnbreaker"
- daedric_prince_invasion.meridia.002.desc: "Meridia descends in a column of blinding white light. In her outstretched hand blazes Dawnbreaker — a sword of holy fire that explodes the undead and burns like concentrated sunlight. 'Wield it in my name,' she commands. It is not quite a request."
- daedric_prince_invasion.meridia.002.a: "Take up Dawnbreaker for Meridia."
- daedric_prince_invasion.meridia.002.b: "I take orders from no Daedra."
 
- daedric_prince_invasion.meridia.003.t: "Meridia Turns Against a Necromancer"
- daedric_prince_invasion.meridia.003.desc: "Meridia's light does not discriminate. It purifies. Our faith's acceptance of the undead has drawn her attention, and her attention burns."
- daedric_prince_invasion.meridia.003.a: "Face Meridia's wrath."
- daedric_prince_invasion.meridia.003.b: "Renounce the undead arts to appease her."
 
  # ---- Malacath Invasion ----
- daedric_prince_invasion.malacath.001.t: "Malacath's Curse Falls"
- daedric_prince_invasion.malacath.001.desc: "Malacath, the Spurned King, has noticed the broken oath on our record. He does not send a messenger. He does not warn. The curse simply arrives — a weight on the shoulders, a blight on the harvest, a hollow clang when oaths are spoken aloud."
- daedric_prince_invasion.malacath.001.a: "Endure the curse."
- daedric_prince_invasion.malacath.001.b: "Make amends for the broken oath."
 
- daedric_prince_invasion.malacath.002.t: "The Orcs Rally to Malacath"
- daedric_prince_invasion.malacath.002.desc: "The Orsimer hear Malacath's call and feel the old blood stir. The Spurned King demands a champion from among them — one who can stand before his enemies without flinching. Volendrung waits for the worthy."
- daedric_prince_invasion.malacath.002.a: "March under Malacath's banner."
- daedric_prince_invasion.malacath.002.b: "My oaths are to my own realm, not to a Daedra."
 
- daedric_prince_invasion.malacath.003.t: "Volendrung is Forged Anew"
- daedric_prince_invasion.malacath.003.desc: "Volendrung — the Cursed Staff, the warhammer said to have been the weapon of the Dwarven god Shor — descends from the sky trailing purple fire. Malacath calls for a champion with the strength to wield it."
- daedric_prince_invasion.malacath.003.a: "Claim Volendrung."
- daedric_prince_invasion.malacath.003.b: "Let the Spurned One keep his hammer."
 
  # ---- Nocturnal Invasion ----
- daedric_prince_invasion.nocturnal.001.t: "Treasuries Begin to Vanish"
- daedric_prince_invasion.nocturnal.001.desc: "Gold disappears from locked vaults. Gems vanish from sealed caskets. The treasury reports are consistent: nothing was taken; things simply ceased to be there. Nocturnal's shadow-tithe has begun."
- daedric_prince_invasion.nocturnal.001.a: "Hire guards for the treasury."
- daedric_prince_invasion.nocturnal.001.b: "Let the shadows have their tithe."
 
- daedric_prince_invasion.nocturnal.002.t: "The Skeleton Key"
- daedric_prince_invasion.nocturnal.002.desc: "Nocturnal does not appear. She never appears. But on the treasury table, glinting with an impossible iridescence, is the Skeleton Key — an unbreakable lockpick that opens any lock and returns to its owner's pocket when not in use. A note accompanies it: 'Swear the oath.'"
- daedric_prince_invasion.nocturnal.002.a: "Become a Nightingale."
- daedric_prince_invasion.nocturnal.002.b: "Nocturnal's keys open doors best left shut."
 
- daedric_prince_invasion.nocturnal.003.t: "Shadows Reveal a Rival's Secrets"
- daedric_prince_invasion.nocturnal.003.desc: "The darkness has been generous. Nocturnal's shadows have moved through our rival's halls, and what they found is... useful. Deeply, expensively useful."
- daedric_prince_invasion.nocturnal.003.a: "Use the shadows against our rival."
 
  # ---- Hermaeus Mora Invasion ----
- daedric_prince_invasion.hermaeus.001.t: "A Black Book in the Library"
- daedric_prince_invasion.hermaeus.001.desc: "Between two ordinary volumes in the royal library, a Black Book has appeared — a tome of Apocrypha bound in human skin, radiating the cold weight of forbidden knowledge. Hermaeus Mora's eye, carved into the cover, watches."
- daedric_prince_invasion.hermaeus.001.a: "Open the Black Book."
- daedric_prince_invasion.hermaeus.001.b: "Burn it before it can corrupt us."
 
- daedric_prince_invasion.hermaeus.002.t: "Apocrypha Reaches Out"
- daedric_prince_invasion.hermaeus.002.desc: "The pages of Apocrypha stretch endlessly in all directions. Hermaeus Mora drifts above — a swirling mass of tentacles and eyes, ancient and patient beyond any mortal reckoning. 'You sought knowledge,' he says. 'Here it is. All of it. You need only stay.'"
- daedric_prince_invasion.hermaeus.002.a: "Fight free of Apocrypha."
- daedric_prince_invasion.hermaeus.002.b: "Surrender to Mora's will."
 
- daedric_prince_invasion.hermaeus.003.t: "Mora Shares an Enemy's Secrets"
- daedric_prince_invasion.hermaeus.003.desc: "The Gardener of Men has been watching our enemies as well. A tendril of darkness deposits a sealed scroll on the desk — everything about a hated rival's plans, vulnerabilities, and hidden shames. Mora asks nothing in return. He already took what he wanted."
- daedric_prince_invasion.hermaeus.003.a: "Accept Mora's insight into our enemy."
 
  # ---- Jyggalag Invasion ----
- daedric_prince_invasion.jyggalag.001.t: "The Greymarch Has Come"
- daedric_prince_invasion.jyggalag.001.desc: "Jyggalag the Prince of Perfect Order — rarely seen, rarely free of his Sheogorath curse — marches. The Greymarch crystallizes all it touches into perfect, grey, ordered stone. Emotion becomes an inefficiency. Chaos becomes an affront. Everything must be made orderly."
- daedric_prince_invasion.jyggalag.001.a: "The Greymarch — all shall be made orderly."
- daedric_prince_invasion.jyggalag.001.b: "Our chaos will resist his order."
 
- daedric_prince_invasion.jyggalag.002.t: "Knights of Order Demand Submission"
- daedric_prince_invasion.jyggalag.002.desc: "Jyggalag's Crystal Knights arrive at the gates — towering constructs of grey order, their movements impossibly precise, their purpose absolute. They present an ultimatum: submit to the Greymarch or be consumed by it."
- daedric_prince_invasion.jyggalag.002.a: "Submit to the perfect order."
- daedric_prince_invasion.jyggalag.002.b: "Resist — madness and chaos are our shield."
 
- daedric_prince_invasion.jyggalag.003.t: "The Sword of Perfect Order"
- daedric_prince_invasion.jyggalag.003.desc: "Jyggalag, crystalline and remorseless, extends a greatsword of impossible sharpness. 'You have shown sufficient order in your governance,' he observes. 'This tool shall impose it further. Accept it and march in the Greymarch's vanguard.'"
- daedric_prince_invasion.jyggalag.003.a: "Accept Jyggalag's perfect blade."
- daedric_prince_invasion.jyggalag.003.b: "The world needs its chaos."
 
- daedric_prince_invasion.jyggalag.004.t: "Jyggalag Becomes Sheogorath"
- daedric_prince_invasion.jyggalag.004.desc: "At the apex of the Greymarch, as Jyggalag's order spreads to its furthest extent, the ancient curse reasserts itself. The crystalline titan begins to dissolve. A purple coat materialises. Laughter, impossible and unhinged, echoes across the campaign. Jyggalag is gone. Sheogorath has returned. The Greymarch is over."
- daedric_prince_invasion.jyggalag.004.a: "He is becoming... the Mad God once more."
 
  # ============================================================
  #  Champion Quest Chains — Titles & Descriptions
  # ============================================================
 
- daedric_champion.mehrunes.001.t: "The Mysterium Xarxes"
- daedric_champion.mehrunes.001.desc: "Word reaches us of the Mysterium Xarxes — Mehrunes Dagon's forbidden tome, a book of destruction and revolution. Those who read it gain terrible power. Most of them use it poorly."
- daedric_champion.mehrunes.001.a: "Seek the Mysterium Xarxes."
- daedric_champion.mehrunes.001.b: "Some doors are best left closed."
 
- daedric_champion.mehrunes.002.t: "The Razor's Ritual"
- daedric_champion.mehrunes.002.desc: "The ritual of Mehrunes Dagon demands blood, fire, and an absolute willingness to destroy. His Razor waits on the far side of the rite — a blade that kills instantly, regardless of armour, regardless of magic."
- daedric_champion.mehrunes.002.a: "Complete the ritual."
- daedric_champion.mehrunes.002.b: "Walk away."
  mehrunes_ritual_failed_tt: "The ritual failed. Dagon is not pleased."
 
- daedric_champion.azura.001.t: "Azura's Twilight Shrine"
- daedric_champion.azura.001.desc: "The Shrine of Azura is said to glow at dusk and dawn — the two hours that belong to the Lady of Twilight. The journey there is neither short nor safe, but the reward is prophecy: a window into what may come."
- daedric_champion.azura.001.a: "Seek out Azura's shrine at dawn."
- daedric_champion.azura.001.b: "Azura's prophecies are not for me."
 
- daedric_champion.azura.002.t: "The Star Descends"
- daedric_champion.azura.002.desc: "At the shrine, Azura herself appears as a twilight-coloured silhouette at the boundary between day and night. She offers her Star — a soul gem that captures even the greatest souls and releases them rather than consuming them."
- daedric_champion.azura.002.a: "Fulfil Azura's prophecy."
- daedric_champion.azura.002.b: "Prophecy is a burden."
 
- daedric_champion.molag.001.t: "Coldharbour Calls"
- daedric_champion.molag.001.desc: "A way into Coldharbour has opened. Molag Bal — the King of Rape, Prince of domination and vampirism — offers power to those who survive his realm. Few do."
- daedric_champion.molag.001.a: "Enter Coldharbour."
- daedric_champion.molag.001.b: "Coldharbour is a realm of suffering — refuse."
 
- daedric_champion.molag.002.t: "The Mace of Molag Bal"
- daedric_champion.molag.002.desc: "Coldharbour is a frozen torture-realm of grey skies and endless suffering. Molag Bal sits on a throne of skulls. 'Dominate,' he commands. 'The strong consume the weak. This is my will. Take my Mace and make it manifest.'"
- daedric_champion.molag.002.a: "Dominate."
- daedric_champion.molag.002.b: "Flee Coldharbour."
 
- daedric_champion.hircine.001.t: "Hircine's Hunt"
- daedric_champion.hircine.001.desc: "Hircine does not send envoys. He sends the call — felt in the blood, in the pulse, in the sudden awareness of one's own predatory instincts. The Great Hunt is about to begin. The question is whether we hunt or are hunted."
- daedric_champion.hircine.001.a: "Answer Hircine's Hunt."
- daedric_champion.hircine.001.b: "I am no prey."
 
- daedric_champion.hircine.002.t: "The Hunter's Gift"
- daedric_champion.hircine.002.desc: "Hircine stands in a forest that exists in no map — antlered, massive, patient. He offers both gifts: the Ring that allows unlimited hunts as a werewolf, and the Savior's Hide for those who slay his greatest beast."
- daedric_champion.hircine.002.a: "Accept Hircine's gift — become the Hunter."
- daedric_champion.hircine.002.b: "Slay the beast and earn the Savior's Hide."
 
- daedric_champion.boethiah.001.t: "The Tournament of Ten Bloods"
- daedric_champion.boethiah.001.desc: "Boethiah's tournament is an ancient tradition — ten champions fight in a secret arena, and the last survivor earns the Ebony Mail and Boethiah's patronage. The Prinvce of Plots asks only for excellence. And murder. Primarily murder."
- daedric_champion.boethiah.001.a: "Enter the Tournament."
- daedric_champion.boethiah.001.b: "Boethiah's trials are for schemers — not rulers."
 
- daedric_champion.boethiah.002.t: "Ten Bloods Shed"
- daedric_champion.boethiah.002.desc: "One by one the other champions have fallen. Boethiah watches from the shadows with cold approval. The Ebony Mail sits at the centre of the arena — armour that cloaks the wearer in shadow, poisoning all who touch it."
- daedric_champion.boethiah.002.a: "Win at any cost."
- daedric_champion.boethiah.002.b: "Refuse to kill for sport."
 
- daedric_champion.mephala.001.t: "The Morag Tong Writ"
- daedric_champion.mephala.001.desc: "A Morag Tong Writ has arrived — sealed with spider-silk, smelling faintly of Mephala's web. The contract names three targets. Their deaths would feed the Ebony Blade and earn the Webspinner's blessing."
- daedric_champion.mephala.001.a: "Accept the Morag Tong writ."
- daedric_champion.mephala.001.b: "Refuse — webs are easily tangled."
 
- daedric_champion.mephala.002.t: "The Blade Feeds"
- daedric_champion.mephala.002.desc: "Three deaths. Three souls fed to the Ebony Blade. Mephala's satisfaction is palpable — a presence felt in the mind like silk across skin. The blade now glows with life-stealing dark fire, and the Webspinner names us her instrument."
- daedric_champion.mephala.002.a: "Three kills. The Ebony Blade awakens."
- daedric_champion.mephala.002.b: "Stop at two — deny Mephala her third."
 
- daedric_champion.clavicus.001.t: "Barbas and the Deal"
- daedric_champion.clavicus.001.desc: "A large, talking dog appears at the gates and explains that his master wishes to make a deal. His master is Clavicus Vile. The dog's name is Barbas and he looks, frankly, apologetic about the whole situation."
- daedric_champion.clavicus.001.a: "Make a wish."
- daedric_champion.clavicus.001.b: "Barbas is suspicious — send the dog away."
 
- daedric_champion.clavicus.002.t: "The Price of the Wish"
- daedric_champion.clavicus.002.desc: "Clavicus Vile, beaming with delight, explains that the wish has been granted exactly as stated, and that the consequences are entirely our own fault for insufficient specificity. He offers to undo it — at a price."
- daedric_champion.clavicus.002.a: "The wish backfired — honour the contract."
- daedric_champion.clavicus.002.b: "Break the contract — face Vile's anger."
 
- daedric_champion.vaermina.001.t: "Nightcaller Temple"
- daedric_champion.vaermina.001.desc: "Nightcaller Temple stands on a promontory above a sleeping city — its inhabitants have been in a dream-death for decades, trapped by Vaermina's Torpor. A way in exists. A way out is less guaranteed."
- daedric_champion.vaermina.001.a: "Explore Nightcaller Temple."
- daedric_champion.vaermina.001.b: "Nightmares are best left sleeping."
 
- daedric_champion.vaermina.002.t: "Waking Nightmare"
- daedric_champion.vaermina.002.desc: "The Skull of Corruption sits at the altar of Vaermina's inner sanctum — a staff that fires dreams as blasts of psychic energy. A priest lies petrified nearby. Vaermina waits."
- daedric_champion.vaermina.002.a: "Survive the nightmare."
- daedric_champion.vaermina.002.b: "Free the trapped priest."
 
- daedric_champion.sheogorath.001.t: "The Door to the Shivering Isles"
- daedric_champion.sheogorath.001.desc: "A door has appeared in a field. It is painted in swirling colours. It hums. It did not exist yesterday. A note on it reads: 'Come in. The cheese is lovely. — S.'"
- daedric_champion.sheogorath.001.a: "Enter the Shivering Isles."
- daedric_champion.sheogorath.001.b: "Madness is not for rulers."
 
- daedric_champion.sheogorath.002.t: "A Mind Unravelled and Reknit"
- daedric_champion.sheogorath.002.desc: "The Shivering Isles tested everything — sanity, patience, identity itself. Sheogorath, pleased with the performance, proffers the Wabbajack and officially names us his champion in the mortal world."
- daedric_champion.sheogorath.002.a: "Survive the Shivering Isles."
- daedric_champion.sheogorath.002.b: "Flee while sanity holds."
 
- daedric_champion.peryite.001.t: "The Afflicted Camp"
- daedric_champion.peryite.001.desc: "A camp of Peryite's Afflicted has set up near the border — diseased, devoted, and waiting. They have Spellbreaker, Peryite's greatest artifact, and they will give it only to one who completes the Taskmaster's rite."
- daedric_champion.peryite.001.a: "Seek out the Afflicted."
- daedric_champion.peryite.001.b: "Disease is no patron for a ruler."
 
- daedric_champion.peryite.002.t: "Spellbreaker"
- daedric_champion.peryite.002.desc: "The Afflicted present Spellbreaker — a towering Dwarven shield that reflects magic back at its casters. Peryite's voice comes from everywhere at once: 'Order. You are my order among the lowest.'"
- daedric_champion.peryite.002.a: "Cure the Afflicted — earn Spellbreaker."
- daedric_champion.peryite.002.b: "Become the next Afflicted."
 
- daedric_champion.sanguine.001.t: "An Unusual Invitation"
- daedric_champion.sanguine.001.desc: "An invitation arrives to a feast being held by no one in particular, at a location that doesn't appear on any map. The handwriting is very cheerful. The wax seal depicts a rose. The attached note adds: 'Bring nothing. Wear whatever. Don't worry. Seriously. Don't.'"
- daedric_champion.sanguine.001.a: "Accept the invitation to the feast."
- daedric_champion.sanguine.001.b: "A ruler must keep their head clear."
 
- daedric_champion.sanguine.002.t: "What a Night That Was"
- daedric_champion.sanguine.002.desc: "Memories are fragmentary. There was wine. There was laughter. There was something involving a bear. Sanguine is sitting across the table looking thoroughly satisfied, and on the table between us sits the Sanguine Rose."
- daedric_champion.sanguine.002.a: "Go along with it."
- daedric_champion.sanguine.002.b: "Demand sobriety and return home."
 
- daedric_champion.meridia.001.t: "Meridia's Beacon Calls"
- daedric_champion.meridia.001.desc: "A beam of golden light from the horizon has been spotted by our scouts — Meridia's beacon, calling for a champion to take Dawnbreaker and purge the undead from her sight."
- daedric_champion.meridia.001.a: "Answer Meridia's call."
- daedric_champion.meridia.001.b: "Daedra ask too much — even the seemingly good ones."
 
- daedric_champion.meridia.002.t: "Dawnbreaker Bestowed"
- daedric_champion.meridia.002.desc: "Meridia towers above us in her true form — vast, luminous, implacable. She has no patience for pleasantries. She hands us Dawnbreaker, a sword blazing with holy fire, and issues her command."
- daedric_champion.meridia.002.a: "Take Dawnbreaker and purge the undead."
 
- daedric_champion.malacath.001.t: "The Trial of the Spurned"
- daedric_champion.malacath.001.desc: "Malacath does not offer his patronage to the comfortable or the clean. He tests. Somewhere in the wilderness is a stronghold of his Afflicted — the exiled, the cursed, the oathbreakers seeking redemption — and at its heart: a trial."
- daedric_champion.malacath.001.a: "Challenge Malacath's trial."
- daedric_champion.malacath.001.b: "The Spurned King has no claim over me."
 
- daedric_champion.malacath.002.t: "Volendrung"
- daedric_champion.malacath.002.desc: "Malacath watches the trial with his yellow eyes. At its end, he reaches into the sky and produces Volendrung — the Cursed Staff, a warhammer said to be the weapon of the Dwemer god Shor before it was stolen and remade."
- daedric_champion.malacath.002.a: "Claim Volendrung."
- daedric_champion.malacath.002.b: "Honour the exile — leave Volendrung."
 
- daedric_champion.nocturnal.001.t: "The Nightingale Shrine"
- daedric_champion.nocturnal.001.desc: "In a cave where moonlight never reaches, a shrine to Nocturnal has been discovered. The Nightingale Oath is inscribed there. To swear it is to become a servant of shadows forever — in exchange for the Skeleton Key and a life blessed by Lady Luck herself."
- daedric_champion.nocturnal.001.a: "Swear the Nightingale Oath."
- daedric_champion.nocturnal.001.b: "No oath to Nocturnal — the shadows keep their own price."
 
- daedric_champion.nocturnal.002.t: "Oath Sworn in Darkness"
- daedric_champion.nocturnal.002.desc: "In the darkness, Nocturnal materialises briefly — a silhouette within shadows. The Skeleton Key appears. The Oath binds. The deal is done. Nocturnal dissolves back into night without a word."
- daedric_champion.nocturnal.002.a: "Become a Nightingale."
- daedric_champion.nocturnal.002.b: "The Oath's price is eternal service — refuse."
 
- daedric_champion.hermaeus.001.t: "The Oghma Infinium"
- daedric_champion.hermaeus.001.desc: "Hermaeus Mora's greatest gift — the Oghma Infinium, a tome containing the collected knowledge of the Aedra and Daedra, the history of the world from its beginning, and certain things that were never meant to be known. It exists. It can be found. The cost of finding it is considerable."
- daedric_champion.hermaeus.001.a: "Seek the Oghma Infinium."
- daedric_champion.hermaeus.001.b: "Some knowledge is best unfound."
 
- daedric_champion.hermaeus.002.t: "The Gardener of Men Extends His Hand"
- daedric_champion.hermaeus.002.desc: "Apocrypha stretches in every direction — infinite black pages and dark tentacles and the cold smell of ink and old secrets. Hermaeus Mora hangs above, patient and ancient and vast. The Oghma Infinium rests on a pedestal of tentacles. 'Read,' he says. 'You came this far.'"
- daedric_champion.hermaeus.002.a: "Read the Oghma Infinium."
- daedric_champion.hermaeus.002.b: "Mora's knowledge demands too high a price."
 
- daedric_champion.namira.001.t: "The Namira Cult"
- daedric_champion.namira.001.desc: "A cult of Namira worshippers has been discovered holding a forbidden feast. They are not hostile. They extend an invitation. Namira's patronage, they say, is available to those willing to partake."
- daedric_champion.namira.001.a: "Embrace decay."
- daedric_champion.namira.001.b: "Namira's feast is not for me."
 
- daedric_champion.namira.002.t: "The Ring of Namira"
- daedric_champion.namira.002.desc: "Namira does not appear — she never does; the repulsive do not seek attention. But the Ring is passed across the table: the Ring of Namira, which makes consuming the dead a sacrament and a source of strength."
- daedric_champion.namira.002.a: "Wear the Ring of Namira."
- daedric_champion.namira.002.b: "Walk away from the feast."
 
- daedric_champion.jyggalag.001.t: "The Greymarch Approaches"
- daedric_champion.jyggalag.001.desc: "The Greymarch — Jyggalag's great march of crystalline order — is approaching. There are those who seek Jyggalag's blessing before the storm, to stand within the order rather than be consumed by it."
- daedric_champion.jyggalag.001.a: "Seek Jyggalag before the Greymarch."
- daedric_champion.jyggalag.001.b: "Perfect order would destroy all I have built."
 
- daedric_champion.jyggalag.002.t: "The Sword of Perfect Order"
- daedric_champion.jyggalag.002.desc: "Jyggalag is immense and crystalline and utterly devoid of warmth. He has already predicted this meeting, this decision, and its outcome. He offers the Sword of Jyggalag to the ruler whose governance he deems sufficiently orderly."
- daedric_champion.jyggalag.002.a: "Wield the Sword of Perfect Order."
- daedric_champion.jyggalag.002.b: "The world needs its chaos."
 
  # ============================================================
  #  Decision Names & Descriptions

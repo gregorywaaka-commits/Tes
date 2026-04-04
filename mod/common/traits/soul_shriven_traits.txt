@@ -10,7 +10,7 @@
 #
 #  LORE CONTEXT:
 #  ─────────────
-#  During the Planemeld (approximately 2E 577 onwards), Molag Bal
+#  During the Planemeld (approximately 2E 578 onwards), Molag Bal
 #  systematically stripped the souls from living mortals across
 #  Tamriel.  The Soul Shriven are the result: bodies that breathe
 #  and walk and fight, but from which the essential self has been

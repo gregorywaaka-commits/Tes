@@ -1,4 +1,4 @@
-﻿l_english:
+l_english:
 
  # =====================================================================
  #  KOTHRINGI — Silver-Skinned Humans of Black Marsh
@@ -40,8 +40,4 @@
 
  # ---- Knahaten Flu Traits ----
 
- flu_refugee: "Plague Refugee"
- flu_refugee_desc: "This character fled their homeland during the Knahaten Flu epidemic — a displaced person turned away at every gate, unwanted in every port, carrying the invisible suspicion that follows survivors of a plague no one fully understands."
 
- knahaten_survivor: "Flu Survivor"
- knahaten_survivor_desc: "This character contracted the Knahaten Flu and lived. It is not something they talk about willingly. The body still bears its marks — a tendency toward fatigue, a faint rattling breath when the weather turns cold — but they are alive, and alive is something most of the people they knew cannot claim."

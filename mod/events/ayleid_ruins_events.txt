@@ -10,6 +10,29 @@
 #  ayleid.002  "The Welkynd Stones Glow" — star-magic crystals found
 #  ayleid.003  "Dark Altars" — evidence of dual Daedric/Divine worship
 #  ayleid.004  "The Lich's Gaze" — Ayleid lich guardian awakened
+#
+#  FUTURE ARTIFACTS: Ayleid Stone Items
+#  ──────────────────────────────────────
+#  Several named stone items discovered in this event chain should
+#  eventually become CK3 legendary artifact items:
+#
+#  • Welkynd Stone (artifact_id: welkynd_stone)
+#      Slot: trinket / carried gem
+#      Special: learning bonus; monthly magicka-style piety regen;
+#        single-use restoration burst via event
+#      Lore: UESP Lore:Welkynd Stone — Ayleid soul gems; crystallised
+#        star-light from Magnus's partial departure from Mundus
+#      Found in: ayleid.002 (ayleid_ruins_events.txt)
+#
+#  • Varla Stone (artifact_id: varla_stone)
+#      Slot: trinket / carried gem
+#      Special: grants one-time recharge of other artifact bonuses;
+#        high intrigue bonus while held (it sees everything)
+#      Lore: UESP Lore:Varla Stone — Ayleid "Star Teeth"; white soul
+#        gem repositories with extreme magical charge
+#      Found in: ayleid.001, guild_leadership events
+#
+#  Both: See ARTIFACTS_TODO.md
 # =============================================================
 
 

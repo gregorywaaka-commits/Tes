@@ -98,7 +98,7 @@ meridia_beacon.010 = {
     option = {
         name = meridia_beacon.010.a   # "I take Dawnbreaker. The undead will burn."
         add_trait = beacon_bearer
-        add_modifier = {
+        add_character_modifier = {
             modifier = dawnbreaker_wielder
             days = 3650
         }

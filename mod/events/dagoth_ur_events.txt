@@ -275,7 +275,7 @@ dagoth_ur.030 = {
         name = dagoth_ur.030.a   # "I am the Nerevarine. I will face what the Tribunal cannot."
         add_character_flag = { flag = nerevarine_prophecy_heard }
         add_trait    = nerevarine_marked
-        add_modifier = {
+        add_character_modifier = {
             modifier = dagoth_ur_champion_modifier
             days = 3650    # 10-year window to confront Dagoth Ur
         }

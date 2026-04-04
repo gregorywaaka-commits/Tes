@@ -5,7 +5,7 @@
 #
 #  EVENT LIST:
 #  ─────────────────────────────────────────────────────────────
-#  soulburst.000  Hidden world event — fires at 2E 577, sets global
+#  soulburst.000  Hidden world event — fires at 2E 578, sets global
 #                 flag, triggers notification cascade.
 #  soulburst.001  "The Dragonfires Are Extinguished" — all rulers
 #                 notified of the catastrophic magical event.
@@ -20,13 +20,14 @@
 #  In 2E 577, Emperor Varen Aquilarios — not Dragonborn — was convinced
 #  by Mannimarco (acting as agent of Molag Bal) that the Amulet of Kings
 #  could relight the Dragonfires and validate his claim to the Imperial
-#  throne.  The ritual failed catastrophically.  The Soulburst shattered
-#  the magical barrier between Nirn and Oblivion, disconnected Nirn from
-#  Aetherius, and sent a psychic shockwave across all of Tamriel that was
-#  felt by every mage and sensitive soul on the continent.  Varen was
-#  transformed and disappeared.  This event directly enabled Molag Bal's
-#  Planemeld and set the stage for the Alliance War (2E 582).
+#  throne.  The ritual was performed; in 2E 578 it failed catastrophically.
+#  The Soulburst shattered the magical barrier between Nirn and Oblivion,
+#  disconnected Nirn from Aetherius, and sent a psychic shockwave across
+#  all of Tamriel felt by every mage and sensitive soul on the continent.
+#  Varen was transformed and disappeared.  This event directly enabled
+#  Molag Bal's Planemeld and set the stage for the Alliance War (2E 582).
 #  Sources: ESO main questline; UESP Lore:Soulburst; ESO lore books.
+#  Date: UESP states 2E 578 (ESO occurs in 2E 582, "four years later").
 # =============================================================
 
 
@@ -45,7 +46,7 @@ namespace = soulburst
 
 # ---------------------------------------------------------------
 # soulburst.000  The Soulburst — Hidden Trigger
-# A hidden world event at 2E 577.  The Dragonfires fail.  The
+# A hidden world event at 2E 578.  The Dragonfires fail.  The
 # barrier breaks.  All rulers are notified; mages and those
 # sensitive to magic feel it most keenly.
 # ---------------------------------------------------------------
@@ -54,8 +55,8 @@ soulburst.000 = {
     hidden = yes
 
     trigger = {
-        current_date >= 2.577.1.1
-        current_date < 2.578.1.1
+        current_date >= 2.578.1.1
+        current_date < 2.579.1.1
         NOT = { exists = global_var:soulburst_happened }
     }
 

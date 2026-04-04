@@ -83,7 +83,7 @@ towers.002 = {
     option = {
         name = towers.002.a   # "Cyrodiil is what we will it to be."
         add_prestige = 300
-        add_modifier = { modifier = white_gold_keeper_modifier days = -1 }
+        add_character_modifier = { modifier = white_gold_keeper_modifier days = -1 }
     }
 }
 
@@ -127,7 +127,7 @@ towers.004 = {
         name = towers.004.a   # "The Heart of Lorkhan beats beneath the mountain."
         add_piety    = 800
         add_prestige = 500
-        add_modifier = { modifier = red_mountain_keeper_modifier days = -1 }
+        add_character_modifier = { modifier = red_mountain_keeper_modifier days = -1 }
     }
 }
 
@@ -162,14 +162,14 @@ towers.005 = {
         }
         deactivate_tower_stone_effect = yes
         add_prestige = 1000
-        add_modifier = { modifier = tower_sabotage_cooldown days = 3650 }
+        add_character_modifier = { modifier = tower_sabotage_cooldown days = 3650 }
     }
 
     option = {
         name = towers.005.b   # "The Stone repels our agents — they are lost."
         add_prestige = -500
         add_stress   = 20
-        add_modifier = { modifier = tower_sabotage_cooldown days = 1825 }
+        add_character_modifier = { modifier = tower_sabotage_cooldown days = 1825 }
     }
 }
 
@@ -201,13 +201,13 @@ towers.015 = {
     option = {
         name = towers.015.a   # "We must protect what remains — or Mundus falls!"
         add_stress = 30
-        add_modifier = { modifier = reality_fracturing_modifier days = 1825 }
+        add_character_modifier = { modifier = reality_fracturing_modifier days = 1825 }
     }
 
     option = {
         name = towers.015.b   # "Let it fracture — we will rebuild from nothing."
         add_stress = -10
         add_piety  = -500
-        add_modifier = { modifier = reality_fracturing_modifier days = 1825 }
+        add_character_modifier = { modifier = reality_fracturing_modifier days = 1825 }
     }
 }

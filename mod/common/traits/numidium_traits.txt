@@ -64,6 +64,18 @@ numidium_researcher = {
 #  conclusion: Numidium needs only one missing component, and
 #  they believe they know where to find it.  The Mantella —
 #  a bottled soul, a heart-gem — is the key to the Brass God.
+#
+#  FUTURE ARTIFACT: mantella
+#    The Mantella is currently tracked via the mantella_seeker
+#    trait and numidium events (numidium_events.txt).  It should
+#    eventually become a CK3 legendary artifact:
+#      Slot: trinket / held gem
+#      Special: when combined with Numidium event chain, enables
+#        the numidium_awakened global event; enormous learning
+#        bonus while in possession; Dragon Break risk
+#      Lore: UESP Lore:Mantella — Zurin Arctus' bottled soul;
+#        the heart-gem powering the Brass God (Numidium)
+#      See: ARTIFACTS_TODO.md
 # ---------------------------------------------------------------
 mantella_seeker = {
     category = lifestyle

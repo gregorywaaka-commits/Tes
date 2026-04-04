@@ -57,7 +57,7 @@ Key principles `[CANON — UESP]`:
 > **Source:** UESP Lore:Crystal Tower — https://en.uesp.net/wiki/Lore:Crystal_Tower
 
 - **Location:** Summerset Isles (Alinor)
-- **Stone:** **Crystal Heart** (exact name uncertain; `[SOFT CANON]`)
+- **Stone:** **Transparent Law** `[CANON — UESP: Lore:Crystal Tower]` ⚠️ Previous entry called it "Crystal Heart" (uncertain) — corrected to "Transparent Law" per UESP
 - **Builder:** The **Altmer**
 - **Status:** **Destroyed** — the Crystal Tower was destroyed during ESO-era events `[CANON — ESO]`. Its loss profoundly shook Altmeri civilisation.
 - **Significance:** The symbolic and literal centrepiece of Altmer civilisation; considered one of the grandest structures ever built. Its destruction is a major cultural trauma for the Altmer. `[CANON — ESO]`
@@ -123,7 +123,7 @@ Key principles `[CANON — UESP]`:
 | Ada-Mantia | Balfiera, High Rock | Zero Stone | Intact | `c_balfiera` |
 | White-Gold | Imperial City, Cyrodiil | Chim-el Adabal (Amulet of Kings) | Damaged (3E 433) | `c_imperial_city` |
 | Red Tower | Vvardenfell, Morrowind | Heart of Lorkhan | **Destroyed** (3E 427) | `c_red_mountain` |
-| Crystal-Like-Law | Summerset Isle | Crystal Heart | **Destroyed** (ESO era) | `c_alinor` |
+| Crystal-Like-Law | Summerset Isle | Transparent Law | **Destroyed** (ESO era) | `c_alinor` |
 | Snow Throat | Skyrim | Unknown | Intact | `c_whiterun` |
 | Green-Sap | Valenwood (Falinesti) | Unknown | Uncertain | `c_falinesti` |
 | Orichalc | Yokuda | Orichalcum artifact | **Destroyed** (c. 1E 792) | *omitted from mod* |

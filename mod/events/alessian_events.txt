@@ -84,7 +84,7 @@ alessian.000 = {
         name = alessian.000.a   # "Fund the movement — let the truth spread."
         add_character_flag = { flag = alessian_scholar_visited days = 1825 }
         add_gold = -50
-        add_modifier = {
+        add_character_modifier = {
             modifier = alessian_reformation_zeal
             days = 730
         }
@@ -133,7 +133,7 @@ alessian.001 = {
     immediate = {
         add_character_flag = { flag = alessian_reformation_proclaimed days = 1825 }
         add_trait = alessian_reformer
-        add_modifier = {
+        add_character_modifier = {
             modifier = alessian_reformation_zeal
             days = 1825
         }
@@ -189,7 +189,7 @@ alessian.002 = {
                     has_culture = altmer_culture
                     has_culture = bosmer_culture
                 }
-                is_neighbour_of_root = yes
+                is_within_diplo_range = { CHARACTER = root }
             }
             add_opinion = {
                 modifier = alessian_double_down_opinion
@@ -222,7 +222,7 @@ alessian.002 = {
     option = {
         name = alessian.002.c   # "Recant — the political cost is too high."
         remove_trait = alessian_reformer
-        remove_modifier = alessian_reformation_zeal
+        remove_character_modifier = alessian_reformation_zeal
         add_piety    = -150
         add_prestige = -100
         add_stress   = 25
@@ -257,7 +257,7 @@ alessian.003 = {
                 # Full understanding
                 add_piety   = 250
                 add_learning = 1
-                add_modifier = {
+                add_character_modifier = {
                     modifier = alessian_reformation_zeal
                     days = 730
                 }
@@ -313,7 +313,7 @@ alessian.010 = {
         name = alessian.010.a   # "Fund the research — this could change everything."
         add_character_flag = { flag = reman_genealogist_visited days = 730 }
         add_gold = -80
-        add_modifier = {
+        add_character_modifier = {
             modifier = reman_claim_investigation
             days = 730
         }
@@ -414,7 +414,7 @@ alessian.012 = {
         name = alessian.012.a   # "I am Reman reborn. The Second Empire breathes again."
         add_piety    = 200
         add_prestige = 200
-        add_modifier = {
+        add_character_modifier = {
             modifier = reman_claim_investigation
             days = 1825
         }

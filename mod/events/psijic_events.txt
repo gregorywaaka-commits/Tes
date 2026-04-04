@@ -144,7 +144,7 @@ psijic.002 = {
     option = {
         name = psijic.002.a   # "I act. A still mind in a crisis is worth every year of study."
         trigger = { martial >= 12 }
-        add_modifier = {
+        add_character_modifier = {
             modifier = psijic_time_insight
             days     = 1825
         }

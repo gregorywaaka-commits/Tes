@@ -13,7 +13,7 @@
 > **Source:** UESP Lore:Vampire (Origin section)  
 > **Source:** ESO Main Quest (Lamae Bal's story)
 
-- **Molag Bal** (Daedric Prince of Domination/Corruption) created vampirism in the **Merethic Era** by assaulting a **Nedic monk** named **Lamae Beolfag**.
+- **Molag Bal** (Daedric Prince of Domination/Corruption) created vampirism in the **Merethic Era** by assaulting a **Nedic priestess of Arkay** named **Lamae Beolfag**. `[CANON — IN-GAME BOOK: Opusculus Lamae Bal; UESP: Lore:Vampire]` ⚠️ Previous text said "Nedic monk" — the canonical source specifies she was a priestess of Arkay, not a monk. This distinction matters: Molag Bal's assault was a deliberate act of spite against Arkay's dominion over life and death.
 - Lamae died from the assault but rose as the first vampire — the **Blood Matron**, also called **Lamae Bal**. `[CANON — ESO]`
 - Lamae's curse spread through biting, creating all subsequent vampire bloodlines. All Tamrielic vampires ultimately descend from this original act. `[CANON — UESP]`
 - ⚠️ The specific mechanism by which sub-bloodlines formed (geographic isolation, magical mutation, individual sires) is not fully explained in canon. The general descent from Lamae is `[CANON]`; specific bloodline origins are often `[SOFT CANON]`.
@@ -36,8 +36,8 @@
 
 ## Vampire Bloodlines
 
-### Lamae Bal (Blood Matron) `[CANON — ESO]`
-> **Source:** ESO main quest; UESP Lore:Lamae Bal
+### Lamae Bal (Blood Matron) `[CANON — UESP; IN-GAME BOOK: Opusculus Lamae Bal]`
+> **Source:** In-game book: Opusculus Lamae Bal (Skyrim/ESO); UESP Lore:Lamae Bal; ESO main quest
 
 - **Region:** Tamriel-wide (origin)
 - **Era:** Merethic Era
@@ -100,7 +100,7 @@
 - **Era of formation:** Late First Era; **defeated c. 1E 1029**
 - **Focus:** Conquest; mixed vampire and werewolf army
 - **Leader:** **King Styriche** of Verkarth; served **Molag Bal**
-- **Defeat:** Broken at **Bangkorai Garrison** by its defenders. `[CANON — ESO in-game book: The Second Akaviri Invasion context; UESP]`
+- **Defeat:** Broken at **Bangkorai Garrison** (1E 1029) by **Empress Hestra** of the Alessian Empire, whose legions drove the Gray Host westward through High Rock to Bangkorai Pass. The battle was turned by the sacrifice of **Saint Pelin**, whose martyrdom is credited with saving the Garrison. `[CANON — ESO in-game book: Bangkorai, Shield of High Rock; UESP: Lore:Gray Host]` ⚠️ Previous entry cited "The Second Akaviri Invasion" — that is about Dir-Kamal at 2E 572, a completely different event 1,500 years later.
 - **Later events:** Remnants of the Gray Host resurface in ESO: Greymoor (set 2E 582) when **Rada al-Saran** attempts to resurrect the Host. `[CANON — ESO: Greymoor]`
 - **Notes:** Notable for combining **vampires and werewolves** in a single military force — an extremely unusual alliance given the typical rivalry between the two types. `[CANON — ESO]`
 

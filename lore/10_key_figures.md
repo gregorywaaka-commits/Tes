@@ -28,6 +28,24 @@ Each entry includes:
 
 ---
 
+## Veloth `[CANON — UESP]`
+> **Source:** UESP Lore:Veloth — https://en.uesp.net/wiki/Lore:Veloth  
+> **Source:** In-game book: Veloth the Pilgrim
+
+- **Era:** Late Middle Merethic Era (exact date unknown; ME)
+- **Role:** Aldmer mystic and prophet; led the **Velothi Migration**; founding patriarch of Chimer/Dunmer culture
+- **Key facts:**
+  - Born on the **Summerset Isles** — grew disillusioned with the decadence and religious conformism of Aldmeri society `[CANON — UESP]`
+  - Championed worship of the **"Good Daedra"** (Boethiah, Azura, Mephala) over the Aedra, and wrote the **Velothi Prophecies** outlining these principles `[CANON — UESP]`
+  - Led a mass pilgrimage of followers out of Summerset eastward to **Resdayn** (later Morrowind) — this is the **Velothi Migration** (also called the Velothi Exodus) `[CANON — UESP: Lore:Veloth; in-game book: Veloth the Pilgrim]`
+  - His followers, the **Chimer** (golden-skinned, ascetic, Daedra-worshipping Aldmer), built their civilisation in Resdayn
+  - Most sources credit **Boethiah** with inspiring or guiding Veloth's decision to leave, though some accounts depict Veloth as more independently proactive `[SOFT CANON — UESP]`
+- **Legacy:** Revered as the **most important saint** in Dunmeri culture. The **Velothi Mountains** and **Velothi Ancestral Tombs** bear his name. Even after the Chimer became the Dunmer (Azura's curse after the Battle of Red Mountain), Dunmeri culture — including the Great Houses' origins — traces back to Veloth's migration. Ashlander clans in particular see themselves as keepers of the original Velothi spirit. `[CANON — UESP]`
+
+---
+
+---
+
 ## Saint Alessia `[CANON — UESP]`
 > **Source:** UESP Lore:Alessia — https://en.uesp.net/wiki/Lore:Alessia  
 > **Source:** In-game book: The Adabal-a
@@ -47,12 +65,12 @@ Each entry includes:
 ## Reman Cyrodiil `[CANON — UESP]`
 > **Source:** UESP Lore:Reman Cyrodiil — https://en.uesp.net/wiki/Lore:Reman_Cyrodiil
 
-- **Era:** c. 1E 2200s
+- **Era:** c. 1E 2703
 - **Role:** Founder of the Second Empire (Reman Dynasty)
 - **Key facts:**
-  - Rose to prominence c. 1E 2200, uniting the fractured kingdoms of Cyrodiil `[CANON — UESP]`
-  - Defeated the **Akaviri invasion** of 1E 2703 and incorporated the surviving Akaviri into his armies (they became the **Akaviri Potentate** — elite Imperial guard) `[CANON — UESP]`
-  - United all of Tamriel under his rule **except Morrowind and Summerset** `[CANON — UESP]`
+  - Rose to prominence c. **1E 2703** at the **Battle of Pale Pass** — rallied the kingdoms of Tamriel against the **Akaviri (Tsaesci) invasion**, defeating them decisively `[CANON — UESP]` ⚠️ Previous entry erroneously said "c. 1E 2200" — corrected to c. 1E 2703 per UESP Lore:Reman I; 1E 2200 has no association with Reman in any canon source
+  - Incorporated the surviving Akaviri into his armies (they became the **Akaviri Potentate** — elite Imperial guard / bodyguard corps) `[CANON — UESP]`
+  - His dynasty eventually united all of Tamriel under Imperial rule **except Morrowind** (which maintained semi-autonomy via the Tribunal Armistice) `[CANON — UESP: Lore:Second Empire]` ⚠️ Previous entry said "except Morrowind and Summerset" — Summerset Isles were eventually incorporated; only Morrowind retained autonomy
   - His dynasty lasted until 1E 2920 when **Reman III** was assassinated by Morag Tong agents
 - **Notes:** Often considered the greatest pre-Septim emperor. His empire was more successful militarily than Alessia's. `[SOFT CANON — historian POV, UESP]`
 
@@ -94,8 +112,9 @@ Each entry includes:
 
 ### Sotha Sil
 - "The Clockwork God"; Tinkerer; philosopher; rarely seen by mortals even when divine
-- Created the **Clockwork City** — a mechanical world hidden in Oblivion `[CANON — TES III: Tribunal; ESO: Clockwork City DLC]`
+- Created the **Clockwork City** — a mechanical world-simulacrum built of brass, gears, and magic. It exists "outside space and time" — physically represented as a small globe, but inside it is as vast as a world. Sotha Sil used it as his workshop, laboratory, and reality-manipulation testing ground. Its inhabitants include **Factotums** (robotic servitors), **Fabricants** (flesh-machine hybrids), and **Clockwork Apostles** (followers devoted to his philosophy). The City is considered an extension of Sotha Sil himself — changes to it may have reality-altering effects on Nirn. `[CANON — UESP: Lore:Clockwork City; ESO: Clockwork City DLC; TES III: Tribunal]`
 - Killed by **Almalexia** before the events of TES III: Tribunal expansion `[CANON — TES III: Tribunal]`
+- After his death the Clockwork City was left largely abandoned except for its mechanical inhabitants; the Clockwork Apostles maintained it `[CANON — ESO / UESP]`
 
 ---
 
@@ -191,6 +210,70 @@ Each entry includes:
   - A 4E figure; exists in TES V: Skyrim's present-day setting `[CANON — TES V: Skyrim]`
   - Is not a historical figure available during the 2E or 3E periods covered by most of this mod's events
   - ⚠️ Using Arngeir as flavour text for earlier eras is a **`[MOD CHOICE]`** — an intentional use of a known name for recognition purposes, not a claim that he was alive then.
+
+---
+
+## Dragon Cult (Historical) `[CANON — UESP]`
+> **Source:** UESP Lore:Dragon Cult — https://en.uesp.net/wiki/Lore:Dragon_Cult  
+> **Source:** UESP Lore:Dragon Priest — https://en.uesp.net/wiki/Lore:Dragon_Priest  
+> **Source:** TES V: Skyrim (main quest and lore books)
+
+- **Era:** Early Merethic Era through c. 1E 140
+- **Overview:** Before the **Dragon War**, Atmoran immigrants to Skyrim worshipped dragons as god-kings. This developed into the **Dragon Cult** — a theocracy where dragons ruled as divine overlords and **Dragon Priests** served as their administrators. `[CANON — UESP]`
+- **Dragon Priests:**
+  - Chosen mortals imbued with great magical power by the dragons themselves; some could wield the **Thu'um** (the Voice)
+  - Acted as rulers equal to kings; demanded tribute; operated the Dragon Cult's capital at **Bromjunaar** (modern Labyrinthian in Skyrim)
+  - Wielded powerful enchanted masks that "defy the laws of time" — these masks can still be found in their tombs
+  - Their rule was tyrannical; over time tribute demands became slavery, driving the populace to rebellion
+- **The Dragon War:**
+  - Nordic mortals — with help from the goddess **Kyne** and the rebel dragon **Paarthurnax** — learned the secrets of the Thu'um and rose against their dragon overlords
+  - The newly-empowered **Tongues** (Thu'um masters) led the rebellion, using the Voice to bring down dragons
+  - **Alduin** was banished using an Elder Scroll (not killed) rather than destroyed
+  - The Dragon Cult collapsed; remaining Dragon Priests retreated to tombs and achieved **lichdom** (immortal undeath) through dark rituals, sustained by the worship of bound Draugr servants
+  - Last known holdouts of the Dragon Cult were destroyed or committed suicide by c. 1E 140 `[CANON — UESP]`
+- **Legacy:** Dragon Priest tombs (draugr-haunted ruins) are found across Skyrim and Solstheim. The enchanted masks survive. The Thu'um tradition, although repurposed for peace by Jurgen Windcaller, traces its human origins to knowledge given by Paarthurnax during the Dragon War. `[CANON — TES V: Skyrim]`
+
+---
+
+## The Dragonborn (Dovahkiin) — Concept `[CANON — UESP]`
+> **Source:** UESP Lore:Dragonborn — https://en.uesp.net/wiki/Lore:Dragonborn  
+> **Source:** TES V: Skyrim (main quest); ESO; TES III: Morrowind (context)
+
+- **Definition:** A **Dragonborn** is a mortal blessed by **Akatosh** with the blood and soul of a dragon — the innate ability to master the Thu'um without years of study, and uniquely to **absorb the souls of slain dragons**. Dragon soul absorption strips the dragon of its power and chance for resurrection (true death for dragons who are normally immortal). `[CANON — UESP: Lore:Dragonborn]`
+- **The Covenant:** The tradition of Dragonborn emperors began with **Saint Alessia**, who made a covenant with Akatosh. The Amulet of Kings was its symbol; Dragonborn emperors could wear it and relight the Dragonfires to protect Nirn from Daedric invasion. `[CANON — IN-GAME BOOK: The Adabal-a; TES IV: Oblivion]`
+- **Notable Dragonborn:**
+
+| Name | Era | Notes |
+|---|---|---|
+| **Saint Alessia** | 1E 243 | First known Dragonborn; received Amulet of Kings from Akatosh directly `[CANON]` |
+| **Reman Cyrodiil** | c. 1E 2703 | Dragonborn emperor; founded the Second Empire `[CANON]` |
+| **Miraak** | Ancient (Merethic/early 1E) | First **mortal** known to wield dragon soul power; became a Dragon Priest before being bound by Hermaeus Mora `[CANON — TES V: Dragonborn DLC]` |
+| **Tiber Septim** | 2E 896–3E 38 | Dragonborn emperor; united Tamriel; deified as Talos `[CANON]` |
+| **Martin Septim** | 3E 433 | Last of the Septim line; became Avatar of Akatosh; ended Oblivion Crisis `[CANON]` |
+| The **Last Dragonborn** | 4E 201 | Player character of TES V: Skyrim; defeats Alduin `[CANON]` |
+
+- ⚠️ The "Three Septims in One" theory (Hjalti + Zurin Arctus + Wulfharth merged into Tiber Septim) is `[SOFT CANON — The Arcturian Heresy]`. Does not change the canonical fact of Tiber Septim's Dragonborn status.
+- ⚠️ Miraak's exact status relative to the Dragonborn emperors' "blessed lineage" is `[CONTESTED]` — his powers may predate the Alessia covenant and derive from a different source. `[UESP / TES V: Dragonborn DLC lore]`
+
+---
+
+## Reman Dynasty — Full Reference `[CANON — UESP]`
+> **Source:** UESP Lore:Reman Dynasty — https://en.uesp.net/wiki/Lore:Reman_Dynasty  
+> **Source:** UESP Lore:Second Empire — https://en.uesp.net/wiki/Lore:Second_Empire
+
+Full succession of Reman emperors and the Akaviri Potentate:
+
+| Ruler | Reign | Key events |
+|---|---|---|
+| **Reman I** | c. 1E 2703–2762 | Founded Second Empire; defeated Tsaesci at Battle of Pale Pass; Tsaesci become the Dragonguard (Blades predecessors) |
+| **Kastav** | 1E 2762–2804 | Incompetent rule; led to **Winterhold Rebellion** in Skyrim |
+| **Reman II** | 1E 2804–2843 | Ended Winterhold Rebellion; annexed Valenwood (1E 2714 — see note); conquered Black Marsh in **Blackwater War (1E 2837)**; initiated **Four-Score War** against Morrowind (1E 2840); died in battle 1E 2843 |
+| **Brazollus Dor** | 1E 2843–2877 | Regent; continued wars; delegated increasing power to Akaviri advisors |
+| **Reman III** | 1E 2877–2920 | Last Reman Emperor; Four-Score War ends in exhausted truce (1E 2920); assassinated by Morag Tong agents on orders of Potentate Versidue-Shaie |
+| **Versidue-Shaie** | 1E 2920–2E 324 | First **Akaviri Potentate** (Tsaesci); declared himself Potentate after Reman III's death; centralised Imperial authority; founded **Syffim** (precursor to Fighters Guild); assassinated 2E 324 |
+| **Savirien-Chorak** | 2E 324–2E 430 | Last Potentate; assassinated along with all heirs in 2E 430 (Morag Tong, Night Mother's orders); **Interregnum begins** |
+
+⚠️ Note on Valenwood: Valenwood's annexation date varies slightly by source (c. 1E 2714 in some accounts). The conquest was under the Reman II/early Reman dynasty period. `[CANON — UESP: Lore:Second Empire]`
 
 ---
 

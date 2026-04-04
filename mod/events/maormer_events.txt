@@ -44,7 +44,7 @@ maormer.001 = {
         random = {
             chance = 50
             add_prestige = 300
-            add_modifier = { modifier = repelled_maormer_modifier days = 365 }
+            add_character_modifier = { modifier = repelled_maormer_modifier days = 365 }
         }
     }
 
@@ -53,7 +53,7 @@ maormer.001 = {
         trigger = { gold >= 200 }
         add_gold     = -200
         add_prestige = -200
-        add_modifier = { modifier = maormer_truce_modifier days = 1825 }
+        add_character_modifier = { modifier = maormer_truce_modifier days = 1825 }
     }
 }
 
@@ -103,7 +103,7 @@ maormer.003 = {
         add_prestige = 300
         every_neighboring_realm = {
             limit = { any_realm_county = { is_coastal = yes } }
-            add_modifier = { modifier = maormer_tempest_modifier days = 180 }
+            add_character_modifier = { modifier = maormer_tempest_modifier days = 180 }
         }
     }
 
@@ -139,7 +139,7 @@ maormer.004 = {
         add_stress   = -15
         every_neighboring_realm = {
             limit = { any_ruler = { has_culture = altmer_culture } }
-            add_modifier = { modifier = maormer_hatred_modifier days = 3650 }
+            add_character_modifier = { modifier = maormer_hatred_modifier days = 3650 }
         }
     }
 }
@@ -179,7 +179,7 @@ maormer.005 = {
         name = maormer.005.b   # "The beast throws me — I barely escape."
         add_prestige = -300
         add_stress   = 20
-        add_modifier = { modifier = wounded days = 180 }
+        add_character_modifier = { modifier = wounded days = 180 }
     }
 }
 
@@ -296,7 +296,7 @@ maormer.020 = {
         name = maormer.020.b   # "Reinforce the coastal fortifications and wait."
         set_character_flag = { flag = pyandonean_fleet_warned days = 3650 }
         add_prestige = 50
-        add_modifier = { modifier = quarantine_modifier days = 365 }
+        add_character_modifier = { modifier = quarantine_modifier days = 365 }
     }
 }
 
@@ -319,7 +319,7 @@ maormer.021 = {
         name = maormer.021.a   # "Victory! The serpents could not breach our fleet formation."
         trigger = { martial >= 12 }
         add_prestige = 500
-        add_modifier = { modifier = repelled_maormer_modifier days = 1825 }
+        add_character_modifier = { modifier = repelled_maormer_modifier days = 1825 }
         trigger_event = { id = maormer.022 days = 30 }
     }
 
@@ -327,7 +327,7 @@ maormer.021 = {
         name = maormer.021.b   # "We held them, but the coast took damage. The sea-witches are powerful."
         add_prestige = 100
         add_stress   = 15
-        add_modifier = { modifier = maormer_hatred_modifier days = 1095 }
+        add_character_modifier = { modifier = maormer_hatred_modifier days = 1095 }
     }
 
     option = {
@@ -335,7 +335,7 @@ maormer.021 = {
         trigger = { martial < 12 }
         add_prestige = -300
         add_stress   = 25
-        add_modifier = { modifier = maormer_tempest_modifier days = 730 }
+        add_character_modifier = { modifier = maormer_tempest_modifier days = 730 }
     }
 }
 
@@ -358,21 +358,21 @@ maormer.022 = {
         name = maormer.022.a   # "Interrogate them — learn the Pyandonean sea routes."
         add_prestige = 300
         add_intrigue = 1
-        add_modifier = { modifier = repelled_maormer_modifier days = 730 }
+        add_character_modifier = { modifier = repelled_maormer_modifier days = 730 }
     }
 
     option = {
         name = maormer.022.b   # "Offer them as a diplomatic gesture — send them home."
         add_prestige = 150
         add_piety    = 200
-        add_modifier = { modifier = maormer_truce_modifier days = 1825 }
+        add_character_modifier = { modifier = maormer_truce_modifier days = 1825 }
     }
 
     option = {
         name = maormer.022.c   # "Execute them publicly — let Orgnum hear what happens to his commanders."
         add_prestige = 200
         add_piety    = -200
-        add_modifier = { modifier = maormer_hatred_modifier days = 730 }
+        add_character_modifier = { modifier = maormer_hatred_modifier days = 730 }
         # Maormer will be more motivated in their next raid
     }
 }
@@ -406,7 +406,7 @@ maormer.023 = {
         set_character_flag = { flag = pyandonean_tempest_survived days = 3650 }
         add_prestige = 100
         add_stress   = 20
-        add_modifier = { modifier = maormer_tempest_modifier days = 365 }
+        add_character_modifier = { modifier = maormer_tempest_modifier days = 365 }
     }
 
     option = {

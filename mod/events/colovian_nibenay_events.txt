@@ -83,7 +83,7 @@ col_nib.000 = {
         add_trait = colovian_war_chief
         add_prestige = 150
         add_martial_skill = 1
-        add_modifier = {
+        add_character_modifier = {
             modifier = colovian_martial_law_modifier
             days = 1825
         }
@@ -96,7 +96,7 @@ col_nib.000 = {
         add_trait = nibenay_seneschal
         add_prestige = 150
         add_stewardship = 1
-        add_modifier = {
+        add_character_modifier = {
             modifier = nibenay_council_edict_modifier
             days = 1825
         }

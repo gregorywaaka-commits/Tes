@@ -220,7 +220,7 @@ vivec_trial.020 = {
         add_piety    = 500          # Azura's prophecy acknowledged — enormous spiritual reward
         add_prestige = 800          # The Nerevarine who cornered a god earns lasting renown
         add_stress   = -20          # Resolution, however painful, relieves the weight
-        add_modifier = {
+        add_character_modifier = {
             modifier = vivec_trial_victor_modifier
             days = 1825    # 5-year period of heightened Dunmer political respect
         }
@@ -413,7 +413,7 @@ almalexia_trial.020 = {
         add_piety    = 600              # A profound spiritual act — challenging a "goddess" and surviving
         add_prestige = 1000             # The court witnessed it; it will be spoken of across Morrowind
         add_stress   = -25              # Resolution, however hard-won, lifts a weight
-        add_modifier = {
+        add_character_modifier = {
             modifier = almalexia_trial_victor_modifier
             days = 1825   # 5-year recognition
         }

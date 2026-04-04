@@ -88,7 +88,7 @@ magic_sys.000 = {
         name = magic_sys.000.a   # "I accept. Send word to the Order that I will begin at once."
         add_gold = -100
         set_character_flag = { flag = julianos_study days = 1095 }
-        add_modifier = {
+        add_character_modifier = {
             modifier = julianos_study_insight
             days = 1095
         }
@@ -277,7 +277,7 @@ magic_sys.020 = {
 
     option = {
         name = magic_sys.020.a   # "Deploy the animunculi. The war does not wait for caution."
-        add_modifier = {
+        add_character_modifier = {
             modifier = tonal_war_modifier
             days = 730
         }
@@ -291,7 +291,7 @@ magic_sys.020 = {
         if = {
             limit = { learning >= 16 }
             add_learning = 1
-            add_modifier = {
+            add_character_modifier = {
                 modifier = julianos_study_insight
                 days = 365
             }

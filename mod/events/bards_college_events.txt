@@ -105,7 +105,7 @@ bards_college.001 = {
         name = bards_college.001.a   # "Compose a lay — verses that will outlast the singer."
         add_diplomacy_skill = 1
         add_prestige = 75
-        add_modifier = { modifier = famous_ballad_modifier days = 365 }
+        add_character_modifier = { modifier = famous_ballad_modifier days = 365 }
     }
 
     option = {

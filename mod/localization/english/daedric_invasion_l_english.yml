@@ -1,4 +1,3 @@
-﻿ # Encoding: UTF-8-BOM
 l_english:
 
  # ===================== Invasion Start =====================
@@ -59,19 +58,8 @@ l_english:
  attempt_to_banish_daedric_prince_desc: "Steel yourself and face the Prince directly. If you succeed, the invasion ends. If you fail, the consequences will be severe."
 
  # ===================== Oblivion Gate Events =====================
- oblivion_gate.001.t: "An Oblivion Gate Opens!"
- oblivion_gate.001.desc: "A crack in reality tears open in one of your counties. A swirling portal to Oblivion stands before you, bleeding Daedra into the mortal world."
- oblivion_gate.001.a: "Muster troops to contain it!"
- oblivion_gate.001.b: "We cannot afford soldiers — defend the walls."
 
- oblivion_gate.003.t: "Closing the Gate"
- oblivion_gate.003.desc: "The Oblivion Gate roars before you, a cascade of fire and shadow. To close it, someone must enter and destroy the Sigil Stone at its heart."
- oblivion_gate.003.a: "Enter the Gate and destroy it from within!"
- oblivion_gate.003.b: "We could not close it — fall back."
 
- oblivion_gate.010.t: "The Gate is Sealed!"
- oblivion_gate.010.desc: "The Sigil Stone shatters and the Gate implodes, taking a torrent of Daedra with it. The land is scarred, but the portal to Oblivion is closed."
- oblivion_gate.010.a: "Tamriel stands a little safer."
 
  # ===================== Traits =====================
  daedric_prince: "Daedric Prince"

@@ -78,7 +78,84 @@
 
 ---
 
-## CHIM `[SOFT CANON — debated, in-game books]`
+## The Aurbis — the Totality of Creation `[CANON — UESP]`
+> **Source:** UESP Lore:Aurbis — https://en.uesp.net/wiki/Lore:Aurbis
+
+- The **Aurbis** is the name for all of existence — the totality of **Aetherius**, **Oblivion**, and **Mundus** together. It is the "sum" of reality as understood in Elder Scrolls metaphysics.
+- The Aurbis exists within the **Void** (sometimes called the **Outer Darkness**) — a conceptual emptiness that preceded and surrounds all creation.
+- Different cultures give it different names (Altmer call it "the Wheel", referencing its spoked structure with Mundus at the hub). `[CANON — UESP]`
+- The **Godhead** — the ultimate dreamer whose dream constitutes the Aurbis — is an implied but never directly confirmed metaphysical concept. This relates to the `[SOFT CANON]` concept of CHIM (see below). `[SOFT CANON — UESP philosophical texts]`
+
+---
+
+## Sithis and the Void `[CANON — UESP]`
+> **Source:** UESP Lore:Sithis — https://en.uesp.net/wiki/Lore:Sithis  
+> **Source:** TES III: Morrowind in-game texts; TES IV: Oblivion (Dark Brotherhood questline)
+
+- **Sithis** (also called the Void, the Empty Set, the Dread Father) is the primordial concept of **emptiness, chaos, and change** — the force that existed before creation, opposite to and predecessor of the **Aurbis**.
+- Sithis is **not a god** in the conventional sense — he has no Sphere (unlike Daedric Princes), no plane of Oblivion, no cult in the Imperial sense. He is more an abstract force than a personality. `[CANON — UESP]`
+- Some texts describe Sithis as the entity that **Lorkhan** (in some accounts) served or was an expression of — the force of dissolution that drove Lorkhan to "unmake" the divine et'Ada by tricking them into creation. `[SOFT CANON — UESP philosophical texts]`
+- **Worship:** The **Dark Brotherhood** worships Sithis as the Dread Father; their killings are ritualised sacrifices to the Void. The **Night Mother** is understood as Sithis's bride/intermediary. `[CANON — TES III, IV, V: Dark Brotherhood lore]`
+- **Argonian concept:** The Argonians' Hist lore acknowledges Sithis as the force of change that flows through all living things — distinct from the Dark Brotherhood's interpretation. The Saxhleel (Argonian cultural word for themselves) see death and change as natural expressions of Sithis, not as something to be feared. `[CANON — ESO in-game texts; UESP]`
+- ⚠️ Sithis is philosophically the "counter" to Anui-El (the soul of Anu, the static principle) — together Sithis and Anu are the primal forces of change and stasis from which all et'Ada derive. `[SOFT CANON — IN-GAME BOOK: The Annotated Anuad]`
+
+---
+
+## The Thu'um (Voice Magic) `[CANON — UESP]`
+> **Source:** UESP Lore:Thu'um — https://en.uesp.net/wiki/Lore:Thu%27um  
+> **Source:** TES V: Skyrim (main quest); In-game books: The Way of the Voice, Thu'um: The Way of the Voice
+
+- **The Thu'um** (literally "Shout" in the dragon language) is a form of magic using the **Voice** — the power to speak reality into being using the **dragon language**.
+- The dragon language is more than communication: each **Word of Power** (a single ancient dragon-language word) IS a fragment of the concept it names. Speaking them with intent and understanding reshapes the world around that concept.
+- **Three words** combine to form a complete **Shout** (a Shout cannot be completed with fewer, though single- or two-word effects exist). `[CANON — TES V: Skyrim]`
+- **Mortal mastery of the Thu'um:**
+  - Dragons use it instinctively. Mortals must learn each word by study, then **meditate** on its meaning.
+  - A mortal needs **time** to master each word through meditation — typically years per word. `[CANON — TES V: Skyrim]`
+  - **Dragonborn** mortals can absorb dragon souls directly, instantly comprehending the words those dragons knew — this is what distinguishes the Dragonborn from ordinary Tongues. `[CANON — TES V: Skyrim]`
+- **The Greybeards and the Way of the Voice:** Founded by **Jurgen Windcaller** c. 1E 1069 after the **Battle of Red Mountain** (where Nordic Tongues used the Voice in war with disastrous consequences for their side). Windcaller concluded the Thu'um's power was too great for war; the Way of the Voice teaches restraint, meditation, and peaceable use. `[CANON — UESP: Lore:Greybeards; TES V: Skyrim]`
+- **Paarthurnax:** The dragon who taught the first mortals the secrets of the Voice during the Dragon War (Merethic Era), enabling the rebellion against dragon rule. He is the founder/senior figure of the Greybeards. `[CANON — TES V: Skyrim]`
+- ⚠️ Not all Shouts are created equal; some require the Dragonborn to be uniquely capable of using them. "Ordinary" Tongues (non-Dragonborn mortals who study the Voice) can use Shouts but with far more labour and without soul absorption. `[CANON — TES V: Skyrim]`
+
+---
+
+## Sovngarde `[CANON — UESP]`
+> **Source:** UESP Lore:Sovngarde — https://en.uesp.net/wiki/Lore:Sovngarde  
+> **Source:** TES V: Skyrim (main quest — visitable in-game); In-game books: Sovngarde, a Reexamination
+
+- **Sovngarde** is the **Nordic afterlife** — a realm in Aetherius created by **Shor** (the Nordic name for Lorkhan) for the souls of valiant Nord warriors. `[CANON — TES V: Skyrim]`
+- **Access:** Only "true Nords" who die honourably (especially in battle) are taken to Sovngarde. The goddess **Kyne** (Kynareth's Nordic aspect) is said to guide worthy souls there. `[CANON — TES V: Skyrim]`
+- **The Whalebone Bridge:** Souls must cross the Whalebone Bridge, guarded by the god **Tsun** (ancient spirit of trials against adversity), who tests their worth in combat before they may enter the **Hall of Valor**. `[CANON — TES V: Skyrim]`
+- **The Hall of Valor (Shor's Hall):** A vast feasting hall where the mead flows eternally and heroes revel without pain, hunger, or boredom. Warriors contest each other's strength in endless celebration. Some accounts say the heroes gathered here will ride out with Shor in a prophesied **Last War** at the end of time. `[CANON — TES V: Skyrim; in-game book: Sovngarde, a Reexamination]`
+- **Shor's presence:** The ruler of Sovngarde — Shor himself — is said to be present within the Hall, though rarely visible. `[CANON — TES V: Skyrim]`
+- **Alduin's predation:** In TES V: Skyrim, **Alduin** was feeding on the souls in Sovngarde, devouring them to sustain himself — this is the primary reason the Last Dragonborn must journey there to face him. `[CANON — TES V: Skyrim]`
+- ⚠️ Not all Nords reach Sovngarde — those who are cowards, murderers, or oath-breakers go elsewhere (to Hel, or simply fade). `[SOFT CANON — Nordic cultural texts; TES V: Skyrim]`
+- ⚠️ Non-Nords cannot normally enter Sovngarde; the Last Dragonborn can because of their unique divine nature. `[CANON — TES V: Skyrim]`
+
+---
+
+## Magic — The Six Schools `[CANON — UESP]`
+> **Source:** UESP Lore:Magic — https://en.uesp.net/wiki/Lore:Magic  
+> **Source:** TES III: Morrowind, IV: Oblivion, V: Skyrim (in-game skill descriptions and books)
+
+Magic in Tamriel is divided into **six recognised schools** (though some cultures and traditions recognise fewer or more):
+
+| School | Domain | Notes |
+|---|---|---|
+| **Alteration** | Changing physical properties of objects and environments; protection; detection | Includes spells like Feather, Water Breathing, Lock/Unlock. Debated whether it is truly a school or a philosophical category. `[SOFT CANON — in-game book debate]` |
+| **Conjuration** | Summoning Daedra and undead from Oblivion; binding souls; necromantic animation | Has the most ethical controversy — summoning Daedra is viewed as dangerous; necromantic sub-school is outright banned in many organisations. `[CANON — UESP]` |
+| **Destruction** | Direct offensive magic; elemental damage (fire, frost, lightning/shock) | The most straightforward offensive school; associated with battle-mages and military magic. `[CANON — UESP]` |
+| **Illusion** | Manipulating minds; invisibility; illusions; affecting sight/sound/emotion | Used by assassins, spies, and court mages. Includes Calm, Frenzy, Muffle, Invisibility. `[CANON — UESP]` |
+| **Mysticism** (3E and earlier) / **Restoration** | **Mysticism:** Meta-magic: soul trapping, teleportation, detecting life, absorbing spells. Considered archaic or folded into other schools by 4E. **Restoration:** Healing, protecting from disease and poison, fortifying attributes, turning undead. Restoration is associated with the Divines and divine blessing. `[CANON — UESP]` |
+| **Enchanting** | Imbuing objects with lasting magical effects using soul gems | The most "crafting" oriented school; uses trapped souls as power sources. Black soul gems are used for sentient souls; considered morally problematic by most traditions. `[CANON — UESP]` |
+
+- **Magicka:** The fuel of all magic; derived from **Aetherius** through the body's Magicka reserves. Each race has different baseline Magicka (Altmer highest; Nords and Orcs lowest). Replenishes over time. `[CANON — UESP]`
+- **Spell Failure:** Magic spells can fail if the caster's skill is insufficient — a poorly-focused spell dissipates or backfires. `[CANON — TES III, IV]`
+- **Wild Magic:** Magic without focus or training can have unpredictable, destructive effects. `[CANON — UESP]`
+- **Psijic Order's "Old Ways":** Predates the six-school classification; a more intuitive, less systematic form of magic that the Psijic Order calls the "**Old Ways**." Considered more powerful but harder to teach. `[CANON — UESP: Lore:Psijic Order]`
+
+---
+
+
 > **Source:** In-game book: Loveletter from the Fifth Era (possibly apocryphal)  
 > **Source:** 36 Lessons of Vivec (Vivec's perspective)  
 > ⚠️ **CHIM is a complex, contested concept drawn primarily from in-game philosophical texts. Treat all claims about CHIM carefully.**
@@ -97,7 +174,7 @@
 - A **Dragon Break** is a period where **linear time shatters** — multiple contradictory timelines exist simultaneously and are all equally true.
 - Named for a "break" in Akatosh's (the Dragon of Time's) power over linear causality.
 - **Known Dragon Breaks:**
-  - **The Middle Dawn (1E 1200–2208):** An 800-year period (Alessian Doctrines era) where time broke due to religious disruption `[CANON — IN-GAME BOOK: The Warp in the West]`
+  - **The Middle Dawn (1E 1200–2208):** An approximately **1,008-year period** (Alessian Doctrines era) where time broke due to the Marukhati Selective's rituals to "purify" Akatosh of Aldmeri influence `[CANON — UESP: Lore:Middle Dawn; in-game books: Where Were You When the Dragon Broke?, Dragon Break Re-Examined]` ⚠️ Previous entry cited "The Warp in the West" as source — that is a different Dragon Break (3E 417). Previous entry also said "800-year period" — corrected to ~1,008 years (2208 − 1200)
   - **The Warp in the West (3E 417):** The simultaneous resolution of all six ending states of TES II: Daggerfall — caused by multiple activations of the Numidium `[CANON — TES II: Daggerfall; developer confirmation]` All six Daggerfall endings are simultaneously canon.
 - ⚠️ Dragon Breaks are used by Bethesda to canonise contradictory game states. `[CANON — developer design intention]`
 

@@ -14,7 +14,7 @@
 - **Headquarters (3E):** **Arcane University**, Imperial City, Cyrodiil `[CANON — TES IV: Oblivion]`
 - **Prohibition:** Official ban on **necromancy** within Guild premises (though the definition and enforcement varied widely; a major source of internal conflict in TES IV). `[CANON — TES IV: Oblivion]`
 - **Dissolution:** After the **Oblivion Crisis (3E 433)**, the Mages Guild collapsed due to the death of the Arch-Mage, public distrust of mages, and Imperial instability. `[CANON — UESP]`
-- **Successor:** **College of Winterhold** (Skyrim) fills the void for magical education in Skyrim specifically. `[CANON — TES V: Skyrim]` No direct Empire-wide successor exists in 4E. `[CANON — UESP]`
+- **Successor:** **College of Winterhold** (Skyrim) fills the void for magical education in Skyrim specifically. `[CANON — TES V: Skyrim]` In Cyrodiil, the Guild split into two rival Imperial-sanctioned successors: the **Synod** (secretive, politically motivated, heavily restricts Conjuration and Necromancy) and the **College of Whispers** (more liberal with research; permits Conjuration and Necromancy). `[CANON — UESP: Lore:Synod, Lore:College of Whispers; TES V: Skyrim in-game books; Elder Scrolls novels "The Infernal City"/"Lord of Souls"]` ⚠️ Previous entry said "No direct Empire-wide successor exists in 4E" — **wrong**; the Synod and College of Whispers are the canonical Empire-wide successors.
 - **Conflict with Necromancers Guild:** The **Order of the Black Worm** (Mannimarco's necromancers) were a persistent rival and enemy throughout the Guild's history. `[CANON — TES IV: Oblivion]`
 
 ---
@@ -225,5 +225,56 @@ The fundamental **political divide** in Redguard (Hammerfell) society.
 - **Forebears:** Adopted Tamrielic and Imperial customs — the common tongue, trade with non-Redguard kingdoms, pragmatic assimilation.
 - **Origins:** Pre-Second Era; the divide emerged naturally from the Ra Gada settlement of Hammerfell.
 - **Period relevance:** Active throughout EK2. Neither faction can dominate permanently; political tension is the permanent state.
+
+---
+
+## Blades (Dragonguard) `[CANON — UESP]`
+> **Source:** UESP Lore:Blades — https://en.uesp.net/wiki/Lore:Blades  
+> **Source:** UESP Lore:Dragonguard — https://en.uesp.net/wiki/Lore:Dragonguard  
+> **Source:** In-game book: The Rise and Fall of the Blades
+
+- **Origins:** The Blades descend from the **Tsaesci Dragonguard** — Akaviri warriors who invaded Tamriel in 1E 2703 on a quest to hunt dragons. After being defeated at the **Battle of Pale Pass** by **Reman I**, the Tsaesci survivors recognised Reman as a Dragonborn and immediately surrendered, declaring him the one they were seeking. They pledged absolute loyalty and became his elite personal guard: the **Dragonguard**. `[CANON — UESP: Lore:Dragonguard; Lore:Legacy of the Dragonguard]`
+- **Under the Reman Dynasty:** The Dragonguard served as bodyguards, dragon hunters, and intelligence agents. They maintained their distinct Akaviri martial tradition (katana-style weapons, distinctive lamellar armour). After the assassination of Reman III (1E 2920) the Dragonguard officially disbanded but fragments persisted, reconstituting themselves over centuries around protecting future Dragonborn. `[CANON — UESP]`
+- **Under Tiber Septim / as the Blades:** When **Tiber Septim** (Talos) emerged as the next Dragonborn emperor in the 2E 800s, descendants of the Dragonguard rallied to him and evolved into the formal **Blades** organisation. `[CANON — UESP]`
+- **Functions (3E):** Simultaneously the Emperor's personal bodyguard AND the Empire's primary intelligence and covert operations service. Local Blades agents embedded themselves as innkeepers, merchants, and travellers across Tamriel. Answerable only to the Emperor. `[CANON — TES IV: Oblivion; UESP]`
+- **Distinctive features:** Akaviri-style curved swords (the "Akaviri katana"); distinctive imperial armour with a red-dragon insignia. Their dragon-hunting origin is why the Empire uses the dragon as its symbol. `[CANON — UESP]`
+- **Oblivion Crisis:** The Blades played a key role in TES IV: Oblivion — they were protecting the Emperor at his assassination, hunted the Amulet of Kings, and supported Martin Septim. The Oblivion Crisis effectively ended their formal structure. `[CANON — TES IV: Oblivion]`
+- **4E Decline:** After the **White-Gold Concordat (4E 22)**, disbanding the Blades was one of the Thalmor's key demands. The Empire complied; **Thalmor Justiciars** hunted down known Blades agents. Survivors went into deep hiding. By 4E 201, the surviving Blades operate from **Sky Haven Temple** (Skyrim), effectively disbanded and in exile. `[CANON — TES V: Skyrim]`
+- ⚠️ **Mod note:** In the EK2/TES mod context, the Blades are present and active during 2E. Use them as Emperor's bodyguard/intelligence service. The Dragonguard name is appropriate for the Reman-era equivalent.
+
+---
+
+## Imperial Legion `[CANON — UESP]`
+> **Source:** UESP Lore:Imperial Legion — https://en.uesp.net/wiki/Lore:Imperial_Legion  
+> **Source:** UESP Lore:Imperial Army — https://en.uesp.net/wiki/Lore:Imperial_Army
+
+- **Purpose:** The main standing army of the Cyrodiilic Empire; conquest, garrison, law enforcement in Imperial provinces. `[CANON — UESP]`
+- **Structure:** Divided into **Legions**, each nominally 5,000–6,000 soldiers (in practice varied). Each Legion is commanded by a **Legate** or **General**. Overall command rests with the **General of the Imperial Army** (later the Emperor directly, through the Council). `[CANON — UESP]`
+- **Auxiliary structure:** Legions recruit heavily from conquered peoples — **Auxiliary cohorts** often consist of local troops (Dunmeri, Breton, Redguard, Khajiiti auxiliaries all documented). `[CANON — UESP]`
+- **Tactics and equipment:** Heavily influenced by ancient Colovian martial tradition. Infantry-focused with professional training; soldiers serve long terms (often 25+ years). **Spatha** (long sword), **Imperial shield**, and **heavy armour** are standard equipment. `[CANON — UESP]`
+- **Imperial Battlemages:** A corps of battle-mages embedded within the Legions, particularly prominent during the Second Empire (Reman Dynasty). Distinct from the Mages Guild (many were not Guild members). `[CANON — UESP: Lore:Imperial Battlemage]`
+- **Historical engagements:** The Legion fought in every major Imperial war — conquering Valenwood (1E 2714), Black Marsh (1E 2837), the failed Four-Score War against Morrowind, the unification campaigns of Tiber Septim (2E 854–896), and the Great War (4E 171–175). `[CANON — UESP]`
+- **Penitus Oculatus:** The Empire's dedicated secret police/intelligence service (distinct from the Blades). Active after the Blades' disbanding (4E 22). Destroyed the Dark Brotherhood's Sanctuaries on Imperial orders during TES V: Skyrim. `[CANON — TES V: Skyrim]`
+
+---
+
+## Alessian Order `[CANON — UESP]`
+> **Source:** UESP Lore:Alessian Order — https://en.uesp.net/wiki/Lore:Alessian_Order  
+> **Source:** In-game books: The Cleansing of the Fane; The Monomyth
+
+- **Founded:** **1E 358** — formed to enforce and extend the teachings of **Saint Alessia** after the Alessian Rebellion. `[CANON — UESP]`
+- **Purpose:** A theocratic religious order enforcing a strict monotheism focused on **Akatosh** (the Dragon God of Time, the One). Promoted the "Marukhati Selective" — an extreme sect that attempted mythopoeic rituals to "purify" Akatosh of Aldmeri influence (the merger with Auri-El). This caused the **Middle Dawn Dragon Break (c. 1E 1200–2208)**. `[CANON — UESP: Lore:Middle Dawn]`
+- **Doctrines:**
+  - Monotheistic — all divinity reduces to the One (Akatosh); other divines are aspects, not equals
+  - Banned worship of Elven gods across Imperial territory
+  - Rigidly opposed to Elven religious practices
+  - Political authority rested with "Priestly Emperors" — theocrats who were heads of both church and state
+- **Political power:** At its height the Order effectively controlled the **Alessian Empire**, overriding the elected monarchs of various kingdoms. Their influence spread religious intolerance and sectarian violence across Tamriel. `[CANON — UESP]`
+- **Internal conflicts:** The Order's extreme factions (including the Marukhati Selective that caused the Middle Dawn) were periodically at odds with more moderate factions. The Nibenay region's cosmopolitan culture was persistently resistant to the Order's control. `[CANON — UESP]`
+- **Dissolution:** The **War of Righteousness (1E 2321–2331)** — a civil war and religious conflict — destroyed the Order's leadership, cathedral, and political grip. Imperial and High Rock forces broke the Order's power; populations around the Iliac Bay were devastated. After 1E 2331 the Alessian Order ceased to exist as a political force, though remnant communities may have persisted. `[CANON — UESP: Lore:War of Righteousness; Lore:Alessian Order]`
+- **Legacy:** The Order's fall is why the Eight Divines (rather than a monotheistic Akatosh-only faith) persisted as the Imperial religion thereafter. The Interregnum period and the Reman Dynasty's reforms marginalised any remaining Order influence. `[CANON — UESP]`
+- ⚠️ **Mod note:** The Alessian Order is NOT a guild you can join in-game. It is a historical faction and extinct by 2E. Events referencing it should be flavoured as historical memory or cultural echo, not present-day mechanics.
+
+---
 
 *Back to [Index](README.md)*
