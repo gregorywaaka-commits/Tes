@@ -36,7 +36,7 @@ All races are capable of interbreeding to varying degrees. Bretons are a notable
 - **Physical traits:** Shortest of the Elves; agile; keen senses; excellent archers and trackers
 - **Culture:** Follow the **Green Pact** — a covenant with the forest god Y'ffre. Bosmer must not harm any vegetation; may not eat plant-based food. Fallen enemies must be consumed within 3 days (**ritual cannibalism**). `[CANON — IN-GAME BOOK: The Improved Emperor's Guide to Tamriel]`
 - **Religion:** Y'ffre (the Forest God) is primary; also Baan Dar (the Bandit God), Jode and Jone (the moons).
-- **Wild Hunt:** Bosmer can transform into the **Wild Hunt** — a chaotic swarm of creatures — as a collective last resort. This is extremely rare and considered horrifying even by Bosmer. `[CANON — IN-GAME BOOK: The Wild Hunt]`
+- **Wild Hunt:** Bosmer can transform into the **Wild Hunt** — a terrifying collective transformation where a group of Bosmer simultaneously lose their individual forms and become an unstoppable swarm of every creature in existence — beast, beast, and monster all at once. Once initiated, the Wild Hunt cannot be stopped until it has killed its quarry. Participants in the Hunt lose themselves permanently and cannot return to their original forms; they become **part of the Hunt forever**. It is considered the most extreme act in Bosmer culture, invoked only when facing total annihilation. `[CANON — IN-GAME BOOK: The Wild Hunt; UESP: Lore:Wild Hunt]` ⚠️ The Hunt is seen as returning the Bosmer to the "before-shape" that existed before Y'ffre gave them their current forms. Using it is a sacrifice of identity.
 
 ### Dunmer (Dark Elves) `[CANON — UESP]`
 > **Source:** UESP Lore:Dunmer — https://en.uesp.net/wiki/Lore:Dunmer
@@ -82,8 +82,13 @@ All races are capable of interbreeding to varying degrees. Bretons are a notable
 
 - **Homeland:** Underground cities across Morrowind, Hammerfell, Skyrim, Solstheim, and Cyrodiil
 - **Physical traits:** Bronze-tinted skin (from artwork/statues); master engineers
-- **Culture:** Rationalist skeptics who rejected the divinity of the et'Ada. Used **tonal architecture** — magic derived from precise sound frequencies — to power their steam-driven constructs (**Animunculi**).
-- **Disappearance:** The entire Dwemer race **vanished simultaneously** at the **Battle of Red Mountain (c. 1E 700)** when **Kagrenac** used his tools on the Heart of Lorkhan. `[CANON — UESP]` ⚠️ The exact metaphysical reason for their disappearance is `[CONTESTED]` — theories include: they became one with the Heart; they transcended mortality; they were destroyed.
+- **Culture:** Rationalist skeptics who rejected the divinity of the et'Ada. Used **tonal architecture** — magic derived from precise **sound frequencies and tonal vibrations** — to power their steam-driven constructs (**Animunculi**). Their entire civilisation was built on the principle that reality can be understood and controlled through mathematics and sound. `[CANON — UESP: Lore:Dwemer; in-game book: Chimarvamidium]`
+- **Tonal Architecture in detail:** `[CANON — UESP: Lore:Tonal Architecture]`
+  - Based on the idea that **the Earthbones** (the laws of nature left behind by Aedra who became part of Mundus) can be manipulated through correct tonal harmonics
+  - **Kagrenac** (their greatest craftsman/theorist) developed tools (**Keening**, **Sunder**, **Wraithguard**) to use these principles on the Heart of Lorkhan itself — attempting to turn the Heart into a power source for a new god-machine (**Numidium / Walk-Brass**)
+  - Dwemer Animunculi (the mechanical spiders, centurions, and spheres found in their ruins) are powered by tonal energy resonating through their metal forms
+  - Their abandonment of divinity meant Tonal Architecture was their religion's substitute — mathematics and harmonics as a path to transcendence `[SOFT CANON — UESP philosophical inference]`
+- **Disappearance:** The entire Dwemer race **vanished simultaneously** at the **Battle of Red Mountain (c. 1E 700)** when **Kagrenac** used his tools on the Heart of Lorkhan. `[CANON — UESP]` ⚠️ The exact metaphysical reason for their disappearance is `[CONTESTED]` — theories include: they became one with the Heart; they transcended mortality; Kagrenac's error dispersed their souls across the Aurbis; they were destroyed.
 - **Aetherium:** A legendary Dwemer material with unique magical properties; related to the Towers metaphysics. `[CANON — TES V: Dawnguard DLC]`
 
 ---
@@ -95,7 +100,7 @@ All races are capable of interbreeding to varying degrees. Bretons are a notable
 
 - **Homeland:** Skyrim (originally from **Atmora**)
 - **Physical traits:** Tall; fair or red hair; naturally cold-resistant; robust
-- **Culture:** Warrior culture; clan-based with emphasis on honour, personal prowess, and martial skill. Oral tradition is strong. The **Thu'um** (Voice/Shout magic) is a Nord tradition linked to the gods. `[CANON — TES V: Skyrim]`
+- **Culture:** Warrior culture; clan-based with emphasis on honour, personal prowess, and martial skill. Oral tradition is strong. The **Thu'um** (Voice/Shout magic) is a Nord tradition — each Word of Power is an ancient dragon-language word that reshapes reality when spoken correctly. Mastery requires years of meditation per word; the Dragonborn can learn words instantly by absorbing dragon souls. `[CANON — TES V: Skyrim; see also: 11_cosmology.md Thu'um section]`
 - **Religion:** Worship the **Nordic pantheon**: Shor (= Lorkhan), Kyne (= Kynareth), Stuhn, Tsun, Dibella, Mara, and after apotheosis, **Talos** (Ysmir in Nordic tradition). `[CANON — UESP]`
 
 ### Imperial (Cyrodiilic) `[CANON — UESP]`

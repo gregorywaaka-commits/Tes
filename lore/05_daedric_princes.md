@@ -51,7 +51,7 @@
 > **Source:** UESP Lore:Hermaeus Mora — https://en.uesp.net/wiki/Lore:Hermaeus_Mora
 
 - **Sphere:** Knowledge, memory, fate, forbidden and unknown lore, destiny
-- **Plane:** Apocrypha (endless black-water realm filled with floating tomes and tentacled monsters)
+- **Plane:** **Apocrypha** — an infinite realm of black water and floating pages. Everything is dim; towers of stacked tomes rise from the oily water; tentacled creatures called **Lurkers** patrol the depths; **Seekers** (cloaked, face-stealing creatures) protect forbidden tomes. The sky is an eternal grey-green twilight. Every book ever written that contains forbidden knowledge exists here in some form. To enter without Hermaeus Mora's blessing is to risk permanent madness or transformation. `[CANON — TES V: Dragonborn DLC; ESO: Apocrypha chapter; UESP: Lore:Apocrypha]`
 - **Key artifacts:** Oghma Infinium (a tome of forbidden knowledge), Black Books (TES V: Dragonborn)
 - **Appearance:** Typically manifests as a mass of eyes, tentacles, and mouths — described as fundamentally incomprehensible.
 - **Personality:** Patient, curious, obsessive; values the acquisition of knowledge above all else.
@@ -117,7 +117,7 @@
 > **Source:** UESP Lore:Molag Bal — https://en.uesp.net/wiki/Lore:Molag_Bal
 
 - **Sphere:** Domination, enslavement, vampirism, corruption of the mortal spirit
-- **Plane:** Coldharbour (a cold, grey-blue mirror of Nirn, stripped of colour and hope)
+- **Plane:** **Coldharbour** — a cold, grey-blue mirror of Nirn, drained of all colour, warmth, and hope. It is a twisted reflection of Tamriel: cities exist but are decrepit ruins; seas exist but are stagnant and black; light exists but is pale and joyless. The souls of those who deal with Molag Bal or who die in certain circumstances related to his schemes may be trapped there. His fortress is **Molag Amur** (his palace in this realm). Slave-spirit constructs called **Cold-Flame Atronachs** (blue fire rather than orange) serve him, as do vast armies of Daedra and enslaved souls. `[CANON — ESO main quest; UESP: Lore:Coldharbour]`
 - **Key artifacts:** Mace of Molag Bal
 - **Title:** "**King of Corruption**" `[CANON — UESP]` ⚠️ Older translations rendered this as "King of Rape" — this is both an outdated English translation and considered inappropriate phrasing in modern usage. **Use "King of Corruption"** in all mod content.
 - **Vampirism:** Molag Bal created the first vampire (**Lamae Bal**) in the Merethic Era, making him the ultimate progenitor of all vampirism. `[CANON — ESO, UESP]`
