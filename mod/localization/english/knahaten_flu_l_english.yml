@@ -1,0 +1,40 @@
+﻿l_english:
+
+ # =====================================================================
+ #  KNAHATEN FLU — Dedicated Localization
+ #  The Hist Immunity, Argonian Exception, Cyrodiil Spread, Kothringi Extinction
+ # =====================================================================
+
+ # ---- hist_immune trait ----
+
+ hist_immune: "Hist-Shielded"
+ hist_immune_desc: "The Hist did not permit the Knahaten Flu to take root in this body. Argonian physiology carries a deep-memory resistance that no alchemist has been able to replicate and no physician has been able to explain. The Flu is, for this character, not a concern. The Hist communicated this protection before the first symptoms appeared in Black Marsh. The mechanism remains, as Nibenay researchers reluctantly note, beyond current scholarly understanding."
+
+ # ---- flu.000 --- The Hist Knows ----
+
+ flu.000.t: "The Hist Speaks"
+ flu.000.desc: "The Hist warned you. Not in words — the Hist does not use words the way languages work. It was a feeling in the blood, a colour behind the eyes, a knowledge you had before you had the reason for having it. There is a sickness in Black Marsh. The silver-skinned people are dying. The rest of Tamriel is beginning to understand that closed gates may not be enough. But not you. The Hist has made it clear, in whatever way the Hist makes things clear, that the plague does not touch Argonians. You are safe. This fact carries its own weight."
+ flu.000.a: "The Hist has spoken. We are safe."
+ flu.000.b: "Safe — but what of those outside the marsh?"
+
+ # ---- flu.001 --- The Argonian Exception ----
+
+ flu.001.t: "The Living Servants"
+ flu.001.desc: "Your court physician has brought you an uncomfortable observation: the Argonian servants, labourers, and traders in your realm are not dying. Every other race that has been in contact with the infected counties is at risk — the coughing starts, the breathing falters, the body loses its argument with the sickness within a fortnight. The Argonians walk past the dying with perfect health and what reads, depending on your charitable inclination, as either serenity or indifference. The physician wants to know why. A significant portion of your court wants to know whether the Argonians are responsible. These are not the same question, though they are being asked with the same urgency."
+ flu.001.a: "Study them — if they are immune, we need to know why."
+ flu.001.b: "Quarantine the Argonians. They may be carriers."
+ flu.001.c: "Note it and watch. There may be a natural explanation."
+
+ # ---- flu.010 --- The Smoke Crosses the Niben ----
+
+ flu.010.t: "Plague on the Coastal Road"
+ flu.010.desc: "The Knahaten Flu is no longer confined to Black Marsh. The merchant caravans brought it north along the coastal road — or the labourers carried it across the Niben on the fishing boats, depending on which rumour has the current traction in your court. What is certain: the counties along the coast have gone quiet in the way that only happens when the sick begin to outnumber the well. The grain barges are backing up at the docks. The innkeepers along the imperial road have started asking questions before they open their doors. You have a policy decision to make — quarantine, commerce, or diplomacy with the one people who do not seem to be affected."
+ flu.010.a: "Seal the river crossings. Nothing moves without inspection."
+ flu.010.b: "Keep the trade roads open — we need the revenue."
+ flu.010.c: "Seek the Argonians' counsel — they know something."
+
+ # ---- flu.020 --- The Last Kothringi ----
+
+ flu.020.t: "The Silver-Skins Are Gone"
+ flu.020.desc: "There are no more Kothringi. This is not a metaphor or a diplomatic assessment or a general statement about decline — it is a historical fact that has become true while everyone was occupied with trying not to die of the same plague that accomplished it. The silver-skinned people of Black Marsh, who built the reef temples and navigated the inner tidal channels and spent the last years of their existence on a red-hulled ship being turned away from every harbour in Tamriel, are gone. The Knahaten Flu erased them from the map as surely as any army could have, and with considerably less political paperwork. What remains are their ruins, their routes, and a ship no one has seen for months."
+ flu.020.a: "A people erased."

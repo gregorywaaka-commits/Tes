@@ -15,6 +15,8 @@
 #      → depart_crimson_ship
 #    common/scripted_triggers/lore_races_triggers.txt
 #      → is_kothringi, knahaten_flu_active
+#    common/traits/knahaten_flu_traits.txt
+#      → hist_immune
 #    common/traits/lore_races_traits.txt
 #      → clavicus_bargain_made, crimson_ship_survivor, knahaten_immune, kothringi_heritage
 # =============================================================
@@ -89,6 +91,7 @@ kothringi.002 = {
             }
         }
         NOT = { has_trait = knahaten_immune }
+        NOT = { has_trait = hist_immune }          # Argonians protected by Hist
         NOT = { has_trait = kothringi_heritage }   # Argonians immune; Kothringi not
         NOT = { is_kothringi = yes }
     }

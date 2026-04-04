@@ -96,7 +96,7 @@
 #    succession_war_events.txt, ebonheart_pact_events.txt,
 #    aldmeri_dominion_events.txt, ordinator_events.txt,
 #    sapiarch_events.txt, ancestor_worship_events.txt,
-#    thieves_guild_events.txt.
+#    thieves_guild_events.txt, knahaten_flu_events.txt.
 #  • Systems triggered here read global_vars set by their effects:
 #    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
 #    global_var:thrassian_plague_active, global_var:active_tower_count,
@@ -295,6 +295,10 @@ on_yearly_pulse = {
         2   = silver_hand.003        # Hircine's revenge — silver_hand_hunted rulers after one year (silver_hand_events.txt)
         # --- KNAHATEN FLU TRIGGER (2E 560) ---
         1   = kothringi.000          # The Knahaten Flu erupts — hidden world trigger at 2E 560 (kothringi_events.txt)
+        2   = flu.000                # Hist Speaks — Argonian rulers receive hist_immune when flu active (knahaten_flu_events.txt)
+        2   = flu.001                # The Argonian Exception — non-Argonian rulers near infected zone (knahaten_flu_events.txt)
+        2   = flu.010                # Coastal Cyrodiil wave — Cyrodiilic rulers when flu spreads north (knahaten_flu_events.txt)
+        1   = flu.020                # The Last Kothringi — extinction marker (knahaten_flu_events.txt)
         # --- NEW SYSTEMS: 2E 440–450 Interregnum Start ---
         3   = reman_pretender.000    # Imperial relics surface — Cyrodiilic rulers at 2E 440–460 (reman_pretender_events.txt)
         2   = reman_pretender.010    # Rival claimant emerges — reman_pretender rulers (reman_pretender_events.txt)
