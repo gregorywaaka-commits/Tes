@@ -189,7 +189,7 @@ alessian.002 = {
                     has_culture = altmer_culture
                     has_culture = bosmer_culture
                 }
-                is_neighbour_of_root = yes
+                is_within_diplo_range = { CHARACTER = root }
             }
             add_opinion = {
                 modifier = alessian_double_down_opinion

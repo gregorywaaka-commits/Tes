@@ -8,24 +8,40 @@
 # =============================================================
 #
 #  DEFINES — identifiers this file exports to the mod:
+#    • alessian_double_down_opinion
+#    • angry_opinion
 #    • dark_brotherhood_target_opinion
 #    • exposed_secrets_opinion
+#    • grateful_opinion
 #    • guild_betrayed_opinion
 #    • guild_rival_opinion
 #    • ignored_call_opinion
 #    • mora_knows_all_opinion
 #    • rallied_together_opinion
 #    • reason_echmer_envoy
+#    • reformer_elven_resentment_opinion
 #    • same_guild_opinion
 #    • submitted_to_daedra_opinion
+#    • tolerated_necromancer
+#    • welcomed_envoy_opinion
 #
 #  REFERENCED BY — other files that import this file's definitions:
 #    common/scripted_effects/lore_races_effects.txt
 #      → reason_echmer_envoy
+#    events/alessian_events.txt
+#      → alessian_double_down_opinion, reformer_elven_resentment_opinion
 #    events/daedric_invasion_events.txt
 #      → ignored_call_opinion, rallied_together_opinion, submitted_to_daedra_opinion
 #    events/daedric_prince_invasion_events.txt
 #      → exposed_secrets_opinion, mora_knows_all_opinion
+#    events/echmer_events.txt
+#      → welcomed_envoy_opinion
+#    events/sload_events.txt
+#      → tolerated_necromancer
+#    events/soul_shriven_events.txt
+#      → grateful_opinion
+#    events/warlord_events.txt
+#      → angry_opinion, grateful_opinion
 # =============================================================
 
 rallied_together_opinion = {
@@ -75,6 +91,44 @@ dark_brotherhood_target_opinion = {
 }
 
 guild_betrayed_opinion = {
+    opinion = -30
+    decay_rate = 1
+}
+
+# ---- General reaction opinion modifiers ----
+
+grateful_opinion = {
+    opinion = 20
+    decay_rate = 1
+}
+
+angry_opinion = {
+    opinion = -15
+    decay_rate = 1
+}
+
+# ---- Echmer envoy reception ----
+
+welcomed_envoy_opinion = {
+    opinion = 15
+    decay_rate = 1
+}
+
+# ---- Sload necromancer tolerance ----
+
+tolerated_necromancer = {
+    opinion = 10
+    decay_rate = 0
+}
+
+# ---- Alessian Reformation reactions from Elven rulers ----
+
+reformer_elven_resentment_opinion = {
+    opinion = -20
+    decay_rate = 1
+}
+
+alessian_double_down_opinion = {
     opinion = -30
     decay_rate = 1
 }
