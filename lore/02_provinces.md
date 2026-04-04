@@ -30,7 +30,7 @@ Tamriel has **nine provinces**, each dominated by a primary race and distinct ge
 - **Primary inhabitants:** Imperials
 - **Climate/geography:** Temperate forest and fertile plains (Nibenay Valley); the Great Forest in the west; Lake Rumare surrounds the Imperial City island.
 - **Major cities:** Imperial City (seat of the Ruby Throne), Anvil, Bravil, Bruma, Chorrol, Kvatch, Leyawiin, Skingrad
-- **Notes:** Heart of the Empire. White-Gold Tower is located here on the Imperial City isle. Originally ruled by Ayleids before the Alessian Rebellion (1E 243). During the **Interregnum (2E 430–854)** Cyrodiil was a battleground of warring warlords; notably, the **Longhouse Emperors** (2E 533–577) — a Reachman dynasty founded by **Durcorach the Black Drake** — briefly controlled the Ruby Throne before being overthrown by Duke **Varen Aquilarios** in the Colovian Revolt (Varen ruled only briefly before the Soulburst and disappearance). `[CANON — UESP: Lore:Longhouse Emperors]`
+- **Notes:** Heart of the Empire. White-Gold Tower is located here on the Imperial City isle. Originally ruled by Ayleids before the Alessian Rebellion (1E 243). During the **Interregnum (2E 430–896)** Cyrodiil was a battleground of warring warlords; notably, the **Longhouse Emperors** (2E 533–577) — a Reachman dynasty founded by **Durcorach the Black Drake** — briefly controlled the Ruby Throne before being overthrown by Duke **Varen Aquilarios** in the Colovian Revolt (Varen ruled only briefly before the Soulburst and disappearance). `[CANON — UESP: Lore:Longhouse Emperors]`
 
 ### Morrowind `[CANON — UESP]`
 > **Source:** UESP Lore:Morrowind — https://en.uesp.net/wiki/Lore:Morrowind

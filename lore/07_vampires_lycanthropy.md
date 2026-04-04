@@ -13,7 +13,7 @@
 > **Source:** UESP Lore:Vampire (Origin section)  
 > **Source:** ESO Main Quest (Lamae Bal's story)
 
-- **Molag Bal** (Daedric Prince of Domination/Corruption) created vampirism in the **Merethic Era** by assaulting a **Nedic monk** named **Lamae Beolfag**.
+- **Molag Bal** (Daedric Prince of Domination/Corruption) created vampirism in the **Merethic Era** by assaulting a **Nedic priestess of Arkay** named **Lamae Beolfag**. `[CANON — IN-GAME BOOK: Opusculus Lamae Bal; UESP: Lore:Vampire]` ⚠️ Previous text said "Nedic monk" — the canonical source specifies she was a priestess of Arkay, not a monk. This distinction matters: Molag Bal's assault was a deliberate act of spite against Arkay's dominion over life and death.
 - Lamae died from the assault but rose as the first vampire — the **Blood Matron**, also called **Lamae Bal**. `[CANON — ESO]`
 - Lamae's curse spread through biting, creating all subsequent vampire bloodlines. All Tamrielic vampires ultimately descend from this original act. `[CANON — UESP]`
 - ⚠️ The specific mechanism by which sub-bloodlines formed (geographic isolation, magical mutation, individual sires) is not fully explained in canon. The general descent from Lamae is `[CANON]`; specific bloodline origins are often `[SOFT CANON]`.
@@ -36,8 +36,8 @@
 
 ## Vampire Bloodlines
 
-### Lamae Bal (Blood Matron) `[CANON — ESO]`
-> **Source:** ESO main quest; UESP Lore:Lamae Bal
+### Lamae Bal (Blood Matron) `[CANON — UESP; IN-GAME BOOK: Opusculus Lamae Bal]`
+> **Source:** In-game book: Opusculus Lamae Bal (Skyrim/ESO); UESP Lore:Lamae Bal; ESO main quest
 
 - **Region:** Tamriel-wide (origin)
 - **Era:** Merethic Era

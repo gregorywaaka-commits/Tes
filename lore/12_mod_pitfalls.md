@@ -141,7 +141,34 @@
 
 ---
 
-### ❌ Vampyrum Order placed in Morrowind
+### ❌ Lamae Beolfag described as a "Nedic monk"
+> **Status: FIXED** in `lore/07_vampires_lycanthropy.md`
+
+| Field | Detail |
+|---|---|
+| **Wrong value** | Lamae Beolfag was a "Nedic monk" |
+| **Correct value** | Lamae Beolfag was a **Nedic priestess of Arkay** |
+| **Source confirming correct value** | In-game book: *Opusculus Lamae Bal* (Skyrim/ESO) `[CANON — IN-GAME BOOK]`; UESP Lore:Vampire |
+| **Why the error occurred** | "Monk" was substituted for "priestess" without checking the source text |
+| **Why it matters** | Her status as a priestess of Arkay is narratively significant — Molag Bal chose her specifically to spite Arkay's dominion over the cycle of death |
+| **Files previously affected** | `lore/07_vampires_lycanthropy.md` |
+
+---
+
+### ❌ Interregnum end date listed as 2E 854
+> **Status: FIXED** in `lore/02_provinces.md`
+
+| Field | Detail |
+|---|---|
+| **Wrong value** | Interregnum = 2E 430–**854** |
+| **Correct value** | Interregnum = 2E 430–**896** |
+| **Source** | UESP Lore:Interregnum `[CANON — UESP]` |
+| **Why the error occurred** | 2E 854 is when Tiber Septim *took the Ruby Throne of Cyrodiil*; the full unification of Tamriel (with the Numidium) and the formal end of the Interregnum is 2E 896 |
+| **Files previously affected** | `lore/02_provinces.md` |
+
+---
+
+
 > **Status: NOTED** — verify if any event text makes this claim
 
 | Field | Detail |
