@@ -456,7 +456,7 @@ hist_vision.008 = {
         name = hist_vision.008.a   # "The An-Xileel has fulfilled the Hist's mandate. Black Marsh is ours."
         add_prestige = 500
         add_piety    = 300
-        add_marshal_skill_xp = 1000
+        add_martial_skill_xp = 1000
         add_character_flag = { flag = an_xileel_mandate_complete }
     }
 
