@@ -283,6 +283,8 @@ on_yearly_pulse = {
         3   = silver_hand.000        # Beast-blood discovered — rulers with beast-blooded vassals (silver_hand_events.txt)
         2   = silver_hand.001        # Hunt or warn — silver_hand_alerted rulers (silver_hand_events.txt)
         2   = silver_hand.003        # Hircine's revenge — silver_hand_hunted rulers after one year (silver_hand_events.txt)
+        # --- KNAHATEN FLU TRIGGER (2E 560) ---
+        1   = kothringi.000          # The Knahaten Flu erupts — hidden world trigger at 2E 560 (kothringi_events.txt)
         # --- NEW SYSTEMS: 2E 440–450 Interregnum Start ---
         3   = reman_pretender.000    # Imperial relics surface — Cyrodiilic rulers at 2E 440–460 (reman_pretender_events.txt)
         2   = reman_pretender.010    # Rival claimant emerges — reman_pretender rulers (reman_pretender_events.txt)

@@ -22,6 +22,33 @@
 namespace = kothringi
 
 # ---------------------------------------------------------------
+# kothringi.000  The Knahaten Flu — Hidden World Trigger (2E 560)
+#
+# A hidden world event that fires once around 2E 560 and calls
+# trigger_knahaten_flu (lore_races_effects.txt), which:
+#   • Sets global_var:knahaten_flu_active
+#   • Infects all Black Marsh counties with knahaten_flu_modifier
+#   • Fires kothringi.001 for every ruler whose capital is in Black Marsh
+#
+# Historically the Knahaten Flu erupted in 2E 560 and nearly wiped
+# out the Kothringi people; Argonians were mysteriously immune.
+# ---------------------------------------------------------------
+kothringi.000 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        current_date >= 2.560.1.1
+        current_date <  2.565.1.1
+        NOT = { exists = global_var:knahaten_flu_active }
+    }
+
+    immediate = {
+        trigger_knahaten_flu = yes
+    }
+}
+
+# ---------------------------------------------------------------
 # kothringi.001  The Knahaten Flu Erupts in Black Marsh
 # ---------------------------------------------------------------
 kothringi.001 = {
