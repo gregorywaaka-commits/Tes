@@ -65,7 +65,19 @@ All races are capable of interbreeding to varying degrees. Bretons are a notable
 - **Original Snow Elves:** A small number retained intelligence; Knight-Paladin **Gelebor** (TES V: Dawnguard) is a surviving example. `[CANON — TES V: Dawnguard]`
 - **Note:** The degenerated Falmer are not the same culture as the original Snow Elves. `[CANON — UESP]`
 
-### Dwemer (Deep Elves / Dwarves) `[CANON — UESP]`
+### Ayleid (Heartland High Elves) `[CANON — UESP; EXTINCT]`
+> **Source:** UESP Lore:Ayleid — https://en.uesp.net/wiki/Lore:Ayleid
+
+- **Homeland:** Cyrodiil (scattered city-states across the Nibenay Basin and surrounding forest)
+- **Physical traits:** Similar to Altmer; pale to golden skin; generally considered beautiful by most sources
+- **Culture:** Diverse and decentralised — each city-state had its own customs and patron deities. Ayleids worshipped both Aedra and Daedra eclectically, unlike the more uniform Altmer. Known for extreme cruelty toward enslaved humans. Their civilisation is characterised by elaborate magical architecture and reverence for **starlight** as the purest form of magicka from Aetherius.
+- **Magic:** Masters of harnessing starlight. Created **Welkynd Stones** (sky-child stones — enchanted meteoric glass crystals that store and restore magicka) and **Varla Stones** (star stones — enchanted meteoric glass that instantly recharges all enchanted items). Great Welkynd Stones powered whole cities; Dark Welkynd Stones served as magical traps. `[CANON — UESP: Lore:Welkynd Stone; Lore:Varla Stone]`
+- **Religion:** Eclectic — included Aedra worship (Auri-El, Magnus, Trinimac, Syrabane) AND Daedra worship. This heterodoxy is considered one reason their enslaved human subjects were receptive to Alessia's monotheistic rebellion.
+- **Downfall:** **Alessia's Slave Rebellion (1E 243)** — enslaved humans aided by Nords destroyed Ayleid rule. White-Gold Tower fell to Alessia. The last Ayleid king was driven out in 1E 292. A small number of Ayleid lords allied with Alessia and briefly survived under her patronage, but the civilisation dissolved through absorption and attrition. `[CANON — UESP]`
+- **Legacy:** Their ruins dot Cyrodiil to the present day — white-stone architecture with arched halls, subterranean complexes, magical lighting, and residual Welkynd/Varla Stones. The White-Gold Tower (Cyrodiil's White-Gold Tower of course) is their greatest surviving construction. `[CANON — TES IV: Oblivion; UESP]`
+- **Current status:** **Extinct** as a civilisation. `[CANON — UESP]`
+
+
 > **Source:** UESP Lore:Dwemer — https://en.uesp.net/wiki/Lore:Dwemer
 
 - **Homeland:** Underground cities across Morrowind, Hammerfell, Skyrim, Solstheim, and Cyrodiil
@@ -107,7 +119,7 @@ All races are capable of interbreeding to varying degrees. Bretons are a notable
 
 - **Homeland:** High Rock
 - **Physical traits:** Mixed human-elven ancestry (**Manmeri**); naturally high magic resistance; typically fair-skinned; shorter than Nords but taller than Bosmer
-- **Culture:** Feudal society of many rival noble houses and city-states. Renowned for magic and diplomacy. Prize learning and arcane study. The **Direnni Hegemony** (Altmer-ruled High Rock) shaped Breton genetics in the 1E. `[CANON — UESP]`
+- **Culture:** Feudal society of many rival noble houses and city-states. Renowned for magic and diplomacy. Prize learning and arcane study. The **Direnni Hegemony** (c. 1E 355–498, Altmer-ruled High Rock) created Breton racial identity through interbreeding between Direnni nobles and Nedic subjects; when the Hegemony collapsed, Bretons were already the dominant population. Their unusually high magic resistance and aptitude are a direct Aldmeri inheritance. `[CANON — UESP: Lore:Direnni Hegemony; Lore:Breton]`
 - **Reachfolk:** A distinct sub-culture in the Reach (eastern High Rock/western Skyrim). Practice **Hagraven pacts** and **Briarheart** rituals (replacing the heart with a briar-heart to gain power at the cost of soul). `[CANON — ESO, TES V: Skyrim via UESP]`
 
 ---
@@ -122,6 +134,13 @@ All races are capable of interbreeding to varying degrees. Bretons are a notable
 - **Culture:** Deeply bonded to the **Hist** — ancient sentient trees that share a collective consciousness across Black Marsh. Hist trees can modify Argonian physiology. Argonian society is communal and insular; outsiders rarely understand their culture fully. `[CANON — UESP]`
 - **An-Xileel:** A nationalist Argonian faction that repelled the Oblivion Crisis invasion by carrying the fight into Oblivion itself. `[CANON — TES IV: Oblivion lore / UESP]`
 - **Hist link:** Some Argonians are "Hist-bonded" more strongly than others; those raised away from Black Marsh (lightly bonded) differ behaviourally from those raised close to the trees. `[CANON — UESP]`
+- **The Hist in detail:** `[CANON — UESP: Lore:Hist]`
+  - The Hist are considered by many Argonians to be the most ancient beings in Tamriel, predating Mer and Men.
+  - All Hist trees are connected through their root system, forming a **network of collective consciousness** — often described as one mind speaking through many voices. Individual trees can be isolated, but the general state is collective.
+  - Argonian eggs are incubated in pools of **Hist sap**, which imparts souls, biology, and even gender. Without sap, Argonian eggs perish quickly. Argonians born far from Black Marsh lose this connection and are functionally cut off from the Hist's guidance.
+  - The Hist communicate with Argonians through **visions, dreams, ritual sap-drinking**, and environmental signs. Important decisions — including whether to go to war — may be Hist decisions as much as Argonian ones.
+  - During the Oblivion Crisis, the Hist **warned the Argonians in advance** and empowered them; this is why Argonian forces in Black Marsh were able to close Oblivion Gates from the inside and repel the invasion so decisively. `[CANON — TES IV: Oblivion in-game texts; UESP]`
+  - ⚠️ Whether the Hist reincarnate Argonian souls (storing and replanting them through the sap cycle) is `[CONTESTED — UESP]` — plausible given lore but not explicitly confirmed canon.
 
 ### Khajiit `[CANON — UESP]`
 > **Source:** UESP Lore:Khajiit — https://en.uesp.net/wiki/Lore:Khajiit  

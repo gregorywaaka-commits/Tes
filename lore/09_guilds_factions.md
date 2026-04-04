@@ -226,4 +226,25 @@ The fundamental **political divide** in Redguard (Hammerfell) society.
 - **Origins:** Pre-Second Era; the divide emerged naturally from the Ra Gada settlement of Hammerfell.
 - **Period relevance:** Active throughout EK2. Neither faction can dominate permanently; political tension is the permanent state.
 
+---
+
+## Alessian Order `[CANON — UESP]`
+> **Source:** UESP Lore:Alessian Order — https://en.uesp.net/wiki/Lore:Alessian_Order  
+> **Source:** In-game books: The Cleansing of the Fane; The Monomyth
+
+- **Founded:** **1E 358** — formed to enforce and extend the teachings of **Saint Alessia** after the Alessian Rebellion. `[CANON — UESP]`
+- **Purpose:** A theocratic religious order enforcing a strict monotheism focused on **Akatosh** (the Dragon God of Time, the One). Promoted the "Marukhati Selective" — an extreme sect that attempted mythopoeic rituals to "purify" Akatosh of Aldmeri influence (the merger with Auri-El). This caused the **Middle Dawn Dragon Break (c. 1E 1200–2208)**. `[CANON — UESP: Lore:Middle Dawn]`
+- **Doctrines:**
+  - Monotheistic — all divinity reduces to the One (Akatosh); other divines are aspects, not equals
+  - Banned worship of Elven gods across Imperial territory
+  - Rigidly opposed to Elven religious practices
+  - Political authority rested with "Priestly Emperors" — theocrats who were heads of both church and state
+- **Political power:** At its height the Order effectively controlled the **Alessian Empire**, overriding the elected monarchs of various kingdoms. Their influence spread religious intolerance and sectarian violence across Tamriel. `[CANON — UESP]`
+- **Internal conflicts:** The Order's extreme factions (including the Marukhati Selective that caused the Middle Dawn) were periodically at odds with more moderate factions. The Nibenay region's cosmopolitan culture was persistently resistant to the Order's control. `[CANON — UESP]`
+- **Dissolution:** The **War of Righteousness (1E 2321–2331)** — a civil war and religious conflict — destroyed the Order's leadership, cathedral, and political grip. Imperial and High Rock forces broke the Order's power; populations around the Iliac Bay were devastated. After 1E 2331 the Alessian Order ceased to exist as a political force, though remnant communities may have persisted. `[CANON — UESP: Lore:War of Righteousness; Lore:Alessian Order]`
+- **Legacy:** The Order's fall is why the Eight Divines (rather than a monotheistic Akatosh-only faith) persisted as the Imperial religion thereafter. The Interregnum period and the Reman Dynasty's reforms marginalised any remaining Order influence. `[CANON — UESP]`
+- ⚠️ **Mod note:** The Alessian Order is NOT a guild you can join in-game. It is a historical faction and extinct by 2E. Events referencing it should be flavoured as historical memory or cultural echo, not present-day mechanics.
+
+---
+
 *Back to [Index](README.md)*
