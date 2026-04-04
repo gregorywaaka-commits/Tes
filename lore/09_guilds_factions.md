@@ -189,10 +189,6 @@ A dynasty of **Reachmen** who ruled Cyrodiil during the mid-Interregnum; the onl
 
 ---
 
-*Back to [Index](README.md)*
-
----
-
 ## Morag Tong `[CANON — TES III / UESP]`
 > **Source:** UESP Lore:Morag Tong — https://en.uesp.net/wiki/Lore:Morag_Tong  
 > **Source:** Morrowind in-game book: *Saryoni's Sermons*, *The Brothers of Darkness*

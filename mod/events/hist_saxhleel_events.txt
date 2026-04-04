@@ -277,7 +277,7 @@ hist_vision.004 = {
         is_adult = yes
         has_trait = hist_bonded
         NOT = { has_character_flag = hist_soulburst_warning }
-        NOT = { has_global_variable = soulburst_triggered }
+        NOT = { exists = global_var:soulburst_happened }
         game_start_date >= 2.560.1.1
         game_start_date <= 2.577.12.31
     }

@@ -25,7 +25,7 @@
 #  EXTERNAL DEPENDENCIES:
 #  ─────────────────────
 #  • gray_host_repelled  — flag from gray_host_events.txt
-#  • global_var:soulburst_triggered  — from soulburst_events.txt
+#  • global_var:soulburst_happened  — from soulburst_events.txt
 # =============================================================
 
 # =============================================================
@@ -55,7 +55,7 @@ meridia_beacon.000 = {
         is_adult = yes
         OR = {
             has_character_flag = gray_host_repelled
-            has_global_variable = soulburst_triggered
+            exists = global_var:soulburst_happened
         }
         NOT = { has_trait = beacon_bearer }
         NOT = { has_character_flag = meridia_contact }

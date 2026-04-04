@@ -23,7 +23,7 @@
 #
 #  EXTERNAL DEPENDENCIES:
 #  ─────────────────────
-#  • global_var:soulburst_triggered  — from soulburst_events.txt
+#  • global_var:soulburst_happened  — from soulburst_events.txt
 #  • daedric invasion traits from daedric_invasion_traits.txt
 # =============================================================
 
@@ -53,7 +53,7 @@ soul_shriven.000 = {
     trigger = {
         is_ruler = yes
         is_adult = yes
-        has_global_variable = soulburst_triggered
+        exists = global_var:soulburst_happened
         NOT = { has_trait = soul_shriven }
         NOT = { has_character_flag = soul_shriven_check }
         OR = {
@@ -92,7 +92,7 @@ soul_shriven.010 = {
     trigger = {
         is_ruler = yes
         is_adult = yes
-        has_global_variable = soulburst_triggered
+        exists = global_var:soulburst_happened
         any_courtier = {
             is_adult = yes
             NOT = { this = root }
