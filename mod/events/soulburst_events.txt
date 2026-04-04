@@ -1,0 +1,294 @@
+# =============================================================
+#  The Soulburst — Events
+#  Namespace: soulburst
+#  File: mod/events/soulburst_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  soulburst.000  Hidden world event — fires at 2E 577, sets global
+#                 flag, triggers notification cascade.
+#  soulburst.001  "The Dragonfires Are Extinguished" — all rulers
+#                 notified of the catastrophic magical event.
+#  soulburst.010  "The Worm King's Deception" — rulers with learning
+#                 or worm_cult_adept trait learn what Mannimarco did.
+#  soulburst.020  "The Veil Tears" — mages and sensitive rulers feel
+#                 the hole in the barrier between Mundus and Oblivion.
+#  soulburst.030  "Dragonfires Extinguished — What Now?" — rulers who
+#                 control the Imperial City face a political aftermath.
+#
+#  HISTORICAL NOTE:
+#  In 2E 577, Emperor Varen Aquilarios — not Dragonborn — was convinced
+#  by Mannimarco (acting as agent of Molag Bal) that the Amulet of Kings
+#  could relight the Dragonfires and validate his claim to the Imperial
+#  throne.  The ritual failed catastrophically.  The Soulburst shattered
+#  the magical barrier between Nirn and Oblivion, disconnected Nirn from
+#  Aetherius, and sent a psychic shockwave across all of Tamriel that was
+#  felt by every mage and sensitive soul on the continent.  Varen was
+#  transformed and disappeared.  This event directly enabled Molag Bal's
+#  Planemeld and set the stage for the Alliance War (2E 582).
+#  Sources: ESO main questline; UESP Lore:Soulburst; ESO lore books.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/soulburst_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/soulburst_traits.txt
+#      → dragonfires_guardian, soulburst_scarred
+#    common/traits/worm_cult_traits.txt
+#      → worm_cult_adept
+# =============================================================
+
+namespace = soulburst
+
+# ---------------------------------------------------------------
+# soulburst.000  The Soulburst — Hidden Trigger
+# A hidden world event at 2E 577.  The Dragonfires fail.  The
+# barrier breaks.  All rulers are notified; mages and those
+# sensitive to magic feel it most keenly.
+# ---------------------------------------------------------------
+soulburst.000 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        current_date >= 2.577.1.1
+        current_date < 2.578.1.1
+        NOT = { exists = global_var:soulburst_happened }
+    }
+
+    immediate = {
+        set_global_variable = { name = soulburst_happened value = 1 }
+        # Notify all rulers
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_alive  = yes
+            }
+            trigger_event = { id = soulburst.001 days = 1 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# soulburst.001  The Dragonfires Are Extinguished
+# The shockwave of the Soulburst reaches every corner of Tamriel.
+# Those near Cyrodiil felt it as a physical blow; those far away
+# woke gasping from sleep, their candle-flames guttering for no
+# reason.  The world has changed.  Most rulers do not yet know
+# how completely.
+# ---------------------------------------------------------------
+soulburst.001 = {
+    type = character_event
+    title = soulburst.001.t
+    desc  = {
+        triggered_desc = {
+            trigger = {
+                OR = {
+                    learning >= 14
+                    has_trait = worm_cult_adept
+                    any_held_county = { geographical_region = world_cyrodiil }
+                }
+            }
+            desc = soulburst.001.desc_aware
+        }
+        triggered_desc = {
+            trigger = {
+                NOT = { learning >= 14 }
+                NOT = { has_trait = worm_cult_adept }
+                NOT = { any_held_county = { geographical_region = world_cyrodiil } }
+            }
+            desc = soulburst.001.desc_distant
+        }
+    }
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = shock
+    }
+
+    immediate = {
+        if = {
+            limit = {
+                OR = {
+                    learning >= 12
+                    has_trait = worm_cult_adept
+                    any_held_county = { geographical_region = world_cyrodiil }
+                }
+            }
+            add_trait = soulburst_scarred
+        }
+    }
+
+    option = {
+        name = soulburst.001.a   # "Something has broken. Something fundamental."
+        add_stress = 20
+        if = {
+            limit = { learning >= 14 }
+            trigger_event = { id = soulburst.020 days = 7 }
+        }
+    }
+
+    option = {
+        name = soulburst.001.b   # "The candle-flames guttered. The priests are restless. Nothing more."
+        trigger = { learning < 14 }
+        add_stress = 5
+    }
+
+    option = {
+        name = soulburst.001.c   # "If the Dragonfires are truly out — Oblivion's gates stand open."
+        trigger = { learning >= 14 }
+        add_stress = 30
+        add_learning_skill = 1
+        trigger_event = { id = soulburst.010 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# soulburst.010  The Worm King's Deception
+# Scholars and Worm Cult members who investigate the Soulburst
+# eventually piece together what Mannimarco did: he used Varen's
+# ambition as a weapon, exploiting an untested king's desire for
+# legitimacy to execute Molag Bal's plan for the Planemeld.
+# The Amulet of Kings was never going to relight the Dragonfires.
+# It was always going to shatter them.
+# ---------------------------------------------------------------
+soulburst.010 = {
+    type = character_event
+    title = soulburst.010.t
+    desc  = soulburst.010.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = thinking
+    }
+
+    trigger = {
+        OR = {
+            learning >= 14
+            has_trait = worm_cult_adept
+        }
+        exists = global_var:soulburst_happened
+    }
+
+    option = {
+        name = soulburst.010.a   # "Mannimarco played Varen like a lute. Molag Bal is the one who gains."
+        add_learning_skill = 1
+        add_stress = 20
+        add_trait = dragonfires_guardian
+    }
+
+    option = {
+        name = soulburst.010.b   # "If Mannimarco's cult could do this once, what else are they planning?"
+        trigger = { has_trait = worm_cult_adept }
+        add_intrigue_skill = 1
+        add_stress = 30     # You are part of the cult that helped cause this
+        add_prestige = -200
+    }
+
+    option = {
+        name = soulburst.010.c   # "File this knowledge. Use it in time."
+        add_learning_skill = 1
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# soulburst.020  The Veil Tears
+# A learned ruler who survived the Soulburst shockwave begins to
+# perceive things they could not before — fragments of Coldharbour
+# bleeding through in dreams, anchor chains of Molag Bal visible
+# to those with the sight.  This is the first sign of the Planemeld.
+# ---------------------------------------------------------------
+soulburst.020 = {
+    type = character_event
+    title = soulburst.020.t
+    desc  = soulburst.020.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_melancholic
+    }
+
+    trigger = {
+        learning >= 14
+        exists = global_var:soulburst_happened
+        NOT = { has_character_flag = soulburst_veil_seen }
+    }
+
+    immediate = {
+        set_character_flag = { flag = soulburst_veil_seen }
+    }
+
+    option = {
+        name = soulburst.020.a   # "Study these visions. They may be the only warning we receive."
+        add_learning_skill = 1
+        add_stress = 15
+        add_piety = -50             # What you see is not holy
+    }
+
+    option = {
+        name = soulburst.020.b   # "Pray. Ask the Divines to close what Mannimarco opened."
+        add_piety = 200
+        add_stress = 10
+    }
+
+    option = {
+        name = soulburst.020.c   # "Seal these visions away. I cannot afford to be haunted."
+        add_stress = 30
+    }
+}
+
+# ---------------------------------------------------------------
+# soulburst.030  The Imperial City After the Soulburst
+# The ruler who holds the Imperial City in the aftermath of the
+# Soulburst faces a unique political and metaphysical challenge:
+# the Dragonfires in the Temple of the One have gone out.
+# Every priest, every scholar, every would-be Emperor in Tamriel
+# now knows the Ruby Throne's divine mandate is in question.
+# ---------------------------------------------------------------
+soulburst.030 = {
+    type = character_event
+    title = soulburst.030.t
+    desc  = soulburst.030.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    trigger = {
+        completely_controls = title:c_imperial_city
+        exists = global_var:soulburst_happened
+        NOT = { has_character_flag = soulburst_imperial_response }
+    }
+
+    immediate = {
+        set_character_flag = { flag = soulburst_imperial_response }
+    }
+
+    option = {
+        name = soulburst.030.a   # "Seal the Temple. Control the narrative. The throne must appear stable."
+        add_prestige = 200
+        add_stress   = 30
+        add_intrigue_skill = 1
+    }
+
+    option = {
+        name = soulburst.030.b   # "Open the Temple to all. Let Tamriel see what has happened — and rally."
+        add_prestige = -100
+        add_piety    = 300
+        add_stress   = 20
+        add_trait    = dragonfires_guardian
+    }
+
+    option = {
+        name = soulburst.030.c   # "Study the Dragonfires' absence. There must be a way to relight them."
+        trigger = { learning >= 14 }
+        add_learning_skill = 1
+        add_prestige = 100
+        add_stress   = 25
+    }
+}

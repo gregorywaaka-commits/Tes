@@ -1,0 +1,41 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  THE SOULBURST
+ # =====================================================================
+
+ # --- Traits ---
+
+ soulburst_scarred: "Soulburst Scarred"
+ soulburst_scarred_desc: "This character's soul or mind was seared by the magical shockwave of the Soulburst — the moment in 2E 577 when the barrier between Mundus and Oblivion was ripped open by a failed ritual using the Amulet of Kings. The scarring fades slowly. It never fades entirely."
+
+ dragonfires_guardian: "Dragonfires Guardian"
+ dragonfires_guardian_desc: "This ruler understands the Dragonfires' true role — not merely as a symbol of Imperial legitimacy but as the metaphysical seal holding Oblivion back from the mortal world. They have committed themselves, formally or privately, to protecting that seal, restoring it if possible, and preventing any further misuse of the Amulet of Kings."
+
+ # --- Events ---
+
+ soulburst.001.t: "The Dragonfires Are Extinguished"
+ soulburst.001.desc_aware: "You felt it.\n\nIt wasn't a sound. It wasn't quite a physical sensation. It was something more fundamental — the sensation of something that has always been true becoming untrue. Like a wall you have leaned against your whole life suddenly not being there.\n\nThe Dragonfires in the Temple of the One in the Imperial City have gone out. The scholars say so. The priests say so. The mages say so in the particular way mages say things when they are certain and terrified simultaneously.\n\nThe barrier between Mundus and Oblivion — maintained for centuries by the Dragonborn emperors and the Amulet of Kings — is broken. An emperor tried to relight the fires. He was not Dragonborn. The Amulet was misused. The barrier fell.\n\nThe gates stand open."
+ soulburst.001.desc_distant: "The candleflames guttered.\n\nEvery candle in your hall guttered at once — a single shared shudder, for no reason, no wind, no cause you can name. The servants noticed. The priests noticed. Nobody has a satisfying explanation.\n\nSomething happened. Somewhere, something fundamental gave way. You don't know what yet. But the priests are troubled, and troubled priests are rarely wrong about the things that matter."
+ soulburst.001.a: "Something has broken. Something fundamental — I need to understand what."
+ soulburst.001.b: "The candleflames guttered. The priests are restless. Likely nothing more."
+ soulburst.001.c: "If the Dragonfires are truly out — the gates to Oblivion stand open. This is the worst possible news."
+
+ soulburst.010.t: "The Worm King's Deception"
+ soulburst.010.desc: "The full picture has assembled itself, piece by piece, from scattered sources: a scholar's letter from the Imperial City, a confession from a captured Worm Cult initiate, a report from a Mages Guild contact.\n\nMannimarco — the King of Worms, head of the Order of the Black Worm — orchestrated this. He approached Varen Aquilarios when the new Emperor was at his most vulnerable: legitimacy-hungry, not Dragonborn by blood, desperate to validate his claim to the Ruby Throne. Mannimarco told him the Amulet of Kings could relight the Dragonfires and confer Dragonborn status by ritual.\n\nIt cannot. It never could. The ritual was designed to fail in exactly the way it failed — catastrophically, completely, with the maximum possible damage to the barrier between Nirn and Oblivion.\n\nMannimarco works for Molag Bal. The Soulburst was not an accident. It was a key, turned in a lock that has held for centuries.\n\nThe lock is open now."
+ soulburst.010.a: "Mannimarco played Varen like an instrument. And Molag Bal is the one who gains from the music."
+ soulburst.010.b: "If my cult helped cause this — I need to understand what I am actually part of."
+ soulburst.010.c: "File this knowledge. The Worm Cult's true purpose changes how I deal with them."
+
+ soulburst.020.t: "The Veil Tears"
+ soulburst.020.desc: "The visions started three days after the Soulburst.\n\nNot nightmares — not exactly. More like the wrong dreams leaking through from somewhere else. Cold blue light. Anchor chains thicker than towers, descending from above into something dark. Voices that do not speak in any language but carry meaning anyway: come, serve, despair.\n\nThe Mages Guild would call this a psychic bleed. The barrier between Mundus and Oblivion has been compromised, and those sensitive to magic are experiencing the edges of Coldharbour pressing through.\n\nYou are not losing your mind. You are, possibly, seeing something real. The question is whether that makes it better or worse."
+ soulburst.020.a: "Study these visions. They may be the only warning of what Molag Bal intends."
+ soulburst.020.b: "Pray. Ask the Divines to close what was opened. Faith has held this world together before."
+ soulburst.020.c: "Seal these visions away. I cannot be haunted and govern at the same time."
+
+ soulburst.030.t: "The Imperial City After the Soulburst"
+ soulburst.030.desc: "The Temple of the One stands at the heart of the Imperial City, and at the heart of the Temple stand the Dragonfires. They have burned without ceasing since the First Era. They are not burning now.\n\nEvery priest in the city knows. Word will reach every corner of Tamriel within the month. The Ruby Throne has never been fully legitimate since the last Reman emperor — but the Dragonfires were one of the last props of Imperial authority that everyone, even the sceptics, acknowledged as real.\n\nThat prop is gone.\n\nYou hold the Imperial City. You need to decide what that means now."
+ soulburst.030.a: "Seal the Temple. Control the information. The throne must appear stable."
+ soulburst.030.b: "Open the Temple to all. Let Tamriel see what happened — and rally behind the effort to fix it."
+ soulburst.030.c: "Study the Dragonfires' absence. There must be a way to relight them — a true Dragonborn, or the Amulet wielded correctly."

@@ -1,0 +1,80 @@
+# =============================================================
+#  The Soulburst — Traits
+#  File: mod/common/traits/soulburst_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  soulburst_scarred     — A ruler whose soul or mind was scarred
+#                          by the magical shockwave of the Soulburst
+#                          (2E 577).  Mages and sensitive souls are
+#                          most affected.
+#  dragonfires_guardian  — A ruler who understands the metaphysical
+#                          significance of the Dragonfires and has
+#                          sworn to preserve or restore them.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  In 2E 577, Emperor Varen Aquilarios attempted to use the Amulet
+#  of Kings to relight the Dragonfires (the mystic barrier sealing
+#  Oblivion from Mundus).  He was not Dragonborn; Mannimarco had
+#  deliberately deceived him.  The ritual failed with catastrophic
+#  force — the Soulburst shattered the barrier, disconnected Nirn
+#  from Aetherius, and enabled Molag Bal's Planemeld.  Varen
+#  himself was transformed and disappeared.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/soulburst_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • dragonfires_guardian
+#    • soulburst_scarred
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/soulburst_events.txt
+#      → dragonfires_guardian, soulburst_scarred
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SOULBURST SCARRED
+#  A ruler whose soul or mind was seared by the Soulburst's
+#  magical shockwave — the moment the barrier between Mundus
+#  and Oblivion was ripped open.  Many mages felt it as a wave
+#  of disorientation; some experienced visions of Coldharbour.
+#  The scarring fades over years but leaves lasting sensitivity.
+# ---------------------------------------------------------------
+soulburst_scarred = {
+    category = health
+    is_good = no
+
+    learning   = 2             # The trauma brought unwanted insight into Oblivion's nature
+    stress_gain_mult = 0.15    # A severed connection to Aetherius leaves the soul uneasy
+    monthly_piety_gain_mult = -0.05    # The gods feel distant after the barrier breaks
+
+    flag = soulburst_scarred
+}
+
+# ---------------------------------------------------------------
+#  DRAGONFIRES GUARDIAN
+#  A ruler who has come to understand the Dragonfires' role —
+#  not merely as a symbol of Imperial legitimacy, but as the
+#  mystic seal holding Oblivion back from the mortal world.
+#  They have sworn — formally or privately — to protect that
+#  seal, restore it if broken, or prevent any further misuse
+#  of the Amulet of Kings.
+# ---------------------------------------------------------------
+dragonfires_guardian = {
+    category = lifestyle
+
+    diplomacy  = 2
+    learning   = 2
+    monthly_piety_gain_mult = 0.10    # A sacred duty recognised by the Divines
+    monthly_prestige_gain_mult = 0.05
+
+    flag = dragonfires_guardian
+}

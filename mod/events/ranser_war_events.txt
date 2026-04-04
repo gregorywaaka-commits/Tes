@@ -1,0 +1,224 @@
+# =============================================================
+#  Ranser's War Events
+#  Namespace: ranser
+#  File: mod/events/ranser_war_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  ranser.000   Hidden world event — fires at 2E 566 to notify all
+#               High Rock rulers that Ranser's War has begun.
+#  ranser.001   "The War for High Rock" — High Rock rulers must choose
+#               sides: Ranser or Emeric.
+#  ranser.010   "Emeric's Coalition" — a ruler who chose Emeric receives
+#               the full account of Ranser's defeat and the Covenant's birth.
+#  ranser.020   "The Daggerfall Covenant Is Born" — Covenant founder
+#               event for those who backed the winning side.
+#  ranser.030   "Ranser's Last Stand" — flavour event for Ranser's cause
+#               supporters at the conclusion of the war.
+#
+#  HISTORICAL NOTE:
+#  Ranser's War (2E 566–567) began when High King Emeric of Wayrest
+#  chose Maraya of Sentinel as his queen over Ranser's daughter Rayelle.
+#  Ranser declared war; Emeric built a coalition with Redguards and
+#  Orcs alongside loyal Bretons.  Ranser was defeated at Markwasten Moor;
+#  his castle fell soon after.  The coalition that defeated him became
+#  the seed of the Daggerfall Covenant (formally established 2E 566).
+#  Sources: UESP Lore:Ranser's War; ESO in-game book "The Reachmen of
+#  the Reach"; ESO prologue materials.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/ranser_war_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/ranser_war_traits.txt
+#      → daggerfall_covenant_founder, ransers_cause
+# =============================================================
+
+namespace = ranser
+
+# ---------------------------------------------------------------
+# ranser.000  The War for High Rock — Hidden Trigger
+# A hidden world event that fires once at 2E 566 and notifies
+# all High Rock rulers that Ranser's War has begun.  Guards
+# with a global variable so it fires only once per playthrough.
+# ---------------------------------------------------------------
+ranser.000 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        current_date >= 2.566.1.1
+        current_date < 2.568.1.1
+        NOT = { exists = global_var:ransers_war_triggered }
+    }
+
+    immediate = {
+        set_global_variable = { name = ransers_war_triggered value = 1 }
+        # Notify all High Rock rulers (breton or reachman culture, or holding High Rock titles)
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_alive  = yes
+                OR = {
+                    has_culture = breton_culture
+                    has_culture = reachman_culture
+                    any_held_county = {
+                        geographical_region = world_high_rock
+                    }
+                }
+            }
+            trigger_event = { id = ranser.001 days = 7 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# ranser.001  The War for High Rock
+# All High Rock rulers receive word that Ranser of Shornhelm has
+# declared war on Emeric of Wayrest.  The Breton heartland is
+# splitting.  You must choose your position.
+# ---------------------------------------------------------------
+ranser.001 = {
+    type = character_event
+    title = ranser.001.t
+    desc  = ranser.001.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = war_declaration
+    }
+
+    option = {
+        name = ranser.001.a   # "Emeric is right — Ranser's tantrum will split High Rock for a generation."
+        add_prestige = 100
+        add_stress   = 10
+        add_trait    = daggerfall_covenant_founder
+        trigger_event = { id = ranser.010 days = 180 }
+    }
+
+    option = {
+        name = ranser.001.b   # "Ranser is wronged. Emeric insulted Breton tradition."
+        trigger = { has_culture = breton_culture }
+        add_prestige = 100
+        add_stress   = 10
+        add_trait    = ransers_cause
+        trigger_event = { id = ranser.030 days = 365 }
+    }
+
+    option = {
+        name = ranser.001.c   # "This is not my war. I will watch and profit from the wreckage."
+        add_prestige = -100
+        add_stress   = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# ranser.010  Emeric's Coalition
+# A ruler who sided with Emeric receives word of the campaign's
+# progress.  The Redguards of Sentinel have committed their swords.
+# The Orcs of Orsinium have sent axemen.  Ranser's support is
+# fracturing.
+# ---------------------------------------------------------------
+ranser.010 = {
+    type = character_event
+    title = ranser.010.t
+    desc  = ranser.010.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = scheme
+    }
+
+    trigger = {
+        has_trait = daggerfall_covenant_founder
+    }
+
+    option = {
+        name = ranser.010.a   # "Send our full strength to Emeric. End this quickly."
+        add_prestige = 200
+        add_gold     = -100
+        add_martial_skill = 1
+        trigger_event = { id = ranser.020 days = 180 }
+    }
+
+    option = {
+        name = ranser.010.b   # "Offer symbolic support. We preserve our own strength."
+        add_prestige = 50
+        trigger_event = { id = ranser.020 days = 180 }
+    }
+}
+
+# ---------------------------------------------------------------
+# ranser.020  The Daggerfall Covenant Is Born
+# Ranser is defeated at Markwasten Moor.  King Emeric does not
+# simply celebrate victory — he uses the moment to formalise
+# what his coalition has become: the Daggerfall Covenant,
+# uniting Bretons, Redguards, and Orcs under a common banner
+# and a common ambition.
+# ---------------------------------------------------------------
+ranser.020 = {
+    type = character_event
+    title = ranser.020.t
+    desc  = ranser.020.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    trigger = {
+        has_trait = daggerfall_covenant_founder
+    }
+
+    option = {
+        name = ranser.020.a   # "Three peoples under one banner. This is something new in Tamriel."
+        add_prestige = 500
+        add_piety    = 50
+        add_stress   = -15
+    }
+
+    option = {
+        name = ranser.020.b   # "Alliances are tools. What matters is whether Emeric can hold it together."
+        add_prestige = 300
+        add_intrigue_skill = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# ranser.030  Ranser's Last Stand
+# A ruler who backed Ranser learns that his cause is lost.
+# The king made his last stand and fell.  His castle followed
+# soon after.  Now those who supported him must decide how
+# to make peace — or refuse to.
+# ---------------------------------------------------------------
+ranser.030 = {
+    type = character_event
+    title = ranser.030.t
+    desc  = ranser.030.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_melancholic
+    }
+
+    trigger = {
+        has_trait = ransers_cause
+    }
+
+    option = {
+        name = ranser.030.a   # "Ranser is dead. Make peace with Emeric while terms can be had."
+        remove_trait = ransers_cause
+        add_prestige = -300
+        add_stress   = 20
+    }
+
+    option = {
+        name = ranser.030.b   # "Ranser may be gone, but what he fought for was right."
+        add_prestige = -100
+        add_stress   = 30
+        add_martial_skill = 1   # Bitterness sharpens a blade
+    }
+}

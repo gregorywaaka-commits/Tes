@@ -1,0 +1,78 @@
+# =============================================================
+#  Ranser's War — Traits
+#  File: mod/common/traits/ranser_war_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  ransers_cause          — Supports King Ranser of Shornhelm's
+#                           claim against Wayrest.  Prestige from
+#                           the Breton pretender's cause, political risk.
+#  daggerfall_covenant_founder  — Joined High King Emeric's coalition
+#                                 that defeated Ranser and formalised
+#                                 the Daggerfall Covenant in 2E 566–567.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  When High King Emeric of Wayrest chose a Redguard bride (Maraya
+#  of Sentinel) over Ranser's daughter Rayelle, Ranser declared war.
+#  Rather than a simple Breton squabble, the conflict drew in Redguards
+#  and Orcs alongside Wayrest's Breton allies — and their victory
+#  became the seed of the Daggerfall Covenant, uniting three peoples
+#  under a single banner for the first time.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/ranser_war_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • daggerfall_covenant_founder
+#    • ransers_cause
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/ranser_war_events.txt
+#      → daggerfall_covenant_founder, ransers_cause
+# =============================================================
+
+# ---------------------------------------------------------------
+#  RANSER'S CAUSE
+#  A High Rock ruler who has declared for King Ranser of Shornhelm
+#  against Wayrest.  Ranser's cause is Breton pride against Emeric's
+#  "insult" of taking a Redguard bride — and, more practically,
+#  against Wayrest's growing commercial dominance over its neighbours.
+# ---------------------------------------------------------------
+ransers_cause = {
+    category = fame
+    is_good = no
+
+    martial      = 2
+    intrigue     = 1
+    monthly_prestige = 1
+
+    monthly_piety_gain_mult = -0.05   # The Temple of the Divines disapproves of fratricide
+
+    flag = ransers_cause
+}
+
+# ---------------------------------------------------------------
+#  DAGGERFALL COVENANT FOUNDER
+#  A ruler who joined Emeric's coalition in the Ranser's War and
+#  witnessed — or helped forge — the Daggerfall Covenant.  The Covenant
+#  united Bretons, Redguards, and Orcs under a common banner for the
+#  first time.  Those who were present at its founding carry a prestige
+#  no later member can fully claim.
+# ---------------------------------------------------------------
+daggerfall_covenant_founder = {
+    category = fame
+
+    diplomacy  = 3
+    intrigue   = 2
+    monthly_prestige = 2
+    monthly_piety_gain_mult = 0.05    # The Covenant invokes the Divines and Stendarr
+
+    flag = daggerfall_covenant_founder
+}

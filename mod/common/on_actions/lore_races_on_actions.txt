@@ -59,6 +59,9 @@
 #  • Direnni Hegemony — Altmer High Rock legacy events
 #  • Skaal / All-Maker — Solstheim sacred rites for Nord rulers
 #  • CHIM / Walking Ways — philosophical quest (very rare, learning+stress gated)
+#  • Ranser's War — High Rock conflict; Daggerfall Covenant formation (2E 566)
+#  • The Soulburst — Dragonfires extinguished by Varen's failed ritual (2E 577)
+#  • Three Banners War — Alliance War; three alliances contest the Ruby Throne (2E 582)
 #
 #  CROSS-REFERENCES:
 #  ─────────────────
@@ -75,13 +78,16 @@
 #    void_nights_events.txt, longhouse_emperors_events.txt,
 #    gray_host_events.txt, shezarrine_events.txt,
 #    direnni_events.txt, skaal_allmaker_events.txt,
-#    chim_events.txt.
+#    chim_events.txt, ranser_war_events.txt,
+#    soulburst_events.txt, alliance_war_events.txt.
 #  • Systems triggered here read global_vars set by their effects:
 #    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
 #    global_var:thrassian_plague_active, global_var:active_tower_count,
 #    global_var:dagoth_ur_awakened, global_var:numidium_awakened,
 #    global_var:dragon_break_active, global_var:void_nights_active,
-#    global_var:gray_host_invaded, global_var:necromancers_moon_active.
+#    global_var:gray_host_invaded, global_var:necromancers_moon_active,
+#    global_var:ransers_war_triggered, global_var:soulburst_happened,
+#    global_var:alliance_war_triggered.
 # =============================================================
 
 # ---------------------------------------------------------------
@@ -127,6 +133,12 @@
 #      → sotha_sil_student, vivec_blessed
 #    common/traits/worm_cult_traits.txt
 #      → worm_cult_adept
+#    common/traits/ranser_war_traits.txt
+#      → daggerfall_covenant_founder, ransers_cause
+#    common/traits/soulburst_traits.txt
+#      → dragonfires_guardian, soulburst_scarred
+#    common/traits/alliance_war_traits.txt
+#      → aldmeri_banner, covenant_banner, pact_banner
 #    common/traits/yokuda_traits.txt
 #      → ruptga_devoted, yokudan_heritage
 # =============================================================
@@ -212,6 +224,14 @@ on_yearly_pulse = {
         2   = skaal.004              # Hermaeus Mora's Temptation during Skaal ceremony (skaal_allmaker_events.txt)
         1   = chim.000               # Walking Ways introduction — learning>=18 + stress>=50 (chim_events.txt) [very rare]
         2   = chim.004               # CHIM bearer yearly flavor — chim_achieved rulers (chim_events.txt)
+        # --- NEW SYSTEMS: 2E Interregnum ---
+        3   = ranser.000             # Ranser's War begins — High Rock rulers at 2E 566 (ranser_war_events.txt)
+        3   = soulburst.000          # The Soulburst — Dragonfires extinguished at 2E 577 (soulburst_events.txt)
+        2   = soulburst.020          # Veil Tears — learned rulers feel Oblivion after Soulburst (soulburst_events.txt)
+        2   = soulburst.030          # Imperial City aftermath — ruler of c_imperial_city post-Soulburst (soulburst_events.txt)
+        3   = alliance_war.000       # Three Banners War begins — all rulers at 2E 582 (alliance_war_events.txt)
+        2   = alliance_war.020       # Ruby Throne contested — ruler of Imperial City during war (alliance_war_events.txt)
+        2   = alliance_war.030       # War exhaustion — banner-holders post 2E 592 (alliance_war_events.txt)
     }
 }
 

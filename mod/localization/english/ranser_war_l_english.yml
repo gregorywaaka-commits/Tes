@@ -1,0 +1,37 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  RANSER'S WAR
+ # =====================================================================
+
+ # --- Traits ---
+
+ ransers_cause: "Ranser's Cause"
+ ransers_cause_desc: "This ruler has declared for King Ranser of Shornhelm in his war against Wayrest. Ranser's grievance is real — Emeric of Wayrest chose a Redguard bride over Ranser's daughter, breaking a promised alliance. Whether that slight justifies fracturing High Rock is another question."
+
+ daggerfall_covenant_founder: "Covenant Founder"
+ daggerfall_covenant_founder_desc: "This ruler joined High King Emeric's coalition in Ranser's War and was present at the birth of the Daggerfall Covenant — the pact of Bretons, Redguards, and Orcs that arose from that victory. Founders carry a prestige no later member can claim: they were there when something new was made."
+
+ # --- Events ---
+
+ ranser.001.t: "The War for High Rock"
+ ranser.001.desc: "King Ranser of Shornhelm has declared war on Emeric of Wayrest. The cause, formally, is breach of a marriage agreement — Emeric chose Maraya of Sentinel as his queen instead of Ranser's daughter Rayelle. The insult is real. But the war it has started is larger than any insult.\n\nRedguard swords have arrived in Wayrest. There are reports of Orc axemen marching from Orsinium. Emeric is building something that looks less like a defence and more like an alliance.\n\nYou are a ruler in High Rock. The war is not yet at your gates — but it is coming. The question is which side of it you intend to stand on."
+ ranser.001.a: "Emeric is right. Ranser's tantrum will split High Rock for a generation."
+ ranser.001.b: "Ranser was wronged. Emeric insulted Breton tradition and expects no consequences."
+ ranser.001.c: "This is not my war. I will watch and profit from whatever is left."
+
+ ranser.010.t: "Emeric's Coalition Grows"
+ ranser.010.desc: "The reports from the front are consistent: Ranser is losing. His initial advance on Wayrest was repelled. The Redguard cavalry from Sentinel are devastating in open field. The Orcs of Orsinium are methodical and brutal. Emeric's force is something Tamriel hasn't seen in a long time — Bretons, Redguards, and Orcs fighting under a single command, without the usual infighting that defines multi-racial coalitions.\n\nRanser has retreated to Markwasten Moor. His support among the other Breton kingdoms is fracturing. You can still commit fully to Emeric's cause — or hold back and preserve your strength."
+ ranser.010.a: "Send our full strength to Emeric. End this quickly and claim credit for the ending."
+ ranser.010.b: "Offer symbolic support. We stand with Emeric, but preserve our own forces."
+
+ ranser.020.t: "The Daggerfall Covenant Is Born"
+ ranser.020.desc: "Ranser is dead. He made his last stand at Markwasten Moor and it broke against the coalition like a wave against a cliff. His castle fell within a month.\n\nBut Emeric did not simply celebrate. He summoned the surviving coalition leaders — Breton lords, Redguard officers, the Orc clan chiefs — and laid before them a document. Not a treaty of the moment. A charter. A covenant.\n\nThe Daggerfall Covenant. Three peoples. One banner. The stated goal: restore the Second Empire under the governance of a council that includes all three.\n\nYou were there when this happened. You are one of the people this document was built to include. The question now is what you intend to do with that position."
+ ranser.020.a: "Three peoples under one banner. This is something genuinely new in Tamriel."
+ ranser.020.b: "Alliances are tools. What matters is whether Emeric can hold it together long enough to use it."
+
+ ranser.030.t: "Ranser's Last Stand"
+ ranser.030.desc: "King Ranser is dead.\n\nYou backed his cause — whether from principle, from calculation, or from a genuine sense that Emeric had broken something that needed to hold. That no longer matters. What matters is that the king who sent you the original call to arms is dead, his castle is fallen, and his daughter Rayelle is in exile.\n\nEmeric's coalition is still in the field. The reports call it the Daggerfall Covenant now. Whatever it is, it won. And it is looking, with professional attention, at those who stood against it.\n\nYou have options. Not good ones, perhaps. But options."
+ ranser.030.a: "Ranser is dead. Make peace with Emeric while terms can still be negotiated."
+ ranser.030.b: "Ranser may be gone. But what he stood for was right. I will not pretend otherwise."
