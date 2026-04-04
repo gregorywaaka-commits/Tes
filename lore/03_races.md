@@ -43,7 +43,7 @@ All races are capable of interbreeding to varying degrees. Bretons are a notable
 
 - **Homeland:** Morrowind
 - **Physical traits:** Ash-grey skin; red or orange eyes; naturally fire-resistant
-- **Origin:** Once the **Chimer** — golden-skinned Aldmer who followed Boethiah's teachings and settled Morrowind. Transformed into the Dunmer (grey skin, red eyes) by **Azura's curse** after the Tribunal betrayed Nerevar at the Battle of Red Mountain. `[CANON — IN-GAME BOOK: The True Nature of Orcs; UESP]` ⚠️ Whether Nerevar was murdered or died in battle is `[CONTESTED]`
+- **Origin:** Once the **Chimer** — golden-skinned Aldmer who followed Boethiah's teachings and settled Morrowind. Transformed into the Dunmer (grey skin, red eyes) by **Azura's curse** after the Tribunal betrayed Nerevar at the Battle of Red Mountain. `[CANON — IN-GAME BOOKS: The Five Songs of King Wulfharth; Nerevar Moon and Star; UESP: Lore:Chimer]` ⚠️ Previous entry cited "The True Nature of Orcs" — that book describes Trinimac/Boethiah/Orsimer and has nothing to do with the Chimer→Dunmer transformation; the citation was mistakenly copied from the Orsimer entry. ⚠️ Whether Nerevar was murdered or died in battle is `[CONTESTED]`
 - **Culture:** Organized into **Great Houses** (see `08_great_houses.md`). Deep ancestor worship; complex clan politics. Harsh pragmatism shaped by their volcanic homeland.
 - **Religion:** Three tiers: the **Tribunal** (Vivec, Almalexia, Sotha Sil) as living gods; the **Good Daedra** (Azura, Boethiah, Mephala); and the **Anticipations** (Tribunal are reincarnations of the Good Daedra, per Temple doctrine `[CONTESTED — UESP]`).
 
