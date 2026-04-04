@@ -65,6 +65,11 @@
 #    • telvanni_master_wizard
 #    • tower_stone_keeper
 #    • tower_stone_lost
+#    • veloth_devotee
+#    • veloth_pilgrim
+#    • wild_hunt_called
+#    • wolfsbane_alchemist
+#    • silver_hand_hunter
 #    • world_eater_survived
 #    • yneslea_scholar
 #
@@ -948,4 +953,41 @@ wolfsbane_alchemist = {
     health    = 0.25
     monthly_piety_gain_mult = 0.05
     flag = wolfsbane_alchemist
+}
+
+# =============================================================
+#  Wild Hunt Traits
+#  [LORE SOURCE: The Improved Emperor's Guide to Tamriel;
+#   ESO — The Wild Hunt quest line; Varieties of Faith
+#   — Bosmer beliefs on Y'ffre and the Green Pact]
+# =============================================================
+
+# ---------------------------------------------------------------
+#  WILD HUNT CALLED
+#  A Bosmer ruler who has undergone the Green-Pact ritual that
+#  prepares them to Call the Wild Hunt.  Y'ffre's most extreme
+#  gift — and most extreme demand.  The hunter who calls the
+#  Hunt runs at its head.  The Hunt does not stop until it
+#  chooses to.  Those who survive rarely return wholly to
+#  themselves.
+#
+#  CANON: The Wild Hunt is described in the lore as the most
+#  destructive act the Bosmer can perform — a total dissolution
+#  of Bosmeri individuality into a raging beast-swarm that can
+#  destroy armies.  It was last formally called during the
+#  Camoran Usurper's war (3E 249-267).  The Green Pact demands
+#  this gift be used only in direst need.
+#
+#  CROSS-REFERENCE:
+#    Used by: common/decisions/interregnum_decisions.txt
+#             events/wild_hunt_events.txt
+#             events/hist_saxhleel_events.txt
+# ---------------------------------------------------------------
+wild_hunt_called = {
+    category = lifestyle
+    martial                    = 3
+    prowess                    = 4
+    monthly_prestige_gain_mult = 0.10
+    stress_gain_mult           = 0.20   # The beast lingers
+    flag = wild_hunt_called
 }

@@ -1895,3 +1895,112 @@ reach_raid_damage_modifier = {
     monthly_prestige_gain_mult = -0.10
     monthly_income             = -0.05
 }
+
+# =============================================================
+#  Daedric Artifacts — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ARTIFACT HEALTH DRAIN
+#  A malevolent Daedric artifact is slowly consuming its bearer.
+#  The Daedric power sustains itself at the wielder's expense.
+#  Duration: 365 days (renewed yearly while artifact is held).
+# ---------------------------------------------------------------
+artifact_health_drain = {
+    health           = -0.75
+    stress_gain_mult = 0.25
+}
+
+# ---------------------------------------------------------------
+#  DAEDRIC ARTIFACT NEW BEARER
+#  The exhilaration of a freshly-bonded Daedric artifact.
+#  The Prince's attention is new; the bond is not yet corrupted.
+#  Duration: 365 days.
+# ---------------------------------------------------------------
+daedric_artifact_new_bearer = {
+    intrigue                   = 2
+    monthly_prestige_gain_mult = 0.10
+    health                     = 0.25
+}
+
+# =============================================================
+#  Dagoth Ur — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DAGOTH UR WATCHING
+#  An ambitious ruler who has learned of Dagoth Ur's awakening
+#  watches carefully for strategic advantage.  Dagoth Ur watches
+#  back.  The awareness carries a faint psychic weight.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+dagoth_ur_watching_modifier = {
+    intrigue         = 2
+    learning         = 1
+    stress_gain_mult = 0.10
+}
+
+# =============================================================
+#  Dragon Break — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DRAGON BREAK RESILIENCE
+#  A ruler who has forcibly rejected the Dragon Break's
+#  temporal paradox and grounded themselves in a single
+#  chosen timeline.  Clarity hardens; confusion retreats.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+dragon_break_resilience = {
+    stress_gain_mult = -0.20
+    learning         = 2
+    diplomacy        = 1
+}
+
+# =============================================================
+#  Gray Host — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  GRAY HOST PREPARED DEFENSES
+#  The ruler has fortified their borders against the Gray Host's
+#  advance.  Walls are manned; wards are renewed.  The Host
+#  will find no easy passage here.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+gray_host_prepared_defenses = {
+    monthly_county_control_change_add = 0.15
+    levy_size                         = 0.10
+    diplomacy                         = 1
+}
+
+# ---------------------------------------------------------------
+#  GRAY HOST RESISTANCE LEADER
+#  A ruler who personally drove off the Gray Host's emissary.
+#  Their reputation as someone who will not yield to vampire
+#  lords spreads across the province.
+#  Duration: 3650 days (10 years).
+# ---------------------------------------------------------------
+gray_host_resistance_leader = {
+    monthly_prestige_gain_mult = 0.15
+    dread_gain_mult            = 0.20
+    martial                    = 2
+}
+
+# =============================================================
+#  Worm Cult — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  WORM CULT MARKED FOR DEATH
+#  The King of Worms does not forget apostasy.  Mannimarco has
+#  placed a death-mark on this ruler; his cult agents will
+#  seek them out.  The ruler's health subtly deteriorates as
+#  necromantic hexes accumulate.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+worm_cult_marked_for_death = {
+    health           = -0.50
+    intrigue         = -1
+    stress_gain_mult = 0.15
+}

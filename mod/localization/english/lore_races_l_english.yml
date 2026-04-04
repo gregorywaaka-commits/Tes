@@ -1,5 +1,4 @@
-﻿ # Encoding: UTF-8-BOM
-l_english:
+﻿l_english:
 
  # =====================================================================
  #  ECHMER  (Bat-Mer of Yneslea / Uutak Mythos)
@@ -434,3 +433,51 @@ l_english:
 
  nibenay_council_edict_modifier: "Nibenay Council Edict"
  nibenay_council_edict_modifier_desc: "A formal edict through the Nibenay mercantile councils has established authority over the eastern trade networks. Income grows steadily from the road tolls."
+
+ # =====================================================================
+ #  Wild Hunt Traits
+ # =====================================================================
+
+ wild_hunt_called: "Wild Hunt Called"
+ wild_hunt_called_desc: "This Bosmer ruler has undergone Y'ffre's most extreme gift — the Green-Pact ritual that allows them to Call the Wild Hunt. The Hunt does not stop until it chooses to. Those who survive rarely return wholly to themselves."
+
+ # =====================================================================
+ #  Daedric Artifacts — Modifiers
+ # =====================================================================
+
+ artifact_health_drain: "Artifact Consumption"
+ artifact_health_drain_desc: "A malevolent Daedric artifact is slowly consuming its bearer. The Daedric power sustains itself at the wielder's expense."
+
+ daedric_artifact_new_bearer: "New Artifact Bond"
+ daedric_artifact_new_bearer_desc: "The exhilaration of a freshly-bonded Daedric artifact. The Prince's attention is new; the bond is not yet corrupted."
+
+ # =====================================================================
+ #  Dagoth Ur — Modifiers
+ # =====================================================================
+
+ dagoth_ur_watching_modifier: "Dagoth Ur Is Watching"
+ dagoth_ur_watching_modifier_desc: "An ambitious ruler who monitors Dagoth Ur's awakening for strategic advantage. Dagoth Ur watches back. The awareness carries a faint psychic weight."
+
+ # =====================================================================
+ #  Dragon Break — Modifiers
+ # =====================================================================
+
+ dragon_break_resilience: "Dragon Break Resilience"
+ dragon_break_resilience_desc: "A ruler who has forcibly rejected the Dragon Break's temporal paradox and grounded themselves in a single chosen timeline. Clarity hardens; confusion retreats."
+
+ # =====================================================================
+ #  Gray Host — Modifiers
+ # =====================================================================
+
+ gray_host_prepared_defenses: "Gray Host Prepared Defenses"
+ gray_host_prepared_defenses_desc: "This ruler has fortified their borders against the Gray Host's advance. Walls are manned; wards are renewed. The Host will find no easy passage here."
+
+ gray_host_resistance_leader: "Gray Host Resistance Leader"
+ gray_host_resistance_leader_desc: "A ruler who personally drove off the Gray Host's emissary. Their reputation as someone who will not yield to vampire lords spreads across the province."
+
+ # =====================================================================
+ #  Worm Cult — Modifiers
+ # =====================================================================
+
+ worm_cult_marked_for_death: "Marked by Mannimarco"
+ worm_cult_marked_for_death_desc: "The King of Worms does not forget apostasy. Mannimarco has placed a death-mark on this ruler; his cult agents will seek them out."
