@@ -141,7 +141,35 @@
 
 ---
 
-### ❌ Lamae Beolfag described as a "Nedic monk"
+### ❌ Redguard arrival in Hammerfell dated to c. 1E 1033
+> **Status: FIXED** in `lore/01_timeline.md`
+
+| Field | Detail |
+|---|---|
+| **Wrong value** | Redguards/Ra Gada arrive in Hammerfell = c. 1E 1033 |
+| **Correct value** | Ra Gada (Redguard warrior vanguard) arrive in Hammerfell = **c. 1E 808** |
+| **Source** | UESP Lore:Ra Gada, Lore:Hammerfell `[CANON — UESP]` |
+| **Why the error occurred** | 1E 1033 has no known canonical significance for this event; likely a placeholder that was never corrected |
+| **Key context** | Yokuda sank 1E 792; Ra Gada arrived ~16 years later in 1E 808 at Hegathe. 1E 808 is the standard UESP date for the initial Redguard landing. |
+| **Files previously affected** | `lore/01_timeline.md` |
+
+---
+
+### ❌ Khajiit moon names reversed (Masser/Jone, Secunda/Jode)
+> **Status: FIXED** in `lore/03_races.md`
+
+| Field | Detail |
+|---|---|
+| **Wrong value** | "Masser/Jone and Secunda/Jode" |
+| **Correct value** | **Masser = Jode** (larger, reddish moon); **Secunda = Jone** (smaller, pale moon) |
+| **Source** | UESP Lore:Moons; Lore:Khajiit `[CANON — UESP]` |
+| **Why the error occurred** | Jode and Jone are easily confused; the names were entered in the wrong order |
+| **Why it matters** | Khajiit birth-form is determined by the phases of Jode and Jone; reversing the names would produce incorrect event text about lunar influence on Khajiit characters |
+| **Files previously affected** | `lore/03_races.md` (lore/11_cosmology.md had the correct assignment) |
+
+---
+
+
 > **Status: FIXED** in `lore/07_vampires_lycanthropy.md`
 
 | Field | Detail |

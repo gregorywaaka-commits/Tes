@@ -128,7 +128,7 @@ All races are capable of interbreeding to varying degrees. Bretons are a notable
 > **Source:** In-game book: Words of Clan Mother Ahnissi
 
 - **Homeland:** Elsweyr
-- **Physical traits:** Feline; **17+ morphological forms** determined by the phases of Tamriel's two moons (**Masser/Jone** and **Secunda/Jode**) at the moment of birth. Forms range from the small, nearly-human **Suthay-raht** to the massive quadrupedal **Senche-Raht** ("battle-cats"). `[CANON — IN-GAME BOOK: Words of Clan Mother Ahnissi]`
+- **Physical traits:** Feline; **17+ morphological forms** determined by the phases of Tamriel's two moons (**Masser/Jode** and **Secunda/Jone**) at the moment of birth. Forms range from the small, nearly-human **Suthay-raht** to the massive quadrupedal **Senche-Raht** ("battle-cats"). `[CANON — IN-GAME BOOK: Words of Clan Mother Ahnissi]` ⚠️ Masser = **Jode** (larger, red moon); Secunda = **Jone** (smaller, pale moon) — a previous entry had these names reversed.
 - **Culture:** Nomadic in Anequina (north); more urban and mercantile in Pellitine (south). Follow the **Two Moons Path** religious tradition. The **Mane** is their spiritual leader — believed to be a third moon made flesh; only one living Mane at a time. `[CANON — UESP]`
 - **Moon Sugar (Skooma):** Moon sugar is a sacred Khajiit product; skooma is a refined and addictive derivative that is illegal in most of Tamriel. `[CANON — UESP]`
 
