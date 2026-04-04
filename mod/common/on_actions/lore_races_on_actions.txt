@@ -311,6 +311,21 @@ on_yearly_pulse = {
         3   = ordinator.000          # Ordinator captain arrives — Dunmer rulers post 2E 400 (ordinator_events.txt)
         2   = ordinator.010          # Matter of heresy — ordinator_devoted Dunmer rulers (ordinator_events.txt)
         2   = ordinator.020          # Justiciar mandate offered — experienced Ordinator devout with high piety (ordinator_events.txt)
+        # --- ELSWEYR CONFEDERACY — RIDDLE'THAR (Khajiit, 2E 311+) ---
+        3   = elsweyr.000            # Mane's Edict — Khajiit rulers post 2E 311 (elsweyr_confederacy_events.txt)
+        3   = elsweyr.010            # Anequina Remembers — martial Khajiit rulers (elsweyr_confederacy_events.txt)
+        2   = elsweyr.020            # Moon Sugar Tithe — Khajiit stewards (elsweyr_confederacy_events.txt)
+        1   = elsweyr.030            # Riddle'Thar Epiphany — learned Khajiit rulers [rare] (elsweyr_confederacy_events.txt)
+        # --- CAMORAN DYNASTY (Bosmer, ongoing) ---
+        3   = camoran.000            # Blood of the Ancient Wood — diplomatic Bosmer rulers (camoran_dynasty_events.txt)
+        3   = camoran.010            # The Green Conclave — Bosmer rulers with realm_size >= 3 (camoran_dynasty_events.txt)
+        2   = camoran.020            # A Pretender in the Forest — camoran_bloodline rulers (camoran_dynasty_events.txt)
+        2   = camoran.030            # Way-Shrine Vigil — pious Bosmer rulers (camoran_dynasty_events.txt)
+        # --- HIGH ROCK PETTY KINGS (Breton, 2E 440–566) ---
+        3   = high_rock.000          # Conclave of Petty Kings — Breton rulers 2E 440–566 (high_rock_petty_kings_events.txt)
+        3   = high_rock.010          # The Reach Demands Its Toll — Breton rulers (high_rock_petty_kings_events.txt)
+        2   = high_rock.020          # Wayrest Market Influence — steward Breton rulers (high_rock_petty_kings_events.txt)
+        2   = high_rock.030          # Bretons and the Arcane — learned Breton rulers (high_rock_petty_kings_events.txt)
     }
 }
 

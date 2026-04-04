@@ -1,0 +1,32 @@
+# =============================================================
+#  High Rock Petty Kings Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  HIGH ROCK PEER
+#  A Breton ruler who has attended the Conclave of Petty Kings
+#  and earned a formal place among High Rock's power brokers.
+#  Their word carries weight at subsequent conclaves.
+# ---------------------------------------------------------------
+high_rock_peer = {
+    flag = high_rock_peer
+
+    diplomacy  = 1
+    prestige_mult = 0.04
+}
+
+# ---------------------------------------------------------------
+#  BRETON WARLORD
+#  A Breton ruler who has militarised in response to Reachman
+#  border raids.  Their soldiers are battle-hardened; their
+#  treasury is somewhat lighter.
+# ---------------------------------------------------------------
+breton_warlord = {
+    flag = breton_warlord
+
+    martial              = 2
+    monthly_income       = -0.03
+    monthly_prestige_gain_mult = 0.04
+
+    opposites = { }
+}

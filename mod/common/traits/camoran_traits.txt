@@ -1,0 +1,37 @@
+# =============================================================
+#  Camoran Dynasty Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CAMORAN BLOODLINE
+#  A Bosmer ruler who can credibly trace their lineage to the
+#  ancient Camoran Dynasty — founded at the start of the First
+#  Era.  Their claim on Valenwood's canton-chiefs is strong;
+#  their enemies are jealous.
+# ---------------------------------------------------------------
+camoran_bloodline = {
+    flag = camoran_bloodline
+
+    diplomacy  = 1
+    prestige_mult = 0.05
+
+    opposites = { forest_hermit }
+}
+
+# ---------------------------------------------------------------
+#  FOREST HERMIT
+#  A Bosmer ruler who has renounced dynastic politics and
+#  found their authority through direct communion with the
+#  forest gods rather than blood-right.  Respected by the
+#  deep-wood clans; alien to Camoran courtiers.
+# ---------------------------------------------------------------
+forest_hermit = {
+    flag = forest_hermit
+
+    monthly_piety_gain_mult = 0.20
+    diplomacy               = -1
+    martial                 = -1
+    learning                = 2
+
+    opposites = { camoran_bloodline }
+}

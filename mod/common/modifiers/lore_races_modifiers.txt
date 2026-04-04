@@ -1805,3 +1805,93 @@ nibenay_council_edict_modifier = {
     monthly_income           = 0.05
     monthly_prestige_gain_mult = 0.03
 }
+
+# =============================================================
+#  Elsweyr Confederacy — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MOON SUGAR TITHE
+#  A Khajiit ruler who has paid the Temple of Two Moons
+#  its rightful share of the moon sugar harvest.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+moon_sugar_tithe_modifier = {
+    monthly_piety_gain_mult  = 0.20
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  ELSWEYR ANEQUINA MILITIA
+#  Northern Khajiiti warrior-clans answer the ruler's call.
+#  The old desert-fighting tradition is revived.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+elsweyr_anequina_militia_modifier = {
+    martial                  = 2
+    monthly_prestige_gain_mult = 0.05
+    monthly_income           = -0.03
+}
+
+# =============================================================
+#  Camoran Dynasty — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CAMORAN DYNASTY PRESTIGE
+#  The ruler's Camoran bloodline has been publicly reaffirmed.
+#  Their claim on the forest cantons is acknowledged.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+camoran_dynasty_prestige_modifier = {
+    monthly_prestige_gain_mult = 0.10
+    diplomacy                  = 1
+}
+
+# ---------------------------------------------------------------
+#  GREEN CONCLAVE ACCORD
+#  A successful Green Conclave has brought the canton-chiefs
+#  temporarily in line.  Internal strife is reduced.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+green_conclave_accord_modifier = {
+    diplomacy                  = 2
+    monthly_prestige_gain_mult = 0.05
+}
+
+# =============================================================
+#  High Rock Petty Kings — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BRETON CONCLAVE ACCORD
+#  The ruler emerged from the Conclave of Petty Kings with
+#  formal recognition from their neighbours.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+breton_conclave_accord_modifier = {
+    diplomacy                  = 2
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  WAYREST MARKET BOND
+#  Formal trade ties with the Wayrest merchant leagues.
+#  Income rises; influence over coastal trade routes grows.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+wayrest_market_bond_modifier = {
+    monthly_income             = 0.10
+    stewardship                = 1
+}
+
+# ---------------------------------------------------------------
+#  REACH RAID DAMAGE
+#  The ruler paid tribute to Reachman raiders this season.
+#  Prestige suffers; the border is quiet for now.
+#  Duration: 365 days (1 year).
+# ---------------------------------------------------------------
+reach_raid_damage_modifier = {
+    monthly_prestige_gain_mult = -0.10
+    monthly_income             = -0.05
+}
