@@ -42,3 +42,7 @@
 
  companions_beast_blood: "Companions Beast Blood"
  companions_beast_blood_desc: "This Companion carries Hircine's beast blood — the werewolf transformation passed through Jorrvaskr's inner circle. The beast is a tool and a burden in equal measure. Most Companions die without knowing it exists. Those who do are bound to silence."
+
+ # ---- Decisions ----
+
+ join_companions_of_whiterun_desc: "Seek membership in the Companions of Whiterun — the warrior-brotherhood of Jorrvaskr, founded in the tradition of Ysgramor's 500."

@@ -36,8 +36,4 @@
  warlord_claim_modifier: "Imperial Claim (Interregnum)"
  warlord_claim_modifier_desc: "The declaration has been made. Every court in Tamriel has heard it. The prestige flows while the claim is fresh and the armies are marching."
 
- # ---- Decisions ----
-
- found_orsinium_desc: "Commission the construction of Orsinium in the Wrothgarian Mountains — a homeland for the Orcish people where they need not be merely tolerated."
- join_companions_of_whiterun_desc: "Seek membership in the Companions of Whiterun — the warrior-brotherhood of Jorrvaskr, founded in the tradition of Ysgramor's 500."
- call_the_wild_hunt_desc: "Call the Wild Hunt. Every Bosmer in your host transforms. What returns is not individual people but something older and far more terrible. This will cost piety. The aftermath will be permanent."
+ 

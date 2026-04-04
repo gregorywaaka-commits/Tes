@@ -40,3 +40,7 @@
 
  trinimac_devoted: "Devoted to Trinimac"
  trinimac_devoted_desc: "This Orcish ruler has rejected Malacath — the Daedric Prince of the Spurned, patron of the Orcs since the transformation — and returned to the worship of Trinimac, the uncorrupted Aedric warrior-god who Malacath was before Boethiah's act. Other Orcs think them naive or dangerously deluded. They disagree. They believe the transformation can be undone."
+
+ # ---- Decisions ----
+
+ found_orsinium_desc: "Commission the construction of Orsinium in the Wrothgarian Mountains — a homeland for the Orcish people where they need not be merely tolerated."

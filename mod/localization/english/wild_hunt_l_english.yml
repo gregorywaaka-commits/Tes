@@ -28,3 +28,7 @@
 
  wild_hunt_aftermath_modifier: "Wild Hunt Aftermath"
  wild_hunt_aftermath_modifier_desc: "Something came back from the Hunt that was not there before, and something stayed in the forest that used to belong to this person. The beast logic lingers. The forest is not entirely outside anymore."
+
+ # ---- Decisions ----
+
+ call_the_wild_hunt_desc: "Call the Wild Hunt. Every Bosmer in your host transforms. What returns is not individual people but something older and far more terrible. This will cost piety. The aftermath will be permanent."
