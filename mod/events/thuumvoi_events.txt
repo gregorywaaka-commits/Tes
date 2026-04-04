@@ -715,10 +715,8 @@ dovahkiin.post_001 = {
 
 # ================================================================
 #  DRAGONBORN SOUL STACKING EVENTS
-#  (continuing the thuumvoi namespace — already declared above)
+#  (continuing the thuumvoi namespace — declared at the top of this file)
 # ================================================================
-
-# namespace = thuumvoi  ← already declared at the top of this file
 
 # ----------------------------------------------------------------
 # thuumvoi.010  — The Fifth Soul
