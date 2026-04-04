@@ -68,6 +68,10 @@
 #  • Colovian/Nibenay Rivalry — Cyrodiil's west/east fracture at Interregnum start (2E 440)
 #  • Dragonguard Remnant — surviving oath-holders seek new mandate (2E 430+)
 #  • Indoril Council — House Indoril asserts ALMSIVI temporal supremacy (2E 440+)
+#  • Pyandonean War Expansion — Maormer fleet/tempest on Summerset coasts (ongoing)
+#  • College of Sapiarchs — Altmer arcane institution, 49 masters (ongoing)
+#  • Dunmer Ancestor Worship — House spirits, tomb rites, ancestor callers (ongoing)
+#  • Thieves Guild — shadow governance of trade, fence network, Nocturnal link (ongoing)
 #
 #  CROSS-REFERENCES:
 #  ─────────────────
@@ -90,7 +94,9 @@
 #    guild_charter_events.txt, colovian_nibenay_events.txt,
 #    dragonguard_remnant_events.txt, indoril_council_events.txt,
 #    succession_war_events.txt, ebonheart_pact_events.txt,
-#    aldmeri_dominion_events.txt, ordinator_events.txt.
+#    aldmeri_dominion_events.txt, ordinator_events.txt,
+#    sapiarch_events.txt, ancestor_worship_events.txt,
+#    thieves_guild_events.txt.
 #  • Systems triggered here read global_vars set by their effects:
 #    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
 #    global_var:thrassian_plague_active, global_var:active_tower_count,
@@ -103,7 +109,6 @@
 #    global_var:skyrim_succession_war_triggered,
 #    global_var:ebonheart_pact_formed,
 #    global_var:aldmeri_dominion_founded.
-# =============================================================
 
 # ---------------------------------------------------------------
 #  YEARLY RANDOM PULSE
@@ -326,6 +331,25 @@ on_yearly_pulse = {
         3   = high_rock.010          # The Reach Demands Its Toll — Breton rulers (high_rock_petty_kings_events.txt)
         2   = high_rock.020          # Wayrest Market Influence — steward Breton rulers (high_rock_petty_kings_events.txt)
         2   = high_rock.030          # Bretons and the Arcane — learned Breton rulers (high_rock_petty_kings_events.txt)
+        # --- PYANDONEAN WAR EXPANSION (Altmer/Maormer, ongoing) ---
+        2   = maormer.020            # Pyandonean fleet on the horizon — Altmer/Summerset coastal rulers (maormer_events.txt)
+        2   = maormer.023            # Pyandonean Tempest — sea witch storm ritual against Summerset (maormer_events.txt)
+        # --- COLLEGE OF SAPIARCHS (Altmer, ongoing) ---
+        3   = sapiarch.000           # The College's Letter — invitation to Sapiarchs for learned Altmer (sapiarch_events.txt)
+        2   = sapiarch.010           # The Forty-Nine Masters — advancement to full Sapiarch (sapiarch_events.txt)
+        2   = sapiarch.020           # The Psijic Question — tension with Psijic Order (sapiarch_events.txt)
+        1   = sapiarch.030           # Crystal Tower Consultation — apex event for metamagic_scholars (sapiarch_events.txt)
+        # --- DUNMER ANCESTOR WORSHIP (Dunmer, ongoing) ---
+        3   = ancestor.000           # The Ancestor's Voice — pious Dunmer ruler contacted by House spirit (ancestor_worship_events.txt)
+        2   = ancestor.010           # The Calling — ancestor_caller ruler given a task (ancestor_worship_events.txt)
+        2   = ancestor.020           # Cursing a Rival — ancestor_caller uses spirits as weapons (ancestor_worship_events.txt)
+        1   = ancestor.030           # Ancestral Tomb Pilgrimage — becomes revered_ancestor (ancestor_worship_events.txt)
+        # --- THIEVES GUILD (any ruler, intrigue-gated) ---
+        2   = thieves_guild.000      # The Contact — high-intrigue ruler approached by Guild agent (thieves_guild_events.txt)
+        2   = thieves_guild.010      # The Guild Calls In a Favour — shadow_guild_contact rulers (thieves_guild_events.txt)
+        2   = thieves_guild.020      # The Fence Network — upgrade to fence_master (thieves_guild_events.txt)
+        2   = thieves_guild.030      # The Guard Finds Out — heat from law enforcement (thieves_guild_events.txt)
+        1   = thieves_guild.040      # The Nightingale Question — fence_master invited toward Nocturnal (thieves_guild_events.txt)
     }
 }
 

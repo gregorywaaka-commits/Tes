@@ -1,0 +1,42 @@
+﻿l_english:
+
+ # =====================================================================
+ #  COLLEGE OF SAPIARCHS — Altmer Arcane Institution
+ # =====================================================================
+
+ # --- Traits ---
+
+ sapiarch_initiate: "Sapiarch Initiate"
+ sapiarch_initiate_desc: "This character has been formally admitted to study under the College of Sapiarchs — the supreme arcane institution of the Altmer. The College governs all magical practice in Summerset and admits only those whose intellectual and magical aptitude meet its exacting standards. The initiation alone sets this person above the vast majority of magical practitioners in Tamriel."
+
+ metamagic_scholar: "Sapiarch Master"
+ metamagic_scholar_desc: "This character holds a chair among the forty-nine recognised masters of the College of Sapiarchs — each an authority in their specific school of magical discipline. The Sapiarchs collectively govern Altmeri arcane law and have done so since before the Merethic Era ended. To hold a chair is to hold a piece of that authority. The Crystal Tower has acknowledged this practitioner's mastery."
+
+ # --- Events ---
+
+ sapiarch.000.t: "The College Has Been Watching"
+ sapiarch.000.desc: "The letter arrived under the seal of the College of Sapiarchs — the forty-nine masters of Altmeri magical discipline — and it is not a form letter. Someone in the College has been following the reports of your magical studies with genuine attention. The letter outlines what they found noteworthy, where they believe your aptitude lies, and then, in the final paragraph, extends a formal invitation to petition for admission.\n\nAdmission to the College of Sapiarchs is the highest academic honour in Summerset. It is not extended to non-Altmer as a rule, though there are exceptions that have become uncomfortable precedents. The letter notes that the College's curriculum will require significant time and intellectual commitment. It does not mention that it will also require significant political navigation — but the letter was written by Sapiarchs, who understand that everything requires political navigation."
+ sapiarch.000.a: "This is the greatest academic honour in Summerset. Accept."
+ sapiarch.000.b: "My interests run in different directions. Politely decline."
+
+ sapiarch.001.t: "The College's Examination"
+ sapiarch.001.desc: "The examination chamber in the College of Sapiarchs is designed to be intimidating. This is not accidental — the Sapiarchs believe that a practitioner who cannot perform under pressure is not a practitioner worth having. The examination covers theoretical frameworks, practical demonstration, and a final interview with three senior Sapiarchs who ask the kind of questions that have no clearly correct answers.\n\nYour performance will determine whether the College sees what the invitation letter suggested it might see."
+ sapiarch.001.a: "I have prepared for this my entire life."
+ sapiarch.001.b: "I demonstrate what I know. It is sufficient."
+ sapiarch.001.c: "The examination was humbling. I will study more before trying again."
+
+ sapiarch.010.t: "The Forty-Nine Chairs"
+ sapiarch.010.desc: "The message from the College of Sapiarchs is unusually direct for an institution that normally communicates in layered formal prose: one of the forty-nine chairs is vacant. The previous holder retired into academic seclusion. The senior Sapiarchs have reviewed the current initiates and settled on you as the appropriate successor.\n\nA chair in the College means a formal discipline — one of the recognised schools of magical theory and practice — and a seat on the body that governs all magical law in Summerset. It means authority, obligation, and an extremely specific kind of political exposure. The chair is offered with the expectation that it will be accepted."
+ sapiarch.010.a: "I accept the chair. This school's doctrine will bear my mark."
+ sapiarch.010.b: "Mastership means political obligation. I prefer to remain a scholar."
+
+ sapiarch.020.t: "The Psijic Question"
+ sapiarch.020.desc: "The College of Sapiarchs has a long-standing and deeply uncomfortable relationship with the Psijic Order. The Sapiarchs govern Altmeri magical law; the Psijics operate outside it, pursuing philosophical frameworks that the College regards as deviations from proper arcane study at best and actively dangerous at worst. The Psijics, for their part, regard the Sapiarchs as rigidly conventional practitioners who have confused institutional authority with actual knowledge.\n\nThe senior Sapiarchs have called for a formal declaration of position from all initiates. You are expected to state where you stand. The statement will be recorded."
+ sapiarch.020.a: "The Psijics pursue dangerous deviations from proper magical study."
+ sapiarch.020.b: "The Psijics have knowledge we do not. Caution, not condemnation."
+ sapiarch.020.c: "This political fight is beneath serious scholarship. I abstain."
+
+ sapiarch.030.t: "The Crystal Tower Opens"
+ sapiarch.030.desc: "The invitation to the Crystal Tower arrives through channels that make clear this is not a social call. The senior Sapiarchs have been consulting on a question they will not put in writing — something to do with the Tower's deeper archives and a pattern they have observed in the records of magical anomalies going back three hundred years. They want your perspective.\n\nThe Crystal Tower is the apex of Altmeri arcane knowledge. Its upper archives contain documents that the College has been deliberately vague about for decades. Being invited to consult there means the Sapiarchs trust your judgment, or they have run out of other options, or both. Either way, you are going to learn something that cannot be unlearned."
+ sapiarch.030.a: "Whatever knowledge the Tower holds, I will pursue it."
+ sapiarch.030.b: "The Tower reveals what it chooses. I will approach with humility."

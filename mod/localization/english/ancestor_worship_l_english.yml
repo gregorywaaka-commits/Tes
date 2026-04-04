@@ -1,0 +1,40 @@
+﻿l_english:
+
+ # =====================================================================
+ #  DUNMER ANCESTOR WORSHIP
+ # =====================================================================
+
+ # --- Traits ---
+
+ ancestor_caller: "Ancestor Caller"
+ ancestor_caller_desc: "This character has established a formal communion with the ancestral spirits of their House — one who tends the tombs, maintains the warding rites, and serves as a living conduit through which the dead can speak to the living. It is a responsibility the House's senior members consider sacred and take extremely seriously."
+
+ revered_ancestor: "Revered Ancestor"
+ revered_ancestor_desc: "This character has been formally elevated in the House tomb-rites as a living embodiment of the House's ancestral legacy — treated with the reverence normally reserved for the honoured dead. They are, effectively, carrying the weight of their entire lineage's reputation in every public interaction."
+
+ # --- Events ---
+
+ ancestor.000.t: "The Tomb Has Been Speaking"
+ ancestor.000.desc: "The servants reported it first: sounds in the ancestral tomb that no living person could account for. Cold spots at midnight in rooms with sealed windows. The smell of ash-candles when no candles are lit. It has been happening for three nights now, and the household staff has gone from nervous to genuinely frightened.\n\nThe Dunmer tradition is clear about what this means: an ancestor wishes to communicate. The question is whether you are willing to go to the tomb at midnight and listen. The spirits of the House's dead are not always comfortable presences. They have things on their minds that the living left unresolved, and they have had a very long time to think about it."
+ ancestor.000.a: "I will go to the tomb at midnight and listen."
+ ancestor.000.b: "The dead should rest. Seal the tomb more securely."
+
+ ancestor.001.t: "The Dream at Midnight"
+ ancestor.001.desc: "You sat in the tomb until the candles burned low, and then you dreamed — although you were not asleep. The ancestor chose a form that your mind could hold: a face you half-recognised from the ancestral portraits, in armour that hasn't been worn since before your grandfather's time.\n\nThey spoke for a long time. You understood most of it. The core of it was an offer, and a weight: the House's dead would speak to you, guide you, warn you, when they had something to say. In return, you would listen. You would tend the tombs. You would be, in a formal and binding sense, the House's connection to its own history.\n\nIt is not a small thing to say yes to."
+ ancestor.001.a: "I accept this responsibility. The House's dead will speak through me."
+ ancestor.001.b: "The dream terrified me. I am not ready to carry this."
+
+ ancestor.010.t: "The Unfinished Matter"
+ ancestor.010.desc: "The ancestor came clearly this time — not in a dream, but in the waking moments before dawn, when the boundary is thinnest. They have a request. Something they left unresolved in life that they need addressed: a debt unpaid, a wrong unacknowledged, a rival house that owes something the dead cannot collect themselves.\n\nThe specifics vary by the ancestor and what they could not finish. The request itself is clear: you are their hands in the living world, and they need those hands to do something. The Dunmer tradition is equally clear: to be an ancestor caller is to accept these requests. The question is whether you intend to follow through."
+ ancestor.010.a: "I will complete what you left unfinished."
+ ancestor.010.b: "Some things are meant to remain unresolved. Rest."
+
+ ancestor.020.t: "The House's Long Memory"
+ ancestor.020.desc: "The practice exists. It is not spoken about at formal dinners. Every ancestor caller in every Great House knows it is available, and every one of them has considered it, and most of them have used it at least once.\n\nYou can name a rival — someone causing your House genuine harm — and ask the ancestral spirits to turn their attention toward that person. The spirits of the Dunmer dead are not neutral observers. They remember insults to their House that the living have forgotten. They have tools that the living do not. A curse delivered by an ancestor carries a weight that no assassin or political scheme can replicate.\n\nThe cost is that it is weaponising the sacred. The ancestors are protectors of the House. Asking them to act as instruments of revenge changes the relationship. It always changes the relationship."
+ ancestor.020.a: "Name the rival. The House's dead have long memories."
+ ancestor.020.b: "The ancestors should be used for guidance, not vengeance."
+
+ ancestor.030.t: "The Pilgrimage to the Tomb"
+ ancestor.030.desc: "You have been an ancestor caller long enough that the senior House members have begun discussing the formal pilgrimage — the ceremonial tending of the ancestral tomb that transforms a caller into a revered ancestor in their own right. It is not a posthumous honour. It is given to the living: a recognition that the person who tends the House's dead has themselves become part of what the House's dead represent.\n\nThe pilgrimage involves three days in the tomb, maintaining the warding rites, re-reading the ancestral histories aloud, and formally accepting that when you die, your spirit will be asked to serve the same function for whoever comes after you. It is, in every sense of the phrase, a commitment beyond death."
+ ancestor.030.a: "The tomb is tended. The wards are renewed. The dead know they are remembered."
+ ancestor.030.b: "I visit — briefly. The spirits are appeased, if not fully honoured."

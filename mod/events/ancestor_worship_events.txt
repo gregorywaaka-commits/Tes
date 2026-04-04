@@ -1,0 +1,227 @@
+# =============================================================
+#  Dunmer Ancestor Worship Events
+#  Namespace: ancestor
+#  File: mod/events/ancestor_worship_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  ancestor.000  The Ancestor's Voice — a House spirit speaks
+#  ancestor.001  Dream of the Ancestor — vision of a forebear
+#  ancestor.010  The Calling — spirit asks for a task
+#  ancestor.020  Cursing a Rival — using ancestor magic offensively
+#  ancestor.030  The Ancestral Tomb — pilgrimage to the family crypt
+#
+#  LORE:
+#  Dunmer ancestor worship predates the Tribunal by millennia.
+#  Every Great House maintains ancestral tombs where the spirits
+#  of revered dead are called upon as guides, protectors, and
+#  occasionally weapons.  The ancestor caller (moonspeaker in
+#  some traditions) communes with the tombs; the revered ancestor
+#  is a ghost that has been given formal status among the living.
+#  This system is distinct from the Tribunal system — it is
+#  older, more personal, and far less institutionalised.
+#  Sources: UESP Lore:Ancestor Worship; Morrowind in-game texts.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/ancestor_worship_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → ancestor_caller, revered_ancestor
+# =============================================================
+
+namespace = ancestor
+
+# ---------------------------------------------------------------
+# ancestor.000  The Ancestor's Voice
+# The ancestral tomb of the ruler's house has been active —
+# servants report sounds, cold spots, the smell of ash-candles
+# at strange hours.  One of the household ancestors wants to
+# be heard.  Fires for Dunmer rulers with good piety.
+# ---------------------------------------------------------------
+ancestor.000 = {
+    type = character_event
+    title = ancestor.000.t
+    desc  = ancestor.000.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_melancholic
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = dunmer_culture
+        piety >= 100
+        NOT = { has_trait = ancestor_caller }
+        NOT = { has_character_flag = ancestor_voice_heard }
+    }
+
+    option = {
+        name = ancestor.000.a   # "I will go to the tomb at midnight and listen."
+        set_character_flag = ancestor_voice_heard
+        add_piety    = 200
+        add_stress   = 10
+        trigger_event = { id = ancestor.001 days = 7 }
+    }
+
+    option = {
+        name = ancestor.000.b   # "The dead should rest. Seal the tomb more securely."
+        add_piety    = -100
+        add_prestige = -50
+        add_stress   = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# ancestor.001  Dream of the Ancestor
+# The ruler who listened at the tomb now dreams.  The ancestor
+# has chosen to communicate — the question is whether this is
+# a gift or a burden.  This event grants the ancestor_caller trait.
+# ---------------------------------------------------------------
+ancestor.001 = {
+    type = character_event
+    title = ancestor.001.t
+    desc  = ancestor.001.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_melancholic
+    }
+
+    option = {
+        name = ancestor.001.a   # "I accept this responsibility. The House's dead will speak through me."
+        add_trait    = ancestor_caller
+        add_piety    = 300
+        add_prestige = 200
+    }
+
+    option = {
+        name = ancestor.001.b   # "The dream terrified me. I am not ready to carry this."
+        add_stress = 20
+        add_piety  = 100
+        # Does not gain ancestor_caller — the spirits will try again later
+        set_character_flag = { flag = ancestor_voice_heard days = 1825 }
+    }
+}
+
+# ---------------------------------------------------------------
+# ancestor.010  The Calling
+# An ancestor has a specific request — a matter unresolved
+# in life that the spirit needs addressed.  Fires for
+# ancestor_caller rulers.
+# ---------------------------------------------------------------
+ancestor.010 = {
+    type = character_event
+    title = ancestor.010.t
+    desc  = ancestor.010.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = ancestor_caller
+        NOT = { has_character_flag = ancestor_task_received }
+    }
+
+    option = {
+        name = ancestor.010.a   # "I will complete what you left unfinished."
+        set_character_flag = ancestor_task_received
+        add_piety    = 200
+        add_prestige = 300
+        add_stress   = 15    # the weight of the dead's expectations
+    }
+
+    option = {
+        name = ancestor.010.b   # "Some things are meant to remain unresolved. Rest."
+        set_character_flag = ancestor_task_received
+        add_piety    = -200
+        add_prestige = -100
+        # The ancestor may withdraw favour
+    }
+}
+
+# ---------------------------------------------------------------
+# ancestor.020  Cursing a Rival
+# An ancestor_caller Dunmer can request that a House spirit
+# place a curse on a political rival — using the dead as
+# weapons in the living world.  High risk, high reward.
+# ---------------------------------------------------------------
+ancestor.020 = {
+    type = character_event
+    title = ancestor.020.t
+    desc  = ancestor.020.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = ancestor_caller
+        intrigue >= 10
+        NOT = { has_character_flag = ancestor_curse_attempted }
+    }
+
+    option = {
+        name = ancestor.020.a   # "Name the rival. The House's dead have long memories."
+        set_character_flag = { flag = ancestor_curse_attempted days = 1825 }
+        add_prestige = 300
+        add_piety    = -300    # Weaponising ancestor spirits is spiritually costly
+        add_stress   = 20
+    }
+
+    option = {
+        name = ancestor.020.b   # "The ancestors should be used for guidance, not vengeance."
+        add_piety    = 200
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# ancestor.030  The Ancestral Tomb
+# A formal pilgrimage to the family crypt — ancestor_caller
+# Dunmer who tend their tombs properly receive the revered_ancestor
+# trait for their most honoured forebear.
+# ---------------------------------------------------------------
+ancestor.030 = {
+    type = character_event
+    title = ancestor.030.t
+    desc  = ancestor.030.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = ancestor_caller
+        piety >= 500
+        NOT = { has_trait = revered_ancestor }
+        NOT = { has_character_flag = tomb_pilgrimage_done }
+    }
+
+    option = {
+        name = ancestor.030.a   # "The tomb is tended. The wards are renewed. The dead know they are remembered."
+        set_character_flag = tomb_pilgrimage_done
+        add_trait    = revered_ancestor
+        add_piety    = 500
+        add_prestige = 500
+    }
+
+    option = {
+        name = ancestor.030.b   # "I visit — briefly. The spirits are appeased, if not fully honoured."
+        set_character_flag = { flag = tomb_pilgrimage_done days = 1825 }
+        add_piety    = 200
+        add_prestige = 100
+    }
+}

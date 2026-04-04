@@ -50,3 +50,27 @@
  maormer.016.t: "The King Who Will Not Die"
  maormer.016.desc: "The intelligence from Pyandonea is consistent: Orgnum endures. The Aldmeri Dominion has tried twice to kill him in the last century and twice the assassins did not return. His court is full of people who have served him for decades without seeing him slow. Whatever he is, he is not operating on the same schedule as the rest of Tamriel's rulers. This matters strategically. He has more patience than any alliance can afford to test, and he holds grudges across generations."
  maormer.016.a: "The king grows stronger with each passing year..."
+
+ # ---- Pyandonean War Expansion ----
+
+ maormer.020.t: "The Pyandonean Fleet on the Horizon"
+ maormer.020.desc: "The scout galleys have returned with a consistent report: there are ships on the horizon, and they are not fishing vessels. The fleet formation is Maormer — the triangular prow configuration, the sea serpent pennants, the low black hulls that sit in the water like predators. This is not a raid. Raiders do not bring that many ships. Someone in Pyandonea has decided to press a claim against the Summerset coast with serious intent, and they are currently making their intentions clear by being very visible on the horizon."
+ maormer.020.a: "Summon the naval commanders — we will meet them at sea."
+ maormer.020.b: "Reinforce the coastal fortifications and wait."
+
+ maormer.021.t: "The Battle of the Summerset Shore"
+ maormer.021.desc: "The fleets have met. The Maormer commanders are directing sea serpents with the ease of handlers managing trained animals — which, to be clear, they are not animals in any conventional sense. Each is large enough to hole a warship and has been bonded to its handler through the serpent-magic of Pyandonea. Your navy has experience and discipline. They have serpents. The outcome will depend on whether discipline is sufficient answer to something that can eat a ship."
+ maormer.021.a: "Victory! The serpents could not breach our fleet formation."
+ maormer.021.b: "We held them, but the coast took damage. The sea-witches are powerful."
+ maormer.021.c: "The serpents broke our line. We withdrew to regroup."
+
+ maormer.022.t: "The Captured Commander"
+ maormer.022.desc: "After the engagement, your forces pulled a Maormer sea serpent commander from the wreckage of his bonding-ship. He is injured. He is also significant — the bonding-ritual that ties a commander to his serpent takes years to complete, and losing that serpent to the battle has already broken something in him. He sits in your custody now, waiting to see what kind of people you are. Three options present themselves, each with different consequences on both sides of the water."
+ maormer.022.a: "Interrogate them — learn the Pyandonean sea routes."
+ maormer.022.b: "Offer them as a diplomatic gesture — send them home."
+ maormer.022.c: "Execute them publicly — let Orgnum hear what happens to his commanders."
+
+ maormer.023.t: "The Pyandonean Tempest"
+ maormer.023.desc: "The weather changed at noon with no natural cause. The clouds came from the south — the direction of Pyandonea — in a formation that every experienced mariner on the docks described with the same word: wrong. The wind is wrong. The sea is wrong. The Maormer sea-witches are working a storm-ritual on a scale that takes dozens of practitioners and weeks of preparation. It is tracking toward the coast. The Sapiarchs of Summerset have weather-lore that might mitigate it; coastal evacuation is the practical alternative; either way, you have hours before it makes the choice for you."
+ maormer.023.a: "Prepare the harbours — lash down the ships, evacuate the coast."
+ maormer.023.b: "Consult the Sapiarchs — perhaps there is a counter-ritual."

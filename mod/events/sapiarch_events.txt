@@ -1,0 +1,249 @@
+# =============================================================
+#  College of Sapiarchs Events
+#  Namespace: sapiarch
+#  File: mod/events/sapiarch_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  sapiarch.000  The College's Letter — invitation to the Sapiarchs
+#  sapiarch.001  Petition to the College — decision-linked entry
+#  sapiarch.010  The Forty-Nine Masters — advancement to full Sapiarch
+#  sapiarch.020  The Psijic Question — tension with the Psijic Order
+#  sapiarch.030  The Crystal Tower Consultation — apex event, tower lore
+#
+#  LORE:
+#  The College of Sapiarchs is the supreme arcane institution of the
+#  Altmer, enforcing Altmeri magical law and preserving ancient arcane
+#  knowledge.  The forty-nine Sapiarchs each master a specific school
+#  of magic and collectively govern all magical practice in Summerset.
+#  They are in explicit tension with the Psijic Order, which the
+#  Sapiarchs regard as philosophically deviant.
+#  Sources: UESP Lore:College of Sapiarchs; ESO Summerset prologue.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/sapiarch_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/sapiarch_traits.txt
+#      → metamagic_scholar, sapiarch_initiate
+# =============================================================
+
+namespace = sapiarch
+
+# ---------------------------------------------------------------
+# sapiarch.000  The College's Letter
+# A formal communication from the College of Sapiarchs arrives
+# at court.  The Sapiarchs have been watching this ruler's
+# magical studies and find them... noteworthy.  They have an
+# offer to make.  Fires for learned Altmer rulers.
+# ---------------------------------------------------------------
+sapiarch.000 = {
+    type = character_event
+    title = sapiarch.000.t
+    desc  = sapiarch.000.desc
+    theme = study
+    left_portrait = {
+        character = root
+        animation = personality_curious
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        learning >= 12
+        OR = {
+            has_culture = altmer_culture
+            any_held_county = { geographical_region = world_summerset }
+        }
+        NOT = { has_trait = sapiarch_initiate }
+        NOT = { has_trait = metamagic_scholar }
+        NOT = { has_character_flag = sapiarch_refused }
+        NOT = { has_character_flag = sapiarch_invited }
+    }
+
+    option = {
+        name = sapiarch.000.a   # "This is the greatest academic honour in Summerset. Accept."
+        set_character_flag = sapiarch_invited
+        add_prestige = 200
+        add_stress   = 5
+        trigger_event = { id = sapiarch.001 days = 30 }
+    }
+
+    option = {
+        name = sapiarch.000.b   # "My interests run in different directions. Politely decline."
+        set_character_flag = { flag = sapiarch_refused days = 3650 }
+        add_prestige = 50
+        add_piety    = 100    # Some temples approve of prioritising faith over pure scholarship
+    }
+}
+
+# ---------------------------------------------------------------
+# sapiarch.001  Petition to the College
+# The ruler formally petitions for admission to the College of
+# Sapiarchs.  The process involves examination, demonstration,
+# and political navigation.
+# ---------------------------------------------------------------
+sapiarch.001 = {
+    type = character_event
+    title = sapiarch.001.t
+    desc  = sapiarch.001.desc
+    theme = study
+    left_portrait = {
+        character = root
+        animation = personality_curious
+    }
+
+    option = {
+        name = sapiarch.001.a   # "I have prepared for this my entire life."
+        trigger = { learning >= 14 }
+        add_trait    = sapiarch_initiate
+        add_prestige = 500
+        add_stress   = 10
+    }
+
+    option = {
+        name = sapiarch.001.b   # "I demonstrate what I know. It is sufficient."
+        trigger = { learning >= 12 }
+        add_trait    = sapiarch_initiate
+        add_prestige = 300
+    }
+
+    option = {
+        name = sapiarch.001.c   # "The examination was humbling. I will study more before trying again."
+        trigger = { learning < 12 }
+        add_prestige = -100
+        add_stress   = 15
+        set_character_flag = { flag = sapiarch_refused days = 1825 }
+    }
+}
+
+# ---------------------------------------------------------------
+# sapiarch.010  The Forty-Nine Masters
+# After sustained engagement with the College's curriculum, a
+# Sapiarch Initiate is invited to advance to full mastership
+# — one of the forty-nine recognised disciplines.
+# ---------------------------------------------------------------
+sapiarch.010 = {
+    type = character_event
+    title = sapiarch.010.t
+    desc  = sapiarch.010.desc
+    theme = study
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = sapiarch_initiate
+        NOT = { has_trait = metamagic_scholar }
+        learning >= 16
+        NOT = { has_character_flag = sapiarch_mastery_offered }
+    }
+
+    option = {
+        name = sapiarch.010.a   # "I accept the chair. This school's doctrine will bear my mark."
+        set_character_flag = sapiarch_mastery_offered
+        remove_trait = sapiarch_initiate
+        add_trait    = metamagic_scholar
+        add_prestige = 1000
+        add_piety    = 200
+    }
+
+    option = {
+        name = sapiarch.010.b   # "Mastership means political obligation. I prefer to remain a scholar."
+        set_character_flag = sapiarch_mastery_offered
+        add_prestige = 200
+        # Stays as sapiarch_initiate — no advancement
+    }
+}
+
+# ---------------------------------------------------------------
+# sapiarch.020  The Psijic Question
+# The College of Sapiarchs has officially requested that this
+# ruler — as a Sapiarch — declare a position on the Psijic Order.
+# The Orders have a long-standing philosophical dispute, and the
+# College expects its members to take a side.
+# ---------------------------------------------------------------
+sapiarch.020 = {
+    type = character_event
+    title = sapiarch.020.t
+    desc  = sapiarch.020.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = sapiarch_initiate
+        NOT = { has_character_flag = psijic_sapiarch_stance_taken }
+    }
+
+    option = {
+        name = sapiarch.020.a   # "The Psijics pursue dangerous deviations from proper magical study."
+        set_character_flag = psijic_sapiarch_stance_taken
+        add_prestige  = 300
+        add_piety     = 100    # The College approves
+    }
+
+    option = {
+        name = sapiarch.020.b   # "The Psijics have knowledge we do not. Caution, not condemnation."
+        set_character_flag = psijic_sapiarch_stance_taken
+        add_prestige  = 100
+        add_stress    = 10
+        # Some Sapiarchs disapprove; psijic-aligned rulers may appreciate this
+    }
+
+    option = {
+        name = sapiarch.020.c   # "This political fight is beneath serious scholarship. I abstain."
+        set_character_flag = psijic_sapiarch_stance_taken
+        add_prestige  = -50
+        add_stress    = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# sapiarch.030  The Crystal Tower Consultation
+# A metamagic_scholar Sapiarch is invited to consult at the
+# Crystal Tower — the apex of Altmeri arcane knowledge — on a
+# question that has the senior Sapiarchs troubled.  This is
+# the highest honour the College can extend.
+# ---------------------------------------------------------------
+sapiarch.030 = {
+    type = character_event
+    title = sapiarch.030.t
+    desc  = sapiarch.030.desc
+    theme = study
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = metamagic_scholar
+        NOT = { has_character_flag = crystal_tower_consulted }
+    }
+
+    option = {
+        name = sapiarch.030.a   # "Whatever knowledge the Tower holds, I will pursue it."
+        set_character_flag = crystal_tower_consulted
+        add_learning  = 2
+        add_prestige  = 1500
+        add_piety     = 300
+        add_stress    = 15
+    }
+
+    option = {
+        name = sapiarch.030.b   # "The Tower reveals what it chooses. I will approach with humility."
+        set_character_flag = crystal_tower_consulted
+        add_learning  = 1
+        add_prestige  = 500
+    }
+}

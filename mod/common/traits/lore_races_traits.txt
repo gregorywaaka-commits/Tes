@@ -14,6 +14,7 @@
 #    • alessian_reformer
 #    • all_maker_blessed
 #    • altmer_imitator
+#    • ancestor_caller
 #    • ashlander_nerevarine
 #    • clavicus_bargain_made
 #    • clockwork_initiate
@@ -33,6 +34,7 @@
 #    • echolalia_master
 #    • endeavour_advanced
 #    • endeavour_seeker
+#    • flu_refugee
 #    • hist_elder_bonded
 #    • imga_heritage
 #    • invasion_repeller
@@ -40,6 +42,7 @@
 #    • kamal_thawed
 #    • keptu_lineage
 #    • knahaten_immune
+#    • knahaten_survivor
 #    • kothringi_heritage
 #    • maormer_heritage
 #    • morrowind_hortator
@@ -49,6 +52,7 @@
 #    • plague_bearer
 #    • pyandonean_sea_witch
 #    • reman_heir
+#    • revered_ancestor
 #    • sea_serpent_master
 #    • seek_skaal_accord
 #    • seven_graces_pilgrim
@@ -311,6 +315,24 @@ crimson_ship_survivor = {
     flag = crimson_ship_survivor
 }
 
+# A displaced person who fled Black Marsh during the Knahaten Flu epidemic
+flu_refugee = {
+    category = lifestyle
+    diplomacy   = -1
+    stewardship = -1
+    monthly_prestige = -1   # stateless, landless, unwanted
+    stress_gain_mult  = 0.15
+    flag = flu_refugee
+}
+
+# A character who contracted the Knahaten Flu but survived — scarred, cautious
+knahaten_survivor = {
+    category = lifestyle
+    health = -0.5             # lingering damage to the body
+    monthly_prestige = 1
+    flag = knahaten_survivor
+}
+
 # Bargained with Clavicus Vile for survival (Stillrise Village fate)
 clavicus_bargain_made = {
     category = lifestyle
@@ -318,6 +340,28 @@ clavicus_bargain_made = {
     monthly_prestige = 1
     stress_gain_mult = 0.2  # the price of immortality-as-undead weighs heavily
     flag = clavicus_bargain_made
+}
+
+# =============================================================
+#  Dunmer Ancestor Worship Traits
+# =============================================================
+
+# A Dunmer who can commune with the ancestral spirits of their House
+ancestor_caller = {
+    category = lifestyle
+    learning    = 2
+    intrigue    = 2
+    monthly_piety_gain_mult = 0.15   # the ancestors bless the one who tends the tombs
+    flag = ancestor_caller
+}
+
+# A Dunmer whose spirit has been formally honoured and elevated in the House tombs
+revered_ancestor = {
+    category = fame
+    diplomacy   = 2
+    monthly_prestige_gain_mult = 0.15   # the living treat them as an embodied link to the House's great dead
+    monthly_piety_gain_mult    = 0.10
+    flag = revered_ancestor
 }
 
 # =============================================================

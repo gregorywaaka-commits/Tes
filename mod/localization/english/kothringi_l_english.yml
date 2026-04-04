@@ -37,3 +37,11 @@
  kothringi.020.desc: "The village of Stillrise sits at the edge of a bog where no one thinks to look. The villagers there do not age. They move slowly, speak slowly, and all of them have made the same bargain with Clavicus Vile — survival, at the price of whatever the Prince considers interesting. They are not dead. They are not alive in any way that bears close examination. They have sent an envoy to your ship. The offer is the same terms they accepted. You will not die of the flu. You will not die of much, afterwards."
  kothringi.020.a: "We accept — survival above all."
  kothringi.020.b: "We refuse — better true death than Vile's mercy."
+
+ # ---- Knahaten Flu Traits ----
+
+ flu_refugee: "Plague Refugee"
+ flu_refugee_desc: "This character fled their homeland during the Knahaten Flu epidemic — a displaced person turned away at every gate, unwanted in every port, carrying the invisible suspicion that follows survivors of a plague no one fully understands."
+
+ knahaten_survivor: "Flu Survivor"
+ knahaten_survivor_desc: "This character contracted the Knahaten Flu and lived. It is not something they talk about willingly. The body still bears its marks — a tendency toward fatigue, a faint rattling breath when the weather turns cold — but they are alive, and alive is something most of the people they knew cannot claim."
