@@ -88,7 +88,9 @@
 #    soulburst_events.txt, alliance_war_events.txt,
 #    reman_pretender_events.txt, psijic_counsel_events.txt,
 #    guild_charter_events.txt, colovian_nibenay_events.txt,
-#    dragonguard_remnant_events.txt, indoril_council_events.txt.
+#    dragonguard_remnant_events.txt, indoril_council_events.txt,
+#    succession_war_events.txt, ebonheart_pact_events.txt,
+#    aldmeri_dominion_events.txt, ordinator_events.txt.
 #  • Systems triggered here read global_vars set by their effects:
 #    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
 #    global_var:thrassian_plague_active, global_var:active_tower_count,
@@ -97,7 +99,10 @@
 #    global_var:gray_host_invaded, global_var:necromancers_moon_active,
 #    global_var:ransers_war_triggered, global_var:soulburst_happened,
 #    global_var:alliance_war_triggered,
-#    global_var:reman_relics_surfaced.
+#    global_var:reman_relics_surfaced,
+#    global_var:skyrim_succession_war_triggered,
+#    global_var:ebonheart_pact_formed,
+#    global_var:aldmeri_dominion_founded.
 # =============================================================
 
 # ---------------------------------------------------------------
@@ -295,6 +300,17 @@ on_yearly_pulse = {
         2   = col_nib.010            # Demands across the Niben — colovian_war_chief / nibenay_seneschal rulers (colovian_nibenay_events.txt)
         3   = indoril.000            # Indoril demand — Dunmer rulers at 2E 440–520 (indoril_council_events.txt)
         2   = indoril.010            # Council confrontation — great_house_dissident Dunmer rulers (indoril_council_events.txt)
+        # --- WAR OF SUCCESSION (2E 431) ---
+        1   = succession_war.000     # Skyrim splinters — hidden world trigger at 2E 431 for Nord rulers (succession_war_events.txt)
+        3   = succession_war.010     # The Old Ways — petty_king_legacy Nord rulers challenged to single combat (succession_war_events.txt)
+        # --- EBONHEART PACT FORMATION (2E 572) ---
+        1   = ebonheart.000          # Pact formed — hidden world trigger at 2E 572 for Nord/Dunmer/Argonian rulers (ebonheart_pact_events.txt)
+        # --- ALDMERI DOMINION FOUNDING (2E 580) ---
+        1   = aldmeri.000            # Dominion founded — hidden world trigger at 2E 580 for Altmer/Bosmer/Khajiit rulers (aldmeri_dominion_events.txt)
+        # --- ORDINATOR ORDER (Dunmer, ongoing) ---
+        3   = ordinator.000          # Ordinator captain arrives — Dunmer rulers post 2E 400 (ordinator_events.txt)
+        2   = ordinator.010          # Matter of heresy — ordinator_devoted Dunmer rulers (ordinator_events.txt)
+        2   = ordinator.020          # Justiciar mandate offered — experienced Ordinator devout with high piety (ordinator_events.txt)
     }
 }
 

@@ -1,0 +1,82 @@
+# =============================================================
+#  Ordinator Order — Traits
+#  File: mod/common/traits/ordinator_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  ordinator_devoted   — Serves or is closely affiliated with the
+#                        Ordinators, the Tribunal's militant order
+#                        that enforces Temple law in Morrowind.
+#  almsivi_justiciar   — A ruler who serves as a formal agent of
+#                        ALMSIVI justice; judges heresy and enforces
+#                        the Tribunal's edicts with legal authority.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Ordinators are the militant arm of the Tribunal Temple —
+#  Morrowind's official religious order.  They enforce Temple law,
+#  suppress heresy (including Daedra worship), and maintain order in
+#  the cities of Morrowind.  Their jurisdiction overlaps with the Great
+#  Houses' own guards, creating frequent tension.  The Hands of
+#  Almalexia are the elite inner order of the Ordinators, but the
+#  broader Ordinator rank comprises thousands of soldiers throughout
+#  Morrowind.  In the 2E 440 setting, the Tribunal is fully active
+#  and the Ordinators are at the height of their power.
+#  Sources: TES III: Morrowind; UESP Lore:Ordinator; ESO in-game
+#  text "The Ordinators of Mournhold".
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  Relies on:
+#    common/traits/tribunal_traits.txt
+#      → vivec_blessed, almalexia_devoted (for linked event triggers)
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/ordinator_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • ordinator_devoted
+#    • almsivi_justiciar
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/ordinator_events.txt
+#      → ordinator_devoted, almsivi_justiciar
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ORDINATOR DEVOTED
+#  A ruler affiliated with or serving the Ordinator order.
+#  They enforce Temple law, suppress Daedra worship, and maintain
+#  the Tribunal's peace by force when necessary.
+# ---------------------------------------------------------------
+ordinator_devoted = {
+    category = fame
+
+    martial    = 2
+    diplomacy  = 1
+    monthly_prestige = 2
+    monthly_piety_gain_mult = 0.08    # The Tribunal's soldiers are favoured by the living gods
+
+    flag = ordinator_devoted
+}
+
+# ---------------------------------------------------------------
+#  ALMSIVI JUSTICIAR
+#  A ruler elevated to act as a formal agent of ALMSIVI justice —
+#  empowered to judge heresy, investigate Daedra cults, and
+#  enforce the Tribunal's edicts across Dunmer lands.  A rare
+#  honour and a dangerous one; such agents accumulate enemies.
+# ---------------------------------------------------------------
+almsivi_justiciar = {
+    category = fame
+
+    martial    = 2
+    learning   = 2
+    diplomacy  = 2
+    monthly_prestige = 3
+    monthly_piety_gain_mult = 0.12   # Full faith of the Tribunal behind their edicts
+
+    flag = almsivi_justiciar
+}

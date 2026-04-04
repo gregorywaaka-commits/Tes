@@ -1,0 +1,48 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  ORDINATOR ORDER
+ # =====================================================================
+
+ # --- Traits ---
+
+ ordinator_devoted: "Ordinator Devoted"
+ ordinator_devoted_desc: "This ruler has accepted the Ordinator presence in their court and committed to supporting the Tribunal's militant arm. The Ordinators enforce Temple law, suppress heresy, and maintain order in Dunmer lands. Accepting their presence brings the full weight of the Tribunal's institutional authority — and the Tribunal knows everything the Ordinators see."
+
+ almsivi_justiciar: "Almsivi Justiciar"
+ almsivi_justiciar_desc: "The Tribunal has formally mandated this ruler as an agent of ALMSIVI justice — empowered to judge heresy, investigate Daedra cult activity, and enforce the Tribunal's edicts with the same authority as the Ordinators themselves. It is an honour. It is also a leash. Those who receive this mandate are trusted absolutely — and watched to confirm that trust is warranted."
+
+ # --- Events ---
+
+ ordinator.000.t: "The Tribunal's Law"
+ ordinator.000.desc: "An Ordinator captain has arrived at court.
+
+The uniform is unmistakeable — full Temple armour, the antlered helm, the bearing of someone who has enforced law in the name of living gods and found the work meaningful. They are courteous. They are not apologetic.
+
+The pitch is simple: the Ordinator network reaches into every corner of Morrowind. Information. Enforcement. Coordination between rulers who would otherwise be rivals. In exchange, the Tribunal's law applies in your halls as it applies everywhere else. Heresy is suppressed. Daedra shrines are reported. The Temple sees what the Temple needs to see.
+
+This is not a negotiation. It is an offer. Accept or decline; either has consequences."
+ ordinator.000.a: "The Temple's law is my law. Welcome to my court."
+ ordinator.000.b: "I serve the Tribunal, but I will not have Temple soldiers in my halls unsupervised."
+
+ ordinator.010.t: "A Matter of Heresy"
+ ordinator.010.desc: "The Ordinator captain has brought a formal report: one of your courtiers has been observed maintaining a small shrine in private quarters. The shrine is to a Daedric Prince — the report does not specify which one, a detail that ought to have been included.
+
+The Ordinators want action. They want it publicly. They want it to be understood that tolerance of Daedra worship in a ruler's court will not be overlooked simply because the worshipper is useful.
+
+You have jurisdiction. You also have the authority to conduct your own investigation before the Ordinators conduct theirs."
+ ordinator.010.a: "Investigate properly. I will not punish conjecture."
+ ordinator.010.b: "The Tribunal's word is clear. Remove the shrine and exile the courtier."
+ ordinator.010.c: "The Ordinators overstep. I govern my court — not they."
+
+ ordinator.020.t: "The Justiciar's Mandate"
+ ordinator.020.desc: "A message has arrived from Mournhold, bearing the Tribunal's formal seal.
+
+The living gods are aware of this ruler's conduct. They are satisfied with what they have observed: faithful enforcement of Temple law, fair judgement, the Ordinator network served without hesitation. The Tribunal does not give commendations casually.
+
+This is not a commendation. It is an elevation.
+
+The Tribunal offers the formal rank of Almsivi Justiciar — a personal mandate to act as their agent of justice throughout Dunmer lands. Not a ceremonial title. An operational one. The Justiciars who carry this mandate are the Tribunal's eyes and hands in places where the Ordinators are not present. The authority is real. So is the scrutiny that accompanies it."
+ ordinator.020.a: "I accept the Tribunal's mandate. Their justice is my purpose."
+ ordinator.020.b: "I am honoured — but I must govern my own realm before the Tribunal's."

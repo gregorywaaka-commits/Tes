@@ -1,0 +1,41 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  EBONHEART PACT FORMATION
+ # =====================================================================
+
+ # --- Traits ---
+
+ pact_sworn: "Pact Sworn"
+ pact_sworn_desc: "This ruler committed to the Ebonheart Pact at its founding — when three peoples with every reason to be enemies chose survival over grievance. Nords, Dunmer, and Argonians under a common banner is something that should not work. It does work, which says something about all three."
+
+ pact_skeptic: "Pact Skeptic"
+ pact_skeptic_desc: "This ruler doubts the Ebonheart Pact can hold. The history between Nords, Dunmer, and Argonians is centuries of conflict and mutual contempt. Necessity made them allies. Whether necessity will be sufficient to keep them that way is the question this ruler asks — and does not yet find answered."
+
+ # --- Events ---
+
+ ebonheart.001.t: "The Ebonheart Pact"
+ ebonheart.001.desc: "The reports from the east are unexpected.
+
+In the aftermath of Dir-Kamal's defeat at Vivec's Antlers, the leaders who drove the Kamal into the sea did not simply go home. Nords from eastern Skyrim under Jorunn the Skald-King, Dunmer Great Houses, and Argonian warriors from Black Marsh met at the castle of Ebonheart and formed a council.
+
+They called it the Ebonheart Pact. A Great Moot of all three peoples. An agreement that what defeated Dir-Kamal — the improbable fact of them fighting together — was worth continuing.
+
+Nords and Dunmer have fought for centuries over Morrowind's border. Dunmer have kept Argonian slaves within living memory. Argonians hold grudges that outlast human generations. None of that history is resolved.
+
+And yet the Pact exists."
+ ebonheart.001.a: "The Pact is necessity — and necessity, held long enough, becomes something real."
+ ebonheart.001.b: "Nords and Dunmer and Argonians at the same table? It cannot hold."
+ ebonheart.001.c: "Watch. An alliance born of desperation may outlast the desperation that made it."
+
+ ebonheart.010.t: "Enemies Made Allies"
+ ebonheart.010.desc: "The first Great Moot of the Ebonheart Pact is contentious. Every session opens with arguments that sound like the prelude to war. Nordic jarls and Dunmer councillors and Argonian An-Xileel representatives disagree about nearly everything: governance, trade rights, military command, the matter of Argonian former-slaves.
+
+And then they vote. And the votes hold.
+
+The Pact is an ugly thing in motion. It is also, somehow, a functional thing. Something in the act of argument — the formal recognition that the other people at the table must be answered, not simply ignored — seems to be working.
+
+Your representatives have returned with a simple message: the Moot wants to know where your realm stands."
+ ebonheart.010.a: "Send full representatives to Ebonheart. We participate completely."
+ ebonheart.010.b: "Observe from a distance first. Trust must be earned, not declared."

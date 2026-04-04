@@ -1,0 +1,162 @@
+# =============================================================
+#  War of Succession (Skyrim) Events
+#  Namespace: succession_war
+#  File: mod/events/succession_war_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  succession_war.000  Hidden world event — fires at 2E 431
+#                      (immediately after the Potentate's end)
+#                      to notify Nord rulers that Skyrim has
+#                      fragmented into petty kingdoms.
+#  succession_war.001  "The Fragmented North" — Nord rulers in
+#                      Skyrim receive word of the succession crisis
+#                      and must choose their path.
+#  succession_war.010  "The Old Ways" — a petty king ruler receives
+#                      an Atmorans-style challenge to their authority;
+#                      a chance to assert a High King claim.
+#
+#  HISTORICAL NOTE:
+#  When the last Akaviri Potentate Savirien-Chorak was assassinated
+#  in 2E 430, the Second Empire effectively ended.  Skyrim, which had
+#  been part of the Potentate's administrative structure, had no
+#  agreed succession to its High Kingship.  The sons of Logrolf had
+#  been killed earlier.  Without Imperial pressure to maintain unity,
+#  Skyrim's jarls and minor lords fragmented into petty kingdoms.
+#  This Skyrim Interregnum lasted for decades and shaped the Nords
+#  who would later form the Ebonheart Pact under Jorunn the Skald-King.
+#  The "War of Succession" is a general term for the internal Nordic
+#  conflicts of this era.
+#  Sources: UESP Lore:War of Succession; Pocket Guide to the Empire
+#  (3rd Edition); ESO Nordic content; UESP Lore:Jorunn the Skald-King.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/succession_war_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/succession_war_traits.txt
+#      → petty_king_legacy, high_king_claimant
+#
+#  REFERENCED BY — other files that import this namespace:
+#    common/on_actions/lore_races_on_actions.txt
+#      → succession_war.000, succession_war.010
+# =============================================================
+
+namespace = succession_war
+
+# ---------------------------------------------------------------
+# succession_war.000  The Fragmented North — Hidden World Trigger
+# A hidden world event that fires once at 2E 431 (shortly after
+# the Potentate's assassination).  Notifies Nord rulers of Skyrim
+# that the High Kingship is in dispute.  Guards with a global
+# variable so it fires only once per playthrough.
+# ---------------------------------------------------------------
+succession_war.000 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        current_date >= 2.431.1.1
+        current_date < 2.435.1.1
+        NOT = { exists = global_var:skyrim_succession_war_triggered }
+    }
+
+    immediate = {
+        set_global_variable = { name = skyrim_succession_war_triggered value = 1 }
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_alive  = yes
+                has_culture = nord_culture
+                any_held_county = {
+                    geographical_region = world_skyrim
+                }
+            }
+            trigger_event = { id = succession_war.001 days = 14 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# succession_war.001  The Fragmented North
+# Nord rulers in Skyrim learn that the Potentate is dead and
+# the High Kingship is contested.  The Second Empire no longer
+# holds them.  They can seize something new, claim the High
+# Kingship, or wait.
+# ---------------------------------------------------------------
+succession_war.001 = {
+    type = character_event
+    title = succession_war.001.t
+    desc  = succession_war.001.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    option = {
+        name = succession_war.001.a   # "I rule my own land by my own right. No emperor tells me otherwise."
+        add_prestige = 200
+        add_stress   = 10
+        add_trait    = petty_king_legacy
+    }
+
+    option = {
+        name = succession_war.001.b   # "Skyrim needs a High King. I intend to be that king."
+        add_prestige = 200
+        add_stress   = 20
+        add_trait    = high_king_claimant
+    }
+
+    option = {
+        name = succession_war.001.c   # "The empire that held us is gone. We must build what comes next, carefully."
+        add_prestige = 100
+        add_diplomacy_skill = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# succession_war.010  The Old Ways
+# A petty king ruler faces a challenge from a rival jarl who
+# invokes the old Nordic tradition of single combat for kingship.
+# Accepting upholds the old traditions.  Refusing is safer but
+# carries reputational cost.
+# ---------------------------------------------------------------
+succession_war.010 = {
+    type = character_event
+    title = succession_war.010.t
+    desc  = succession_war.010.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        has_trait = petty_king_legacy
+        is_landed = yes
+        is_alive  = yes
+        martial >= 8
+        current_date >= 2.431.1.1
+        current_date <= 2.540.1.1
+    }
+
+    option = {
+        name = succession_war.010.a   # "Meet him. Let the Nords see what I am."
+        add_prestige = 400
+        add_stress   = 20
+        add_martial_skill = 1
+        remove_trait = petty_king_legacy
+        add_trait    = high_king_claimant
+    }
+
+    option = {
+        name = succession_war.010.b   # "The old ways are not always the wise ones. Send negotiators."
+        add_prestige = -100
+        add_diplomacy_skill = 1
+        add_stress   = 10
+    }
+}

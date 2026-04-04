@@ -200,6 +200,7 @@ on_five_year_pulse_character = {
 on_yearly_pulse_character = {
     random_events = {
         80 = 0
+        4  = oblivion_gate.001                     # Oblivion Gate crisis — ruler holds county with active gate
         5  = daedric_prince_invasion.azura.003     # Azura: prophecy revelation
         4  = daedric_prince_invasion.mephala.002   # Mephala: web tightens around the ruler
         4  = daedric_prince_invasion.clavicus.003  # Clavicus: follow-up offer

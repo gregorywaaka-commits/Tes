@@ -1,0 +1,41 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  ALDMERI DOMINION FOUNDING
+ # =====================================================================
+
+ # --- Traits ---
+
+ dominion_herald: "Dominion Herald"
+ dominion_herald_desc: "This ruler heralded the Aldmeri Dominion at Queen Ayrenn's founding — pledged their support to the green-gold banner before the Three Banners War gave that choice strategic weight. Whether from genuine belief in elven guidance or pragmatic calculation about which power to align with, they were early."
+
+ ayrenn_skeptic: "Ayrenn Skeptic"
+ ayrenn_skeptic_desc: "This ruler doubts Queen Ayrenn's stated purposes. She spent years wandering Tamriel in apparent voluntary exile, and returned with a ready-made vision for a new Aldmeri empire. The speed of the Dominion's assembly and the precision of its aims suggest the wandering years concealed a purpose never publicly stated."
+
+ # --- Events ---
+
+ aldmeri.001.t: "The Green Eagle"
+ aldmeri.001.desc: "Queen Ayrenn of the Summerset Isles has come home.
+
+For years she was absent — by choice, her court claimed, though the specifics of that choice were never clearly explained. She walked Tamriel like a commoner, witnessed it from the ground up, learned things a sheltered queen would never have known. She came back knowing what she was going to do.
+
+The Aldmeri Dominion. A coalition of Altmer, Bosmer, and Khajiit under a single green-gold banner, with the Ruby Throne of Cyrodiil as the stated goal. The unstated goal — that Tamriel is better governed by those who understand it longest — is clear in every proclamation.
+
+Two other alliances are already forming. The Daggerfall Covenant in the northwest. Something called the Ebonheart Pact in the northeast. The war for the Ruby Throne is not yet formally declared. But it has already begun.
+
+Where do you stand?"
+ aldmeri.001.a: "Ayrenn is right. Tamriel needs elven guidance, and she is the one to provide it."
+ aldmeri.001.b: "Ayrenn's wandering years explain nothing. This is ambition dressed as principle."
+ aldmeri.001.c: "Watch what the queen does next before placing this realm under her banner."
+
+ aldmeri.010.t: "Ayrenn's Vision"
+ aldmeri.010.desc: "Ayrenn does not rule the Dominion from a throne room. She rides with her armies, reads her own dispatches, receives her own ambassadors. This is not a queen who delegates the parts of ruling she finds unpleasant. She finds nothing unpleasant.
+
+She is also not what her court expected. Years of absence gave her knowledge that sheltered rulers lack. She knows what Tamriel looks like from the road. She knows the languages spoken in markets and taverns, not just in councils. She negotiated the Khajiit inclusion herself — the Mane was not initially enthusiastic.
+
+Her stated goal is the Ruby Throne. Her actual goal, the dispatches suggest, is something longer-term than a single throne.
+
+You pledged to her banner early. She knows it. The question is what she intends to ask of early allies."
+ aldmeri.010.a: "A queen who acts for the long term — and expects the same from those who stand with her."
+ aldmeri.010.b: "Her goals are clear enough. Her methods will bear watching."

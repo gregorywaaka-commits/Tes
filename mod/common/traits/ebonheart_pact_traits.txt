@@ -1,0 +1,75 @@
+# =============================================================
+#  Ebonheart Pact — Traits
+#  File: mod/common/traits/ebonheart_pact_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  pact_sworn        — Joined the Ebonheart Pact at its founding
+#                      after Dir-Kamal's defeat at 2E 572.  Carries
+#                      the weight of an improbable alliance.
+#  pact_skeptic      — Doubts the Ebonheart Pact's longevity; believes
+#                      Nords, Dunmer, and Argonians cannot sustain unity.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Ebonheart Pact was formed in the aftermath of Ada'Soom Dir-Kamal's
+#  invasion of Morrowind in 2E 572.  Nords from Skyrim, Dunmer of the
+#  Great Houses, and Argonians from Black Marsh — three peoples with
+#  centuries of conflict between them — united to repel the Kamal.  The
+#  Pact's Great Moot governed them collectively.  It was contentious,
+#  slow, and remarkably effective.  The alliance that arose from mutual
+#  survival became one of the three powers of the Three Banners War.
+#  Sources: ESO main content; UESP Lore:Ebonheart Pact; ESO in-game
+#  book "The Great Moot".
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/ebonheart_pact_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • pact_sworn
+#    • pact_skeptic
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/ebonheart_pact_events.txt
+#      → pact_sworn, pact_skeptic
+# =============================================================
+
+# ---------------------------------------------------------------
+#  PACT SWORN
+#  A ruler who committed to the Ebonheart Pact at its founding,
+#  recognising that the improbable alliance of their three peoples
+#  was worth sustaining beyond the immediate threat.
+# ---------------------------------------------------------------
+pact_sworn = {
+    category = fame
+
+    diplomacy  = 2
+    martial    = 2
+    monthly_prestige = 2
+    monthly_piety_gain_mult = 0.03    # The Tribunal approves; Kyne approves; the Hist affirms
+
+    flag = pact_sworn
+}
+
+# ---------------------------------------------------------------
+#  PACT SKEPTIC
+#  A ruler who doubts the Pact can hold; believes that Nords,
+#  Dunmer, and Argonians sharing a council is a temporary
+#  wartime convenience, not a durable political order.
+# ---------------------------------------------------------------
+pact_skeptic = {
+    category = fame
+    is_good = no
+
+    intrigue   = 2
+    monthly_prestige = 1
+    stress_gain_mult = -0.1   # Cynicism is its own armour
+
+    flag = pact_skeptic
+}
