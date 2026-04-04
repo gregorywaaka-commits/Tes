@@ -1,0 +1,60 @@
+# =============================================================
+#  Reman Pretender — Traits
+#  File: mod/common/traits/reman_pretender_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  reman_pretender   — A Cyrodiilic ruler who has publicly
+#                      proclaimed descent from the Reman
+#                      dynasty and claims the right to restore
+#                      the Second Empire.  No confirmed lineage;
+#                      legitimacy rests on possession and
+#                      proclamation rather than proof.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Reman III, last of the Reman dynasty, died in 2E 0 without
+#  a direct heir.  His Potentate successors (Versidue-Shaie and
+#  Savirien-Chorak) were Tsaesci advisors, not Cyrodiilic blood.
+#  When Savirien-Chorak was assassinated in 2E 430, the political
+#  vacuum was absolute.  Any Cyrodiilic ruler with ambition,
+#  territory near the Imperial City, and enough gold to hire a
+#  genealogist could — and did — claim Reman heritage.
+#  Most such claims were fictional.  A few were not.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/reman_pretender_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • reman_pretender
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/reman_pretender_events.txt
+#      → reman_pretender
+# =============================================================
+
+# ---------------------------------------------------------------
+#  REMAN PRETENDER
+#  A Cyrodiilic ruler who has publicly proclaimed imperial
+#  descent from the Reman line and commenced a bid to restore
+#  the Second Empire.  The claim may or may not hold water
+#  genealogically; politically it will be contested.
+# ---------------------------------------------------------------
+reman_pretender = {
+    category = fame
+
+    diplomacy  = 2
+    stewardship = 1
+    monthly_prestige = 2
+    monthly_piety_gain_mult = 0.03   # The Divines, they say, favour the Cyrodilic line
+
+    opposites = { reman_heir }       # reman_heir = confirmed lineage; can't be both pretender and heir
+
+    flag = reman_pretender
+}

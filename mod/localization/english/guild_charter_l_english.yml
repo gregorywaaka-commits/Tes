@@ -1,0 +1,47 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  GUILD CHARTER COLLAPSE
+ # =====================================================================
+
+ # --- Modifiers ---
+
+ guild_charter_paid_modifier: "Guild Charter: Paid"
+ guild_charter_paid_modifier_desc: "This ruler has paid the Mages Guild or Fighters Guild tithe in full. Guild branches operate efficiently in this realm, providing stewards, information, and a small supplement to the treasury from Guild activity."
+
+ # --- Events ---
+
+ guild_charter.000.t: "The Guild Demands Its Due"
+ guild_charter.000.desc: "A well-dressed factor arrived at the outer gate this morning carrying a leather case. They have been waiting in the antechamber for two hours without complaint, which is its own kind of message.
+
+The case, your chamberlain reports, contains: a copy of the Guild Act of 2E 321, a quarterly tithe ledger running from the date of the last Potentate’s death, and a politely worded demand for payment of the balance.
+
+The factor has not mentioned the fact that the Guild Act’s Imperial enforcement mechanism died with the Potentate. Presumably they are hoping you have not noticed."
+ guild_charter.000.a: "See the factor in. I will hear what the Guild wants."
+ guild_charter.000.b: "Tell the Guild to take their charter elsewhere. The Potentate is dead."
+
+ guild_charter.010.t: "Terms of the Charter"
+ guild_charter.010.desc: "The factor lays out three options in the measured tone of someone who has had this conversation many times.
+
+The first: pay the full tithe. The Guild will continue operating exactly as before. The branches will remain open, the contracts will be honoured, and the factor will return to their regional headquarters with a receipt.
+
+The second: negotiate. The Guild will accept reduced terms — say, half now and the rest over two or three years. This is unusual, but not unprecedented, given current political circumstances.
+
+The third: expel the branch. The factor notes this is entirely within your legal authority — the Guild’s charter requires Imperial recognition, which currently does not exist. They also note, still politely, that the Guild’s memory is long."
+ guild_charter.010.a: "Pay in full. The Guild’s services are worth the cost."
+ guild_charter.010.b: "Negotiate. Half now; the rest over time."
+ guild_charter.010.c: "Expel the branch. I will not fund an organisation the Empire no longer controls."
+
+ guild_charter.020.t: "After the Charter"
+ guild_charter.020.desc: "The factor has departed. Whatever was decided, it has been recorded in the Guild’s ledger in a script your chamberlain says they cannot read.
+
+The consequences are already beginning to take shape, as they always do after these things: small adjustments in how efficiently certain things run, small changes in who speaks to whom at court, small shifts in the distribution of professional favours across your territory.
+
+The Guild works in the margin. It always has."
+ guild_charter.020.a: "The Guild knows where it stands in my realm. That’s sufficient."
+ guild_charter.020.b: "A useful organisation, maintained at reasonable cost."
+ guild_charter.020.c: "Good. No organisation should operate in my lands without my leave."
+
+ # --- Decisions ---
+

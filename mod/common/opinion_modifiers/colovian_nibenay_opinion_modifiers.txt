@@ -1,0 +1,21 @@
+# =============================================================
+#  Colovian / Nibenay Rivalry — Opinion Modifiers
+#  File: mod/common/opinion_modifiers/colovian_nibenay_opinion_modifiers.txt
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  opinion_modifiers/colovian_nibenay_opinion_modifiers.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • colovian_nibenay_rival_opinion
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/colovian_nibenay_events.txt
+#      → colovian_nibenay_rival_opinion
+# =============================================================
+
+colovian_nibenay_rival_opinion = {
+    opinion = -25
+}

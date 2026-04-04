@@ -1,0 +1,143 @@
+# =============================================================
+#  Dragonguard Remnant Events
+#  Namespace: dragonguard
+#  File: mod/events/dragonguard_remnant_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  dragonguard.000   "The Old Oath" — an aging Dragonguard
+#                    warrior appears at court, offers service,
+#                    and asks the ruler to take on their ancient
+#                    charge.  Decision-triggered or yearly pulse.
+#  dragonguard.010   "Protectors Without a Dragon" — the ruler
+#                    must decide what the Dragonguard will
+#                    protect now that there are no Dragonborn
+#                    emperors.
+#
+#  HISTORICAL NOTE:
+#  The Dragonguard that survived the transition from the Reman
+#  dynasty to the Akaviri Potentate did not simply disband.
+#  They maintained their internal hierarchy and their martial
+#  tradition in near-anonymity, waiting for a Dragonborn to
+#  serve.  By 2E 440, most of the original Dragonguard were
+#  very old or dead, but their Tamrielic apprentices had
+#  inherited the tradition.  The question they faced was a
+#  philosophical one: if there is no Dragonborn, what is the
+#  oath for?  The answer — to protect Tamriel from Dragons
+#  whether or not an emperor exists — eventually became the
+#  founding principle of the Blades.
+#  Sources: UESP Lore:Blades; ESO Summerset; ESO Elsweyr.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/dragonguard_remnant_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dragonguard_remnant_traits.txt
+#      → blades_ancestor, dragonguard_remnant
+#    common/decisions/dragonguard_remnant_decisions.txt
+#      → dragonguard_remnant_oath (this event is also the decision's target)
+# =============================================================
+
+namespace = dragonguard
+
+# ---------------------------------------------------------------
+# dragonguard.000  The Old Oath
+# A warrior arrives at court.  They are old — not infirm, but
+# old with the specific quality of someone who has trained
+# every day of their life and can no longer be certain how
+# many days remain.  Their blade-form is not any school the
+# ruler's own martial instructors recognise.  They carry a
+# small carved seal: a dragon above a tower.  They say they
+# are the last of a garrison.  They ask if the ruler will
+# take the garrison's charge.
+# ---------------------------------------------------------------
+dragonguard.000 = {
+    type = character_event
+    title = dragonguard.000.t
+    desc  = dragonguard.000.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = dragonguard.000.a   # "Accept the oath. Whatever the charge, I will carry it."
+        add_character_flag = { flag = dragonguard_oath_accepted }
+        add_trait  = dragonguard_remnant
+        add_prestige = 200
+        add_martial_skill = 1
+        trigger_event = { id = dragonguard.010 days = 30 }
+    }
+
+    option = {
+        name = dragonguard.000.b   # "The Reman dynasty is dead. The oath died with it."
+        add_prestige = 100
+        add_stress   = 10
+        # The warrior leaves. The tradition continues elsewhere.
+    }
+
+    option = {
+        name = dragonguard.000.c   # "I will hear the charge, but make no promise."
+        trigger = { martial >= 14 }
+        add_prestige = 75
+        trigger_event = { id = dragonguard.010 days = 7 }
+    }
+}
+
+# ---------------------------------------------------------------
+# dragonguard.010  Protectors Without a Dragon
+# The warrior has explained the charge: protect Tamriel from
+# dragons.  When the ruler points out — correctly — that there
+# are no dragons at the moment, the warrior says: yet.  There
+# are always dragons.  The question is what the organisation
+# does in the interval.  Does it remain a pure dragon-hunting
+# order, maintaining the old traditions?  Does it adapt, taking
+# on a broader protective mandate?  Or does the ruler try to
+# formalise it into something that can outlast both of them?
+# ---------------------------------------------------------------
+dragonguard.010 = {
+    type = character_event
+    title = dragonguard.010.t
+    desc  = dragonguard.010.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = dragonguard.010.a   # "Keep the pure tradition. The Dragonguard exists to hunt dragons, nothing else."
+        trigger = { martial >= 16 }
+        add_prestige = 200
+        add_martial_skill = 1
+        add_piety    = 100
+    }
+
+    option = {
+        name = dragonguard.010.b   # "Broaden the mandate. Protect Tamriel from whatever threatens it."
+        trigger = { diplomacy >= 12 }
+        add_prestige = 200
+        add_trait    = blades_ancestor
+        remove_trait = dragonguard_remnant
+        add_piety    = 75
+        add_stress   = -10
+    }
+
+    option = {
+        name = dragonguard.010.c   # "Build something formal. An organisation, not just an oath."
+        trigger = { stewardship >= 12 }
+        add_prestige = 150
+        add_trait    = blades_ancestor
+        remove_trait = dragonguard_remnant
+        add_gold     = -50
+        add_stress   = -5
+    }
+}

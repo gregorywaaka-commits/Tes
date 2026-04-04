@@ -421,3 +421,16 @@ l_english:
 
  wolfsbane_alchemist: "Wolfsbane Alchemist"
  wolfsbane_alchemist_desc: "This character has learned to brew wolfsbane, the herb that weakens and reveals those carrying beast blood."
+
+ # =====================================================================
+ #  GUILD CHARTER / COLOVIAN-NIBENAY --- Modifiers
+ # =====================================================================
+
+ guild_charter_paid_modifier: "Guild Charter: Honoured"
+ guild_charter_paid_modifier_desc: "This ruler paid the Guild tithe in full. Guild branches operate efficiently here, providing a small income supplement from Guild commercial activity."
+
+ colovian_martial_law_modifier: "Colovian Military Consolidation"
+ colovian_martial_law_modifier_desc: "Military authority over the Colovian Estates has been consolidated. Soldiers are loyal. Merchants are nervous. The western roads are secured."
+
+ nibenay_council_edict_modifier: "Nibenay Council Edict"
+ nibenay_council_edict_modifier_desc: "A formal edict through the Nibenay mercantile councils has established authority over the eastern trade networks. Income grows steadily from the road tolls."

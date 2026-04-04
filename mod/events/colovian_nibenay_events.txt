@@ -1,0 +1,217 @@
+# =============================================================
+#  Colovian / Nibenay Rivalry Events
+#  Namespace: col_nib
+#  File: mod/events/colovian_nibenay_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  col_nib.000   "The Old Fracture" — fires at 2E 440–460 for
+#                Cyrodiilic rulers.  Define your position:
+#                Colovian or Nibenay?
+#  col_nib.010   "Demands from Across the Niben" — a War Chief
+#                or Seneschal receives a demand from the other
+#                faction.  Respond or ignore.
+#  col_nib.020   "Commerce or Conquest" — resolution event;
+#                the rivalry either stabilises or escalates.
+#
+#  HISTORICAL NOTE:
+#  Cyrodiil's internal fracture between the Colovian Estates
+#  (west, militaristic) and Nibenay Valley (east, mercantile)
+#  was never fully resolved during the Interregnum.  The two
+#  regions traded insults and occasionally blows throughout
+#  the Second Era.  The Longhouse Emperors ultimately imposed
+#  order by conquest from outside, which neither faction
+#  appreciated.  Sources: Pocket Guide to the Empire 1st Ed.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/colovian_nibenay_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/colovian_nibenay_traits.txt
+#      → colovian_war_chief, nibenay_seneschal
+#    common/opinion_modifiers/colovian_nibenay_opinion_modifiers.txt
+#      → colovian_nibenay_rival_opinion
+#    common/modifiers/lore_races_modifiers.txt
+#      → colovian_martial_law_modifier, nibenay_council_edict_modifier
+# =============================================================
+
+namespace = col_nib
+
+# ---------------------------------------------------------------
+# col_nib.000  The Old Fracture
+# The news from the western estates is the same as ever: the
+# Colovian lords have called their own muster, independent of
+# any central authority, and the Nibenay councils have closed
+# the trade routes from the east "pending new arrangements."
+# Cyrodiil is not at war with itself — not yet — but the old
+# fracture between west and east is open again.  The ruler
+# must choose which ground they stand on.
+# ---------------------------------------------------------------
+col_nib.000 = {
+    type = character_event
+    title = col_nib.000.t
+    desc  = col_nib.000.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        OR = {
+            has_culture = imperial_culture
+            has_culture = cyrodiilic_culture
+            any_held_county = {
+                geographical_region = world_cyrodiil
+            }
+        }
+        NOT = { has_trait = colovian_war_chief }
+        NOT = { has_trait = nibenay_seneschal }
+        NOT = { has_character_flag = cyrodiil_faction_chosen }
+        current_date >= 2.440.1.1
+        current_date < 2.460.1.1
+    }
+
+    option = {
+        name = col_nib.000.a   # "The Colovian way: swords before trade agreements."
+        add_character_flag = { flag = cyrodiil_faction_chosen }
+        add_trait = colovian_war_chief
+        add_prestige = 150
+        add_martial_skill = 1
+        add_modifier = {
+            modifier = colovian_martial_law_modifier
+            days = 1825
+        }
+        trigger_event = { id = col_nib.010 days = 180 }
+    }
+
+    option = {
+        name = col_nib.000.b   # "The Nibenay way: control the roads and the temples, and the swords will follow."
+        add_character_flag = { flag = cyrodiil_faction_chosen }
+        add_trait = nibenay_seneschal
+        add_prestige = 150
+        add_stewardship = 1
+        add_modifier = {
+            modifier = nibenay_council_edict_modifier
+            days = 1825
+        }
+        trigger_event = { id = col_nib.010 days = 180 }
+    }
+
+    option = {
+        name = col_nib.000.c   # "Stay above the division. Cyrodiil must be unified, not factionalized."
+        add_character_flag = { flag = cyrodiil_faction_chosen }
+        add_prestige = 50
+        add_diplomacy_skill = 1
+        add_stress   = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# col_nib.010  Demands from Across the Niben
+# The opposing faction has heard of the ruler's alignment.
+# A War Chief receives word from a Nibenay council demanding
+# that trade access be restored and the muster be dissolved.
+# A Seneschal receives word from a Colovian fort-lord demanding
+# the trade routes be reopened — or else.
+# ---------------------------------------------------------------
+col_nib.010 = {
+    type = character_event
+    title = col_nib.010.t
+    desc  = col_nib.010.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = declare_war
+    }
+
+    is_triggered_only = yes
+
+    trigger = {
+        OR = {
+            has_trait = colovian_war_chief
+            has_trait = nibenay_seneschal
+        }
+    }
+
+    option = {
+        name = col_nib.010.a   # "Reject the demand. My position is not subject to negotiation."
+        add_prestige = 100
+        add_stress   = 15
+        # Apply mutual opinion penalty
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_alive  = yes
+                NOT = { this = root }
+                OR = {
+                    has_trait = colovian_war_chief
+                    has_trait = nibenay_seneschal
+                }
+            }
+            add_opinion = {
+                target    = root
+                modifier  = colovian_nibenay_rival_opinion
+            }
+        }
+        trigger_event = { id = col_nib.020 days = 180 }
+    }
+
+    option = {
+        name = col_nib.010.b   # "Open talks. Cyrodiil divided serves neither side."
+        trigger = { diplomacy >= 12 }
+        add_prestige      = 75
+        add_diplomacy_skill = 1
+        add_stress        = -5
+        trigger_event = { id = col_nib.020 days = 180 }
+    }
+}
+
+# ---------------------------------------------------------------
+# col_nib.020  Commerce or Conquest
+# The rivalry has reached a point of resolution — for now.
+# It may not be lasting, but the immediate confrontation is
+# decided.  A War Chief who held firm consolidates military
+# grip over the west; a Seneschal who outmanoeuvred their
+# counterpart secures the trade routes.  Neither has won
+# Cyrodiil, but both have won something.
+# ---------------------------------------------------------------
+col_nib.020 = {
+    type = character_event
+    title = col_nib.020.t
+    desc  = col_nib.020.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = col_nib.020.a   # "The Estates hold. The east will come to terms when they need our swords."
+        trigger = { has_trait = colovian_war_chief }
+        add_prestige = 200
+        add_stress   = -10
+        add_martial_skill = 1
+    }
+
+    option = {
+        name = col_nib.020.b   # "The roads are mine again. Let the western lords march — they still need to eat."
+        trigger = { has_trait = nibenay_seneschal }
+        add_prestige = 200
+        add_stress   = -10
+        add_stewardship = 1
+    }
+
+    option = {
+        name = col_nib.020.c   # "A temporary balance. It will not hold forever."
+        add_prestige = 75
+        add_piety    = 50
+    }
+}

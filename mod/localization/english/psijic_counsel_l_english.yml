@@ -1,0 +1,47 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  PSIJIC COUNSEL
+ # =====================================================================
+
+ # --- Events ---
+
+ psijic_counsel.000.t: "A Stranger at the Gate"
+ psijic_counsel.000.desc: "A letter arrived this morning requesting a private audience. The bearer carries no title, no house seal, and their letter of introduction references a school of philosophy that none of your scholars can immediately place.
+
+But the factor who delivered it mentioned, in passing, a specific detail about a decision you made three weeks ago in a private council meeting. A decision attended only by your most trusted advisors.
+
+The letter asks for an hour. It promises to be useful. It makes no threats."
+ psijic_counsel.000.a: "Grant the audience. Knowledge costs nothing to hear."
+ psijic_counsel.000.b: "Send them away. I do not meet with scholars who know things they should not."
+
+ psijic_counsel.001.t: "The Counsel of Stillness"
+ psijic_counsel.001.desc: "The stranger speaks for exactly one hour and does not waste a word of it.
+
+They offer three specific pieces of counsel. The first concerns your internal governance — a particular arrangement of taxation and court appointments that they say will create stability over the next five years. The second is a warning about a specific neighbouring threat: not an enemy you were watching, but one you were not. The third is something more distant — a pattern they claim to see in the flow of political events, fifty years out.
+
+All three are expressed with equal confidence. One, they say before leaving, is wrong. They do not say which."
+ psijic_counsel.001.a: "Heed the internal counsel. The realm is the foundation; everything else follows."
+ psijic_counsel.001.b: "Act on the external warning. If they’re right about the threat, nothing else matters."
+ psijic_counsel.001.c: "The long view only. A generation of preparation is worth more than a decade of reaction."
+
+ psijic_counsel.002.t: "The Price of Foresight"
+ psijic_counsel.002.desc: "The stranger’s warning — whichever of the three paths you chose — has proven partially correct.
+
+A small crisis has emerged: not catastrophic, not avoidable with hindsight, but precisely the sort of thing that the counsel, if understood correctly, would have allowed you to prepare for. The stranger did not lie. They described the shape of what was coming. You interpreted it incorrectly.
+
+This is not, you gradually realise, an accident. The stranger is teaching you something about the difference between hearing advice and understanding it."
+ psijic_counsel.002.a: "Understood. The advice was sound; my interpretation was not."
+ psijic_counsel.002.b: "The stranger was wrong. I trusted a wandering scholar’s guesswork."
+
+ psijic_counsel.003.t: "Artaeum Watches"
+ psijic_counsel.003.desc: "A small packet arrived this morning, left at the gate without a messenger.
+
+Inside: a single folded page. On one side, a brief philosophical treatise on the nature of decision under incomplete information — precise, elegant, and far better written than anything your court scholars produce. On the other side, a small seal you did not recognise when the stranger first arrived.
+
+You recognise it now. You have seen it in an old book: the seal of the Psijic Order of Artaeum. An order that, by all accounts, withdrew its isle from the world two centuries ago and has not been seen since."
+ psijic_counsel.003.a: "I know what this means. The Order is real, and it watches. I will study what they left."
+ psijic_counsel.003.b: "A philosopher’s goodbye. The writing is valuable; the mystery is secondary."
+ psijic_counsel.003.c: "A blank page. Either the note means nothing, or I learned nothing from the hour."
+

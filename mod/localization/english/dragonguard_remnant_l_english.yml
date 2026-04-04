@@ -1,0 +1,45 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  DRAGONGUARD REMNANT
+ # =====================================================================
+
+ # --- Traits ---
+
+ dragonguard_remnant: "Dragonguard Remnant"
+ dragonguard_remnant_desc: "This ruler maintains the ancient oath of the Dragonguard — the elite Akaviri warrior-order sworn to protect the Dragonborn emperor. There is no Dragonborn emperor. The oath is maintained anyway, because the oath was not to the man, but to the purpose."
+
+ blades_ancestor: "Blades Ancestor"
+ blades_ancestor_desc: "This ruler’s realm, court, or household became the nucleus of an organisation that history would eventually call the Blades — protectors of the Dragonborn, hunters of dragons, keepers of the ancient Akaviri martial tradition. The founding was not ceremonial. It was a decision, made under pressure, that everything which followed grew from."
+
+ # --- Decisions ---
+
+ dragonguard_remnant_oath_desc: "Surviving members of the ancient Dragonguard — the Akaviri warrior-order sworn to the Reman emperors — are known to be seeking a ruler willing to take on their ancient mandate. With no Dragonborn emperor to serve, the order is fragmenting. A martial ruler who accepts their charge may preserve the tradition — and build something that outlasts the Interregnum."
+
+ # --- Events ---
+
+ dragonguard.000.t: "The Old Oath"
+ dragonguard.000.desc: "A warrior arrived at the outer gate this morning without announcement.
+
+They are old — not infirm, but aged with the quality of someone who has trained every day of their life and has begun to wonder how many remain. Their equipment is old: an unusual style of armour, a sword carried in a way no instructor at your court recognises, and a small carved seal around their neck. A dragon above a tower.
+
+They say their name, which you do not know. They say they are the last of a garrison, which they do not name. They say the garrison has maintained an oath for centuries to serve the Dragonborn emperor — and that the oath is now a problem, because there is no emperor and no Dragonborn, and they have no idea what to do with it.
+
+They ask if you will take it."
+ dragonguard.000.a: "Accept. Whatever the charge, I will carry it."
+ dragonguard.000.b: "The Reman dynasty is dead. The oath died with it."
+ dragonguard.000.c: "I will hear the full charge before deciding."
+
+ dragonguard.010.t: "Protectors Without a Dragon"
+ dragonguard.010.desc: "The warrior has explained the charge.
+
+Protect Tamriel from dragons. When they appear — and they will appear, eventually — the Dragonguard finds them, studies them, and kills them. The Dragonguard maintains the martial tradition required to do this. The Dragonguard protects whoever is, in the absence of a confirmed Dragonborn, the most legitimate temporal authority in the region.
+
+You point out that there are no dragons at present.
+
+The warrior says: yet. There are always dragons. The question is what the organisation does between appearances. Does it remain a pure martial order, maintaining the old Akaviri forms? Does it adapt, taking on a broader protective purpose? Or do you build something formal — an institution, not just an oath — that can outlast both of you?"
+ dragonguard.010.a: "Keep the pure tradition. The Dragonguard exists to hunt dragons, nothing else."
+ dragonguard.010.b: "Broaden the mandate. Protect Tamriel from whatever threatens it — and name it accordingly."
+ dragonguard.010.c: "Build something formal. An institution with a charter, not just a warrior with a seal."
+

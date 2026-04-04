@@ -62,6 +62,12 @@
 #  • Ranser's War — High Rock conflict; Daggerfall Covenant formation (2E 566)
 #  • The Soulburst — Dragonfires extinguished by Varen's failed ritual (2E 577)
 #  • Three Banners War — Alliance War; three alliances contest the Ruby Throne (2E 582)
+#  • Reman Pretender — Cyrodiilic succession bids post-Potentate death (2E 440)
+#  • Psijic Counsel — covert Psijic emissary advises learned rulers (2E 440+)
+#  • Guild Charter Collapse — Guild Act tithes enforced without Imperial backing (2E 430+)
+#  • Colovian/Nibenay Rivalry — Cyrodiil's west/east fracture at Interregnum start (2E 440)
+#  • Dragonguard Remnant — surviving oath-holders seek new mandate (2E 430+)
+#  • Indoril Council — House Indoril asserts ALMSIVI temporal supremacy (2E 440+)
 #
 #  CROSS-REFERENCES:
 #  ─────────────────
@@ -79,7 +85,10 @@
 #    gray_host_events.txt, shezarrine_events.txt,
 #    direnni_events.txt, skaal_allmaker_events.txt,
 #    chim_events.txt, ranser_war_events.txt,
-#    soulburst_events.txt, alliance_war_events.txt.
+#    soulburst_events.txt, alliance_war_events.txt,
+#    reman_pretender_events.txt, psijic_counsel_events.txt,
+#    guild_charter_events.txt, colovian_nibenay_events.txt,
+#    dragonguard_remnant_events.txt, indoril_council_events.txt.
 #  • Systems triggered here read global_vars set by their effects:
 #    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
 #    global_var:thrassian_plague_active, global_var:active_tower_count,
@@ -87,7 +96,8 @@
 #    global_var:dragon_break_active, global_var:void_nights_active,
 #    global_var:gray_host_invaded, global_var:necromancers_moon_active,
 #    global_var:ransers_war_triggered, global_var:soulburst_happened,
-#    global_var:alliance_war_triggered.
+#    global_var:alliance_war_triggered,
+#    global_var:reman_relics_surfaced.
 # =============================================================
 
 # ---------------------------------------------------------------
@@ -273,6 +283,16 @@ on_yearly_pulse = {
         3   = silver_hand.000        # Beast-blood discovered — rulers with beast-blooded vassals (silver_hand_events.txt)
         2   = silver_hand.001        # Hunt or warn — silver_hand_alerted rulers (silver_hand_events.txt)
         2   = silver_hand.003        # Hircine's revenge — silver_hand_hunted rulers after one year (silver_hand_events.txt)
+        # --- NEW SYSTEMS: 2E 440–450 Interregnum Start ---
+        3   = reman_pretender.000    # Imperial relics surface — Cyrodiilic rulers at 2E 440–460 (reman_pretender_events.txt)
+        2   = reman_pretender.010    # Rival claimant emerges — reman_pretender rulers (reman_pretender_events.txt)
+        2   = reman_pretender.020    # Succession question — reman_pretender rulers after bid plays out (reman_pretender_events.txt)
+        3   = psijic_counsel.000     # Psijic emissary arrives — learned rulers (learning>=14) at any date (psijic_counsel_events.txt)
+        3   = guild_charter.000      # Guild demands its due — guild-member rulers at 2E 430–480 (guild_charter_events.txt)
+        3   = col_nib.000            # The old fracture — Cyrodiilic rulers at 2E 440–460 (colovian_nibenay_events.txt)
+        2   = col_nib.010            # Demands across the Niben — colovian_war_chief / nibenay_seneschal rulers (colovian_nibenay_events.txt)
+        3   = indoril.000            # Indoril demand — Dunmer rulers at 2E 440–520 (indoril_council_events.txt)
+        2   = indoril.010            # Council confrontation — great_house_dissident Dunmer rulers (indoril_council_events.txt)
     }
 }
 

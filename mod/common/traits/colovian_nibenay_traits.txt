@@ -1,0 +1,88 @@
+# =============================================================
+#  Colovian / Nibenay Rivalry — Traits
+#  File: mod/common/traits/colovian_nibenay_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  colovian_war_chief   — A Cyrodiilic ruler who has asserted
+#                         military and political authority over
+#                         the Colovian Estates (western Cyrodiil).
+#                         Practical, militaristic, suspicious of
+#                         eastern merchant influence.
+#
+#  nibenay_seneschal    — A Cyrodiilic ruler who has established
+#                         themselves as a steward of Nibenay
+#                         culture: mercantile, religious, and
+#                         deeply connected to the Eight Divines
+#                         traditions of the eastern heartlands.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The division between western Cyrodiil (Colovian Estates —
+#  militaristic, rural, fiercely independent) and eastern Cyrodiil
+#  (Nibenay Valley — mercantile, religious, culturally sophisticated)
+#  predates the First Empire.  Under the Remans it was papered over
+#  by Imperial unity and the Amulet of Kings.  With no emperor after
+#  2E 430, the fracture reopened: Colovian lords held their
+#  fortresses and expanded into the vacuum; Nibenay councils controlled
+#  the trade routes and the temples.  Neither could unify Cyrodiil
+#  alone.  The tension defined the Interregnum's first century.
+#  Sources: Pocket Guide to the Empire 1st Ed.; UESP Lore:Cyrodiil.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/colovian_nibenay_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • colovian_war_chief
+#    • nibenay_seneschal
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/colovian_nibenay_events.txt
+#      → colovian_war_chief, nibenay_seneschal
+# =============================================================
+
+# ---------------------------------------------------------------
+#  COLOVIAN WAR CHIEF
+#  The lord of the western Cyrodiilic Estates has made their
+#  position clear: Cyrodiil belongs to those who can hold it
+#  by force, not those who count coin in Nibenay temples.
+#  The Colovian Estates respect strength above lineage.
+# ---------------------------------------------------------------
+colovian_war_chief = {
+    category = fame
+
+    martial        = 3
+    stewardship    = -1
+    monthly_prestige = 2
+    monthly_piety_gain_mult = -0.03   # The temples of Nibenay view this with distrust
+
+    opposites = { nibenay_seneschal }
+
+    flag = colovian_war_chief
+}
+
+# ---------------------------------------------------------------
+#  NIBENAY SENESCHAL
+#  The steward of the eastern Cyrodiilic heartlands has built
+#  their authority on trade, religious observance, and the
+#  subtle leverage of controlling who gets access to the
+#  Imperial City's markets and the Eight Divines temples.
+# ---------------------------------------------------------------
+nibenay_seneschal = {
+    category = fame
+
+    stewardship    = 3
+    martial        = -1
+    monthly_prestige = 2
+    monthly_piety_gain_mult = 0.05   # Strong Eight Divines observance earns temple favour
+
+    opposites = { colovian_war_chief }
+
+    flag = nibenay_seneschal
+}

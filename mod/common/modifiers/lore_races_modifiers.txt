@@ -1759,3 +1759,49 @@ bards_college_festival_modifier = {
     monthly_county_control_change_add  = 0.10
     monthly_county_control_growth_add  = 0.10
 }
+
+# =============================================================
+#  Guild Charter — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  GUILD CHARTER PAID
+#  A ruler who paid the Guild tithe in full gains preferential
+#  access to Guild expertise: better stewards, faster recruitment,
+#  and a small income supplement from Guild operations in the realm.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+guild_charter_paid_modifier = {
+    stewardship              = 1
+    monthly_income           = 0.03
+}
+
+# =============================================================
+#  Colovian / Nibenay Rivalry — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  COLOVIAN MARTIAL LAW
+#  A Colovian War Chief who has consolidated military authority
+#  over the western Cyrodiilic Estates.  Soldiers are loyal;
+#  merchants are nervous.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+colovian_martial_law_modifier = {
+    martial                  = 2
+    monthly_income           = -0.05
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  NIBENAY COUNCIL EDICT
+#  A Nibenay Seneschal who has issued a formal edict through
+#  the eastern mercantile councils.  Income grows; military
+#  readiness softens slightly.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+nibenay_council_edict_modifier = {
+    stewardship              = 2
+    monthly_income           = 0.05
+    monthly_prestige_gain_mult = 0.03
+}
