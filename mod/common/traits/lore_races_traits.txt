@@ -839,3 +839,69 @@ endeavour_advanced = {
     monthly_piety_gain_mult    = 0.25
     flag = endeavour_advanced
 }
+
+# =============================================================
+#  Prophet Veloth Veneration Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  VELOTH PILGRIM
+#  A Dunmer ruler who has walked some portion of Veloth's
+#  original exodus route and felt its spiritual weight.
+#  Venerates the Good Daedra as Veloth taught — not in
+#  opposition to ALMSIVI, but as the older root beneath them.
+# ---------------------------------------------------------------
+veloth_pilgrim = {
+    category = lifestyle
+    piety_mult             = 0.10
+    monthly_piety_gain_mult = 0.10
+    flag = veloth_pilgrim
+}
+
+# ---------------------------------------------------------------
+#  VELOTH DEVOTEE
+#  A Dunmer ruler who has moved beyond pilgrimage to full
+#  devotion to Veloth's teachings — the Good Daedra, the exile
+#  from Summerset, and the idea that the Dunmer were never
+#  just fallen elves but something chosen.  The Tribunal Temple
+#  finds this mildly troubling.
+# ---------------------------------------------------------------
+veloth_devotee = {
+    category = lifestyle
+    learning  = 2
+    monthly_piety_gain_mult = 0.20
+    stress_gain_mult        = -0.15
+    flag = veloth_devotee
+}
+
+# =============================================================
+#  Silver Hand Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SILVER HAND HUNTER
+#  A ruler trained in the old Nordic hunting rites used against
+#  the beast-blooded — silver weapons, wolfsbane, and the
+#  specific patience the Silver Hand teaches.  Hircine does not
+#  forgive this.
+# ---------------------------------------------------------------
+silver_hand_hunter = {
+    category = lifestyle
+    martial   = 2
+    monthly_prestige_gain_mult = 0.10
+    flag = silver_hand_hunter
+}
+
+# ---------------------------------------------------------------
+#  WOLFSBANE ALCHEMIST
+#  A ruler who has learned to brew wolfsbane — the herb that
+#  weakens and reveals the beast-blooded.  A modest craft,
+#  but a useful one if your realm borders Companion territory.
+# ---------------------------------------------------------------
+wolfsbane_alchemist = {
+    category = lifestyle
+    learning  = 1
+    health    = 0.25
+    monthly_piety_gain_mult = 0.05
+    flag = wolfsbane_alchemist
+}

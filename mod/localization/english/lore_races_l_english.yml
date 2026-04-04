@@ -401,3 +401,23 @@ l_english:
  ka_po_tun_alliance_modifier_desc: "The Ka Po' Tun of Akavir have forged an alliance with this realm."
  bloodroot_forge_modifier: "Bloodroot Forge Mastery"
  bloodroot_forge_modifier_desc: "The secrets of the Keptu's Bloodroot Forge have been unlocked, granting exceptional metallurgical knowledge."
+
+ # =====================================================================
+ #  PROPHET VELOTH VENERATION --- Traits
+ # =====================================================================
+
+ veloth_pilgrim: "Veloth Pilgrim"
+ veloth_pilgrim_desc: "This character has walked some portion of Veloth's original exodus route and carries its spiritual weight."
+
+ veloth_devotee: "Veloth Devotee"
+ veloth_devotee_desc: "This character is a devoted follower of Prophet Veloth's teachings and the spiritual foundation beneath the Tribunal."
+
+ # =====================================================================
+ #  SILVER HAND --- Traits
+ # =====================================================================
+
+ silver_hand_hunter: "Silver Hand Hunter"
+ silver_hand_hunter_desc: "This character has been trained in the old Nordic hunting rites used against the beast-blooded. Hircine does not forget."
+
+ wolfsbane_alchemist: "Wolfsbane Alchemist"
+ wolfsbane_alchemist_desc: "This character has learned to brew wolfsbane, the herb that weakens and reveals those carrying beast blood."

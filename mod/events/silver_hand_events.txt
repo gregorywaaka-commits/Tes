@@ -1,0 +1,185 @@
+# =============================================================
+#  Silver Hand Events
+#  Namespace: silver_hand
+#
+#  LORE:
+#  The Silver Hand is a militant order of werewolf-hunters —
+#  an ancient enemy of the Companions and, by extension, of
+#  anyone who carries Hircine's beast blood.  They use silver
+#  weapons, wolfsbane, and old Nordic hunting rites to track
+#  and destroy those they call "the cursed."  In the 2E
+#  Interregnum their name may not yet be fixed, but the
+#  tradition is old enough to predate the Companions' inner
+#  circle by centuries.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • silver_hand.000  — Discovery of beast-blood in a vassal.
+#  • silver_hand.001  — Confrontation: hunt, warn, or ignore.
+#  • silver_hand.002  — Silver hunt reward.
+#  • silver_hand.003  — Hircine's revenge: the hunt turns back.
+#
+#  KEY TRAITS (lore_races_traits.txt):
+#  ─────────────────────────────────────
+#  • silver_hand_hunter, wolfsbane_alchemist
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • companions_beast_blood  = companions_traits.txt
+#  • hircine_werewolf        = daedric_invasion_traits.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/silver_hand_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → silver_hand_hunter, wolfsbane_alchemist
+#    common/traits/companions_traits.txt
+#      → companions_beast_blood
+#    common/traits/daedric_invasion_traits.txt
+#      → hircine_werewolf
+# =============================================================
+
+namespace = silver_hand
+
+# ---------------------------------------------------------------
+# silver_hand.000  The Scent of the Beast
+# Word reaches the ruler's court: a vassal, a courtier, or a
+# neighbouring lord carries the beast blood.  The signs are
+# old and specific — a Silver Hand tracker has noticed.
+# ---------------------------------------------------------------
+silver_hand.000 = {
+    type = character_event
+    title = silver_hand.000.t
+    desc  = silver_hand.000.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        NOT = { has_trait = companions_beast_blood }
+        NOT = { has_trait = hircine_werewolf }
+        NOT = { has_character_flag = silver_hand_alerted }
+        any_vassal = {
+            OR = {
+                has_trait = companions_beast_blood
+                has_trait = hircine_werewolf
+            }
+        }
+    }
+
+    option = {
+        name = silver_hand.000.a   # "Show me the signs. I want to know what I'm dealing with."
+        add_character_flag = silver_hand_alerted
+        trigger_event = { id = silver_hand.001 days = 30 }
+    }
+
+    option = {
+        name = silver_hand.000.b   # "This is not my concern. What my vassals are in private is their affair."
+        add_character_flag = { flag = silver_hand_alerted days = 1825 }
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# silver_hand.001  The Choice Before the Hunt
+# The ruler now knows.  There are three paths: hunt the
+# beast-blooded vassal, warn them privately, or pretend the
+# knowledge never arrived.
+# ---------------------------------------------------------------
+silver_hand.001 = {
+    type = character_event
+    title = silver_hand.001.t
+    desc  = silver_hand.001.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = silver_hand_alerted
+        NOT = { has_character_flag = silver_hand_choice_made }
+    }
+
+    option = {
+        name = silver_hand.001.a   # "Hunt them. The beast blood is Hircine's claim and I will not have it in my realm."
+        add_character_flag = { flag = silver_hand_choice_made }
+        add_trait = silver_hand_hunter
+        add_prestige = 100
+        add_stress   = 15
+        trigger_event = { id = silver_hand.002 days = 60 }
+    }
+
+    option = {
+        name = silver_hand.001.b   # "Warn them quietly. Let them decide whether to cure it or hide it better."
+        add_character_flag = { flag = silver_hand_choice_made }
+        add_prestige = 50
+        add_stress   = 5
+    }
+
+    option = {
+        name = silver_hand.001.c   # "I know nothing. The Silver Hand's business is not mine."
+        add_character_flag = { flag = silver_hand_choice_made }
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# silver_hand.002  The Hunt's Reward
+# The hunt succeeds.  Hircine, however, does not forget — and
+# the Silver Hand's victory comes at the cost of the Prince's
+# lasting attention.
+# ---------------------------------------------------------------
+silver_hand.002 = {
+    type = character_event
+    title = silver_hand.002.t
+    desc  = silver_hand.002.desc
+    theme = war
+
+    trigger = {
+        has_trait = silver_hand_hunter
+        NOT = { has_character_flag = silver_hand_hunted }
+    }
+
+    option = {
+        name = silver_hand.002.a   # "The beast is gone. The realm is safer for it."
+        add_character_flag = silver_hand_hunted
+        add_prestige = 150
+        add_piety    = 50
+        trigger_event = { id = silver_hand.003 days = 365 }
+    }
+}
+
+# ---------------------------------------------------------------
+# silver_hand.003  Hircine's Revenge
+# Hircine does not tolerate hunters who kill his faithful.
+# The beast-prince sends a counter-hunt — a pack of Hircine's
+# favoured who have been told where to find the killer.
+# ---------------------------------------------------------------
+silver_hand.003 = {
+    type = character_event
+    title = silver_hand.003.t
+    desc  = silver_hand.003.desc
+    theme = war
+
+    trigger = {
+        has_character_flag = silver_hand_hunted
+        NOT = { has_character_flag = hircine_revenge_survived }
+    }
+
+    option = {
+        name = silver_hand.003.a   # "I meet the pack with silver and fire. The Prince's hounds die like anything else."
+        trigger = { martial >= 12 }
+        add_character_flag = hircine_revenge_survived
+        add_prestige = 200
+        add_stress   = 20
+        add_health   = -0.5
+    }
+
+    option = {
+        name = silver_hand.003.b   # "I survive by avoiding them — and by never hunting again."
+        add_character_flag = hircine_revenge_survived
+        remove_trait = silver_hand_hunter
+        add_stress   = 30
+        add_prestige = -50
+    }
+}

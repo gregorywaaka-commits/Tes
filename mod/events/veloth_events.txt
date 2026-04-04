@@ -1,0 +1,218 @@
+# =============================================================
+#  Prophet Veloth Veneration Events
+#  Namespace: veloth
+#
+#  LORE:
+#  Veloth was the Dunmer prophet who led the Chimer people out of
+#  Summerset and into the land that became Morrowind.  He was a
+#  devoted follower of the Good Daedra — Boethiah and Mephala
+#  especially — and his teachings form the spiritual bedrock
+#  of Dunmer culture beneath the later Tribunal faith.
+#  In the 2E Interregnum the Tribunal is a living institution,
+#  which creates tension for any ruler who venerates Veloth
+#  rather than ALMSIVI directly.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • veloth.000  — Vision of Veloth.
+#  • veloth.001  — Pilgrim journey to the Velothi Mountains.
+#  • veloth.002  — Old text: Veloth's sermon on the Good Daedra.
+#  • veloth.003  — The Tribunal Temple's reaction.
+#  • veloth.004  — Veloth's legacy: passing the tradition.
+#
+#  KEY TRAITS (lore_races_traits.txt):
+#  ─────────────────────────────────────
+#  • veloth_pilgrim, veloth_devotee
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture  = EK2 culture identifier
+#  • azura_champion, mephala_champion  = daedric_invasion_traits.txt (optional check)
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/veloth_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → veloth_pilgrim, veloth_devotee
+# =============================================================
+
+namespace = veloth
+
+# ---------------------------------------------------------------
+# veloth.000  The Prophet's Vision
+# In a waking dream — or something very much like one — a Dunmer
+# ruler experiences what the scholars call a Velothi vision:
+# the Chimer exile and the long walk east, compressed into a
+# moment.  It is not comfortable.  It is clarifying.
+# ---------------------------------------------------------------
+veloth.000 = {
+    type = character_event
+    title = veloth.000.t
+    desc  = veloth.000.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = dunmer_culture
+        learning >= 12
+        NOT = { has_trait = veloth_pilgrim }
+        NOT = { has_trait = veloth_devotee }
+        NOT = { has_character_flag = veloth_vision_seen }
+    }
+
+    option = {
+        name = veloth.000.a   # "What Veloth built in the east was real. I feel it even now."
+        add_character_flag = veloth_vision_seen
+        add_piety    = 75
+        add_stress   = -10
+        trigger_event = { id = veloth.001 days = 180 }
+    }
+
+    option = {
+        name = veloth.000.b   # "A vision, nothing more. The Tribunal stands. That is what matters."
+        add_character_flag = veloth_vision_seen
+        add_piety  = 25
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# veloth.001  The Pilgrim Road
+# A ruler who heeded the vision is drawn to walk some portion
+# of Veloth's original route — the mountain passes and ash-dusted
+# valleys the Chimer crossed when they left Summerset behind.
+# ---------------------------------------------------------------
+veloth.001 = {
+    type = character_event
+    title = veloth.001.t
+    desc  = veloth.001.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = veloth_vision_seen
+        NOT = { has_trait = veloth_pilgrim }
+    }
+
+    option = {
+        name = veloth.001.a   # "I walk the road. Each step feels earned."
+        add_trait  = veloth_pilgrim
+        add_piety  = 100
+        add_prestige = 75
+        trigger_event = { id = veloth.002 days = 90 }
+    }
+
+    option = {
+        name = veloth.001.b   # "I cannot leave the realm. I honour the road in memory."
+        add_piety   = 50
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# veloth.002  Veloth's Sermon Recovered
+# Somewhere in an ash-dusted stone library, a pilgrim finds a
+# transcription of one of Veloth's original sermons — the ones
+# the Tribunal Temple classifies as pre-Revelation texts
+# and does not widely circulate.
+# ---------------------------------------------------------------
+veloth.002 = {
+    type = character_event
+    title = veloth.002.t
+    desc  = veloth.002.desc
+    theme = realm
+
+    trigger = {
+        has_trait = veloth_pilgrim
+        NOT = { has_character_flag = veloth_sermon_found }
+    }
+
+    option = {
+        name = veloth.002.a   # "I study it deeply — this is the foundation under the Tribunal."
+        add_character_flag = veloth_sermon_found
+        add_learning_skill = 1
+        add_piety  = 100
+        add_stress = 10
+        trigger_event = { id = veloth.003 days = 60 }
+    }
+
+    option = {
+        name = veloth.002.b   # "I copy it and keep it. The Temple need not know it exists."
+        add_character_flag = veloth_sermon_found
+        add_piety    = 50
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# veloth.003  The Temple's Attention
+# The Tribunal Temple has noticed the ruler's interest in
+# pre-ALMSIVI texts.  They are not pleased.  They send a
+# representative to deliver a polite-but-firm message about
+# which spiritual lineages are considered orthodox.
+# ---------------------------------------------------------------
+veloth.003 = {
+    type = character_event
+    title = veloth.003.t
+    desc  = veloth.003.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = veloth_sermon_found
+        NOT = { has_character_flag = temple_veloth_confronted }
+    }
+
+    option = {
+        name = veloth.003.a   # "Tell the Temple that Veloth pre-dates ALMSIVI. He is not heresy."
+        add_character_flag = temple_veloth_confronted
+        add_piety    = -50
+        add_prestige = 100
+        add_stress   = 15
+        trigger_event = { id = veloth.004 days = 180 }
+    }
+
+    option = {
+        name = veloth.003.b   # "I defer to the Temple. Veloth's path and theirs are not in conflict."
+        add_character_flag = temple_veloth_confronted
+        add_piety    = 50
+        add_prestige = -25
+        add_stress   = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# veloth.004  Veloth's Legacy
+# A ruler who held firm in the face of the Temple's objection
+# finds that the experience has crystallised into something
+# transmissible — a way of seeing Dunmer history from its root.
+# ---------------------------------------------------------------
+veloth.004 = {
+    type = character_event
+    title = veloth.004.t
+    desc  = veloth.004.desc
+    theme = realm
+
+    trigger = {
+        has_character_flag = temple_veloth_confronted
+        has_trait = veloth_pilgrim
+        NOT = { has_trait = veloth_devotee }
+    }
+
+    option = {
+        name = veloth.004.a   # "I am more than a pilgrim. Veloth's path is mine now."
+        remove_trait = veloth_pilgrim
+        add_trait    = veloth_devotee
+        add_piety    = 150
+        add_prestige = 100
+        add_stress   = -15
+    }
+
+    option = {
+        name = veloth.004.b   # "The pilgrimage is enough. I do not need to become a devotee."
+        add_piety    = 75
+        add_prestige = 50
+    }
+}

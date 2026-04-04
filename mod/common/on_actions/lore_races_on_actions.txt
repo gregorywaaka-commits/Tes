@@ -257,6 +257,22 @@ on_yearly_pulse = {
         3   = meridia_beacon.000     # Meridia contacts undead-fighters — martial rulers post Gray Host/Soulburst (meridia_beacon_events.txt)
         2   = meridia_beacon.020     # Dawnbreaker manifests — beacon_bearer rulers (meridia_beacon_events.txt)
         2   = hist_vision.004        # Hist warns of Soulburst — hist_bonded Argonians near 2E 577 (hist_saxhleel_events.txt)
+        # --- NEW SYSTEMS: Bards College / Nightingale / Veloth / Silver Hand ---
+        3   = bards_college.000      # Bards College invitation — intrigue/learning rulers in Nordic/Breton realms (bards_college_events.txt)
+        2   = bards_college.002      # Before the Master Bard — advancement performance for apprentices (bards_college_events.txt)
+        2   = bards_college.003      # Burning of King Olaf's Effigy — yearly festival for master_bards (bards_college_events.txt)
+        2   = bards_college.004      # Forbidden archive — master bards who touched restricted texts (bards_college_events.txt)
+        2   = bards_college.005      # Master Bard recognition — qualified Bards (bards_college_events.txt)
+        2   = nightingale.000        # Nocturnal's offer — Thieves Guild Guildmaster with high intrigue (nightingale_events.txt)
+        2   = nightingale.003        # Betrayal in the covenant — nightingale_sworn rulers (nightingale_events.txt)
+        2   = nightingale.004        # Soul claimed — heirs of nightingale_sworn characters (nightingale_events.txt)
+        3   = veloth.000             # Vision of Veloth — learned Dunmer rulers (veloth_events.txt)
+        2   = veloth.001             # Pilgrim road — rulers with veloth_vision_seen flag (veloth_events.txt)
+        2   = veloth.002             # Veloth's sermon recovered — veloth_pilgrim rulers (veloth_events.txt)
+        2   = veloth.003             # Temple confrontation — veloth_sermon_found rulers (veloth_events.txt)
+        3   = silver_hand.000        # Beast-blood discovered — rulers with beast-blooded vassals (silver_hand_events.txt)
+        2   = silver_hand.001        # Hunt or warn — silver_hand_alerted rulers (silver_hand_events.txt)
+        2   = silver_hand.003        # Hircine's revenge — silver_hand_hunted rulers after one year (silver_hand_events.txt)
     }
 }
 

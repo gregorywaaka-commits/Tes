@@ -1743,3 +1743,19 @@ dawnbreaker_wielder = {
     martial                 = 3
     monthly_piety_gain_mult = 0.10
 }
+
+# =============================================================
+#  Bards College — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BARDS COLLEGE FESTIVAL
+#  County modifier applied during the Burning of King Olaf's
+#  Effigy festival when presided over by a Master Bard.
+#  Duration: 365 days (one year — the festival lifts spirits
+#  for the rest of the seasonal cycle).
+# ---------------------------------------------------------------
+bards_college_festival_modifier = {
+    monthly_county_control_change_add  = 0.10
+    monthly_county_control_growth_add  = 0.10
+}

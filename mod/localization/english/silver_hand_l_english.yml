@@ -1,0 +1,41 @@
+﻿l_english:
+
+ # =====================================================================
+ #  SILVER HAND
+ # =====================================================================
+
+ # ---- silver_hand.000 --- The Scent of the Beast ----
+
+ silver_hand.000.t: "The Silver Hand’s Report"
+ silver_hand.000.desc: "A tracker from the Silver Hand arrives at your court — not the organisation by that name necessarily, since the name is newer than the tradition, but someone who carries the old knowledge. They have identified a vassal who carries Hircine’s beast blood. The signs are specific: the eyes at certain angles, the way they eat, the scars that do not heal the way ordinary scars do. The tracker is not asking for permission. They are informing you as a courtesy, because your vassal is technically your problem before it is theirs."
+ silver_hand.000.a: "Show me the signs. I want to know what I am dealing with."
+ silver_hand.000.b: "What my vassals are in private is their own affair. I want no part of this."
+
+ # ---- silver_hand.001 --- The Choice Before the Hunt ----
+
+ silver_hand.001.t: "Hunt, Warn, or Look Away"
+ silver_hand.001.desc: "You know. There is a vassal in your court who carries Hircine’s beast blood. Three responses present themselves with the particular clarity that follows from a piece of knowledge you cannot unknow. You can hunt them — the Silver Hand way, silver weapons and wolfsbane and a formal conclusion. You can warn them privately and let them decide whether to seek a cure or simply be more careful. Or you can look away, which is a decision of its own kind, and live with knowing what you chose not to act on."
+ silver_hand.001.a: "Hunt them. The beast blood is Hircine’s claim and I will not have it in my realm."
+ silver_hand.001.b: "Warn them quietly. Let them make their own decision about what to do with the knowledge."
+ silver_hand.001.c: "I know nothing. The Silver Hand’s business is not mine, and neither is this."
+
+ # ---- silver_hand.002 --- The Hunt’s Reward ----
+
+ silver_hand.002.t: "The Hunt Concludes"
+ silver_hand.002.desc: "The work is done with silver weapons and old rites and the particular patience that the Silver Hand tradition requires. What you feel afterward is a combination of things that are difficult to separate: the satisfaction of a completed task, the weight of a life ended, and the quiet awareness that Hircine is a Prince with an excellent memory. The Silver Hand elders who trained you were always clear about this point. The hunt is worth doing. The consequences are worth bearing. Neither fact cancels the other."
+ silver_hand.002.a: "The beast is gone. The realm is safer. Whatever comes next, I am ready for it."
+
+ # ---- silver_hand.003 --- Hircine’s Revenge ----
+
+ silver_hand.003.t: "The Prince’s Counter-Hunt"
+ silver_hand.003.desc: "Hircine does not forget. The Silver Hand tradition is built on this understanding and has never found a way to make it less true. A pack arrives — not random wolves, but Hircine’s specifically chosen, told where to find you by a Prince who regards this as a straightforward transaction. You killed one of his. He is sending several of his. The Silver Hand elders would call this proportional by Hircine’s accounting, which is not an accounting system designed to favour hunters."
+ silver_hand.003.a: "I meet the pack with silver and fire. The Prince’s hounds die like anything else."
+ silver_hand.003.b: "I survive by avoiding them — and by deciding never to hunt again."
+
+ # ---- Traits ----
+
+ silver_hand_hunter: "Silver Hand Hunter"
+ silver_hand_hunter_desc: "This character has been trained in the old Nordic hunting rites used against the beast-blooded. Hircine does not forgive this."
+
+ wolfsbane_alchemist: "Wolfsbane Alchemist"
+ wolfsbane_alchemist_desc: "This character has learned to brew wolfsbane. A modest craft, but a useful one if your realm borders Companion territory."
