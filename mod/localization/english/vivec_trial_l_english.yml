@@ -1,0 +1,90 @@
+﻿l_english:
+
+ # =====================================================================
+ #  VIVEC TRIAL — Confronting the Tribunal
+ #  Three events: Vivec, Almalexia, Sotha Sil
+ # =====================================================================
+
+ # ---- vivec_trial.000 --- The Accusation ----
+
+ vivec_trial.000.t: "The God in the Hall"
+ vivec_trial.000.desc: "You asked for this audience knowing it might go badly. Vivec holds court in the Canton of the Palace — a space designed to remind visitors that they are inside something Vivec built and Vivec can unmake. He is already here when you arrive, seated in the manner of a god who has been waiting without impatience because waiting costs him nothing. You have been allowed to speak first. You have a single charge to make. Behind you, the doors are still open."
+ vivec_trial.000.a: "You murdered Nerevar — our greatest general, our champion."
+ vivec_trial.000.b: "You betrayed the Chimer's true path and the Daedra who made us."
+ vivec_trial.000.c: "You are no god. You stole divine power that was not yours to take."
+
+ # ---- vivec_trial.010 --- The God's Response ----
+
+ vivec_trial.010.t: "The Answer That Is Not an Answer"
+ vivec_trial.010.desc: "Vivec speaks at length and says very little that can be repeated simply. This is characteristic. His answer involves the nature of guilt as a concept that requires a stable self to persist in, and whether a mortal and a god share enough ontological ground for the word murder to mean the same thing to both of them, and several other observations that are interesting and do not address your charge. When he finishes, the room is quiet. He is looking at you the way an editor looks at a manuscript. He is waiting to see what you do with an answer you did not understand."
+ vivec_trial.010.a: "Your poetry does not answer my charge. Speak plainly, god."
+ vivec_trial.010.b: "You speak in circles to obscure the blood on your hands."
+ vivec_trial.010.c: "Perhaps I misunderstood. The gods are beyond mortal judgment."
+
+ # ---- vivec_trial.020 --- The God Answers Plainly ----
+
+ vivec_trial.020.t: "The Honest Moment"
+ vivec_trial.020.desc: "He stops performing. It happens suddenly. The rhetorical structure collapses and Vivec speaks in a register you have not heard from him before — flat, tired, and precise. He does not say he is innocent. He says that what he did was necessary, or that he believed it was necessary, and that belief has not become more comfortable with time. He says the Dunmer are alive because of what happened that day, and also because of what happened that day, several other things are true. He looks, for a moment, like someone who has been carrying something for a very long time and is not going to put it down."
+ vivec_trial.020.a: "I did not expect that. But truth has its own gravity."
+
+ # ---- vivec_trial.021 --- The God Does Not Answer ----
+
+ vivec_trial.021.t: "The Poem Continues"
+ vivec_trial.021.desc: "Vivec returns to the riddling. The moment of plainness — if there was one — has passed, and the god has resumed the posture of a riddle that does not owe you an answer in the form you asked the question. You leave the Canton with no confession, no absolution, and a headache from trying to follow his syntax. The charge you made is still the charge you made. He knows that. You know that. The doors were open the whole time."
+ vivec_trial.021.a: "Not today. But the question does not go away."
+
+ # ---- almalexia_trial.000 --- The Accusation ----
+
+ almalexia_trial.000.t: "The Mother of Morrowind"
+ almalexia_trial.000.desc: "Almalexia receives audiences in Mournhold's throne room, surrounded by the iconography of motherhood — the protective goddess, the healer-queen. The cult around her emphasises compassion so heavily that the martial history is easy to forget. You have not forgotten it. She is already watching you as you cross the floor. She has good instincts about what people are about to say, and her expression suggests she knows this is not a request for a blessing."
+ almalexia_trial.000.a: "You conspired in Nerevar's murder — you, who call yourself his people's mother."
+ almalexia_trial.000.b: "You silence every voice that questions how the Tribunal came to power."
+ almalexia_trial.000.c: "You rule through fear dressed as love. That is not divine — it is tyranny."
+
+ # ---- almalexia_trial.010 --- The Goddess's Anger ----
+
+ almalexia_trial.010.t: "The Mother's Wrath"
+ almalexia_trial.010.desc: "She is angry. This is useful information: Vivec performed equanimity, but Almalexia does not. Her response to the charge is quick and certain and loud in a way that has not frightened you as much as it was perhaps intended to. A god who is not angry does not need to be angry. A god who is angry at being accused has something to be angry about. You have not said this out loud, but she is very good at reading a face."
+ almalexia_trial.010.a: "Your anger is the answer to my charge. If you were innocent, you would not rage."
+ almalexia_trial.010.b: "I will not be moved by divine rage. The charge stands."
+ almalexia_trial.010.c: "Forgive me, Mother. I spoke out of grief, not wisdom."
+
+ # ---- almalexia_trial.020 --- Restraint ----
+
+ almalexia_trial.020.t: "The Hand That Does Not Strike"
+ almalexia_trial.020.desc: "She did not. You said what you came to say and she did not strike you down, did not summon the Ordinators, did not call on whatever a goddess can call on when she has decided someone needs to stop existing. You are still standing in her throne room. She is looking at you with an expression that is not readable in any straightforward way. The fact that she did not act is itself a kind of answer — not the one you asked for, but the one the situation produced. You bow. You leave. The doors are large and well-made and close behind you very softly."
+ almalexia_trial.020.a: "She did not strike me down. She could not. That was the answer."
+
+ # ---- almalexia_trial.021 --- Absolved ----
+
+ almalexia_trial.021.t: "Forgiven, Somehow"
+ almalexia_trial.021.desc: "She forgave you. The audience ended with a blessing, a hand placed briefly on your head in the formal manner, and a sentence in Old Dunmeris that the translator rendered as something like 'you are returned to my heart.' You are not sure what you expected from this, but you expected something less quiet. The throne room is behind you now. The blessing is technically in effect. Whatever it means that she forgave you for asking, rather than for having been wrong, is not a question you are going to ask anyone to answer today."
+ almalexia_trial.021.a: "She has forgiven me. That should feel better than it does."
+
+ # ---- sotha_sil_trial.000 --- The Accusation ----
+
+ sotha_sil_trial.000.t: "The Clockwork City"
+ sotha_sil_trial.000.desc: "Reaching Sotha Sil requires a guide and a tolerance for machinery. The Clockwork City is not welcoming in the architectural sense — it was built for a god who prefers silence and has not made significant accommodations for mortal visitors. Sotha Sil is here somewhere. Your guide stops at a particular junction and says that from here you speak and Sotha Sil listens. Whether Sotha Sil is present in any way you would recognize is, the guide adds, not something they can confirm. You speak to the machinery. Or to the god behind it. In this place the distinction is not clear."
+ sotha_sil_trial.000.a: "You helped murder Nerevar. Your silence since is not innocence — it is guilt made architecture."
+ sotha_sil_trial.000.b: "You abandoned your people. You built a city of gears rather than face what you had done."
+ sotha_sil_trial.000.c: "Your Clockwork City is not wisdom — it is an apology you never had the courage to speak aloud."
+
+ # ---- sotha_sil_trial.010 --- The Philosopher's Reply ----
+
+ sotha_sil_trial.010.t: "The Ticking Answer"
+ sotha_sil_trial.010.desc: "The voice comes from somewhere above you, or from the machinery, or from both. Sotha Sil does not get angry. He responds to the charge with a question about the nature of culpability and whether a being who has fundamentally changed from the moment of a crime remains the same being for purposes of judgment. He does not deny the event. He questions the categories you are using to describe it. This is either profound or evasive and you are in a clockwork city talking to a god-sized philosophical problem and the distinction may not matter."
+ sotha_sil_trial.010.a: "That is either wisdom or cowardice. I am not sure which — but I will accept it."
+ sotha_sil_trial.010.b: "Philosophy is not absolution. I want you to say it plainly."
+ sotha_sil_trial.010.c: "I do not have the learning to answer that. The question overwhelms me."
+
+ # ---- sotha_sil_trial.020 --- A Rare Plainness ----
+
+ sotha_sil_trial.020.t: "The Gear-God's Confession"
+ sotha_sil_trial.020.desc: "He says: it happened. Not that it was necessary, not that it was complicated, not that the categories are wrong. It happened and he has been in this city for a very long time and the city is still not finished and he does not know if it will be. He has been building something he is not certain is complete without a reason that sounds, in the telling, like grief expressed as engineering. The machinery around you makes the same sound it has always made. Sotha Sil, somewhere above you in the dark, goes quiet."
+ sotha_sil_trial.020.a: "That is not justice. But it may be something rarer — truth."
+
+ # ---- sotha_sil_trial.021 --- Returned to the Gears ----
+
+ sotha_sil_trial.021.t: "Back to Work"
+ sotha_sil_trial.021.desc: "The audience ended the way it began: with the machinery continuing. Sotha Sil did not dismiss you. He simply stopped responding, and the guide appeared at the junction and indicated that it was time to go. On the way out, you passed a workbench with something on it that you could not identify and that your guide did not explain. The Clockwork City closes behind you the way a book closes — the contents still there, just not accessible from the outside. Sotha Sil is still in there, tinkering with something you may never understand."
+ sotha_sil_trial.021.a: "He did not mock me. He simply went back to his machines. That stings more."

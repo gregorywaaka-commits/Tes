@@ -1,0 +1,32 @@
+﻿l_english:
+
+ # =====================================================================
+ #  KAMAL — Akaviri Snow Demons
+ #  The 2E 572 invasion of Dir-Kamal
+ # =====================================================================
+
+ # ---- kamal.000 --- The Thaw ----
+
+ kamal.000.t: "The Ice Breaks in the East"
+ kamal.000.desc: "Across Tamriel's eastern shores, the same message is arriving by fast ship: a fleet out of Akavir, larger than any in living memory, the banners of the Kamal — the Snow Hell — flying from the masts. The Kamal do not campaign in winter. They freeze during the cold months in the glaciers of their homeland and thaw in summer, refreshed by the hibernation and, apparently, enthusiastic about the season's violence. Ada'Soom Dir-Kamal commands them. He has never come to Tamriel before. His reputation has. The fleet is making for the coast."
+ kamal.000.a: "Let them come — Tamriel will not bow."
+
+ # ---- kamal.001 --- The Landing ----
+
+ kamal.001.t: "Ada'Soom Dir-Kamal Lands at Windhelm"
+ kamal.001.desc: "The Kamal fleet has made landfall near Windhelm. Dir-Kamal's forces are already moving south. His army moves at a pace that discounts weather, logistics, and the opinions of those in his path. He has taken the harbour. He has not yet taken the city, but the city is surrounded and its Nord defenders are choosing between negotiating a siege or marching out to face the Kamal in open terrain where their numbers will not help them. The Tribunal, if the stories are true, have been involved in stopping Akaviri invasion before. Whether they will intervene again is a matter of prayer."
+ kamal.001.a: "Ada'Soom Dir-Kamal — we will stop you here!"
+ kamal.001.b: "Pray the Tribunal can intervene as before."
+
+ # ---- kamal.010 --- The Battle of Vivec's Antlers ----
+
+ kamal.010.t: "The Battle of Vivec's Antlers"
+ kamal.010.desc: "The rout came quickly when it came. Dir-Kamal had driven the Kamal army deep into Morrowind, all the way to the shores near Vivec's city, before the Ebonheart Pact's combined forces — Nords, Dunmer, Argonians — met them at the Antlers. Vivec flooded the salt flats. The Argonian army, newly arrived and fighting with an intensity that surprised everyone, hit the Kamal's flank. Dir-Kamal is dead. His army is broken and retreating to ships that have already begun to leave without them. The first Ebonheart Pact victory is a decisive one."
+ kamal.010.a: "Vivec has spoken — the demons retreat!"
+ kamal.010.b: "A narrow victory — do not rely on the Tribunal again."
+
+ # ---- kamal.020 --- The Thaw Ends ----
+
+ kamal.020.t: "The Kamal Return to Ice"
+ kamal.020.desc: "The Kamal do not pursue failed campaigns. Those who survived the Battle of Vivec's Antlers have returned to their ships, and the ships have returned to Akavir. The Kamal freeze through the winter in the glaciers of their homeland — they will thaw again next summer, refreshed and amnesiac about failure in the way that predators without strategy tend to be. The raids and the probing may return. The unified command of Dir-Kamal will not. His invasion was the largest Tamriel has seen from Akavir; his defeat may be the most consequential."
+ kamal.020.a: "They return to their frozen realm — for now."

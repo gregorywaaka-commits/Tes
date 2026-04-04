@@ -1,0 +1,46 @@
+﻿l_english:
+
+ # =====================================================================
+ #  ECHMER — Bat-Mer of Yneslea (Uutak Mythos)
+ # =====================================================================
+
+ # ---- echmer.000 --- The Rumour of Yneslea ----
+
+ echmer.000.t: "Rumours from the Eastern Sea"
+ echmer.000.desc: "A merchant who trades in unusual information has brought something to court: accounts of an island chain called Yneslea, far to the east, inhabited by a people called the Echmer — mer with features that suggest a distant kinship with bats. The accounts describe a civilization with a unique understanding of sound and resonance, something they call Echolalia, that supposedly lets them perceive things ordinary sight cannot reach. Whether this is metaphor, exaggeration, or simply true is not clear. The merchant is confident the information is genuine. Merchants usually are."
+ echmer.000.a: "Send ships east — find this Yneslea!"
+ echmer.000.b: "An interesting rumour, nothing more."
+
+ # ---- echmer.001 --- The Envoy Arrives ----
+
+ echmer.001.t: "A Visitor from Yneslea"
+ echmer.001.desc: "The envoy is not what you expected. The Echmer are shorter than most mer, with large ears that orient independently and eyes that reflect light in the dark like a cat's — though the envoy is careful not to demonstrate this, apparently aware it unsettles the staff. The envoy speaks Tamrielic with a precise, slightly formal accent that suggests a very thorough education. They bring greetings from the Noraken clan, the dominant house of Yneslea, and a carefully worded invitation to know each other better."
+ echmer.001.a: "Welcome — tell me of Yneslea."
+ echmer.001.b: "A bat-person? Curious indeed..."
+
+ # ---- echmer.002 --- Dwemer Connections ----
+
+ echmer.002.t: "The Uplift of Yneslea"
+ echmer.002.desc: "The envoy has been speaking for some time. The history is longer than you expected. The critical detail — and you have been a patient listener — is that the Echmer were uplifted by the Dwemer, centuries ago, in a project of cultural and intellectual advancement that the envoy describes with evident pride and careful neutrality about what the Dwemer may have wanted in return. The Echmer language itself contains structures borrowed from Dwemeris. Their understanding of tonal architecture predates any comparable tradition in Tamriel. They outlasted their teachers."
+ echmer.002.a: "The Dwemer uplifted them? Remarkable."
+ echmer.002.b: "Does the Noraken clan still live?"
+
+ # ---- echmer.003 --- The Gift of Echolalia ----
+
+ echmer.003.t: "Echolalia"
+ echmer.003.desc: "The envoy demonstrates. You are not sure what you expected — something visual, perhaps, a display of unusual sight. Instead the envoy simply begins to describe the room in detail without looking at any of it, and the description is exact in ways that should not be possible. They can perceive the shape of things through sound, they explain: the echo off a wall tells them its thickness, the resonance of a vault tells them its age, and — they say this last part carefully — the sound of a person's breathing tells them things that have nothing to do with acoustics. They offer to teach you the basics. They call it an art, not a gift."
+ echmer.003.a: "I will dedicate myself to this art."
+ echmer.003.b: "Perhaps in time — for now, other duties call."
+
+ # ---- echmer.004 --- Mastery of Echolalia ----
+
+ echmer.004.t: "The Silence Between Sounds"
+ echmer.004.desc: "There was a moment, sometime in the last year, when you stopped thinking of Echolalia as a skill and started thinking of it as a sense. You do not remember the exact day. The shift was gradual and then complete. The world has acquired texture through sound: the weight of a lie in a voice, the nervousness in a footfall, the particular resonance of a space that has seen violence. The Echmer envoy, when you described this, nodded once in the way of someone who has been waiting for you to catch up. They say this is mastery. They say there is more."
+ echmer.004.a: "The echoes speak to me now."
+
+ # ---- echmer.005 --- Formal Training Begins ----
+
+ echmer.005.t: "The First Lesson"
+ echmer.005.desc: "The envoy has agreed to teach you formally. This is not standard diplomatic practice — you understand the concession it represents. The training begins not with technique but with silence: a period of sitting in a sealed room with no light, no conversation, and instructions to simply listen until there is nothing left to hear. When you emerge, the envoy is waiting and asks what you noticed. This is, they explain, the only exam they give. Everything after this is refinement."
+ echmer.005.a: "Begin the lessons."
+ echmer.005.b: "I've changed my mind."

@@ -1,0 +1,25 @@
+﻿l_english:
+
+ # =====================================================================
+ #  OBLIVION GATE — Molag Bal's Planar Incursion
+ # =====================================================================
+
+ # ---- oblivion_gate.001 --- The Gate Opens ----
+
+ oblivion_gate.001.t: "A Rent in the World"
+ oblivion_gate.001.desc: "The reports from the eastern county arrived this morning. A circle of dark fire opened in the hills before dawn. The local garrison describes it as a door standing in open ground with nothing behind it — except that what is behind it is not nothing, it is Coldharbour, and the creatures coming through have been identified by anyone who has seen the Daedric texts as clannfear and daedroth. The Gate is self-sustaining once opened. It will not close on its own. Closing it requires entering it and destroying its anchor stone from inside, or besieging it long enough that the siege kills everything emerging from it, which the siege casualty estimates suggest is not a short engagement."
+ oblivion_gate.001.a: "Muster troops to contain it!"
+ oblivion_gate.001.b: "We cannot afford soldiers — defend the walls."
+
+ # ---- oblivion_gate.003 --- Entering the Gate ----
+
+ oblivion_gate.003.t: "Into Coldharbour"
+ oblivion_gate.003.desc: "The volunteer party went through at dawn. Coldharbour is not like anywhere in Tamriel. The Daedric plane of Molag Bal is described in the texts as a cold mirror of Nirn, twisted and degraded — a reflection of what Tamriel might have become if it had been built by something that hated it. The party inside has found the anchor structure. Destroying it will collapse the gate from the interior. The party may not be able to exit before that happens. They knew this when they went in."
+ oblivion_gate.003.a: "Enter the Gate and destroy it from within!"
+ oblivion_gate.003.b: "We could not close it — fall back."
+
+ # ---- oblivion_gate.010 --- The Gate Closes ----
+
+ oblivion_gate.010.t: "The Gate Falls Silent"
+ oblivion_gate.010.desc: "The fire went out. The circle of dark flame that had been standing in the eastern hills simply stopped, and the ground where the Gate stood is now ordinary ground — slightly scorched, slightly wrong in a way that will take years to fade, but closed. The creatures that came through are still present and still require dealing with, but nothing new is emerging. Whoever destroyed the anchor stone inside did what they went in to do. Whether they came back out is what the reports are not yet addressing directly."
+ oblivion_gate.010.a: "Tamriel stands a little safer."

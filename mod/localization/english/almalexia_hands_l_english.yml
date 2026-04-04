@@ -1,0 +1,19 @@
+﻿l_english:
+
+ # =====================================================================
+ #  ALMALEXIA — The Hands of Almalexia
+ #  Temple warrior-order serving the Mother of Morrowind
+ # =====================================================================
+
+ # ---- almalexia_hands.000 --- The Oath ----
+
+ almalexia_hands.000.t: "The Hands of Almalexia"
+ almalexia_hands.000.desc: "The summons came from Mournhold. It was not phrased as a summons — the Temple does not phrase things as commands when the instruction is clear enough — but there is a particular quality to a letter sealed with Almalexia's mark that makes its intent unmistakeable. You have been noticed. You have been assessed. You are being offered admission to the Hands of Almalexia, the warrior-order that serves the Mother of Morrowind directly. The ceremony is brief. The oath is not."
+ almalexia_hands.000.a: "I kneel before the Mother of Morrowind and take my oath."
+
+ # ---- almalexia_hands.005 --- Called to Service ----
+
+ almalexia_hands.005.t: "The Mother Calls"
+ almalexia_hands.005.desc: "A Hand-Commander has arrived with orders from Mournhold. A situation has developed — specific details have not been shared, which is how the Hands work, on the principle that a warrior who knows the full scope of their orders makes too many independent decisions. What you are told is where to go, and when. What you are not told is what you will find there, or what the Mother of Morrowind considers an acceptable outcome. These things will apparently become clear in the field."
+ almalexia_hands.005.a: "I go at once. Morrowind comes before my own plans."
+ almalexia_hands.005.b: "My other duties must come first. I will answer when I can."

@@ -1,0 +1,39 @@
+﻿l_english:
+
+ # =====================================================================
+ #  KOTHRINGI — Silver-Skinned Humans of Black Marsh
+ #  The Knahaten Flu (2E 560) and the Crimson Ship
+ # =====================================================================
+
+ # ---- kothringi.001 --- The Flu Erupts ----
+
+ kothringi.001.t: "The Silver Sickness"
+ kothringi.001.desc: "The Knahaten Flu has entered Black Marsh. The sickness moves like smoke — no wound, no fever, just a slow suffocation that takes the Kothringi first and fastest. The silver-skinned people are falling in villages. Something in their blood, the healers say, makes them uniquely vulnerable. The Argonians show no symptoms at all — a detail that is already being whispered about as though it is a judgement. The rest of Tamriel watches the roads out of the marsh with closed gates and drawn bows."
+ kothringi.001.a: "Seal the borders — no one leaves the marsh!"
+ kothringi.001.b: "Flee while we can — this sickness will consume us all."
+
+ # ---- kothringi.002 --- The Flu Spreads ----
+
+ kothringi.002.t: "The Smoke Reaches Our Gates"
+ kothringi.002.desc: "The plague that has been eating Black Marsh is no longer content to stay within its borders. A county bordering ours has gone quiet — the kind of quiet where the market does not open and the smoke from the chimneys stops. No messenger has come out. The Knahaten Flu does not ask permission to cross a border. You have time to act before it reaches your capital. Possibly."
+ kothringi.002.a: "Pray this passes us by."
+ kothringi.002.b: "Burn the infected villages — harsh but necessary."
+
+ # ---- kothringi.010 --- The Crimson Ship ----
+
+ kothringi.010.t: "The Crimson Ship"
+ kothringi.010.desc: "There is a ship. Red-hulled, crewed by what remains of the Kothringi people — those who fled the marsh before the flu consumed everything. They have been sailing the Abecean Sea for months, putting in at every port, being turned away at every port. Tamriel has decided the Kothringi are a disease vector rather than refugees. The ship sails on. No one has told the survivors where they are going."
+ kothringi.010.a: "We sail west — perhaps we will find safe harbour."
+
+ # ---- kothringi.011 --- Turned Away Again ----
+
+ kothringi.011.t: "Every Port, Every Gate"
+ kothringi.011.desc: "The ship was seen from the harbour. The chain was raised before it could dock. An official came out in a small boat and explained, with some visible discomfort, that the city could not accommodate travellers from Black Marsh at this time. The crew thanked him in the formal manner their culture requires and returned to the ship. They have been doing this for months. They are running out of water."
+ kothringi.011.a: "We sail on. There must be safe land somewhere."
+
+ # ---- kothringi.020 --- Clavicus Vile's Offer ----
+
+ kothringi.020.t: "Stillrise Village"
+ kothringi.020.desc: "The village of Stillrise sits at the edge of a bog where no one thinks to look. The villagers there do not age. They move slowly, speak slowly, and all of them have made the same bargain with Clavicus Vile — survival, at the price of whatever the Prince considers interesting. They are not dead. They are not alive in any way that bears close examination. They have sent an envoy to your ship. The offer is the same terms they accepted. You will not die of the flu. You will not die of much, afterwards."
+ kothringi.020.a: "We accept — survival above all."
+ kothringi.020.b: "We refuse — better true death than Vile's mercy."

@@ -1,0 +1,52 @@
+﻿l_english:
+
+ # =====================================================================
+ #  SLOAD — Necromancers of Thras
+ #  The Thrassian Plague and the War of the Isle
+ # =====================================================================
+
+ # ---- sload.000 --- The Sload Emissary ----
+
+ sload.000.t: "A Visitor from Thras"
+ sload.000.desc: "The Sload do not travel comfortably. The emissary is large, slow-moving, and smells of salt and something else that the court has been too polite to identify. The Sload of Thras are not liked anywhere in Tamriel — a reputation earned partly through the Thrassian Plague they spread across the continent some centuries ago, and partly through their general disposition toward necromancy and their apparent absence of anything the surrounding cultures would call a conscience. This one has come bearing a contract. The Sload are methodical traders as well as methodical threats."
+ sload.000.a: "Expel this creature from our court!"
+ sload.000.b: "Their knowledge is too valuable to waste."
+
+ # ---- sload.001 --- The Plague Warning ----
+
+ sload.001.t: "The Thrassian Method"
+ sload.001.desc: "Your coastal villages have been reporting a sickness. The pattern is distinctive to anyone who has read about the Thrassian Plague: it moves against the wind, it follows no natural vector, and the dead do not stay dead. There is a Sload ship in your harbour that has been there for two weeks. The harbourmaster accepted the docking fee and did not ask the right questions. The connection is not proven. The Sload emissary in your court has offered no explanation. The plague is spreading one county per day."
+ sload.001.a: "Close the ports — let nothing in or out."
+ sload.001.b: "The Sload will pay for this."
+
+ # ---- sload.005 --- The All-Flags Navy ----
+
+ sload.005.t: "The All-Flags Navy"
+ sload.005.desc: "The Sload have pushed Tamriel too far. The coalition is forming — Redguard, Breton, Imperial, Altmer, all the great naval powers of the continent assembling for a single purpose. They are calling it the All-Flags Navy. The target is Thras itself: the Coral Tower, the seat of Sload power in the Abecean Sea. The plan is to sink the island. Whether this is possible, the admirals say, will be determined by the time they arrive. You have been invited to contribute ships. The Sload will know the fleet is coming. The Sload are not known for panic."
+ sload.005.a: "We will join the fleet!"
+ sload.005.b: "Let others deal with Thras."
+
+ # ---- sload.010 --- Approaching Thras ----
+
+ sload.010.t: "The Coral Tower in Sight"
+ sload.010.desc: "Thras is visible from the fleet's position. The island is wrong in ways that are difficult to quantify: the sky above it has a different quality of light, the water near it behaves differently, and the coral formations that give it its name extend for miles below the surface in structures that navigational charts describe as navigational hazards and sailors describe in worse terms. The Coral Tower itself rises from the centre. The Sload know you are here. The question is whether the Tower's power can be overcome before it becomes clear that it cannot."
+ sload.010.a: "Sail for Thras — let us end this."
+
+ # ---- sload.015 --- Assault on the Coral Tower ----
+
+ sload.015.t: "The Tower Fights Back"
+ sload.015.desc: "The Coral Tower is not passive. It does something to the dead. Three ships that went ahead of the fleet have returned crewed by people who should not be crewing anything, and the admirals are now discussing the order of engagement with the urgency of people who did not expect the Tower to be actively hostile in quite this specific way. The Sload inside the Tower are not attempting to parley. They do not appear to have a plan that involves surviving this encounter. What they appear to have is a plan that involves taking as many ships as possible with them."
+ sload.015.a: "Attack the Coral Tower directly!"
+ sload.015.b: "Pull back — the tower's magic is too powerful."
+
+ # ---- sload.020 --- Thras Sinks ----
+
+ sload.020.t: "The Sinking of Thras"
+ sload.020.desc: "The island is gone. The process took several hours and did not look like the admirals expected. The sea where Thras stood has closed over it without drama — the coral formations are still visible at low tide, if you look from the right angle, but the tower is gone and the island is gone and the Sload who were on it are gone. The All-Flags Navy is sailing home. Ships that served under every banner that exists in Tamriel. The Thrassian Plague is over. What remains of the Sload, if any remain, has not been confirmed."
+ sload.020.a: "Thras is no more. Let the healing begin."
+
+ # ---- sload.025 --- The Coral Tower's Echo ----
+
+ sload.025.t: "What the Tower Left Behind"
+ sload.025.desc: "The divers found something. Below where Thras sank, in the coral formations that predate the tower by centuries, there is a structure that is not quite destroyed. The power in it is not quite dormant. The Sload built on older foundations than anyone knew, and the older foundations were not Sload. Whatever the Coral Tower was anchoring — whatever it was a Stone of — may have survived the sinking. The question of what to do with knowledge that something ancient is intact at the bottom of the Abecean Sea does not have a comfortable answer."
+ sload.025.a: "Channel the Coral Tower's power."
