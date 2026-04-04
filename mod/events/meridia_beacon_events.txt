@@ -1,0 +1,140 @@
+# =============================================================
+#  Meridia's Beacon — Events
+#  Namespace: meridia_beacon
+#
+#  LORE:
+#  Meridia seeks champions against the undead, particularly
+#  during the Planemeld/Gray Host period.  Dawnbreaker is her
+#  artifact sword.  A ruler who receives the Beacon carries
+#  Meridia's direct blessing — and her very direct scrutiny.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • meridia_beacon.000  — Meridia contacts a ruler who fought undead.
+#  • meridia_beacon.010  — Dawnbreaker is offered.
+#  • meridia_beacon.020  — The sword's power against undead manifests.
+#
+#  KEY TRAITS (meridia_beacon_traits.txt):
+#  ─────────────────────────────────────────
+#  • beacon_bearer
+#
+#  KEY MODIFIERS (lore_races_modifiers.txt):
+#  ──────────────────────────────────────────
+#  • dawnbreaker_wielder  — combat modifier active while holding the sword
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • gray_host_repelled  — flag from gray_host_events.txt
+#  • global_var:soulburst_triggered  — from soulburst_events.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/meridia_beacon_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/meridia_beacon_traits.txt
+#      → beacon_bearer
+# =============================================================
+
+namespace = meridia_beacon
+
+# ---------------------------------------------------------------
+# meridia_beacon.000  Light in the Dark
+# A ruler who has fought the Gray Host or Molag Bal's forces
+# finds a strange glow in their chapel.  Meridia has noticed.
+# ---------------------------------------------------------------
+meridia_beacon.000 = {
+    type = character_event
+    title = meridia_beacon.000.t
+    desc  = meridia_beacon.000.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_character_flag = gray_host_repelled
+            has_global_variable = soulburst_triggered
+        }
+        NOT = { has_trait = beacon_bearer }
+        NOT = { has_character_flag = meridia_contact }
+        martial >= 12
+    }
+
+    option = {
+        name = meridia_beacon.000.a   # "I listen. Whatever the light asks of me, I hear it."
+        add_character_flag = { flag = meridia_contact }
+        add_piety   = 50
+        add_stress  = 10
+        trigger_event = { id = meridia_beacon.010 days = 7 }
+    }
+
+    option = {
+        name = meridia_beacon.000.b   # "I have enough gods watching. I close my eyes to this one."
+        add_character_flag = { flag = meridia_contact days = 1825 }
+        add_piety  = -25
+    }
+}
+
+# ---------------------------------------------------------------
+# meridia_beacon.010  Dawnbreaker
+# Meridia speaks directly and offers the sword.  The ruler
+# may accept the weapon — and the responsibility it carries —
+# or decline Meridia's patronage.
+# ---------------------------------------------------------------
+meridia_beacon.010 = {
+    type = character_event
+    title = meridia_beacon.010.t
+    desc  = meridia_beacon.010.desc
+    theme = faith
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = meridia_contact
+        NOT = { has_trait = beacon_bearer }
+    }
+
+    option = {
+        name = meridia_beacon.010.a   # "I take Dawnbreaker. The undead will burn."
+        add_trait = beacon_bearer
+        add_modifier = {
+            modifier = dawnbreaker_wielder
+            days = 3650
+        }
+        add_piety    = 100
+        add_prestige = 300
+    }
+
+    option = {
+        name = meridia_beacon.010.b   # "I am not a Daedric Prince's champion."
+        add_piety    = -50
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# meridia_beacon.020  The Burning Sword
+# A bearer of Dawnbreaker encounters undead forces.  The sword
+# does what it was made to do.  The experience is visceral.
+# ---------------------------------------------------------------
+meridia_beacon.020 = {
+    type = character_event
+    title = meridia_beacon.020.t
+    desc  = meridia_beacon.020.desc
+    theme = war
+
+    trigger = {
+        is_adult = yes
+        has_trait = beacon_bearer
+        NOT = { has_character_flag = dawnbreaker_used }
+    }
+
+    option = {
+        name = meridia_beacon.020.a   # "Meridia's flame holds nothing back."
+        add_character_flag = { flag = dawnbreaker_used days = 1825 }
+        add_prestige = 300
+        add_piety    = 75
+        add_stress   = 10
+    }
+}

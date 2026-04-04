@@ -1,0 +1,180 @@
+# =============================================================
+#  Shadowscale — Events
+#  Namespace: shadowscale
+#
+#  LORE:
+#  Argonians born under the sign of the Shadow are given to the
+#  Hist at birth and raised as Shadowscale assassins.  They serve
+#  Argonian rulers who have the Hist's trust.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • shadowscale.000  — An Argonian ruler learns of the program
+#                        and is offered access.
+#  • shadowscale.010  — The ruler employs a Shadowscale operative.
+#  • shadowscale.020  — Option to dissolve the program appears.
+#  • shadowscale.030  — A Shadowscale completes their assignment.
+#
+#  KEY TRAITS (shadowscale_traits.txt):
+#  ──────────────────────────────────────
+#  • shadowscale_trained, shadowscale_patron
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • argonian_culture  = EK2 culture identifier
+#  • hist_bonded       = from lore_races_traits.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/shadowscale_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/shadowscale_traits.txt
+#      → shadowscale_patron, shadowscale_trained
+#    common/traits/lore_races_traits.txt
+#      → hist_bonded
+# =============================================================
+
+namespace = shadowscale
+
+# ---------------------------------------------------------------
+# shadowscale.000  Born Under the Shadow
+# An Argonian ruler is approached by a Hist elder who explains
+# the Shadowscale program. They may accept patronage, decline,
+# or investigate further.
+# ---------------------------------------------------------------
+shadowscale.000 = {
+    type = character_event
+    title = shadowscale.000.t
+    desc  = shadowscale.000.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_culture = argonian_culture
+            has_trait = hist_bonded
+        }
+        NOT = { has_trait = shadowscale_patron }
+        NOT = { has_character_flag = shadowscale_contact }
+        NOT = { has_character_flag = shadowscale_declined }
+    }
+
+    option = {
+        name = shadowscale.000.a   # "The Hist offers this resource. I accept."
+        add_character_flag = { flag = shadowscale_contact }
+        add_trait = shadowscale_patron
+        add_piety   = 50
+        add_stress  = 5
+    }
+
+    option = {
+        name = shadowscale.000.b   # "I will not deal in assassination, even sanctioned."
+        add_character_flag = { flag = shadowscale_declined days = 3650 }
+        add_piety   = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# shadowscale.010  The Hist's Blade
+# A Shadowscale patron may employ their operative against a
+# rival.  The assignment carries no legal risk under Argonian
+# law — but the Hist may have its own opinions about the target.
+# ---------------------------------------------------------------
+shadowscale.010 = {
+    type = character_event
+    title = shadowscale.010.t
+    desc  = shadowscale.010.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = shadowscale_patron
+        any_enemy_character = { is_adult = yes is_ruler = yes }
+        NOT = { has_character_flag = shadowscale_mission_active }
+    }
+
+    option = {
+        name = shadowscale.010.a   # "Send the blade. The target has earned this."
+        add_character_flag = { flag = shadowscale_mission_active days = 180 }
+        add_gold   = -75
+        add_stress = 10
+        trigger_event = { id = shadowscale.030 days = 60 }
+    }
+
+    option = {
+        name = shadowscale.010.b   # "Not this time. I will handle this another way."
+        add_prestige = 25
+    }
+
+    option = {
+        name = shadowscale.010.c   # "Dissolve the program. I no longer want this power."
+        trigger_event = { id = shadowscale.020 days = 7 }
+    }
+}
+
+# ---------------------------------------------------------------
+# shadowscale.020  The Old Ways End
+# The ruler chooses to end their association with the Shadowscales.
+# The Hist acknowledges the decision — but the Hist always
+# remembers.
+# ---------------------------------------------------------------
+shadowscale.020 = {
+    type = character_event
+    title = shadowscale.020.t
+    desc  = shadowscale.020.desc
+    theme = faith
+
+    trigger = {
+        is_adult = yes
+        has_trait = shadowscale_patron
+    }
+
+    option = {
+        name = shadowscale.020.a   # "Let them return to the Hist."
+        remove_trait = shadowscale_patron
+        add_piety     = 75
+        add_prestige  = -50
+        add_character_flag = { flag = shadowscale_declined days = 3650 }
+    }
+}
+
+# ---------------------------------------------------------------
+# shadowscale.030  The Assignment Complete
+# The Shadowscale returns.  The result depends on the target
+# and the Hist's assessment of the mission.
+# ---------------------------------------------------------------
+shadowscale.030 = {
+    type = character_event
+    title = shadowscale.030.t
+    desc  = shadowscale.030.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = shadowscale_mission_active
+    }
+
+    immediate = {
+        remove_character_flag = shadowscale_mission_active
+    }
+
+    option = {
+        name = shadowscale.030.a   # "The target is gone. The Hist kept its word."
+        add_prestige = 300
+        add_piety    = -25   # The Hist approves; the Divines are less sure
+        random_enemy_character = {
+            limit = { is_adult = yes is_ruler = yes }
+            kill_character = yes
+        }
+    }
+
+    option = {
+        name = shadowscale.030.b   # "The mission failed. The target survived."
+        add_prestige = -50
+        add_stress   = 15
+    }
+}

@@ -1,0 +1,33 @@
+﻿l_english:
+
+ # =====================================================================
+ #  SILVENAR & GREEN LADY — BOSMER SACRED BOND
+ # =====================================================================
+
+ # ---- silvenar.000 — The Voice of the Forest ----
+
+ silvenar.000.t: "The Voice of the Forest"
+ silvenar.000.desc: "The elders come to you in the evening, when the light in the forest is green and gold and the trees are doing whatever trees in Valenwood do when they are paying attention. They do not sit down. They do not ask. They tell you, in the calm way of people delivering fact rather than opinion, that the collective spirit of all Bosmer has settled in you. Not chosen, exactly — that word implies a process with alternatives. More like settled, the way rain settles. The Silvenar is the one it settles in. The last one is gone. You are it now. You will be the voice of every Bosmer alive and every Bosmer who has ever lived, speaking for them in councils and courts until you die, at which point the spirit will settle into whoever is next."
+ silvenar.000.a: "I carry the forest people. I am their voice. I understand what that means."
+ silvenar.000.b: "I hear you. But this burden — I am not sure I can hold all of it."
+
+ # ---- silvenar.010 — She Who Fights ----
+
+ silvenar.010.t: "She Who Fights"
+ silvenar.010.desc: "A Bosmer warrior arrives at your court and does not announce herself, because the Green Lady does not announce herself. She is simply there, carrying the stillness of someone who has accepted something enormous without pretending it is smaller than it is. She looks at you in the way of a person who has been told they will spend the rest of their life protecting someone they have just met. Her fate and yours are now braided together. The bond between Silvenar and Green Lady is older than any of the titles either of you hold. It is not voluntary and it is not theoretical. When you die, she dies. Until then: she fights."
+ silvenar.010.a: "Welcome. I understand what this means for both of us."
+
+ # ---- silvenar.020 — The Forest Weeps ----
+
+ silvenar.020.t: "The Forest Weeps"
+ silvenar.020.desc: "You cannot locate the specific grief — it comes from everywhere at once, the collective weight of an entire people's sorrow arriving through the connection you carry. Somewhere in Valenwood something terrible has happened, and because you are the Silvenar you feel it before the messengers arrive. The forest itself is doing the mourning. The trees are doing whatever trees in Valenwood do when they are in grief. You are supposed to hold this. You are supposed to carry it for everyone. The question is what doing that costs you personally."
+ silvenar.020.a: "I carry it. Every weight. That is what the Silvenar is for."
+ silvenar.020.b: "I step back from the grief for a moment. Even the Silvenar is allowed a breath."
+
+ # ---- Traits ----
+
+ bosmer_silvenar: "The Silvenar"
+ bosmer_silvenar_desc: "This ruler is the Silvenar — the living office that embodies the collective spirit of all Bosmer. They are the spiritual ambassador of the forest people, the voice that speaks for Valenwood in every court. The bond between the Silvenar and the Green Lady is supernatural: their deaths are linked. The burden is total. The honour is absolute."
+
+ green_lady_bound: "The Green Lady"
+ green_lady_bound_desc: "This warrior is the Green Lady — bound supernaturally to the current Silvenar. Her life is braided with his. When he dies, she dies. Until then, she fights with the particular ferocity of someone who has accepted that their fate is not entirely their own. The Green Lady's martial focus is the warrior-mirror of the Silvenar's diplomatic grace — together they form the sacred union of Valenwood."

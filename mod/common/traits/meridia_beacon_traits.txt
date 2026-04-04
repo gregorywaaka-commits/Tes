@@ -1,0 +1,57 @@
+# =============================================================
+#  Meridia's Beacon — Traits
+#  File: mod/common/traits/meridia_beacon_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  beacon_bearer   — A ruler who has received Meridia's Beacon
+#                    and wields Dawnbreaker against the undead.
+#                    Martial bonuses; potent against undead forces.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Meridia — the Daedric Prince of Infinite Energies, Lady of
+#  Infinite Energies, She Who Is Above All Others — is one of the
+#  few Daedra with a genuine ideological antipathy to the undead.
+#  She despises the corruption of life-force that necromancy and
+#  unlife represent.  During the Planemeld period (2E 577+), when
+#  Molag Bal's forces and the Gray Host's undead armies moved across
+#  Tamriel, Meridia was particularly active — seeking champions
+#  among the living who would fight the undead in her name.
+#  Dawnbreaker, her artifact sword, burns the undead to ash and
+#  drives others away.  A ruler who receives the Beacon and wields
+#  Dawnbreaker carries Meridia's direct blessing — and her scrutiny.
+#  She is not a comfortable patron.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/meridia_beacon_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • beacon_bearer
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/meridia_beacon_events.txt
+#      → beacon_bearer
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BEACON BEARER
+#  Meridia has chosen them.  The Beacon burns in their hand and
+#  Dawnbreaker is strapped to their side.  Against the undead
+#  they are terrible.  Against everything else they are merely
+#  very dangerous.  The Daedric Prince watches.
+# ---------------------------------------------------------------
+beacon_bearer = {
+    category = fame
+
+    martial          = 4
+    monthly_piety_gain_mult = 0.15   # Meridia's direct blessing
+
+    flag = beacon_bearer
+}

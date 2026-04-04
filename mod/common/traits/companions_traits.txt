@@ -1,0 +1,104 @@
+# =============================================================
+#  Companions of Whiterun — Traits
+#  File: mod/common/traits/companions_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  companions_shield_brother   — A sworn member of the Companions
+#                                warrior-brotherhood of Whiterun.
+#                                Martial and prowess bonuses.
+#  companions_harbinger        — The leader of the Companions — the
+#                                Harbinger, who guides without commanding.
+#                                Major martial and prestige bonuses.
+#  companions_beast_blood      — A Companion who has accepted the beast
+#                                blood of Hircine — a secret werewolf.
+#                                Combat bonuses; risk of discovery.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Companions are a warrior-brotherhood based in Whiterun's
+#  Jorrvaskr mead-hall.  Their origins lie with Ysgramor's original
+#  500 Companions — the Atmoran warriors who reclaimed Skyrim from
+#  the Snow Elves.  In the Second Era they are centuries old, with a
+#  proud tradition of honour, neutrality, and martial excellence.
+#  The Companions do not serve any lord; they take contracts and
+#  maintain their own code.  Their leadership title is the Harbinger
+#  — not a commander but a guide, in keeping with the philosophy that
+#  the Companions are self-governing.  A darker secret runs through
+#  the inner circle: the Companions' leaders carry the beast blood
+#  of Hircine, passed down through secret ritual.  Most members
+#  never know.  Those who do are bound to silence.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/companions_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • companions_beast_blood
+#    • companions_harbinger
+#    • companions_shield_brother
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/companions_decisions.txt
+#      → companions_shield_brother, companions_harbinger
+#    events/companions_events.txt
+#      → companions_beast_blood, companions_harbinger, companions_shield_brother
+# =============================================================
+
+# ---------------------------------------------------------------
+#  COMPANIONS SHIELD-BROTHER
+#  Sworn to Jorrvaskr.  Bound by the code.  Not a soldier,
+#  not a sellsword — a Companion.  The distinction matters more
+#  than it sounds to those who carry it.
+# ---------------------------------------------------------------
+companions_shield_brother = {
+    category = fame
+
+    martial  = 3
+    prowess  = 2
+
+    monthly_prestige_gain_mult = 0.10
+
+    flag = companions_shield_brother
+}
+
+# ---------------------------------------------------------------
+#  COMPANIONS HARBINGER
+#  The Harbinger does not command.  They guide.  The difference
+#  is not merely semantic — it is the entire philosophy of a
+#  warrior-brotherhood that has survived a thousand years by
+#  refusing to become anyone's army.
+# ---------------------------------------------------------------
+companions_harbinger = {
+    category = fame
+
+    martial  = 5
+    prowess  = 4
+
+    monthly_prestige_gain_mult = 0.20
+    vassal_opinion             = 5
+
+    flag = companions_harbinger
+}
+
+# ---------------------------------------------------------------
+#  COMPANIONS BEAST BLOOD
+#  Hircine's gift, passed in secret through Jorrvaskr's inner
+#  circle.  The beast inside is a tool and a burden in equal
+#  measure.  Most Companions die without knowing it exists.
+# ---------------------------------------------------------------
+companions_beast_blood = {
+    category = lifestyle
+
+    prowess  = 5
+    health   = 0.5
+
+    monthly_piety_gain_mult = -0.10   # Hircine's touch sits uneasily with the Divines
+
+    flag = companions_beast_blood
+}

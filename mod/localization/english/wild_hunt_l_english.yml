@@ -1,0 +1,30 @@
+﻿l_english:
+
+ # =====================================================================
+ #  WILD HUNT — BOSMER TRANSFORMATION EVENTS
+ # =====================================================================
+
+ # ---- wild_hunt.000 — The Hunt Begins ----
+
+ wild_hunt.000.t: "The Wild Hunt Begins"
+ wild_hunt.000.desc: "There is a moment before it happens where you are still recognisably yourself — ruler, Bosmer, person with a name and a history and opinions about dinner. Then the forest answers the call. It is not painful. That is the most unsettling part. Something vast and old and not at all individual pours through every Bosmer in your host simultaneously, and then there is no host, only the Hunt — a single entity made from everyone and no one, running on something that does not require legs the way legs are normally understood. Armies will run. Cities will empty. This is the thing that armies cannot fight and walls cannot stop. This is what the forest has always been capable of. You called it. It came."
+ wild_hunt.000.a: "The forest rises. We are no longer individual. We are the Hunt."
+
+ # ---- wild_hunt.010 — The Forest Moves ----
+
+ wild_hunt.010.t: "The Forest Moves"
+ wild_hunt.010.desc: "Your scouts come back pale. To the south — or east, or north, the direction changes depending on which scout returns first — something is moving through the forest that does not move like any army you have heard of. The trees are bending toward it. The animals are running away from it. The scouts say there is a smell like deep forest after rain, except wrong, except made of teeth, except vast in the way that the sky is vast and not in the way that even a large army is vast. Your soldiers are looking at you. The question in their faces is simple: do we stand here or do we not."
+ wild_hunt.010.a: "Hold position. This is exactly the moment to show no fear."
+ wild_hunt.010.b: "Withdraw the army. No battle is worth standing in the path of the Wild Hunt."
+
+ # ---- wild_hunt.020 — What Returns from the Hunt ----
+
+ wild_hunt.020.t: "What Returns"
+ wild_hunt.020.desc: "You are yourself again. Mostly. You are standing in a place that looks like a forest, which it is, and your hands look like your hands, which they are, and the people around you are people again rather than the entity they briefly were, and everything is more or less back to what it was before. Except for the part where you remember being something else — not clearly, the way you remember a dream, except present in your body in a way that is not exactly a memory. The forest logic is still running in the back of your head like a song you cannot quite stop hearing. You are yourself. The question of whether you are entirely yourself is one that only time will answer."
+ wild_hunt.020.a: "I returned. Mostly. That word does an enormous amount of work."
+ wild_hunt.020.b: "I seek understanding — this requires a healer, a priest, anyone who knows what this is."
+
+ # ---- Modifiers ----
+
+ wild_hunt_aftermath_modifier: "Wild Hunt Aftermath"
+ wild_hunt_aftermath_modifier_desc: "Something came back from the Hunt that was not there before, and something stayed in the forest that used to belong to this person. The beast logic lingers. The forest is not entirely outside anymore."

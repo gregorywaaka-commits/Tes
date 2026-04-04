@@ -1,0 +1,185 @@
+# =============================================================
+#  Orsinium Cycle — Events
+#  Namespace: orsinium
+#
+#  LORE:
+#  Orsinium — the city-state of the Orcs — was sacked and rebuilt
+#  multiple times in Tamrielic history.  During the Second Era an
+#  Orcish homeland exists in the Wrothgarian Mountains.  An Orc
+#  ruler who decides to build Orsinium faces both opportunity and
+#  existential threat from neighbouring kingdoms.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • orsinium.000  — An Orcish elder proposes founding/rebuilding Orsinium.
+#  • orsinium.010  — The city takes shape — construction event.
+#  • orsinium.020  — Neighbouring kingdoms take notice and threaten to sack.
+#  • orsinium.030  — Trinimac vision event for Orcs exploring old faith.
+#
+#  KEY TRAITS (orsinium_traits.txt):
+#  ───────────────────────────────────
+#  • orsinium_builder, trinimac_devoted
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • orc_culture  = EK2 culture identifier
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/orsinium_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/orsinium_traits.txt
+#      → orsinium_builder, trinimac_devoted
+# =============================================================
+
+namespace = orsinium
+
+# ---------------------------------------------------------------
+# orsinium.000  The Elder's Proposal
+# An Orcish elder comes to the ruler: there is a site in the
+# mountains.  Strong walls, defensible ground.  A place for
+# their people to call home.  The ruler decides.
+# ---------------------------------------------------------------
+orsinium.000 = {
+    type = character_event
+    title = orsinium.000.t
+    desc  = orsinium.000.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = orc_culture
+        NOT = { has_trait = orsinium_builder }
+        NOT = { has_character_flag = orsinium_founded }
+        NOT = { has_character_flag = orsinium_declined }
+        gold >= 200
+    }
+
+    option = {
+        name = orsinium.000.a   # "We build. Orsinium rises again."
+        add_gold = -200
+        add_character_flag = { flag = orsinium_under_construction days = 730 }
+        add_stress  = 5
+        trigger_event = { id = orsinium.010 days = 365 }
+    }
+
+    option = {
+        name = orsinium.000.b   # "Now is not the time. We are too exposed."
+        add_character_flag = { flag = orsinium_declined days = 1825 }
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# orsinium.010  Walls Rising
+# Construction is underway. The walls are going up. Workers
+# are arriving. The ruler must ensure the project continues.
+# ---------------------------------------------------------------
+orsinium.010 = {
+    type = character_event
+    title = orsinium.010.t
+    desc  = orsinium.010.desc
+    theme = realm
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = orsinium_under_construction
+    }
+
+    option = {
+        name = orsinium.010.a   # "Pour more resources in. It will be magnificent."
+        add_gold = -100
+        add_trait = orsinium_builder
+        remove_character_flag = orsinium_under_construction
+        add_character_flag = { flag = orsinium_founded }
+        add_prestige = 400
+        trigger_event = { id = orsinium.020 days = 365 }
+    }
+
+    option = {
+        name = orsinium.010.b   # "Keep it modest. A defensible camp, not a city."
+        add_trait = orsinium_builder
+        remove_character_flag = orsinium_under_construction
+        add_character_flag = { flag = orsinium_founded }
+        add_prestige = 200
+        trigger_event = { id = orsinium.020 days = 730 }
+    }
+}
+
+# ---------------------------------------------------------------
+# orsinium.020  The Threat from the East
+# Word has spread.  A neighbouring Breton or Redguard king
+# is mustering forces with the stated goal of sacking the
+# growing Orcish city.  The builder must respond.
+# ---------------------------------------------------------------
+orsinium.020 = {
+    type = character_event
+    title = orsinium.020.t
+    desc  = orsinium.020.desc
+    theme = war
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = orsinium_founded
+        has_trait = orsinium_builder
+    }
+
+    option = {
+        name = orsinium.020.a   # "Let them come. The walls are ready."
+        add_prestige = 200
+        add_stress   = 15
+    }
+
+    option = {
+        name = orsinium.020.b   # "Send a diplomatic mission — offer tribute."
+        add_gold    = -100
+        add_piety   = -25
+        add_stress  = 5
+    }
+
+    option = {
+        name = orsinium.020.c   # "Strike first. Cut the threat before it forms."
+        add_prestige = 300
+        add_gold     = -50
+        add_stress   = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# orsinium.030  The Old God's Name
+# An Orcish scholar presents a heretical theory: Malacath was
+# not always Malacath.  Before Boethiah's act, he was Trinimac
+# — pure, divine, beloved.  The ruler must choose how to react.
+# ---------------------------------------------------------------
+orsinium.030 = {
+    type = character_event
+    title = orsinium.030.t
+    desc  = orsinium.030.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = orc_culture
+        NOT = { has_trait = trinimac_devoted }
+        NOT = { has_character_flag = trinimac_considered }
+        learning >= 10
+    }
+
+    option = {
+        name = orsinium.030.a   # "Malacath is what he is. This changes nothing."
+        add_character_flag = { flag = trinimac_considered days = 3650 }
+        add_piety  = 25
+    }
+
+    option = {
+        name = orsinium.030.b   # "Trinimac can be restored. I will walk the old path."
+        add_character_flag = { flag = trinimac_considered }
+        add_trait = trinimac_devoted
+        add_piety = 50
+        add_stress = 10
+    }
+}

@@ -1,0 +1,41 @@
+﻿l_english:
+
+ # =====================================================================
+ #  MORAG TONG — DUNMER LEGAL ASSASSIN GUILD
+ # =====================================================================
+
+ # ---- morag_tong.000 — The Guild's Representatives ----
+
+ morag_tong.000.t: "The Guild's Representatives"
+ morag_tong.000.desc: "Two Dunmer come to your court bearing documentation that is, you have to admit, impeccable. They introduce themselves as representatives of the Morag Tong — and before you respond to that the way most non-Dunmer respond to it, they explain patiently that the Morag Tong is not the Dark Brotherhood. They do not hide. They operate under a system of Writs of Execution sanctioned by the Tribunal, making their kills lawful under Dunmer law. They carry registration. They file forms. There is bureaucratic oversight. They assassinated the Akaviri Potentate Versidue-Shaie in 2E 324 — entirely legally, under Morrowind's legal code — and ended the Second Empire in the process. They are, in some technical sense, the most dangerous licensed professionals in Tamriel. They want to know if you would like their services."
+ morag_tong.000.a: "Legal assassination is still assassination, but in the Interregnum you take the tools available. I accept."
+ morag_tong.000.b: "Legal under Dunmer law is not the same as legal under my law. I will not deal in this."
+
+ # ---- morag_tong.010 — The Writ of Execution ----
+
+ morag_tong.010.t: "The Writ of Execution"
+ morag_tong.010.desc: "The paperwork is surprisingly extensive. There are forms describing the target, their offence under Dunmer custom, the legal basis for the writ, and three separate attestation clauses. The guild representative reviews your completed forms with the expression of a physician reviewing a patient's history — professional, thorough, without personal opinion. They confirm the writ is lawful. They confirm the fee. They confirm the timeline: allow sixty days for operational planning. They do not tell you how they will do it, because that is proprietary. They fold the forms, bow, and leave."
+ morag_tong.010.a: "File the writ. The Guild will execute it."
+ morag_tong.010.b: "Not now. I will handle this through other means."
+
+ # ---- morag_tong.020 — The Writ Arrives ----
+
+ morag_tong.020.t: "A Writ Has Been Filed"
+ morag_tong.020.desc: "An envelope arrives by formal courier — sealed with a specific wax stamp you have not seen before but your advisors recognise instantly. The envelope contains official documentation, in formal Dunmeri legal language, informing you that a Writ of Execution has been filed with the Morag Tong naming you as its subject. The writ is legal under Dunmer law. Under your law it is attempted murder with extraordinary paperwork. The Morag Tong is not the Dark Brotherhood — they do not hide, they do not make it personal, and they do not fail. Somewhere in Morrowind a licensed professional has read your name and started planning."
+ morag_tong.020.a: "Increase security. Hire additional guards. There is nothing else to be done except be difficult to kill."
+ morag_tong.020.b: "Send an envoy to the Tribunal — surely this cannot be permitted against a non-Dunmer lord."
+ morag_tong.020.c: "I face this with dignity. I will not spend my remaining time in fear."
+
+ # ---- morag_tong.030 — The Writ Executed ----
+
+ morag_tong.030.t: "Contract Complete"
+ morag_tong.030.desc: "The Morag Tong representative arrives at your court in the afternoon, files a completion document confirming that the writ has been executed, and informs you that the Guild's part of the arrangement is concluded. They are precise and professional. They mention that all relevant documentation has been filed with the Tribunal. Under Dunmer law, no crime has been committed. The target is simply gone. The Guild bows and leaves."
+ morag_tong.030.a: "The contract is complete. The Guild's thoroughness is exactly what their reputation promised."
+
+ # ---- Traits ----
+
+ morag_tong_patron: "Morag Tong Patron"
+ morag_tong_patron_desc: "This ruler employs the Morag Tong through the Guild's lawful writ system. They know the forms, they know the fees, and they know that the writ will be executed cleanly and without loose ends. The Tribunal sanctions it. The Morag Tong executes it. The patron sleeps soundly."
+
+ morag_tong_witness: "Morag Tong Witness"
+ morag_tong_witness_desc: "This ruler has received a Morag Tong writ or witnessed a writ's execution at close range. The memory of a Morag Tong kill — the precision, the ritual, the absolute absence of hesitation — does not leave a person easily. The stress remains in the body long after the event has passed."

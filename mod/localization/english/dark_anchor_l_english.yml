@@ -1,0 +1,32 @@
+﻿l_english:
+
+ # =====================================================================
+ #  DARK ANCHOR — POST-SOULBURST COUNTY EVENTS
+ # =====================================================================
+
+ # ---- dark_anchor.010 — The Anchor in Your Lands ----
+
+ dark_anchor.010.t: "The Chain from Coldharbour"
+ dark_anchor.010.desc: "They came without warning — a sound like the world tearing, then the sky over one of your counties split open and something came through. Chains. Vast iron chains, each link the size of a barn, hanging from a wound in the air above your land and embedded in the earth below. Where the chains touch the ground, the soil has gone grey. Animals do not approach. The sky around them is wrong — a colour that has no name, a pressure in the air that sits behind the eyes. The dark anchors, people are calling them. Molag Bal is trying to pull the world into Coldharbour, and he is doing it one chain at a time."
+ dark_anchor.010.a: "Marshal every available force and break the chain. This cannot stand."
+ dark_anchor.010.b: "Seal off the county and evacuate what we can. Wait for the chain to destabilize."
+ dark_anchor.010.c: "Call on every ally who will come. This requires more than one army."
+
+ # ---- dark_anchor.020 — A Neighbour's Chain ----
+
+ dark_anchor.020.t: "A Dark Anchor Nearby"
+ dark_anchor.020.desc: "Your scouts report that a Dark Anchor — one of Molag Bal's great chains from Coldharbour — has set in a county belonging to your neighbour. The sky above their land carries that wrong colour. Their ruler is either already responding or has not yet managed to. The Anchor will corrupt the surrounding area and draw Daedra through it for as long as it stands. Whether that is your problem is technically a political decision. Practically, Oblivion does not respect borders."
+ dark_anchor.020.a: "Send troops to help break the Anchor. This is everyone's problem."
+ dark_anchor.020.b: "Reinforce my own borders and let my neighbour handle their own crisis."
+ dark_anchor.020.c: "A weakened neighbour who owes me a debt is useful. Watch and wait."
+
+ # ---- dark_anchor.030 — The Chain is Broken ----
+
+ dark_anchor.030.t: "The Chain is Broken"
+ dark_anchor.030.desc: "The last chain falls. The wound in the sky closes — not healed, exactly, more like forced shut, like a hand clamped over a cut. The grey has retreated from the soil. The wrong colour is gone from the air. The animals will return eventually. The county will recover. Molag Bal will set another anchor somewhere else — this is not a solution, it is a battle. But this battle is won. The chain is broken. Coldharbour recoils, however briefly."
+ dark_anchor.030.a: "The chain is broken. Let every soldier who helped break it be named."
+
+ # ---- Modifiers ----
+
+ dark_anchor_county: "Dark Anchor Site"
+ dark_anchor_county_desc: "A Dark Anchor from Coldharbour has set in this county. The soil is grey. Trade has collapsed. Nothing grows near the wound in the sky. The Anchor must be destroyed before recovery can begin."

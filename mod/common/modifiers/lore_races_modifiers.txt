@@ -1679,3 +1679,67 @@ chim_transcendence = {
     monthly_prestige_gain_mult = 0.25
     stress_gain_mult           = -0.30
 }
+
+# =============================================================
+#  Warlord Claimants — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  WARLORD CLAIM
+#  Short-term prestige surge after declaring oneself Emperor
+#  during the Interregnum.
+#  monthly_prestige_gain_mult +0.30: every court hears the claim.
+#  Duration: 1825 days (5 years of initial claim momentum).
+# ---------------------------------------------------------------
+warlord_claim_modifier = {
+    monthly_prestige_gain_mult = 0.30
+}
+
+# =============================================================
+#  Dark Anchor — County Modifier
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DARK ANCHOR COUNTY
+#  A Dark Anchor from Coldharbour has set in this county.
+#  County modifier — applied to the county, not the ruler.
+#  monthly_income -0.30: trade and farming collapse near the Anchor.
+#  development_growth_factor -0.25: nothing grows near Oblivion.
+#  Duration: 5 years (until broken or naturally fades).
+# ---------------------------------------------------------------
+dark_anchor_county = {
+    monthly_income          = -0.30
+    development_growth_factor = -0.25
+}
+
+# =============================================================
+#  Wild Hunt — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  WILD HUNT AFTERMATH
+#  The participant has returned from the Hunt — mostly.
+#  stress_gain_mult +0.20: something is still animal in them.
+#  learning -2: the forest logic is hard to shut out.
+#  Duration: 1825 days (5 years to settle, or 730 if they seek help).
+# ---------------------------------------------------------------
+wild_hunt_aftermath_modifier = {
+    stress_gain_mult = 0.20
+    learning         = -2
+}
+
+# =============================================================
+#  Meridia's Beacon — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DAWNBREAKER WIELDER
+#  The bearer of Dawnbreaker — Meridia's artifact sword.
+#  martial +3: the blade makes them genuinely terrifying in battle.
+#  monthly_piety_gain_mult +0.10: Meridia's blessing.
+#  Duration: 3650 days (10 years — the blade stays until taken).
+# ---------------------------------------------------------------
+dawnbreaker_wielder = {
+    martial                 = 3
+    monthly_piety_gain_mult = 0.10
+}

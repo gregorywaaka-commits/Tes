@@ -72,3 +72,14 @@
 
  wild_hunt_aftermath: "Wild Hunt: Aftermath"
  wild_hunt_aftermath_desc: "The Hunt has passed.  The silence it leaves behind is not peaceful — it is the silence of something that was and no longer is.  Trade routes avoid the affected region.  Subjects speak more quietly.  The income of the realm falls as the wider world absorbs what was done.  The prestige this ruler once held is measured now against what it cost."
+
+ # =====================================================================
+ #  HIST SHADOWSCALE VISION — SOULBURST PROPHETIC WARNING
+ # =====================================================================
+
+ # ---- hist_vision.004 — The Hist Sees Coldharbour ----
+
+ hist_vision.004.t: "The Hist Sees Coldharbour"
+ hist_vision.004.desc: "The vision comes while you are awake, which the Hist prefers — it believes in efficiency and sleeping people take longer to receive information. What it shows you is not a battlefield or a specific place but a direction and a quality: something cold and very old is looking toward Mundus from somewhere that is not Mundus, and the looking is the first stage of reaching. Coldharbour. Molag Bal. The Hist cannot tell you exactly when or how because the Hist perceives time as a broad thing rather than a specific one, but the texture of the warning is unmistakable: something is coming. The Dragonfires are failing or will fail. The barrier between worlds is thinning. The Argonians will feel it before anyone else does, because the Hist felt it first."
+ hist_vision.004.a: "Something is coming from Coldharbour. The Hist has warned us. We prepare."
+ hist_vision.004.b: "I carry this warning. But I cannot stop what is already moving — only survive it."

@@ -1,0 +1,41 @@
+﻿l_english:
+
+ # =====================================================================
+ #  SHADOWSCALE — ARGONIAN ASSASSIN SYSTEM
+ # =====================================================================
+
+ # ---- shadowscale.000 — Born Under the Shadow ----
+
+ shadowscale.000.t: "The Hist's Offer"
+ shadowscale.000.desc: "A Hist elder comes to your court — an old Argonian with bark-like skin and eyes that look as though they have been looking at the same thing for several centuries. They do not sit down, because Hist elders rarely explain themselves with body language. They speak directly. There are Argonians, they say, who were born under the sign of the Shadow and given to the Hist at birth. They were raised in the deep marsh. They were trained. They are not ordinary assassins — they are the Hist's blades, deployed with the Hist's approval in service of Argonian rulers who have earned that trust. The elder is asking, in the way that a river asks whether you want to get wet, whether you will accept what is being offered."
+ shadowscale.000.a: "The Hist offers this. I accept on behalf of my people and my realm."
+ shadowscale.000.b: "I will not deal in the Hist's assassins, regardless of their sanctioning."
+
+ # ---- shadowscale.010 — The Hist's Blade ----
+
+ shadowscale.010.t: "The Hist's Blade is Ready"
+ shadowscale.010.desc: "The Shadowscale comes to you in the hour before dawn, not as a surprise but as an appointment, moving through security that should have noticed them and apparently did not because the Hist's children move through things as easily as roots move through stone — slowly, without announcement, irresistibly. They wait in the correct posture that means they are asking rather than telling. They have reviewed your situation. There is a target. The Hist has reviewed the target. The forms are available, if you choose to file them."
+ shadowscale.010.a: "Send them. The target has earned this."
+ shadowscale.010.b: "Not this time. I will handle this another way."
+ shadowscale.010.c: "End the arrangement. Return to the Hist."
+
+ # ---- shadowscale.020 — The Old Ways End ----
+
+ shadowscale.020.t: "The Old Ways End"
+ shadowscale.020.desc: "You send word to the Hist elder. The arrangement is ended. You are returning the trust that was given to you in this matter, because you no longer wish to hold it. The Hist, which does not waste words, acknowledges this. The Shadowscale returns to the marsh. The silence that follows is clean and somewhat heavier than you expected."
+ shadowscale.020.a: "Let them return to the Hist. Some powers are not meant to be permanent."
+
+ # ---- shadowscale.030 — The Assignment Complete ----
+
+ shadowscale.030.t: "The Assignment Complete"
+ shadowscale.030.desc: "The Shadowscale returns in the same hour they always choose — before dawn, without announcement, already present before you realise they have arrived. They report in the Hist's preferred form, which is brevity: the mission is complete; the target is not; the Hist is satisfied with the outcome. They wait to see if there is anything else, in the way of a person who is quite comfortable waiting indefinitely."
+ shadowscale.030.a: "It is done. The Hist kept its word."
+ shadowscale.030.b: "The mission failed. The target survived somehow."
+
+ # ---- Traits ----
+
+ shadowscale_trained: "Shadowscale-Trained"
+ shadowscale_trained_desc: "This Argonian was given to the Hist at birth, born under the sign of the Shadow. They were raised in the deep marsh and trained as a Shadowscale — the Hist's assassin arm. Their loyalty is to the Hist first and any mortal lord second. They are extraordinarily effective."
+
+ shadowscale_patron: "Shadowscale Patron"
+ shadowscale_patron_desc: "This ruler employs the Shadowscales through the Hist's approval — maintaining the old ways of Argonian power and gaining access to a lethal resource that no enemy can predict or prevent. The Hist watches how the resource is used."

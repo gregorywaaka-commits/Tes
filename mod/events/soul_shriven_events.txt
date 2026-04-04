@@ -1,0 +1,167 @@
+# =============================================================
+#  Soul Shriven — Events
+#  Namespace: soul_shriven
+#
+#  LORE:
+#  During the Planemeld, Molag Bal systematically stripped souls
+#  from living mortals.  The Soul Shriven are those who survived
+#  the stripping — alive, but hollowed.  Rulers in Molag Bal's
+#  invasion window may find courtiers or themselves affected.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • soul_shriven.000  — During the Planemeld, a ruler's soul is
+#                         at risk — flavour event with choice.
+#  • soul_shriven.010  — A courtier at court is discovered to be
+#                         Soul Shriven — what does the ruler do?
+#  • soul_shriven.020  — A Soul Shriven ruler seeks to reclaim
+#                         their soul (decision-adjacent event).
+#
+#  KEY TRAITS (soul_shriven_traits.txt):
+#  ──────────────────────────────────────
+#  • soul_shriven
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • global_var:soulburst_triggered  — from soulburst_events.txt
+#  • daedric invasion traits from daedric_invasion_traits.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/soul_shriven_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/soul_shriven_traits.txt
+#      → soul_shriven
+# =============================================================
+
+namespace = soul_shriven
+
+# ---------------------------------------------------------------
+# soul_shriven.000  The Hollow Hour
+# During the Planemeld window, a ruler feels something pulled
+# from them — whether it actually happens depends on their choice.
+# This is the primary acquisition event for soul_shriven.
+# ---------------------------------------------------------------
+soul_shriven.000 = {
+    type = character_event
+    title = soul_shriven.000.t
+    desc  = soul_shriven.000.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_global_variable = soulburst_triggered
+        NOT = { has_trait = soul_shriven }
+        NOT = { has_character_flag = soul_shriven_check }
+        OR = {
+            any_held_county = { development_level >= 10 }
+            intrigue <= 6
+        }
+    }
+
+    option = {
+        name = soul_shriven.000.a   # "Something tears free. I fight but cannot hold it."
+        add_character_flag = { flag = soul_shriven_check }
+        add_trait = soul_shriven
+        add_stress  = -20   # Paradoxically — the soul is gone, the fear goes with it
+        add_health  = -0.5
+    }
+
+    option = {
+        name = soul_shriven.000.b   # "I hold the centre of myself. Whatever it is cannot take me."
+        add_character_flag = { flag = soul_shriven_check }
+        add_piety   = 50
+        add_stress  = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# soul_shriven.010  The Empty-Eyed Courtier
+# A member of the ruler's court is discovered to be Soul Shriven —
+# they have been serving dutifully, but something is visibly wrong.
+# ---------------------------------------------------------------
+soul_shriven.010 = {
+    type = character_event
+    title = soul_shriven.010.t
+    desc  = soul_shriven.010.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_global_variable = soulburst_triggered
+        any_courtier = {
+            is_adult = yes
+            NOT = { this = root }
+        }
+        NOT = { has_character_flag = soul_shriven_courtier_found }
+    }
+
+    option = {
+        name = soul_shriven.010.a   # "Keep them. They are still useful — and loyal."
+        add_character_flag = { flag = soul_shriven_courtier_found days = 1825 }
+        add_stress = 10
+        add_piety  = -25
+        random_courtier = {
+            limit = { is_adult = yes NOT = { this = root } }
+            add_trait = soul_shriven
+        }
+    }
+
+    option = {
+        name = soul_shriven.010.b   # "Dismiss them gently. They need rest, not court life."
+        add_character_flag = { flag = soul_shriven_courtier_found days = 1825 }
+        add_piety  = 25
+        add_stress = 5
+        random_courtier = {
+            limit = { is_adult = yes NOT = { this = root } }
+            banish = yes
+        }
+    }
+
+    option = {
+        name = soul_shriven.010.c   # "Seek a way to restore what was taken."
+        add_character_flag = { flag = soul_shriven_courtier_found days = 1825 }
+        add_gold    = -75
+        add_piety   = 50
+        add_stress  = 5
+        trigger_event = { id = soul_shriven.020 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# soul_shriven.020  The Soul Reclaimed
+# A ruler who sought to restore a Soul Shriven courtier's soul
+# hears back from the mages or clerics they sent on the quest.
+# ---------------------------------------------------------------
+soul_shriven.020 = {
+    type = character_event
+    title = soul_shriven.020.t
+    desc  = soul_shriven.020.desc
+    theme = faith
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = soul_shriven_courtier_found
+    }
+
+    option = {
+        name = soul_shriven.020.a   # "Against all expectation, it worked."
+        add_prestige = 200
+        add_piety    = 100
+        random_courtier = {
+            limit = { has_trait = soul_shriven }
+            remove_trait = soul_shriven
+            add_opinion = { target = root modifier = grateful_opinion }
+        }
+    }
+
+    option = {
+        name = soul_shriven.020.b   # "Some things cannot be undone."
+        add_prestige = 50
+        add_stress   = 10
+    }
+}

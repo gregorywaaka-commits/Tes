@@ -1,0 +1,139 @@
+# =============================================================
+#  Silvenar & Green Lady — Events
+#  Namespace: silvenar
+#
+#  LORE:
+#  The Silvenar is the spiritual ambassador of the Bosmer people —
+#  a living office, not a hereditary title.  The Green Lady is the
+#  warrior-bride bound to the Silvenar supernaturally.  Their deaths
+#  are linked: if the Silvenar dies, the Green Lady dies with him.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • silvenar.000  — A Bosmer ruler is declared the new Silvenar.
+#  • silvenar.010  — The Green Lady is identified and approaches.
+#  • silvenar.020  — The Silvenar feels the weight of collective Bosmer grief.
+#
+#  Death link is handled in on_character_death (lore_races_on_actions.txt).
+#
+#  KEY TRAITS (silvenar_traits.txt):
+#  ───────────────────────────────────
+#  • bosmer_silvenar, green_lady_bound
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • bosmer_culture  = EK2 culture identifier
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/silvenar_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/silvenar_traits.txt
+#      → bosmer_silvenar, green_lady_bound
+# =============================================================
+
+namespace = silvenar
+
+# ---------------------------------------------------------------
+# silvenar.000  The Voice of the Forest
+# The Bosmer elders declare that the collective spirit of all
+# Bosmer now rests in this ruler.  The declaration is not a
+# request.  It simply is.
+# ---------------------------------------------------------------
+silvenar.000 = {
+    type = character_event
+    title = silvenar.000.t
+    desc  = silvenar.000.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = bosmer_culture
+        NOT = { has_trait = bosmer_silvenar }
+        NOT = { has_trait = green_lady_bound }
+        NOT = { has_character_flag = silvenar_declared }
+        diplomacy >= 12
+    }
+
+    option = {
+        name = silvenar.000.a   # "I carry the forest people. I am their voice."
+        add_character_flag = { flag = silvenar_declared }
+        add_trait = bosmer_silvenar
+        add_prestige = 300
+        add_piety    = 100
+        add_stress   = 15
+        trigger_event = { id = silvenar.010 days = 90 }
+    }
+
+    option = {
+        name = silvenar.000.b   # "This is a burden I cannot carry alone."
+        add_character_flag = { flag = silvenar_declared days = 1825 }
+        add_stress  = 20
+        add_piety   = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# silvenar.010  She Who Fights
+# A Bosmer warrior appears at court.  She carries herself with
+# the particular stillness of someone who has accepted something
+# enormous.  The new Silvenar recognises her — or she tells them
+# what she is.
+# ---------------------------------------------------------------
+silvenar.010 = {
+    type = character_event
+    title = silvenar.010.t
+    desc  = silvenar.010.desc
+    theme = faith
+
+    trigger = {
+        is_adult = yes
+        has_trait = bosmer_silvenar
+        has_character_flag = silvenar_declared
+        NOT = { has_character_flag = green_lady_found }
+    }
+
+    option = {
+        name = silvenar.010.a   # "Welcome. I understand what this means for both of us."
+        add_character_flag = { flag = green_lady_found }
+        add_prestige = 200
+        add_stress   = 10
+        # The Green Lady is a court member — mechanical link is stored via flag
+        add_character_flag = { flag = silvenar_green_lady_paired }
+    }
+}
+
+# ---------------------------------------------------------------
+# silvenar.020  The Forest Weeps
+# The Silvenar feels the collective grief of the Bosmer — a
+# mass tragedy somewhere in the forest has reached them through
+# the spiritual link.  The burden is real and very heavy.
+# ---------------------------------------------------------------
+silvenar.020 = {
+    type = character_event
+    title = silvenar.020.t
+    desc  = silvenar.020.desc
+    theme = faith
+
+    trigger = {
+        is_adult = yes
+        has_trait = bosmer_silvenar
+        has_character_flag = silvenar_declared
+        stress >= 30
+    }
+
+    option = {
+        name = silvenar.020.a   # "I carry it. I carry all of it. That is what I am."
+        add_piety   = 75
+        add_stress  = 20
+    }
+
+    option = {
+        name = silvenar.020.b   # "I step back from the grief for a moment."
+        add_stress  = -30
+        add_piety   = -25
+    }
+}

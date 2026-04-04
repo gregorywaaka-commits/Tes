@@ -1,0 +1,34 @@
+﻿l_english:
+
+ # =====================================================================
+ #  CROWNS & FOREBEARS — REDGUARD CULTURAL DIVIDE
+ # =====================================================================
+
+ # ---- crowns_forebears.000 — The Divide in the Blood ----
+
+ crowns_forebears.000.t: "The Divide in the Blood"
+ crowns_forebears.000.desc: "Two delegations have arrived at court on the same day, which you suspect was not accidental. One wears Yokudan ceremonial dress and speaks Yoku with the deliberate formality of people who have maintained that language across centuries by effort of will. The other wears clothing indistinguishable from what you might see in any Cyrodiil court, and speaks the common tongue with a Hammerfell accent they do not seem to find embarrassing. Both delegations are polite. Both delegations are watching to see which way you go. The Crown and Forebear divide has been Hammerfell's central political fault line since the Ra Gada first landed, and you are a Redguard ruler who has not yet declared a position. You cannot not declare. Silence is also a declaration."
+ crowns_forebears.000.a: "I am a Crown. The Yokudan ways are not history — they are identity. They do not end with the empire."
+ crowns_forebears.000.b: "I am a Forebear. We trade with the world, we prosper with the world, and we do not apologise for it."
+
+ # ---- crowns_forebears.010 — The Old Grievance ----
+
+ crowns_forebears.010.t: "The Old Grievance"
+ crowns_forebears.010.desc: "A lord of the opposing faction has sent a formal letter, which in diplomatic terms means a letter that says rude things in polite language. They have apparently taken exception to a recent decision of yours — real or symbolic — that signals your factional position, and they want it known that they take exception. The letter is long. The grievance is old. The Crowns and Forebears have been having versions of this argument for so long that the original combatants are dust. You must decide how to respond."
+ crowns_forebears.010.a: "We disagree. That is not the same as being enemies — acknowledge the letter with courtesy."
+ crowns_forebears.010.b: "Challenge their position openly. The fault line does not close by pretending it is closed."
+ crowns_forebears.010.c: "Find common ground on Hammerfell's independence — the divide matters less than the threat."
+
+ # ---- crowns_forebears.020 — The Ceremony of Shared Blood ----
+
+ crowns_forebears.020.t: "The Ceremony of Shared Blood"
+ crowns_forebears.020.desc: "An elder invites you to participate in an ancient Yokudan ceremony — pre-dating the Ra Gada landing, pre-dating the factional split, pre-dating the distinction between Crown and Forebear that has consumed so much of your people's political energy. The ceremony is called the Shared Blood. Its meaning is straightforward: before there were Crowns and Forebears there were simply Redguards, and before there were Redguards there were Yokudans, and before the factions there was just the people. The elder is reminding you of what both factions share before they argue about how to carry it."
+ crowns_forebears.020.a: "We are both Redguard. Whatever else divides us, we share that root."
+
+ # ---- Traits ----
+
+ crown_traditionalist: "Crown Traditionalist"
+ crown_traditionalist_desc: "This Redguard ruler upholds Yokudan tradition — the language, the faith in the HoonDing and Tu'whacca and Ruptga, the warrior codes of the Ra Gada. They are a Crown: proud descendants of the original kings who made Hammerfell what it is. The Forebears think them backward. The Crowns think the Forebears are selling away what cannot be repurchased."
+
+ forebear_reformist: "Forebear Reformist"
+ forebear_reformist_desc: "This Redguard ruler has adopted Imperial and Tamrielic customs — the common tongue, trade relationships with non-Redguard kingdoms, and a pragmatic view of cultural assimilation as a tool of survival and prosperity. They are a Forebear: descendants of the warriors who settled Hammerfell and built relationships with the existing world. The Crowns think them treacherous. The Forebears think the Crowns are clinging to a past that cannot feed their people."

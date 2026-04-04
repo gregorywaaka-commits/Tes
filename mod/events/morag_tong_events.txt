@@ -1,0 +1,187 @@
+# =============================================================
+#  Morag Tong — Events
+#  Namespace: morag_tong
+#
+#  LORE:
+#  The Morag Tong are Morrowind's legal assassin guild.  Their
+#  writs are lawful executions under Dunmer law.  They assassinated
+#  the Akaviri Potentate twice, ending the Second Empire.  During
+#  the EK2 period they operate freely in Morrowind.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • morag_tong.000  — A Dunmer ruler learns they can employ the Tong.
+#  • morag_tong.010  — The patron issues a lawful writ.
+#  • morag_tong.020  — A non-Dunmer ruler receives a writ targeting them.
+#  • morag_tong.030  — The writ is executed.
+#
+#  KEY TRAITS (morag_tong_traits.txt):
+#  ────────────────────────────────────
+#  • morag_tong_patron, morag_tong_witness
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dunmer_culture  = EK2 culture identifier
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/morag_tong_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/morag_tong_traits.txt
+#      → morag_tong_patron, morag_tong_witness
+# =============================================================
+
+namespace = morag_tong
+
+# ---------------------------------------------------------------
+# morag_tong.000  The Guild's Representatives
+# An elegant pair of Dunmer come to the ruler's court bearing
+# documentation that explains exactly who they are, what they
+# offer, and what forms must be filed to employ their services.
+# ---------------------------------------------------------------
+morag_tong.000 = {
+    type = character_event
+    title = morag_tong.000.t
+    desc  = morag_tong.000.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = dunmer_culture
+        NOT = { has_trait = morag_tong_patron }
+        NOT = { has_character_flag = morag_tong_contact }
+        NOT = { has_character_flag = morag_tong_declined }
+        intrigue >= 10
+    }
+
+    option = {
+        name = morag_tong.000.a   # "This is lawful. I will use this resource."
+        add_character_flag = { flag = morag_tong_contact }
+        add_trait = morag_tong_patron
+        add_piety  = 25
+        add_stress = 5
+    }
+
+    option = {
+        name = morag_tong.000.b   # "Legal or not, I will not deal in killing for hire."
+        add_character_flag = { flag = morag_tong_declined days = 3650 }
+        add_piety  = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# morag_tong.010  The Writ of Execution
+# A Dunmer patron decides to file a writ against a rival.
+# The forms are correct.  The Guild has reviewed it.  The writ
+# is lawful under Dunmer custom.  The target will not see it coming.
+# ---------------------------------------------------------------
+morag_tong.010 = {
+    type = character_event
+    title = morag_tong.010.t
+    desc  = morag_tong.010.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = morag_tong_patron
+        any_enemy_character = { is_adult = yes is_ruler = yes }
+        NOT = { has_character_flag = writ_in_progress }
+    }
+
+    option = {
+        name = morag_tong.010.a   # "File the writ. The Guild will execute it."
+        add_gold = -150
+        add_character_flag = { flag = writ_in_progress days = 90 }
+        add_stress = 10
+        trigger_event = { id = morag_tong.030 days = 60 }
+    }
+
+    option = {
+        name = morag_tong.010.b   # "Not now. There are other options."
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# morag_tong.020  The Writ Arrives
+# A non-Dunmer ruler receives official documentation from the
+# Morag Tong informing them that a lawful writ of execution
+# has been filed against them.  Under Dunmer law this is completely
+# legitimate.  Under every other law it is terrifying.
+# ---------------------------------------------------------------
+morag_tong.020 = {
+    type = character_event
+    title = morag_tong.020.t
+    desc  = morag_tong.020.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        NOT = { has_culture = dunmer_culture }
+        NOT = { has_character_flag = writ_received }
+        any_enemy_character = {
+            has_trait = morag_tong_patron
+        }
+    }
+
+    option = {
+        name = morag_tong.020.a   # "Increase security and wait."
+        add_character_flag = { flag = writ_received days = 365 }
+        add_trait  = morag_tong_witness
+        add_stress = 20
+        add_gold   = -100
+    }
+
+    option = {
+        name = morag_tong.020.b   # "Send an envoy to Morrowind — this cannot be legal."
+        add_character_flag = { flag = writ_received days = 365 }
+        add_trait  = morag_tong_witness
+        add_prestige = -50
+        add_stress  = 30
+        add_gold    = -75
+    }
+
+    option = {
+        name = morag_tong.020.c   # "I face it with dignity. If they come, they come."
+        add_character_flag = { flag = writ_received days = 365 }
+        add_trait   = morag_tong_witness
+        add_prestige = 100
+        add_stress   = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# morag_tong.030  The Writ Executed
+# The Guild completes its contract.  The target is eliminated.
+# Under Dunmer law no crime has been committed.
+# ---------------------------------------------------------------
+morag_tong.030 = {
+    type = character_event
+    title = morag_tong.030.t
+    desc  = morag_tong.030.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = writ_in_progress
+    }
+
+    immediate = {
+        remove_character_flag = writ_in_progress
+    }
+
+    option = {
+        name = morag_tong.030.a   # "The contract is complete. The Guild is thorough."
+        add_prestige = 400
+        add_piety    = 25   # Legal under Dunmer custom; the Tribunal approves
+        random_enemy_character = {
+            limit = { is_adult = yes is_ruler = yes }
+            kill_character = yes
+        }
+    }
+}

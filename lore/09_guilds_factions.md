@@ -190,3 +190,44 @@ A dynasty of **Reachmen** who ruled Cyrodiil during the mid-Interregnum; the onl
 ---
 
 *Back to [Index](README.md)*
+
+---
+
+## Morag Tong `[CANON — TES III / UESP]`
+> **Source:** UESP Lore:Morag Tong — https://en.uesp.net/wiki/Lore:Morag_Tong  
+> **Source:** Morrowind in-game book: *Saryoni's Sermons*, *The Brothers of Darkness*
+
+The Morag Tong are Morrowind's **legal assassin guild** — the only assassin organisation in Tamriel that operates openly with government sanction.
+
+- **Patronage:** Sanctioned by the Tribunal; associated with Mephala (the Night Mother / web of assassins). The relationship with Mephala is contested. `[CONTESTED]`
+- **Writs of Execution:** The Tong's kills are lawful under Dunmer law. A Writ is filed, reviewed, and executed as a legal process — not murder but licensed execution.
+- **Historical kills:** Assassinated Akaviri Potentate Versidue-Shaie (2E 324) and Savirien-Chorak (2E 430), ending the Second Empire twice.
+- **Period relevance:** Fully operational throughout the EK2 period. Available to Dunmer rulers who pay their fees and file correct forms.
+- **vs. Dark Brotherhood:** The Dark Brotherhood is an illegal splinter group; the Morag Tong is the legitimate ancient institution. The two organisations are explicitly antagonistic.
+
+---
+
+## Companions of Whiterun `[CANON — TES V / UESP]`
+> **Source:** UESP Lore:The Companions — https://en.uesp.net/wiki/Lore:The_Companions  
+> **Source:** Skyrim in-game book: *Songs of the Return*
+
+The **Companions** are a warrior-brotherhood based in **Jorrvaskr** mead-hall in Whiterun, Skyrim.
+
+- **Origin:** Trace their tradition to Ysgramor's **500 Companions** — the Atmoran warriors who reclaimed Skyrim from the Snow Elves.
+- **Structure:** Self-governing; the leadership title is **Harbinger** (guide, not commander). No fealty to any political lord.
+- **Beast blood secret:** The inner circle secretly carries Hircine's beast blood (lycanthropy). Most members never learn this.
+- **Period relevance:** Centuries old by the EK2 period; operates as a neutral warrior-for-hire brotherhood across Skyrim.
+
+---
+
+## Crowns and Forebears `[CANON — UESP / ESO]`
+> **Source:** UESP Lore:Crowns and Forebears — https://en.uesp.net/wiki/Lore:Crown_and_Forebear
+
+The fundamental **political divide** in Redguard (Hammerfell) society.
+
+- **Crowns:** Uphold Yokudan tradition — the Yoku language, Ra Gada warrior codes, the Old Yokudan faith (HoonDing, Tu'whacca, Ruptga). Descendants of the original ruling nobility.
+- **Forebears:** Adopted Tamrielic and Imperial customs — the common tongue, trade with non-Redguard kingdoms, pragmatic assimilation.
+- **Origins:** Pre-Second Era; the divide emerged naturally from the Ra Gada settlement of Hammerfell.
+- **Period relevance:** Active throughout EK2. Neither faction can dominate permanently; political tension is the permanent state.
+
+*Back to [Index](README.md)*

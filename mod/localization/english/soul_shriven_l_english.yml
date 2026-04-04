@@ -1,0 +1,32 @@
+﻿l_english:
+
+ # =====================================================================
+ #  SOUL SHRIVEN — PLANEMELD EVENTS
+ # =====================================================================
+
+ # ---- soul_shriven.000 — The Hollow Hour ----
+
+ soul_shriven.000.t: "The Hollow Hour"
+ soul_shriven.000.desc: "It happens between heartbeats. One moment you are complete — yourself, entire, with the particular weight of self that a person carries without noticing until it is gone. The next moment there is a pulling, a cold dragging sensation from somewhere in the centre of your chest that has no anatomical name, and something is being taken. Molag Bal's reach extends further than his chains. He does not need an anchor in your county to strip what he wants. The Soulburst has opened a wound in the barrier between worlds, and through that wound something enormous is helping itself."
+ soul_shriven.000.a: "Something tears free. I cannot hold the centre of myself against this."
+ soul_shriven.000.b: "I hold. Whatever it is, it does not get this. Not from me."
+
+ # ---- soul_shriven.010 — The Empty-Eyed Courtier ----
+
+ soul_shriven.010.t: "The Empty-Eyed Courtier"
+ soul_shriven.010.desc: "A court physician pulls you aside. There is a member of your court — a capable one, a useful one — who has been different since the Soulburst. Not obviously. They still do their work. They still speak correctly. But they no longer react to bad news with fear, or to good news with joy, or to music with anything at all. Their eyes are present and their soul is not. The physician has seen this before, now. There is a name for it. The Molag Bal kind of absence. Soul Shriven. They are still here. Whether they are still them is a harder question."
+ soul_shriven.010.a: "Keep them at court. They are still functional — and the work still needs doing."
+ soul_shriven.010.b: "Dismiss them with kindness. They need rest, not politics."
+ soul_shriven.010.c: "Seek a way to restore what was taken. Mages, healers, anyone who knows."
+
+ # ---- soul_shriven.020 — The Soul Reclaimed ----
+
+ soul_shriven.020.t: "The Soul Reclaimed"
+ soul_shriven.020.desc: "The healers come back. Their faces are strange — the particular combination of exhaustion and astonishment that means something happened that they were not fully prepared for. The courtier who sent them stands behind them. Their eyes are different now: present, aware, carrying the particular weight of a person who has been absent from themselves and has returned. Not unchanged. Nobody comes back from that completely unchanged. But back. The soul is back. Against the full weight of Coldharbour, someone found a door."
+ soul_shriven.020.a: "Against all expectation, it worked. Welcome back."
+ soul_shriven.020.b: "It did not work. Some things that are taken cannot be returned."
+
+ # ---- Traits ----
+
+ soul_shriven: "Soul Shriven"
+ soul_shriven_desc: "This person's soul has been taken by Molag Bal. They live and function, but the essential self has been hollowed out. Without a soul they cannot be broken by fear — there is nothing left to break. They also cannot be healed as easily, cannot generate the spiritual warmth that sustains a living body, and gradually become less and less of who they were. The lucky ones had their souls returned. This one did not."

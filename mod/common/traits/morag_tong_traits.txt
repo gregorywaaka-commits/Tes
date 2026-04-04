@@ -1,0 +1,79 @@
+# =============================================================
+#  Morag Tong — Traits
+#  File: mod/common/traits/morag_tong_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  morag_tong_patron      — A Dunmer ruler who employs the Morag Tong
+#                           through lawful writs.
+#                           Intrigue bonuses; feared reputation.
+#  morag_tong_witness     — A ruler who has received a Morag Tong writ
+#                           targeting them or a close ally.
+#                           Stress and paranoia mark from the experience.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Morag Tong are Morrowind's legal assassin guild — sanctioned
+#  by the Tribunal, answering to Mephala (or to the Tribunal, depending
+#  on which source you believe), and operating under a system of Writs
+#  of Execution that make their kills lawful under Dunmer law.  This
+#  distinguishes them absolutely from the Dark Brotherhood.  A Morag
+#  Tong kill is not murder — it is a legal execution carried out by
+#  licensed professionals.  The Tong assassinated Akaviri Potentate
+#  Versidue-Shaie in 2E 324 and Savirien-Chorak in 2E 430, ending
+#  the Second Empire.  During the EK2 period they operate freely in
+#  Morrowind, serving Dunmer lords who can afford their fees.  Non-
+#  Dunmer rulers who receive a Writ against them are faced with a
+#  uniquely horrible situation: a legal killing they cannot prevent
+#  by normal political means.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/morag_tong_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • morag_tong_patron
+#    • morag_tong_witness
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/morag_tong_events.txt
+#      → morag_tong_patron, morag_tong_witness
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MORAG TONG PATRON
+#  They know the guild's forms, they know which names to send,
+#  they know the Writ will be executed cleanly and without mess.
+#  The Morag Tong do not leave witnesses.  Their patrons sleep
+#  soundly because of it.
+# ---------------------------------------------------------------
+morag_tong_patron = {
+    category = lifestyle
+
+    intrigue = 4
+
+    hostile_scheme_success_chance_add = 15
+    monthly_prestige_gain_mult        = 0.10   # Feared, and fear is its own currency
+
+    flag = morag_tong_patron
+}
+
+# ---------------------------------------------------------------
+#  MORAG TONG WITNESS
+#  A Writ was issued.  It was executed.  You were there, or
+#  close enough to it.  The memory of a Morag Tong kill — the
+#  precision, the ritual, the absolute lack of hesitation —
+#  does not leave a person easily.  The stress remains.
+# ---------------------------------------------------------------
+morag_tong_witness = {
+    category = lifestyle
+
+    intrigue     = -2   # Too rattled to plot effectively
+
+    flag = morag_tong_witness
+}

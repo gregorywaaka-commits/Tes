@@ -258,3 +258,42 @@ hist_vision.011 = {
         add_piety    = -200
     }
 }
+
+# ---------------------------------------------------------------
+# hist_vision.004  The Hist Sees Coldharbour
+# An Argonian ruler with hist_bonded near the 2E 577 window
+# receives a prophetic vision from the Hist — a warning of the
+# Soulburst before it happens.  Argonians sensed the Planemeld
+# threat early.  This is why.
+# ---------------------------------------------------------------
+hist_vision.004 = {
+    type = character_event
+    title = hist_vision.004.t
+    desc  = hist_vision.004.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = hist_bonded
+        NOT = { has_character_flag = hist_soulburst_warning }
+        NOT = { has_global_variable = soulburst_triggered }
+        game_start_date >= 2.560.1.1
+        game_start_date <= 2.577.12.31
+    }
+
+    option = {
+        name = hist_vision.004.a   # "Something is coming from Coldharbour. The Hist weeps."
+        add_character_flag = { flag = hist_soulburst_warning }
+        add_piety   = 100
+        add_stress  = 20
+        add_character_flag = { flag = hist_warned_of_planemeld days = 5475 }
+    }
+
+    option = {
+        name = hist_vision.004.b   # "I carry this warning. But I cannot stop what is already moving."
+        add_character_flag = { flag = hist_soulburst_warning }
+        add_piety  = 50
+        add_stress = 30
+    }
+}

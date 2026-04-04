@@ -1,0 +1,157 @@
+# =============================================================
+#  Wild Hunt — Events
+#  Namespace: wild_hunt
+#
+#  LORE:
+#  The Wild Hunt is the most terrible thing the Bosmer can do.
+#  When the Hunt is called, every Bosmer in the group transforms
+#  into a single raging entity — part beast, part god, entirely
+#  destruction.  Armies run.  Cities fall.  The participants
+#  rarely fully return to themselves afterward.
+#
+#  The wild_hunt_called trait exists (lore_races_traits.txt).
+#  These events expand the system with a decision-triggered chain.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • wild_hunt.000  — The Hunt is called (decision trigger).
+#  • wild_hunt.010  — Neighbouring rulers witness the Hunt (notification).
+#  • wild_hunt.020  — Aftermath — the participants return, changed.
+#
+#  KEY TRAITS:
+#  ───────────
+#  • wild_hunt_called   — from lore_races_traits.txt (already exists)
+#
+#  KEY MODIFIERS (lore_races_modifiers.txt):
+#  ──────────────────────────────────────────
+#  • wild_hunt_aftermath_modifier  — stress cost; residual beast nature
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • wild_hunt_called  = lore_races_traits.txt (pre-existing trait)
+#  • bosmer_culture    = EK2 culture identifier
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/wild_hunt_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt
+#      → wild_hunt_called
+# =============================================================
+
+namespace = wild_hunt
+
+# ---------------------------------------------------------------
+# wild_hunt.000  The Hunt Begins
+# The decision has been made — the forest erupts.  This event
+# fires immediately after the call_the_wild_hunt decision.
+# It resolves mechanically and triggers the aftermath.
+# ---------------------------------------------------------------
+wild_hunt.000 = {
+    type = character_event
+    title = wild_hunt.000.t
+    desc  = wild_hunt.000.desc
+    theme = war
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = wild_hunt_called_active
+        has_trait = wild_hunt_called
+    }
+
+    option = {
+        name = wild_hunt.000.a   # "The forest rises. We are no longer individual."
+        add_prestige = 600
+        add_piety    = 200
+        add_stress   = 30
+        trigger_event = { id = wild_hunt.010 days = 7 }
+        trigger_event = { id = wild_hunt.020 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# wild_hunt.010  The Forest Moves
+# Notification event for rulers neighbouring the Hunt's path.
+# They feel it — smell it on the wind — and must decide
+# whether to stand their ground or flee.
+# ---------------------------------------------------------------
+wild_hunt.010 = {
+    type = character_event
+    title = wild_hunt.010.t
+    desc  = wild_hunt.010.desc
+    theme = war
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        NOT = { has_culture = bosmer_culture }
+        any_neighboring_county = {
+            holder = {
+                OR = {
+                    has_culture = bosmer_culture
+                    has_trait   = wild_hunt_called
+                }
+            }
+        }
+        NOT = { has_character_flag = witnessed_wild_hunt }
+    }
+
+    option = {
+        name = wild_hunt.010.a   # "Hold position. This is exactly the time to show no fear."
+        add_character_flag = { flag = witnessed_wild_hunt days = 730 }
+        add_prestige = 200
+        add_stress   = 25
+    }
+
+    option = {
+        name = wild_hunt.010.b   # "Withdraw the army. No battle is worth this."
+        add_character_flag = { flag = witnessed_wild_hunt days = 730 }
+        add_prestige = -100
+        add_stress   = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# wild_hunt.020  What Returns from the Hunt
+# The Hunt is over.  The Bosmer who participated are physically
+# present again — but something has been left in the forest.
+# Some never fully become who they were before.
+# ---------------------------------------------------------------
+wild_hunt.020 = {
+    type = character_event
+    title = wild_hunt.020.t
+    desc  = wild_hunt.020.desc
+    theme = faith
+
+    trigger = {
+        is_adult = yes
+        has_trait = wild_hunt_called
+        has_character_flag = wild_hunt_called_active
+    }
+
+    immediate = {
+        remove_character_flag = wild_hunt_called_active
+    }
+
+    option = {
+        name = wild_hunt.020.a   # "I returned. Mostly."
+        add_modifier = {
+            modifier = wild_hunt_aftermath_modifier
+            days = 1825
+        }
+        add_stress  = 20
+        add_prestige = 100
+    }
+
+    option = {
+        name = wild_hunt.020.b   # "I seek understanding — the Hist, a healer, anyone who knows what this is."
+        add_piety   = 75
+        add_stress  = 10
+        add_modifier = {
+            modifier = wild_hunt_aftermath_modifier
+            days = 730
+        }
+    }
+}

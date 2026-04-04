@@ -1,0 +1,110 @@
+# =============================================================
+#  Men-at-Arms Types — Alliance War Units
+#  File: mod/common/men_at_arms_types/alliance_war_units.txt
+#
+#  Three faction-specific units tied to the Three Banners War
+#  traits (alliance_war_traits.txt):
+#    • vinedusk_rangers   — Aldmeri Dominion; Bosmer archers
+#    • lion_guard         — Daggerfall Covenant; Breton heavy infantry
+#    • ebonheart_vanguard — Ebonheart Pact; Nord/Dunmer shock troops
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • aldmeri_banner   = alliance_war_traits.txt
+#  • covenant_banner  = alliance_war_traits.txt
+#  • pact_banner      = alliance_war_traits.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/men_at_arms_types/alliance_war_units.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • ebonheart_vanguard
+#    • lion_guard
+#    • vinedusk_rangers
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    (units unlocked via trait can_recruit triggers)
+# =============================================================
+
+# ---- Vinedusk Rangers (Aldmeri Dominion — Bosmer archers) ----
+
+vinedusk_rangers = {
+    type = archers
+    damage    = 40
+    toughness = 20
+    pursuit   = 25
+    screen    = 30
+    siege_value = 0
+    max_size  = 150
+    scaling_cost = { gold = 0.25 }
+    maintenance_multiplier = 1.5
+
+    terrain_bonus = {
+        forest     = { damage = 15 screen = 10 pursuit = 10 }
+        jungle     = { damage = 10 screen = 5  }
+        hills      = { damage = 5  screen = 5  }
+    }
+
+    can_recruit = {
+        OR = {
+            has_trait = aldmeri_banner
+            has_culture = bosmer_culture
+        }
+    }
+}
+
+# ---- Lion Guard (Daggerfall Covenant — Breton heavy infantry) ----
+
+lion_guard = {
+    type = heavy_infantry
+    damage    = 55
+    toughness = 50
+    pursuit   = 10
+    screen    = 30
+    siege_value = 10
+    max_size  = 120
+    scaling_cost = { gold = 0.40 }
+    maintenance_multiplier = 1.8
+
+    terrain_bonus = {
+        plains  = { damage = 10 screen = 5  }
+        farmland = { damage = 5  toughness = 5 }
+    }
+
+    can_recruit = {
+        OR = {
+            has_trait = covenant_banner
+            has_culture = breton_culture
+        }
+    }
+}
+
+# ---- Ebonheart Vanguard (Ebonheart Pact — Nord/Dunmer shock troops) ----
+
+ebonheart_vanguard = {
+    type = heavy_infantry
+    damage    = 65
+    toughness = 45
+    pursuit   = 15
+    screen    = 20
+    siege_value = 5
+    max_size  = 100
+    scaling_cost = { gold = 0.45 }
+    maintenance_multiplier = 1.9
+
+    terrain_bonus = {
+        mountains = { damage = 15 toughness = 10 }
+        hills     = { damage = 10 toughness = 5  }
+        taiga     = { damage = 5  toughness = 5  }
+    }
+
+    can_recruit = {
+        OR = {
+            has_trait = pact_banner
+            has_culture = nord_culture
+            has_culture = dunmer_culture
+        }
+    }
+}

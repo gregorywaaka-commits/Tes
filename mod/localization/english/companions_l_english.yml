@@ -1,0 +1,44 @@
+﻿l_english:
+
+ # =====================================================================
+ #  COMPANIONS OF WHITERUN
+ # =====================================================================
+
+ # ---- companions.000 — The Call of Jorrvaskr ----
+
+ companions.000.t: "The Call of Jorrvaskr"
+ companions.000.desc: "The messenger does not look like a messenger. They look like someone who has been fighting professionally for several decades and is taking a brief break from it to carry a letter. The letter is from the Companions of Whiterun — the warrior-brotherhood of Jorrvaskr, founded in the tradition of Ysgramor's five hundred, old enough that their oldest traditions predate most of the political structures you operate within. The letter is not a recruitment pitch. It is a recognition. They have heard of you. They think you might be worth knowing. They are inviting you to Jorrvaskr, if you choose to come."
+ companions.000.a: "I will stand with Jorrvaskr. The Companions are worth my loyalty."
+ companions.000.b: "I respect the Companions. But my path is my own, and I walk it alone."
+
+ # ---- companions.010 — What the Circle Knows ----
+
+ companions.010.t: "What the Circle Knows"
+ companions.010.desc: "The senior members of the inner circle ask to speak with you privately. They have been watching you since you joined, which is the kind of thing that sounds ominous until they explain that watching new Shield-Brothers is simply what the Circle does — it is how they decide what to trust them with. What they are about to trust you with is this: the Companions carry a secret that most of their members never learn. The inner circle of Jorrvaskr is something more than a warrior-brotherhood. They are Hircine's, in a particular and specific way that they are about to explain."
+ companions.010.a: "Tell me what you are. I will hear it and decide what to do with the knowledge."
+ companions.010.b: "Some things are better not known. I serve the Companions as they stand."
+
+ # ---- companions.020 — The Beast Within ----
+
+ companions.020.t: "The Beast Within"
+ companions.020.desc: "The offer is made without ceremony, which is the Companions' way — they do not dress important things up. Hircine's beast blood can be passed. The werewolf transformation, the strength and the speed and the particular kind of terror that comes with it. The inner circle carries it. They are offering to pass it to you. The gift brings power. The gift also brings Hircine's interest, and Hircine is not a god who keeps a comfortable distance from those he has touched. You will be stronger. You will be his. Whether those two facts balance is something only you can weigh."
+ companions.020.a: "I accept Hircine's gift. The beast blood runs in me now."
+ companions.020.b: "I refuse it. I serve the Companions as a person, not as one of the Prince's tools."
+
+ # ---- companions.030 — The Harbinger's Mantle ----
+
+ companions.030.t: "The Harbinger's Mantle"
+ companions.030.desc: "The senior Shield-Brothers come to you in the hall of Jorrvaskr in the evening, when the mead-hall is quiet and the old banner of Ysgramor catches the light from the hearthfire the way it always has. They are not dramatic about it. The Companions are never dramatic. They say simply that you have earned it: the Harbinger's mantle, the title given to the one who guides Jorrvaskr without commanding it. Not a lord. Not a general. A guide. The philosophy of the Companions — self-governing, neutral, bound to their code and nothing else — depends on the Harbinger being exactly that and nothing more."
+ companions.030.a: "I guide. I do not command. That distinction matters, and I will hold it."
+ companions.030.b: "I am a Shield-Brother. Let someone else carry the title — I carry the code."
+
+ # ---- Traits ----
+
+ companions_shield_brother: "Companions Shield-Brother"
+ companions_shield_brother_desc: "This ruler is a sworn member of the Companions of Whiterun — the warrior-brotherhood of Jorrvaskr, founded in the tradition of Ysgramor's 500. They are not a soldier, not a sellsword. They are a Companion. The distinction matters more than it sounds to those who carry it."
+
+ companions_harbinger: "Harbinger of the Companions"
+ companions_harbinger_desc: "This ruler is the Harbinger — the guide of the Companions of Whiterun. Not their commander, not their lord. Their guide. The Companions are self-governing, bound to their own code and no one else's. The Harbinger is the one who keeps the code clear and the brotherhood intact. They guide without commanding, which is harder than it sounds."
+
+ companions_beast_blood: "Companions Beast Blood"
+ companions_beast_blood_desc: "This Companion carries Hircine's beast blood — the werewolf transformation passed through Jorrvaskr's inner circle. The beast is a tool and a burden in equal measure. Most Companions die without knowing it exists. Those who do are bound to silence."
