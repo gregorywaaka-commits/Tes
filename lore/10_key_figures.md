@@ -47,12 +47,12 @@ Each entry includes:
 ## Reman Cyrodiil `[CANON — UESP]`
 > **Source:** UESP Lore:Reman Cyrodiil — https://en.uesp.net/wiki/Lore:Reman_Cyrodiil
 
-- **Era:** c. 1E 2200s
+- **Era:** c. 1E 2703
 - **Role:** Founder of the Second Empire (Reman Dynasty)
 - **Key facts:**
-  - Rose to prominence c. 1E 2200, uniting the fractured kingdoms of Cyrodiil `[CANON — UESP]`
-  - Defeated the **Akaviri invasion** of 1E 2703 and incorporated the surviving Akaviri into his armies (they became the **Akaviri Potentate** — elite Imperial guard) `[CANON — UESP]`
-  - United all of Tamriel under his rule **except Morrowind and Summerset** `[CANON — UESP]`
+  - Rose to prominence c. **1E 2703** at the **Battle of Pale Pass** — rallied the kingdoms of Tamriel against the **Akaviri (Tsaesci) invasion**, defeating them decisively `[CANON — UESP]` ⚠️ Previous entry erroneously said "c. 1E 2200" — corrected to c. 1E 2703 per UESP Lore:Reman I; 1E 2200 has no association with Reman in any canon source
+  - Incorporated the surviving Akaviri into his armies (they became the **Akaviri Potentate** — elite Imperial guard / bodyguard corps) `[CANON — UESP]`
+  - His dynasty eventually united all of Tamriel under Imperial rule **except Morrowind** (which maintained semi-autonomy via the Tribunal Armistice) `[CANON — UESP: Lore:Second Empire]` ⚠️ Previous entry said "except Morrowind and Summerset" — Summerset Isles were eventually incorporated; only Morrowind retained autonomy
   - His dynasty lasted until 1E 2920 when **Reman III** was assassinated by Morag Tong agents
 - **Notes:** Often considered the greatest pre-Septim emperor. His empire was more successful militarily than Alessia's. `[SOFT CANON — historian POV, UESP]`
 

@@ -97,7 +97,7 @@
 - A **Dragon Break** is a period where **linear time shatters** — multiple contradictory timelines exist simultaneously and are all equally true.
 - Named for a "break" in Akatosh's (the Dragon of Time's) power over linear causality.
 - **Known Dragon Breaks:**
-  - **The Middle Dawn (1E 1200–2208):** An 800-year period (Alessian Doctrines era) where time broke due to religious disruption `[CANON — IN-GAME BOOK: The Warp in the West]`
+  - **The Middle Dawn (1E 1200–2208):** An approximately **1,008-year period** (Alessian Doctrines era) where time broke due to the Marukhati Selective's rituals to "purify" Akatosh of Aldmeri influence `[CANON — UESP: Lore:Middle Dawn; in-game books: Where Were You When the Dragon Broke?, Dragon Break Re-Examined]` ⚠️ Previous entry cited "The Warp in the West" as source — that is a different Dragon Break (3E 417). Previous entry also said "800-year period" — corrected to ~1,008 years (2208 − 1200)
   - **The Warp in the West (3E 417):** The simultaneous resolution of all six ending states of TES II: Daggerfall — caused by multiple activations of the Numidium `[CANON — TES II: Daggerfall; developer confirmation]` All six Daggerfall endings are simultaneously canon.
 - ⚠️ Dragon Breaks are used by Bethesda to canonise contradictory game states. `[CANON — developer design intention]`
 
