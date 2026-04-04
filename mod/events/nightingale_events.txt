@@ -24,6 +24,28 @@
 #  EXTERNAL DEPENDENCIES:
 #  ─────────────────────
 #  • nocturnal_champion  = daedric_invasion_traits.txt
+#
+#  FUTURE ARTIFACTS: Nightingale Armor Set
+#  ─────────────────────────────────────────
+#  The Nightingale covenant gear is currently not implemented as
+#  artifacts.  Lore-accurate Nightingale agents wield a matched set:
+#
+#  • Nightingale Blade (artifact_id: nightingale_blade)
+#      Slot: weapon (sword)
+#      Special: intrigue bonus; Thieves Guild synergy; scheme detection reduction
+#      Lore: UESP Lore:Nightingale Blade — Nocturnal's agents' enchanted sword
+#
+#  • Nightingale Bow (artifact_id: nightingale_bow)
+#      Slot: weapon (bow/ranged)
+#      Special: intrigue/martial; Nocturnal's shadow grace on use
+#      Lore: UESP Lore:Nightingale Bow — enchanted bow of Nocturnal's covenant
+#
+#  • Nightingale Armor (artifact_id: nightingale_armor)
+#      Slot: armour (medium/light)
+#      Special: intrigue; stealth scheme bonus; stress reduction from Nocturnal's shroud
+#      Lore: UESP Lore:Nightingale Armor — shadow-enchanted armor of the Twilight Sepulchre
+#
+#  All three: See ARTIFACTS_TODO.md
 # =============================================================
 
 # =============================================================

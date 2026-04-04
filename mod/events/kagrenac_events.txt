@@ -56,6 +56,32 @@
 #  • dagoth_ur_awakened       = scripted trigger in lore_races_triggers.txt
 #  • end_dagoth_ur_era        = scripted effect in lore_races_effects.txt
 #  • sixth_house_cultist      = trait in dagoth_ur_traits.txt
+#
+#  FUTURE ARTIFACTS: The Tools of Kagrenac
+#  ─────────────────────────────────────────
+#  All three tools are currently tracked via character flags
+#  (sunder_found, keening_found, wraithguard_found).  They should
+#  eventually become CK3 legendary artifact items:
+#
+#  • Sunder (artifact_id: sunder)
+#      Slot: weapon (hammer/maul)
+#      Special: strikes the Heart of Lorkhan to release divine power;
+#        grants massive martial bonus; cannot be used without Wraithguard
+#      Lore: UESP Lore:Sunder — Kagrenac's hammer; controls divine power flow
+#
+#  • Keening (artifact_id: keening)
+#      Slot: weapon (knife/dagger)
+#      Special: "bleeds" divine energy into mortal form; lethal without Wraithguard;
+#        extreme learning bonus while held
+#      Lore: UESP Lore:Keening — Kagrenac's blade; drains soul energy from the Heart
+#
+#  • Wraithguard (artifact_id: wraithguard)
+#      Slot: glove/hand armour
+#      Special: allows safe use of Sunder and Keening; without it both
+#        weapons instantly kill the bearer; Vivec shaped a copy for the Nerevarine
+#      Lore: UESP Lore:Wraithguard — gauntlet protecting against the other tools' backblast
+#
+#  All three: See ARTIFACTS_TODO.md
 # =============================================================
 
 

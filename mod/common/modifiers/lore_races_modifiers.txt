@@ -711,6 +711,9 @@ mehrunes_razor_holder = {
     prowess  = 4                            # The Razor is a supremely deadly weapon
     intrigue = 3                            # Assassination is easier with a god's blade
     command_modifier = { advantage = 3 damage = 0.1 }
+    # FUTURE ARTIFACT: mehrunes_razor — weapon slot; small instant-kill chance on-kill
+    #   Lore: UESP Lore:Mehrunes' Razor — blade of Mehrunes Dagon, Prince of Destruction
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Azura's Star: a reusable Daedric soul gem; grants prophetic insight.
@@ -718,6 +721,9 @@ azura_star_holder = {
     monthly_piety_gain_mult = 0.2   # The Star channels Azura's prophetic grace
     learning                = 3     # Soul knowledge grants unusual insight
     diplomacy               = 2     # Azura's star grants social grace
+    # FUTURE ARTIFACT: azura_star — trinket/off-hand; reusable soul gem; on-death revival mechanic
+    #   Lore: UESP Lore:Azura's Star — reusable grand soul gem; can capture White Souls
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Mace of Molag Bal: weapon that steals the souls of the slain.
@@ -725,6 +731,9 @@ mace_of_molag_bal_holder = {
     prowess                          = 6    # The Mace is a devastating weapon
     dread_gain_mult                  = 0.3  # Fear follows the Mace's wielder
     command_modifier = { advantage = 4 damage = 0.15 }
+    # FUTURE ARTIFACT: mace_of_molag_bal — weapon (mace); soul-steal on kill; vampiric synergy
+    #   Lore: UESP Lore:Mace of Molag Bal — weapon of the King of Corruption
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Ring of Hircine: grants the wearer greater prowess in the hunt.
@@ -732,6 +741,9 @@ ring_of_hircine_holder = {
     prowess  = 4
     martial  = 2
     command_modifier = { pursuit = 0.2 }    # Hunting instinct makes pursuit more effective
+    # FUTURE ARTIFACT: ring_of_hircine — ring/accessory; werewolf synergy; hunt bonus
+    #   Lore: UESP Lore:Ring of Hircine — Hircine's reward for a worthy hunt
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Saviour's Hide: Hircine's cursed armour, later a legendary protection.
@@ -739,6 +751,9 @@ saviors_hide_holder = {
     prowess                  = 3
     monthly_piety_gain_mult  = 0.1   # Surviving Hircine's hunt is a spiritual achievement
     command_modifier = { toughness = 0.15 }
+    # FUTURE ARTIFACT: saviors_hide — armour (light); werewolf curse mitigation; Hircine piety
+    #   Lore: UESP Lore:Saviour's Hide — reward for surviving Hircine's Great Hunt
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Ebony Mail: Boethiah's enchanted armour; poisons those nearby.
@@ -747,6 +762,9 @@ ebony_mail_holder = {
     intrigue        = 4             # Boethiah's poison is subtle and political
     dread_gain_mult = 0.2
     command_modifier = { advantage = 3 }
+    # FUTURE ARTIFACT: ebony_mail — armour (heavy); poison aura; Boethiah champion bonus
+    #   Lore: UESP Lore:Ebony Mail — Boethiah's artifact; silences footsteps, poisons nearby foes
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Ebony Blade: Mephala's sword; grows stronger as the wielder betrays those close to them.
@@ -755,6 +773,9 @@ ebony_blade_holder = {
     intrigue        = 5
     dread_gain_mult = 0.25
     # Note: The Ebony Blade's betrayal mechanic is handled via events in daedric_champion_events.txt
+    # FUTURE ARTIFACT: ebony_blade — weapon (great sword); grows stronger per murdered relation
+    #   Lore: UESP Lore:Ebony Blade — Mephala's weapon, feeds on broken oaths and kinslaying
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Masque of Clavicus Vile: a golden mask that makes the wearer irresistibly charming.
@@ -762,6 +783,9 @@ masque_of_clavicus_vile = {
     diplomacy                  = 6   # The Masque is magically persuasive
     intrigue                   = 3
     monthly_prestige_gain_mult = 0.1
+    # FUTURE ARTIFACT: masque_of_clavicus_vile — headgear/face; diplomacy; opinion bonus
+    #   Lore: UESP Lore:Masque of Clavicus Vile — golden mask granting charm and persuasion
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Skull of Corruption: Vaermina's staff; copies the target's memories/dreams.
@@ -769,12 +793,18 @@ skull_of_corruption_modifier = {
     intrigue                   = 5   # Stolen memories are excellent leverage
     learning                   = 3   # Accumulated knowledge from stolen minds
     monthly_prestige_gain_mult = 0.1
+    # FUTURE ARTIFACT: skull_of_corruption — trinket; scheme power; stress drain on target
+    #   Lore: UESP Lore:Skull of Corruption — Vaermina's artifact; steals memories via dreams
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Wabbajack: Sheogorath's staff; random unpredictable effects.
 wabbajack_modifier = {
     stress_gain_mult = -0.4   # Madness is its own kind of freedom
     # Unpredictable combat outcomes are handled via events in daedric_champion_events.txt
+    # FUTURE ARTIFACT: wabbajack — weapon (staff); random yearly effect table (positive/negative)
+    #   Lore: UESP Lore:Wabbajack — Sheogorath's chaotic staff; randomises everything it strikes
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Spellbreaker: Peryite's shield; reflects spells and protects against disease.
@@ -782,6 +812,9 @@ spellbreaker_modifier = {
     prowess     = 3
     stewardship = 3    # Peryite's order principle manifests as administrative competence
     command_modifier = { toughness = 0.2 screen = 0.1 }
+    # FUTURE ARTIFACT: spellbreaker — shield/off-hand; disease resistance; spell reflection aura
+    #   Lore: UESP Lore:Spellbreaker — Peryite's Dwemer-forged shield; wards against magic
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Sanguine Rose: a staff that summons Daedra to serve.
@@ -789,6 +822,9 @@ sanguine_rose_holder = {
     diplomacy                  = 3
     stress_gain_mult           = -0.2   # Sanguine's gifts are always pleasurable
     monthly_prestige_gain_mult = 0.1
+    # FUTURE ARTIFACT: sanguine_rose — weapon (staff); summon Daedra event; reveller bonus
+    #   Lore: UESP Lore:Sanguine Rose — staff that summons a Dremora or Daedra when swung
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Dawnbreaker: Meridia's sword; explodes undead and grants her blessing.
@@ -797,6 +833,9 @@ dawnbreaker_modifier = {
     martial                 = 3
     monthly_piety_gain_mult = 0.2
     command_modifier = { advantage = 5 damage = 0.2 }    # Devastating vs. undead
+    # FUTURE ARTIFACT: dawnbreaker — weapon (sword); undead bane effect; Meridia piety
+    #   Lore: UESP Lore:Dawnbreaker — Meridia's artifact sword; explodes undead on kill
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Volendrung: Malacath's hammer; grants immense strength.
@@ -804,12 +843,18 @@ volendrung_bearer = {
     prowess  = 8    # Volendrung is the hammer of a god — immense physical power
     martial  = 4
     command_modifier = { advantage = 5 damage = 0.25 }
+    # FUTURE ARTIFACT: volendrung — weapon (war hammer); drain stamina; Orc/Malacath synergy
+    #   Lore: UESP Lore:Volendrung — Malacath's hammer, originally a Rourken Dwemer clan weapon
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Skeleton Key: Nocturnal's unbreakable lockpick; opens any lock and mind.
 skeleton_key_holder = {
     intrigue    = 6    # Every door is open; every secret accessible
     stewardship = 2    # Even treasury locks yield to the Key
+    # FUTURE ARTIFACT: skeleton_key — trinket; intrigue scheme bonus; Thieves Guild synergy
+    #   Lore: UESP Lore:Skeleton Key — Nocturnal's unbreakable lockpick; opens any lock
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Oghma Infinium: Hermaeus Mora's tome of forbidden knowledge.
@@ -817,6 +862,9 @@ oghma_infinium_holder = {
     learning                   = 8    # The Infinium contains knowledge beyond mortal reach
     intrigue                   = 3    # Forbidden knowledge is powerful leverage
     monthly_prestige_gain_mult = 0.1
+    # FUTURE ARTIFACT: oghma_infinium — book/trinket; massive skill boost on read; one-time event
+    #   Lore: UESP Lore:Oghma Infinium — Mora's tome written by Xarxes; destroys the reader's mind
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Ring of Namira: allows the wearer to feast on the dead; grants dark vitality.
@@ -824,6 +872,9 @@ ring_of_namira_holder = {
     prowess  = 4
     intrigue = 3
     # Cannibal synergy and specific interactions handled via events in daedric_champion_events.txt
+    # FUTURE ARTIFACT: ring_of_namira — ring/accessory; cannibal synergy; health regen on feast
+    #   Lore: UESP Lore:Ring of Namira — Lady of Decay's ring; grants strength via consuming the dead
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Sword of Jyggalag: weapon of perfect order; crystallises all it touches.
@@ -832,6 +883,9 @@ sword_of_jyggalag_modifier = {
     martial     = 5
     stewardship = 3     # Jyggalag's order principle = excellent administration
     command_modifier = { advantage = 8 damage = 0.3 max_morale = 0.3 }
+    # FUTURE ARTIFACT: sword_of_jyggalag — weapon (great sword); crystallisation county modifier
+    #   Lore: UESP Lore:Jyggalag — Prince of Order; his blade reduces everything to crystalline law
+    #   See: ARTIFACTS_TODO.md
 }
 
 # Empty cooldown — prevents multiple simultaneous Daedric quests.

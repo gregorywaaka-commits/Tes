@@ -14,6 +14,18 @@
 #  ─────────────────────
 #  global_var:numidium_awakened  — set when the Brass God is reactivated
 #  has_character_flag:has_numidium_knowledge — scholar has found the texts
+#
+#  FUTURE ARTIFACT: The Mantella
+#  ──────────────────────────────
+#  The Mantella is tracked here via the mantella_seeker trait and
+#  character flags.  It should eventually become a CK3 legendary artifact:
+#    artifact_id: mantella
+#    Slot: trinket / held gem (large soul gem)
+#    Special: enables numidium.010 (Dragon Break) when combined with
+#      numidium_awakener character holding it;  +massive learning bonus
+#    Lore: UESP Lore:Mantella — bottled soul of Zurin Arctus, the Underking;
+#      powers the Brass God; found in Stros M'Kai region
+#    See: ARTIFACTS_TODO.md
 # =============================================================
 
 

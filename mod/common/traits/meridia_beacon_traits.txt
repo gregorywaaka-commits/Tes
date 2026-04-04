@@ -46,6 +46,27 @@
 #  Dawnbreaker is strapped to their side.  Against the undead
 #  they are terrible.  Against everything else they are merely
 #  very dangerous.  The Daedric Prince watches.
+#
+#  FUTURE ARTIFACTS: Meridia's Beacon + Dawnbreaker
+#    Both items are currently represented by this single trait
+#    and the dawnbreaker_modifier in lore_races_modifiers.txt.
+#    They should eventually be two separate CK3 legendary artifacts:
+#
+#    • Meridia's Beacon (artifact_id: meridias_beacon)
+#        Slot: trinket / carried item
+#        Special: enables the Dawnbreaker quest chain;
+#          +monthly_piety while held; cannot be discarded
+#        Lore: UESP Lore:Meridia's Beacon — artifact quest item
+#          from Oblivion/Skyrim; Meridia speaks through it
+#
+#    • Dawnbreaker (artifact_id: dawnbreaker)
+#        Slot: weapon (sword)
+#        Special: on-kill vs undead: triggers explosion effect;
+#          +advantage vs undead armies; Meridia piety bonus
+#        Lore: UESP Lore:Dawnbreaker — Meridia's artifact sword;
+#          inflicts Meridia's fire-explosion on undead
+#
+#    Both: See ARTIFACTS_TODO.md
 # ---------------------------------------------------------------
 beacon_bearer = {
     category = fame
