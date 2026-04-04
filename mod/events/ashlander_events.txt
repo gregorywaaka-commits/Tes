@@ -105,7 +105,7 @@ ashlander.000 = {
         add_character_flag = { flag = ashlander_welcomed }
         add_prestige = 100
         add_piety    = 75
-        add_modifier = {
+        add_character_modifier = {
             modifier = ashlander_welcomed_modifier
             days = 730
         }
@@ -266,7 +266,7 @@ ashlander.003 = {
         add_gold   = -100
         add_piety  = 150
         add_prestige = 75
-        add_modifier = {
+        add_character_modifier = {
             modifier = ashlander_welcomed_modifier
             days = 365
         }

@@ -174,7 +174,7 @@ dragon_priest.001 = {
         add_prestige = 200
         add_stress   = 15
         # Partial victory — Otar's mask, the Priest of Storms
-        add_modifier = {
+        add_character_modifier = {
             modifier = dragon_priest_mask_otar
             days = 3650
         }
@@ -231,7 +231,7 @@ dragon_priest.002 = {
     option = {
         name = dragon_priest.002.a   # "I wear it. Let the world hear what Volsung heard."
         add_character_flag = dragon_priest_volsung_seen
-        add_modifier = {
+        add_character_modifier = {
             modifier = dragon_priest_mask_volsung
             days = 3650
         }
@@ -302,7 +302,7 @@ dragon_priest.003 = {
     option = {
         name = dragon_priest.003.a   # "The knowledge stored in this mask is worth any discomfort."
         add_character_flag = dragon_priest_morokei_seen
-        add_modifier = {
+        add_character_modifier = {
             modifier = dragon_priest_mask_morokei
             days = 3650
         }
@@ -495,7 +495,7 @@ dragon_priest.010 = {
         # Study the vision — scholarly interpretation of a prophetic dream
         name = dragon_priest.010.a   # "This vision is a record. I will learn from it."
         add_character_flag = alduin_vision_seen
-        add_modifier = {
+        add_character_modifier = {
             modifier = alduin_vision_learning
             days = 1095
         }
@@ -509,7 +509,7 @@ dragon_priest.010 = {
         # will come is the only advantage one can have against him
         name = dragon_priest.010.b   # "The World-Eater will come again. I will be ready."
         add_character_flag = alduin_vision_seen
-        add_modifier = {
+        add_character_modifier = {
             modifier = alduin_vision_martial
             days = 1095
         }
@@ -610,7 +610,7 @@ dragon_priest.012 = {
         name = dragon_priest.012.a   # "I survived it. Whatever form it took — I survived it."
         add_character_flag = alduin_aftermath_seen
         add_trait    = world_eater_survived
-        add_modifier = {
+        add_character_modifier = {
             modifier = world_eater_survived_modifier
             days = 1825
         }
@@ -623,7 +623,7 @@ dragon_priest.012 = {
         name = dragon_priest.012.b   # "Let this be recorded. What was faced, and that it was faced."
         add_character_flag = alduin_aftermath_seen
         add_trait    = world_eater_survived
-        add_modifier = {
+        add_character_modifier = {
             modifier = world_eater_survived_modifier
             days = 1825
         }
@@ -733,7 +733,7 @@ dragon_priest.021 = {
         name = dragon_priest.021.a   # "I join the chant. The Words are mangled but their power is real."
         add_character_flag = dragon_cult_ritual_seen
         add_trait    = dragon_cultist_devotee
-        add_modifier = {
+        add_character_modifier = {
             modifier = dragon_cult_blessing
             days = 730
         }
@@ -746,7 +746,7 @@ dragon_priest.021 = {
         # Partial participation — watching but not fully joining the chant
         name = dragon_priest.021.b   # "I observe. I learn. But the words themselves — I do not speak them."
         add_character_flag = dragon_cult_ritual_seen
-        add_modifier = {
+        add_character_modifier = {
             modifier = dragon_cult_blessing
             days = 365
         }

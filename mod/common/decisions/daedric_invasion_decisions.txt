@@ -52,7 +52,7 @@ rally_against_daedric_invasion = {
     effect = {
         add_prestige = -500
         add_piety    = -250
-        add_modifier = { modifier = rallied_against_daedra days = 3650 }
+        add_character_modifier = { modifier = rallied_against_daedra days = 3650 }
         # Send rally event to all vassals
         every_vassal = {
             limit = { is_alive = yes }

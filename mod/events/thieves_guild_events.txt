@@ -171,7 +171,7 @@ thieves_guild.010 = {
         add_prestige = 50
         add_piety    = 100
         # The Guild's opinion of this ruler drops; may reduce income in future
-        add_modifier = { modifier = maormer_hatred_modifier days = 365 }   # use as 'infamy spread' stand-in
+        add_character_modifier = { modifier = maormer_hatred_modifier days = 365 }   # use as 'infamy spread' stand-in
     }
 }
 

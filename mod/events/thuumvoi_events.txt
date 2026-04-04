@@ -167,21 +167,21 @@ thuumvoi.005 = {
 
     option = {
         name = thuumvoi.005.a   # "FUS RO DAH.  The entire enemy line breaks."
-        add_modifier = { modifier = thu_um_shout_cooldown days = 365 }
+        add_character_modifier = { modifier = thu_um_shout_cooldown days = 365 }
         add_prestige = 300
         add_dread    = 30
         add_stress   = -10
     }
     option = {
         name = thuumvoi.005.b   # "YOL TOOR SHUL.  The fire of Alduin's kind, mine to speak."
-        add_modifier = { modifier = thu_um_shout_cooldown days = 365 }
+        add_character_modifier = { modifier = thu_um_shout_cooldown days = 365 }
         add_prestige = 400
         add_dread    = 50
         add_piety    = -50      # Using the Voice as a weapon goes against Jurgen Windcaller
     }
     option = {
         name = thuumvoi.005.c   # "WULD NAH KEST.  In a heartbeat I am through their lines."
-        add_modifier = { modifier = thu_um_shout_cooldown days = 365 }
+        add_character_modifier = { modifier = thu_um_shout_cooldown days = 365 }
         add_prestige = 200
         add_prowess  = 1
         add_stress   = -5
@@ -512,7 +512,7 @@ greybeard.lead = {
         else = {
             set_variable = { name = greybeard_rank value = 3 }  # safety fallback
         }
-        add_modifier = { modifier = first_voice_modifier days = -1 }
+        add_character_modifier = { modifier = first_voice_modifier days = -1 }
         add_piety    = 1000
         add_prestige = 800
         remove_character_flag = greybeard_lead_quest_done
@@ -540,13 +540,13 @@ greybeard.post_001 = {
         name = greybeard.post_001.a   # "Send word: if they truly seek the Way, the Steps are open to them."
         add_piety    = 200
         add_prestige = 100
-        add_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
+        add_character_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
     }
     option = {
         name = greybeard.post_001.b   # "Send Arngeir to assess them first.  High Hrothgar is not a court."
         add_piety    = 100
         add_learning = 1
-        add_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
+        add_character_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
     }
 }
 
@@ -567,14 +567,14 @@ greybeard.post_002 = {
         add_piety    = 300
         add_prestige = 200
         add_diplomacy = 1
-        add_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
+        add_character_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
     }
     option = {
         name = greybeard.post_002.b   # "Speak one Word — just one — and let them feel what it means."
         add_piety    = 200
         add_prestige = 400
         add_dread    = 20
-        add_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
+        add_character_modifier = { modifier = greybeard_pilgrims_cooldown days = 1825 }
     }
 }
 
@@ -703,13 +703,13 @@ dovahkiin.post_001 = {
         name = dovahkiin.post_001.a   # "They learn what I am.  Let them."
         add_prestige = 400
         add_dread    = 30
-        add_modifier = { modifier = dovahkiin_recognition_cooldown days = 3650 }
+        add_character_modifier = { modifier = dovahkiin_recognition_cooldown days = 3650 }
     }
     option = {
         name = dovahkiin.post_001.b   # "The Dragonborn does not seek recognition.  But it finds us anyway."
         add_prestige = 200
         add_piety    = 300
-        add_modifier = { modifier = dovahkiin_recognition_cooldown days = 3650 }
+        add_character_modifier = { modifier = dovahkiin_recognition_cooldown days = 3650 }
     }
 }
 
@@ -718,7 +718,7 @@ dovahkiin.post_001 = {
 #  (continuing the thuumvoi namespace — already declared above)
 # ================================================================
 
-namespace = thuumvoi
+# namespace = thuumvoi  ← already declared at the top of this file
 
 # ----------------------------------------------------------------
 # thuumvoi.010  — The Fifth Soul

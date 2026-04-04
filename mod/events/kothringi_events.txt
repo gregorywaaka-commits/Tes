@@ -61,7 +61,7 @@ kothringi.001 = {
 
     option = {
         name = kothringi.001.a   # "Seal the borders — no one leaves the marsh!"
-        add_modifier = { modifier = quarantine_modifier days = 730 }
+        add_character_modifier = { modifier = quarantine_modifier days = 730 }
         add_prestige = 50
     }
 
@@ -99,14 +99,14 @@ kothringi.002 = {
     option = {
         name = kothringi.002.a   # "Pray this passes us by."
         add_stress = 10
-        add_modifier = { modifier = knahaten_flu_fear_modifier days = 365 }
+        add_character_modifier = { modifier = knahaten_flu_fear_modifier days = 365 }
     }
 
     option = {
         name = kothringi.002.b   # "Burn the infected villages — harsh but necessary."
         add_piety    = -300
         add_prestige = -100
-        add_modifier = { modifier = quarantine_modifier days = 365 }
+        add_character_modifier = { modifier = quarantine_modifier days = 365 }
     }
 }
 

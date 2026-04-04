@@ -155,7 +155,7 @@ begin_daedric_invasion = {
                 is_alive = yes
                 primary_title = { tier >= tier_kingdom }    # only kingdom+ rulers feel this initially
             }
-            add_modifier = { modifier = molag_planemeld_dread days = 1825 }    # 5 years of dread
+            add_character_modifier = { modifier = molag_planemeld_dread days = 1825 }    # 5 years of dread
         }
     }
     else_if = {
@@ -180,7 +180,7 @@ begin_daedric_invasion = {
                 intrigue <= 14
                 primary_title = { tier >= tier_duchy }
             }
-            add_modifier = { modifier = boethiah_court_conspiracy days = 730 }
+            add_character_modifier = { modifier = boethiah_court_conspiracy days = 730 }
         }
     }
     else_if = {
@@ -266,7 +266,7 @@ begin_daedric_invasion = {
                 is_alive = yes
                 primary_title = { tier >= tier_kingdom }
             }
-            add_modifier = { modifier = mephala_web_modifier days = 1825 }
+            add_character_modifier = { modifier = mephala_web_modifier days = 1825 }
         }
     }
     else_if = {
@@ -312,7 +312,7 @@ begin_daedric_invasion = {
                 is_alive = yes
                 primary_title = { tier >= tier_county }
             }
-            add_modifier = { modifier = vaermina_nightmare_modifier days = 365 }
+            add_character_modifier = { modifier = vaermina_nightmare_modifier days = 365 }
         }
     }
     else_if = {
@@ -434,7 +434,7 @@ begin_daedric_invasion = {
                 is_alive = yes
                 has_trait = oathbreaker
             }
-            add_modifier = { modifier = malacath_oath_curse days = 1825 }
+            add_character_modifier = { modifier = malacath_oath_curse days = 1825 }
             trigger_event = { id = daedric_prince_invasion.malacath.001 }
         }
     }
@@ -459,7 +459,7 @@ begin_daedric_invasion = {
                 primary_title = { tier >= tier_kingdom }
                 gold >= 100
             }
-            add_modifier = { modifier = nocturnal_shadow_tithe days = 1095 }
+            add_character_modifier = { modifier = nocturnal_shadow_tithe days = 1095 }
         }
     }
     else_if = {
@@ -601,13 +601,13 @@ end_daedric_invasion = {
     # Clean up per-prince modifiers
     every_ruler = {
         limit = { is_alive = yes }
-        remove_modifier = molag_planemeld_dread
-        remove_modifier = boethiah_court_conspiracy
-        remove_modifier = mephala_web_modifier
-        remove_modifier = vaermina_nightmare_modifier
-        remove_modifier = nocturnal_shadow_tithe
-        remove_modifier = malacath_oath_curse
-        remove_modifier = namira_rot_modifier
+        remove_character_modifier = molag_planemeld_dread
+        remove_character_modifier = boethiah_court_conspiracy
+        remove_character_modifier = mephala_web_modifier
+        remove_character_modifier = vaermina_nightmare_modifier
+        remove_character_modifier = nocturnal_shadow_tithe
+        remove_character_modifier = malacath_oath_curse
+        remove_character_modifier = namira_rot_modifier
     }
     every_county = {
         limit = { has_modifier = peryite_plague_modifier }

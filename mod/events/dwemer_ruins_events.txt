@@ -138,7 +138,7 @@ dwemer.002 = {
         # Retreat — costs prestige, minor stress
         add_prestige = -100
         add_stress   = 10
-        add_modifier = {
+        add_character_modifier = {
             modifier = dwemer_expedition_cooldown
             days     = 365
         }
@@ -254,7 +254,7 @@ dwemer.006 = {
                 NOT = { has_trait = tonal_architect }
                 NOT = { has_character_flag = tonal_study_active }
             }
-            add_modifier = {
+            add_character_modifier = {
                 modifier = tonal_architecture_insight_modifier
                 days     = 365
             }

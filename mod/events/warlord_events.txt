@@ -68,7 +68,7 @@ warlord.000 = {
         add_character_flag = { flag = warlord_declared }
         add_trait = warlord_emperor
         add_prestige = 500
-        add_modifier = {
+        add_character_modifier = {
             modifier = warlord_claim_modifier
             days = 1825
         }

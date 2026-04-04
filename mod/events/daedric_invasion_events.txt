@@ -270,7 +270,7 @@ daedric_invasion.045 = {
         # Failure — wounded but alive
         add_prestige = -500
         add_stress   = 25
-        add_modifier = { modifier = wounded days = 730 }
+        add_character_modifier = { modifier = wounded days = 730 }
     }
 }
 

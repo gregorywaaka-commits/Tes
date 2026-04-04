@@ -124,7 +124,7 @@ elsweyr.010 = {
 
     option = {
         name = elsweyr.010.a   # "The warrior-clans of Anequina still carry their knives."
-        add_modifier = { modifier = elsweyr_anequina_militia_modifier days = 1825 }
+        add_character_modifier = { modifier = elsweyr_anequina_militia_modifier days = 1825 }
         add_martial_skill = 1
         add_prestige = 100
     }
@@ -166,7 +166,7 @@ elsweyr.020 = {
         name = elsweyr.020.a   # "The Two Moons demand their share. It is the Riddle'Thar."
         add_piety = 150
         add_gold  = -50
-        add_modifier = { modifier = moon_sugar_tithe_modifier days = 730 }
+        add_character_modifier = { modifier = moon_sugar_tithe_modifier days = 730 }
     }
 
     option = {

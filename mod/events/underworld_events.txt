@@ -201,7 +201,7 @@ underworld.003 = {
         add_gold = 200
         set_character_flag = { flag = skooma_invested days = 1825 }
         set_character_flag = { flag = skooma_trade_decision days = 3650 }
-        add_modifier = {
+        add_character_modifier = {
             modifier = skooma_trade_income
             days = 1825
         }
@@ -243,13 +243,13 @@ underworld.004 = {
     option = {
         name = underworld.004.a   # "I stop. No matter the cost. This ends now."
         add_stress = 30
-        remove_modifier = skooma_trade_income
+        remove_character_modifier = skooma_trade_income
         custom_tooltip = underworld_addiction_fought_tt
     }
 
     option = {
         name = underworld.004.b   # "The skooma takes the edge away. I let it."
-        add_modifier = {
+        add_character_modifier = {
             modifier = skooma_addiction
             days = 1095
         }
@@ -292,7 +292,7 @@ underworld.005 = {
     option = {
         name = underworld.005.c   # "Cut off the network entirely. The exposure risk is too high."
         remove_character_flag = skooma_invested
-        remove_modifier = skooma_trade_income
+        remove_character_modifier = skooma_trade_income
         add_stress = 15
     }
 }

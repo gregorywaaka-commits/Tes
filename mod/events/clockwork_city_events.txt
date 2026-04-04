@@ -171,7 +171,7 @@ clockwork.002 = {
         add_prestige = -200
         add_piety    = 300
         add_stress   = 10
-        add_modifier = {
+        add_character_modifier = {
             modifier = clockwork_city_vision
             days = 1825
         }
@@ -212,7 +212,7 @@ clockwork.003 = {
         }
         if = {
             limit = { NOT = { has_modifier = clockwork_city_vision } }
-            add_modifier = {
+            add_character_modifier = {
                 modifier = clockwork_city_vision
                 days = 1825
             }

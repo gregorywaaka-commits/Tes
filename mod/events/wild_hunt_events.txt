@@ -137,7 +137,7 @@ wild_hunt.020 = {
 
     option = {
         name = wild_hunt.020.a   # "I returned. Mostly."
-        add_modifier = {
+        add_character_modifier = {
             modifier = wild_hunt_aftermath_modifier
             days = 1825
         }
@@ -149,7 +149,7 @@ wild_hunt.020 = {
         name = wild_hunt.020.b   # "I seek understanding — the Hist, a healer, anyone who knows what this is."
         add_piety   = 75
         add_stress  = 10
-        add_modifier = {
+        add_character_modifier = {
             modifier = wild_hunt_aftermath_modifier
             days = 730
         }

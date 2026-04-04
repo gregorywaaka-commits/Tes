@@ -66,7 +66,7 @@ daedric_champion.mehrunes.002 = {
         random_list = {
             60 = {
                 add_trait = daedric_champion
-                add_modifier = { modifier = mehrunes_razor_holder days = 3650 }
+                add_character_modifier = { modifier = mehrunes_razor_holder days = 3650 }
                 add_prestige = 800
             }
             40 = {
@@ -120,7 +120,7 @@ daedric_champion.azura.002 = {
     option = {
         name = daedric_champion.azura.002.a  # "Fulfil Azura's prophecy."
         add_trait    = azura_champion
-        add_modifier = { modifier = azura_star_holder days = 3650 }
+        add_character_modifier = { modifier = azura_star_holder days = 3650 }
         add_prestige = 600
         add_piety    = 500
     }
@@ -171,7 +171,7 @@ daedric_champion.molag.002 = {
         name = daedric_champion.molag.002.a  # "Dominate."
         add_trait    = daedric_champion
         add_trait    = molag_bal_vampire
-        add_modifier = { modifier = mace_of_molag_bal_holder days = 3650 }
+        add_character_modifier = { modifier = mace_of_molag_bal_holder days = 3650 }
         add_dread    = 40
         add_prestige = 600
     }
@@ -221,12 +221,12 @@ daedric_champion.hircine.002 = {
         name = daedric_champion.hircine.002.a  # "Accept Hircine's gift — become the Hunter."
         add_trait = daedric_champion
         add_trait = hircine_werewolf
-        add_modifier = { modifier = ring_of_hircine_holder days = 3650 }
+        add_character_modifier = { modifier = ring_of_hircine_holder days = 3650 }
         add_prestige = 700
     }
     option = {
         name = daedric_champion.hircine.002.b  # "Slay the beast and earn the Savior's Hide."
-        add_modifier = { modifier = saviors_hide_holder days = 3650 }
+        add_character_modifier = { modifier = saviors_hide_holder days = 3650 }
         add_prestige = 500
         add_piety    = 300
     }
@@ -270,7 +270,7 @@ daedric_champion.boethiah.002 = {
     option = {
         name = daedric_champion.boethiah.002.a  # "Win at any cost."
         add_trait    = daedric_champion
-        add_modifier = { modifier = ebony_mail_holder days = 3650 }
+        add_character_modifier = { modifier = ebony_mail_holder days = 3650 }
         add_prestige = 800
         add_dread    = 30
     }
@@ -318,7 +318,7 @@ daedric_champion.mephala.002 = {
     option = {
         name = daedric_champion.mephala.002.a  # "Three kills. The Ebony Blade awakens."
         add_trait    = mephala_champion
-        add_modifier = { modifier = ebony_blade_holder days = 3650 }
+        add_character_modifier = { modifier = ebony_blade_holder days = 3650 }
         add_prestige = 500
         add_dread    = 25
     }
@@ -367,13 +367,13 @@ daedric_champion.clavicus.002 = {
     option = {
         name = daedric_champion.clavicus.002.a  # "The wish backfired — honour the contract."
         add_trait    = clavicus_vile_champion
-        add_modifier = { modifier = masque_of_clavicus_vile days = 3650 }
+        add_character_modifier = { modifier = masque_of_clavicus_vile days = 3650 }
         add_gold  = -500
         add_prestige = 400
     }
     option = {
         name = daedric_champion.clavicus.002.b  # "Break the contract — face Vile's anger."
-        add_modifier = { modifier = vile_curse_modifier days = 1825 }
+        add_character_modifier = { modifier = vile_curse_modifier days = 1825 }
         add_prestige = -300
     }
 }
@@ -416,7 +416,7 @@ daedric_champion.vaermina.002 = {
     option = {
         name = daedric_champion.vaermina.002.a  # "Survive the nightmare."
         add_trait    = vaermina_champion
-        add_modifier = { modifier = skull_of_corruption_modifier days = 3650 }
+        add_character_modifier = { modifier = skull_of_corruption_modifier days = 3650 }
         add_learning = 4
         add_prestige = 500
     }
@@ -464,7 +464,7 @@ daedric_champion.sheogorath.002 = {
     option = {
         name = daedric_champion.sheogorath.002.a  # "Survive the Shivering Isles."
         add_trait    = sheogorath_champion
-        add_modifier = { modifier = wabbajack_modifier days = 3650 }
+        add_character_modifier = { modifier = wabbajack_modifier days = 3650 }
         add_prestige = 600
         add_stress   = -30
     }
@@ -511,7 +511,7 @@ daedric_champion.peryite.002 = {
     option = {
         name = daedric_champion.peryite.002.a  # "Cure the Afflicted — earn Spellbreaker."
         add_trait    = peryite_champion
-        add_modifier = { modifier = spellbreaker_modifier days = 3650 }
+        add_character_modifier = { modifier = spellbreaker_modifier days = 3650 }
         add_prestige = 500
         add_piety    = 300
     }
@@ -559,7 +559,7 @@ daedric_champion.sanguine.002 = {
     option = {
         name = daedric_champion.sanguine.002.a  # "Go along with it."
         add_trait    = sanguine_champion
-        add_modifier = { modifier = sanguine_rose_holder days = 3650 }
+        add_character_modifier = { modifier = sanguine_rose_holder days = 3650 }
         add_prestige = 500
         add_stress   = -25
     }
@@ -609,7 +609,7 @@ daedric_champion.meridia.002 = {
     option = {
         name = daedric_champion.meridia.002.a  # "Take Dawnbreaker and purge the undead."
         add_trait    = meridia_champion
-        add_modifier = { modifier = dawnbreaker_modifier days = 3650 }
+        add_character_modifier = { modifier = dawnbreaker_modifier days = 3650 }
         add_prestige = 700
         add_piety    = 500
     }
@@ -651,7 +651,7 @@ daedric_champion.malacath.002 = {
     option = {
         name = daedric_champion.malacath.002.a  # "Claim Volendrung."
         add_trait    = malacath_champion
-        add_modifier = { modifier = volendrung_bearer days = 3650 }
+        add_character_modifier = { modifier = volendrung_bearer days = 3650 }
         add_prestige = 700
         add_prowess  = 3
     }
@@ -698,7 +698,7 @@ daedric_champion.nocturnal.002 = {
     option = {
         name = daedric_champion.nocturnal.002.a  # "Become a Nightingale."
         add_trait    = nocturnal_champion
-        add_modifier = { modifier = skeleton_key_holder days = 3650 }
+        add_character_modifier = { modifier = skeleton_key_holder days = 3650 }
         add_prestige = 600
         add_intrigue = 4
     }
@@ -745,7 +745,7 @@ daedric_champion.hermaeus.002 = {
     option = {
         name = daedric_champion.hermaeus.002.a  # "Read the Oghma Infinium."
         add_trait    = hermaeus_mora_champion
-        add_modifier = { modifier = oghma_infinium_holder days = 3650 }
+        add_character_modifier = { modifier = oghma_infinium_holder days = 3650 }
         add_learning = 8
         add_prestige = 600
         add_stress   = 15
@@ -797,7 +797,7 @@ daedric_champion.namira.002 = {
         name = daedric_champion.namira.002.a  # "Wear the Ring of Namira."
         add_trait = daedric_champion
         add_trait = cannibal
-        add_modifier = { modifier = ring_of_namira_holder days = 3650 }
+        add_character_modifier = { modifier = ring_of_namira_holder days = 3650 }
         add_prestige = 400
         add_piety    = -400
     }
@@ -847,7 +847,7 @@ daedric_champion.jyggalag.002 = {
     option = {
         name = daedric_champion.jyggalag.002.a  # "Wield the Sword of Perfect Order."
         add_trait    = jyggalag_champion
-        add_modifier = { modifier = sword_of_jyggalag_modifier days = 3650 }
+        add_character_modifier = { modifier = sword_of_jyggalag_modifier days = 3650 }
         add_prestige = 800
         add_piety    = 300
     }

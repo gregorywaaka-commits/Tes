@@ -162,7 +162,7 @@ amulet.004 = {
     option = {
         name = amulet.004.a   # "I feel it immediately.  The covenant is real.  Alessia's bargain is mine."
         receive_amulet_of_kings = yes
-        add_modifier = { modifier = amulet_of_kings_dragonborn_modifier days = -1 }
+        add_character_modifier = { modifier = amulet_of_kings_dragonborn_modifier days = -1 }
         add_piety    = 800
         add_prestige = 1000
         remove_character_flag = amulet_quest_started
@@ -171,7 +171,7 @@ amulet.004 = {
     option = {
         name = amulet.004.b   # "The weight of every Dragonborn Emperor before me.  I will carry it well."
         receive_amulet_of_kings = yes
-        add_modifier = { modifier = amulet_of_kings_dragonborn_modifier days = -1 }
+        add_character_modifier = { modifier = amulet_of_kings_dragonborn_modifier days = -1 }
         add_piety    = 1000
         add_prestige = 800
         remove_character_flag = amulet_quest_started
@@ -204,14 +204,14 @@ amulet.005 = {
         add_piety    = -500
         add_prestige = -400
         add_stress   = 30
-        add_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
+        add_character_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
     }
     option = {
         name = amulet.005.b   # "I cannot keep this.  I must find someone of the Dragonblood."
         lose_amulet_of_kings = yes
         add_piety    = -200
         add_prestige = -200
-        add_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
+        add_character_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
     }
 }
 
@@ -305,12 +305,12 @@ amulet.post_001 = {
         name = amulet.post_001.a   # "The Amulet is not a political object.  It is a covenant.  They will not have it."
         add_prestige = 300
         add_dread    = 20
-        add_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
+        add_character_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
     }
     option = {
         name = amulet.post_001.b   # "Let them come.  Every Dragonborn Emperor since Alessia has faced this.  I will not be the last."
         add_prestige = 400
         add_piety    = 100
-        add_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
+        add_character_modifier = { modifier = amulet_post_event_cooldown days = 1825 }
     }
 }

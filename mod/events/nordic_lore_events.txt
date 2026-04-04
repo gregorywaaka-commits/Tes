@@ -128,7 +128,7 @@ nordic_lore.001 = {
             martial >= 8
             NOT = { martial >= 12 }
         }
-        add_modifier = {
+        add_character_modifier = {
             modifier = companion_recognition
             days = 1095
         }

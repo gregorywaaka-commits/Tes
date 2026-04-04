@@ -168,7 +168,7 @@ great_houses.001 = {
         name = great_houses.001.a   # "I will face your champion personally."
         if = {
             limit = { martial >= 12 }
-            add_modifier = {
+            add_character_modifier = {
                 modifier = hortator_redoran_support
                 days = 1825
             }
@@ -226,7 +226,7 @@ great_houses.002 = {
         name = great_houses.002.a   # "Observe what I have studied. My magical understanding is considerable."
         if = {
             limit = { learning >= 16 }
-            add_modifier = {
+            add_character_modifier = {
                 modifier = hortator_telvanni_knowledge
                 days = 1825
             }
@@ -249,7 +249,7 @@ great_houses.002 = {
                 has_trait = tonal_architect
             }
         }
-        add_modifier = {
+        add_character_modifier = {
             modifier = hortator_telvanni_knowledge
             days = 1825
         }
@@ -292,7 +292,7 @@ great_houses.003 = {
                 has_trait = sotha_sil_student
             }
         }
-        add_modifier = {
+        add_character_modifier = {
             modifier = hortator_indoril_blessing
             days = 1825
         }
@@ -306,7 +306,7 @@ great_houses.003 = {
         trigger = {
             has_trait = seven_graces_pilgrim
         }
-        add_modifier = {
+        add_character_modifier = {
             modifier = hortator_indoril_blessing
             days = 1825
         }
@@ -340,7 +340,7 @@ great_houses.004 = {
 
     option = {
         name = great_houses.004.a   # "We will formalise a trade agreement. Hlaalu merchants gain preferred terms."
-        add_modifier = {
+        add_character_modifier = {
             modifier = hortator_hlaalu_network
             days = 1825
         }
@@ -385,11 +385,11 @@ great_houses.005 = {
 
     option = {
         name = great_houses.005.a   # "The slave trade is a Morrowind institution. I will not interfere with it."
-        add_modifier = {
+        add_character_modifier = {
             modifier = dres_slave_tribute
             days = 730
         }
-        add_modifier = {
+        add_character_modifier = {
             modifier = hortator_dres_compliance
             days = 730
         }
@@ -570,7 +570,7 @@ great_houses.011 = {
     option = {
         name = great_houses.011.a   # "I will use the tower as it was meant to be used — for study."
         add_trait = telvanni_master_wizard
-        add_modifier = {
+        add_character_modifier = {
             modifier = telvanni_tower_research
             days = -1
         }
@@ -582,7 +582,7 @@ great_houses.011 = {
     option = {
         name = great_houses.011.b   # "A tower is eyes as much as walls. I will use it to watch my rivals."
         add_trait  = telvanni_master_wizard
-        add_modifier = {
+        add_character_modifier = {
             modifier = telvanni_tower_research
             days = -1
         }
@@ -658,7 +658,7 @@ great_houses.020 = {
 
     option = {
         name = great_houses.020.a   # "Take the tribute. A southern lord cannot afford sentiment."
-        add_modifier = {
+        add_character_modifier = {
             modifier = dres_slave_tribute
             days = 730
         }
@@ -767,7 +767,7 @@ great_houses.022 = {
             diplomacy >= 12
         }
         add_character_flag = { flag = argonian_uprising_resolved days = 1825 }
-        add_modifier = {
+        add_character_modifier = {
             modifier = argonian_uprising_aftermath
             days = 1825
         }
@@ -780,7 +780,7 @@ great_houses.022 = {
     option = {
         name = great_houses.022.c   # "Withdraw. Let the border counties sort themselves."
         add_character_flag = { flag = argonian_uprising_resolved days = 1825 }
-        add_modifier = {
+        add_character_modifier = {
             modifier = argonian_uprising_aftermath
             days = 1825
         }

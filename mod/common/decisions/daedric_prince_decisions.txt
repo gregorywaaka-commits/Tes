@@ -60,7 +60,7 @@ seek_mehrunes_dagon = {
     effect = {
         add_prestige = -500
         add_gold     = -100
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.mehrunes.001 }
     }
 
@@ -92,7 +92,7 @@ seek_azura = {
 
     effect = {
         add_piety    = -300
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.azura.001 }
     }
 
@@ -124,7 +124,7 @@ seek_molag_bal = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.molag.001 }
     }
 
@@ -156,7 +156,7 @@ seek_hircine = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.hircine.001 }
     }
 
@@ -188,7 +188,7 @@ seek_boethiah = {
 
     effect = {
         add_prestige = -200
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.boethiah.001 }
     }
 
@@ -219,7 +219,7 @@ seek_mephala = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.mephala.001 }
     }
 
@@ -250,7 +250,7 @@ seek_clavicus_vile = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.clavicus.001 }
     }
 
@@ -281,7 +281,7 @@ seek_vaermina = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.vaermina.001 }
     }
 
@@ -310,7 +310,7 @@ seek_sheogorath = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.sheogorath.001 }
     }
 
@@ -339,7 +339,7 @@ seek_peryite = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.peryite.001 }
     }
 
@@ -368,7 +368,7 @@ seek_sanguine = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.sanguine.001 }
     }
 
@@ -400,7 +400,7 @@ seek_meridia = {
 
     effect = {
         add_piety    = -300
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.meridia.001 }
     }
 
@@ -431,7 +431,7 @@ seek_malacath = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.malacath.001 }
     }
 
@@ -468,7 +468,7 @@ seek_nocturnal = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.nocturnal.001 }
     }
 
@@ -499,7 +499,7 @@ seek_hermaeus_mora = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.hermaeus.001 }
     }
 
@@ -528,7 +528,7 @@ seek_namira = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 1825 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 1825 }
         trigger_event = { id = daedric_champion.namira.001 }
     }
 
@@ -559,7 +559,7 @@ seek_jyggalag = {
     is_valid_showing_failures_only = { is_adult = yes }
 
     effect = {
-        add_modifier = { modifier = daedric_quest_cooldown days = 3650 }
+        add_character_modifier = { modifier = daedric_quest_cooldown days = 3650 }
         trigger_event = { id = daedric_champion.jyggalag.001 }
     }
 

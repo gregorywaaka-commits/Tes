@@ -112,7 +112,7 @@ almsivi.001 = {
 
     option = {
         name = almsivi.001.a   # "Let them proclaim it. I stand behind what I have done."
-        add_modifier = {
+        add_character_modifier = {
             modifier = almsivi_interdict_modifier
             days = 1825
         }
@@ -157,7 +157,7 @@ almsivi.002 = {
         add_character_flag = { flag = almsivi_warned days = 1825 }
         if = {
             limit = { has_modifier = almsivi_interdict_modifier }
-            remove_modifier = almsivi_interdict_modifier
+            remove_character_modifier = almsivi_interdict_modifier
         }
         add_prestige = -200
         add_stress   = 30

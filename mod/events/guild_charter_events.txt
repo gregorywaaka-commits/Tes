@@ -125,7 +125,7 @@ guild_charter.010 = {
         add_character_flag = { flag = guild_charter_handled days = 3650 }
         add_prestige = 100
         # Perk: Guild services available at a discount
-        add_modifier = {
+        add_character_modifier = {
             modifier = guild_charter_paid_modifier
             days = 1825
         }

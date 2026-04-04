@@ -481,3 +481,146 @@
 
  worm_cult_marked_for_death: "Marked by Mannimarco"
  worm_cult_marked_for_death_desc: "The King of Worms does not forget apostasy. Mannimarco has placed a death-mark on this ruler; his cult agents will seek them out."
+
+ # =====================================================================
+ #  Dragon Priest Modifiers
+ # =====================================================================
+
+ dragon_priest_mask_otar: "Mask of Otar"
+ dragon_priest_mask_otar_desc: "The mask of Otar the Mad — a Dragon Priest who commanded frost and fire. Its power lingers, enhancing the bearer's martial presence."
+
+ dragon_priest_mask_volsung: "Mask of Volsung"
+ dragon_priest_mask_volsung_desc: "The mask of Volsung the Twisted — priest of the sea. Its wearer gains cunning and administrative clarity."
+
+ dragon_priest_mask_morokei: "Mask of Morokei"
+ dragon_priest_mask_morokei_desc: "The Deathless — Morokei. Keeper of knowledge that precedes men. The mask hums with ancient magic."
+
+ alduin_vision_learning: "Alduin's Vision (Learning)"
+ alduin_vision_learning_desc: "A vision of the World Eater's ancient wisdom has opened doors of knowledge once thought sealed."
+
+ alduin_vision_martial: "Alduin's Vision (Martial)"
+ alduin_vision_martial_desc: "Having witnessed Alduin's terrible martial might, this character carries a bone-deep understanding of draconic warfare."
+
+ dragon_cult_blessing: "Dragon Cult Blessing"
+ dragon_cult_blessing_desc: "Ancient rites of the Dragon Cult have been performed. For a time the bearer carries the Thu'um's martial and spiritual resonance."
+
+ world_eater_survived_modifier: "Survived the World Eater"
+ world_eater_survived_modifier_desc: "To have faced Alduin and lived is beyond the scope of normal heroism. Even kings bow their heads at this achievement."
+
+ # =====================================================================
+ #  Tribunal & Vivec Trial Modifiers
+ # =====================================================================
+
+ vivec_warrior_blessing: "Vivec's Warrior Blessing"
+ vivec_warrior_blessing_desc: "Lord Vivec, Warrior-Poet, has granted his martial blessing. The bearer fights as one touched by a living god."
+
+ vivec_poet_blessing: "Vivec's Poet Blessing"
+ vivec_poet_blessing_desc: "Lord Vivec's creative blessing flows through this character. Their words carry the weight of metaphysical truth."
+
+ almalexia_grace: "Almalexia's Grace"
+ almalexia_grace_desc: "The Lady of Mercy has laid her hand upon this character. Their wounds heal faster and their diplomacy carries divine authority."
+
+ sotha_sil_insight: "Sotha Sil's Insight"
+ sotha_sil_insight_desc: "The Clockwork God has shared a fragment of his mechanical understanding with this scholar. The universe is, briefly, legible."
+
+ almalexia_trial_victor_modifier: "Trial Victor — Almalexia's Hands"
+ almalexia_trial_victor_modifier_desc: "This character has passed the trial of the Hands of Almalexia — one of the greatest martial and spiritual tests in all of Morrowind."
+
+ vivec_trial_victor_modifier: "Trial Victor — Vivec's Judgment"
+ vivec_trial_victor_modifier_desc: "Lord Vivec has judged this character worthy. Their martial and diplomatic reputation is elevated across the Tribunal's territories."
+
+ # =====================================================================
+ #  Almsivi Interdict Modifier
+ # =====================================================================
+
+ almsivi_interdict_modifier: "Almsivi Interdict"
+ almsivi_interdict_modifier_desc: "The Triple Temple has placed a spiritual embargo on this ruler. Doors close; voices fall silent; the Tribunal watches with displeasure."
+
+ # =====================================================================
+ #  Alessian System Modifiers
+ # =====================================================================
+
+ alessian_reformation_zeal: "Alessian Reformation Zeal"
+ alessian_reformation_zeal_desc: "Fired with the reformist conviction of the Alessian Order, this ruler burns to purify the faith — even at the cost of political goodwill."
+
+ reman_claim_investigation: "Reman Bloodline Investigation"
+ reman_claim_investigation_desc: "This ruler is actively investigating the existence and legitimacy of a Reman bloodline claim. The research is delicate, and the results dangerous."
+
+ # =====================================================================
+ #  Ashlander System Modifiers
+ # =====================================================================
+
+ ashlander_welcomed_modifier: "Welcomed by the Ashlanders"
+ ashlander_welcomed_modifier_desc: "A rare honour — an outsider welcomed by an Ashlander tribe as ally and friend. Among Dunmer nomads, this is worth more than a king's recognition."
+
+ # =====================================================================
+ #  Clockwork City Modifiers
+ # =====================================================================
+
+ clockwork_city_vision: "Clockwork City Vision"
+ clockwork_city_vision_desc: "Having seen Sotha Sil's Clockwork City, this character's mind has been stretched beyond its prior limits. The gears of reality seem almost visible."
+
+ # =====================================================================
+ #  Dagoth Ur System Modifiers
+ # =====================================================================
+
+ dagoth_ur_champion_modifier: "Sharmat's Champion"
+ dagoth_ur_champion_modifier_desc: "Dagoth Ur has granted this character a temporary surge of terrible power. The gift corrupts — but while it lasts, the bearer is near-unstoppable."
+
+ # =====================================================================
+ #  Dwemer Ruins Modifiers
+ # =====================================================================
+
+ dwemer_expedition_cooldown: "Dwemer Expedition Recovery"
+ dwemer_expedition_cooldown_desc: "This character has recently returned from a Dwemer ruin expedition. They need time to recover and process what they found."
+
+ tonal_architecture_insight_modifier: "Tonal Architecture Insight"
+ tonal_architecture_insight_modifier_desc: "A breakthrough in understanding the Dwemer's tonal architecture — the music that shaped the world. This knowledge is transient but profound."
+
+ # =====================================================================
+ #  Great Houses Modifiers
+ # =====================================================================
+
+ hortator_redoan_support: "Hortator — Redoran Endorsement"
+ hortator_redoan_support_desc: "House Redoran, keepers of Dunmer martial tradition, has endorsed this character as Hortator — war-leader of the Great Houses."
+
+ hortator_redoran_support: "Hortator — Redoran Endorsement"
+ hortator_redoran_support_desc: "House Redoran, keepers of Dunmer martial tradition, has endorsed this character as Hortator — war-leader of the Great Houses."
+
+ hortator_telvanni_knowledge: "Hortator — Telvanni Recognition"
+ hortator_telvanni_knowledge_desc: "House Telvanni grudgingly acknowledges this character's Hortator claim, sharing arcane knowledge as their form of allegiance."
+
+ hortator_indoril_blessing: "Hortator — Indoril Blessing"
+ hortator_indoril_blessing_desc: "House Indoril, the Temple's warriors, blesses this character's Hortator claim with the spiritual authority of the Tribunal."
+
+ hortator_hlaalu_network: "Hortator — Hlaalu Network"
+ hortator_hlaalu_network_desc: "House Hlaalu's trading network and political connections now back this character's claim as Hortator."
+
+ dres_slave_tribute: "House Dres Tribute"
+ dres_slave_tribute_desc: "House Dres has offered tribute in exchange for Hortator recognition — a sign of their pragmatic loyalty."
+
+ hortator_dres_compliance: "Hortator — Dres Compliance"
+ hortator_dres_compliance_desc: "House Dres has formally complied with the Hortator's authority — grudgingly, after considerable negotiation."
+
+ telvanni_tower_research: "Telvanni Tower Access"
+ telvanni_tower_research_desc: "This character has been granted access to a Telvanni wizard tower's private archives. The research continues."
+
+ argonian_uprising_aftermath: "Argonian Uprising Aftermath"
+ argonian_uprising_aftermath_desc: "The aftermath of an Argonian slave revolt has left the Great House territories in political and economic disarray."
+
+ # =====================================================================
+ #  Seven Graces Modifier
+ # =====================================================================
+
+ seven_graces_blessing: "Blessed of the Seven Graces"
+ seven_graces_blessing_desc: "All Seven Graces of the Tribunal have been walked. This character carries the full spiritual weight of Dunmer devotion — a rare and revered achievement."
+
+ # =====================================================================
+ #  Wounded Modifier
+ # =====================================================================
+
+ wounded: "Wounded"
+ wounded_desc: "This character has sustained significant wounds. They recover — but it takes time, and the pain lingers."
+
+ almalexia_hands_blessing: "Hands of Almalexia Blessing"
+ almalexia_hands_blessing_desc: "This character has taken the Oath of the Hands of Almalexia and received the Lady of Mercy's direct blessing. They serve as her elite divine guardians."

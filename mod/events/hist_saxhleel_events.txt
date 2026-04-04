@@ -112,7 +112,7 @@ hist_vision.001 = {
     option = {
         name = hist_vision.001.b   # "This is mine alone. I carry it in silence."
         add_character_flag = { flag = hist_before_time_seen }
-        add_modifier = {
+        add_character_modifier = {
             modifier = hist_vision_insight
             days     = 1825
         }
@@ -148,7 +148,7 @@ hist_vision.002 = {
 
     option = {
         name = hist_vision.002.a   # "I prepare. Walls first — questions after."
-        add_modifier = {
+        add_character_modifier = {
             modifier = hist_warning_defensive
             days     = 730
         }
@@ -216,11 +216,11 @@ hist_vision.010 = {
 
     option = {
         name = hist_vision.010.a   # "It is called. May the forest forgive what comes next."
-        add_modifier = {
+        add_character_modifier = {
             modifier = wild_hunt_unleashed
             days     = 730
         }
-        add_modifier = {
+        add_character_modifier = {
             modifier = wild_hunt_aftermath
             days     = 1825
         }
@@ -374,7 +374,7 @@ hist_vision.006 = {
         add_learning  = 2
         add_piety     = 200
         add_stress    = 20
-        add_modifier = {
+        add_character_modifier = {
             modifier = hist_vision_insight
             days     = 3650
         }
@@ -422,7 +422,7 @@ hist_vision.007 = {
         add_character_flag = { flag = saxhleel_exodus_vision_seen }
         add_piety     = 300
         add_prestige  = -100   # Other rulers see this as abandonment
-        add_modifier = {
+        add_character_modifier = {
             modifier = hist_warning_defensive
             days     = 1825
         }

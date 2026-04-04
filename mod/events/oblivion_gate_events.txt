@@ -45,7 +45,7 @@ oblivion_gate.001 = {
     option = {
         name = oblivion_gate.001.b  # "We cannot afford soldiers — defend the walls."
         add_stress   = 20
-        add_modifier = { modifier = oblivion_gate_unchecked days = 365 }
+        add_character_modifier = { modifier = oblivion_gate_unchecked days = 365 }
     }
 }
 
@@ -121,7 +121,7 @@ oblivion_gate.003 = {
         name = oblivion_gate.003.b  # "We could not close it — fall back."
         add_prestige = -100
         add_stress   = 15
-        add_modifier = { modifier = wounded days = 180 }
+        add_character_modifier = { modifier = wounded days = 180 }
         scope:gate_county = {
             add_province_modifier = {
                 modifier = oblivion_gate_daedra_surge

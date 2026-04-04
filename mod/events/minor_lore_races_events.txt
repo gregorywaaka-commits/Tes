@@ -66,7 +66,7 @@ dreugh.002 = {
         name = dreugh.002.a   # "Ancient Knocker, hear us from the deep."
         add_piety    = 300
         add_prestige = 100
-        add_modifier = { modifier = old_knocker_blessing_modifier days = 730 }
+        add_character_modifier = { modifier = old_knocker_blessing_modifier days = 730 }
     }
 }
 
@@ -96,7 +96,7 @@ imga.001 = {
     option = {
         name = imga.001.a   # "Welcome, great ape — your powder and poise are appreciated."
         add_prestige = 100
-        add_modifier = { modifier = imga_favor_modifier days = 1825 }
+        add_character_modifier = { modifier = imga_favor_modifier days = 1825 }
     }
 
     option = {
@@ -160,7 +160,7 @@ tang_mo.001 = {
         name = tang_mo.001.a   # "The community stands as one — repel the demons!"
         add_prestige = 200
         add_piety    = 100
-        add_modifier = { modifier = tang_mo_unity_modifier days = 365 }
+        add_character_modifier = { modifier = tang_mo_unity_modifier days = 365 }
         add_trait    = invasion_repeller
     }
 
@@ -192,7 +192,7 @@ tang_mo.002 = {
         add_prestige = 300
         add_piety    = 200
         # Grant mutual alliance — scripted as an event flag
-        add_modifier = { modifier = ka_po_tun_alliance_modifier days = 3650 }
+        add_character_modifier = { modifier = ka_po_tun_alliance_modifier days = 3650 }
     }
 }
 
@@ -221,7 +221,7 @@ keptu.001 = {
         name = keptu.001.a   # "The Forge's secrets are mine to revive."
         add_stewardship = 2
         add_prestige    = 300
-        add_modifier = { modifier = bloodroot_forge_modifier days = 1825 }
+        add_character_modifier = { modifier = bloodroot_forge_modifier days = 1825 }
     }
 }
 

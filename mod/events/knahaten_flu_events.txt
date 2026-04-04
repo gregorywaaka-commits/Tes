@@ -161,7 +161,7 @@ flu.001 = {
         name = flu.001.b   # "Quarantine the Argonians. They may be carriers."
         add_piety = -150
         add_prestige = -100
-        add_modifier = { modifier = quarantine_modifier days = 365 }
+        add_character_modifier = { modifier = quarantine_modifier days = 365 }
         # No benefit — the Argonians are not contagious; this is prejudice
     }
 
@@ -207,7 +207,7 @@ flu.010 = {
     option = {
         name = flu.010.a   # "Seal the river crossings. Nothing moves without inspection."
         add_prestige = 100
-        add_modifier = { modifier = quarantine_modifier days = 730 }
+        add_character_modifier = { modifier = quarantine_modifier days = 730 }
         add_gold = -100   # the cost of enforcing the quarantine
     }
 

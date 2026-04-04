@@ -2058,3 +2058,309 @@ worm_cult_marked_for_death = {
     intrigue         = -1
     stress_gain_mult = 0.15
 }
+
+# =============================================================
+#  DRAGON PRIEST SYSTEM MODIFIERS
+#  Defined here; used by mod/events/dragon_priest_events.txt
+# =============================================================
+
+# Dragon Priest Mask — Otar the Mad (ice & fire resistance aura)
+dragon_priest_mask_otar = {
+    martial  = 2
+    prowess  = 3
+    monthly_prestige = 1
+    # FUTURE ARTIFACT: dragon_priest_mask_otar — headgear; see ARTIFACTS_TODO.md
+}
+
+# Dragon Priest Mask — Volsung (Pirate Jarl / sea-faring bonus)
+dragon_priest_mask_volsung = {
+    stewardship = 2
+    intrigue    = 2
+    monthly_prestige = 1
+    # FUTURE ARTIFACT: dragon_priest_mask_volsung — headgear; see ARTIFACTS_TODO.md
+}
+
+# Dragon Priest Mask — Morokei (master of magic; storm call user)
+dragon_priest_mask_morokei = {
+    learning = 4
+    monthly_prestige = 2
+    # FUTURE ARTIFACT: dragon_priest_mask_morokei — headgear; see ARTIFACTS_TODO.md
+}
+
+# Alduin's Vision — Learning: character received a vision of Alduin's ancient
+# power through a Dragon Priest encounter; insight into draconic secrets.
+alduin_vision_learning = {
+    learning = 3
+    monthly_prestige = 1
+}
+
+# Alduin's Vision — Martial: character witnessed Alduin's destructive might;
+# tactical dread instilled — terrifying on the battlefield.
+alduin_vision_martial = {
+    martial  = 3
+    prowess  = 2
+    monthly_prestige = 1
+}
+
+# Dragon Cult Blessing: the ancient Dragon Cult rites have been performed;
+# a short-term martial and faith boost from invoking the Thu'um.
+dragon_cult_blessing = {
+    martial              = 2
+    prowess              = 2
+    monthly_piety        = 1
+    monthly_prestige     = 1
+}
+
+# World Eater Survived: this character survived a direct encounter with Alduin
+# the World Eater — an event so rare it borders on divine selection.
+world_eater_survived_modifier = {
+    martial              = 2
+    prowess              = 4
+    monthly_prestige     = 3
+    stress_gain_mult     = -0.10
+}
+
+# =============================================================
+#  TRIBUNAL / VIVEC TRIAL MODIFIERS
+#  Defined here; used by mod/events/tribunal_events.txt
+#                         mod/events/vivec_trial_events.txt
+# =============================================================
+
+# Vivec's Warrior Blessing: martial blessing from Lord Vivec.
+vivec_warrior_blessing = {
+    martial              = 3
+    prowess              = 3
+    monthly_prestige     = 1
+}
+
+# Vivec's Poet Blessing: creative and spiritual blessing from Lord Vivec.
+vivec_poet_blessing = {
+    learning             = 3
+    diplomacy            = 2
+    monthly_piety        = 2
+}
+
+# Almalexia's Grace: healing and spiritual blessing from the Lady of Mercy.
+almalexia_grace = {
+    health               = 0.5
+    diplomacy            = 2
+    monthly_piety        = 2
+}
+
+# Sotha Sil's Insight: clockwork knowledge blessing from the Clockwork God.
+sotha_sil_insight = {
+    learning             = 4
+    stewardship          = 2
+    monthly_piety        = 1
+}
+
+# Almalexia Trial Victor: awarded to those who pass the Hands of Almalexia
+# trial; marks the character as a true champion of the Lady of Mercy.
+almalexia_trial_victor_modifier = {
+    martial              = 3
+    monthly_prestige     = 2
+    monthly_piety        = 2
+}
+
+# Vivec Trial Victor: awarded to those who pass the Vivec trial.
+vivec_trial_victor_modifier = {
+    martial              = 3
+    diplomacy            = 2
+    monthly_prestige     = 3
+    monthly_piety        = 2
+}
+
+# =============================================================
+#  ALMSIVI INTERDICT MODIFIER
+#  Defined here; used by mod/events/almsivi_interdict_events.txt
+# =============================================================
+
+# Almsivi Interdict: the Triple Temple has placed a spiritual embargo.
+almsivi_interdict_modifier = {
+    diplomacy            = -3
+    monthly_piety        = -2
+    monthly_prestige     = -2
+}
+
+# =============================================================
+#  ALESSIAN SYSTEM MODIFIERS
+#  Defined here; used by mod/events/alessian_events.txt
+# =============================================================
+
+# Alessian Reformation Zeal: filled with the reformist fire of the Alessian
+# Order; extra piety but divisive among non-Alessian neighbours.
+alessian_reformation_zeal = {
+    monthly_piety        = 2
+    monthly_prestige     = 1
+    diplomacy            = -1   # The zeal is not universally respected
+}
+
+# Reman Claim Investigation: actively investigating the legitimacy of a
+# Reman bloodline claim; focused scholarship with political risk.
+reman_claim_investigation = {
+    learning             = 3
+    intrigue             = 2
+    stress_gain_mult     = 0.10   # The truth may not be welcome
+}
+
+# =============================================================
+#  ASHLANDER SYSTEM MODIFIERS
+#  Defined here; used by mod/events/ashlander_events.txt
+# =============================================================
+
+# Ashlander Welcomed: welcomed by an Ashlander tribe as an outsider ally;
+# rare social distinction among Dunmer nomads.
+ashlander_welcomed_modifier = {
+    diplomacy            = 2
+    intrigue             = 2
+    monthly_prestige     = 1
+}
+
+# =============================================================
+#  CLOCKWORK CITY MODIFIERS
+#  Defined here; used by mod/events/clockwork_city_events.txt
+# =============================================================
+
+# Clockwork City Vision: a character who has witnessed the Clockwork City
+# of Sotha Sil; haunted by its impossible precision.
+clockwork_city_vision = {
+    learning             = 4
+    stress_gain_mult     = 0.15   # The sight is overwhelming
+    monthly_prestige     = 1
+}
+
+# =============================================================
+#  DAGOTH UR SYSTEM MODIFIERS
+#  Defined here; used by mod/events/dagoth_ur_events.txt
+# =============================================================
+
+# Dagoth Ur Champion Modifier: short-term battle prowess granted by the
+# Sharmat's power; dangerous, corrupting, temporary.
+dagoth_ur_champion_modifier = {
+    martial              = 4
+    prowess              = 5
+    health               = -0.30   # Sharmat's gifts exact a cost
+    monthly_prestige     = 1
+}
+
+# =============================================================
+#  DWEMER RUINS MODIFIERS
+#  Defined here; used by mod/events/dwemer_ruins_effects.txt
+#                         mod/events/dwemer_ruins_events.txt
+# =============================================================
+
+# Dwemer Expedition Cooldown: prevents back-to-back Dwemer delving;
+# a rest period after the strain of tonal architecture study.
+dwemer_expedition_cooldown = { }
+
+# Tonal Architecture Insight: a scholar who has made a breakthrough in
+# understanding Dwemer tonal mechanics; brief but profound revelation.
+tonal_architecture_insight_modifier = {
+    learning             = 5
+    stewardship          = 2
+    monthly_prestige     = 2
+}
+
+# =============================================================
+#  GREAT HOUSES SYSTEM MODIFIERS
+#  Defined here; used by mod/events/great_houses_events.txt
+# =============================================================
+
+# Hortator Redoran Support: the Great House Redoran has endorsed this
+# character as Hortator (war-leader of the Dunmer).
+hortator_redoran_support = {
+    martial              = 3
+    monthly_prestige     = 2
+}
+
+# Hortator Telvanni Knowledge: House Telvanni grudgingly acknowledges
+# this character's claim as Hortator with arcane secrets.
+hortator_telvanni_knowledge = {
+    learning             = 3
+    monthly_prestige     = 2
+}
+
+# Hortator Indoril Blessing: House Indoril, guardians of the Tribunal,
+# blesses this character as Hortator with Temple authority.
+hortator_indoril_blessing = {
+    monthly_piety        = 3
+    monthly_prestige     = 2
+}
+
+# Hortator Hlaalu Network: House Hlaalu's political and trade network
+# backs this character's claim as Hortator.
+hortator_hlaalu_network = {
+    stewardship          = 3
+    intrigue             = 2
+    monthly_prestige     = 2
+}
+
+# Dres Slave Tribute: House Dres offers slave tribute to this character
+# in exchange for Hortator recognition.
+dres_slave_tribute = {
+    stewardship          = 2
+    monthly_prestige     = 1
+}
+
+# Hortator Dres Compliance: House Dres has formally complied with
+# Hortator recognition — grudgingly, with conditions.
+hortator_dres_compliance = {
+    intrigue             = 2
+    monthly_prestige     = 1
+}
+
+# Telvanni Tower Research: access to a Telvanni wizard tower's private
+# research archives; ongoing scholarship benefit.
+telvanni_tower_research = {
+    learning             = 4
+    monthly_prestige     = 1
+}
+
+# Argonian Uprising Aftermath: the aftermath of an Argonian slave
+# uprising in the Great Houses territory; political tension modifier.
+argonian_uprising_aftermath = {
+    stewardship          = -2
+    diplomacy            = -2
+    monthly_prestige     = -1
+}
+
+# =============================================================
+#  SEVEN GRACES SYSTEM MODIFIERS
+#  Defined here; used by mod/events/seven_graces_events.txt
+# =============================================================
+
+# Seven Graces Blessing: the pilgrim has completed all Seven Graces
+# of the Tribunal — a rare spiritual achievement among Dunmer faithful.
+seven_graces_blessing = {
+    monthly_piety        = 3
+    monthly_prestige     = 3
+    diplomacy            = 2
+}
+
+# =============================================================
+#  WOUNDED MODIFIER
+#  vanilla CK3 uses 'wounded_1'/'wounded_2'/'wounded_3' traits;
+#  this provides a custom wounded state used by invasion/combat events.
+#  Used by: daedric_invasion_events.txt, maormer_events.txt,
+#            oblivion_gate_events.txt
+# =============================================================
+
+wounded = {
+    health               = -0.50
+    prowess              = -2
+    stress_gain_mult     = 0.10
+}
+
+# =============================================================
+#  ALMALEXIA HANDS MODIFIER
+#  Defined here; used by mod/events/almalexia_hands_events.txt
+# =============================================================
+
+# Almalexia Hands Blessing: granted to a character who has taken the
+# Oath of the Hands of Almalexia — her elite divine guardians.
+almalexia_hands_blessing = {
+    martial              = 3
+    prowess              = 3
+    monthly_piety        = 2
+    monthly_prestige     = 2
+}
