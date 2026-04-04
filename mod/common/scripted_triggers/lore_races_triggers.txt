@@ -254,7 +254,7 @@ is_kamal = {
 # global_var:current_season_summer accordingly.
 # CK3 months: 1=Jan, 2=Feb ... 12=Dec.  Summer = months 5-9 (May-Sep).
 kamal_summer_active = {
-    NOT = { current_date < 2E.100 }         # date sanity check
+    NOT = { current_date < 2E.440 }         # date sanity check — EK2 starts no earlier than 2E 440
     exists = global_var:current_season_summer   # set by kamal.050 monthly pulse
 }
 

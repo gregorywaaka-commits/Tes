@@ -1,0 +1,231 @@
+# =============================================================
+#  High Rock Petty Kings — Breton Political Landscape
+#  Namespace: high_rock
+#
+#  LORE:
+#  At the EK2 start dates of 2E 440 and 2E 450, High Rock is
+#  divided among dozens of petty kingdoms.  Daggerfall, Wayrest,
+#  Camlorn, Evermore, Shornhelm, and many smaller holdings all
+#  vie for dominance.  The Bretons — half-human, half-Aldmer
+#  by ancient heritage — are masters of politics, mercantile
+#  dealing, and the arcane arts.
+#
+#  Durcorach the Black Drake's Longhouse Emperors won't rise
+#  until 2E 533; Ranser's War won't ignite until 2E 566.  In
+#  the meantime the petty kings squabble, form short-lived
+#  alliances, and struggle to keep the Reachmen raiders to
+#  the east from razing their villages.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • high_rock.000 — Conclave of Petty Kings
+#                    Yearly; Breton rulers, 2E 440–566.
+#                    A summit is called among rival Breton
+#                    lords; the ruler must choose their role.
+#
+#  • high_rock.010 — The Reach Demands Its Toll
+#                    Yearly; Breton rulers with Reach-adjacent
+#                    counties or at war.  Reachman raiders
+#                    raid the border.
+#
+#  • high_rock.020 — Wayrest Market Influence
+#                    Yearly; Breton rulers with stewardship >= 10.
+#                    An economic opportunity through Wayrest
+#                    trade networks.
+#
+#  • high_rock.030 — Bretons and the Arcane
+#                    Yearly; Breton rulers with learning >= 12.
+#                    Breton aptitude for magic opens doors
+#                    to the Mages Guild or independent study.
+#
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/high_rock_petty_kings_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt (this mod)
+#      → high_rock_peer, breton_warlord
+#    common/modifiers/lore_races_modifiers.txt (this mod)
+#      → breton_conclave_accord_modifier, wayrest_market_bond_modifier,
+#        reach_raid_damage_modifier
+#
+# =============================================================
+
+namespace = high_rock
+
+# ---------------------------------------------------------------
+# high_rock.000  Conclave of Petty Kings
+# ---------------------------------------------------------------
+high_rock.000 = {
+    type = character_event
+    title = high_rock.000.t
+    desc  = high_rock.000.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_regal
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = breton_culture
+        NOT = { has_character_flag = breton_conclave_attended }
+        game_start_date >= 2.440.1
+        game_start_date <= 2.566.1
+    }
+
+    immediate = {
+        add_character_flag = { flag = breton_conclave_attended days = 3650 }
+    }
+
+    option = {
+        name = high_rock.000.a   # "I will lead this conclave — High Rock needs a strong voice."
+        add_trait = high_rock_peer
+        add_prestige = 200
+        add_diplomacy_skill = 1
+    }
+
+    option = {
+        name = high_rock.000.b   # "I will attend but keep my counsel. Let others expose themselves."
+        add_trait = high_rock_peer
+        add_intrigue_skill = 1
+        add_prestige = 75
+    }
+
+    option = {
+        name = high_rock.000.c   # "These petty councils accomplish nothing. I will not attend."
+        add_prestige = -50
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# high_rock.010  The Reach Demands Its Toll
+# ---------------------------------------------------------------
+high_rock.010 = {
+    type = character_event
+    title = high_rock.010.t
+    desc  = high_rock.010.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = breton_culture
+        NOT = { has_character_flag = reach_raid_weathered }
+    }
+
+    immediate = {
+        add_character_flag = { flag = reach_raid_weathered days = 1825 }
+    }
+
+    option = {
+        name = high_rock.010.a   # "Garrison the passes. The Reachmen will not find us unprepared."
+        add_trait = breton_warlord
+        add_martial_skill = 1
+        add_prestige = 100
+        add_gold = -25
+    }
+
+    option = {
+        name = high_rock.010.b   # "Pay the toll. One season of tribute buys three of peace."
+        add_modifier = { modifier = reach_raid_damage_modifier days = 365 }
+        add_gold = -50
+        add_prestige = -25
+    }
+
+    option = {
+        name = high_rock.010.c   # "Seek an accord with the Reach clans. They are fierce but not unreasonable."
+        add_diplomacy_skill = 1
+        add_stress = 15
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# high_rock.020  Wayrest Market Influence
+# ---------------------------------------------------------------
+high_rock.020 = {
+    type = character_event
+    title = high_rock.020.t
+    desc  = high_rock.020.desc
+    theme = stewardship
+    left_portrait = {
+        character = root
+        animation = personality_content
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = breton_culture
+        stewardship >= 10
+        NOT = { has_character_flag = wayrest_market_bond }
+    }
+
+    immediate = {
+        add_character_flag = { flag = wayrest_market_bond days = 3650 }
+    }
+
+    option = {
+        name = high_rock.020.a   # "Invest in the Wayrest routes. Coin builds kingdoms."
+        add_modifier = { modifier = wayrest_market_bond_modifier days = 1825 }
+        add_stewardship_skill = 1
+        add_gold = -30
+        add_prestige = 75
+    }
+
+    option = {
+        name = high_rock.020.b   # "Self-sufficiency. I will not let Wayrest merchants into my lands."
+        add_gold = 50
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# high_rock.030  Bretons and the Arcane
+# ---------------------------------------------------------------
+high_rock.030 = {
+    type = character_event
+    title = high_rock.030.t
+    desc  = high_rock.030.desc
+    theme = scholarship
+    left_portrait = {
+        character = root
+        animation = personality_curious
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = breton_culture
+        learning >= 12
+        NOT = { has_character_flag = breton_arcane_path_chosen }
+    }
+
+    immediate = {
+        add_character_flag = { flag = breton_arcane_path_chosen days = 3650 }
+    }
+
+    option = {
+        name = high_rock.030.a   # "The Mages Guild welcomes those of our bloodline. I will join them."
+        add_learning_skill = 2
+        add_prestige = 100
+        add_piety = 50
+    }
+
+    option = {
+        name = high_rock.030.b   # "Our Aldmeri heritage speaks through us. I will pursue magic alone."
+        add_learning_skill = 1
+        add_stress = -10
+        add_prestige = 50
+    }
+}

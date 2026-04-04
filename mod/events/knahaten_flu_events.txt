@@ -1,0 +1,263 @@
+# =============================================================
+#  Knahaten Flu — Events
+#  Namespace: flu
+#  File: mod/events/knahaten_flu_events.txt
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  This file covers the Knahaten Flu from three angles that the
+#  kothringi_events.txt file (which handles the Kothringi/Crimson
+#  Ship perspective) does not:
+#
+#  • flu.000  — "The Hist Knows"
+#               Argonian rulers receive hist_immune when the flu
+#               activates.  The Hist warned them.  They are fine.
+#               The rest of Tamriel is not.
+#
+#  • flu.001  — "The Argonian Exception"
+#               Non-Argonian rulers near the infected zone notice
+#               that Argonians are not dying.  A researcher wants
+#               to understand why.  Potential for knowledge gain
+#               or a diplomatic complication.
+#
+#  • flu.010  — "The Smoke Crosses the Niben"
+#               The plague reaches the coastal Cyrodiil provinces.
+#               Non-Argonian, non-Black-Marsh rulers on the border
+#               face a policy decision: quarantine, trade losses,
+#               or trust the rumoured immunity of their Argonian
+#               labourers.
+#
+#  • flu.020  — "The Last Kothringi"
+#               Historical marker event that fires after the flu
+#               has been active long enough that Kothringi rulers
+#               are no longer present.  Announces their effective
+#               extinction as a named people.
+#
+#  KEY GLOBAL VARIABLES:
+#  ─────────────────────
+#  global_var:knahaten_flu_active  — set by trigger_knahaten_flu in
+#                                    lore_races_effects.txt; checked
+#                                    here for all trigger gates.
+#  global_var:kothringi_extinct    — set by flu.020 once fired.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/knahaten_flu_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/scripted_triggers/lore_races_triggers.txt
+#      → knahaten_flu_active
+#    common/traits/knahaten_flu_traits.txt
+#      → hist_immune
+#    common/traits/lore_races_traits.txt
+#      → flu_refugee, hist_bonded, knahaten_immune, knahaten_survivor,
+#        kothringi_heritage
+#    common/modifiers/lore_races_modifiers.txt
+#      → knahaten_flu_fear_modifier, knahaten_flu_modifier,
+#        quarantine_modifier
+# =============================================================
+
+namespace = flu
+
+# ---------------------------------------------------------------
+# flu.000  The Hist Knows
+#
+# Fires for Argonian rulers when global_var:knahaten_flu_active
+# is set.  The Hist communicated the plague's arrival before
+# Argonian bodies could be affected.  Grants hist_immune.
+# ---------------------------------------------------------------
+flu.000 = {
+    type = character_event
+    title = flu.000.t
+    desc = flu.000.desc
+    theme = realm
+
+    left_portrait = {
+        character = root
+        animation = personality_content
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        knahaten_flu_active = yes
+        has_culture = argonian_culture
+        NOT = { has_trait = hist_immune }
+        NOT = { has_character_flag = flu_hist_warned }
+    }
+
+    immediate = {
+        set_character_flag = flu_hist_warned
+    }
+
+    option = {
+        name = flu.000.a   # "The Hist has spoken. We are safe."
+        add_trait = hist_immune
+        add_prestige = 100
+        add_piety = 50
+    }
+
+    option = {
+        name = flu.000.b   # "Safe — but what of those outside the marsh?"
+        add_trait = hist_immune
+        add_prestige = 50
+        add_piety = 100
+        add_stress = 10   # weighted down by the knowledge of others' suffering
+    }
+}
+
+# ---------------------------------------------------------------
+# flu.001  The Argonian Exception
+#
+# Fires for non-Argonian rulers whose realm borders an infected
+# county.  A physician or scholar at court notices that Argonian
+# servants and labourers are not falling sick.  Two paths:
+# investigate the immunity academically, or treat Argonians
+# with xenophobic suspicion.
+# ---------------------------------------------------------------
+flu.001 = {
+    type = character_event
+    title = flu.001.t
+    desc = flu.001.desc
+    theme = scholarly
+
+    left_portrait = {
+        character = root
+        animation = personality_curious
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        knahaten_flu_active = yes
+        NOT = { has_culture = argonian_culture }
+        NOT = { has_trait = hist_immune }
+        NOT = { has_character_flag = flu_argonian_question_seen }
+        any_held_county = {
+            any_neighboring_county = {
+                has_modifier = knahaten_flu_modifier
+            }
+        }
+    }
+
+    immediate = {
+        set_character_flag = flu_argonian_question_seen
+    }
+
+    option = {
+        name = flu.001.a   # "Study them — if they are immune, we need to know why."
+        add_prestige = 50
+        add_intrigue = 1
+        # Small learning windfall — but the research is inconclusive
+        add_character_modifier = {
+            modifier = knahaten_flu_fear_modifier
+            days = 180   # short-term reduction; knowledge eases panic
+        }
+    }
+
+    option = {
+        name = flu.001.b   # "Quarantine the Argonians. They may be carriers."
+        add_piety = -150
+        add_prestige = -100
+        add_modifier = { modifier = quarantine_modifier days = 365 }
+        # No benefit — the Argonians are not contagious; this is prejudice
+    }
+
+    option = {
+        name = flu.001.c   # "Note it and watch. There may be a natural explanation."
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# flu.010  The Smoke Crosses the Niben
+#
+# Fires for non-Argonian rulers in coastal Cyrodiil counties
+# when the flu has been active for at least one year.  The
+# plague has reached the coast.  Grain prices, trade disruption,
+# and the weight of policy under epidemic conditions.
+# ---------------------------------------------------------------
+flu.010 = {
+    type = character_event
+    title = flu.010.t
+    desc = flu.010.desc
+    theme = plague
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        knahaten_flu_active = yes
+        NOT = { has_culture = argonian_culture }
+        NOT = { has_trait = knahaten_immune }
+        NOT = { has_character_flag = flu_cyrodiil_wave_seen }
+        any_held_county = {
+            OR = {
+                title_province = { geographical_region = world_cyrodiil }
+                has_modifier = knahaten_flu_modifier
+            }
+        }
+    }
+
+    immediate = {
+        set_character_flag = flu_cyrodiil_wave_seen
+    }
+
+    option = {
+        name = flu.010.a   # "Seal the river crossings. Nothing moves without inspection."
+        add_prestige = 100
+        add_modifier = { modifier = quarantine_modifier days = 730 }
+        add_gold = -100   # the cost of enforcing the quarantine
+    }
+
+    option = {
+        name = flu.010.b   # "Keep the trade roads open — we need the revenue."
+        add_gold = 50
+        add_prestige = -50
+        # Risk: province modifier may spread further without quarantine
+    }
+
+    option = {
+        name = flu.010.c   # "Seek the Argonians' counsel — they know something."
+        add_prestige = 50
+        add_piety = 25
+        # Diplomatic overture — positive relationship signal, modest gain
+    }
+}
+
+# ---------------------------------------------------------------
+# flu.020  The Last Kothringi
+#
+# Fires once, globally, when no living ruler has kothringi_heritage
+# and the flu has been active.  A historical marker: the Kothringi
+# are effectively extinct as a ruling people.
+# Sets global_var:kothringi_extinct.
+# ---------------------------------------------------------------
+flu.020 = {
+    type = world_event
+    hidden = no
+    title = flu.020.t
+    desc = flu.020.desc
+    theme = death
+
+    trigger = {
+        knahaten_flu_active = yes
+        NOT = { exists = global_var:kothringi_extinct }
+        NOT = {
+            any_ruler = {
+                has_trait = kothringi_heritage
+                is_alive = yes
+            }
+        }
+    }
+
+    immediate = {
+        set_global_variable = { name = kothringi_extinct value = yes }
+    }
+
+    option = {
+        name = flu.020.a   # "A people erased."
+        add_prestige = -50    # scope is the player — the weight of witnessing history's cruelty
+    }
+}

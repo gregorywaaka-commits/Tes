@@ -1,0 +1,49 @@
+﻿l_english:
+
+ # =====================================================================
+ #  THIEVES GUILD
+ # =====================================================================
+
+ # --- Traits ---
+
+ shadow_guild_contact: "Guild Contact"
+ shadow_guild_contact_desc: "This character has established informal ties to the Thieves Guild — not a full member, but a ruler the Guild finds useful and a ruler who finds the Guild's services occasionally valuable. Advance trade intelligence, a reduction in theft within the realm, and a discreet share of certain goods in exchange for access and the occasional blind eye. The arrangement is entirely transactional and no one talks about it at dinner."
+
+ fence_master: "Fence Master"
+ fence_master_desc: "This character has become a fully trusted operative and fence for the Thieves Guild — managing a significant portion of the Guild's goods-flow through their territory. The Guild considers them an asset rather than merely a contact, which is both more profitable and considerably harder to walk away from. They know where certain things come from. The Guild knows they know. This creates a specific and permanent kind of mutual leverage."
+
+ # --- Events ---
+
+ thieves_guild.000.t: "The Merchant Who Isn't"
+ thieves_guild.000.desc: "The chamberlain described the person requesting an audience as 'a merchant with extraordinarily specific trade intelligence.' The phrasing is Guild guild-speak — a signal that someone who knows the language uses to identify themselves to a potential contact without committing to anything in front of witnesses.\n\nThe person is waiting in the outer courtyard. They appear, for all purposes visible to the untrained eye, to be exactly what was advertised: a merchant. They have a manifest. They have samples. They are very good at looking like a merchant, which is itself a kind of credential."
+ thieves_guild.000.a: "Send them in. Separately. At night."
+ thieves_guild.000.b: "Have them removed from the city. Politely."
+ thieves_guild.000.c: "Have them arrested and see what they're carrying."
+
+ thieves_guild.001.t: "The Arrangement"
+ thieves_guild.001.desc: "The agent laid out the proposal with the efficient clarity of someone who has made this presentation many times. The Guild offers: protection from theft within your realm (they will discourage other thieves from operating here), advance intelligence on significant trade movements and personnel of interest, and a percentage of goods routed through your territory that the customs manifests will not record.\n\nIn exchange: access to your ports and road checkpoints on agreed schedules, courtiers willing to look the wrong way at specific moments, and no questions about what is in certain sealed cargo containers.\n\nThe Guild operates, the agent noted, under a strict code: no killing on Guild jobs. They are professionals. They want a business arrangement. The paperwork, such as it is, would be entirely verbal."
+ thieves_guild.001.a: "A business arrangement. Nothing more."
+ thieves_guild.001.b: "I want more specific terms before I agree to anything."
+ thieves_guild.001.c: "I've heard enough. This is not a relationship I want."
+
+ thieves_guild.010.t: "The Guild Calls In a Favour"
+ thieves_guild.010.desc: "The message arrived through the usual channel — a specific arrangement of flowers in the market stall nearest the east gate, which translates to 'we need to speak.' The agent's request is specific: there is a magistrate who has been asking inconvenient questions about certain ledger entries, and the Guild would appreciate it if that magistrate were to receive a posting somewhere requiring their immediate relocation.\n\nThe Guild notes, with the careful tone they use when they are telling you something is not a request, that this is the kind of favour that defines a relationship. They are watching to see what kind of partner you are."
+ thieves_guild.010.a: "I comply. The Guild remembers who helped them."
+ thieves_guild.010.b: "I provide limited help — enough to satisfy them, not enough to implicate myself."
+ thieves_guild.010.c: "No. The arrangement has limits, and this crosses them."
+
+ thieves_guild.020.t: "The Fence Network"
+ thieves_guild.020.desc: "The Guild's senior contact arrived with a map and a proposal that took some time to explain, which is unusual for people who are paid to be concise.\n\nYour territory is well-positioned: the road junctions, the river access, the specific blind spots in the customs process that you have quietly maintained. The Guild wants to formalise what is already, in practice, a significant portion of their regional goods-flow. A fence network. Not just a contact — a hub. The money is substantially better. The operational complexity is substantially higher. If the arrangement is discovered at the current level, you can explain it away. If it is discovered at the proposed level, you cannot.\n\nThe Guild points out, fairly, that discovery is unlikely. They have been operating in cities for centuries. But they always mention this because they consider transparency a professional courtesy."
+ thieves_guild.020.a: "More money, more risk. A ruler's arithmetic. I accept."
+ thieves_guild.020.b: "The current arrangement is sufficient. No escalation."
+
+ thieves_guild.030.t: "The Guard Captain's Report"
+ thieves_guild.030.desc: "Captain Valdyren — or whoever your head of city watch happens to be — has submitted a report that is sitting on your desk with a level of internal coherence that suggests they have been working on it for some time. It connects three cargo discrepancies from the last eighteen months, two suspicious personnel reassignments, and a merchant's testimony about a specific dock-side arrangement involving sealed containers and no customs inspection.\n\nThe report is addressed to you. This means either the captain is loyal and has no idea what they have found, or the captain knows exactly what they have found and is giving you the first opportunity to respond. Either way, the document exists. It needs to be handled before it becomes a conversation you cannot control."
+ thieves_guild.030.a: "Bribe them. Everyone has a price."
+ thieves_guild.030.b: "Reassign them somewhere far away."
+ thieves_guild.030.c: "Let the Guild handle it. That is what they are for."
+
+ thieves_guild.040.t: "Nocturnal's Interest"
+ thieves_guild.040.desc: "The Guild contact mentioned it in passing, with the careful phrasing that means it is not being mentioned in passing: Nocturnal has noticed this operation. The Prince of Twilight — shadow and luck and the darkness before dawn — takes a personal interest in the most effective fence operations in Tamriel, because effective fence operations are, in a theological sense, an act of worship.\n\nThere is a covenant available. The Nightingale Covenant. It comes with Nocturnal's direct favour, which the Guild contact described as 'substantial, consistent, and binding.' They emphasised the binding part twice, which is the Guild's way of saying that the part they're not emphasising is that the covenant also involves your soul upon death becoming a guardian of the Twilight Sepulchre for as long as Nocturnal finds it useful.\n\nThe Guild has members who took the offer. They are extremely effective. They are also not entirely free."
+ thieves_guild.040.a: "I will hear what Nocturnal's servants have to say."
+ thieves_guild.040.b: "The Guild is enough. Daedric oaths are binding beyond death."

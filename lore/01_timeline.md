@@ -79,13 +79,26 @@
 
 | Date | Event | Status |
 |---|---|---|
-| 2E 1–430 | **Interregnum** — no Emperor; Tamriel splinters into warring factions and short-lived dynasties | `[CANON — UESP]` |
+| 2E 1–430 | **Akaviri Potentate** rules in place of a Cyrodiilic Emperor after the fall of the Reman Dynasty | `[CANON — UESP]` |
 | c. 2E 230 | **Mages Guild** founded by **Vanus Galerion** on Summerset Isle | `[CANON — UESP]` |
 | c. 2E 230 | **Psijic Order's island of Artaeum disappears** around the same time Galerion leaves the Order | `[CANON — UESP]` |
+| 2E 309 | **Elsweyr Confederacy** formed — Keirgo of Anequina marries Eshita of Pellitine, uniting the two Khajiiti kingdoms. Political instability follows; stabilised by the **Mane Rid-Thar-ri'Datta's Riddle'Thar Epiphany** (2E 311) which created the lunar governance system | `[CANON — UESP: Lore:Elsweyr Confederacy; in-game book: Anequina and Pellitine: An Introduction]` |
+| 2E 320 | **Syffim** (Fighters Guild precursor) founded by the Akaviri Potentate | `[CANON — UESP]` |
+| 2E 324 | Potentate **Versidue-Shaie** assassinated | `[CANON — UESP]` |
+| 2E 430 | Potentate **Savirien-Chorak** and all heirs assassinated (by Morag Tong on the Night Mother's orders); **Second Empire ends**; Interregnum begins | `[CANON — UESP]` |
 | 2E 430s | First Orsinium destroyed | `[CANON — UESP]` |
-| 2E 572 | **Dir-Kamal (Kamal/Akaviri) invasion** — Dir-Kamal attacks Morrowind and Skyrim; **Dir-Kamal is KILLED** at the Battle of Vivec's Antlers by the Ebonheart Pact + Tribunal | `[CANON — ESO in-game book: The Second Akaviri Invasion via UESP]` ⚠️ He was killed, not merely "driven back" |
+| 2E 431 | Skyrim fractures into **Eastern** and **Western kingdoms** after the assassination of High King Logrolf | `[CANON — UESP: Lore:Interregnum]` |
+| 2E 533–541 | **Durcorach the Black Drake** (Reachman warlord) conquers Cyrodiil and seizes the Ruby Throne — start of the **Longhouse Emperors** dynasty. He is killed at Daggerfall in a failed High Rock invasion by King Emeric. | `[CANON — UESP: Lore:Longhouse Emperors; in-game book: Secret History of the Longhouse Emperors]` |
+| 2E 541–564 | **Moricar** (Durcorach's son) rules as Longhouse Emperor; his reign is less warlike but includes a failed Western Skyrim campaign | `[CANON — UESP]` |
+| 2E 560 | **Knahaten Flu** breaks out in **Stormhold**, Black Marsh, and spreads across southern Tamriel; lasts until c. 2E 603. **Argonians are largely immune.** The **Kothringi** and **Lilmothiit** peoples of Black Marsh are wiped out. Entire populations in Black Marsh and adjacent provinces devastated. | `[CANON — UESP: Lore:Knahaten Flu; in-game book: On the Knahaten Flu]` ⚠️ Whether the flu was created by Argonian shamans, natural, or Daedric in origin is `[CONTESTED]` — all three theories are in-universe and none is confirmed canon. |
+| 2E 564–577 | **Leovic** (Durcorach's grandson) rules; **legalises Daedra worship**, enraging Imperial nobility. The **Colovian Revolt** led by Duke Varen Aquilarios overthrows and kills Leovic in the Imperial Throne Room. End of the Longhouse Emperors. | `[CANON — UESP: Lore:Longhouse Emperors]` |
+| 2E 566 | **Ranser's War** — King Ranser of Shornhelm attacks King Emeric of Wayrest (High Rock). Defeat of Ranser paves the way for the **Daggerfall Covenant** (Bretons, Redguards, Orcs) led by High King Emeric. | `[CANON — UESP: Lore:Ranser's War; ESO in-game sources]` |
+| 2E 566 | **Daggerfall Covenant** formally established — Bretons, Redguards, and Orcs united under High King Emeric | `[CANON — UESP: Lore:Three Banners War]` |
+| 2E 572 | **Dir-Kamal (Kamal/Akaviri) invasion** — Dir-Kamal attacks Morrowind and Skyrim; **Dir-Kamal is KILLED** at the Battle of Vivec's Antlers by the combined forces of the **Ebonheart Pact** + Tribunal. The Pact (Nords, Dunmer, Argonians) is forged from this unlikely alliance. | `[CANON — ESO in-game book: The Second Akaviri Invasion via UESP]` ⚠️ He was killed, not merely "driven back" |
+| 2E 572 | **Ebonheart Pact** formally established — Nords, Dunmer, and Argonians united under Jorunn the Skald-King, governed by the Great Moot | `[CANON — UESP: Lore:Three Banners War]` |
 | 2E 580 | **Artaeum returns** — Psijic Order's island reappears after ~350 years of absence | `[CANON — UESP]` |
-| 2E 582 | Setting of **The Elder Scrolls Online (ESO)** — Alliance War; Molag Bal's Planemeld | `[CANON]` |
+| 2E 580 | **Aldmeri Dominion** formally established — Altmer, Bosmer, and Khajiit united under Queen **Ayrenn** via the Elden Accord | `[CANON — UESP: Lore:Aldmeri Dominion; Lore:Three Banners War]` |
+| 2E 582 | Setting of **The Elder Scrolls Online (ESO)** — **Three Banners War** (Alliance War) for the Ruby Throne; **Molag Bal's Planemeld** (attempted merger of Coldharbour and Nirn, foiled by the Vestige) | `[CANON — ESO]` |
 | 2E 882 | **Dagoth Ur awakens** under Red Mountain — canonical awakening date | `[CANON — IN-GAME BOOK: Dagoth Ur's Plans via UESP]` |
 | 2E 896 | **Tiber Septim** conquers all of Tamriel using the **Numidium**; founds the Third Empire | `[CANON — UESP]` ⚠️ The exact mechanism (Numidium vs. other means) has some `[CONTESTED]` details in metaphysical accounts |
 

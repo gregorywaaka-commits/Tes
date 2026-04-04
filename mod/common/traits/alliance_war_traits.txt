@@ -1,0 +1,100 @@
+# =============================================================
+#  Three Banners War — Traits
+#  File: mod/common/traits/alliance_war_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  aldmeri_banner      — Pledged to the Aldmeri Dominion's cause;
+#                        fighting for Queen Ayrenn's vision of
+#                        elven stewardship of Tamriel.
+#  covenant_banner     — Pledged to the Daggerfall Covenant; fighting
+#                        for High King Emeric's restoration of the
+#                        Second Empire under Breton-Redguard-Orsimer rule.
+#  pact_banner         — Pledged to the Ebonheart Pact; fighting in
+#                        the unlikely alliance of Nords, Dunmer, and
+#                        Argonians forged against common enemies.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  From 2E 582, the Three Banners War (the Alliance War) consumed
+#  Cyrodiil and spread across Tamriel.  Three alliances — the Aldmeri
+#  Dominion, the Daggerfall Covenant, and the Ebonheart Pact — each
+#  sought the Ruby Throne.  None fully succeeded.  The war was
+#  concurrent with Molag Bal's Planemeld, making this period the most
+#  chaotic in recorded Tamrielic history outside the Dragon Break.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/alliance_war_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • aldmeri_banner
+#    • covenant_banner
+#    • pact_banner
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/alliance_war_events.txt
+#      → aldmeri_banner, covenant_banner, pact_banner
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ALDMERI BANNER
+#  This ruler has pledged their allegiance to the Aldmeri Dominion
+#  and Queen Ayrenn's banner.  Whether Altmer idealist, pragmatic
+#  Bosmer, or Khajiit desert warrior, they believe — or have been
+#  convinced — that Tamriel's future is better guided by elven hands.
+# ---------------------------------------------------------------
+aldmeri_banner = {
+    category = fame
+
+    diplomacy  = 2
+    intrigue   = 2
+    monthly_prestige = 2
+    monthly_piety_gain_mult = 0.10    # The Dominion's faith invokes the old Aldmeri traditions
+
+    flag = aldmeri_banner
+}
+
+# ---------------------------------------------------------------
+#  COVENANT BANNER
+#  This ruler fights under the Daggerfall Covenant — the pact of
+#  Bretons, Redguards, and Orcs that rose from the ashes of
+#  Ranser's War.  They seek the Ruby Throne not for elven hegemony
+#  or a pact of old enemies, but for a structured, commercial,
+#  many-peoples Empire.
+# ---------------------------------------------------------------
+covenant_banner = {
+    category = fame
+
+    martial    = 2
+    diplomacy  = 2
+    monthly_prestige = 2
+
+    flag = covenant_banner
+}
+
+# ---------------------------------------------------------------
+#  PACT BANNER
+#  This ruler is pledged to the Ebonheart Pact — the improbable
+#  alliance of Nords, Dunmer, and Argonians formed in the furnace
+#  of the Kamal invasion.  The Pact's strength lies not in ideology
+#  but in survival: three peoples who have every historical reason
+#  to hate each other, fighting side by side because the alternative
+#  is worse for all of them.
+# ---------------------------------------------------------------
+pact_banner = {
+    category = fame
+
+    martial    = 3
+    monthly_prestige = 2
+    command_modifier = {
+        advantage = 1    # The Pact forged its unity in war — its soldiers know how to fight together
+    }
+
+    flag = pact_banner
+}

@@ -1,0 +1,39 @@
+﻿l_english:
+
+ # =====================================================================
+ #  WARLORD CLAIMANTS — INTERREGNUM (2E 431–541)
+ # =====================================================================
+
+ # ---- warlord.000 — The Empty Throne ----
+
+ warlord.000.t: "The Empty Throne"
+ warlord.000.desc: "The Ruby Throne sits in the White-Gold Tower and nobody is sitting in it. Savirien-Chorak is dead. The Akaviri Potentate is ended. The machinery of Imperial rule has simply stopped, like a clock whose spring has broken — all the pieces still present, none of them moving. You hold the Imperial City. Your army controls the gates, your banner flies from the tower, and your treasury holds what is left of Imperial gold. There is no mechanism by which you are not, in some meaningful sense, the ruler of Tamriel right now. There is also no mechanism by which that means what it used to mean. The throne is empty. The world is watching."
+ warlord.000.a: "I declare myself Emperor of Tamriel. The Ruby Throne has its ruler."
+ warlord.000.b: "The city is mine. The title can wait until I have the strength to hold it."
+
+ # ---- warlord.010 — A Rival in the East ----
+
+ warlord.010.t: "A Rival Claim"
+ warlord.010.desc: "A messenger arrives bearing the seal of a lord who has apparently decided that if you can call yourself Emperor, so can they. The letter is formal, belligerent, and surprisingly well-written. They hold a former Imperial province. They command a real army. They have genealogical documentation that is either entirely fabricated or plausibly connects them to the Reman bloodline by several creative steps. They want the throne. You are currently sitting in it. Something will have to give."
+ warlord.010.a: "Send my army east. My claim rests on the edge of a sword."
+ warlord.010.b: "Open negotiations. Two claimants can reach an accommodation."
+ warlord.010.c: "Ignore it. Pretenders rise and fall. I have more pressing concerns."
+
+ # ---- warlord.020 — The Vassal's Demand ----
+
+ warlord.020.t: "The Loyal Earl's Price"
+ warlord.020.desc: "One of your oldest supporters comes to you privately. They have followed you through the fighting, through the siege of the Imperial City, through the long winter of consolidation. They watched you take the throne. Now they want something back — a title befitting the new Imperial court, a recognition that things have changed, that the old ranks no longer apply and new ones should. Their request is entirely reasonable. That is exactly what makes it complicated."
+ warlord.020.a: "Grant the title. An Emperor needs earls whose loyalty is recognised."
+ warlord.020.b: "Nothing has changed simply because my title has changed."
+
+ # ---- Traits ----
+
+ warlord_emperor: "Interregnum Emperor"
+ warlord_emperor_desc: "This ruler has seized the Ruby Throne during the long Interregnum — the power vacuum between the assassination of the last Akaviri Potentate and the consolidation of the Longhouse Emperors. There is no Imperial machinery left to legitimise the claim. There is only the throne, the sword, and whatever the world can be made to believe."
+
+ # ---- Modifiers ----
+
+ warlord_claim_modifier: "Imperial Claim (Interregnum)"
+ warlord_claim_modifier_desc: "The declaration has been made. Every court in Tamriel has heard it. The prestige flows while the claim is fresh and the armies are marching."
+
+ 

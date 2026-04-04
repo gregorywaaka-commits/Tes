@@ -1,0 +1,53 @@
+# =============================================================
+#  Knahaten Flu — Traits
+#  File: mod/common/traits/knahaten_flu_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  hist_immune      — Argonian ruler shielded from the Flu by the Hist's deep-memory.
+#                     Distinct from knahaten_immune (general survivor immunity):
+#                     hist_immune is a *species-level* blessing, conferred by the
+#                     collective Hist mind rather than earned through survival.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Knahaten Flu (2E 560) was lethal to almost every race that contracted it.
+#  Argonians were the sole exception.  The root cause was never clinically
+#  explained — Nibenay physicians called it "a disposition of climate"; Argonians
+#  themselves said the Hist simply did not allow the sickness to take hold.
+#  The Hist-bonded nature of Argonian physiology appears to have provided a
+#  resistance that no alchemical treatment could replicate for other races.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/knahaten_flu_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • hist_immune
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/knahaten_flu_events.txt
+#      → hist_immune
+#    events/kothringi_events.txt
+#      → hist_immune (kothringi.002 exemption check)
+#    common/on_actions/lore_races_on_actions.txt
+#      → hist_immune (pulse trigger gate)
+# =============================================================
+
+
+# ---------------------------------------------------------------
+#  HIST IMMUNE
+#  The Hist's protection against the Knahaten Flu.  Argonian
+#  rulers carry this trait from birth; it is a species-level
+#  inheritance from the collective Hist mind, not a reward for
+#  surviving infection.  Non-Argonians cannot acquire it.
+# ---------------------------------------------------------------
+hist_immune = {
+    category = lifestyle
+
+    health = 0.5        # Hist vitality insulates against mundane disease vectors
+
+    flag = hist_immune
+}

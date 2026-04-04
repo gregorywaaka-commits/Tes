@@ -59,3 +59,27 @@
  yokuda.003.desc: "It comes at the hour before dawn, when the mind is least defended: a voice that is almost yours, almost your own internal reasoning, almost the sensible conclusion of a line of thinking that you didn't remember beginning. 'They took Yokuda from us,' it says. 'They took the heart out of the world and called the wound a sky. Take it back. Take what you want. You are not owed anything — neither is anyone else. The Thief teaches only this: there is no sin in hunger, only in pretending you don't feel it.' Sep. The Trickster. The Yokudan Lorkhan. He is very patient, and he has been waiting for a moment exactly like this one."
  yokuda.003.a: "Sep speaks a truth I have been afraid to acknowledge. I listen."
  yokuda.003.b: "The Thief's logic leads only to an empty hand. I reject him."
+
+ # ---- yokuda.004 — The Ansei Path ----
+
+ yokuda.004.t: "The Ansei Path"
+ yokuda.004.desc: "The elder comes at midday, which you have learned is a Yokudan signal: the Shehai answers best under Ruptga's light. She is small, unhurried, carrying nothing except a certainty that has lived in her long enough to stop needing to justify itself. She says she has watched you for some time. She says the spirit sword does not flash for you anymore — it simply is, which means something different from what it meant when you first called it. There is a word for what you are, she says. Most people who reach this point do not know the word exists. She waits. The word is Ansei. The path does not require your permission — but accepting it changes the nature of what the Shehai means, permanently."
+ yokuda.004.a: "Accept. The Shehai is no longer something I carry — it is what I am."
+ yokuda.004.b: "Not yet. The path has more to teach me before I take that name."
+
+ # ---- yokuda.005 — Tu'whacca's Far Shore Vision ----
+
+ yokuda.005.t: "Tu'whacca's Far Shore"
+ yokuda.005.desc: "The vision does not announce itself. One moment you are in your hall or your tent or your study — and then you are somewhere else, on a shore where the light comes from below the water rather than above it. The shore goes on past where sight has meaning. On the water, a figure poles a flat boat across the shallows — unhurried, methodical, tending to something that does not end. Tu'whacca. Not a god of death in the way other cultures imagine death-gods: not terrible, not powerful, not demanding. Just present, and patient, and doing the work that someone has to do. He does not look at you. He is too busy. But the vision is not nothing: it is an offer to understand what he understands, which is that death is a thing to be tended, not feared."
+ yokuda.005.a: "Take up Tu'whacca's teaching. The dead deserve a keeper. So do the living."
+ yokuda.005.b: "Honour him without binding. Tu'whacca needs no congregation — only acknowledgement."
+
+ # =====================================================================
+ #  YOKUDA / REDGUARD — NEW TRAITS
+ # =====================================================================
+
+ ansei_swordmaster: "Ansei Swordmaster"
+ ansei_swordmaster_desc: "This character has transcended the Sword-Singer's mastery of the Shehai to become an Ansei — one for whom the spirit sword is no longer a technique but a nature. The Ansei do not draw their blade; they become it. The greatest Ansei in recorded history was Frandar Hunding, whose Hammer and Anvil formation destroyed the Lefthanded Elves of Yokuda in the War of Succession. To face an Ansei in single combat is to lose."
+
+ tu_whacca_faithful: "Tu'whacca-Faithful"
+ tu_whacca_faithful_desc: "This character is a devoted follower of Tu'whacca — the Yokudan god of the afterlife, keeper of the Far Shores where Redguard souls rest after death. When Yokuda sank, Tu'whacca personally tended the billions of displaced souls. His faithful serve as death-priests and battlefield chaplains, meeting mortality with steadiness rather than fear. They face the end — their own or others' — with an equanimity that others find either deeply comforting or deeply unsettling."

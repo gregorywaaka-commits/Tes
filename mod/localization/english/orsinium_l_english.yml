@@ -1,0 +1,46 @@
+﻿l_english:
+
+ # =====================================================================
+ #  ORSINIUM CYCLE — ORC HOMELAND / TRINIMAC WORSHIP
+ # =====================================================================
+
+ # ---- orsinium.000 — The Elder's Proposal ----
+
+ orsinium.000.t: "The Elder's Proposal"
+ orsinium.000.desc: "An Orc elder comes to you with a site survey and a proposal. In the Wrothgarian Mountains there is ground — defensible, mineral-rich, already partially walled by a previous attempt that was abandoned when the Bretons last came through. The elder has numbers: how many workers, how much stone, how long it would take. They have studied it. They have not told you because they are sentimentalists about the dream of an Orcish homeland. They have told you because the numbers work. Orsinium can be built. Whether you choose to build something the Bretons and Redguards will inevitably try to sack is a separate question."
+ orsinium.000.a: "We build. Orsinium rises again, whatever it costs."
+ orsinium.000.b: "The timing is wrong. We are too exposed to start something this large."
+
+ # ---- orsinium.010 — Walls Rising ----
+
+ orsinium.010.t: "Walls Rising"
+ orsinium.010.desc: "The first walls are up. Workers arrived faster than projected — Orcs from a dozen holdings who heard what was being built and came without being asked. The site is alive with the specific energy of people constructing something they were not supposed to be allowed to have. The elder stands at the foundations each morning before the work begins. You can make Orsinium magnificent, with the resources to match your ambition, or you can make it defensible and modest — a fortified camp before it becomes a city. Both approaches are honest. Only one of them will impress the world."
+ orsinium.010.a: "Pour everything into it. If we build it, we build it to last a thousand years."
+ orsinium.010.b: "Build it strong and defensible. Magnificence can come after survival."
+
+ # ---- orsinium.020 — The Threat from the East ----
+
+ orsinium.020.t: "Hammers and Threat"
+ orsinium.020.desc: "A letter arrives from a Breton lord to the north and a Redguard king to the south, apparently sent in coordination or coincidence that amounts to the same thing. The letter is diplomatic in tone and explicit in content: Orsinium has been noticed, the construction is concerning, the Orcish presence in the mountains is a longstanding issue that the Interregnum has inconveniently failed to resolve, and they are currently in discussions about whether to resolve it themselves. They do not mention armies directly. They do not need to."
+ orsinium.020.a: "Let them come. The walls are ready, and so are we."
+ orsinium.020.b: "Send tribute and a diplomatic delegation — buy time."
+ orsinium.020.c: "Strike before they can coordinate. Hit them before they hit us."
+
+ # ---- orsinium.030 — The Old God's Name ----
+
+ orsinium.030.t: "Before Malacath"
+ orsinium.030.desc: "A scholar at your court has been studying documents recovered from the Ayleid ruins to the east — pre-Interregnum records that include references to Orcish religious practice before the transformation. What they found is uncomfortable. Malacath — the Orc-father, the Daedric Prince of the Spurned — was not always Malacath. Before Boethiah consumed Trinimac the Aedric warrior-god and turned him inside out, he was Trinimac: uncorrupted, worshipped by the ancient Aldmer as one of their most beloved divines. The transformation that made Malacath also made the Orsimer. The scholar wants to know what you think about this."
+ orsinium.030.a: "Malacath is what he is. The transformation cannot be undone by scholarship."
+ orsinium.030.b: "If Trinimac can be restored, I will walk the old path toward that restoration."
+
+ # ---- Traits ----
+
+ orsinium_builder: "Builder of Orsinium"
+ orsinium_builder_desc: "This Orcish ruler has done what dozens of their predecessors wanted to do and most failed at: they built Orsinium. The city stands — stone, wall, banner — in the Wrothgarian Mountains. It will probably be sacked within a generation. That is not the point. The point is that it stands now, which means the Orcish people have a homeland now, which means something."
+
+ trinimac_devoted: "Devoted to Trinimac"
+ trinimac_devoted_desc: "This Orcish ruler has rejected Malacath — the Daedric Prince of the Spurned, patron of the Orcs since the transformation — and returned to the worship of Trinimac, the uncorrupted Aedric warrior-god who Malacath was before Boethiah's act. Other Orcs think them naive or dangerously deluded. They disagree. They believe the transformation can be undone."
+
+ # ---- Decisions ----
+
+ found_orsinium_desc: "Commission the construction of Orsinium in the Wrothgarian Mountains — a homeland for the Orcish people where they need not be merely tolerated."

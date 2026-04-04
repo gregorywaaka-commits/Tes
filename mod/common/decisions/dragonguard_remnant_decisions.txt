@@ -1,0 +1,73 @@
+# =============================================================
+#  Dragonguard Remnant — Decision
+#  File: mod/common/decisions/dragonguard_remnant_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dragonguard_remnant, blades_ancestor = dragonguard_remnant_traits.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/dragonguard_remnant_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • dragonguard_remnant_oath
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dragonguard_remnant_traits.txt
+#      → dragonguard_remnant, blades_ancestor
+# =============================================================
+
+# ---------------------------------------------------------------
+#  TAKE THE DRAGONGUARD OATH
+#  A martial ruler may seek out surviving Dragonguard to
+#  take on their ancient mandate.  Requires martial skill
+#  and the willingness to carry an oath older than the
+#  current political order.
+# ---------------------------------------------------------------
+dragonguard_remnant_oath = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = dragonguard_remnant_oath_desc
+
+    is_shown = {
+        is_ruler  = yes
+        is_adult  = yes
+        NOT = { has_trait = dragonguard_remnant }
+        NOT = { has_trait = blades_ancestor }
+        NOT = { has_character_flag = dragonguard_oath_refused }
+        current_date >= 2.430.1.1
+        current_date < 2.600.1.1
+    }
+
+    is_valid = {
+        martial >= 14
+        prestige >= 300
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    effect = {
+        add_prestige = -100
+        trigger_event = { id = dragonguard.000 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 8
+            martial >= 18
+        }
+        modifier = {
+            add = 5
+            has_trait = brave
+        }
+        modifier = {
+            add = 5
+            has_trait = ambitious
+        }
+    }
+}

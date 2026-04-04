@@ -1,0 +1,193 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+ # ============================================================
+ #  Daedric Champion Quest Chains — All 17 Princes
+ #  Namespace: daedric_champion
+ # ============================================================
+
+ # ---- MEHRUNES DAGON — The Mysterium Xarxes ----
+ daedric_champion.mehrunes.001.t: "The Mysterium Xarxes"
+ daedric_champion.mehrunes.001.desc: "A bound tome arrives wrapped in scorched leather — no messenger, no seal, only the faint smell of brimstone. The scholars call it the Mysterium Xarxes: Mehrunes Dagon's own scripture of destruction. To read it is to invite the Prince into one's mind. The power within is absolute. The cost is unclear — which is to say, enormous."
+ daedric_champion.mehrunes.001.a: "Seek the Mysterium Xarxes. Destruction is a form of truth."
+ daedric_champion.mehrunes.001.b: "Some doors are best left closed."
+
+ daedric_champion.mehrunes.002.t: "The Ritual of Rending"
+ daedric_champion.mehrunes.002.desc: "Standing at a crossroads at midnight, with the Xarxes open before us, Mehrunes Dagon's presence fills the air like a held breath. The Prince of Destruction offers his Razor — if we complete the ritual. To do so is to invite change in its most violent form. To refuse is to walk away intact."
+ daedric_champion.mehrunes.002.a: "Complete the ritual. Mehrunes Razor is worth any price."
+ daedric_champion.mehrunes.002.b: "Walk away. Some things are not worth shattering."
+
+ # ---- AZURA — The Nerevarine Prophecy Path ----
+ daedric_champion.azura.001.t: "The Star at Dusk"
+ daedric_champion.azura.001.desc: "Azura speaks in the language of dusk — in the pause between certainty and night, where prophecy is clearest. Her servants have been watching, they say. The Twilight Queen believes a purpose waits to be fulfilled, and she wishes to offer her guidance. Her shrines glow at dawn and dusk; those who seek her may find her willing."
+ daedric_champion.azura.001.a: "Seek out Azura's shrine at dawn."
+ daedric_champion.azura.001.b: "Azura's prophecies are not for me."
+
+ daedric_champion.azura.002.t: "The Twilight Queen's Gift"
+ daedric_champion.azura.002.desc: "At dawn the shrine glows rose-gold, and Azura speaks — not in riddles but in the clear voice of someone who has already seen the outcome. She is pleased. Azura's Star, the soul gem that never fills and never empties, is placed in our hands. 'You will know when to use it,' she says. 'I have already seen you do so.'"
+ daedric_champion.azura.002.a: "Accept the Star and her blessing."
+ daedric_champion.azura.002.b: "Return it — her gifts come with unseen conditions."
+
+ # ---- MOLAG BAL — King of Corruption ----
+ daedric_champion.molag.001.t: "The King of Corruption Calls"
+ daedric_champion.molag.001.desc: "Stone weeps in the dungeons. The screaming stopped three days ago — not because the prisoners were released but because they no longer have the will to scream. Molag Bal's influence seeps through the fortress like cold groundwater: corrupting, patient, absolute. He wants an instrument. He has chosen us."
+ daedric_champion.molag.001.a: "Hear what the King of Corruption offers."
+ daedric_champion.molag.001.b: "Drive this influence out. Our soul is not for sale."
+
+ daedric_champion.molag.002.t: "Mace of Molag Bal"
+ daedric_champion.molag.002.desc: "Molag Bal's price is paid in humiliation — of ourselves, of our dignity, of someone who trusted us. The Prince appears satisfied in the way a glacier is satisfied: cold, complete, and absolutely without mercy. The Mace of Molag Bal, weapon of soul-rending, is dropped at our feet. The silence that follows is its own kind of scream."
+ daedric_champion.molag.002.a: "Take the Mace. Corruption is a tool like any other."
+ daedric_champion.molag.002.b: "Refuse. No weapon is worth what this cost."
+
+ # ---- HIRCINE — Hunt of the Ideal Master ----
+ daedric_champion.hircine.001.t: "The Huntsman's Call"
+ daedric_champion.hircine.001.desc: "Something large has been circling the estate for three nights. The hounds are useless — they will not even bark. Hircine's presence fills the hunting grounds like woodsmoke: everywhere, invisible, impossible to ignore. The Huntsman Prince wishes a worthy quarry. The question is whether we are the hunter — or the prey."
+ daedric_champion.hircine.001.a: "Accept Hircine's challenge. I hunt on his terms."
+ daedric_champion.hircine.001.b: "Deny the Huntsman. I set my own terms."
+
+ daedric_champion.hircine.002.t: "The Ring of Hircine"
+ daedric_champion.hircine.002.desc: "The quarry has been brought down at last — and what a quarry it was. Hircine's satisfaction is palpable, the great golden laughter of a predator who found a worthy game. The Ring of Hircine lands in the mud before us. 'Well hunted,' the Huntsman says, which from him is the highest praise the world contains."
+ daedric_champion.hircine.002.a: "Wear the Ring. The Hunt never truly ends."
+ daedric_champion.hircine.002.b: "Leave it. I hunt for myself, not for any Prince."
+
+ # ---- BOETHIAH — Prince of Plots ----
+ daedric_champion.boethiah.001.t: "The Tournament of the Ten Bloods"
+ daedric_champion.boethiah.001.desc: "A letter arrives bearing a serpent devouring itself — Boethiah's mark. The Prince of Plots invites us to a tournament of treachery: ten champions, each believing they are the favoured one, each prepared to kill the others. The survivor receives the Goldbrand. The philosophy behind the test is as sharp as any blade: only the cunning deserve power."
+ daedric_champion.boethiah.001.a: "Enter the Tournament. I trust my cunning above all others'."
+ daedric_champion.boethiah.001.b: "Decline. Boethiah's games leave everyone diminished."
+
+ daedric_champion.boethiah.002.t: "Goldbrand"
+ daedric_champion.boethiah.002.desc: "The other nine champions are dead. Whether by blade, betrayal, or Boethiah's own amusement is difficult to say — the Prince had a hand in all of it. Goldbrand, the golden sword of flame forged in the North, is pressed into our hands. Boethiah is genuinely pleased. With Boethiah, that is the most dangerous possible outcome."
+ daedric_champion.boethiah.002.a: "Take Goldbrand. Let it burn a path forward."
+ daedric_champion.boethiah.002.b: "Refuse the blade. I will not be Boethiah's instrument."
+
+ # ---- MEPHALA — The Webspinner ----
+ daedric_champion.mephala.001.t: "The Webspinner's Thread"
+ daedric_champion.mephala.001.desc: "Mephala works in silk and silence. A servant with no memory of being hired begins delivering messages that could destroy three courts and start two wars. The threads connect everything — and they all lead back to the Webspinner. Mephala is curious whether we will follow the thread to its end, or cut it and pretend we found nothing."
+ daedric_champion.mephala.001.a: "Follow the thread. Secrets are power — and Mephala has many."
+ daedric_champion.mephala.001.b: "Cut the thread and burn the messages unread."
+
+ daedric_champion.mephala.002.t: "The Ebony Blade"
+ daedric_champion.mephala.002.desc: "The Ebony Blade feeds on broken trust — and it has been fed well. Mephala is satisfied in the cold way of a spider that has watched its web catch exactly the right prey. The Blade rests in its obsidian case, pulsing with the warmth of relationships it has already consumed. It wants more. It always wants more."
+ daedric_champion.mephala.002.a: "Take the Blade. A weapon that grows stronger with betrayal suits me."
+ daedric_champion.mephala.002.b: "Leave it. The Ebony Blade finds its own wielder eventually."
+
+ # ---- CLAVICUS VILE — Prince of Bargains ----
+ daedric_champion.clavicus.001.t: "An Offer Too Good to Refuse"
+ daedric_champion.clavicus.001.desc: "A small statue with a disconcerting grin has appeared on the council table. Clavicus Vile is in a generous mood — his best mood, the one where the catch has not revealed itself yet. The offer is extraordinary. The terms are clear. Everything is perfectly above-board, which is precisely how Clavicus Vile destroys people."
+ daedric_champion.clavicus.001.a: "Accept the bargain. I can handle whatever the catch turns out to be."
+ daedric_champion.clavicus.001.b: "Decline. Clavicus's generosity is a loaded crossbow."
+
+ daedric_champion.clavicus.002.t: "The Masque of Clavicus Vile"
+ daedric_champion.clavicus.002.desc: "The catch has revealed itself — not through violence but through consequence, which is Clavicus Vile's preferred method of ruin. Yet somehow we are still standing, which the Prince finds genuinely impressive. As a reward for surviving his own terms, he offers the Masque: a face that makes everyone love you, which is a problem in itself."
+ daedric_champion.clavicus.002.a: "Take the Masque. Manufactured affection is still affection."
+ daedric_champion.clavicus.002.b: "Refuse. I want to be liked for who I actually am."
+
+ # ---- VAERMINA — Prince of Dreams ----
+ daedric_champion.vaermina.001.t: "The Dreamstride"
+ daedric_champion.vaermina.001.desc: "Every night for a week, the same dream: a tower of bone and nightmare-crystal, a face without features, and a voice that takes our memories and files them away somewhere we cannot follow. Vaermina is methodical. She has been cataloguing our life for months. All she wants in return is for us to come willingly into Quagmire — just once."
+ daedric_champion.vaermina.001.a: "Enter the Dreamstride. What is one dream against an eternity of waking?"
+ daedric_champion.vaermina.001.b: "Resist. What Vaermina takes, she keeps."
+
+ daedric_champion.vaermina.002.t: "The Skull of Corruption"
+ daedric_champion.vaermina.002.desc: "We emerge from Quagmire with a headache that feels like someone has removed something important and left a gap. Vaermina is pleased. The Skull of Corruption sits on the pillow beside us — a staff carved from nightmares that copies a target's mind and implants madness. Vaermina considers this a fair exchange. She always does."
+ daedric_champion.vaermina.002.a: "Take the Skull. Even madness can be weaponised."
+ daedric_champion.vaermina.002.b: "Leave it. Some things should stay in dreams."
+
+ # ---- SHEOGORATH — Prince of Madness ----
+ daedric_champion.sheogorath.001.t: "Something Has Gone Slightly Wrong"
+ daedric_champion.sheogorath.001.desc: "The cheese course at last night's banquet has been replaced by seventeen live frogs. The chancellor is wearing his hat on his feet. All the maps in the war room point to a location that does not exist. Sheogorath has arrived. Whether this is an invasion, a prank, or a deeply sincere expression of affection is impossible to determine — possibly all three."
+ daedric_champion.sheogorath.001.a: "Embrace the chaos. If you can't beat the Mad God, laugh with him."
+ daedric_champion.sheogorath.001.b: "Restore order as quickly as possible."
+
+ daedric_champion.sheogorath.002.t: "The Wabbajack"
+ daedric_champion.sheogorath.002.desc: "Sheogorath is delighted — not because we did anything impressive but because we didn't run, which is apparently rare. He thrusts the Wabbajack into our hands with the enthusiasm of a parent giving a child a weapon far too dangerous for them. 'It turns things into other things!' he announces. 'What fun!' He has a point."
+ daedric_champion.sheogorath.002.a: "Accept the Wabbajack. A staff of pure madness seems right somehow."
+ daedric_champion.sheogorath.002.b: "Politely decline. Some gifts will get us killed."
+
+ # ---- PERYITE — Prince of Pestilence ----
+ daedric_champion.peryite.001.t: "The Affliction Spreads"
+ daedric_champion.peryite.001.desc: "A curious plague has taken hold among the lower city — not the agonising fever of Knahaten nor the cold wasting of the White-Gold Plague, but something methodical and patient, like the Prince who sent it. Peryite's Afflicted move in ordered columns even in their fever-dreams. Their master is watching to see how we handle his gift."
+ daedric_champion.peryite.001.a: "Study the plague. Understanding is the first weapon."
+ daedric_champion.peryite.001.b: "Quarantine and burn. Peryite's 'gifts' spread further the longer they're studied."
+
+ daedric_champion.peryite.002.t: "Spellbreaker"
+ daedric_champion.peryite.002.desc: "Peryite is satisfied — not effusively, but with the quiet approval of a plague that ran its proper course. One of the Afflicted presents Spellbreaker: a Dwemer-forged shield that pulses with ward-magic. The Prince of Pestilence smiles through a thousand fever-glazed eyes. 'Order from infection,' he says. 'The highest form of art.'"
+ daedric_champion.peryite.002.a: "Take Spellbreaker. A shield from a plague-god has its uses."
+ daedric_champion.peryite.002.b: "Refuse. I will not be rewarded by the Prince who sent the sickness."
+
+ # ---- SANGUINE — Prince of Debauchery ----
+ daedric_champion.sanguine.001.t: "A Most Unexpected Evening"
+ daedric_champion.sanguine.001.desc: "The evening was supposed to be a routine trade negotiation. Instead it is now morning, there are flowers in places flowers should not be, and three ambassadors are asleep in the moat. A card on the breakfast tray reads, simply, 'Exquisite. — S.' Sanguine is impressed. He would like to do this again, and he has a gift for those who keep good company."
+ daedric_champion.sanguine.001.a: "Embrace it. The best nights leave no clear record."
+ daedric_champion.sanguine.001.b: "This cannot happen again. The damage is already considerable."
+
+ daedric_champion.sanguine.002.t: "The Sanguine Rose"
+ daedric_champion.sanguine.002.desc: "Sanguine appears in the small hours with the good cheer of someone who has never experienced a bad consequence in his immortal life. The Sanguine Rose — a staff that summons Daedra from Oblivion as easily as ordering wine — is set on the table beside a glass of something excellent. 'For a most entertaining companion,' he says, raising a toast."
+ daedric_champion.sanguine.002.a: "Accept the Rose. A Daedra-summoning staff is its own kind of useful."
+ daedric_champion.sanguine.002.b: "Decline with grace. Sanguine's gifts come with a lifestyle attached."
+
+ # ---- MERIDIA — Princess of Light ----
+ daedric_champion.meridia.001.t: "The Beacon Burns"
+ daedric_champion.meridia.001.desc: "Meridia's Beacon has appeared in the undercroft — not placed but manifested, burning with light that makes the dead uneasy and the living feel inexplicably guilty. Meridia, Lady of Infinite Energies, has a task. She is not asking. The dead in this realm have overstayed their welcome, and the Princess of Light requires an instrument of purging."
+ daedric_champion.meridia.001.a: "Serve the Light. The undead are an affront in any realm."
+ daedric_champion.meridia.001.b: "Meridia's crusade is not our war."
+
+ daedric_champion.meridia.002.t: "Dawnbreaker"
+ daedric_champion.meridia.002.desc: "The undead are scoured from the land in Meridia's light, and the Princess descends in blazing gold to present Dawnbreaker — the sword of Living Light, bane of the undead, destroyer of those who would linger beyond their appointed hour. Meridia is, by Daedric standards, extraordinarily pleased. Her pleasure still feels like standing too close to a bonfire."
+ daedric_champion.meridia.002.a: "Take Dawnbreaker. Let it burn away whatever the darkness sends."
+ daedric_champion.meridia.002.b: "Return the blade. Meridia's favour demands too much in return."
+
+ # ---- MALACATH — Prince of Oaths ----
+ daedric_champion.malacath.001.t: "The Ash Pit Stirs"
+ daedric_champion.malacath.001.desc: "A warlord who swore fealty under the full moon and then broke his word three seasons later is now experiencing consequences that cannot be attributed to weather. Malacath — the Oathbreaker's Punishment, the God of Curses — has noticed. He would like us to carry out the sentence personally. An oath is either kept or it is paid for."
+ daedric_champion.malacath.001.a: "Deliver Malacath's judgment. An oath-breaker should answer to one."
+ daedric_champion.malacath.001.b: "Decline. This is not our quarrel to carry."
+
+ daedric_champion.malacath.002.t: "Volendrung"
+ daedric_champion.malacath.002.desc: "The judgment is delivered. Malacath appears in the Ash Pit's echo — enormous, scarred, wearing his ugliness like armour — and he respects what he sees. Volendrung, the Hammerfell hammer forged from Dwemer metal and Orcish rage, is held out. 'You kept your word,' Malacath says simply. 'That is everything.'"
+ daedric_champion.malacath.002.a: "Take Volendrung. An oath-keeper deserves a worthy weapon."
+ daedric_champion.malacath.002.b: "Decline. I need no weapon to keep my word."
+
+ # ---- NOCTURNAL — Princess of Night ----
+ daedric_champion.nocturnal.001.t: "Shadows Move at Midnight"
+ daedric_champion.nocturnal.001.desc: "Something has been watching from the corners of every darkened room. Not Molag Bal's cold malice — this is patient, curious, almost amused. Nocturnal, the Mistress of Shadows, takes an interest in those who move in darkness with purpose. She wishes a service: a secret obtained, a shadow inserted where it was not. The night has always belonged to her."
+ daedric_champion.nocturnal.001.a: "Accept Nocturnal's commission. The night is full of useful things."
+ daedric_champion.nocturnal.001.b: "Refuse. Working for the darkness has diminishing returns."
+
+ daedric_champion.nocturnal.002.t: "The Skeleton Key"
+ daedric_champion.nocturnal.002.desc: "The work is done. Nocturnal steps out of a shadow that was not there a moment ago and sets the Skeleton Key on the table — the key that opens any lock, including metaphorical ones, including minds, including doors that have not been built yet. She regards us with something resembling approval. 'You work well in the dark,' she says, and disappears."
+ daedric_champion.nocturnal.002.a: "Take the Skeleton Key. Every lock deserves opening."
+ daedric_champion.nocturnal.002.b: "Leave it. Some doors should stay shut."
+
+ # ---- HERMAEUS MORA — Prince of Forbidden Knowledge ----
+ daedric_champion.hermaeus.001.t: "The Black Book"
+ daedric_champion.hermaeus.001.desc: "A book has appeared in the deepest archive — black, seamless, and faintly wet to the touch. The scholars call it a Black Book: a direct portal to Apocrypha, the plane of Hermaeus Mora where all forbidden knowledge is stored in infinite stacks. The Prince of Fate has noticed our curiosity. He is, in his cephalopod way, extending an invitation."
+ daedric_champion.hermaeus.001.a: "Open the Black Book. Knowledge is worth any price."
+ daedric_champion.hermaeus.001.b: "Seal the Book. Hermaeus Mora does not offer knowledge for free."
+
+ daedric_champion.hermaeus.002.t: "The Oghma Infinium"
+ daedric_champion.hermaeus.002.desc: "We survived Apocrypha — a fact that Hermaeus Mora regards with genuine interest. The Prince of Forbidden Knowledge emerges from the page-smell of eternity and places the Oghma Infinium in our hands: the book of infinite knowledge, written by Xarxes under Mora's direction, containing everything that should not be known. He expects it to be used."
+ daedric_champion.hermaeus.002.a: "Read the Oghma Infinium. What cannot be known cannot be survived."
+ daedric_champion.hermaeus.002.b: "Close it unread. The Oghma Infinium changes those who open it."
+
+ # ---- NAMIRA — Prince of Darkness and Ancient Hunger ----
+ daedric_champion.namira.001.t: "The Ancient Darkness Stirs"
+ daedric_champion.namira.001.desc: "Something in the darkest chamber of the keep has been calling out — not in sound but in feeling, a pull in the stomach that is very like hunger and nothing like appetite. Namira, the Ancient Darkness, is interested in those who do not look away. She has a gift for the truly hungry: the Ring of Namira, which feeds and feeds and is never sated. Like her."
+ daedric_champion.namira.001.a: "Seek out the Ancient Darkness. Namira shows things others will not look at."
+ daedric_champion.namira.001.b: "Seal the chamber. Some hungers should go unanswered."
+
+ daedric_champion.namira.002.t: "The Ring of Namira"
+ daedric_champion.namira.002.desc: "Namira is pleased in the oldest, deepest way — the satisfaction of darkness fed, of a hunger briefly answered. The Ring of Namira is cold on the palm, heavy with what it contains. 'Wear it,' she says, from everywhere and nowhere. 'The darkness inside every living thing will recognise you. Even the repulsive have a Prince.' She sounds, faintly, proud."
+ daedric_champion.namira.002.a: "Accept the Ring. The Ancient Darkness has chosen us."
+ daedric_champion.namira.002.b: "Refuse. This hunger is not mine to carry."
+
+ # ---- JYGGALAG — Prince of Perfect Order ----
+ daedric_champion.jyggalag.001.t: "The Perfect Pattern"
+ daedric_champion.jyggalag.001.desc: "Jyggalag — Prince of Perfect Order, Greymarch incarnate — speaks in axioms, not metaphors. He has observed our realm and found it interesting in the way that a flaw in crystal is interesting: specific, measurable, correctable. He does not wish a champion in the usual sense. He wishes to test whether perfect order is possible in an organic mind. We are the experiment."
+ daedric_champion.jyggalag.001.a: "Undergo the test. If order is the answer, find it."
+ daedric_champion.jyggalag.001.b: "Refuse. Order that erases everything is not order — it is emptiness."
+
+ daedric_champion.jyggalag.002.t: "The Crystalline Throne"
+ daedric_champion.jyggalag.002.desc: "The test is complete. Jyggalag stands perfectly still in the ruins of everything that failed to be perfectly ordered, and regards us with the cool assessment of a proof that has resolved correctly. There is no warmth in his approval — there is no warmth in anything Jyggalag touches — but the precision of his recognition is its own reward. He names us champion of Order."
+ daedric_champion.jyggalag.002.a: "Accept the title. Perfect Order requires perfect champions."
+ daedric_champion.jyggalag.002.b: "Decline. Order achieved through this method is not worth the name."

@@ -52,13 +52,26 @@
 #  • Worm Cult — Black Worm invitation for high-intrigue rulers
 #  • Dragon Breaks — temporal anomaly when too many Towers fall (very rare)
 #  • Ayleid Ruins — ruin discovery for Cyrodiil / ayleid_bloodline rulers
-#  • Void Nights — calendar-triggered 2E 578-579 moon vanishing
+#  • Void Nights — calendar-triggered 4E 98-100 moon vanishing
 #  • Longhouse Emperors — Reachman Imperial claimant events
 #  • Gray Host — vampire-werewolf invasion (date-window 1E 800–2E 200)
 #  • Shezarrine — divine warrior vessel (very rare, martial-gated)
 #  • Direnni Hegemony — Altmer High Rock legacy events
 #  • Skaal / All-Maker — Solstheim sacred rites for Nord rulers
 #  • CHIM / Walking Ways — philosophical quest (very rare, learning+stress gated)
+#  • Ranser's War — High Rock conflict; Daggerfall Covenant formation (2E 566)
+#  • The Soulburst — Dragonfires extinguished by Varen's failed ritual (2E 577)
+#  • Three Banners War — Alliance War; three alliances contest the Ruby Throne (2E 582)
+#  • Reman Pretender — Cyrodiilic succession bids post-Potentate death (2E 440)
+#  • Psijic Counsel — covert Psijic emissary advises learned rulers (2E 440+)
+#  • Guild Charter Collapse — Guild Act tithes enforced without Imperial backing (2E 430+)
+#  • Colovian/Nibenay Rivalry — Cyrodiil's west/east fracture at Interregnum start (2E 440)
+#  • Dragonguard Remnant — surviving oath-holders seek new mandate (2E 430+)
+#  • Indoril Council — House Indoril asserts ALMSIVI temporal supremacy (2E 440+)
+#  • Pyandonean War Expansion — Maormer fleet/tempest on Summerset coasts (ongoing)
+#  • College of Sapiarchs — Altmer arcane institution, 49 masters (ongoing)
+#  • Dunmer Ancestor Worship — House spirits, tomb rites, ancestor callers (ongoing)
+#  • Thieves Guild — shadow governance of trade, fence network, Nocturnal link (ongoing)
 #
 #  CROSS-REFERENCES:
 #  ─────────────────
@@ -75,14 +88,27 @@
 #    void_nights_events.txt, longhouse_emperors_events.txt,
 #    gray_host_events.txt, shezarrine_events.txt,
 #    direnni_events.txt, skaal_allmaker_events.txt,
-#    chim_events.txt.
+#    chim_events.txt, ranser_war_events.txt,
+#    soulburst_events.txt, alliance_war_events.txt,
+#    reman_pretender_events.txt, psijic_counsel_events.txt,
+#    guild_charter_events.txt, colovian_nibenay_events.txt,
+#    dragonguard_remnant_events.txt, indoril_council_events.txt,
+#    succession_war_events.txt, ebonheart_pact_events.txt,
+#    aldmeri_dominion_events.txt, ordinator_events.txt,
+#    sapiarch_events.txt, ancestor_worship_events.txt,
+#    thieves_guild_events.txt, knahaten_flu_events.txt.
 #  • Systems triggered here read global_vars set by their effects:
 #    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
 #    global_var:thrassian_plague_active, global_var:active_tower_count,
 #    global_var:dagoth_ur_awakened, global_var:numidium_awakened,
 #    global_var:dragon_break_active, global_var:void_nights_active,
-#    global_var:gray_host_invaded, global_var:necromancers_moon_active.
-# =============================================================
+#    global_var:gray_host_invaded, global_var:necromancers_moon_active,
+#    global_var:ransers_war_triggered, global_var:soulburst_happened,
+#    global_var:alliance_war_triggered,
+#    global_var:reman_relics_surfaced,
+#    global_var:skyrim_succession_war_triggered,
+#    global_var:ebonheart_pact_formed,
+#    global_var:aldmeri_dominion_founded.
 
 # ---------------------------------------------------------------
 #  YEARLY RANDOM PULSE
@@ -127,8 +153,14 @@
 #      → sotha_sil_student, vivec_blessed
 #    common/traits/worm_cult_traits.txt
 #      → worm_cult_adept
+#    common/traits/ranser_war_traits.txt
+#      → daggerfall_covenant_founder, ransers_cause
+#    common/traits/soulburst_traits.txt
+#      → dragonfires_guardian, soulburst_scarred
+#    common/traits/alliance_war_traits.txt
+#      → aldmeri_banner, covenant_banner, pact_banner
 #    common/traits/yokuda_traits.txt
-#      → ruptga_devoted, yokudan_heritage
+#      → ansei_swordmaster, ruptga_devoted, sword_singer, tu_whacca_faithful, yokudan_heritage
 # =============================================================
 
 on_yearly_pulse = {
@@ -175,6 +207,10 @@ on_yearly_pulse = {
         4   = hist_vision.000        # Hist deep-time vision — hist_bonded Argonian rulers (hist_saxhleel_events.txt)
         2   = hist_vision.001        # Hist before-time — rulers with hist_deep_vision_seen flag (hist_saxhleel_events.txt)
         2   = hist_vision.002        # Hist warning of conflict — Argonian hist_bonded / an_xileel_warrior rulers (hist_saxhleel_events.txt)
+        2   = hist_vision.005        # An-Xileel Rising — an_xileel_warrior/hist_elder_bonded Black Marsh rulers (hist_saxhleel_events.txt)
+        2   = hist_vision.006        # Dreaming Root — hist_bonded rulers who saw hist_before_time (hist_saxhleel_events.txt)
+        2   = hist_vision.007        # Saxhleel Exodus Dream — hist_elder_bonded / An-Xileel rulers (hist_saxhleel_events.txt)
+        2   = hist_vision.009        # Hist Long Memory — hist_elder_bonded + dreaming_root rulers (hist_saxhleel_events.txt)
         3   = psijic.000             # Psijic invitation — highly learned rulers (psijic_events.txt)
         2   = psijic.003             # Artaeum withdraws — psijic_adept rulers (psijic_events.txt)
         3   = nordic_lore.000        # Ysgramor's legacy scroll discovered — Nord/Atmoran rulers (nordic_lore_events.txt)
@@ -195,11 +231,13 @@ on_yearly_pulse = {
         2   = vampire.010            # Vampire lord ascension — existing bloodline holders (vampire_bloodlines_events.txt)
         3   = yokuda.000             # Ra Gada legacy — yokudan_heritage / Redguard rulers (yokuda_events.txt)
         2   = yokuda.002             # Ruptga's Blessing vision — ruptga_devoted rulers (yokuda_events.txt)
+        2   = yokuda.004             # Ansei Path — sword_singer rulers with martial>=18 (yokuda_events.txt)
+        2   = yokuda.005             # Tu'whacca's Far Shore — Yokudan rulers who faced death (yokuda_events.txt)
         2   = worm_cult.000          # Black Worm invitation — high-intrigue rulers (worm_cult_events.txt)
         2   = worm_cult.030          # Mannimarco's Demand — worm_cult_adept rulers (worm_cult_events.txt)
         1   = dragon_break.000       # Dragon Break check — fires if active_tower_count <= 3 (dragon_break_events.txt) [very rare]
         3   = ayleid.000             # Ayleid ruin discovery — Cyrodiil rulers / ayleid_bloodline (ayleid_ruins_events.txt)
-        2   = void_nights.000        # Void Nights trigger — calendar gated 2E 578-579 (void_nights_events.txt)
+        2   = void_nights.000        # Void Nights trigger — calendar gated 4E 98-100 (void_nights_events.txt)
         2   = void_nights.004        # Void Nights meditation — learned rulers during void nights (void_nights_events.txt)
         2   = longhouse.000          # Longhouse Emperors — reachman_heritage rulers post 2E 541 (longhouse_emperors_events.txt)
         2   = gray_host.000          # Gray Host invasion check — date-window 1E 800 – 2E 200 (gray_host_events.txt)
@@ -212,6 +250,140 @@ on_yearly_pulse = {
         2   = skaal.004              # Hermaeus Mora's Temptation during Skaal ceremony (skaal_allmaker_events.txt)
         1   = chim.000               # Walking Ways introduction — learning>=18 + stress>=50 (chim_events.txt) [very rare]
         2   = chim.004               # CHIM bearer yearly flavor — chim_achieved rulers (chim_events.txt)
+        # --- NEW SYSTEMS: 2E Interregnum ---
+        3   = ranser.000             # Ranser's War begins — High Rock rulers at 2E 566 (ranser_war_events.txt)
+        3   = soulburst.000          # The Soulburst — Dragonfires extinguished at 2E 577 (soulburst_events.txt)
+        2   = soulburst.020          # Veil Tears — learned rulers feel Oblivion after Soulburst (soulburst_events.txt)
+        2   = soulburst.030          # Imperial City aftermath — ruler of c_imperial_city post-Soulburst (soulburst_events.txt)
+        3   = alliance_war.000       # Three Banners War begins — all rulers at 2E 582 (alliance_war_events.txt)
+        2   = alliance_war.020       # Ruby Throne contested — ruler of Imperial City during war (alliance_war_events.txt)
+        2   = alliance_war.030       # War exhaustion — banner-holders post 2E 592 (alliance_war_events.txt)
+        # --- NEW SYSTEMS: Political / Racial / Cultural ---
+        2   = warlord.000            # Interregnum Warlord — ruler holding Imperial City during 2E 431–541 (warlord_events.txt)
+        2   = warlord.010            # Rival claim emerges — warlord_emperor rulers (warlord_events.txt)
+        1   = warlord.020            # Vassal demands recognition — warlord_emperor rulers (warlord_events.txt)
+        2   = dark_anchor.000        # Dark Anchor falls — county modifier post Soulburst (dark_anchor_events.txt)
+        2   = dark_anchor.020        # Neighbouring Dark Anchor — notification for adjacent rulers (dark_anchor_events.txt)
+        2   = soul_shriven.000       # Soul stripped — Planemeld window ruler event (soul_shriven_events.txt)
+        3   = soul_shriven.010       # Soul Shriven courtier discovered at court (soul_shriven_events.txt)
+        3   = shadowscale.000        # Hist offers Shadowscale patronage — Argonian rulers (shadowscale_events.txt)
+        2   = shadowscale.010        # Shadowscale mission available — patron rulers (shadowscale_events.txt)
+        2   = shadowscale.040        # Naming Day — Shadowscale patron rulers (shadowscale_events.txt)
+        2   = shadowscale.050        # Sithis Speaks — deep Hist-bonded patron rulers (shadowscale_events.txt)
+        2   = shadowscale.060        # Difficult Mission — patron rulers post naming-day (shadowscale_events.txt)
+        2   = shadowscale.070        # Death Rites — patron rulers post naming-day (shadowscale_events.txt)
+        2   = orsinium.000           # Found Orsinium proposal — Orcish rulers (orsinium_events.txt) [decision-linked]
+        3   = orsinium.030           # Trinimac heresy revealed — learned Orcish rulers (orsinium_events.txt)
+        3   = silvenar.000           # Silvenar declaration — diplomatic Bosmer rulers (silvenar_events.txt)
+        2   = silvenar.020           # Forest weeps — stressed Silvenar rulers (silvenar_events.txt)
+        3   = crowns_forebears.000   # Crown/Forebear faction choice — Redguard rulers (crowns_forebears_events.txt)
+        2   = crowns_forebears.010   # Faction tension confrontation — aligned Redguard rulers (crowns_forebears_events.txt)
+        2   = crowns_forebears.020   # Ceremony of Shared Blood — Crown rulers (crowns_forebears_events.txt)
+        3   = companions.000         # Companions invitation — martial Nord rulers (companions_events.txt)
+        2   = companions.030         # Harbinger mantle — veteran Shield-Brothers (companions_events.txt)
+        3   = wild_hunt.010          # Wild Hunt witnessed — neighbouring non-Bosmer rulers (wild_hunt_events.txt)
+        3   = morag_tong.000         # Morag Tong introduction — Dunmer rulers (morag_tong_events.txt)
+        2   = morag_tong.020         # Writ received — non-Dunmer rulers with Tong patron enemies (morag_tong_events.txt)
+        3   = meridia_beacon.000     # Meridia contacts undead-fighters — martial rulers post Gray Host/Soulburst (meridia_beacon_events.txt)
+        2   = meridia_beacon.020     # Dawnbreaker manifests — beacon_bearer rulers (meridia_beacon_events.txt)
+        2   = hist_vision.004        # Hist warns of Soulburst — hist_bonded Argonians near 2E 577 (hist_saxhleel_events.txt)
+        # --- NEW SYSTEMS: Bards College / Nightingale / Veloth / Silver Hand ---
+        3   = bards_college.000      # Bards College invitation — intrigue/learning rulers in Nordic/Breton realms (bards_college_events.txt)
+        2   = bards_college.002      # Before the Master Bard — advancement performance for apprentices (bards_college_events.txt)
+        2   = bards_college.003      # Burning of King Olaf's Effigy — yearly festival for master_bards (bards_college_events.txt)
+        2   = bards_college.004      # Forbidden archive — master bards who touched restricted texts (bards_college_events.txt)
+        2   = bards_college.005      # Master Bard recognition — qualified Bards (bards_college_events.txt)
+        2   = nightingale.000        # Nocturnal's offer — Thieves Guild Guildmaster with high intrigue (nightingale_events.txt)
+        2   = nightingale.003        # Betrayal in the covenant — nightingale_sworn rulers (nightingale_events.txt)
+        2   = nightingale.004        # Soul claimed — heirs of nightingale_sworn characters (nightingale_events.txt)
+        3   = veloth.000             # Vision of Veloth — learned Dunmer rulers (veloth_events.txt)
+        2   = veloth.001             # Pilgrim road — rulers with veloth_vision_seen flag (veloth_events.txt)
+        2   = veloth.002             # Veloth's sermon recovered — veloth_pilgrim rulers (veloth_events.txt)
+        2   = veloth.003             # Temple confrontation — veloth_sermon_found rulers (veloth_events.txt)
+        3   = silver_hand.000        # Beast-blood discovered — rulers with beast-blooded vassals (silver_hand_events.txt)
+        2   = silver_hand.001        # Hunt or warn — silver_hand_alerted rulers (silver_hand_events.txt)
+        2   = silver_hand.003        # Hircine's revenge — silver_hand_hunted rulers after one year (silver_hand_events.txt)
+        # --- KNAHATEN FLU TRIGGER (2E 560) ---
+        1   = kothringi.000          # The Knahaten Flu erupts — hidden world trigger at 2E 560 (kothringi_events.txt)
+        2   = flu.000                # Hist Speaks — Argonian rulers receive hist_immune when flu active (knahaten_flu_events.txt)
+        2   = flu.001                # The Argonian Exception — non-Argonian rulers near infected zone (knahaten_flu_events.txt)
+        2   = flu.010                # Coastal Cyrodiil wave — Cyrodiilic rulers when flu spreads north (knahaten_flu_events.txt)
+        1   = flu.020                # The Last Kothringi — extinction marker (knahaten_flu_events.txt)
+        # --- NEW SYSTEMS: 2E 440–450 Interregnum Start ---
+        3   = reman_pretender.000    # Imperial relics surface — Cyrodiilic rulers at 2E 440–460 (reman_pretender_events.txt)
+        2   = reman_pretender.010    # Rival claimant emerges — reman_pretender rulers (reman_pretender_events.txt)
+        2   = reman_pretender.020    # Succession question — reman_pretender rulers after bid plays out (reman_pretender_events.txt)
+        3   = psijic_counsel.000     # Psijic emissary arrives — learned rulers (learning>=14) at any date (psijic_counsel_events.txt)
+        3   = guild_charter.000      # Guild demands its due — guild-member rulers at 2E 430–480 (guild_charter_events.txt)
+        3   = col_nib.000            # The old fracture — Cyrodiilic rulers at 2E 440–460 (colovian_nibenay_events.txt)
+        2   = col_nib.010            # Demands across the Niben — colovian_war_chief / nibenay_seneschal rulers (colovian_nibenay_events.txt)
+        3   = indoril.000            # Indoril demand — Dunmer rulers at 2E 440–520 (indoril_council_events.txt)
+        2   = indoril.010            # Council confrontation — great_house_dissident Dunmer rulers (indoril_council_events.txt)
+        # --- WAR OF SUCCESSION (2E 431) ---
+        1   = succession_war.000     # Skyrim splinters — hidden world trigger at 2E 431 for Nord rulers (succession_war_events.txt)
+        3   = succession_war.010     # The Old Ways — petty_king_legacy Nord rulers challenged to single combat (succession_war_events.txt)
+        # --- EBONHEART PACT FORMATION (2E 572) ---
+        1   = ebonheart.000          # Pact formed — hidden world trigger at 2E 572 for Nord/Dunmer/Argonian rulers (ebonheart_pact_events.txt)
+        # --- ALDMERI DOMINION FOUNDING (2E 580) ---
+        1   = aldmeri.000            # Dominion founded — hidden world trigger at 2E 580 for Altmer/Bosmer/Khajiit rulers (aldmeri_dominion_events.txt)
+        # --- ORDINATOR ORDER (Dunmer, ongoing) ---
+        3   = ordinator.000          # Ordinator captain arrives — Dunmer rulers post 2E 400 (ordinator_events.txt)
+        2   = ordinator.010          # Matter of heresy — ordinator_devoted Dunmer rulers (ordinator_events.txt)
+        2   = ordinator.020          # Justiciar mandate offered — experienced Ordinator devout with high piety (ordinator_events.txt)
+        # --- ELSWEYR CONFEDERACY — RIDDLE'THAR (Khajiit, 2E 311+) ---
+        3   = elsweyr.000            # Mane's Edict — Khajiit rulers post 2E 311 (elsweyr_confederacy_events.txt)
+        3   = elsweyr.010            # Anequina Remembers — martial Khajiit rulers (elsweyr_confederacy_events.txt)
+        2   = elsweyr.020            # Moon Sugar Tithe — Khajiit stewards (elsweyr_confederacy_events.txt)
+        1   = elsweyr.030            # Riddle'Thar Epiphany — learned Khajiit rulers [rare] (elsweyr_confederacy_events.txt)
+        # --- CAMORAN DYNASTY (Bosmer, ongoing) ---
+        3   = camoran.000            # Blood of the Ancient Wood — diplomatic Bosmer rulers (camoran_dynasty_events.txt)
+        3   = camoran.010            # The Green Conclave — Bosmer rulers with realm_size >= 3 (camoran_dynasty_events.txt)
+        2   = camoran.020            # A Pretender in the Forest — camoran_bloodline rulers (camoran_dynasty_events.txt)
+        2   = camoran.030            # Way-Shrine Vigil — pious Bosmer rulers (camoran_dynasty_events.txt)
+        # --- HIGH ROCK PETTY KINGS (Breton, 2E 440–566) ---
+        3   = high_rock.000          # Conclave of Petty Kings — Breton rulers 2E 440–566 (high_rock_petty_kings_events.txt)
+        3   = high_rock.010          # The Reach Demands Its Toll — Breton rulers (high_rock_petty_kings_events.txt)
+        2   = high_rock.020          # Wayrest Market Influence — steward Breton rulers (high_rock_petty_kings_events.txt)
+        2   = high_rock.030          # Bretons and the Arcane — learned Breton rulers (high_rock_petty_kings_events.txt)
+        # --- PYANDONEAN WAR EXPANSION (Altmer/Maormer, ongoing) ---
+        2   = maormer.020            # Pyandonean fleet on the horizon — Altmer/Summerset coastal rulers (maormer_events.txt)
+        2   = maormer.023            # Pyandonean Tempest — sea witch storm ritual against Summerset (maormer_events.txt)
+        # --- COLLEGE OF SAPIARCHS (Altmer, ongoing) ---
+        3   = sapiarch.000           # The College's Letter — invitation to Sapiarchs for learned Altmer (sapiarch_events.txt)
+        2   = sapiarch.010           # The Forty-Nine Masters — advancement to full Sapiarch (sapiarch_events.txt)
+        2   = sapiarch.020           # The Psijic Question — tension with Psijic Order (sapiarch_events.txt)
+        1   = sapiarch.030           # Crystal Tower Consultation — apex event for metamagic_scholars (sapiarch_events.txt)
+        # --- DUNMER ANCESTOR WORSHIP (Dunmer, ongoing) ---
+        3   = ancestor.000           # The Ancestor's Voice — pious Dunmer ruler contacted by House spirit (ancestor_worship_events.txt)
+        2   = ancestor.010           # The Calling — ancestor_caller ruler given a task (ancestor_worship_events.txt)
+        2   = ancestor.020           # Cursing a Rival — ancestor_caller uses spirits as weapons (ancestor_worship_events.txt)
+        1   = ancestor.030           # Ancestral Tomb Pilgrimage — becomes revered_ancestor (ancestor_worship_events.txt)
+        # --- THIEVES GUILD (any ruler, intrigue-gated) ---
+        2   = thieves_guild.000      # The Contact — high-intrigue ruler approached by Guild agent (thieves_guild_events.txt)
+        2   = thieves_guild.010      # The Guild Calls In a Favour — shadow_guild_contact rulers (thieves_guild_events.txt)
+        2   = thieves_guild.020      # The Fence Network — upgrade to fence_master (thieves_guild_events.txt)
+        2   = thieves_guild.030      # The Guard Finds Out — heat from law enforcement (thieves_guild_events.txt)
+        1   = thieves_guild.040      # The Nightingale Question — fence_master invited toward Nocturnal (thieves_guild_events.txt)
+        # --- BATTLEMAGES OF THE MAGES GUILD (Imperial/Breton martial-learning rulers) ---
+        3   = battlemage.000         # Mages Guild Recruits — martial+learning ruler approached (battlemage_events.txt)
+        2   = battlemage.010         # First Field Command — imperial_battlemage leads magical strike (battlemage_events.txt)
+        2   = battlemage.020         # War College Debates — internal Mages Guild politics (battlemage_events.txt)
+        1   = battlemage.030         # Arcane Commander's Appointment — apex battlemage event (battlemage_events.txt)
+        # --- DARK BROTHERHOOD / SITHIS COVENANT (high-intrigue rulers) ---
+        2   = dark_brotherhood.000   # The Whispering Door — Dark Brotherhood invitation (dark_brotherhood_events.txt)
+        2   = dark_brotherhood.010   # The Black Sacrament — ritual event (dark_brotherhood_events.txt)
+        2   = dark_brotherhood.020   # Sithis Demands Payment — Brotherhood debt (dark_brotherhood_events.txt)
+        1   = dark_brotherhood.030   # The Five Tenets — Listener elevation (dark_brotherhood_events.txt)
+        # --- IMPERIAL CULT / EIGHT DIVINES (pious Imperial rulers) ---
+        3   = imperial_cult.000      # The Cult's Invitation — Imperial Cult approach (imperial_cult_events.txt)
+        3   = imperial_cult.010      # Eight Candles — Divine feast, prestige + piety (imperial_cult_events.txt)
+        2   = imperial_cult.020      # A Shrine Needs Funding — chapel decision (imperial_cult_events.txt)
+        1   = imperial_cult.030      # The Pilgrim Road — apex pilgrimage event (imperial_cult_events.txt)
+        # --- MAGNA-GE ASTRONOMY (very learned rulers, Altmer/Dunmer/Breton/Imperial) ---
+        2   = magnus_lore.000        # The Stars Are Wounds — cosmological discovery (magnus_lore_events.txt)
+        2   = magnus_lore.010        # The Orrery Problem — stargazer study (magnus_lore_events.txt)
+        2   = magnus_lore.020        # Altmeri Correspondence — scholarly contact (magnus_lore_events.txt)
+        1   = magnus_lore.030        # The Light That Left First — apex cosmological insight (magnus_lore_events.txt)
     }
 }
 
@@ -258,5 +430,41 @@ on_character_death = {
         # Thu'um flags: character_flags die with the character — no manual cleanup needed.
         # Dragon soul counter (dragon_souls_absorbed_count) is a character variable — auto-cleared on death.
         # Greybeard_rank and thuumvoi_rank variables are also character-scoped — auto-cleared.
+    }
+    effect = {
+        # --- Tower Stone / Amulet cleanup (pre-existing) ---
+        if = {
+            limit = { has_trait = tower_stone_keeper }
+            every_held_county = {
+                limit = { has_county_variable = tower_stone_present }
+                remove_county_variable = tower_stone_present
+            }
+        }
+        if = {
+            limit = { has_character_flag = amulet_of_kings_claimed }
+            remove_character_flag = amulet_of_kings_claimed
+        }
+        # --- Silvenar / Green Lady death link ---
+        # If the Silvenar dies, the Green Lady dies too (and vice-versa).
+        if = {
+            limit = { has_trait = bosmer_silvenar }
+            every_player = {
+                limit = {
+                    has_trait = green_lady_bound
+                    has_character_flag = silvenar_green_lady_paired
+                }
+                kill_character = yes
+            }
+        }
+        if = {
+            limit = { has_trait = green_lady_bound }
+            every_player = {
+                limit = {
+                    has_trait = bosmer_silvenar
+                    has_character_flag = silvenar_green_lady_paired
+                }
+                kill_character = yes
+            }
+        }
     }
 }

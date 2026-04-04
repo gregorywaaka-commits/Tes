@@ -1,0 +1,281 @@
+# =============================================================
+#  Bards College Events
+#  Namespace: bards_college
+#
+#  LORE:
+#  The Bards College of Solitude is the most prestigious school
+#  of musical composition, poetry, and historical scholarship in
+#  Tamriel's northwest.  In the Second Era it sits at the cultural
+#  heart of Skyrim — keepers of Dragon Lore, Nordic saga tradition,
+#  and a surprisingly well-stocked archive of forbidden texts.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • bards_college.000  — Invitation to enroll arrives.
+#  • bards_college.001  — Apprentice project choice.
+#  • bards_college.002  — Advancement to full Bard.
+#  • bards_college.003  — Burning of King Olaf's Effigy festival.
+#  • bards_college.004  — Forbidden archive discovery.
+#  • bards_college.005  — Master Bard recognition ceremony.
+#
+#  KEY TRAITS (guild_traits.txt):
+#  ─────────────────────────────────────
+#  • bards_college_apprentice, bards_college_bard, bards_college_master_bard
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • nord_culture, breton_culture  = EK2 culture identifiers
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/bards_college_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → famous_ballad_modifier
+#    common/traits/guild_traits.txt
+#      → bards_college_apprentice, bards_college_bard, bards_college_master_bard
+# =============================================================
+
+namespace = bards_college
+
+# ---------------------------------------------------------------
+# bards_college.000  An Invitation from Solitude
+# A courier from the Bards College arrives bearing a formal
+# invitation to join the school — a recognition of the ruler's
+# learning or wit, not a routine recruiting drive.
+# ---------------------------------------------------------------
+bards_college.000 = {
+    type = character_event
+    title = bards_college.000.t
+    desc  = bards_college.000.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            intrigue  >= 8
+            learning  >= 10
+        }
+        OR = {
+            has_culture = nord_culture
+            has_culture = breton_culture
+        }
+        NOT = { has_trait = bards_college_apprentice }
+        NOT = { has_trait = bards_college_bard }
+        NOT = { has_trait = bards_college_master_bard }
+        NOT = { has_character_flag = bards_college_invited }
+        NOT = { has_character_flag = bards_college_declined }
+    }
+
+    option = {
+        name = bards_college.000.a   # "I accept. Song and verse are worthy pursuits."
+        add_character_flag = { flag = bards_college_invited }
+        add_trait = bards_college_apprentice
+        add_prestige = 50
+        trigger_event = { id = bards_college.001 days = 270 }
+    }
+
+    option = {
+        name = bards_college.000.b   # "The College honours me, but I have a realm to rule."
+        add_character_flag = { flag = bards_college_declined days = 3650 }
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# bards_college.001  The Apprentice's Project
+# The College sets its new students a year-long project.
+# Three paths are on offer — the choice reflects what the
+# ruler values in the craft of bardship.
+# ---------------------------------------------------------------
+bards_college.001 = {
+    type = character_event
+    title = bards_college.001.t
+    desc  = bards_college.001.desc
+    theme = realm
+
+    trigger = {
+        has_trait = bards_college_apprentice
+    }
+
+    option = {
+        name = bards_college.001.a   # "Compose a lay — verses that will outlast the singer."
+        add_diplomacy_skill = 1
+        add_prestige = 75
+        add_modifier = { modifier = famous_ballad_modifier days = 365 }
+    }
+
+    option = {
+        name = bards_college.001.b   # "Research the forbidden archive — there are texts the College keeps under lock."
+        add_learning_skill = 1
+        add_stress = 10
+        add_prestige = 50
+        set_character_flag = { flag = bards_archive_touched }
+    }
+
+    option = {
+        name = bards_college.001.c   # "Master the lute, the drum, and the voice — the body of the craft."
+        add_diplomacy_skill  = 1
+        add_intrigue_skill   = 1
+        add_prestige = 60
+    }
+}
+
+# ---------------------------------------------------------------
+# bards_college.002  Before the Master Bard
+# The time for apprenticeship ends.  The College asks the ruler
+# to perform before the assembled Master Bards — a formal
+# graduation by public artistry.
+# ---------------------------------------------------------------
+bards_college.002 = {
+    type = character_event
+    title = bards_college.002.t
+    desc  = bards_college.002.desc
+    theme = realm
+
+    trigger = {
+        has_trait = bards_college_apprentice
+        NOT = { has_character_flag = bards_college_advanced }
+    }
+
+    weight_multiplier = {
+        base = 1
+        modifier = {
+            factor = 2
+            diplomacy >= 10
+        }
+    }
+
+    option = {
+        name = bards_college.002.a   # "I perform — and the hall goes quiet in the way halls do when something is good."
+        trigger = {
+            OR = {
+                diplomacy >= 10
+                learning  >= 10
+            }
+        }
+        add_character_flag = { flag = bards_college_advanced }
+        remove_trait = bards_college_apprentice
+        add_trait    = bards_college_bard
+        add_prestige = 150
+        add_stress   = -10
+    }
+
+    option = {
+        name = bards_college.002.b   # "I perform. Not every performance is a triumph, but they pass me regardless."
+        add_character_flag = { flag = bards_college_advanced }
+        remove_trait = bards_college_apprentice
+        add_trait    = bards_college_bard
+        add_prestige = 75
+    }
+}
+
+# ---------------------------------------------------------------
+# bards_college.003  The Burning of King Olaf's Effigy
+# Once a year the College burns an effigy of the ancient
+# tyrant-king Olaf One-Eye, and the streets of Solitude
+# fill with music, verse, and argument about whether Olaf
+# actually deserved it.  Master Bards preside.
+# ---------------------------------------------------------------
+bards_college.003 = {
+    type = character_event
+    title = bards_college.003.t
+    desc  = bards_college.003.desc
+    theme = realm
+
+    trigger = {
+        has_trait = bards_college_master_bard
+        NOT = { has_character_flag = olaf_effigy_presided }
+    }
+
+    option = {
+        name = bards_college.003.a   # "I preside with full ceremony — the College gives Olaf his due."
+        add_character_flag = { flag = olaf_effigy_presided days = 365 }
+        add_prestige = 100
+        add_diplomacy_skill  = 1
+        every_realm_county = {
+            limit = { has_culture = nord_culture }
+            add_county_modifier = {
+                modifier = bards_college_festival_modifier
+                days = 365
+            }
+        }
+    }
+
+    option = {
+        name = bards_college.003.b   # "I debate whether Olaf deserves it — and come down against the burning."
+        add_character_flag = { flag = olaf_effigy_presided days = 365 }
+        add_prestige = 50
+        add_learning_skill = 1
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# bards_college.004  The Forbidden Archive
+# A Master Bard who once touched the sealed texts in the
+# College's lower vaults stumbles upon something stranger
+# than banned songs: a fragment that resembles an Elder Scroll.
+# ---------------------------------------------------------------
+bards_college.004 = {
+    type = character_event
+    title = bards_college.004.t
+    desc  = bards_college.004.desc
+    theme = skull
+
+    trigger = {
+        has_trait = bards_college_master_bard
+        has_character_flag = bards_archive_touched
+        learning >= 12
+        NOT = { has_character_flag = bards_scroll_found }
+    }
+
+    option = {
+        name = bards_college.004.a   # "I read it. Whatever it costs in understanding, I pay."
+        add_character_flag = bards_scroll_found
+        add_learning_skill = 1
+        add_stress = 15
+        add_prestige = 200
+    }
+
+    option = {
+        name = bards_college.004.b   # "I seal it back up and report it to no one."
+        add_character_flag = bards_scroll_found
+        add_stress = 10
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# bards_college.005  Master Bard Recognition
+# The College convenes to formally recognise a Bard who has
+# served long enough and produced work worthy of the title.
+# ---------------------------------------------------------------
+bards_college.005 = {
+    type = character_event
+    title = bards_college.005.t
+    desc  = bards_college.005.desc
+    theme = realm
+
+    trigger = {
+        has_trait = bards_college_bard
+        NOT = { has_character_flag = bards_master_recognised }
+        OR = {
+            diplomacy >= 12
+            learning  >= 12
+        }
+    }
+
+    option = {
+        name = bards_college.005.a   # "I accept the honour with the solemnity it deserves."
+        add_character_flag = bards_master_recognised
+        remove_trait = bards_college_bard
+        add_trait    = bards_college_master_bard
+        add_prestige = 200
+        add_piety    = 50
+        add_diplomacy_skill = 1
+    }
+}

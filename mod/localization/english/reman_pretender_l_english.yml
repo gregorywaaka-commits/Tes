@@ -1,0 +1,48 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  REMAN PRETENDER
+ # =====================================================================
+
+ # --- Traits ---
+
+ reman_pretender: "Imperial Pretender"
+ reman_pretender_desc: "This ruler has publicly proclaimed descent from the Reman dynasty and commenced a bid to restore the Second Empire — without a confirmed genealogical proof. The claim may be genuine, fabricated, or somewhere in between. Politically, the difference matters less than one might hope."
+
+ # --- Events ---
+
+ reman_pretender.001.t: "Relics of the Second Empire"
+ reman_pretender.001.desc: "A surveyor clearing the foundation of an old estate has found a sealed underground chamber.
+
+Inside: a wooden chest fitted with iron bands, a cracked wax seal bearing the Reman dragon, and, within the chest, a set of imperial court artefacts — sceptres, administrative seals, and — most valuably — a series of genealogical registers that appear to document a Reman bloodline through several generations of private Cyrodiilic families.
+
+The artefacts are clearly old. The registers are harder to date. And what they imply, if genuine, is politically explosive in a Cyrodiil that has not had an emperor in nearly a decade.
+
+The surveyor is loyal. For now. Whatever you intend to do with this, you must decide quickly."
+ reman_pretender.001.a: "This is the mandate I have been waiting for. Begin the claim."
+ reman_pretender.001.b: "Take the records to the Imperial City. Let scholars examine them openly."
+ reman_pretender.001.c: "Seal the chamber again. The Interregnum feeds on ambition — I will not add to it."
+
+ reman_pretender.010.t: "A Rival Claims the Blood"
+ reman_pretender.010.desc: "Word of your proclaimed succession has reached another Cyrodiilic lord.
+
+They have acted quickly. A courier arrived this morning carrying documents — a genealogy, a letter from a respected court herald, and a note from the lord in question stating, without particular aggression, that their claim to the Reman line predates yours and is better documented.
+
+The documents look very new. The ink on the genealogy is not entirely dry.
+
+Cyrodiil now has at least two claimants to the Reman succession. History suggests this will not end diplomatically."
+ reman_pretender.010.a: "Challenge the documents publicly. Their claim is a forgery."
+ reman_pretender.010.b: "Ignore the paperwork. This is settled by force, not by genealogists."
+ reman_pretender.010.c: "Build alliances first. A rival claim is best answered with coalition, not confrontation."
+
+ reman_pretender.020.t: "The Succession Question"
+ reman_pretender.020.desc: "The political bid has run its course — for now.
+
+The rival is still there. The documents, counter-documents, herald's opinions, and court gossip are still circulating through every council chamber in Cyrodiil. But the immediate moment of crisis has passed, and what remains is a political reality: this realm has declared for a particular vision of what Cyrodiil should be, and other rulers are adjusting to that fact.
+
+The question is whether the adjustment favours you."
+ reman_pretender.020.a: "The claim is established. Cyrodiil will remember who held it first."
+ reman_pretender.020.b: "The bid has stalled. But the documents exist — and so does the moment."
+ reman_pretender.020.c: "Abandon the formal claim. Rule what I hold, rather than chase what I cannot."
+

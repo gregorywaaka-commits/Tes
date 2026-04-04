@@ -1598,7 +1598,7 @@ welkynd_attunement = {
 #  Without the moons, Khajiit cannot be born and Moon Sugar fails.
 #  stewardship -2: trade in moon-based goods collapses.
 #  monthly_piety_gain_mult -0.15: the gods have abandoned us.
-#  Duration: 730 days (2 years — duration of Void Nights 2E 578-579).
+#  Duration: 730 days (2 years — duration of Void Nights 4E 98-100).
 # ---------------------------------------------------------------
 void_nights_crisis = {
     stewardship              = -2
@@ -1678,4 +1678,220 @@ chim_transcendence = {
     intrigue     = 3
     monthly_prestige_gain_mult = 0.25
     stress_gain_mult           = -0.30
+}
+
+# =============================================================
+#  Warlord Claimants — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  WARLORD CLAIM
+#  Short-term prestige surge after declaring oneself Emperor
+#  during the Interregnum.
+#  monthly_prestige_gain_mult +0.30: every court hears the claim.
+#  Duration: 1825 days (5 years of initial claim momentum).
+# ---------------------------------------------------------------
+warlord_claim_modifier = {
+    monthly_prestige_gain_mult = 0.30
+}
+
+# =============================================================
+#  Dark Anchor — County Modifier
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DARK ANCHOR COUNTY
+#  A Dark Anchor from Coldharbour has set in this county.
+#  County modifier — applied to the county, not the ruler.
+#  monthly_income -0.30: trade and farming collapse near the Anchor.
+#  development_growth_factor -0.25: nothing grows near Oblivion.
+#  Duration: 5 years (until broken or naturally fades).
+# ---------------------------------------------------------------
+dark_anchor_county = {
+    monthly_income          = -0.30
+    development_growth_factor = -0.25
+}
+
+# =============================================================
+#  Wild Hunt — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  WILD HUNT AFTERMATH
+#  The participant has returned from the Hunt — mostly.
+#  stress_gain_mult +0.20: something is still animal in them.
+#  learning -2: the forest logic is hard to shut out.
+#  Duration: 1825 days (5 years to settle, or 730 if they seek help).
+# ---------------------------------------------------------------
+wild_hunt_aftermath_modifier = {
+    stress_gain_mult = 0.20
+    learning         = -2
+}
+
+# =============================================================
+#  Meridia's Beacon — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DAWNBREAKER WIELDER
+#  The bearer of Dawnbreaker — Meridia's artifact sword.
+#  martial +3: the blade makes them genuinely terrifying in battle.
+#  monthly_piety_gain_mult +0.10: Meridia's blessing.
+#  Duration: 3650 days (10 years — the blade stays until taken).
+# ---------------------------------------------------------------
+dawnbreaker_wielder = {
+    martial                 = 3
+    monthly_piety_gain_mult = 0.10
+}
+
+# =============================================================
+#  Bards College — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BARDS COLLEGE FESTIVAL
+#  County modifier applied during the Burning of King Olaf's
+#  Effigy festival when presided over by a Master Bard.
+#  Duration: 365 days (one year — the festival lifts spirits
+#  for the rest of the seasonal cycle).
+# ---------------------------------------------------------------
+bards_college_festival_modifier = {
+    monthly_county_control_change_add  = 0.10
+    monthly_county_control_growth_add  = 0.10
+}
+
+# =============================================================
+#  Guild Charter — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  GUILD CHARTER PAID
+#  A ruler who paid the Guild tithe in full gains preferential
+#  access to Guild expertise: better stewards, faster recruitment,
+#  and a small income supplement from Guild operations in the realm.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+guild_charter_paid_modifier = {
+    stewardship              = 1
+    monthly_income           = 0.03
+}
+
+# =============================================================
+#  Colovian / Nibenay Rivalry — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  COLOVIAN MARTIAL LAW
+#  A Colovian War Chief who has consolidated military authority
+#  over the western Cyrodiilic Estates.  Soldiers are loyal;
+#  merchants are nervous.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+colovian_martial_law_modifier = {
+    martial                  = 2
+    monthly_income           = -0.05
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  NIBENAY COUNCIL EDICT
+#  A Nibenay Seneschal who has issued a formal edict through
+#  the eastern mercantile councils.  Income grows; military
+#  readiness softens slightly.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+nibenay_council_edict_modifier = {
+    stewardship              = 2
+    monthly_income           = 0.05
+    monthly_prestige_gain_mult = 0.03
+}
+
+# =============================================================
+#  Elsweyr Confederacy — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MOON SUGAR TITHE
+#  A Khajiit ruler who has paid the Temple of Two Moons
+#  its rightful share of the moon sugar harvest.
+#  Duration: 730 days (2 years).
+# ---------------------------------------------------------------
+moon_sugar_tithe_modifier = {
+    monthly_piety_gain_mult  = 0.20
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  ELSWEYR ANEQUINA MILITIA
+#  Northern Khajiiti warrior-clans answer the ruler's call.
+#  The old desert-fighting tradition is revived.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+elsweyr_anequina_militia_modifier = {
+    martial                  = 2
+    monthly_prestige_gain_mult = 0.05
+    monthly_income           = -0.03
+}
+
+# =============================================================
+#  Camoran Dynasty — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CAMORAN DYNASTY PRESTIGE
+#  The ruler's Camoran bloodline has been publicly reaffirmed.
+#  Their claim on the forest cantons is acknowledged.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+camoran_dynasty_prestige_modifier = {
+    monthly_prestige_gain_mult = 0.10
+    diplomacy                  = 1
+}
+
+# ---------------------------------------------------------------
+#  GREEN CONCLAVE ACCORD
+#  A successful Green Conclave has brought the canton-chiefs
+#  temporarily in line.  Internal strife is reduced.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+green_conclave_accord_modifier = {
+    diplomacy                  = 2
+    monthly_prestige_gain_mult = 0.05
+}
+
+# =============================================================
+#  High Rock Petty Kings — Modifiers
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BRETON CONCLAVE ACCORD
+#  The ruler emerged from the Conclave of Petty Kings with
+#  formal recognition from their neighbours.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+breton_conclave_accord_modifier = {
+    diplomacy                  = 2
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  WAYREST MARKET BOND
+#  Formal trade ties with the Wayrest merchant leagues.
+#  Income rises; influence over coastal trade routes grows.
+#  Duration: 1825 days (5 years).
+# ---------------------------------------------------------------
+wayrest_market_bond_modifier = {
+    monthly_income             = 0.10
+    stewardship                = 1
+}
+
+# ---------------------------------------------------------------
+#  REACH RAID DAMAGE
+#  The ruler paid tribute to Reachman raiders this season.
+#  Prestige suffers; the border is quiet for now.
+#  Duration: 365 days (1 year).
+# ---------------------------------------------------------------
+reach_raid_damage_modifier = {
+    monthly_prestige_gain_mult = -0.10
+    monthly_income             = -0.05
 }

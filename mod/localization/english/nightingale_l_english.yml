@@ -1,0 +1,53 @@
+﻿l_english:
+
+ # =====================================================================
+ #  NIGHTINGALE COVENANT
+ # =====================================================================
+
+ # ---- nightingale.000 --- Nocturnal’s Offer ----
+
+ nightingale.000.t: "A Shadow in the Room"
+ nightingale.000.desc: "No one told you someone was in the room. That is the point. She left a mark on the wall where the shadow should be — the shape of three feathers arranged like a signature. The Guild’s oldest members recognise it immediately and go quiet in a particular way that suggests they have been waiting for this. Nocturnal is making an offer. Three servants, always three — sworn to her in life, bound to guard the Twilight Sepulchre in death. In exchange: shadow and luck while alive. The terms are permanent. The Daedric Prince does not negotiate."
+ nightingale.000.a: "Tell me what she offers. I am listening."
+ nightingale.000.b: "I have served no one my whole career. I will not start with a Daedric Prince."
+
+ # ---- nightingale.001 --- The Oath ----
+
+ nightingale.001.t: "The Twilight Sepulchre"
+ nightingale.001.desc: "The chamber is deeper than the maps show. The other two Nightingales say nothing — they watch you with the particular patience of people who have already made this decision and are now watching you make yours. The oath is short. What it costs is not short. You feel the moment it takes effect not as a transformation but as the quiet removal of something you did not know was there: the open question of where your soul goes when you die. That question is now answered."
+ nightingale.001.a: "I speak the words. My soul is hers when I die. The bargain is made."
+ nightingale.001.b: "I cannot say the final words. Something stops me at the threshold."
+
+ # ---- nightingale.002 --- The Shadow Gift ----
+
+ nightingale.002.t: "Nocturnal’s Errand"
+ nightingale.002.desc: "The task arrives wordlessly — a detail of knowledge deposited in your mind sometime between sleep and waking. A location, a name, a task. This is how Nocturnal communicates with her Nightingales. Not orders exactly, but a very strong suggestion from a Prince who does not need to explain herself. What you do with the suggestion is technically your choice."
+ nightingale.002.a: "I move in shadow. The work is done before anyone asks a question."
+ nightingale.002.b: "I complete it — but not without leaving a trace."
+ nightingale.002.c: "I refuse the task. Nocturnal’s errands are not mine to run."
+
+ # ---- nightingale.003 --- Betrayal ----
+
+ nightingale.003.t: "A Broken Oath"
+ nightingale.003.desc: "One of the other two Nightingales has been selling information. The buyer is not relevant — what matters is that the covenant has been broken in a way that the Prince will notice. You have found out before Nocturnal acts. The three of you are sworn together. What happens to one reflects on all. You must decide what to do with someone who has sold what they pledged to protect."
+ nightingale.003.a: "Execute them. The covenant has no room for traitors."
+ nightingale.003.b: "Exile them. Let Nocturnal deal with a broken oath."
+ nightingale.003.c: "Cover it up. A scandal now destroys everything we have built."
+
+ # ---- nightingale.004 --- Soul Claimed ----
+
+ nightingale.004.t: "The Oath Passes"
+ nightingale.004.desc: "Your predecessor made a bargain with Nocturnal. Their soul went to the Twilight Sepulchre when they died — not through Arkay’s hall, not to any ancestor realm, but to serve the Prince of Night forever. You know this because the Guild’s senior members told you. They are telling you because it affects the inheritance. And because Nocturnal, apparently, is aware of you now."
+ nightingale.004.a: "My predecessor’s soul is bound. I will not follow them into that bargain."
+ nightingale.004.b: "Nocturnal has my predecessor. Perhaps she will offer me the same terms."
+
+ # ---- Traits ----
+
+ nightingale_sworn: "Nightingale Sworn"
+ nightingale_sworn_desc: "This character has spoken the Nightingale oath to Nocturnal. Their soul is pledged to guard the Twilight Sepulchre in death. While living, the Prince’s blessing touches everything they do."
+
+ nocturnal_favoured: "Nocturnal’s Favour"
+ nocturnal_favoured_desc: "Nocturnal is pleased. Her shadow-gift extends to income, intrigue, and the particular brand of luck that keeps secrets from being discovered."
+
+ nightingale_ascended: "Nightingale Ascended"
+ nightingale_ascended_desc: "This character has completed the full arc of the Nightingale covenant. The shadow-gift is now permanent."

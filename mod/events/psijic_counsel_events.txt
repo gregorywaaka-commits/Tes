@@ -1,0 +1,207 @@
+# =============================================================
+#  Psijic Counsel Events
+#  Namespace: psijic_counsel
+#  File: mod/events/psijic_counsel_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  psijic_counsel.000   "A Stranger at the Gate" — disguised
+#                       Psijic emissary arrives at a learned
+#                       ruler's court.  Yearly, learning >= 14.
+#  psijic_counsel.001   "The Counsel of Stillness" — the
+#                       emissary offers three pieces of advice.
+#                       One is wrong.  The ruler must choose.
+#  psijic_counsel.002   "The Price of Foresight" — the emissary
+#                       warns of a specific threat.  Ignoring
+#                       the warning has consequences.
+#  psijic_counsel.003   "Artaeum Watches" — the emissary departs,
+#                       leaving a gift of understanding (or silence).
+#
+#  HISTORICAL NOTE:
+#  Artaeum, the Psijic isle, withdrew from the mundane world
+#  in 2E 230 and did not return until 2E 580.  But the Order
+#  did not simply stop existing.  Individual Psijic practitioners
+#  — particularly those who had been away from Artaeum when it
+#  withdrew — continued to move through Tamriel, offering counsel
+#  to rulers they deemed worth advising.  They did not advertise
+#  their affiliation.  They arrived as scholars, as pilgrims, as
+#  court astrologers, and they departed without explanation.
+#  Sources: UESP Lore:Psijic Order; ESO Psijic Order questline.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/psijic_counsel_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/guild_traits.txt
+#      → psijic_adept, psijic_novice
+# =============================================================
+
+namespace = psijic_counsel
+
+# ---------------------------------------------------------------
+# psijic_counsel.000  A Stranger at the Gate
+# An unremarkable figure requests an audience.  They carry no
+# title, no seal, and their letter of introduction is from a
+# school that no one at court can immediately place.  But they
+# know things — specific things, about this realm — that they
+# should not know.  A learned ruler takes the meeting.
+# ---------------------------------------------------------------
+psijic_counsel.000 = {
+    type = character_event
+    title = psijic_counsel.000.t
+    desc  = psijic_counsel.000.desc
+    theme = scholarship
+    left_portrait = {
+        character = root
+        animation = reading
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        learning >= 14
+        NOT = { has_character_flag = psijic_emissary_met }
+        NOT = { has_trait = psijic_adept }
+    }
+
+    option = {
+        name = psijic_counsel.000.a   # "Grant the audience. Knowledge costs nothing to hear."
+        add_character_flag = { flag = psijic_emissary_met days = 3650 }
+        trigger_event = { id = psijic_counsel.001 days = 7 }
+    }
+
+    option = {
+        name = psijic_counsel.000.b   # "I don't take meetings with wandering scholars. Send them away."
+        add_stress = 5
+        add_piety  = -25   # The Order notes the refusal; a small diminishment
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic_counsel.001  The Counsel of Stillness
+# The emissary speaks for an hour.  They offer three specific
+# pieces of advice about the realm: one concerns internal
+# governance, one concerns a neighbouring threat, and one
+# concerns something far in the future.  They are precise,
+# unsentimental, and unnervingly correct about current events.
+# But one piece of the counsel is wrong — or intended to be
+# tested.  A wise ruler must choose which to follow.
+# ---------------------------------------------------------------
+psijic_counsel.001 = {
+    type = character_event
+    title = psijic_counsel.001.t
+    desc  = psijic_counsel.001.desc
+    theme = scholarship
+    left_portrait = {
+        character = root
+        animation = personality_rational
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = psijic_counsel.001.a   # "Heed the internal counsel — the realm is the foundation."
+        add_stewardship = 1
+        add_prestige    = 75
+        add_stress      = -10
+        trigger_event   = { id = psijic_counsel.002 days = 90 }
+    }
+
+    option = {
+        name = psijic_counsel.001.b   # "Act on the external warning — the threat to the border is real."
+        add_martial_skill = 1
+        add_prestige   = 100
+        trigger_event  = { id = psijic_counsel.002 days = 90 }
+    }
+
+    option = {
+        name = psijic_counsel.001.c   # "The long view only. What comes in a generation matters more."
+        trigger = { learning >= 16 }
+        add_learning  = 1
+        add_piety     = 100
+        trigger_event = { id = psijic_counsel.003 days = 90 }
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic_counsel.002  The Price of Foresight
+# The emissary's warning — whichever path the ruler took —
+# proves partially correct.  A minor crisis emerges that the
+# counsel, if heeded properly, would have prevented entirely.
+# This is not punishment; it is instruction.  The Order is
+# teaching the ruler to listen to the right parts of what
+# they are told.
+# ---------------------------------------------------------------
+psijic_counsel.002 = {
+    type = character_event
+    title = psijic_counsel.002.t
+    desc  = psijic_counsel.002.desc
+    theme = scholarship
+    left_portrait = {
+        character = root
+        animation = personality_rational
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = psijic_counsel.002.a   # "Understood. The advice was sound; my interpretation was not."
+        trigger = { learning >= 14 }
+        add_learning  = 1
+        add_stress    = 10
+        trigger_event = { id = psijic_counsel.003 days = 30 }
+    }
+
+    option = {
+        name = psijic_counsel.002.b   # "The stranger was wrong. I trusted a scholar's guesswork."
+        add_prestige  = -50
+        add_stress    = 20
+        add_gold      = -50
+        trigger_event = { id = psijic_counsel.003 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic_counsel.003  Artaeum Watches
+# The emissary sends a final note — not a letter exactly,
+# more a fragment of parchment with a single line.  Then
+# they are gone.  The note makes clear, for those who know
+# what to look for, who the emissary was.  The gift is either
+# a small treatise on time and decision — or nothing at all,
+# if the ruler failed the implicit test.
+# ---------------------------------------------------------------
+psijic_counsel.003 = {
+    type = character_event
+    title = psijic_counsel.003.t
+    desc  = psijic_counsel.003.desc
+    theme = scholarship
+    left_portrait = {
+        character = root
+        animation = reading
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = psijic_counsel.003.a   # "I know what this means. The Order is real, and it watches."
+        trigger = { learning >= 16 }
+        add_piety    = 150
+        add_learning = 1
+        add_stress   = -15
+    }
+
+    option = {
+        name = psijic_counsel.003.b   # "A philosopher's goodbye. I will study what they left."
+        add_piety   = 75
+        add_learning = 1
+    }
+
+    option = {
+        name = psijic_counsel.003.c   # "A blank page. Either the note was nothing, or I learned nothing."
+        add_stress = 15
+        add_piety  = -25
+    }
+}

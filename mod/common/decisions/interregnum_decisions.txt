@@ -1,0 +1,163 @@
+# =============================================================
+#  Warlord / Orsinium / Companions / Wild Hunt — Decisions
+#  File: mod/common/decisions/interregnum_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • warlord_emperor, orsinium_builder  = interregnum_decisions
+#  • companions_shield_brother          = companions_traits.txt
+#  • wild_hunt_called                   = lore_races_traits.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/interregnum_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • call_the_wild_hunt
+#    • found_orsinium
+#    • join_companions_of_whiterun
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/orsinium_traits.txt
+#      → orsinium_builder
+#    common/traits/companions_traits.txt
+#      → companions_harbinger, companions_shield_brother
+#    common/traits/lore_races_traits.txt
+#      → wild_hunt_called
+# =============================================================
+
+# ---------------------------------------------------------------
+#  FOUND ORSINIUM
+#  An Orcish ruler with sufficient gold and territory can
+#  commission the construction of Orsinium in the Wrothgarian
+#  Mountains.
+# ---------------------------------------------------------------
+
+found_orsinium = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = found_orsinium_desc
+
+    is_shown = {
+        is_ruler  = yes
+        is_adult  = yes
+        has_culture = orc_culture
+        NOT = { has_trait = orsinium_builder }
+    }
+
+    is_valid = {
+        gold >= 200
+        primary_title = { tier >= tier_count }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        NOT = { has_character_flag = orsinium_founded }
+    }
+
+    effect = {
+        trigger_event = { id = orsinium.000 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 10
+            has_culture = orc_culture
+        }
+        modifier = {
+            add = 8
+            gold >= 300
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  JOIN THE COMPANIONS
+#  A martial Nord (or companion_of_ysgramor) ruler can seek
+#  membership in the Companions of Whiterun.
+# ---------------------------------------------------------------
+
+join_companions_of_whiterun = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = join_companions_of_whiterun_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_culture = nord_culture
+            has_trait   = companion_of_ysgramor
+        }
+        NOT = { has_trait = companions_shield_brother }
+        NOT = { has_trait = companions_harbinger }
+    }
+
+    is_valid = {
+        martial >= 12
+        NOT = { has_character_flag = companions_refused }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        trigger_event = { id = companions.000 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 8
+            martial >= 16
+        }
+        modifier = {
+            add = 5
+            has_trait = brave
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  CALL THE WILD HUNT
+#  A Bosmer ruler with the wild_hunt_called trait can unleash
+#  the Hunt against their enemies.  The cost is enormous.
+#  The effect is terrible.  The aftermath is permanent.
+# ---------------------------------------------------------------
+
+call_the_wild_hunt = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = call_the_wild_hunt_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = wild_hunt_called
+    }
+
+    is_valid = {
+        piety >= 500
+        NOT = { has_character_flag = wild_hunt_called_active }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_piety = -500
+        add_character_flag = { flag = wild_hunt_called_active days = 60 }
+        trigger_event = { id = wild_hunt.000 }
+    }
+
+    ai_will_do = {
+        base = 1   # Very rare — AI should almost never do this
+        modifier = {
+            add = 5
+            is_at_war = yes
+            piety >= 800
+            martial >= 18
+        }
+    }
+}

@@ -1,0 +1,84 @@
+# =============================================================
+#  Thieves Guild Traits
+#  File: mod/common/traits/thieves_guild_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  shadow_guild_contact   — A ruler with informal ties to the Thieves Guild.
+#  fence_master           — A trusted guild operative and fence for stolen goods.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Thieves Guild is the oldest and most widespread criminal fraternity
+#  in Tamriel, operating in most major cities under some form or another.
+#  Unlike the Dark Brotherhood, the Guild operates under a strict code:
+#  no killing on Guild jobs, which both protects operatives and maintains
+#  the organisation's reputation as professionals rather than murderers.
+#  During the 2E Interregnum, without Imperial enforcement of law across
+#  provincial borders, the Guild expanded significantly — city guard
+#  corruption was cheaper to maintain, noble patronage was easier to
+#  acquire, and the general chaos of the era made "shadow governance"
+#  of trade routes a lucrative proposition.  The Nightingale Covenant
+#  is a specific subset of Guild leadership with a daedric obligation;
+#  the Guild itself is a secular criminal institution.
+#  Sources: UESP Lore:Thieves Guild; ESO; Skyrim.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — traits are self-contained.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/thieves_guild_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • fence_master
+#    • shadow_guild_contact
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/thieves_guild_events.txt
+#      → fence_master, shadow_guild_contact
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SHADOW GUILD CONTACT
+#  A ruler who has established informal ties to the Thieves Guild
+#  — not a full member, but someone the Guild finds useful and
+#  someone who finds the Guild's services occasionally valuable.
+#  The relationship is transactional and carefully maintained.
+# ---------------------------------------------------------------
+shadow_guild_contact = {
+    category = lifestyle
+
+    intrigue    = 3
+    stewardship = 1
+
+    monthly_income_mult          = 0.05   # the Guild routes certain goods through your realm
+    monthly_prestige_gain_mult   = -0.05  # some people suspect
+    monthly_piety_gain_mult      = -0.05  # the Temple disapproves
+
+    flag = shadow_guild_contact
+}
+
+# ---------------------------------------------------------------
+#  FENCE MASTER
+#  A ruler who has become a fully trusted operative and fence
+#  for the Thieves Guild — managing a significant portion of
+#  the Guild's goods-flow through their territory.  The Guild
+#  considers them an asset rather than merely a contact.
+#  Lucrative.  Dangerous.  Very hard to leave.
+# ---------------------------------------------------------------
+fence_master = {
+    category = fame
+
+    intrigue    = 5
+    stewardship = 3
+
+    monthly_income_mult          = 0.15
+    monthly_prestige_gain_mult   = -0.10
+    monthly_piety_gain_mult      = -0.10
+    stress_gain_mult             = 0.10   # the weight of knowing too much
+
+    flag = fence_master
+}

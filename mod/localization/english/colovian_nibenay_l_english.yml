@@ -1,0 +1,61 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  COLOVIAN / NIBENAY RIVALRY
+ # =====================================================================
+
+ # --- Traits ---
+
+ colovian_war_chief: "Colovian War Chief"
+ colovian_war_chief_desc: "This ruler has asserted military and political authority over the Colovian Estates of western Cyrodiil. The Colovians respect hard-won land, clear command structures, and the understanding that trade is a consequence of security rather than its replacement."
+
+ nibenay_seneschal: "Nibenay Seneschal"
+ nibenay_seneschal_desc: "This ruler has established themselves as a steward of Nibenay culture — the eastern Cyrodiilic heartlands, where the great trade roads converge on the Imperial City and the Eight Divines temples hold more real authority than most lords care to admit. Commerce is policy. The temples are administration."
+
+ # --- Modifiers ---
+
+ colovian_martial_law_modifier: "Colovian Military Consolidation"
+ colovian_martial_law_modifier_desc: "This ruler has consolidated military authority over the Colovian Estates. Soldiers are loyal. Merchants are nervous. The western roads are safe; the eastern markets are watching."
+
+ nibenay_council_edict_modifier: "Nibenay Council Edict"
+ nibenay_council_edict_modifier_desc: "This ruler has issued a formal edict through the Nibenay mercantile councils, establishing their authority over the eastern heartlands’ trade networks and temple access. Income grows; the Colovian lords are making pointed remarks."
+
+ # --- Opinion Modifiers ---
+
+ colovian_nibenay_rival_opinion: "Cyrodiilic Rival"
+ colovian_nibenay_rival_opinion_desc: "A rival in the Colovian-Nibenay political fracture. We stand on opposite sides of Cyrodiil’s oldest internal argument."
+
+ # --- Events ---
+
+ col_nib.000.t: "The Old Fracture"
+ col_nib.000.desc: "The news from across Cyrodiil is familiar, because it has always been this news.
+
+The Colovian lords of the west have called a muster. No central authority authorised it; they do not require one. The Colovian Estates have always governed themselves by the sword and the stockade, and the absence of an emperor changes nothing in that tradition.
+
+The Nibenay councils of the east have responded by closing the trade access roads — or, as they put it, ‘suspending commercial operations pending clarification of the current political arrangements.’
+
+Cyrodiil is not at war with itself. Not yet. But the old fracture between west and east is open for the first time in generations, and it is waiting for someone to step into it."
+ col_nib.000.a: "The Colovian way: swords before trade agreements. The west knows what it is."
+ col_nib.000.b: "The Nibenay way: control the roads and the temples. The swords will follow."
+ col_nib.000.c: "Stay above the division. Cyrodiil must be unified, not factionalised further."
+
+ col_nib.010.t: "Demands from Across the Niben"
+ col_nib.010.desc: "A courier arrived from the opposing faction. The message is direct.
+
+If you are a Colovian War Chief: the Nibenay councils are demanding you dissolve the western muster and restore commercial access to the eastern road network. They note that without eastern grain shipments, the western garrisons will face shortages by autumn.
+
+If you are a Nibenay Seneschal: one of the Colovian fort-lords has sent a rider demanding you reopen the eastern roads within thirty days — or they will open them personally."
+ col_nib.010.a: "Reject the demand. My position is not subject to negotiation."
+ col_nib.010.b: "Open talks. Cyrodiil divided serves neither side."
+
+ col_nib.020.t: "Commerce or Conquest"
+ col_nib.020.desc: "The immediate confrontation has reached a point of resolution.
+
+It may not last. The Colovian-Nibenay fracture has outlasted every attempt at permanent settlement since before the First Empire, and there is no reason to believe this particular settlement will hold longer than the next political crisis.
+
+But for now: the western roads are stable or the eastern markets are accessible. Your faction has established its current position. The other side has noted it. What happens next will depend on who blinks first — and on events neither faction currently controls."
+ col_nib.020.a: "The Estates hold. The east will come to terms when they need western swords."
+ col_nib.020.b: "The roads are mine again. Let the fort-lords march — they still need to eat."
+ col_nib.020.c: "A temporary balance. It will not hold forever."
+

@@ -150,14 +150,13 @@ daedric_invasion_at_full_power = {
 # Can a NEW invasion be triggered?
 # Requirements:
 #   • no invasion currently active (prevents two simultaneous invasions)
-#   • date is past 2E.100 (early Interregnum guard — EK2 starts at 2E 440,
-#     so this is effectively always true, but guards against edge cases)
+#   • date is past 2E.440 (EK2 earliest start date — Warlord Rising bookmark)
 #   • there exists at least one eligible large non-champion realm to target
 # Note: The actual Prince selection and conditions are checked inside
 #       daedric_invasion.000 (daedric_invasion_events.txt), not here.
 daedric_invasion_trigger_conditions = {
     NOT = { is_daedric_invasion_active = yes }
-    current_date >= 2E.100                   # minimum date — all invasions set in Interregnum
+    current_date >= 2E.440                   # minimum date — EK2 starts no earlier than 2E 440
     any_ruler = {
         realm_size >= 30                     # only realms large enough to be worth targeting
         NOT = { has_trait = daedric_champion }    # champions are already serving a Prince

@@ -1,0 +1,35 @@
+﻿l_english:
+
+ # =====================================================================
+ #  MERIDIA'S BEACON — DAWNBREAKER SYSTEM
+ # =====================================================================
+
+ # ---- meridia_beacon.000 — Light in the Dark ----
+
+ meridia_beacon.000.t: "Light in the Dark"
+ meridia_beacon.000.desc: "You find it in your chapel at the hour when no one else is there — a sphere of light that should not be present, hanging above the altar at chest height, warm in the way that fires are warm except without heat and without any source. It does not move. It does not change. It simply exists there and waits, with the particular patience of something that will wait as long as it needs to. This is Meridia. The Lady of Infinite Energies does not announce herself with trumpets. She places a beacon somewhere you will find it and waits to see what you do. She is specifically interested in rulers who have fought the undead — who have stood between the living and the corrupted dead. She has a proposition."
+ meridia_beacon.000.a: "I listen. Whatever the light asks, I hear it first."
+ meridia_beacon.000.b: "I have enough gods watching. I close my eyes to this one."
+
+ # ---- meridia_beacon.010 — Dawnbreaker ----
+
+ meridia_beacon.010.t: "Dawnbreaker"
+ meridia_beacon.010.desc: "Meridia speaks. She does not explain herself, because she is a Daedric Prince and Daedric Princes do not feel the need to justify their priorities to mortals, but she is at least clear: she despises the undead. Not as an abstract position but as an active conviction — the corruption of life-force, the theft of what is supposed to return to the Aedra after death, the way necromancy turns souls into tools and bodies into puppets. Molag Bal and the Gray Host represent exactly the kind of corruption she has spent millennia opposing. She wants a champion. She is offering the sword that goes with the job. Dawnbreaker burns the undead to ash and drives others away. There are things she is not telling you. One of them is that being Meridia's champion is not a comfortable position. She is watching."
+ meridia_beacon.010.a: "I take Dawnbreaker. The undead will burn."
+ meridia_beacon.010.b: "I fight the undead. I do not fight them as a Daedric Prince's tool."
+
+ # ---- meridia_beacon.020 — The Burning Sword ----
+
+ meridia_beacon.020.t: "The Burning Sword"
+ meridia_beacon.020.desc: "The undead come, which they always do in this era, and Dawnbreaker does what Meridia made it to do. The blade burns in the presence of the corrupted dead — not metaphorically but literally, a cold white fire that the undead react to the way normal things react to normal fire, except more immediately and with considerably more disintegration. It is effective. It is also visceral in a way that ordinary sword-work is not — there is something in the quality of what Dawnbreaker removes that makes it clear the undead you are fighting are not just animated bodies but something that was once a person and is now something wrong. Meridia's fire does not simply kill them. It corrects them."
+ meridia_beacon.020.a: "Meridia's flame holds nothing back. The undead knew what they were facing."
+
+ # ---- Traits ----
+
+ beacon_bearer: "Beacon Bearer"
+ beacon_bearer_desc: "This ruler has received Meridia's Beacon and wields Dawnbreaker — the Daedric artifact sword that burns the undead and drives corruption away. Meridia has chosen them as a champion against the undead forces of Molag Bal and the Gray Host. The sword is real. The Lady of Infinite Energies is watching. Neither of those facts is comfortable."
+
+ # ---- Modifiers ----
+
+ dawnbreaker_wielder: "Dawnbreaker"
+ dawnbreaker_wielder_desc: "The bearer wields Dawnbreaker — Meridia's artifact sword, which burns the undead and channels the Daedric Prince's particular fury against corruption. Their martial effectiveness is enhanced, and Meridia's attention rests on them like sunlight."

@@ -1,0 +1,214 @@
+# =============================================================
+#  Camoran Dynasty — Valenwood's Ancient Rulers
+#  Namespace: camoran
+#
+#  LORE:
+#  The Camoran Dynasty is the oldest ruling house in Tamriel,
+#  founded in ME 1 at the very start of recorded history.
+#  By the EK2 start of 2E 440 the dynasty has ruled Valenwood
+#  for more than two millennia — though never as a single
+#  unified kingdom.  Multiple Camoran claimants hold different
+#  cantons of the great forest, and the dynasty's ancient
+#  blood-right is both a source of prestige and of endless
+#  succession strife.
+#
+#  The Green Pact (Bosmer forswear harming vegetation and must
+#  eat only meat, flesh, and forest-given food) shapes every
+#  aspect of Bosmer governance.  The Silvenar and Green Lady
+#  are the spiritual leaders; the Camoran kings are the temporal
+#  power.  Neither can rule alone.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • camoran.000 — Blood of the Ancient Wood
+#                  Yearly; Bosmer rulers with high diplomacy.
+#                  A genealogist confirms (or challenges) the
+#                  ruler's Camoran lineage.
+#
+#  • camoran.010 — The Green Conclave
+#                  Yearly; Bosmer rulers with realm_size >= 3.
+#                  The canton-chiefs demand a gathering under
+#                  the oldest tree.
+#
+#  • camoran.020 — A Pretender in the Forest
+#                  Yearly; camoran_bloodline rulers.
+#                  A rival Camoran claimant stirs trouble.
+#
+#  • camoran.030 — The Way-Shrine Vigil
+#                  Yearly; Bosmer rulers with high piety.
+#                  A Green Pact observance deepens the
+#                  ruler's bond with the forest gods.
+#
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/camoran_dynasty_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt (this mod)
+#      → camoran_bloodline, forest_hermit
+#    common/modifiers/lore_races_modifiers.txt (this mod)
+#      → camoran_dynasty_prestige_modifier, green_conclave_accord_modifier
+#
+# =============================================================
+
+namespace = camoran
+
+# ---------------------------------------------------------------
+# camoran.000  Blood of the Ancient Wood
+# ---------------------------------------------------------------
+camoran.000 = {
+    type = character_event
+    title = camoran.000.t
+    desc  = camoran.000.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = bosmer_culture
+        diplomacy >= 10
+        NOT = { has_character_flag = camoran_lineage_confirmed }
+    }
+
+    immediate = {
+        add_character_flag = { flag = camoran_lineage_confirmed days = 3650 }
+    }
+
+    option = {
+        name = camoran.000.a   # "My blood carries the dynasty. None can deny the old claim."
+        add_trait = camoran_bloodline
+        add_prestige = 200
+        add_diplomacy_skill = 1
+    }
+
+    option = {
+        name = camoran.000.b   # "Lineage is a story. Let the forest, not blood, decide who rules."
+        add_trait = forest_hermit
+        add_piety = 150
+        add_prestige = -50
+    }
+}
+
+# ---------------------------------------------------------------
+# camoran.010  The Green Conclave
+# ---------------------------------------------------------------
+camoran.010 = {
+    type = character_event
+    title = camoran.010.t
+    desc  = camoran.010.desc
+    theme = diplomacy
+    left_portrait = {
+        character = root
+        animation = personality_regal
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = bosmer_culture
+        realm_size >= 3
+        NOT = { has_character_flag = green_conclave_called }
+    }
+
+    immediate = {
+        add_character_flag = { flag = green_conclave_called days = 3650 }
+    }
+
+    option = {
+        name = camoran.010.a   # "Call the conclave beneath the oldest tree. All chiefs shall hear me."
+        add_modifier = { modifier = green_conclave_accord_modifier days = 1825 }
+        add_prestige = 150
+        add_diplomacy_skill = 1
+    }
+
+    option = {
+        name = camoran.010.b   # "Let the forest settle its own disputes."
+        add_piety = 100
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# camoran.020  A Pretender in the Forest
+# ---------------------------------------------------------------
+camoran.020 = {
+    type = character_event
+    title = camoran.020.t
+    desc  = camoran.020.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_cynical
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = camoran_bloodline
+        NOT = { has_character_flag = camoran_pretender_faced }
+    }
+
+    immediate = {
+        add_character_flag = { flag = camoran_pretender_faced days = 3650 }
+    }
+
+    option = {
+        name = camoran.020.a   # "I will expose this pretender before the canton-chiefs."
+        add_prestige = 100
+        add_intrigue_skill = 1
+        add_stress = 15
+    }
+
+    option = {
+        name = camoran.020.b   # "Bring the rival into my court and let them swear fealty."
+        add_prestige = 50
+        add_diplomacy_skill = 1
+        add_piety = 75
+    }
+
+    option = {
+        name = camoran.020.c   # "The forest will settle this. I waste no soldiers on politics."
+        add_stress = 25
+        add_prestige = -25
+    }
+}
+
+# ---------------------------------------------------------------
+# camoran.030  The Way-Shrine Vigil
+# ---------------------------------------------------------------
+camoran.030 = {
+    type = character_event
+    title = camoran.030.t
+    desc  = camoran.030.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_zealous
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = bosmer_culture
+        piety >= 200
+        NOT = { has_character_flag = way_shrine_vigil_kept }
+    }
+
+    immediate = {
+        add_character_flag = { flag = way_shrine_vigil_kept days = 3650 }
+    }
+
+    option = {
+        name = camoran.030.a   # "I keep the vigil. The Green Pact is my law and my life."
+        add_piety = 200
+        add_health = 0.2
+        add_prestige = 75
+    }
+}

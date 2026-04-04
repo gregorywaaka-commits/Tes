@@ -1,0 +1,76 @@
+﻿l_english:
+
+ # =====================================================================
+ #  MAORMER — Pyandonean Sea Elves
+ #  Coastal raids, serpent-taming, and King Orgnum's immortality
+ # =====================================================================
+
+ # ---- maormer.001 --- Coastal Raid ----
+
+ maormer.001.t: "Sails from Pyandonea"
+ maormer.001.desc: "The Maormer have come ashore. The coastal villages reported the sails at dawn — long, low ships with serpent prows, moving fast on a wind that the local sailors say was not blowing from that direction. The Pyandoneans are called Sea Elves, though they call themselves the Maormer and regard the label as an insult from cousins who exiled them and have been too proud to acknowledge what Pyandonea produced in their absence. They are excellent sailors. They are also here, on your beach, and not interested in discussion."
+ maormer.001.a: "Drive them back into the sea!"
+ maormer.001.b: "Pay them tribute — buy their silence."
+
+ # ---- maormer.003 --- The Storm Summons ----
+
+ maormer.003.t: "The Sea Witch Rises"
+ maormer.003.desc: "The Pyandonean sea witch stands at the prow of the lead ship and the weather moves with her. The Maormer tradition of serpent-taming extends to the sea itself — the witches are said to have compacted with the serpent-gods of Pyandonea, and their storms are not natural phenomena but expressions of an ancient agreement. The clouds are wrong. The waves are organized. There is intent in this weather. You are a coastal power. What she is doing to your harbour she can do to every harbour you hold."
+ maormer.003.a: "Summon the storm — sink their fleets!"
+ maormer.003.b: "Save the magic for greater need."
+
+ # ---- maormer.004 --- The Exile's Legacy ----
+
+ maormer.004.t: "The Exile of Orgnum"
+ maormer.004.desc: "The Maormer ambassador makes their opening position known: the exile of Orgnum was unjust. Topal the Sailor drove the ancestors of the Pyandoneans from Summerset because they were different, because they had found new ways to be Mer, and this is not a crime. King Orgnum has spent uncountable years building a kingdom of those the Summerset Isles discarded. The ambassador does not say he wants Summerset back. He does not need to. The implication fills the room like salt air."
+ maormer.004.a: "The exile shall be avenged!"
+
+ # ---- maormer.005 --- The Sea Serpent ----
+
+ maormer.005.t: "The Serpent in the Harbour"
+ maormer.005.desc: "The creature in the harbour is larger than your largest ship. The sailors who have seen it are not a superstitious people — they are not superstitious anymore, which is not the same thing. The Maormer use sea serpents as we use horses: bred, trained, ridden. This one has been trained to circle. It has been circling your harbour for a day. The Pyandonean fleet sits outside the breakers and watches. No demands have yet been made. The demonstration appears to be its own purpose."
+ maormer.005.a: "Stare it down — project dominance!"
+ maormer.005.b: "The beast throws me — I barely escape."
+
+ # ---- maormer.010 --- Alliance Offer ----
+
+ maormer.010.t: "King Orgnum's Proposal"
+ maormer.010.desc: "The letter is written on something that is not paper. It is sealed with the image of a serpent consuming its own tail. King Orgnum of Pyandonea writes with the confidence of someone who has been alive for a very long time and has stopped worrying about how correspondence lands. He is proposing an alliance. The Aldmeri Dominion has been pressing both your territories. He sees a shared interest in making Summerset understand that it does not own the sea. The terms are unequal in his favour, but not unreasonably so."
+ maormer.010.a: "Together we shall rule the sea-lanes."
+
+ # ---- maormer.015 --- Orgnum's Gift ----
+
+ maormer.015.t: "The Longevity of Orgnum"
+ maormer.015.desc: "King Orgnum does not age. He has not aged within any living memory. The Maormer theologians say it is the blessing of the serpent-gods; the Summerset scholars say it is a dark ritual he performs at regular intervals and would rather not specify. Whatever the mechanism, Orgnum has been king of Pyandonea for longer than most dynasties last, and he is considering sharing a portion of this arrangement with an ally he finds useful. The offer comes with conditions. The conditions involve the serpent-gods, which is where you expected the conditions to end up."
+ maormer.015.a: "Grant me longevity, great Orgnum."
+ maormer.015.b: "I am not yet ready for such a burden."
+
+ # ---- maormer.016 --- The Long King's Eye ----
+
+ maormer.016.t: "The King Who Will Not Die"
+ maormer.016.desc: "The intelligence from Pyandonea is consistent: Orgnum endures. The Aldmeri Dominion has tried twice to kill him in the last century and twice the assassins did not return. His court is full of people who have served him for decades without seeing him slow. Whatever he is, he is not operating on the same schedule as the rest of Tamriel's rulers. This matters strategically. He has more patience than any alliance can afford to test, and he holds grudges across generations."
+ maormer.016.a: "The king grows stronger with each passing year..."
+
+ # ---- Pyandonean War Expansion ----
+
+ maormer.020.t: "The Pyandonean Fleet on the Horizon"
+ maormer.020.desc: "The scout galleys have returned with a consistent report: there are ships on the horizon, and they are not fishing vessels. The fleet formation is Maormer — the triangular prow configuration, the sea serpent pennants, the low black hulls that sit in the water like predators. This is not a raid. Raiders do not bring that many ships. Someone in Pyandonea has decided to press a claim against the Summerset coast with serious intent, and they are currently making their intentions clear by being very visible on the horizon."
+ maormer.020.a: "Summon the naval commanders — we will meet them at sea."
+ maormer.020.b: "Reinforce the coastal fortifications and wait."
+
+ maormer.021.t: "The Battle of the Summerset Shore"
+ maormer.021.desc: "The fleets have met. The Maormer commanders are directing sea serpents with the ease of handlers managing trained animals — which, to be clear, they are not animals in any conventional sense. Each is large enough to hole a warship and has been bonded to its handler through the serpent-magic of Pyandonea. Your navy has experience and discipline. They have serpents. The outcome will depend on whether discipline is sufficient answer to something that can eat a ship."
+ maormer.021.a: "Victory! The serpents could not breach our fleet formation."
+ maormer.021.b: "We held them, but the coast took damage. The sea-witches are powerful."
+ maormer.021.c: "The serpents broke our line. We withdrew to regroup."
+
+ maormer.022.t: "The Captured Commander"
+ maormer.022.desc: "After the engagement, your forces pulled a Maormer sea serpent commander from the wreckage of his bonding-ship. He is injured. He is also significant — the bonding-ritual that ties a commander to his serpent takes years to complete, and losing that serpent to the battle has already broken something in him. He sits in your custody now, waiting to see what kind of people you are. Three options present themselves, each with different consequences on both sides of the water."
+ maormer.022.a: "Interrogate them — learn the Pyandonean sea routes."
+ maormer.022.b: "Offer them as a diplomatic gesture — send them home."
+ maormer.022.c: "Execute them publicly — let Orgnum hear what happens to his commanders."
+
+ maormer.023.t: "The Pyandonean Tempest"
+ maormer.023.desc: "The weather changed at noon with no natural cause. The clouds came from the south — the direction of Pyandonea — in a formation that every experienced mariner on the docks described with the same word: wrong. The wind is wrong. The sea is wrong. The Maormer sea-witches are working a storm-ritual on a scale that takes dozens of practitioners and weeks of preparation. It is tracking toward the coast. The Sapiarchs of Summerset have weather-lore that might mitigate it; coastal evacuation is the practical alternative; either way, you have hours before it makes the choice for you."
+ maormer.023.a: "Prepare the harbours — lash down the ships, evacuate the coast."
+ maormer.023.b: "Consult the Sapiarchs — perhaps there is a counter-ritual."

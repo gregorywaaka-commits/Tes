@@ -1,0 +1,218 @@
+# =============================================================
+#  Reman Pretender Events
+#  Namespace: reman_pretender
+#  File: mod/events/reman_pretender_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  reman_pretender.000   Hidden world event — fires at 2E 440–460
+#                        to spread Imperial relic rumours among
+#                        Cyrodiilic rulers.
+#  reman_pretender.001   "Relics of the Second Empire" — a
+#                        Cyrodiilic ruler discovers a cache of
+#                        Reman-era imperial artefacts.
+#  reman_pretender.010   "A Rival Claims the Blood" — a rival
+#                        claimant emerges to contest the pretender's
+#                        succession bid.
+#  reman_pretender.020   "The Succession Question" — final resolution:
+#                        the pretender consolidates or is outmanoeuvred.
+#
+#  HISTORICAL NOTE:
+#  The assassination of Potentate Savirien-Chorak in 2E 430
+#  ended two centuries of Akaviri regency and left Cyrodiil
+#  without an emperor for the first time in over a thousand
+#  years.  The resulting scramble for legitimacy produced
+#  dozens of "Reman heirs" across the Colovian Estates and the
+#  Nibenay heartlands, each backed by a different faction.
+#  None succeeded — but the contest shaped the Interregnum's
+#  first century.  Sources: UESP Lore:Reman Dynasty; ESO lore
+#  texts; Pocket Guide to the Empire, 3rd Edition.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/reman_pretender_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/reman_pretender_traits.txt
+#      → reman_pretender
+#    common/traits/lore_races_traits.txt
+#      → reman_heir (the confirmed genealogical lineage holder)
+# =============================================================
+
+namespace = reman_pretender
+
+# ---------------------------------------------------------------
+# reman_pretender.000  Imperial Relics Unearthed — Hidden Trigger
+# A hidden world event that fires once at 2E 440–460 and sends
+# the relic-discovery prompt to Cyrodiilic rulers.  Guards with
+# a global variable so it fires only once per playthrough.
+# ---------------------------------------------------------------
+reman_pretender.000 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        current_date >= 2.440.1.1
+        current_date < 2.460.1.1
+        NOT = { exists = global_var:reman_relics_surfaced }
+    }
+
+    immediate = {
+        set_global_variable = { name = reman_relics_surfaced value = 1 }
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_alive  = yes
+                OR = {
+                    has_culture = imperial_culture
+                    has_culture = cyrodiilic_culture
+                    any_held_county = {
+                        geographical_region = world_cyrodiil
+                    }
+                }
+                NOT = { has_trait = reman_pretender }
+                NOT = { has_trait = reman_heir }
+            }
+            trigger_event = { id = reman_pretender.001 days = 30 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# reman_pretender.001  Relics of the Second Empire
+# A Cyrodiilic ruler receives word that a surveyor clearing an
+# old estate foundation has found a sealed chamber.  Inside:
+# a set of Reman-dynasty court artefacts — sceptres, seals, and
+# genealogical records the Potentate apparently never destroyed.
+# The find is politically explosive.
+# ---------------------------------------------------------------
+reman_pretender.001 = {
+    type = character_event
+    title = reman_pretender.001.t
+    desc  = reman_pretender.001.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = reading
+    }
+
+    option = {
+        name = reman_pretender.001.a   # "This is the mandate I have been waiting for. Claim it."
+        add_trait = reman_pretender
+        add_prestige = 200
+        add_stress   = 15
+        trigger_event = { id = reman_pretender.010 days = 180 }
+    }
+
+    option = {
+        name = reman_pretender.001.b   # "Take the records to the Imperial City scholars. Let history decide."
+        add_prestige = 100
+        add_learning = 1
+        add_piety    = 50
+    }
+
+    option = {
+        name = reman_pretender.001.c   # "Seal the chamber again. The Interregnum feeds on ambition — I will not add to it."
+        add_prestige  = -50
+        add_stress    = -10
+        add_intrigue  = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# reman_pretender.010  A Rival Claims the Blood
+# Word of the pretender's claim has reached another Cyrodiilic
+# lord.  They have produced their own genealogist — and their
+# own set of documents, which look suspiciously fresh.  The
+# Interregnum now has at least two claimants to the Reman line.
+# ---------------------------------------------------------------
+reman_pretender.010 = {
+    type = character_event
+    title = reman_pretender.010.t
+    desc  = reman_pretender.010.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = declare_war
+    }
+
+    trigger = {
+        has_trait = reman_pretender
+    }
+
+    option = {
+        name = reman_pretender.010.a   # "Challenge the documents publicly. Their claim is fabricated."
+        trigger = { learning >= 12 }
+        add_prestige = 200
+        add_intrigue = 1
+        trigger_event = { id = reman_pretender.020 days = 180 }
+    }
+
+    option = {
+        name = reman_pretender.010.b   # "A rival claim only proves mine is worth contesting. March."
+        trigger = { martial >= 12 }
+        add_prestige = 150
+        add_stress   = 20
+        add_martial_skill = 1
+        trigger_event = { id = reman_pretender.020 days = 180 }
+    }
+
+    option = {
+        name = reman_pretender.010.c   # "Build alliances first. The rival can wait."
+        trigger = { diplomacy >= 12 }
+        add_prestige = 100
+        add_diplomacy_skill = 1
+        trigger_event = { id = reman_pretender.020 days = 365 }
+    }
+}
+
+# ---------------------------------------------------------------
+# reman_pretender.020  The Succession Question
+# The pretender's bid has played out.  The rival may still
+# exist, but the political question has reached a point of
+# resolution: either the pretender has consolidated enough
+# support to make the claim durable — or the moment has passed
+# and the claim will sit, unresolved, in the files of every
+# court herald in Cyrodiil.
+# ---------------------------------------------------------------
+reman_pretender.020 = {
+    type = character_event
+    title = reman_pretender.020.t
+    desc  = reman_pretender.020.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    trigger = {
+        has_trait = reman_pretender
+    }
+
+    option = {
+        name = reman_pretender.020.a   # "The claim is established. Cyrodiil will remember who held it first."
+        trigger = {
+            prestige >= 500
+            OR = { martial >= 12 diplomacy >= 14 }
+        }
+        add_prestige = 400
+        add_stress   = -15
+        add_piety    = 75
+    }
+
+    option = {
+        name = reman_pretender.020.b   # "The bid has stalled. But the documents exist — the moment may come again."
+        add_prestige = 100
+        add_stress   = 30
+    }
+
+    option = {
+        name = reman_pretender.020.c   # "Abandon the formal claim. Rule what I hold, rather than chase what I cannot."
+        remove_trait = reman_pretender
+        add_prestige = -200
+        add_stress   = -20
+        add_intrigue = 1
+    }
+}

@@ -1,0 +1,58 @@
+# =============================================================
+#  Soul Shriven — Traits
+#  File: mod/common/traits/soul_shriven_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  soul_shriven   — A person whose soul has been taken by Molag Bal.
+#                   They live, but the fire has gone out inside them.
+#                   Health penalties; stress immunity; charm loss.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  During the Planemeld (approximately 2E 577 onwards), Molag Bal
+#  systematically stripped the souls from living mortals across
+#  Tamriel.  The Soul Shriven are the result: bodies that breathe
+#  and walk and fight, but from which the essential self has been
+#  hollowed out.  Without a soul, they cannot be broken by fear or
+#  grief — there is nothing left to break.  They also cannot be
+#  healed as easily, cannot generate the spiritual warmth that
+#  sustains a living body, and gradually lose whatever humanity
+#  they had.  The luckiest were given their souls back by heroes
+#  who entered Coldharbour.  Most were not.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/soul_shriven_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • soul_shriven
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/soul_shriven_events.txt
+#      → soul_shriven
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SOUL SHRIVEN
+#  The soul has been taken.  The body carries on.  There is no
+#  longer any particular fear of death — when you have already
+#  lost the most important thing, the rest is detail.
+# ---------------------------------------------------------------
+soul_shriven = {
+    category = lifestyle
+
+    health = -1
+
+    stress_gain_mult = -0.50   # No soul, no fear — stress barely touches them
+
+    monthly_piety_gain_mult = -0.20   # The gods have no purchase on an empty vessel
+    charm                   = -3      # Something is unmistakably wrong; people sense it
+
+    flag = soul_shriven
+}

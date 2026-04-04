@@ -1,0 +1,308 @@
+# =============================================================
+#  Thieves Guild Events
+#  Namespace: thieves_guild
+#  File: mod/events/thieves_guild_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  thieves_guild.000  The Contact — an agent approaches the ruler
+#  thieves_guild.001  The Guild's Offer — formal arrangement presented
+#  thieves_guild.010  The Guild Calls In a Favour — guild requests help
+#  thieves_guild.020  The Fence Network — becoming a fence_master
+#  thieves_guild.030  The Guard Finds Out — heat from law enforcement
+#  thieves_guild.040  The Nightingale Question — Nocturnal's sub-faction
+#
+#  LORE:
+#  The Thieves Guild operates in most major Tamrielic cities under
+#  a strict code: no killing on Guild jobs.  During the 2E Interregnum,
+#  without Imperial enforcement, the Guild expanded significantly.
+#  This system is distinct from the Nightingale Covenant — the Guild
+#  is a secular criminal institution; the Nightingales are a specific
+#  daedric subset of its leadership.
+#  Sources: UESP Lore:Thieves Guild; ESO; Skyrim.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/thieves_guild_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/thieves_guild_traits.txt
+#      → fence_master, shadow_guild_contact
+# =============================================================
+
+namespace = thieves_guild
+
+# ---------------------------------------------------------------
+# thieves_guild.000  The Contact
+# A person who is very clearly not what they say they are
+# has been requesting an audience.  The description from the
+# chamberlain — "a merchant with extraordinarily specific
+# trade intelligence" — is Guild guild-speak, and someone in
+# your court knows what it means.  Fires for high-intrigue rulers.
+# ---------------------------------------------------------------
+thieves_guild.000 = {
+    type = character_event
+    title = thieves_guild.000.t
+    desc  = thieves_guild.000.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        intrigue >= 12
+        NOT = { has_trait = shadow_guild_contact }
+        NOT = { has_trait = fence_master }
+        NOT = { has_character_flag = guild_contact_refused }
+        NOT = { has_character_flag = guild_contact_made }
+    }
+
+    option = {
+        name = thieves_guild.000.a   # "Send them in. Separately. At night."
+        set_character_flag = guild_contact_made
+        add_stress = 5
+        trigger_event = { id = thieves_guild.001 days = 14 }
+    }
+
+    option = {
+        name = thieves_guild.000.b   # "Have them removed from the city. Politely."
+        set_character_flag = { flag = guild_contact_refused days = 3650 }
+        add_piety    = 50
+        add_prestige = 50
+    }
+
+    option = {
+        name = thieves_guild.000.c   # "Have them arrested and see what they're carrying."
+        add_gold     = 50            # Some coin found on them
+        add_piety    = 100
+        add_prestige = -50           # The Guild takes note of who arrests its agents
+        set_character_flag = { flag = guild_contact_refused days = 3650 }
+    }
+}
+
+# ---------------------------------------------------------------
+# thieves_guild.001  The Guild's Offer
+# The Guild agent explains the arrangement they are proposing:
+# protection from theft in your realm (they will stop other
+# thieves), advance intelligence on certain trade movements,
+# and a discreet share of the goods they route through.
+# In exchange: access, occasional blind eyes, and no questions
+# about specific cargo manifests.
+# ---------------------------------------------------------------
+thieves_guild.001 = {
+    type = character_event
+    title = thieves_guild.001.t
+    desc  = thieves_guild.001.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_melancholic
+    }
+
+    option = {
+        name = thieves_guild.001.a   # "A business arrangement. Nothing more."
+        add_trait    = shadow_guild_contact
+        add_gold     = 150
+        add_prestige = 100
+        add_piety    = -150
+    }
+
+    option = {
+        name = thieves_guild.001.b   # "I want more specific terms before I agree to anything."
+        add_trait    = shadow_guild_contact
+        add_gold     = 50
+        add_prestige = 50
+        add_piety    = -75
+    }
+
+    option = {
+        name = thieves_guild.001.c   # "I've heard enough. This is not a relationship I want."
+        add_prestige = 100
+        add_piety    = 50
+        set_character_flag = { flag = guild_contact_refused days = 3650 }
+    }
+}
+
+# ---------------------------------------------------------------
+# thieves_guild.010  The Guild Calls In a Favour
+# The Guild has a specific request — not a job exactly, but
+# something they need from a ruler in good standing with them.
+# Fires for shadow_guild_contact rulers.
+# ---------------------------------------------------------------
+thieves_guild.010 = {
+    type = character_event
+    title = thieves_guild.010.t
+    desc  = thieves_guild.010.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = shadow_guild_contact
+        NOT = { has_character_flag = guild_favour_called }
+    }
+
+    option = {
+        name = thieves_guild.010.a   # "I comply. The Guild remembers who helped them."
+        set_character_flag = { flag = guild_favour_called days = 1825 }
+        add_gold     = 200           # Compensation for the trouble
+        add_intrigue = 1
+        add_piety    = -100
+    }
+
+    option = {
+        name = thieves_guild.010.b   # "I provide limited help — enough to satisfy them, not enough to implicate myself."
+        set_character_flag = { flag = guild_favour_called days = 1825 }
+        add_gold     = 75
+        add_stress   = 10
+    }
+
+    option = {
+        name = thieves_guild.010.c   # "No. The arrangement has limits, and this crosses them."
+        set_character_flag = { flag = guild_favour_called days = 1825 }
+        add_prestige = 50
+        add_piety    = 100
+        # The Guild's opinion of this ruler drops; may reduce income in future
+        add_modifier = { modifier = maormer_hatred_modifier days = 365 }   # use as 'infamy spread' stand-in
+    }
+}
+
+# ---------------------------------------------------------------
+# thieves_guild.020  The Fence Network
+# The Guild has noticed that this ruler's territory is
+# particularly well-positioned for moving certain categories
+# of goods.  They are proposing an upgrade to the relationship:
+# a formal fence network that would make the ruler a fence_master.
+# More money.  Significantly more exposure.
+# ---------------------------------------------------------------
+thieves_guild.020 = {
+    type = character_event
+    title = thieves_guild.020.t
+    desc  = thieves_guild.020.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = shadow_guild_contact
+        NOT = { has_trait = fence_master }
+        stewardship >= 10
+        NOT = { has_character_flag = fence_offer_received }
+    }
+
+    option = {
+        name = thieves_guild.020.a   # "More money, more risk. A ruler's arithmetic. I accept."
+        set_character_flag = fence_offer_received
+        remove_trait = shadow_guild_contact
+        add_trait    = fence_master
+        add_gold     = 500
+        add_piety    = -300
+    }
+
+    option = {
+        name = thieves_guild.020.b   # "The current arrangement is sufficient. No escalation."
+        set_character_flag = fence_offer_received
+        add_gold     = 100    # The Guild offers a bonus for the refusal, to maintain the relationship
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# thieves_guild.030  The Guard Finds Out
+# Someone in the city guard has begun connecting the dots.
+# A fence_master or shadow_guild_contact ruler must deal with
+# a guard captain who knows too much.
+# ---------------------------------------------------------------
+thieves_guild.030 = {
+    type = character_event
+    title = thieves_guild.030.t
+    desc  = thieves_guild.030.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        OR = {
+            has_trait = shadow_guild_contact
+            has_trait = fence_master
+        }
+        NOT = { has_character_flag = guild_guard_incident }
+    }
+
+    option = {
+        name = thieves_guild.030.a   # "Bribe them. Everyone has a price."
+        set_character_flag = { flag = guild_guard_incident days = 1825 }
+        add_gold     = -200
+        add_prestige = -50
+        add_piety    = -50
+    }
+
+    option = {
+        name = thieves_guild.030.b   # "Reassign them somewhere far away."
+        set_character_flag = { flag = guild_guard_incident days = 1825 }
+        add_prestige = -100
+        add_stress   = 15
+    }
+
+    option = {
+        name = thieves_guild.030.c   # "Let the Guild handle it. That is what they are for."
+        set_character_flag = { flag = guild_guard_incident days = 1825 }
+        add_piety    = -300           # Something happens to the guard captain
+        add_prestige = -200
+        add_stress   = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# thieves_guild.040  The Nightingale Question
+# The Guild has mentioned — carefully, not as a command — that
+# Nocturnal takes an interest in the most capable fence_master
+# operatives.  There is an option.  The choice is personal.
+# Links the Guild system to the existing Nightingale events.
+# ---------------------------------------------------------------
+thieves_guild.040 = {
+    type = character_event
+    title = thieves_guild.040.t
+    desc  = thieves_guild.040.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = fence_master
+        intrigue >= 14
+        NOT = { has_trait = nightingale_sworn }
+        NOT = { has_character_flag = nightingale_offer_declined }
+    }
+
+    option = {
+        name = thieves_guild.040.a   # "I will hear what Nocturnal's servants have to say."
+        add_stress = 5
+        # The Nightingale events (nightingale.000+) handle the formal offer
+        trigger_event = { id = nightingale.000 days = 30 }
+    }
+
+    option = {
+        name = thieves_guild.040.b   # "The Guild is enough. Daedric oaths are binding beyond death."
+        set_character_flag = { flag = nightingale_offer_declined days = 3650 }
+        add_prestige = 100
+        add_gold     = 200    # Nocturnal's servants leave a gift anyway — she finds caution charming
+    }
+}

@@ -1,0 +1,181 @@
+# =============================================================
+#  Ordinator Order Events
+#  Namespace: ordinator
+#  File: mod/events/ordinator_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  ordinator.000  "The Tribunal's Law" — an Ordinator captain
+#                 approaches a Dunmer ruler about joining their
+#                 order's network of enforcement.
+#  ordinator.010  "A Matter of Heresy" — an ordinator_devoted ruler
+#                 must judge whether a courtier's behavior is truly
+#                 heretical or merely unusual.
+#  ordinator.020  "The Justiciar's Mandate" — an experienced
+#                 ordinator_devoted ruler is offered the formal
+#                 rank of Almsivi Justiciar by the Tribunal.
+#
+#  HISTORICAL NOTE:
+#  The Ordinators are the enforcement arm of the Tribunal Temple,
+#  the official religion of Morrowind since the First Era.  They
+#  maintain order in Dunmer cities, suppress Daedra worship and
+#  heresy, and act as the Tribunal's secular police force.  At the
+#  EK2 start date of 2E 440, the Tribunal is fully active: Vivec,
+#  Almalexia, and Sotha Sil are living gods, and the Ordinators
+#  are at the height of their institutional power.  Rulers who ally
+#  with the Ordinator network gain spiritual and military weight,
+#  at the cost of some autonomy — the Tribunal's reach extends
+#  into every court that accepts an Ordinator presence.
+#  Sources: TES III: Morrowind; UESP Lore:Ordinator; ESO in-game
+#  text "The Ordinators of Mournhold"; ESO Morrowind expansion.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/ordinator_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/ordinator_traits.txt
+#      → ordinator_devoted, almsivi_justiciar
+#    common/traits/tribunal_traits.txt
+#      → tribunal_champion (prerequisite for almsivi_justiciar)
+#
+#  REFERENCED BY — other files that import this namespace:
+#    common/on_actions/lore_races_on_actions.txt
+#      → ordinator.000, ordinator.010, ordinator.020
+# =============================================================
+
+namespace = ordinator
+
+# ---------------------------------------------------------------
+# ordinator.000  The Tribunal's Law
+# An Ordinator captain arrives at court.  The Temple's militant
+# arm is offering its resources — but the price is cooperation
+# with their mandate to enforce Temple law throughout Dunmer lands.
+# ---------------------------------------------------------------
+ordinator.000 = {
+    type = character_event
+    title = ordinator.000.t
+    desc  = ordinator.000.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_alive  = yes
+        is_landed = yes
+        has_culture = dunmer_culture
+        NOT = { has_trait = ordinator_devoted }
+        NOT = { has_trait = almsivi_justiciar }
+        NOT = { has_character_flag = ordinator_approached }
+        current_date >= 2.400.1.1
+    }
+
+    option = {
+        name = ordinator.000.a   # "The Temple's law is my law. Welcome to my court."
+        add_prestige = 150
+        add_piety    = 75
+        add_trait    = ordinator_devoted
+        add_character_flag = { flag = ordinator_approached }
+    }
+
+    option = {
+        name = ordinator.000.b   # "I serve the Tribunal, but I will not have Temple soldiers in my halls."
+        add_prestige = -50
+        add_stress   = 10
+        add_character_flag = { flag = ordinator_approached }
+    }
+}
+
+# ---------------------------------------------------------------
+# ordinator.010  A Matter of Heresy
+# A Dunmer ordinator_devoted ruler must adjudicate a case:
+# one of their courtiers has been reported for keeping a shrine
+# to a Daedric Prince.  The Ordinators want action.
+# ---------------------------------------------------------------
+ordinator.010 = {
+    type = character_event
+    title = ordinator.010.t
+    desc  = ordinator.010.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        has_trait  = ordinator_devoted
+        is_alive   = yes
+        is_landed  = yes
+        learning   >= 8
+    }
+
+    option = {
+        name = ordinator.010.a   # "Investigate properly. I will not punish conjecture."
+        add_prestige = 100
+        add_learning_skill = 1
+        add_stress   = 10
+        add_piety    = 25
+    }
+
+    option = {
+        name = ordinator.010.b   # "The Tribunal's word is clear. Remove the shrine and exile the courtier."
+        add_prestige = 200
+        add_piety    = 100
+        add_stress   = 20
+    }
+
+    option = {
+        name = ordinator.010.c   # "The Ordinators overstep. I govern my court, not they."
+        add_prestige = 50
+        remove_trait = ordinator_devoted
+        add_stress   = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# ordinator.020  The Justiciar's Mandate
+# An experienced ordinator_devoted ruler is offered formal
+# elevation to the rank of Almsivi Justiciar — a personal mandate
+# from the Tribunal to act as their agent of justice.
+# ---------------------------------------------------------------
+ordinator.020 = {
+    type = character_event
+    title = ordinator.020.t
+    desc  = ordinator.020.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    trigger = {
+        has_trait  = ordinator_devoted
+        is_alive   = yes
+        is_landed  = yes
+        NOT = { has_trait = almsivi_justiciar }
+        piety >= 300
+        OR = {
+            has_trait = tribunal_champion
+            diplomacy >= 12
+            martial   >= 12
+        }
+    }
+
+    option = {
+        name = ordinator.020.a   # "I accept the Tribunal's mandate. Their justice is my purpose."
+        add_prestige = 500
+        add_piety    = 200
+        remove_trait = ordinator_devoted
+        add_trait    = almsivi_justiciar
+    }
+
+    option = {
+        name = ordinator.020.b   # "I am honoured — but I must govern my own realm before the Tribunal's."
+        add_prestige = 200
+        add_stress   = 15
+    }
+}

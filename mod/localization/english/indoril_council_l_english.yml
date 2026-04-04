@@ -1,0 +1,54 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  INDORIL COUNCIL
+ # =====================================================================
+
+ # --- Traits ---
+
+ indoril_authority: "Indoril Authority"
+ indoril_authority_desc: "This Dunmer ruler has been formally recognised by House Indoril and the Council of Great Houses as a legitimate temporal authority operating within ALMSIVI’s dispensation. The recognition carries Tribunal blessing, Indoril patronage in inter-House disputes, and the weight of the most powerful Great House’s full political support."
+
+ great_house_dissident: "Great House Dissident"
+ great_house_dissident_desc: "This Dunmer ruler has formally refused House Indoril’s demand that temporal authority in Morrowind flow from ALMSIVI through Indoril dispensation. The Temple disapproves. Houses Telvanni and Hlaalu are quietly interested. The ruler’s independence may prove to be either a liability or a foundation, depending on what they build with it."
+
+ # --- Events ---
+
+ indoril.000.t: "Indoril’s Demand"
+ indoril.000.desc: "A senior Indoril councilman arrived at court this morning in formal House regalia — the House colours, the Tribunal seal, and a document written in the Temple’s ceremonial script.
+
+The document is polite in tone and absolute in substance.
+
+The Council of Great Houses, acting in the name of ALMSIVI, has determined that temporal authority in Morrowind is legitimate only when it flows from the Tribunal’s dispensation through the proper institutional channels — which is to say, through House Indoril’s council mechanism. This ruler’s authority is recognised. The Council simply requires formal acknowledgment that the recognition flows downward from the Tribunal, not upward from territorial control.
+
+The councilman adds, very politely, that every other Great House has already received this document, and most have signed it."
+ indoril.000.a: "Accept. The Tribunal’s wisdom is sufficient legitimacy for any Dunmer ruler."
+ indoril.000.b: "Resist. My authority rests on my House and my sword, not Indoril patronage."
+ indoril.000.c: "Delay. Send a counter-proposal. Acknowledge nothing for free."
+
+ indoril.010.t: "The Council of Great Houses"
+ indoril.010.desc: "The Council has been formally convened.
+
+House Indoril has presented a motion of censure against this ruler for refusing to sign the recognition document. The other Houses are being asked to vote.
+
+House Telvanni has not sent a representative. Their seat is empty, which could mean anything or nothing — the wizards are infamously indifferent to council procedure when it does not benefit them directly.
+
+House Hlaalu has sent a factor carrying a sealed note. The note is an offer: House Hlaalu will vote against the censure in exchange for trade concessions and access to one specific trade route that the Hlaalu factor mentions by name, with the specific ease of someone who expects the answer to be yes.
+
+House Redoran has sent formal regrets. Their Lord is ‘occupied with border matters.’"
+ indoril.010.a: "Accept the Hlaalu offer. Pragmatists against Temple politics is a natural coalition."
+ indoril.010.b: "Appeal to Telvanni neutrality. The wizards prefer to be left alone — help them stay that way."
+ indoril.010.c: "Stand alone. The dissident position is the honest one, and I will not trade it for comfort."
+
+ indoril.020.t: "Tribunal’s Blessing"
+ indoril.020.desc: "House Indoril has formally recorded this ruler’s recognition in the Council register.
+
+A Temple official arrived this morning with a sealed box: inside, a small quantity of Moon Sugar incense from the Vivec canton temples — the kind used in high Tribunal ceremonies — and a document signed by a senior Temple hierophant certifying this ruler’s legitimacy to all Dunmer courts in Morrowind.
+
+The document will be copied and distributed to every Great House seat, every Temple branch, and several Ashlander tribal councils. When other Dunmer lords look at this ruler, they will see someone who has the Tribunal’s formal recognition backing their claim.
+
+This is not a small thing. In Morrowind, it is almost everything."
+ indoril.020.a: "Receive the blessing with full ceremony. The Tribunal’s favour is worth displaying."
+ indoril.020.b: "Accept privately. The substance matters; the display of Indoril patronage is unnecessary."
+

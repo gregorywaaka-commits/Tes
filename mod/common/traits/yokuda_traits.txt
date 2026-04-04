@@ -33,19 +33,21 @@
 # =============================================================
 #
 #  DEFINES — identifiers this file exports to the mod:
+#    • ansei_swordmaster
 #    • ra_gada_warrior
 #    • ruptga_devoted
 #    • sep_cultist
 #    • sword_singer
+#    • tu_whacca_faithful
 #    • yokudan_heritage
 #
 #  REFERENCED BY — other files that import this file's definitions:
 #    common/decisions/yokuda_decisions.txt
 #      → ra_gada_warrior, sword_singer
 #    common/on_actions/lore_races_on_actions.txt
-#      → ruptga_devoted, yokudan_heritage
+#      → ansei_swordmaster, ruptga_devoted, sword_singer, tu_whacca_faithful, yokudan_heritage
 #    events/yokuda_events.txt
-#      → ra_gada_warrior, ruptga_devoted, sep_cultist, sword_singer, yokudan_heritage
+#      → ansei_swordmaster, ra_gada_warrior, ruptga_devoted, sep_cultist, sword_singer, tu_whacca_faithful, yokudan_heritage
 # =============================================================
 
 ra_gada_warrior = {
@@ -131,4 +133,48 @@ yokudan_heritage = {
     monthly_prestige_gain_mult = 0.10   # The legacy of a drowned world carries weight
 
     flag = yokudan_heritage
+}
+
+# ---------------------------------------------------------------
+#  ANSEI SWORDMASTER
+#  The pinnacle beyond even Sword-Singer — an Ansei is one who
+#  has so completely manifested the Shehai that it is no longer
+#  a technique but a nature.  The legendary Frandar Hunding was
+#  an Ansei of the first rank; his Hammer and Anvil formation
+#  at the Battle of Pale Pass destroyed the Lefthanded Elves
+#  of Yokuda.  Ansei swordmasters can cut thought, memory,
+#  and the fabric between Mundus and Oblivion.
+# ---------------------------------------------------------------
+ansei_swordmaster = {
+    category = fame
+
+    martial  = 8
+    prowess  = 10
+    intrigue = 2
+
+    monthly_prestige_gain_mult = 0.40   # The Ansei are the greatest warriors Tamriel has ever produced
+
+    flag = ansei_swordmaster
+}
+
+# ---------------------------------------------------------------
+#  TU'WHACCA FAITHFUL
+#  A devout follower of Tu'whacca — the Yokudan god of the
+#  afterlife, guide of souls, keeper of the Far Shores.  When
+#  Yokuda sank, Tu'whacca tended the billions of souls that
+#  spilled into his care before they could be processed.
+#  His faithful serve as death-priests, battlefield chaplains,
+#  and keepers of the Redguard burial traditions.  They face
+#  death — their own and others' — with uncommon steadiness.
+# ---------------------------------------------------------------
+tu_whacca_faithful = {
+    category = lifestyle
+
+    diplomacy        = 2
+    learning         = 2
+    stress_gain_mult = -0.15   # Tu'whacca's faithful understand that death is a destination, not a disaster
+
+    monthly_piety_gain_mult = 0.20
+
+    flag = tu_whacca_faithful
 }

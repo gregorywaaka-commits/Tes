@@ -1,0 +1,75 @@
+# =============================================================
+#  College of Sapiarchs — Traits
+#  File: mod/common/traits/sapiarch_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  sapiarch_initiate      — Admitted student of the College of Sapiarchs.
+#  metamagic_scholar      — A Sapiarch who has mastered advanced magical theory.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The College of Sapiarchs is the supreme arcane institution of the Altmer,
+#  located in Summerset.  It enforces Altmeri magical law, preserves ancient
+#  arcane knowledge, and oversees all magical practice in Summerset with an
+#  authority that rivals the Crystal Tower itself.  The Sapiarchs are the
+#  forty-nine masters of magical discipline — each an authority in their
+#  specific school — who collectively govern Altmeri arcane practice.
+#  They are explicitly in tension with the Psijic Order, which the Sapiarchs
+#  regard as pursuing dangerous philosophical deviations from proper magical
+#  study.  Sources: UESP Lore:College of Sapiarchs; ESO Summerset.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — traits are self-contained.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/sapiarch_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • metamagic_scholar
+#    • sapiarch_initiate
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/sapiarch_events.txt
+#      → metamagic_scholar, sapiarch_initiate
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SAPIARCH INITIATE
+#  An Altmer ruler who has been formally admitted to the study
+#  program of the College of Sapiarchs — recognized as possessing
+#  the intellectual and magical aptitude required for the College's
+#  rigorous curriculum.  Admission is rare and coveted.
+# ---------------------------------------------------------------
+sapiarch_initiate = {
+    category = lifestyle
+
+    learning = 3
+    diplomacy = 1
+
+    monthly_prestige_gain_mult = 0.10   # Sapiarch credentials confer significant social standing
+
+    flag = sapiarch_initiate
+}
+
+# ---------------------------------------------------------------
+#  METAMAGIC SCHOLAR
+#  A ruler who has advanced within the College of Sapiarchs to
+#  the level of genuine arcane mastery — a practitioner capable
+#  of teaching their discipline and shaping magical law in
+#  Summerset.  One of the forty-nine recognised masters.
+# ---------------------------------------------------------------
+metamagic_scholar = {
+    category = fame
+
+    learning    = 5
+    diplomacy   = 2
+    intrigue    = 1
+
+    monthly_prestige_gain_mult = 0.20
+
+    flag = metamagic_scholar
+}

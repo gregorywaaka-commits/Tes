@@ -1,0 +1,26 @@
+﻿l_english:
+
+ # =====================================================================
+ #  ALMSIVI INTERDICT — Temple Censure in Morrowind
+ # =====================================================================
+
+ # ---- almsivi.000 --- The Interdict Arrives ----
+
+ almsivi.000.t: "The Temple's Judgment"
+ almsivi.000.desc: "The document arrived under ALMSIVI's seal — all three signatures, which means the censure has been agreed between Vivec, Almalexia, and Sotha Sil, and is therefore not a negotiating position. The Tribunal Temple has issued an almsivi interdict against you. The formal charges are laid out in careful legal language. The practical consequences are straightforward: no Temple services, no Ordinator cooperation, no access to the canonical infrastructure of Dunmer religious life. In Morrowind, where the Temple underpins everything from marriage law to road maintenance, this is not a symbolic sanction."
+ almsivi.000.a: "I recant. Publicly. Whatever it costs me."
+ almsivi.000.b: "Tell the Temple I received their message. Tell them I decline."
+
+ # ---- almsivi.001 --- Under Censure ----
+
+ almsivi.001.t: "Living Under the Interdict"
+ almsivi.001.desc: "The Temple has been clear about the terms. The interdict stands until you publicly recant the position that triggered it, or perform a penance the Ordinators have described as extensive, or — the letter implies this more than states it — until the Temple decides that maintaining the pressure is no longer worth the administrative inconvenience. Your court is watching to see which way you move. Recanting is the fastest path back to normal life. It is also an admission that the Temple has the authority to define what you are allowed to believe."
+ almsivi.001.a: "Let them proclaim it. I stand behind what I have done."
+ almsivi.001.b: "I will pay whatever it costs to end this. Piety, if that is what they want."
+ almsivi.001.c: "I have reconsidered. I recant. End this now."
+
+ # ---- almsivi.002 --- The Interdict Lifted ----
+
+ almsivi.002.t: "The Interdict Lifted"
+ almsivi.002.desc: "The Temple's representative came without the usual ceremony and delivered the document confirming that the almsivi interdict has been lifted. No speeches. No occasion made of it. The Ordinators who had been stationed near your gate have already left. Vivec City's administrators will restore your access to Temple services by the end of the month. What you said to end it, if you recanted, is now part of the public record. The Temple keeps very complete records. You are free. The document exists."
+ almsivi.002.a: "It is done. I have said the words. Now I live with having said them."

@@ -1,0 +1,79 @@
+# =============================================================
+#  Silvenar & Green Lady — Traits
+#  File: mod/common/traits/silvenar_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  bosmer_silvenar    — The spiritual ambassador of the Bosmer people.
+#                       Diplomatic and piety bonuses; heavy spiritual burden.
+#  green_lady_bound   — The warrior-bride of the Silvenar, bound supernaturally.
+#                       Martial and prowess bonuses; her fate is his fate.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  In Bosmeri culture, the Silvenar is a living office — a title
+#  given to the person who best embodies the collective spirit of
+#  all Bosmer at a given time.  They are the spiritual ambassador,
+#  the voice of the forest people, and a sacred figure in Valenwood.
+#  Inseparable from the Silvenar is the Green Lady — a warrior figure
+#  who is the Silvenar's consort and guardian.  The bond between
+#  them is supernatural: if one dies, so does the other.  The Green
+#  Lady's martial ferocity is the inverse of the Silvenar's
+#  diplomatic grace — together they form a single sacred union.
+#  New Silvenars are born when the old one dies; the title itself
+#  is eternal.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/silvenar_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • bosmer_silvenar
+#    • green_lady_bound
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/on_actions/lore_races_on_actions.txt
+#      → bosmer_silvenar, green_lady_bound (on_character_death)
+#    events/silvenar_events.txt
+#      → bosmer_silvenar, green_lady_bound
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BOSMER SILVENAR
+#  The living symbol of the Bosmer people — their collective
+#  soul made flesh, their voice in the world, their ambassador
+#  to gods and men alike.  The burden is immense.  The honour
+#  is total.  The solitude is absolute.
+# ---------------------------------------------------------------
+bosmer_silvenar = {
+    category = fame
+
+    diplomacy               = 4
+    learning                = 2
+    monthly_piety_gain_mult = 0.20
+    stress_gain_mult        = 0.15   # The weight of carrying a people
+
+    flag = bosmer_silvenar
+}
+
+# ---------------------------------------------------------------
+#  GREEN LADY BOUND
+#  The warrior-bride of the Silvenar.  Her life and his are
+#  threaded together by powers older than any court.  When
+#  he dies, she will follow.  Until then, she fights.
+# ---------------------------------------------------------------
+green_lady_bound = {
+    category = fame
+
+    martial  = 4
+    prowess  = 4
+
+    monthly_prestige_gain_mult = 0.15
+
+    flag = green_lady_bound
+}

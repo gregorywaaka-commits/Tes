@@ -30,7 +30,7 @@ Tamriel has **nine provinces**, each dominated by a primary race and distinct ge
 - **Primary inhabitants:** Imperials
 - **Climate/geography:** Temperate forest and fertile plains (Nibenay Valley); the Great Forest in the west; Lake Rumare surrounds the Imperial City island.
 - **Major cities:** Imperial City (seat of the Ruby Throne), Anvil, Bravil, Bruma, Chorrol, Kvatch, Leyawiin, Skingrad
-- **Notes:** Heart of the Empire. White-Gold Tower is located here on the Imperial City isle. Originally ruled by Ayleids before the Alessian Rebellion (1E 243).
+- **Notes:** Heart of the Empire. White-Gold Tower is located here on the Imperial City isle. Originally ruled by Ayleids before the Alessian Rebellion (1E 243). During the **Interregnum (2E 430–854)** Cyrodiil was a battleground of warring warlords; notably, the **Longhouse Emperors** (2E 533–577) — a Reachman dynasty founded by **Durcorach the Black Drake** — briefly controlled the Ruby Throne before being overthrown by Duke **Varen Aquilarios** in the Colovian Revolt (Varen ruled only briefly before the Soulburst and disappearance). `[CANON — UESP: Lore:Longhouse Emperors]`
 
 ### Morrowind `[CANON — UESP]`
 > **Source:** UESP Lore:Morrowind — https://en.uesp.net/wiki/Lore:Morrowind
@@ -85,7 +85,7 @@ Tamriel has **nine provinces**, each dominated by a primary race and distinct ge
 - **Primary inhabitants:** Khajiit
 - **Climate/geography:** Two distinct halves — **Anequina** (arid desert badlands, north) and **Pellitine** (lush tropical jungle/rivers, south). Khajiit culture and appearance differ between halves.
 - **Major cities:** Rimmen (Anequina), Riverhold, Torval (Pellitine capital), Senchal (port)
-- **Notes:** Elsweyr is actually the **union of two former kingdoms** — Anequina and Pellitine — merged by Imperial treaty. `[CANON — UESP]` The Khajiit's physical form is determined by the phases of Tamriel's two moons (**Masser** and **Secunda**) at birth; 17+ morphological forms exist. `[CANON — IN-GAME BOOK: Words of Clan Mother Ahnissi]`
+- **Notes:** Elsweyr is the **union of two former kingdoms** — **Anequina** (north; arid, tribal) and **Pellitine** (south; lush, mercantile) — merged in **2E 309** when Keirgo of Anequina married Eshita of Pellitine. Political stability was achieved through the **Riddle'Thar** governance system (2E 311), overseen by the **Mane**, which balanced power according to the phases of the two moons. `[CANON — UESP: Lore:Elsweyr Confederacy]` ⚠️ The merger was a political marriage/treaty, NOT an Imperial decree. The Khajiit's physical form is determined by the phases of Tamriel's two moons (**Masser** and **Secunda**) at birth; 17+ morphological forms exist. `[CANON — IN-GAME BOOK: Words of Clan Mother Ahnissi]`
 
 ### Black Marsh (Argonia) `[CANON — UESP]`
 > **Source:** UESP Lore:Black Marsh — https://en.uesp.net/wiki/Lore:Black_Marsh
@@ -95,6 +95,7 @@ Tamriel has **nine provinces**, each dominated by a primary race and distinct ge
 - **Climate/geography:** Vast swamps, wetlands, rainforests; nearly impassable by non-Argonians due to disease and terrain. Interior called the **Hist-Grove** regions.
 - **Major cities:** Gideon (Imperial-built border city), Lilmoth, Thorn
 - **Notes:** Argonians are deeply bonded to the **Hist** (sentient trees with shared consciousness). The **An-Xileel** faction repelled Oblivion's armies during the Crisis by taking the fight into Oblivion. `[CANON — TES IV: Oblivion lore / UESP]` The interior of Black Marsh has never been fully mapped by outsiders. `[CANON — UESP]`
+- **Knahaten Flu (2E 560–c.603):** A devastating plague originating in Stormhold wiped out virtually all non-Argonian inhabitants of Black Marsh, including the **Kothringi** and **Lilmothiit** peoples. Argonians were largely immune. The disease spread to neighbouring provinces, killing millions. `[CANON — UESP: Lore:Knahaten Flu; in-game book: On the Knahaten Flu]` ⚠️ Whether the flu was natural, engineered by Argonian shamans, or Daedric in origin is `[CONTESTED]` — no single explanation is confirmed canon.
 
 ---
 

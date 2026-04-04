@@ -1,0 +1,48 @@
+﻿l_english:
+
+ # =====================================================================
+ #  PROPHET VELOTH VENERATION
+ # =====================================================================
+
+ # ---- veloth.000 --- The Prophet’s Vision ----
+
+ veloth.000.t: "The Prophet’s Road"
+ veloth.000.desc: "In something that resembles a waking dream, you experience what the scholars call a Velothi vision: the Chimer exile compressed into a moment. The long walk out of Summerset. The ash-dusted passes of the mountains that would bear the Prophet’s name. The sense of something left behind deliberately, and something found on the other side of the leaving. Veloth was not fleeing when he led his people east. He was answering a call. You are not sure whether the experience was religious, political, or simply what happens when a Dunmer of sufficient learning stares at history long enough."
+ veloth.000.a: "What Veloth built in the east was real. I feel the weight of it even now."
+ veloth.000.b: "A vision, nothing more. The Tribunal stands. That is what matters in this age."
+
+ # ---- veloth.001 --- The Pilgrim Road ----
+
+ veloth.001.t: "The Road East"
+ veloth.001.desc: "The Velothi Mountains bear the Prophet’s name because he crossed them. The passes are old and in some places marked with carved stones that predate the Tribunal’s architecture by centuries. Walking some portion of Veloth’s route is not a religious obligation that the Temple enforces; it is something that certain Dunmer feel drawn to regardless. The road does not look like a holy site. It looks like a mountain pass that has been crossed by many generations of people who each thought they were crossing it for personal reasons."
+ veloth.001.a: "I walk the road. Each step feels earned."
+ veloth.001.b: "I cannot leave the realm. I will honour the road in memory rather than in person."
+
+ # ---- veloth.002 --- Veloth’s Sermon ----
+
+ veloth.002.t: "The Sermon Beneath the Ash"
+ veloth.002.desc: "In an ash-dusted stone library that has not been formally catalogued since before the Tribunal was a living institution, a pilgrim finds a transcription of one of Veloth’s original sermons. The texts the Temple circulates about Veloth are edited versions. This one has not been edited. It is more direct about the Good Daedra. It is more direct about why Veloth left Summerset. It is, in several places, more direct about the Tribunal’s own position within the tradition Veloth founded — in ways that the Temple has chosen not to preserve in its authorised copies."
+ veloth.002.a: "I study it deeply. This is the foundation under the Tribunal, and I want to know it."
+ veloth.002.b: "I copy it carefully and keep it private. The Temple need not know it exists."
+
+ # ---- veloth.003 --- The Temple’s Attention ----
+
+ veloth.003.t: "The Temple Sends a Word"
+ veloth.003.desc: "The representative the Tribunal Temple has sent is polite in the way that people are polite when they are delivering a message they have been told to deliver politely. The substance of the message: certain scholarly interests, when pursued by ruling lords, can attract theological attention. The pre-Revelation texts exist in a complicated relationship to current doctrine. The Temple is not accusing you of anything. They are simply noting that they have noticed. The word‘simply’ is doing a great deal of work in that sentence."
+ veloth.003.a: "Tell the Temple that Veloth pre-dates ALMSIVI. He is not heresy — he is the root."
+ veloth.003.b: "I defer to the Temple. Veloth’s path and the Tribunal’s are not in conflict."
+
+ # ---- veloth.004 --- Veloth’s Legacy ----
+
+ veloth.004.t: "More Than a Pilgrim"
+ veloth.004.desc: "The confrontation with the Temple clarified something. The road east was not a detour in Dunmer history — it was the founding act. And the founding act had a specific spiritual content: the Good Daedra, Veloth’s teachers, the understanding that the Chimer were not fallen Aldmer but something that had chosen to become something else. Whether that sits comfortably within current Temple doctrine is the Temple’s problem to manage. What it means for you is simpler: you have found the root, and you know it for what it is."
+ veloth.004.a: "I am more than a pilgrim. Veloth’s path is mine now, in full."
+ veloth.004.b: "The pilgrimage was enough. I do not need to become a devotee."
+
+ # ---- Traits ----
+
+ veloth_pilgrim: "Veloth Pilgrim"
+ veloth_pilgrim_desc: "This character has walked some portion of Veloth’s original exodus route and carries its spiritual weight."
+
+ veloth_devotee: "Veloth Devotee"
+ veloth_devotee_desc: "This character has moved beyond pilgrimage to full devotion to Veloth’s teachings. The Good Daedra, the exile, and the idea of a chosen people. The Tribunal Temple finds this mildly troubling."

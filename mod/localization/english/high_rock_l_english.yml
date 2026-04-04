@@ -1,0 +1,45 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+ # ============================================================
+ #  High Rock Petty Kings
+ # ============================================================
+
+ # Traits
+ high_rock_peer: "High Rock Peer"
+ high_rock_peer_desc: "This Breton ruler has attended the Conclave of Petty Kings and earned formal recognition from their neighbours. Their word carries weight in subsequent conclaves and their claims are acknowledged by peers."
+ breton_warlord: "Breton Warlord"
+ breton_warlord_desc: "Hardened by Reachman border raids, this Breton ruler has built a professional military force. Their soldiers are battle-tested; their treasury runs a little thin."
+
+ # Modifiers
+ breton_conclave_accord_modifier: "Conclave Accord"
+ breton_conclave_accord_modifier_desc: "The Conclave of Petty Kings has produced a formal accord. Neighbouring Breton lords recognise this ruler's standing for a season."
+ wayrest_market_bond_modifier: "Wayrest Trade Bond"
+ wayrest_market_bond_modifier_desc: "Formal ties with the Wayrest merchant leagues open access to High Rock's most lucrative coastal trade routes."
+ reach_raid_damage_modifier: "Reachman Tribute Paid"
+ reach_raid_damage_modifier_desc: "The ruler paid tribute to Reachman raiders. The border is quiet for now — but word of this payment will spread."
+
+ # high_rock.000 — Conclave of Petty Kings
+ high_rock.000.t: "The Conclave of Petty Kings"
+ high_rock.000.desc: "A herald bearing the seals of seven Breton lords arrives at court. The Conclave has been called — the grand summit where High Rock's petty kings settle grievances, renew alliances, and posture at one another across long tables. In the absence of an Empire, these conclaves are the closest thing to order that High Rock possesses."
+ high_rock.000.a: "I will lead this conclave. High Rock needs a strong voice — mine."
+ high_rock.000.b: "I will attend but keep my counsel. Let others expose their weaknesses first."
+ high_rock.000.c: "Petty councils accomplish nothing. I have real work to do."
+
+ # high_rock.010 — The Reach Demands Its Toll
+ high_rock.010.t: "The Reach Demands Its Toll"
+ high_rock.010.desc: "Smoke rises from a border village. Reachman war-bands have crossed the eastern passes again, burning farms and driving off livestock. The old tensions between the Breton petty kingdoms and the Reach clans flare with depressing regularity — and with no Empire to call upon for aid, the ruler must handle this alone."
+ high_rock.010.a: "Garrison the passes. We will not be caught unprepared a second time."
+ high_rock.010.b: "Pay the toll. One season of tribute buys three seasons of peace."
+ high_rock.010.c: "Seek an accord with the Reach clans. They are fierce — but not unreasonable."
+
+ # high_rock.020 — Wayrest Market Influence
+ high_rock.020.t: "The Wayrest Merchants"
+ high_rock.020.desc: "A delegation from the Wayrest merchant leagues arrives at court with a proposal. Wayrest — the most commercially minded city in High Rock — is extending its trade network into the interior, and they want this ruler's realm to be part of it. The terms are fair; the implications are significant."
+ high_rock.020.a: "Invest in the Wayrest routes. Coin builds kingdoms faster than swords."
+ high_rock.020.b: "We will manage our own trade. I will not let Wayrest merchants into my lands."
+
+ # high_rock.030 — Bretons and the Arcane
+ high_rock.030.t: "The Aldmeri Gift"
+ high_rock.030.desc: "A court scholar presents a thesis: the Bretons' extraordinary affinity for magic is not coincidence. It is the legacy of ancient interbreeding between human Nedes and Aldmeri invaders during the Direnni Hegemony — the Aldmeri gift persisting through millennia of dilution. The ruler feels this truth in their blood whenever they hold a candle and feel the flame respond."
+ high_rock.030.a: "The Mages Guild welcomes those of our bloodline. I will formalise my studies."
+ high_rock.030.b: "Our Aldmeri heritage speaks through us. I will pursue magic on my own terms."

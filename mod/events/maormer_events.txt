@@ -254,3 +254,167 @@ maormer.016 = {
         add_prestige = 50
     }
 }
+
+# ---------------------------------------------------------------
+# maormer.020  The Pyandonean Fleet on the Horizon
+# Reports reach court: a Maormer fleet of unusual size has been
+# sighted off the Summerset coast.  This is not a raid — it is
+# the prelude to something larger.
+# Fires for Altmer coastal rulers as a threat-warning.
+# ---------------------------------------------------------------
+maormer.020 = {
+    type = character_event
+    title = maormer.020.t
+    desc  = maormer.020.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_alive = yes
+        any_held_county = { is_coastal = yes }
+        OR = {
+            has_culture = altmer_culture
+            any_held_county = { geographical_region = world_summerset }
+        }
+        NOT = { is_maormer = yes }
+        NOT = { has_character_flag = pyandonean_fleet_warned }
+    }
+
+    option = {
+        name = maormer.020.a   # "Summon the naval commanders — we will meet them at sea."
+        set_character_flag = { flag = pyandonean_fleet_warned days = 3650 }
+        add_prestige = 200
+        add_stress   = 10
+        trigger_event = { id = maormer.021 days = 90 }
+    }
+
+    option = {
+        name = maormer.020.b   # "Reinforce the coastal fortifications and wait."
+        set_character_flag = { flag = pyandonean_fleet_warned days = 3650 }
+        add_prestige = 50
+        add_modifier = { modifier = quarantine_modifier days = 365 }
+    }
+}
+
+# ---------------------------------------------------------------
+# maormer.021  The Battle of the Summerset Shore
+# The Maormer fleet engages the Altmer navy.  The outcome is
+# uncertain — but the Maormer commanders have sea serpents.
+# ---------------------------------------------------------------
+maormer.021 = {
+    type = character_event
+    title = maormer.021.t
+    desc  = maormer.021.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = war_declaration
+    }
+
+    option = {
+        name = maormer.021.a   # "Victory! The serpents could not breach our fleet formation."
+        trigger = { martial >= 12 }
+        add_prestige = 500
+        add_modifier = { modifier = repelled_maormer_modifier days = 1825 }
+        trigger_event = { id = maormer.022 days = 30 }
+    }
+
+    option = {
+        name = maormer.021.b   # "We held them, but the coast took damage. The sea-witches are powerful."
+        add_prestige = 100
+        add_stress   = 15
+        add_modifier = { modifier = maormer_hatred_modifier days = 1095 }
+    }
+
+    option = {
+        name = maormer.021.c   # "The serpents broke our line. We withdrew to regroup."
+        trigger = { martial < 12 }
+        add_prestige = -300
+        add_stress   = 25
+        add_modifier = { modifier = maormer_tempest_modifier days = 730 }
+    }
+}
+
+# ---------------------------------------------------------------
+# maormer.022  After the Battle — Sea Serpent Commander Captured
+# In the aftermath of repelling the Maormer fleet, one of their
+# sea serpent commanders was taken alive.  What to do with them?
+# ---------------------------------------------------------------
+maormer.022 = {
+    type = character_event
+    title = maormer.022.t
+    desc  = maormer.022.desc
+    theme = diplomacy
+    left_portrait = {
+        character = root
+        animation = personality_melancholic
+    }
+
+    option = {
+        name = maormer.022.a   # "Interrogate them — learn the Pyandonean sea routes."
+        add_prestige = 300
+        add_intrigue = 1
+        add_modifier = { modifier = repelled_maormer_modifier days = 730 }
+    }
+
+    option = {
+        name = maormer.022.b   # "Offer them as a diplomatic gesture — send them home."
+        add_prestige = 150
+        add_piety    = 200
+        add_modifier = { modifier = maormer_truce_modifier days = 1825 }
+    }
+
+    option = {
+        name = maormer.022.c   # "Execute them publicly — let Orgnum hear what happens to his commanders."
+        add_prestige = 200
+        add_piety    = -200
+        add_modifier = { modifier = maormer_hatred_modifier days = 730 }
+        # Maormer will be more motivated in their next raid
+    }
+}
+
+# ---------------------------------------------------------------
+# maormer.023  The Pyandonean Tempest — Sea Witch Ritual
+# A massive storm has been raised by Maormer sea-witches and
+# is tracking toward the Summerset coast.  This is weather-magic
+# of the deepest kind — Orgnum's blessing made manifest at sea.
+# ---------------------------------------------------------------
+maormer.023 = {
+    type = character_event
+    title = maormer.023.t
+    desc  = maormer.023.desc
+    theme = plague   # closest to 'natural disaster' theme available
+
+    trigger = {
+        is_ruler = yes
+        is_alive = yes
+        any_held_county = { is_coastal = yes }
+        OR = {
+            has_culture = altmer_culture
+            any_held_county = { geographical_region = world_summerset }
+        }
+        NOT = { is_maormer = yes }
+        NOT = { has_character_flag = pyandonean_tempest_survived }
+    }
+
+    option = {
+        name = maormer.023.a   # "Prepare the harbours — lash down the ships, evacuate the coast."
+        set_character_flag = { flag = pyandonean_tempest_survived days = 3650 }
+        add_prestige = 100
+        add_stress   = 20
+        add_modifier = { modifier = maormer_tempest_modifier days = 365 }
+    }
+
+    option = {
+        name = maormer.023.b   # "Consult the Sapiarchs — perhaps there is a counter-ritual."
+        set_character_flag = { flag = pyandonean_tempest_survived days = 3650 }
+        trigger = { learning >= 10 }
+        add_prestige = 300
+        add_piety    = 100
+        # The Sapiarchs may have a way to blunt it
+    }
+}

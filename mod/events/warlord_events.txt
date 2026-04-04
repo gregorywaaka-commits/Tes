@@ -1,0 +1,162 @@
+# =============================================================
+#  Warlord Claimants — Events
+#  Namespace: warlord
+#
+#  LORE:
+#  The Interregnum (2E 431–541) is the power vacuum between the
+#  assassination of the last Akaviri Potentate Savirien-Chorak and
+#  the consolidation of the Longhouse Emperors.  Any ruler holding
+#  the Imperial City can declare themselves Emperor — a claim backed
+#  by possession of the Ruby Throne but nothing else.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • warlord.000  — The Ruby Throne sits empty — world trigger fires once
+#                    for the ruler controlling c_imperial_city during 2E 431–541.
+#  • warlord.010  — The warlord faces a rival claim from another strong lord.
+#  • warlord.020  — A vassal demands recognition of the Emperor's claim.
+#
+#  KEY TRAITS (warlord_traits.txt):
+#  ─────────────────────────────────
+#  • warlord_emperor   — claimed the Interregnum throne
+#
+#  KEY MODIFIERS (lore_races_modifiers.txt):
+#  ──────────────────────────────────────────
+#  • warlord_claim_modifier   — short-term prestige boost after declaration
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • c_imperial_city  = EK2 county identifier
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/warlord_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/warlord_traits.txt
+#      → warlord_emperor
+# =============================================================
+
+namespace = warlord
+
+# ---------------------------------------------------------------
+# warlord.000  The Empty Throne
+# Fires for the ruler controlling the Imperial City during
+# 2E 431–541. They may declare themselves Emperor (gaining the
+# warlord_emperor trait) or consolidate quietly.
+# ---------------------------------------------------------------
+warlord.000 = {
+    type = character_event
+    title = warlord.000.t
+    desc  = warlord.000.desc
+    theme = war
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        any_held_county = { this = county:c_imperial_city }
+        NOT = { has_trait = warlord_emperor }
+        NOT = { has_character_flag = warlord_declared }
+        NOT = { has_character_flag = warlord_refused }
+        game_start_date >= 2.431.1.1
+        game_start_date <= 2.541.12.31
+    }
+
+    option = {
+        name = warlord.000.a   # "I declare myself Emperor of Tamriel."
+        add_character_flag = { flag = warlord_declared }
+        add_trait = warlord_emperor
+        add_prestige = 500
+        add_modifier = {
+            modifier = warlord_claim_modifier
+            days = 1825
+        }
+        trigger_event = { id = warlord.010 days = 180 }
+    }
+
+    option = {
+        name = warlord.000.b   # "This city is mine. Let the title wait."
+        add_character_flag = {
+            flag = warlord_refused
+            days = 1825
+        }
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# warlord.010  A Rival in the East
+# A powerful lord sends word that they too hold a claim to the
+# Ruby Throne.  The warlord_emperor must respond: challenge,
+# negotiate, or ignore and risk their legitimacy.
+# ---------------------------------------------------------------
+warlord.010 = {
+    type = character_event
+    title = warlord.010.t
+    desc  = warlord.010.desc
+    theme = war
+
+    trigger = {
+        is_adult = yes
+        has_trait = warlord_emperor
+        has_character_flag = warlord_declared
+    }
+
+    option = {
+        name = warlord.010.a   # "My army answers for my title."
+        add_prestige  = 200
+        add_stress    = 10
+        add_character_flag = { flag = warlord_rival_challenged days = 730 }
+    }
+
+    option = {
+        name = warlord.010.b   # "Send a diplomatic envoy — I will negotiate."
+        add_prestige  = 75
+        add_piety     = 25
+        add_character_flag = { flag = warlord_rival_negotiated days = 730 }
+    }
+
+    option = {
+        name = warlord.010.c   # "Ignore it. Pretenders rise and fall."
+        add_prestige = -50
+    }
+}
+
+# ---------------------------------------------------------------
+# warlord.020  The Vassal's Demand
+# A loyal vassal approaches: they have followed the warlord through
+# the fighting, and now they want their service recognised with a
+# title that matches the Emperor's new station.
+# ---------------------------------------------------------------
+warlord.020 = {
+    type = character_event
+    title = warlord.020.t
+    desc  = warlord.020.desc
+    theme = diplomacy
+
+    trigger = {
+        is_adult = yes
+        has_trait = warlord_emperor
+        any_vassal = { is_adult = yes }
+    }
+
+    option = {
+        name = warlord.020.a   # "Grant the title. An Emperor needs loyal earls."
+        random_vassal = {
+            limit = { is_adult = yes }
+            add_opinion = { target = root modifier = grateful_opinion }
+            add_prestige = 150
+        }
+        add_gold = -50
+    }
+
+    option = {
+        name = warlord.020.b   # "Nothing is changed by a change of title."
+        random_vassal = {
+            limit = { is_adult = yes }
+            add_opinion = { target = root modifier = angry_opinion }
+        }
+        add_prestige = 50
+    }
+}

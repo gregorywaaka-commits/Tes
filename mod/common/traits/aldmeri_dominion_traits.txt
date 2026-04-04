@@ -1,0 +1,76 @@
+# =============================================================
+#  Aldmeri Dominion — Traits
+#  File: mod/common/traits/aldmeri_dominion_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  dominion_herald     — Pledged to Queen Ayrenn's vision of elven
+#                        leadership at the Dominion's founding (2E 580).
+#  ayrenn_skeptic      — Questions whether Ayrenn's "return" and sudden
+#                        political ambition serve Altmer interests or
+#                        her own unknown agenda.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Aldmeri Dominion was founded c. 2E 580 when Queen Ayrenn of the
+#  Summerset Isles — who had spent years wandering Tamriel in apparent
+#  self-imposed exile — returned home and assembled a coalition of Altmer,
+#  Bosmer, and Khajiit.  The stated goal was claiming the Ruby Throne.
+#  The unstated goal — that Tamriel benefits from elven guidance — was
+#  transparent to anyone paying attention.  Ayrenn's past wanderings
+#  and the speed of the Dominion's assembly fuelled conspiracy theories
+#  that persist to this day.
+#  Sources: ESO Summerset; ESO main quest; UESP Lore:Aldmeri Dominion;
+#  ESO in-game "The Queen's Decree".
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/aldmeri_dominion_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • dominion_herald
+#    • ayrenn_skeptic
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/aldmeri_dominion_events.txt
+#      → dominion_herald, ayrenn_skeptic
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DOMINION HERALD
+#  A ruler who heralded the Aldmeri Dominion at its founding and
+#  committed to Queen Ayrenn's vision before the Three Banners War
+#  began.  Carries the prestige of early belief.
+# ---------------------------------------------------------------
+dominion_herald = {
+    category = fame
+
+    diplomacy  = 3
+    learning   = 1
+    monthly_prestige = 2
+    monthly_piety_gain_mult = 0.05    # The Dominion frames itself as divinely guided
+
+    flag = dominion_herald
+}
+
+# ---------------------------------------------------------------
+#  AYRENN SKEPTIC
+#  A ruler who doubts the queen's sincerity or her agenda; suspects
+#  that Ayrenn's wandering years concealed a purpose she has not
+#  disclosed, and that the Dominion is built on that concealment.
+# ---------------------------------------------------------------
+ayrenn_skeptic = {
+    category = fame
+    is_good = no
+
+    intrigue   = 2
+    learning   = 1
+    monthly_prestige = 1
+
+    flag = ayrenn_skeptic
+}

@@ -1,0 +1,76 @@
+# =============================================================
+#  Shadowscale — Traits
+#  File: mod/common/traits/shadowscale_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  shadowscale_trained   — An Argonian trained by the Hist as a
+#                          Shadowscale assassin from birth.
+#                          Intrigue and stealth bonuses; lethal reputation.
+#  shadowscale_patron    — A ruler who actively sponsors the Shadowscale
+#                          program and employs their services.
+#                          Intrigue bonuses; feared by enemies.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Argonians born under the sign of the Shadow are given to the Hist
+#  at birth, raised in the Black Marsh swamps and trained as elite
+#  assassins.  The Shadowscales serve as the dark arm of Argonian
+#  power — carrying out killings that no army could accomplish and no
+#  law could prevent.  The Hist itself directs their loyalties.  The
+#  program is ancient, predating the Second Era, and operates with
+#  the full approval of the An-Xileel tribal structure.  Only rulers
+#  who hold the Hist's trust can call on the Shadowscales; abusing
+#  that trust invites the Hist's displeasure.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/shadowscale_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • shadowscale_patron
+#    • shadowscale_trained
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/shadowscale_events.txt
+#      → shadowscale_patron, shadowscale_trained
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SHADOWSCALE TRAINED
+#  Given to the Hist at birth.  Raised in darkness and marsh.
+#  Lethal before adulthood.  Loyal to the Hist above any lord.
+# ---------------------------------------------------------------
+shadowscale_trained = {
+    category = lifestyle
+
+    intrigue = 5
+    prowess  = 3
+
+    hostile_scheme_success_chance_add  = 15   # The Hist trained you for exactly this
+    enemy_hostile_scheme_success_chance_add = -5   # Hard to scheme against someone watching shadows
+
+    flag = shadowscale_trained
+}
+
+# ---------------------------------------------------------------
+#  SHADOWSCALE PATRON
+#  A ruler who has accepted the Hist's offer of Shadowscale
+#  services — maintaining the old ways and paying the Hist's
+#  price in return for a lethal resource no enemy can see coming.
+# ---------------------------------------------------------------
+shadowscale_patron = {
+    category = lifestyle
+
+    intrigue = 3
+
+    hostile_scheme_success_chance_add  = 10   # You know how to make people disappear
+    monthly_prestige_gain_mult         = 0.10 # Feared, and fear has its own prestige
+
+    flag = shadowscale_patron
+}

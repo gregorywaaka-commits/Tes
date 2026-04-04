@@ -7,7 +7,7 @@ l_english:
 
  daedric_invasion.001.t: "Darkness Descends"
  daedric_invasion.001.desc_dagon: "Mehrunes Dagon, Prince of Destruction and Change, has opened the Gates of Oblivion. His Daedric armies pour into the mortal world to raze every kingdom that stands before them."
- daedric_invasion.001.desc_molag: "Molag Bal, the King of Rape and Prince of Domination, seeks to drag Nirn into Coldharbour. His soul husks and vampiric forces march upon the living."
+ daedric_invasion.001.desc_molag: "Molag Bal, the King of Corruption and Prince of Domination, seeks to drag Nirn into Coldharbour. His soul husks and vampiric forces march upon the living."
  daedric_invasion.001.desc_boethiah: "Boethiah, Prince of Plots and Assassination, has seeded treachery across the courts of Tamriel. Her cultists and Daedric warriors advance from the shadows."
  daedric_invasion.001.desc_hircine: "Hircine, the Huntsman of the Princes, has opened his Hunting Grounds to Nirn. Werewolves, werebears, and Daedric hunters stalk every forest and vale."
  daedric_invasion.001.desc_namira: "Namira, the Lady of Decay, spreads corruption across the land. Her children — the ancient and repulsive — crawl forth to devour civilization."
@@ -81,7 +81,7 @@ l_english:
  mehrunes_dagon_aspect_desc: "Channelling the Prince of Destruction, this entity embodies change through violence."
 
  molag_bal_aspect: "Aspect of Molag Bal"
- molag_bal_aspect_desc: "Infused with the will of the King of Rape, this entity breaks others to serve."
+ molag_bal_aspect_desc: "Infused with the will of the King of Corruption, this entity breaks others to serve."
 
  boethiah_aspect: "Aspect of Boethiah"
  boethiah_aspect_desc: "Shaped by the Prince of Plots, this entity achieves dominance through cunning."

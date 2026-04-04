@@ -1,0 +1,202 @@
+# =============================================================
+#  Guild Charter Collapse Events
+#  Namespace: guild_charter
+#  File: mod/events/guild_charter_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  guild_charter.000   "The Guild Demands Its Due" — a Guild
+#                      representative arrives at court to collect
+#                      the traditional tithe now that no Imperial
+#                      authority enforces the charter.
+#  guild_charter.010   "Terms of the Charter" — the ruler must
+#                      respond: pay, negotiate, expel, or absorb.
+#  guild_charter.020   "After the Charter" — consequences of the
+#                      ruler's response play out.
+#
+#  HISTORICAL NOTE:
+#  The Guild Act of 2E 321 was promulgated jointly by Potentates
+#  Versidue-Shaie and Savirien-Chorak, chartering both the
+#  Mages Guild and the Fighters Guild (the Syffim, originally)
+#  as pan-Tamrielic organisations with Imperial recognition.
+#  Local lords were required to honour Guild branch offices in
+#  their territory and pay quarterly tithes in exchange for
+#  access to Guild services.  When Savirien-Chorak was
+#  assassinated in 2E 430 and no new emperor was crowned, the
+#  charter's enforcement mechanism ceased to exist.  Guild
+#  representatives found themselves negotiating — or arguing —
+#  with individual lords rather than invoking Imperial authority.
+#  Sources: UESP Lore:Guilds; ESO codex on the Guild Act.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/guild_charter_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/guild_traits.txt
+#      → fighters_guild_associate, fighters_guild_guardian,
+#         fighters_guild_guildmaster, fighters_guild_journeyman,
+#         mages_guild_archmagister, mages_guild_associate,
+#         mages_guild_member, mages_guild_wizard
+# =============================================================
+
+namespace = guild_charter
+
+# ---------------------------------------------------------------
+# guild_charter.000  The Guild Demands Its Due
+# A well-dressed factor arrives at court carrying a leather
+# case.  In it: a copy of the Guild Act of 2E 321, a detailed
+# accounting of the tithe owed since the last Potentate's
+# death, and a polite but unambiguous demand for payment.
+# The factor notes, professionally, that the Guild charter
+# has no current Imperial enforcer — but that the Guild has
+# its own ways of ensuring compliance.
+# ---------------------------------------------------------------
+guild_charter.000 = {
+    type = character_event
+    title = guild_charter.000.t
+    desc  = guild_charter.000.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = reading
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        is_adult  = yes
+        OR = {
+            has_trait = mages_guild_associate
+            has_trait = mages_guild_member
+            has_trait = mages_guild_wizard
+            has_trait = mages_guild_archmagister
+            has_trait = fighters_guild_associate
+            has_trait = fighters_guild_journeyman
+            has_trait = fighters_guild_guardian
+            has_trait = fighters_guild_guildmaster
+        }
+        NOT = { has_character_flag = guild_charter_handled }
+        current_date >= 2.430.1.1
+        current_date < 2.480.1.1
+    }
+
+    option = {
+        name = guild_charter.000.a   # "See the factor into the hall. I will hear what the Guild wants."
+        trigger_event = { id = guild_charter.010 days = 7 }
+    }
+
+    option = {
+        name = guild_charter.000.b   # "Tell the Guild to put their charter in a fire. The Potentate is dead."
+        add_character_flag = { flag = guild_charter_handled days = 3650 }
+        add_prestige   = 50
+        add_stress     = 10
+        # Immediate negative consequence — the Guild does not forget rudeness
+        trigger_event = { id = guild_charter.020 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# guild_charter.010  Terms of the Charter
+# The factor lays out three options, with the calm precision
+# of someone who has had this conversation many times.  Pay
+# the tithe and the Guild continues operating as before.
+# Negotiate reduced terms and the Guild will accept — but
+# note the concession in their ledger.  Or expel the branch
+# entirely, which the factor warns will have consequences.
+# ---------------------------------------------------------------
+guild_charter.010 = {
+    type = character_event
+    title = guild_charter.010.t
+    desc  = guild_charter.010.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = scheme
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = guild_charter.010.a   # "Pay the tithe in full. The Guild's services are worth the cost."
+        add_gold = -100
+        add_character_flag = { flag = guild_charter_handled days = 3650 }
+        add_prestige = 100
+        # Perk: Guild services available at a discount
+        add_modifier = {
+            modifier = guild_charter_paid_modifier
+            days = 1825
+        }
+        trigger_event = { id = guild_charter.020 days = 7 }
+    }
+
+    option = {
+        name = guild_charter.010.b   # "Negotiate — I will pay half now and the rest over three years."
+        trigger = { stewardship >= 12 }
+        add_gold = -50
+        add_character_flag = { flag = guild_charter_handled days = 3650 }
+        add_stewardship = 1
+        trigger_event = { id = guild_charter.020 days = 7 }
+    }
+
+    option = {
+        name = guild_charter.010.c   # "Expel the branch. I will not fund an organisation the Empire no longer controls."
+        add_character_flag = { flag = guild_charter_handled days = 3650 }
+        add_prestige = 75
+        add_stress   = 15
+        trigger_event = { id = guild_charter.020 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# guild_charter.020  After the Charter
+# The factor has gone.  Whatever was decided, the Guild has
+# noted it.  The consequences are immediate in the ledger
+# but slower in reality.  A ruler who paid will notice the
+# Guild's cooperation in small ways over the next year.  A
+# ruler who expelled a branch will find that Guild members
+# in other territories are less welcoming.
+# ---------------------------------------------------------------
+guild_charter.020 = {
+    type = character_event
+    title = guild_charter.020.t
+    desc  = guild_charter.020.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    is_triggered_only = yes
+
+    option = {
+        name = guild_charter.020.a   # "The Guild knows where it stands in my realm. That is all I needed."
+        trigger = { has_modifier = guild_charter_paid_modifier }
+        add_prestige = 75
+        add_stress   = -10
+    }
+
+    option = {
+        name = guild_charter.020.b   # "The Guild is useful. I will continue to make use of it."
+        trigger = {
+            OR = {
+                has_trait = mages_guild_archmagister
+                has_trait = fighters_guild_guildmaster
+            }
+        }
+        add_prestige = 50
+    }
+
+    option = {
+        name = guild_charter.020.c   # "Good. No organisation should operate in my lands without my leave."
+        trigger = {
+            NOT = { has_modifier = guild_charter_paid_modifier }
+        }
+        add_prestige = 100
+        add_stress   = 10
+        # The Guild will remember
+        add_intrigue = 1
+    }
+}

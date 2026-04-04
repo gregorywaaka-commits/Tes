@@ -1,0 +1,40 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+ # ============================================================
+ #  Elsweyr Confederacy / Riddle'Thar
+ # ============================================================
+
+ # Traits
+ riddle_thar_faithful: "Riddle'Thar Faithful"
+ riddle_thar_faithful_desc: "This Khajiit ruler walks the Two Moons Path, submitting secular governance to the Mane's lunar edicts. They are trusted by the Temple and the deep-clan chiefs alike."
+ confederacy_dissenter: "Confederacy Dissenter"
+ confederacy_dissenter_desc: "This Khajiit ruler refuses to let the Riddle'Thar Epiphany dictate statecraft. The Anequina warrior tradition runs in their veins — the Mane's word is counsel, not law."
+
+ # Modifiers
+ moon_sugar_tithe_modifier: "Moon Sugar Tithe Paid"
+ moon_sugar_tithe_modifier_desc: "The Temple of Two Moons has received its share of the moon sugar harvest. The Mane's blessing rests on this house."
+ elsweyr_anequina_militia_modifier: "Anequina Warrior Clans"
+ elsweyr_anequina_militia_modifier_desc: "The desert-fighting warrior clans of old Anequina answer this ruler's call. Their blades are sharp; their loyalty is earned, not bought."
+
+ # elsweyr.000 — The Mane's Edict
+ elsweyr.000.t: "The Mane's Edict"
+ elsweyr.000.desc: "A courier bearing the Mane's seal arrives at court. The spiritual leader of all Khajiit has issued a decree: the moon sugar tithe must be observed, the Riddle'Thar's cycles followed in all matters of state. For a ruler of Elsweyr, this is not a suggestion."
+ elsweyr.000.a: "The moons speak. I will obey."
+ elsweyr.000.b: "My realm answers to claw and coin, not to moonrise."
+
+ # elsweyr.010 — Anequina Remembers
+ elsweyr.010.t: "Anequina Remembers"
+ elsweyr.010.desc: "A war-chief of the northern desert clans presents himself at court — scarred, sun-bronzed, and unapologetic. The old Anequina warrior tradition predates the Confederacy itself, and he reminds the ruler that it has not been forgotten. 'Pellitine grows fat on spice and poetry,' he growls. 'We are still the knife.'"
+ elsweyr.010.a: "Let the northern clans remember who they are. Their blades serve my banner."
+ elsweyr.010.b: "Anequina and Pellitine are one now. We are stronger together than apart."
+
+ # elsweyr.020 — Moon Sugar Tithe
+ elsweyr.020.t: "The Moon Sugar Tithe"
+ elsweyr.020.desc: "The Temple of Two Moons sends a delegation to collect the season's tithe from the moon sugar harvest. The sap of the moon sugar plant is sacred to Khajiit — but it is also the lifeblood of their economy, and the Temple claims a significant portion."
+ elsweyr.020.a: "The Two Moons have their portion. Let it be carried to the Temple with honours."
+ elsweyr.020.b: "The harvest was lean this season. The Temple will receive what we can spare — and no more."
+
+ # elsweyr.030 — Riddle'Thar Epiphany
+ elsweyr.030.t: "The Riddle'Thar Epiphany"
+ elsweyr.030.desc: "The moons hang low and enormous over the sugar-fields tonight. Something stirs — not in the world, but in the ruler's mind. The circular logic of the Riddle'Thar, which had always seemed like priest-craft before, suddenly resolves into perfect clarity: the lunar cycles do not merely mark time. They are a governance framework older than any dynasty."
+ elsweyr.030.a: "The moons spoke. I will walk no other path."

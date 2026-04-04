@@ -1,0 +1,35 @@
+﻿l_english:
+
+ # =====================================================================
+ #  IMPERIAL CULT / EIGHT DIVINES
+ # =====================================================================
+
+ # --- Traits ---
+
+ divine_champion: "Divine Champion"
+ divine_champion_desc: "This character has been formally recognised by the Imperial Cult as a Champion of the Eight Divines — a patron whose faith is genuine and whose political standing lends authority to the Cult's work in Cyrodiil. The priests of the Eight chapels treat them with particular respect. The pious of the Empire regard them as a model of Imperial devotion. The title carries real spiritual weight."
+
+ chapel_benefactor: "Chapel Benefactor"
+ chapel_benefactor_desc: "This character has invested substantially in the Imperial Cult's physical infrastructure — shrines, chapels, pilgrimage routes, and the maintenance of the priest communities that serve them. Their generosity is well known among the clergy and among the communities whose spiritual life depends on that infrastructure. Counties under their rule benefit from the stability that comes with functioning sacred institutions."
+
+ # --- Events ---
+
+ imperial_cult.000.t: "The Cult Sends Its Priests"
+ imperial_cult.000.desc: "The delegation from the Imperial Cult arrived with the formal courtesy that the Cult's senior priests have refined over centuries of navigating noble courts. Three clerics, a letter of introduction, and a very carefully worded proposal. The Cult is looking for patrons of genuine faith and appropriate standing. They have reviewed the record of your rule, your observed devotional practice, and — they note with careful diplomacy — your piety.\n\nFormal patronage of the Imperial Cult is not a small commitment. It means presiding over feast days, funding shrine maintenance, and being visible as an example of Imperial devotion. The Cult offers in return: the full weight of clerical approval, the gratitude of the Eight Divines' faithful throughout your realm, and the title of Champion."
+ imperial_cult.000.a: "The Eight have guided my house. I will serve as their Champion."
+ imperial_cult.000.b: "My faith is personal. I prefer to worship without formal obligation."
+
+ imperial_cult.010.t: "The Eight Candles Feast"
+ imperial_cult.010.desc: "The Eight Candles feast is the Imperial Cult's great annual observance — one candle for each of the Eight Divines, lit at sunset, maintained through the night while the clergy and faithful recite the observances and the presiding lord ensures the ceremony does not run short of either funding or dignity. Every chapel in the Empire holds its own version. The one you will preside over is considerably more visible than most.\n\nThe choice of how lavish a celebration to fund is partly theological — the Cult teaches that the Divines are honoured by genuine generosity — and partly political, since the quality of the feast reflects directly on your standing as Champion."
+ imperial_cult.010.a: "A full ceremonial feast, funded generously. The Eight deserve no less."
+ imperial_cult.010.b: "A dignified ceremony — not lavish, but sincere."
+
+ imperial_cult.020.t: "The New Shrine"
+ imperial_cult.020.desc: "The Cult's request arrived through the senior priest of the nearest chapel, and it is specific: a county in your realm lacks a proper shrine to one of the Eight. The priest has identified a location, drawn up plans, and calculated costs with the kind of numerical precision that suggests they have been planning this approach for some time. They want patronage. They want your name on the dedication stone. They want the shrine built.\n\nFunding a new shrine is a substantial expense. It is also, the priest points out with practiced gentleness, exactly the kind of investment that a Champion of the Eight Divines is expected to make."
+ imperial_cult.020.a: "Build the shrine. The Divines require a home in every county."
+ imperial_cult.020.b: "I support the Cult — but this is not the right moment."
+
+ imperial_cult.030.t: "The Pilgrim Road"
+ imperial_cult.030.desc: "The Cult's senior priests presented the proposal over the course of a formal dinner, which was itself an indication of how seriously they took it. The pilgrimage to all eight Divine shrines — the complete road, every chapel, every dedication — is the most significant devotional act an Imperial lay person can undertake. It is not casual. Some pilgrims take months. The route covers most of Cyrodiil and requires passing through territories that are not always hospitable.\n\nYou have been Champion long enough. You have funded enough. The road is the completion of something that began when the Cult first placed the title in your hands. The priests believe you are ready. They are asking you to go."
+ imperial_cult.030.a: "I walk every road, visit every shrine. This is my vow fulfilled."
+ imperial_cult.030.b: "I make what pilgrimage I can. The Divines know my heart."

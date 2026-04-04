@@ -258,3 +258,249 @@ hist_vision.011 = {
         add_piety    = -200
     }
 }
+
+# ---------------------------------------------------------------
+# hist_vision.004  The Hist Sees Coldharbour
+# An Argonian ruler with hist_bonded near the 2E 577 window
+# receives a prophetic vision from the Hist — a warning of the
+# Soulburst before it happens.  Argonians sensed the Planemeld
+# threat early.  This is why.
+# ---------------------------------------------------------------
+hist_vision.004 = {
+    type = character_event
+    title = hist_vision.004.t
+    desc  = hist_vision.004.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = hist_bonded
+        NOT = { has_character_flag = hist_soulburst_warning }
+        NOT = { exists = global_var:soulburst_happened }
+        game_start_date >= 2.560.1.1
+        game_start_date <= 2.577.12.31
+    }
+
+    option = {
+        name = hist_vision.004.a   # "Something is coming from Coldharbour. The Hist weeps."
+        add_character_flag = { flag = hist_soulburst_warning }
+        add_piety   = 100
+        add_stress  = 20
+        add_character_flag = { flag = hist_warned_of_planemeld days = 5475 }
+    }
+
+    option = {
+        name = hist_vision.004.b   # "I carry this warning. But I cannot stop what is already moving."
+        add_character_flag = { flag = hist_soulburst_warning }
+        add_piety  = 50
+        add_stress = 30
+    }
+}
+
+# ---------------------------------------------------------------
+# hist_vision.005  The An-Xileel Rising
+# The Hist calls on a ruler who already carries an_xileel_warrior
+# or hist_elder_bonded — the political mandate is now explicit.
+# Black Marsh must be unified under a single Argonian power
+# that can resist both Imperial and Daedric pressure.
+# The An-Xileel are the Hist's militant political arm, not
+# merely a warrior tradition.
+# ---------------------------------------------------------------
+hist_vision.005 = {
+    type = character_event
+    title = hist_vision.005.t
+    desc  = hist_vision.005.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = an_xileel_warrior
+            has_trait = hist_elder_bonded
+        }
+        any_held_title = {
+            tier = duchy
+            title_province = { geographical_region = world_black_marsh }
+        }
+        NOT = { has_character_flag = an_xileel_mandate_heard }
+    }
+
+    option = {
+        name = hist_vision.005.a   # "The Hist calls. Black Marsh will be unified under the An-Xileel."
+        add_character_flag = { flag = an_xileel_mandate_heard }
+        add_prestige = 200
+        add_piety    = 150
+        add_martial  = 1
+        trigger_event = { id = hist_vision.008 days = 730 }
+    }
+
+    option = {
+        name = hist_vision.005.b   # "The mandate is clear — but the time is not yet right."
+        add_character_flag = { flag = an_xileel_mandate_heard }
+        add_piety = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# hist_vision.006  The Dreaming Root
+# A collective Hist dreaming event — the ruler is pulled into
+# the shared consciousness of every Hist tree simultaneously,
+# experiencing what the Argonians call the Dreaming Root:
+# the mythopoeic layer where Hist memory becomes prophecy.
+# This is not individual vision. It is the species dreaming.
+# ---------------------------------------------------------------
+hist_vision.006 = {
+    type = character_event
+    title = hist_vision.006.t
+    desc  = hist_vision.006.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = hist_bonded
+            has_trait = hist_elder_bonded
+        }
+        NOT = { has_character_flag = dreaming_root_entered }
+        has_character_flag = hist_before_time_seen
+    }
+
+    option = {
+        name = hist_vision.006.a   # "I enter the dreaming. Whatever the species knows, I will carry."
+        add_character_flag = { flag = dreaming_root_entered }
+        add_learning  = 2
+        add_piety     = 200
+        add_stress    = 20
+        add_modifier = {
+            modifier = hist_vision_insight
+            days     = 3650
+        }
+    }
+
+    option = {
+        name = hist_vision.006.b   # "The individual must not dissolve into the root. I remain myself."
+        add_character_flag = { flag = dreaming_root_entered }
+        add_piety  = 75
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# hist_vision.007  The Saxhleel Exodus Dream
+# The Hist shows the ruler a vision of the future: a vast
+# exodus of Argonians withdrawing from the borderlands of
+# Tamriel into the deep marsh, closing every passage, refusing
+# all trade, becoming unreachable.  The An-Xileel's ultimate
+# political expression: total Argonian withdrawal from the
+# affairs of the surface world.  It has not happened yet —
+# but the Hist is showing it to you as a possibility.
+# ---------------------------------------------------------------
+hist_vision.007 = {
+    type = character_event
+    title = hist_vision.007.t
+    desc  = hist_vision.007.desc
+    theme = realm
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = hist_elder_bonded
+            AND = {
+                has_trait = an_xileel_warrior
+                has_character_flag = an_xileel_mandate_heard
+            }
+        }
+        NOT = { has_character_flag = saxhleel_exodus_vision_seen }
+    }
+
+    option = {
+        name = hist_vision.007.a   # "The deep marsh calls. Black Marsh seals itself."
+        add_character_flag = { flag = saxhleel_exodus_vision_seen }
+        add_piety     = 300
+        add_prestige  = -100   # Other rulers see this as abandonment
+        add_modifier = {
+            modifier = hist_warning_defensive
+            days     = 1825
+        }
+    }
+
+    option = {
+        name = hist_vision.007.b   # "The Hist shows what is possible — not what is necessary. We remain."
+        add_character_flag = { flag = saxhleel_exodus_vision_seen }
+        add_piety    = 100
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# hist_vision.008  Black Marsh Stands — An-Xileel Mandate Complete
+# Fires from hist_vision.005 after 730 days.  The ruler who
+# accepted the An-Xileel mandate has had two years to pursue
+# unification.  The Hist now formally acknowledges the result
+# through sap — a collective communication across every tree
+# in the marsh simultaneously.
+# ---------------------------------------------------------------
+hist_vision.008 = {
+    type = character_event
+    title = hist_vision.008.t
+    desc  = hist_vision.008.desc
+    theme = realm
+
+    is_triggered_only = yes
+
+    option = {
+        name = hist_vision.008.a   # "The An-Xileel has fulfilled the Hist's mandate. Black Marsh is ours."
+        add_prestige = 500
+        add_piety    = 300
+        add_martial_skill_xp = 1000
+        add_character_flag = { flag = an_xileel_mandate_complete }
+    }
+
+    option = {
+        name = hist_vision.008.b   # "The work is not finished. The Hist waits."
+        add_piety    = 150
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# hist_vision.009  The Hist's Long Memory — Dawn Era Remembrance
+# The oldest event in the Hist's memory: the era before
+# Argonians were Argonians — when the Hist and the scaled
+# people lived as one consciousness.  The Hist does not mourn
+# the separation.  It simply remembers that it happened.
+# This fires for hist_elder_bonded rulers who have completed
+# the dreaming root (.006) — the deepest layer of Hist memory.
+# ---------------------------------------------------------------
+hist_vision.009 = {
+    type = character_event
+    title = hist_vision.009.t
+    desc  = hist_vision.009.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        has_trait = hist_elder_bonded
+        has_character_flag = dreaming_root_entered
+        NOT = { has_character_flag = hist_long_memory_seen }
+    }
+
+    option = {
+        name = hist_vision.009.a   # "The memory changes nothing. But understanding it changes me."
+        add_character_flag = { flag = hist_long_memory_seen }
+        add_piety    = 250
+        add_learning = 2
+        add_stress   = -20
+    }
+
+    option = {
+        name = hist_vision.009.b   # "I carry this memory back. Let it teach the next who comes."
+        add_character_flag = { flag = hist_long_memory_seen }
+        add_piety  = 150
+        add_prestige = 100
+    }
+}

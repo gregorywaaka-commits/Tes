@@ -1,0 +1,144 @@
+# =============================================================
+#  Crowns & Forebears — Events
+#  Namespace: crowns_forebears
+#
+#  LORE:
+#  The Crowns (Yokudan traditionalists) and Forebears (Imperial-
+#  influenced assimilationists) divide Redguard political culture
+#  throughout the Second Era and beyond.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • crowns_forebears.000  — A Redguard ruler must choose their faction.
+#  • crowns_forebears.010  — Faction tension escalates — a confrontation.
+#  • crowns_forebears.020  — A Crown/Forebear cultural moment — ceremony.
+#
+#  KEY TRAITS (crowns_forebears_traits.txt):
+#  ──────────────────────────────────────────
+#  • crown_traditionalist, forebear_reformist
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • redguard_culture  = EK2 culture identifier
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/crowns_forebears_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/crowns_forebears_traits.txt
+#      → crown_traditionalist, forebear_reformist
+# =============================================================
+
+namespace = crowns_forebears
+
+# ---------------------------------------------------------------
+# crowns_forebears.000  The Divide in the Blood
+# A Redguard ruler is asked by representatives of both factions
+# to declare their position.  The choice cannot be avoided
+# forever — the divide is too fundamental.
+# ---------------------------------------------------------------
+crowns_forebears.000 = {
+    type = character_event
+    title = crowns_forebears.000.t
+    desc  = crowns_forebears.000.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = redguard_culture
+        NOT = { has_trait = crown_traditionalist }
+        NOT = { has_trait = forebear_reformist }
+        NOT = { has_character_flag = crowns_forebears_chosen }
+    }
+
+    option = {
+        name = crowns_forebears.000.a   # "I am a Crown. The Yokudan ways do not die with the empire."
+        add_character_flag = { flag = crowns_forebears_chosen }
+        add_trait = crown_traditionalist
+        add_piety   = 75
+        add_stress  = 10
+        trigger_event = { id = crowns_forebears.010 days = 180 }
+    }
+
+    option = {
+        name = crowns_forebears.000.b   # "I am a Forebear. We trade with the world and prosper by it."
+        add_character_flag = { flag = crowns_forebears_chosen }
+        add_trait = forebear_reformist
+        add_gold    = 50
+        add_stress  = 10
+        trigger_event = { id = crowns_forebears.010 days = 180 }
+    }
+}
+
+# ---------------------------------------------------------------
+# crowns_forebears.010  The Old Grievance
+# A ruler of the opposing faction sends a hostile message.
+# The tension between Crown and Forebear crystallises into a
+# specific confrontation.
+# ---------------------------------------------------------------
+crowns_forebears.010 = {
+    type = character_event
+    title = crowns_forebears.010.t
+    desc  = crowns_forebears.010.desc
+    theme = diplomacy
+
+    trigger = {
+        is_adult = yes
+        OR = {
+            has_trait = crown_traditionalist
+            has_trait = forebear_reformist
+        }
+        has_character_flag = crowns_forebears_chosen
+    }
+
+    option = {
+        name = crowns_forebears.010.a   # "We disagree. That is not the same as being enemies."
+        add_prestige = 100
+        add_stress   = 10
+    }
+
+    option = {
+        name = crowns_forebears.010.b   # "Challenge their position openly."
+        add_prestige = 200
+        add_piety    = -25
+        add_stress   = 20
+    }
+
+    option = {
+        name = crowns_forebears.010.c   # "Find common ground on Hammerfell's independence."
+        add_prestige = 150
+        add_piety    = 50
+        add_stress   = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# crowns_forebears.020  The Ceremony of Shared Blood
+# A Crown ruler who has held power long enough may participate
+# in an ancient Yokudan ceremony — a reminder of what both
+# factions share regardless of their disagreements.
+# ---------------------------------------------------------------
+crowns_forebears.020 = {
+    type = character_event
+    title = crowns_forebears.020.t
+    desc  = crowns_forebears.020.desc
+    theme = faith
+
+    trigger = {
+        is_adult = yes
+        has_trait = crown_traditionalist
+        learning >= 10
+        NOT = { has_character_flag = shared_blood_ceremony }
+    }
+
+    option = {
+        name = crowns_forebears.020.a   # "We are both Redguard. Before the divide, there was just the people."
+        add_character_flag = { flag = shared_blood_ceremony }
+        add_piety    = 150
+        add_prestige = 100
+        add_stress   = -20
+    }
+}

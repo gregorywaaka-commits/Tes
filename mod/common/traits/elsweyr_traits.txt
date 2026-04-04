@@ -1,0 +1,34 @@
+# =============================================================
+#  Elsweyr Confederacy Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  RIDDLE'THAR FAITHFUL
+#  A Khajiit ruler who has fully embraced the Riddle'Thar
+#  Epiphany's lunar governance framework.  The Two Moons
+#  path guides their decisions; the Mane's edicts are law.
+# ---------------------------------------------------------------
+riddle_thar_faithful = {
+    flag = riddle_thar_faithful
+
+    monthly_piety_gain_mult = 0.15
+    diplomacy              = 1
+
+    opposites = { confederacy_dissenter }
+}
+
+# ---------------------------------------------------------------
+#  CONFEDERACY DISSENTER
+#  A Khajiit ruler who openly rejects the Riddle'Thar's
+#  authority over secular governance.  Respected among the
+#  old Anequina warrior-clans; scorned by the Temple.
+# ---------------------------------------------------------------
+confederacy_dissenter = {
+    flag = confederacy_dissenter
+
+    monthly_piety_gain_mult = -0.10
+    martial                 = 1
+    intrigue                = 1
+
+    opposites = { riddle_thar_faithful }
+}

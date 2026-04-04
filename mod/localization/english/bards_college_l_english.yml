@@ -1,0 +1,52 @@
+﻿l_english:
+
+ # =====================================================================
+ #  BARDS COLLEGE
+ # =====================================================================
+
+ # ---- bards_college.000 --- An Invitation from Solitude ----
+
+ bards_college.000.t: "An Invitation from Solitude"
+ bards_college.000.desc: "The courier from the Bards College carries a letter that smells faintly of parchment and instrument resin. The College of Solitude has heard of you — not from a spy, but from a traveller who heard you think aloud somewhere memorable. They believe you might be worth knowing. The letter is an offer, not a summons."
+ bards_college.000.a: "I accept. Song and verse are worthy pursuits alongside the sword."
+ bards_college.000.b: "The College honours me, but I have a realm to rule and no time for lessons."
+
+ # ---- bards_college.001 --- The Apprentice Project ----
+
+ bards_college.001.t: "The College Sets a Task"
+ bards_college.001.desc: "The Master Bard explains the apprenticeship requirement. Every new student completes a year-long project. You may compose a lay, research the restricted archive, or master the instruments of the craft itself. What you choose reflects what you think bardship is for."
+ bards_college.001.a: "I will compose a lay — verses that will outlast the singer."
+ bards_college.001.b: "I want access to the archive. The restricted texts interest me more."
+ bards_college.001.c: "I will master the instruments — the physical craft before the meaning."
+
+ # ---- bards_college.002 --- Before the Master Bard ----
+
+ bards_college.002.t: "The Performance"
+ bards_college.002.desc: "The apprenticeship ends with a performance before the assembled Master Bards. There is no rubric. The College watches. The audience decides whether you have understood something worth understanding."
+ bards_college.002.a: "I perform — and the hall goes quiet in the way halls do when something is good."
+ bards_college.002.b: "I perform. Not every performance is a triumph, but I earn my standing."
+
+ # ---- bards_college.003 --- Burning of King Olaf Effigy ----
+
+ bards_college.003.t: "The Burning of King Olaf’s Effigy"
+ bards_college.003.desc: "The College’s most famous annual event: the Burning of King Olaf One-Eye’s effigy, a tradition old enough that no one agrees when it started. The streets of Solitude fill with performers. As a Master Bard, you preside."
+ bards_college.003.a: "I preside with full ceremony. Let the tradition breathe."
+ bards_college.003.b: "I lead a debate on Olaf’s legacy. History deserves more than a burning."
+
+ # ---- bards_college.004 --- Forbidden Archive ----
+
+ bards_college.004.t: "The Archive Below"
+ bards_college.004.desc: "While cataloguing restricted texts you find a scroll that does not behave the way scrolls behave. The writing shifts when not viewed directly. Whatever this is, it is in your hands. You have seconds to decide what to do."
+ bards_college.004.a: "I read it. Whatever it costs in understanding, I pay the price."
+ bards_college.004.b: "I seal it back up. Some things are not meant to be read yet."
+
+ # ---- bards_college.005 --- Master Bard Recognition ----
+
+ bards_college.005.t: "The Master Bard’s Title"
+ bards_college.005.desc: "The College convenes. You have been formally recognised as a Master Bard. The title carries weight in the northwest of Tamriel that has nothing to do with politics and everything to do with what the College represents."
+ bards_college.005.a: "I accept the title with the solemnity the College deserves."
+
+ # ---- Modifiers ----
+
+ bards_college_festival_modifier: "Bards College Festival"
+ bards_college_festival_modifier_desc: "The Burning of King Olaf’s Effigy fills the streets with music and argument."

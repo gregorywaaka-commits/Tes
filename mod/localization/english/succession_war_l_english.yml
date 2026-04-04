@@ -1,0 +1,41 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  WAR OF SUCCESSION (SKYRIM)
+ # =====================================================================
+
+ # --- Traits ---
+
+ petty_king_legacy: "Petty King"
+ petty_king_legacy_desc: "This ruler claimed authority over a portion of Skyrim during the succession crisis that followed the Potentate's end. When the Second Empire collapsed in 2E 430, Skyrim's High Kingship fell vacant and the jarls filled the void with competing claims. These are people who rule because they seized the moment, not because the law is clear."
+
+ high_king_claimant: "High King Claimant"
+ high_king_claimant_desc: "This ruler claims the High Kingship of Skyrim — the title that fell vacant when the Potentate's assassination left the Second Empire without authority to confirm a successor. Whether the claim has merit depends on whom you ask, and in Skyrim right now every jarl will give a different answer."
+
+ # --- Events ---
+
+ succession_war.001.t: "The Fragmented North"
+ succession_war.001.desc: "The Potentate is dead.
+
+Savirien-Chorak, last of the Akaviri Potentates, was assassinated by the Morag Tong last year. The administrative structure that held the Second Empire together has unravelled. Cyrodiil is already fracturing.
+
+In Skyrim, the consequences are immediate. The High Kingship was already contested — the direct line ended a generation ago when Durcorach the Black Drake slaughtered Logrolf's sons. The Potentate's authority had been all that kept the succession question from becoming a succession war.
+
+That authority is gone.
+
+You are a Nord ruler in Skyrim. Every other jarl and petty lord in this land is asking the same question you are: now that the empire's hand is lifted, what is there, and who holds it?"
+ succession_war.001.a: "I rule my own land by my own right. No emperor and no High King tells me otherwise."
+ succession_war.001.b: "Skyrim needs a High King. I intend to be that king."
+ succession_war.001.c: "The empire that held us is gone. Whatever comes next must be built carefully."
+
+ succession_war.010.t: "The Old Ways"
+ succession_war.010.desc: "A jarl has sent a formal challenge: if you call yourself a king of Skyrim, prove it by the old way.
+
+The challenge is specific and traditional. Single combat, witnessed, at a neutral location. The Nords who remember the old sagas know what this means: the right to rule was once settled in exactly this way. The Atmorans brought this custom. It has never entirely left.
+
+Refusing is safer. It is also noticed. Every Nord lord in hearing distance will form an opinion about a ruler who declines a formal challenge, and that opinion will travel.
+
+Meeting the challenge is dangerous, public, and definitive."
+ succession_war.010.a: "Meet him. Let the Nords see what I am made of."
+ succession_war.010.b: "The old ways are not always the wise ones. I send negotiators."

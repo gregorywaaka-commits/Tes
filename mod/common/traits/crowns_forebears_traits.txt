@@ -1,0 +1,79 @@
+# =============================================================
+#  Crowns & Forebears — Traits
+#  File: mod/common/traits/crowns_forebears_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  crown_traditionalist   — A Redguard ruler who upholds Yokudan
+#                           tradition, language, and faith.
+#                           Piety and martial bonuses; Forebear opinion penalty.
+#  forebear_reformist     — A Redguard ruler who has adopted
+#                           Imperial and Tamrielic customs.
+#                           Stewardship and diplomacy bonuses; Crown opinion penalty.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  When the Ra Gada (Redguards) landed in Hammerfell and conquered
+#  it from its previous inhabitants, they brought their Yokudan
+#  culture, religion (the HoonDing, Tu'whacca, Ruptga), and the
+#  Yoku language with them.  Over generations, some Redguards
+#  integrated with the existing Tamrielic world and adopted Imperial
+#  customs, Cyrodiilic religion, and the common tongue.  These became
+#  the Forebears — traditionalists in reverse, inheritors of a long
+#  process of assimilation.  Those who refused to assimilate called
+#  themselves Crowns — the proud descendants of the original kings.
+#  This divide runs through all of Hammerfell's political history and
+#  predates the Second Era, though it remains fiercely active
+#  throughout the EK2 period.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/crowns_forebears_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • crown_traditionalist
+#    • forebear_reformist
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/crowns_forebears_events.txt
+#      → crown_traditionalist, forebear_reformist
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CROWN TRADITIONALIST
+#  The old ways are not just tradition — they are survival.
+#  The language, the faith, the names, the forms of honour:
+#  these are the cords that bind the Redguard people together
+#  across centuries of diaspora.  They will not be let go.
+# ---------------------------------------------------------------
+crown_traditionalist = {
+    category = faith
+
+    martial                 = 3
+    monthly_piety_gain_mult = 0.20
+
+    flag = crown_traditionalist
+}
+
+# ---------------------------------------------------------------
+#  FOREBEAR REFORMIST
+#  The world changes and those who refuse to change with it
+#  are buried by it.  Trade, diplomacy, and partnership with
+#  the Empire have made Hammerfell prosperous.  That prosperity
+#  has a price, and the Forebears are willing to pay it.
+# ---------------------------------------------------------------
+forebear_reformist = {
+    category = lifestyle
+
+    stewardship = 3
+    diplomacy   = 3
+
+    monthly_income_mult = 0.05   # Trade relationships with non-Redguard kingdoms
+
+    flag = forebear_reformist
+}

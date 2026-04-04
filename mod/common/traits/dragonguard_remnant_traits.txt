@@ -1,0 +1,91 @@
+# =============================================================
+#  Dragonguard Remnant — Traits
+#  File: mod/common/traits/dragonguard_remnant_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  dragonguard_remnant  — A warrior who maintains the ancient
+#                         oath of the Dragonguard after the
+#                         death of the last Reman Dragonborn.
+#                         Seeks a new mandate.
+#
+#  blades_ancestor      — A ruler whose realm became the nucleus
+#                         of the organisation that would eventually
+#                         be known as the Blades.  A legacy title
+#                         passed to heirs.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Dragonguard were the elite personal guard of the Reman
+#  emperors — Akaviri warriors (primarily Tsaesci) who had
+#  originally invaded Tamriel but were broken by Reman I at
+#  Pale Pass (1E 2703) and subsequently swore fealty to his
+#  line.  Their mandate: protect the Dragonborn emperor and,
+#  secondarily, hunt dragons wherever they appeared.
+#  When Reman III died in 2E 0 and the Akaviri Potentates
+#  took power, the Dragonguard's formal role ended.  Some
+#  remained as ceremonial bodyguards; others dispersed.
+#  By 2E 430, the last Potentate was dead and there was no
+#  emperor to guard.  Surviving Dragonguard — and their
+#  Tamrielic-born apprentices — were seeking a new purpose.
+#  The organisation that emerged from this period would
+#  eventually be known as the Blades.
+#  Sources: UESP Lore:Blades; UESP Lore:Dragonguard;
+#  ESO Summerset; ESO Elsweyr.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/dragonguard_remnant_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • dragonguard_remnant
+#    • blades_ancestor
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/dragonguard_remnant_events.txt
+#      → dragonguard_remnant, blades_ancestor
+#    common/decisions/dragonguard_remnant_decisions.txt
+#      → dragonguard_remnant
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DRAGONGUARD REMNANT
+#  An ancient oath, a blade-art no longer taught in any school,
+#  and a mandate that outran the dynasty it was sworn to serve.
+#  The Dragonguard maintain their order without an emperor —
+#  because the oath was not to the man, but to the purpose.
+# ---------------------------------------------------------------
+dragonguard_remnant = {
+    category = fame
+
+    martial      = 3
+    intrigue     = 1
+    monthly_prestige = 2
+    monthly_piety_gain_mult = 0.03   # The old oath carries its own sanctity
+
+    flag = dragonguard_remnant
+}
+
+# ---------------------------------------------------------------
+#  BLADES ANCESTOR
+#  This ruler's realm, court, or household became the seed of
+#  the organisation that history would call the Blades.  The
+#  founding was not dramatic — no proclamation, no ceremony —
+#  but the chain of succession from this moment to that one
+#  is unbroken.  Descendants carry the knowledge that their
+#  ancestor helped build something that outlasted the Interregnum.
+# ---------------------------------------------------------------
+blades_ancestor = {
+    category = fame
+
+    martial      = 2
+    intrigue     = 2
+    monthly_prestige = 3
+
+    flag = blades_ancestor
+}

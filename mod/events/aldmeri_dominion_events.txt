@@ -1,0 +1,152 @@
+# =============================================================
+#  Aldmeri Dominion Founding Events
+#  Namespace: aldmeri
+#  File: mod/events/aldmeri_dominion_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  aldmeri.000  Hidden world event — fires at 2E 580 (Queen Ayrenn
+#               returns home) to notify Altmer, Bosmer, and Khajiit
+#               rulers that the Dominion has been declared.
+#  aldmeri.001  "The Green Eagle" — Altmer, Bosmer, and Khajiit
+#               rulers receive Ayrenn's declaration and must respond.
+#  aldmeri.010  "Ayrenn's Vision" — flavor event for Dominion heralds;
+#               the queen's stated purpose becomes clear.
+#
+#  HISTORICAL NOTE:
+#  Queen Ayrenn of the Summerset Isles spent years in what her court
+#  described as voluntary wandering — actually, she had escaped a
+#  planned arranged marriage and travelled Tamriel incognito.  She
+#  returned c. 2E 580 and, with surprising speed, assembled the
+#  Aldmeri Dominion: an alliance of Altmer (Summerset), Bosmer
+#  (Valenwood), and Khajiit (Elsweyr).  The stated goal was Cyrodiil's
+#  Ruby Throne.  The unstated presumption — that Tamriel requires
+#  elven guidance — was visible to anyone who read the proclamations
+#  carefully.  The Dominion became one of the three factions of the
+#  Three Banners War.
+#  Sources: ESO Summerset; UESP Lore:Aldmeri Dominion;
+#  ESO in-game "The Queen's Decree"; ESO prologue.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/aldmeri_dominion_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/aldmeri_dominion_traits.txt
+#      → dominion_herald, ayrenn_skeptic
+#    common/traits/alliance_war_traits.txt
+#      → aldmeri_banner (linked banner trait for the Three Banners War)
+#
+#  REFERENCED BY — other files that import this namespace:
+#    common/on_actions/lore_races_on_actions.txt
+#      → aldmeri.000
+# =============================================================
+
+namespace = aldmeri
+
+# ---------------------------------------------------------------
+# aldmeri.000  The Green Eagle — Hidden World Trigger
+# A hidden world event that fires once at 2E 580 and notifies
+# Altmer, Bosmer, and Khajiit rulers of the Dominion's founding.
+# Guards with a global variable so it fires only once.
+# ---------------------------------------------------------------
+aldmeri.000 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        current_date >= 2.580.1.1
+        current_date < 2.582.1.1
+        NOT = { exists = global_var:aldmeri_dominion_founded }
+    }
+
+    immediate = {
+        set_global_variable = { name = aldmeri_dominion_founded value = 1 }
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_alive  = yes
+                OR = {
+                    has_culture = altmer_culture
+                    has_culture = bosmer_culture
+                    has_culture = khajiit_culture
+                }
+            }
+            trigger_event = { id = aldmeri.001 days = 7 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# aldmeri.001  The Green Eagle
+# Altmer, Bosmer, and Khajiit rulers receive Queen Ayrenn's
+# declaration of the Aldmeri Dominion.  They must decide whether
+# to support the queen's vision or remain apart.
+# ---------------------------------------------------------------
+aldmeri.001 = {
+    type = character_event
+    title = aldmeri.001.t
+    desc  = aldmeri.001.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    option = {
+        name = aldmeri.001.a   # "Ayrenn is right. Tamriel needs elven guidance."
+        add_prestige = 150
+        add_stress   = 5
+        add_trait    = dominion_herald
+        trigger_event = { id = aldmeri.010 days = 90 }
+    }
+
+    option = {
+        name = aldmeri.001.b   # "Ayrenn's wandering years explain nothing. This smells of ambition, not principle."
+        add_prestige = 50
+        add_stress   = 5
+        add_trait    = ayrenn_skeptic
+    }
+
+    option = {
+        name = aldmeri.001.c   # "Watch what the queen does next before committing to her banner."
+        add_prestige = 75
+    }
+}
+
+# ---------------------------------------------------------------
+# aldmeri.010  Ayrenn's Vision
+# A ruler who heralded the Dominion receives a fuller account
+# of Ayrenn's stated goals.  The queen is more than a figurehead:
+# she commands personally, thinks in decades, and is not easily
+# deflected.
+# ---------------------------------------------------------------
+aldmeri.010 = {
+    type = character_event
+    title = aldmeri.010.t
+    desc  = aldmeri.010.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        has_trait = dominion_herald
+    }
+
+    option = {
+        name = aldmeri.010.a   # "A queen who acts for the long term — and expects the same of her allies."
+        add_prestige = 300
+        add_diplomacy_skill = 1
+        add_piety    = 75
+    }
+
+    option = {
+        name = aldmeri.010.b   # "Her goals are clear. Her methods will bear watching."
+        add_prestige = 150
+        add_intrigue_skill = 1
+    }
+}

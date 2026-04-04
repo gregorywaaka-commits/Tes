@@ -1,0 +1,93 @@
+# =============================================================
+#  Indoril Council — Traits
+#  File: mod/common/traits/indoril_council_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  indoril_authority    — A Dunmer ruler recognised by House
+#                         Indoril as a legitimate temporal
+#                         authority under ALMSIVI.  Carries
+#                         Tribunal blessing and deep ties to
+#                         the Great House most entwined with
+#                         the living gods.
+#
+#  great_house_dissident — A Dunmer ruler who has formally
+#                          resisted House Indoril's assertion
+#                          of supremacy over temporal affairs.
+#                          May find allies in rival Houses
+#                          (particularly Hlaalu and Telvanni),
+#                          but risks Temple censure.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  By 2E 440, the Tribunal (Vivec, Almalexia, Sotha Sil) had
+#  been established for several centuries and House Indoril
+#  — the House most closely tied to the three living gods —
+#  was the dominant political force in Morrowind.  With the
+#  Second Empire gone and Morrowind fully independent, Indoril
+#  moved to formalise what had been de-facto supremacy: a
+#  Council ruling in the name of ALMSIVI, with the other Great
+#  Houses subordinate.  Houses Telvanni and Hlaalu resisted.
+#  Houses Redoran and Dres largely acquiesced.
+#  Sources: UESP Lore:Great Houses; ESO in-game texts.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/indoril_council_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • great_house_dissident
+#    • indoril_authority
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/indoril_council_events.txt
+#      → great_house_dissident, indoril_authority
+# =============================================================
+
+# ---------------------------------------------------------------
+#  INDORIL AUTHORITY
+#  This ruler has been recognised by the Council of Great
+#  Houses — and specifically by House Indoril — as a legitimate
+#  temporal power operating within the Tribunal's dispensation.
+#  The recognition brings prestige, Tribunal access, and the
+#  weight of Indoril patronage in inter-House disputes.
+# ---------------------------------------------------------------
+indoril_authority = {
+    category = fame
+
+    diplomacy  = 2
+    stewardship = 1
+    monthly_prestige = 2
+    monthly_piety_gain_mult = 0.07   # Tribunal blessing is tangible and ongoing
+
+    opposites = { great_house_dissident }
+
+    flag = indoril_authority
+}
+
+# ---------------------------------------------------------------
+#  GREAT HOUSE DISSIDENT
+#  This Dunmer ruler has refused House Indoril's demand for
+#  formal submission to the ALMSIVI temporal hierarchy.
+#  Their peers in Houses Telvanni, Hlaalu, and (quietly)
+#  Redoran take note.  The Temple is less welcoming.  But
+#  the ruler's independence may prove valuable in a Morrowind
+#  where even the Tribunal cannot settle every political debt.
+# ---------------------------------------------------------------
+great_house_dissident = {
+    category = fame
+
+    intrigue   = 3
+    diplomacy  = 1
+    monthly_prestige = 2
+    monthly_piety_gain_mult = -0.05   # The Temple does not approve
+
+    opposites = { indoril_authority }
+
+    flag = great_house_dissident
+}

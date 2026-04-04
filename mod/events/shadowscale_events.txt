@@ -1,0 +1,342 @@
+# =============================================================
+#  Shadowscale — Events
+#  Namespace: shadowscale
+#
+#  LORE:
+#  Argonians born under the sign of the Shadow are given to the
+#  Hist at birth and raised as Shadowscale assassins.  They serve
+#  Argonian rulers who have the Hist's trust.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • shadowscale.000  — An Argonian ruler learns of the program
+#                        and is offered access.
+#  • shadowscale.010  — The ruler employs a Shadowscale operative.
+#  • shadowscale.020  — Option to dissolve the program appears.
+#  • shadowscale.030  — A Shadowscale completes their assignment.
+#
+#  KEY TRAITS (shadowscale_traits.txt):
+#  ──────────────────────────────────────
+#  • shadowscale_trained, shadowscale_patron
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • argonian_culture  = EK2 culture identifier
+#  • hist_bonded       = from lore_races_traits.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/shadowscale_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/shadowscale_traits.txt
+#      → shadowscale_patron, shadowscale_trained
+#    common/traits/lore_races_traits.txt
+#      → hist_bonded
+# =============================================================
+
+namespace = shadowscale
+
+# ---------------------------------------------------------------
+# shadowscale.000  Born Under the Shadow
+# An Argonian ruler is approached by a Hist elder who explains
+# the Shadowscale program. They may accept patronage, decline,
+# or investigate further.
+# ---------------------------------------------------------------
+shadowscale.000 = {
+    type = character_event
+    title = shadowscale.000.t
+    desc  = shadowscale.000.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_culture = argonian_culture
+            has_trait = hist_bonded
+        }
+        NOT = { has_trait = shadowscale_patron }
+        NOT = { has_character_flag = shadowscale_contact }
+        NOT = { has_character_flag = shadowscale_declined }
+    }
+
+    option = {
+        name = shadowscale.000.a   # "The Hist offers this resource. I accept."
+        add_character_flag = { flag = shadowscale_contact }
+        add_trait = shadowscale_patron
+        add_piety   = 50
+        add_stress  = 5
+    }
+
+    option = {
+        name = shadowscale.000.b   # "I will not deal in assassination, even sanctioned."
+        add_character_flag = { flag = shadowscale_declined days = 3650 }
+        add_piety   = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# shadowscale.010  The Hist's Blade
+# A Shadowscale patron may employ their operative against a
+# rival.  The assignment carries no legal risk under Argonian
+# law — but the Hist may have its own opinions about the target.
+# ---------------------------------------------------------------
+shadowscale.010 = {
+    type = character_event
+    title = shadowscale.010.t
+    desc  = shadowscale.010.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = shadowscale_patron
+        any_enemy_character = { is_adult = yes is_ruler = yes }
+        NOT = { has_character_flag = shadowscale_mission_active }
+    }
+
+    option = {
+        name = shadowscale.010.a   # "Send the blade. The target has earned this."
+        add_character_flag = { flag = shadowscale_mission_active days = 180 }
+        add_gold   = -75
+        add_stress = 10
+        trigger_event = { id = shadowscale.030 days = 60 }
+    }
+
+    option = {
+        name = shadowscale.010.b   # "Not this time. I will handle this another way."
+        add_prestige = 25
+    }
+
+    option = {
+        name = shadowscale.010.c   # "Dissolve the program. I no longer want this power."
+        trigger_event = { id = shadowscale.020 days = 7 }
+    }
+}
+
+# ---------------------------------------------------------------
+# shadowscale.020  The Old Ways End
+# The ruler chooses to end their association with the Shadowscales.
+# The Hist acknowledges the decision — but the Hist always
+# remembers.
+# ---------------------------------------------------------------
+shadowscale.020 = {
+    type = character_event
+    title = shadowscale.020.t
+    desc  = shadowscale.020.desc
+    theme = faith
+
+    trigger = {
+        is_adult = yes
+        has_trait = shadowscale_patron
+    }
+
+    option = {
+        name = shadowscale.020.a   # "Let them return to the Hist."
+        remove_trait = shadowscale_patron
+        add_piety     = 75
+        add_prestige  = -50
+        add_character_flag = { flag = shadowscale_declined days = 3650 }
+    }
+}
+
+# ---------------------------------------------------------------
+# shadowscale.030  The Assignment Complete
+# The Shadowscale returns.  The result depends on the target
+# and the Hist's assessment of the mission.
+# ---------------------------------------------------------------
+shadowscale.030 = {
+    type = character_event
+    title = shadowscale.030.t
+    desc  = shadowscale.030.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        has_character_flag = shadowscale_mission_active
+    }
+
+    immediate = {
+        remove_character_flag = shadowscale_mission_active
+    }
+
+    option = {
+        name = shadowscale.030.a   # "The target is gone. The Hist kept its word."
+        add_prestige = 300
+        add_piety    = -25   # The Hist approves; the Divines are less sure
+        random_enemy_character = {
+            limit = { is_adult = yes is_ruler = yes }
+            kill_character = yes
+        }
+    }
+
+    option = {
+        name = shadowscale.030.b   # "The mission failed. The target survived."
+        add_prestige = -50
+        add_stress   = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# shadowscale.040  The Naming Day
+# A Shadowscale patron learns that an Argonian child in their
+# realm has been identified as born under the sign of the Shadow.
+# The naming ceremony is not public — it happens in the deep
+# marsh, attended only by Hist elders and the child's family.
+# The patron's knowledge of the event is itself a mark of trust.
+# ---------------------------------------------------------------
+shadowscale.040 = {
+    type = character_event
+    title = shadowscale.040.t
+    desc  = shadowscale.040.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = shadowscale_patron
+        NOT = { has_character_flag = shadowscale_naming_witnessed }
+    }
+
+    option = {
+        name = shadowscale.040.a   # "The Hist has chosen. I honour the naming."
+        add_character_flag = { flag = shadowscale_naming_witnessed }
+        add_piety    = 100
+        add_prestige = 50
+    }
+
+    option = {
+        name = shadowscale.040.b   # "A child given to death before they can choose. I note it and move on."
+        add_character_flag = { flag = shadowscale_naming_witnessed }
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# shadowscale.050  Sithis Speaks
+# A Shadowscale patron with deep connections to the Hist
+# receives a rare communication: not from the trees but from
+# the Void directly.  Sithis — or the Night Mother as
+# intermediary — speaks through the silence between root-pulses.
+# The Shadowscale program exists at the intersection of two
+# powers: the Hist and the Void.  This event marks that intersection.
+# ---------------------------------------------------------------
+shadowscale.050 = {
+    type = character_event
+    title = shadowscale.050.t
+    desc  = shadowscale.050.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = shadowscale_patron
+        OR = {
+            has_trait = hist_bonded
+            has_trait = hist_elder_bonded
+            intrigue >= 14
+        }
+        NOT = { has_character_flag = sithis_spoke }
+    }
+
+    option = {
+        name = shadowscale.050.a   # "Sithis has spoken. The Void and the Hist are not enemies."
+        add_character_flag = { flag = sithis_spoke }
+        add_piety    = 150
+        add_intrigue = 1
+        add_stress   = 10
+    }
+
+    option = {
+        name = shadowscale.050.b   # "The Void is not something to commune with. I close the channel."
+        add_character_flag = { flag = sithis_spoke }
+        add_piety  = 50
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# shadowscale.060  The Difficult Mission
+# A Shadowscale patron receives a request from the Hist that
+# goes beyond an ordinary elimination: a target that is
+# politically significant, heavily guarded, or personally
+# known to the patron.  This tests whether the ruler's trust
+# in the Hist is unconditional.  Links to the broader
+# dark_brotherhood system's accountability mechanics.
+# ---------------------------------------------------------------
+shadowscale.060 = {
+    type = character_event
+    title = shadowscale.060.t
+    desc  = shadowscale.060.desc
+    theme = intrigue
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = shadowscale_patron
+        has_character_flag = shadowscale_naming_witnessed
+        any_vassal = { is_adult = yes is_ruler = yes }
+        NOT = { has_character_flag = shadowscale_difficult_mission }
+    }
+
+    option = {
+        name = shadowscale.060.a   # "The Hist has asked. I trust the asking."
+        add_character_flag = { flag = shadowscale_difficult_mission days = 365 }
+        add_gold     = -100
+        add_stress   = 20
+        add_prestige = -100   # The act cannot be clean
+        random_vassal = {
+            limit = { is_adult = yes is_ruler = yes }
+            kill_character = yes
+        }
+        add_piety = 150   # The Hist approves
+    }
+
+    option = {
+        name = shadowscale.060.b   # "Not this target. There are lines the Hist should not ask me to cross."
+        add_character_flag = { flag = shadowscale_difficult_mission days = 365 }
+        add_piety  = -50
+        add_stress = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# shadowscale.070  Death Rites
+# A Shadowscale has died in service — not in the way ordinary
+# soldiers die, but in the Hist-ordained way: their body
+# returned to the marsh, their memory absorbed by the root,
+# their soul not given to Sithis but kept.  The patron is
+# informed.  The ceremony is private.  The Hist does not mourn —
+# it integrates.  But the patron is still mortal, and mourning
+# is a mortal function.
+# ---------------------------------------------------------------
+shadowscale.070 = {
+    type = character_event
+    title = shadowscale.070.t
+    desc  = shadowscale.070.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = shadowscale_patron
+        has_character_flag = shadowscale_naming_witnessed
+        NOT = { has_character_flag = shadowscale_death_rites_performed }
+    }
+
+    option = {
+        name = shadowscale.070.a   # "The Hist takes them back. I honour the return."
+        add_character_flag = { flag = shadowscale_death_rites_performed days = 1825 }
+        add_piety  = 100
+        add_stress = -10
+    }
+
+    option = {
+        name = shadowscale.070.b   # "A life spent entirely in service — never choosing anything else."
+        add_character_flag = { flag = shadowscale_death_rites_performed days = 1825 }
+        add_stress = 20
+        add_piety  = 50
+    }
+}

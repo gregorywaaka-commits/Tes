@@ -1,0 +1,47 @@
+# =============================================================
+#  Nightingale Covenant Traits
+# =============================================================
+
+# ---------------------------------------------------------------
+#  NIGHTINGALE SWORN
+#  A ruler who has spoken the Nightingale oath to Nocturnal —
+#  pledging their soul to guard the Twilight Sepulchre in
+#  death in exchange for shadow and luck in life.
+#  The bargain is absolute and cannot be undone.
+# ---------------------------------------------------------------
+nightingale_sworn = {
+    category = lifestyle
+    intrigue  = 3
+    stewardship = 1
+    monthly_prestige_gain_mult = 0.15
+    flag = nightingale_sworn
+}
+
+# ---------------------------------------------------------------
+#  NOCTURNAL FAVOURED
+#  Nocturnal's active blessing — the luck and shadow-gift that
+#  comes with the Nightingale covenant while the Prince is
+#  pleased.  Lost if the Nightingale breaks faith.
+# ---------------------------------------------------------------
+nocturnal_favoured = {
+    category = lifestyle
+    intrigue  = 2
+    monthly_income_mult         = 0.1
+    monthly_prestige_gain_mult  = 0.1
+    flag = nocturnal_favoured
+}
+
+# ---------------------------------------------------------------
+#  NIGHTINGALE ASCENDED
+#  A ruler who has completed the full arc of the Nightingale
+#  covenant — oath, service, and trial.  The shadow-gift is
+#  now permanent rather than conditional.
+# ---------------------------------------------------------------
+nightingale_ascended = {
+    category = fame
+    intrigue    = 4
+    stewardship = 2
+    monthly_income_mult          = 0.15
+    monthly_prestige_gain_mult   = 0.20
+    flag = nightingale_ascended
+}

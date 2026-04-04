@@ -1,0 +1,212 @@
+# =============================================================
+#  Elsweyr Confederacy — Riddle'Thar Governance
+#  Namespace: elsweyr
+#
+#  LORE:
+#  The Elsweyr Confederacy was formed in 2E 309 when Keirgo
+#  of Anequina married Eshita of Pellitine, uniting the two
+#  Khajiit kingdoms.  The Mane Rid-Thar-ri'Datta's Riddle'Thar
+#  Epiphany in 2E 311 established the lunar calendar as the
+#  governing framework for Khajiiti society.  By the EK2 start
+#  date of 2E 440 the Confederacy is established, the Mane is
+#  the spiritual apex, and the old Anequina/Pellitine tensions
+#  still simmer beneath the surface.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • elsweyr.000 — The Mane's Edict
+#                  Yearly; Khajiit rulers, post 2E 311.
+#                  The Mane's spiritual authority intrudes on
+#                  secular governance.
+#
+#  • elsweyr.010 — Anequina Remembers
+#                  Yearly; Khajiit rulers descended from the
+#                  old Anequina desert clans (martial orientation).
+#                  A general demands recognition of northern
+#                  Khajiiti martial tradition.
+#
+#  • elsweyr.020 — Moon Sugar Tithe
+#                  Yearly; Khajiit rulers whose realm produces
+#                  moon sugar (high-income counties in Elsweyr).
+#                  The Temple of Two Moons demands its portion.
+#
+#  • elsweyr.030 — Riddle'Thar Epiphany
+#                  One-shot; Khajiit rulers with high learning
+#                  who have not yet had the vision.  A moment
+#                  of lunar revelation deepens the character's
+#                  spiritual path.
+#
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/elsweyr_confederacy_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/lore_races_traits.txt (this mod)
+#      → riddle_thar_faithful, confederacy_dissenter
+#    common/modifiers/lore_races_modifiers.txt (this mod)
+#      → moon_sugar_tithe_modifier, elsweyr_anequina_militia_modifier
+#    common/traits/lore_races_traits.txt (EK2 assumed)
+#      → the_mane, moonsugar_devotee
+#
+# =============================================================
+
+namespace = elsweyr
+
+# ---------------------------------------------------------------
+# elsweyr.000  The Mane's Edict
+# ---------------------------------------------------------------
+elsweyr.000 = {
+    type = character_event
+    title = elsweyr.000.t
+    desc  = elsweyr.000.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = khajiit_culture
+        NOT = { has_character_flag = elsweyr_mane_edict_seen }
+        game_start_date >= 2.311.1
+    }
+
+    immediate = {
+        add_character_flag = { flag = elsweyr_mane_edict_seen days = 3650 }
+    }
+
+    option = {
+        name = elsweyr.000.a   # "I bow to the Mane's wisdom. The lunar path is supreme."
+        add_trait = riddle_thar_faithful
+        add_piety = 200
+        add_prestige = 50
+    }
+
+    option = {
+        name = elsweyr.000.b   # "My lands answer to coin and claw, not moonrise."
+        add_trait = confederacy_dissenter
+        add_stress = 20
+        add_gold   = 50       # Short-term gain from bypassing tithe
+        add_prestige = -50
+    }
+}
+
+# ---------------------------------------------------------------
+# elsweyr.010  Anequina Remembers
+# ---------------------------------------------------------------
+elsweyr.010 = {
+    type = character_event
+    title = elsweyr.010.t
+    desc  = elsweyr.010.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = khajiit_culture
+        martial >= 10
+        NOT = { has_character_flag = anequina_remembered }
+        game_start_date >= 2.311.1
+    }
+
+    immediate = {
+        add_character_flag = { flag = anequina_remembered days = 3650 }
+    }
+
+    option = {
+        name = elsweyr.010.a   # "The warrior-clans of Anequina still carry their knives."
+        add_modifier = { modifier = elsweyr_anequina_militia_modifier days = 1825 }
+        add_martial_skill = 1
+        add_prestige = 100
+    }
+
+    option = {
+        name = elsweyr.010.b   # "Anequina and Pellitine are one now. Old grudges serve no one."
+        add_piety = 100
+        add_diplomacy_skill = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# elsweyr.020  Moon Sugar Tithe
+# ---------------------------------------------------------------
+elsweyr.020 = {
+    type = character_event
+    title = elsweyr.020.t
+    desc  = elsweyr.020.desc
+    theme = stewardship
+    left_portrait = {
+        character = root
+        animation = personality_content
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = khajiit_culture
+        stewardship >= 8
+        NOT = { has_character_flag = moon_sugar_tithe_paid }
+        game_start_date >= 2.311.1
+    }
+
+    immediate = {
+        add_character_flag = { flag = moon_sugar_tithe_paid days = 1825 }
+    }
+
+    option = {
+        name = elsweyr.020.a   # "The Two Moons demand their share. It is the Riddle'Thar."
+        add_piety = 150
+        add_gold  = -50
+        add_modifier = { modifier = moon_sugar_tithe_modifier days = 730 }
+    }
+
+    option = {
+        name = elsweyr.020.b   # "This season's harvest is lean. The Temple will wait."
+        add_stress = 15
+        add_piety  = -75
+        add_gold   = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# elsweyr.030  Riddle'Thar Epiphany
+# ---------------------------------------------------------------
+elsweyr.030 = {
+    type = character_event
+    title = elsweyr.030.t
+    desc  = elsweyr.030.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_zealous
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        has_culture = khajiit_culture
+        learning >= 14
+        NOT = { has_character_flag = riddle_thar_epiphany_seen }
+        game_start_date >= 2.311.1
+    }
+
+    immediate = {
+        add_character_flag = { flag = riddle_thar_epiphany_seen }
+    }
+
+    option = {
+        name = elsweyr.030.a   # "The moons spoke. I will walk no other path."
+        add_trait = riddle_thar_faithful
+        add_piety = 300
+        add_learning_skill = 1
+    }
+}

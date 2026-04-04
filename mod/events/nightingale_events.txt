@@ -1,0 +1,221 @@
+# =============================================================
+#  Nightingale Covenant Events
+#  Namespace: nightingale
+#
+#  LORE:
+#  The Nightingales are a secret inner circle of the Thieves Guild
+#  — three individuals at any time who pledge their souls to
+#  Nocturnal, the Daedric Prince of Night and Luck, in exchange
+#  for power.  In death they are bound to guard the Twilight
+#  Sepulchre for eternity.
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • nightingale.000  — Nocturnal's offer arrives.
+#  • nightingale.001  — The oath at the Twilight Sepulchre.
+#  • nightingale.002  — Nocturnal's shadow-gift activates.
+#  • nightingale.003  — Betrayal within the covenant.
+#  • nightingale.004  — Death consequence — soul bound.
+#
+#  KEY TRAITS (nightingale_traits.txt):
+#  ─────────────────────────────────────
+#  • nightingale_sworn, nocturnal_favoured
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • nocturnal_champion  = daedric_invasion_traits.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/nightingale_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/nightingale_traits.txt
+#      → nightingale_sworn, nocturnal_favoured
+#    common/traits/daedric_invasion_traits.txt
+#      → nocturnal_champion
+#    common/traits/guild_traits.txt
+#      → thieves_guild_guildmaster_thief
+# =============================================================
+
+namespace = nightingale
+
+# ---------------------------------------------------------------
+# nightingale.000  Nocturnal's Offer
+# The Thieves Guild Guildmaster receives a visitor they did
+# not expect: a wordless message from Nocturnal herself.
+# An offer.  Three servants. An eternity of service in return
+# for luck and shadow while alive.
+# ---------------------------------------------------------------
+nightingale.000 = {
+    type = character_event
+    title = nightingale.000.t
+    desc  = nightingale.000.desc
+    theme = skull
+
+    trigger = {
+        has_trait = thieves_guild_guildmaster_thief
+        intrigue >= 14
+        NOT = { has_trait = nightingale_sworn }
+        NOT = { has_trait = nightingale_ascended }
+        NOT = { has_character_flag = nightingale_offer_refused }
+        NOT = { has_character_flag = nightingale_offer_made }
+    }
+
+    option = {
+        name = nightingale.000.a   # "Tell me what she offers. I am listening."
+        add_character_flag = nightingale_offer_made
+        trigger_event = { id = nightingale.001 days = 30 }
+    }
+
+    option = {
+        name = nightingale.000.b   # "I have served no one my whole career. I will not start with a Daedric Prince."
+        add_character_flag = { flag = nightingale_offer_refused days = 3650 }
+        add_stress = 5
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# nightingale.001  The Oath at the Twilight Sepulchre
+# In a hidden chamber beneath the College's holdings, the ruler
+# speaks the oath to Nocturnal.  What they feel is not
+# transformation — it is the quiet removal of something they
+# did not know was there.
+# ---------------------------------------------------------------
+nightingale.001 = {
+    type = character_event
+    title = nightingale.001.t
+    desc  = nightingale.001.desc
+    theme = skull
+
+    option = {
+        name = nightingale.001.a   # "I speak the words. My soul is hers when I die."
+        add_trait = nightingale_sworn
+        add_trait = nocturnal_favoured
+        add_prestige = 150
+        add_stress   = 10
+        trigger_event = { id = nightingale.002 days = 180 }
+    }
+
+    option = {
+        name = nightingale.001.b   # "I cannot say the final words. Something stops me."
+        remove_character_flag = nightingale_offer_made
+        add_character_flag = { flag = nightingale_offer_refused days = 1825 }
+        add_stress = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# nightingale.002  The Shadow-Gift
+# Nocturnal's blessing manifests for the first time — a shadow
+# assignment that the Prince sends wordlessly.  The Nightingale
+# either completes it cleanly or is exposed.
+# ---------------------------------------------------------------
+nightingale.002 = {
+    type = character_event
+    title = nightingale.002.t
+    desc  = nightingale.002.desc
+    theme = intrigue
+
+    trigger = {
+        has_trait = nightingale_sworn
+    }
+
+    option = {
+        name = nightingale.002.a   # "I move in shadow. The work is done before anyone asks a question."
+        trigger = { intrigue >= 14 }
+        add_prestige = 200
+        add_gold     = 150
+        add_stress   = -5
+    }
+
+    option = {
+        name = nightingale.002.b   # "I complete it — but not without leaving a trace."
+        add_prestige = 100
+        add_gold     = 75
+        add_stress   = 15
+    }
+
+    option = {
+        name = nightingale.002.c   # "I refuse the task. Nocturnal's errands are not my errands."
+        remove_trait = nocturnal_favoured
+        add_stress   = 30
+        add_prestige = -50
+    }
+}
+
+# ---------------------------------------------------------------
+# nightingale.003  Betrayal in the Covenant
+# One of the other two Nightingales has been found selling
+# secrets.  The sworn Nightingale must decide what to do
+# with a fellow who has broken the covenant's most basic rule.
+# ---------------------------------------------------------------
+nightingale.003 = {
+    type = character_event
+    title = nightingale.003.t
+    desc  = nightingale.003.desc
+    theme = intrigue
+
+    trigger = {
+        has_trait = nightingale_sworn
+        NOT = { has_character_flag = nightingale_betrayal_resolved }
+    }
+
+    option = {
+        name = nightingale.003.a   # "Execute them. The covenant has no room for traitors."
+        add_character_flag = nightingale_betrayal_resolved
+        add_prestige = 150
+        add_stress   = 20
+        add_intrigue_skill = 1
+    }
+
+    option = {
+        name = nightingale.003.b   # "Exile them. Let Nocturnal deal with a broken oath."
+        add_character_flag = nightingale_betrayal_resolved
+        add_prestige = 75
+        add_stress   = 10
+    }
+
+    option = {
+        name = nightingale.003.c   # "Cover it up — a scandal now would destroy what we have built."
+        add_character_flag = nightingale_betrayal_resolved
+        add_prestige = -50
+        add_stress   = 30
+        remove_trait = nocturnal_favoured
+    }
+}
+
+# ---------------------------------------------------------------
+# nightingale.004  The Soul Claimed
+# When a Nightingale dies, their soul does not pass through
+# Arkay's care.  They go to Nocturnal and the Twilight Sepulchre.
+# This event fires for the ruler's heir as a consequence.
+# ---------------------------------------------------------------
+nightingale.004 = {
+    type = character_event
+    title = nightingale.004.t
+    desc  = nightingale.004.desc
+    theme = skull
+
+    trigger = {
+        exists = father
+        father = { has_trait = nightingale_sworn }
+        NOT = { has_character_flag = nightingale_inheritance_told }
+    }
+
+    option = {
+        name = nightingale.004.a   # "My predecessor's soul is bound. I will not follow them into that bargain."
+        add_character_flag = nightingale_inheritance_told
+        add_stress = 15
+        add_piety  = -25
+    }
+
+    option = {
+        name = nightingale.004.b   # "Nocturnal has my predecessor. Perhaps she will offer me the same terms."
+        add_character_flag = nightingale_inheritance_told
+        set_character_flag = { flag = nightingale_legacy }
+        add_prestige = 75
+    }
+}

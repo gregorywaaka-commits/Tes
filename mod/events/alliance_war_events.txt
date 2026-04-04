@@ -1,0 +1,298 @@
+# =============================================================
+#  Three Banners War — Events
+#  Namespace: alliance_war
+#  File: mod/events/alliance_war_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  alliance_war.000  Hidden world event — fires at 2E 582, sets
+#                    global flag, triggers the Three Banners War.
+#  alliance_war.001  "The Three Banners War" — all rulers notified
+#                    of Tamriel's three-way fracture.
+#  alliance_war.010  "Choose Your Banner" — rulers choose which
+#                    alliance to support (or remain neutral).
+#  alliance_war.020  "The Ruby Throne Burns" — Cyrodiil rulers
+#                    face a contested Imperial City.
+#  alliance_war.030  "The War Without End" — a decade into the
+#                    conflict, the war shows no sign of resolution.
+#
+#  HISTORICAL NOTE:
+#  The Three Banners War (also called the Alliance War) began c. 2E 582.
+#  Three alliances — the Aldmeri Dominion (Altmer/Bosmer/Khajiit under
+#  Queen Ayrenn), the Daggerfall Covenant (Bretons/Redguards/Orcs under
+#  High King Emeric), and the Ebonheart Pact (Nords/Dunmer/Argonians
+#  under Jorunn the Skald-King) — each fought for the Ruby Throne of
+#  Cyrodiil.  None succeeded permanently.  This war ran concurrent with
+#  Molag Bal's Planemeld and the activities of the Worm Cult, making
+#  the period 2E 582 the most chaotic single year in recorded Tamrielic
+#  history.  Sources: ESO main content; UESP Lore:Three Banners War.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/alliance_war_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/alliance_war_traits.txt
+#      → aldmeri_banner, covenant_banner, pact_banner
+# =============================================================
+
+namespace = alliance_war
+
+# ---------------------------------------------------------------
+# alliance_war.000  The Three Banners War — Hidden Trigger
+# Fires once at 2E 582, guarded by a global variable.
+# Notifies all rulers of the war's beginning.
+# ---------------------------------------------------------------
+alliance_war.000 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        current_date >= 2.582.1.1
+        current_date < 2.583.1.1
+        NOT = { exists = global_var:alliance_war_triggered }
+    }
+
+    immediate = {
+        set_global_variable = { name = alliance_war_triggered value = 1 }
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_alive  = yes
+            }
+            trigger_event = { id = alliance_war.001 days = 3 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# alliance_war.001  The Three Banners War
+# The Alliance War has begun.  All rulers receive word that
+# Tamriel's three great alliances have marched on Cyrodiil.
+# The Ruby Throne — empty since Varen Aquilarios's transformation
+# — is contested.  Three banners fly over three armies.
+# ---------------------------------------------------------------
+alliance_war.001 = {
+    type = character_event
+    title = alliance_war.001.t
+    desc  = {
+        triggered_desc = {
+            trigger = { has_culture = altmer_culture }
+            desc = alliance_war.001.desc_dominion
+        }
+        triggered_desc = {
+            trigger = { has_culture = breton_culture }
+            desc = alliance_war.001.desc_covenant
+        }
+        triggered_desc = {
+            trigger = {
+                OR = {
+                    has_culture = nord_culture
+                    has_culture = dunmer_culture
+                    has_culture = argonian_culture
+                }
+            }
+            desc = alliance_war.001.desc_pact
+        }
+        triggered_desc = {
+            trigger = {
+                NOT = { has_culture = altmer_culture }
+                NOT = { has_culture = breton_culture }
+                NOT = { has_culture = nord_culture }
+                NOT = { has_culture = dunmer_culture }
+                NOT = { has_culture = argonian_culture }
+            }
+            desc = alliance_war.001.desc_neutral
+        }
+    }
+    theme = war
+    left_portrait = {
+        character = root
+        animation = war_declaration
+    }
+
+    option = {
+        name = alliance_war.001.a   # "Watch. Let them destroy each other first."
+        add_prestige = -50
+        add_stress   = 10
+        trigger_event = { id = alliance_war.010 days = 30 }
+    }
+
+    option = {
+        name = alliance_war.001.b   # "Tamriel fractures — and in the cracks, opportunity."
+        add_intrigue_skill = 1
+        add_stress = 5
+        trigger_event = { id = alliance_war.010 days = 14 }
+    }
+}
+
+# ---------------------------------------------------------------
+# alliance_war.010  Choose Your Banner
+# Every ruler in Tamriel must now reckon with the Three Banners
+# War.  Neutrality is a position, but not a comfortable one.
+# Each alliance will eventually demand a commitment.
+# ---------------------------------------------------------------
+alliance_war.010 = {
+    type = character_event
+    title = alliance_war.010.t
+    desc  = alliance_war.010.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = scheme
+    }
+
+    option = {
+        name = alliance_war.010.a   # "The Aldmeri Dominion — elven stewardship is Tamriel's best hope."
+        trigger = {
+            OR = {
+                has_culture = altmer_culture
+                has_culture = bosmer_culture
+                has_culture = khajiit_culture
+            }
+        }
+        add_trait    = aldmeri_banner
+        add_prestige = 200
+        add_piety    = 100
+    }
+
+    option = {
+        name = alliance_war.010.b   # "The Daggerfall Covenant — a stable, many-peoples Empire."
+        trigger = {
+            OR = {
+                has_culture = breton_culture
+                has_culture = redguard_culture
+                has_culture = orsimer_culture
+            }
+        }
+        add_trait    = covenant_banner
+        add_prestige = 200
+    }
+
+    option = {
+        name = alliance_war.010.c   # "The Ebonheart Pact — survival forged from necessity."
+        trigger = {
+            OR = {
+                has_culture = nord_culture
+                has_culture = dunmer_culture
+                has_culture = argonian_culture
+            }
+        }
+        add_trait    = pact_banner
+        add_prestige = 200
+        add_martial_skill = 1
+    }
+
+    option = {
+        name = alliance_war.010.d   # "No banner. My people's fate is not decided in Cyrodiil."
+        add_prestige = -150
+        add_stress   = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# alliance_war.020  The Ruby Throne Burns
+# A ruler who controls the Imperial City during the Three Banners
+# War faces an impossible task: holding the symbolic heart of
+# Tamriel while three alliances hammer at its gates.
+# ---------------------------------------------------------------
+alliance_war.020 = {
+    type = character_event
+    title = alliance_war.020.t
+    desc  = alliance_war.020.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    trigger = {
+        completely_controls = title:c_imperial_city
+        exists = global_var:alliance_war_triggered
+        NOT = { has_character_flag = alliance_war_throne_event }
+    }
+
+    immediate = {
+        set_character_flag = { flag = alliance_war_throne_event }
+    }
+
+    option = {
+        name = alliance_war.020.a   # "Fortify the city. The Ruby Throne will be defended to the last."
+        add_prestige = 300
+        add_stress   = 25
+        add_martial_skill = 1
+    }
+
+    option = {
+        name = alliance_war.020.b   # "Sue for recognition from all three alliances. Exploit the stalemate."
+        trigger = { diplomacy >= 14 }
+        add_prestige = 200
+        add_diplomacy_skill = 1
+        add_stress = 20
+    }
+
+    option = {
+        name = alliance_war.020.c   # "Let them fight for it. I hold the city now, and I intend to keep holding it."
+        add_prestige = 400
+        add_stress   = 30
+        add_intrigue_skill = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# alliance_war.030  The War Without End
+# Ten years into the conflict, the Three Banners War shows no
+# sign of a clear victor.  Cyrodiil is a ruin of contested
+# counties and occupied towns.  The Molag Bal threat has been
+# dealt with — but the alliances are still fighting over the
+# empty throne.  The rest of Tamriel is exhausted.
+# ---------------------------------------------------------------
+alliance_war.030 = {
+    type = character_event
+    title = alliance_war.030.t
+    desc  = alliance_war.030.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_melancholic
+    }
+
+    trigger = {
+        OR = {
+            has_trait = aldmeri_banner
+            has_trait = covenant_banner
+            has_trait = pact_banner
+        }
+        current_date >= 2.592.1.1
+        NOT = { has_character_flag = alliance_war_exhaustion_fired }
+    }
+
+    immediate = {
+        set_character_flag = { flag = alliance_war_exhaustion_fired }
+    }
+
+    option = {
+        name = alliance_war.030.a   # "We fight until the throne is won. No half-measures."
+        add_prestige = 200
+        add_stress   = 25
+    }
+
+    option = {
+        name = alliance_war.030.b   # "The war cost more than any throne is worth. Seek an accommodation."
+        add_prestige = -100
+        add_stress   = -20
+        add_diplomacy_skill = 1
+        if = { limit = { has_trait = aldmeri_banner   } remove_trait = aldmeri_banner   }
+        if = { limit = { has_trait = covenant_banner  } remove_trait = covenant_banner  }
+        if = { limit = { has_trait = pact_banner      } remove_trait = pact_banner      }
+    }
+
+    option = {
+        name = alliance_war.030.c   # "What we have built here — this alliance — matters more than Cyrodiil."
+        add_prestige = 100
+        add_piety    = 75
+        add_stress   = -10
+    }
+}

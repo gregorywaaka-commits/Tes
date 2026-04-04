@@ -1,0 +1,78 @@
+# =============================================================
+#  War of Succession (Skyrim) — Traits
+#  File: mod/common/traits/succession_war_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  petty_king_legacy   — Ruled as a petty king of Skyrim during the
+#                        War of Succession (2E 431+); the era when
+#                        Skyrim fractured into competing jarldomes
+#                        and minor kingdoms after the Potentate's end.
+#  high_king_claimant  — Claims the High Kingship of Skyrim during
+#                        the post-succession era; seeks to reunite
+#                        the fractured Nord kingdoms.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  When the last Akaviri Potentate Savirien-Chorak was assassinated
+#  in 2E 430, Skyrim's unified kingship collapsed shortly after.  The
+#  sons of High King Logrolf had been killed by Durcorach the Black
+#  Drake (founder of the Longhouse Emperors) a generation earlier,
+#  ending the main line.  Without Imperial oversight, Skyrim fragmented
+#  into petty kingdoms ruled by competing jarls and minor kings.  This
+#  period is sometimes called the "War of Succession" or simply the
+#  Skyrim Interregnum.  It lasted until roughly 2E 533 when the
+#  Longhouse Emperors began exerting control, though Skyrim remained
+#  fractious.  Sources: UESP Lore:War of Succession; Pocket Guide to
+#  the Empire; ESO Nordic content.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/succession_war_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • petty_king_legacy
+#    • high_king_claimant
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/succession_war_events.txt
+#      → petty_king_legacy, high_king_claimant
+# =============================================================
+
+# ---------------------------------------------------------------
+#  PETTY KING LEGACY
+#  A Nord ruler who claimed kingship during Skyrim's fragmentation
+#  after the Potentate's end.  These were men who seized what the
+#  empire's collapse left unclaimed.
+# ---------------------------------------------------------------
+petty_king_legacy = {
+    category = fame
+
+    martial    = 2
+    intrigue   = 1
+    monthly_prestige = 2
+    monthly_piety_gain_mult = -0.03   # The gods value unity; the Nords' gods are tired of the squabbling
+
+    flag = petty_king_legacy
+}
+
+# ---------------------------------------------------------------
+#  HIGH KING CLAIMANT
+#  A Nord ruler who seeks to reunite Skyrim's fractured kingdoms
+#  under a single High Kingship.  The claim may be legitimate,
+#  fabricated, or somewhere in between.
+# ---------------------------------------------------------------
+high_king_claimant = {
+    category = fame
+
+    diplomacy  = 2
+    martial    = 3
+    monthly_prestige = 3
+
+    flag = high_king_claimant
+}

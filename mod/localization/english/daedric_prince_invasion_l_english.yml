@@ -1,0 +1,195 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+ # ============================================================
+ #  Daedric Prince — Per-Prince Invasion Flavour Events
+ #  Namespace: daedric_prince_invasion
+ # ============================================================
+
+ # ---- AZURA ----
+ daedric_prince_invasion.azura.001.t: "Azura's Twilight Warning"
+ daedric_prince_invasion.azura.001.desc: "A herald bearing twilight-purple feathers arrives at dawn — not a mortal herald but something between one and a vision — carrying Azura's prophecy. The Prince of Dusk and Dawn has foreseen something in the current invasion that concerns her directly. She offers counsel freely, which is unusual. Azura rarely acts without an interest of her own."
+ daedric_prince_invasion.azura.001.a: "Heed the Twilight Queen's warning."
+ daedric_prince_invasion.azura.001.b: "A Daedra's counsel is another form of trap."
+
+ daedric_prince_invasion.azura.002.t: "The Star of Dawn"
+ daedric_prince_invasion.azura.002.desc: "Azura's Star descends into the throne room on a beam of rose-gold light — not thrown, not placed, but left as one leaves a gift on a table for someone who will find it later. The greatest soul gem in existence, which can never be filled nor emptied, sits on the throne room floor and waits. Azura's instructions came with the dawn and were simple: 'Use it well.'"
+ daedric_prince_invasion.azura.002.a: "Accept the Star as her gift."
+ daedric_prince_invasion.azura.002.b: "Return it — her gifts carry conditions we have not yet seen."
+
+ daedric_prince_invasion.azura.003.t: "Children of the Twilight"
+ daedric_prince_invasion.azura.003.desc: "Where the invasion presses hardest, Azura's servants have appeared — not summoned but arrived, pouring from the dusk like soldiers who have been waiting for exactly this moment. The Twilight Queen turns her gaze on Mehrunes Dagon's forces with the absolute certainty of someone who has already seen the outcome, and finds it satisfactory. She wants us to march with them."
+ daedric_prince_invasion.azura.003.a: "March with Azura's Children. The prophecy must be fulfilled."
+
+ # ---- MEPHALA ----
+ daedric_prince_invasion.mephala.001.t: "A Package Wrapped in Spider-Silk"
+ daedric_prince_invasion.mephala.001.desc: "Mephala works in silk and silence. The package arrived between two heartbeats with no messenger and no explanation — wrapped in spider-silk that is both beautiful and subtly wrong in the way that beautiful things from Oblivion always are. The Webspinner has an interest in the current crisis and wishes to offer a thread. The question is where the thread ends."
+ daedric_prince_invasion.mephala.001.a: "Follow the Webspinner's thread. Mephala's secrets are worth the danger."
+ daedric_prince_invasion.mephala.001.b: "Burn the package. Mephala's webs have no exits."
+
+ daedric_prince_invasion.mephala.002.t: "The Ebony Blade Stirs"
+ daedric_prince_invasion.mephala.002.desc: "The Ebony Blade has surfaced in the armoury — no one brought it, no one knows how it arrived — and the servants are giving it a wide berth without quite knowing why. The blade feeds on broken trust; it grows stronger each time a bond is severed by its edge. Mephala is watching to see what we do with a weapon that improves the more damage it causes to relationships."
+ daedric_prince_invasion.mephala.002.a: "Claim the Ebony Blade. A weapon that grows stronger with use is exactly what is needed."
+ daedric_prince_invasion.mephala.002.b: "Seal it away. The Ebony Blade corrupts its wielder as it strengthens."
+
+ daedric_prince_invasion.mephala.003.t: "The Webspinner's Assassin"
+ daedric_prince_invasion.mephala.003.desc: "Mephala does not communicate through prophecy or gifts — she communicates through consequence. A rival we have not yet moved against has been found dead, and a spider of impossible size was seen leaving the room. The Webspinner has cleared a path for us through the current chaos. She expects the favour to be remembered, in time."
+ daedric_prince_invasion.mephala.003.a: "Use the opening Mephala has created."
+ daedric_prince_invasion.mephala.003.b: "Refuse to profit from the Webspinner's work."
+
+ # ---- CLAVICUS VILE ----
+ daedric_prince_invasion.clavicus.001.t: "An Offer in Wartime"
+ daedric_prince_invasion.clavicus.001.desc: "A small statue has appeared on the war table — grinning, horned, unmistakably Clavicus Vile. The Prince of Bargains considers invasions excellent moments for dealmaking: everyone is desperate, terms are flexible, and the catch reveals itself so much later that it hardly seems fair to call it a catch at all. The offer is excellent. The terms are clear. Both facts are deeply suspicious."
+ daedric_prince_invasion.clavicus.001.a: "Hear the bargain. The terms may be navigable."
+ daedric_prince_invasion.clavicus.001.b: "Dismiss the statue. Clavicus Vile's generosity is always loaded."
+
+ daedric_prince_invasion.clavicus.002.t: "The Catch Arrives"
+ daedric_prince_invasion.clavicus.002.desc: "Clavicus Vile is pleased. He is pleased the way a chess player is pleased when their opponent finally sees the board position they set up fourteen moves ago. The bargain's catch has arrived precisely as expected, in exactly the form most inconvenient, and with a timing that suggests the Prince planned all of it from the first moment. He still offers Barbas and the Masque. Generously."
+ daedric_prince_invasion.clavicus.002.a: "Navigate the consequences. This is not over."
+ daedric_prince_invasion.clavicus.002.b: "Accept the loss and refuse to deal further with Vile."
+
+ daedric_prince_invasion.clavicus.003.t: "The Masque of Clavicus Vile"
+ daedric_prince_invasion.clavicus.003.desc: "Against all expectation, we have survived Clavicus Vile's terms. The Prince finds this genuinely amusing — he had not expected to need to honour the back half of the agreement. The Masque of Clavicus Vile is delivered with a genuine grin: a face of burnished copper and impossible charisma that makes everyone who sees the wearer think rather well of them. Vile considers this funny."
+ daedric_prince_invasion.clavicus.003.a: "Accept the Masque. Manufactured likeability is still likeability."
+ daedric_prince_invasion.clavicus.003.b: "Refuse. A face Clavicus made is a face Clavicus controls."
+
+ # ---- VAERMINA ----
+ daedric_prince_invasion.vaermina.001.t: "The Realm of Nightmares Bleeds Through"
+ daedric_prince_invasion.vaermina.001.desc: "Every night for a fortnight, court members have woken screaming. The dreams are specific: bone towers, crystallised fear, a palace built from the architecture of every nightmare ever dreamed. Vaermina, Prince of Quagmire, has taken an interest in this realm. The invasion has thinned the walls between Nirn and Oblivion, and her attention is — in its way — an honour. A terrible honour."
+ daedric_prince_invasion.vaermina.001.a: "Confront Vaermina's influence. Better to face nightmares than be consumed by them."
+ daedric_prince_invasion.vaermina.001.b: "Post guards and keep everyone awake. Sleep is the battlefield now."
+
+ daedric_prince_invasion.vaermina.002.t: "A Memory is Taken"
+ daedric_prince_invasion.vaermina.002.desc: "We woke this morning without a memory that was there last night. Not forgotten — removed. The gap is perfectly shaped: the absence of something specific, filed away in Quagmire where it will never be retrieved. Vaermina is satisfied. She collects experiences the way archivists collect documents, and she has found something in our history worth keeping. The rest of us are diminished by it."
+ daedric_prince_invasion.vaermina.002.a: "Accept the loss. What is one memory against survival?"
+ daedric_prince_invasion.vaermina.002.b: "Demand it back. What is ours is ours."
+
+ daedric_prince_invasion.vaermina.003.t: "The Skull of Corruption"
+ daedric_prince_invasion.vaermina.003.desc: "Vaermina offers the Skull of Corruption in payment for whatever dream-service we have survived rendering. The staff copies a target's mind, plants nightmares in it, and leaves the original intact but somehow less. The Prince of Quagmire presents it with the detached professionalism of someone handing over a signed contract. She considers this a fair exchange. The memory she took is not included."
+ daedric_prince_invasion.vaermina.003.a: "Take the Skull. A weapon built from nightmares fights nightmares."
+ daedric_prince_invasion.vaermina.003.b: "Refuse. Vaermina's tools spread what she is."
+
+ # ---- SHEOGORATH ----
+ daedric_prince_invasion.sheogorath.001.t: "The Mad God Takes Notice"
+ daedric_prince_invasion.sheogorath.001.desc: "Sheogorath has noticed the invasion. He is delighted. An Oblivion crisis is, from a certain perspective, the funniest thing that can happen to a realm — and Sheogorath's perspective is, famously, unlike anyone else's. He has arrived to help. This should be more reassuring than it is. The Mad God's help tends to solve one problem by creating seventeen others, all of them funnier."
+ daedric_prince_invasion.sheogorath.001.a: "Accept Sheogorath's help. Madness has its uses against conventional tactics."
+ daedric_prince_invasion.sheogorath.001.b: "Politely decline. We prefer enemies we understand to allies we cannot predict."
+
+ daedric_prince_invasion.sheogorath.002.t: "The Wabbajack, a Gift from Madness"
+ daedric_prince_invasion.sheogorath.002.desc: "Sheogorath is giving us the Wabbajack. He seems to think this is obvious and logical, in the way that the Mad God thinks most things are obvious and logical. The staff of endless transformation — cats to chairs, generals to cheese — is pressed into our hands with genuine enthusiasm. 'Every battle needs more uncertainty!' he announces, and disappears in a shower of butterflies."
+ daedric_prince_invasion.sheogorath.002.a: "Wield the Wabbajack. In a mad world, madness is an advantage."
+ daedric_prince_invasion.sheogorath.002.b: "Set it down carefully. This staff is a liability with handles."
+
+ daedric_prince_invasion.sheogorath.003.t: "The Mad God's Blessing"
+ daedric_prince_invasion.sheogorath.003.desc: "Sheogorath has decided to bless us. He performs the blessing with great ceremony and no warning, and what arrives may be a blessing or a curse depending on one's definition of the terms, which Sheogorath's definition does not allow for. The Mad God bows. 'You're welcome,' he says to a question nobody asked, and steps sideways out of reality."
+ daedric_prince_invasion.sheogorath.003.a: "Embrace whatever Sheogorath has done."
+
+ # ---- PERYITE ----
+ daedric_prince_invasion.peryite.001.t: "The Pestilent Prince's Patience"
+ daedric_prince_invasion.peryite.001.desc: "Peryite does not invade. He infiltrates — slowly, methodically, in the ordered way that disease spreads through a body whose defences are occupied elsewhere. His Afflicted have been walking among the soldiers for weeks. The Prince of Pestilence is the patron of order among the lowest, and his order is spreading through our camp in neat, geometric clusters."
+ daedric_prince_invasion.peryite.001.a: "Counter Peryite's plague. Order must be disrupted before it takes hold."
+ daedric_prince_invasion.peryite.001.b: "Study the Afflicted. Understanding the disease is the first step to surviving it."
+
+ daedric_prince_invasion.peryite.002.t: "Spellbreaker, Shield of the Afflicted"
+ daedric_prince_invasion.peryite.002.desc: "Peryite's Afflicted are offering Spellbreaker — the Dwemer-forged ward-shield, pulsing with the systematic magic of a people who built machines that outlasted their makers — as payment for having survived his plague with sufficient dignity. The Prince of Pestilence does not give gifts lightly. He gives them like a plague: precisely, for reasons that serve his interests."
+ daedric_prince_invasion.peryite.002.a: "Accept Spellbreaker. A shield that holds against magic holds against most things."
+ daedric_prince_invasion.peryite.002.b: "Refuse. Nothing from Peryite is truly free."
+
+ # ---- SANGUINE ----
+ daedric_prince_invasion.sanguine.001.t: "The Most Convivial of Princes"
+ daedric_prince_invasion.sanguine.001.desc: "Sanguine has arrived in the war camp, apparently under the impression that a military crisis is an excellent occasion for a feast. He is not entirely wrong — morale is a real consideration — but his methods are difficult to recommend in the official record. The Prince of Debauchery wishes to raise our spirits. His spirits are, in a literal sense, already raised."
+ daedric_prince_invasion.sanguine.001.a: "Accept Sanguine's hospitality. Soldiers fight better with full stomachs and high hearts."
+ daedric_prince_invasion.sanguine.001.b: "Decline. There will be time for celebration after survival."
+
+ daedric_prince_invasion.sanguine.002.t: "The Morning After"
+ daedric_prince_invasion.sanguine.002.desc: "The war camp is in somewhat better condition than it should be, given what Sanguine organised last night. Several commanders have misplaced their boots. The morale is, inexplicably, excellent. Sanguine considers this a complete success and leaves a note: 'Best campaign party I've attended in three Eras. — S.' The soldiers are, against all expectation, ready to fight."
+ daedric_prince_invasion.sanguine.002.a: "Work with what we have. Morale is morale."
+ daedric_prince_invasion.sanguine.002.b: "Restore discipline immediately. Victory requires it."
+
+ daedric_prince_invasion.sanguine.003.t: "The Sanguine Rose"
+ daedric_prince_invasion.sanguine.003.desc: "Sanguine is offering the Sanguine Rose directly — a staff that summons Daedra from the bowels of Oblivion on request — because he considers us excellent company and wants to ensure we survive long enough to keep being excellent company. He presents it with a bow that is somehow both sincere and theatrical. The Rose pulses with something that might be enthusiasm."
+ daedric_prince_invasion.sanguine.003.a: "Accept the Rose. A Daedra-caller's staff changes the odds considerably."
+ daedric_prince_invasion.sanguine.003.b: "Decline with genuine regret. This war needs no further chaos."
+
+ # ---- MERIDIA ----
+ daedric_prince_invasion.meridia.001.t: "The Beacon of Meridia Burns"
+ daedric_prince_invasion.meridia.001.desc: "Meridia's Beacon has manifested above the highest tower — visible for ten miles, burning with a light that makes the undead stop moving and causes Oblivion portals to stutter. The Princess of Infinite Energies is lending her light to the defence. She is not doing this for free: she expects the undead of this realm to be scoured in her name before the campaign is complete."
+ daedric_prince_invasion.meridia.001.a: "Serve the Light of Meridia. The undead have no place in a living realm."
+ daedric_prince_invasion.meridia.001.b: "Acknowledge the Beacon but make no promises."
+
+ daedric_prince_invasion.meridia.002.t: "Dawnbreaker Revealed"
+ daedric_prince_invasion.meridia.002.desc: "Dawnbreaker descends into the campaign on a shaft of pure light — pulled from Meridia's plane where it was waiting for exactly this moment, arriving in the hands of whoever has done the most to earn it. The sword burns with Living Light, bane of the undead, destroyer of those who persist beyond their proper hour. Meridia is watching to see how it is used."
+ daedric_prince_invasion.meridia.002.a: "Wield Dawnbreaker against the darkness."
+ daedric_prince_invasion.meridia.002.b: "Return it to Meridia's keeping. Her favour demands too high a price."
+
+ daedric_prince_invasion.meridia.003.t: "The Light Turns Against Darkness"
+ daedric_prince_invasion.meridia.003.desc: "A necromancer king allied with Mehrunes Dagon has been raising the dead faster than the living can put them down again. Meridia has taken specific offence. The Princess of Light acts directly — which happens rarely and ends catastrophically for whoever drew her attention. She requires an instrument on the ground to deliver the final strike. She has chosen us."
+ daedric_prince_invasion.meridia.003.a: "Serve as Meridia's instrument. The necromancer must be ended."
+ daedric_prince_invasion.meridia.003.b: "The necromancer is a political tool we still need."
+
+ # ---- MALACATH ----
+ daedric_prince_invasion.malacath.001.t: "The Oathbreaker's Curse"
+ daedric_prince_invasion.malacath.001.desc: "An ally who swore an oath of mutual defence has sent troops — to the opposite side. Malacath noticed. The Prince of Oaths and Curses is precise in his accounting: every broken word has a price, and the oath-breaker has now been added to his ledger. Malacath wishes us to know that the debt will be collected. He considers this a courtesy, not a warning."
+ daedric_prince_invasion.malacath.001.a: "Let Malacath's judgment run its course."
+ daedric_prince_invasion.malacath.001.b: "Seek the oath-breaker before Malacath does."
+
+ daedric_prince_invasion.malacath.002.t: "The Orcs of the Ash Pit Rally"
+ daedric_prince_invasion.malacath.002.desc: "Malacath's Orcs have arrived — not summoned, not contracted, but following the Prince's silent call to defend a realm where oaths were kept and honour was maintained. They are scarred, direct, and completely indifferent to the politics of the situation. They fight for Malacath and for themselves, in that order, and they do both with the ferocity of a people whose god is rage given form."
+ daedric_prince_invasion.malacath.002.a: "March alongside Malacath's warriors."
+ daedric_prince_invasion.malacath.002.b: "Thank them and send them home. Their methods are difficult to govern."
+
+ daedric_prince_invasion.malacath.003.t: "Volendrung, Hammered Anew"
+ daedric_prince_invasion.malacath.003.desc: "Volendrung has been forged again — Malacath standing over the anvil himself, the Orcish hammer bright with a heat that has nothing to do with fire — and the Prince of Oaths sets it before us without ceremony. 'You kept your word,' he says, as if this is both rare and the only thing that matters. From Malacath, it may be the only thing that does."
+ daedric_prince_invasion.malacath.003.a: "Take Volendrung. The oaths will be kept."
+ daedric_prince_invasion.malacath.003.b: "Leave it. Malacath's weapons carry Malacath's obligations."
+
+ # ---- NOCTURNAL ----
+ daedric_prince_invasion.nocturnal.001.t: "Treasuries Drain in the Night"
+ daedric_prince_invasion.nocturnal.001.desc: "The war chest is lighter than it should be. Not stolen — no records of entry, no broken seals, nothing missing except the gold. Nocturnal does not steal. She borrows, in the permanent sense, and she has borrowed from the realm's treasury while the realm was busy defending itself. The Princess of Night has left something in exchange: a night-black coin that was not there before and is impossible to spend."
+ daedric_prince_invasion.nocturnal.001.a: "Accept Nocturnal's arrangement. What is taken is already gone."
+ daedric_prince_invasion.nocturnal.001.b: "Demand restitution. Even Nocturnal operates in a realm of contracts."
+
+ daedric_prince_invasion.nocturnal.002.t: "The Skeleton Key"
+ daedric_prince_invasion.nocturnal.002.desc: "The Skeleton Key has appeared in the deepest lock of the castle — inserted, turned, and left there by someone who moves through walls. It opens anything: gates, vaults, minds, the potential in a situation that seemed entirely foreclosed. Nocturnal's gifts are always investment strategies. She leaves the Key because she expects it will be used in ways that interest her."
+ daedric_prince_invasion.nocturnal.002.a: "Take the Skeleton Key. Every locked door is a problem waiting to be solved."
+ daedric_prince_invasion.nocturnal.002.b: "Leave it. Nocturnal's tools work for Nocturnal's purposes."
+
+ daedric_prince_invasion.nocturnal.003.t: "Shadows Reveal Secrets"
+ daedric_prince_invasion.nocturnal.003.desc: "Nocturnal's shadows have moved through a rival's court and returned with documents, whispers, and a precise layout of the enemy's strategy. The Princess of Night does not explain herself, but the implication is clear: she has an interest in this outcome, and this intelligence is both genuine and a down-payment on a favour she has not yet named. The information is devastatingly accurate."
+ daedric_prince_invasion.nocturnal.003.a: "Use the intelligence. Nocturnal's debts can be negotiated later."
+ daedric_prince_invasion.nocturnal.003.b: "Refuse. We will not owe Nocturnal a favour we cannot name."
+
+ # ---- HERMAEUS MORA ----
+ daedric_prince_invasion.hermaeus.001.t: "A Black Book in the Library"
+ daedric_prince_invasion.hermaeus.001.desc: "A Black Book has appeared in the deepest archive — seamless, impossible, faintly damp with the moisture of a plane that exists in eternal twilight. Hermaeus Mora, Prince of Forbidden Knowledge and Keeper of the Unseen, extends an invitation through the page. The knowledge of every enemy plan, every hidden weakness, every secret that was meant to be kept — it is all in Apocrypha. The price of access is access."
+ daedric_prince_invasion.hermaeus.001.a: "Open the Black Book. Knowledge is the only weapon that never dulls."
+ daedric_prince_invasion.hermaeus.001.b: "Seal the Book. Hermaeus Mora's knowledge is a leash as much as a lamp."
+
+ daedric_prince_invasion.hermaeus.002.t: "Apocrypha Resists the Reader"
+ daedric_prince_invasion.hermaeus.002.desc: "Apocrypha does not give knowledge willingly — it extracts something in exchange, always, whether the visitor knows it or not. The tentacles and the infinite stacks and the knowledge-hunger of Hermaeus Mora pressing against the mind from inside the book — it is not a comfortable experience. But we survive it. Mora finds this, in his cephalopod way, interesting."
+ daedric_prince_invasion.hermaeus.002.a: "Endure Apocrypha's toll. The knowledge is worth the cost."
+ daedric_prince_invasion.hermaeus.002.b: "Retreat from the Book. Some knowledge is not survivable."
+
+ daedric_prince_invasion.hermaeus.003.t: "Mora Offers the Enemy's Secrets"
+ daedric_prince_invasion.hermaeus.003.desc: "Hermaeus Mora extends a tentacle from the corner of the library and sets a single page on the table. The page contains everything: troop dispositions, private doubts, the three vulnerabilities the invasion commander will never admit to, and the exact timing of the next assault. Mora requires nothing in exchange. He already knows what we will do with this information, and he approves."
+ daedric_prince_invasion.hermaeus.003.a: "Use Mora's intelligence. The enemy's secrets are now ours."
+ daedric_prince_invasion.hermaeus.003.b: "Burn the page. Mora's gifts come with eyes attached."
+
+ # ---- JYGGALAG ----
+ daedric_prince_invasion.jyggalag.001.t: "The Greymarch Begins"
+ daedric_prince_invasion.jyggalag.001.desc: "The walls of the courtyard have begun to crystallise. Not from cold but from Order — the absolute, total Order of Jyggalag, Prince of Perfect Logic, whose Greymarch reduces everything it touches to still, grey, flawlessly arranged crystal. He is not an ally of Mehrunes Dagon's. He considers the invasion untidy. He is here to impose order on everyone, invaders and defenders alike."
+ daedric_prince_invasion.jyggalag.001.a: "Resist the Greymarch. Our realm will not be crystallised by any Daedra."
+ daedric_prince_invasion.jyggalag.001.b: "Treat with Jyggalag. Perfect Order is the enemy of the chaos that threatens us."
+
+ daedric_prince_invasion.jyggalag.002.t: "Knights of Order Demand Submission"
+ daedric_prince_invasion.jyggalag.002.desc: "The Knights of Order have arrived — crystalline, silent, absolutely certain — and they are not distinguishing between Dagon's forces and ours. Jyggalag's army imposes Order on everything it encounters. Resistance is theoretically possible; it is also precisely what Jyggalag predicts will fail. He has run the calculations. He finds the outcome satisfying and inevitable."
+ daedric_prince_invasion.jyggalag.002.a: "Resist the Knights of Order. Inevitable is not the same as certain."
+ daedric_prince_invasion.jyggalag.002.b: "Submit to Order. At least the Knights will not burn the realm down."
+
+ daedric_prince_invasion.jyggalag.003.t: "The Sword of Perfect Order"
+ daedric_prince_invasion.jyggalag.003.desc: "Jyggalag, regarding the defence of the realm with the cool assessment of a theorem that has resolved correctly, offers the Sword of Perfect Order. It is a precise weapon: it cuts exactly as much as is necessary, no more. The Prince of Logic considers this appropriate compensation for surviving his attention. The sword is cold. It is also exactly the right size."
+ daedric_prince_invasion.jyggalag.003.a: "Accept the Sword. Order has its uses in war."
+ daedric_prince_invasion.jyggalag.003.b: "Refuse. Jyggalag's gifts serve Jyggalag's geometry."
+
+ daedric_prince_invasion.jyggalag.004.t: "The Greymarch Recedes"
+ daedric_prince_invasion.jyggalag.004.desc: "The crystallisation halts. The grey recedes. The Knights of Order stand perfectly still and then simply cease — and where Jyggalag stood a moment ago, the Mad God Sheogorath capers in the ancient Daedric curse that has bound them since the Merethic Era. The Greymarch is over. The realm has survived Jyggalag's attempt to perfect it. The crystals in the courtyard will take weeks to dissolve."
+ daedric_prince_invasion.jyggalag.004.a: "The Greymarch has passed. Begin the reconstruction."

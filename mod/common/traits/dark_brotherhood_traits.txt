@@ -1,0 +1,80 @@
+# =============================================================
+#  Dark Brotherhood / Sithis Covenant — Traits
+#  File: mod/common/traits/dark_brotherhood_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  black_hand_speaker     — An inner officer of the Dark Brotherhood's Black
+#                           Hand, acting as voice of the Night Mother.
+#  listener_of_sithis     — The supreme Listener — the one who hears Sithis'
+#                           will directly and commands the entire Brotherhood.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Dark Brotherhood is a murderers' guild that worships Sithis, the void
+#  deity of death.  Their hierarchy is governed by the Five Tenets and the
+#  Black Hand — four Speakers who handle contracts and a Listener who alone
+#  can hear the Night Mother's voice.  The Night Mother is Sithis' consort
+#  and conduit; the Black Sacrament ritual summons Brotherhood contact.
+#  Shadowscales (Argonian assassins born under the Shadow sign) are the
+#  Brotherhood's separate Argonian arm and are NOT represented by these traits.
+#  Sources: UESP Lore:Dark Brotherhood; UESP Lore:Sithis.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — traits are self-contained.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/dark_brotherhood_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • black_hand_speaker
+#    • listener_of_sithis
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/dark_brotherhood_events.txt
+#      → black_hand_speaker, listener_of_sithis
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BLACK HAND SPEAKER
+#  A ruler elevated to the inner Black Hand of the Dark
+#  Brotherhood — one of four Speakers who carry out the Night
+#  Mother's will, manage contracts, and enforce the Five Tenets.
+#  The pious regard them with deep suspicion.
+# ---------------------------------------------------------------
+black_hand_speaker = {
+    category = lifestyle
+
+    intrigue  = 4
+    diplomacy = 1
+
+    monthly_piety_gain_mult = -0.5
+
+    opinion_of_pious = -30
+
+    flag = black_hand_speaker
+}
+
+# ---------------------------------------------------------------
+#  LISTENER OF SITHIS
+#  The supreme head of the Dark Brotherhood — the one individual
+#  who can hear the Night Mother's whispers directly and translate
+#  Sithis' will to the Black Hand.  The most dangerous and
+#  spiritually compromised ruler in the Brotherhood's history.
+# ---------------------------------------------------------------
+listener_of_sithis = {
+    category = fame
+
+    intrigue  = 5
+    diplomacy = 2
+    martial   = 1
+
+    monthly_piety_gain_mult = -1.0
+
+    opinion_of_pious = -50
+
+    flag = listener_of_sithis
+}

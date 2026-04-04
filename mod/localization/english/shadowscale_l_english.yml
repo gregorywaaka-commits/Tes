@@ -1,0 +1,69 @@
+﻿l_english:
+
+ # =====================================================================
+ #  SHADOWSCALE — ARGONIAN ASSASSIN SYSTEM
+ # =====================================================================
+
+ # ---- shadowscale.000 — Born Under the Shadow ----
+
+ shadowscale.000.t: "The Hist's Offer"
+ shadowscale.000.desc: "A Hist elder comes to your court — an old Argonian with bark-like skin and eyes that look as though they have been looking at the same thing for several centuries. They do not sit down, because Hist elders rarely explain themselves with body language. They speak directly. There are Argonians, they say, who were born under the sign of the Shadow and given to the Hist at birth. They were raised in the deep marsh. They were trained. They are not ordinary assassins — they are the Hist's blades, deployed with the Hist's approval in service of Argonian rulers who have earned that trust. The elder is asking, in the way that a river asks whether you want to get wet, whether you will accept what is being offered."
+ shadowscale.000.a: "The Hist offers this. I accept on behalf of my people and my realm."
+ shadowscale.000.b: "I will not deal in the Hist's assassins, regardless of their sanctioning."
+
+ # ---- shadowscale.010 — The Hist's Blade ----
+
+ shadowscale.010.t: "The Hist's Blade is Ready"
+ shadowscale.010.desc: "The Shadowscale comes to you in the hour before dawn, not as a surprise but as an appointment, moving through security that should have noticed them and apparently did not because the Hist's children move through things as easily as roots move through stone — slowly, without announcement, irresistibly. They wait in the correct posture that means they are asking rather than telling. They have reviewed your situation. There is a target. The Hist has reviewed the target. The forms are available, if you choose to file them."
+ shadowscale.010.a: "Send them. The target has earned this."
+ shadowscale.010.b: "Not this time. I will handle this another way."
+ shadowscale.010.c: "End the arrangement. Return to the Hist."
+
+ # ---- shadowscale.020 — The Old Ways End ----
+
+ shadowscale.020.t: "The Old Ways End"
+ shadowscale.020.desc: "You send word to the Hist elder. The arrangement is ended. You are returning the trust that was given to you in this matter, because you no longer wish to hold it. The Hist, which does not waste words, acknowledges this. The Shadowscale returns to the marsh. The silence that follows is clean and somewhat heavier than you expected."
+ shadowscale.020.a: "Let them return to the Hist. Some powers are not meant to be permanent."
+
+ # ---- shadowscale.030 — The Assignment Complete ----
+
+ shadowscale.030.t: "The Assignment Complete"
+ shadowscale.030.desc: "The Shadowscale returns in the same hour they always choose — before dawn, without announcement, already present before you realise they have arrived. They report in the Hist's preferred form, which is brevity: the mission is complete; the target is not; the Hist is satisfied with the outcome. They wait to see if there is anything else, in the way of a person who is quite comfortable waiting indefinitely."
+ shadowscale.030.a: "It is done. The Hist kept its word."
+ shadowscale.030.b: "The mission failed. The target survived somehow."
+
+ # ---- Traits ----
+
+ shadowscale_trained: "Shadowscale-Trained"
+ shadowscale_trained_desc: "This Argonian was given to the Hist at birth, born under the sign of the Shadow. They were raised in the deep marsh and trained as a Shadowscale — the Hist's assassin arm. Their loyalty is to the Hist first and any mortal lord second. They are extraordinarily effective."
+
+ shadowscale_patron: "Shadowscale Patron"
+ shadowscale_patron_desc: "This ruler employs the Shadowscales through the Hist's approval — maintaining the old ways of Argonian power and gaining access to a lethal resource that no enemy can predict or prevent. The Hist watches how the resource is used."
+
+ # ---- shadowscale.040 — The Naming Day ----
+
+ shadowscale.040.t: "The Naming Day"
+ shadowscale.040.desc: "A Hist elder comes to you with the kind of news that is delivered quietly and without ceremony because the ceremony already happened in the deep marsh, without you: an Argonian child in your realm was born under the sign of the Shadow. The naming took place before dawn, in the oldest grove, attended by the family and three elders who read the Hist's intention in the sap before the child had opened their eyes for the first time. The child has been given to the Hist. Not permanently — they will be trained, not imprisoned. But the path is set. In a decade, perhaps two, there will be another blade. You are being told because the Hist considers it appropriate to inform the patron of such things. You are not being asked for your approval."
+ shadowscale.040.a: "The Hist has chosen. I honour the naming and the child's path."
+ shadowscale.040.b: "A life shaped before it began. I note it and carry the weight of knowing."
+
+ # ---- shadowscale.050 — Sithis Speaks ----
+
+ shadowscale.050.t: "Sithis Speaks"
+ shadowscale.050.desc: "It comes between the root-pulses — in the silence between one Hist communication and the next, a space so small you would not normally notice it. But tonight you are paying attention, and in the space between heartbeats of the marsh, something else is present. Not the Hist. The Hist has a particular quality: old, patient, warm in the way that wood is warm. This is different. Cold, also patient, also old — older, perhaps, than the Hist, or at least differently old. The Void is not hostile to the Hist. They have a working arrangement that predates the memory of anyone living. Sithis is not speaking to you as an enemy. Sithis is acknowledging you as someone who has been incorporated into the arrangement. The communication is not words. It is a recognition."
+ shadowscale.050.a: "Sithis has acknowledged me. The Void and the Hist — different roots of the same darkness."
+ shadowscale.050.b: "The Void is not something to commune with. I close the space between pulses and breathe."
+
+ # ---- shadowscale.060 — The Difficult Mission ----
+
+ shadowscale.060.t: "The Difficult Mission"
+ shadowscale.060.desc: "The Shadowscale comes in the usual hour, but something is different in their posture — not reluctance exactly, but a precision that suggests the request they are carrying is heavier than usual. The Hist has reviewed a situation. The Hist has reached a conclusion. The conclusion involves a target you know. Perhaps personally. Perhaps politically. Perhaps both. The Hist does not explain its reasoning any more than a river explains why it chooses a particular path — it simply goes where it goes, and the going is efficient. The Shadowscale is waiting. The forms are available. The mission is legal under the arrangement you made when you accepted patronage. The question is whether your acceptance was unconditional or merely convenient."
+ shadowscale.060.a: "The Hist has asked. I trust the asking. Send the blade."
+ shadowscale.060.b: "There are lines the Hist should not ask me to cross. Not this target."
+
+ # ---- shadowscale.070 — Death Rites ----
+
+ shadowscale.070.t: "The Death Rites"
+ shadowscale.070.desc: "An elder brings the news in the way the Hist communicates all endings: directly, without softening, because the Hist does not believe that softening helps. A Shadowscale died in service. Their body was returned to the marsh, placed among the roots of the naming-grove where they were first identified as what they were going to be. Their memory — the accumulated experience of their training, their missions, their years of service — has been absorbed by the Hist and will inform the training of the next. Their soul has not gone to Sithis, which is the unusual part: the Hist has kept them, folded their awareness into the root-memory, made them part of the dreaming. They are not gone. They are simply unreachable in the ordinary way. You are not sure if this is a mercy or a continuation of service under a different description."
+ shadowscale.070.a: "The Hist takes them back. Their service is complete. I honour the return."
+ shadowscale.070.b: "A life spent entirely in service — never choosing anything else. I carry the weight of knowing that."

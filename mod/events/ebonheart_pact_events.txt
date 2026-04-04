@@ -1,0 +1,152 @@
+# =============================================================
+#  Ebonheart Pact Formation Events
+#  Namespace: ebonheart
+#  File: mod/events/ebonheart_pact_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  ebonheart.000  Hidden world event — fires at 2E 572 (after
+#                 Dir-Kamal's defeat) to notify Nord, Dunmer, and
+#                 Argonian rulers that the Pact has been forged.
+#  ebonheart.001  "The Ebonheart Pact" — Nord/Dunmer/Argonian
+#                 rulers receive word of the improbable alliance.
+#  ebonheart.010  "Enemies Made Allies" — flavor event for rulers
+#                 who have joined the Pact; the first Great Moot.
+#
+#  HISTORICAL NOTE:
+#  The Ebonheart Pact was formed following the Kamal invasion of
+#  2E 572.  Ada'Soom Dir-Kamal attacked Morrowind but was defeated
+#  by the combined forces of the Tribunal, the Nords of Eastern
+#  Skyrim (led by Jorunn the Skald-King), and the Argonians of
+#  Black Marsh.  In the aftermath, the leaders of these three
+#  peoples — who had been historical enemies — formed the Great
+#  Moot at Ebonheart and established the Pact.  It was the
+#  first time Nords, Dunmer, and Argonians had ever formally
+#  allied.  The Pact governed through a council of all three
+#  peoples and later became one of the three factions of the
+#  Three Banners War (2E 582).
+#  Sources: ESO main content; UESP Lore:Ebonheart Pact;
+#  ESO in-game "The Great Moot".
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/ebonheart_pact_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/ebonheart_pact_traits.txt
+#      → pact_sworn, pact_skeptic
+#    common/traits/alliance_war_traits.txt
+#      → pact_banner (linked banner trait for the Three Banners War)
+#
+#  REFERENCED BY — other files that import this namespace:
+#    common/on_actions/lore_races_on_actions.txt
+#      → ebonheart.000
+# =============================================================
+
+namespace = ebonheart
+
+# ---------------------------------------------------------------
+# ebonheart.000  The Ebonheart Pact — Hidden World Trigger
+# A hidden world event that fires once at 2E 572 and notifies
+# all Nord, Dunmer, and Argonian rulers of the Pact's formation.
+# Guards with a global variable so it fires only once.
+# ---------------------------------------------------------------
+ebonheart.000 = {
+    type = world_event
+    hidden = yes
+
+    trigger = {
+        current_date >= 2.572.1.1
+        current_date < 2.574.1.1
+        NOT = { exists = global_var:ebonheart_pact_formed }
+    }
+
+    immediate = {
+        set_global_variable = { name = ebonheart_pact_formed value = 1 }
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_alive  = yes
+                OR = {
+                    has_culture = nord_culture
+                    has_culture = dunmer_culture
+                    has_culture = argonian_culture
+                }
+            }
+            trigger_event = { id = ebonheart.001 days = 7 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# ebonheart.001  The Ebonheart Pact
+# Nord, Dunmer, and Argonian rulers receive word that the leaders
+# of their three peoples have met at Ebonheart and forged an
+# alliance.  They must decide whether to commit to it.
+# ---------------------------------------------------------------
+ebonheart.001 = {
+    type = character_event
+    title = ebonheart.001.t
+    desc  = ebonheart.001.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    option = {
+        name = ebonheart.001.a   # "The Pact is necessity — and necessity makes it real."
+        add_prestige = 150
+        add_stress   = 10
+        add_trait    = pact_sworn
+        trigger_event = { id = ebonheart.010 days = 90 }
+    }
+
+    option = {
+        name = ebonheart.001.b   # "Nords and Dunmer and Argonians? This cannot hold."
+        add_prestige = 50
+        add_stress   = 5
+        add_trait    = pact_skeptic
+    }
+
+    option = {
+        name = ebonheart.001.c   # "Watch. An alliance born of desperation may outlast the desperation."
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# ebonheart.010  Enemies Made Allies — The First Great Moot
+# A ruler who joined the Pact receives an account of the first
+# meeting of the Great Moot at Ebonheart.  Three peoples who
+# have every reason to hate each other, sitting at the same table.
+# ---------------------------------------------------------------
+ebonheart.010 = {
+    type = character_event
+    title = ebonheart.010.t
+    desc  = ebonheart.010.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        has_trait = pact_sworn
+    }
+
+    option = {
+        name = ebonheart.010.a   # "Send representatives to Ebonheart. We participate fully."
+        add_prestige = 300
+        add_diplomacy_skill = 1
+        add_piety    = 50
+    }
+
+    option = {
+        name = ebonheart.010.b   # "Observe from a distance. Trust must be earned, not declared."
+        add_prestige = 150
+        add_intrigue_skill = 1
+    }
+}

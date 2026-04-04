@@ -1,0 +1,61 @@
+# =============================================================
+#  Warlord Claimants — Traits
+#  File: mod/common/traits/warlord_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  warlord_emperor   — A ruler who has declared themselves Emperor
+#                      during the Interregnum power vacuum (2E 431–541).
+#                      Prestige and martial bonuses; vassal opinion cost.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  When the Akaviri Potentate Savirien-Chorak was assassinated in
+#  2E 430, the Second Empire collapsed.  For over a century — from
+#  2E 431 until the Longhouse Emperors consolidated power around
+#  2E 541 — Tamriel had no legitimate Emperor.  Dozens of warlords,
+#  petty kings, and ambitious generals seized the Ruby Throne only
+#  to lose it within years or even months.  To call yourself Emperor
+#  in this period was not madness — it was simply ambition in an age
+#  that rewarded it.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/warlord_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • warlord_emperor
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/warlord_decisions.txt
+#      → warlord_emperor
+#    events/warlord_events.txt
+#      → warlord_emperor
+# =============================================================
+
+# ---------------------------------------------------------------
+#  WARLORD EMPEROR
+#  A ruler who has seized the Ruby Throne — or declared themselves
+#  its rightful heir — during the long Interregnum.  There is no
+#  Imperial apparatus left to legitimise the claim, no Dragon Fires
+#  to light, no Amulet to wear.  Just the throne, the sword, and
+#  whatever you can make the world believe.
+# ---------------------------------------------------------------
+warlord_emperor = {
+    category = fame
+
+    martial          = 3
+    diplomacy        = 1
+
+    monthly_prestige_gain_mult = 0.25
+    domain_limit               = 1
+
+    vassal_opinion             = -10   # Peers resent the claim
+
+    flag = warlord_emperor
+}

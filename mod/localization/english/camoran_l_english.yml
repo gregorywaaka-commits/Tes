@@ -1,0 +1,41 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+ # ============================================================
+ #  Camoran Dynasty / Valenwood
+ # ============================================================
+
+ # Traits
+ camoran_bloodline: "Camoran Bloodline"
+ camoran_bloodline_desc: "This ruler can trace their lineage to the ancient Camoran Dynasty — the oldest royal house in Tamriel, founded at the dawn of the First Era. Their claim on Valenwood's canton-chiefs carries the weight of two millennia."
+ forest_hermit: "Forest Hermit"
+ forest_hermit_desc: "This ruler has renounced dynastic politics and found their authority through direct communion with the forest gods. The deep-wood clans revere them; the Camoran courtiers do not understand them."
+
+ # Modifiers
+ camoran_dynasty_prestige_modifier: "Camoran Bloodline Reaffirmed"
+ camoran_dynasty_prestige_modifier_desc: "The ruler's ancient Camoran lineage has been publicly confirmed. The canton-chiefs acknowledge their claim."
+ green_conclave_accord_modifier: "Green Conclave Accord"
+ green_conclave_accord_modifier_desc: "A Green Conclave beneath the oldest tree has produced a temporary accord among Valenwood's rival canton-chiefs. Internal strife quiets for a season."
+
+ # camoran.000 — Blood of the Ancient Wood
+ camoran.000.t: "Blood of the Ancient Wood"
+ camoran.000.desc: "A genealogist of the ancient forest clans has spent months tracing the lineage of every ruling Bosmer family in Valenwood. His conclusion, delivered with ceremonial gravity, is that this ruler carries blood of the Camoran Dynasty — the oldest royal house in Tamriel. Whether this is a gift or a target is yet to be seen."
+ camoran.000.a: "My blood carries the dynasty. None shall deny the ancient claim."
+ camoran.000.b: "Lineage is a story we tell ourselves. Let the forest, not blood, decide who rules."
+
+ # camoran.010 — The Green Conclave
+ camoran.010.t: "The Green Conclave"
+ camoran.010.desc: "The canton-chiefs of Valenwood's great forest have sent word: they demand a Conclave. Every generation the Bosmer lords of the cantons gather beneath the oldest tree and reaffirm their obligations — to the Green Pact, to their liege, and to one another. The ruler must decide how to enter this ancient ceremony."
+ camoran.010.a: "Call the Conclave. All chiefs shall hear me beneath the oldest tree."
+ camoran.010.b: "The forest settles its own disputes. I will not impose order on what grows freely."
+
+ # camoran.020 — A Pretender in the Forest
+ camoran.020.t: "A Pretender in the Forest"
+ camoran.020.desc: "Word reaches the ruler that a rival Camoran claimant has appeared in the deep wood — a distant cousin, or a forger of genealogies, or perhaps someone with a genuine claim. The canton-chiefs are watching to see how the matter is resolved. Weakness will be remembered."
+ camoran.020.a: "I will expose this pretender before the canton-chiefs. Let the lie die in daylight."
+ camoran.020.b: "Bring the rival to court. Let them swear fealty and serve this dynasty."
+ camoran.020.c: "The forest will settle this. My patience is my answer."
+
+ # camoran.030 — The Way-Shrine Vigil
+ camoran.030.t: "The Way-Shrine Vigil"
+ camoran.030.desc: "The oldest Way-Shrine in the ruler's territory — a knotted arch of living oak draped with offerings of meat and dried flowers — calls for the annual vigil. The Green Pact demands that no Bosmer harm living wood; the vigil is the ritual reaffirmation of that covenant with the forest gods."
+ camoran.030.a: "I keep the vigil. The Green Pact is my law and my life."

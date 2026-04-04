@@ -1,0 +1,204 @@
+# =============================================================
+#  Dark Brotherhood / Sithis Covenant — Events
+#  Namespace: dark_brotherhood
+#  File: mod/events/dark_brotherhood_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  dark_brotherhood.000  The Whispering Door — Brotherhood invitation
+#  dark_brotherhood.010  The Black Sacrament — ritual and its consequences
+#  dark_brotherhood.020  Sithis Demands Payment — the Brotherhood's debt
+#  dark_brotherhood.030  The Five Tenets — elevation to Listener
+#
+#  LORE:
+#  The Dark Brotherhood worships Sithis, the void deity of death.
+#  Their hierarchy is governed by the Five Tenets and the Black Hand —
+#  four Speakers and a supreme Listener who alone hears the Night Mother.
+#  The Black Sacrament ritual summons Brotherhood contact.
+#  Shadowscales (Argonian assassins) are the Brotherhood's separate arm
+#  and are NOT represented in this system.
+#  Sources: UESP Lore:Dark Brotherhood; UESP Lore:Sithis.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/dark_brotherhood_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dark_brotherhood_traits.txt
+#      → black_hand_speaker, listener_of_sithis
+# =============================================================
+
+namespace = dark_brotherhood
+
+# ---------------------------------------------------------------
+# dark_brotherhood.000  The Whispering Door
+# A ruler with high intrigue notices signs: a black hand-print
+# on a courtier's door, a letter sealed with a coffin, a name
+# written in ash.  The Dark Brotherhood is making contact.
+# Fires for rulers with intrigue≥14, not pious, not Argonian.
+# ---------------------------------------------------------------
+dark_brotherhood.000 = {
+    type = character_event
+    title = dark_brotherhood.000.t
+    desc  = dark_brotherhood.000.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_callous
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        intrigue >= 14
+        NOT = { has_trait = pious }
+        NOT = { has_culture = argonian_culture }
+        NOT = { has_trait = black_hand_speaker }
+        NOT = { has_trait = listener_of_sithis }
+        NOT = { has_character_flag = brotherhood_offer_refused }
+        NOT = { has_character_flag = brotherhood_contacted }
+    }
+
+    option = {
+        name = dark_brotherhood.000.a   # "The Brotherhood has my attention. I will meet their agent."
+        add_character_flag = brotherhood_contacted
+        add_trait    = black_hand_speaker
+        add_prestige = 200
+        add_piety    = -100
+    }
+
+    option = {
+        name = dark_brotherhood.000.b   # "I know what this is. I want nothing to do with it."
+        add_character_flag = { flag = brotherhood_offer_refused days = 3650 }
+        add_prestige = 50
+        add_piety    = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# dark_brotherhood.010  The Black Sacrament
+# A black_hand_speaker ruler participates in — or witnesses —
+# the Black Sacrament ritual.  The choice to perform it fully
+# deepens their connection to Sithis but costs piety heavily;
+# observing at a distance is safer but earns Brotherhood
+# suspicion.
+# ---------------------------------------------------------------
+dark_brotherhood.010 = {
+    type = character_event
+    title = dark_brotherhood.010.t
+    desc  = dark_brotherhood.010.desc
+    theme = skull
+    left_portrait = {
+        character = root
+        animation = personality_callous
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = black_hand_speaker
+        NOT = { has_character_flag = black_sacrament_performed }
+    }
+
+    option = {
+        name = dark_brotherhood.010.a   # "I perform the Sacrament myself. Sithis will know my name."
+        add_character_flag = black_sacrament_performed
+        add_piety    = -200
+        add_prestige = 300
+        add_intrigue_skill = 1
+        add_stress   = 10
+    }
+
+    option = {
+        name = dark_brotherhood.010.b   # "I observe. The ritual is complete — but I kept my distance."
+        add_character_flag = black_sacrament_performed
+        add_piety    = -75
+        add_prestige = 100
+        add_stress   = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# dark_brotherhood.020  Sithis Demands Payment
+# The Brotherhood calls in a debt.  The black_hand_speaker ruler
+# must pay — in gold and stress, or by sacrificing a courtier
+# to "a mysterious disappearance."
+# ---------------------------------------------------------------
+dark_brotherhood.020 = {
+    type = character_event
+    title = dark_brotherhood.020.t
+    desc  = dark_brotherhood.020.desc
+    theme = skull
+    left_portrait = {
+        character = root
+        animation = personality_callous
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = black_hand_speaker
+        NOT = { has_character_flag = sithis_debt_paid }
+    }
+
+    option = {
+        name = dark_brotherhood.020.a   # "I pay what is owed. Gold and silence."
+        add_character_flag = sithis_debt_paid
+        add_gold   = -200
+        add_stress = 15
+        add_piety  = -50
+    }
+
+    option = {
+        name = dark_brotherhood.020.b   # "Someone at court will not be seen again. The Brotherhood gets what it wants."
+        add_character_flag = sithis_debt_paid
+        add_prestige = 100
+        add_stress   = 25
+        add_piety    = -150
+        # Courtier "disappears" — represented by intrigue skill gain
+        add_intrigue_skill = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# dark_brotherhood.030  The Five Tenets
+# A black_hand_speaker who has maintained perfect adherence to
+# the Brotherhood's Five Tenets is elevated to the supreme rank:
+# the Listener who alone hears Sithis' will.
+# ---------------------------------------------------------------
+dark_brotherhood.030 = {
+    type = character_event
+    title = dark_brotherhood.030.t
+    desc  = dark_brotherhood.030.desc
+    theme = skull
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = black_hand_speaker
+        NOT = { has_trait = listener_of_sithis }
+        has_character_flag = black_sacrament_performed
+        has_character_flag = sithis_debt_paid
+        NOT = { has_character_flag = listener_elevated }
+    }
+
+    option = {
+        name = dark_brotherhood.030.a   # "The Night Mother's voice is mine to hear. I accept the Listener's burden."
+        add_character_flag = listener_elevated
+        remove_trait = black_hand_speaker
+        add_trait    = listener_of_sithis
+        add_prestige = 1000
+        add_piety    = -300
+        add_stress   = 20
+    }
+
+    option = {
+        name = dark_brotherhood.030.b   # "Speaker is enough. I am not ready to hear what the Night Mother says."
+        add_character_flag = listener_elevated
+        add_prestige = 200
+        add_stress   = 10
+        # Stays as black_hand_speaker
+    }
+}

@@ -1,0 +1,212 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+ # ============================================================
+ #  Guild Leadership Questlines — All 9 Guilds
+ #  Namespace: guild_leader
+ # ============================================================
+
+ # ---- MAGES GUILD: "The Stolen Flame" ----
+ guild_leader.mages.001.t: "Anomalous Readings in the Vault"
+ guild_leader.mages.001.desc: "A junior mage catches us alone in the corridor and speaks in a low voice: the magical resonance readings in the lower library vault do not match any sanctioned research project. Something is being studied down there that is not on the Guild's official roster, and whoever is doing it has taken considerable care to ensure it stays off the roster. The junior mage is frightened. That is itself diagnostic."
+ guild_leader.mages.001.a: "Investigate further — discreetly."
+ guild_leader.mages.001.b: "Report it to the Arch-Magister at once."
+
+ guild_leader.mages.002.t: "The Forbidden Study"
+ guild_leader.mages.002.desc: "The vault's hidden chamber contains soul-trap experiments conducted on unwilling subjects — systematically, over a period of years, with meticulous records. The Arch-Magister's seal is on the older documentation. The Guild has been funding this in the margins of its budget for a decade, and the subjects are not theoretical. They are people who went missing and were never found."
+ guild_leader.mages.002.a: "Gather evidence. The Council must hear this from the evidence, not from us alone."
+ guild_leader.mages.002.b: "Confront the Arch-Magister privately. Give them the chance to end this before it becomes public."
+
+ guild_leader.mages.003.t: "Before the Assembled Council"
+ guild_leader.mages.003.desc: "The evidence is laid before the assembled Mages Guild Council. The Arch-Magister denies it, then qualifies it, then argues that the results justified the methods. The Council listens with the careful expression of people who understand that what they decide in the next hour will define the Guild for a generation. The silence when they ask for our statement is absolute."
+ guild_leader.mages.003.a: "Present the full evidence and demand accountability."
+ guild_leader.mages.003.b: "Call for reform rather than ruin. The Guild must survive this."
+
+ guild_leader.mages.lead.t: "Arch-Magister"
+ guild_leader.mages.lead.desc: "The Council has reached its decision. The title of Arch-Magister — the highest office in the Mages Guild, a title that carries authority over every chapter from High Rock to Morrowind — is conferred in a ceremony that is surprisingly brief given its significance. The previous holder is gone. The scholars look to us. The Stolen Flame questline has ended. The work of leadership has only just begun."
+ guild_leader.mages.lead.a: "I accept the title. The Guild will be what it should have been."
+
+ # ---- FIGHTERS GUILD: "Contracts with Shadows" ----
+ guild_leader.fighters.001.t: "Rumours from the Lower Contracts"
+ guild_leader.fighters.001.desc: "The word among the junior guardians is quiet and specific: certain contracts are being routed through an unofficial channel, and the clients paying for those contracts are not who the paperwork says they are. Someone in the upper ranks has been selling the Guild's blade-work to interests that the Guild charter expressly forbids. The rumours have the particular quality of things that are true."
+ guild_leader.fighters.001.a: "Investigate personally. A Guardian's job is to protect the Guild's honour."
+ guild_leader.fighters.001.b: "Report it through proper channels first."
+
+ guild_leader.fighters.002.t: "The Corrupt Contract Chain"
+ guild_leader.fighters.002.desc: "The corrupt channel traces back to a bandit lord who has been using the Guild as cover for eliminations, and several senior guardians who have been skimming the fees. They have been careful — but not careful enough. The evidence is solid. What to do with it is the question: ambush them before they realise they have been found, or expose them through the Guild's own tribunal processes."
+ guild_leader.fighters.002.a: "Ambush the corrupt guardians. They would not hesitate."
+ guild_leader.fighters.002.b: "Take it to tribunal. Let the Guild's process work."
+
+ guild_leader.fighters.003.t: "The Honour of the Guild"
+ guild_leader.fighters.003.desc: "The corrupt chain is broken. Whether through blades or tribunal, the bandit lord is exposed and the guardians who served him are removed. The Guild is bruised but intact. The Guildmaster, who suspected but feared the consequences of knowing, steps aside with less objection than expected. The remaining guardians are watching to see what kind of leader emerges from this."
+ guild_leader.fighters.003.a: "Set a clear standard for the Guild going forward."
+ guild_leader.fighters.003.b: "Focus on rebuilding without relitigating every past failure."
+
+ guild_leader.fighters.lead.t: "Guildmaster"
+ guild_leader.fighters.lead.desc: "The rank of Guildmaster is conferred at a chapter muster — every guardian present, every sword raised in salute. It is a louder ceremony than the Mages Guild offers and considerably less polished, which is appropriate. The Fighters Guild runs on direct respect. We have earned it the direct way. The contracts will flow through us now. The Guild's honour is ours to maintain."
+ guild_leader.fighters.lead.a: "Lead the Guild. The sword's honour is the Guild's honour."
+
+ # ---- THIEVES GUILD: "The Blind Eye" ----
+ guild_leader.thieves.001.t: "The Missing Cut"
+ guild_leader.thieves.001.desc: "The tribute owed to the upper ranks of the Thieves Guild has arrived light — not by accident but by design. Someone in the lower ranks has been skimming the cut before it reaches the distribution point, and doing so with enough skill that it took months to notice. The Guild exists on trust in the absence of law. Someone has decided trust is for people who cannot steal."
+ guild_leader.thieves.001.a: "Find the thief personally. Irony is no excuse for delay."
+ guild_leader.thieves.001.b: "Set a trap. Let the thief expose themselves."
+
+ guild_leader.thieves.002.t: "The Exposed Network"
+ guild_leader.thieves.002.desc: "The skim traces back not to a rogue operative but to an entire network — a faction within the Guild that has been building its own parallel structure for years, answerable to an outside patron rather than the Guild itself. They are numerous, well-funded, and have been positioning themselves to take control. The Guild's internal politics have become its external threat."
+ guild_leader.thieves.002.a: "Move against the faction directly. Speed is the only advantage now."
+ guild_leader.thieves.002.b: "Divide the faction before striking. A network is only as strong as its trust."
+
+ guild_leader.thieves.003.t: "The Last Score"
+ guild_leader.thieves.003.desc: "The faction is neutralised — some fled, some bought back into loyalty, a few made choices that foreclosed other options. The outside patron has been left without a Guild to leverage. The Guild Master has been watching the whole time with the patient assessment of someone who has survived thirty years of Guild politics and understands that the test was never about the skim."
+ guild_leader.thieves.003.a: "The Guild is ours to lead now. What was taken, we reclaim."
+ guild_leader.thieves.003.b: "Consolidate carefully. The Guild's trust is more valuable than its gold."
+
+ guild_leader.thieves.lead.t: "Guild Master"
+ guild_leader.thieves.lead.desc: "The title of Guild Master is conferred in the Flagon's deepest room, in the presence of the Skeleton Crew and whoever else the outgoing Master decides should witness it. No ceremony, no sashes — just a handshake and a set of keys. The Thieves Guild understands that leadership is demonstrated, not announced. We have demonstrated it. The keys are heavier than they look."
+ guild_leader.thieves.lead.a: "Lead the Guild. What is ours, we hold."
+
+ # ---- DARK BROTHERHOOD: "The Broken Silence" ----
+ guild_leader.db.001.t: "The Night Mother Speaks of Doubt"
+ guild_leader.db.001.desc: "The Night Mother's voice arrives in the small hours — not the usual commission but something older, more urgent, more personal. She has been watching a growing faction within the Brotherhood: people who have begun to question the Tenets, to take contracts the Five would never have sanctioned, to use the Brotherhood's secrecy as cover for things that have nothing to do with the Void. She wants it ended."
+ guild_leader.db.001.a: "Investigate the dissenters. The Night Mother's word is the only Tenet that matters."
+ guild_leader.db.001.b: "Proceed carefully. Dissent within the Brotherhood has ended careers in permanent ways."
+
+ guild_leader.db.002.t: "The Tenets Broken"
+ guild_leader.db.002.desc: "The faction's contracts are documented — political eliminations on behalf of a noble who has been using the Brotherhood as a private assassination service, circumventing every sanction the Tenets require. The Listener's role in the Brotherhood is to be the Night Mother's voice. The Night Mother is not pleased, and her displeasure has been building for some time. It is time for the Brotherhood to clean its own house."
+ guild_leader.db.002.a: "Enforce the Tenets. The Brotherhood does not serve masters. It serves the Night Mother."
+ guild_leader.db.002.b: "Give the dissenters one chance to return to the fold before the final solution."
+
+ guild_leader.db.003.t: "The Silence Restored"
+ guild_leader.db.003.desc: "The faction is ended — quietly, as the Brotherhood ends everything. The noble patron who thought he owned an assassination service has been invited to reconsider that position with considerable urgency. The Brotherhood is whole again, operating under the Tenets, serving the Night Mother's contracts and no others. The Keeper reports that the Night Mother sounds satisfied."
+ guild_leader.db.003.a: "The Brotherhood is what it should be. Let it stay that way."
+ guild_leader.db.003.b: "Set new protocols to prevent this pattern from recurring."
+
+ guild_leader.db.lead.t: "Listener"
+ guild_leader.db.lead.desc: "The Night Mother names us Listener — the first voice of the Brotherhood, the only mortal the Void's mother speaks to directly. It is not an announcement. There is no ceremony. One night the Night Mother simply speaks with the particular intimacy reserved for the Listener alone, and in that difference, everything is confirmed. The Brotherhood is ours to hear for."
+ guild_leader.db.lead.a: "Hear the Night Mother's words. The Void accepts its servant."
+
+ # ---- MORAG TONG: "The Writ Unwritten" ----
+ guild_leader.tong.001.t: "An Unauthorised Strike"
+ guild_leader.tong.001.desc: "A Morag Tong blade-work has been carried out without a Writ of Execution. The body is that of a magistrate — which would ordinarily be unproblematic — except that no Writ was filed, no client was registered, and no fee was collected. Someone in the Tong has been operating outside the legal assassination framework that makes the Tong legitimate. This cannot stand."
+ guild_leader.tong.001.a: "Investigate the unauthorised kill. The Tong's legitimacy rests on writs."
+ guild_leader.tong.001.b: "Report it to the Grandmaster immediately."
+
+ guild_leader.tong.002.t: "The Rogue Thread"
+ guild_leader.tong.002.desc: "The unauthorised strike traces to a master who has been running a private contract network — using the Tong's methods and reputation without its sanction. Clients have been paying for kills the Tong cannot legally acknowledge. The Hlaalu have noticed. The Temple has noticed. The Grandmaster is aware and has been waiting to see who surfaces the problem. We have."
+ guild_leader.tong.002.a: "End the rogue operation decisively."
+ guild_leader.tong.002.b: "Document everything before acting. The legal framework must be protected."
+
+ guild_leader.tong.003.t: "The Proper Execution"
+ guild_leader.tong.003.desc: "The rogue network is dissolved and its clients are informed that their arrangements were never valid. The rogue master has received the only appropriate Writ the situation warranted. The Hlaalu and the Temple have been reassured. The Tong's legal standing is intact. The Grandmaster steps back with the particular approval of someone who ran the same test decades ago."
+ guild_leader.tong.003.a: "The Tong operates within the law, or it does not operate. It will operate."
+ guild_leader.tong.003.b: "Establish a writ review process to prevent this from recurring."
+
+ guild_leader.tong.lead.t: "Grandmaster"
+ guild_leader.tong.lead.desc: "The title of Grandmaster is confirmed in the innermost sanctum of the Morag Tong — a chamber that does not officially exist, before witnesses who are not officially present, in a ceremony that is not officially a ceremony. The Tong's legitimacy is a legal fiction maintained by enormous precision. Its Grandmaster must understand that. We have demonstrated that we understand it."
+ guild_leader.tong.lead.a: "Lead the Tong. The law is the Tong's weapon and its shield."
+
+ # ---- COMPANIONS: "The Circle's Weight" ----
+ guild_leader.comp.001.t: "A Companion Lost to the Hunt"
+ guild_leader.comp.001.desc: "A Companion has not returned from a contract. Not killed — simply gone, walking away from the job and the Hall in the direction of the wilderness and not coming back. The Circle is quiet about it, which means they know something. In the Companions of Whiterun, silence from the Circle on a subject means the subject touches on the inner secret that only Circle members carry."
+ guild_leader.comp.001.a: "Find the missing Companion. The Hall does not abandon its own."
+ guild_leader.comp.001.b: "Let the Circle handle it. Some things belong to the Circle alone."
+
+ guild_leader.comp.002.t: "The Weight of the Beast"
+ guild_leader.comp.002.desc: "The missing Companion is found, and the finding reveals what the Circle has been carrying: the beast blood, passed down since Ysgramor's companions first took the gift and the curse of the werewolf. The Companions have managed it for generations — quietly, at enormous personal cost, without ever letting the Hall become a pack. It is a heavier burden than it appeared from outside."
+ guild_leader.comp.002.a: "Stand with the Circle. The Hall carries this weight together."
+ guild_leader.comp.002.b: "Seek a way to ease the burden. The beast blood should be a choice, not an inheritance."
+
+ guild_leader.comp.003.t: "The Harbinger's Test"
+ guild_leader.comp.003.desc: "The missing Companion is recovered. The Circle's secret is held. The question of what kind of Harbinger we intend to be has been answered, at least in part, by how we handled both. The Companions do not have leaders — they have a Harbinger, which means one who leads by going first. The Circle watches to see if we understand the distinction."
+ guild_leader.comp.003.a: "Lead by example. The Harbinger goes first, always."
+ guild_leader.comp.003.b: "Lead by listening. The Hall's strength is its people, not its direction."
+
+ guild_leader.comp.lead.t: "Harbinger of the Companions"
+ guild_leader.comp.lead.desc: "The Circle names us Harbinger in Jorrvaskr's mead-hall, in the old way — no document, no seal, just the Circle's recognition and the Hall's agreement. The Companions of Whiterun have not had a formal leader since Ysgramor; the Harbinger is the one the Hall chooses to follow, and they have chosen. The shield-hall is ours. The weight is ours. The honour is immeasurable."
+ guild_leader.comp.lead.a: "Lead the Companions. What was Ysgramor's endures."
+
+ # ---- PSIJIC ORDER: "The Equation and the Error" ----
+ guild_leader.psijic.001.t: "A Fault in the Memoranda"
+ guild_leader.psijic.001.desc: "The Psijic Order's internal correspondence arrives through channels that do not technically exist — which makes it impossible to intercept and impossible to explain. This particular memorandum contains a fault: a calculation in the Order's ongoing work that has produced a result that should not be possible. Someone in the Order has made an error. In the Psijic Order, an error in temporal mathematics is not a small thing."
+ guild_leader.psijic.001.a: "Investigate the fault. An error in the Order's work could affect more than arithmetic."
+ guild_leader.psijic.001.b: "Bring it to the Ritemaster's attention. This is above our station to handle alone."
+
+ guild_leader.psijic.002.t: "The Deliberate Deviation"
+ guild_leader.psijic.002.desc: "The error is not an error. It is a deliberate deviation — a Psijic scholar who has been quietly adjusting the Order's timeflow calculations to create a private window: a moment when the Orb of Seasons can be accessed without the Ritemaster's oversight. The motivation appears to be research that the Order's council would never sanction. The scholar believes the ends justify the divergence."
+ guild_leader.psijic.002.a: "Confront the scholar directly. The Order's integrity depends on it."
+ guild_leader.psijic.002.b: "Bring the evidence to the Ritemaster. Some judgments are not ours to make alone."
+
+ guild_leader.psijic.003.t: "The Order Restored"
+ guild_leader.psijic.003.desc: "The deviation is corrected — the scholar's private window closed, the calculations restored to their proper form. The Ritemaster regards the whole affair with the particular equanimity of someone who has watched temporal errors before and knows they are always corrected eventually. What is unusual is that we found it at all. That suggests something the Order is interested in cultivating."
+ guild_leader.psijic.003.a: "The Order's continuity is more valuable than any single discovery."
+ guild_leader.psijic.003.b: "The scholar's methods were wrong — but the questions they were asking may have value."
+
+ guild_leader.psijic.lead.t: "Ritemaster of the Psijic Order"
+ guild_leader.psijic.lead.desc: "The Psijic Order does not hold elections. The Conclave of Artaeum simply reaches a conclusion, the way a theorem reaches a conclusion, and the Ritemaster is named. The title arrives in a letter delivered from a place that technically does not exist, by a messenger who was there and then was not. The Order is, in its quiet way, the oldest and strangest in Tamriel. We lead it now."
+ guild_leader.psijic.lead.a: "Accept the mantle of Ritemaster. The island endures."
+
+ # ---- BARDS COLLEGE: "The Age's Song" ----
+ guild_leader.bards.001.t: "The College's Lost Voice"
+ guild_leader.bards.001.desc: "The Bards College has always maintained the living oral tradition of Tamriel — songs that encode history in melody so that words survive where documents rot. A Master Bard has died without passing on a song that was not written down, and the College is quiet in the way that an absence of sound is different from silence. The song may be recoverable. The search will require something the College rarely demands: sincerity."
+ guild_leader.bards.001.a: "Begin the search for the lost song."
+ guild_leader.bards.001.b: "Document what the College already has. Preservation begins with what is present."
+
+ guild_leader.bards.002.t: "The Song Recovered"
+ guild_leader.bards.002.desc: "The lost song is found — not in an archive but in the memory of an old woman in a village outside Solitude who learned it from her grandmother, who learned it from someone who left the College three generations ago. The song itself is not remarkable. The fact that it survived is everything. The College is silent for a different reason now — the good kind of silence that follows something recovered."
+ guild_leader.bards.002.a: "Record it in every form the College can hold."
+ guild_leader.bards.002.b: "Let it live in performance, not just archive. Songs are for singing."
+
+ guild_leader.bards.003.t: "The Living Archive"
+ guild_leader.bards.003.desc: "The College's collection has a gap where the lost song was — and filling that gap has surfaced a dozen others. The tradition is older than anyone living knew, and more fragile. The Master Bard who will lead the College through the next generation must understand that the College is not a school. It is a living library that happens to sing. The next Master Bard must be someone who knows the difference."
+ guild_leader.bards.003.a: "The College is an act of defiance against forgetting. Lead it that way."
+ guild_leader.bards.003.b: "Build the infrastructure to ensure songs are never lost again."
+
+ guild_leader.bards.lead.t: "Master Bard"
+ guild_leader.bards.lead.desc: "The College's senior faculty names us Master Bard in a ceremony that is, inevitably, accompanied by music. The title carries the College's voice — at festivals, at courts, at the moments when a ruler needs to understand what their people are actually singing. In the Interregnum, when empires have fallen and the future is unclear, the Bards College is the keeper of what was. We are its keeper now."
+ guild_leader.bards.lead.a: "Lead the College. Let the songs carry what history cannot hold."
+
+ # ---- UNDAUNTED: "The Deepest Delve" ----
+ guild_leader.undaunted.001.t: "The Delve That Did Not End"
+ guild_leader.undaunted.001.desc: "An Undaunted crew went into a ruin three weeks ago and has not come out. Not killed — the scouts find signs of continued movement deep in the structure, further down than any prior survey suggested the ruin extended. Something in the depths has caught the crew's attention and will not let them go. The Undaunted do not abandon their own, and whatever is down there, we are going in after them."
+ guild_leader.undaunted.001.a: "Assemble a rescue party. We go in."
+ guild_leader.undaunted.001.b: "Map the ruin's outer chambers first. Going in blind helps no one."
+
+ guild_leader.undaunted.002.t: "What Lies Beneath"
+ guild_leader.undaunted.002.desc: "The missing crew is found — alive, unwilling to leave, held not by force but by discovery. The ruin extends downward into something that predates the surface structure by several civilisations, and what they found at the bottom has kept them paralysed with the particular stupefaction of people looking at something that should not exist. Whatever it is, it is not hostile. It has simply been waiting."
+ guild_leader.undaunted.002.a: "Investigate what the crew found. The Undaunted do not run from the unknown."
+ guild_leader.undaunted.002.b: "Extract the crew and seal the ruin. Some things should stay buried."
+
+ guild_leader.undaunted.003.t: "The Discovery and the Decision"
+ guild_leader.undaunted.003.desc: "The deepest chamber has been explored and mapped. What was found — and what decision was made about it — has passed into the Undaunted's unwritten log, which is the only log that matters. The crew is out. The ruin is either sealed or open for further study, depending on the choice made in the dark. The Undaunted's leader, watching, has seen enough."
+ guild_leader.undaunted.003.a: "The Undaunted have faced the depth and come back. That is what we do."
+ guild_leader.undaunted.003.b: "Record everything and share the discovery. Knowledge belongs to everyone."
+
+ guild_leader.undaunted.lead.t: "Undaunted Enclave Leader"
+ guild_leader.undaunted.lead.desc: "The Undaunted do not have a hierarchy in the traditional sense — they have a reputation, and the one with the greatest reputation leads. The formal acknowledgment happens at the enclave's fire, over a mug of whatever the barkeep is serving, in front of whoever happens to be present. It is deliberately unimpressive. The Undaunted consider impressive things to be worth doing, not worth announcing."
+ guild_leader.undaunted.lead.a: "Lead the Undaunted. The deepest delve is always ahead."
+
+ # ---- POST-LEADERSHIP EVENTS ----
+ guild_leader.mages.post_001.t: "A Petition to the Arch-Magister"
+ guild_leader.mages.post_001.desc: "A desperate petition has arrived: a chapter's entire research archive has been seized by a local lord who disputes the Guild's charter rights in his territory. The affected scholars are trapped between feudal authority and Guild law, and the Arch-Magister is expected to do something about it. This is what the office of Arch-Magister actually means: the part after the ceremony where the problems start."
+ guild_leader.mages.post_001.a: "Intervene directly on the chapter's behalf."
+ guild_leader.mages.post_001.b: "Negotiate a charter clarification. Precedent protects every chapter."
+
+ guild_leader.fighters.post_001.t: "The Contract That Cannot Be Refused"
+ guild_leader.fighters.post_001.desc: "A contract has arrived that is impossible on its face: the target is a public figure whose removal would destabilise the entire region, the client is anonymous, and the fee is large enough to be suspicious. The Guildmaster of the Fighters Guild is the one who decides whether this contract is accepted, modified, or returned. Whoever sent it is watching to see which choice is made."
+ guild_leader.fighters.post_001.a: "Refuse the contract and investigate the client."
+ guild_leader.fighters.post_001.b: "Accept a modified version that achieves a legitimate outcome."
+
+ guild_leader.db.post_001.t: "The Night Mother's Newest Commission"
+ guild_leader.db.post_001.desc: "The Night Mother speaks in the small hours, and the commission she delivers is the largest the Brotherhood has received in a generation: a target with deep protection, multiple contingencies, and the particular kind of importance that means other parties are also moving against them. The Night Mother is specific about the method. The Listener is specific about the execution. The Brotherhood moves."
+ guild_leader.db.post_001.a: "Execute the Night Mother's commission. Her word is the only sanction that matters."
+ guild_leader.db.post_001.b: "Assess the commission carefully. Even the Night Mother's targets can be politically complicated."
+
+ guild_leader.comp.post_001.t: "The Circle Asks for Guidance"
+ guild_leader.comp.post_001.desc: "The Circle has reached an impasse that requires the Harbinger's input: a Companion of considerable standing wants to take the beast blood willingly, as a choice rather than an inheritance, and the Circle is divided on whether this should be permitted. The Harbinger does not rule the Companions — but the Harbinger speaks first, and what is said first shapes everything that follows."
+ guild_leader.comp.post_001.a: "The choice belongs to the Companion. Beast blood should be chosen, not assigned."
+ guild_leader.comp.post_001.b: "The Circle's wisdom on this matter exceeds mine. I will hear them first."
+
+ guild_leader.bards.post_001.t: "The Song the Age Requires"
+ guild_leader.bards.post_001.desc: "The College has been asked — by a delegation of rulers, merchants, and temple authorities — to compose the definitive song of the Interregnum: a work that captures what this era is and means and costs. The Master Bard must decide what that song says. In the absence of an Emperor, the Bards College is the closest thing to a cultural authority that Tamriel possesses. The song will outlast whoever commissioned it."
+ guild_leader.bards.post_001.a: "Compose a song of resilience. The Interregnum is what survives it."
+ guild_leader.bards.post_001.b: "Compose a song of warning. The Interregnum must not be forgotten or repeated."

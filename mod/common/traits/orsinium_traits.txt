@@ -1,0 +1,91 @@
+# =============================================================
+#  Orsinium Cycle — Traits
+#  File: mod/common/traits/orsinium_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  orsinium_builder   — An Orcish ruler who has founded or restored
+#                       Orsinium, the City of Orcs.
+#                       Prestige and martial bonuses; the city stands behind them.
+#  trinimac_devoted   — An Orcish ruler who worships Trinimac rather
+#                       than Malacath — the god before the corruption.
+#                       Piety bonuses; opinion tension with Malacath followers.
+#
+#  LORE CONTEXT — ORSINIUM:
+#  ─────────────────────────
+#  Orsinium was the first true Orcish homeland — a city-state in
+#  the Wrothgarian Mountains of High Rock.  It was sacked in the
+#  First Era and rebuilt multiple times across Tamrielic history.
+#  During the Second Era, a version of Orsinium exists, though it
+#  remains under pressure from Breton and Redguard kingdoms who
+#  view the Orcish presence in their midst as a persistent threat.
+#  An Orcish ruler who builds Orsinium is doing something
+#  historically significant: creating a homeland where their people
+#  will not simply be tolerated but will belong.
+#
+#  LORE CONTEXT — TRINIMAC:
+#  ─────────────────────────
+#  Malacath — the Daedric Prince of the Spurned, patron of the Orcs
+#  — was not always Malacath.  Before Boethiah devoured and
+#  transformed him, he was Trinimac: a powerful Aedric warrior, one
+#  of the most popular of the Divines among the ancient Aldmer.
+#  The transformation that created Malacath also transformed his
+#  Aldmer followers into the Orsimer (Orcs).  Some Orcs reject
+#  Malacath entirely and still worship Trinimac — the old, uncorrupted
+#  form — believing the god can be restored.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/orsinium_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • orsinium_builder
+#    • trinimac_devoted
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/decisions/orsinium_decisions.txt
+#      → orsinium_builder
+#    events/orsinium_events.txt
+#      → orsinium_builder, trinimac_devoted
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ORSINIUM BUILDER
+#  They made the city real.  Where there was wilderness and
+#  grudging Breton tolerance, there is now stone and banner.
+#  It will likely be torn down within a generation — that is
+#  not the point.  The point is that it existed.
+# ---------------------------------------------------------------
+orsinium_builder = {
+    category = fame
+
+    martial          = 3
+    stewardship      = 2
+
+    monthly_prestige_gain_mult = 0.20
+    vassal_opinion             = 5    # Fellow Orcs respect the builder
+
+    flag = orsinium_builder
+}
+
+# ---------------------------------------------------------------
+#  TRINIMAC DEVOTED
+#  They refuse Malacath.  They hold the memory of Trinimac —
+#  the warrior-god before the corruption — and believe the
+#  transformation can be undone.  Other Orcs think them naive
+#  at best and dangerously deluded at worst.
+# ---------------------------------------------------------------
+trinimac_devoted = {
+    category = faith
+
+    monthly_piety_gain_mult = 0.25
+    learning                = 2
+    diplomacy               = 1
+
+    flag = trinimac_devoted
+}

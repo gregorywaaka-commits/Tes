@@ -1,0 +1,80 @@
+# =============================================================
+#  Imperial Cult / Eight Divines — Traits
+#  File: mod/common/traits/imperial_cult_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  divine_champion        — A ruler who has formalised their patronage of the
+#                           Imperial Cult, celebrated as a Champion of the Eight.
+#  chapel_benefactor      — A prominent patron of the Imperial Cult's shrines
+#                           and pilgrimage infrastructure; deeply respected.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Imperial Cult is the official religious institution of the Septim
+#  Empire, venerating the Eight (later Nine) Divines.  Cult priests maintain
+#  chapels, shrines, and pilgrim routes throughout Cyrodiil.  Lay members and
+#  noble patrons who fund shrines or lead the Eight Candles feast day hold
+#  significant social and spiritual standing.  The pilgrimage road connecting
+#  all eight Divine shrines is both a physical journey and a spiritual
+#  obligation for the most devout.
+#  Sources: UESP Lore:Imperial Cult; UESP Lore:Eight Divines.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — traits are self-contained.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/imperial_cult_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • divine_champion
+#    • chapel_benefactor
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/imperial_cult_events.txt
+#      → divine_champion, chapel_benefactor
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DIVINE CHAMPION
+#  A ruler who has formally accepted the Imperial Cult's patronage
+#  and been recognised as a Champion of the Eight Divines.
+#  Their piety is genuine, their standing with the devout is high,
+#  and the Cult's priests regard them as a trusted ally.
+# ---------------------------------------------------------------
+divine_champion = {
+    category = lifestyle
+
+    diplomacy = 2
+
+    monthly_piety_gain_mult = 0.2
+
+    opinion_of_pious = 20
+
+    flag = divine_champion
+}
+
+# ---------------------------------------------------------------
+#  CHAPEL BENEFACTOR
+#  A ruler who has invested substantially in the Imperial Cult's
+#  physical infrastructure — shrines, chapels, and the pilgrimage
+#  road.  Their generosity is well known; their counties are
+#  spiritually stable.  One of the Cult's most important patrons.
+# ---------------------------------------------------------------
+chapel_benefactor = {
+    category = fame
+
+    diplomacy   = 3
+    stewardship = 1
+
+    monthly_piety_gain_mult = 0.3
+
+    opinion_of_pious = 30
+
+    county_opinion_add = -5   # Reduces unrest through spiritual stability
+
+    flag = chapel_benefactor
+}

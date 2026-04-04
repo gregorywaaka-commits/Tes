@@ -1,0 +1,57 @@
+﻿l_english:
+
+ # =====================================================================
+ #  MINOR LORE RACES — Dreugh, Imga, Tang Mo, Keptu, Nedes
+ # =====================================================================
+
+ # ---- dreugh.001 --- The Dreugh-Walk ----
+
+ dreugh.001.t: "The Pull of the Water"
+ dreugh.001.desc: "The scholars call it Dreugh-walk — the period during a Dreugh's life when it comes ashore, takes a humanoid form, and lives for a time on land before returning to the deep. What the Dreugh call it is not known, since they do not share this information with scholars. The territorial instinct during this period is said to be powerful. The Dreugh who have beached near your coast are not immediately aggressive, but their presence in the shallows — the movement visible just below the surface — has stopped the fishing boats from launching."
+ dreugh.001.a: "I feel the pull of the sea..."
+ dreugh.001.b: "I emerge from the depths, renewed."
+
+ # ---- dreugh.002 --- Dreugh Covenant ----
+
+ dreugh.002.t: "Anchor of the Deep"
+ dreugh.002.desc: "The old texts speak of a prayer — or something older than prayer, a working — called the Ancient Knocker's rite. Those who practice it call it a covenant with the ur-dreugh, the deep sea intelligence that the surface-walking Dreugh are said to be expressions of. The Dreugh are ancient beyond any Mer or Man timeline; the intelligence that underlies them has been in the Abecean longer than the Aldmer have been in Summerset. What you have been offered is a connection to something that has never blinked since the world was young."
+ dreugh.002.a: "Ancient Knocker, hear us from the deep."
+
+ # ---- imga.001 --- The Great Ape Ambassador ----
+
+ imga.001.t: "The Imga at Court"
+ imga.001.desc: "The Imga are the great apes of Valenwood who have spent generations learning to imitate Altmer manners, aesthetics, and philosophical preoccupations. They do this with an intensity that the Altmer find either flattering or uncomfortable depending on how secure in themselves the particular Altmer happens to be. The Imga ambassador has arrived with impeccable posture, an extensive wardrobe, and a vocabulary that covers the entire history of Aldmeri high culture. They are also, visibly, a great ape in formal clothing. The court is uncertain how to receive them."
+ imga.001.a: "Welcome, great ape — your powder and poise are appreciated."
+ imga.001.b: "Their imitation of our ways is... unsettling."
+
+ # ---- imga.002 --- The Imga and Marukh ----
+
+ imga.002.t: "Children of the Aldmer"
+ imga.002.desc: "The Imga scholar who has attached themselves to your philosophical circle has raised the Prophet Marukh again. Their position is consistent: the Aldmer are the pinnacle of mortal creation, and the Imga aspiration toward Aldmeri refinement is not imitation but recognition of a truth that the world has been slowly organising itself around. Whether this is flattering theology or something more troubling depends on what you believe Marukh was actually saying, and whether the Alessian doctrine has any validity outside the First Era context that produced it."
+ imga.002.a: "Marukh spoke truth — the Aldmer are the pinnacle."
+ imga.002.b: "Marukh's path is not mine — we are our own people."
+
+ # ---- tang_mo.001 --- The Monkey People of Akavir ----
+
+ tang_mo.001.t: "The Tang Mo Hold"
+ tang_mo.001.desc: "The Tang Mo — the thousand thousand monkeys of Akavir — have survived the Kamal in the summer and the Tsaesci year-round and whatever the Ka Po'Tun are doing that involves them at irregular intervals. They survive through community: distributed strength, dense jungle networks, and a social organisation that makes it impossible to destroy them by taking a single centre. The news from Akavir is that a Tang Mo settlement was established in a location the Kamal had previously considered secure. They are winning something the maps do not have a word for."
+ tang_mo.001.a: "The community stands as one — repel the demons!"
+ tang_mo.001.b: "Seek shelter in the deep jungle — let the demons pass."
+
+ # ---- tang_mo.002 --- Alliance with Tang Mo ----
+
+ tang_mo.002.t: "A Message Across the Eastern Sea"
+ tang_mo.002.desc: "The Tang Mo have sent an envoy west. The journey took longer than any map calculation would suggest and the envoy is not forthcoming about how they managed it. They bring an offer of what they term 'mutual persistence': not a military alliance in the Tamrielic sense, but an understanding between peoples who have both learned that survival is a project, not a condition. The Tang Mo do not have territory to offer. They have the knowledge of how to outlast things that look unkillable. This is, in the current political climate, worth more than territory."
+ tang_mo.002.a: "Together we are stronger than any Kamal horde."
+
+ # ---- keptu.001 --- The Last Keptu Forge ----
+
+ keptu.001.t: "Forge of the Keptu"
+ keptu.001.desc: "The Keptu are gone. They were one of the pre-Redguard peoples of Hammerfell's interior — neither pure Nedic nor the incoming Yokudan culture, but something older and locally adapted. What they left behind is a forge tradition. The ruins of a Keptu forging-site have been discovered in the hills east of your holding, and the surviving techniques are unlike anything in the current Hammerfell tradition: heat management methods that your blacksmiths call impossible and then study for weeks before admitting they work. The forge itself appears restorable."
+ keptu.001.a: "The Forge's secrets are mine to revive."
+
+ # ---- nedes.001 --- Nedic Oral History ----
+
+ nedes.001.t: "The Oldest Stories"
+ nedes.001.desc: "The scholar arrived with a trunk of transcriptions and a disclaimer: none of this can be confirmed against a written source, because the people who told these stories did not write. The Nedes — the pre-Atmorian humans of Tamriel — preserved their history in continuous oral tradition for so long that their accounts of the Dawn Era are internally consistent in ways that suggest genuine transmission rather than mythological construction. The history your scholar has transcribed covers the period before the Alessian Empire, before the Atmorans, before the Merethic migrations. What it describes does not resemble any canonical account."
+ nedes.001.a: "Their oral histories predate the First Era."

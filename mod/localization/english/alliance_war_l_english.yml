@@ -1,0 +1,46 @@
+﻿# Encoding: UTF-8-BOM
+l_english:
+
+ # =====================================================================
+ #  THREE BANNERS WAR (ALLIANCE WAR)
+ # =====================================================================
+
+ # --- Traits ---
+
+ aldmeri_banner: "Aldmeri Dominion"
+ aldmeri_banner_desc: "This ruler has pledged their sword to the Aldmeri Dominion — Queen Ayrenn's coalition of Altmer, Bosmer, and Khajiit. They believe, or have been convinced, that Tamriel's future is better guided by elven hands. Whether from principle or pragmatism, the Green Eagle flies over their walls."
+
+ covenant_banner: "Daggerfall Covenant"
+ covenant_banner_desc: "This ruler fights under the Daggerfall Covenant's lion banner — High King Emeric's union of Bretons, Redguards, and Orcs. They seek the Ruby Throne to restore an Empire that works for all peoples rather than just one, built on commerce, law, and the lessons of Ranser's failure."
+
+ pact_banner: "Ebonheart Pact"
+ pact_banner_desc: "This ruler is pledged to the Ebonheart Pact — the improbable alliance of Nords, Dunmer, and Argonians that rose from the crucible of the Kamal invasion. The Pact's strength is not ideology but survival: three peoples who have every reason to hate each other, fighting together because the alternative is worse for all of them."
+
+ # --- Events ---
+
+ alliance_war.001.t: "The Three Banners War"
+ alliance_war.001.desc_dominion: "Queen Ayrenn of the Summerset Isles has done something unexpected: she came home.\n\nFor years the Altmeri queen was away — on some self-imposed wandering whose purpose remains publicly unstated. She has returned, and she has brought with her a vision: the Aldmeri Dominion, uniting the Altmer of Summerset, the Bosmer of Valenwood, and the Khajiit of Elsweyr under a single green-gold banner. The stated purpose is the Ruby Throne of Cyrodiil. The unstated purpose — that Tamriel requires elven guidance if it is to survive — is clear to anyone paying attention.\n\nTwo other alliances have also risen: the Daggerfall Covenant to the northwest, the Ebonheart Pact to the northeast. The war for the Ruby Throne is no longer a political contest. It is a civilisational one.\n\nWhere do you stand?"
+ alliance_war.001.desc_covenant: "High King Emeric's Daggerfall Covenant marches.\n\nThe alliance that rose from Ranser's War — Bretons, Redguards, and Orcs under a common banner — has turned its face toward Cyrodiil. The Ruby Throne has been empty since Varen Aquilarios's transformation. Emeric intends to fill it with someone who will restore the Second Empire under a structure that works for all the peoples of northwest Tamriel.\n\nTwo other alliances contest this: the Aldmeri Dominion from the south, the Ebonheart Pact from the north and east. This will not be a quick war. It will not be a clean one.\n\nWhere do you stand?"
+ alliance_war.001.desc_pact: "The Ebonheart Pact — an alliance that should not exist — marches on Cyrodiil.\n\nNords, Dunmer, and Argonians. Three peoples whose history is made of conflict, slavery, and mutual contempt, now bound together by the memory of Dir-Kamal's invasion and the Tribunal's intervention. The Great Moot that governs them is chaotic and contentious. The armies they field are effective.\n\nJorunn the Skald-King leads the Nordic faction. The Dunmer Great Houses contribute their own commanders. The An-Xileel and Argonian warriors are something that neither Nordic berserkers nor Dunmer soldiers have faced before in battle — and they are on your side.\n\nThe Pact fights for the Ruby Throne, not because any of its peoples particularly want an Empire, but because having an Empire they helped build is better than serving one they didn't.\n\nWhere do you stand?"
+ alliance_war.001.desc_neutral: "Tamriel has fractured into three.\n\nThe Aldmeri Dominion — Altmer, Bosmer, Khajiit — marches under Queen Ayrenn's green-gold banner toward Cyrodiil. The Daggerfall Covenant — Bretons, Redguards, Orcs — marches under High King Emeric's lion. The Ebonheart Pact — Nords, Dunmer, Argonians — marches under Jorunn the Skald-King's wolf. Each alliance claims the right to the Ruby Throne. Each alliance is entirely serious.\n\nYou are not formally aligned with any of them. That is a position — not a comfortable one, but a position. The question is whether you intend to choose a banner, find advantage in the chaos, or simply survive it."
+ alliance_war.001.a: "Watch. Let them destroy each other before committing."
+ alliance_war.001.b: "Tamriel fractures — and in the cracks, there is opportunity."
+
+ alliance_war.010.t: "Choose Your Banner"
+ alliance_war.010.desc: "Three banners fly over three armies, and all three are headed for the same city. The Three Banners War will not be decided quickly. The alliances that built these forces did not build them for one season.\n\nThe question is not whether you are drawn in. The question is under which flag."
+ alliance_war.010.a: "The Aldmeri Dominion. Elven stewardship is Tamriel's best remaining option."
+ alliance_war.010.b: "The Daggerfall Covenant. A stable, many-peoples Empire, built on law and commerce."
+ alliance_war.010.c: "The Ebonheart Pact. Three peoples, survival as the bond — and it is holding."
+ alliance_war.010.d: "No banner. My people's fate is not decided in Cyrodiil."
+
+ alliance_war.020.t: "The Ruby Throne Burns"
+ alliance_war.020.desc: "The Ruby Throne sits in the White-Gold Tower, and you are, at this moment, the person sitting on it.\n\nThis is not the comfort it sounds. Three alliances are marching toward your city. The Temple of the One behind the Palace is dark — the Dragonfires still out. The Imperial Legion is a fraction of what it was under the Reman emperors. Your legitimacy is contested by three separate military forces, each of which believes they have a better claim.\n\nYou hold the symbolic heart of Tamriel. You are also standing in the middle of a room that everyone in Tamriel wants to occupy, and not all of them want to share it with you."
+ alliance_war.020.a: "Fortify the city. The Ruby Throne will be defended as long as there is anyone left to defend it."
+ alliance_war.020.b: "Open negotiations with all three alliances simultaneously. Exploit the stalemate."
+ alliance_war.020.c: "Hold the city, outlast the siege, and wait for the alliances to exhaust each other."
+
+ alliance_war.030.t: "The War Without End"
+ alliance_war.030.desc: "Ten years.\n\nThe Three Banners War has been burning for a decade, and the Ruby Throne is still contested. Cyrodiil has been fought over so many times that entire counties have changed hands four or five times. The population does not distinguish between the three alliances anymore. They simply run.\n\nThe Molag Bal crisis has passed — the Vestige dealt with what the armies couldn't. But the armies are still here, fighting each other over an empty throne, because none of the alliances can afford to be the first to blink.\n\nYou have been fighting under your banner for ten years. It is worth asking, quietly, whether the banner is still worth what it costs."
+ alliance_war.030.a: "We fight until the throne is won and the war is decided. No half-measures."
+ alliance_war.030.b: "The war has cost more than any throne is worth. Seek an accommodation."
+ alliance_war.030.c: "What we built in this alliance — that matters more than Cyrodiil ever could."
