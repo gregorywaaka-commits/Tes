@@ -1,0 +1,35 @@
+﻿l_english:
+
+ # =====================================================================
+ #  DARK BROTHERHOOD / SITHIS COVENANT
+ # =====================================================================
+
+ # --- Traits ---
+
+ black_hand_speaker: "Black Hand Speaker"
+ black_hand_speaker_desc: "This character holds a place among the Black Hand — the inner council of the Dark Brotherhood. As one of four Speakers, they carry out the Night Mother's will, manage assassination contracts, and enforce the Five Tenets that govern Brotherhood conduct. The pious regard them with deep suspicion that borders on fear. Their connection to Sithis, the void deity of death, is not merely symbolic."
+
+ listener_of_sithis: "Listener of Sithis"
+ listener_of_sithis_desc: "This character is the supreme head of the Dark Brotherhood — the single individual who can hear the Night Mother's whispers directly, translating Sithis' will to the Black Hand and through them to the entire Brotherhood. The Listener stands at the intersection of mortal politics and the void's intent. Those who know what they are approach with extreme caution. Those who don't know avoid them by instinct."
+
+ # --- Events ---
+
+ dark_brotherhood.000.t: "A Door You Did Not Open"
+ dark_brotherhood.000.desc: "You noticed the signs before your guards did, which says something. A black hand-print on a courier's satchel. A letter sealed with a small drawing of a coffin — unsigned, undated, containing only a meeting time and a location that does not appear on any map your advisors can find. The servants who should have intercepted it did not. The Dark Brotherhood does not announce itself to people it considers irrelevant.\n\nThe Brotherhood runs on murder and silence and a theology that treats death as the only honest god. They are offering contact. The reasons they might want contact with someone of your standing are not comfortable to think about."
+ dark_brotherhood.000.a: "The Brotherhood has my attention. I will meet their agent."
+ dark_brotherhood.000.b: "I know what this is. I want nothing to do with it."
+
+ dark_brotherhood.010.t: "The Black Sacrament"
+ dark_brotherhood.010.desc: "The ritual is older than the Brotherhood's current form, which is itself older than most empires. Candles arranged in a precise pattern around an effigy of the target, made from flesh and bone and nightshade. The practitioner speaks the summoning and carves the effigy and waits for the Night Mother's attention. When it works, the Brotherhood comes. When it does not work, nothing comes, and the practitioner is left alone with the candles and the implications.\n\nYou are present. The question is how present you intend to be."
+ dark_brotherhood.010.a: "I perform the Sacrament myself. Sithis will know my name."
+ dark_brotherhood.010.b: "I observe. The ritual is complete — but I kept my distance."
+
+ dark_brotherhood.020.t: "Sithis Collects"
+ dark_brotherhood.020.desc: "The Brotherhood does not send invoices. They send a person who stands in a room you believed to be private, and the person explains, with professional courtesy, what is owed. You accepted their service. Their service was rendered. The void has accounting that does not forgive oversights.\n\nThe options are payment in gold and silence, or payment in the kind of coin the Brotherhood prefers: a name from your court, a person who will be missing by morning, quietly absorbed into the mathematics of Sithis' ledger. Neither option is comfortable. One of them is significantly cheaper in ways that are not financial."
+ dark_brotherhood.020.a: "I pay what is owed. Gold and silence."
+ dark_brotherhood.020.b: "Someone at court will not be seen again. The Brotherhood gets what it wants."
+
+ dark_brotherhood.030.t: "The Five Tenets: Perfect"
+ dark_brotherhood.030.desc: "The Night Mother speaks to very few people. Usually none. The Brotherhood has operated for centuries on the assumption that the Listener's role might remain perpetually vacant — that the Night Mother's silence was a condition of the age rather than a failure of the right candidate to present themselves.\n\nShe is speaking now. To you. The words are not comfortable words, and they arrive in the space between sleep and waking, where you cannot pretend you are not hearing them. The Black Hand has been informed. They are waiting for your answer. The Brotherhood has not had a Listener in a very long time, and the Night Mother, apparently, has been patient."
+ dark_brotherhood.030.a: "The Night Mother's voice is mine to hear. I accept the Listener's burden."
+ dark_brotherhood.030.b: "Speaker is enough. I am not ready to hear what the Night Mother says."

@@ -1,0 +1,36 @@
+﻿l_english:
+
+ # =====================================================================
+ #  BATTLEMAGES OF THE MAGES GUILD
+ # =====================================================================
+
+ # --- Traits ---
+
+ imperial_battlemage: "Imperial Battlemage"
+ imperial_battlemage_desc: "This character has been formally recruited and credentialed by the Mages Guild as a Battlemage — recognised as possessing the rare combination of martial prowess and arcane learning required to command magical strike forces. The Mages Guild's Battlemage corps serves as the Empire's primary magical military arm, blending spellcraft with tactical command in ways that conventional armies cannot counter."
+
+ arcane_commander: "Arcane Commander"
+ arcane_commander_desc: "This character holds the senior Battlemage lordship within the Mages Guild's military hierarchy — appointed to command entire magical armies and advise war councils at the highest level. The Arcane Commander is the Guild's foremost military authority, respected equally in the War College's lecture halls and on the battlefield. Their appointment is the pinnacle of the Battlemage career."
+
+ # --- Events ---
+
+ battlemage.000.t: "The Guild Wants a Battlemage"
+ battlemage.000.desc: "The Mages Guild envoy arrived with the kind of quiet efficiency that the Guild cultivates — a formal letter, a personal introduction, and a very specific request. The Guild has been watching your military record. And your magical studies. They use the phrase 'rare combination' three times in the letter without apparent self-consciousness.\n\nThe Battlemage corps needs officers of quality. The Guild offers rank, resources, and the formal credentialing that comes with Mages Guild membership. In exchange: your sword arm, your spellcraft, and the willingness to use both simultaneously on behalf of the Empire."
+ battlemage.000.a: "The Guild wants my blade and my spellcraft. I accept."
+ battlemage.000.b: "I am a ruler, not a Guild conscript. Decline respectfully."
+
+ battlemage.010.t: "The Strike Force Orders"
+ battlemage.010.desc: "The orders arrived with the morning dispatches: lead the magical strike force against the fortified position by dawn. The Battlemage corps has trained for exactly this scenario — three spellcasters, two skirmish units, a single decisive strike window. You have two viable approaches.\n\nThe aggressive method means committing everything in one overwhelming arcane assault. The methodical method means using magic to support a conventional advance — slower, less spectacular, far less likely to exhaust the force entirely. The War College teaches both. The War College does not have to be here at dawn."
+ battlemage.010.a: "We strike with everything. One overwhelming arcane assault."
+ battlemage.010.b: "Careful advance. Magic supports — it does not lead."
+
+ battlemage.020.t: "The War College Argument"
+ battlemage.020.desc: "The debate has been running in the Guild's War College for longer than anyone can remember, and it has recently reached the point where people are sending letters to field officers demanding they take a position. The question is fundamental: should the Guild's magical training prioritise pure research — power and theory developed for their own sake — or should it be structured around military application from the beginning?\n\nThe pure scholars argue that a Battlemage trained for war has already compromised their magical potential. The military faction argues that magic without application is philosophy, not power. Both sides have sent you letters. Both sides expect an answer."
+ battlemage.020.a: "Magic must serve the battlefield. The scholars have forgotten what power is for."
+ battlemage.020.b: "Pure research produces greater power. Military application comes second."
+ battlemage.020.c: "Both factions are right. I hold the middle ground and absorb the complaints."
+
+ battlemage.030.t: "Appointment: Arcane Commander"
+ battlemage.030.desc: "The letter from the Guild's senior council is longer than the previous ones and uses considerably more formal language. They have reviewed the record — field commands, War College standing, the documented combination of martial and arcane performance — and reached a conclusion. The position of Arcane Commander is vacant. They are offering it to you.\n\nArcane Commander is not merely a battlefield rank. It is lordship within the Guild's military hierarchy — the authority to direct the entire Battlemage corps, to sit on war councils as the Guild's representative, and to shape how magic is deployed in Imperial conflicts for the foreseeable future. The appointment carries weight that cannot be set down once accepted."
+ battlemage.030.a: "I accept the appointment. The Guild's armies are mine to command."
+ battlemage.030.b: "Field command suits me better than lordship. I decline the rank."

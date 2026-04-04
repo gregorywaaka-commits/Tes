@@ -354,6 +354,26 @@ on_yearly_pulse = {
         2   = thieves_guild.020      # The Fence Network — upgrade to fence_master (thieves_guild_events.txt)
         2   = thieves_guild.030      # The Guard Finds Out — heat from law enforcement (thieves_guild_events.txt)
         1   = thieves_guild.040      # The Nightingale Question — fence_master invited toward Nocturnal (thieves_guild_events.txt)
+        # --- BATTLEMAGES OF THE MAGES GUILD (Imperial/Breton martial-learning rulers) ---
+        3   = battlemage.000         # Mages Guild Recruits — martial+learning ruler approached (battlemage_events.txt)
+        2   = battlemage.010         # First Field Command — imperial_battlemage leads magical strike (battlemage_events.txt)
+        2   = battlemage.020         # War College Debates — internal Mages Guild politics (battlemage_events.txt)
+        1   = battlemage.030         # Arcane Commander's Appointment — apex battlemage event (battlemage_events.txt)
+        # --- DARK BROTHERHOOD / SITHIS COVENANT (high-intrigue rulers) ---
+        2   = dark_brotherhood.000   # The Whispering Door — Dark Brotherhood invitation (dark_brotherhood_events.txt)
+        2   = dark_brotherhood.010   # The Black Sacrament — ritual event (dark_brotherhood_events.txt)
+        2   = dark_brotherhood.020   # Sithis Demands Payment — Brotherhood debt (dark_brotherhood_events.txt)
+        1   = dark_brotherhood.030   # The Five Tenets — Listener elevation (dark_brotherhood_events.txt)
+        # --- IMPERIAL CULT / EIGHT DIVINES (pious Imperial rulers) ---
+        3   = imperial_cult.000      # The Cult's Invitation — Imperial Cult approach (imperial_cult_events.txt)
+        3   = imperial_cult.010      # Eight Candles — Divine feast, prestige + piety (imperial_cult_events.txt)
+        2   = imperial_cult.020      # A Shrine Needs Funding — chapel decision (imperial_cult_events.txt)
+        1   = imperial_cult.030      # The Pilgrim Road — apex pilgrimage event (imperial_cult_events.txt)
+        # --- MAGNA-GE ASTRONOMY (very learned rulers, Altmer/Dunmer/Breton/Imperial) ---
+        2   = magnus_lore.000        # The Stars Are Wounds — cosmological discovery (magnus_lore_events.txt)
+        2   = magnus_lore.010        # The Orrery Problem — stargazer study (magnus_lore_events.txt)
+        2   = magnus_lore.020        # Altmeri Correspondence — scholarly contact (magnus_lore_events.txt)
+        1   = magnus_lore.030        # The Light That Left First — apex cosmological insight (magnus_lore_events.txt)
     }
 }
 

@@ -1,0 +1,85 @@
+# =============================================================
+#  Magna-Ge Astronomy / Light of Magnus — Traits
+#  File: mod/common/traits/magnus_lore_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  stargazer_scholar      — A ruler who has discovered the Magna-Ge cosmological
+#                           theory: stars are the exit wounds Magnus and the
+#                           Magna-Ge punched through the veil when they fled Mundus.
+#  light_of_magnus_seeker — A scholar who has achieved genuine cosmological
+#                           insight into the fundamental structure of creation —
+#                           tracing the path Magnus walked out of Mundus.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  In Elder Scrolls cosmology, Magnus was the god of magic who partially
+#  withdrew from the creation of Mundus, leaving a large hole in the veil —
+#  the sun.  The Magna-Ge (lesser et'Ada who followed Magnus) punched smaller
+#  holes when they fled: the stars.  This makes stars literal wounds in the
+#  fabric of Mundus, not merely lights.  Scholars who understand this see
+#  the night sky as a map of a catastrophic cosmological event.  Altmeri
+#  and Dunmeri scholars are closest to this knowledge; Bretons and Imperials
+#  may encounter it through magical study.
+#  Sources: UESP Lore:Magnus; UESP Lore:Magna-Ge; Varieties of Faith in Tamriel.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — traits are self-contained.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/magnus_lore_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • stargazer_scholar
+#    • light_of_magnus_seeker
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/magnus_lore_events.txt
+#      → stargazer_scholar, light_of_magnus_seeker
+# =============================================================
+
+# ---------------------------------------------------------------
+#  STARGAZER SCHOLAR
+#  A ruler who has encountered and accepted the Magna-Ge
+#  cosmological framework: the stars are exit wounds in the veil
+#  of Mundus — holes punched by Magnus and the Magna-Ge when
+#  they fled the pain of creation.  This knowledge changes how
+#  one reads the night sky.  Grants one additional domain limit
+#  as the ruler's cosmological authority expands their court.
+# ---------------------------------------------------------------
+stargazer_scholar = {
+    category = lifestyle
+
+    learning = 3
+
+    monthly_prestige_gain_mult = 0.10
+
+    domain_limit = 1
+
+    flag = stargazer_scholar
+}
+
+# ---------------------------------------------------------------
+#  LIGHT OF MAGNUS SEEKER
+#  A scholar who has gone beyond the initial discovery and traced
+#  the structure of Magnus' departure from Mundus — studying the
+#  fundamental geometry of creation itself.  This ruler understands
+#  something about reality that most cannot conceive of.  Their
+#  intellectual authority is matched only by their isolation from
+#  ordinary court concerns.
+# ---------------------------------------------------------------
+light_of_magnus_seeker = {
+    category = fame
+
+    learning  = 5
+    diplomacy = 1
+
+    domain_limit = 2
+
+    monthly_prestige_gain_mult = 0.20
+
+    flag = light_of_magnus_seeker
+}

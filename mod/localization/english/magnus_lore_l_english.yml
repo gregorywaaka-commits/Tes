@@ -1,0 +1,36 @@
+﻿l_english:
+
+ # =====================================================================
+ #  MAGNA-GE ASTRONOMY / LIGHT OF MAGNUS
+ # =====================================================================
+
+ # --- Traits ---
+
+ stargazer_scholar: "Stargazer Scholar"
+ stargazer_scholar_desc: "This character has encountered and accepted the Magna-Ge cosmological framework: the stars are exit wounds in the veil of Mundus — holes punched through the fabric of creation by Magnus and the Magna-Ge when they fled the pain and obligation of building the mortal world. The night sky is not merely beautiful. It is a record of a catastrophic departure. This ruler reads it differently from everyone else in the room."
+
+ light_of_magnus_seeker: "Light of Magnus Seeker"
+ light_of_magnus_seeker_desc: "This character has gone beyond the initial discovery and achieved genuine insight into the structure of Magnus' departure from Mundus — tracing the geometry of the god of magic's exit through the fundamental fabric of creation. They understand something about the architecture of reality that most scholars can approach only theoretically, if at all. The Altmeri academies consider this level of understanding the beginning of serious scholarship. Most others consider it the end of ordinary comprehension."
+
+ # --- Events ---
+
+ magnus_lore.000.t: "The Stars Are Wounds"
+ magnus_lore.000.desc: "The text was in a collection you acquired incidentally, sandwiched between two volumes of unremarkable astronomical observation. It is not unremarkable. It is a fragment of Altmeri cosmological theory — and it claims that the stars are not lights. They are holes.\n\nWhen Magnus, the god of magic, withdrew from Mundus during its creation, he tore a large opening in the veil. The sun. When the Magna-Ge — the lesser et'Ada, his attendants and students — followed him out, they were smaller, and their exits were smaller. The stars. The night sky, viewed through this framework, is not a canopy of light. It is a record of a flight from creation — wounds in the fabric of Mundus that have been bleeding light ever since.\n\nYou cannot read the sky the same way after this."
+ magnus_lore.000.a: "The stars are wounds. Magnus fled and the sky bled. This changes everything."
+ magnus_lore.000.b: "An interesting theory. But I will not rearrange my cosmology for one text."
+
+ magnus_lore.010.t: "The Orrery Cannot Name the Direction"
+ magnus_lore.010.desc: "The orrery is a magnificent instrument — brass rings and crystal spheres in precise relationship, tracking the movements of Mundus' celestial bodies with a fidelity that ordinary astronomy can only approximate. You have been using it to try to map Magnus' original trajectory: given where the sun sits, given the pattern of the stars, what direction did the god of magic move when he left?\n\nThe problem is that the direction is not a direction the orrery can represent. It is not north or south or any of the conventional orientations. The Altmeri texts call it a meta-spatial egress — a movement through rather than across. The orrery tracks position. Magnus moved through the category of position itself. You are trying to represent something in three dimensions that occurred in significantly more."
+ magnus_lore.010.a: "The mathematics resolve. Magnus moved in a direction the orrery cannot name."
+ magnus_lore.010.b: "The orrery gives partial answers. I record what I can and continue."
+
+ magnus_lore.020.t: "A Letter from Summerset"
+ magnus_lore.020.desc: "The letter arrived under the seal of a private scholar in Summerset — not affiliated with the College of Sapiarchs, or at least not claiming affiliation in the letter, which may itself be significant. They have heard, through channels they do not specify, about your astronomical research. They are cautiously interested. The caution is directional: they are an Altmer writing to someone who may or may not be an Altmer, about knowledge that the Altmer consider, with some justification, to be culturally theirs.\n\nThe Magna-Ge theory is not a secret, exactly. But the Altmeri scholars who work with it regard outside researchers with the particular wariness of people who have watched their intellectual heritage be misunderstood, oversimplified, or converted into exotic court decoration too many times to be generous about new inquiries."
+ magnus_lore.020.a: "A colleague who shares this passion. The exchange will be valuable."
+ magnus_lore.020.b: "They are cautious — but I have something to offer that earns their trust."
+ magnus_lore.020.c: "The Altmer do not wish to share this with outsiders. I accept the limitation."
+
+ magnus_lore.030.t: "The Light That Left First"
+ magnus_lore.030.desc: "You were not looking for it when it arrived. That, the Altmeri texts suggest, is how it always works — the genuine insight does not come through effort but through a particular quality of attention that effort, paradoxically, makes harder to achieve. You were reading. Or you were looking at the sky. Or you were doing neither and simply existing in the presence of the accumulated understanding.\n\nAnd then you understood. Not the path Magnus took — no mortal has mapped that and returned. But the shape of the space the path left behind. The geometry of the absence. The way creation is structured around the place where the god of magic used to be, like water flowing around a stone that has long since been removed. The light you see in the night sky left its source before your civilization existed. You now know, in a way that cannot be fully explained to someone who has not also understood, what that means."
+ magnus_lore.030.a: "I understand. Not the path — the shape of the space the path left behind."
+ magnus_lore.030.b: "The insight is there — but I will not let it consume me. I step back."

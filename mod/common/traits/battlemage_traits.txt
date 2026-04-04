@@ -1,0 +1,75 @@
+# =============================================================
+#  Battlemages of the Mages Guild — Traits
+#  File: mod/common/traits/battlemage_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  imperial_battlemage    — Martial-learning adept recruited by the Mages Guild
+#                           as a commander of arcane forces.
+#  arcane_commander       — Senior Battlemage lord, appointed to lead magical
+#                           armies in the field on behalf of the Mages Guild.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Mages Guild maintains a corps of Battlemages — practitioners capable of
+#  combining arcane power with martial command.  Historically prominent in the
+#  Imperial Legion, Battlemages serve as field commanders of magical strike
+#  forces, advisors to war councils, and the Guild's military arm.  The War
+#  College within the Guild debates endlessly whether pure scholarship or
+#  military application should govern magical training.  Imperial, Colovian,
+#  Nibenese, and Breton rulers with sufficient martial and learning aptitude
+#  are the primary candidates for Guild recruitment.
+#  Sources: UESP Lore:Mages Guild; UESP Lore:Imperial Battlemage.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — traits are self-contained.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/battlemage_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • imperial_battlemage
+#    • arcane_commander
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/battlemage_events.txt
+#      → imperial_battlemage, arcane_commander
+# =============================================================
+
+# ---------------------------------------------------------------
+#  IMPERIAL BATTLEMAGE
+#  A ruler formally recruited and credentialed by the Mages Guild
+#  as a Battlemage candidate — recognised as possessing the rare
+#  combination of martial prowess and arcane learning required to
+#  command magical strike forces.  A coveted and respected rank.
+# ---------------------------------------------------------------
+imperial_battlemage = {
+    category = lifestyle
+
+    martial   = 3
+    learning  = 2
+
+    flag = imperial_battlemage
+}
+
+# ---------------------------------------------------------------
+#  ARCANE COMMANDER
+#  A senior Battlemage elevated to lordship within the Mages
+#  Guild's military hierarchy — capable of commanding entire
+#  magical armies and advising war councils at the highest level.
+#  The pinnacle of the Battlemage career path.
+# ---------------------------------------------------------------
+arcane_commander = {
+    category = fame
+
+    martial     = 4
+    learning    = 3
+    stewardship = 1
+
+    monthly_prestige_gain_mult = 0.15
+
+    flag = arcane_commander
+}

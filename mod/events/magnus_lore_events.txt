@@ -1,0 +1,221 @@
+# =============================================================
+#  Magna-Ge Astronomy / Light of Magnus — Events
+#  Namespace: magnus_lore
+#  File: mod/events/magnus_lore_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  magnus_lore.000  The Stars Are Wounds — Magna-Ge discovery, gains stargazer_scholar
+#  magnus_lore.010  The Orrery Problem — mapping Magnus' path
+#  magnus_lore.020  Altmeri Correspondence — scholarly contact from Summerset
+#  magnus_lore.030  The Light That Left First — apex cosmological insight
+#
+#  LORE:
+#  Magnus was the god of magic who partially withdrew from Mundus' creation,
+#  leaving a large hole in the veil — the sun.  The Magna-Ge (lesser et'Ada
+#  who followed him) punched smaller holes when they fled: the stars.  Stars
+#  are exit wounds in the fabric of Mundus.  Scholars who understand this
+#  read the night sky as a map of a cosmological catastrophe.  Altmeri and
+#  Dunmeri scholars are closest to this knowledge.
+#  Sources: UESP Lore:Magnus; UESP Lore:Magna-Ge; Varieties of Faith in Tamriel.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/magnus_lore_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/magnus_lore_traits.txt
+#      → stargazer_scholar, light_of_magnus_seeker
+# =============================================================
+
+namespace = magnus_lore
+
+# ---------------------------------------------------------------
+# magnus_lore.000  The Stars Are Wounds
+# A very learned ruler encounters the Magna-Ge cosmological
+# theory: stars are exit wounds in Mundus' veil, punched through
+# by Magnus and the Magna-Ge when they fled the pain of creation.
+# Fires for rulers with learning≥14 of Altmer/Dunmer/Breton/
+# Imperial culture who do not yet have the stargazer_scholar trait.
+# ---------------------------------------------------------------
+magnus_lore.000 = {
+    type = character_event
+    title = magnus_lore.000.t
+    desc  = magnus_lore.000.desc
+    theme = study
+    left_portrait = {
+        character = root
+        animation = personality_curious
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        learning >= 14
+        OR = {
+            has_culture = altmer_culture
+            has_culture = dunmer_culture
+            has_culture = breton_culture
+            has_culture = imperial_culture
+        }
+        NOT = { has_trait = stargazer_scholar }
+        NOT = { has_trait = light_of_magnus_seeker }
+        NOT = { has_character_flag = magna_ge_discovery_made }
+    }
+
+    option = {
+        name = magnus_lore.000.a   # "The stars are wounds. Magnus fled and the sky bled. This changes everything."
+        add_character_flag = magna_ge_discovery_made
+        add_trait    = stargazer_scholar
+        add_prestige = 200
+        add_stress   = 10
+    }
+
+    option = {
+        name = magnus_lore.000.b   # "An interesting theory. But I will not rearrange my cosmology for one text."
+        add_character_flag = { flag = magna_ge_discovery_made days = 1825 }
+        add_prestige = 50
+        add_learning_skill = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# magnus_lore.010  The Orrery Problem
+# A stargazer_scholar ruler studies a magical orrery, attempting
+# to map the original trajectory of Magnus' departure from Mundus.
+# The problem is partly astronomical, partly metaphysical.
+# ---------------------------------------------------------------
+magnus_lore.010 = {
+    type = character_event
+    title = magnus_lore.010.t
+    desc  = magnus_lore.010.desc
+    theme = study
+    left_portrait = {
+        character = root
+        animation = personality_curious
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = stargazer_scholar
+        NOT = { has_character_flag = orrery_problem_solved }
+    }
+
+    option = {
+        name = magnus_lore.010.a   # "The mathematics resolve. Magnus moved in a direction the orrery cannot name."
+        trigger = { learning >= 16 }
+        add_character_flag = orrery_problem_solved
+        add_learning_skill = 2
+        add_prestige = 300
+        add_stress   = 15
+    }
+
+    option = {
+        name = magnus_lore.010.b   # "The orrery gives me partial answers. I record what I can."
+        add_character_flag = orrery_problem_solved
+        add_learning_skill = 1
+        add_prestige = 100
+        add_stress   = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# magnus_lore.020  Altmeri Correspondence
+# A scholar from Summerset contacts the stargazer_scholar ruler
+# about their astronomical research.  Altmer are welcoming —
+# non-Altmer rulers face polite suspicion from a people who
+# consider Magnus-lore their cultural inheritance.
+# ---------------------------------------------------------------
+magnus_lore.020 = {
+    type = character_event
+    title = magnus_lore.020.t
+    desc  = magnus_lore.020.desc
+    theme = study
+    left_portrait = {
+        character = root
+        animation = personality_curious
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = stargazer_scholar
+        NOT = { has_character_flag = altmeri_correspondence_resolved }
+    }
+
+    option = {
+        name = magnus_lore.020.a   # "A colleague who shares this passion. The exchange will be valuable."
+        trigger = { has_culture = altmer_culture }
+        add_character_flag = altmeri_correspondence_resolved
+        add_prestige = 400
+        add_learning_skill = 1
+        add_diplomacy_skill = 1
+    }
+
+    option = {
+        name = magnus_lore.020.b   # "They are cautious — but I have something to offer that earns their trust."
+        trigger = {
+            NOT = { has_culture = altmer_culture }
+            learning >= 16
+        }
+        add_character_flag = altmeri_correspondence_resolved
+        add_prestige = 250
+        add_learning_skill = 1
+        add_stress   = 10
+    }
+
+    option = {
+        name = magnus_lore.020.c   # "The Altmer do not wish to share this knowledge with outsiders. I accept it."
+        trigger = {
+            NOT = { has_culture = altmer_culture }
+        }
+        add_character_flag = altmeri_correspondence_resolved
+        add_prestige = -50
+        add_stress   = 15
+        add_learning_skill = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# magnus_lore.030  The Light That Left First
+# The apex event.  A stargazer_scholar with learning≥18 achieves
+# a genuine cosmological insight — understanding the structural
+# geometry of Magnus' departure from Mundus.  They become a
+# light_of_magnus_seeker.
+# ---------------------------------------------------------------
+magnus_lore.030 = {
+    type = character_event
+    title = magnus_lore.030.t
+    desc  = magnus_lore.030.desc
+    theme = study
+    left_portrait = {
+        character = root
+        animation = personality_curious
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = stargazer_scholar
+        NOT = { has_trait = light_of_magnus_seeker }
+        learning >= 18
+        NOT = { has_character_flag = light_of_magnus_insight }
+    }
+
+    option = {
+        name = magnus_lore.030.a   # "I understand. Not the path — the shape of the space the path left behind."
+        add_character_flag = light_of_magnus_insight
+        remove_trait = stargazer_scholar
+        add_trait    = light_of_magnus_seeker
+        add_prestige = 1500
+        add_learning_skill = 2
+        add_stress   = 20
+    }
+
+    option = {
+        name = magnus_lore.030.b   # "The insight is there — but I will not let it consume me. I step back."
+        add_character_flag = light_of_magnus_insight
+        add_prestige = 400
+        add_learning_skill = 1
+        # Stays as stargazer_scholar
+    }
+}

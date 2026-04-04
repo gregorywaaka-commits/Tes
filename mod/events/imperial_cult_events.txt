@@ -1,0 +1,215 @@
+# =============================================================
+#  Imperial Cult / Eight Divines — Events
+#  Namespace: imperial_cult
+#  File: mod/events/imperial_cult_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  imperial_cult.000  The Cult's Invitation — Imperial Cult patronage offer
+#  imperial_cult.010  Eight Candles — annual Divine feast day
+#  imperial_cult.020  A Shrine Needs Funding — chapel benefactor decision
+#  imperial_cult.030  The Pilgrim Road — apex pilgrimage event
+#
+#  LORE:
+#  The Imperial Cult is the official religious institution of the Septim
+#  Empire, venerating the Eight (later Nine) Divines.  Cult priests maintain
+#  chapels, shrines, and pilgrim routes throughout Cyrodiil.  Noble patrons
+#  who fund shrines or preside over the Eight Candles feast hold significant
+#  social and spiritual standing.  The pilgrimage road is both physical
+#  journey and spiritual obligation for the most devout.
+#  Sources: UESP Lore:Imperial Cult; UESP Lore:Eight Divines.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/imperial_cult_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/imperial_cult_traits.txt
+#      → divine_champion, chapel_benefactor
+# =============================================================
+
+namespace = imperial_cult
+
+# ---------------------------------------------------------------
+# imperial_cult.000  The Cult's Invitation
+# Imperial Cult priests approach a pious Imperial ruler to
+# formalise their patronage of the Eight Divines.  The Cult
+# needs patrons with genuine faith and political standing.
+# Fires for Imperial/Colovian/Nibenese rulers with piety≥100
+# or the pious trait.
+# ---------------------------------------------------------------
+imperial_cult.000 = {
+    type = character_event
+    title = imperial_cult.000.t
+    desc  = imperial_cult.000.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_culture = imperial_culture
+            has_culture = colovian_culture
+            has_culture = nibenese_culture
+        }
+        OR = {
+            piety >= 100
+            has_trait = pious
+        }
+        NOT = { has_trait = divine_champion }
+        NOT = { has_trait = chapel_benefactor }
+        NOT = { has_character_flag = imperial_cult_refused }
+        NOT = { has_character_flag = imperial_cult_invited }
+    }
+
+    option = {
+        name = imperial_cult.000.a   # "The Eight have guided my house. I will serve as their Champion."
+        add_character_flag = imperial_cult_invited
+        add_trait    = divine_champion
+        add_prestige = 300
+        add_piety    = 150
+    }
+
+    option = {
+        name = imperial_cult.000.b   # "My faith is personal. I prefer to worship without formal obligation."
+        add_character_flag = { flag = imperial_cult_refused days = 3650 }
+        add_piety    = 50
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# imperial_cult.010  Eight Candles
+# The Eight Divines annual feast day.  A divine_champion ruler
+# presides over the ceremony — the choice of how elaborate
+# a celebration to fund affects prestige and piety differently.
+# ---------------------------------------------------------------
+imperial_cult.010 = {
+    type = character_event
+    title = imperial_cult.010.t
+    desc  = imperial_cult.010.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        has_trait = divine_champion
+        NOT = { has_character_flag = eight_candles_presided }
+    }
+
+    option = {
+        name = imperial_cult.010.a   # "A full ceremonial feast, funded generously. The Eight deserve no less."
+        add_character_flag = eight_candles_presided
+        add_gold     = -150
+        add_prestige = 500
+        add_piety    = 300
+        add_stress   = 5
+    }
+
+    option = {
+        name = imperial_cult.010.b   # "A dignified ceremony — not lavish, but sincere."
+        add_character_flag = eight_candles_presided
+        add_prestige = 200
+        add_piety    = 150
+    }
+}
+
+# ---------------------------------------------------------------
+# imperial_cult.020  A Shrine Needs Funding
+# A chapel_benefactor — or a divine_champion who has presided
+# over Eight Candles — receives a request from the Cult's
+# priests: a new shrine needs building.  Funding it costs gold
+# but gains piety and county opinion.
+# ---------------------------------------------------------------
+imperial_cult.020 = {
+    type = character_event
+    title = imperial_cult.020.t
+    desc  = imperial_cult.020.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        OR = {
+            has_trait = divine_champion
+            has_trait = chapel_benefactor
+        }
+        NOT = { has_character_flag = shrine_funded }
+    }
+
+    option = {
+        name = imperial_cult.020.a   # "Build the shrine. The Divines require a home in every county."
+        add_character_flag = shrine_funded
+        add_gold     = -300
+        add_piety    = 400
+        add_prestige = 200
+        trigger = {
+            NOT = { has_trait = chapel_benefactor }
+        }
+        add_trait = chapel_benefactor
+        remove_trait = divine_champion
+    }
+
+    option = {
+        name = imperial_cult.020.b   # "I support the Cult — but this is not the right moment."
+        add_character_flag = shrine_funded
+        add_piety    = 50
+        add_prestige = -50
+        add_stress   = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# imperial_cult.030  The Pilgrim Road
+# The apex event.  A divine_champion ruler who has maintained
+# their faith makes the formal pilgrimage to all eight Divine
+# shrines.  The journey is long; the spiritual reward is profound.
+# ---------------------------------------------------------------
+imperial_cult.030 = {
+    type = character_event
+    title = imperial_cult.030.t
+    desc  = imperial_cult.030.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    trigger = {
+        is_ruler = yes
+        OR = {
+            has_trait = divine_champion
+            has_trait = chapel_benefactor
+        }
+        has_character_flag = eight_candles_presided
+        NOT = { has_character_flag = pilgrim_road_walked }
+    }
+
+    option = {
+        name = imperial_cult.030.a   # "I walk every road, visit every shrine. This is my vow fulfilled."
+        add_character_flag = pilgrim_road_walked
+        add_prestige = 1500
+        add_piety    = 800
+        add_stress   = 20
+        add_diplomacy_skill = 2
+    }
+
+    option = {
+        name = imperial_cult.030.b   # "I make what pilgrimage I can. The Divines know my heart."
+        add_character_flag = pilgrim_road_walked
+        add_prestige = 400
+        add_piety    = 300
+        add_stress   = 5
+    }
+}
