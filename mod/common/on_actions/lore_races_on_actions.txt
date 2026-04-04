@@ -60,7 +60,7 @@
 #  • Skaal / All-Maker — Solstheim sacred rites for Nord rulers
 #  • CHIM / Walking Ways — philosophical quest (very rare, learning+stress gated)
 #  • Ranser's War — High Rock conflict; Daggerfall Covenant formation (2E 566)
-#  • The Soulburst — Dragonfires extinguished by Varen's failed ritual (2E 577)
+#  • The Soulburst — Dragonfires extinguished by Varen's failed ritual (2E 578)
 #  • Three Banners War — Alliance War; three alliances contest the Ruby Throne (2E 582)
 #  • Reman Pretender — Cyrodiilic succession bids post-Potentate death (2E 440)
 #  • Psijic Counsel — covert Psijic emissary advises learned rulers (2E 440+)
@@ -252,7 +252,7 @@ on_yearly_pulse = {
         2   = chim.004               # CHIM bearer yearly flavor — chim_achieved rulers (chim_events.txt)
         # --- NEW SYSTEMS: 2E Interregnum ---
         3   = ranser.000             # Ranser's War begins — High Rock rulers at 2E 566 (ranser_war_events.txt)
-        3   = soulburst.000          # The Soulburst — Dragonfires extinguished at 2E 577 (soulburst_events.txt)
+        3   = soulburst.000          # The Soulburst — Dragonfires extinguished at 2E 578 (soulburst_events.txt)
         2   = soulburst.020          # Veil Tears — learned rulers feel Oblivion after Soulburst (soulburst_events.txt)
         2   = soulburst.030          # Imperial City aftermath — ruler of c_imperial_city post-Soulburst (soulburst_events.txt)
         3   = alliance_war.000       # Three Banners War begins — all rulers at 2E 582 (alliance_war_events.txt)
@@ -286,7 +286,7 @@ on_yearly_pulse = {
         2   = morag_tong.020         # Writ received — non-Dunmer rulers with Tong patron enemies (morag_tong_events.txt)
         3   = meridia_beacon.000     # Meridia contacts undead-fighters — martial rulers post Gray Host/Soulburst (meridia_beacon_events.txt)
         2   = meridia_beacon.020     # Dawnbreaker manifests — beacon_bearer rulers (meridia_beacon_events.txt)
-        2   = hist_vision.004        # Hist warns of Soulburst — hist_bonded Argonians near 2E 577 (hist_saxhleel_events.txt)
+        2   = hist_vision.004        # Hist warns of Soulburst — hist_bonded Argonians near 2E 578 (hist_saxhleel_events.txt)
         # --- NEW SYSTEMS: Bards College / Nightingale / Veloth / Silver Hand ---
         3   = bards_college.000      # Bards College invitation — intrigue/learning rulers in Nordic/Breton realms (bards_college_events.txt)
         2   = bards_college.002      # Before the Master Bard — advancement performance for apprentices (bards_college_events.txt)

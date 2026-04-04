@@ -3,7 +3,7 @@
 #  Namespace: dark_anchor
 #
 #  LORE:
-#  After the Soulburst (2E 577), Molag Bal began the Planemeld —
+#  After the Soulburst (2E 578), Molag Bal began the Planemeld —
 #  his attempt to drag Mundus into Coldharbour.  His primary tool
 #  was the Dark Anchor: massive iron chains from Oblivion, hooked
 #  into Mundus at chosen points across Tamriel and used to pull the
@@ -15,7 +15,7 @@
 #  SYSTEM OVERVIEW:
 #  ─────────────────
 #  • dark_anchor.000  — A Dark Anchor falls in a random county
-#                        (post 2E 577 trigger, requires soulburst_happened global)
+#                        (post 2E 578 trigger, requires soulburst_happened global)
 #  • dark_anchor.010  — The ruler of the affected county must respond
 #  • dark_anchor.020  — A neighbouring ruler learns of the Anchor
 #  • dark_anchor.030  — The Anchor is destroyed (cleanup event)

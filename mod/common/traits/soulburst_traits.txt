@@ -6,7 +6,7 @@
 #  ────────────────────
 #  soulburst_scarred     — A ruler whose soul or mind was scarred
 #                          by the magical shockwave of the Soulburst
-#                          (2E 577).  Mages and sensitive souls are
+#                          (2E 578).  Mages and sensitive souls are
 #                          most affected.
 #  dragonfires_guardian  — A ruler who understands the metaphysical
 #                          significance of the Dragonfires and has
@@ -14,13 +14,11 @@
 #
 #  LORE CONTEXT:
 #  ─────────────
-#  In 2E 577, Emperor Varen Aquilarios attempted to use the Amulet
-#  of Kings to relight the Dragonfires (the mystic barrier sealing
-#  Oblivion from Mundus).  He was not Dragonborn; Mannimarco had
-#  deliberately deceived him.  The ritual failed with catastrophic
-#  force — the Soulburst shattered the barrier, disconnected Nirn
-#  from Aetherius, and enabled Molag Bal's Planemeld.  Varen
-#  himself was transformed and disappeared.
+#  In 2E 577, Emperor Varen Aquilarios sought the Amulet of Kings;
+#  Mannimarco had deliberately deceived him.  The ritual was performed
+#  and failed catastrophically in 2E 578 — the Soulburst shattered
+#  the barrier, disconnected Nirn from Aetherius, and enabled Molag
+#  Bal's Planemeld.  Varen himself was transformed and disappeared.
 #
 #  EXTERNAL DEPENDENCIES:
 #  ─────────────────────
