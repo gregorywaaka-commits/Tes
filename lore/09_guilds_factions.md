@@ -14,7 +14,7 @@
 - **Headquarters (3E):** **Arcane University**, Imperial City, Cyrodiil `[CANON — TES IV: Oblivion]`
 - **Prohibition:** Official ban on **necromancy** within Guild premises (though the definition and enforcement varied widely; a major source of internal conflict in TES IV). `[CANON — TES IV: Oblivion]`
 - **Dissolution:** After the **Oblivion Crisis (3E 433)**, the Mages Guild collapsed due to the death of the Arch-Mage, public distrust of mages, and Imperial instability. `[CANON — UESP]`
-- **Successor:** **College of Winterhold** (Skyrim) fills the void for magical education in Skyrim specifically. `[CANON — TES V: Skyrim]` No direct Empire-wide successor exists in 4E. `[CANON — UESP]`
+- **Successor:** **College of Winterhold** (Skyrim) fills the void for magical education in Skyrim specifically. `[CANON — TES V: Skyrim]` In Cyrodiil, the Guild split into two rival Imperial-sanctioned successors: the **Synod** (secretive, politically motivated, heavily restricts Conjuration and Necromancy) and the **College of Whispers** (more liberal with research; permits Conjuration and Necromancy). `[CANON — UESP: Lore:Synod, Lore:College of Whispers; TES V: Skyrim in-game books; Elder Scrolls novels "The Infernal City"/"Lord of Souls"]` ⚠️ Previous entry said "No direct Empire-wide successor exists in 4E" — **wrong**; the Synod and College of Whispers are the canonical Empire-wide successors.
 - **Conflict with Necromancers Guild:** The **Order of the Black Worm** (Mannimarco's necromancers) were a persistent rival and enemy throughout the Guild's history. `[CANON — TES IV: Oblivion]`
 
 ---

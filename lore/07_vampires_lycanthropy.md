@@ -100,7 +100,7 @@
 - **Era of formation:** Late First Era; **defeated c. 1E 1029**
 - **Focus:** Conquest; mixed vampire and werewolf army
 - **Leader:** **King Styriche** of Verkarth; served **Molag Bal**
-- **Defeat:** Broken at **Bangkorai Garrison** by its defenders. `[CANON — ESO in-game book: The Second Akaviri Invasion context; UESP]`
+- **Defeat:** Broken at **Bangkorai Garrison** (1E 1029) by **Empress Hestra** of the Alessian Empire, whose legions drove the Gray Host westward through High Rock to Bangkorai Pass. The battle was turned by the sacrifice of **Saint Pelin**, whose martyrdom is credited with saving the Garrison. `[CANON — ESO in-game book: Bangkorai, Shield of High Rock; UESP: Lore:Gray Host]` ⚠️ Previous entry cited "The Second Akaviri Invasion" — that is about Dir-Kamal at 2E 572, a completely different event 1,500 years later.
 - **Later events:** Remnants of the Gray Host resurface in ESO: Greymoor (set 2E 582) when **Rada al-Saran** attempts to resurrect the Host. `[CANON — ESO: Greymoor]`
 - **Notes:** Notable for combining **vampires and werewolves** in a single military force — an extremely unusual alliance given the typical rivalry between the two types. `[CANON — ESO]`
 
