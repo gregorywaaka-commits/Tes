@@ -1,4 +1,4 @@
-﻿l_english:
+l_english:
 
  # =====================================================================
  #  WILD HUNT — BOSMER TRANSFORMATION EVENTS
@@ -31,4 +31,3 @@
 
  # ---- Decisions ----
 
- call_the_wild_hunt_desc: "Call the Wild Hunt. Every Bosmer in your host transforms. What returns is not individual people but something older and far more terrible. This will cost piety. The aftermath will be permanent."
