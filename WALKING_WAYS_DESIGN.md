@@ -886,6 +886,559 @@ interact with any game-ending conditions.
 
 ---
 
-*End of design notes. These notes are not a specification — they are a starting
-point. Implementation may deviate from this document where CK3 scripting
-constraints require it.*
+## 16. Revision Notes — CK3 & EK2 Mechanic Alignment
+
+> **Added:** Session 2026-04-05 — this section reviews §§1–15 against the existing
+> mod's actual coding patterns (Thu'um, Dragon Priest, Psijic, Dragon Break, CHIM,
+> Shezarrine) and CK3/EK2 mechanics to identify structural improvements. Nothing
+> here reverses the design above; it refines and extends it.
+
+---
+
+### 16.1 Replace the 0–100 Integer Variable with a Rank Ladder
+
+**Problem:** §3 and §6 specify a `walking_ways_progress` variable ranging 0–100,
+with decay and overflow guards. This is an atypical pattern for this mod.
+
+**Evidence:** The Thu'um system uses `thuumvoi_rank` as a 1/2/3 integer, and
+`dragon_masks_count` counts discrete items. No existing system uses a 0–100 meter
+with drift. The 0–100 approach requires overflow guards on every `change_variable`
+call, and a hidden yearly decay makes failure feedback invisible and frustrating.
+
+**Revised approach:** Use a **rank variable with 4 stages** instead:
+
+| Rank | `ww_rank` value | Meaning | Threshold event |
+|---|---|---|---|
+| — | 0 (or not set) | Path declared, no milestones done | Path-intro event |
+| Seeking | 1 | 1–2 milestones completed | First cosmological sign |
+| Striving | 2 | 3–4 milestones completed | Midpoint pressure event |
+| Threshold | 3 | 5–6 milestones completed | Final approach event |
+| Apex | 4 | All milestones completed | Apotheosis event fires immediately |
+
+Each path stores its rank in `var:ww_[path]_rank`. The progress engine checks
+`var:ww_[path]_milestones_done` (integer; counts completed milestone flags) and
+advances the rank variable whenever the milestone count crosses 2 / 4 / 6.
+
+This mirrors exactly how `thuumvoi_rank` advances from 1→2→3 via `advance_voice_training`.
+No overflow. No decay. Clear, visible feedback.
+
+**On abandonment/decay:** Rather than silent decay, use the momentum modifier system
+described in §16.5 below — a visible modifier that expires after 2 years of inactivity,
+triggering a reminder event. The player always knows where they stand.
+
+---
+
+### 16.2 Scripted Effects File (Essential — Missing from §11)
+
+**Problem:** §11 does not specify scripted effects files. Every major mod system
+(Thu'um, Daedric Invasion, Dwemer Ruins, Guilds) uses `mod/common/scripted_effects/`
+files. Without these, the event code becomes massive and unrepeatable.
+
+**Required file:** `mod/common/scripted_effects/walking_ways_effects.txt`
+
+**Required named effects** (mirroring `thuumvoi_effects.txt` structure exactly):
+
+```
+# State transitions — one set per path
+begin_path_chim_expanded = { ... }       # Set flag, set var:ww_chim_rank = 0, give walking_ways_seeker, fire intro event
+advance_path_chim_expanded = { ... }     # Increment var:ww_chim_rank; fire threshold event if at 1/2/3; fire apotheosis if = 4
+complete_path_chim_expanded = { ... }    # Grant apex trait, world notify, set completed flag, remove seeker trait
+abandon_path_chim_expanded = { ... }     # Remove rank var, remove seeker, fire abandonment event, cooldown flag
+
+# One set per path — chim_expanded, mantling_talos, mantling_arkay, mantling_kynareth,
+#                     mantling_azura, mantling_meridia, psijic_endeavour,
+#                     enantiomorph, amaranth
+
+# Shared utilities
+count_ww_milestone = {                   # Checks and counts milestone flags; increments var:ww_[path]_milestones_done
+    # Called from the hidden yearly event
+}
+notify_world_ww_completion = {           # Fires world-notification event to every ruler
+    every_ruler = {
+        limit = { NOT = { this = root } }
+        trigger_event = { id = walking_ways.world_notify days = 3 }
+    }
+}
+```
+
+**Revised §11 — New Files Required** should add:
+
+| File | Effects Defined |
+|---|---|
+| `mod/common/scripted_effects/walking_ways_effects.txt` | All begin/advance/complete/abandon effects for all 9 paths; shared utilities |
+
+---
+
+### 16.3 Scripted Triggers File (Essential — Missing from §11)
+
+**Problem:** §11 does not specify scripted triggers files. Every major system
+uses `mod/common/scripted_triggers/` files for `is_valid`/`is_shown`/`trigger` blocks.
+
+**Required file:** `mod/common/scripted_triggers/walking_ways_triggers.txt`
+
+**Required named triggers:**
+
+```
+is_on_walking_way = {                    # Any path is currently active
+    has_character_flag = walking_ways_path_active
+}
+has_completed_walking_way = {            # Any path has been completed
+    OR = {
+        has_character_flag = ww_chim_expanded_completed
+        has_character_flag = ww_mantling_talos_completed
+        # ... etc for all paths
+    }
+}
+can_begin_walking_ways = {              # Shared eligibility: is a ruler, is adult, not already on a path
+    is_ruler = yes
+    is_adult = yes
+    NOT = { is_on_walking_way = yes }
+    NOT = { has_character_flag = walking_ways_refused }
+}
+can_begin_path_chim_expanded = {
+    can_begin_walking_ways = yes
+    has_trait = chim_achieved
+}
+can_begin_path_mantling_talos = {
+    can_begin_walking_ways = yes
+    OR = {
+        has_trait = shezarrine_vessel
+        AND = {
+            martial >= 20
+            OR = { culture = { has_cultural_pillar = ethos_bellicose } }
+        }
+    }
+}
+# ... one per path
+```
+
+**Revised §11 — New Files Required** should add:
+
+| File | Triggers Defined |
+|---|---|
+| `mod/common/scripted_triggers/walking_ways_triggers.txt` | All path availability checks; shared eligibility trigger; completion checks |
+
+---
+
+### 16.4 The Existing CHIM System — Conflict Resolution
+
+**Problem:** `mod/events/chim_events.txt` already implements `chim.000`–`chim.004`
+(the decision `seek_walking_ways`, a 4-event chain, and a yearly flavor event).
+§4–6 of this design effectively duplicate or replace most of this.
+
+**The conflict:**
+- `chim.000` = the awareness event. §4's Gate A/B/C replaces this.
+- `chim.001` = the learning check. §6's progress engine replaces this.
+- `chim.002` = CHIM achieved. §7 Path A's apotheosis replaces this.
+- `chim.003` = CHIM failure/erasure. Still needed — kept as-is.
+- `chim.004` = yearly flavor for `chim_achieved`. Needs updating.
+
+**Resolution strategy — "Wrap, Don't Replace":**
+
+Keep the existing `chim.000`–`chim.003` chain intact. It remains the fast-path
+for rulers with `learning >= 20` who don't want the extended system.
+
+Modify `chim.002` (CHIM achieved) to also check:
+```
+if = { limit = { has_character_flag = walking_ways_path_active } }
+    # Do not fire Walking Ways apotheosis here — the Walking Ways engine handles it
+else = {
+    # original behavior — grant chim_achieved via the fast path
+}
+```
+
+The Walking Ways system adds **Path A (CHIM Expanded)** as something only
+`chim_achieved` rulers (those who completed the existing fast-path) can pursue.
+So the two systems are sequential, not competitive.
+
+`chim.004` (yearly flavor) should be updated to check `NOT = { has_character_flag = ww_chim_expanded_active }` —
+if the ruler is on Path A, the richer Walking Ways yearly events fire instead.
+
+**Net result:** The existing 4-event system and the Walking Ways system coexist cleanly.
+No existing events need to be deleted — only small `if/else` guards added.
+
+---
+
+### 16.5 Momentum Modifier — Replacing Silent Decay
+
+**Problem:** §6 describes a soft-decay mechanic (−3 progress per year without milestones).
+This is punishing and invisible. The player may not notice their progress is eroding.
+
+**Better pattern — Momentum Modifier (drawn from CK3's Struggle mechanic):**
+
+When any milestone is completed, the `advance_path_[X]` scripted effect:
+1. Grants `ww_momentum_[path]` modifier for 730 days (2 years)
+2. This modifier provides a small stat bonus (e.g., learning +1, prestige +2/month)
+   and a visible icon indicating "the path demands attention"
+3. If the modifier expires without a new milestone advancing it:
+   - A **reminder event** fires: `walking_ways.reminder`
+   - The event notes that the path is fading — the ruler has not acted
+   - Options: (a) recommit (costs 15 stress, resets the momentum timer WITHOUT advancing rank);
+     (b) abandon the path (fires the abandonment event chain)
+4. If the reminder is dismissed with option (b), the path is cleanly abandoned
+
+**No invisible progress erosion. No overflow risk. Clear player feedback at all times.**
+
+The modifier file for `ww_momentum_[path]` entries should use a shared base modifier
+(`ww_path_momentum_base`) with path-specific bonuses layered on top — approximately
+12 new modifier entries total (one per path + variants), appended to
+`lore_races_modifiers.txt` in the Walking Ways block.
+
+---
+
+### 16.6 EK2 Dependency Map — Which Paths Need EK2
+
+The mod's `thuumvoi_events.txt` header states: *"EK2 is required. 'dragonborn' is EK2's trait."*
+The Walking Ways design must specify the same clearly:
+
+| Path | EK2 Dependency | Notes |
+|---|---|---|
+| CHIM Expanded | **Standalone** | Builds on existing `chim_events.txt`, which is standalone |
+| Mantling Talos | **EK2 required** for `shezarrine_vessel` prereq | `shezarrine_vessel` is defined in EK2; Talos mantle via martial path is standalone |
+| Mantling Arkay | **Standalone** | No EK2 traits required |
+| Mantling Kynareth | **EK2 recommended** | Milestone 1 ("The Word on the Wind") is most naturally triggered by EK2's Barrow/Word Wall system; can have a fallback flag for non-EK2 runs |
+| Mantling Azura | **Standalone** (with EK2 bonus) | Dunmer culture flag is standalone; EK2 provides richer Dunmer options |
+| Mantling Meridia | **EK2 recommended** | `dawnguard_commander` trait is this mod's own trait; standalone |
+| Psijic Endeavour | **Standalone** | Builds on existing `psijic_events.txt`, which is standalone |
+| Enantiomorph | **Standalone** | All triggers are core CK3 stats/traits |
+| Amaranth | **Standalone** | Requires CHIM, which is standalone |
+
+**Files that should carry the EK2 note:**
+The header block of `mantling_talos_events.txt` should mirror the same note as
+`thuumvoi_events.txt`: *"EK2 is required for the full Shezarrine path; a fallback
+trigger (martial >= 22 + culture check) is available for non-EK2 runs."*
+
+---
+
+### 16.7 The Psijic Counsel Integration Gap
+
+**Problem:** §7 Path C says the Psijic Endeavour requires `has_character_flag = psijic_contact`.
+But `psijic_contact` is already set by `psijic.000` (An Invitation from Artaeum) in the
+existing `psijic_events.txt`. This is correct but underspecified.
+
+**What the design should also note:**
+
+The Gate B awareness event (`walking_ways.000`) that opens the Psijic Endeavour should
+check whether the `psijic_counsel.000` NPC is still present at court as a patron
+character. The existing `psijic_counsel.txt` system establishes an emissary character
+who may still be lingering. If present, the Psijic Endeavour intro event should
+reference this specific character by scope (` save_scope_as = psijic_mentor`).
+
+**Interaction sequence that works cleanly:**
+
+```
+psijic.000      → sets psijic_contact flag (existing)
+psijic.001      → Novice path begins (existing)  
+psijic.002      → Adept's test (existing)
+psijic.003      → Artaeum withdraws (existing)
+  ↓
+[years later]
+psijic_counsel.000 → emissary arrives at court (existing)
+  ↓
+walking_ways.000 (Gate B) → fires for rulers with psijic_contact + psijic_adept + learning >= 16
+  ↓
+Path C (Psijic Endeavour) begins
+```
+
+The Walking Ways Psijic path is thus the *culmination* of the existing two-system
+Psijic chain — not a competitor to it. The existing `psijic_adept` trait becomes
+a natural prerequisite rather than just a learning threshold.
+
+**Revised prerequisite for Path C:**
+- `has_trait = psijic_adept` (upgraded from `has_character_flag = psijic_contact`)
+- This ensures the ruler has completed `psijic.002` (the Adept's Test) before
+  entering the deeper Endeavour path
+
+---
+
+### 16.8 The Enantiomorph — Witness Character Mechanic
+
+**Problem:** §7 Path D describes the Enantiomorph as Hero/Rebel/Witness but never
+specifies who the *Witness* is. Without a named Witness character, the path is
+a list of actions without the cosmological structure the 36 Lessons describes.
+
+**The Lore requirement:** *"The Enantiomorph is the pattern. The Hero and the Rebel
+require each other. But both require the Witness — the one who observes and makes
+the event real."* — 36 Lessons of Vivec, Sermon 11. `[SOFT CANON — MK texts]`
+
+**Proposed Witness mechanic:**
+
+When the Enantiomorph path begins (path intro event fires ~30 days after path selection):
+
+1. **Identify the Witness character.** The event scans neighboring rulers and
+   powerful courtiers for someone who could serve as the lore-Witness. Priority:
+   - A neighboring ruler with `has_trait = brave` + `martial >= 16` (potential "Hero")
+   - A powerful courtier with `has_trait = zealous` (an observer of faith)
+   - Fallback: the most prestigious courtier in the ruler's court
+
+2. **Save scope:** `save_scope_as = enantiomorph_witness`; flag the character
+   `set_character_flag = is_enantiomorph_witness`
+
+3. **The Witness gains an opinion modifier** — `witnessed_the_rebel` (+15 opinion,
+   curiosity-flavored, not hostile). They sense something is happening. They
+   are drawn to observe without understanding why.
+
+4. **Two of the six milestones become Witness-dependent:**
+   - Milestone 3 (*The Witness Removed*): the option to "remove" the Witness character
+     (assassinate or exile) is a dramatic milestone — but at the cost of the pattern
+     becoming *incomplete*. If the Witness is killed, a fork event fires:
+     - **Pattern Completed** (if the Witness's death was witnessed by a third party):
+       progress advances as normal but the ruler gains `stress += 30`
+     - **Pattern Broken** (if the Witness was removed in secret): the path suffers a
+       50% chance of failure at the next threshold (as the Enantiomorph consumed the
+       Witness before the Witness could complete their function — cosmologically invalid)
+   - Milestone 6 (*The Void Named*): the refusal of redemption event now specifically
+     shows the Witness character as the one offering redemption — making the scene
+     visceral and personal. The Witness *sees* the Enantiomorph refuse salvation.
+     This is the completion of the three-body pattern.
+
+5. **World notification at apotheosis** should specifically note the Witness:
+   *"In [REALM], [CHARACTER_NAME] has stood as Witness to a transformation no
+   prayer-book contains words for."* If the Witness is a neighboring ruler, they
+   receive an additional personal notification with a `dread += 25` effect.
+
+---
+
+### 16.9 Competing Mantlers — Mantle Rivalry System
+
+**Problem:** §7 Path B doesn't address what happens if two rulers simultaneously
+pursue the same divine mantle. Lore-wise, a divine can only be mantled once — the
+second mantler is pursuing a path that has already been walked to its conclusion.
+
+**Proposed mechanic:**
+
+When any ruler advances the `mantling_[divine]` path to Rank 2 (Striving), a hidden
+check fires across all other living rulers. If another ruler also has
+`var:ww_mantling_[same_divine]_rank >= 1`:
+
+1. **Both rulers receive the `mantle_rival` event** (~`walking_ways.mantle_rival`)
+   - Flavor: *"The [divine]'s pattern has felt more than one hand tracing it.
+     Somewhere in Tamriel, another soul walks the same footsteps. Only one
+     of you can complete this."*
+   - Effect: Permanent opinion modifier between them: `rival_mantler_opinion` (-30,
+     duration: until one completes or abandons)
+
+2. **Only the FIRST to reach Rank 4 completes the mantle.** When the apotheosis
+   fires, a check runs:
+   ```
+   NOT = { any_ruler = { has_character_flag = ww_mantling_[divine]_completed } }
+   ```
+   If the divine has already been mantled, the second ruler's apotheosis event fires
+   a *failed* version: the footsteps are already someone else's. The path collapses.
+   The second ruler gains `enantiomorph_echo` trait (minor negative; the failed mantler
+   is now the Rebel to someone else's Hero, without having sought that role).
+
+3. **AI behavior:** An AI ruler on a competing mantle path gains `ai_will_do` +10
+   toward aggressive decisions toward the rival mantler — but no direct war mandate
+   (this avoids artificial AI aggression while adding flavor).
+
+4. **There can be exceptions:** The Arkay mantle specifically cannot have competing
+   mantlers in lore terms (Arkay governs death cycles; two living practitioners of
+   death's pattern is self-contradicting). The Arkay mantle should block the rivalry
+   system entirely — only one ruler can even attempt it at a time (soft first-mover
+   lock at Rank 1).
+
+---
+
+### 16.10 Path Abandonment — Graceful Exit Events
+
+**Problem:** §6 mentions abandonment decisions but §7 doesn't define what abandonment
+*means* for each path. The Thu'um system has `leave_voice_path_decision` with flavor
+text explaining what it means to walk away from the Voice. Walking Ways needs equivalents.
+
+**General abandonment structure:**
+
+Decision `abandon_walking_way`:
+- Available when: `is_on_walking_way = yes` AND `ww_momentum_[path]` modifier is absent
+  (i.e., the momentum has already expired — you've already been reminded once)
+- Effect: calls `abandon_path_[X]` scripted effect → fires `walking_ways.abandon_[path]` event → sets
+  `ww_[path]_abandoned` flag for 10 years (blocking re-entry to the same path)
+
+**Per-path abandonment flavor:**
+
+| Path | What Abandonment Means Narratively |
+|---|---|
+| CHIM Expanded | *"The dream tightens again. You step back into it. You are less, but you remain."* — No trait penalty; the ruler simply stops. The CHIM they hold is not revoked. |
+| Mantling (Talos) | *"The footsteps fade. You were not consistent enough."* — Lose `ww_momentum_talos` modifier; the rival mantler (if any) receives a notification. |
+| Mantling (Arkay) | *"The cycle does not judge the living for choosing to live fully."* — No penalty; the path closes without recrimination. |
+| Mantling (Daedric) | *"The Prince's attention moves on. For now."* — The ruler loses the Daedric contact modifier. If they had the possession-risk modifier active, it is removed (the Prince simply stops caring). |
+| Psijic Endeavour | *"The stillness disperses. Artaeum has already withdrawn. What remains is ordinary quiet."* — No penalty; `psijic_adept` trait remains but no further progress is available. |
+| Enantiomorph | *"The Rebel accepts the Hero's dominance. The pattern resets."* — If a Witness character exists: they receive a `witnessed_rebel_recede` opinion modifier (+20, relieved). The rival "Hero" ruler gains a permanent minor prestige bonus. |
+| Amaranth | *"The dream turns inward again. You are still dreaming it. That will have to be enough."* — Massive stress relief (-80, the weight of the attempt lifts). The ruler retains `chim_achieved` and all prior path completions. The Amaranth cannot be re-attempted for 25 years. |
+
+---
+
+### 16.11 Stress Threshold Targeting
+
+**Problem:** §6 and §7 use arbitrary stress numbers ("+15 stress", "+80 stress").
+CK3's stress system has explicit mechanical tiers that the events should target
+deliberately, not accidentally.
+
+**CK3 Stress Levels:**
+- **Level 1:** 25–74 — debuffs begin, coping behaviors available
+- **Level 2:** 75–124 — serious debuffs, mental break possible
+- **Level 3:** 125+ — mental break imminent; health penalty
+
+**Design rule for Walking Ways events:**
+
+| Event Type | Target Stress Change | Intent |
+|---|---|---|
+| Milestone completion | -15 to -20 | Achievement; brief relief |
+| Threshold event (Rank 1→2) | +15 | First signs of pressure |
+| Threshold event (Rank 2→3) | +20 | Path deepens; the cost is real |
+| Threshold event (Rank 3→4) | +25 | Final approach; stress peaks |
+| Apotheosis (success) | -60 to -80 | Transformation; stress lifts dramatically |
+| Apotheosis failure (Enantiomorph) | +60 | Catastrophic; risks Level 3 |
+| Abandonment | -30 | Relief of walking away |
+| Momentum expired (reminder) | +10 | Gentle pressure to act |
+
+**Specific adjustments from §7:**
+- `chim.001` already adds +80 stress — this is fine for a pass/fail moment, but
+  the Walking Ways expansion events should not also add large stress. The Path A
+  journey should average net-neutral on stress until the apotheosis, where the
+  accumulated pressure releases.
+- Enantiomorph milestone 2 (*The Ally Betrayed*) should check current stress level
+  before adding: `if = { limit = { stress >= 75 } } add_stress = 10` /
+  `else = { add_stress = 20 }` — to avoid accidentally killing the ruler early.
+
+---
+
+### 16.12 Court Position — The Path Mentor
+
+**CK3 inspiration:** CK3 has court positions (councillors, court chaplain, etc.)
+that modify gameplay. EK2 adds several TES-specific positions.
+
+**Proposal: `walking_ways_mentor` court position**
+
+A ruler on any Walking Way path can appoint a court character as their Path Mentor.
+This position:
+
+- **Eligibility:** The appointee must have `learning >= 14` AND one of:
+  `has_trait = psijic_adept`, `has_trait = chim_achieved`,
+  `has_trait = shezarrine_vessel`, or `has_trait = scholar`
+- **Effect on appointment:**
+  - The Mentor character gains `mentor_of_the_way` modifier (+2 learning, monthly
+    prestige +3)
+  - The ruler's `ww_momentum_[path]` duration is extended by 180 days per year of
+    mentorship (i.e., the path moves faster with guidance)
+  - A unique yearly event fires for Mentor + Ruler pairs (dialogue events,
+    `psijic_counsel.txt` style)
+- **Conflict:** If the Mentor dies or leaves court, the ruler loses the momentum bonus
+  and receives a stress event (+15). The path is not abandoned — but the loss is felt.
+- **For the Enantiomorph:** The "Mentor" in this case is called the *Witness* instead,
+  and is not a court position — it is the designated character from §16.8. The
+  court position system is unavailable for Path D (the Enantiomorph does not seek guidance).
+
+---
+
+### 16.13 Dragon Break Interaction — Making the Enantiomorph's Power Lore-Consistent
+
+**Problem:** §7 Path D gives `enantiomorph_ascendant` rulers the ability to trigger
+"minor Dragon Breaks" in rival realms. This needs to connect properly to the
+existing `dragon_break_events.txt` system.
+
+**Existing system:** `dragon_break.000`–`dragon_break.003` trigger automatically
+based on `global_var:active_tower_count <= 3`. This system is *cosmological* —
+it is not character-triggered.
+
+**How to make the Enantiomorph's power consistent:**
+
+The Enantiomorph ruler's "Dragon Break" ability should NOT trigger the main
+`dragon_break.001` event (which affects all rulers and requires Tower collapse).
+Instead, it fires a **localized, personal Dragon Break** — `enantiomorph.dragon_break`
+— a private event chain that only affects the target ruler's realm:
+
+- The target ruler experiences `enantiomorph_chaos` modifier for 365 days:
+  - All skill stats -3, all decisions have a 10% chance of triggering a wrong
+    outcome (using `random = { chance = 10 ... add_stress = 30 }` in the decision)
+  - Monthly prestige -5, piety -5
+- A world notification fires: *"Something has gone wrong with the pattern in [REALM].
+  Advisors speak of days that seem to repeat, of decrees that no one remembers giving."*
+- The cosmological Dragon Break system (`dragon_break.000`) is *not* triggered —
+  the Enantiomorph's power is real but not Tower-destroying. The real Dragon Break
+  still requires Tower collapse.
+
+This keeps the Enantiomorph's ability meaningful and powerful without breaking the
+Tower system's established mechanics.
+
+---
+
+### 16.14 Revised File Architecture (Full Updated §11 Replacement)
+
+This replaces §11 with a complete updated list:
+
+#### Event Files
+
+| File | Namespace | Event Count | Notes |
+|---|---|---|---|
+| `mod/events/walking_ways_events.txt` | `walking_ways` | ~20 | Core: awareness, path selection, momentum reminder, world notify, mantle rivalry, abandonment |
+| `mod/events/mantling_talos_events.txt` | `mantling_talos` | ~10 | Milestones, Witness, rival mantler, apotheosis |
+| `mod/events/mantling_arkay_events.txt` | `mantling_arkay` | ~10 | Milestones, apotheosis |
+| `mod/events/mantling_kynareth_events.txt` | `mantling_kynareth` | ~10 | Milestones, apotheosis |
+| `mod/events/mantling_daedric_events.txt` | `mantling_daedric` | ~12 | Azura + Meridia; shared possession mechanic |
+| `mod/events/psijic_endeavour_events.txt` | `psijic_endeavour` | ~10 | Path C milestones; rewind mechanic |
+| `mod/events/enantiomorph_events.txt` | `enantiomorph` | ~12 | Witness mechanic; all milestones; Dragon Break trigger |
+| `mod/events/amaranth_events.txt` | `amaranth` | ~6 | Short path; final apotheosis |
+
+#### New Common Files
+
+| File | Purpose |
+|---|---|
+| `mod/common/scripted_effects/walking_ways_effects.txt` | All begin/advance/complete/abandon effects; world notify utility |
+| `mod/common/scripted_triggers/walking_ways_triggers.txt` | All path eligibility triggers; `is_on_walking_way`; `has_completed_walking_way` |
+| `mod/common/decisions/walking_ways_decisions.txt` | `choose_walking_way`, `abandon_walking_way`, `invoke_psijic_rewind`, `appoint_path_mentor` |
+| `mod/common/traits/walking_ways_traits.txt` | `walking_ways_seeker`, all 11 apex traits (see §12) |
+| `mod/common/court_positions/walking_ways_positions.txt` | `walking_ways_mentor` court position |
+
+#### Modifiers — Revised Count
+
+Append ~20 new modifiers to `lore_races_modifiers.txt` (up from the ~15 in §13):
+- 9 `ww_path_[name]_active` modifiers (one per path, while pursuing)
+- 4 `ww_rank_[1-4]_aura` shared rank-based aura modifiers
+- 1 `ww_momentum_[shared]` base momentum modifier (path-specific versions derived via scripted effect arguments)
+- 1 `enantiomorph_chaos` (applied to target of Dragon Break ability)
+- 1 `mantle_rival_tension` (applied during competing mantler rivalry)
+- 1 `rival_mantler_opinion` (opinion modifier for competing mantlers)
+- 1 `witnessed_rebel_recede` (Witness opinion on Enantiomorph abandonment)
+- 1 `enantiomorph_echo` (failed mantler's minor negative trait modifier)
+- 1 `mentor_of_the_way` (Path Mentor court position holder)
+- 1 `amaranth_dreaming` (post-Amaranth)
+
+#### Localization Files (unchanged from §11 + court position file)
+
+| File | Keys |
+|---|---|
+| `mod/localization/english/walking_ways_l_english.yml` | Core keys + awareness + selection + abandonment + world notify + rivalry |
+| `mod/localization/english/mantling_l_english.yml` | All 5 mantle paths |
+| `mod/localization/english/psijic_endeavour_l_english.yml` | Path C |
+| `mod/localization/english/enantiomorph_l_english.yml` | Path D + Witness |
+| `mod/localization/english/amaranth_l_english.yml` | Path E |
+| `mod/localization/english/walking_ways_positions_l_english.yml` | Path Mentor court position |
+
+**All `.yml` files MUST start with UTF-8 BOM.** Use `printf '\xef\xbb\xbf' | cat - file > tmp && mv tmp file`.
+
+---
+
+### 16.15 The "chim.003 Death" Compatibility Check
+
+The existing `chim.003` (Enantiomorph Consumes) causes character death via
+`death_reason = death_chim_erasure`. The Walking Ways design in §7 Path D also
+uses the term "Enantiomorph Consumes" for Path D's failure state.
+
+These are **two different things** and must not be confused:
+- `chim.003` = the failure state of *pursuing CHIM* (trying to achieve CHIM and failing)
+  — character death by erasure. Not changed.
+- `enantiomorph_consumed` in Path D = a debilitating *trait* acquired by someone who
+  *chose* the Enantiomorph path and failed at the 75% threshold
+  — character survives but is spiritually broken.
+
+**Rename `enantiomorph_consumed` to `void_consumed`** in Path D's failure state to
+avoid confusion with the existing lore concept from `chim.003`. The `void_consumed`
+trait represents being absorbed by the role of the Rebel without achieving the
+transcendence of the Enantiomorph Ascendant — you became the void but couldn't hold it.
+
+---
+
+*End of revision notes — session 2026-04-05.*
+
+*These notes supersede §§1–15 where there is a direct conflict. The core design in §§1–15 remains the primary reference; this section adds precision and identifies implementation hazards.*
