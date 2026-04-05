@@ -1,0 +1,84 @@
+# =============================================================
+#  The Walking Ways — Shared Traits
+#  File: mod/common/traits/walking_ways_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  walking_ways_seeker  — On a Walking Way path; the pursuit
+#                         has begun. Applied to all active paths.
+#  chim_sovereign       — Path A apex (CHIM Expanded). The
+#                         dream is not just understood — it bends.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  CHIM is not the end. The 36 Lessons of Vivec describe
+#  CHIM as a door, not a destination. A ruler who has
+#  achieved CHIM can *edit reality* — not simply understand it.
+#  The chim_sovereign has passed beyond even this: they are
+#  sovereign within the dream without ceasing to be within it.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — traits here are self-contained.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES:
+#    • walking_ways_seeker
+#    • chim_sovereign
+#
+#  REFERENCED BY:
+#    common/scripted_effects/walking_ways_effects.txt
+#    common/decisions/walking_ways_decisions.txt
+#    events/walking_ways_events.txt
+# =============================================================
+
+# ---------------------------------------------------------------
+#  WALKING WAYS SEEKER
+#  A ruler who has committed to one of the Walking Ways.
+#  The path is active; the milestones are accumulating.
+#  The seeker is changed — not yet transformed.
+# ---------------------------------------------------------------
+
+walking_ways_seeker = {
+    category = lifestyle
+
+    learning = 2
+
+    stress_gain_mult = 0.10   # the pursuit carries its own weight
+
+    flag = walking_ways_seeker
+}
+
+# ---------------------------------------------------------------
+#  CHIM SOVEREIGN
+#  Path A apex. The ruler has extended CHIM not as an
+#  understanding but as a *mode of operation*.  Where CHIM
+#  achieved is the realisation that one exists within the
+#  Godhead's dream, chim_sovereign is the transition from
+#  *knowing this* to *acting on it*.  Time around the ruler
+#  moves differently.  Spoken promises bind without ceremony.
+#  The sovereign is still mortal — but they are operating
+#  in the dream with something like authorial permission.
+#  [SOURCE: 36 Lessons of Vivec; MK supplementary texts]
+# ---------------------------------------------------------------
+
+chim_sovereign = {
+    category = fame
+
+    learning    = 3
+    diplomacy   = 3
+    martial     = 3
+    stewardship = 3
+    intrigue    = 3
+
+    monthly_prestige              = 10
+    stress_gain_mult              = -0.50   # the dream does not pressure you
+    health                        = 3.0
+    dread_gain_mult               = 0.30    # reality bends in your presence
+
+    flag = chim_sovereign
+}

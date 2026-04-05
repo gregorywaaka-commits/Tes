@@ -1,0 +1,58 @@
+# =============================================================
+#  The Walking Ways — Psijic Adept Traits
+#  File: mod/common/traits/psijic_adept_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  psijic_adept_supreme  — Path C apex. The Psijic Endeavour
+#                          completed. Time perception has blurred.
+#                          The Old Ways are now remembered, not
+#                          merely studied.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Psijic Order practices a form of magic predating the
+#  Mages Guild — the "Old Ways". The Endeavour is their
+#  philosophical framework for transcending ordinary time.
+#  The Eye of Magnus (Skyrim) and ESO Psijic quests both
+#  reference this capacity for temporal perception.
+#  [SOURCE: CANON — UESP Lore:Psijic Order; ESO Psijic storyline]
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES:
+#    • psijic_adept_supreme
+#
+#  REFERENCED BY:
+#    common/scripted_effects/walking_ways_effects.txt
+#    events/psijic_endeavour_events.txt
+#    common/decisions/walking_ways_decisions.txt
+# =============================================================
+
+# ---------------------------------------------------------------
+#  PSIJIC ADEPT SUPREME
+#  The Endeavour is complete. The adept no longer reads time
+#  linearly — they perceive the seams of the dream, not with
+#  CHIM's total sovereignty, but with the Psijic's patient
+#  attention. The court has long since noticed that they
+#  sometimes answer questions before they are asked. The
+#  adept is still mortal. But ordinary urgency is beneath them.
+#  Once per reign, they may invoke the Rewind — perceiving a
+#  moment before it happens and acting differently.
+# ---------------------------------------------------------------
+
+psijic_adept_supreme = {
+    category = fame
+
+    learning    = 8
+    stewardship = 4
+    intrigue    = 3
+
+    monthly_prestige              = 6
+    stress_gain_mult              = -0.40   # ordinary urgency is beneath them now
+
+    flag = psijic_adept_supreme
+}

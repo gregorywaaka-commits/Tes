@@ -450,6 +450,24 @@ on_yearly_pulse = {
         4   = borrowed_divinity.cutoff.002  # Heart destroyed while reservoir active — heart_scholar_ascendant rulers on dagoth_ur_defeated (borrowed_divinity_events.txt)
         5   = borrowed_divinity.starvation.001  # Reservoir empty check — heart_scholar_ascendant with heart_cut_off and reservoir=0 (borrowed_divinity_events.txt)
         3   = borrowed_divinity.dissolution.001  # Heart destroyed narrative — all Route A practitioners on dagoth_ur_defeated (borrowed_divinity_events.txt)
+        # --- THE WALKING WAYS — Core Engine ---
+        5   = walking_ways.000               # Awareness intro — eligible rulers via 3 gates (walking_ways_events.txt)
+        5   = walking_ways.progress_check    # Hidden progress engine — all active path holders (walking_ways_events.txt)
+        2   = walking_ways.chim_silence_begin  # Silence milestone offer — chim_expanded path holders (walking_ways_events.txt)
+        # --- MANTLING: TALOS ---
+        3   = mantling_talos.milestone_empire_check  # Empire size check — mantling_talos_active (mantling_talos_events.txt)
+        3   = mantling_talos.milestone_throne_check  # Cyrodiil paramount check — mantling_talos_active (mantling_talos_events.txt)
+        # --- MANTLING: ARKAY ---
+        3   = mantling_arkay.milestone_season_check  # 20+ years ruled — mantling_arkay_active (mantling_arkay_events.txt)
+        3   = mantling_arkay.milestone_age_check     # Age 55+ — mantling_arkay_active (mantling_arkay_events.txt)
+        # --- PSIJIC ENDEAVOUR ---
+        3   = psijic_endeavour.silence_begin          # 180-day silence offer — psijic_endeavour_active (psijic_endeavour_events.txt)
+        3   = psijic_endeavour.milestone_mastery_check  # learning >= 22 — psijic_endeavour_active (psijic_endeavour_events.txt)
+        3   = psijic_endeavour.milestone_grief_check    # age 40+, no grief — psijic_endeavour_active (psijic_endeavour_events.txt)
+        # --- ENANTIOMORPH ---
+        3   = enantiomorph.milestone_betrayal         # Betrayal flag check — enantiomorph_active (enantiomorph_events.txt)
+        # --- AMARANTH ---
+        2   = amaranth.dreamer_court                  # Yearly dreamer flavor — amaranth_achieved holders (amaranth_events.txt)
     }
 }
 

@@ -340,6 +340,11 @@ dawnguard.010 = {
         add_stress = 25
         add_prowess_skill = 1
         set_character_flag = { flag = dawnguard_volkihar_attack_survived days = 1825 }
+        # Walking Ways integration — Meridia mantle milestone 1
+        if = {
+            limit = { has_character_flag = ww_mantling_meridia_active }
+            set_character_flag = ww_mantling_meridia_milestone_undead_slain
+        }
     }
 
     option = {

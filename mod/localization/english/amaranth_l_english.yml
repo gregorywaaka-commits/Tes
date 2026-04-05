@@ -1,0 +1,37 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ #  THE WALKING WAYS — Amaranth Localization
+ # ═══════════════════════════════════════════════════════════════
+
+ amaranth_achieved: "The New Dream"
+ amaranth_achieved_desc: "CHIM was understanding the dream. This is dreaming your own. The ruler is still here — but the 'here' is becoming something they authored. They did not become a god. They became what the Godhead once was."
+
+ amaranth.intro.t: "The Room with No Name"
+ amaranth.intro.desc: "CHIM was the door.\n\nEvery other path was the hallway.\n\nThere is a room at the end of the hallway. It has no name. The texts that approach it — Kirkbride's Loveletter, the fragments that survive from Vivec's later lessons, the things the Psijic Order will not write down — approach it from a direction language is not designed to travel.\n\nThe scholar (or the voice, or the page that rewrites itself) says only: CHIM is the understanding that you are a dream someone else is dreaming. The Amaranth is beginning to dream your own.\n\nThis is the path.\n\n[The text does not complete this sentence.]"
+ amaranth.intro.a: "[The text does not complete this sentence.]"
+
+ amaranth.rank1.t: "The Other Dream Glimpsed"
+ amaranth.rank1.desc: "It was brief. It was impossible. The ruler was doing something entirely ordinary — signing a document, perhaps, or looking out a window — when they saw, very clearly, for less than a heartbeat, a world that was not the Aurbis.\n\nNot a different part of the Aurbis. Not a plane of Oblivion. Not Aetherius. A different Aurbis — a world that could not be here, built on laws that do not apply here, constructed by a different arrangement of the same fundamental question.\n\nIt closed. The window remains. The document was signed."
+ amaranth.rank1.a: "I saw it. It was not here. It was more real than here."
+
+ amaranth.rank2.t: "The Name Unrequired"
+ amaranth.rank2.desc: "A name is a cage that you build yourself and lock yourself inside to give other people something to call you.\n\nThe ruler who has walked this far does not need a cage. The dynasty name will remain on documents. The court will continue using it. But between the ruler and themselves, something has changed: they have acknowledged that the name was always approximate, always a convenience, always a handle attached to something that does not need to be held.\n\nIdentity is now optional. They have chosen to keep it. For now."
+ amaranth.rank2.a: "A name is a cage. I have outgrown its bars."
+ amaranth.rank2.b: "I keep the name. Names are doors."
+
+ amaranth.apotheosis.t: "The Godhead's Question"
+ amaranth.apotheosis.desc: "The Godhead's dream paused.\n\nNot completely. Not in any way the rest of Tamriel would notice. A breath held for less than a moment. But in that moment — which lasted as long as it needed to last — the dream turned its attention toward the ruler.\n\nThe question arrived without words. The ruler understood it anyway.\n\nEvery answer is correct. Every answer was always going to be given. The question was not a test. It was an invitation.\n\nThe ruler answered.\n\nThe dream resumed.\n\n[The text does not continue in any direction you can follow. This is not an error. This is the limit of the text. The ruler is beyond the edge of language now, which means the ruler is beyond the edge of what the text can describe. The ruler is still there. The text is not there with them anymore.]"
+ amaranth.apotheosis.a: "Yes."
+ amaranth.apotheosis.b: "No."
+ amaranth.apotheosis.c: "[The text does not continue in any direction you can follow.]"
+
+ amaranth.dreamer_court.t: "A Story Being Written"
+ amaranth.dreamer_court.desc_a: "The court assembled as it always does. The ruler watched them and understood, briefly but completely, that they were watching a story they were writing, not living. The steward's concern about the northern granaries is a plot point. The ambassador's flattery is a recurring motif. The chancellor's competence is a gift the author gave the realm because the realm needed it.\n\nThis is not a comfortable way to look at people you care about. It is, however, accurate."
+ amaranth.dreamer_court.desc_b: "The season changed. The ruler noticed that it had changed in a direction they had not chosen but could have. The seasons are not fixed features of the dream. They are conventions. The ruler has not changed them. They see, now, that they could."
+ amaranth.dreamer_court.desc_c: "A courtier died today — not in war, not by violence, simply: the body's patience ran out. The ruler attended the burial. Arkay's priests were there. The ruler watched them and knew something the priests did not: that the death was a sentence ending, not a story ending. The courtier is elsewhere now, in the part of the narrative the text does not reach."
+ amaranth.dreamer_court.desc_d: "The ruler sat alone in the dark for a long time and did not think about anything in particular.\n\nThis was sufficient."
+ amaranth.dreamer_court.a: "Yes. I wrote this part."
+
+ # ─── Trait names for walking_ways_seeker ───
+ walking_ways_seeker: "Walking Way Seeker"
+ walking_ways_seeker_desc: "This ruler has committed to one of the Walking Ways. The path is active. Milestones are accumulating. They are changed — not yet transformed."

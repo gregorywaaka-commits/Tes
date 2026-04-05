@@ -1,0 +1,213 @@
+# =============================================================
+#  The Walking Ways — Path B: Mantling Talos
+#  Namespace: mantling_talos
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  mantling_talos.intro       — Path chosen; Talos's echo heard
+#  mantling_talos.rank1       — Seeking: The Shout mastered
+#  mantling_talos.rank2       — Striving: The Empire walks your steps
+#  mantling_talos.rank3       — Threshold: The pattern recognises you
+#  mantling_talos.apotheosis  — The footsteps are now yours
+#
+#  LORE BASIS:
+#  ───────────
+#  Mantling is canon per The Arcturian Heresy. Tiber Septim
+#  mantled Lorkhan/Shor by completing the same archetypal actions.
+#  Talos was mortal — general, emperor, Shezarrine-echo.
+#  The ruler who has walked the same road long enough completes
+#  the same pattern. The divine and the mortal become one set
+#  of footprints.
+#  [SOURCE: CANON — The Arcturian Heresy; UESP Lore:Talos]
+#
+#  MILESTONE INTEGRATION:
+#  ──────────────────────
+#  ww_mantling_talos_milestone_shout      ← thu'um_events.txt
+#  ww_mantling_talos_milestone_empire     ← realm size check (yearly)
+#  ww_mantling_talos_milestone_wound      ← assassination attempt survival
+#  ww_mantling_talos_milestone_mercy      ← capital punishment mercy event
+#  ww_mantling_talos_milestone_shezarrine ← shezarrine_events.txt
+#  ww_mantling_talos_milestone_throne     ← title check (yearly)
+# =============================================================
+
+namespace = mantling_talos
+
+# ---------------------------------------------------------------
+# mantling_talos.intro  THE FOOTSTEP
+# The path is chosen. The White Warrior's echo reaches the
+# ruler in a dream — or perhaps it is the dream reaching back.
+# ---------------------------------------------------------------
+mantling_talos.intro = {
+    type = character_event
+    title = mantling_talos.intro.t
+    desc  = mantling_talos.intro.desc
+    theme = martial
+
+    option = {
+        name = mantling_talos.intro.a   # "I will walk the same road."
+        add_stress = 10
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.rank1  SEEKING — THE SHOUT
+# Two milestones done. The ruler has used the Thu'um
+# and survived an attempt on their life. The White Warrior's
+# voice is closer than it was.
+# ---------------------------------------------------------------
+mantling_talos.rank1 = {
+    type = character_event
+    title = mantling_talos.rank1.t
+    desc  = mantling_talos.rank1.desc
+    theme = martial
+
+    option = {
+        name = mantling_talos.rank1.a   # "His wounds were like this. Mine are like this."
+        add_prestige = 75
+        add_martial = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.rank2  STRIVING — THE EMPIRE WALKS YOUR STEPS
+# Four milestones done. The ruler rules widely and has shown
+# mercy where a conqueror would not. The pattern thickens.
+# ---------------------------------------------------------------
+mantling_talos.rank2 = {
+    type = character_event
+    title = mantling_talos.rank2.t
+    desc  = mantling_talos.rank2.desc
+    theme = martial
+
+    option = {
+        name = mantling_talos.rank2.a   # "He ruled this way too."
+        add_prestige = 150
+        add_stress = -10
+    }
+
+    option = {
+        name = mantling_talos.rank2.b   # "I am not him. I do not need to be."
+        # This option is cosmetically distinct but mechanically identical.
+        # The path does not require the ruler to claim identity — only to complete the pattern.
+        add_prestige = 150
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.rank3  THRESHOLD — THE PATTERN RECOGNISES YOU
+# Six milestones done. Something is different now.
+# Courtiers report they sometimes mistake the ruler for
+# someone else — someone older, someone not quite here.
+# ---------------------------------------------------------------
+mantling_talos.rank3 = {
+    type = character_event
+    title = mantling_talos.rank3.t
+    desc  = mantling_talos.rank3.desc
+    theme = martial
+
+    option = {
+        name = mantling_talos.rank3.a   # "Then let it complete itself."
+        add_prestige = 200
+        add_dread = 15
+        add_stress = -15
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.apotheosis  THE FOOTSTEPS ARE NOW YOURS
+# The pattern is complete. The distinction between the
+# ruler and Talos has become meaningless. They are not Talos.
+# They ARE the pattern Talos expressed.
+# ---------------------------------------------------------------
+mantling_talos.apotheosis = {
+    type = character_event
+    title = mantling_talos.apotheosis.t
+    desc  = mantling_talos.apotheosis.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_mantling_talos_active
+        var:ww_mantling_talos_rank >= 4
+        NOT = { has_character_flag = ww_mantling_talos_completed }
+    }
+
+    immediate = {
+        complete_path_mantling_talos = yes
+    }
+
+    option = {
+        name = mantling_talos.apotheosis.a   # "I look in the mirror and see them."
+        add_prestige = 300
+        add_piety = 150
+        # Thalmor rulers gain opinion penalty
+        every_ruler = {
+            limit = { has_trait = thalmor_agent }
+            add_opinion = {
+                modifier = ww_pattern_wrong_opinion
+                target = root
+                years = 20
+            }
+        }
+    }
+
+    option = {
+        name = mantling_talos.apotheosis.b   # "I look in the mirror and see myself."
+        add_prestige = 200
+        add_stress = -30
+        # No difference in outcome — the pattern completed regardless.
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.milestone_empire_check  YEARLY EMPIRE CHECK
+# Hidden yearly: checks if ruler controls 3+ Imperial-culture
+# provinces. Sets milestone flag if so.
+# ---------------------------------------------------------------
+mantling_talos.milestone_empire_check = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_character_flag = ww_mantling_talos_active
+        NOT = { has_character_flag = ww_mantling_talos_milestone_empire }
+        any_held_title = {
+            tier = county
+            culture = { has_cultural_pillar = heritage_cyrodilic }
+            count >= 3
+        }
+    }
+
+    immediate = {
+        set_character_flag = ww_mantling_talos_milestone_empire
+    }
+
+    option = { name = "OK" }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.milestone_throne_check  YEARLY THRONE CHECK
+# Sets milestone if ruler is the paramount ruler of Cyrodiil.
+# ---------------------------------------------------------------
+mantling_talos.milestone_throne_check = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_character_flag = ww_mantling_talos_active
+        NOT = { has_character_flag = ww_mantling_talos_milestone_throne }
+        any_held_title = {
+            tier >= kingdom
+            de_jure_liege = { title:e_cyrodiil ?= root.primary_title.liege }
+        }
+    }
+
+    immediate = {
+        set_character_flag = ww_mantling_talos_milestone_throne
+    }
+
+    option = { name = "OK" }
+}

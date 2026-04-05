@@ -220,6 +220,15 @@ barrow.003 = {
             modifier = word_wall_resonance
             days = 365
         }
+        # Walking Ways integration — Kynareth milestone 1, Psijic milestone 3
+        if = {
+            limit = { has_character_flag = ww_mantling_kynareth_active }
+            set_character_flag = ww_mantling_kynareth_milestone_wordwall
+        }
+        if = {
+            limit = { has_character_flag = ww_psijic_endeavour_active }
+            set_character_flag = ww_psijic_milestone_eye_echo
+        }
         trigger_event = { id = barrow.004 days = { 10 20 } }
     }
 

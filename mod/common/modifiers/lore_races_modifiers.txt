@@ -2736,3 +2736,105 @@ consumed_another = {
     monthly_piety        = -2     # The act is not approved of
     diplomacy            = -1
 }
+
+# =============================================================
+#  THE WALKING WAYS — PROGRESSION MODIFIERS
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ACTIVE PATH AURA MODIFIERS
+#  Applied when the rank variable advances to each stage.
+# ---------------------------------------------------------------
+
+ww_path_chim_active = {
+    learning             = 3
+    stress_gain_mult     = 0.10   # the expansion of CHIM is not comfortable
+}
+
+ww_path_mantling_active = {
+    prowess              = 2
+    monthly_prestige     = 2
+}
+
+ww_path_psijic_active = {
+    learning             = 2
+    stress_gain_mult     = -0.10
+}
+
+ww_path_enantiomorph_active = {
+    intrigue             = 3
+    diplomacy            = -2
+    dread_gain_mult      = 0.20
+}
+
+ww_path_amaranth_active = {
+    learning             = 1
+    diplomacy            = 1
+    martial              = 1
+    stewardship          = 1
+    intrigue             = 1
+    stress_gain_mult     = -0.30
+}
+
+# ---------------------------------------------------------------
+#  DAEDRIC MANTLE RISK MODIFIER
+#  Internal logic marker; no visible mechanical effect.
+# ---------------------------------------------------------------
+
+mantling_daedric_risk = {
+    # No displayed stat effects — used as a conditional check flag
+}
+
+# ---------------------------------------------------------------
+#  FAILURE STATE MODIFIER
+# ---------------------------------------------------------------
+
+enantiomorph_consumed_penalty = {
+    learning             = -5
+    intrigue             = -5
+    stress_gain_mult     = 0.40
+    monthly_prestige     = -3
+}
+
+# ---------------------------------------------------------------
+#  APEX MODIFIERS (applied at completion; some permanent)
+# ---------------------------------------------------------------
+
+amaranth_dreaming = {
+    stress_gain_mult     = -1.00   # zero stress — dreaming their own dream
+    monthly_piety        = 5
+    health               = 2.0
+}
+
+chim_sovereign_presence = {
+    dread_gain_mult      = 0.30
+    # opinion from scholar characters: +20 — applied via opinion modifier
+}
+
+talos_mantle_world_shift = {
+    monthly_prestige     = 5
+    # +20 opinion from Imperial-culture: applied via opinion modifier
+    # -30 from Thalmor agents: applied via opinion modifier on notify
+}
+
+arkay_mantle_deathsight = {
+    health               = 1.0    # additional stacking health on top of trait value
+    monthly_piety        = 3
+}
+
+psijic_rewind_ready = {
+    # Flavor indicator that the rewind decision is available.
+    # Removed when invoke_psijic_rewind decision is used.
+}
+
+# ---------------------------------------------------------------
+#  WORLD NOTIFICATION OPINION MODIFIERS
+# ---------------------------------------------------------------
+
+ww_thalmor_hostile_opinion = {
+    opinion              = -30
+}
+
+ww_pattern_wrong_opinion = {
+    opinion              = -20
+}

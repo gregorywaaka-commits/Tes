@@ -1,0 +1,166 @@
+# =============================================================
+#  The Walking Ways — Mantling Traits
+#  File: mod/common/traits/mantling_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  mantle_talos     — Path B apex: Talos mantle achieved.
+#  mantle_arkay     — Path B apex: Arkay mantle achieved.
+#  mantle_kynareth  — Path B apex: Kynareth/Kyne mantle achieved.
+#  mantle_azura     — Path B apex: Azura mantle achieved (Daedric).
+#  mantle_meridia   — Path B apex: Meridia mantle achieved (Daedric).
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Mantling is canon, described in The Arcturian Heresy: walk in
+#  a divine's footsteps until you and they are indistinguishable.
+#  The divine's pattern overlaps with yours until the distinction
+#  is meaningless. Tiber Septim mantled Lorkhan/Shor this way.
+#  Daedric mantles (Azura, Meridia) are interpretive — the process
+#  is possible but dangerous; possession is the failure state.
+#  [SOURCE: The Arcturian Heresy (in-game book); UESP Lore:Talos]
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES:
+#    • mantle_talos
+#    • mantle_arkay
+#    • mantle_kynareth
+#    • mantle_azura
+#    • mantle_meridia
+#
+#  REFERENCED BY:
+#    common/scripted_effects/walking_ways_effects.txt
+#    events/mantling_talos_events.txt
+#    events/mantling_arkay_events.txt
+#    events/mantling_kynareth_events.txt
+#    events/mantling_daedric_events.txt
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MANTLE TALOS
+#  The ruler walked in Talos's footsteps long enough that
+#  the footsteps are now theirs. The mortal god — who was
+#  once Tiber Septim, or Ysmir, or Wulf — lived through
+#  empire, wound, mercy, and the Ruby Throne.  So has this
+#  ruler.  The pattern is complete.  They are not Talos —
+#  they ARE the pattern Talos expressed.
+#  [SOURCE: CANON — The Arcturian Heresy; UESP Lore:Talos]
+# ---------------------------------------------------------------
+
+mantle_talos = {
+    category = fame
+
+    martial     = 6
+    diplomacy   = 4
+    learning    = 2
+    stewardship = 2
+    intrigue    = 2
+
+    monthly_prestige              = 15
+    monthly_piety                 = 5
+    dread_gain_mult               = 0.20
+
+    flag = mantle_talos
+}
+
+# ---------------------------------------------------------------
+#  MANTLE ARKAY
+#  The god of the cycle — some texts suggest he was once a
+#  mortal who died and returned with divine knowledge.  The
+#  mantler has walked the same path: witnessed death, survived
+#  it, outlasted grief without becoming anger.  Arkay governs
+#  death; the mantler is no longer subject to its schedule.
+#  [SOURCE: SOFT CANON — The Monomyth; UESP Lore:Arkay]
+# ---------------------------------------------------------------
+
+mantle_arkay = {
+    category = fame
+
+    learning    = 5
+    stewardship = 3
+    diplomacy   = 2
+
+    health                        = 3.0    # Arkay governs death — the mantler is exempt from its arbitrary claims
+    monthly_piety                 = 8
+    stress_gain_mult              = -0.20  # the mantler has made peace with impermanence
+
+    flag = mantle_arkay
+}
+
+# ---------------------------------------------------------------
+#  MANTLE KYNARETH
+#  Goddess of sky, wind, and natural world. Nordic form is
+#  Kyne — Shor's widow, mother of men. The mantler has
+#  discovered words on stone, journeyed widely, given
+#  freedom without cause, and survived the outnumbered storm.
+#  They now carry something of her openness and her sorrow.
+#  [SOURCE: CANON — UESP Lore:Kynareth; Kyne (Nordic aspect)]
+# ---------------------------------------------------------------
+
+mantle_kynareth = {
+    category = fame
+
+    martial     = 4
+    diplomacy   = 4
+    learning    = 3
+
+    monthly_prestige              = 8
+    monthly_piety                 = 5
+    health                        = 1.5
+
+    flag = mantle_kynareth
+}
+
+# ---------------------------------------------------------------
+#  MANTLE AZURA
+#  A Daedric mantle — more dangerous, more contested.
+#  Azura's domain is dusk and dawn: the moments of
+#  transformation.  The mantler has completed her pattern —
+#  covenant, prophecy, transformation — and the distinction
+#  between them and the Prince of Dusk has blurred.
+#  Whether this is true mantling or deep possession is a
+#  question the mantler may not be able to answer.
+#  [SOURCE: CONTESTED — extrapolated from mantling concept]
+# ---------------------------------------------------------------
+
+mantle_azura = {
+    category = fame
+
+    learning    = 5
+    intrigue    = 4
+    diplomacy   = 3
+
+    monthly_prestige              = 10
+    monthly_piety                 = 10    # Azura's favour is palpable
+    stress_gain_mult              = -0.10
+
+    flag = mantle_azura
+}
+
+# ---------------------------------------------------------------
+#  MANTLE MERIDIA
+#  Goddess of light and purification. Uncompromising in
+#  opposition to undead and corruption.  The mantler has
+#  carried Meridia's Beacon, destroyed darkness, and refused
+#  to pardon what she would not pardon.  Their presence now
+#  carries a visible luminance that undead find intolerable.
+#  [SOURCE: EXTRAPOLATED — Meridia's Beacon quest (Skyrim)]
+# ---------------------------------------------------------------
+
+mantle_meridia = {
+    category = fame
+
+    martial     = 5
+    learning    = 3
+    diplomacy   = 2
+
+    monthly_prestige              = 10
+    monthly_piety                 = 10
+    health                        = 2.0
+
+    flag = mantle_meridia
+}

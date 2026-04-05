@@ -1,0 +1,404 @@
+# =============================================================
+#  The Walking Ways — Decisions
+#  File: mod/common/decisions/walking_ways_decisions.txt
+#
+#  DECISIONS IN THIS FILE:
+#  ────────────────────────
+#  choose_walking_way          — Main path selection. Shows all
+#                                available paths with requirements.
+#  invoke_psijic_rewind        — Once per reign. Re-triggers the
+#                                last major negative event (psijic
+#                                apex holders only).
+#  enantiomorph_rebel_creed    — Milestone 5 for Enantiomorph:
+#                                formally refuse all holy wars.
+#  abandon_walking_way         — Abandon the current path.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ──────────────────────
+#  common/scripted_triggers/walking_ways_triggers.txt
+#    → can_begin_path_*, is_on_walking_way
+#  common/scripted_effects/walking_ways_effects.txt
+#    → begin_path_*, abandon_path_*
+#  common/traits/walking_ways_traits.txt
+#    → walking_ways_seeker, chim_sovereign
+#  common/traits/psijic_adept_traits.txt
+#    → psijic_adept_supreme
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES:
+#    • choose_walking_way
+#    • invoke_psijic_rewind
+#    • enantiomorph_rebel_creed
+#    • abandon_walking_way
+#
+#  REFERENCED BY:
+#    events/walking_ways_events.txt
+#    common/scripted_effects/walking_ways_effects.txt
+# =============================================================
+
+# ---------------------------------------------------------------
+#  CHOOSE WALKING WAY
+#  The central path-selection decision. Shown once the
+#  walking_ways_awareness flag is set (by the intro event).
+#  Each sub-option has its own requirements; unavailable
+#  options are visible but greyed out with requirement text.
+# ---------------------------------------------------------------
+
+choose_walking_way = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = choose_walking_way_desc
+
+    is_shown = {
+        has_character_flag = walking_ways_awareness
+        NOT = { is_on_walking_way = yes }
+        NOT = { has_character_flag = ww_path_abandoned }
+    }
+
+    is_valid = {
+        is_adult = yes
+        is_ruler = yes
+        NOT = { is_on_walking_way = yes }
+    }
+
+    option = {
+        name        = choose_walking_way.path_a
+        desc        = choose_walking_way.path_a_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_path_chim_expanded = yes }
+
+        effect = {
+            begin_path_chim_expanded = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = chim_achieved
+                learning >= 20
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_talos
+        desc        = choose_walking_way.path_b_talos_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_talos = yes }
+
+        effect = {
+            begin_path_mantling_talos = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 8
+                OR = {
+                    has_trait = shezarrine_vessel
+                    martial >= 22
+                }
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_arkay
+        desc        = choose_walking_way.path_b_arkay_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_arkay = yes }
+
+        effect = {
+            begin_path_mantling_arkay = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 4
+                has_trait = compassionate
+                learning >= 16
+                age >= 40
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_kynareth
+        desc        = choose_walking_way.path_b_kynareth_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_kynareth = yes }
+
+        effect = {
+            begin_path_mantling_kynareth = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 4
+                has_trait = brave
+                OR = {
+                    culture = { has_cultural_pillar = heritage_nordic }
+                    has_character_flag = ww_mantling_kynareth_milestone_wordwall
+                }
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_azura
+        desc        = choose_walking_way.path_b_azura_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_azura = yes }
+
+        effect = {
+            begin_path_mantling_azura = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 3
+                has_trait = chim_achieved
+                intrigue >= 14
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_meridia
+        desc        = choose_walking_way.path_b_meridia_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_meridia = yes }
+
+        effect = {
+            begin_path_mantling_meridia = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 3
+                has_trait = dawnguard_commander
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_c
+        desc        = choose_walking_way.path_c_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_path_psijic_endeavour = yes }
+
+        effect = {
+            begin_path_psijic_endeavour = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 6
+                learning >= 22
+                has_trait = scholar
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_d
+        desc        = choose_walking_way.path_d_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_path_enantiomorph = yes }
+
+        effect = {
+            begin_path_enantiomorph = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 3
+                intrigue >= 18
+                has_trait = ruthless
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_e
+        desc        = choose_walking_way.path_e_desc
+        is_shown    = { can_begin_path_amaranth = yes }
+        is_valid    = { can_begin_path_amaranth = yes }
+
+        effect = {
+            begin_path_amaranth = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 2
+                has_trait = chim_achieved
+                has_completed_any_walking_way = yes
+            }
+        }
+    }
+
+    option = {
+        name    = choose_walking_way.decline
+        desc    = choose_walking_way.decline_desc
+        is_shown = { always = yes }
+        is_valid = { always = yes }
+
+        effect = {
+            remove_character_flag = walking_ways_awareness
+            set_character_flag = {
+                flag = walking_ways_refused
+                years = 10
+            }
+        }
+
+        ai_will_do = {
+            base = 20   # most AI rulers decline
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  INVOKE PSIJIC REWIND
+#  Once per ruler lifetime, the psijic_adept_supreme may
+#  re-trigger the most recent major negative court event,
+#  effectively undoing a single catastrophic outcome.
+#  Framed as perceiving the moment before it happened.
+# ---------------------------------------------------------------
+
+invoke_psijic_rewind = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = invoke_psijic_rewind_desc
+
+    is_shown = {
+        has_trait = psijic_adept_supreme
+        NOT = { has_character_flag = psijic_rewind_used }
+    }
+
+    is_valid = {
+        has_trait = psijic_adept_supreme
+        NOT = { has_character_flag = psijic_rewind_used }
+    }
+
+    effect = {
+        set_character_flag = psijic_rewind_used
+        remove_character_modifier = psijic_rewind_ready
+        trigger_event = { id = psijic_endeavour.rewind days = 7 }
+    }
+
+    ai_will_do = {
+        base = 0    # player-only mechanical choice
+    }
+}
+
+# ---------------------------------------------------------------
+#  ENANTIOMORPH REBEL CREED
+#  Milestone 5 for Path D. The ruler formally refuses to
+#  participate in any holy war or crusade — not from pacifism,
+#  but from the Rebel's creed: the pattern of Hero requires
+#  the Rebel, not the Witness.
+# ---------------------------------------------------------------
+
+enantiomorph_rebel_creed = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = enantiomorph_rebel_creed_desc
+
+    is_shown = {
+        is_on_path_enantiomorph = yes
+        NOT = { has_character_flag = ww_enant_milestone_creed }
+    }
+
+    is_valid = {
+        is_on_path_enantiomorph = yes
+        NOT = { has_character_flag = ww_enant_milestone_creed }
+    }
+
+    effect = {
+        set_character_flag = ww_enant_milestone_creed
+        add_stress = -10
+        trigger_event = { id = enantiomorph.creed_taken days = 3 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 5
+            intrigue >= 18
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  ABANDON WALKING WAY
+#  A ruler can step off the path at any time. The cost is
+#  the loss of all accumulated progress and a five-year
+#  cooldown before another path can be chosen.
+# ---------------------------------------------------------------
+
+abandon_walking_way = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = abandon_walking_way_desc
+
+    is_shown = {
+        is_on_walking_way = yes
+    }
+
+    is_valid = {
+        is_on_walking_way = yes
+    }
+
+    effect = {
+        # Route to the correct abandon effect based on active flag
+        if = {
+            limit = { has_character_flag = ww_chim_expanded_active }
+            abandon_path_chim_expanded = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_talos_active }
+            abandon_path_mantling_talos = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_arkay_active }
+            abandon_path_mantling_arkay = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_kynareth_active }
+            abandon_path_mantling_kynareth = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_azura_active }
+            abandon_path_mantling_azura = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_meridia_active }
+            abandon_path_mantling_meridia = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_psijic_endeavour_active }
+            abandon_path_psijic_endeavour = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_enantiomorph_active }
+            abandon_path_enantiomorph = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_amaranth_active }
+            abandon_path_amaranth = yes
+        }
+    }
+
+    ai_will_do = {
+        base = 0
+    }
+}

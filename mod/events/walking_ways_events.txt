@@ -1,0 +1,520 @@
+# =============================================================
+#  The Walking Ways — Core Engine Events
+#  Namespace: walking_ways
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  walking_ways.000           — Awareness intro (3 entry gates)
+#  walking_ways.progress_check — Hidden yearly engine (all paths)
+#  walking_ways.world_notify  — World notification on completion
+#  walking_ways.abandon       — Path abandoned flavor
+#  walking_ways.chim_expanded.intro   — Path A intro
+#  walking_ways.chim_expanded.rank1   — Path A rank 1 (Seeking)
+#  walking_ways.chim_expanded.rank2   — Path A rank 2 (Striving)
+#  walking_ways.chim_expanded.rank3   — Path A rank 3 (Threshold)
+#  walking_ways.chim_expanded.apotheosis — Path A finale
+#
+#  REGISTRATION:
+#  ─────────────
+#  walking_ways.progress_check → on_yearly_pulse (weight 5)
+#  walking_ways.000            → triggered directly by gate events
+#
+#  EXTERNAL DEPENDENCIES:
+#  ──────────────────────
+#  common/scripted_effects/walking_ways_effects.txt
+#    → advance_path_*, count_ww_milestones_*, complete_path_*
+#  common/scripted_triggers/walking_ways_triggers.txt
+#    → is_on_walking_way, is_on_path_*
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES (namespaced):
+#    • walking_ways.000               — awareness intro
+#    • walking_ways.progress_check    — yearly engine
+#    • walking_ways.world_notify      — world notification
+#    • walking_ways.abandon           — abandonment flavor
+#    • walking_ways.chim_expanded.*   — Path A event chain
+#
+#  DEPENDS ON:
+#    common/scripted_effects/walking_ways_effects.txt
+#    common/traits/chim_traits.txt       → chim_achieved, chim_seeker
+#    common/traits/walking_ways_traits.txt → chim_sovereign
+# =============================================================
+
+namespace = walking_ways
+
+# ---------------------------------------------------------------
+# walking_ways.000  THE WALKING WAYS — AWARENESS
+# One of three gates fires this event. A Psijic monk, a
+# dream-voice, or the realisation that follows CHIM.
+# The ruler is introduced to the concept and given the choice
+# to open themselves to the paths or refuse entirely.
+# ---------------------------------------------------------------
+walking_ways.000 = {
+    type = character_event
+    title = walking_ways.000.t
+    desc  = walking_ways.000.desc
+    theme = learning
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        NOT = { has_character_flag = walking_ways_awareness }
+        NOT = { has_character_flag = walking_ways_refused }
+        NOT = { is_on_walking_way = yes }
+        OR = {
+            # Gate A — Scholar's Gate
+            AND = {
+                learning >= 18
+                has_trait = scholar
+            }
+            # Gate B — Warrior's Gate
+            AND = {
+                martial >= 18
+                OR = {
+                    has_trait = shezarrine_vessel
+                    has_trait = brave
+                }
+            }
+            # Gate C — CHIM Graduate's Gate (only path to Amaranth)
+            has_trait = chim_achieved
+        }
+    }
+
+    option = {
+        name = walking_ways.000.a   # "Tell me more."
+        add_stress = 10
+        set_character_flag = walking_ways_awareness
+        trigger_event = { id = walking_ways.path_selection days = 30 }
+    }
+
+    option = {
+        name = walking_ways.000.b   # "I have walked far enough."
+        add_piety = 25
+        add_stress = -5
+        set_character_flag = {
+            flag = walking_ways_refused
+            years = 10
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# walking_ways.path_selection  PATH SELECTION WINDOW
+# A hidden informational event that triggers the
+# choose_walking_way decision after the awareness intro.
+# ---------------------------------------------------------------
+walking_ways.path_selection = {
+    type = character_event
+    title = walking_ways.path_selection.t
+    desc  = walking_ways.path_selection.desc
+    theme = learning
+    hidden = no
+
+    trigger = {
+        has_character_flag = walking_ways_awareness
+        NOT = { is_on_walking_way = yes }
+    }
+
+    option = {
+        name = walking_ways.path_selection.a   # "I will choose my path."
+        # No effect — player opens choose_walking_way decision
+    }
+
+    option = {
+        name = walking_ways.path_selection.b   # "I am not ready."
+        # Awareness remains; decision stays available
+    }
+}
+
+# ---------------------------------------------------------------
+# walking_ways.progress_check  HIDDEN YEARLY ENGINE
+# Registered in on_yearly_pulse. Checks all active paths,
+# counts new milestones, and fires advance_path_* effects.
+# ---------------------------------------------------------------
+walking_ways.progress_check = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_on_walking_way = yes
+    }
+
+    immediate = {
+        # PATH A
+        if = {
+            limit = { is_on_path_chim_expanded = yes }
+            if = { limit = { has_any_chim_milestone = yes } count_ww_milestones_chim_expanded = yes }
+            advance_path_chim_expanded = yes
+        }
+        # PATH B — TALOS
+        else_if = {
+            limit = { has_character_flag = ww_mantling_talos_active }
+            if = { limit = { has_any_mantling_talos_milestone = yes } count_ww_milestones_mantling_talos = yes }
+            advance_path_mantling_talos = yes
+        }
+        # PATH B — ARKAY
+        else_if = {
+            limit = { has_character_flag = ww_mantling_arkay_active }
+            if = { limit = { has_any_mantling_arkay_milestone = yes } count_ww_milestones_mantling_arkay = yes }
+            advance_path_mantling_arkay = yes
+        }
+        # PATH B — KYNARETH
+        else_if = {
+            limit = { has_character_flag = ww_mantling_kynareth_active }
+            if = { limit = { has_any_mantling_kynareth_milestone = yes } count_ww_milestones_mantling_kynareth = yes }
+            advance_path_mantling_kynareth = yes
+        }
+        # PATH B — AZURA
+        else_if = {
+            limit = { has_character_flag = ww_mantling_azura_active }
+            if = { limit = { has_any_mantling_azura_milestone = yes } count_ww_milestones_mantling_azura = yes }
+            advance_path_mantling_azura = yes
+        }
+        # PATH B — MERIDIA
+        else_if = {
+            limit = { has_character_flag = ww_mantling_meridia_active }
+            if = { limit = { has_any_mantling_meridia_milestone = yes } count_ww_milestones_mantling_meridia = yes }
+            advance_path_mantling_meridia = yes
+        }
+        # PATH C
+        else_if = {
+            limit = { is_on_path_psijic_endeavour = yes }
+            if = { limit = { has_any_psijic_milestone = yes } count_ww_milestones_psijic_endeavour = yes }
+            advance_path_psijic_endeavour = yes
+        }
+        # PATH D
+        else_if = {
+            limit = { is_on_path_enantiomorph = yes }
+            if = { limit = { has_any_enantiomorph_milestone = yes } count_ww_milestones_enantiomorph = yes }
+            advance_path_enantiomorph = yes
+        }
+        # PATH E
+        else_if = {
+            limit = { is_on_path_amaranth = yes }
+            if = { limit = { has_any_amaranth_milestone = yes } count_ww_milestones_amaranth = yes }
+            advance_path_amaranth = yes
+        }
+    }
+
+    option = { name = "OK" }
+}
+
+# ---------------------------------------------------------------
+# walking_ways.world_notify  WORLD NOTIFICATION
+# Fired to every ruler (except the completer) when any
+# path is completed. Notification text varies by path.
+# ---------------------------------------------------------------
+walking_ways.world_notify = {
+    type = character_event
+    title = walking_ways.world_notify.t
+    desc  = {
+        # CHIM Expanded
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = chim_sovereign }
+            }
+            desc = walking_ways.world_notify.chim_sovereign
+        }
+        # Talos mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_talos }
+            }
+            desc = walking_ways.world_notify.mantle_talos
+        }
+        # Arkay mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_arkay }
+            }
+            desc = walking_ways.world_notify.mantle_arkay
+        }
+        # Kynareth mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_kynareth }
+            }
+            desc = walking_ways.world_notify.mantle_kynareth
+        }
+        # Azura mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_azura }
+            }
+            desc = walking_ways.world_notify.mantle_azura
+        }
+        # Meridia mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_meridia }
+            }
+            desc = walking_ways.world_notify.mantle_meridia
+        }
+        # Psijic Endeavour
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = psijic_adept_supreme }
+            }
+            desc = walking_ways.world_notify.psijic
+        }
+        # Enantiomorph
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = enantiomorph_ascendant }
+            }
+            desc = walking_ways.world_notify.enantiomorph
+        }
+        # Amaranth
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = amaranth_achieved }
+            }
+            desc = walking_ways.world_notify.amaranth
+        }
+        # Fallback
+        desc = walking_ways.world_notify.generic
+    }
+    theme = learning
+
+    option = {
+        name = walking_ways.world_notify.a
+        # React based on own traits
+        if = {
+            limit = { has_trait = thalmor_agent }
+            # Talos/CHIM completions are hostile
+            add_opinion = {
+                modifier = ww_thalmor_hostile_opinion
+                target = scope:source
+                years = 10
+            }
+        }
+        if = {
+            limit = {
+                OR = {
+                    has_trait = shezarrine_vessel
+                    has_trait = chim_achieved
+                }
+                scope:source = { has_trait = enantiomorph_ascendant }
+            }
+            add_opinion = {
+                modifier = ww_pattern_wrong_opinion
+                target = scope:source
+                years = 20
+            }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# walking_ways.abandon  ABANDONMENT FLAVOR
+# Fired when any path is abandoned. Reflective; not tragic.
+# ---------------------------------------------------------------
+walking_ways.abandon = {
+    type = character_event
+    title = walking_ways.abandon.t
+    desc  = walking_ways.abandon.desc
+    theme = learning
+
+    option = {
+        name = walking_ways.abandon.a   # "Another time. Or never."
+        add_stress = -10
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  PATH A — CHIM EXPANDED EVENT CHAIN
+# ═══════════════════════════════════════════════════════════════
+
+# ---------------------------------------------------------------
+# walking_ways.chim_expanded.intro
+# The path has been chosen. CHIM was the door. Now the ruler
+# begins to understand what lies beyond it.
+# ---------------------------------------------------------------
+walking_ways.chim_expanded.intro = {
+    type = character_event
+    title = walking_ways.chim_expanded.intro.t
+    desc  = walking_ways.chim_expanded.intro.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_chim_expanded = yes
+    }
+
+    option = {
+        name = walking_ways.chim_expanded.intro.a   # "CHIM is a door, not a destination."
+        add_stress = 15
+        add_character_modifier = {
+            modifier = ww_path_chim_active
+            years = 100
+        }
+        # Milestone 1 — The First Edit fires automatically after 5 years of reign
+        set_character_flag = {
+            flag = ww_chim_edit_pending
+            years = 5
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# walking_ways.chim_expanded.rank1  SEEKING — The First Edit
+# Two milestones completed. The ruler has begun to notice that
+# small realities are bending around them.
+# ---------------------------------------------------------------
+walking_ways.chim_expanded.rank1 = {
+    type = character_event
+    title = walking_ways.chim_expanded.rank1.t
+    desc  = walking_ways.chim_expanded.rank1.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_chim_expanded = yes
+        var:ww_chim_expanded_rank >= 1
+    }
+
+    immediate = {
+        set_character_flag = ww_chim_milestone_first_edit
+    }
+
+    option = {
+        name = walking_ways.chim_expanded.rank1.a   # "I noticed. I always noticed."
+        add_prestige = 50
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# walking_ways.chim_expanded.rank2  STRIVING — Midpoint
+# "The court has begun to notice."
+# ---------------------------------------------------------------
+walking_ways.chim_expanded.rank2 = {
+    type = character_event
+    title = walking_ways.chim_expanded.rank2.t
+    desc  = walking_ways.chim_expanded.rank2.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_chim_expanded = yes
+        var:ww_chim_expanded_rank >= 2
+    }
+
+    option = {
+        name = walking_ways.chim_expanded.rank2.a
+        # Lean into the perception — fear, but relief
+        add_dread = 15
+        add_stress = -20
+    }
+
+    option = {
+        name = walking_ways.chim_expanded.rank2.b
+        # Suppress it — stability maintained
+        add_diplomacy = 1
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# walking_ways.chim_expanded.rank3  THRESHOLD — Final Approach
+# The pressure of imminent transformation is visible.
+# ---------------------------------------------------------------
+walking_ways.chim_expanded.rank3 = {
+    type = character_event
+    title = walking_ways.chim_expanded.rank3.t
+    desc  = walking_ways.chim_expanded.rank3.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_chim_expanded = yes
+        var:ww_chim_expanded_rank >= 3
+    }
+
+    option = {
+        name = walking_ways.chim_expanded.rank3.a   # "I am ready."
+        add_prestige = 100
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# walking_ways.chim_expanded.apotheosis  THE SOVEREIGN MOMENT
+# All milestones complete. The I that understands the dream
+# has become the I that operates within it with authority.
+# ---------------------------------------------------------------
+walking_ways.chim_expanded.apotheosis = {
+    type = character_event
+    title = walking_ways.chim_expanded.apotheosis.t
+    desc  = walking_ways.chim_expanded.apotheosis.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_chim_expanded = yes
+        var:ww_chim_expanded_rank >= 4
+        NOT = { has_character_flag = ww_chim_expanded_completed }
+    }
+
+    immediate = {
+        complete_path_chim_expanded = yes
+    }
+
+    option = {
+        name = walking_ways.chim_expanded.apotheosis.a
+        # The court continues below.
+        add_prestige = 200
+        add_piety = 100
+    }
+
+    option = {
+        name = walking_ways.chim_expanded.apotheosis.b
+        # I have always been here. Everything else was elsewhere.
+        add_stress = -100
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  CHIM EXPANDED — MILESTONE TRIGGER EVENTS
+#  These fire from other systems via flag-check in progress engine
+# ═══════════════════════════════════════════════════════════════
+
+# Milestone: The Silence — 1 year of deep study
+walking_ways.chim_silence_begin = {
+    type = character_event
+    title = walking_ways.chim_silence.t
+    desc  = walking_ways.chim_silence.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_chim_expanded = yes
+        NOT = { has_character_flag = ww_chim_milestone_silence }
+        NOT = { has_character_flag = ww_chim_silence_pending }
+    }
+
+    option = {
+        name = walking_ways.chim_silence.a   # Spend a year in study
+        add_gold = -30
+        add_stress = 10
+        set_character_flag = {
+            flag = ww_chim_silence_pending
+            years = 1
+        }
+        trigger_event = { id = walking_ways.chim_silence_complete days = 365 }
+    }
+
+    option = {
+        name = walking_ways.chim_silence.b   # Not now
+        # No effect; event can fire again
+    }
+}
+
+walking_ways.chim_silence_complete = {
+    type = character_event
+    hidden = yes
+    trigger = { has_character_flag = ww_chim_silence_pending }
+    immediate = {
+        remove_character_flag = ww_chim_silence_pending
+        set_character_flag = ww_chim_milestone_silence
+    }
+    option = { name = "OK" }
+}
