@@ -1,0 +1,61 @@
+l_english:
+
+ # =====================================================================
+ #  FORSWORN / HAGRAVEN DEEP SYSTEM
+ # =====================================================================
+
+ # --- Traits ---
+
+ forsworn_chieftain: "Forsworn Chieftain"
+ forsworn_chieftain_desc: "This ruler leads a warband of the Forsworn — the Reachmen who never accepted conquest, who fight in the old ways with the old weapons for the old gods. The Reach is theirs by right of ancestry. They intend to take it back."
+
+ hagraven_transformed: "Hagraven-Transformed"
+ hagraven_transformed_desc: "This ruler has undergone the hagraven transformation ritual — the ritual in which a woman surrenders her humanity to the Old Ways and becomes something older and stranger than a person. They are no longer fully human. What they have gained in power is real. What they have lost is also real, and will become apparent over time."
+
+ briarheart_warrior: "Briarheart Warrior"
+ briarheart_warrior_desc: "This warrior's heart has been removed by a hagraven and replaced with an enchanted briarheart — a magical core that sustains them and grants extraordinary combat power. The wound never fully heals. The warrior has renegotiated their relationship with mortality, and the new terms favour the magic."
+
+ old_ways_devotee: "Old Ways Devotee"
+ old_ways_devotee_desc: "This ruler follows the Old Ways of the Reach — not the Eight Divines, not the Daedric Princes (with certain exceptions), but the ancient spirits of the Reach: Hircine the Hunter, Namira the Lady of Decay, the Crow, the Winterborn. The Reach is alive. The Old Ways are the language it speaks."
+
+ hagraven_ally: "Hagraven Ally"
+ hagraven_ally_desc: "This ruler has a hagraven as an advisor and ally — a nature-witch of the Old Ways who has traded her humanity for power and serves as a spiritual broker between the Forsworn and the ancient spirits. Her advice is genuinely useful. Her price, when it comes, will be genuinely terrible."
+
+ # --- Decisions ---
+
+ embrace_old_ways_desc: "The spirits of the Reach are stirring. Your Reachman blood calls to the Old Ways — to Hircine and Namira and the Crow and the Winterborn. The Divines never protected the Reach. The Old Ways might. Formally embrace the Old Ways of your ancestors, abandoning the faith of conquerors."
+
+ undergo_hagraven_transformation_desc: "The hagraven ritual is the point of no return. You will surrender your humanity to the Old Ways and emerge as something older and stranger and more powerful. Your learning has prepared you for what this costs. Your devotion has prepared you for what it means. There is no coming back from the other side of this ritual."
+
+ # --- Events ---
+
+ forsworn.001.t: "The Old Ways Call"
+ forsworn.001.desc: "It begins with a fire.\n\nNot a natural fire — there is no wood, no tinder, no explanation. A small flame in the hollow of an old stone, burning steadily in the rain, burning blue-white in a way that firelight doesn't. Your Reachman blood recognises it before your mind does. This is how the Old Ways announce themselves: not with thunder or visions, but with a small persistent light in a hollow stone, waiting for you to decide whether to acknowledge it.\n\nThe ancient spirits of the Reach are stirring. Hircine's hunters move through the forests at the edge of your lands. Namira's creatures gather in the deep places. The Crow has been seen three times this week, perched on the same stone, watching the road. The Old Ways are not asking for your attention. They are simply being present until you notice.\n\nYour Reachman ancestors kept these rites for ten thousand years before the Nords came. The question is whether you still have that in you."
+ forsworn.001.a: "Light an answering fire. The Old Ways remember those who remember them."
+ forsworn.001.b: "Dismiss it. The Old Ways are superstition — useful to the warriors, not to a ruler."
+
+ forsworn.002.t: "The Hagraven's Bargain"
+ forsworn.002.desc: "She arrives at dusk, as hagravens always do — as though the transition between day and night is their natural element, the moment when the boundary between what is human and what is not becomes permeable.\n\nShe is older than she looks and looks old. Her fingers end in claws. Her eyes are bird-bright and very still. She has the deliberate calm of something that has not been frightened in a very long time.\n\nShe has something to offer. She always has something to offer — that is what hagravens are, beneath the feathers and the magic: brokers between the living and the Old Ways, setting prices for power that most people cannot afford and some people cannot resist.\n\nShe is looking at you with professional interest. She has already calculated what you want. She is waiting to see whether you are the kind of person who asks the price before agreeing to pay it."
+ forsworn.002.a: "Name your terms. I will hear what you offer."
+ forsworn.002.b: "I have no business with hagravens. Leave my court."
+ forsworn.002.c: "She came here seeking a bargain. Capture her instead — her knowledge is more valuable than her services."
+
+ forsworn.003.t: "The Briarheart Ritual"
+ forsworn.003.desc: "His name is Ulfric Reach-Born — which is not his birth name, but the name he chose when he pledged himself to the Forsworn cause, and he wears it with the seriousness of someone who has thought carefully about what names mean.\n\nHe wants the briarheart ritual. He has thought about this for years, he says. He is not afraid of dying — he is afraid of dying without having been everything the cause needs him to be. The hagraven can perform the ritual. It requires your authorisation as his chieftain.\n\nYou have seen briarheart warriors before. They are extraordinary fighters — faster, stronger, more enduring than anything their original bodies could have produced. They are also, in some way you cannot quite articulate, no longer entirely alive. The hagraven calls it a renegotiation. That is an accurate word for something that should not have a diplomatic term.\n\nUlfric is waiting. He has already made his peace with it."
+ forsworn.003.a: "Authorise the ritual. He has the right to choose his own transformation."
+ forsworn.003.b: "Refuse. I will not send warriors to be unmade, however willing they are."
+
+ forsworn.004.t: "The Witch's Price"
+ forsworn.004.desc: "The hagraven's messenger arrives without ceremony and delivers the message without ceremony: the time has come.\n\nWhen you made the bargain, the price seemed abstract — something in the future, something manageable, something you would deal with when it arrived. It has arrived. The hagraven wants what she was promised: not gold, not land, not titles. Something personal. Something that cannot be replaced.\n\nThe messenger is still waiting for your answer. The hagraven has been patient for a year. She will not be patient for another."
+ forsworn.004.a: "Pay in gold. Two hundred septims. A renegotiation of the original terms."
+ forsworn.004.b: "Pay the original price. Some debts cannot be renegotiated."
+ forsworn.004.c: "Fight the hagraven. She made a bargain, not a claim."
+
+ forsworn.005.t: "The Transformation"
+ forsworn.005.desc: "The ritual circle is older than the stones it is carved into — or so the hagraven says, and you believe her, because everything in the Reach is older than it looks. The fire burns the blue-white of the Old Ways. The hagraven's chanting has been going on for an hour and has the quality of something that has been going on for much longer than that.\n\nThis is the point of no return. You know this. The hagraven has been clear about it — has been, in her way, almost scrupulously honest about what this costs and what it changes and what you will be when you come out of the other side. You will be more powerful. You will be less human. The two things are, in her philosophy, related.\n\nThe fire is waiting. You are standing at the edge of the circle. The Old Ways are not asking you to step forward. They have simply made it possible for you to do so, and are waiting to see whether you will.\n\nStep forward, or step back. There is no third choice."
+ forsworn.005.a: "Step into the fire. The Old Ways take what they take. The power is worth the cost."
+
+ forsworn.006.t: "The Reach Remembers"
+ forsworn.006.desc: "The document your archivist has found is written in a version of the Reach dialect that predates the Nord occupation — written by someone who assumed their reader would know the context, because in the world where it was written, the context was obvious.\n\nIt describes the Reachman kingdoms as they were before: not the Forsworn warrens of the present but actual kingdoms, with courts and councils and trade agreements and histories. The document is a trade compact between two Reachman lords, and it is utterly ordinary — prices and quantities and delivery dates — which makes it more devastating than any war record, because it proves that the Reach was not always the way it is now.\n\nSomeone built all of that. Someone lost all of that. The document does not say their names, but you know their names. They are your names, in some sense that goes back ten thousand years."
+ forsworn.006.a: "Archive this carefully. The Reach's history belongs to the Reach."
+ forsworn.006.b: "Share it with the Forsworn chieftains. They should know what was lost."

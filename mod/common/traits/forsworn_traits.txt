@@ -1,0 +1,147 @@
+# =============================================================
+#  Forsworn / Hagraven Deep System — Traits
+#  File: mod/common/traits/forsworn_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  forsworn_chieftain    — Leads a Forsworn warband
+#  hagraven_transformed  — Has undergone the hagraven transformation ritual
+#  briarheart_warrior    — Has had their heart replaced with a briarheart
+#  old_ways_devotee      — Follows the Old Ways of the Reach
+#  hagraven_ally         — Has a hagraven as advisor/ally
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Forsworn are the descendants of the ancient Reachmen, the
+#  original inhabitants of the Reach — the western borderland between
+#  Skyrim and High Rock.  They worship the Old Ways: Hircine, Namira,
+#  the Crow (an aspect of Nocturnal), and the Winterborn spirits —
+#  not the Eight Divines or most Daedric Princes.
+#  Hagravens are women who traded their humanity to become nature-witches,
+#  partially transformed crow-women with powerful nature magic who serve
+#  as spiritual leaders of Forsworn warrens.
+#  Briarhearts are Forsworn warriors whose hearts have been ritually
+#  removed and replaced with hagraven-enchanted briarhearts, granting
+#  extraordinary power at the cost of their mortality.
+#  Sources: UESP Lore:Forsworn; UESP Lore:Hagraven; Skyrim in-game lore.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  common/traits/lore_races_traits.txt
+#    → reachman_heritage  (culture gate; do NOT redefine here)
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/forsworn_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • forsworn_chieftain
+#    • hagraven_transformed
+#    • briarheart_warrior
+#    • old_ways_devotee
+#    • hagraven_ally
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/forsworn_events.txt
+#      → forsworn_chieftain, hagraven_transformed, briarheart_warrior,
+#        old_ways_devotee, hagraven_ally
+#    common/decisions/forsworn_decisions.txt
+#      → old_ways_devotee, hagraven_transformed
+# =============================================================
+
+# ---------------------------------------------------------------
+#  FORSWORN CHIEFTAIN
+#  The Reach does not bow.  That is the first lesson every
+#  Reachman learns, and the Forsworn chieftains carry it in the
+#  set of their shoulders and the angle of their war-paint.
+#  They lead not by title but by strength and cunning — the
+#  warband follows the chief who can keep them alive, and alive
+#  means something specific in a land that has been occupied
+#  for as long as anyone can remember.
+# ---------------------------------------------------------------
+forsworn_chieftain = {
+    category = fame
+
+    martial          = 3
+    intrigue         = 2
+    monthly_prestige = 1
+
+    flag = forsworn_chieftain
+}
+
+# ---------------------------------------------------------------
+#  HAGRAVEN TRANSFORMED
+#  There is a point in the ritual after which there is no
+#  coming back — not because the magic won't reverse, but
+#  because the person who went in is not the person who
+#  comes out.  The transformation costs something that isn't
+#  named in the rites.  What remains is more powerful, older,
+#  and no longer entirely subject to the concerns of the living.
+# ---------------------------------------------------------------
+hagraven_transformed = {
+    category = fame
+
+    learning = 4
+    intrigue = 3
+    health   = -0.3
+
+    flag = hagraven_transformed
+}
+
+# ---------------------------------------------------------------
+#  BRIARHEART WARRIOR
+#  The surgeon is a hagraven.  The operation is performed on a
+#  living, willing subject.  The heart that comes out is human.
+#  The heart that goes in is not.  What the warrior gains in
+#  power they surrender in ways that are not immediately visible:
+#  the wound never fully heals, and something fundamental about
+#  mortality has been renegotiated on terms that favour the magic.
+# ---------------------------------------------------------------
+briarheart_warrior = {
+    category = fame
+
+    prowess = 6
+    martial = 2
+    health  = -0.5
+
+    flag = briarheart_warrior
+}
+
+# ---------------------------------------------------------------
+#  OLD WAYS DEVOTEE
+#  The Old Ways are not a religion in the sense that the Eight
+#  Divines are a religion.  There are no temples, no hierarchy,
+#  no written canon.  There are fires lit at the right times
+#  of year, words spoken to spirits whose names are older than
+#  any current language, and the understanding that the Reach
+#  is alive in a way that the Nords and their Divines will
+#  never acknowledge.  To follow the Old Ways is to belong to
+#  the Reach in the most fundamental sense.
+# ---------------------------------------------------------------
+old_ways_devotee = {
+    category = faith
+
+    monthly_piety_gain_mult = 0.02
+    stress_gain_mult        = -0.10
+
+    flag = old_ways_devotee
+}
+
+# ---------------------------------------------------------------
+#  HAGRAVEN ALLY
+#  Hagravens do not offer their counsel for free.  The cost is
+#  always something the petitioner values — not gold, not land,
+#  not titles, but something personal and irreplaceable.  A ruler
+#  who has a hagraven ally has accepted this arithmetic.  The
+#  hagraven's advice is genuinely useful.  The price, when it
+#  comes due, will be genuinely terrible.
+# ---------------------------------------------------------------
+hagraven_ally = {
+    category = fame
+
+    learning = 2
+    intrigue = 2
+
+    flag = hagraven_ally
+}

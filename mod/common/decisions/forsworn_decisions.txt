@@ -1,0 +1,71 @@
+forsworn_decisions = {
+
+    embrace_old_ways = {
+        picture = "gfx/interface/icons/decisions/decision_personal.dds"
+        desc = embrace_old_ways_desc
+
+        is_shown = {
+            has_trait = reachman_heritage
+            NOT = { has_trait = old_ways_devotee }
+        }
+
+        is_valid = {
+            is_adult = yes
+            is_ruler = yes
+            piety >= 100
+        }
+
+        is_valid_showing_failures_only = {
+            is_adult = yes
+        }
+
+        effect = {
+            add_piety = -100
+            add_trait = old_ways_devotee
+            trigger_event = { id = forsworn.001 }
+        }
+
+        ai_will_do = {
+            base = 5
+            modifier = {
+                add = 5
+                has_trait = reachman_heritage
+            }
+        }
+    }
+
+    undergo_hagraven_transformation = {
+        picture = "gfx/interface/icons/decisions/decision_personal.dds"
+        desc = undergo_hagraven_transformation_desc
+
+        is_shown = {
+            has_trait = old_ways_devotee
+            NOT = { has_trait = hagraven_transformed }
+        }
+
+        is_valid = {
+            is_adult = yes
+            is_ruler = yes
+            learning >= 12
+            health >= 2.0
+        }
+
+        is_valid_showing_failures_only = {
+            is_adult = yes
+        }
+
+        effect = {
+            add_health = -2.0
+            trigger_event = { id = forsworn.005 }
+        }
+
+        ai_will_do = {
+            base = 2
+            modifier = {
+                add = 8
+                learning >= 16
+            }
+        }
+    }
+
+}
