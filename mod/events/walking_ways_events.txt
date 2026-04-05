@@ -681,10 +681,10 @@ walking_ways.chim_ego_pushback = {
 #  without literally holding the Ruby Throne.
 # ═══════════════════════════════════════════════════════════════
 
-walking_ways.talos_empire_acknowledged = {
+walking_ways.talos_nordic_empire_milestone = {
     type = character_event
-    title = walking_ways.talos_empire_acknowledged.t
-    desc  = walking_ways.talos_empire_acknowledged.desc
+    title = walking_ways.talos_nordic_empire_milestone.t
+    desc  = walking_ways.talos_nordic_empire_milestone.desc
     theme = martial
     hidden = yes
 
@@ -745,7 +745,7 @@ walking_ways.chim_ego_check = {
             has_trait = tyrannical_reputation
             AND = {
                 is_at_war = yes
-                primary_title = { is_target_of_dejure_claim = no }   # aggressive expansion
+                primary_title = { is_target_of_dejure_claim = no }   # no de jure claim on the war target — offensive war without legal justification
                 martial >= 18
                 diplomacy <= 10
             }

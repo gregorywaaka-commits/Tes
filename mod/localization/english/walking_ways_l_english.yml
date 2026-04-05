@@ -125,9 +125,9 @@
  walking_ways.chim_ego_pushback.a: "The dream noticed. I must be more careful."
  walking_ways.chim_ego_pushback.b: "I refuse this correction."
 
- # ─── Talos Empire Acknowledged ───
- walking_ways.talos_empire_acknowledged.t: "The Empire Is Already Yours"
- walking_ways.talos_empire_acknowledged.desc: "Tiber Septim's pattern includes the Ruby Throne — but it is not reducible to one seat or one city.\n\nThe pattern is: conquer, unify, hold the centre by being the centre. Rule so that the realm exists because of your specific kind of will and not despite it.\n\nThis ruler has done that. Not at the Ruby Throne. At their own. The pattern recognises the same shape, expressed in different geography."
+ # ─── Talos Nordic Empire Milestone ───
+ walking_ways.talos_nordic_empire_milestone.t: "The Empire Is Already Yours"
+ walking_ways.talos_nordic_empire_milestone.desc: "Tiber Septim's pattern includes the Ruby Throne — but it is not reducible to one seat or one city.\n\nThe pattern is: conquer, unify, hold the centre by being the centre. Rule so that the realm exists because of your specific kind of will and not despite it.\n\nThis ruler has done that. Not at the Ruby Throne. At their own. The pattern recognises the same shape, expressed in different geography."
 
  # ─── Psijic Active Decisions ───
  artaeum_correspondence_desc: "Artaeum cannot be visited uninvited — the island appears and disappears at the Order's will. But it can be written to. The correspondence must be careful, sustained, and demonstrate that the writer has moved beyond ordinary scholarship. If the Order judges it worthy of reply, they will respond."

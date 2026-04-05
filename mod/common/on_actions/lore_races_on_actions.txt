@@ -458,7 +458,7 @@ on_yearly_pulse = {
         # --- MANTLING: TALOS ---
         3   = mantling_talos.milestone_empire_check  # Empire size check — mantling_talos_active (mantling_talos_events.txt)
         3   = mantling_talos.milestone_throne_check  # Cyrodiil paramount check — mantling_talos_active (mantling_talos_events.txt)
-        3   = walking_ways.talos_empire_acknowledged  # Nordic/non-Imperial empire pattern — mantling_talos_active (walking_ways_events.txt)
+        3   = walking_ways.talos_nordic_empire_milestone  # Nordic/Shezarrine alternative to Ruby Throne milestone — mantling_talos_active (walking_ways_events.txt)
         # --- MANTLING: ARKAY ---
         3   = mantling_arkay.milestone_season_check  # 20+ years ruled — mantling_arkay_active (mantling_arkay_events.txt)
         3   = mantling_arkay.milestone_age_check     # Age 55+ — mantling_arkay_active (mantling_arkay_events.txt)
