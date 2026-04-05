@@ -1,0 +1,85 @@
+# =============================================================
+#  Aetherium Forge Traits
+#  File: mod/common/traits/aetherium_forge_traits.txt
+#
+#  Traits gained through the Aetherium Forge quest chain and
+#  wielding the legendary Aetherial artifacts forged therein.
+#
+#  NOTE: aetherium_attuned is defined in dwemer_ruins_traits.txt
+#        and is a prerequisite for the forge quest chain.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • aetherium_attuned (dwemer_ruins_traits.txt) — prerequisite
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • aetherium_forge_master
+#    • aetherial_crown_bearer
+#    • aetherial_shield_bearer
+#    • aetherial_staff_bearer
+#    • aetherium_wars_heir
+#
+#  REFERENCED BY:
+#    events/aetherium_forge_events.txt
+#    common/decisions/aetherium_forge_decisions.txt
+# =============================================================
+
+# A ruler who has personally accessed and operated the Aetherium Forge
+# buried beneath Bthalft — the ancient furnace that the four Dwemer
+# city-states went to war over during the Aetherium Wars (1E 221–233).
+aetherium_forge_master = {
+    category = fame
+    learning    = 3
+    stewardship = 2
+    monthly_prestige = 2
+    flag = aetherium_forge_master
+}
+
+# Bearer of the Aetherial Crown — the headpiece that allows its wearer
+# to benefit from two Standing Stone blessings simultaneously.
+# The Crown resonates with the Magnus lines that flow through Nirn,
+# amplifying the wearer's connection to arcane forces.
+aetherial_crown_bearer = {
+    category = special
+    learning  = 3
+    monthly_piety    = 2
+    stress_gain_mult = -0.10
+    flag = aetherial_crown_bearer
+}
+
+# Wielder of the Aetherial Shield — the buckler whose face is etched
+# with Dwemer binding-runes that briefly banish foes to Oblivion
+# on a solid strike. Feared by spirit-kind and mortal alike.
+aetherial_shield_bearer = {
+    category = special
+    prowess  = 4
+    martial  = 3
+    monthly_prestige = 2
+    flag = aetherial_shield_bearer
+}
+
+# Commander of the Aetherial Staff — the Dwemer staff that summons
+# a Dwemer Sphere and Dwemer Spider to fight as tireless automaton
+# servitors. The staff marks its bearer as master of animunculi.
+aetherial_staff_bearer = {
+    category = special
+    learning    = 4
+    stewardship = 3
+    flag = aetherial_staff_bearer
+}
+
+# A ruler who claims descent from one of the four city-states that
+# fought the Aetherium Wars: Arkngthamz, Raldbthar, Bthalft, or
+# Deep Folk Crossing. The legacy of those wars — both the glory and
+# the ruin — runs in their blood.
+aetherium_wars_heir = {
+    category = personality
+    martial          = 2
+    monthly_prestige = 1
+    flag = aetherium_wars_heir
+}

@@ -1,0 +1,42 @@
+# =============================================================
+#  Penitus Oculatus — Traits
+#  File: mod/common/traits/penitus_oculatus_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  penitus_agent     — An operative of the Imperial Secret Service
+#  penitus_inspector — Senior investigator
+#  penitus_director  — Commands the Imperial intelligence apparatus
+# =============================================================
+
+penitus_agent = {
+    category = fame
+
+    intrigue    = 3
+    diplomacy   = 1
+    martial     = 1
+
+    flag = penitus_agent
+}
+
+penitus_inspector = {
+    category = fame
+
+    intrigue    = 4
+    diplomacy   = 2
+    learning    = 2
+    monthly_prestige = 1
+
+    flag = penitus_inspector
+}
+
+penitus_director = {
+    category = fame
+
+    intrigue    = 5
+    diplomacy   = 3
+    learning    = 3
+    monthly_prestige = 2
+
+    flag = penitus_director
+}

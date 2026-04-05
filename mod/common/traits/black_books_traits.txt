@@ -1,0 +1,51 @@
+# =============================================================
+#  Black Books — Traits
+#  File: mod/common/traits/black_books_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  black_book_reader         — Has opened and survived a Black Book
+#  apocrypha_touched         — Has spent significant time in Apocrypha
+#  forbidden_library_scholar — Accumulated vast forbidden knowledge
+#  miraak_knowledge_seeker   — Following Miraak's path of knowledge
+# =============================================================
+
+black_book_reader = {
+    category = fame
+
+    learning  = 3
+    intrigue  = 2
+    stress_gain_mult = 0.15
+
+    flag = black_book_reader
+}
+
+apocrypha_touched = {
+    category = fame
+
+    learning  = 5
+    intrigue  = 3
+    health    = -0.2
+    stress_gain_mult = 0.20
+
+    flag = apocrypha_touched
+}
+
+forbidden_library_scholar = {
+    category = fame
+
+    learning  = 6
+    intrigue  = 4
+    stress_gain_mult = 0.25
+
+    flag = forbidden_library_scholar
+}
+
+miraak_knowledge_seeker = {
+    category = fame
+
+    martial   = 2
+    learning  = 4
+
+    flag = miraak_knowledge_seeker
+}
