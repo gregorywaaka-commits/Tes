@@ -450,6 +450,10 @@ on_yearly_pulse = {
         4   = borrowed_divinity.cutoff.002  # Heart destroyed while reservoir active — heart_scholar_ascendant rulers on dagoth_ur_defeated (borrowed_divinity_events.txt)
         5   = borrowed_divinity.starvation.001  # Reservoir empty check — heart_scholar_ascendant with heart_cut_off and reservoir=0 (borrowed_divinity_events.txt)
         3   = borrowed_divinity.dissolution.001  # Heart destroyed narrative — all Route A practitioners on dagoth_ur_defeated (borrowed_divinity_events.txt)
+        # --- §20 NEREVARINE SYSTEM ---
+        5   = nerevarine.099   # Sharmat's Dream hidden milestone check — heart_fused_ascendant while dagoth_ur_awakened (nerevarine_events.txt)
+        3   = nerevarine.010   # Cross-path: Nerevarine meets Heart Scholar — nerevarine_marked + living heart_scholar (nerevarine_events.txt)
+        3   = nerevarine.020   # Cross-path: Nerevarine meets Heart Fused — nerevarine_marked + living heart_fused (nerevarine_events.txt)
         # --- THE WALKING WAYS — Core Engine ---
         5   = walking_ways.000               # Awareness intro — eligible rulers via 3 gates (walking_ways_events.txt)
         5   = walking_ways.progress_check    # Hidden progress engine — all active path holders (walking_ways_events.txt)
@@ -556,6 +560,32 @@ on_character_death = {
                     has_character_flag = silvenar_green_lady_paired
                 }
                 kill_character = yes
+            }
+        }
+        # --- §20 Nerevarine Succession ---
+        # This hook fires on NATURAL DEATH (battle, age, disease) of a nerevarine_marked
+        # character.  It is distinct from nerevarine.030 (assassination attempt), which is
+        # an active decision by a rival and resolves through event options.  This hook handles
+        # the passive "the vessel dies before completing the quest" case and opens the
+        # claim_nerevarine_prophecy decision for new candidates.
+        if = {
+            limit = {
+                has_trait = nerevarine_marked
+                NOT = { has_trait = nerevarine_victor }
+                NOT = { has_trait = nerevarine_forsaken }
+            }
+            set_global_flag = nerevarine_quest_incomplete
+            if = {
+                limit = { NOT = { exists = global_var:false_nerevarine_count } }
+                set_global_variable = { name = false_nerevarine_count value = 0 }
+            }
+            change_global_variable = { name = false_nerevarine_count add = 1 }
+            every_ruler = {
+                limit = {
+                    is_alive = yes
+                    has_culture = dunmer_culture
+                }
+                trigger_event = { id = nerevarine.001 days = 7 }
             }
         }
     }

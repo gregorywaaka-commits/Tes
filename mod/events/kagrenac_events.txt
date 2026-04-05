@@ -338,8 +338,7 @@ kagrenac.030 = {
         has_character_flag = wraithguard_found
     }
 
-    # Only the confirmed option is shown — you have all three tools.
-    # The player has committed to this path by arriving here.
+    # The Tools are in hand.  Two paths remain: fulfil the prophecy, or betray it.
 
     option = {
         name = kagrenac.030.a   # "I strike the Heart. For Nerevar. For Morrowind. For truth."
@@ -353,5 +352,59 @@ kagrenac.030 = {
         remove_character_flag = sunder_found
         remove_character_flag = keening_found
         remove_character_flag = wraithguard_found
+    }
+
+    # ---------------------------------------------------------------
+    # Option B — Betray Azura for Dagoth
+    # The Nerevarine stands at the Heart, all tools in hand, and
+    # chooses the Sharmat over the prophecy.  Only available to
+    # characters who have deep Sixth House ties or extraordinary
+    # cunning — this is not a casual choice.
+    # ---------------------------------------------------------------
+    option = {
+        name = kagrenac.030.b   # "The Tribunal's crime is real. Dagoth Ur's dream is real. I join the Sharmat."
+        trigger = {
+            OR = {
+                has_trait = sixth_house_cultist
+                has_trait = ash_devotee
+                intrigue >= 16
+            }
+        }
+        # Lose Azura's blessing entirely
+        remove_trait = nerevarine_marked
+        if = {
+            limit = { has_trait = azura_champion }
+            remove_trait = azura_champion
+        }
+        remove_character_modifier = dagoth_ur_champion_modifier
+        # Become forsaken and turned
+        add_trait = nerevarine_forsaken
+        set_character_flag = nerevarine_turned_dagoth
+        add_character_modifier = {
+            modifier = nerevarine_turned_modifier
+            days = 1825
+        }
+        # Fuse with the Heart — join Dagoth's method directly
+        if = {
+            limit = { NOT = { has_trait = heart_fused_ascendant } }
+            add_trait = heart_fused_ascendant
+        }
+        add_piety    = -500
+        add_prestige = 200
+        add_stress   = -20
+        # Tools are spent on the fusion, not on the sever
+        remove_character_flag = kagrenac_quest_started
+        remove_character_flag = sunder_found
+        remove_character_flag = keening_found
+        remove_character_flag = wraithguard_found
+        # Notify all Dunmer rulers
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                has_culture = dunmer_culture
+            }
+            trigger_event = { id = nerevarine.200 days = 7 }
+        }
+        custom_tooltip = nerevarine_turned_tt
     }
 }

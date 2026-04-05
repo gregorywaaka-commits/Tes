@@ -1,0 +1,723 @@
+# =============================================================
+#  The Nerevarine System — Events
+#  Namespace: nerevarine
+#  File: mod/events/nerevarine_events.txt
+#
+#  LORE:
+#  The Nerevarine path does not end cleanly in every timeline.
+#  The vessel of Azura's prophecy may fall in battle before reaching
+#  Red Mountain, allowing another to take up the mantle.  They may
+#  stand at the Heart itself and choose betrayal over destiny.  A
+#  rival tapping the Heart's power may murder the Nerevarine to keep
+#  the Heart bound.  And a heart_fused ruler given enough time may
+#  transcend the role of vessel entirely — becoming the Sharmat
+#  Enthroned, the Blight as throne.
+#
+#  EVENT OVERVIEW:
+#  ──────────────
+#  Succession:
+#    nerevarine.001  — world notification: the prophecy's vessel has fallen
+#
+#  Cross-path interactions:
+#    nerevarine.010  — Nerevarine encounters a Heart Scholar (yearly trigger)
+#    nerevarine.011  — Scholar assists: shares Kagrenac knowledge
+#    nerevarine.012  — Scholar opposes: blocks the Nerevarine's path
+#    nerevarine.020  — Nerevarine encounters a Heart Fused ruler (yearly trigger)
+#    nerevarine.021  — Fused ruler offers to share the Heart's power
+#    nerevarine.022  — Fused ruler fights to prevent the sever
+#
+#  Assassination (Heart Scholar/Fused vs. Nerevarine):
+#    nerevarine.030  — The confrontation: scholar/fused attacks Nerevarine
+#
+#  Betrayal events (fired by kagrenac.030 option B and decisions):
+#    nerevarine.200  — world notification: the Nerevarine has turned to Dagoth
+#    nerevarine.210  — Betraying Dagoth for Mephala: the silent knife
+#    nerevarine.211  — Betraying Dagoth for Boethiah: the open challenge
+#
+#  Sharmat's Dream milestones (heart_fused_ascendant progression):
+#    nerevarine.099  — hidden yearly: advance Sharmat milestone chain
+#    nerevarine.100  — Milestone 1: The Dream Spreads
+#    nerevarine.101  — Milestone 2: Corprus as Gift
+#    nerevarine.102  — Milestone 3: The Ghost Fence Falls
+#    nerevarine.103  — Milestone 4: The Nerevarine Approaches
+#    nerevarine.104  — Milestone 5: The Heart Sings
+#    nerevarine.105  — Milestone 6: Sharmat Enthroned (apex)
+#
+#  KEY FLAGS & VARIABLES:
+#  ──────────────────────
+#  has_global_flag = nerevarine_quest_incomplete
+#                    — set when nerevarine_marked character dies
+#                      before nerevarine_victor; cleared on new claim
+#  global_var:false_nerevarine_count
+#                    — integer tracking failed incarnations;
+#                      Azura grows harder to approach at 3+
+#  character_flag: nerevarine_turned_dagoth
+#                    — set when the Nerevarine betrays Azura for Dagoth
+#  var:sharmat_rank (character)
+#                    — 0-5: Sharmat milestone progression; apex at 5
+#  var:sharmat_fused_years (character)
+#                    — years the character has been heart_fused_ascendant
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  common/traits/dagoth_ur_traits.txt
+#    → nerevarine_marked, heart_fused_ascendant, sixth_house_cultist
+#  common/traits/kagrenac_traits.txt
+#    → nerevarine_victor
+#  common/traits/nerevarine_traits.txt
+#    → nerevarine_forsaken, nerevarine_shadow, sharmat_ascendant, tower_breaker
+#  common/traits/mantling_traits.txt
+#    → mantle_mephala, mantle_boethiah
+#  common/scripted_effects/lore_races_effects.txt
+#    → end_dagoth_ur_era
+#  common/scripted_triggers/lore_races_triggers.txt
+#    → dagoth_ur_awakened
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/nerevarine_events.txt
+# =============================================================
+#
+#  DEFINES — event IDs this file exports:
+#    • nerevarine.001, nerevarine.010-012, nerevarine.020-022
+#    • nerevarine.030
+#    • nerevarine.099-105
+#    • nerevarine.200, nerevarine.210-211
+#
+#  REFERENCED BY — other files that use these events:
+#    common/on_actions/lore_races_on_actions.txt
+#      → nerevarine.099 (on_yearly_pulse)
+#      → nerevarine.010, nerevarine.020 (on_yearly_pulse)
+#      → nerevarine.001 (on_character_death effect)
+#    events/kagrenac_events.txt
+#      → nerevarine.200 (betrayal option fires this)
+#    common/decisions/nerevarine_decisions.txt
+#      → nerevarine.030, nerevarine.210, nerevarine.211
+# =============================================================
+
+namespace = nerevarine
+
+# ---------------------------------------------------------------
+# nerevarine.001  The Prophecy's Vessel Has Fallen
+# Fires for Dunmer rulers when a nerevarine_marked character dies
+# before completing the prophecy (on_character_death hook).
+# Informs all Dunmer rulers that the mantle is now available.
+# ---------------------------------------------------------------
+nerevarine.001 = {
+    type = character_event
+    title = nerevarine.001.t
+    desc = nerevarine.001.desc
+    theme = faith
+
+    option = {
+        name = nerevarine.001.a   # "Azura's chosen has fallen. The prophecy is incomplete."
+        add_piety    = 50
+        add_stress   = 10
+        add_character_modifier = {
+            modifier = nerevarine_succession_open
+            days     = 1825    # 5-year window of spiritual urgency
+        }
+    }
+
+    option = {
+        name = nerevarine.001.b   # "This changes nothing. Dagoth Ur still awakens and the Heart still calls."
+        trigger = {
+            OR = {
+                has_trait = azura_champion
+                has_trait = nerevarine_marked
+            }
+        }
+        add_piety    = 100
+        add_stress   = 20
+        custom_tooltip = nerevarine_claim_available_tt
+    }
+
+    option = {
+        name = nerevarine.001.c   # "The prophecy may yet find a new vessel — but not me."
+        trigger = {
+            NOT = { has_trait = azura_champion }
+        }
+        add_piety = 30
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.010  The Nerevarine and the Scholar — First Contact
+# Fires yearly for nerevarine_marked rulers when a heart_scholar_ascendant
+# ruler exists in the same kingdom or nearby.  Two paths meet at the
+# edge of the same mystery.
+# ---------------------------------------------------------------
+nerevarine.010 = {
+    type = character_event
+    title = nerevarine.010.t
+    desc = nerevarine.010.desc
+    theme = intrigue
+
+    trigger = {
+        has_trait = nerevarine_marked
+        NOT = { has_trait = nerevarine_victor }
+        NOT = { has_character_flag = scholar_encounter_recent }
+        dagoth_ur_awakened = yes
+        any_living_character = {
+            has_trait = heart_scholar_ascendant
+        }
+    }
+
+    option = {
+        name = nerevarine.010.a   # "Approach the scholar. They hold knowledge of the Heart's workings."
+        add_character_flag = { flag = scholar_encounter_recent days = 1825 }
+        trigger_event = { id = nerevarine.011 days = 14 }
+    }
+
+    option = {
+        name = nerevarine.010.b   # "Keep distance. Their borrowed divinity may corrupt the prophecy's purpose."
+        add_character_flag = { flag = scholar_encounter_recent days = 1825 }
+        add_piety = 50
+        add_stress = 10
+    }
+
+    option = {
+        name = nerevarine.010.c   # "Challenge them — no one should hold the Heart's power except Azura's chosen."
+        trigger = {
+            martial >= 12
+        }
+        add_character_flag = { flag = scholar_encounter_recent days = 1825 }
+        trigger_event = { id = nerevarine.012 days = 7 }
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.011  The Scholar Assists
+# The heart_scholar_ascendant shares knowledge of the Tools and
+# the Heart's chamber, boosting the Nerevarine's chance of success.
+# ---------------------------------------------------------------
+nerevarine.011 = {
+    type = character_event
+    title = nerevarine.011.t
+    desc = nerevarine.011.desc
+    theme = faith
+
+    option = {
+        name = nerevarine.011.a   # "Their insight is invaluable. The heart of the mountain holds fewer secrets now."
+        add_learning  = 2
+        add_piety     = 150
+        add_prestige  = 200
+        add_stress    = -10
+        add_character_modifier = {
+            modifier = dagoth_ur_watching_modifier   # re-used: attentive awareness of Red Mountain's inner workings
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.012  The Scholar Opposes
+# The heart_scholar_ascendant blocks the Nerevarine — their power
+# depends on the Heart's continued existence.  Conflict.
+# ---------------------------------------------------------------
+nerevarine.012 = {
+    type = character_event
+    title = nerevarine.012.t
+    desc = nerevarine.012.desc
+    theme = martial
+
+    option = {
+        name = nerevarine.012.a   # "Their opposition ends here — the prophecy cannot be blocked by ambition."
+        trigger = { martial >= 14 }
+        add_prestige = 400
+        add_stress   = 15
+        add_piety    = 100
+    }
+
+    option = {
+        name = nerevarine.012.b   # "Pull back. They are powerful enough that direct confrontation is unwise."
+        trigger = { martial < 14 }
+        add_prestige = -100
+        add_stress   = 25
+        add_piety    = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.020  The Nerevarine and the Fused — First Contact
+# Fires yearly for nerevarine_marked rulers when a heart_fused_ascendant
+# ruler exists.  The two represent the ultimate opposition: end the Heart
+# versus embody it forever.
+# ---------------------------------------------------------------
+nerevarine.020 = {
+    type = character_event
+    title = nerevarine.020.t
+    desc = nerevarine.020.desc
+    theme = faith
+
+    trigger = {
+        has_trait = nerevarine_marked
+        NOT = { has_trait = nerevarine_victor }
+        NOT = { has_character_flag = fused_encounter_recent }
+        dagoth_ur_awakened = yes
+        any_living_character = {
+            has_trait = heart_fused_ascendant
+        }
+    }
+
+    option = {
+        name = nerevarine.020.a   # "Listen to the fused one. Perhaps they can be negotiated with."
+        add_character_flag = { flag = fused_encounter_recent days = 1825 }
+        trigger_event = { id = nerevarine.021 days = 14 }
+        add_stress = 10
+    }
+
+    option = {
+        name = nerevarine.020.b   # "There is no negotiation. They will die when the Heart is severed."
+        add_character_flag = { flag = fused_encounter_recent days = 1825 }
+        trigger_event = { id = nerevarine.022 days = 7 }
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.021  The Fused Offers Power
+# The heart_fused_ascendant ruler proposes sharing the Heart's dream —
+# a temptation that leads toward the betrayal branch.
+# ---------------------------------------------------------------
+nerevarine.021 = {
+    type = character_event
+    title = nerevarine.021.t
+    desc = nerevarine.021.desc
+    theme = faith
+
+    option = {
+        name = nerevarine.021.a   # "Refuse. The Heart's power was never meant to be shared by mortals."
+        add_piety    = 200
+        add_stress   = -15
+    }
+
+    option = {
+        name = nerevarine.021.b   # "Listen — the Sixth House was not always wrong about the Heart's potential."
+        trigger = {
+            OR = {
+                has_trait = sixth_house_cultist
+                intrigue >= 14
+            }
+        }
+        add_stress   = 15
+        add_prestige = -50
+        add_piety    = -100    # Flirting with the Sharmat's offer is a spiritual compromise
+        custom_tooltip = fused_offer_considered_tt
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.022  The Fused Ruler Fights
+# Confrontation between the Nerevarine and a heart_fused ruler
+# who refuses to allow the Heart's binding to be severed.
+# ---------------------------------------------------------------
+nerevarine.022 = {
+    type = character_event
+    title = nerevarine.022.t
+    desc = nerevarine.022.desc
+    theme = martial
+
+    option = {
+        name = nerevarine.022.a   # "I prevail. The Heart's binding cannot protect even its servants."
+        trigger = { prowess >= 12 }
+        add_prestige = 500
+        add_piety    = 150
+        add_stress   = 20
+    }
+
+    option = {
+        name = nerevarine.022.b   # "They escape — but the confrontation has shaken them."
+        trigger = { prowess < 12 }
+        add_health   = -1
+        add_stress   = 30
+        add_prestige = -100
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.030  The Confrontation — Slay the Nerevarine
+# Fired by the slay_the_nerevarine decision (nerevarine_decisions.txt).
+# A heart_scholar_ascendant or heart_fused_ascendant ruler launches
+# an assassination attempt on the active Nerevarine-marked character.
+# ---------------------------------------------------------------
+nerevarine.030 = {
+    type = character_event
+    title = nerevarine.030.t
+    desc = nerevarine.030.desc
+    theme = intrigue
+
+    option = {
+        name = nerevarine.030.a   # "Strike cleanly. The Heart must remain."
+        trigger = {
+            OR = {
+                intrigue >= 14
+                martial  >= 14
+            }
+        }
+        # Find and kill the Nerevarine
+        random_living_character = {
+            limit = {
+                has_trait = nerevarine_marked
+                NOT = { has_trait = nerevarine_victor }
+            }
+            kill_character = yes
+        }
+        set_global_flag = nerevarine_quest_incomplete
+        if = {
+            limit = { NOT = { exists = global_var:false_nerevarine_count } }
+            set_global_variable = { name = false_nerevarine_count value = 0 }
+        }
+        change_global_variable = { name = false_nerevarine_count add = 1 }
+        set_character_flag = { flag = nerevarine_slain_by_player }
+        add_character_modifier = {
+            modifier = heart_anchor_modifier
+            days = 3650    # 10 years of Heart remaining bound
+        }
+        add_prestige = 1000
+        add_piety    = -200    # Azura's displeasure at killing her chosen
+        add_stress   = 20
+        custom_tooltip = nerevarine_slain_tt
+    }
+
+    option = {
+        name = nerevarine.030.b   # "The attempt fails — they are stronger than anticipated."
+        trigger = {
+            martial  < 14
+            intrigue < 14
+        }
+        add_health   = -1
+        add_prestige = -200
+        add_stress   = 30
+        add_piety    = -100
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.099  Sharmat's Dream — Hidden Milestone Progression
+# Fires yearly for heart_fused_ascendant rulers while Dagoth Ur is
+# awakened.  Advances the sharmat_rank variable and triggers the
+# appropriate milestone event.
+# ---------------------------------------------------------------
+nerevarine.099 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_trait = heart_fused_ascendant
+        NOT = { has_trait = sharmat_ascendant }
+        dagoth_ur_awakened = yes
+    }
+
+    immediate = {
+        # Initialize tracking variables if first time
+        if = {
+            limit = { NOT = { exists = var:sharmat_rank } }
+            set_variable = { name = sharmat_rank value = 0 }
+        }
+        if = {
+            limit = { NOT = { exists = var:sharmat_fused_years } }
+            set_variable = { name = sharmat_fused_years value = 0 }
+        }
+        change_variable = { name = sharmat_fused_years add = 1 }
+
+        # Milestone 1: Dream Spreads (1+ year fused)
+        if = {
+            limit = {
+                var:sharmat_rank = 0
+                var:sharmat_fused_years >= 1
+            }
+            trigger_event = { id = nerevarine.100 }
+        }
+        # Milestone 2: Corprus as Gift (3+ years, sixth house vassal present)
+        else_if = {
+            limit = {
+                var:sharmat_rank = 1
+                var:sharmat_fused_years >= 3
+                any_vassal = { has_trait = sixth_house_cultist }
+            }
+            trigger_event = { id = nerevarine.101 }
+        }
+        # Milestone 3: Ghost Fence Falls (5+ years)
+        else_if = {
+            limit = {
+                var:sharmat_rank = 2
+                var:sharmat_fused_years >= 5
+            }
+            trigger_event = { id = nerevarine.102 }
+        }
+        # Milestone 4: Nerevarine Approaches (any living nerevarine_marked or victor exists)
+        else_if = {
+            limit = {
+                var:sharmat_rank = 3
+                OR = {
+                    any_living_character = { has_trait = nerevarine_marked }
+                    any_living_character = { has_trait = nerevarine_victor }
+                }
+            }
+            trigger_event = { id = nerevarine.103 }
+        }
+        # Milestone 5: Heart Sings (10+ years fused)
+        else_if = {
+            limit = {
+                var:sharmat_rank = 4
+                var:sharmat_fused_years >= 10
+            }
+            trigger_event = { id = nerevarine.104 }
+        }
+        # Milestone 6: Sharmat Enthroned (rank 5 — fires immediately after Heart Sings)
+        else_if = {
+            limit = { var:sharmat_rank = 5 }
+            trigger_event = { id = nerevarine.105 days = 90 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.100  Sharmat Milestone 1 — The Dream Spreads
+# The heart_fused ruler's consciousness begins expanding outward
+# through the Sixth House dream-whisper.  The Blight and the
+# dreaming are now one directed current.
+# ---------------------------------------------------------------
+nerevarine.100 = {
+    type = character_event
+    title = nerevarine.100.t
+    desc = nerevarine.100.desc
+    theme = realm
+
+    option = {
+        name = nerevarine.100.a   # "The Sixth House spreads its roots. Let the dream reach further."
+        set_variable = { name = sharmat_rank value = 1 }
+        add_character_modifier = {
+            modifier = sharmat_dream_spreads
+            days = -1    # permanent until sharmat_ascendant or era end
+        }
+        add_prestige = 300
+        add_piety    = 200
+        add_stress   = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.101  Sharmat Milestone 2 — Corprus as Gift
+# A Great House lord or prominent vassal has been converted to the
+# Sixth House cult.  The Blight-kiss is no longer a plague — it is
+# a distinction, a mark of the Sharmat's personal attention.
+# ---------------------------------------------------------------
+nerevarine.101 = {
+    type = character_event
+    title = nerevarine.101.t
+    desc = nerevarine.101.desc
+    theme = intrigue
+
+    option = {
+        name = nerevarine.101.a   # "The gift of corprus is the gift of closeness. Let them carry the dream."
+        set_variable = { name = sharmat_rank value = 2 }
+        add_prestige = 400
+        add_piety    = 300
+        add_intrigue = 1
+        add_stress   = -15
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.102  Sharmat Milestone 3 — The Ghost Fence Falls
+# The Tribunal's great barrier around Red Mountain has buckled.
+# Blight storms spread freely now.  The Sharmat-in-waiting does
+# not need to batter it — they simply wait, and it fails.
+# ---------------------------------------------------------------
+nerevarine.102 = {
+    type = character_event
+    title = nerevarine.102.t
+    desc = nerevarine.102.desc
+    theme = realm
+
+    option = {
+        name = nerevarine.102.a   # "The Fence falls. Morrowind's roads belong to the Blight now."
+        set_variable = { name = sharmat_rank value = 3 }
+        add_prestige = 500
+        add_piety    = 300
+        add_martial  = 1
+        add_stress   = -10
+        every_county = {
+            limit = {
+                has_province_modifier = ghost_fence_weakening_modifier
+            }
+            remove_province_modifier = ghost_fence_weakening_modifier
+            add_province_modifier = {
+                modifier = blight_storm_modifier
+                days = -1
+            }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.103  Sharmat Milestone 4 — The Nerevarine Approaches
+# Word reaches the Sharmat-in-waiting that a nerevarine_marked
+# character is gathering momentum.  The prophecy and the dream
+# are now on a collision course.
+# ---------------------------------------------------------------
+nerevarine.103 = {
+    type = character_event
+    title = nerevarine.103.t
+    desc = nerevarine.103.desc
+    theme = martial
+
+    option = {
+        name = nerevarine.103.a   # "Let them come. The Heart is mine. The prophecy is older than Azura's use of it."
+        set_variable = { name = sharmat_rank value = 4 }
+        add_prestige = 400
+        add_stress   = 10
+        add_dread    = 20    # The Sharmat faces the prophecy with open contempt
+    }
+
+    option = {
+        name = nerevarine.103.b   # "The prophesied hero approaches. I should seek an accord before it reaches the Heart."
+        set_variable = { name = sharmat_rank value = 4 }
+        add_piety    = 100
+        add_stress   = 15
+        add_prestige = 200
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.104  Sharmat Milestone 5 — The Heart Sings
+# Ten years of Heart fusion have produced something the Tribunal
+# never achieved and Dagoth Ur barely managed: genuine stability.
+# The power does not fade; it builds.  The Heart sings to its vessel.
+# ---------------------------------------------------------------
+nerevarine.104 = {
+    type = character_event
+    title = nerevarine.104.t
+    desc = nerevarine.104.desc
+    theme = faith
+
+    option = {
+        name = nerevarine.104.a   # "The Heart no longer merely sustains me. I direct its song."
+        set_variable = { name = sharmat_rank value = 5 }
+        add_piety    = 500
+        add_prestige = 600
+        add_stress   = -30
+        add_martial  = 2
+        add_intrigue = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.105  Sharmat Enthroned — Apex
+# The heart_fused ruler achieves full mastery of the Heart's power.
+# The Blight is no longer a disease leaking outward — it is a
+# weapon that bends to their will.  This is what Dagoth Ur always
+# aspired to: the Sharmat Enthroned.
+# ---------------------------------------------------------------
+nerevarine.105 = {
+    type = character_event
+    title = nerevarine.105.t
+    desc = nerevarine.105.desc
+    theme = faith
+
+    option = {
+        name = nerevarine.105.a   # "The Sharmat's dream was always mine. I complete what he began."
+        add_trait = sharmat_ascendant
+        add_piety    = 1000
+        add_prestige = 1500
+        add_stress   = -50
+        custom_tooltip = sharmat_enthroned_tt
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.200  The Nerevarine Has Turned — World Notification
+# Fires for all Dunmer rulers after the Nerevarine betrays Azura
+# and joins Dagoth Ur at the Heart's Chamber.
+# The prophecy is broken.  The Sixth House has won a vessel.
+# ---------------------------------------------------------------
+nerevarine.200 = {
+    type = character_event
+    title = nerevarine.200.t
+    desc = nerevarine.200.desc
+    theme = faith
+
+    option = {
+        name = nerevarine.200.a   # "The prophecy has been betrayed. Azura's hope is ash."
+        add_piety    = 100
+        add_stress   = 20
+    }
+
+    option = {
+        name = nerevarine.200.b   # "Dagoth Ur was always the truer power. The vessel chose correctly."
+        trigger = {
+            OR = {
+                has_trait = sixth_house_cultist
+                has_trait = ash_devotee
+            }
+        }
+        add_piety    = 200
+        add_prestige = 150
+        add_stress   = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.210  Betraying Dagoth for Mephala — The Silent Knife
+# The nerevarine_turned character uses the knowledge of the Heart's
+# chamber, gained through betrayal, to serve Mephala instead —
+# severing the Heart's binding through silence and treachery.
+# The Heart departs.  Mephala claims the echo of its passing.
+# Fired by betray_dagoth_for_mephala decision.
+# ---------------------------------------------------------------
+nerevarine.210 = {
+    type = character_event
+    title = nerevarine.210.t
+    desc = nerevarine.210.desc
+    theme = intrigue
+
+    option = {
+        name = nerevarine.210.a   # "The spider weaves her final thread. The Heart departs. The silence remains."
+        add_trait = nerevarine_shadow
+        add_trait = tower_breaker
+        add_character_modifier = {
+            modifier = tower_breaker_modifier
+            days = 1095    # 3 years of cosmic resonance
+        }
+        add_piety    = 500
+        add_prestige = 1000
+        add_stress   = -30
+        remove_character_flag = nerevarine_turned_dagoth
+        end_dagoth_ur_era = yes
+        custom_tooltip = mephala_sever_tt
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.211  Betraying Dagoth for Boethiah — The Open Challenge
+# The nerevarine_turned character turns on the Sharmat directly —
+# using Boethiah's principle of domination and usurpation to
+# break the Heart's binding in a challenge of divine power.
+# The Heart departs.  Boethiah marks the act as a Tower-breaking.
+# Fired by betray_dagoth_for_boethiah decision.
+# ---------------------------------------------------------------
+nerevarine.211 = {
+    type = character_event
+    title = nerevarine.211.t
+    desc = nerevarine.211.desc
+    theme = martial
+
+    option = {
+        name = nerevarine.211.a   # "The usurper is usurped. Every throne falls to the next challenger."
+        add_trait = nerevarine_shadow
+        add_trait = tower_breaker
+        add_character_modifier = {
+            modifier = tower_breaker_modifier
+            days = 1095    # 3 years of cosmic resonance
+        }
+        add_piety    = 500
+        add_prestige = 1200
+        add_stress   = -20
+        remove_character_flag = nerevarine_turned_dagoth
+        end_dagoth_ur_era = yes
+        custom_tooltip = boethiah_sever_tt
+    }
+}

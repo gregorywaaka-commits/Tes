@@ -1,0 +1,180 @@
+# =============================================================
+#  Nerevarine System — Traits
+#  File: mod/common/traits/nerevarine_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  nerevarine_forsaken    — Azura's mark revoked; branded traitor after
+#                           betraying the prophecy for Dagoth Ur.
+#  nerevarine_shadow      — Served Mephala or Boethiah at the Heart of
+#                           Lorkhan, severing the binding on Daedric terms
+#                           rather than Azura's.  Mystery and silence.
+#  sharmat_ascendant      — Route B apex (Sharmat's Dream): the heart_fused
+#                           ruler who survived long enough to master the Blight
+#                           as a tool rather than a disease.  Dagoth Ur's
+#                           truest heir.
+#  tower_breaker          — Severed the Heart's binding from Nirn via Mephala
+#                           or Boethiah, breaking the Tower-link rather than
+#                           fulfilling Azura's prophecy.  Cosmic resonance.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Nerevarine path does not have only one ending.  A vessel of
+#  Azura's prophecy who turns to Dagoth Ur becomes the Forsaken —
+#  stripped of the Daedric Prince's favour, condemned by her ancient
+#  voice as a failed vessel.  If that same forsaken hero then turns
+#  on Dagoth Ur at the last moment, using the knowledge of the Heart's
+#  chamber to serve Mephala or Boethiah instead, they become the
+#  Nerevarine Shadow — one who walked every side and served only
+#  themselves in the end.
+#
+#  The Sharmat Ascendant is what happens when Route B (Heart Fused)
+#  is not ended by the Nerevarine.  Given enough time and cultist
+#  growth, the fused character stops merely being a vessel of the
+#  Heart's power and starts actively directing it — the Blight
+#  becomes a weapon, not a symptom.
+#
+#  Tower Breaker is a title carried by those who severed the Heart's
+#  Mundane binding through Daedric means, denying both Azura's
+#  blessing and Dagoth Ur's dream.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — all traits are self-contained in this file.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/nerevarine_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • nerevarine_forsaken
+#    • nerevarine_shadow
+#    • sharmat_ascendant
+#    • tower_breaker
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    (none)
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/nerevarine_events.txt
+#      → nerevarine_forsaken, nerevarine_shadow, sharmat_ascendant, tower_breaker
+#    common/decisions/nerevarine_decisions.txt
+#      → nerevarine_forsaken, sharmat_ascendant
+#    events/kagrenac_events.txt
+#      → nerevarine_forsaken
+# =============================================================
+
+# ---------------------------------------------------------------
+#  NEREVARINE FORSAKEN
+#  Azura's mark revoked.  This character stood at the Heart of
+#  Lorkhan with the Tools in hand and turned away from the prophecy,
+#  joining the Sharmat instead.  The Daedric Prince of dusk and
+#  dawn does not forgive traitors to destiny.  Her voice is now
+#  cold silence where once there was guidance.
+#  Gained via kagrenac.030 option B (betray Azura for Dagoth).
+# ---------------------------------------------------------------
+nerevarine_forsaken = {
+    category = personality
+    is_good   = no
+
+    intrigue  = 3
+    learning  = 1             # Sixth House dream-knowledge fills the void Azura left
+    monthly_piety_gain_mult    = -0.40    # Azura's active disfavour
+    monthly_prestige_gain_mult = -0.15    # Called traitor by the Tribunal and Ashlanders alike
+    dread_gain_mult            = 0.10     # Fear follows the one who defied a god's prophecy
+
+    flag = nerevarine_forsaken
+}
+
+# ---------------------------------------------------------------
+#  NEREVARINE SHADOW
+#  Walked every side and served none cleanly.  This character
+#  accepted Azura's call, betrayed it for Dagoth, then betrayed
+#  Dagoth for Mephala or Boethiah — severing the Heart's Mundane
+#  binding not with prophetic purpose but with Daedric cunning.
+#  They carry the silence of one who has outplayed gods.
+#  Gained via nerevarine_decisions betray_dagoth_for_mephala or
+#  betray_dagoth_for_boethiah.
+# ---------------------------------------------------------------
+nerevarine_shadow = {
+    category = intrigue
+    is_good   = yes
+
+    intrigue  = 6
+    learning  = 3
+    diplomacy = 2
+
+    monthly_piety          = 4     # Mephala/Boethiah's oblique favour
+    monthly_prestige_gain_mult = 0.15
+    stress_gain_mult           = -0.15    # Transcended conventional loyalty — no regret
+
+    command_modifier = {
+        advantage = 3
+        damage    = 0.05
+    }
+
+    flag = nerevarine_shadow
+}
+
+# ---------------------------------------------------------------
+#  SHARMAT ASCENDANT
+#  The apex of Route B (heart_fused_ascendant) — a ruler who
+#  survived long enough after fusing with the Heart of Lorkhan
+#  to stop being driven by the Blight and start directing it.
+#  The Blight is no longer a plague that seeps outward; it is
+#  a weapon that answers their will.  This is what Dagoth Ur
+#  always hoped to become before the Nerevarine stopped him.
+#  Gained via nerevarine.105 (Sharmat milestone 6).
+# ---------------------------------------------------------------
+sharmat_ascendant = {
+    category = lifestyle
+    is_good   = yes
+
+    intrigue  = 8
+    martial   = 6
+    prowess   = 4
+    learning  = -1             # The Heart's dream-fire crowds out analytical thought
+
+    monthly_piety          = 10
+    dread_gain_mult        = 0.50     # The Sharmat Enthroned radiates divine menace
+    stress_gain_mult       = -0.30    # The Heart's vastness has fully absorbed mortal anxiety
+    monthly_prestige_gain_mult = 0.25
+
+    command_modifier = {
+        advantage  = 5
+        damage     = 0.15
+        max_morale = 0.20
+    }
+
+    flag = sharmat_ascendant
+}
+
+# ---------------------------------------------------------------
+#  TOWER BREAKER
+#  The Heart of Lorkhan was severed from Mundus, but not by the
+#  Nerevarine's prophecy.  Instead, this ruler used the knowledge
+#  of the Heart's chamber — knowledge earned through betrayal and
+#  blood — to break the Tower-binding on Daedric terms.  It is
+#  not the ending Azura planned.  It is an ending nonetheless.
+#  Gained via betray_dagoth_for_mephala or betray_dagoth_for_boethiah
+#  decisions (nerevarine_decisions.txt).
+# ---------------------------------------------------------------
+tower_breaker = {
+    category = commander
+    is_good   = yes
+
+    martial   = 4
+    learning  = 4
+    intrigue  = 2
+
+    monthly_piety_gain_mult    = 0.20    # Mephala/Boethiah's residual blessing
+    monthly_prestige_gain_mult = 0.20    # One who ended an age, whatever the method
+
+    command_modifier = {
+        advantage = 3
+        damage    = 0.10
+    }
+
+    flag = tower_breaker
+}

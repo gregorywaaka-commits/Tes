@@ -2874,3 +2874,54 @@ ww_three_fold_consumed_opinion = {
 ww_amaranth_uncanny_unease = {
     opinion              = -10
 }
+
+# =====================================================================
+#  §20 NEREVARINE SYSTEM — Modifiers
+# =====================================================================
+
+# nerevarine_succession_open — world state: the prophecy vessel has died
+# before fulfilling the task.  Azura's call echoes unanswered.
+# Applied as a character modifier to each ruler who hears of the
+# fallen Nerevarine, motivating them to consider the claim.
+nerevarine_succession_open = {
+    monthly_piety      = 2
+    monthly_prestige   = 1
+}
+
+# sharmat_dream_spreads — the fused ruler's Blight-will seeps into nearby
+# counties.  Applied as a character modifier to heart_fused rulers who
+# have reached Sharmat milestone 1.
+sharmat_dream_spreads = {
+    monthly_prestige   = 3
+    monthly_piety      = 4
+    dread_gain_mult    = 0.20
+    intrigue           = 2
+}
+
+# heart_anchor_modifier — briefly, the Heart of Lorkhan's departure is
+# delayed.  Applied when the player kills the Nerevarine to prevent the
+# sever.  The Heart remains bound a while longer.
+heart_anchor_modifier = {
+    monthly_piety      = 5
+    monthly_prestige   = 4
+    learning           = 2
+}
+
+# tower_breaker_modifier — cosmic shock after severing the Heart-Tower
+# binding through Daedric means rather than prophetic fulfilment.
+# Short-duration prestige/piety surge; lingering stress reduction.
+tower_breaker_modifier = {
+    monthly_prestige   = 8
+    monthly_piety      = 6
+    stress_gain_mult   = -0.20
+}
+
+# nerevarine_turned_modifier — the world knows the Nerevarine has turned.
+# Azura's people are shocked; Sixth House cultists celebrate in shadow.
+# Applied to the betrayer for a window after the turn.
+nerevarine_turned_modifier = {
+    monthly_piety_gain_mult    = -0.30
+    monthly_prestige_gain_mult = -0.20
+    dread_gain_mult            = 0.15
+    intrigue                   = 2
+}

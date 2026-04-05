@@ -1,0 +1,413 @@
+# =============================================================
+#  The Nerevarine System — Decisions
+#  File: mod/common/decisions/nerevarine_decisions.txt
+#
+#  DECISIONS IN THIS FILE:
+#  ────────────────────────
+#  claim_nerevarine_prophecy    — Claim the fallen Nerevarine's mantle.
+#                                  Available when nerevarine_quest_incomplete
+#                                  and the character has azura_champion.
+#  betray_azura_for_dagoth      — At the Heart's Chamber, with all three Tools
+#                                  gathered, choose Dagoth Ur over Azura's prophecy.
+#                                  Requires sixth_house_cultist or ash_devotee.
+#  betray_dagoth_for_mephala    — After turning to Dagoth (nerevarine_turned_dagoth),
+#                                  betray him again for Mephala.  Requires mantle_mephala.
+#  betray_dagoth_for_boethiah   — After turning to Dagoth (nerevarine_turned_dagoth),
+#                                  betray him again for Boethiah.  Requires mantle_boethiah.
+#  slay_the_nerevarine          — For heart_scholar_ascendant or heart_fused_ascendant
+#                                  rulers: assassinate the active Nerevarine to prevent
+#                                  the Heart from being severed.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • nerevarine_marked        — trait in dagoth_ur_traits.txt
+#  • nerevarine_victor        — trait in kagrenac_traits.txt
+#  • nerevarine_forsaken      — trait in nerevarine_traits.txt
+#  • heart_fused_ascendant    — trait in dagoth_ur_traits.txt
+#  • heart_scholar_ascendant  — trait in dagoth_ur_traits.txt
+#  • mantle_mephala           — trait in mantling_traits.txt
+#  • mantle_boethiah          — trait in mantling_traits.txt
+#  • azura_champion           — trait in daedric_invasion_traits.txt
+#  • sixth_house_cultist      — trait in dagoth_ur_traits.txt
+#  • ash_devotee              — trait in dagoth_ur_traits.txt
+#  • dagoth_ur_awakened       — scripted trigger in lore_races_triggers.txt
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/nerevarine_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • betray_azura_for_dagoth
+#    • betray_dagoth_for_boethiah
+#    • betray_dagoth_for_mephala
+#    • claim_nerevarine_prophecy
+#    • slay_the_nerevarine
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dagoth_ur_traits.txt
+#      → ash_devotee, heart_fused_ascendant, heart_scholar_ascendant,
+#        nerevarine_marked, sixth_house_cultist
+#    common/traits/daedric_invasion_traits.txt
+#      → azura_champion
+#    common/traits/kagrenac_traits.txt
+#      → nerevarine_victor
+#    common/traits/mantling_traits.txt
+#      → mantle_boethiah, mantle_mephala
+#    common/traits/nerevarine_traits.txt
+#      → nerevarine_forsaken
+#    events/nerevarine_events.txt
+#      → nerevarine.030, nerevarine.200, nerevarine.210, nerevarine.211
+# =============================================================
+
+
+# ---------------------------------------------------------------
+#  CLAIM THE NEREVARINE PROPHECY
+#  When the prophecy's chosen vessel has fallen without completing
+#  their task, Azura calls for a new incarnation.  Any Dunmer ruler
+#  who bears the azura_champion mark and has the will to carry the
+#  burden may step forward to take up the mantle.
+#
+#  The new Nerevarine inherits the quest at its current stage —
+#  if the previous vessel had already been named Hortator or
+#  recognised by the Ashlanders, that recognition transfers.
+#
+#  Note: if false_nerevarine_count >= 3, the piety cost increases
+#  significantly — Azura is harder to approach after repeated failures.
+# ---------------------------------------------------------------
+claim_nerevarine_prophecy = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = claim_nerevarine_prophecy_desc
+
+    is_shown = {
+        has_global_flag = nerevarine_quest_incomplete
+        has_trait = azura_champion
+        has_culture = dunmer_culture
+        is_ruler = yes
+        NOT = { has_trait = nerevarine_marked }
+        NOT = { has_trait = nerevarine_victor }
+        NOT = { has_trait = nerevarine_forsaken }
+        dagoth_ur_awakened = yes
+        NOT = { has_global_flag = dagoth_ur_defeated }
+    }
+
+    is_valid = {
+        piety >= 300
+        prestige >= 200
+        is_adult = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_alive = yes
+    }
+
+    effect = {
+        add_piety    = -300
+        add_prestige = -200
+        add_trait    = nerevarine_marked
+        remove_global_flag = nerevarine_quest_incomplete
+        if = {
+            limit = { NOT = { exists = global_var:false_nerevarine_count } }
+            set_global_variable = { name = false_nerevarine_count value = 0 }
+        }
+        add_character_modifier = {
+            modifier = dagoth_ur_champion_modifier
+            days = 3650
+        }
+        add_prestige = 400
+        custom_tooltip = nerevarine_claim_done_tt
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = {
+            add = 20
+            has_trait = brave
+        }
+        modifier = {
+            add = 10
+            has_trait = ambitious
+        }
+    }
+}
+
+
+# ---------------------------------------------------------------
+#  BETRAY AZURA FOR DAGOTH
+#  At the Heart's Chamber — all three Tools gathered, the moment
+#  of the prophecy at hand — the Nerevarine chooses the Sharmat
+#  over Azura.  This requires deep Sixth House sympathy or a cunning
+#  contempt for prophetic obligation.
+#
+#  Azura's champion status is revoked.  The nerevarine_forsaken
+#  trait replaces it.  The character joins the Dagoth route (Route B
+#  of Path F: heart_fused_ascendant) and a world event notifies all
+#  Dunmer rulers of the prophecy's betrayal.
+#
+#  Note: this is a COMPLEMENTARY decision alongside kagrenac.030 option B.
+#  Both produce the same outcome.  This decision is the explicit decision-panel
+#  version — it requires having all three Tool flags, meaning the character
+#  went through kagrenac.010/015/020 and reached the threshold.  Unlike
+#  the kagrenac.030 event (which fires automatically 30 days after kagrenac.020),
+#  this decision is player-driven and allows deliberate timing of the betrayal.
+# ---------------------------------------------------------------
+betray_azura_for_dagoth = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = betray_azura_for_dagoth_desc
+
+    is_shown = {
+        has_trait = nerevarine_marked
+        has_character_flag = sunder_found
+        has_character_flag = keening_found
+        has_character_flag = wraithguard_found
+        dagoth_ur_awakened = yes
+        NOT = { has_trait = nerevarine_victor }
+        NOT = { has_character_flag = nerevarine_turned_dagoth }
+        NOT = { has_character_flag = betray_dagoth_pending }
+        NOT = { has_global_flag = dagoth_ur_defeated }
+    }
+
+    is_valid = {
+        OR = {
+            has_trait = sixth_house_cultist
+            has_trait = ash_devotee
+            intrigue >= 16
+        }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_alive = yes
+    }
+
+    effect = {
+        # Remove prophecy connection to Azura
+        remove_trait = nerevarine_marked
+        if = {
+            limit = { has_trait = azura_champion }
+            remove_trait = azura_champion
+        }
+        # Mark as forsaken and turned
+        add_trait = nerevarine_forsaken
+        set_character_flag = nerevarine_turned_dagoth
+        add_character_modifier = {
+            modifier = nerevarine_turned_modifier
+            days = 1825    # 5-year world reaction
+        }
+        # Join the Dagoth fusion path
+        if = {
+            limit = { NOT = { has_trait = heart_fused_ascendant } }
+            add_trait = heart_fused_ascendant
+        }
+        # Lose the piety accumulated as Azura's champion
+        add_piety    = -500
+        add_prestige = 200    # The Sixth House hails the turned champion
+        add_stress   = -20    # The burden of the prophecy is lifted, replaced by the dream
+        # Clear the tools (the moment has passed)
+        remove_character_flag = kagrenac_quest_started
+        remove_character_flag = sunder_found
+        remove_character_flag = keening_found
+        remove_character_flag = wraithguard_found
+        # Notify all Dunmer rulers
+        every_ruler = {
+            limit = {
+                is_alive = yes
+                has_culture = dunmer_culture
+            }
+            trigger_event = { id = nerevarine.200 days = 7 }
+        }
+        custom_tooltip = nerevarine_turned_tt
+    }
+
+    ai_will_do = {
+        base = 2    # AI very rarely takes this path
+        modifier = {
+            add = 15
+            has_trait = sixth_house_cultist
+            has_trait = ash_devotee
+        }
+        modifier = {
+            add = 8
+            has_trait = ambitious
+            intrigue >= 16
+        }
+        modifier = {
+            add = -20
+            has_trait = devoted    # Deeply devoted characters will not betray their patron
+        }
+    }
+}
+
+
+# ---------------------------------------------------------------
+#  BETRAY DAGOTH FOR MEPHALA
+#  Having betrayed Azura and joined the Sixth House, the character
+#  now uses the knowledge of the Heart's inner chamber — knowledge
+#  earned through that betrayal — to sever the Heart's binding in
+#  Mephala's name.
+#
+#  This requires the Walking Ways mantle_mephala trait (the character
+#  has already walked a path of silence and treachery to their apex).
+#  The result: Mephala claims the echo of the Heart's departure.
+#  The Nerevarine Shadow is born.
+# ---------------------------------------------------------------
+betray_dagoth_for_mephala = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = betray_dagoth_for_mephala_desc
+
+    is_shown = {
+        has_character_flag = nerevarine_turned_dagoth
+        has_trait = mantle_mephala
+        dagoth_ur_awakened = yes
+        NOT = { has_global_flag = dagoth_ur_defeated }
+        NOT = { has_character_flag = betray_dagoth_done }
+    }
+
+    is_valid = {
+        intrigue >= 14
+        piety    >= 200
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_alive = yes
+    }
+
+    effect = {
+        set_character_flag = betray_dagoth_done
+        add_piety    = -200
+        trigger_event = { id = nerevarine.210 days = 7 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = {
+            add = 20
+            intrigue >= 18
+        }
+    }
+}
+
+
+# ---------------------------------------------------------------
+#  BETRAY DAGOTH FOR BOETHIAH
+#  Having betrayed Azura and joined the Sixth House, the character
+#  now uses the knowledge of the Heart's chamber to challenge the
+#  Sharmat directly — a supreme act of usurpation in Boethiah's
+#  name.  This requires the Walking Ways mantle_boethiah trait.
+#
+#  The result: the Heart departs, Boethiah marks the breaking of a
+#  Tower as a triumph, and the Nerevarine Shadow is born.
+# ---------------------------------------------------------------
+betray_dagoth_for_boethiah = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = betray_dagoth_for_boethiah_desc
+
+    is_shown = {
+        has_character_flag = nerevarine_turned_dagoth
+        has_trait = mantle_boethiah
+        dagoth_ur_awakened = yes
+        NOT = { has_global_flag = dagoth_ur_defeated }
+        NOT = { has_character_flag = betray_dagoth_done }
+    }
+
+    is_valid = {
+        martial  >= 14
+        prestige >= 500
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_alive = yes
+    }
+
+    effect = {
+        set_character_flag = betray_dagoth_done
+        add_prestige = -500
+        trigger_event = { id = nerevarine.211 days = 7 }
+    }
+
+    ai_will_do = {
+        base = 10
+        modifier = {
+            add = 20
+            martial >= 18
+        }
+    }
+}
+
+
+# ---------------------------------------------------------------
+#  SLAY THE NEREVARINE
+#  A ruler tapping the Heart of Lorkhan — whether as a Tribunal-
+#  method scholar or as a Dagoth-method fused character — has every
+#  reason to prevent the Nerevarine from severing the Heart's binding.
+#  The sever would mean instant death for fused rulers, or the end
+#  of accumulated divine power for scholars.
+#
+#  This is a personal and terrible choice.  The player targets the
+#  living Nerevarine-marked character and launches an assassination
+#  attempt.  Success requires martial or intrigue strength.
+#  Failure injures the attacker and destroys prestige.
+#
+#  NOTE: Killing the Nerevarine only delays the Heart's departure.
+#  The world flag nerevarine_quest_incomplete is set, allowing
+#  another vessel to claim the prophecy and resume.
+# ---------------------------------------------------------------
+slay_the_nerevarine = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = slay_the_nerevarine_desc
+
+    is_shown = {
+        OR = {
+            has_trait = heart_scholar_ascendant
+            has_trait = heart_fused_ascendant
+        }
+        is_ruler = yes
+        dagoth_ur_awakened = yes
+        NOT = { has_global_flag = dagoth_ur_defeated }
+        NOT = { has_character_flag = nerevarine_slay_attempted }
+        # Must be an active Nerevarine to target
+        any_living_character = {
+            has_trait = nerevarine_marked
+            NOT = { has_trait = nerevarine_victor }
+        }
+    }
+
+    is_valid = {
+        prestige >= 500
+        OR = {
+            martial  >= 12
+            intrigue >= 12
+        }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        is_alive = yes
+    }
+
+    effect = {
+        add_prestige = -500
+        set_character_flag = { flag = nerevarine_slay_attempted days = 3650 }
+        trigger_event = { id = nerevarine.030 days = 7 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 30
+            has_trait = heart_fused_ascendant    # Fused rulers will die if Heart is severed — strong motivation
+        }
+        modifier = {
+            add = 15
+            has_trait = heart_scholar_ascendant
+            martial >= 14
+        }
+        modifier = {
+            add = 20
+            has_trait = selfish
+        }
+    }
+}
