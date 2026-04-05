@@ -11,11 +11,27 @@
 #  • daedric_artifact.010 — "The Artifact Stirs" — yearly corruption creep
 #  • daedric_artifact.020 — "The Price of Power" — artifact consequence
 #  • daedric_artifact.030 — "Pass the Burden" — transfer artifact to another
+#  • daedric_artifact.040 — "The Forbidden Tome" — Oghma Infinium discovered
+#  • daedric_artifact.050 — "A Star That Does Not Break" — Azura's Star
+#  • daedric_artifact.055 — "A Star Turned Black" — the Black Star variant
+#  • daedric_artifact.060 — "The Rose That Bleeds" — Sanguine Rose
+#  • daedric_artifact.065 — "The Mace of Coldharbour" — Mace of Molag Bal
+#  • daedric_artifact.070 — "The Mask of Bargains" — Masque of Clavicus Vile
+#  • daedric_artifact.075 — "The Unbreakable Ward" — Spellbreaker
+#  • daedric_artifact.080 — "Meridia's Beacon" — Dawnbreaker
+#  • daedric_artifact.090 — "The Architect's Regret" — Staff of Magnus
+#  • daedric_artifact.100 — "The Tome's Second Hunger" — Oghma obsession check
+#  • daedric_artifact.110 — "The Star Stirs" — Azura's Star soul capture
+#  • daedric_artifact.120 — "The Dremora's Due" — Sanguine Rose payment demanded
+#  • daedric_artifact.130 — "The Father of Vampires Calls" — Mace vampirism pull
 #
 #  KEY TRAITS:
 #  ───────────
 #  • mehrunes_razor_bearer / wabbajack_wielder / skull_of_corruption_bearer
 #  • ebony_blade_cursed / ring_of_namira_bearer / artifact_corruption
+#  • oghma_infinium_reader / azuras_star_bearer / black_star_bearer
+#  • sanguine_rose_wielder / mace_of_molag_bal_bearer / masque_clavicus_vile_bearer
+#  • spellbreaker_bearer / dawnbreaker_bearer / staff_of_magnus_bearer
 # =============================================================
 
 
@@ -26,6 +42,9 @@
 #  DEPENDS ON — identifiers used here that are defined elsewhere:
 #    common/traits/daedric_artifacts_traits.txt
 #      → artifact_corruption, ebony_blade_cursed, mehrunes_razor_bearer, ring_of_namira_bearer, skull_of_corruption_bearer, wabbajack_wielder
+#      → oghma_infinium_reader, azuras_star_bearer, black_star_bearer, sanguine_rose_wielder
+#      → mace_of_molag_bal_bearer, masque_clavicus_vile_bearer, spellbreaker_bearer
+#      → dawnbreaker_bearer, staff_of_magnus_bearer
 #    common/traits/daedric_invasion_traits.txt
 #      → daedric_champion
 # =============================================================
@@ -59,9 +78,18 @@ daedric_artifact.000 = {
             days = 3650
         }
         random_list = {
-            35 = { trigger_event = { id = daedric_artifact.001 days = 5 } }
-            35 = { trigger_event = { id = daedric_artifact.002 days = 5 } }
-            30 = { trigger_event = { id = daedric_artifact.003 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.001 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.002 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.003 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.040 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.050 days = 5 } }
+             5 = { trigger_event = { id = daedric_artifact.055 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.060 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.065 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.070 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.075 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.080 days = 5 } }
+            10 = { trigger_event = { id = daedric_artifact.090 days = 5 } }
         }
     }
 }
@@ -186,6 +214,15 @@ daedric_artifact.010 = {
             has_trait = skull_of_corruption_bearer
             has_trait = ebony_blade_cursed
             has_trait = ring_of_namira_bearer
+            has_trait = oghma_infinium_reader
+            has_trait = azuras_star_bearer
+            has_trait = black_star_bearer
+            has_trait = sanguine_rose_wielder
+            has_trait = mace_of_molag_bal_bearer
+            has_trait = masque_clavicus_vile_bearer
+            has_trait = spellbreaker_bearer
+            has_trait = dawnbreaker_bearer
+            has_trait = staff_of_magnus_bearer
         }
         NOT = { has_trait = artifact_corruption }
         NOT = { has_character_flag = artifact_corruption_check }
@@ -230,6 +267,15 @@ daedric_artifact.020 = {
             has_trait = skull_of_corruption_bearer
             has_trait = ebony_blade_cursed
             has_trait = ring_of_namira_bearer
+            has_trait = oghma_infinium_reader
+            has_trait = azuras_star_bearer
+            has_trait = black_star_bearer
+            has_trait = sanguine_rose_wielder
+            has_trait = mace_of_molag_bal_bearer
+            has_trait = masque_clavicus_vile_bearer
+            has_trait = spellbreaker_bearer
+            has_trait = dawnbreaker_bearer
+            has_trait = staff_of_magnus_bearer
         }
     }
 
@@ -267,6 +313,15 @@ daedric_artifact.030 = {
             has_trait = skull_of_corruption_bearer
             has_trait = ebony_blade_cursed
             has_trait = ring_of_namira_bearer
+            has_trait = oghma_infinium_reader
+            has_trait = azuras_star_bearer
+            has_trait = black_star_bearer
+            has_trait = sanguine_rose_wielder
+            has_trait = mace_of_molag_bal_bearer
+            has_trait = masque_clavicus_vile_bearer
+            has_trait = spellbreaker_bearer
+            has_trait = dawnbreaker_bearer
+            has_trait = staff_of_magnus_bearer
         }
         any_vassal = { is_adult = yes }
     }
@@ -297,6 +352,78 @@ daedric_artifact.030 = {
                 add_trait = ebony_blade_cursed
             }
         }
+        if = {
+            limit = { has_trait = oghma_infinium_reader }
+            remove_trait = oghma_infinium_reader
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = oghma_infinium_reader
+            }
+        }
+        if = {
+            limit = { has_trait = azuras_star_bearer }
+            remove_trait = azuras_star_bearer
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = azuras_star_bearer
+            }
+        }
+        if = {
+            limit = { has_trait = black_star_bearer }
+            remove_trait = black_star_bearer
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = black_star_bearer
+            }
+        }
+        if = {
+            limit = { has_trait = sanguine_rose_wielder }
+            remove_trait = sanguine_rose_wielder
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = sanguine_rose_wielder
+            }
+        }
+        if = {
+            limit = { has_trait = mace_of_molag_bal_bearer }
+            remove_trait = mace_of_molag_bal_bearer
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = mace_of_molag_bal_bearer
+            }
+        }
+        if = {
+            limit = { has_trait = masque_clavicus_vile_bearer }
+            remove_trait = masque_clavicus_vile_bearer
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = masque_clavicus_vile_bearer
+            }
+        }
+        if = {
+            limit = { has_trait = spellbreaker_bearer }
+            remove_trait = spellbreaker_bearer
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = spellbreaker_bearer
+            }
+        }
+        if = {
+            limit = { has_trait = dawnbreaker_bearer }
+            remove_trait = dawnbreaker_bearer
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = dawnbreaker_bearer
+            }
+        }
+        if = {
+            limit = { has_trait = staff_of_magnus_bearer }
+            remove_trait = staff_of_magnus_bearer
+            random_vassal = {
+                limit = { is_adult = yes }
+                add_trait = staff_of_magnus_bearer
+            }
+        }
         add_prestige = -50
         add_stress   = 10
     }
@@ -304,5 +431,513 @@ daedric_artifact.030 = {
     option = {
         name = daedric_artifact.030.b   # "Keep it. Its power is mine."
         add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.040  The Forbidden Tome — Oghma Infinium
+# Hermaeus Mora's tome of all knowledge arrives unbidden.
+# Its reader is transformed — but the obsession never ends.
+# ---------------------------------------------------------------
+daedric_artifact.040 = {
+    type  = character_event
+    title = daedric_artifact.040.t
+    desc  = daedric_artifact.040.desc
+    theme = learning
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = oghma_infinium_reader }
+    }
+
+    option = {
+        name = daedric_artifact.040.a   # "Read every word. The forbidden is only knowledge not yet claimed."
+        add_trait = oghma_infinium_reader
+        add_character_modifier = {
+            modifier = oghma_knowledge_surge
+            days = 365
+        }
+        trigger_event = { id = daedric_artifact.100 days = 730 }
+    }
+
+    option = {
+        name = daedric_artifact.040.b   # "Seal the book and burn the crate. Some prices are too high."
+        add_piety = 75
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.050  A Star That Does Not Break — Azura's Star
+# A perfect soulgem touched by the Twilight Queen appears
+# among plundered goods.  Azura watches who keeps her gift.
+# ---------------------------------------------------------------
+daedric_artifact.050 = {
+    type  = character_event
+    title = daedric_artifact.050.t
+    desc  = daedric_artifact.050.desc
+    theme = learning
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = azuras_star_bearer }
+        NOT = { has_trait = black_star_bearer }
+    }
+
+    option = {
+        name = daedric_artifact.050.a   # "The Star is mine now. Azura's patience can extend a little further."
+        add_trait = azuras_star_bearer
+        add_character_modifier = {
+            modifier = daedric_artifact_new_bearer
+            days = 365
+        }
+        trigger_event = { id = daedric_artifact.110 days = 365 }
+    }
+
+    option = {
+        name = daedric_artifact.050.b   # "Return it. Some gifts belong to their givers."
+        add_prestige = 50
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.055  A Star Turned Black — the Black Star
+# The necromancer Malyn Varen's corrupted Azura's Star surfaces.
+# Its darkness runs deeper than the original's light.
+# ---------------------------------------------------------------
+daedric_artifact.055 = {
+    type  = character_event
+    title = daedric_artifact.055.t
+    desc  = daedric_artifact.055.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = azuras_star_bearer }
+        NOT = { has_trait = black_star_bearer }
+    }
+
+    option = {
+        name = daedric_artifact.055.a   # "Keep the Black Star. Its corruption is its power."
+        add_trait = black_star_bearer
+        add_character_modifier = {
+            modifier = daedric_artifact_new_bearer
+            days = 365
+        }
+        add_stress = 10
+        trigger_event = { id = daedric_artifact.110 days = 365 }
+    }
+
+    option = {
+        name = daedric_artifact.055.b   # "Destroy it. Malyn's work should not persist."
+        add_piety = 50
+        add_prestige = 25
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.060  The Rose That Bleeds — Sanguine Rose
+# Sanguine's conjuring staff arrives at court in a most
+# flamboyant fashion.  The Dremora it summons has expectations.
+# ---------------------------------------------------------------
+daedric_artifact.060 = {
+    type  = character_event
+    title = daedric_artifact.060.t
+    desc  = daedric_artifact.060.desc
+    theme = court
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = sanguine_rose_wielder }
+    }
+
+    option = {
+        name = daedric_artifact.060.a   # "Accept the Rose. Sanguine's gift seems more pleasant than most Daedra."
+        add_trait = sanguine_rose_wielder
+        add_character_modifier = {
+            modifier = sanguine_rose_dremora_contract
+            days = 730
+        }
+        trigger_event = { id = daedric_artifact.120 days = 1095 }
+    }
+
+    option = {
+        name = daedric_artifact.060.b   # "Decline politely. Sanguine's parties are legendary for good reasons."
+        add_prestige = 25
+        add_stress = -5
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.065  The Mace of Coldharbour — Mace of Molag Bal
+# Molag Bal's soul-ripping mace is unearthed in a deeply
+# sealed dungeon.  Its bearer earns fear throughout the realm.
+# ---------------------------------------------------------------
+daedric_artifact.065 = {
+    type  = character_event
+    title = daedric_artifact.065.t
+    desc  = daedric_artifact.065.desc
+    theme = martial
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = mace_of_molag_bal_bearer }
+    }
+
+    option = {
+        name = daedric_artifact.065.a   # "Claim it. The King of Coldharbour's weapon is worth any price."
+        add_trait = mace_of_molag_bal_bearer
+        add_character_modifier = {
+            modifier = mace_molag_bal_intimidation
+            days = 730
+        }
+        add_character_modifier = {
+            modifier = daedric_artifact_new_bearer
+            days = 365
+        }
+        trigger_event = { id = daedric_artifact.130 days = 1460 }
+    }
+
+    option = {
+        name = daedric_artifact.065.b   # "Re-seal the chamber. This was locked away for a reason."
+        add_piety = 75
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.070  The Mask of Bargains — Masque of Clavicus Vile
+# Clavicus Vile's golden face-mask arrives via a suspiciously
+# charming merchant.  Courts adore whoever wears it — a little
+# too much.
+# ---------------------------------------------------------------
+daedric_artifact.070 = {
+    type  = character_event
+    title = daedric_artifact.070.t
+    desc  = daedric_artifact.070.desc
+    theme = diplomacy
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = masque_clavicus_vile_bearer }
+    }
+
+    option = {
+        name = daedric_artifact.070.a   # "Wear the Masque. Clavicus's gift is exactly what a ruler needs."
+        add_trait = masque_clavicus_vile_bearer
+        add_character_modifier = {
+            modifier = daedric_artifact_new_bearer
+            days = 365
+        }
+    }
+
+    option = {
+        name = daedric_artifact.070.b   # "Refuse it. Clavicus always gets more from a deal than the other party."
+        add_prestige = 50
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+
+    option = {
+        name = daedric_artifact.070.c   # "Destroy it. A Daedra wearing your face through a mask is not diplomacy."
+        add_piety = 50
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.075  The Unbreakable Ward — Spellbreaker
+# A Dwemer-forged shield emerges from northern ruins,
+# guarded by an automaton that simply stepped aside.
+# Peryite's artifact wards against magic and disease alike.
+# ---------------------------------------------------------------
+daedric_artifact.075 = {
+    type  = character_event
+    title = daedric_artifact.075.t
+    desc  = daedric_artifact.075.desc
+    theme = martial
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = spellbreaker_bearer }
+    }
+
+    option = {
+        name = daedric_artifact.075.a   # "Take up Spellbreaker. Peryite's ward is the best defense against magic."
+        add_trait = spellbreaker_bearer
+        add_character_modifier = {
+            modifier = daedric_artifact_new_bearer
+            days = 365
+        }
+    }
+
+    option = {
+        name = daedric_artifact.075.b   # "Leave it. Peryite's attention is a kind of plague in itself."
+        add_piety = 50
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.080  Meridia's Beacon — Dawnbreaker
+# A blazing sword is found in a long-sealed tomb.
+# Meridia's artifact sword burns with golden light anathema
+# to undead, and its bearer carries the Lady's purpose.
+# ---------------------------------------------------------------
+daedric_artifact.080 = {
+    type  = character_event
+    title = daedric_artifact.080.t
+    desc  = daedric_artifact.080.desc
+    theme = martial
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = dawnbreaker_bearer }
+    }
+
+    option = {
+        name = daedric_artifact.080.a   # "Take up Dawnbreaker. Meridia's cause is righteous."
+        add_trait = dawnbreaker_bearer
+        add_character_modifier = {
+            modifier = dawnbreaker_blessed_light
+            days = 365
+        }
+    }
+
+    option = {
+        name = daedric_artifact.080.b   # "Leave it. Even benevolent Daedra bend those who serve them."
+        add_piety = 50
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.090  The Architect's Regret — Staff of Magnus
+# The artifact of Magnus — the god who designed the world and
+# fled it — surfaces in a scholar's possession.  It drains
+# magic from everything nearby, and it never stops.
+# ---------------------------------------------------------------
+daedric_artifact.090 = {
+    type  = character_event
+    title = daedric_artifact.090.t
+    desc  = daedric_artifact.090.desc
+    theme = learning
+
+    trigger = {
+        is_adult = yes
+        NOT = { has_trait = staff_of_magnus_bearer }
+    }
+
+    option = {
+        name = daedric_artifact.090.a   # "Take up the Staff. Magnus's power is worth any price."
+        add_trait = staff_of_magnus_bearer
+        add_character_modifier = {
+            modifier = daedric_artifact_new_bearer
+            days = 365
+        }
+    }
+
+    option = {
+        name = daedric_artifact.090.b   # "Return it to the archive. Some artifacts belong to history."
+        add_prestige = 50
+        add_piety    = 25
+        set_character_flag = {
+            flag = artifact_refused_year
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.100  The Tome's Second Hunger
+# Yearly obsession check for the Oghma Infinium reader.
+# Hermaeus Mora has added new pages — written for this reader
+# specifically.  The Prince of Forbidden Knowledge is patient.
+# ---------------------------------------------------------------
+daedric_artifact.100 = {
+    type  = character_event
+    title = daedric_artifact.100.t
+    desc  = daedric_artifact.100.desc
+    theme = learning
+
+    trigger = {
+        is_adult = yes
+        has_trait = oghma_infinium_reader
+        NOT = { has_character_flag = oghma_obsession_check }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = oghma_obsession_check
+            days = 730
+        }
+    }
+
+    option = {
+        name = daedric_artifact.100.a   # "Read the new pages. Knowledge is its own justification."
+        add_stress = 20
+        add_character_modifier = {
+            modifier = oghma_knowledge_surge
+            days = 365
+        }
+    }
+
+    option = {
+        name = daedric_artifact.100.b   # "Set the book aside. I will not let Mora's gift master me."
+        add_stress = 30
+        add_piety = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.110  The Star Stirs
+# Azura's Star (or the Black Star) senses a nearby soul ripe
+# for capture.  The bearer decides whether to use the gem as
+# intended — or to let the soul pass on in peace.
+# ---------------------------------------------------------------
+daedric_artifact.110 = {
+    type  = character_event
+    title = daedric_artifact.110.t
+    desc  = daedric_artifact.110.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        OR = {
+            has_trait = azuras_star_bearer
+            has_trait = black_star_bearer
+        }
+        NOT = { has_character_flag = azura_star_soul_captured }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = azura_star_soul_captured
+            days = 730
+        }
+    }
+
+    option = {
+        name = daedric_artifact.110.a   # "Capture the soul. The Star hungers."
+        add_character_modifier = {
+            modifier = azuras_star_soul_charged
+            days = 365
+        }
+        add_prestige = 25
+    }
+
+    option = {
+        name = daedric_artifact.110.b   # "Let the soul pass. I carry the Star; I do not own its purpose."
+        add_piety = 40
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.120  The Dremora's Due
+# The Dremora bound by the Sanguine Rose arrives at the war
+# tent for payment.  The contract has come due.
+# ---------------------------------------------------------------
+daedric_artifact.120 = {
+    type  = character_event
+    title = daedric_artifact.120.t
+    desc  = daedric_artifact.120.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        has_trait = sanguine_rose_wielder
+        NOT = { has_character_flag = sanguine_dremora_payment }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = sanguine_dremora_payment
+            days = 1095
+        }
+    }
+
+    option = {
+        name = daedric_artifact.120.a   # "Pay the contract. The Dremora's service has been worth every coin."
+        add_gold = -50
+        add_stress = 10
+        add_character_modifier = {
+            modifier = sanguine_rose_dremora_contract
+            days = 730
+        }
+    }
+
+    option = {
+        name = daedric_artifact.120.b   # "Refuse payment. Let it come for what it is owed."
+        add_stress = 25
+        add_character_modifier = {
+            modifier = artifact_health_drain
+            days = 180
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# daedric_artifact.130  The Father of Vampires Calls
+# Molag Bal speaks through the Mace directly, offering the
+# bearer his complete gift — vampirism, dominion, undeath.
+# The bearer has until morning to consider.
+# ---------------------------------------------------------------
+daedric_artifact.130 = {
+    type  = character_event
+    title = daedric_artifact.130.t
+    desc  = daedric_artifact.130.desc
+    theme = intrigue
+
+    trigger = {
+        is_adult = yes
+        has_trait = mace_of_molag_bal_bearer
+        NOT = { has_character_flag = molag_bal_vampirism_offered }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = molag_bal_vampirism_offered
+            days = 1825
+        }
+    }
+
+    option = {
+        name = daedric_artifact.130.a   # "Accept. Molag Bal's complete gift is offered to very few."
+        add_trait = artifact_corruption
+        add_stress = -10
+        add_prestige = 50
+    }
+
+    option = {
+        name = daedric_artifact.130.b   # "Refuse. I carry the Mace; I will not let it carry me."
+        add_stress = 20
+        add_piety = 50
     }
 }

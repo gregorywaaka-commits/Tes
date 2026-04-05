@@ -64,3 +64,123 @@
  daedric_artifact.030.desc: "You have borne it long enough to know what it is doing, and long enough to wonder whether you can be rid of it. The artifact does not want to leave — you can feel its reluctance like a cold hand at the back of your neck — but it is a thing of will and of opportunity, and there is a vassal in your court who has been watching it with the exact expression you wore the day you first saw it. Hunger mixed with fear mixed with the certainty that they could handle it better than you. They cannot. But the artifact does not know that yet."
  daedric_artifact.030.a: "Pass the artifact on. Let another carry this weight."
  daedric_artifact.030.b: "No. Its power is mine, and I will hold it yet."
+
+ # =====================================================================
+ #  DAEDRIC ARTIFACTS — EXTENDED MODIFIERS
+ # =====================================================================
+
+ oghma_knowledge_surge: "Oghma's Surge"
+ oghma_knowledge_surge_desc: "The Oghma Infinium has flooded its reader with all knowledge at once. Every discipline is suddenly, overwhelmingly clear. The surge will fade. The obsession will not."
+
+ azuras_star_soul_charged: "Star Charged"
+ azuras_star_soul_charged_desc: "Azura's Star holds a captured soul within its crystalline heart. The bearer can feel it — a warmth, a pressure, a presence waiting to be used or released."
+
+ sanguine_rose_dremora_contract: "Dremora Contract"
+ sanguine_rose_dremora_contract_desc: "A Dremora warrior is bound to this bearer's service by the laws of Oblivion and the will of Sanguine. The contract holds. The Dremora is formidable. The debt is accumulating."
+
+ mace_molag_bal_intimidation: "Coldharbour's Shadow"
+ mace_molag_bal_intimidation_desc: "Word has spread: this ruler carries the Mace of Molag Bal, the soul-ripper of Coldharbour. Nearby courts grow quiet. Schemes feel less safe. The King of Rape's reputation travels ahead of the bearer."
+
+ dawnbreaker_blessed_light: "Meridia's Radiance"
+ dawnbreaker_blessed_light_desc: "Meridia's light shines through the bearer of Dawnbreaker, purging the taint of undeath and disease from the surrounding lands. The Lady of Infinite Energies keeps her champion well."
+
+ # =====================================================================
+ #  DAEDRIC ARTIFACTS — EXTENDED TRAITS
+ # =====================================================================
+
+ oghma_infinium_reader: "Oghma Infinium Reader"
+ oghma_infinium_reader_desc: "This character has read the Oghma Infinium — Hermaeus Mora's forbidden tome of absolute knowledge. Every art, every skill, every secret the world contains was laid bare in those pages. They emerged transformed and consumed. The Oghma does not release those who truly read it."
+
+ azuras_star_bearer: "Bearer of Azura's Star"
+ azuras_star_bearer_desc: "This character carries Azura's Star — the Daedric soulgem that cannot be broken. The Twilight Queen's artifact captures the essence of the fallen and holds it in perfect, shimmering silver, awaiting use. Azura watches those who carry her gift with particular attention."
+
+ black_star_bearer: "Bearer of the Black Star"
+ black_star_bearer_desc: "This character carries the Black Star — Azura's soulgem corrupted by the necromancer Malyn Varen into something that can capture the souls of the living. The warm silver of Azura's original craft has darkened to obsidian. Something inside it is always hungry."
+
+ sanguine_rose_wielder: "Sanguine Rose Wielder"
+ sanguine_rose_wielder_desc: "This character wields the Sanguine Rose — the conjuring staff of Sanguine, Daedric Prince of Debauchery, Bloodlust, and Revelry. It can summon a Dremora warrior from Oblivion at need, though the Dremora does not come without expectations of its own."
+
+ mace_of_molag_bal_bearer: "Mace of Molag Bal Bearer"
+ mace_of_molag_bal_bearer_desc: "This character carries the Mace of Molag Bal — the soul-ripping weapon of the King of Rape, Prince of Domination and Father of Vampires. Every soul it strikes is left diminished. Every court that hears its name grows quieter."
+
+ masque_clavicus_vile_bearer: "Masque of Clavicus Vile"
+ masque_clavicus_vile_bearer_desc: "This character wears the Masque of Clavicus Vile — the face of the Prince of Bargains made manifest as a wearable mask. Courts adore the wearer. Enemies negotiate. Deals close easily. And all the while, Clavicus Vile smiles with their smile, working his will through their charm."
+
+ spellbreaker_bearer: "Spellbreaker Bearer"
+ spellbreaker_bearer_desc: "This character carries Spellbreaker — Peryite's artifact, an ancient Dwemer-forged tower shield that wards against magic. Every spell that strikes it is dissipated. Every disease that would take the bearer falters. The Taskmaster's artifact asks only that the bearer maintain their vigilance."
+
+ dawnbreaker_bearer: "Dawnbreaker Bearer"
+ dawnbreaker_bearer_desc: "This character wields Dawnbreaker — the blade of Meridia, Lady of Infinite Energies and enemy of undeath. The sword blazes with golden light that is anathema to undead and Daedric spirits alike. To carry it is to carry Meridia's purpose."
+
+ staff_of_magnus_bearer: "Staff of Magnus Bearer"
+ staff_of_magnus_bearer_desc: "This character carries the Staff of Magnus — the artifact of the et'Ada who designed the architecture of the world and then fled it, becoming the sun. The Staff drains magical energy from everything nearby. Great mages feel it before they see it. Magnus built the world and abandoned it. This bearer holds what he left behind."
+
+ # =====================================================================
+ #  DAEDRIC ARTIFACTS — EXTENDED EVENTS (040-130)
+ # =====================================================================
+
+ daedric_artifact.040.t: "The Forbidden Tome"
+ daedric_artifact.040.desc: "The Oghma Infinium arrived in a crate addressed to no one, delivered by a scholar whose name your chamberlain cannot recall and who cannot be found now in any of your records. The book is leather-bound and ordinary-looking, except that the leather breathes, and the pages open to different sections depending on who holds it, and every word in it is true. You know this last part the way you know when rain is coming — a certainty without source. Hermaeus Mora, Prince of Forbidden Knowledge, is offering you everything. The price is not listed."
+ daedric_artifact.040.a: "Read every word. The forbidden is only knowledge not yet claimed."
+ daedric_artifact.040.b: "Seal the book and burn the crate. Some prices are too high."
+
+ daedric_artifact.050.t: "A Star That Does Not Break"
+ daedric_artifact.050.desc: "In the treasury of a defeated lord you find it among the ordinary plunder: a soulgem unlike any other, perfectly clear, the size of a clenched fist, with a five-pointed star of pure light suspended at its heart. No enchanter in your court can determine its origin. An old Dunmer priest arrives three days later and falls silent when he sees it. Then, after a long moment, he says simply: 'That is Azura's. She lets some keep it for a while.' He will say nothing more. The Star sits on your table, patient as a god."
+ daedric_artifact.050.a: "The Star is mine now. Azura's patience can extend a little further."
+ daedric_artifact.050.b: "Return it to the Dunmer priest. Some gifts belong to their givers."
+
+ daedric_artifact.055.t: "A Star Turned Black"
+ daedric_artifact.055.desc: "You have seen Azura's Star, and this is not it — not anymore. What the necromancer Malyn Varen did to the gem is unambiguous to anyone who looks too long: the light inside it has gone dark, and it reaches now for living souls rather than the already-dead. A brilliant corruption. A terrible one. The gem is more powerful than Azura intended, and colder, and something inside it moves. The Dunmer enchanters who identified it left the room quickly and would not return. The Black Star waits for you to decide what to do with Malyn's legacy."
+ daedric_artifact.055.a: "Keep the Black Star. Its corruption is its power."
+ daedric_artifact.055.b: "Destroy it. Malyn's work should not persist in the world."
+
+ daedric_artifact.060.t: "The Rose That Bleeds"
+ daedric_artifact.060.desc: "Sanguine did not send a messenger. That would have been too restrained. Instead, you received an invitation — a single red rose on your pillow, its thorns leaving no mark, with a note in a script that manages to seem both flamboyant and illegible. The rose has not wilted in four days. Your court mage says it is not a flower at all but a carved staff of some material he has never seen, shaped to resemble one. When held in the right way it hums with the distant sound of Oblivion feasting. Sanguine's Rose calls for a new hand. The Prince of Debauchery is very enthusiastic about this particular transaction."
+ daedric_artifact.060.a: "Accept the Rose. Sanguine's gift seems more pleasant than most Daedra."
+ daedric_artifact.060.b: "Decline, politely. Sanguine's parties are legendary for good reasons."
+
+ daedric_artifact.065.t: "The Mace of Coldharbour"
+ daedric_artifact.065.desc: "You found it in a dungeon below the dungeon — a chamber sealed with the kind of care that suggests whoever put the seals there wanted very much not to be responsible for what happened if they were broken. The mace inside is massive, black iron with spiked flanges, and it radiates cold rather than heat. Your archivist read the inscription in a whisper and refused to translate it. You had to press him hard before he admitted: the inscription names Molag Bal as its maker, and declares its purpose in the old Daedric script without ambiguity. In your hands the mace feels light, ready, waiting. Molag Bal made this thing to rip souls from bodies. You are holding it now."
+ daedric_artifact.065.a: "Claim it. The King of Coldharbour's weapon is worth any price."
+ daedric_artifact.065.b: "Re-seal the chamber. This was locked away for a reason."
+
+ daedric_artifact.070.t: "The Mask of Bargains"
+ daedric_artifact.070.desc: "It arrived with a merchant who claimed to have acquired it honestly, though his explanation of the provenance shifted three times and he kept referring to 'the small one' who sold it to him as though describing a person and an experience rather than a vendor in a market stall. The mask is decorative, almost beautiful — hammered gold with hollow eyes that catch light oddly. When your court enchanter tested it, every person in the room agreed that whoever wore it seemed somehow more reasonable, more charming, more deserving of trust. He took it off quickly. Clavicus Vile is a Prince of Bargains and Trickery, and this is his face, made available. The question is what he wants done with it."
+ daedric_artifact.070.a: "Wear the Masque. Clavicus's gift is exactly what a ruler needs."
+ daedric_artifact.070.b: "Refuse it. Clavicus always gets more from a deal than the other party."
+ daedric_artifact.070.c: "Destroy it. A Daedra wearing your face through a mask is not diplomacy."
+
+ daedric_artifact.075.t: "The Unbreakable Ward"
+ daedric_artifact.075.desc: "The shield came from the Dwemer ruins to the north, carried out by a salvager who reported she found it in a sealed room with no doors, with a Dwemer automaton still standing guard over it. The automaton did not attack her — it stepped aside. She found this more unsettling than an attack would have been. The shield is clearly Dwemer in construction but feels wrong for their aesthetic — too plain, too heavy, too obviously meant for a person rather than a machine. Your court mage identifies it as Spellbreaker: Peryite's artifact, the Taskmaster's gift to those who face magical threats. It turns spells like water off stone. The Taskmaster's attention is not entirely welcome, but neither is being turned inside-out by a battle-mage."
+ daedric_artifact.075.a: "Take up Spellbreaker. Peryite's ward is the best defense against magic."
+ daedric_artifact.075.b: "Leave it. Peryite's attention is a kind of plague in itself."
+
+ daedric_artifact.080.t: "Meridia's Beacon"
+ daedric_artifact.080.desc: "The tomb had been silent for three hundred years. Your excavators broke the outer wall in search of building materials and found something else: light. Not lantern light or moonlight but a cold, constant radiance coming from the far end of the central chamber, and at its source a sword with a blade the colour of a dawn horizon, wrapped in light so thick it cast shadows. The priest in your retinue fell to her knees at the threshold. She said it was a blessing — that Meridia had guided you here. Meridia, the Lady of Infinite Energies, hates the undead above all things, and her sword exists to end them. Carrying it means carrying her purpose, and her attention. The sword has been waiting a long time for someone worthy of its light."
+ daedric_artifact.080.a: "Take up Dawnbreaker. Meridia's cause is righteous."
+ daedric_artifact.080.b: "Leave it. Even benevolent Daedra bend those who serve them."
+
+ daedric_artifact.090.t: "The Architect's Regret"
+ daedric_artifact.090.desc: "Your scholars argued about it for a week before agreeing: the staff is the Staff of Magnus, the artifact of the et'Ada who designed the architecture of the world before the creation of Mundus and who then fled rather than be bound to what he had made, becoming the sun. The Staff remains, and it drains magic. Every enchantment near it guttered. Every mage in your court felt it before they saw it — a cold feeling of being slightly less than they had been. In your hands it feels enormous, not in size but in weight of consequence. Magnus built the world and abandoned it. You are holding what he left behind."
+ daedric_artifact.090.a: "Take up the Staff. Magnus's power is worth any price."
+ daedric_artifact.090.b: "Return it to the scholarly archive. Some artifacts belong to history."
+
+ daedric_artifact.100.t: "The Tome's Second Hunger"
+ daedric_artifact.100.desc: "It started with the margins. You had read the Oghma Infinium once — front to back, every word, every cipher — and the experience had changed you so fundamentally that the person you were before feels like a story about someone else. That should have been enough. It was not. The margins have text in them now that was not there before. Small words, cramped and fine, in scripts you have not seen — except that you can read them, suddenly, the way you could not before. Hermaeus Mora is adding to the book. He is adding to it specifically for you, in languages only you now know, about subjects that only your particular mind would find interesting. The Oghma Infinium knows what you want. It always has more."
+ daedric_artifact.100.a: "Read the new pages. Knowledge is its own justification."
+ daedric_artifact.100.b: "Set the book aside. I will not let Mora's gift master me."
+
+ daedric_artifact.110.t: "The Star Stirs"
+ daedric_artifact.110.desc: "There is a soul nearby — you can feel it, or rather the Star can feel it and you can feel the Star feeling it, which is different and stranger than any sense you were born with. Someone powerful enough to be worth the capturing has died within range of the gem's strange perception. The Star vibrates with something almost like eagerness. Azura designed it as a mercy — to allow souls to pass on rather than be trapped forever in lesser gems — but the opportunity remains: you could fill it instead. Azura would notice. She always notices."
+ daedric_artifact.110.a: "Capture the soul. The Star's power is there to be used."
+ daedric_artifact.110.b: "Let the soul pass. I carry the Star; I do not own its purpose."
+
+ daedric_artifact.120.t: "The Dremora's Due"
+ daedric_artifact.120.desc: "The Dremora arrived at your war tent just before dawn, wearing your colours over its Daedric armour as though the two things were entirely compatible, which they were not. It informed you, with the specific formal courtesy of a being that could destroy most armies and has chosen not to, that its contracted service is due for payment. The Rose had not mentioned payment when it summoned the Dremora. The Dremora had not mentioned it either, until now. It names a specific quantity of gold, a service to be performed on its behalf, or — and here its expression did something unreadable — an extension of service to Sanguine. It will wait outside. It is, it notes, very patient."
+ daedric_artifact.120.a: "Pay the contract. The Dremora's service has been worth every coin."
+ daedric_artifact.120.b: "Refuse payment. Let it come for what it is owed."
+
+ daedric_artifact.130.t: "The Father of Vampires Calls"
+ daedric_artifact.130.desc: "It was not a dream. You are certain of this because you do not dream like this — too cold, too specific, the smell of Coldharbour too precisely rendered in sensation for a mind to invent from nothing. Molag Bal spoke to you directly through the Mace. Not gently and not at length: he offered you the complete gift. Not the mace alone but everything the mace represents — dominion, undeath, the full inheritance of Coldharbour's father-kingdom. To be what the mace has been making you into all along. His voice was the cold of the Mace, and the invitation was exactly as pleasant as that implies. You have until morning to consider."
+ daedric_artifact.130.a: "Accept. Molag Bal's complete gift is offered to very few."
+ daedric_artifact.130.b: "Refuse. I carry the Mace; I will not let it carry me."

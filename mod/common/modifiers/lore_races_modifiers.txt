@@ -2364,3 +2364,71 @@ almalexia_hands_blessing = {
     monthly_piety        = 2
     monthly_prestige     = 2
 }
+
+# =============================================================
+#  Daedric Artifacts — Extended Modifiers
+#  (Oghma Infinium, Azura's Star, Sanguine Rose,
+#   Mace of Molag Bal, Dawnbreaker)
+#  Defined here; used by mod/events/daedric_artifacts_events.txt
+# =============================================================
+
+# ---------------------------------------------------------------
+#  OGHMA KNOWLEDGE SURGE
+#  The Oghma Infinium floods its reader with all knowledge at
+#  once — an overwhelming burst of scholarship across every art.
+#  learning +4: every discipline suddenly clear.
+#  Duration: 365 days (the surge fades; the obsession remains).
+# ---------------------------------------------------------------
+oghma_knowledge_surge = {
+    learning                   = 4
+    monthly_prestige_gain_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  AZURA'S STAR SOUL-CHARGED
+#  The Star of Azura is full — a captured soul resonates within
+#  the gem, awaiting release or use.
+#  intrigue +2: the bearer can sense and leverage the trapped essence.
+#  Duration: 365 days (until the soul is spent or released).
+# ---------------------------------------------------------------
+azuras_star_soul_charged = {
+    intrigue                   = 2
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  SANGUINE ROSE DREMORA CONTRACT
+#  The Rose has bound a Dremora to the bearer's service under
+#  the laws of Oblivion.  The contract holds — for now.
+#  martial +2: the Dremora warrior reinforces the army.
+#  Duration: 730 days (2 years, or until contract is called in).
+# ---------------------------------------------------------------
+sanguine_rose_dremora_contract = {
+    martial                    = 2
+    monthly_prestige_gain_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  MACE OF MOLAG BAL INTIMIDATION
+#  Word has spread: this ruler carries the King of Rape's mace.
+#  Nearby rulers keep their distance.  Schemes feel less safe.
+#  dread_gain_mult +0.20: fear is the Mace's greatest weapon.
+#  Duration: 730 days (2 years — the stories spread and settle).
+# ---------------------------------------------------------------
+mace_molag_bal_intimidation = {
+    dread_gain_mult            = 0.20
+    monthly_prestige_gain_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  DAWNBREAKER BLESSED LIGHT
+#  Meridia's radiance shines through the bearer, purging the
+#  taint of undeath and disease from the surrounding area.
+#  health +0.50: Meridia's light is anathema to rot and disease.
+#  monthly_piety_gain_mult +0.10: the Lady of Infinite Energies blesses.
+#  Duration: 365 days (renewed through combat with undead).
+# ---------------------------------------------------------------
+dawnbreaker_blessed_light = {
+    health                     = 0.50
+    monthly_piety_gain_mult    = 0.10
+}
