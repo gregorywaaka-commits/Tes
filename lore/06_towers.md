@@ -103,6 +103,18 @@ Key principles `[CANON — UESP]`:
 - **Significance:** Walk-Brass is unusual — it is a **mobile Tower** in the form of a giant brass golem. It can rewrite reality through brute force. Tiber Septim used it to conquer Tamriel; the Numidium's activation caused a **Dragon Break** (multiple contradictory timelines simultaneously true). `[CANON — UESP]`
 - **Dragon Break:** The "**Warp in the West**" at the end of Daggerfall is the most famous Dragon Break — all six endings of TES II: Daggerfall are simultaneously canon. `[CANON — UESP developer confirmation]`
 
+### 9. Orichalc Tower (Yokuda) `[SOFT CANON — UESP]`
+> **Source:** UESP Lore:Towers — https://en.uesp.net/wiki/Lore:Tower
+
+- **Location:** **Yokuda** — the Redguard homeland, now submerged beneath the ocean west of Tamriel
+- **Stone:** Unknown; likely an orichalcum artifact or equivalent (no in-game text names the Stone)
+- **Builder:** Unknown — pre-Ra Gada Yokudan civilisation
+- **Status:** **Destroyed** — Yokuda sank c. **1E 792**; the Orichalc Tower's fall is believed to be the proximate cause of the continent's destruction. `[SOFT CANON — the Tower/sinking connection is inferred from the Tower framework; no single in-game text states it directly]`
+- **Mod county:** *Omitted* — Yokuda is submerged; there is no playable county. Redguard characters carry cultural memory of Yokuda but no Tower Stone equivalent.
+- **Notes:** The Ra Gada who fled to Hammerfell carried Yokudan traditions (Ruptga, Tu'whacca, the Ansei sword-singers) but no functioning Tower. The absence of a Tower Stone mechanic in Hammerfell is therefore **lore-accurate** — the Stone sank with the continent. Any future mod content giving Hammerfell a Tower Stone would contradict this. `[CANON — UESP Lore:Yokuda; Lore:Ra Gada]`
+
+⚠️ **Implementation note:** `mod/events/yokuda_events.txt` correctly references "the Orichalc Tower fell" as the cause of Yokuda sinking. No event should contradict this framing.
+
 ---
 
 ## Disputed / Lesser Towers `[SOFT CANON or CONTESTED]`

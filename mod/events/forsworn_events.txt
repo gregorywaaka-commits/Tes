@@ -1,6 +1,21 @@
 # =============================================================
 #  Forsworn / Hagraven Deep System Events — namespace: forsworn
 #  File: mod/events/forsworn_events.txt
+#
+#  LORE DATE NOTE — SECOND ERA NAMING:
+#  ─────────────────────────────────────
+#  In EK2's Second Era timeframe (2E 440–896), these characters are
+#  "Reachmen" or "Witchmen of High Rock" — NOT "Forsworn".
+#
+#  "Forsworn" is a FOURTH ERA term, coined after the Markarth Incident
+#  (4E 174–176) when Ulfric Stormcloak expelled the Reachmen from
+#  Markarth following the Great War.  The Reachmen who refused to
+#  surrender became the "Forsworn" in Stormcloak / Imperial framing.
+#  [CANON — TES V: Skyrim; UESP Lore:Forsworn; Lore:Markarth Incident]
+#
+#  Display text and event flavor MUST use "Reachmen" for Second Era
+#  starts and "Forsworn" only for Fourth Era starts.  The trait
+#  reachman_heritage is the correct identifier in all eras.
 # =============================================================
 
 namespace = forsworn

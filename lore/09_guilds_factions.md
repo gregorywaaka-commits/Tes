@@ -9,6 +9,8 @@
 > **Source:** UESP Lore:Mages Guild — https://en.uesp.net/wiki/Lore:Mages_Guild
 
 - **Founded:** c. **2E 230** by **Vanus Galerion** on Summerset Isle `[CANON — UESP]`
+
+> ⚠️ **LINKED EVENT — ARTAEUM WITHDRAWAL:** Galerion was a student of the **Psijic Order** on Artaeum before he broke with them to found the Mages Guild. His departure was the final break that caused the Psijic Order to **withdraw Artaeum from the mundane world** — also c. 2E 230. **These are the same event from two perspectives.** Any mod content referencing either should acknowledge the other. The founding of the Mages Guild and the disappearance of Artaeum are inseparable. `[CANON — UESP Lore:Psijic Order; Lore:Vanus Galerion]`
 - **Purpose:** Unify magical practitioners across Tamriel; regulate magic use; provide spell merchants; conduct magical research; perform public charity work
 - **Leadership:** **Arch-Mage** at the top; **Council of Mages** as senior body; local Guildmasters per city
 - **Headquarters (3E):** **Arcane University**, Imperial City, Cyrodiil `[CANON — TES IV: Oblivion]`
@@ -282,6 +284,8 @@ The fundamental **political divide** in Redguard (Hammerfell) society.
 > **Source:** In-game books: The Cleansing of the Fane; The Monomyth
 
 - **Founded:** **1E 358** — formed to enforce and extend the teachings of **Saint Alessia** after the Alessian Rebellion. `[CANON — UESP]`
+
+> ⚠️ **DATE ACCURACY NOTE:** Alessia herself **died c. 1E 266** — approximately 92 years before the Order bearing her name was founded. The Alessian Order was founded by the prophet **Marukh** *in her memory*, not by Alessia. Alessia's original achievement was the Slave Revolt (1E 243) and the binding of Akatosh via the Amulet of Kings (1E 243). The Order is a *later theocratic movement* that claimed her legacy. **Do not conflate:** Alessia's slave revolt (1E 243) ≠ the Alessian Order (1E 358 onward). `[CANON — UESP Lore:Alessia; Lore:Alessian Order]`
 - **Purpose:** A theocratic religious order enforcing a strict monotheism focused on **Akatosh** (the Dragon God of Time, the One). Promoted the "Marukhati Selective" — an extreme sect that attempted mythopoeic rituals to "purify" Akatosh of Aldmeri influence (the merger with Auri-El). This caused the **Middle Dawn Dragon Break (c. 1E 1200–2208)**. `[CANON — UESP: Lore:Middle Dawn]`
 - **Doctrines:**
   - Monotheistic — all divinity reduces to the One (Akatosh); other divines are aspects, not equals

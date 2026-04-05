@@ -2047,3 +2047,600 @@ Use this checklist when writing event prose to ensure lore accuracy:
 *End of session 2026-04-05 (second pass) notes.*
 
 *§17 should be consulted alongside §16 before beginning any Walking Ways implementation work.*
+
+---
+
+## 18. Lore Audit — Missed Items and Corrections (Third Pass)
+
+> **Added:** Session 2026-04-05 (third pass) — a comprehensive sweep of every
+> event file and lore reference document looking for gaps, date errors, and
+> lore-accuracy issues not yet addressed by §§16–17.
+
+---
+
+### 18.1 Ongoing Audit Findings
+
+These items were identified during the sweep and are not yet addressed elsewhere in
+this document. Some require changes to existing event files; others are design notes
+for future writing.
+
+---
+
+#### 18.1a Ranser's War — Daggerfall Covenant founding date discrepancy
+
+**File:** `mod/events/ranser_war_events.txt`, header comment line 25
+
+**Current text:** *"the seed of the Daggerfall Covenant (formally established 2E 566)"*
+
+**Problem:** This is internally contradictory within the same comment. Ranser's
+War is `2E 566–567`. The Covenant is typically cited as formally established
+**after** Ranser's defeat at Markwasten Moor — which is 2E 567, not 2E 566 (the
+start of the war). UESP dates the Daggerfall Covenant's formal establishment to
+**2E 566** as well, but specifically after Ranser attacked — meaning the Covenant
+*coalesces* during the war as Emeric builds his coalition. This is a compressed
+timeline.
+
+**Verdict:** The current text is technically acceptable but misleading. The event
+header comment should clarify: *"The Daggerfall Covenant began crystallising in
+2E 566 as Emeric assembled allies against Ranser; it was formally ratified after
+Ranser's defeat at Markwasten Moor later that year."*
+
+**Action:** Note only — no code error. Clarify in a future header comment update.
+
+---
+
+#### 18.1b Mythic Dawn / Oblivion Crisis — date guard missing
+
+**File:** `mod/events/mythic_dawn_events.txt`
+
+**Problem:** The Mythic Dawn was active from approximately **2E 582 onward** (when
+Mankar Camoran first began gathering followers) through the **Oblivion Crisis (3E 433)**.
+The cult's founding date is not precisely canonical, but Mankar Camoran was alive
+during the late Second Era.
+
+**Key date issue:** The Oblivion Crisis fires in **3E 433** (the year of TES IV:
+Oblivion). The current file doesn't appear to have a `current_date < 3.433.1.1`
+guard on the cult flavor events — meaning they can fire *after* the Crisis is over,
+which is lore-nonsensical (the Mythic Dawn was destroyed with Martin Septim's
+sacrifice).
+
+**Required guard on all Mythic Dawn flavor events:**
+```
+# Mythic Dawn is only active before the Oblivion Crisis ends
+NOT = { current_date >= 3.434.1.1 }   # Oblivion Crisis ends 3E 433
+```
+
+**Note:** The game can reach 3E 433 in a long playthrough. This guard is not
+currently implemented — it is a future implementation task.
+
+---
+
+#### 18.1c Numidium — Warp in the West date is 3E 417, NOT 2E 896
+
+**File:** `mod/events/numidium_events.txt`, header, `numidium.010`
+
+**Current header note:** *"numidium.010 — 'The Warp in the West' — CATASTROPHIC Dragon Break"*
+
+**Lore clarification needed:**
+
+There are **two Numidium activations** in canon — they are frequently confused:
+
+| Activation | Date | Event | Source |
+|---|---|---|---|
+| **First activation** | **2E 896** | Tiber Septim uses Numidium to conquer Tamriel and unify the Empire. This is the Dragon Break that ends the Second Era and begins the Third. | `[CANON — UESP Lore:Numidium]` |
+| **Second activation ("Warp in the West")** | **3E 417** | The Numidium is briefly reactivated during the events of TES II: Daggerfall; multiple factions each claim they used it; a Dragon Break resolves all outcomes simultaneously. | `[CANON — TES II: Daggerfall; UESP Lore:Warp in the West]` |
+
+**The mod's `numidium.010` is captioned "The Warp in the West"** which is specifically
+the 3E 417 event. The 2E 896 activation (Tiber Septim's use) is a separate, earlier
+event that should have its own entry or be explicitly distinguished.
+
+**Required additions to the numidium_events.txt header:**
+
+```
+#  IMPORTANT DATE DISTINCTION:
+#  ──────────────────────────
+#  Numidium was activated TWICE in canon:
+#
+#  1) 2E 896 — Tiber Septim uses it to complete the unification of Tamriel.
+#     This Dragon Break ends the Second Era and starts the Third Era.
+#     In EK2, this is the end-state event.  Fires at game_start_date approaching 2E 896.
+#
+#  2) 3E 417 — The Warp in the West (TES II: Daggerfall).
+#     Multiple groups use it simultaneously; Dragon Break resolves all contradictions.
+#     This is numidium.010.  Fires at current_date >= 3.417.1.1.
+#
+#  These must not be conflated.  numidium.010 is ONLY the 3E 417 Warp in the West.
+#  The 2E 896 activation needs a separate event (numidium.005 or similar).
+```
+
+---
+
+#### 18.1d Snow Elf — Knight-Paladin Gelebor is Third Era only
+
+**File:** `mod/events/snow_elf_events.txt`, `snow_elf.003` (Knight-Paladin's Vigil)
+
+**Lore problem:** Knight-Paladin Gelebor is first encountered in **TES V: Skyrim
+(Fourth Era, 4E 201)**. He has been alone in Auri-El's Chapel since the other Snow
+Elves took the Dwemer's offer and degenerated into Falmer — a process that occurred
+in the **Merethic Era** or early First Era. But as a living NPC, Gelebor exists in
+the Third/Fourth Era. His vigil has lasted *millennia*.
+
+**The event text must note:** Any event referencing Gelebor by name or a living
+"faithful Snow Elf keeper" is implicitly set in the Third or Fourth Era. In the
+Second Era (EK2's primary window), Gelebor exists and maintains his vigil — he
+simply has not been found yet. The event should not depict a meeting with him as
+if he is a known figure; he should be portrayed as a rumour or legend in 2E:
+
+> *"There are stories, older than anyone can verify, of a Snow Elf who refused
+> the Dwemer's bargain — who remained himself while the others broke.
+> The scholars say Auri-El's Chapel still stands somewhere in the Reach.
+> Whether its keeper lives, whether he was ever real, is another matter."*
+
+This framing works for all eras without contradicting canon.
+
+---
+
+#### 18.1e Thieves Guild — Daggerfall founding date vs. Second Era context
+
+**File:** `mod/events/thieves_guild_events.txt`, header
+
+**Current header note:** *"During the 2E Interregnum, the Guild operates without
+a strict code: no killing on Guild jobs."*
+
+**Lore clarification:** The "no killing" code (the *Oath* or *Code*) is central
+to the Guild's identity in most eras. The Thieves Guild in the Second Era is
+attested in ESO as an operational organisation with its own rules. The header's
+implication that the Second Era Guild *lacks* its code is not supported by canon.
+
+**Correct framing:** The Guild exists with its code in the Second Era. The "no
+killing" rule is attested in ESO (*Larceny* questline). The header should say:
+*"During the 2E Interregnum, the Guild enforces its code with difficulty — the
+lack of stable Imperial law makes it harder to maintain discipline among members
+who see the code as an optional courtesy rather than a contract."*
+
+This preserves the existing modifier for a more chaotic Guild in the Interregnum
+without contradicting the existence of the code.
+
+---
+
+#### 18.1f Forsworn / Hagraven lore — Second Era Reachmen context
+
+**File:** `mod/events/forsworn_events.txt`, header (empty — only namespace declared)
+
+**Missing context:** The Forsworn as a *named faction* are Third Era / Fourth Era
+(TES V: Skyrim specifically). In the Second Era, the Reachmen are called the
+**Witchmen of High Rock** or simply **Reachmen** — they are a distinct culture
+(`[CANON — ESO]`). The Forsworn name does not exist in the Second Era.
+
+**Required note in the event file header:**
+```
+#  LORE DATE NOTE:
+#  ──────────────
+#  In EK2's Second Era timeframe, these characters are "Reachmen" or
+#  "Witchmen of High Rock" — NOT "Forsworn".
+#  "Forsworn" is a Fourth Era term coined after the Markarth Incident
+#  (4E 174–176) when Ulfric Stormcloak expelled the Reachmen from
+#  Markarth.  [CANON — TES V: Skyrim; UESP Lore:Forsworn]
+#  All flavor text and event display text should use "Reachmen" for
+#  Second Era starts and "Forsworn" only for Fourth Era starts.
+```
+
+---
+
+#### 18.1g Mages Guild founding — Artaeum withdrawal connection is canon
+
+**File:** `lore/09_guilds_factions.md`, Mages Guild entry (line 11)
+
+**Current text correctly notes:** Mages Guild founded c. 2E 230 by Vanus Galerion;
+Artaeum disappears c. 2E 230 (when Galerion leaves to found the Guild).
+
+**Gap:** The causal relationship is canon and important but not bolded as a lore-
+accuracy trap. The departure of Galerion (a senior Psijic student) *caused* the
+Artaeum withdrawal — the Order removed itself from the mundane world partly in
+response to Galerion's choice to make magic accessible to all.
+
+**This is a lore accuracy trap for Walking Ways §17.3 (Psijic Endeavour):** Any
+event text for the Psijic Endeavour before 2E 230 should reference the tension
+between the Psijic Order's secrecy and the founding of the Mages Guild. The moment
+Galerion breaks from the Order and founds the Guild *is the moment Artaeum retreats*.
+
+**Add to `lore/09_guilds_factions.md`** (Mages Guild section) the note:
+> ⚠️ **The 2E 230 withdrawal of Artaeum and the founding of the Mages Guild are
+> the same event from two perspectives.** Galerion's founding of the Guild was
+> the final break that caused the Psijic Order to pull Artaeum back. Any mod
+> event that references either event should acknowledge the other.
+> `[CANON — UESP Lore:Psijic Order; Lore:Vanus Galerion]`
+
+---
+
+#### 18.1h Yokuda sinking — Orichalc Tower detail missing from towers file
+
+**File:** `mod/events/yokuda_events.txt` line 7 **correctly** states:
+*"Yokuda was… a continent west of Tamriel that sank beneath the sea c. 1E 792
+(the Orichalc Tower fell…)"*
+
+**But `lore/06_towers.md`** has **no entry** for the **Orichalc Tower** (Yokuda's
+Tower).
+
+**Required addition to `lore/06_towers.md`** — a table row and brief entry:
+
+```
+### 9. Orichalc Tower (Yokuda) [SOFT CANON — UESP]
+> Source: UESP Lore:Towers — https://en.uesp.net/wiki/Lore:Tower
+- Location: Yokuda (now sunken beneath the ocean west of Tamriel)
+- Stone: Unknown / lost with Yokuda
+- Builder: Unknown (pre-Ra Gada Yokudan civilisation)
+- Status: DESTROYED — Yokuda sank c. 1E 792; the Orichalc Tower's fall
+  is believed to be the proximate cause of the continent's sinking.
+  [SOFT CANON — no in-game text directly confirms the Tower/sinking
+  connection; it is inferred from the Tower framework]
+- Mod county: None — submerged; not playable
+- Notes: The Ra Gada who fled to Hammerfell carried Yokudan cultural
+  memory but no Tower Stone equivalent. The Redguard absence of a
+  Tower mechanic in the mod is lore-accurate.
+```
+
+**The `lore/06_towers.md` table of all Towers should have this row added** to
+complete the inventory. Without it, a future writer might try to give Hammerfell
+a Tower Stone mechanic, which would contradict the lore.
+
+---
+
+#### 18.1i Alessian Order — "founded 1E 358" vs. "Alessia's slave revolt 1E 243"
+
+**File:** `lore/09_guilds_factions.md`, Alessian Order entry
+
+**Current text:** "founded 1E 358"
+
+**Lore clarification needed:** The Alessian Order proper (the theocratic/orthodox
+reformist movement led by Marukh) is not the same as Alessia's original slave revolt
+organisation. The timeline is:
+
+| Date | Event | Source |
+|---|---|---|
+| 1E 243 | Alessia's slave revolt frees the Nedes from Ayleid rule | `[CANON — UESP]` |
+| c. 1E 266 | Alessia dies; White-Gold Tower becomes centre of early Aedric worship | `[CANON — UESP]` |
+| **1E 358** | **Marukh** receives his vision; the **Alessian Order** as a distinct theocratic movement is founded | `[CANON — UESP: Lore:Alessian Order]` |
+| 1E 482 | Battle of Glenumbra Moors — Direnni defeat the Alessian Order in the west | `[CANON — UESP]` |
+| 1E 2321–2331 | War of Righteousness destroys the Order | `[CANON — UESP]` |
+
+The current entry is correct (1E 358 = Marukh's founding of the Order), but the
+lore file should more clearly distinguish Alessia's revolt (1E 243) from the Order
+that used her name (1E 358, 115 years after her death). A future writer might
+conflate these.
+
+**Add a clarifying note** to `lore/09_guilds_factions.md` Alessian Order section:
+> ⚠️ **Alessia died c. 1E 266** — over 90 years before the Order bearing her name
+> was founded. The Alessian Order was founded by the prophet Marukh *in her memory*,
+> not by Alessia herself. Alessia's original movement was the slave revolt; the
+> Order was a later theocratic reformist movement. `[CANON — UESP Lore:Alessia;
+> Lore:Alessian Order]`
+
+---
+
+### 18.2 Lore File Updates Required
+
+Based on the audit above, these lore files need small additions. These are **low
+priority** (documentation corrections only) but should be done before v1.3:
+
+| File | Addition Needed |
+|---|---|
+| `lore/06_towers.md` | Add Orichalc Tower entry (§18.1h) |
+| `lore/09_guilds_factions.md` | Galerion/Artaeum causal note (§18.1g); Alessian/Alessia date clarification (§18.1i) |
+
+Event file notes (headers only, no code change):
+
+| File | Note to Add |
+|---|---|
+| `mod/events/forsworn_events.txt` | Forsworn vs. Reachmen Second Era naming note (§18.1f) |
+| `mod/events/numidium_events.txt` | 2E 896 vs. 3E 417 two-activation distinction (§18.1c) |
+| `mod/events/mythic_dawn_events.txt` | Post-3E 433 guard note (§18.1b) |
+
+---
+
+## 19. Path F — The Sixth House Way (The Dreamer's Communion)
+
+> **New path proposal** — Session 2026-04-05 (third pass)
+
+### 19.1 Lore Basis
+
+The Sixth House Way is a proposed addition to the Walking Ways system. It is
+grounded in canonical TES III: Morrowind lore and slots naturally into the existing
+`dagoth_ur_events.txt` framework already in this mod.
+
+**Core lore:**
+
+Dagoth Ur did not merely awaken as a villain. He achieved something the Tribunal
+never intended him to achieve: **independent godhood via the Heart of Lorkhan**,
+without Kagrenac's Tools, sustained purely by his own will and the Dream.
+
+The Sixth House's philosophy — as expressed in Dagoth Ur's in-game dialogue —
+is not mere conquest. Dagoth Ur believes:
+1. The Tribunal *betrayed* Nerevar and murdered him for the Heart
+2. The Heart's power belongs to all of House Dagoth — all of the Dunmer — not
+   only the three who seized it
+3. The Dream (his network of Sleeper agents, Dreamers, and Ash Vampires) is not
+   corruption — it is *communion*; the joining of mortal consciousness to something
+   larger, something divine
+
+*"You are the last of my kin. And I will call you home."*
+— Dagoth Ur, TES III: Morrowind `[CANON — in-game dialogue]`
+
+**Is this a Walking Way?**
+
+The Sixth House path maps onto the Walking Ways framework as a **corrupted or
+inverted Mantling** — Dagoth Ur mantled the Heart of Lorkhan rather than a deity,
+and invites others to mantle *him* (to become Ash Vampires, extensions of his
+consciousness). The Dream is the mechanism.
+
+The path models:
+- **Walking Way 2 (Mantling) variant:** the ruler does not mantle an established
+  deity but the *principle* that Dagoth Ur embodies — divine will sustained by
+  raw connection to a Tower Stone (the Heart of Lorkhan)
+- **Walking Way 4 (Enantiomorph) adjacent:** Dagoth Ur is canonically the Rebel
+  in the Nerevar/Dagoth Enantiomorph. A ruler who fully embraces the Sixth House
+  philosophy *becomes the pattern's Rebel* in their own cosmological drama
+
+This is not a clean Walking Way in the traditional sense. The design should present
+it explicitly as *outside* the established eight paths — an improvised, desperate,
+possibly doomed alternative found by someone who can't walk the formal Ways.
+
+---
+
+### 19.2 Lore Accuracy — What the Path Can and Cannot Claim
+
+| Claim | Permitted? | Canon tier |
+|---|---|---|
+| Joining the Sixth House grants communion with Dagoth Ur's Dream | ✅ Yes — this is what `sixth_house_cultist` already models | `[CANON — TES III: Morrowind]` |
+| The Dreamer's Communion is a form of divinity | ✅ Yes — Ash Vampires share Dagoth Ur's divine power | `[CANON — TES III: Morrowind, in-game texts]` |
+| The Dream is permanent / irreversible once deep enough | ✅ Yes — Dreamers cannot be fully freed; Corprus is described as "divine" | `[CANON — TES III: Morrowind]` |
+| The ruler "becomes" Dagoth Ur | ❌ No — they become an *extension* of the Dream, not Dagoth Ur himself | `[CANON — Dagoth Ur's dialogue distinguishes Ash Vampires from himself]` |
+| Dagoth Ur can be bargained with, reasoned with, or redirected | ⚠️ Cautiously — his dialogue shows he can be reasoned with, but he doesn't change his goals | `[CANON — in-game dialogue; do not overstate this]` |
+| Corprus is curable | ⚠️ Only by the Nerevarine's Potion of Cure Corprus Disease (late-game divine intervention) | `[CANON — TES III: Morrowind main quest]` |
+| This path survives Dagoth Ur's defeat | ❌ No — when the Heart is destroyed, all Ash Vampires and advanced Dreamers die or lose their enhanced state | `[CANON — TES III: Morrowind]` |
+
+**Critical design constraint:** The Sixth House Way **must end** if `dagoth_ur_awakened`
+is resolved (the Heart is destroyed via the Nerevarine path). This creates a unique
+path that has an *external kill-switch* — the ruler's entire investment vanishes if
+another character wins the canonical Morrowind questline. This is intentional and
+lore-accurate.
+
+---
+
+### 19.3 Date Window and EK2 Compatibility
+
+**Hard requirement:** The path can only begin **after Dagoth Ur awakens** (`dagoth_ur_awakened = yes`).
+
+**In EK2 (2E 440–896):** Dagoth Ur canonically awakens at 2E 882 (or earlier via
+the mod's alternative awakening conditions). The path is therefore only available
+in very late Second Era / early Third Era starts, or in playthroughs where the early
+awakening conditions were met.
+
+**Date guard:**
+```
+# Sixth House Way path availability
+is_valid = {
+    global_var:dagoth_ur_awakened = yes
+    # Cannot pursue after the Heart is destroyed
+    NOT = { has_global_flag = dagoth_ur_defeated }
+}
+```
+
+**For EK2 compatibility:** The path is late-game by design. It pairs well with the
+Dagoth Ur system's existing framework and doesn't require any additional date ranges —
+the `dagoth_ur_awakened` flag already handles everything.
+
+---
+
+### 19.4 Path Design — The Dreamer's Communion
+
+**Path label:** Sixth House Way (internal key: `ww_sixth_house`)
+
+**Display name:** *"The Dreamer's Communion"* (in-world name used by Dagoth Ur's
+followers for the progressive stages of joining the Dream)
+
+**Entry requirement:**
+```
+OR = {
+    has_trait = sixth_house_cultist    # already joined (from dagoth_ur.020)
+    AND = {
+        has_culture = dunmer_culture
+        intrigue >= 14
+        piety <= 100    # low Tribunal piety — disillusioned
+        dagoth_ur_awakened = yes
+    }
+    AND = {
+        has_trait = corprus_afflicted   # forced entry — they're already in the Dream
+        dagoth_ur_awakened = yes
+    }
+}
+```
+
+The third option (forced entry via `corprus_afflicted`) is deliberately dark: a
+character who contracted Corprus is already partially in the Dream. This path gives
+them a way to *lean into* that rather than simply suffering the debuff.
+
+---
+
+#### 19.4a Milestones (5 — fewer than other paths, reflecting the Dream's compression of will)
+
+| # | Milestone Name | Mechanism |
+|---|---|---|
+| 1 | *The First Dream* | A vivid Dagoth Ur vision — ruler gains `sixth_house_cultist` if not already held; gains `dreamer_initiate` modifier |
+| 2 | *The Bonding* | Recruit a Sleeper agent as a court member (special NPC generated); refuse to report them to the Tribunal |
+| 3 | *The Ash Touch* | Survive a Corprus infection event (or, if already `corprus_afflicted`, demonstrate control over symptoms — stress -50 for 6 months) |
+| 4 | *The Voice in Many Minds* | Three other court members become `sixth_house_cultist` — voluntary or coerced |
+| 5 | *Ash Vampire Ascension* | A final ritual event — the ruler offers themselves to the Dream fully; Dagoth Ur accepts and transforms them |
+
+**Milestone 5 event text sample:**
+
+> *"You have walked to the edge of what you were and stood there long enough
+> that the edge dissolved. Dagoth Ur is not before you. He is around you.
+> He is you, in the way that a river is the water it carries.*
+>
+> *You understand now what he meant by 'home.' Not a place. A state.*
+>
+> *The Dream has a new dreamer."*
+
+---
+
+#### 19.4b Failure Risk — The Dream Takes You (35% at Milestone 4)
+
+At Milestone 4, if the ruler has `stress >= 75` (Level 2+), there is a **35% chance**
+the Dream consumes rather than incorporates them:
+
+- Ruler gains `corprus_afflicted` (if not already) AND `dreamer_lost` modifier
+  (Learning -8, all stress gains +50%, cannot pursue this path again)
+- The four cultist court members scatter or are arrested by Tribunal agents
+- All path progress resets to Milestone 1
+
+This represents losing control of the Dream instead of mastering it. Dagoth Ur
+doesn't reject them — he simply absorbs them too completely, leaving no will of
+their own to pursue the path consciously.
+
+---
+
+#### 19.4c Apex Trait: `ash_vampire_ascendant`
+
+The fully realised Ash Vampire ruler exists in two states simultaneously — mortal
+ruler and Dream extension. Mechanically:
+
+- Intrigue +6, Martial +4, Learning -3 (the Dream is not scholarly — it is instinctual)
+- `monthly_piety = -3` (Tribunal piety drain — the Tribunal can feel the Dream spreading)
+- `stress_gain_mult = -0.50` (the Dream absorbs stress; it has its own logic for it)
+- `dread_gain_mult = 0.30`
+- **Special: *Dream Pulse*** — Once per 5 years, the ruler may send a Dream vision
+  to any ruler within their cultural sphere. That ruler gains `stress += 25` and
+  a `sixth_house_approach_recent` flag (meaning Dagoth Ur's next sleeper agent
+  approach will fire for them within 2 years). This is influence-projection, not
+  military.
+- **Special: *Corprus Immunity*** — The ruler no longer suffers negative effects
+  from `corprus_afflicted` if they held it; instead it functions as a passive
+  `health +2`
+
+**World effect on Apex:**
+
+All rulers with `nerevarine_marked` or `azura_champion` receive a notification:
+*"The Dream of Dagoth Ur has taken root in [REALM]. Something of House Dagoth
+walks there that should not walk. Azura has noted it."*
+
+These rulers gain a strong motivation modifier to pursue the Nerevarine path.
+This is the lore-accurate counter-escalation: an Ash Vampire ruler accelerates
+the conditions for the Nerevarine to appear.
+
+---
+
+#### 19.4d Hard Termination — When Dagoth Ur Falls
+
+When `dagoth_ur_defeated` is set (the Nerevarine destroys the Heart):
+
+```
+# All Sixth House Way rulers lose their apex trait and gain a death/trauma event
+if = {
+    limit = { has_trait = ash_vampire_ascendant }
+    trigger_event = { id = sixth_house_dissolution.001 }   # "The Dream ends"
+}
+remove_trait = ash_vampire_ascendant
+remove_trait = sixth_house_cultist
+remove_trait = dreamer_initiate
+add_trait    = traumatized    # or equivalent severe stress trait
+add_stress   = 150
+```
+
+**The `sixth_house_dissolution.001` event:**
+
+> *"Something you cannot name has gone quiet.*
+>
+> *For months — years — there was a voice in the deep of your mind.
+> Not a voice. A certainty. A belonging.*
+>
+> *It is gone now. Red Mountain's fire has changed.*
+> *Whatever you were borrowing, it has been returned.*
+>
+> *You are yourself again. Entirely, unbearably yourself."*
+
+Options:
+- `"I remain. Whatever I was, I am still something."` → +prestige 200, -stress 30
+  (they survive as mortal rulers, the Ash Vampire state simply ends)
+- `"Without the Dream, I am nothing."` → +stress 100 (grief; the loss is not
+  just power — it was an entire mode of being)
+
+---
+
+### 19.5 Interaction with the Nerevarine Path
+
+The Sixth House Way and the Nerevarine path (`dagoth_ur.030`) are **natural opponents**:
+
+| Ruler Type | Effect |
+|---|---|
+| Ruler with `ash_vampire_ascendant` | Nerevarine path cooldown on all nearby Dunmer rulers +2 years (the Dream actively suppresses the prophecy's candidates) |
+| Ruler with `nerevarine_marked` | Can trigger a direct confrontation event with an `ash_vampire_ascendant` ruler — winner gains permanent prestige; loser loses apex trait |
+
+This creates a dynamic equivalent to the canonical Morrowind main quest: the
+Nerevarine and Dagoth Ur's forces in direct opposition, now playable as a conflict
+between two player characters (or a player and AI).
+
+**Lore accuracy note:** In TES III, Dagoth Ur's Dreamers are not fully conscious
+participants — they are sleepwalkers. The `ash_vampire_ascendant` is a more conscious,
+willing participant than a canonical Dreamer. This is a `[MOD CHOICE]` — the design
+deliberately elevates the player's agency to make the path playable. The event text
+should acknowledge this distinction: *"Most who walk into the Dream do not know
+they are walking. You knew. That is what made you different."*
+
+---
+
+### 19.6 Localization File
+
+Following the established convention (from stored memory: *"Each event system has
+a dedicated YML file"*), the Sixth House Way needs:
+
+```
+mod/localization/english/sixth_house_way_l_english.yml
+```
+
+This file handles all display text for:
+- Path intro and milestone events (`sixth_house_way.*`)
+- The `sixth_house_dissolution.001` termination event
+- Trait display names and descriptions for `ash_vampire_ascendant` and `dreamer_initiate`
+- Custom tooltip text: `sixth_house_joined_tt` (already referenced in `dagoth_ur.020`)
+
+**BOM reminder:** As per the stored convention, this file **must** start with UTF-8 BOM
+(`printf '\xef\xbb\xbf' | cat - file > tmp && mv tmp file`).
+
+---
+
+### 19.7 on_actions Registration
+
+Per the stored convention (*"ALL new event systems must register their hidden trigger
+events in `lore_races_on_actions.txt`"*), the following events need registration:
+
+| Event ID | Function | Block | Weight |
+|---|---|---|---|
+| `sixth_house_way.milestone_check` | Yearly check for milestone progression | `on_yearly_pulse` | weight = 60 |
+| `sixth_house_dissolution.000` | Hidden check: fires `.001` when `dagoth_ur_defeated` is set | `on_yearly_pulse` | weight = 100 |
+
+---
+
+### 19.8 Integration Checklist
+
+- [ ] New path key `ww_sixth_house` added to `walking_ways_traits.txt`
+- [ ] `ash_vampire_ascendant` trait defined in `dagoth_ur_traits.txt` (not a new file — fits with existing Sixth House traits)
+- [ ] `dreamer_initiate` modifier defined in `lore_races_modifiers.txt`
+- [ ] `sixth_house_dissolution.001` event written and added to `dagoth_ur_events.txt`
+  (or a new `sixth_house_way_events.txt` if the chain grows large enough)
+- [ ] `sixth_house_way_l_english.yml` created with UTF-8 BOM
+- [ ] `on_yearly_pulse` registrations added to `lore_races_on_actions.txt`
+- [ ] Hard termination hook added to `end_dagoth_ur_era` scripted effect in
+  `lore_races_effects.txt`
+- [ ] Nerevarine opposition interaction events written in `dagoth_ur_events.txt`
+- [ ] §17.6 timeline table updated to add: *"2E 882 — Dagoth Ur awakens; Sixth House
+  Way becomes available"* row
+- [ ] `12_mod_pitfalls.md` updated: note that `ash_vampire_ascendant` should NOT be
+  confused with `sixth_house_cultist` — the former is the apex Walking Way trait;
+  the latter is the entry-level cult membership already in the existing system
+
+---
+
+*End of session 2026-04-05 (third pass) notes.*
+
+*§18 records audit findings; §19 is a self-contained design spec for the Sixth House path that can be implemented independently of the rest of Walking Ways.*
