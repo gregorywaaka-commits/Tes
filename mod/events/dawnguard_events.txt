@@ -1,0 +1,364 @@
+# =============================================================
+#  Dawnguard Events
+#  Namespace: dawnguard
+#  File: mod/events/dawnguard_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  dawnguard.000  Hidden yearly — detects martial rulers in Skyrim
+#                 when vampires are active; fires the call to arms
+#  dawnguard.001  "The Dawnguard Rises" — Isran's call to arms
+#                 against the Volkihar clan
+#  dawnguard.002  "Crossbow and Sunlight" — training event; martial
+#                 bonus or discover a vampire weakness
+#  dawnguard.003  "A Hunter's Dilemma" — morally ambiguous encounter
+#                 with a sympathetic vampire
+#  dawnguard.004  "Fort Dawnguard" — decision about base of operations
+#  dawnguard.010  "Volkihar Retaliation" — vampires strike at court
+#
+#  HISTORICAL NOTE:
+#  The Dawnguard was refounded in 4E 176 by Isran, a Redguard
+#  warrior-monk who had once been a member of the Vigilants of
+#  Stendarr before breaking with them over their insufficiently
+#  aggressive approach to vampire hunting.  Fort Dawnguard, their
+#  base, is a fortress in a remote canyon in the Rift, chosen for
+#  its defensibility and isolation.  Their conflict with the Volkihar
+#  clan — the most powerful vampire bloodline in Skyrim, led by the
+#  vampire lord Harkon — is the canonical crisis of 4E 201.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/dawnguard_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dawnguard_traits.txt
+#      → dawnguard_initiate, dawnguard_hunter, dawnguard_captain
+#    common/traits/vampire_bloodlines_traits.txt
+#      → (any vampire trait, used in NOT checks)
+# =============================================================
+
+namespace = dawnguard
+
+# ---------------------------------------------------------------
+# dawnguard.000  The Dawnguard Stirs
+# Hidden yearly event. Detects martial rulers in the Skyrim region
+# when vampiric activity is at a peak. Once per playthrough (guarded
+# by global_var), it fires the call-to-arms event for qualifying
+# rulers.  Isran's refounding of the order is the canonical trigger.
+# ---------------------------------------------------------------
+dawnguard.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        is_adult = yes
+        martial >= 10
+        NOT = { global_var:dawnguard_risen = 1 }
+        NOT = { has_trait = dawnguard_initiate }
+        NOT = { has_trait = dawnguard_hunter }
+        NOT = { has_trait = dawnguard_captain }
+        NOT = { has_trait = dawnguard_lord }
+        OR = {
+            any_held_county = {
+                geographical_region = world_region_skyrim
+            }
+            any_held_county = {
+                geographical_region = world_region_the_rift
+            }
+        }
+    }
+
+    immediate = {
+        set_global_variable = { name = dawnguard_risen value = 1 }
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_adult = yes
+                martial >= 10
+                NOT = { has_trait = dawnguard_initiate }
+                NOT = { has_trait = dawnguard_hunter }
+                NOT = { has_trait = dawnguard_captain }
+                NOT = { has_trait = dawnguard_lord }
+                OR = {
+                    any_held_county = {
+                        geographical_region = world_region_skyrim
+                    }
+                    any_held_county = {
+                        geographical_region = world_region_the_rift
+                    }
+                }
+            }
+            trigger_event = { id = dawnguard.001 days = 14 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# dawnguard.001  The Dawnguard Rises
+# Word reaches the ruler from the Rift: Isran has reopened
+# Fort Dawnguard and is calling all capable fighters to the cause.
+# The Volkihar clan has grown bold; something must be done.
+# ---------------------------------------------------------------
+dawnguard.001 = {
+    type = character_event
+    title = dawnguard.001.t
+    desc  = dawnguard.001.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = anger
+    }
+
+    option = {
+        name = dawnguard.001.a   # "Answer the call. Fort Dawnguard needs warriors."
+        add_trait = dawnguard_initiate
+        add_prestige = 75
+        add_stress = 5
+        trigger_event = { id = dawnguard.004 days = 30 }
+    }
+
+    option = {
+        name = dawnguard.001.b   # "The Volkihar are someone else's problem for now."
+        add_prestige = -50
+        add_stress = 10
+        add_character_modifier = {
+            modifier = dawnguard_declined_call
+            days = 365
+        }
+    }
+
+    option = {
+        name = dawnguard.001.c   # "Send a donation. The fight is worthy even if the timing is wrong."
+        trigger = { gold >= 100 }
+        add_gold = -100
+        add_prestige = 50
+        add_piety = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# dawnguard.002  Crossbow and Sunlight
+# Intensive training at Fort Dawnguard. Isran's methods are
+# bruising and entirely without sympathy — but they work.
+# The character emerges knowing things about the undead that
+# no amount of scholarly reading could have taught them.
+# ---------------------------------------------------------------
+dawnguard.002 = {
+    type = character_event
+    title = dawnguard.002.t
+    desc  = dawnguard.002.desc
+    theme = lifestyle
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        has_trait = dawnguard_initiate
+        NOT = { has_character_flag = dawnguard_training_complete }
+    }
+
+    option = {
+        name = dawnguard.002.a   # "Master the crossbow. Distance and precision."
+        add_martial_skill = 1
+        add_prestige = 50
+        set_character_flag = { flag = dawnguard_training_complete days = 1825 }
+        add_character_modifier = {
+            modifier = dawnguard_crossbow_training
+            days = 730
+        }
+    }
+
+    option = {
+        name = dawnguard.002.b   # "Study their weaknesses. Sunlight, silver, fire."
+        add_learning_skill = 1
+        add_prestige = 50
+        set_character_flag = { flag = dawnguard_training_complete days = 1825 }
+        add_character_modifier = {
+            modifier = dawnguard_vampire_lore
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# dawnguard.003  A Hunter's Dilemma
+# A member of the order has brought in a vampire — but this one
+# speaks, reasons, weeps.  She says she never chose this.  She says
+# she has not fed in weeks.  She says she wants to be cured.
+# Isran's voice, from somewhere behind you, is flat and certain:
+# there is no cure.  There is only the bolt.  You are not so sure.
+# ---------------------------------------------------------------
+dawnguard.003 = {
+    type = character_event
+    title = dawnguard.003.t
+    desc  = dawnguard.003.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = thinking
+    }
+
+    trigger = {
+        OR = {
+            has_trait = dawnguard_hunter
+            has_trait = dawnguard_captain
+            has_trait = dawnguard_lord
+        }
+        NOT = { has_character_flag = dawnguard_dilemma_resolved }
+    }
+
+    option = {
+        name = dawnguard.003.a   # "Follow Isran's doctrine. Destroy it."
+        add_stress = 20
+        add_prestige = 75
+        add_piety = 25
+        set_character_flag = { flag = dawnguard_dilemma_resolved days = 3650 }
+    }
+
+    option = {
+        name = dawnguard.003.b   # "Spare her. Isran will not like it."
+        add_stress = -10
+        add_prestige = -50
+        add_piety = 50
+        add_character_modifier = {
+            modifier = dawnguard_merciful_hunter
+            days = 1825
+        }
+        set_character_flag = { flag = dawnguard_dilemma_resolved days = 3650 }
+    }
+
+    option = {
+        name = dawnguard.003.c   # "Find someone who knows about cures. It may be hopeless, but try."
+        trigger = { learning >= 10 }
+        add_stress = 15
+        add_learning_skill = 1
+        set_character_flag = { flag = dawnguard_dilemma_resolved days = 3650 }
+        add_character_modifier = {
+            modifier = dawnguard_cure_seeker
+            days = 730
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# dawnguard.004  Fort Dawnguard
+# The fort sits in a canyon in the Rift — deep enough that the
+# road in is hard to find, steep enough that the walls need no
+# garrison on three sides.  Isran chose it for exactly these
+# reasons.  The question now is what to do with it: reinforce
+# the walls, expand the armory, or establish a training program
+# aggressive enough that new recruits stop dying in their first month.
+# ---------------------------------------------------------------
+dawnguard.004 = {
+    type = character_event
+    title = dawnguard.004.t
+    desc  = dawnguard.004.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    trigger = {
+        OR = {
+            has_trait = dawnguard_initiate
+            has_trait = dawnguard_hunter
+            has_trait = dawnguard_captain
+            has_trait = dawnguard_lord
+        }
+        NOT = { has_character_flag = dawnguard_fort_established }
+    }
+
+    option = {
+        name = dawnguard.004.a   # "Reinforce the walls. The Volkihar will come eventually."
+        trigger = { gold >= 150 }
+        add_gold = -150
+        add_character_modifier = {
+            modifier = dawnguard_fortified_base
+            days = 3650
+        }
+        set_character_flag = { flag = dawnguard_fort_established days = 7300 }
+    }
+
+    option = {
+        name = dawnguard.004.b   # "Expand the armory. Crossbows for every hunter."
+        trigger = { gold >= 100 }
+        add_gold = -100
+        add_martial_skill = 1
+        add_character_modifier = {
+            modifier = dawnguard_expanded_armory
+            days = 3650
+        }
+        set_character_flag = { flag = dawnguard_fort_established days = 7300 }
+    }
+
+    option = {
+        name = dawnguard.004.c   # "Establish a training regimen. Quality over quantity."
+        add_character_modifier = {
+            modifier = dawnguard_training_program
+            days = 1825
+        }
+        set_character_flag = { flag = dawnguard_fort_established days = 7300 }
+    }
+}
+
+# ---------------------------------------------------------------
+# dawnguard.010  Volkihar Retaliation
+# They found you.  Not with an army — the Volkihar are too subtle
+# for armies unless they have to be.  Three of them, in the shapes
+# of courtiers, carrying invitations to a banquet that doesn't
+# exist.  Your steward noticed the shadows falling wrong.  Your
+# guards are ready.  This will be ugly, but it will be contained.
+# ---------------------------------------------------------------
+dawnguard.010 = {
+    type = character_event
+    title = dawnguard.010.t
+    desc  = dawnguard.010.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = fear
+    }
+
+    trigger = {
+        OR = {
+            has_trait = dawnguard_hunter
+            has_trait = dawnguard_captain
+            has_trait = dawnguard_lord
+        }
+        NOT = { has_character_flag = dawnguard_volkihar_attack_survived }
+    }
+
+    option = {
+        name = dawnguard.010.a   # "Defend the court. Every Volkihar agent is a message sent back."
+        add_prestige = 150
+        add_stress = 25
+        add_prowess_skill = 1
+        set_character_flag = { flag = dawnguard_volkihar_attack_survived days = 1825 }
+    }
+
+    option = {
+        name = dawnguard.010.b   # "Capture one. A prisoner tells us more than a corpse."
+        trigger = { intrigue >= 12 }
+        add_prestige = 100
+        add_stress = 20
+        add_intrigue_skill = 1
+        add_character_modifier = {
+            modifier = dawnguard_volkihar_intelligence
+            days = 730
+        }
+        set_character_flag = { flag = dawnguard_volkihar_attack_survived days = 1825 }
+    }
+
+    option = {
+        name = dawnguard.010.c   # "Pull back. If the Volkihar know where we are, Fort Dawnguard's location is compromised."
+        add_prestige = -50
+        add_stress = 30
+        set_character_flag = { flag = dawnguard_volkihar_attack_survived days = 1825 }
+    }
+}

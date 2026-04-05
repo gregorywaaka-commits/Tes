@@ -1,0 +1,88 @@
+# =============================================================
+#  Men-at-Arms Types — Dawnguard Units
+#  File: mod/common/men_at_arms_types/dawnguard_units.txt
+#
+#  UNITS IN THIS FILE:
+#  ────────────────────
+#  dawnguard_crossbowmen — The Dawnguard's signature fighting
+#                          force.  Crossbow-armed hunters trained
+#                          specifically to counter fast-moving
+#                          cavalry and light infantry — the forms
+#                          most commonly taken by vampiric attackers.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Dawnguard crossbow is one of the most sophisticated ranged
+#  weapons in Skyrim, capable of firing sunhallowed bolts (forged
+#  with Auriel's blessing) that are particularly devastating to
+#  vampires and other undead.  Dawnguard crossbowmen train obsessively
+#  in reload speed and positional discipline; Isran's doctrine holds
+#  that a crossbowman who lets a vampire close to melee range has
+#  already failed.  Their effectiveness against cavalry derives from
+#  the same principle — a bolt before the charge, reload, second bolt
+#  before the second charge, by which time the cavalry problem has
+#  resolved itself.
+#  Sources: UESP Lore:Dawnguard; Skyrim — Dawnguard DLC.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/men_at_arms_types/dawnguard_units.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • dawnguard_crossbowmen
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    common/scripted_effects/dawnguard_effects.txt (if created)
+#    events/dawnguard_events.txt
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DAWNGUARD CROSSBOWMEN
+#  Disciplined ranged fighters; trained by Isran's doctrine of
+#  distance-first engagements.  Their effectiveness against cavalry
+#  and light infantry comes from positional discipline and reload
+#  speed — they deny the terrain advantages that mounted and
+#  skirmishing forces depend on.
+# ---------------------------------------------------------------
+dawnguard_crossbowmen = {
+    type = skirmishers
+
+    # Crossbows deliver heavy impact at range; less effective at
+    # close quarters — screen value reflects the defensive capability
+    # of a disciplined firing line
+    damage    = 45
+    toughness = 20
+    pursuit   = 10
+    screen    = 35
+
+    # Dawnguard doctrine: hold positions, deny approach routes,
+    # use fortress terrain to eliminate cavalry advantages
+    siege_value = 12
+
+    max_size = 100
+    scaling_cost = { gold = 0.35 }
+    maintenance_multiplier = 1.6
+
+    # Crossbow discipline is most effective in open terrain where
+    # the approach cannot be concealed — forest negates some of
+    # their range advantage
+    terrain_bonus = {
+        plains = { damage = 15 screen = 10 }
+        hills  = { damage = 8  screen = 8  }
+        drylands = { damage = 10 screen = 5 }
+    }
+
+    # Counter bonuses: the Dawnguard crossbow drill specifically
+    # trains against cavalry charges and fast-moving light infantry —
+    # the two forms vampiric attackers most commonly use
+    counter_bonus = {
+        cavalry       = 20
+        light_cavalry = 25
+        skirmishers   = 15
+    }
+}

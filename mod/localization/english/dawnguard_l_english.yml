@@ -1,0 +1,90 @@
+﻿l_english:
+
+ # =====================================================================
+ #  DAWNGUARD
+ # =====================================================================
+
+ # --- Modifiers ---
+
+ dawnguard_declined_call: "Turned Away Isran's Call"
+ dawnguard_declined_call_desc: "Isran's summons reached this ruler and was ignored. The Volkihar do not ignore their opportunities."
+
+ dawnguard_crossbow_training: "Crossbow Training"
+ dawnguard_crossbow_training_desc: "Weeks of drilling with the Dawnguard crossbow have sharpened this warrior's precision and patience. Isran's methods are brutal; the results are not in question."
+
+ dawnguard_vampire_lore: "Vampire Lore"
+ dawnguard_vampire_lore_desc: "Isran's library on the Volkihar is exhaustive and deeply unpleasant reading. This hunter now knows how they feed, how they move, and where the few remaining weaknesses in undying flesh can be found."
+
+ dawnguard_merciful_hunter: "A Hunter's Mercy"
+ dawnguard_merciful_hunter_desc: "Against Isran's doctrine, this hunter spared a vampire who seemed to retain their reason. Whether this was wisdom or sentiment, the question lingers."
+
+ dawnguard_cure_seeker: "Seeking a Cure"
+ dawnguard_cure_seeker_desc: "This hunter has begun searching the old texts for something Isran insists does not exist: a way to reverse vampirism without death. The search is slow and the evidence, so far, is not encouraging."
+
+ dawnguard_fortified_base: "Fortified Fort Dawnguard"
+ dawnguard_fortified_base_desc: "Fort Dawnguard's walls have been reinforced and its approaches re-surveyed. The Volkihar will not find it easy to assault directly."
+
+ dawnguard_expanded_armory: "Expanded Dawnguard Armory"
+ dawnguard_expanded_armory_desc: "The Fort's armory now holds enough crossbows and sunhallowed bolts to equip every hunter in the order. The Volkihar should take note."
+
+ dawnguard_training_program: "Dawnguard Training Program"
+ dawnguard_training_program_desc: "A formal training regimen is running at Fort Dawnguard. New recruits are surviving their first month at a measurably higher rate."
+
+ dawnguard_volkihar_intelligence: "Volkihar Intelligence"
+ dawnguard_volkihar_intelligence_desc: "A captured Volkihar agent, carefully questioned, has revealed the locations of at least three undisclosed clan holdings. The intelligence is already being acted on."
+
+ dawnguard_fortress_established: "Fort Dawnguard Established"
+ dawnguard_fortress_established_desc: "Fort Dawnguard has been fully established as the operational base of the Dawnguard order. Its walls are manned, its armory stocked, and its canyons watched. Isran's dream, made stone."
+
+ # --- Traits ---
+
+ dawnguard_initiate: "Dawnguard Initiate"
+ dawnguard_initiate_desc: "A new recruit of the Dawnguard — the vampire-hunting order refounded by Isran in the Rift. They have been given a crossbow, told how to use it, and sent on their first patrol. The night is very dark, and the Volkihar are very old. This hunter is not afraid. Exactly as afraid as they should be, perhaps, but not more."
+
+ dawnguard_hunter: "Dawnguard Hunter"
+ dawnguard_hunter_desc: "A veteran of the Dawnguard — a hunter who has tracked vampires across the Rift, through the barrows of the Pale, and into the ice-blue darkness beneath Dimhollow Crypt. They know the smell of old blood and the silence of a place where something old has been sleeping. They have survived encounters that should, by any reasonable standard, have killed them. Isran has started giving them the harder assignments."
+
+ dawnguard_captain: "Dawnguard Captain"
+ dawnguard_captain_desc: "A captain of the Dawnguard, leading one of the order's field detachments. This rank carries the weight of keeping one's hunters alive between engagements, planning the routes through the Rift that change weekly to avoid Volkihar surveillance, and briefing Isran on operations — a conversation that is equal parts intelligence report and controlled confrontation."
+
+ dawnguard_lord: "Dawnguard Lord"
+ dawnguard_lord_desc: "The commander of the full Dawnguard order. Whether it is Isran himself or someone who has inherited the mantle, this rank carries the full operational authority of Fort Dawnguard: the hunters, the fort, the accumulated intelligence on the Volkihar clan, and the obligation to continue the work no matter what the cost. The Volkihar have been hunting men and women since the Merethic Era. The Dawnguard has existed for a few decades at most. The gap in experience is not something to be overcome with optimism."
+
+ # --- Events ---
+
+ dawnguard.001.t: "The Dawnguard Rises"
+ dawnguard.001.desc: "The letter arrives without preamble — no crest, no courtesy title, no diplomatic softening of any kind. The handwriting is a controlled scrawl, each word pressed hard enough into the parchment that the pen nearly cut through.\n\n'My name is Isran. I have reopened Fort Dawnguard in the Rift. The Volkihar are active and growing bolder, and the Vigilants of Stendarr are too busy offering mercy to do anything useful about it. I need hunters. You have the look of a fighter. Come to the Fort or send your best people. If you wait until the Volkihar have taken someone you care about before you act, you will have waited too long.'\n\nThere is no signature. The seal, pressed in plain wax, is the crossbow of the Dawnguard. You have been summoned, not invited."
+ dawnguard.001.a: "Answer the call. Fort Dawnguard needs warriors."
+ dawnguard.001.b: "The Volkihar are someone else's problem. There are other threats."
+ dawnguard.001.c: "Send a donation. The work is worthy even if the timing is wrong."
+
+ dawnguard.002.t: "Crossbow and Sunlight"
+ dawnguard.002.desc: "Three weeks at Fort Dawnguard, and you understand now why Isran chose this place and these methods. The canyon walls are cold and close, the training ground is a strip of flat rock between the outer walls and the cliff face, and Isran himself teaches the first crossbow lesson.\n\nHe does not explain technique. He puts a crossbow in your hands, walks fifty paces, and says: hit what I put in front of you, or keep trying until you do. The targets are progressively smaller. The third day, he adds moving targets. The fifth, he has two hunters rush you from opposite sides while you are mid-reload.\n\nOn the sixth day, he sits across from you in the armoury and says: now we talk about what you actually learned. He is testing whether the training has made you a better fighter or a better thinker. Both are valuable. Neither is sufficient alone."
+ dawnguard.002.a: "Master the crossbow. Distance and precision are survival."
+ dawnguard.002.b: "Study their weaknesses. Sunlight, silver, fire — knowledge is the first weapon."
+
+ dawnguard.003.t: "A Hunter's Dilemma"
+ dawnguard.003.desc: "She was found in a root cellar outside a village in the Rift — not feeding, not threatening, just hiding. The hunter who brought her in says she didn't resist, says she begged to be taken somewhere safe, says she has been trying not to drink blood for three weeks and is visibly suffering for it.\n\nShe is a vampire. Her eyes have the flat silver colour, the skin is wrong, the shadow falls at the wrong angle. All the signs are there. She is also weeping, clearly conscious, clearly distressed, and explaining in careful complete sentences that she woke up like this six months ago and she wants to be something other than what she has become.\n\nIsran's voice comes from behind you, very quiet and very flat: 'It doesn't matter what it says. It matters what it is.' You have the bolt ready. You have not yet fired it."
+ dawnguard.003.a: "Follow Isran's doctrine. What it is matters more than what it says."
+ dawnguard.003.b: "Spare her. If she can hold herself back, there may be more to this."
+ dawnguard.003.c: "Search the old texts. If there is a cure, it is buried somewhere."
+
+ dawnguard.004.t: "Fort Dawnguard"
+ dawnguard.004.desc: "Fort Dawnguard is not impressive until you see it from the canyon floor and understand what you are looking at. Three sides of natural cliff, walls that could be held by twenty people against two hundred, and a single approach road narrow enough that anything coming through it arrives one at a time.\n\nIsran built his order here because the Volkihar are patient and strategic, and the only way to fight patient and strategic enemies is to make them come to you on your terms. The Fort itself is functional but unfinished — there are gaps where investment would pay itself back in survival rates.\n\nYou have gold. You have time before the Volkihar find the approach road. The question is where to put the resources first."
+ dawnguard.004.a: "Reinforce the walls. When they come, the walls must hold."
+ dawnguard.004.b: "Expand the armory. A crossbow in every hand."
+ dawnguard.004.c: "Establish a training program. Better hunters outlive better walls."
+
+ dawnguard.010.t: "Volkihar Retaliation"
+ dawnguard.010.desc: "They came in through the servant's entrance, wearing the faces of merchants who had been cleared by the gate guard three days ago. Your steward noticed that the shadow of the leftmost figure was falling at the wrong angle for the position of the sun. By the time the alarm was raised, two of them were already inside the main hall.\n\nThe Volkihar do not send armies when a small, precisely targeted attack will do. They found your location — how is a question for later, after the bodies have been examined and the surviving staff questioned. Right now, the fight is happening in your own great hall, and three of your hunters are between you and three creatures that have been killing people since before your grandfather was born."
+ dawnguard.010.a: "Defend the court. Every Volkihar agent we destroy is a message sent back."
+ dawnguard.010.b: "Capture one. The dead tell us nothing; a prisoner tells us everything."
+ dawnguard.010.c: "Fall back. If they know this location, Fort Dawnguard's secrecy is already compromised."
+
+ # --- Decisions ---
+
+ join_dawnguard: "Join the Dawnguard"
+ join_dawnguard_desc: "Isran has reopened Fort Dawnguard and is calling experienced fighters to his cause. The Volkihar vampire clan grows bolder in the Rift, and someone must push back. Travel to the Fort and present yourself for induction into the order."
+
+ build_dawnguard_fort: "Build Fort Dawnguard"
+ build_dawnguard_fort_desc: "As a captain of the Dawnguard, you have the standing and the resources to fully establish Fort Dawnguard as the order's operational base — proper walls, a stocked armoury, and a defensible garrison capable of holding the canyon approaches against a Volkihar assault."

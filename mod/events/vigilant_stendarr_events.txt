@@ -1,0 +1,352 @@
+# =============================================================
+#  Vigilants of Stendarr Events
+#  Namespace: vigilant
+#  File: mod/events/vigilant_stendarr_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  vigilant.000  Hidden yearly — detects pious rulers when Daedric
+#                invasion is active; fires the Vigilant contact event
+#  vigilant.001  "Stendarr's Mercy" — Vigilant monks arrive offering
+#                alliance against active Daedric invasion
+#  vigilant.002  "The Hall of the Vigilant" — invitation to visit
+#                the Hall; learn anti-Daedra tactics
+#  vigilant.003  "Too Much Mercy" — a monster the Vigilants tried
+#                to rehabilitate causes harm; moral dilemma
+#  vigilant.004  "Volkihar Attacks the Hall" — the vampire massacre
+#                of the Hall of the Vigilant (4E 201 flavor event)
+#  vigilant.010  "A Daedric Artifact Brought to the Vigilants" —
+#                the player finds a Daedric item and must decide
+#                what to do with it
+#
+#  HISTORICAL NOTE:
+#  The Vigilants of Stendarr were a pan-Tamrielic order devoted to
+#  hunting Daedra, undead, and monsters.  They operated throughout
+#  the Third and Fourth Eras.  Their relationship to the Daedric
+#  Champion / Daedric Invasion system makes them natural opponents
+#  of any Daedric prince's presence in the region.  In 4E 201, the
+#  Volkihar vampire clan, acting in service to Harkon's plans, burned
+#  the Hall of the Vigilant and massacred most of the order.  A few
+#  survivors joined the reformed Dawnguard.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/vigilant_stendarr_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/vigilant_stendarr_traits.txt
+#      → vigilant_of_stendarr, vigilant_captain, hall_of_vigilant_guardian
+#    common/traits/daedric_invasion_traits.txt
+#      → daedric_champion, daedric_vassal (used in NOT checks)
+# =============================================================
+
+namespace = vigilant
+
+# ---------------------------------------------------------------
+# vigilant.000  Stendarr's Servants Watch
+# Hidden yearly event. Detects pious rulers when the Daedric
+# invasion system is active. Once per playthrough (guarded by
+# global_var), it fires the Vigilant outreach event for qualifying
+# rulers — those with high piety who have not already aligned
+# themselves with a Daedric prince.
+# ---------------------------------------------------------------
+vigilant.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        is_adult = yes
+        piety >= 300
+        NOT = { global_var:vigilant_outreach_active = 1 }
+        NOT = { has_trait = vigilant_of_stendarr }
+        NOT = { has_trait = vigilant_captain }
+        NOT = { has_trait = hall_of_vigilant_guardian }
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = daedric_vassal }
+        # Only fires when Daedric invasion has been triggered
+        global_var:daedric_invasion_active = 1
+    }
+
+    immediate = {
+        set_global_variable = { name = vigilant_outreach_active value = 1 }
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_adult = yes
+                piety >= 300
+                NOT = { has_trait = vigilant_of_stendarr }
+                NOT = { has_trait = vigilant_captain }
+                NOT = { has_trait = hall_of_vigilant_guardian }
+                NOT = { has_trait = daedric_champion }
+                NOT = { has_trait = daedric_vassal }
+            }
+            trigger_event = { id = vigilant.001 days = 21 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# vigilant.001  Stendarr's Mercy
+# Three Vigilants arrive at court, travel-worn and urgent.
+# They have been watching the Daedric activity in the region;
+# they have come to offer what the order can: knowledge,
+# blessing, and the kind of help that doesn't ask for payment —
+# only for the chance to push back the darkness together.
+# ---------------------------------------------------------------
+vigilant.001 = {
+    type = character_event
+    title = vigilant.001.t
+    desc  = vigilant.001.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_rational
+    }
+
+    option = {
+        name = vigilant.001.a   # "Accept their alliance. Stendarr's servants are welcome here."
+        add_trait = vigilant_of_stendarr
+        add_piety = 100
+        add_prestige = 75
+        trigger_event = { id = vigilant.002 days = 60 }
+    }
+
+    option = {
+        name = vigilant.001.b   # "Thank them but decline. We have our own methods."
+        add_piety = 25
+        add_prestige = -25
+    }
+
+    option = {
+        name = vigilant.001.c   # "Donate to their cause. The work is worthy even without joining."
+        trigger = { gold >= 100 }
+        add_gold = -100
+        add_piety = 75
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# vigilant.002  The Hall of the Vigilant
+# An invitation arrives from the Hall of the Vigilant itself —
+# the order's seat in Skyrim, near the Pale Pass.  The Guardians
+# want to share what they have learned about the Daedric presence
+# in the region.  The knowledge is real, hard-won, and extremely
+# useful.  So is the library.
+# ---------------------------------------------------------------
+vigilant.002 = {
+    type = character_event
+    title = vigilant.002.t
+    desc  = vigilant.002.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = reading
+    }
+
+    trigger = {
+        has_trait = vigilant_of_stendarr
+        NOT = { has_character_flag = vigilant_hall_visited }
+    }
+
+    option = {
+        name = vigilant.002.a   # "Study the anti-Daedra tactics. Knowledge first."
+        add_learning_skill = 1
+        add_piety = 100
+        add_character_modifier = {
+            modifier = vigilant_anti_daedra_training
+            days = 1825
+        }
+        set_character_flag = { flag = vigilant_hall_visited days = 3650 }
+    }
+
+    option = {
+        name = vigilant.002.b   # "Study the blessing rites. A wall of faith against the void."
+        add_piety = 150
+        add_character_modifier = {
+            modifier = vigilant_stendarr_blessed
+            days = 1825
+        }
+        set_character_flag = { flag = vigilant_hall_visited days = 3650 }
+    }
+
+    option = {
+        name = vigilant.002.c   # "Train with the combat Vigilants. Their techniques are worth learning."
+        add_martial_skill = 1
+        add_prowess_skill = 1
+        add_piety = 75
+        set_character_flag = { flag = vigilant_hall_visited days = 3650 }
+    }
+}
+
+# ---------------------------------------------------------------
+# vigilant.003  Too Much Mercy
+# The Vigilants' rehabilitation program is one of the things
+# Isran hates most about them.  A werewolf, carefully monitored,
+# given tools to maintain control.  A vampire, supposedly willing
+# to resist the thirst.  It works, sometimes.  Not this time.
+# ---------------------------------------------------------------
+vigilant.003 = {
+    type = character_event
+    title = vigilant.003.t
+    desc  = vigilant.003.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = grief
+    }
+
+    trigger = {
+        OR = {
+            has_trait = vigilant_captain
+            has_trait = hall_of_vigilant_guardian
+        }
+        NOT = { has_character_flag = vigilant_mercy_dilemma_resolved }
+    }
+
+    option = {
+        name = vigilant.003.a   # "Hold to Stendarr's mercy. One failure does not end the program."
+        add_piety = 75
+        add_stress = 25
+        add_prestige = -50
+        set_character_flag = { flag = vigilant_mercy_dilemma_resolved days = 1825 }
+    }
+
+    option = {
+        name = vigilant.003.b   # "Change the approach. Isran's methods have merit, however unpleasant."
+        add_piety = -50
+        add_stress = 20
+        add_martial_skill = 1
+        add_character_modifier = {
+            modifier = vigilant_pragmatic_approach
+            days = 1825
+        }
+        set_character_flag = { flag = vigilant_mercy_dilemma_resolved days = 1825 }
+    }
+
+    option = {
+        name = vigilant.003.c   # "Investigate what went wrong. The failure has a cause."
+        trigger = { intrigue >= 10 }
+        add_piety = 25
+        add_intrigue_skill = 1
+        add_stress = 15
+        set_character_flag = { flag = vigilant_mercy_dilemma_resolved days = 1825 }
+    }
+}
+
+# ---------------------------------------------------------------
+# vigilant.004  Volkihar Attacks the Hall
+# The news arrives in fragments, each more terrible than the last:
+# the Hall of the Vigilant is gone.  The Volkihar came in force,
+# at night, and they did not take prisoners.  Whatever the Vigilants
+# knew about them, whatever records the Hall contained — ash now.
+# ---------------------------------------------------------------
+vigilant.004 = {
+    type = character_event
+    title = vigilant.004.t
+    desc  = vigilant.004.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = grief
+    }
+
+    trigger = {
+        OR = {
+            has_trait = vigilant_of_stendarr
+            has_trait = vigilant_captain
+            has_trait = hall_of_vigilant_guardian
+        }
+        NOT = { has_character_flag = vigilant_hall_destroyed_witnessed }
+        # This is a 4E 201 event — fires in a late game window
+        current_date >= 4.200.1.1
+    }
+
+    immediate = {
+        set_global_variable = { name = hall_of_vigilant_destroyed value = 1 }
+    }
+
+    option = {
+        name = vigilant.004.a   # "The order cannot die with the Hall. Rebuild. Remember."
+        add_piety = 150
+        add_stress = 35
+        add_prestige = 100
+        add_character_modifier = {
+            modifier = vigilant_hall_in_ashes
+            days = 1825
+        }
+        set_character_flag = { flag = vigilant_hall_destroyed_witnessed days = -1 }
+    }
+
+    option = {
+        name = vigilant.004.b   # "Join the Dawnguard. Isran was right about the Volkihar."
+        add_piety = 100
+        add_stress = 30
+        remove_trait = vigilant_of_stendarr
+        remove_trait = vigilant_captain
+        remove_trait = hall_of_vigilant_guardian
+        add_trait = dawnguard_initiate
+        set_character_flag = { flag = vigilant_hall_destroyed_witnessed days = -1 }
+    }
+}
+
+# ---------------------------------------------------------------
+# vigilant.010  A Daedric Artifact Brought to the Vigilants
+# A scouting party found it in a ruin — a thing of wrong-coloured
+# metal that hums at the edge of hearing and casts a shadow that
+# doesn't match the object's shape.  The Vigilants say they can
+# destroy it, or seal it, or it can simply stay in your vaults
+# and continue being a source of extraordinary temptation.
+# ---------------------------------------------------------------
+vigilant.010 = {
+    type = character_event
+    title = vigilant.010.t
+    desc  = vigilant.010.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = thinking
+    }
+
+    trigger = {
+        OR = {
+            has_trait = vigilant_of_stendarr
+            has_trait = vigilant_captain
+            has_trait = hall_of_vigilant_guardian
+        }
+        NOT = { has_character_flag = vigilant_artifact_decided }
+    }
+
+    option = {
+        name = vigilant.010.a   # "Give it to the Vigilants to destroy. Stendarr's will."
+        add_piety = 150
+        add_prestige = 50
+        add_stress = -10
+        set_character_flag = { flag = vigilant_artifact_decided days = 1825 }
+    }
+
+    option = {
+        name = vigilant.010.b   # "Keep it. A weapon against the Daedra, if used carefully."
+        add_prestige = 100
+        add_piety = -100
+        add_stress = 20
+        add_character_modifier = {
+            modifier = vigilant_artifact_retained
+            days = 1825
+        }
+        set_character_flag = { flag = vigilant_artifact_decided days = 1825 }
+    }
+
+    option = {
+        name = vigilant.010.c   # "Let the Vigilants seal it and keep it secured. Neither destroyed nor used."
+        trigger = { diplomacy >= 10 }
+        add_piety = 100
+        add_prestige = 75
+        add_stress = 10
+        set_character_flag = { flag = vigilant_artifact_decided days = 1825 }
+    }
+}

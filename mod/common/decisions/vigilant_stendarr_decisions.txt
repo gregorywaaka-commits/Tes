@@ -1,0 +1,174 @@
+# =============================================================
+#  Vigilants of Stendarr — Decisions
+#  File: mod/common/decisions/vigilant_stendarr_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • vigilant_of_stendarr, vigilant_captain = from common/traits/vigilant_stendarr_traits.txt
+#  • daedric_champion = from common/traits/daedric_invasion_traits.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/vigilant_stendarr_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • join_vigilants_of_stendarr
+#    • donate_to_hall_of_vigilant
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/vigilant_stendarr_traits.txt
+#      → vigilant_of_stendarr
+#    common/traits/daedric_invasion_traits.txt
+#      → daedric_champion, daedric_vassal
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/vigilant_stendarr_events.txt
+#      → join_vigilants_of_stendarr, donate_to_hall_of_vigilant
+# =============================================================
+
+# ---------------------------------------------------------------
+#  JOIN THE VIGILANTS OF STENDARR
+#  A sufficiently pious ruler who has not aligned themselves with
+#  a Daedric prince may seek membership in Stendarr's hunting
+#  order.  The induction is less violent than the Dawnguard's —
+#  the Vigilants ask about your faith, your resolve, and your
+#  willingness to extend mercy before force.  They take almost
+#  anyone who can honestly answer all three in the right direction.
+# ---------------------------------------------------------------
+join_vigilants_of_stendarr = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = join_vigilants_of_stendarr_desc
+
+    is_shown = {
+        is_adult = yes
+        is_ruler = yes
+        NOT = { has_trait = vigilant_of_stendarr }
+        NOT = { has_trait = vigilant_captain }
+        NOT = { has_trait = hall_of_vigilant_guardian }
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = daedric_vassal }
+        # The Hall of the Vigilant has not been destroyed yet
+        NOT = { global_var:hall_of_vigilant_destroyed = 1 }
+    }
+
+    is_valid = {
+        is_adult = yes
+        is_ruler = yes
+        piety >= 500
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = daedric_vassal }
+        NOT = { global_var:hall_of_vigilant_destroyed = 1 }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        piety >= 500
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = daedric_vassal }
+    }
+
+    effect = {
+        add_piety = -100
+        add_prestige = 100
+        add_trait = vigilant_of_stendarr
+        trigger_event = { id = vigilant.002 days = 30 }
+    }
+
+    ai_will_do = {
+        base = 4
+        modifier = {
+            add = 8
+            has_trait = zealous
+        }
+        modifier = {
+            add = 5
+            piety >= 800
+        }
+        modifier = {
+            add = 4
+            has_trait = compassionate
+        }
+        modifier = {
+            factor = 0
+            has_trait = daedric_champion
+        }
+        modifier = {
+            factor = 0
+            has_trait = daedric_vassal
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  DONATE TO THE HALL OF THE VIGILANT
+#  The Hall of the Vigilant is funded by donations from pious
+#  rulers across Tamriel.  Contributing is a straightforward act
+#  of faith — the order uses the gold for equipment, travel, and
+#  the rehabilitation programs that make Isran's teeth clench.
+#  The piety return is reliable.  The gratitude of the Hall's
+#  Guardians is genuine if occasionally embarrassing in its warmth.
+# ---------------------------------------------------------------
+donate_to_hall_of_vigilant = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = donate_to_hall_of_vigilant_desc
+
+    is_shown = {
+        is_adult = yes
+        is_ruler = yes
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = daedric_vassal }
+        NOT = { global_var:hall_of_vigilant_destroyed = 1 }
+    }
+
+    is_valid = {
+        is_adult = yes
+        is_ruler = yes
+        gold >= 100
+        NOT = { has_trait = daedric_champion }
+        NOT = { has_trait = daedric_vassal }
+        NOT = { global_var:hall_of_vigilant_destroyed = 1 }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        gold >= 100
+    }
+
+    effect = {
+        add_gold = -100
+        add_piety = 150
+        add_prestige = 50
+        # Members of the order receive an additional blessing
+        if = {
+            limit = {
+                OR = {
+                    has_trait = vigilant_of_stendarr
+                    has_trait = vigilant_captain
+                    has_trait = hall_of_vigilant_guardian
+                }
+            }
+            add_character_modifier = {
+                modifier = vigilant_generous_patron
+                days = 730
+            }
+        }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 6
+            piety >= 500
+            gold >= 300
+        }
+        modifier = {
+            add = 4
+            has_trait = vigilant_of_stendarr
+        }
+        modifier = {
+            add = 4
+            has_trait = generous
+        }
+    }
+}

@@ -1,0 +1,73 @@
+# =============================================================
+#  Isran — Character Template
+#  File: mod/common/character_templates/isran.txt
+#
+#  USAGE:
+#  ──────
+#  This template spawns Isran, the founder of the refounded
+#  Dawnguard, as an NPC or player-accessible figure.  He is a
+#  Redguard warrior-monk of exceptional martial ability and
+#  equally exceptional interpersonal difficulty.  His faith in
+#  Stendarr (the Divine of Mercy) is fervent but expressed
+#  entirely through violence against Stendarr's enemies —
+#  primarily undead, vampires, and anything with the wrong
+#  kind of shadow.
+#
+#  HISTORICAL NOTE:
+#  ─────────────────
+#  Isran refounded the Dawnguard at Fort Dawnguard in 4E 176.
+#  He had previously been a member of the Vigilants of Stendarr
+#  but broke with them because he considered their approach to
+#  vampire hunting insufficiently aggressive.  He was right;
+#  the Vigilants were massacred by the Volkihar in 4E 201.
+#  Sources: UESP Lore:Isran; Skyrim — Dawnguard DLC.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/character_templates/isran.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • isran
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dawnguard_traits.txt
+#      → dawnguard_lord
+# =============================================================
+
+isran = {
+    name     = "Isran"
+
+    # Redguard — born in Hammerfell, forged in the Alik'r, came
+    # to Skyrim because the vampires were here and someone had to
+    # deal with them
+    culture  = redguard_culture
+
+    # Devotee of Stendarr, the Divine of Mercy — which he
+    # interprets, with complete sincerity, as the mercy of a
+    # clean death for those who have been corrupted beyond
+    # redemption
+    religion = eight_divines
+
+    # ── Personality & Lifestyle ──────────────────────────────
+    trait = zealous           # Stendarr's will, as Isran understands it
+    trait = diligent          # the crossbows are always maintained; the patrols never miss
+    trait = wrathful          # his patience has definite and catastrophic limits
+    trait = brave             # walks into things that would stop most people cold
+
+    # ── Dawnguard Rank ────────────────────────────────────────
+    trait = dawnguard_lord    # he IS the order's commander
+
+    # ── Skill Distribution ────────────────────────────────────
+    # Isran is primarily a warrior and tactician — his learning
+    # and stewardship are functional but secondary to his martial
+    # and intrigue capabilities.  His diplomacy is low because he
+    # considers diplomatic niceties an obstacle between him and
+    # the part where something dies.
+    skill_diplomacy   = 8
+    skill_martial     = 18
+    skill_stewardship = 10
+    skill_intrigue    = 12
+    skill_learning    = 10
+}
