@@ -444,6 +444,12 @@ on_yearly_pulse = {
         # --- FORSWORN / HAGRAVEN DEEP SYSTEM ---
         3   = forsworn.000           # Old Ways call — reachman_heritage rulers (forsworn_events.txt)
         2   = forsworn.004           # Witch's price — hagraven_ally rulers (forsworn_events.txt)
+        # --- KAGRENAC'S AMBITION / BORROWED DIVINITY ---
+        5   = borrowed_divinity.000  # Hidden intro check — eligible rulers while dagoth_ur_awakened (borrowed_divinity_events.txt)
+        4   = borrowed_divinity.cutoff.001  # Heart access severed — heart_scholar_ascendant rulers on dagoth_ur_awakened (borrowed_divinity_events.txt)
+        4   = borrowed_divinity.cutoff.002  # Heart destroyed while reservoir active — heart_scholar_ascendant rulers on dagoth_ur_defeated (borrowed_divinity_events.txt)
+        5   = borrowed_divinity.starvation.001  # Reservoir empty check — heart_scholar_ascendant with heart_cut_off and reservoir=0 (borrowed_divinity_events.txt)
+        3   = borrowed_divinity.dissolution.001  # Heart destroyed narrative — all Route A practitioners on dagoth_ur_defeated (borrowed_divinity_events.txt)
     }
 }
 

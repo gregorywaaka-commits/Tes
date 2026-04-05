@@ -2700,3 +2700,39 @@ thrassian_quarantine_active = {
     diplomacy            = -1
     monthly_prestige     = -1
 }
+
+# =============================================================
+#  KAGRENAC'S AMBITION (ww_borrowed_divinity) MODIFIERS
+#  Defined here; used by mod/events/borrowed_divinity_events.txt
+#
+#  heart_starvation_modifier — Phase 2: reservoir empty; ascendant
+#    trait removed; character experiences the absence as a wound.
+#  heart_absorbed_modifier   — Route B failure: Heart absorbed the
+#    practitioner; severe permanent penalties.
+#  heart_overload            — Route A milestone 5A failure: the
+#    Tools failed; the draw inverted; character survives but scarred.
+#  consumed_another          — Permanent mark on a character who
+#    murdered another ascendant to drain their stored Heart power
+#    (the Almalexia Option).
+# =============================================================
+
+heart_starvation_modifier = {
+    learning             = -4
+    diplomacy            = -2
+    stress_gain_mult     = 0.40    # The absence is felt as a wound
+}
+
+heart_absorbed_modifier = {
+    intrigue             = -6
+    stress_gain_mult     = 1.00    # The Heart rearranged something fundamental
+}
+
+heart_overload = {
+    learning             = -4     # Applied as permanent stat loss via add_skill effect; modifier is the visible marker
+    stress_gain_mult     = 0.20
+}
+
+consumed_another = {
+    monthly_piety        = -2     # The act is not approved of
+    diplomacy            = -1
+}

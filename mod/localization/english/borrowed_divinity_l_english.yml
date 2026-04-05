@@ -1,0 +1,123 @@
+﻿l_english:
+
+ # =====================================================================
+ #  KAGRENAC'S AMBITION — The Borrowed Divinity
+ #  Namespace: borrowed_divinity
+ # =====================================================================
+
+ # --- Trait names ---
+
+ heart_scholar_ascendant: "Heart Scholar Ascendant"
+ heart_scholar_ascendant_desc: "This ruler has done what the Tribunal did: tapped the Heart of Lorkhan using Kagrenac's Tools, drinking power from a slain god's remains. The Tribunal called themselves saints for it. Whether that framing holds here is a question for the faithful.\n\nThe power is real. It is divine. It is borrowed — sustained only as long as the Heart exists and the practitioner can return to renew the connection. The Tribunal drew from the Heart for three thousand years. When Dagoth Ur cut off their access, the power began to drain. When the Heart was destroyed, what remained vanished with it.\n\nThis ruler is aware of all of this. They have it anyway."
+
+ heart_fused_ascendant: "Heart Fused Ascendant"
+ heart_fused_ascendant_desc: "This ruler has done what Dagoth Ur did: touched the Heart of Lorkhan directly, without Kagrenac's mediating instruments, and survived. The merger is total. They do not draw power from the Heart — they carry a fragment of it within them at all times.\n\nDagoth Ur's Ash Vampires operated the same way. When the Heart was destroyed, they died in the same instant. There was nothing to decouple from. The fusion had been complete.\n\nThis ruler's power will not fade gradually. When the Heart ceases to exist, so will they."
+
+ # --- Modifier names ---
+
+ heart_starvation_modifier: "Heart Starvation"
+ heart_starvation_modifier_desc: "The stored power of the Heart of Lorkhan has run out. What remains is the memory of what it felt like — a specific and awful kind of diminishment. The Tribunal experienced this. Almalexia did not survive it intact. The mortal parts reassert themselves, but they do not reassert cleanly."
+
+ heart_absorbed_modifier: "Heart-Absorbed"
+ heart_absorbed_modifier_desc: "The Heart of Lorkhan reached back. What walked away from Red Mountain is not entirely the same person who walked toward it. Something fundamental has been rearranged — not destroyed, but moved. The world does not trust rearranged people, and rearranged people do not always trust themselves."
+
+ heart_overload: "Heart Overload"
+ heart_overload_desc: "One of the replica Tools fractured during the draw. The resonance inverted. The character survived — which is more than the Dwemer managed — but not without cost. The Learning penalty is permanent. The moment of inversion is not something the mind recovers from cleanly."
+
+ consumed_another: "Consumed Another"
+ consumed_another_desc: "This ruler killed another practitioner of Kagrenac's method and drained what remained of their stored Heart power. Almalexia did this to Sotha Sil in the Clockwork City. The Tribunal's community of shared divine experience made Sotha Sil's death felt by all who touched the Heart.\n\nThis ruler's peers are aware of what was done. The power gained from it was temporary. The knowledge of what they are capable of is permanent."
+
+ # --- Milestone 1: The Scholar's Discovery ---
+
+ borrowed_divinity.001.t: "The Weight Under Red Mountain"
+ borrowed_divinity.001.desc: "You have come across something that refuses to stay theoretical.\n\nA text — possibly Dwemer, possibly a copy of a copy — describes the anatomy of a divine object buried beneath Red Mountain. Not a relic. Not an artefact in the conventional sense. The Heart of a god who chose mortality and paid for it. The Dwemer called it the Stone of the Red Tower and spent centuries building an apparatus to reach it.\n\nThe Tribunal reached it. Tapped it. Drank from it. Called themselves gods and the Dunmer believed them — which, from an epistemological standpoint, is interesting.\n\nDagoth Ur reached it differently: no instruments, no intermediary, just contact. He became something the Tribunal were afraid of.\n\nThe Heart is still there. Dagoth Ur's awakening has, if anything, made it more accessible — the Tribunal no longer controls the access road. The cost of what you are reading, right now, is that you cannot unread it."
+ borrowed_divinity.001.a: "The Dwemer left records. I will find them."
+ borrowed_divinity.001.b: "This is Sixth House heresy. I will not entertain it."
+
+ # --- Milestone 2: The Theoretical Understanding ---
+
+ borrowed_divinity.010.t: "The Arithmetic of Godhood"
+ borrowed_divinity.010.desc: "You understand it now.\n\nNot philosophically — not as an abstraction about divinity and mortality and the nature of power. Mechanically. The Heart of Lorkhan is a power source. The Tribunal built a method for tapping it. Dagoth Ur found a different method. Both worked.\n\nThe key variables are: the Tools (Wraithguard, Keening, Sunder), the proximity to the Heart, the will to hold the connection against what resides in the Heart, and — if you use the Tools — the precision to avoid the draw inverting.\n\nThe Dwemer activated their apparatus collectively and vanished. That is the catastrophic outcome. The Tribunal activated theirs individually and became gods. That is the successful outcome. Dagoth Ur activated nothing and merged completely. That is the third outcome.\n\nYou have a preference. The question is whether you are prepared to act on it."
+ borrowed_divinity.010.a: "The Tribunal did this. So did Dagoth Ur. So can I."
+ borrowed_divinity.010.b: "I understand it. That is enough. I will not attempt it."
+
+ # --- Milestone 3: THE FORK ---
+
+ borrowed_divinity.020.t: "Kagrenac's Question"
+ borrowed_divinity.020.desc: "You are standing at the same fork Kagrenac stood at when he designed his apparatus: instruments or direct contact.\n\nKagrenac chose instruments. The Tribunal inherited his method. The instruments are precision tools — they mediate the connection so that you are drawing power, not being consumed by it. The cost is dependency: you must return to the Heart to renew the draw. The Tribunal returned for three thousand years. When Dagoth Ur closed the road, they began to starve.\n\nDagoth Ur chose direct contact. No mediation. He survived — uniquely, as far as anyone can determine — but the merger was total. He carried the Heart with him. When the Nerevarine destroys the Heart, Dagoth Ur's Ash Vampires will die in the same instant.\n\nYou are not the Tribunal. You are not Dagoth Ur. You have read everything they left behind.\n\nWhich door do you open?"
+ borrowed_divinity.020.a: "Kagrenac's way. Instruments. Precision. Control."
+ borrowed_divinity.020.b: "Dagoth Ur's way. No instruments. Just will."
+
+ # --- Milestone 4A: The First Instrument ---
+
+ borrowed_divinity.030.t: "The First Tool"
+ borrowed_divinity.030.desc: "You have obtained a replica — not an original, which no longer exist in their undamaged forms — of one of the three Tools.\n\nYagrum Bagarn, the last living Dwemer, is believed to have created a working copy of Wraithguard for the Nerevarine. The methodology exists. You have commissioned or discovered your own.\n\nThe first controlled touch of the Heart's power is not the overwhelming thing you feared. It is small. Precise. A thread of something that is not heat, not light, not any sensation with a name — but which is unmistakably the power that sustained the Tribunal.\n\nThis is the beginning. The full apparatus is three Tools. One is not enough."
+ borrowed_divinity.030.a: "One tool. A cautious draw. Enough to know it works."
+ borrowed_divinity.030.b: "The cost is too great. I step back."
+
+ # --- Milestone 5A: The Full Apparatus ---
+
+ borrowed_divinity.040.t: "Wraithguard, Keening, Sunder"
+ borrowed_divinity.040.desc: "All three Tools. Assembled. Functional.\n\nYou have done what the Tribunal did at the Battle of Red Mountain, without the Battle, without Nerevar, without the historical weight — just the act itself, stripped of context.\n\nThe Sunder strikes. The Keening resonates. The Wraithguard holds your hand on the right side of the threshold.\n\nFor a moment you understand why the Tribunal believed they were gods."
+ borrowed_divinity.040.a: "The preparation is complete. I strike the Heart."
+
+ # --- Milestone 5A Failure: Tools Fail ---
+
+ borrowed_divinity.041.t: "The Resonance Inverted"
+ borrowed_divinity.041.desc: "The hammer cracked on the third strike. The resonance inverted.\n\nFor a moment you saw what the Dwemer saw in their last instant — a vast geometry of divine power, the Heart's totality, the thing Kagrenac spent his entire life trying to approach at a controlled angle — and then the moment passed and you were still standing and everything that should have been different about you was exactly the same.\n\nYou are alive. This is more than the Dwemer managed. The Learning penalty is permanent: you attempted something that broke its own instrument on the way through, and the backlash has left a mark on how you process information.\n\nRoute A is closed. Route B remains, if you are prepared for what it requires."
+ borrowed_divinity.041.a: "I am still standing. That is more than the Dwemer managed."
+
+ # --- Milestone 4B: The Corprus Gate ---
+
+ borrowed_divinity.050.t: "The Heart's Fingerprint"
+ borrowed_divinity.050.desc: "Dagoth Ur's method does not permit intermediaries. No Tools. No controlled draw. You will put yourself in direct contact with the most concentrated remnant of divine power in Nirn — a slain god's Heart — and hold.\n\nThe Blight disease is the Heart's fingerprint on the world. Every ash creature, every corprus victim, every sleeper who hears the Dreamer's voice — they are all touched by what leaks from the Heart when it operates unmediated. Dagoth Ur survived direct contact because he was already part of that unmediated system.\n\nTo approach the Heart the way he did, you need to demonstrate you can survive what he survived. The Blight is the test.\n\nYou know what corprus disease does to people. You know the odds. You are choosing this."
+ borrowed_divinity.050.a: "I know what this disease is. I choose it."
+ borrowed_divinity.050.b: "I already carry the Blight. I am ready."
+ borrowed_divinity.050.c: "Not like this. I turn back."
+
+ # --- Milestone 5B: The Plunge ---
+
+ borrowed_divinity.060.t: "Hands on the Heart"
+ borrowed_divinity.060.desc: "There are no instruments. No mediation. No carefully designed apparatus separating your intent from the consequences.\n\nYou put your hands on the Heart of Lorkhan.\n\nThe Heart is what remains of a god who chose to be mortal and was killed for it. Its power is not clean. It does not know what you want. It does not care whether you survive. It is simply there — vast, ancient, indifferent, and more than anything mortal can contain unbroken.\n\nDagoth Ur survived this. One other person survived this. The Dwemer did not.\n\nYou hold."
+ borrowed_divinity.060.a: "I put my hands on the Heart. I hold."
+
+ # --- Milestone 5B Failure: The Heart Takes You ---
+
+ borrowed_divinity.061.t: "What Walked Away"
+ borrowed_divinity.061.desc: "You reached for the Heart. The Heart reached back.\n\nWhat walked away from Red Mountain was not entirely you — but it was not entirely not-you either. Something fundamental had been rearranged. You understand, in the way that a broken pot understands the floor.\n\nYou still know your name. You still know your realm, your alliances, your debts, the faces of your children. These things are intact. But the architecture beneath them — the sense of yourself as a continuous, singular thing — has been shifted. The Heart touched it. The Heart is large. You were not.\n\nRoute B is closed. The experience is permanent. Whether it can be used for anything is a question your future self will have to answer."
+ borrowed_divinity.061.a: "I walked away. Something walked away. It calls itself me."
+
+ # --- Milestone 6: The Stolen Fire (shared) ---
+
+ borrowed_divinity.070.t: "The Stolen Fire"
+ borrowed_divinity.070.desc.a: "It works.\n\nYou have what the Tribunal had: controlled, mediated access to the power of a slain god, drawn through instruments that exist as a precise buffer between you and something that would otherwise simply consume you.\n\nThe power is real. Learning comes faster. Thought is clearer. There is a quality to your presence that was not there before — something that people notice without being able to name. The Tribunal had this for three thousand years. Vivec wrote the 36 Lessons from inside this particular clarity.\n\nIt is not yours by right. Lorkhan's Heart was not offered to you. This is theft from the dead, and the dead god does not notice because it cannot — but the act is what it is.\n\nYou have it anyway."
+ borrowed_divinity.070.desc.b: "The merger is complete.\n\nThis is not what the Tribunal had. They drew from the Heart and the Heart remained separate — a well they returned to, a source outside themselves. What you have done is different.\n\nThe Heart is inside you now. Not metaphorically. Not spiritually. The power that was Lorkhan's divine remnant has merged with what you are, and you are no longer entirely separate from it.\n\nDagoth Ur's Ash Vampires operate the same way. When the Nerevarine destroys the Heart, they will die in the same instant. You understand this. There is no decouple mechanism. The merger is total.\n\nYou are more powerful than you have ever been. You are also the most contingent thing in the world — your existence now depends on a Heart that a prophecy is already aimed at.\n\nYou have it anyway."
+ borrowed_divinity.070.a: "I have it. Everything else is a question for tomorrow."
+ borrowed_divinity.070.b: "Not borrowed. Not taken. Fused. This is different."
+
+ # --- Phase 1: Heart Access Severed ---
+
+ borrowed_divinity.cutoff.001.t: "Red Mountain Has Changed"
+ borrowed_divinity.cutoff.001.desc: "You felt it before the reports arrived — a shift in what you relied on without knowing you relied on it. The connection to the Heart's power has not broken. It has simply… become unreachable. Something is between you and the source. Something vast.\n\nThe Tribunal have been cut off from it for the same reason. You know this because you can feel the absence of their draw — the Heart was never meant to feed so many.\n\nDagoth Ur has seized Red Mountain. The Tribunal spent three thousand years accessing the Heart on their own terms. They returned whenever they needed renewal. That road is closed now.\n\nWhat you hold now is what you stored. It will not be replenished."
+ borrowed_divinity.cutoff.001.a: "Then I use what I have carefully."
+ borrowed_divinity.cutoff.001.b: "There must be another way in."
+
+ # --- Phase 3 (transition): Heart Destroyed While Reservoir Remains ---
+
+ borrowed_divinity.cutoff.002.t: "The Source Is Gone"
+ borrowed_divinity.cutoff.002.desc: "The Heart of Lorkhan has been destroyed.\n\nYou still have some of what you stored — the reservoir is not empty. But the source it drew from no longer exists. What remains will continue to drain. It will drain faster now: the destruction was not a gradual severance but a complete termination.\n\nVivec held Baar Dau aloft for decades on what remained after this moment. He was Vivec; he had three thousand years of accumulated power. You have what you have.\n\nThe dissolution event will follow when the reservoir is spent."
+ borrowed_divinity.cutoff.002.a: "The source is gone. What I hold will not last."
+
+ # --- Phase 2: Reservoir Empty ---
+
+ borrowed_divinity.starvation.001.t: "The Last of It Is Gone"
+ borrowed_divinity.starvation.001.desc: "The last of it is gone.\n\nYou can feel the difference. There is a quality to what you were — a steadiness, a weight — that is simply absent now. You are mortal. You were mortal before. The difference is that now you remember what the other thing felt like.\n\nThe Tribunal are in the same place. All of them. Almalexia has stopped giving public audiences. The rumours from Mournhold are becoming difficult to ignore.\n\nYou understand why.\n\nThere are two doors left. One leads to someone else's stored power. The other is the door Vivec may have taken — the one that opens from the inside."
+ borrowed_divinity.starvation.001.a: "I remember what it felt like. That much remains."
+
+ # --- Heart Destroyed: Shared Narrative (all Route A practitioners) ---
+
+ borrowed_divinity.dissolution.001.t: "The Absence of a Sound"
+ borrowed_divinity.dissolution.001.desc: "You were in the middle of a sentence when it stopped.\n\nNot the Heart — you would not know the Heart had stopped the way you know a candle goes out. The Heart's ending was not a sound. It was the absence of a sound you had stopped noticing you were always hearing.\n\nIf you still had any of it, you feel it going faster now. If you already lost it, there is simply a new quality to the silence — the source is gone, not merely blocked.\n\nThe Tribunal spent three thousand years drawing from that well. Vivec held Baar Dau aloft for years after this moment with what little remained.\n\nHe is gone now too. Whether he found something else on the way out is a question no one has answered convincingly."
+ borrowed_divinity.dissolution.001.a: "I had it while I had it. That was real."
+ borrowed_divinity.dissolution.001.b: "Where did Vivec go?"
+ borrowed_divinity.dissolution.001.c: "I should have taken more while I could."

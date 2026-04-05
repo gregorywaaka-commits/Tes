@@ -4,16 +4,24 @@
 #
 #  TRAITS IN THIS FILE:
 #  ────────────────────
-#  sixth_house_cultist — Secret follower of the Sixth House (House Dagoth).
-#                        Hidden loyalties, strong intrigue, piety/prestige penalty.
-#  corprus_afflicted   — Infected with Dagoth Ur's divine corprus disease.
-#                        Severe penalties but immunity to other diseases (lore accurate).
-#  ash_devotee         — Advanced Sixth House initiate undergoing Blight-touched
-#                        transformation.  Locked to Sixth House cultists.
-#  ghost_fence_keeper  — A Dunmer lord who commits forces to maintaining the Ghost
-#                        Fence around Red Mountain.  Defensive and devotional bonuses.
-#  nerevarine_marked   — Marked by Azura as a potential incarnation of the Nerevarine.
-#                        Combat and learning bonuses; the prophecy drives them forward.
+#  sixth_house_cultist       — Secret follower of the Sixth House (House Dagoth).
+#                              Hidden loyalties, strong intrigue, piety/prestige penalty.
+#  corprus_afflicted         — Infected with Dagoth Ur's divine corprus disease.
+#                              Severe penalties but immunity to other diseases (lore accurate).
+#  ash_devotee               — Advanced Sixth House initiate undergoing Blight-touched
+#                              transformation.  Locked to Sixth House cultists.
+#  ghost_fence_keeper        — A Dunmer lord who commits forces to maintaining the Ghost
+#                              Fence around Red Mountain.  Defensive and devotional bonuses.
+#  nerevarine_marked         — Marked by Azura as a potential incarnation of the Nerevarine.
+#                              Combat and learning bonuses; the prophecy drives them forward.
+#  heart_scholar_ascendant   — Route A apex (Kagrenac's Ambition): taps Heart of Lorkhan
+#                              via the Tools.  Tribunal-method divinity; power is borrowed
+#                              and sustained by periodic return to the Heart.  Degrades in
+#                              three phases when the Heart is cut off (2E 882) and destroyed.
+#  heart_fused_ascendant     — Route B apex (Kagrenac's Ambition): direct fusion with the
+#                              Heart of Lorkhan, Dagoth Ur-style.  Vastly powerful but
+#                              inseparable from the Heart — instant death when it is
+#                              destroyed at 3E 427.
 #
 #  LORE CONTEXT:
 #  ─────────────
@@ -45,6 +53,8 @@
 #    • ash_devotee
 #    • corprus_afflicted
 #    • ghost_fence_keeper
+#    • heart_fused_ascendant
+#    • heart_scholar_ascendant
 #    • nerevarine_marked
 #    • sixth_house_cultist
 #
@@ -63,6 +73,8 @@
 #      → sixth_house_cultist
 #    events/ashlander_events.txt
 #      → nerevarine_marked
+#    events/borrowed_divinity_events.txt
+#      → heart_fused_ascendant, heart_scholar_ascendant, corprus_afflicted, sixth_house_cultist
 #    events/dagoth_ur_events.txt
 #      → ash_devotee, corprus_afflicted, ghost_fence_keeper, nerevarine_marked, sixth_house_cultist
 #    events/great_houses_events.txt
@@ -182,4 +194,58 @@ nerevarine_marked = {
     }
 
     flag = nerevarine_marked
+}
+
+# ---------------------------------------------------------------
+#  HEART SCHOLAR ASCENDANT  (Route A apex — Kagrenac's Ambition)
+#  A ruler who has tapped the Heart of Lorkhan using Kagrenac's
+#  Tools — the Tribunal method.  Divine power is borrowed and
+#  sustained; the practitioner must periodically return to the
+#  Heart to renew the connection.  The Tribunal held this status
+#  for three thousand years.
+#
+#  Power degrades in three phases when access to the Heart is
+#  severed (2E 882) and again when the Heart is destroyed (3E 427).
+#  Survival is possible via the CHIM escape (see §19.10b).
+# ---------------------------------------------------------------
+heart_scholar_ascendant = {
+    category = lifestyle
+    is_good   = yes
+
+    learning       = 8     # Proximity to a dead god's power sharpens everything
+    diplomacy      = 4     # The Tribunal were rulers as much as gods
+    martial        = -2    # They are no longer primarily warriors
+
+    monthly_piety          = 5     # Objectively more divine than they were
+    stress_gain_mult       = -0.20 # The Heart's vastness provides perspective
+    monthly_prestige_gain_mult = 0.10
+
+    flag = heart_scholar_ascendant
+}
+
+# ---------------------------------------------------------------
+#  HEART FUSED ASCENDANT  (Route B apex — Kagrenac's Ambition)
+#  A ruler who has directly fused with the Heart of Lorkhan,
+#  Dagoth Ur's method — without the intermediary of the Tools.
+#  The connection is total, not mediated.  The character carries
+#  a fragment of the Heart's presence within them at all times.
+#
+#  They do not need to renew the connection.  They are part of it.
+#  When the Heart is destroyed (3E 427), they die instantly —
+#  there is nothing to decouple from.
+# ---------------------------------------------------------------
+heart_fused_ascendant = {
+    category = lifestyle
+    is_good   = yes
+
+    learning       = -2    # Intellect partially overwritten by the merge
+    intrigue       = 6     # The Heart sees through all pretence
+    martial        = 6     # Lorkhan's power flows into combat
+    prowess        = 4
+
+    monthly_piety          = 8     # They ARE the power now
+    stress_gain_mult       = -0.40 # The Heart's vastness absorbs mortal concerns
+    dread_gain_mult        = 0.40  # The Blight emanation frightens those nearby
+
+    flag = heart_fused_ascendant
 }
