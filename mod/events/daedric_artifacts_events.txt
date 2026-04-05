@@ -77,13 +77,16 @@ daedric_artifact.000 = {
             flag = artifact_found_flag
             days = 3650
         }
+        # Weights rebalanced from 35/35/30 to equal 10 per original artifact
+        # and 10 for each of the 8 new artifacts (Black Star rarer at 5)
+        # so all 11 main artifacts have roughly equal discovery probability.
         random_list = {
             10 = { trigger_event = { id = daedric_artifact.001 days = 5 } }
             10 = { trigger_event = { id = daedric_artifact.002 days = 5 } }
             10 = { trigger_event = { id = daedric_artifact.003 days = 5 } }
             10 = { trigger_event = { id = daedric_artifact.040 days = 5 } }
             10 = { trigger_event = { id = daedric_artifact.050 days = 5 } }
-             5 = { trigger_event = { id = daedric_artifact.055 days = 5 } }
+             5 = { trigger_event = { id = daedric_artifact.055 days = 5 } }  # Black Star rarer
             10 = { trigger_event = { id = daedric_artifact.060 days = 5 } }
             10 = { trigger_event = { id = daedric_artifact.065 days = 5 } }
             10 = { trigger_event = { id = daedric_artifact.070 days = 5 } }
@@ -844,7 +847,7 @@ daedric_artifact.110 = {
     }
 
     option = {
-        name = daedric_artifact.110.a   # "Capture the soul. The Star hungers."
+        name = daedric_artifact.110.a   # "Capture the soul. The Star's power is there to be used."
         add_character_modifier = {
             modifier = azuras_star_soul_charged
             days = 365
