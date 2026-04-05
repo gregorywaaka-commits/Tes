@@ -257,6 +257,42 @@ Each entry includes:
 
 ---
 
+## Jagar Tharn `[CANON — TES I: Arena]`
+> **Source:** TES I: Arena; UESP Lore:Jagar Tharn — https://en.uesp.net/wiki/Lore:Jagar_Tharn
+
+- **Role:** Imperial Battlemage under **Emperor Uriel Septim VII**
+- **3E 389 — The Imperial Simulacrum begins:** Tharn imprisoned Emperor Uriel Septim VII in a pocket of Oblivion using the **Staff of Chaos**, then shattered the Staff into 8 pieces and scattered them across Tamriel. He took the Emperor's place as a simulacrum (magical duplicate) and ruled the Empire in secret for 10 years. `[CANON — TES I: Arena]`
+- **Ria Silmane:** Tharn's apprentice, who discovered the plot. Tharn had her murdered, but her ghost persisted and guided the **Arena protagonist** in recovering the Staff pieces. `[CANON — TES I: Arena]`
+- **3E 399 — The Imperial Simulacrum ends:** The Arena protagonist reassembled the Staff of Chaos and used it to free Uriel VII and destroy Tharn, ending the decade-long deception. `[CANON — TES I: Arena]`
+- ⚠️ The 10-year Simulacrum is why the 3E 38–399 entry on the timeline covers Arena events — the corruption of Imperial rule during this period had lasting effects on the Septim Dynasty's prestige. `[CANON — UESP]`
+
+---
+
+## Titus Mede II `[CANON — UESP; TES V: Skyrim]`
+> **Source:** UESP Lore:Titus Mede II — https://en.uesp.net/wiki/Lore:Titus_Mede_II  
+> **Source:** In-game book: The Great War (TES V: Skyrim)
+
+- **Role:** Emperor of the Third (Mede) Empire during the **Great War (4E 171–175)**
+- **4E 174 — Sack of the Imperial City:** Led Imperial forces during the brutal siege; was forced to evacuate the Imperial City when Aldmeri Dominion forces captured it `[CANON — IN-GAME BOOK: The Great War]`
+- **4E 175 — Battle of the Red Ring:** Commanded the counter-offensive that recaptured the Imperial City and destroyed the main Dominion army; a decisive Imperial tactical victory `[CANON — IN-GAME BOOK: The Great War; UESP]`
+- **White-Gold Concordat:** Despite the Red Ring victory, Titus Mede II signed the controversial **White-Gold Concordat** — banning Talos worship Empire-wide, disbanding the Blades, and ceding southern Hammerfell — to end the war. His reasoning: the Empire could not survive another full war. `[CANON — UESP]`
+- **Assassination (4E 201):** Assassinated by the **Dark Brotherhood** at the start of TES V: Skyrim; this event is one of the canonical triggers for increased political instability in Skyrim `[CANON — TES V: Skyrim]`
+- ⚠️ Whether signing the Concordat was strategic necessity or capitulation is a central point of in-universe political debate — particularly for Stormcloak and Imperial faction narratives in TES V. `[CANON — TES V: Skyrim in-game dialogue]`
+
+---
+
+## Isran `[CANON — TES V: Skyrim (Dawnguard DLC)]`
+> **Source:** TES V: Skyrim — Dawnguard DLC; UESP Lore:Isran — https://en.uesp.net/wiki/Lore:Isran
+
+- **Race:** Redguard
+- **Role:** Warrior-monk; founder and commander of the **Dawnguard** (refounded 4E 176) `[CANON — TES V: Dawnguard]`
+- **Background:** Formerly a **Vigilant of Stendarr**, Isran left the Vigil when he concluded their methods were too passive and merciful for the supernatural threats he faced `[CANON — TES V: Dawnguard dialogue]`
+- **Character:** Deeply distrustful of others, zealous to a fault, and intensely focused; his distrust extends even to potential allies, making him a difficult leader but an effective hunter `[CANON — TES V: Dawnguard]`
+- **Expertise:** Expert vampire hunter; his obsessive preparation is why Fort Dawnguard has anti-vampire protections that most fortifications lack `[CANON — TES V: Dawnguard]`
+- **Base:** Fort Dawnguard, the Rift, Skyrim
+
+---
+
 ## Reman Dynasty — Full Reference `[CANON — UESP]`
 > **Source:** UESP Lore:Reman Dynasty — https://en.uesp.net/wiki/Lore:Reman_Dynasty  
 > **Source:** UESP Lore:Second Empire — https://en.uesp.net/wiki/Lore:Second_Empire

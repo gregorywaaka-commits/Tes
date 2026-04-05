@@ -166,6 +166,21 @@ These races appear in lore but are not available as playable races in most games
 |---|---|---|---|
 | **Ayleid (Heartland High Elf)** | Cyrodiil | Extinct (mostly) `[CANON]` | Ruled Cyrodiil until the Alessian Rebellion (1E 243). Built White-Gold Tower and many ruin complexes. A few bloodlines survive in hidden communities per some sources. `[SOFT CANON]` |
 | **Snow Elf (original)** | Skyrim | Near-extinct `[CANON]` | Knight-Paladin Gelebor and his petrified brethren remain as of 3E. Degenerated Falmer are their descendants. `[CANON — TES V: Dawnguard]` |
+
+### Snow Elves (Falmer — original) `[CANON — UESP]`
+> **Source:** UESP Lore:Snow Elf — https://en.uesp.net/wiki/Lore:Snow_Elf  
+> **Source:** TES V: Skyrim — Dawnguard DLC (Knight-Paladin Gelebor questline)  
+> **Source:** In-game book: Fall of the Snow Prince
+
+- **Era:** Merethic Era through early First Era; original elven inhabitants of Skyrim
+- **Physical traits:** Silver-white skin and hair; striking blue or silver eyes; lithe, graceful build typical of Mer — similar in height to Altmer `[CANON — UESP]`
+- **Civilisation:** Sophisticated elven culture with crystal towers, temples dedicated to **Auri-El** (the Elven aspect of Akatosh), and skilled archers; their society was comparable in refinement to other Mer nations `[CANON — UESP]`
+- **Sacred artifact:** **Auriel's Bow** — divine weapon of Auri-El; the holiest relic of Snow Elf religion `[CANON — TES V: Dawnguard]`
+- **The Snow Prince:** Their last great champion; a legendary warrior who fell at the **Battle of Moesring** (Solstheim) at the hands of **Finna**, daughter of Jofrior — a young Nord girl who retrieved her slain mother's spear and struck the killing blow `[CANON — IN-GAME BOOK: Fall of the Snow Prince]`
+- **The Nordic Return:** When **Ysgramor and the Five Hundred Companions** launched the **Return** (early Merethic Era), the resulting wars drove the Snow Elves from their strongholds in Skyrim. Surviving Snow Elves fled underground and sought protection from the **Dwemer**. `[CANON — UESP]`
+- **Dwemer enslavement:** The Dwemer agreed to shelter the Snow Elves on one condition: the Snow Elves must eat toxic, blinding fungi and serve as slaves. Over generations of blindness and brutal treatment the Snow Elves devolved biologically and culturally into the savage, eyeless **Falmer** that adventurers encounter in Dwemer ruins. `[CANON — TES V: Dawnguard; UESP]`
+- **Knight-Paladin Gelebor:** The sole known uncorrupted survivor; refused Dwemer slavery and remained as a holy guardian of **Auriel's Chapel** (Forgotten Vale, Skyrim). He and his brethren were placed in a state of waking stasis; by 4E 201 his brethren had all been corrupted except Gelebor himself. `[CANON — TES V: Dawnguard]`
+- ⚠️ "Falmer" in common usage refers to the degenerated descendants encountered in Dwemer ruins — blind, feral, and no longer resembling their elven ancestors. The original Snow Elves and the degenerate Falmer are the same racial lineage at different points of cultural and physical devolution. `[CANON — UESP]`
 | **Tsaesci** | Akavir | Extant (off-continent) `[CANON]` | Serpent-people of Akavir; enslaved or ate all human populations of Akavir. Led the Akaviri invasions of Tamriel. `[CANON — IN-GAME BOOK: Mysterious Akavir]` |
 | **Ka Po'Tun** | Akavir | Extant (off-continent) `[CANON]` | Tiger-folk; enemies of the Tsaesci. Their leader **Tosh Raka** aspires to become a dragon. `[CANON — IN-GAME BOOK: Mysterious Akavir]` |
 | **Lilmothiit** | Black Marsh | Extinct `[CANON]` | Fox-folk of Black Marsh; believed wiped out by Knahaten Flu c. 2E 560. `[CANON — UESP]` |

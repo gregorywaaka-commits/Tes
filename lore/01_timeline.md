@@ -127,6 +127,8 @@
 |---|---|---|
 | 3E 0 | **Tiber Septim crowned Emperor**; deified posthumously as **Talos** (Ninth Divine) | `[CANON — UESP]` |
 | 3E 38–399 | Septim Dynasty rules; events of **TES I: Arena** and **TES II: Daggerfall** | `[CANON]` |
+| 3E 389 | **Imperial Simulacrum begins** — Imperial Battlemage **Jagar Tharn** imprisons Emperor **Uriel Septim VII** in a pocket of Oblivion using the **Staff of Chaos**; shatters the Staff into 8 pieces across Tamriel and rules the Empire as a simulacrum | `[CANON — TES I: Arena]` |
+| 3E 399 | **Imperial Simulacrum ends** — the **Arena protagonist** (guided by the ghost of Ria Silmane) reassembles the Staff of Chaos; Tharn is defeated and Uriel VII is freed after 10 years of imprisonment | `[CANON — TES I: Arena]` |
 | 3E 399 | Events of **TES: Battlespire** | `[CANON]` |
 | 3E 400 | **Jyggalag's Greymarch** — annual cycle of Order; Sheogorath reverts to Jyggalag briefly | `[CANON — TES IV: Shivering Isles]` |
 | 3E 427 | Events of **TES III: Morrowind** — Nerevarine defeats Dagoth Ur; Heart of Lorkhan destroyed; Tribunal's divinity ends | `[CANON]` |

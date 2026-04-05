@@ -125,20 +125,39 @@
 ---
 
 ## Vigil of Stendarr `[CANON — TES V: Skyrim / Dawnguard]`
-> **Source:** TES V: Skyrim (Dawnguard DLC); UESP Lore:Vigil of Stendarr
+> **Source:** TES V: Skyrim (Dawnguard DLC); UESP Lore:Vigil of Stendarr — https://en.uesp.net/wiki/Lore:Vigil_of_Stendarr
 
-- **Based:** **Hall of the Vigilant** (Skyrim); chapters across Tamriel
-- **Purpose:** Hunt and destroy **Daedra, vampires, werewolves**, and all supernatural threats to mortals in the name of Stendarr
-- **Status in 4E 201 (Skyrim):** The Hall of the Vigilant is **destroyed by Lord Harkon's vampires** at the start of Dawnguard. The Vigil is severely weakened. `[CANON — TES V: Dawnguard]`
+- **Based:** **Hall of the Vigilant** (near the Rift, Skyrim); chapters operating pan-Tamrielically across the 3rd and 4th Eras
+- **Purpose:** Pan-Tamrielic order devoted to **Stendarr** (Divine of Mercy); hunt and destroy **Daedra, undead, vampires, werewolves**, and all abominations threatening mortals `[CANON — UESP]`
+- **Approach:** Attempt rehabilitation and mercy where possible before resorting to lethal force — a philosophically different stance from the Dawnguard's kill-first methods `[CANON — TES V: Dawnguard dialogue]`
+- **Relationship to Dawnguard:** **Isran** was formerly a Vigilant but left in frustration at what he considered the Vigilants' inadequate response to the vampire threat; this is the direct origin of his refounding the Dawnguard `[CANON — TES V: Dawnguard]`
+- **Relationship to Thalmor:** Generally independent; both are religious orders but with entirely different mandates — the Vigil hunts supernatural threats while the Thalmor enforce doctrinal compliance `[CANON — UESP]`
+- **Status in 4E 201 (Skyrim):** The Hall of the Vigilant is **destroyed by Lord Harkon's Volkihar vampire clan** in a night attack — a canonical massacre that effectively cripples the Vigil at the start of the Dawnguard questline. `[CANON — TES V: Dawnguard]`
 
 ---
 
 ## Dawnguard `[CANON — TES V: Dawnguard]`
-> **Source:** TES V: Skyrim — Dawnguard DLC
+> **Source:** TES V: Skyrim — Dawnguard DLC; UESP Lore:Dawnguard — https://en.uesp.net/wiki/Lore:Dawnguard
 
-- **Based:** **Fort Dawnguard**, Rift, Skyrim (a remote mountain fort)
-- **Purpose:** Hunt and destroy vampires specifically; ancient order revived by **Isran** in response to the Volkihar vampire threat
-- **Founder (original):** Ancient order; disbanded at some point. Revived by Isran in 4E 201. `[CANON — TES V: Dawnguard]`
+- **Based:** **Fort Dawnguard**, the Rift, Skyrim (remote mountain fortress)
+- **Purpose:** Dedicated vampire-hunting order; originally founded in the 2nd Era, fell into disuse, refounded in **4E 176** by **Isran** (a Redguard warrior-monk and former Vigilant of Stendarr) `[CANON — TES V: Dawnguard]`
+- **Signature weapons:** **Crossbows** (Dawnguard's signature ranged weapon), rune axes, and specialised magical bolts including exploding bolts and soul-trap bolts `[CANON — TES V: Dawnguard]`
+- **Key conflict:** The **Volkihar vampire clan** led by **Lord Harkon** — who sought to use **Auriel's Bow** to blot out the sun permanently (4E 201) `[CANON — TES V: Dawnguard]`
+- **Founder's philosophy:** Isran rejected the Vigilants' approach as too passive and merciful; the Dawnguard uses lethal force as the default response against vampires and their thralls `[CANON — TES V: Dawnguard]`
+
+---
+
+## Penitus Oculatus `[CANON — TES V: Skyrim]`
+> **Source:** TES V: Skyrim in-game dialogue and quests; UESP Lore:Penitus Oculatus — https://en.uesp.net/wiki/Lore:Penitus_Oculatus
+
+- **Role:** The Imperial Secret Service — a personal protection and intelligence agency loyal to the **Emperor** directly, not to any political faction or branch of government `[CANON — TES V: Skyrim]`
+- **Origin:** Replaced the **Blades** after the **White-Gold Concordat (4E 22)**, when the Aldmeri Dominion demanded the Blades be disbanded as a condition of the peace treaty; the Penitus Oculatus filled the security vacuum `[CANON — UESP]`
+- **Scope:** More narrowly focused than the Blades — primarily bodyguard and intelligence work rather than dragon-hunting or wide-scale military operations `[CANON — UESP]`
+- **Senior rank:** **Commander** (e.g., **Commander Maro** in 4E 201) `[CANON — TES V: Skyrim]`
+- **Distinctive uniform:** White-trimmed Imperial armour sets them apart from standard Legion soldiers `[CANON — TES V: Skyrim]`
+- **Dark Brotherhood:** Destroyed Dark Brotherhood Sanctuaries across the Empire on direct Imperial order; by 4E 201 only the Falkreath Sanctuary remained `[CANON — TES V: Skyrim]`
+- **Networks:** Maintain Imperial courier networks and spy operations; their intelligence mandate makes them the Empire's primary covert arm in the 4th Era `[CANON — UESP]`
+- ⚠️ The Penitus Oculatus is **not** a successor to the Blades' dragonhunting mandate — that role died with the Concordat. They are purely a personal protection and intelligence service. `[CANON — UESP]`
 
 ---
 
