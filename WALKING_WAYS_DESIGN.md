@@ -1442,3 +1442,608 @@ transcendence of the Enantiomorph Ascendant — you became the void but couldn't
 *End of revision notes — session 2026-04-05.*
 
 *These notes supersede §§1–15 where there is a direct conflict. The core design in §§1–15 remains the primary reference; this section adds precision and identifies implementation hazards.*
+
+---
+
+## 17. EK2 Timeline Windows, Date Guards, and Lore Accuracy per Path
+
+> **Added:** Session 2026-04-05 (second pass) — the previous section (§16) established
+> which paths *need* EK2 as a dependency. This section goes further: for each path,
+> it specifies the **lore-accurate date windows** when the path is available, how to
+> implement those windows using `current_date` and `game_start_date` guards matching
+> the patterns already established in this mod, and where lore conflicts need explicit
+> design decisions.
+
+**Pattern reference:** This mod uses two date guard patterns (taken from verified
+working event files):
+
+```
+# Pattern A — current_date (fires at a specific moment in game-time)
+trigger = {
+    current_date >= 2.580.1.1      # Artaeum returns
+    current_date < 2.582.1.1
+}
+
+# Pattern B — game_start_date (constrains to a scenario start window)
+trigger = {
+    game_start_date >= 2.440.1.1   # EK2 default start
+    game_start_date <= 2.896.1.1   # Interregnum ends
+}
+```
+
+For the Walking Ways system, **Pattern B is preferred** for path availability guards —
+the game-start constrains which scenario the path makes historical sense in, while
+`current_date` guards handle specific one-time triggers (e.g., "the Psijic Endeavour
+gates closed in 2E 230").
+
+---
+
+### 17.1 Path A — CHIM Expanded: Date Window and Lore Notes
+
+**Lore-accurate window:** CHIM as a concept is not time-bound — the Walking Ways are
+metaphysical, not historical. No date guard is required for availability. However,
+lore accuracy requires the following note in the event file header:
+
+> *CHIM is described in Mankar Camoran's Paradise text (Commentaries on the Mysterium
+> Xarxes) — a Third Era document — and in Michael Kirkbride's supplementary texts.
+> In the Second Era Interregnum (EK2's timeframe), CHIM is not a widely known concept;
+> it is pursued by isolated scholars, mystics, and those who have made contact with
+> the Psijic Order. The trigger `learning >= 18 + stress >= 50` correctly models this
+> rarity. [SOFT CANON — the concept exists; the Second Era scarcity is inferred.]*
+
+**Trigger note for implementation:**
+
+The existing `chim.000` trigger fires for any ruler with `learning >= 18` and
+`stress >= 50`. This correctly models rarity without needing a date gate. The
+Walking Ways extension should inherit this gating — Path A (`chim_expanded`) should
+require `has_trait = chim_achieved`, which already requires `learning >= 20`. No
+additional date guard needed.
+
+**Lore accuracy flag:** The event text should use the unreliable-narrator framing
+required for `[MK SUPPLEMENTARY]` concepts (already noted in §14). The phrase
+*"the secret syllable of royalty"* is canon (Commentaries on the Mysterium Xarxes,
+in-game book, Third Era). The *mechanism* of how one achieves it is `[MK SUPPLEMENTARY]`.
+
+---
+
+### 17.2 Path B — Mantling: Date Windows per Divine Target
+
+Each Mantling path has specific lore tensions with the EK2 Second Era timeframe.
+
+#### 17.2a Mantling Talos
+
+**Lore problem:** Tiber Septim (who mantled Lorkhan to become Talos) lived in the
+*Third Era* — specifically 2E 830s to 3E 38. He did not complete his mantling until
+he used Numidium at 2E 896 (by most accounts). In the EK2 timeframe (2E 440–896):
+
+- **2E 440 to ~2E 820**: Talos does not yet exist as a deity. The mantling path
+  cannot represent "becoming Talos" — instead, it should represent *becoming the
+  Shezarrine archetype* that Tiber Septim would later embody.
+- **2E 854 to 2E 896**: Tiber Septim is alive and consolidating power. A rival
+  "mantler" during this period directly conflicts with canonical history.
+- **Post-2E 896 (Third Era)**: Talos is a recognised god; mantling is now properly
+  "following Tiber's footsteps."
+
+**Revised lore framing for the event text:**
+
+The path should NOT be titled "Mantling Talos" in the event display text during
+the Second Era. Use the internal key `mantling_talos` but display:
+- Pre-2E 830: *"The Shezarrine Way — the pattern of the Warrior Who Walks"*
+- Post-2E 830: *"The Footsteps of the Mountain — the way of the unifier"*
+
+This is handled with a `trigger = { current_date < 2.830.1.1 }` check on the event's
+`desc` block using a dual-desc approach:
+
+```
+desc = {
+    first_valid = {
+        triggered_desc = {
+            trigger = { current_date < 2.830.1.1 }
+            desc = mantling_talos.intro.pre_tiber
+        }
+        desc = mantling_talos.intro.post_tiber
+    }
+}
+```
+
+**Availability guard — hard block:**
+```
+# Block the path from firing while Tiber Septim lives (2E 854 – 3E 38)
+# to avoid the lore contradiction of a competing mantler during his reign
+is_valid = {
+    NOT = {
+        AND = {
+            current_date >= 2.854.1.1
+            current_date < 3.38.1.1
+        }
+    }
+}
+```
+
+#### 17.2b Mantling Arkay
+
+**Lore accuracy:** Arkay is an Aedra who governs birth, death, and the cycle of
+souls. In the Second Era, his priesthood is active across Tamriel. The mantling
+represents becoming so attuned to the death cycle that one *is* the cycle.
+
+**No date conflict.** Arkay's priesthood and relevance span all eras. No availability
+date guard needed. However:
+
+- The milestone requiring "witness a great death toll" should check:
+  - Wars: `is_at_war = yes`
+  - Plague: `any_held_county = { has_province_modifier = plague_modifier }`
+- The lore note in the event file should reference **Lamae Beolfag** as the canonical
+  example of Arkay's power in the Second Era — Molag Bal created vampirism specifically
+  by defiling an Arkay priestess (`[CANON — Opusculus Lamae Bal]`).
+
+**EK2-specific note:** In EK2 the Hall of the Dead mechanic (if implemented) may
+interact with the Arkay mantle. The event file header should note:
+> *"If EK2 includes an Arkay piety track or Hall of the Dead system, check for
+> trait overlap with any 'arkay_devotee' or 'death_priest' traits EK2 defines.
+> Do not redefine traits EK2 already provides — check EK2's traits folder first."*
+
+#### 17.2c Mantling Kynareth
+
+**Lore accuracy:** Kynareth is the Aedra of sky, wind, and nature. She is
+canonically the first of the Eight Divines to agree to Lorkhan's plan for Mundus
+(`[CANON — The Monomyth, in-game book]`). She gave mortals the gift of breath.
+
+**EK2 date consideration:** The Thu'um (Word Wall) system fires across the full
+Interregnum (2E 440–896). The Kynareth mantle's Milestone 1 (*"The Word on the Wind"*)
+is most cleanly triggered by the player having `has_trait = thu_um_initiate` — which
+already exists in this mod and is available throughout EK2's window.
+
+**Fallback for non-EK2 runs:**
+```
+# Milestone 1 trigger (one of these must be true):
+OR = {
+    has_trait = thu_um_initiate    # EK2 Voice path (preferred)
+    has_character_flag = kynareth_wind_pilgrimage_done  # standalone fallback
+    AND = {
+        has_trait = scholar
+        has_trait = lifestyle_traveler  # or equivalent wanderer trait
+    }
+}
+```
+
+The standalone fallback flag (`kynareth_wind_pilgrimage_done`) is set by a simple
+decision that fires for rulers in wind-exposed regions — ideally a county in the
+Jerall Mountains, Throat of the World, or coastal Summerset.
+
+#### 17.2d Mantling Azura
+
+**Lore accuracy:** Azura is a Daedric Prince — the mantling here is Daedric, not
+Aedric. The distinction matters for piety calculations. Azura canonically maintains
+close relationships with the Dunmer (Chimer origin story; the Nerevarine Prophecy
+is Azura's own design). `[CANON — Lessons of Vivec; The Anticipations]`.
+
+**EK2 date notes:**
+- The Nerevarine Prophecy is active from approximately 2E 700 onward (after Nerevar's
+  death at Red Mountain in 1E 700 and the establishment of the Tribunal — which
+  Azura condemned). The Azura mantle's flavor should reference the *Star of Azura*
+  artifact, which is in use throughout the Second Era.
+- Dunmer culture restriction on the Azura mantle should use the same culture guard
+  pattern as other events in this mod: `has_culture = dunmer_culture` (as used in
+  `alliance_war_events.txt` and `alessian_events.txt`).
+
+**Lore accuracy for the "Possession Risk":** The 25% possession-at-finale mechanic
+(§7, Daedric mantles) is well-modeled on the Chimer/Dunmer relationship with Azura —
+she demands total devotion and punishes those who stray (`[CANON — events of Morrowind
+main questline; Azura's response to the Tribunal]`). Flag the lore source explicitly
+in the event text to justify the mechanic.
+
+#### 17.2e Mantling Meridia
+
+**Lore accuracy:** Meridia is a Daedric Prince of life energy — she was herself once
+an Aedra (a magna-ge or "Star-made Knight") before being cast out by Auri-El for
+consorting with Namira's essence (`[SOFT CANON — Myths of Sheogorath; The House of
+Troubles connection is inferred]`). Her hatred of undead is absolute and documented.
+
+**EK2 date note:** The Dawnguard system (this mod's `dawnguard_events.txt`) is
+canonically set in the Late Third Era. Using `dawnguard_commander` as a prerequisite
+for the Meridia mantle creates a lore-date conflict: the Dawnguard as an institution
+does not exist in the Second Era.
+
+**Revised prerequisite for the Meridia mantle** (Second Era compatible):
+```
+OR = {
+    has_trait = dawnguard_commander         # Third Era+ only
+    AND = {
+        has_trait = zealous
+        piety >= 500
+        has_character_modifier = vigilant_stendarr_ally  # Second Era undead hunter
+    }
+    AND = {
+        has_trait = chaste
+        has_trait = brave
+        NOT = { has_trait = undead }          # Meridia does not mantle the undead
+    }
+}
+```
+
+The second and third options are valid across the full EK2 timeframe. The event
+header should note: *"dawnguard_commander is only available in Third Era starts;
+the vigilant_stendarr_ally and zealous+piety paths are the canonical EK2-era routes."*
+
+---
+
+### 17.3 Path C — Psijic Endeavour: Date Windows and Artaeum Constraints
+
+**This path has a critical date conflict that the current design ignores.**
+
+**Lore facts:**
+- Artaeum withdraws from the mundane world at **2E 230** (`[CANON — UESP Lore:Psijic Order]`)
+- Artaeum reappears at **2E 580** (`[CANON — same source]`)
+- EK2's default start is **2E 440** — well within the withdrawal period
+
+**Consequence:** During 2E 230–580 (which includes all of EK2's primary window from
+2E 440 to ~2E 580), Artaeum is **not accessible**. The Psijic Order exists but cannot
+be formally contacted through Artaeum. Individual Psijic practitioners still operate
+in the world — this is the lore basis for `psijic_counsel.txt` (itinerant Psijic
+scholars) — but there is no "invitation to Artaeum."
+
+**Required date guard for the Psijic Endeavour path availability:**
+
+```
+OR = {
+    # Artaeum is accessible before 2E 230
+    current_date < 2.230.1.1
+    # Artaeum has returned (after 2E 580)
+    current_date >= 2.580.1.1
+}
+```
+
+**What this means for EK2 starts (2E 440+):**
+
+During 2E 440–580, the Psijic Endeavour path is **unavailable via the Artaeum route**.
+Instead, the sole access during this window is through **itinerant Psijic practitioners**
+(the `psijic_counsel.txt` emissary system). The path intro event (`psijic_endeavour.000`)
+should have two versions:
+
+| Condition | Event Version |
+|---|---|
+| `current_date < 2.230.1.1` OR `>= 2.580.1.1` | Full Artaeum version — the island is accessible; the ruler travels there |
+| `2.230.1.1 <= current_date < 2.580.1.1` | Wandering Scholar version — an itinerant Psijic practitioner guides the ruler through the Old Ways in secret, outside Artaeum's formal structure |
+
+The **Wandering Scholar version** of the milestones should feel more precarious:
+- The mentor has no authority — they are acting outside the Order's withdrawn structure
+- Two of the six milestones have a `random = { chance = 20 ... trigger_event = psijic_endeavour.mentor_lost }` risk
+  — the itinerant scholar may disappear mid-path (Artaeum calls them back, or they die, or simply vanish)
+- If the mentor is lost, the ruler must decide: continue alone (+stress, harder milestone thresholds)
+  or abandon the path
+
+**Lore accuracy note for this mechanic:**
+
+> *The Psijic Order withdrew Artaeum in 2E 230 due to what they called "the
+> Complicated Reaction" — a political and metaphysical position on the Soulburst
+> buildup and Interregnum chaos that the Order had foreseen.  Individual Psijics
+> who were off-island at the moment of withdrawal were stranded in the mundane world.
+> Some chose to stay and teach.  Others simply continued their work alone, without
+> the isle's resources, for 350 years.  [CANON — UESP Lore:Psijic Order; the
+> off-island practitioners are attested in Morrowind and Skyrim sources.]*
+
+**Lore accuracy note — not adding wrong canon:** The description above uses the
+term "Complicated Reaction" for the withdrawal reason — this is `[EXTRAPOLATED]`.
+The actual canonical reason for the 2E 230 withdrawal is unstated in primary sources.
+The event prose should acknowledge this: *"The Order withdrew without explanation —
+the reason was their own. They always are."*
+
+---
+
+### 17.4 Path D — Enantiomorph: Lore Accuracy Notes
+
+**No date conflict** — the Enantiomorph is a metaphysical pattern that operates
+outside normal time (the 36 Lessons of Vivec describe it as eternal and recurring).
+No date guard needed.
+
+**Lore accuracy — the "three body" requirement:**
+
+The 36 Lessons specify: *Hero, Rebel, Witness.* The Lessons are `[SOFT CANON — in-game
+text but written in a deliberately ambiguous, unreliable-narrator style]`.
+
+Event prose should reflect this ambiguity. The ruler pursuing the Enantiomorph path
+**believes** they are enacting the cosmic pattern — but the text should never confirm
+this. The Witness character should sometimes wonder if they are simply watching
+a ruler descend into madness:
+
+> *[The Witness, in the aftermath:] "They called me the Witness. I watched them
+> become something. I still do not know what. Neither did they, I think."*
+
+**Lore accuracy — Nerevar as the canonical Rebel/Hero pair:**
+
+The most famous Enantiomorph in TES lore is Nerevar (Hero) and Dagoth Ur (Rebel),
+with Azura as the Witness at Red Mountain (`[SOFT CANON — 36 Lessons; Forum of Man
+texts]`). The system should acknowledge this in the path intro:
+
+> *"The scholars speak of a pair: a warrior and a shadow, each needing the other
+> to be real. At Red Mountain, something of this kind happened. Whether it can
+> happen again, and whether you are the one to enact it, is the question the Old
+> Ways asks of you."*
+
+This acknowledgment keeps the lore grounded without claiming the player character
+IS Nerevar (they are not — they are attempting to enact the same *pattern*).
+
+**Lore accuracy — Talos Enantiomorph:**
+
+A second famous Enantiomorph: Tiber Septim (Hero) and Zurin Arctus / Wulfharth
+(Rebel/Underking), with Zurin's soul serving as witness-sacrifice (`[SOFT CANON —
+Song of Pelinal; Arcturian Heresy; contested sources]`). Since Tiber Septim lives
+in the late 2E/early 3E period overlapping with EK2, the event prose should not
+reference him directly during 2E 854–3E 38 (when he lives). Use a conditional:
+
+```
+desc = {
+    first_valid = {
+        triggered_desc = {
+            trigger = {
+                NOT = {
+                    AND = {
+                        current_date >= 2.854.1.1
+                        current_date < 3.38.1.1
+                    }
+                }
+            }
+            desc = enantiomorph.intro.standard  # mentions Tiber pattern abstractly
+        }
+        desc = enantiomorph.intro.tiber_era  # omits the Tiber reference
+    }
+}
+```
+
+---
+
+### 17.5 Path E — The Amaranth: Lore Accuracy and Timeline Notes
+
+**Lore accuracy — the Amaranth is the most speculative of all paths.**
+
+Sources: Primarily Michael Kirkbride's *"C0DA"* (`[MK SUPPLEMENTARY — not in-game
+canon but very commonly accepted]`) and a scattering of forum posts that discuss
+the Amaranth as the *next stage after CHIM* — dreaming a new universe from within
+the current one's ending.
+
+**Required canon tier statement in the event header:**
+
+```
+#  LORE CANON TIER: [MK SUPPLEMENTARY + EXTRAPOLATED]
+#  The Amaranth is described in Michael Kirkbride's C0DA (not an
+#  in-game text).  The concept of "dreaming a new Aurbis" is
+#  entirely MK supplementary.  Per the design rules in
+#  WALKING_WAYS_DESIGN.md §14, all Amaranth event prose must use
+#  the unreliable narrator frame:
+#    — Scholars debate whether this is even possible
+#    — The ruler does not know if they have "succeeded"
+#    — The world-notification event does not confirm success;
+#      it only notes that something has changed that no one
+#      can fully describe
+```
+
+**Date accuracy:** The Amaranth, if it is possible at all, is implied in C0DA to
+occur at the END of Mundus — the last syllable of the current Kalpa. In the EK2
+timeframe this is cosmologically impossible (we are in the middle of a Kalpa).
+
+**Design decision required:** Two valid interpretations:
+
+| Interpretation | Implementation |
+|---|---|
+| **Literal Amaranth** — impossible in-Kalpa | Block the path entirely unless a specific "End of Kalpa" condition is met (e.g., all Towers destroyed). Almost certainly never fires. |
+| **Metaphorical Amaranth** — the ruler achieves a *personal* dreaming that is a pale echo of the true Amaranth, contained within their own consciousness | Allow the path; flavor text explicitly acknowledges this is personal/contained: *"You are not dreaming the next Aurbis.  You are dreaming the next you."* |
+
+**Recommendation: the Metaphorical Amaranth.** It preserves lore accuracy (the
+TRUE Amaranth is cosmologically impossible in-Kalpa), creates a meaningful gameplay
+endpoint (a ruler who has achieved CHIM and then extended that understanding inward),
+and avoids a "game-ending condition" problem.
+
+The world-notification event for the Metaphorical Amaranth should be maximally
+ambiguous:
+
+> *"In [REALM], [CHARACTER] has closed their eyes and not opened them. Their court
+> continues in their name. Their body remains. Advisors report that when they speak,
+> they speak of things no living person can verify — or contradict."*
+
+**EK2 compatibility note:** The Amaranth path's requirement of `has_trait = chim_achieved`
+means it cannot fire for any ruler who has not completed the CHIM fast-path. Given
+`learning >= 20` is required for CHIM, and given EK2's start date of 2E 440, the
+path is naturally gated to exceptional late-game rulers. No additional date guard needed.
+
+---
+
+### 17.6 Timeline of Relevant Lore Events — Design Reference Table
+
+This table consolidates all lore dates relevant to the Walking Ways system for
+quick reference during implementation. All dates are verified against UESP or
+in-game canonical sources (canon tier noted).
+
+| Date | Event | Relevance to Walking Ways | Canon Tier |
+|---|---|---|---|
+| 1E 700 | Battle of Red Mountain — Nerevar slain; Tribunal formed | Enantiomorph pattern (Nerevar/Dagoth Ur) is established | CANON |
+| c. 1E 1200–2208 | Middle Dawn Dragon Break | Dragon Break system reference; Amaranth lore adjacent | CANON |
+| 1E 2703 | Reman I rises at Pale Pass | Shezarrine pattern; Mantling Talos pre-echo | CANON |
+| 2E 0 | Akaviri Potentate kills last Alessian Emperor | Interregnum begins | CANON |
+| **2E 230** | **Artaeum withdraws** | **Psijic Endeavour must split into two versions** | **CANON** |
+| 2E 430 | Interregnum proper begins (Potentate assassinated) | EK2 warlord window opens | CANON |
+| **2E 440** | **EK2 primary start date** | **All Walking Ways paths calibrated to this baseline** | N/A |
+| 2E 578 | Soulburst — Dragonfires extinguished | Major world event; CHIM/Amaranth lore-adjacent | CANON |
+| **2E 580** | **Artaeum returns** | **Psijic Endeavour Artaeum path reopens** | **CANON** |
+| 2E 582 | ESO Alliance War period begins | EK2 late-game window | CANON |
+| 2E 812 | Tiber Septim born (approx.) | Mantling Talos narrative shift point | SOFT CANON |
+| **2E 830** | **Tiber Septim begins consolidation** | **Mantling Talos pre/post-Tiber framing shift** | **SOFT CANON** |
+| **2E 854** | **Tiber Septim takes Ruby Throne** | **Mantling Talos hard block begins** | **CANON** |
+| 2E 882 | Dagoth Ur seizes Heart of Lorkhan | Enantiomorph/Shezarrine flavor window | CANON |
+| **2E 896** | **Numidium; formal Third Era begins; Tiber Septim completes his mantle** | **EK2 ends; Interregnum ends; Talos confirmed deity** | **CANON** |
+| **3E 38** | **Tiber Septim dies** | **Mantling Talos hard block ends** | **CANON** |
+| c. 3E 433 | Oblivion Crisis; Martin Septim's final sacrifice | Amaranth lore-adjacent (MK texts connect these) | SOFT CANON |
+
+**Bold rows** indicate dates that require explicit `current_date` guards in implementation.
+
+---
+
+### 17.7 lore_races_on_actions.txt Registration — Walking Ways Hidden Events
+
+**From the stored memory:** *"ALL new event systems must register their hidden trigger
+events in `lore_races_on_actions.txt` `on_yearly_pulse` `random_events` block.
+Events NOT registered there will never fire."*
+
+The following Walking Ways hidden events must be registered:
+
+| Event ID | Function | on_actions block | Weight |
+|---|---|---|---|
+| `walking_ways.000_check` | Yearly momentum timer tick; fires the reminder event if momentum has expired | `on_yearly_pulse` | weight = 100 |
+| `walking_ways.mantle_rival_check` | Hidden check for competing mantlers across rulers | `on_yearly_pulse` | weight = 50 |
+| `psijic_endeavour.mentor_check` | Checks if the itinerant Psijic mentor is still available | `on_yearly_pulse` | weight = 75 |
+| `enantiomorph.witness_check` | Verifies the Witness character is still alive and at court | `on_yearly_pulse` | weight = 75 |
+| `amaranth.threshold_check` | Very rare pulse that can push a CHIM-achieved ruler toward the Amaranth | `on_yearly_pulse` | weight = 5 |
+
+**Format:** Register each in the `on_yearly_pulse = { random_events = { ... } }` block
+in `lore_races_on_actions.txt`, using the same weight style as existing registrations.
+
+---
+
+### 17.8 CK3 Mechanic Notes — What the Previous Session Missed
+
+These are specific CK3 scripting considerations not previously addressed.
+
+#### 17.8a `first_valid` desc blocks
+
+CK3 supports conditional event descriptions via `first_valid`:
+
+```
+desc = {
+    first_valid = {
+        triggered_desc = {
+            trigger = { ... }
+            desc = event_key.alt_desc
+        }
+        desc = event_key.default_desc
+    }
+}
+```
+
+This is the correct implementation pattern for the dual-desc approach described
+in §17.2a and §17.4. It is used in vanilla CK3 and EK2 events. Use it for:
+- Pre/post-Tiber Mantling Talos descriptions
+- Artaeum-present vs Artaeum-withdrawn Psijic Endeavour descriptions
+- Enantiomorph descriptions during Tiber's lifetime
+
+#### 17.8b `portrait_modifier` and visual identity for apex trait holders
+
+CK3 allows `portrait_modifier` entries on traits. The apex traits for the Walking
+Ways should have subtle visual distinctions:
+
+```
+chim_ascendant = {
+    category = lifestyle
+    portrait_modifier = chim_ascendant_portrait   # must be defined in portrait_modifiers/
+    ...
+}
+```
+
+However, custom portrait modifiers require 3D asset work outside the scope of this
+design. **Note in the implementation checklist:** portrait modifiers are optional;
+add the `portrait_modifier` key to the trait but point it at a vanilla CK3 modifier
+that is close (e.g., the `saint` or `mystic` portrait modifiers if EK2 defines them)
+until custom assets are available.
+
+#### 17.8c Scope safety — the Witness and Mentor as `scope:` references
+
+CK3 `save_scope_as` creates a scope reference valid for the current event chain.
+For the Witness and Mentor to be referenced across multiple events (milestones, not
+just one event chain), their scope must be saved as a **character flag + variable**:
+
+```
+# When Witness is first designated:
+set_character_flag = is_enantiomorph_witness    # on the Witness character
+set_variable = {
+    name  = enantiomorph_witness_id
+    value = scope:enantiomorph_witness      # saves the character reference
+}
+
+# When retrieving the Witness in a later event:
+# Use: character:enantiomorph_witness_id or
+# scope:enantiomorph_witness (if still in scope)
+# The flag on the Witness character (is_enantiomorph_witness) allows
+# any_ruler or any_courtier searches to find them:
+#   any_courtier_or_guest = {
+#       limit = { has_character_flag = is_enantiomorph_witness }
+#       save_scope_as = enantiomorph_witness
+#   }
+```
+
+This pattern is used in EK2 (saving key NPCs as variable references) and should
+be adopted here.
+
+#### 17.8d Inheritance and Death — what happens to an in-progress Walking Way
+
+CK3 character variables and flags are **cleared on death**. If a ruler on a Walking
+Way path dies mid-progress:
+- The `ww_[path]_rank` variable is cleared
+- The `walking_ways_seeker` trait is lost (it's a trait, not a flag — but traits
+  persist until removed; verify whether CK3 clears them on character death)
+
+**Verdict:** Traits persist through death and are inherited by heirs only if
+explicitly copied in inheritance code. Walking Ways traits should NOT be
+inheritable (they are personal metaphysical achievements, not bloodlines).
+
+Add to all Walking Ways traits in `walking_ways_traits.txt`:
+
+```
+ww_mantling_talos = {
+    category   = lifestyle
+    # Cannot be inherited — metaphysical path, not bloodline
+    inherit    = no
+    ...
+}
+```
+
+**On death mid-path:** The successor does not inherit the path. The path is
+abandoned on death (variables cleared anyway). This is lore-accurate — the Walking
+Ways are personal, not dynastic.
+
+**Exception:** The Amaranth trait (`amaranth_dreaming`) may have special logic if
+the ruler enters a coma-like state. This is already noted in §16.15. If the ruler
+"dreams permanently," consider the CK3 `is_imprisoned` or a custom `incapable`-style
+modifier rather than character death — the flavor text already states *"Their body
+remains."*
+
+---
+
+### 17.9 Lore Accuracy Checklist — Quick Reference for Writers
+
+Use this checklist when writing event prose to ensure lore accuracy:
+
+- [ ] **CHIM events:** Use unreliable narrator. Never state CHIM is definitely
+  achievable. Source the *"secret syllable of royalty"* phrase to the
+  *Commentaries on the Mysterium Xarxes* if you quote it.
+- [ ] **Mantling Talos (pre-2E 830):** Call it the Shezarrine Way or Warrior's
+  Pattern. Do NOT use the name "Talos" — he does not exist yet.
+- [ ] **Mantling Talos (2E 854–3E 38):** Do not name Tiber Septim or his campaign.
+  The path is blocked mechanically; make sure no flavor text leaks through.
+- [ ] **Mantling Arkay:** Reference Arkay's role in the soul cycle, not just death.
+  He governs both *birth and death* — the cycle, not just the end. Source:
+  *The Monomyth* (in-game book, canon).
+- [ ] **Mantling Kynareth:** Kynareth gave mortals the *gift of breath* — the Thu'um
+  is literally Kynareth's gift expressed as sound. This connection is why the
+  Thu'um serves as Milestone 1. Source: *The Monomyth* (canon).
+- [ ] **Mantling Azura:** Use the term "Prince" not "Princess" per UESP usage
+  for Daedric Lords regardless of gender presentation. Azura uses she/her in
+  in-game text but her title is "Prince" (`[CANON — in-game books]`).
+- [ ] **Mantling Meridia:** Do NOT refer to Meridia as a Daedric Prince in flavor
+  text — she considers herself distinct from the Daedra (she was expelled from
+  the Aetherius). Use "the Lady of Infinite Energies" or "the Meridian" — her
+  own preferred framing (`[SOFT CANON — Meridia's Shrine text, Skyrim]`).
+- [ ] **Psijic Endeavour (2E 230–580 window):** Artaeum is gone. Never show the
+  island in event illustrations or prose during this period.
+- [ ] **Enantiomorph:** Never confirm the Enantiomorph worked. The unreliable
+  narrator is not the player character — it is the Witness. The Witness's
+  perspective should be the primary prose voice for apotheosis events.
+- [ ] **Amaranth:** Mark all prose `[MK SUPPLEMENTARY + EXTRAPOLATED]` in comments.
+  The flavor text must use the Metaphorical Amaranth framing: personal, contained,
+  unverifiable.
+- [ ] **All events:** Check that no event prose contradicts the established dates
+  in §17.6. If prose references a historical figure, verify they are alive
+  at the current game date.
+
+---
+
+*End of session 2026-04-05 (second pass) notes.*
+
+*§17 should be consulted alongside §16 before beginning any Walking Ways implementation work.*
