@@ -2338,309 +2338,489 @@ Event file notes (headers only, no code change):
 
 ---
 
-## 19. Path F — The Sixth House Way (The Dreamer's Communion)
+## 19. Path F — Kagrenac's Ambition (The Borrowed Divinity)
 
-> **New path proposal** — Session 2026-04-05 (third pass)
-
-### 19.1 Lore Basis
-
-The Sixth House Way is a proposed addition to the Walking Ways system. It is
-grounded in canonical TES III: Morrowind lore and slots naturally into the existing
-`dagoth_ur_events.txt` framework already in this mod.
-
-**Core lore:**
-
-Dagoth Ur did not merely awaken as a villain. He achieved something the Tribunal
-never intended him to achieve: **independent godhood via the Heart of Lorkhan**,
-without Kagrenac's Tools, sustained purely by his own will and the Dream.
-
-The Sixth House's philosophy — as expressed in Dagoth Ur's in-game dialogue —
-is not mere conquest. Dagoth Ur believes:
-1. The Tribunal *betrayed* Nerevar and murdered him for the Heart
-2. The Heart's power belongs to all of House Dagoth — all of the Dunmer — not
-   only the three who seized it
-3. The Dream (his network of Sleeper agents, Dreamers, and Ash Vampires) is not
-   corruption — it is *communion*; the joining of mortal consciousness to something
-   larger, something divine
-
-*"You are the last of my kin. And I will call you home."*
-— Dagoth Ur, TES III: Morrowind `[CANON — in-game dialogue]`
-
-**Is this a Walking Way?**
-
-The Sixth House path maps onto the Walking Ways framework as a **corrupted or
-inverted Mantling** — Dagoth Ur mantled the Heart of Lorkhan rather than a deity,
-and invites others to mantle *him* (to become Ash Vampires, extensions of his
-consciousness). The Dream is the mechanism.
-
-The path models:
-- **Walking Way 2 (Mantling) variant:** the ruler does not mantle an established
-  deity but the *principle* that Dagoth Ur embodies — divine will sustained by
-  raw connection to a Tower Stone (the Heart of Lorkhan)
-- **Walking Way 4 (Enantiomorph) adjacent:** Dagoth Ur is canonically the Rebel
-  in the Nerevar/Dagoth Enantiomorph. A ruler who fully embraces the Sixth House
-  philosophy *becomes the pattern's Rebel* in their own cosmological drama
-
-This is not a clean Walking Way in the traditional sense. The design should present
-it explicitly as *outside* the established eight paths — an improvised, desperate,
-possibly doomed alternative found by someone who can't walk the formal Ways.
+> **Revised** — Session 2026-04-05 (fourth pass)
+>
+> **Previous version** framed this as the "Sixth House Way / Dreamer's Communion" —
+> a path tied specifically to Dagoth Ur's cult and his Dream. This revision broadens
+> the lore foundation to the **underlying act** that both the Tribunal and Dagoth Ur
+> performed: tapping the Heart of Lorkhan to steal divine power. Dagoth Ur's Dream
+> is one *expression* of this act; the Tribunal's godhood is another. The path is
+> now about the act, not the actor.
 
 ---
 
-### 19.2 Lore Accuracy — What the Path Can and Cannot Claim
+### 19.1 The Lore Foundation — Why Both the Tribunal and Dagoth Ur Are the Same Thing
+
+This is the central insight the path is built on, and it must be stated clearly
+because it is frequently missed by writers who treat the Tribunal as heroes and
+Dagoth Ur as a villain:
+
+**Both the Tribunal and Dagoth Ur achieved godhood by the identical act: contact
+with the Heart of Lorkhan.**
+
+The difference is *method*, not *nature*:
+
+| Actor | Method | Result | Canon source |
+|---|---|---|---|
+| **Kagrenac** (Dwemer) | Designed Wraithguard + Keening + Sunder to extract power from the Heart; intended to use it to power the Numidium and elevate the Dwemer race | The entire Dwemer race vanished instantaneously at the Battle of Red Mountain (c. 1E 700) when the Tools were activated — widely believed to be the result of a catastrophic collective "transcendence" or destruction | `[CANON — TES III: Morrowind; UESP Lore:Kagrenac]` |
+| **The Tribunal** (Vivec, Almalexia, Sotha Sil) | Stole Kagrenac's Tools after the Battle of Red Mountain; used them to tap the Heart repeatedly over millennia — *draining* divine power into themselves | Became gods — ALMSIVI — with divine power sustained only as long as they continued returning to the Heart to re-energise | `[CANON — TES III: Morrowind main quest; UESP Lore:Tribunal]` |
+| **Dagoth Ur** (Voryn Dagoth) | Merged with the Heart directly after the Battle of Red Mountain, without the Tools; the connection was total rather than mediated | Became a different kind of divine being — not sustained by periodic draining but *fused* with the Heart's power, which gave him independence from the Tools but made him inseparable from Red Mountain | `[CANON — TES III: Morrowind; Dagoth Ur's dialogue]` |
+
+**The key lore truth:** The Heart of Lorkhan is the Stone of the Red Tower — a
+concentrated remnant of a divine being (Lorkhan/Shor/Sep/Shezarr) who chose
+mortality and was destroyed for it. His Heart was cast into Nirn as punishment/
+consequence. Mortals who tap into the Heart are **stealing the power of a slain god**
+— the same fundamental act in all three cases above.
+
+**Kagrenac's Tools** are the *safe* method — they mediate the contact so the
+practitioner isn't simply annihilated or absorbed. Without them, contact with the
+Heart is either catastrophic (Dwemer, Dagoth Ur's initial fusion) or it requires
+unusual metaphysical conditions (Dagoth Ur's will was strong enough to survive the
+merging).
+
+> ⚠️ **Important lore note about Kagrenac's Tools:**
+> The three Tools are: `[CANON — TES III: Morrowind; UESP Lore:Kagrenac's Tools]`
+> - **Wraithguard** — a gauntlet that protects the wielder from the raw power of
+>   the Heart; without it, using the other Tools is lethal. The Nerevarine must
+>   obtain a *copy* made by Yagrum Bagarn (the last Dwemer) because the original
+>   is destroyed.
+> - **Keening** — a short blade that *tunes* the power drawn from the Heart; acts
+>   as a resonator/conduit.
+> - **Sunder** — a hammer that *strikes* the Heart to release power; the actual
+>   mechanism of extraction.
+> Together they form a system for controlled divine power extraction. The Tribunal
+> used all three. Kagrenac used all three. The Nerevarine uses them to *destroy*
+> the Heart rather than drain it.
+
+---
+
+### 19.2 Why This Makes a Better Path
+
+The original "Sixth House Way" required `dagoth_ur_awakened` and was heavily
+gated by Dunmer culture and Sixth House cult membership. This severely limited
+who could pursue it and tied it to a single event chain.
+
+The revised path — **Kagrenac's Ambition** — works differently:
+
+- **The act** (tapping a Tower Stone's divine power) is **not culture-specific**.
+  The Dwemer did it. The Dunmer Tribunal did it. A Breton scholar, an Imperial
+  battlemage, or a Redguard warrior could discover the same principle and attempt
+  it.
+- **The Heart of Lorkhan is the clearest example**, but the *principle* extends
+  to any Tower Stone. A character with deep knowledge of the Tower framework
+  could theoretically attempt to tap any active Tower Stone — though the Heart
+  is the only one with documented successful precedent for *mortal godhood*.
+- **The Tribunal's path is already in the mod** (`tribunal_events.txt`). This
+  path is the *secular* version — not the Tribunal's specific cultural and
+  religious framing, but the raw underlying act stripped of ALMSIVI theology.
+
+**The path is thus available to:**
+- Any ruler with sufficient arcane knowledge who learns of Kagrenac's discoveries
+- Anyone who gains access to the Heart of Lorkhan (i.e., reaches Vvardenfell
+  during the dagoth_ur_awakened era, when the Heart is no longer fully sealed)
+- Any character who already has `sixth_house_cultist` (they are closer to the
+  Heart's influence than anyone else)
+- Dwemer scholars who have reconstructed Kagrenac's theories (trait: `dwemer_scholar`)
+
+---
+
+### 19.3 The Path Name and Framing
+
+**Path label:** `ww_borrowed_divinity` (internal key)
+
+**Display name:** *"Kagrenac's Ambition"*
+
+**In-world concept name:** *"The Borrowed Divinity"* — used in the event flavor
+text to describe the act itself. The name acknowledges what it is: power that
+does not belong to the mortal who holds it. It was Lorkhan's. It was slain with
+him. To take it is to borrow from the dead — and the dead do not always accept
+the loan.
+
+**Core flavor thesis** (must permeate all event text):
+
+> *The Tribunal took the power of a dead god and called themselves gods for it.
+> Dagoth Ur touched the same power without their careful instruments and became
+> something else — something that did not need their approval.*
+>
+> *The tools exist. The Heart exists. The act has been performed before, by both
+> saints and monsters. What you propose to do is not new. What is new is that
+> you are the one proposing to do it.*
+
+This framing works for any culture. It doesn't require the character to revere
+Dagoth Ur, hate the Tribunal, or even be Dunmer. It requires only that they
+*understand what was done and choose to do it themselves*.
+
+**Tone:** Ambitious. Transgressive. Not necessarily evil — the Tribunal were
+considered saints. But the act itself destabilises the world. The flavor text
+should always carry a sense of *weight*: this is a thing that changes the nature
+of Nirn slightly, every time it's done. The Heart does not give its power freely.
+
+---
+
+### 19.4 Lore Accuracy Table
 
 | Claim | Permitted? | Canon tier |
 |---|---|---|
-| Joining the Sixth House grants communion with Dagoth Ur's Dream | ✅ Yes — this is what `sixth_house_cultist` already models | `[CANON — TES III: Morrowind]` |
-| The Dreamer's Communion is a form of divinity | ✅ Yes — Ash Vampires share Dagoth Ur's divine power | `[CANON — TES III: Morrowind, in-game texts]` |
-| The Dream is permanent / irreversible once deep enough | ✅ Yes — Dreamers cannot be fully freed; Corprus is described as "divine" | `[CANON — TES III: Morrowind]` |
-| The ruler "becomes" Dagoth Ur | ❌ No — they become an *extension* of the Dream, not Dagoth Ur himself | `[CANON — Dagoth Ur's dialogue distinguishes Ash Vampires from himself]` |
-| Dagoth Ur can be bargained with, reasoned with, or redirected | ⚠️ Cautiously — his dialogue shows he can be reasoned with, but he doesn't change his goals | `[CANON — in-game dialogue; do not overstate this]` |
-| Corprus is curable | ⚠️ Only by the Nerevarine's Potion of Cure Corprus Disease (late-game divine intervention) | `[CANON — TES III: Morrowind main quest]` |
-| This path survives Dagoth Ur's defeat | ❌ No — when the Heart is destroyed, all Ash Vampires and advanced Dreamers die or lose their enhanced state | `[CANON — TES III: Morrowind]` |
-
-**Critical design constraint:** The Sixth House Way **must end** if `dagoth_ur_awakened`
-is resolved (the Heart is destroyed via the Nerevarine path). This creates a unique
-path that has an *external kill-switch* — the ruler's entire investment vanishes if
-another character wins the canonical Morrowind questline. This is intentional and
-lore-accurate.
+| Tapping the Heart of Lorkhan confers divine power | ✅ Yes — demonstrated by both Tribunal and Dagoth Ur | `[CANON — TES III: Morrowind]` |
+| Kagrenac's Tools are necessary for safe contact | ✅ Yes — without Wraithguard, using Keening/Sunder is immediately lethal | `[CANON — TES III: Morrowind; UESP Lore:Kagrenac's Tools]` |
+| The Tribunal's divinity was *borrowed*, not earned | ✅ Yes — their power drained when the Heart was destroyed in 3E 427; Almalexia and Sotha Sil began degrading before that | `[CANON — TES III: Tribunal; UESP]` |
+| Dagoth Ur's connection to the Heart was different — more direct than the Tribunal's | ✅ Yes — he did not use the Tools; he is described as "merged" with the Heart | `[CANON — TES III: Morrowind in-game texts]` |
+| The Heart's power can be tapped by non-Dunmer | ✅ Yes — Kagrenac (a Dwemer) designed the entire apparatus; the Heart predates Dunmer existence | `[CANON — UESP]` |
+| The act is morally neutral in TES cosmology | ✅ Yes — the Tribunal are revered; the same act by Dagoth Ur is feared; the act itself carries no inherent moral weight in TES metaphysics | `[CANON — TES III: Morrowind, overall framing]` |
+| The path survives Dagoth Ur's defeat (Heart destruction) | ❌ No — once the Heart is destroyed (3E 427), this path's power source ceases to exist | `[CANON — TES III: Morrowind main quest]` |
+| The Dwemer "used" the Heart successfully | ⚠️ Contested — Kagrenac's activation either destroyed all Dwemer, or they all transcended simultaneously; no single in-game text settles which | `[CONTESTED — UESP; do not state definitively]` |
+| A mortal can tap the Heart *without* Kagrenac's Tools and survive | ⚠️ Possible but extremely rare — Dagoth Ur survived; no other documented case | `[SOFT CANON — Morrowind in-game texts]` |
+| This is the same power that created/sustained the Numidium | ✅ Yes — Kagrenac designed the Numidium to use the Heart as its power source; the Heart *is* what the Mantella was meant to approximate | `[CANON — UESP Lore:Numidium; Lore:Kagrenac]` |
 
 ---
 
-### 19.3 Date Window and EK2 Compatibility
+### 19.5 Date Window and Availability
 
-**Hard requirement:** The path can only begin **after Dagoth Ur awakens** (`dagoth_ur_awakened = yes`).
+**The Heart of Lorkhan exists** from the Merethic Era (when it fell to Nirn) until
+**3E 427** when the Nerevarine destroys it. It is the Stone of the Red Tower for
+this entire period.
 
-**In EK2 (2E 440–896):** Dagoth Ur canonically awakens at 2E 882 (or earlier via
-the mod's alternative awakening conditions). The path is therefore only available
-in very late Second Era / early Third Era starts, or in playthroughs where the early
-awakening conditions were met.
+**However, *access* to the Heart** has different conditions across eras:
 
-**Date guard:**
-```
-# Sixth House Way path availability
-is_valid = {
-    global_var:dagoth_ur_awakened = yes
-    # Cannot pursue after the Heart is destroyed
-    NOT = { has_global_flag = dagoth_ur_defeated }
-}
-```
-
-**For EK2 compatibility:** The path is late-game by design. It pairs well with the
-Dagoth Ur system's existing framework and doesn't require any additional date ranges —
-the `dagoth_ur_awakened` flag already handles everything.
-
----
-
-### 19.4 Path Design — The Dreamer's Communion
-
-**Path label:** Sixth House Way (internal key: `ww_sixth_house`)
-
-**Display name:** *"The Dreamer's Communion"* (in-world name used by Dagoth Ur's
-followers for the progressive stages of joining the Dream)
-
-**Entry requirement:**
-```
-OR = {
-    has_trait = sixth_house_cultist    # already joined (from dagoth_ur.020)
-    AND = {
-        has_culture = dunmer_culture
-        intrigue >= 14
-        piety <= 100    # low Tribunal piety — disillusioned
-        dagoth_ur_awakened = yes
-    }
-    AND = {
-        has_trait = corprus_afflicted   # forced entry — they're already in the Dream
-        dagoth_ur_awakened = yes
-    }
-}
-```
-
-The third option (forced entry via `corprus_afflicted`) is deliberately dark: a
-character who contracted Corprus is already partially in the Dream. This path gives
-them a way to *lean into* that rather than simply suffering the debuff.
-
----
-
-#### 19.4a Milestones (5 — fewer than other paths, reflecting the Dream's compression of will)
-
-| # | Milestone Name | Mechanism |
+| Era | Heart Access | Notes |
 |---|---|---|
-| 1 | *The First Dream* | A vivid Dagoth Ur vision — ruler gains `sixth_house_cultist` if not already held; gains `dreamer_initiate` modifier |
-| 2 | *The Bonding* | Recruit a Sleeper agent as a court member (special NPC generated); refuse to report them to the Tribunal |
-| 3 | *The Ash Touch* | Survive a Corprus infection event (or, if already `corprus_afflicted`, demonstrate control over symptoms — stress -50 for 6 months) |
-| 4 | *The Voice in Many Minds* | Three other court members become `sixth_house_cultist` — voluntary or coerced |
-| 5 | *Ash Vampire Ascension* | A final ritual event — the ruler offers themselves to the Dream fully; Dagoth Ur accepts and transforms them |
+| Merethic to c. 1E 700 | Unreachable — deep within Red Mountain before the Dwemer built their apparatus | Only the Dwemer had the engineering to reach it |
+| c. 1E 700–2E 882 | Sealed by the Ghost Fence (Tribunal-maintained) | Tribunal control the access; no outside party can reach the Heart |
+| **2E 882–3E 427** | **Accessible** — Dagoth Ur expelled the Tribunal from Red Mountain; the Ghost Fence frays | **This is the mod's active window for this path** |
+| 3E 427 onward | Heart destroyed | Path permanently unavailable |
 
-**Milestone 5 event text sample:**
-
-> *"You have walked to the edge of what you were and stood there long enough
-> that the edge dissolved. Dagoth Ur is not before you. He is around you.
-> He is you, in the way that a river is the water it carries.*
->
-> *You understand now what he meant by 'home.' Not a place. A state.*
->
-> *The Dream has a new dreamer."*
-
----
-
-#### 19.4b Failure Risk — The Dream Takes You (35% at Milestone 4)
-
-At Milestone 4, if the ruler has `stress >= 75` (Level 2+), there is a **35% chance**
-the Dream consumes rather than incorporates them:
-
-- Ruler gains `corprus_afflicted` (if not already) AND `dreamer_lost` modifier
-  (Learning -8, all stress gains +50%, cannot pursue this path again)
-- The four cultist court members scatter or are arrested by Tribunal agents
-- All path progress resets to Milestone 1
-
-This represents losing control of the Dream instead of mastering it. Dagoth Ur
-doesn't reject them — he simply absorbs them too completely, leaving no will of
-their own to pursue the path consciously.
-
----
-
-#### 19.4c Apex Trait: `ash_vampire_ascendant`
-
-The fully realised Ash Vampire ruler exists in two states simultaneously — mortal
-ruler and Dream extension. Mechanically:
-
-- Intrigue +6, Martial +4, Learning -3 (the Dream is not scholarly — it is instinctual)
-- `monthly_piety = -3` (Tribunal piety drain — the Tribunal can feel the Dream spreading)
-- `stress_gain_mult = -0.50` (the Dream absorbs stress; it has its own logic for it)
-- `dread_gain_mult = 0.30`
-- **Special: *Dream Pulse*** — Once per 5 years, the ruler may send a Dream vision
-  to any ruler within their cultural sphere. That ruler gains `stress += 25` and
-  a `sixth_house_approach_recent` flag (meaning Dagoth Ur's next sleeper agent
-  approach will fire for them within 2 years). This is influence-projection, not
-  military.
-- **Special: *Corprus Immunity*** — The ruler no longer suffers negative effects
-  from `corprus_afflicted` if they held it; instead it functions as a passive
-  `health +2`
-
-**World effect on Apex:**
-
-All rulers with `nerevarine_marked` or `azura_champion` receive a notification:
-*"The Dream of Dagoth Ur has taken root in [REALM]. Something of House Dagoth
-walks there that should not walk. Azura has noted it."*
-
-These rulers gain a strong motivation modifier to pursue the Nerevarine path.
-This is the lore-accurate counter-escalation: an Ash Vampire ruler accelerates
-the conditions for the Nerevarine to appear.
-
----
-
-#### 19.4d Hard Termination — When Dagoth Ur Falls
-
-When `dagoth_ur_defeated` is set (the Nerevarine destroys the Heart):
-
+**EK2 date guard:**
 ```
-# All Sixth House Way rulers lose their apex trait and gain a death/trauma event
-if = {
-    limit = { has_trait = ash_vampire_ascendant }
-    trigger_event = { id = sixth_house_dissolution.001 }   # "The Dream ends"
+# Kagrenac's Ambition — path availability
+is_valid = {
+    # Heart must be accessible (Dagoth Ur has broken the Tribunal's seal)
+    global_var:dagoth_ur_awakened = yes
+    # Heart must not yet be destroyed
+    NOT = { has_global_flag = dagoth_ur_defeated }
+    # Must have reached sufficient arcane knowledge
+    OR = {
+        learning >= 16
+        has_trait = dwemer_scholar
+        has_trait = sixth_house_cultist
+    }
 }
-remove_trait = ash_vampire_ascendant
-remove_trait = sixth_house_cultist
-remove_trait = dreamer_initiate
-add_trait    = traumatized    # or equivalent severe stress trait
-add_stress   = 150
 ```
 
-**The `sixth_house_dissolution.001` event:**
+**Note on the "early awakening" mod conditions:** `dagoth_ur_events.txt` already
+allows Dagoth Ur to awaken before 2E 882 under certain conditions (no Dunmer
+kingdom in Morrowind, no keeper holding the Tower Stone). If those conditions fire
+early, this path becomes available early — which is mechanically and lore-accurate.
+If the Tribunal's grip on the Heart weakens, the Heart becomes reachable.
 
-> *"Something you cannot name has gone quiet.*
+---
+
+### 19.6 Two Routes — Kagrenac's Method vs. Dagoth's Method
+
+The path has a **fork at Milestone 3** that permanently commits the character to
+one of two approaches. This fork maps directly onto the canonical lore distinction:
+
+#### Route A: Kagrenac's Method (Controlled)
+
+> *Seek the Tools. Understand the resonance. Strike only where the blade can find purchase.*
+
+- Pursue replicas or originals of Wraithguard, Keening, and Sunder
+- Requires `dwemer_scholar` or equivalent Learning (≥ 18)
+- Slower but with lower failure risk
+- Produces a result closer to the Tribunal's: sustained, measured divine power
+  that requires the character to periodically "return" to the Heart (mechanically:
+  a yearly event that re-triggers the power bonus, failing if the character has
+  not maintained contact)
+- **Apex trait:** `heart_scholar_ascendant`
+- **Flavor:** Precise. Academic. The Tribunal used this method and it worked for
+  millennia. It is also, in the end, a cage — you are forever dependent on the Heart.
+
+#### Route B: Dagoth's Method (Direct Contact)
+
+> *No instruments. No intermediary. Put your hands on the Heart and hold.*
+
+- Requires surviving a direct contact event (significant stress damage)
+- Requires `corprus_afflicted` (the Blight disease is evidence of the Heart's
+  unmediated influence; surviving it is the prerequisite for surviving direct contact)
+- Higher failure rate, catastrophic on failure
+- Produces a result closer to Dagoth Ur's: total fusion — the character is no longer
+  *drawing* power from the Heart but is *part of it*; when the Heart dies, so do they
+- **Apex trait:** `heart_fused_ascendant`
+- **Flavor:** Raw. Terrifying. Dagoth Ur survived. The Dwemer did not. The text
+  should never let the player forget this asymmetry.
+
+Both routes share the same first two milestones and terminate at the same hard
+endpoint (Heart destruction). The difference is in the nature of the power held
+and the risks involved.
+
+---
+
+### 19.7 Milestones (6 shared + route-specific fork at Milestone 3)
+
+| # | Milestone Name | Mechanism | Both Routes? |
+|---|---|---|---|
+| 1 | *The Scholar's Discovery* | Character encounters evidence of Kagrenac's work — a text, a Dwemer ruin, a Sixth House sleeper who carries fragmentary knowledge of what lies under Red Mountain | Both |
+| 2 | *The Theoretical Understanding* | A long research event — the character achieves intellectual understanding of what the Heart is and what tapping it means. They cannot un-know this. | Both |
+| 3 | **THE FORK** | Character chooses: *"Approach as Kagrenac did — with instruments and caution"* (Route A) OR *"Approach as Dagoth Ur did — with will and nothing else"* (Route B) | Split here |
+| 4A | *The First Instrument* | Route A: Character obtains or commissions a replica of one of the three Tools; first controlled touch of the Heart | Route A only |
+| 4B | *The Corprus Gate* | Route B: Character must have `corprus_afflicted` or survive a deliberate Blight exposure event — the disease is the Heart's fingerprint on the world | Route B only |
+| 5A | *The Full Apparatus* | Route A: All three Tools assembled; first full controlled draw of Heart power | Route A only |
+| 5B | *The Plunge* | Route B: Direct contact event — high stress, 40% failure risk, but survival grants the merge | Route B only |
+| 6 | *The Stolen Fire* | Shared conclusion event: the character holds the Heart's power. It is divine. It is not theirs. They have it anyway. | Both (different flavor text per route) |
+
+---
+
+### 19.8 Failure States
+
+#### Route A Failure (at Milestone 5A) — The Tools Fail
+
+The Tribunal copied Kagrenac. Copies of Wraithguard can fail. The character
+attempts the draw and one of the Tools fractures:
+
+- `heart_overload` event fires: massive stress, Learning -4 permanently
+- Character survives but cannot attempt this route again
+- Can still switch to Route B if they meet its requirements
+- **Flavor:** *"The hammer cracked on the third strike. The resonance inverted.
+  For a moment you saw what the Dwemer saw in their last instant — and then the
+  moment passed and you were still standing and everything that should have been
+  different about you was exactly the same."*
+
+#### Route B Failure (at Milestone 5B) — The Heart Takes You
+
+The character attempts direct contact and cannot sustain their identity against
+the weight of a dead god's will:
+
+- `heart_absorbed` event fires: character gains `corprus_afflicted` (permanent,
+  negative) + `heart_absorbed_modifier` (Intrigue -6, all stress gains +100%)
+- Path permanently closed for this character
+- **Flavor:** *"You reached for the Heart. The Heart reached back. What walked
+  away from Red Mountain was not entirely you — but it was not entirely not-you
+  either. Something fundamental had been rearranged. You understood, in the way
+  that a broken pot understands the floor."*
+
+---
+
+### 19.9 Apex Traits
+
+#### Route A Apex: `heart_scholar_ascendant`
+
+The Tribunal-method ascendant. Controlled. Sustained. Dependent.
+
+- Learning +8, Diplomacy +4, Martial -2 (they are no longer primarily a warrior)
+- `monthly_piety = 5` (they are objectively more divine than they were)
+- `stress_gain_mult = -0.20`
+- **Special: *Heart-Draw*** — Yearly event: the character must renew their
+  connection to the Heart. If they are on Vvardenfell or within 3 counties of
+  Red Mountain, the renewal succeeds automatically (+prestige 50). If they are
+  elsewhere, they must choose: spend 200 gold for a "proxy ritual" (less effective;
+  only +prestige 20) or skip the renewal (power begins to fade; Learning bonus
+  decrements by 1 per skipped year, recoverable on next renewal)
+- This mechanic directly models the Tribunal's documented dependence on periodic
+  returns to the Heart. It is lore-accurate and mechanically interesting.
+- **Special: *Divine Resonance*** — Other rulers with `heart_scholar_ascendant`
+  or `heart_fused_ascendant` in the world appear in a unique notification event.
+  The Heart recognises those who have touched it. `[MOD CHOICE — no direct canon
+  basis but consistent with the Heart-as-Tower-Stone framework]`
+
+#### Route B Apex: `heart_fused_ascendant`
+
+The Dagoth Ur-method ascendant. Raw. Total. Unseverable (until the Heart dies).
+
+- Learning -2 (intellectual capability partially overwritten by the merge)
+- Intrigue +6, Martial +6, Prowess +4
+- `monthly_piety = 8`
+- `stress_gain_mult = -0.40` (the Heart's vastness absorbs mortal concerns)
+- `dread_gain_mult = 0.40`
+- **No dependency mechanic** — unlike Route A, the fused ascendant does not need
+  to return to the Heart. They carry it with them. This is their advantage and
+  their doom: when the Heart is destroyed, there is nothing to decouple from.
+- **Special: *The Blight Emanation*** — County the character resides in gains
+  a low-intensity `blight_storm_modifier` aura (Farming -10%, Disease Outbreak
+  chance +5%). The character's divine presence is not clean. It bleeds.
+- **Hard death clause:** When `dagoth_ur_defeated` fires, ALL `heart_fused_ascendant`
+  characters die immediately (simulating the death of Dagoth Ur's Ash Vampires
+  when the Heart was severed). No survival option. This is non-negotiable lore —
+  Dagoth Ur's power structure collapsed instantly when the Heart was destroyed.
+
+---
+
+### 19.10 Shared Hard Termination — When the Heart Dies
+
+When `dagoth_ur_defeated` is set (the Heart of Lorkhan is destroyed in 3E 427):
+
+```
+# Route A holders lose their power but survive
+if = {
+    limit = { has_trait = heart_scholar_ascendant }
+    trigger_event = { id = borrowed_divinity.dissolution.001 }
+    remove_trait = heart_scholar_ascendant
+    add_character_modifier = {
+        modifier = heart_void_modifier   # Learning -3 for 10 years; the absence hurts
+        years = 10
+    }
+    add_stress = 100
+}
+
+# Route B holders die — the Heart's death IS their death
+if = {
+    limit = { has_trait = heart_fused_ascendant }
+    kill_character = yes
+    # Death reason: borrowed_divinity_severed
+    # Death flavor event fires for nearby rulers: "Something in Red Mountain ended."
+}
+```
+
+**The `borrowed_divinity.dissolution.001` event (Route A):**
+
+> *"You were in the middle of a sentence when it stopped.*
 >
-> *For months — years — there was a voice in the deep of your mind.
-> Not a voice. A certainty. A belonging.*
+> *Not the Heart — you would not know the Heart had stopped the way you know
+> a candle goes out. The Heart's ending was not a sound. It was the absence
+> of a sound you had stopped noticing you were always hearing.*
 >
-> *It is gone now. Red Mountain's fire has changed.*
-> *Whatever you were borrowing, it has been returned.*
+> *The Tribunal spent three thousand years drawing from that well. You had it
+> for far less. You are still standing. You are still yourself.*
 >
-> *You are yourself again. Entirely, unbearably yourself."*
+> *But the fire in the glass has gone cold. What you borrowed has been returned
+> to whatever remains of the dead."*
 
 Options:
-- `"I remain. Whatever I was, I am still something."` → +prestige 200, -stress 30
-  (they survive as mortal rulers, the Ash Vampire state simply ends)
-- `"Without the Dream, I am nothing."` → +stress 100 (grief; the loss is not
-  just power — it was an entire mode of being)
+- `"I remain. I was something before the Heart. I will be something after."` →
+  +prestige 500 (they survive; the accomplishment is real even if it's over)
+- `"Three thousand years the Tribunal held this. I had it for a moment."` →
+  +stress 50, +piety 200 (grief and awe simultaneously)
 
 ---
 
-### 19.5 Interaction with the Nerevarine Path
+### 19.11 Interactions with Other Systems
 
-The Sixth House Way and the Nerevarine path (`dagoth_ur.030`) are **natural opponents**:
+#### With the Nerevarine Path (`dagoth_ur.030`)
 
-| Ruler Type | Effect |
+Both this path and the Nerevarine path ultimately concern the Heart. They are
+therefore in fundamental tension:
+
+| Ruler Type | Effect on Others |
 |---|---|
-| Ruler with `ash_vampire_ascendant` | Nerevarine path cooldown on all nearby Dunmer rulers +2 years (the Dream actively suppresses the prophecy's candidates) |
-| Ruler with `nerevarine_marked` | Can trigger a direct confrontation event with an `ash_vampire_ascendant` ruler — winner gains permanent prestige; loser loses apex trait |
+| `heart_fused_ascendant` | Nerevarine path cooldown on all Dunmer rulers within 5 counties +3 years (the Heart's corruption emanates outward; the prophecy is harder to hear) |
+| `heart_scholar_ascendant` | No suppression — they draw cleanly; but the Nerevarine will seek them out as "one who knows the way to the Heart" (a confrontation event option: assist the Nerevarine or attempt to prevent them) |
+| `nerevarine_marked` | Can trigger a confrontation with any Heart-ascendant ruler — **the canonical purpose of the Nerevarine is to destroy the Heart**; a Nerevarine who encounters someone drawing power from it has a direct motive to stop them |
 
-This creates a dynamic equivalent to the canonical Morrowind main quest: the
-Nerevarine and Dagoth Ur's forces in direct opposition, now playable as a conflict
-between two player characters (or a player and AI).
+#### With the Tribunal System (`tribunal_events.txt`)
 
-**Lore accuracy note:** In TES III, Dagoth Ur's Dreamers are not fully conscious
-participants — they are sleepwalkers. The `ash_vampire_ascendant` is a more conscious,
-willing participant than a canonical Dreamer. This is a `[MOD CHOICE]` — the design
-deliberately elevates the player's agency to make the path playable. The event text
-should acknowledge this distinction: *"Most who walk into the Dream do not know
-they are walking. You knew. That is what made you different."*
+The Tribunal are the canonical Route A practitioners:
+
+- If a ruler achieves `heart_scholar_ascendant`, Tribunal-aligned rulers receive
+  a notification: *"Someone has taken up Kagrenac's Tools. The ALMSIVI did not
+  build this road to share it."*
+- Tribunal-trait rulers gain opinion -30 toward any `heart_scholar_ascendant`
+  ruler (they view this as heresy — the Tribunal claimed exclusive access to the Heart)
+- `heart_fused_ascendant` rulers have no special Tribunal interaction — the Tribunal
+  are afraid of what Dagoth Ur became and won't acknowledge the parallel
+
+#### With the Dagoth Ur System (`dagoth_ur_events.txt`)
+
+The existing `sixth_house_cultist` trait is now the **entry point** for Route B
+(the Dagoth Ur-adjacent approach). A character who joined the Sixth House has
+already been exposed to the Heart's influence via Dagoth Ur's Dream — this is
+what earns them the `corprus_afflicted` prerequisite for Route B.
+
+Route A has no Sixth House dependency — it is pursued independently through
+Dwemer scholarship.
 
 ---
 
-### 19.6 Localization File
-
-Following the established convention (from stored memory: *"Each event system has
-a dedicated YML file"*), the Sixth House Way needs:
+### 19.12 Localization File
 
 ```
-mod/localization/english/sixth_house_way_l_english.yml
+mod/localization/english/borrowed_divinity_l_english.yml
 ```
 
-This file handles all display text for:
-- Path intro and milestone events (`sixth_house_way.*`)
-- The `sixth_house_dissolution.001` termination event
-- Trait display names and descriptions for `ash_vampire_ascendant` and `dreamer_initiate`
-- Custom tooltip text: `sixth_house_joined_tt` (already referenced in `dagoth_ur.020`)
+All event display text for this system goes here:
+- `borrowed_divinity.*` events (all milestones, both routes, termination)
+- Trait display names: `heart_scholar_ascendant`, `heart_fused_ascendant`
+- Modifier display names: `heart_void_modifier`, `heart_absorbed_modifier`
+- Custom tooltips: `kagrenac_route_chosen_tt`, `dagoth_route_chosen_tt`
 
-**BOM reminder:** As per the stored convention, this file **must** start with UTF-8 BOM
-(`printf '\xef\xbb\xbf' | cat - file > tmp && mv tmp file`).
-
----
-
-### 19.7 on_actions Registration
-
-Per the stored convention (*"ALL new event systems must register their hidden trigger
-events in `lore_races_on_actions.txt`"*), the following events need registration:
-
-| Event ID | Function | Block | Weight |
-|---|---|---|---|
-| `sixth_house_way.milestone_check` | Yearly check for milestone progression | `on_yearly_pulse` | weight = 60 |
-| `sixth_house_dissolution.000` | Hidden check: fires `.001` when `dagoth_ur_defeated` is set | `on_yearly_pulse` | weight = 100 |
+**BOM reminder:** UTF-8 BOM required (`printf '\xef\xbb\xbf' | cat - file > tmp && mv tmp file`).
 
 ---
 
-### 19.8 Integration Checklist
+### 19.13 on_actions Registration
 
-- [ ] New path key `ww_sixth_house` added to `walking_ways_traits.txt`
-- [ ] `ash_vampire_ascendant` trait defined in `dagoth_ur_traits.txt` (not a new file — fits with existing Sixth House traits)
-- [ ] `dreamer_initiate` modifier defined in `lore_races_modifiers.txt`
-- [ ] `sixth_house_dissolution.001` event written and added to `dagoth_ur_events.txt`
-  (or a new `sixth_house_way_events.txt` if the chain grows large enough)
-- [ ] `sixth_house_way_l_english.yml` created with UTF-8 BOM
-- [ ] `on_yearly_pulse` registrations added to `lore_races_on_actions.txt`
-- [ ] Hard termination hook added to `end_dagoth_ur_era` scripted effect in
-  `lore_races_effects.txt`
-- [ ] Nerevarine opposition interaction events written in `dagoth_ur_events.txt`
-- [ ] §17.6 timeline table updated to add: *"2E 882 — Dagoth Ur awakens; Sixth House
-  Way becomes available"* row
-- [ ] `12_mod_pitfalls.md` updated: note that `ash_vampire_ascendant` should NOT be
-  confused with `sixth_house_cultist` — the former is the apex Walking Way trait;
-  the latter is the entry-level cult membership already in the existing system
+Per convention (`lore_races_on_actions.txt`, `on_yearly_pulse` block):
+
+| Event ID | Function | Weight |
+|---|---|---|
+| `borrowed_divinity.000` | Hidden yearly: check if player is eligible for path intro | 50 |
+| `borrowed_divinity.dissolution.000` | Hidden yearly: check if Heart has been destroyed; fire termination | 100 |
+| `borrowed_divinity.heart_draw.000` | Hidden yearly: Route A dependency check (renewal event) | 80 |
 
 ---
 
-*End of session 2026-04-05 (third pass) notes.*
+### 19.14 Integration Checklist
 
-*§18 records audit findings; §19 is a self-contained design spec for the Sixth House path that can be implemented independently of the rest of Walking Ways.*
+- [ ] Internal key `ww_borrowed_divinity` added to `walking_ways_traits.txt`
+- [ ] `heart_scholar_ascendant` and `heart_fused_ascendant` traits defined in
+  `dagoth_ur_traits.txt` (fits thematically; both are Heart-derived)
+- [ ] `heart_void_modifier`, `heart_absorbed_modifier`, `heart_overload` modifiers
+  added to `lore_races_modifiers.txt`
+- [ ] All milestone events written in a new `borrowed_divinity_events.txt`
+  (separate from `dagoth_ur_events.txt` — this path is broader than Dagoth's system)
+- [ ] `borrowed_divinity_l_english.yml` created with UTF-8 BOM
+- [ ] Three `on_yearly_pulse` registrations added to `lore_races_on_actions.txt`
+- [ ] Hard termination hooks added to `end_dagoth_ur_era` scripted effect in
+  `lore_races_effects.txt` (both routes handled separately)
+- [ ] Nerevarine + Tribunal interaction events written
+- [ ] `12_mod_pitfalls.md` updated with new entry: *"Heart-tapping path is
+  `ww_borrowed_divinity` (two routes); `sixth_house_cultist` is the entry gate
+  for Route B only; `heart_scholar_ascendant` and `heart_fused_ascendant` are
+  the two apex traits — do not confuse them with each other or with the Tribunal
+  traits"*
+- [ ] `lore/06_towers.md` Red Tower entry updated to cross-reference this path
+  (the Heart = the Tower Stone; tapping it = this path)
+- [ ] §17.6 timeline table updated: *"2E 882 — Dagoth Ur expels Tribunal from
+  Red Mountain; Heart becomes accessible; `ww_borrowed_divinity` path becomes
+  available to any ruler with sufficient arcane knowledge"*
+
+---
+
+### 19.15 Design Note — Why This Path Is Not a Traditional Walking Way
+
+The existing five Walking Ways (CHIM, Mantling, Psijic Endeavour, Enantiomorph,
+Amaranth) all concern the *self's relationship to Nirn's metaphysical structure*.
+They are about what you *understand* or *become* in relation to the Aurbis.
+
+**Kagrenac's Ambition is different.** It is about taking something external —
+a Tower Stone's power — and incorporating it. It is closer to theft than
+enlightenment. The Walking Ways are paths of *becoming*; this is a path of
+*acquiring*.
+
+This distinction matters for event text framing:
+
+- Walking Ways: *"You have understood something that changes what you are."*
+- Kagrenac's Ambition: *"You have taken something that changes what you can do."*
+
+The path should present this honestly. It is not CHIM. It is not Mantling. It is
+something the established Walking Ways taxonomy does not account for — which is
+why it slots as Path F rather than being numbered 1–5. It works alongside the
+Walking Ways system but is not of the same kind. Writers should:
+
+- **Not** present this as equivalent to CHIM or Amaranth in terms of metaphysical
+  significance
+- **Not** describe the character as "transcending mortality" — they have *borrowed*
+  divine power; they are still mortal; the power is not theirs by right
+- **Do** acknowledge that the Tribunal did this and were called saints; this act
+  can coexist with piety and rulership; it is not inherently evil or taboo (except
+  to the Tribunal specifically, who object to competition)
+
+---
+
+*End of §19 — revised to ground the path in the universal lore of Tower Stone
+theft rather than the specific context of Dagoth Ur's cult.*
+
+---
+
+*End of session 2026-04-05 (fourth pass) notes.*
+
+*§18 records audit findings. §19 is a self-contained design spec for the Heart-theft path. Both can be implemented independently of the rest of Walking Ways.*

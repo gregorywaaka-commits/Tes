@@ -52,6 +52,7 @@ Key principles `[CANON — UESP]`:
 - **Status:** **Destroyed** — the Heart was destroyed by the Nerevarine in TES III: Morrowind (3E 427). Red Mountain subsequently erupted in 4E 5. `[CANON — TES III: Morrowind; UESP]`
 - **Significance:** The Tribunal (Vivec, Almalexia, Sotha Sil) drew their divine power directly from the Heart using Kagrenac's Tools. Destroying the Heart ended their divinity. The Dwemer also used the Heart — their disappearance at the Battle of Red Mountain (c. 1E 700) is related to Kagrenac's activation of his tools. `[CANON — TES III: Morrowind]`
 - **CK3 mod county:** `c_red_mountain` `[MOD CHOICE]`
+- ⚠️ **Path F cross-reference:** The Heart is the power source for `ww_borrowed_divinity` (Kagrenac's Ambition). Both the Tribunal (Route A, using the Tools) and Dagoth Ur (Route B, direct fusion) tapped this same Stone. The Heart is accessible to player characters only during `dagoth_ur_awakened = yes` (2E 882–3E 427). After 3E 427 the Stone no longer exists — the path permanently closes. See `WALKING_WAYS_DESIGN.md §19` for full details.
 
 ### 4. Crystal-Like-Law (Crystal Tower) `[CANON — UESP]`
 > **Source:** UESP Lore:Crystal Tower — https://en.uesp.net/wiki/Lore:Crystal_Tower
