@@ -137,7 +137,7 @@ Each entry includes:
   - Slept beneath Red Mountain for over a millennium; **awakened in 2E 882** `[CANON — TES III: Morrowind; UESP]`
   - Spread **Corprus disease** and **blight storms** from Red Mountain `[CANON — TES III: Morrowind]`
   - Also spread **Sleeper agents** — mortals mentally dominated through dream-connection to the Heart `[CANON — TES III: Morrowind]`
-  - Defeated by the **Nerevarine** in 3E 427 when the Heart of Lorkhan was destroyed `[CANON — TES III: Morrowind]`
+  - Defeated by the **Nerevarine** in 3E 427 when the Heart of Lorkhan's connection to Mundus was severed — the Nerevarine used Kagrenac's Tools to break the enchantments binding the Heart to the mortal plane. The Heart vanished from Tamriel; Dagoth Ur, whose immortality was fused to it, died instantly. `[CANON — TES III: Morrowind; UESP Lore:Heart of Lorkhan]`
 
 ---
 

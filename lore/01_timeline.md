@@ -131,8 +131,8 @@
 | 3E 399 | **Imperial Simulacrum ends** — the **Arena protagonist** (guided by the ghost of Ria Silmane) reassembles the Staff of Chaos; Tharn is defeated and Uriel VII is freed after 10 years of imprisonment | `[CANON — TES I: Arena]` |
 | 3E 399 | Events of **TES: Battlespire** | `[CANON]` |
 | 3E 400 | **Jyggalag's Greymarch** — annual cycle of Order; Sheogorath reverts to Jyggalag briefly | `[CANON — TES IV: Shivering Isles]` |
-| 3E 427 | Events of **TES III: Morrowind** — Nerevarine defeats Dagoth Ur; Heart of Lorkhan destroyed; Tribunal's divinity ends | `[CANON]` |
-| 3E 427 | **Red Tower falls** metaphysically — Heart of Lorkhan (its Stone) destroyed | `[CANON — UESP]` |
+| 3E 427 | Events of **TES III: Morrowind** — Nerevarine defeats Dagoth Ur; Heart of Lorkhan's binding to Mundus severed (Heart vanishes from Tamriel); Tribunal's borrowed divinity ends | `[CANON — UESP Lore:Heart of Lorkhan]` |
+| 3E 427 | **Red Tower falls** metaphysically — the Heart of Lorkhan (its Stone) departs Mundus; all mortal connections to it severed | `[CANON — UESP]` |
 | 3E 433 | **Oblivion Crisis** — the **Mythic Dawn** (cult of Mehrunes Dagon) assassinates Emperor **Uriel Septim VII** and all known heirs. With the Septim bloodline severed and the Amulet of Kings stolen, the **Dragonfires** in the Temple of the One go cold. **Oblivion Gates** open across all nine provinces, unleashing Dagon's Daedra. The city of **Kvatch** is destroyed. In Black Marsh the Argonians — warned by the Hist — close Oblivion Gates from the inside, driving back the invasion. **Martin Septim** (illegitimate son of Uriel VII) is found; he uses the Amulet of Kings to transform into an Avatar of Akatosh, banishing Mehrunes Dagon from Nirn at the cost of his own life and the destruction of the Amulet. The **Dragonfires covenant** ends permanently; the Third Era ends. `[CANON — TES IV: Oblivion; UESP: Lore:Oblivion Crisis]` |
 
 ---
