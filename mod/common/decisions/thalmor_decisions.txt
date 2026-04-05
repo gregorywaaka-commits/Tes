@@ -1,0 +1,137 @@
+# =============================================================
+#  Thalmor Justiciars — Decisions
+#  File: mod/common/decisions/thalmor_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  common/traits/thalmor_traits.txt
+#    → thalmor_justiciar, talos_purge_survivor
+#  common/traits/great_war_traits.txt
+#    → talos_secret_devotee
+#  events/thalmor_events.txt
+#    → thalmor.002 (Arrest Warrant), thalmor.003 (Underground Network)
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/thalmor_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • harbour_talos_worshippers
+#    • report_talos_worshipper
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/great_war_traits.txt
+#      → talos_secret_devotee
+#    common/traits/thalmor_traits.txt
+#      → thalmor_justiciar
+# =============================================================
+
+# ---------------------------------------------------------------
+#  HARBOUR TALOS WORSHIPPERS
+#  A ruler who secretly venerates Talos (or is sympathetic to
+#  those who do) may formally open their court to Talos refugees
+#  fleeing Thalmor persecution.  Dangerous if discovered by Thalmor
+#  Justiciars, but earns the gratitude of the faithful and the
+#  blessing of Talos.
+# ---------------------------------------------------------------
+harbour_talos_worshippers = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = harbour_talos_worshippers_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = talos_secret_devotee
+            has_culture = nord_culture
+        }
+        current_date >= 4.175.1.1
+        NOT = { has_character_flag = talos_refuge_open }
+        NOT = { has_trait = thalmor_justiciar }
+    }
+
+    is_valid = {
+        piety    >= 200
+        is_adult = yes
+        is_ruler = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_piety = -200
+        add_prestige = 100
+        set_character_flag = { flag = talos_refuge_open }
+        add_character_modifier = {
+            modifier = talos_underground_shelter
+            days = 1825
+        }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = {
+            add = 8
+            has_trait = talos_secret_devotee
+        }
+        modifier = {
+            add = 4
+            has_culture = nord_culture
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  REPORT TO THALMOR JUSTICIARS
+#  A ruler who holds a thalmor_justiciar trait or who seeks favour
+#  with the Aldmeri Dominion may report known Talos worshippers at
+#  court to Thalmor agents.  Earns Aldmeri goodwill; loses the
+#  respect of Nordic and Imperial subjects.
+# ---------------------------------------------------------------
+report_talos_worshipper = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = report_talos_worshipper_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult = yes
+        has_trait = thalmor_justiciar
+        NOT = { has_trait = talos_secret_devotee }
+    }
+
+    is_valid = {
+        prestige  >= 50
+        is_adult  = yes
+        is_ruler  = yes
+        NOT = { has_character_flag = talos_report_cooldown }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = 100
+        add_piety    = -100
+        set_character_flag = {
+            flag = talos_report_cooldown
+            days = 730
+        }
+        add_opinion = {
+            modifier = thalmor_resentment_opinion
+            target = scope:player
+            opinion = -30
+        }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 5
+            has_trait = thalmor_justiciar
+        }
+    }
+}

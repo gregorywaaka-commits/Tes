@@ -2432,3 +2432,271 @@ dawnbreaker_blessed_light = {
     health                     = 0.50
     monthly_piety_gain_mult    = 0.10
 }
+
+# =============================================================
+#  BARROW EXPLORATION SYSTEM MODIFIERS
+#  Defined here; used by mod/events/barrow_events.txt
+#  and mod/common/decisions/barrow_decisions.txt
+# =============================================================
+
+barrow_expedition_active = {
+    martial              = 1
+    monthly_prestige     = 1
+}
+
+word_wall_resonance = {
+    learning             = 2
+    monthly_piety        = 1
+}
+
+# =============================================================
+#  BLACK BOOKS / APOCRYPHA SYSTEM MODIFIERS
+#  Defined here; used by mod/events/black_books_events.txt
+# =============================================================
+
+apocrypha_wandering = {
+    stress_gain_mult     = 0.20
+    learning             = 1
+}
+
+black_book_insight = {
+    learning             = 3
+    monthly_prestige     = 1
+}
+
+black_book_cunning = {
+    intrigue             = 3
+    monthly_prestige     = 1
+}
+
+# =============================================================
+#  PENITUS OCULATUS MODIFIERS
+#  Defined here; used by mod/events/penitus_oculatus_events.txt
+# =============================================================
+
+penitus_protection = {
+    intrigue             = 2
+    monthly_prestige     = 1
+}
+
+penitus_spy_network = {
+    intrigue             = 4
+    stewardship          = 2
+    monthly_prestige     = 2
+}
+
+# =============================================================
+#  THALMOR JUSTICIARS MODIFIERS
+#  Defined here; used by mod/events/thalmor_events.txt
+#  and mod/common/decisions/thalmor_decisions.txt
+# =============================================================
+
+thalmor_permitted_access = {
+    diplomacy            = 1        # Concordat compliance buys marginal Dominion goodwill
+    monthly_prestige     = -1       # Allowing Justiciars in your court is publicly humiliating
+}
+
+thalmor_delayed_access = {
+    intrigue             = 1
+    stress_gain_mult     = 0.05    # The legal manoeuvring is stressful
+}
+
+thalmor_underground_helper = {
+    monthly_piety        = 2        # Protecting Talos's faithful earns divine favour
+    monthly_prestige     = -1       # If discovered, reputation suffers
+}
+
+thalmor_double_game = {
+    intrigue             = 2
+    monthly_prestige     = 1
+}
+
+thalmor_resentment_stance = {
+    monthly_prestige     = 2
+    martial              = 1
+}
+
+talos_underground_shelter = {
+    monthly_piety        = 2
+    monthly_prestige     = 1
+}
+
+# =============================================================
+#  GREAT WAR MODIFIERS
+#  Defined here; used by mod/events/great_war_events.txt
+# =============================================================
+
+great_war_prepared_defenses = {
+    martial              = 2
+    monthly_prestige     = 1
+}
+
+great_war_concordat_signed = {
+    diplomacy            = 2
+    monthly_prestige     = -2      # The peace cost more than it gained
+}
+
+great_war_concordat_negotiator = {
+    diplomacy            = 3
+    learning             = 1
+}
+
+great_war_defiant_stance = {
+    martial              = 2
+    monthly_prestige     = 2
+}
+
+great_war_exile_emperor = {
+    stress_gain_mult     = 0.10
+    diplomacy            = 1
+}
+
+great_war_talos_protector = {
+    monthly_piety        = 2
+    monthly_prestige     = 1
+}
+
+great_war_siege_defender = {
+    martial              = 3
+    prowess              = 2
+}
+
+great_war_hammerfell_defiance = {
+    martial              = 2
+    monthly_prestige     = 3
+}
+
+# =============================================================
+#  JAGAR THARN / IMPERIAL SIMULACRUM MODIFIERS
+#  Defined here; used by mod/events/jagar_tharn_events.txt
+# =============================================================
+
+simulacrum_investigating = {
+    intrigue             = 2
+    stress_gain_mult     = 0.10    # The paranoia of investigating a deception runs deep
+}
+
+simulacrum_fragment_studied = {
+    learning             = 3
+    intrigue             = 1
+}
+
+simulacrum_aftermath_audit = {
+    stewardship          = 2
+    monthly_prestige     = 1
+}
+
+simulacrum_opportunist = {
+    intrigue             = 3
+    monthly_prestige     = 2
+}
+
+# =============================================================
+#  DAWNGUARD MODIFIERS
+#  Defined here; used by mod/events/dawnguard_events.txt
+# =============================================================
+
+dawnguard_training_program = {
+    martial              = 2
+    prowess              = 1
+}
+
+dawnguard_crossbow_training = {
+    martial              = 2
+    prowess              = 2
+}
+
+dawnguard_vampire_lore = {
+    intrigue             = 2
+    learning             = 1
+}
+
+dawnguard_volkihar_intelligence = {
+    intrigue             = 3
+    martial              = 1
+}
+
+dawnguard_merciful_hunter = {
+    diplomacy            = 2
+    monthly_piety        = 1
+}
+
+dawnguard_fortified_base = {
+    martial              = 2
+    monthly_prestige     = 2
+}
+
+dawnguard_expanded_armory = {
+    martial              = 3
+    prowess              = 1
+}
+
+dawnguard_cure_seeker = {
+    learning             = 2
+    stress_gain_mult     = 0.10    # The search for a cure creates internal tensions
+}
+
+dawnguard_declined_call = {
+    monthly_prestige     = -1
+}
+
+# =============================================================
+#  VIGILANTS OF STENDARR MODIFIERS
+#  Defined here; used by mod/events/vigilant_stendarr_events.txt
+# =============================================================
+
+vigilant_stendarr_blessed = {
+    monthly_piety        = 3
+    diplomacy            = 1
+}
+
+vigilant_anti_daedra_training = {
+    martial              = 2
+    monthly_piety        = 1
+}
+
+vigilant_hall_in_ashes = {
+    stress_gain_mult     = 0.10
+    monthly_prestige     = -1      # Failure to protect the Hall weighs heavily
+}
+
+vigilant_pragmatic_approach = {
+    intrigue             = 2
+    diplomacy            = 1
+}
+
+vigilant_artifact_retained = {
+    monthly_piety        = -1      # Vigilants frown on keeping Daedric items
+    intrigue             = 1
+}
+
+# =============================================================
+#  AETHERIUM FORGE MODIFIERS
+#  Defined here; used by mod/events/aetherium_forge_events.txt
+# =============================================================
+
+aetherial_crown_resonance = {
+    learning             = 3
+    monthly_piety        = 2
+}
+
+aetherial_shield_reputation = {
+    martial              = 2
+    monthly_prestige     = 2
+}
+
+dwemer_automaton_retinue = {
+    stewardship          = 2
+    martial              = 2
+}
+
+# =============================================================
+#  ALL FLAGS NAVY MODIFIERS
+#  Defined here; used by mod/events/all_flags_navy_events.txt
+# =============================================================
+
+thrassian_quarantine_active = {
+    stewardship          = -2
+    diplomacy            = -1
+    monthly_prestige     = -1
+}

@@ -1,0 +1,79 @@
+# =============================================================
+#  Black Books — Decisions
+#  File: mod/common/decisions/black_books_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  common/traits/black_books_traits.txt
+#    → black_book_reader, apocrypha_touched, forbidden_library_scholar,
+#      miraak_knowledge_seeker
+#  common/traits/daedric_invasion_traits.txt
+#    → hermaeus_mora_champion (NOT redefined here)
+#  events/black_books_events.txt
+#    → black_books.001
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/black_books_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • seek_black_book
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/daedric_invasion_traits.txt
+#      → hermaeus_mora_champion
+#    events/black_books_events.txt
+#      → black_books.001
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SEEK A BLACK BOOK
+#  A ruler with high learning or an existing connection to
+#  Hermaeus Mora may deliberately seek out one of his Black Books
+#  — the forbidden tomes that serve as gateways to Apocrypha.
+#  The decision costs prestige (the search is consuming) and opens
+#  the full Black Books event chain.
+# ---------------------------------------------------------------
+seek_black_book = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_black_book_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = hermaeus_mora_champion
+            learning >= 14
+        }
+        NOT = { has_character_flag = black_book_found }
+    }
+
+    is_valid = {
+        prestige  >= 200
+        is_adult  = yes
+        is_ruler  = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -200
+        set_character_flag = { flag = black_book_found }
+        trigger_event = { id = black_books.001 days = { 5 15 } }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 10
+            has_trait = hermaeus_mora_champion
+        }
+        modifier = {
+            add = 5
+            learning >= 18
+        }
+    }
+}

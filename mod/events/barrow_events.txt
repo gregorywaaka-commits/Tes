@@ -1,0 +1,336 @@
+# =============================================================
+#  Barrow Exploration / Draugr System — Events
+#  Namespace: barrow
+#  File: mod/events/barrow_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  barrow.000  Hidden yearly — Nord/martial ruler hears of a
+#              nearby barrow; fires if not recently explored
+#  barrow.001  "The Mound's Mouth" — barrow entrance found; three
+#              paths: full expedition, quick raid, scholar study
+#  barrow.002  "The Draugr Stirs" — Draugr awaken deep inside;
+#              combat, scholarship, or retreat
+#  barrow.003  "Word Wall" — an ancient Word Wall discovered;
+#              absorb the Word or leave it for the dead
+#  barrow.004  "The Relic" — a significant Nordic artifact found;
+#              identify, sell, or keep
+#  barrow.005  "Ysgramor's Tomb" — the most sacred Nordic barrow;
+#              requires companion_of_ysgramor or ysgramors_tomb_chosen
+#
+#  LORE NOTE:
+#  Nordic barrows (burial mounds) guard the honored dead of the
+#  ancient Nord kingdoms.  Draugr — preserved undead servants of
+#  Dragon Priests — stand eternal watch.  Word Walls hold Words
+#  of Power from the Dragon Cult era.  Ysgramor's Tomb at Hsaarik
+#  Head is the holiest Nord burial site: resting place of the Five
+#  Hundred Companions who returned to Skyrim with Ysgramor.
+#  Sources: UESP Lore:Barrow; TES V: Skyrim; UESP Lore:Draugr.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/barrow_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/barrow_traits.txt
+#      → barrow_delver, draugr_slayer, nordic_relic_keeper,
+#        ysgramors_tomb_chosen
+#    common/traits/lore_races_traits.txt
+#      → companion_of_ysgramor
+#    common/traits/lore_races_traits.txt (Thu'um system)
+#      → thuum_initiate (checked but not required)
+# =============================================================
+
+namespace = barrow
+
+# ---------------------------------------------------------------
+# barrow.000  The Mound on the Hill
+# A hidden yearly trigger — a Nord or martial ruler holding lands
+# in Skyrim or ancient Nordic territory has a chance of receiving
+# word of a nearby burial mound.  Fires barrow.001 directly,
+# bypassing the decision for this organic discovery path.
+# Guarded by character flag so it fires once per few years.
+# ---------------------------------------------------------------
+barrow.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_culture = nord_culture
+            has_culture = atmoran_culture
+            martial >= 10
+        }
+        NOT = { has_character_flag = barrow_heard_rumour }
+        OR = {
+            any_held_county = { geographical_region = world_region_skyrim }
+        }
+    }
+
+    immediate = {
+        set_character_flag = {
+            flag = barrow_heard_rumour
+            days = 1825    # ~5 years before the chance can fire again
+        }
+        trigger_event = { id = barrow.001 days = { 5 20 } }
+    }
+}
+
+# ---------------------------------------------------------------
+# barrow.001  The Mound's Mouth
+# Hunters from the southern valley have come back talking about
+# the hill that moved — specifically, about the door in the hill
+# that was definitely not there before the last snowmelt.  Your
+# steward has done the sensible thing and dispatched a rider to
+# confirm.  The rider confirmed it.  A Nordic barrow, sealed
+# for centuries, has partially opened.
+# ---------------------------------------------------------------
+barrow.001 = {
+    type = character_event
+    title = barrow.001.t
+    desc  = barrow.001.desc
+    theme = martial
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+    }
+
+    option = {
+        name = barrow.001.a   # "Gather a war-band and go in strength."
+        add_prestige = -50
+        add_character_modifier = {
+            modifier = barrow_expedition_active
+            days = 180
+        }
+        if = {
+            limit = { NOT = { has_trait = barrow_delver } }
+            add_trait = barrow_delver
+        }
+        trigger_event = { id = barrow.002 days = { 10 20 } }
+    }
+
+    option = {
+        name = barrow.001.b   # "Send a quick scouting party — light and fast."
+        add_gold = -30
+        trigger_event = { id = barrow.004 days = { 15 30 } }
+    }
+
+    option = {
+        name = barrow.001.c   # "Summon a scholar. Let them assess first."
+        add_gold = -50
+        trigger_event = { id = barrow.003 days = { 20 40 } }
+    }
+
+    option = {
+        name = barrow.001.d   # "Seal it. The honored dead should remain undisturbed."
+        add_piety  = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# barrow.002  The Draugr Stirs
+# Three torches deep into the barrow and your men have found the
+# first thing they were hoping not to find: the honored dead.
+# They wear burial armor old enough that the style has no name
+# in any living smith's vocabulary, and they have been waiting —
+# in the particular way the dead wait when they have been told
+# to wait forever — for exactly this.  The Draugr are awake.
+# ---------------------------------------------------------------
+barrow.002 = {
+    type = character_event
+    title = barrow.002.t
+    desc  = barrow.002.desc
+    theme = martial
+
+    trigger = {
+        is_adult = yes
+    }
+
+    option = {
+        name = barrow.002.a   # "Form up and cut them down."
+        add_prestige = 75
+        random_list = {
+            65 = {
+                add_trait = draugr_slayer
+                trigger_event = { id = barrow.003 days = 5 }
+            }
+            25 = {
+                add_character_modifier = { modifier = wounded days = 90 }
+                trigger_event = { id = barrow.004 days = 10 }
+            }
+            10 = {
+                add_character_modifier = { modifier = wounded days = 180 }
+                add_prestige = -50
+            }
+        }
+    }
+
+    option = {
+        name = barrow.002.b   # "I have studied their patterns — let me try."
+        trigger = { learning >= 10 }
+        add_learning = 1
+        random_list = {
+            50 = { trigger_event = { id = barrow.003 days = 5 } }
+            50 = { trigger_event = { id = barrow.004 days = 5 } }
+        }
+    }
+
+    option = {
+        name = barrow.002.c   # "Pull back — this was a mistake."
+        add_prestige = -75
+    }
+}
+
+# ---------------------------------------------------------------
+# barrow.003  Word Wall
+# At the back of the burial chamber, behind the sarcophagi and
+# the offering-tables and the old bone-dust, is a wall.  It is
+# covered in an inscription so deeply cut it might have been
+# made by something larger than a human hand.  The glyphs pulse
+# faintly — not with magical fire, but with something older and
+# less cooperative.  A Word of Power sleeps in this stone,
+# waiting for someone with the Voice to wake it.
+# ---------------------------------------------------------------
+barrow.003 = {
+    type = character_event
+    title = barrow.003.t
+    desc  = barrow.003.desc
+    theme = learning
+
+    trigger = {
+        is_adult = yes
+    }
+
+    option = {
+        name = barrow.003.a   # "Reach out to the stone. Let the Word come."
+        trigger = {
+            OR = {
+                has_trait = thuum_initiate
+                has_trait = greybeard_initiate
+                learning >= 14
+            }
+        }
+        add_learning = 2
+        add_character_modifier = {
+            modifier = word_wall_resonance
+            days = 365
+        }
+        trigger_event = { id = barrow.004 days = { 10 20 } }
+    }
+
+    option = {
+        name = barrow.003.b   # "Transcribe every glyph. This is scholarship, not sorcery."
+        add_learning = 1
+        add_prestige = 50
+        trigger_event = { id = barrow.004 days = { 10 20 } }
+    }
+
+    option = {
+        name = barrow.003.c   # "Leave it. The Word belongs to the dead it guards."
+        add_piety = 30
+        trigger_event = { id = barrow.004 days = { 10 20 } }
+    }
+}
+
+# ---------------------------------------------------------------
+# barrow.004  The Relic
+# The burial chamber holds more than bones.  In the deepest
+# recess, sealed in an iron-bound chest whose lock has rusted
+# through with age, lies a weapon — or a piece of armor, or a
+# torc so elaborate it must have belonged to a king.  The crafts-
+# manship predates the current Nord kingdoms by centuries.  The
+# scholar with your party has gone quiet in the particular way
+# scholars go quiet when they realise they are looking at some-
+# thing that belongs in a saga rather than a museum.
+# ---------------------------------------------------------------
+barrow.004 = {
+    type = character_event
+    title = barrow.004.t
+    desc  = barrow.004.desc
+    theme = culture
+
+    trigger = {
+        is_adult = yes
+    }
+
+    option = {
+        name = barrow.004.a   # "Keep it. This belongs in my hall."
+        add_prestige = 100
+        if = {
+            limit = { NOT = { has_trait = nordic_relic_keeper } }
+            add_trait = nordic_relic_keeper
+        }
+    }
+
+    option = {
+        name = barrow.004.b   # "Sell it to a collector. Knowledge has its price."
+        add_gold = 150
+        add_prestige = -25    # Selling the honored dead's grave-goods is frowned upon
+    }
+
+    option = {
+        name = barrow.004.c   # "Return it to the burial chamber. It should not leave."
+        add_piety = 75
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# barrow.005  Ysgramor's Tomb
+# There is only one barrow in all of Skyrim that is spoken of
+# in the same breath as Shor's Hall.  Hsaarik Head, at the
+# northeastern tip of the continent, where Ysgramor first set
+# foot on Tamriel with the Five Hundred Companions at his back.
+# The tomb that was raised there has stood for four thousand
+# years.  Inside, the Companions rest in silence that is not
+# quite silence — the presence of the honored dead is palpable
+# as weather.  Those deemed worthy to enter do not leave
+# unchanged.  Those who enter without right do not leave at all.
+# ---------------------------------------------------------------
+barrow.005 = {
+    type = character_event
+    title = barrow.005.t
+    desc  = barrow.005.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_trait = companion_of_ysgramor
+            has_trait = ysgramors_tomb_chosen
+            martial >= 18
+        }
+        OR = {
+            has_culture = nord_culture
+            has_culture = atmoran_culture
+        }
+        NOT = { has_character_flag = ysgramors_tomb_visited }
+    }
+
+    immediate = {
+        set_character_flag = { flag = ysgramors_tomb_visited }
+    }
+
+    option = {
+        name = barrow.005.a   # "I stand among the Companions. Let Shor witness."
+        add_piety    = 150
+        add_prestige = 200
+        if = {
+            limit = { NOT = { has_trait = ysgramors_tomb_chosen } }
+            add_trait = ysgramors_tomb_chosen
+        }
+    }
+
+    option = {
+        name = barrow.005.b   # "Speak nothing. Only listen."
+        add_stress  = -20     # The silence of the honored dead is a balm
+        add_martial = 1
+        add_piety   = 75
+    }
+}

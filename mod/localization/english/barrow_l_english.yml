@@ -1,0 +1,67 @@
+﻿l_english:
+
+ # =====================================================================
+ #  BARROW EXPLORATION / DRAUGR SYSTEM
+ # =====================================================================
+
+ # --- Decisions ---
+
+ explore_nordic_barrow: "Explore a Nordic Barrow"
+ explore_nordic_barrow_desc: "Reports have reached your hall of a burial mound in your lands — a sealed Nordic barrow, its door ajar for the first time in centuries. The honoured dead lie within, and so, very likely, do whatever they brought with them into the dark. An expedition into a barrow is dangerous and not entirely respectful, but the relics and Word Walls that wait inside are not available any other way."
+
+ seek_ysgramors_tomb: "Seek Ysgramor's Tomb"
+ seek_ysgramors_tomb_desc: "At Hsaarik Head, at the northeastern tip of Skyrim where Ysgramor first set foot on Tamriel, stands the tomb of the Five Hundred Companions — the warriors who followed Ysgramor south from Atmora and reclaimed Skyrim from the Snow Elves. It is the holiest site in the Nord world. Entry is not given lightly. Those who are not worthy do not leave."
+
+ # --- Traits ---
+
+ barrow_delver: "Barrow Delver"
+ barrow_delver_desc: "This character regularly descends into Nordic burial mounds — the sealed tombs of ancient Nord heroes and jarls. They have learned the smell of old stone and old death, and they know how to move in the dark without waking what should remain sleeping. The work is dangerous and not entirely respectable. They do it anyway."
+
+ draugr_slayer: "Draugr Slayer"
+ draugr_slayer_desc: "This character has stood in the cold dark of a Nordic barrow and put down the honoured dead who guard it. Draugr do not tire, do not fear, and do not feel pain. Killing them requires something between technique and stubbornness — a willingness to keep going after the point where most warriors would have retreated. This character has it."
+
+ nordic_relic_keeper: "Nordic Relic Keeper"
+ nordic_relic_keeper_desc: "This character holds a significant Nordic artifact recovered from a sealed barrow — an ancient weapon, a burial torc, a piece of armor whose maker's name no living smith could identify. The scholars have authenticated it: this object was made by hands that built the early Nord kingdoms, carried into battle by someone the sagas remember."
+
+ ysgramors_tomb_chosen: "Chosen of Ysgramor's Tomb"
+ ysgramors_tomb_chosen_desc: "This character was found worthy to enter Ysgramor's Tomb at Hsaarik Head — the resting place of the Five Hundred Companions who crossed the sea from Atmora and reclaimed Skyrim. To stand among those biers is to stand inside the founding myth of the Nord people. Those who enter and leave are not the same people who walked in."
+
+ # --- Modifiers ---
+
+ barrow_expedition_active: "Barrow Expedition Underway"
+ barrow_expedition_active_desc: "A formal expedition is currently exploring a nearby Nordic barrow. The work is dangerous and consuming, but what waits inside may be worth the cost."
+
+ word_wall_resonance: "Word Wall Resonance"
+ word_wall_resonance_desc: "This character has stood before a Word Wall in an ancient Nordic barrow and allowed its inscription to resonate through them. The Word of Power is not yet fully absorbed — but the bones remember the frequency."
+
+ # --- Events ---
+
+ barrow.001.t: "The Mound's Mouth"
+ barrow.001.desc: "Hunters from the southern valley came back talking about the hill that moved — specifically, about the door in the hill that was not there before the last snowmelt. Your steward dispatched a rider. The rider confirmed it: a Nordic barrow, sealed for centuries, has partially opened. The stone lintel is carved with the old tongue in a style the scholars date to the Dragon Cult era or earlier. Whatever is inside has been inside for a very long time.\n\nThe door is open."
+ barrow.001.a: "Gather a war-band and go in strength."
+ barrow.001.b: "Send a quick scouting party — light and fast."
+ barrow.001.c: "Summon a scholar. Let them assess it first."
+ barrow.001.d: "Seal it. The honoured dead should remain undisturbed."
+
+ barrow.002.t: "The Draugr Stirs"
+ barrow.002.desc: "Three torches deep into the barrow and your men have found the first thing they were hoping not to find: the honoured dead.\n\nThey wear burial armour old enough that the style has no name in any living smith's vocabulary, and they have been waiting — in the particular way the dead wait when they have been told to wait forever — for exactly this. The Draugr are awake. Their eyes do not glow with the warm light of the living. They glow with the cold certainty of something that has been given one task and intends to complete it.\n\nThe task is you."
+ barrow.002.a: "Form up and cut them down."
+ barrow.002.b: "I have studied their movement patterns — let me try."
+ barrow.002.c: "Pull back. This was a mistake."
+
+ barrow.003.t: "Word Wall"
+ barrow.003.desc: "At the back of the burial chamber, behind the sarcophagi and the offering-tables and the old bone-dust, is a wall.\n\nIt is covered in an inscription so deeply cut it might have been made by something larger than a human hand. The glyphs do not glow — but they pulse. The scholar with your party has gone very quiet. Not fear. Awe.\n\nA Word of Power sleeps in this stone, carved here by a Dragon Priest or their servants in an age when the Dragon Cult still commanded living dragons. It waits for a Voice trained to wake it."
+ barrow.003.a: "Reach out to the stone. Let the Word come."
+ barrow.003.b: "Transcribe every glyph. This is scholarship, not sorcery."
+ barrow.003.c: "Leave it. The Word belongs to the dead it guards."
+
+ barrow.004.t: "The Relic"
+ barrow.004.desc: "The burial chamber holds more than bones.\n\nIn the deepest recess, sealed in an iron-bound chest whose lock has rusted through with age, lies a weapon — a blade of ancient Nordic steel, or a piece of armour with a carved name on the inner surface, or a torc so elaborate it must have belonged to someone the sagas remember. The craftsmanship predates the current Nord kingdoms by centuries.\n\nThe scholar with your party has gone quiet in the particular way scholars go quiet when they are looking at something that belongs in a legend. They look at you. They are waiting to see what you will do."
+ barrow.004.a: "Keep it. This belongs in my hall."
+ barrow.004.b: "Sell it to a collector — knowledge has its price."
+ barrow.004.c: "Return it to the burial chamber. It should not leave."
+
+ barrow.005.t: "Ysgramor's Tomb"
+ barrow.005.desc: "Hsaarik Head. The northeastern tip of Skyrim, where the land ends in grey stone and colder water, and where — four thousand years ago — Ysgramor first set foot on Tamriel with the Five Hundred Companions at his back.\n\nThe tomb that was raised here is not a building. It is a statement. It says: we came from Atmora, we reclaimed this land, and we buried our dead in the earth of the world we chose. The stone is old enough that the carving style has no parallel in any living architectural tradition.\n\nInside, the Companions sleep. The presence of the honoured dead is palpable as weather — a weight in the chest, a quiet that is not empty. The tomb has been waiting. It is waiting for someone who has the right to stand here.\n\nYou believe you are that person."
+ barrow.005.a: "I stand among the Companions. Let Shor witness."
+ barrow.005.b: "Speak nothing. Only listen."

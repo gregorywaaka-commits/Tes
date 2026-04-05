@@ -1,0 +1,71 @@
+﻿l_english:
+
+ # =====================================================================
+ #  BLACK BOOKS — HERMAEUS MORA
+ # =====================================================================
+
+ # --- Decision ---
+
+ seek_black_book: "Seek a Black Book"
+ seek_black_book_desc: "Hermaeus Mora, the Daedric Prince of Knowledge, Memory, and Fate, hides the most forbidden truths of Tamriel in tomes of living darkness — Black Books, each a gateway to his realm of Apocrypha. They are not found by accident. They are found by those who look, who read between the lines of ancient texts, who follow the trail of secrets that leads inevitably inward. You have begun to look."
+
+ # --- Traits ---
+
+ black_book_reader: "Black Book Reader"
+ black_book_reader_desc: "This character has opened a Black Book and returned. Not everyone does. Apocrypha — the endless library of Hermaeus Mora — is not a place that welcomes visitors; it tolerates them, briefly, before the ink-black seas and the writhing tentacled things that serve as its librarians make the continued cost of knowledge apparent. This character paid it. They came back with more than they went in with. They also came back with something they cannot name, that sits behind their eyes at night."
+
+ apocrypha_touched: "Apocrypha-Touched"
+ apocrypha_touched_desc: "This character has spent significant time in Apocrypha — Hermaeus Mora's realm of forbidden knowledge, the infinite library where all secrets are recorded and nothing is ever truly lost. The realm has left its mark. The learning is extraordinary. The cost is written in the eyes: something that was there before is no longer present, and something that was not is."
+
+ forbidden_library_scholar: "Forbidden Library Scholar"
+ forbidden_library_scholar_desc: "This character has accumulated vast knowledge from multiple Black Books and extended stays in Apocrypha. They know things no living scholar in Tamriel's conventional institutions can match. They also know that Hermaeus Mora does not give knowledge — he trades it, and the debt is always larger than the ledger shows. They are content with this arrangement. That is perhaps the most disturbing thing about them."
+
+ miraak_knowledge_seeker: "Miraak's Path"
+ miraak_knowledge_seeker_desc: "This character follows the path of Miraak — the First Dragonborn, the Dragon Priest who turned against his Dragon overlords and fled into Apocrypha through Black Books, where he survived for thousands of years on forbidden knowledge alone. Miraak used the Black Books to escape his masters. This character intends to do the same, in whatever way that means for them."
+
+ # --- Modifiers ---
+
+ apocrypha_wandering: "Lost in Apocrypha"
+ apocrypha_wandering_desc: "This character is currently navigating the stacks of Apocrypha — Hermaeus Mora's infinite library realm. Reality is uncertain here. The exit is somewhere. It is not here yet."
+
+ black_book_insight: "Apocryphal Insight"
+ black_book_insight_desc: "Knowledge drawn from a Black Book has permanently sharpened this character's scholarly and arcane faculties. The source is not one most courts would approve of."
+
+ black_book_cunning: "Apocryphal Cunning"
+ black_book_cunning_desc: "Knowledge drawn from a Black Book has fundamentally rewired this character's understanding of deception, manipulation, and the movement of secrets. It is not a comfortable transformation. It is effective."
+
+ # --- Events ---
+
+ black_books.001.t: "The Forbidden Page"
+ black_books.001.desc: "Your scholars have been translating the library recovered from the ruins to the east — a cache of texts in at least four languages, some of them archaic enough that the best philologists in three kingdoms cannot place them. Most of it is mundane, more or less: records, correspondence, the administrative residue of a dead civilization.\n\nThen one of the scholars brings you a book that is not mundane.\n\nIt is black. Not black-covered — black in the way that is not a color but an absence of light, a surface that seems to pull the eye inward. The scholar is shaking slightly. She says it is not written in any script she recognises, that the pages appear to be moving, and that she had the distinct sensation, for a moment, of being watched from very far away.\n\nA Black Book. One of Hermaeus Mora's artifacts. It will open for you, if you let it. The question is whether you want to know what is inside."
+ black_books.001.a: "Open it. The knowledge it contains is worth any risk."
+ black_books.001.b: "Have the scholar read it first — at a safe distance."
+ black_books.001.c: "Seal it and bury it. This is Hermaeus Mora's property and I want no part of it."
+
+ black_books.002.t: "Apocrypha Reached"
+ black_books.002.desc: "The book opens and the world does not.\n\nYou are somewhere else. The transition was not a door or a window or a magical gate; it was more like the moment when a sound you have been hearing stops and you realize you have been hearing it for hours. One moment you were in your hall. Now you are in a library that does not have walls, or rather has walls so far away that the distinction is theoretical.\n\nThe sky is ink. The ground is ink. The sea between the stacks is ink, and things move through it that are not fish. The smell is old paper and salt and something that has no name in any language used by those who breathe. Hermaeus Mora's realm of Apocrypha is exactly what every book about it says it is, and every book understated it.\n\nThe knowledge is here. So is the price."
+ black_books.002.a: "Press deeper. The knowledge is here — I can feel it."
+ black_books.002.b: "Move carefully. Read everything. Take nothing for granted."
+
+ black_books.003.t: "The Forbidden Knowledge"
+ black_books.003.desc: "The stacks resolve around you into something almost navigable: corridors of shelves stretching into mist, reading-lecterns that appear at intervals with specific texts already open. Hermaeus Mora is subtle about his hospitality. He does not offer everything at once — he offers what you came for, and he waits to see which door you choose.\n\nThree paths are visible from where you stand. Three different kinds of knowledge, each leading deeper into the library. Each one will cost something, but the Daedric Prince of Fate does not specify what in advance."
+ black_books.003.a: "The Path of Secrets — forbidden lore and arcane scholarship."
+ black_books.003.b: "The Path of Cunning — manipulation, hidden truths, the movement of power."
+ black_books.003.c: "The Path of the Tongue — the knowledge Miraak walked; the Dragon Cult's deepest Voice-lore."
+
+ black_books.004.t: "Trapped in the Stacks"
+ black_books.004.desc: "The exit is not where you left it.\n\nThis is not panic — panic would be useful, panic would be energy. This is something slower: the gradual realisation that Apocrypha does not have a fixed geography, and that the thing you have been using to navigate it was a guide not a map, and that Hermaeus Mora is watching with the patience of something that has been here since before the current era began.\n\nHe offers. Not in words — the Prince of Knowledge does not need words, he has everything that has ever been written. He offers in the way a library offers: by placing the right book on the lectern and opening it to the right page, and waiting to see whether you are brave enough or desperate enough to read it.\n\nThe knowledge he is offering is extraordinary. The price is not specified. It is never specified. You will pay it regardless."
+ black_books.004.a: "Read. Take what he offers. Find the way out afterward."
+ black_books.004.b: "Refuse. Fight your way out through sheer stubbornness."
+
+ black_books.005.t: "Miraak's Shadow"
+ black_books.005.desc: "He is not here and yet the impression of him is — the first Dragonborn, the Dragon Priest who turned his Thu'um against the Dragons who made him, who fled into Apocrypha through the Black Books and survived there for thousands of years on forbidden knowledge alone.\n\nMiraak is dead — killed in the Fourth Era by the Last Dragonborn, in this very realm — but Apocrypha records everything. The echo of him is in the stacks: a shadow in the shape of a Dragon Priest's robes, a Voice-resonance in the ink-sea air that raises the hair on the back of your neck. He does not speak.\n\nBut the books he left open are still open. The knowledge he accumulated is still here. Whether you take it, refuse it, or try to destroy it says something about you that Hermaeus Mora will remember."
+ black_books.005.a: "Study what Miraak left. Turn his knowledge to my own use."
+ black_books.005.b: "Pay it no attention. I am here for my own purpose, not his."
+ black_books.005.c: "Absorb everything. Accept all of it — whatever the cost."
+
+ black_books.006.t: "The Price of Knowing"
+ black_books.006.desc: "The way out appears when Hermaeus Mora is satisfied — which is to say, when he has extracted what he wanted from the transaction. You are back in your hall. The Black Book is closed on the table in front of you.\n\nYou know more than you did. This is not in question. The knowledge is real, it is embedded in you in the same way that fluency in a language is embedded — it does not feel like something you learned, it feels like something you have always known, and that is the most unsettling part.\n\nHermaeus Mora does not appear. He does not need to. The transaction is complete. He will collect on it at a time and in a manner of his choosing, and you already know you will pay, because the alternative is to un-know everything you just learned, and you cannot imagine doing that."
+ black_books.006.a: "Pay what he asks. The knowledge is worth it."
+ black_books.006.b: "Endure what he takes. The body is expendable."
+ black_books.006.c: "I am his champion already. This knowledge was owed to me."

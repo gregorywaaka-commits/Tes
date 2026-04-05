@@ -101,24 +101,30 @@ aetherium.002 = {
         name = aetherium.002.a   # "Study the military campaigns — the wars themselves."
         add_martial   = 1
         add_prestige  = 75
-        NOT = { has_trait = aetherium_wars_heir }
-        add_trait = aetherium_wars_heir
+        if = {
+            limit = { NOT = { has_trait = aetherium_wars_heir } }
+            add_trait = aetherium_wars_heir
+        }
         trigger_event = { id = aetherium.003 days = 45 }
     }
 
     option = {
         name = aetherium.002.b   # "Study the scholars who mapped the mines."
         add_learning = 1
-        NOT = { has_trait = aetherium_wars_heir }
-        add_trait = aetherium_wars_heir
+        if = {
+            limit = { NOT = { has_trait = aetherium_wars_heir } }
+            add_trait = aetherium_wars_heir
+        }
         trigger_event = { id = aetherium.003 days = 45 }
     }
 
     option = {
         name = aetherium.002.c   # "Study the craftsmen who finally reached the Forge."
         add_stewardship = 1
-        NOT = { has_trait = aetherium_wars_heir }
-        add_trait = aetherium_wars_heir
+        if = {
+            limit = { NOT = { has_trait = aetherium_wars_heir } }
+            add_trait = aetherium_wars_heir
+        }
         trigger_event = { id = aetherium.003 days = 45 }
     }
 }
