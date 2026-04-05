@@ -1,0 +1,294 @@
+# =============================================================
+#  The Walking Ways — Path B: Mantling Daedric
+#  Namespace: mantling_daedric
+#  Covers: Azura + Meridia mantles
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  AZURA:
+#  mantling_daedric.azura_intro       — Path chosen
+#  mantling_daedric.azura_rank1       — Seeking
+#  mantling_daedric.azura_rank2       — Striving
+#  mantling_daedric.azura_rank3       — Threshold (25% possession risk)
+#  mantling_daedric.azura_apotheosis  — Apotheosis or possession
+#  mantling_daedric.azura_possession  — Failure: possessed by Azura
+#
+#  MERIDIA:
+#  mantling_daedric.meridia_intro       — Path chosen
+#  mantling_daedric.meridia_rank1       — Seeking
+#  mantling_daedric.meridia_rank2       — Striving
+#  mantling_daedric.meridia_rank3       — Threshold (25% possession risk)
+#  mantling_daedric.meridia_apotheosis  — Apotheosis or possession
+#  mantling_daedric.meridia_possession  — Failure: possessed by Meridia
+#
+#  LORE BASIS:
+#  ───────────
+#  Daedric mantles differ from Aedric ones. Daedric Princes
+#  cannot be "mantled" in the same way — their nature is to
+#  remain distinct, to be worshipped rather than matched.
+#  The attempted mantler risks possession instead of apotheosis.
+#  This is CONTESTED lore; the mod presents it as a dangerous
+#  interpretive reading of mantling theory.
+#  [SOURCE: CONTESTED — extrapolated; no direct source]
+# =============================================================
+
+namespace = mantling_daedric
+
+# ═══════════════════════════════════════════════════════════════
+#  AZURA — DUSK AND DAWN
+# ═══════════════════════════════════════════════════════════════
+
+mantling_daedric.azura_intro = {
+    type = character_event
+    title = mantling_daedric.azura_intro.t
+    desc  = mantling_daedric.azura_intro.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.azura_intro.a
+        add_stress = 15
+        add_piety = 25
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+        add_character_modifier = {
+            modifier = mantling_daedric_risk
+            years = 100
+        }
+    }
+}
+
+mantling_daedric.azura_rank1 = {
+    type = character_event
+    title = mantling_daedric.azura_rank1.t
+    desc  = mantling_daedric.azura_rank1.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.azura_rank1.a
+        add_prestige = 75
+        add_piety = 50
+    }
+}
+
+mantling_daedric.azura_rank2 = {
+    type = character_event
+    title = mantling_daedric.azura_rank2.t
+    desc  = mantling_daedric.azura_rank2.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.azura_rank2.a
+        add_prestige = 125
+        add_stress = 10
+    }
+}
+
+mantling_daedric.azura_rank3 = {
+    type = character_event
+    title = mantling_daedric.azura_rank3.t
+    desc  = mantling_daedric.azura_rank3.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.azura_rank3.a   # "The distinction matters less and less."
+        add_prestige = 175
+        add_piety = 75
+        # The 25% possession check fires in the apotheosis event immediate block
+    }
+}
+
+mantling_daedric.azura_apotheosis = {
+    type = character_event
+    title = mantling_daedric.azura_apotheosis.t
+    desc  = mantling_daedric.azura_apotheosis.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_mantling_azura_active
+        var:ww_mantling_azura_rank >= 4
+        NOT = { has_character_flag = ww_mantling_azura_completed }
+    }
+
+    immediate = {
+        # 25% possession risk fires before trait grant
+        random = {
+            chance = 25
+            trigger_event = { id = mantling_daedric.azura_possession days = 3 }
+            set_character_flag = ww_daedric_mantle_failed
+        }
+        if = {
+            limit = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+            complete_path_mantling_azura = yes
+        }
+    }
+
+    option = {
+        name = mantling_daedric.azura_apotheosis.a
+        trigger = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+        add_prestige = 300
+        add_piety = 200
+    }
+
+    option = {
+        name = mantling_daedric.azura_apotheosis.uncertain
+        trigger = { has_character_flag = ww_daedric_mantle_failed }
+        add_stress = 30
+        # Possession event already queued
+    }
+}
+
+mantling_daedric.azura_possession = {
+    type = character_event
+    title = mantling_daedric.azura_possession.t
+    desc  = mantling_daedric.azura_possession.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_daedric_mantle_failed
+    }
+
+    immediate = {
+        # Become Azura's champion instead of her aspect
+        remove_trait = walking_ways_seeker
+        clear_all_ww_active_flags = yes
+        remove_variable = ww_mantling_azura_rank
+        remove_variable = ww_mantling_azura_milestones
+        remove_character_flag = ww_daedric_mantle_failed
+        add_trait = daedric_champion
+    }
+
+    option = {
+        name = mantling_daedric.azura_possession.a
+        add_stress = 30
+        add_prestige = 100   # A champion of Azura still has power — just not the kind sought
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  MERIDIA — PURIFICATION AND LIGHT
+# ═══════════════════════════════════════════════════════════════
+
+mantling_daedric.meridia_intro = {
+    type = character_event
+    title = mantling_daedric.meridia_intro.t
+    desc  = mantling_daedric.meridia_intro.desc
+    theme = martial
+
+    option = {
+        name = mantling_daedric.meridia_intro.a
+        add_piety = 50
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+        add_character_modifier = {
+            modifier = mantling_daedric_risk
+            years = 100
+        }
+    }
+}
+
+mantling_daedric.meridia_rank1 = {
+    type = character_event
+    title = mantling_daedric.meridia_rank1.t
+    desc  = mantling_daedric.meridia_rank1.desc
+    theme = martial
+
+    option = {
+        name = mantling_daedric.meridia_rank1.a
+        add_prestige = 75
+        add_piety = 75
+    }
+}
+
+mantling_daedric.meridia_rank2 = {
+    type = character_event
+    title = mantling_daedric.meridia_rank2.t
+    desc  = mantling_daedric.meridia_rank2.desc
+    theme = martial
+
+    option = {
+        name = mantling_daedric.meridia_rank2.a
+        add_prestige = 125
+        add_piety = 100
+    }
+}
+
+mantling_daedric.meridia_rank3 = {
+    type = character_event
+    title = mantling_daedric.meridia_rank3.t
+    desc  = mantling_daedric.meridia_rank3.desc
+    theme = martial
+
+    option = {
+        name = mantling_daedric.meridia_rank3.a
+        add_prestige = 175
+        add_piety = 125
+    }
+}
+
+mantling_daedric.meridia_apotheosis = {
+    type = character_event
+    title = mantling_daedric.meridia_apotheosis.t
+    desc  = mantling_daedric.meridia_apotheosis.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_mantling_meridia_active
+        var:ww_mantling_meridia_rank >= 4
+        NOT = { has_character_flag = ww_mantling_meridia_completed }
+    }
+
+    immediate = {
+        random = {
+            chance = 25
+            trigger_event = { id = mantling_daedric.meridia_possession days = 3 }
+            set_character_flag = ww_daedric_mantle_failed
+        }
+        if = {
+            limit = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+            complete_path_mantling_meridia = yes
+        }
+    }
+
+    option = {
+        name = mantling_daedric.meridia_apotheosis.a
+        trigger = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+        add_prestige = 300
+        add_piety = 250
+    }
+
+    option = {
+        name = mantling_daedric.meridia_apotheosis.uncertain
+        trigger = { has_character_flag = ww_daedric_mantle_failed }
+        add_stress = 30
+    }
+}
+
+mantling_daedric.meridia_possession = {
+    type = character_event
+    title = mantling_daedric.meridia_possession.t
+    desc  = mantling_daedric.meridia_possession.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_daedric_mantle_failed
+    }
+
+    immediate = {
+        remove_trait = walking_ways_seeker
+        clear_all_ww_active_flags = yes
+        remove_variable = ww_mantling_meridia_rank
+        remove_variable = ww_mantling_meridia_milestones
+        remove_character_flag = ww_daedric_mantle_failed
+        add_trait = daedric_champion
+    }
+
+    option = {
+        name = mantling_daedric.meridia_possession.a
+        add_stress = 20
+        add_piety = 150
+    }
+}

@@ -96,7 +96,13 @@
 #    succession_war_events.txt, ebonheart_pact_events.txt,
 #    aldmeri_dominion_events.txt, ordinator_events.txt,
 #    sapiarch_events.txt, ancestor_worship_events.txt,
-#    thieves_guild_events.txt, knahaten_flu_events.txt.
+#    thieves_guild_events.txt, knahaten_flu_events.txt,
+#    snow_elf_events.txt, dawnguard_events.txt,
+#    vigilant_stendarr_events.txt, jagar_tharn_events.txt,
+#    great_war_events.txt, thalmor_events.txt,
+#    aetherium_forge_events.txt, barrow_events.txt,
+#    black_books_events.txt, penitus_oculatus_events.txt,
+#    all_flags_navy_events.txt, forsworn_events.txt.
 #  • Systems triggered here read global_vars set by their effects:
 #    global_var:knahaten_flu_active, global_var:kamal_invasion_active,
 #    global_var:thrassian_plague_active, global_var:active_tower_count,
@@ -384,6 +390,84 @@ on_yearly_pulse = {
         2   = magnus_lore.010        # The Orrery Problem — stargazer study (magnus_lore_events.txt)
         2   = magnus_lore.020        # Altmeri Correspondence — scholarly contact (magnus_lore_events.txt)
         1   = magnus_lore.030        # The Light That Left First — apex cosmological insight (magnus_lore_events.txt)
+        # --- NEW SYSTEMS v1.2.0: DAEDRIC ARTIFACTS EXTENDED ---
+        2   = daedric_artifact.040   # Oghma Infinium appears — hermaeus_mora_champion/learning>=16 (daedric_artifacts_events.txt)
+        2   = daedric_artifact.050   # Azura's Star discovered — azura_champion/Dunmer rulers (daedric_artifacts_events.txt)
+        2   = daedric_artifact.060   # Sanguine Rose offered — sanguine_champion/high-intrigue (daedric_artifacts_events.txt)
+        2   = daedric_artifact.070   # Mace of Molag Bal surfaces — molag_bal_vampire/daedric_champion (daedric_artifacts_events.txt)
+        2   = daedric_artifact.080   # Masque of Clavicus Vile offered — clavicus_bargain_keeper (daedric_artifacts_events.txt)
+        2   = daedric_artifact.090   # Spellbreaker found — peryite_champion/Dwemer ruins context (daedric_artifacts_events.txt)
+        2   = daedric_artifact.100   # Oghma obsession check — oghma_infinium_reader rulers (daedric_artifacts_events.txt)
+        2   = daedric_artifact.110   # Azura's Star soul capture — azuras_star_bearer rulers (daedric_artifacts_events.txt)
+        2   = daedric_artifact.120   # Sanguine Rose Dremora payment — sanguine_rose_wielder rulers (daedric_artifacts_events.txt)
+        2   = daedric_artifact.130   # Mace pulls toward vampirism — mace_of_molag_bal_bearer rulers (daedric_artifacts_events.txt)
+        # --- SNOW ELVES / FALMER ---
+        3   = snow_elf.000           # Old towers stir — learned rulers in Skyrim (snow_elf_events.txt)
+        # --- DAWNGUARD ---
+        2   = dawnguard.000          # Dawnguard rises — martial Skyrim rulers when vampires active (dawnguard_events.txt)
+        2   = dawnguard.002          # Crossbow training — dawnguard_initiate/hunter rulers (dawnguard_events.txt)
+        2   = dawnguard.003          # Hunter's dilemma — dawnguard_hunter/captain rulers (dawnguard_events.txt)
+        1   = dawnguard.010          # Volkihar retaliation — dawnguard_captain/lord rulers (dawnguard_events.txt)
+        # --- VIGILANTS OF STENDARR ---
+        2   = vigilant.000           # Stendarr's call — pious rulers when Daedric invasion active (vigilant_stendarr_events.txt)
+        2   = vigilant.003           # Too much mercy — vigilant_of_stendarr rulers (vigilant_stendarr_events.txt)
+        1   = vigilant.004           # Volkihar attacks the Hall — 4E 201 flavor (vigilant_stendarr_events.txt)
+        2   = vigilant.010           # Daedric artifact at Vigilants — artifact bearers (vigilant_stendarr_events.txt)
+        # --- JAGAR THARN / IMPERIAL SIMULACRUM ---
+        1   = jagar_tharn.000        # Simulacrum begins — ruler of Imperial City at 3E 389 (jagar_tharn_events.txt)
+        2   = jagar_tharn.002        # Staff fragment surfaces — all rulers 3E 389-399 (jagar_tharn_events.txt)
+        2   = jagar_tharn.003        # Impostor's Court rumours — all rulers 3E 389-399 (jagar_tharn_events.txt)
+        1   = jagar_tharn.004        # Emperor Freed — ruler of Imperial City at 3E 399 (jagar_tharn_events.txt)
+        # --- GREAT WAR & WHITE-GOLD CONCORDAT ---
+        1   = great_war.000          # Great War begins — Imperial/Cyrodiilic rulers at 4E 171 (great_war_events.txt)
+        2   = great_war.010          # Talos Shrine discovered — Nord/Imperial rulers post 4E 175 (great_war_events.txt)
+        # --- THALMOR JUSTICIARS ---
+        1   = thalmor.000            # Justiciars arrive — Nordic/Imperial rulers post 4E 175 (thalmor_events.txt)
+        2   = thalmor.002            # Arrest warrant — rulers with talos_secret_devotee post 4E 175 (thalmor_events.txt)
+        2   = thalmor.003            # Underground network — rulers with talos_refuge_open flag (thalmor_events.txt)
+        2   = thalmor.004            # Stormcloak sympathy — Nord rulers post 4E 175 (thalmor_events.txt)
+        # --- AETHERIUM FORGE & ARTIFACTS ---
+        3   = aetherium.000          # Forge clues surface — aetherium_attuned rulers with learning>=14 (aetherium_forge_events.txt)
+        2   = aetherium.004          # Aetherial Crown blessing — aetherial_crown_bearer rulers (aetherium_forge_events.txt)
+        2   = aetherium.005          # Shield banishes — aetherial_shield_bearer rulers (aetherium_forge_events.txt)
+        2   = aetherium.006          # Staff commands — aetherial_staff_bearer rulers (aetherium_forge_events.txt)
+        # --- BARROW EXPLORATION / DRAUGR SYSTEM ---
+        3   = barrow.000             # Mound opens — Nord/martial Skyrim rulers (barrow_events.txt)
+        2   = barrow.005             # Ysgramor's Tomb — companion_of_ysgramor/martial>=18 Nord rulers (barrow_events.txt)
+        # --- BLACK BOOKS (HERMAEUS MORA) ---
+        3   = black_books.000        # Black Book discovered — hermaeus_mora_champion/learning>=16 (black_books_events.txt)
+        2   = black_books.006        # Price of knowing — black_book_reader/apocrypha_touched rulers (black_books_events.txt)
+        # --- PENITUS OCULATUS ---
+        2   = penitus.000            # Emperor's Eye recruitment — high-intrigue Imperial rulers (penitus_oculatus_events.txt)
+        # --- ALL FLAGS NAVY / THRASSIAN PLAGUE ---
+        1   = all_flags_navy.000     # All Flags Navy assembles — coastal rulers at 1E 2200-2260 (all_flags_navy_events.txt)
+        # --- FORSWORN / HAGRAVEN DEEP SYSTEM ---
+        3   = forsworn.000           # Old Ways call — reachman_heritage rulers (forsworn_events.txt)
+        2   = forsworn.004           # Witch's price — hagraven_ally rulers (forsworn_events.txt)
+        # --- KAGRENAC'S AMBITION / BORROWED DIVINITY ---
+        5   = borrowed_divinity.000  # Hidden intro check — eligible rulers while dagoth_ur_awakened (borrowed_divinity_events.txt)
+        4   = borrowed_divinity.cutoff.001  # Heart access severed — heart_scholar_ascendant rulers on dagoth_ur_awakened (borrowed_divinity_events.txt)
+        4   = borrowed_divinity.cutoff.002  # Heart destroyed while reservoir active — heart_scholar_ascendant rulers on dagoth_ur_defeated (borrowed_divinity_events.txt)
+        5   = borrowed_divinity.starvation.001  # Reservoir empty check — heart_scholar_ascendant with heart_cut_off and reservoir=0 (borrowed_divinity_events.txt)
+        3   = borrowed_divinity.dissolution.001  # Heart destroyed narrative — all Route A practitioners on dagoth_ur_defeated (borrowed_divinity_events.txt)
+        # --- THE WALKING WAYS — Core Engine ---
+        5   = walking_ways.000               # Awareness intro — eligible rulers via 3 gates (walking_ways_events.txt)
+        5   = walking_ways.progress_check    # Hidden progress engine — all active path holders (walking_ways_events.txt)
+        2   = walking_ways.chim_silence_begin  # Silence milestone offer — chim_expanded path holders (walking_ways_events.txt)
+        # --- MANTLING: TALOS ---
+        3   = mantling_talos.milestone_empire_check  # Empire size check — mantling_talos_active (mantling_talos_events.txt)
+        3   = mantling_talos.milestone_throne_check  # Cyrodiil paramount check — mantling_talos_active (mantling_talos_events.txt)
+        # --- MANTLING: ARKAY ---
+        3   = mantling_arkay.milestone_season_check  # 20+ years ruled — mantling_arkay_active (mantling_arkay_events.txt)
+        3   = mantling_arkay.milestone_age_check     # Age 55+ — mantling_arkay_active (mantling_arkay_events.txt)
+        # --- PSIJIC ENDEAVOUR ---
+        3   = psijic_endeavour.silence_begin          # 180-day silence offer — psijic_endeavour_active (psijic_endeavour_events.txt)
+        3   = psijic_endeavour.milestone_mastery_check  # learning >= 22 — psijic_endeavour_active (psijic_endeavour_events.txt)
+        3   = psijic_endeavour.milestone_grief_check    # age 40+, no grief — psijic_endeavour_active (psijic_endeavour_events.txt)
+        # --- ENANTIOMORPH ---
+        3   = enantiomorph.milestone_betrayal         # Betrayal flag check — enantiomorph_active (enantiomorph_events.txt)
+        # --- AMARANTH ---
+        2   = amaranth.dreamer_court                  # Yearly dreamer flavor — amaranth_achieved holders (amaranth_events.txt)
     }
 }
 

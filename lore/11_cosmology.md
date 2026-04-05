@@ -25,6 +25,32 @@
 - Not a single realm — it is an infinite collection of **Planes of Oblivion**, each ruled by a **Daedric Prince** or lesser Daedra.
 - Mortals can be pulled into Oblivion or travel there, but it is extremely dangerous without divine protection.
 
+### Planes of Oblivion — Daedric Realms `[CANON — UESP]`
+> **Source:** UESP Lore:Oblivion — https://en.uesp.net/wiki/Lore:Oblivion  
+> **Source:** TES IV: Oblivion; TES V: Skyrim (Dawnguard, Dragonborn DLCs); TES III: Morrowind; ESO
+
+Each of the **17 Daedric Princes** rules a personal realm within Oblivion:
+
+| Daedric Prince | Realm Name | Description |
+|---|---|---|
+| **Hermaeus Mora** | **Apocrypha** | Infinite library of forbidden knowledge; a tentacled sea of ink, writhing pages, and impossible architecture. **Black Books** serve as gateways. `[CANON — TES V: Dragonborn DLC]` |
+| **Malacath** | **Ashpit** | Realm of dust, ash, and ceaseless toil; reflects the hardship central to Malacath's sphere. The souls of the **Orsimer** (Orcs) are said to pass here. `[CANON — UESP]` |
+| **Meridia** | **The Colored Rooms** | Brilliant, radiant realm of perpetual light and colour; no darkness, no death, no undead. Antithetical to Molag Bal. `[CANON — UESP]` |
+| **Nocturnal** | **Evergloam** | Realm of eternal twilight and deep shadow; home of the **Twilight Sepulchre**, where **Nightingale** pledges serve Nocturnal in death as guardians. `[CANON — TES V: Skyrim]` |
+| **Hircine** | **Hunting Grounds** | Vast, primal wilderness of eternal hunt; souls of great hunters and their prey are locked in perpetual competition. Lycanthropes (werewolves) are claimed here instead of their racial afterlife. `[CANON — TES V: Skyrim]` |
+| **Molag Bal** | **Coldharbour** | Cold, dark, soul-crushing mirror of Nirn — everything of Nirn reproduced in despair and ruin. The **Planemeld** (ESO) was Molag Bal's attempt to merge Coldharbour with Nirn. `[CANON — ESO; UESP]` |
+| **Mehrunes Dagon** | **Deadlands** | Volcanic wasteland of fire, lava rivers, and perpetual war; his Dremora armies are in a constant state of battle. The setting of TES IV: Oblivion's Oblivion Gates. `[CANON — TES IV: Oblivion]` |
+| **Sheogorath** | **Shivering Isles** | Divided realm: **Mania** (manic colour and joy) and **Dementia** (dark, paranoid depression), separated by a great divide. When **Jyggalag** reclaims his true form, the Isles become crystalline and rigidly ordered. `[CANON — TES IV: Shivering Isles DLC]` |
+| **Peryite** | **The Pits** | The lowest planes of Oblivion; diseased, writhing, and foul. Peryite himself most often manifests as a **green dragon** despite being a lesser Prince. `[CANON — UESP]` |
+| **Azura** | **Moonshadow** | Beautiful realm of perpetual twilight, silver light, and eternal flowers; described as achingly beautiful even by mortal standards. `[CANON — UESP]` |
+| **Vaermina** | **Quagmire** | Nightmare realm where reality constantly, violently shifts — each moment dissolves into the next terrible scene. Stolen dreams are weaponised here. `[CANON — UESP; TES IV: Oblivion]` |
+| **Boethiah** | **Attribution's Share** | Twisted labyrinthine realm of dark passages and gladiatorial arenas; reflects Boethiah's spheres of deceit and bloody combat. `[CANON — UESP]` |
+| **Mephala** | **Spiral Skein** | A web of dark tunnels and shadow; secrets and Mephala's spider-web philosophy given physical form. `[CANON — UESP; ESO]` |
+| **Namira** | **Scuttling Void** | A dark, ancient void filled with primal spirits; reflects the ancient darkness Namira embodies. `[CANON — UESP]` |
+| **Clavicus Vile** | **Realm of Bargains** | Polished and palatial in appearance; deceptive beauty masking the perverse outcomes of Clavicus's wish-granting. `[CANON — UESP]` |
+| **Sanguine** | **Myriad Realms of Revelry** | Not a single realm but countless private pleasure gardens and retreats, each unique. Reflects Sanguine's sphere of hedonism and debauchery. `[CANON — UESP]` |
+| **Jyggalag** | *(Shivering Isles under Order)* | Jyggalag's true realm is the Shivering Isles crystallised into perfect, lifeless order during the Greymarch. He was cursed to become Sheogorath; freed by the **Champion of Cyrodiil** in 3E 433. `[CANON — TES IV: Shivering Isles DLC]` |
+
 ### Mundus `[CANON — UESP]`
 > **Source:** UESP Lore:Mundus — https://en.uesp.net/wiki/Lore:Mundus
 

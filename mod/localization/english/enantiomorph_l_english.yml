@@ -1,0 +1,38 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ #  THE WALKING WAYS — Enantiomorph Localization
+ # ═══════════════════════════════════════════════════════════════
+
+ enantiomorph_ascendant: "The Necessary Rebel"
+ enantiomorph_ascendant_desc: "The Enantiomorph pattern is complete. This ruler is not evil — they are necessary. Every Hero requires an enemy. This ruler has become that enemy: not from malice, but as a cosmological function. The pattern is complete. Something has gone wrong with the story."
+
+ enantiomorph_consumed: "Consumed by the Pattern"
+ enantiomorph_consumed_desc: "The Enantiomorph consumed the practitioner instead. The void at the centre engulfed the shape meant to stand against it. The ruler survived — but something fundamental was rearranged."
+
+ enantiomorph.intro.t: "The Rebel's Voice"
+ enantiomorph.intro.desc: "The 36 Lessons of Vivec, Sermon 11: the divine drama has three roles. Hero. Rebel. Witness. The pattern requires all three to be complete.\n\nThe Witness watches. The Hero acts. The Rebel opposes.\n\nMost mortals are the Witness. This ruler is choosing to be the Rebel. Not evil — this is important to understand. The Rebel does not oppose the Hero because they hate what the Hero stands for. The Rebel opposes the Hero because the Hero requires the Rebel to be a Hero at all. The opposition is structural. It is cosmological. It is entirely necessary."
+ enantiomorph.intro.a: "I understand. I am not the Hero of this story."
+
+ enantiomorph.rank1.t: "The Shape of the Rebel"
+ enantiomorph.rank1.desc: "Two milestones complete. The pattern recognises the shape that is accumulating. A throne taken not by inheritance. An ally who trusted this ruler, betrayed.\n\nThese are not comfortable things to have done. But the Rebel's pattern is not a comfortable pattern. It is the pattern that makes other patterns possible."
+ enantiomorph.rank1.a: "I am doing what the pattern requires."
+
+ enantiomorph.rank2.t: "The Void Acknowledged"
+ enantiomorph.rank2.desc: "Four milestones complete. The ruler has assassinated someone who was, by every structural measure, a hero. They have survived the retaliation. They have refused the holy war.\n\nThe void has acknowledged the Rebel. This acknowledgment is not comfortable. It is not supposed to be."
+ enantiomorph.rank2.a: "The Hero needs an enemy. I am that enemy."
+
+ enantiomorph.rank3.t: "The Final Void"
+ enantiomorph.rank3.desc: "Six milestones complete. The ruler refused redemption explicitly. The Void Named is perhaps the most significant of the milestones — the moment when the ruler was offered the opportunity to reframe their actions as reluctant necessity or tragic circumstance, and chose instead to accept them as deliberate and complete.\n\nAt this threshold, there is no guarantee the pattern completes. The void can consume the Rebel as easily as it can be filled by one."
+ enantiomorph.rank3.a: "I am the void. The void is me."
+
+ enantiomorph.failure.t: "The Enantiomorph Consumes"
+ enantiomorph.failure.desc: "The void at the centre engulfed the practitioner. They did not become the Rebel — they became the thing the Rebel stood adjacent to: the nothing, the absence, the structural gap.\n\nThe realm shudders. For two years, events in this court will be strange. Decisions will be strange. The Dragon Break does not consume the realm — it does not need to. It merely redistributes the narrative architecture locally.\n\nThe ruler survives. What they survive is, strictly speaking, themselves."
+ enantiomorph.failure.a: "The void named me before I named it."
+
+ enantiomorph.apotheosis.t: "The Rebel's Pattern Complete"
+ enantiomorph.apotheosis.desc: "The pattern is complete.\n\nThe ruler did not become the void. They became the shape the void takes when something pushes against it — the defined edge, the necessary opposition, the Rebel in the cosmological drama who makes the Hero's heroism structurally possible.\n\nThis is not something most rulers become. Most rulers become powerful. This ruler became necessary.\n\nThe difference is enormous and almost completely invisible to anyone who hasn't thought carefully about cosmological architecture."
+ enantiomorph.apotheosis.a: "The pattern is complete. I am the hole."
+
+ enantiomorph.creed.t: "The Rebel's Creed"
+ enantiomorph.creed.desc: "The refusal is complete. No holy war. No crusade. Not from pacifism — from the Rebel's creed: the pattern of the Hero requires the Rebel's opposition, not the Rebel's participation.\n\nThe Rebel does not march under banners that heroes carry."
+ enantiomorph.creed.a: "I refuse the Hero's war."

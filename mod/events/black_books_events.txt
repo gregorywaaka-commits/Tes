@@ -1,0 +1,239 @@
+﻿namespace = black_books
+
+# ---------------------------------------------------------------
+# black_books.000  Hidden Trigger — Black Book Discovered
+# ---------------------------------------------------------------
+black_books.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        OR = {
+            has_trait = hermaeus_mora_champion
+            learning >= 16
+        }
+        NOT = { has_character_flag = black_book_found }
+    }
+
+    immediate = {
+        set_character_flag = { flag = black_book_found }
+        trigger_event = { id = black_books.001 days = { 5 15 } }
+    }
+}
+
+# ---------------------------------------------------------------
+# black_books.001  "The Forbidden Page"
+# A Black Book is found in a ruin.
+# ---------------------------------------------------------------
+black_books.001 = {
+    type = character_event
+    title = black_books.001.t
+    desc = black_books.001.desc
+    theme = learning
+    left_portrait = { character = root mood = personality_bold }
+
+    option = {
+        name = black_books.001.a
+        trigger_event = { id = black_books.002 days = 3 }
+    }
+    option = {
+        name = black_books.001.b
+        add_prestige = -50
+        trigger_event = { id = black_books.002 days = 7 }
+    }
+    option = {
+        name = black_books.001.c
+        add_prestige = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# black_books.002  "Apocrypha Reached"
+# The reader is pulled into the realm of Hermaeus Mora.
+# ---------------------------------------------------------------
+black_books.002 = {
+    type = character_event
+    title = black_books.002.t
+    desc = black_books.002.desc
+    theme = learning
+    left_portrait = { character = root mood = personality_curious }
+
+    immediate = {
+        add_character_modifier = {
+            modifier = apocrypha_wandering
+            days = 30
+        }
+    }
+
+    option = {
+        name = black_books.002.a
+        trigger_event = { id = black_books.003 days = 5 }
+    }
+    option = {
+        name = black_books.002.b
+        random_list = {
+            70 = { trigger_event = { id = black_books.003 days = 5 } }
+            30 = { trigger_event = { id = black_books.004 days = 5 } }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# black_books.003  "The Forbidden Knowledge"
+# Choose which type of forbidden knowledge to absorb.
+# ---------------------------------------------------------------
+black_books.003 = {
+    type = character_event
+    title = black_books.003.t
+    desc = black_books.003.desc
+    theme = learning
+    left_portrait = { character = root mood = personality_curious }
+
+    immediate = {
+        remove_character_modifier = apocrypha_wandering
+    }
+
+    option = {
+        name = black_books.003.a
+        add_learning = 3
+        add_intrigue = 1
+        add_character_modifier = { modifier = black_book_insight days = -1 }
+        if = {
+            limit = { NOT = { has_trait = black_book_reader } }
+            add_trait = black_book_reader
+        }
+        trigger_event = { id = black_books.006 days = { 10 20 } }
+    }
+    option = {
+        name = black_books.003.b
+        add_intrigue = 3
+        add_diplomacy = 1
+        add_character_modifier = { modifier = black_book_cunning days = -1 }
+        if = {
+            limit = { NOT = { has_trait = black_book_reader } }
+            add_trait = black_book_reader
+        }
+        trigger_event = { id = black_books.006 days = { 10 20 } }
+    }
+    option = {
+        name = black_books.003.c
+        add_learning = 2
+        add_martial = 2
+        if = {
+            limit = {
+                OR = {
+                    has_trait = dragonborn
+                    has_trait = thu_um_initiate
+                }
+            }
+            add_trait = miraak_knowledge_seeker
+        }
+        trigger_event = { id = black_books.005 days = 5 }
+    }
+}
+
+# ---------------------------------------------------------------
+# black_books.004  "Trapped in the Stacks"
+# The reader cannot leave Apocrypha; Mora offers a deal.
+# ---------------------------------------------------------------
+black_books.004 = {
+    type = character_event
+    title = black_books.004.t
+    desc = black_books.004.desc
+    theme = learning
+    left_portrait = { character = root mood = personality_rational }
+
+    option = {
+        name = black_books.004.a
+        add_stress = 30
+        add_learning = 4
+        add_intrigue = 2
+        add_trait = apocrypha_touched
+        remove_character_modifier = apocrypha_wandering
+    }
+    option = {
+        name = black_books.004.b
+        add_stress = 60
+        add_prestige = -100
+        remove_character_modifier = apocrypha_wandering
+    }
+}
+
+# ---------------------------------------------------------------
+# black_books.005  "Miraak's Shadow"
+# In Apocrypha, an echo of Miraak manifests.
+# ---------------------------------------------------------------
+black_books.005 = {
+    type = character_event
+    title = black_books.005.t
+    desc = black_books.005.desc
+    theme = learning
+    left_portrait = { character = root mood = personality_bold }
+
+    option = {
+        name = black_books.005.a
+        add_learning = 2
+        add_prestige = 100
+        if = {
+            limit = { has_trait = miraak_knowledge_seeker }
+            add_learning = 2
+        }
+    }
+    option = {
+        name = black_books.005.b
+        add_stress = 20
+        add_intrigue = 3
+    }
+    option = {
+        name = black_books.005.c
+        add_prestige = 50
+        if = {
+            limit = {
+                has_trait = black_book_reader
+                NOT = { has_trait = apocrypha_touched }
+            }
+            add_trait = apocrypha_touched
+            remove_trait = black_book_reader
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# black_books.006  "The Price of Knowing"
+# Hermaeus Mora demands something in return.
+# ---------------------------------------------------------------
+black_books.006 = {
+    type = character_event
+    title = black_books.006.t
+    desc = black_books.006.desc
+    theme = learning
+    left_portrait = { character = root mood = personality_rational }
+
+    option = {
+        name = black_books.006.a
+        add_prestige = -100
+        add_gold = -50
+        if = {
+            limit = {
+                has_trait = apocrypha_touched
+                NOT = { has_trait = forbidden_library_scholar }
+            }
+            add_trait = forbidden_library_scholar
+            remove_trait = apocrypha_touched
+        }
+    }
+    option = {
+        name = black_books.006.b
+        add_stress = 40
+        add_health = -0.3
+    }
+    option = {
+        name = black_books.006.c
+        trigger = { has_trait = hermaeus_mora_champion }
+        add_learning = 3
+        add_intrigue = 2
+        add_prestige = 100
+    }
+}

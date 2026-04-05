@@ -1,0 +1,133 @@
+# =============================================================
+#  Dawnguard — Traits
+#  File: mod/common/traits/dawnguard_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  dawnguard_initiate  — New recruit of the Dawnguard order.
+#                        The crossbow is heavy; the calling heavier still.
+#
+#  dawnguard_hunter    — Veteran vampire hunter; has survived
+#                        more than one ambush in the dark.
+#
+#  dawnguard_captain   — Leads a detachment of hunters; veteran
+#                        of numerous engagements against the Volkihar.
+#
+#  dawnguard_lord      — Commander of the full Dawnguard order;
+#                        the rank held by Isran himself.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Dawnguard is an order of vampire hunters based in Fort
+#  Dawnguard, deep in the Rift hold of Skyrim. Founded originally
+#  in the Second Era and refounded in 4E 176 by Isran — a Redguard
+#  warrior-monk of legendary ferocity and impatience — the order
+#  specialises in crossbow tactics, Dwarven sunhallowed bolts, and
+#  a blunt refusal to negotiate with anything that drinks blood.
+#  Their signature conflict is with the Volkihar vampire clan, led
+#  by the ancient vampire lord Harkon.
+#  Sources: UESP Lore:Dawnguard; Skyrim — Dawnguard DLC.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/dawnguard_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • dawnguard_initiate
+#    • dawnguard_hunter
+#    • dawnguard_captain
+#    • dawnguard_lord
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/dawnguard_events.txt
+#      → dawnguard_initiate, dawnguard_hunter, dawnguard_captain, dawnguard_lord
+#    common/decisions/dawnguard_decisions.txt
+#      → dawnguard_initiate, dawnguard_captain
+# =============================================================
+
+# ---------------------------------------------------------------
+#  DAWNGUARD INITIATE
+#  They came to Fort Dawnguard with a sword, a grievance, or both.
+#  Isran put a crossbow in their hands and told them: aim for the
+#  heart, reload before you celebrate, and never trust anything
+#  that doesn't cast a shadow.  They are learning.
+# ---------------------------------------------------------------
+dawnguard_initiate = {
+    category = fame
+
+    opposites = { dawnguard_hunter dawnguard_captain dawnguard_lord }
+
+    prowess = 1
+    martial = 1
+
+    flag = dawnguard_initiate
+}
+
+# ---------------------------------------------------------------
+#  DAWNGUARD HUNTER
+#  They have hunted vampires by torchlight in the barrows of the
+#  Rift, in the ice-choked ruins of Dimhollow, and in the polished
+#  halls of Castle Volkihar.  They know the three signs of a
+#  vampire's approach: no breath, no heartbeat, and the subtle
+#  wrongness of something that has learned to pretend at warmth.
+# ---------------------------------------------------------------
+dawnguard_hunter = {
+    category = fame
+
+    opposites = { dawnguard_initiate dawnguard_captain dawnguard_lord }
+
+    prowess = 3
+    martial = 2
+    intrigue = 1
+
+    flag = dawnguard_hunter
+}
+
+# ---------------------------------------------------------------
+#  DAWNGUARD CAPTAIN
+#  They lead a detachment — half a dozen hunters, a supply wagon,
+#  and a route through the Rift that changes every week because
+#  the Volkihar have learned to watch the roads.  The captain's
+#  job is to keep their people alive between the engagements as
+#  much as in them.  Isran watches from Fort Dawnguard and says
+#  nothing, which is his way of expressing approval.
+# ---------------------------------------------------------------
+dawnguard_captain = {
+    category = fame
+
+    opposites = { dawnguard_initiate dawnguard_hunter dawnguard_lord }
+
+    prowess = 4
+    martial = 3
+    intrigue = 2
+    monthly_prestige = 2
+
+    flag = dawnguard_captain
+}
+
+# ---------------------------------------------------------------
+#  DAWNGUARD LORD
+#  Isran's title in all but name — or Isran himself, if the
+#  character template is in play.  The commander of the full order
+#  coordinates operations across the Rift and beyond, maintains
+#  Fort Dawnguard as a functioning fortress, and carries the
+#  weight of every hunter who has died in the order's service.
+#  The prestige comes not from the title but from the survival.
+# ---------------------------------------------------------------
+dawnguard_lord = {
+    category = fame
+
+    opposites = { dawnguard_initiate dawnguard_hunter dawnguard_captain }
+
+    prowess = 5
+    martial = 4
+    intrigue = 3
+    monthly_prestige = 3
+
+    flag = dawnguard_lord
+}

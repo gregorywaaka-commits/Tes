@@ -1,0 +1,153 @@
+# =============================================================
+#  The Walking Ways — Path B: Mantling Kynareth/Kyne
+#  Namespace: mantling_kynareth
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  mantling_kynareth.intro       — Path chosen; the wind turns
+#  mantling_kynareth.rank1       — Seeking: Word Wall + open hand
+#  mantling_kynareth.rank2       — Striving: storm survived
+#  mantling_kynareth.rank3       — Threshold: the sky witnesses
+#  mantling_kynareth.apotheosis  — The wind is yours
+#
+#  LORE BASIS:
+#  ───────────
+#  Kynareth is goddess of sky and natural world. Nordic form
+#  Kyne is Shor's widow and mother of men. The Throat of the
+#  World is sacred to her. The mantler has discovered Word
+#  Wall lore, shown generosity without cause, and survived
+#  storms outnumbered. The sky has watched. It has approved.
+#  [SOURCE: CANON — UESP Lore:Kynareth; Nordic pantheon lore]
+# =============================================================
+
+namespace = mantling_kynareth
+
+# ---------------------------------------------------------------
+# mantling_kynareth.intro  THE WIND TURNS
+# ---------------------------------------------------------------
+mantling_kynareth.intro = {
+    type = character_event
+    title = mantling_kynareth.intro.t
+    desc  = mantling_kynareth.intro.desc
+    theme = martial
+
+    option = {
+        name = mantling_kynareth.intro.a   # "The wind comes before any banner."
+        add_stress = -5
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_kynareth.rank1  SEEKING
+# ---------------------------------------------------------------
+mantling_kynareth.rank1 = {
+    type = character_event
+    title = mantling_kynareth.rank1.t
+    desc  = mantling_kynareth.rank1.desc
+    theme = martial
+
+    option = {
+        name = mantling_kynareth.rank1.a
+        add_prestige = 50
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_kynareth.rank2  STRIVING
+# ---------------------------------------------------------------
+mantling_kynareth.rank2 = {
+    type = character_event
+    title = mantling_kynareth.rank2.t
+    desc  = mantling_kynareth.rank2.desc
+    theme = martial
+
+    option = {
+        name = mantling_kynareth.rank2.a
+        add_prestige = 100
+        add_martial = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_kynareth.rank3  THRESHOLD — THE SKY WITNESSES
+# ---------------------------------------------------------------
+mantling_kynareth.rank3 = {
+    type = character_event
+    title = mantling_kynareth.rank3.t
+    desc  = mantling_kynareth.rank3.desc
+    theme = martial
+
+    option = {
+        name = mantling_kynareth.rank3.a
+        add_prestige = 175
+        add_stress = -15
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_kynareth.apotheosis  THE WIND IS YOURS
+# ---------------------------------------------------------------
+mantling_kynareth.apotheosis = {
+    type = character_event
+    title = mantling_kynareth.apotheosis.t
+    desc  = mantling_kynareth.apotheosis.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_mantling_kynareth_active
+        var:ww_mantling_kynareth_rank >= 4
+        NOT = { has_character_flag = ww_mantling_kynareth_completed }
+    }
+
+    immediate = {
+        complete_path_mantling_kynareth = yes
+    }
+
+    option = {
+        name = mantling_kynareth.apotheosis.a
+        add_prestige = 250
+        add_stress = -25
+        add_piety = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_kynareth.milestone_openhand_decision
+# Player decision: grant independence or full autonomy to a
+# subordinate without cause.
+# ---------------------------------------------------------------
+mantling_kynareth.openhand = {
+    type = character_event
+    title = mantling_kynareth.openhand.t
+    desc  = mantling_kynareth.openhand.desc
+    theme = diplomacy
+
+    trigger = {
+        has_character_flag = ww_mantling_kynareth_active
+        NOT = { has_character_flag = ww_mantling_kynareth_milestone_openhand }
+        any_vassal = {
+            count >= 1
+        }
+    }
+
+    option = {
+        name = mantling_kynareth.openhand.a   # Grant freedom
+        random_vassal = {
+            limit = { count >= 1 }
+            set_vassal_contract_obligation_level = { type = feudal_levies level = 0 }
+        }
+        set_character_flag = ww_mantling_kynareth_milestone_openhand
+        add_prestige = 50
+        add_stress = -10
+    }
+
+    option = {
+        name = mantling_kynareth.openhand.b   # Decline
+        # No effect
+    }
+}

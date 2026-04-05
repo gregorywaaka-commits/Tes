@@ -1,0 +1,174 @@
+﻿namespace = penitus
+
+# ---------------------------------------------------------------
+# penitus.000  Hidden Trigger — Penitus Oculatus Recruitment
+# ---------------------------------------------------------------
+penitus.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        intrigue >= 12
+        NOT = { has_character_flag = penitus_contacted }
+        OR = {
+            has_trait = diligent
+            has_trait = just
+            has_trait = patient
+        }
+    }
+
+    immediate = {
+        set_character_flag = { flag = penitus_contacted }
+        trigger_event = { id = penitus.001 days = { 10 30 } }
+    }
+}
+
+# ---------------------------------------------------------------
+# penitus.001  "The Emperor's Eye"
+# A Penitus Oculatus recruiter approaches.
+# ---------------------------------------------------------------
+penitus.001 = {
+    type = character_event
+    title = penitus.001.t
+    desc = penitus.001.desc
+    theme = intrigue
+    left_portrait = { character = root mood = personality_rational }
+
+    option = {
+        name = penitus.001.a
+        add_prestige = 100
+        if = {
+            limit = { NOT = { has_trait = penitus_agent } }
+            add_trait = penitus_agent
+        }
+        trigger_event = { id = penitus.002 days = { 30 90 } }
+    }
+    option = {
+        name = penitus.001.b
+        add_prestige = -25
+    }
+    option = {
+        name = penitus.001.c
+        add_intrigue = 1
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# penitus.002  "The Dark Brotherhood Contract"
+# Penitus intelligence reveals an assassination contract.
+# ---------------------------------------------------------------
+penitus.002 = {
+    type = character_event
+    title = penitus.002.t
+    desc = penitus.002.desc
+    theme = intrigue
+    left_portrait = { character = root mood = personality_rational }
+
+    trigger = {
+        has_trait = penitus_agent
+    }
+
+    option = {
+        name = penitus.002.a
+        add_prestige = 150
+        add_gold = -100
+        add_character_modifier = {
+            modifier = penitus_protection
+            days = 1825
+        }
+        trigger_event = { id = penitus.003 days = { 60 120 } }
+    }
+    option = {
+        name = penitus.002.b
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# penitus.003  "Dismantling the Sanctuaries"
+# Order to destroy known Brotherhood operations.
+# ---------------------------------------------------------------
+penitus.003 = {
+    type = character_event
+    title = penitus.003.t
+    desc = penitus.003.desc
+    theme = intrigue
+    left_portrait = { character = root mood = personality_bold }
+
+    trigger = {
+        has_trait = penitus_agent
+    }
+
+    option = {
+        name = penitus.003.a
+        add_prestige = 200
+        add_gold = -150
+        if = {
+            limit = {
+                has_trait = penitus_agent
+                NOT = { has_trait = penitus_inspector }
+            }
+            add_trait = penitus_inspector
+            remove_trait = penitus_agent
+        }
+        trigger_event = { id = penitus.004 days = { 90 180 } }
+    }
+    option = {
+        name = penitus.003.b
+        add_intrigue = 2
+        add_gold = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# penitus.004  "The Spy Network"
+# Decision about extending the intelligence apparatus.
+# ---------------------------------------------------------------
+penitus.004 = {
+    type = character_event
+    title = penitus.004.t
+    desc = penitus.004.desc
+    theme = intrigue
+    left_portrait = { character = root mood = personality_rational }
+
+    trigger = {
+        OR = {
+            has_trait = penitus_inspector
+            has_trait = penitus_director
+        }
+    }
+
+    option = {
+        name = penitus.004.a
+        add_prestige = 300
+        add_gold = -300
+        add_character_modifier = {
+            modifier = penitus_spy_network
+            days = -1
+        }
+        if = {
+            limit = {
+                has_trait = penitus_inspector
+                NOT = { has_trait = penitus_director }
+            }
+            add_trait = penitus_director
+            remove_trait = penitus_inspector
+        }
+    }
+    option = {
+        name = penitus.004.b
+        add_intrigue = 2
+        add_gold = 100
+    }
+    option = {
+        name = penitus.004.c
+        add_prestige = 50
+        add_character_modifier = {
+            modifier = penitus_protection
+            days = 3650
+        }
+    }
+}

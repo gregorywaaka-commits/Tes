@@ -1,0 +1,37 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ #  THE WALKING WAYS — Psijic Endeavour Localization
+ # ═══════════════════════════════════════════════════════════════
+
+ psijic_adept_supreme: "Master of the Old Ways"
+ psijic_adept_supreme_desc: "The Psijic Endeavour is complete. This ruler no longer reads time the way mortals do. They perceive its seams — the places where the dream's narrative stitching is visible. They are still mortal. But ordinary urgency no longer reaches them."
+
+ psijic_endeavour.intro.t: "The Old Ways"
+ psijic_endeavour.intro.desc: "The Psijic Order does not teach magic. It reminds those who have always known.\n\nThe scholar — perhaps a Psijic monk, perhaps a text left in the right library at the right time — explains the Endeavour. Not a quest. Not a set of tasks. A way of attending to what was already there. The Old Ways predate the Mages Guild's six schools. They predate most things with names.\n\nThe ruler is being told they already know this. The work is remembering."
+ psijic_endeavour.intro.a: "Not learned. Remembered."
+
+ psijic_endeavour.rank1.t: "The Silence Found"
+ psijic_endeavour.rank1.desc: "The silence was found. Not absolute silence — courts are never silent. The silence beneath the noise. The space where the dream breathes between words. The ruler found it and sat in it for the required time without losing the thread of themselves.\n\nThis is harder than it sounds. Most minds, presented with true silence, immediately fill it with everything they have been avoiding."
+ psijic_endeavour.rank1.a: "I found it. I stayed."
+
+ psijic_endeavour.rank2.t: "The Advisors Notice"
+ psijic_endeavour.rank2.desc: "The advisors have begun to notice that the ruler sometimes answers their questions before they ask them.\n\nNot always. Not in any way that could be tested. But often enough that the senior steward has started framing reports differently — getting to the conclusion first, then explaining the context — because the ruler somehow already knows the conclusion.\n\nThis is not prophecy. This is the seam of time becoming visible."
+ psijic_endeavour.rank2.a: "Let them see. An informed court is a useful court."
+ psijic_endeavour.rank2.b: "I will be more careful. Awareness draws questions."
+
+ psijic_endeavour.rank3.t: "Time Perception Blurs"
+ psijic_endeavour.rank3.desc: "The Endeavour has reached the point where the distinction between having done something and doing something and being about to do something has become... approximate. Not collapsed. But flexible.\n\nThe ruler has not lost themselves in it. They are still here. But the urgency of 'when' has significantly diminished."
+ psijic_endeavour.rank3.a: "I see the seams. I am ready to remember the rest."
+
+ psijic_endeavour.apotheosis.t: "The Endeavour Complete"
+ psijic_endeavour.apotheosis.desc: "I remember what I have always known.\n\nThe Old Ways are not knowledge that enters from outside. They are knowledge that was already present, that the noise of existing had covered over. The Psijic Order did not give the ruler anything. They removed what was in the way.\n\nThe ruler is still mortal. They are still in the dream. But ordinary urgency has become optional, which is to say, has become irrelevant. They perceive time the way a cartographer perceives terrain — as something to move through with awareness, not as something that moves through you.\n\nThe Psijic Order sends a brief message: 'Again. As always. We are pleased.'"
+ psijic_endeavour.apotheosis.a: "I remember what I have always known."
+
+ psijic_endeavour.rewind.t: "The Rewind"
+ psijic_endeavour.rewind.desc: "The ruler perceived the moment before it happened. Not the future — there is no future, only a series of presents. They perceived the present before it became this present, and acted differently in it.\n\nThe outcome has changed. The court will not understand why."
+ psijic_endeavour.rewind.a: "I saw it coming."
+
+ psijic_endeavour.silence.t: "The Year of Silence"
+ psijic_endeavour.silence.desc: "The Endeavour requires, at some point, a sustained period of discipline — not absence from court, but a quality of attention that is different from ordinary governance. The gold will go toward scholars and quiet. The year will be different."
+ psijic_endeavour.silence.a: "Arrange it."
+ psijic_endeavour.silence.b: "Not now."

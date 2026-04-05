@@ -1,0 +1,95 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ #  THE WALKING WAYS — Core Localization
+ # ═══════════════════════════════════════════════════════════════
+
+ # ─── Awareness Event ───
+ walking_ways.000.t: "The Walking Ways"
+ walking_ways.000.desc: "A scholar arrives in curious circumstances — or perhaps appears in a dream, or in a book written in a hand that has not yet touched the page. The words they carry are not comfortable. There are paths, they say, that mortals have walked before to become something other than mortal. The paths are called the Walking Ways. They are not metaphor. They are not heresy.\n\n[They are something more precise.]"
+ walking_ways.000.a: "Teach me. I will consider the paths."
+ walking_ways.000.b: "I have walked far enough."
+
+ # ─── Path Selection ───
+ walking_ways.path_selection.t: "The Paths Await"
+ walking_ways.path_selection.desc: "The Walking Ways have been named. The choice of which to walk remains. Each path requires something specific — a capacity, a trait, a history of choices already made."
+ walking_ways.path_selection.a: "I will choose my path."
+ walking_ways.path_selection.b: "I am not ready yet."
+
+ # ─── World Notify ───
+ walking_ways.world_notify.t: "A Rumour from Afar"
+ walking_ways.world_notify.generic: "Something has changed in [scope:source.char_name|U]'s realm in [scope:source.primary_title.name]. Scholars disagree on what. They do not disagree on whether."
+ walking_ways.world_notify.chim_sovereign: "A philosopher-king in [scope:source.primary_title.name] has ceased to dream, and yet continues. The Psijic Order has sent a message. They say only: 'Again.'"
+ walking_ways.world_notify.mantle_talos: "In [scope:source.primary_title.name], [scope:source.char_name|U] has walked in Talos's footsteps long enough that the footsteps are now theirs. Thalmor agents across Tamriel have been recalled for briefing."
+ walking_ways.world_notify.mantle_arkay: "The priests of Arkay in [scope:source.primary_title.name] have begun leaving offerings at the ruler's door. They say [scope:source.char_name|U] has seen the seam between the living and the cycle — and is no longer merely on one side of it."
+ walking_ways.world_notify.mantle_kynareth: "The wind changed over [scope:source.primary_title.name] without reason. Birds flew in patterns that do not correspond to any migration. The Greybeards have taken note."
+ walking_ways.world_notify.mantle_azura: "From Azura's shrine near [scope:source.primary_title.name], her priests sent a message that arrived before it was written: 'The distinction is complete.'"
+ walking_ways.world_notify.mantle_meridia: "A light has gone on in [scope:source.primary_title.name] that has no source the architects can find. Vampires in the neighbouring realm have begun to avoid the border."
+ walking_ways.world_notify.psijic: "The Psijic Order has sent a rare message to every major court: one who pursued the Old Ways has completed the Endeavour. The message concludes: 'Time is now optional for them.'"
+ walking_ways.world_notify.enantiomorph: "Something has gone wrong with the pattern. The Hero of [scope:source.primary_title.name] is no longer the Hero. Those with experience in cosmological architecture are advised to update their maps."
+ walking_ways.world_notify.amaranth: "The dream has changed.\n\n[There is no further message. There is no messenger. The fact of it, however, is impossible to dispute.]"
+ walking_ways.world_notify.a: "Curious."
+
+ # ─── Abandonment ───
+ walking_ways.abandon.t: "The Path Not Taken"
+ walking_ways.abandon.desc: "To step off the Walking Way is not a defeat. The path does not pursue those who leave it. It simply waits. Or does not wait. It is difficult to say whether paths wait."
+ walking_ways.abandon.a: "Another time. Or never."
+
+ # ─── Decision: Choose Walking Way ───
+ choose_walking_way_desc: "I have been introduced to the Walking Ways. Each path requires something different — a history, a capacity, a willingness to become something I am not yet. This is the moment of commitment."
+ choose_walking_way.path_a: "Path A: CHIM Expanded — The Sovereign Dream"
+ choose_walking_way.path_a_desc: "CHIM is a door, not a destination. The ruler who has achieved CHIM may now pursue what lies beyond it: operating within the dream with authorial permission. [Requires: chim_achieved]"
+ choose_walking_way.path_b_talos: "Path B: Mantling Talos — Walk Until You Are Indistinguishable"
+ choose_walking_way.path_b_talos_desc: "Walk in Talos's footsteps until the footsteps are yours. Empire. Wound. Mercy. The Ruby Throne. The pattern completes. [Requires: shezarrine_vessel OR martial 20+ with Imperial/Nordic culture]"
+ choose_walking_way.path_b_arkay: "Path B: Mantling Arkay — Walk the Cycle"
+ choose_walking_way.path_b_arkay_desc: "Arkay governs the ending of things. Walk with death long enough and it stops following you as a threat. [Requires: learning 14+, compassionate or zealous]"
+ choose_walking_way.path_b_kynareth: "Path B: Mantling Kynareth — The Open Sky"
+ choose_walking_way.path_b_kynareth_desc: "Wind, generosity, the Word on stone. Kyne's widow walks the sky. You can walk it too. [Requires: brave trait]"
+ choose_walking_way.path_b_azura: "Path B: Mantling Azura — Dusk and Dawn [DANGEROUS]"
+ choose_walking_way.path_b_azura_desc: "A Daedric mantle is different. Azura does not share her pattern easily. Possession is the failure state. [Requires: chim_seeker or chim_achieved]"
+ choose_walking_way.path_b_meridia: "Path B: Mantling Meridia — Uncompromising Light [DANGEROUS]"
+ choose_walking_way.path_b_meridia_desc: "Purification absolute. Meridia's light does not warm — it exposes. Walk in it long enough and you become it. [Requires: dawnguard_commander or dawnguard_victory_achieved]"
+ choose_walking_way.path_c: "Path C: The Psijic Endeavour — The Old Ways"
+ choose_walking_way.path_c_desc: "Not learned. Remembered. The Psijic Order's path to temporal perception and the transcendence of ordinary urgency. [Requires: learning 16+, scholar/psijic_contact/chim_seeker]"
+ choose_walking_way.path_d: "Path D: The Enantiomorph — The Rebel's Pattern"
+ choose_walking_way.path_d_desc: "Every Hero needs an enemy. You can choose to be that enemy. Not evil — necessary. [Requires: intrigue 16+, deceitful/paranoid/ruthless or regicide]"
+ choose_walking_way.path_e: "Path E: The Amaranth — The New Dream [HIDDEN]"
+ choose_walking_way.path_e_desc: "CHIM was the door. You have walked every hallway. This room has no name. [Requires: chim_achieved + any path completed]"
+ choose_walking_way.decline: "I am not ready."
+ choose_walking_way.decline_desc: "This is not cowardice. The paths do not close. But the moment passes."
+
+ # ─── Decision: Psijic Rewind ───
+ invoke_psijic_rewind_desc: "Once per reign, I may perceive a moment before it happens and act differently. The Psijic Endeavour trained this capacity. The moment is now."
+
+ # ─── Decision: Enantiomorph Creed ───
+ enantiomorph_rebel_creed_desc: "The Rebel does not fight for the Hero. The Rebel does not fight for causes the Hero would bless. I refuse to join any holy war or crusade. The pattern requires it."
+
+ # ─── Decision: Abandon ───
+ abandon_walking_way_desc: "I will step off this path. The progress I have accumulated will be lost. I will not be able to begin again for five years."
+
+ # ─── Path A Events ───
+ walking_ways.chim_expanded.intro.t: "CHIM Is a Door"
+ walking_ways.chim_expanded.intro.desc: "CHIM was the realisation that one exists within the Godhead's dream and yet still IS. That was the door. The scholar's note — or the voice in the dream, or the text in the margin that wrote itself — makes a new suggestion. The door led somewhere. Something is on the other side of it. Not transcendence. Not escape. Permission. The sovereign operates within the dream with something like authorial authority."
+ walking_ways.chim_expanded.intro.a: "CHIM is a door, not a destination."
+
+ walking_ways.chim_expanded.rank1.t: "The First Edit"
+ walking_ways.chim_expanded.rank1.desc: "It was a small thing. A conversation that should have gone badly. A contract that should not have held. Something bent around the ruler's intent without being forced to — and snapped back into shape so quickly that no one else noticed. The ruler noticed."
+ walking_ways.chim_expanded.rank1.a: "I noticed. I always noticed."
+
+ walking_ways.chim_expanded.rank2.t: "The Court Has Begun to Notice"
+ walking_ways.chim_expanded.rank2.desc: "The court has begun to notice.\n\nNot loudly. Not in any way they could articulate. A chancellor who reports that meetings with the ruler tend to resolve the matter before he has finished framing the problem. A steward who says the ledgers sometimes balance in ways she did not calculate. The court is not afraid. But they have begun to bring only their largest problems."
+ walking_ways.chim_expanded.rank2.a: "Let them see. It is a useful kind of fear."
+ walking_ways.chim_expanded.rank2.b: "I prefer they not notice. I will be more careful."
+
+ walking_ways.chim_expanded.rank3.t: "The Pressure of Imminent Transformation"
+ walking_ways.chim_expanded.rank3.desc: "The seams are visible now. Not the physical seams — the dream's seams. The ruler can see where the narrative was stitched together, where the logic was approximate, where the Godhead's dream was — for a fraction of a second, in a fraction of a moment — not paying full attention. This is not destructive knowledge. It is operating knowledge. The ruler is close to understanding how to use it fully."
+ walking_ways.chim_expanded.rank3.a: "I am ready."
+
+ walking_ways.chim_expanded.apotheosis.t: "The Sovereign Moment"
+ walking_ways.chim_expanded.apotheosis.desc: "The court continues below.\n\nThe ruler is standing at the window of the highest tower, or sitting in a chair in the study, or lying in bed at the moment between sleep and waking — and they understand, now, completely, what the dream is and what they are within it and what they are permitted to do.\n\nThe distinction between understanding and permission collapsed. They did not become the Godhead. They did not become a god. They became a sovereign within the dream — which is something the dream permits, apparently, if you understand it well enough and hold yourself together while understanding it.\n\nThe court continues below. The ruler returns to them. Something small has changed about the way they hold a cup of water."
+ walking_ways.chim_expanded.apotheosis.a: "The court continues below."
+ walking_ways.chim_expanded.apotheosis.b: "I have always been here. Everything else was elsewhere."
+
+ walking_ways.chim_silence.t: "The Year of Silence"
+ walking_ways.chim_silence.desc: "The path requires a year of deep study. Not isolation — but discipline. The court will notice the change in priorities. The gold will go toward scholars and study materials and the quiet that purchasing silence always requires."
+ walking_ways.chim_silence.a: "Arrange it."
+ walking_ways.chim_silence.b: "Not yet."

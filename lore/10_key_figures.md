@@ -102,19 +102,27 @@ Each entry includes:
 ### Vivec
 - Poet-warrior god of Morrowind; one of the most complex figures in TES lore
 - Wrote the **36 Lessons of Vivec** (in-game metaphysical/philosophical texts — deliberately unreliable narrators `[CONTESTED by design]`)
-- Held back **Baar Dau** (a moon the Sheogorath flung at Vivec City) with his divine will; when his power failed after 3E 427, Baar Dau eventually fell (4E 5 Red Year) `[CANON — UESP]`
+- Held back **Baar Dau** (a moon the Sheogorath flung at Vivec City) with his divine will; when his power failed after 3E 427, Baar Dau eventually fell (4E 5 Red Year — ~78 years later) `[CANON — UESP]`
+- ⚠️ **The 78-year gap is significant:** Baar Dau fell 78 years after the Heart's destruction. This implies Vivec maintained at least some power or presence for decades after losing the Heart, before finally departing or fading. His stored divine power did not drain instantly.
 - Disappeared after the events of TES III: Morrowind; fate unknown `[CANON — TES III: Morrowind]`
-- ⚠️ Whether Vivec achieved **CHIM** is `[CONTESTED — SPECULATION]`
+- ⚠️ Whether Vivec achieved **CHIM** is `[CONTESTED — SPECULATION]`. The most widely-held scholarly interpretation (based on the 36 Lessons and MK texts) is that Vivec, unlike Almalexia, responded to power-starvation with philosophy rather than violence, and used his final years of diminishing power to attempt or achieve CHIM — leaving Nirn voluntarily rather than dying like Almalexia or fading mindlessly. This is not confirmed in-game and should be flagged as `[SOFT CANON — MK texts; UESP analysis]` in any event text that references it.
 
 ### Almalexia
 - Goddess of compassion and motherhood; patron of **House Indoril** and **Ordinators**
-- After losing her divinity in TES III: Morrowind (Tribunal expansion), went mad and was killed by the Nerevarine in Mournhold `[CANON — TES III: Tribunal]`
+- After Dagoth Ur expelled the Tribunal from Red Mountain in **2E 882**, Almalexia could no longer renew her divinity from the Heart of Lorkhan; her power began a slow centuries-long drain `[CANON — TES III: Morrowind + Tribunal expansion]`
+- By the time of TES III: Morrowind (3E 427), her stored divine power was nearly exhausted; she had gone mad — a paranoid, messianic breakdown driven by the loss of something she had held for over three thousand years `[CANON — TES III: Tribunal]`
+- In her madness, she travelled to **Sotha Sil's Clockwork City** and killed him — believing (or pretending to believe) she could absorb his remaining divine power; in practice, the act gained her little or nothing lasting `[CANON — TES III: Tribunal]`
+- She then staged an elaborate deception in **Mournhold**, luring the **Nerevarine** to "save" the city from an attack she had orchestrated, intending to kill the Nerevarine and reclaim divine status through that victory; the Nerevarine killed her instead `[CANON — TES III: Tribunal]`
+- ⚠️ **Design note:** Almalexia's arc is the canonical example of what Heart-borrowed power does to a mortal mind when it is slowly taken away. The madness was not sudden — it developed over centuries. The murder of Sotha Sil was its culmination, not its beginning.
 
 ### Sotha Sil
 - "The Clockwork God"; Tinkerer; philosopher; rarely seen by mortals even when divine
 - Created the **Clockwork City** — a mechanical world-simulacrum built of brass, gears, and magic. It exists "outside space and time" — physically represented as a small globe, but inside it is as vast as a world. Sotha Sil used it as his workshop, laboratory, and reality-manipulation testing ground. Its inhabitants include **Factotums** (robotic servitors), **Fabricants** (flesh-machine hybrids), and **Clockwork Apostles** (followers devoted to his philosophy). The City is considered an extension of Sotha Sil himself — changes to it may have reality-altering effects on Nirn. `[CANON — UESP: Lore:Clockwork City; ESO: Clockwork City DLC; TES III: Tribunal]`
-- Killed by **Almalexia** before the events of TES III: Tribunal expansion `[CANON — TES III: Tribunal]`
+- After Dagoth Ur expelled the Tribunal from Red Mountain in 2E 882, Sotha Sil withdrew entirely to his Clockwork City; unlike Almalexia, his response to power-starvation appears to have been withdrawal and philosophical acceptance rather than madness `[INFERRED — TES III: Tribunal; the game implies he was already dead and his body cold when the Nerevarine found him, suggesting no struggle]`
+- Killed by **Almalexia** before the events of TES III: Tribunal expansion — she entered his Clockwork City and murdered him, apparently believing (in her broken state) that consuming his remaining divine power would restore her own `[CANON — TES III: Tribunal]`
+- His death triggered the mechanical inhabitants of the Clockwork City to behave erratically (Fabricants attacking intruders); the City itself began to destabilise `[CANON — TES III: Tribunal]`
 - After his death the Clockwork City was left largely abandoned except for its mechanical inhabitants; the Clockwork Apostles maintained it `[CANON — ESO / UESP]`
+- ⚠️ **Design note:** Sotha Sil and Almalexia are the same lore event — the same power-starvation — handled completely differently. Sotha Sil chose quiet and philosophy; Almalexia chose violence and delusion. Both died. The contrast is intentional in the game's writing and should be preserved in any mod event text that references either.
 
 ---
 
@@ -129,7 +137,7 @@ Each entry includes:
   - Slept beneath Red Mountain for over a millennium; **awakened in 2E 882** `[CANON — TES III: Morrowind; UESP]`
   - Spread **Corprus disease** and **blight storms** from Red Mountain `[CANON — TES III: Morrowind]`
   - Also spread **Sleeper agents** — mortals mentally dominated through dream-connection to the Heart `[CANON — TES III: Morrowind]`
-  - Defeated by the **Nerevarine** in 3E 427 when the Heart of Lorkhan was destroyed `[CANON — TES III: Morrowind]`
+  - Defeated by the **Nerevarine** in 3E 427 when the Heart of Lorkhan's connection to Mundus was severed — the Nerevarine used Kagrenac's Tools to break the enchantments binding the Heart to the mortal plane. The Heart vanished from Tamriel; Dagoth Ur, whose immortality was fused to it, died instantly. `[CANON — TES III: Morrowind; UESP Lore:Heart of Lorkhan]`
 
 ---
 
@@ -254,6 +262,42 @@ Each entry includes:
 
 - ⚠️ The "Three Septims in One" theory (Hjalti + Zurin Arctus + Wulfharth merged into Tiber Septim) is `[SOFT CANON — The Arcturian Heresy]`. Does not change the canonical fact of Tiber Septim's Dragonborn status.
 - ⚠️ Miraak's exact status relative to the Dragonborn emperors' "blessed lineage" is `[CONTESTED]` — his powers may predate the Alessia covenant and derive from a different source. `[UESP / TES V: Dragonborn DLC lore]`
+
+---
+
+## Jagar Tharn `[CANON — TES I: Arena]`
+> **Source:** TES I: Arena; UESP Lore:Jagar Tharn — https://en.uesp.net/wiki/Lore:Jagar_Tharn
+
+- **Role:** Imperial Battlemage under **Emperor Uriel Septim VII**
+- **3E 389 — The Imperial Simulacrum begins:** Tharn imprisoned Emperor Uriel Septim VII in a pocket of Oblivion using the **Staff of Chaos**, then shattered the Staff into 8 pieces and scattered them across Tamriel. He took the Emperor's place as a simulacrum (magical duplicate) and ruled the Empire in secret for 10 years. `[CANON — TES I: Arena]`
+- **Ria Silmane:** Tharn's apprentice, who discovered the plot. Tharn had her murdered, but her ghost persisted and guided the **Arena protagonist** in recovering the Staff pieces. `[CANON — TES I: Arena]`
+- **3E 399 — The Imperial Simulacrum ends:** The Arena protagonist reassembled the Staff of Chaos and used it to free Uriel VII and destroy Tharn, ending the decade-long deception. `[CANON — TES I: Arena]`
+- ⚠️ The 10-year Simulacrum is why the 3E 38–399 entry on the timeline covers Arena events — the corruption of Imperial rule during this period had lasting effects on the Septim Dynasty's prestige. `[CANON — UESP]`
+
+---
+
+## Titus Mede II `[CANON — UESP; TES V: Skyrim]`
+> **Source:** UESP Lore:Titus Mede II — https://en.uesp.net/wiki/Lore:Titus_Mede_II  
+> **Source:** In-game book: The Great War (TES V: Skyrim)
+
+- **Role:** Emperor of the Third (Mede) Empire during the **Great War (4E 171–175)**
+- **4E 174 — Sack of the Imperial City:** Led Imperial forces during the brutal siege; was forced to evacuate the Imperial City when Aldmeri Dominion forces captured it `[CANON — IN-GAME BOOK: The Great War]`
+- **4E 175 — Battle of the Red Ring:** Commanded the counter-offensive that recaptured the Imperial City and destroyed the main Dominion army; a decisive Imperial tactical victory `[CANON — IN-GAME BOOK: The Great War; UESP]`
+- **White-Gold Concordat:** Despite the Red Ring victory, Titus Mede II signed the controversial **White-Gold Concordat** — banning Talos worship Empire-wide, disbanding the Blades, and ceding southern Hammerfell — to end the war. His reasoning: the Empire could not survive another full war. `[CANON — UESP]`
+- **Assassination (4E 201):** Assassinated by the **Dark Brotherhood** at the start of TES V: Skyrim; this event is one of the canonical triggers for increased political instability in Skyrim `[CANON — TES V: Skyrim]`
+- ⚠️ Whether signing the Concordat was strategic necessity or capitulation is a central point of in-universe political debate — particularly for Stormcloak and Imperial faction narratives in TES V. `[CANON — TES V: Skyrim in-game dialogue]`
+
+---
+
+## Isran `[CANON — TES V: Skyrim (Dawnguard DLC)]`
+> **Source:** TES V: Skyrim — Dawnguard DLC; UESP Lore:Isran — https://en.uesp.net/wiki/Lore:Isran
+
+- **Race:** Redguard
+- **Role:** Warrior-monk; founder and commander of the **Dawnguard** (refounded 4E 176) `[CANON — TES V: Dawnguard]`
+- **Background:** Formerly a **Vigilant of Stendarr**, Isran left the Vigil when he concluded their methods were too passive and merciful for the supernatural threats he faced `[CANON — TES V: Dawnguard dialogue]`
+- **Character:** Deeply distrustful of others, zealous to a fault, and intensely focused; his distrust extends even to potential allies, making him a difficult leader but an effective hunter `[CANON — TES V: Dawnguard]`
+- **Expertise:** Expert vampire hunter; his obsessive preparation is why Fort Dawnguard has anti-vampire protections that most fortifications lack `[CANON — TES V: Dawnguard]`
+- **Base:** Fort Dawnguard, the Rift, Skyrim
 
 ---
 

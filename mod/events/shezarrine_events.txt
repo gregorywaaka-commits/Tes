@@ -85,6 +85,11 @@ shezarrine.001 = {
             flag = shezarrine_vessel_active
             years = 100
         }
+        # Walking Ways integration — Talos mantle milestone 5
+        if = {
+            limit = { has_character_flag = ww_mantling_talos_active }
+            set_character_flag = ww_mantling_talos_milestone_shezarrine
+        }
     }
 
     option = {

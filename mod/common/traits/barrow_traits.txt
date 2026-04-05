@@ -1,0 +1,135 @@
+# =============================================================
+#  Barrow Exploration / Draugr System — Traits
+#  File: mod/common/traits/barrow_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  barrow_delver         — Regularly explores Nordic burial mounds;
+#                          adventurous but scarred by the experience.
+#  draugr_slayer         — Has killed significant numbers of Draugr
+#                          guardians; renowned for it.
+#  nordic_relic_keeper   — Holds a significant Nordic artifact
+#                          recovered from a barrow.
+#  ysgramors_tomb_chosen — Was deemed worthy to enter Ysgramor's
+#                          Tomb at Hsaarik Head.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Nordic barrows are burial mounds scattered across Skyrim and the
+#  ancient Nordic kingdoms — sealed tombs for great warriors, jarls,
+#  and heroes of the early Nord kingdoms.  They are guarded by Draugr:
+#  the restless honored dead, preserved in undeath by old Dragon Cult
+#  rites and the lingering power of the Dragon Priests who interred
+#  them.  More powerful Draugr — Deathlords, Overlords — command the
+#  lesser ones and can wield Thu'um shouts.
+#
+#  Word Walls inside barrows hold Words of Power.  Nordic artifacts
+#  (ancient weapons and armor of unique craft) wait in sealed burial
+#  chambers.  The most sacred of all is Ysgramor's Tomb at Hsaarik
+#  Head near Windhelm, where the Five Hundred Companions were laid
+#  to rest.  Entry is reserved for those who carry Wuuthrad, the
+#  ancient axe of Ysgramor, or who bear a recognised claim to the
+#  Companion lineage.
+#
+#  Sources: UESP Lore:Barrow; TES V: Skyrim; UESP Lore:Draugr;
+#  UESP Lore:Ysgramor's Tomb.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  events/barrow_events.txt
+#    → barrow_delver, draugr_slayer, nordic_relic_keeper,
+#      ysgramors_tomb_chosen
+#  common/decisions/barrow_decisions.txt
+#    → barrow_delver, draugr_slayer
+#  common/traits/lore_races_traits.txt
+#    → companion_of_ysgramor (used in barrow.005 trigger)
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/barrow_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • barrow_delver
+#    • draugr_slayer
+#    • nordic_relic_keeper
+#    • ysgramors_tomb_chosen
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/barrow_events.txt
+#      → barrow_delver, draugr_slayer, nordic_relic_keeper,
+#        ysgramors_tomb_chosen
+#    common/decisions/barrow_decisions.txt
+#      → barrow_delver
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BARROW DELVER
+#  The smell of old stone and older death clings to this ruler.
+#  They know the silence that sits in a sealed burial chamber
+#  the moment before something that was dead opens its eyes.
+#  Dangerous work, freely chosen — which says something about
+#  their character.
+# ---------------------------------------------------------------
+barrow_delver = {
+    category = lifestyle
+
+    martial     = 1
+    learning    = 1
+    health      = -0.10    # Barrows are hazardous; injuries accumulate
+
+    flag = barrow_delver
+}
+
+# ---------------------------------------------------------------
+#  DRAUGR SLAYER
+#  Few warriors can claim they have stood in the dark and put
+#  down the honoured dead.  Draugr do not feel fear, do not
+#  tire, and do not break formation unless forced to.  This
+#  ruler has done it enough times that they have learned how.
+# ---------------------------------------------------------------
+draugr_slayer = {
+    category = fame
+
+    martial  = 2
+    prowess  = 2
+    monthly_prestige = 1   # Slaying the honored dead is spoken of in halls
+
+    flag = draugr_slayer
+}
+
+# ---------------------------------------------------------------
+#  NORDIC RELIC KEEPER
+#  A significant Nordic artifact — ancient blade, carved shield,
+#  burial torc — recovered from a sealed barrow and authenticated
+#  by a scholar of the old sagas.  The relic carries the weight
+#  of the hero it was buried with: their memory, their reputation,
+#  their unfinished story.
+# ---------------------------------------------------------------
+nordic_relic_keeper = {
+    category = fame
+
+    learning = 2
+    monthly_prestige = 2   # The relic's history and its story enhance the keeper's renown
+
+    flag = nordic_relic_keeper
+}
+
+# ---------------------------------------------------------------
+#  YSGRAMOR'S TOMB CHOSEN
+#  Entry to the tomb at Hsaarik Head is not a thing casually given.
+#  The Five Hundred Companions rest there — the warriors who crossed
+#  the sea from Atmora and reclaimed Skyrim from the Snow Elves.
+#  To stand among their biers is to stand inside the founding myth
+#  of the Nord people.  Those deemed worthy carry that distinction
+#  for the rest of their lives.
+# ---------------------------------------------------------------
+ysgramors_tomb_chosen = {
+    category = fame
+
+    martial  = 3
+    monthly_prestige = 3
+    monthly_piety    = 2   # Sacred site; the blessing of Shor and Ysgramor both
+
+    flag = ysgramors_tomb_chosen
+}

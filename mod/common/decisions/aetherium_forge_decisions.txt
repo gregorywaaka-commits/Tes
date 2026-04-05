@@ -1,0 +1,69 @@
+# =============================================================
+#  Aetherium Forge — Decisions
+#  File: mod/common/decisions/aetherium_forge_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • aetherium_attuned (dwemer_ruins_traits.txt)
+#  • aetherium_forge_master (aetherium_forge_traits.txt)
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • seek_aetherium_forge
+#
+#  DEPENDS ON:
+#    common/traits/dwemer_ruins_traits.txt  → aetherium_attuned
+#    common/traits/aetherium_forge_traits.txt → aetherium_forge_master
+#    events/aetherium_forge_events.txt → aetherium.001
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SEEK THE AETHERIUM FORGE
+#  An Aetherium-attuned scholar can follow the crystal resonance
+#  back to its source — the legendary Forge beneath Bthalft.
+# ---------------------------------------------------------------
+seek_aetherium_forge = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = seek_aetherium_forge_desc
+
+    is_shown = {
+        has_trait = aetherium_attuned
+        NOT = { has_trait = aetherium_forge_master }
+        NOT = { has_character_flag = aetherium_forge_quest_active }
+    }
+
+    is_valid = {
+        learning  >= 14
+        prestige  >= 300
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -300
+        set_character_flag = { flag = aetherium_forge_quest_active days = 730 }
+        trigger_event = { id = aetherium.001 days = 14 }
+    }
+
+    ai_will_do = {
+        base = 6
+        modifier = {
+            add = 12
+            learning >= 18
+        }
+        modifier = {
+            add = 8
+            has_trait = dwemer_scholar
+        }
+        modifier = {
+            add = 10
+            has_trait = tonal_architect
+        }
+    }
+}

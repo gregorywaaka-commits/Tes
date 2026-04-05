@@ -1,0 +1,202 @@
+# =============================================================
+#  The Walking Ways — Path E: The Amaranth
+#  Namespace: amaranth
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  amaranth.intro        — Path chosen; language begins to fail
+#  amaranth.rank1        — The Other Dream Glimpsed
+#  amaranth.rank2        — The Name Unrequired
+#  amaranth.apotheosis   — The Godhead's Question / New Dream
+#
+#  LORE BASIS:
+#  ───────────
+#  The Amaranth is described in Kirkbride's Loveletter from the
+#  Fifth Era (MK supplementary, not official canon). A CHIM-
+#  achieved being who achieves infinite dreaming — creating a
+#  new Aurbis entirely. Every universe exists because a previous
+#  being achieved the Amaranth. This path is a narrative ending,
+#  not a power fantasy. Three milestones only. The ruler has
+#  already walked every other path.
+#  [SOURCE: MK SUPPLEMENTARY — Loveletter from the Fifth Era.
+#   HIGHLY SPECULATIVE. Not official game canon.]
+# =============================================================
+
+namespace = amaranth
+
+# ---------------------------------------------------------------
+# amaranth.intro  LANGUAGE BEGINS TO FAIL
+# CHIM was the door. Every other path was the hallway.
+# This room has no name.
+# ---------------------------------------------------------------
+amaranth.intro = {
+    type = character_event
+    title = amaranth.intro.t
+    desc  = amaranth.intro.desc
+    theme = learning
+
+    option = {
+        name = amaranth.intro.a   # "[The text does not complete this sentence.]"
+        add_stress = -20
+        add_character_modifier = {
+            modifier = ww_path_amaranth_active
+            years = 100
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# amaranth.rank1  THE OTHER DREAM GLIMPSED
+# Milestone: A flash of a world that is not the Aurbis.
+# Impossible. Brief. Unexplained.
+# ---------------------------------------------------------------
+amaranth.rank1 = {
+    type = character_event
+    title = amaranth.rank1.t
+    desc  = amaranth.rank1.desc
+    theme = learning
+
+    immediate = {
+        set_character_flag = ww_amaranth_milestone_dream
+    }
+
+    option = {
+        name = amaranth.rank1.a   # "I saw it. It was not here. It was more real than here."
+        add_stress = -15
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# amaranth.rank2  THE NAME UNREQUIRED
+# Milestone: The ruler gives up their dynasty name.
+# Identity is now irrelevant.
+# ---------------------------------------------------------------
+amaranth.rank2 = {
+    type = character_event
+    title = amaranth.rank2.t
+    desc  = amaranth.rank2.desc
+    theme = learning
+
+    immediate = {
+        set_character_flag = ww_amaranth_milestone_name
+    }
+
+    option = {
+        name = amaranth.rank2.a   # "A name is a cage. I have outgrown its bars."
+        # Dynasty name is flavour-only; no mechanical title change
+        add_stress = -30
+        add_prestige = 150
+    }
+
+    option = {
+        name = amaranth.rank2.b   # "I keep the name. Names are doors."
+        # Either option completes the milestone. The choice is philosophical.
+        add_stress = -20
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# amaranth.apotheosis  THE GODHEAD'S QUESTION
+# The Godhead's dream pauses, briefly, to ask the ruler a
+# question. The answer — any answer — completes the path.
+# ---------------------------------------------------------------
+amaranth.apotheosis = {
+    type = character_event
+    title = amaranth.apotheosis.t
+    desc  = amaranth.apotheosis.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_amaranth_active
+        var:ww_amaranth_rank >= 4
+        NOT = { has_character_flag = ww_amaranth_completed }
+    }
+
+    immediate = {
+        complete_path_amaranth = yes
+        set_character_flag = ww_amaranth_milestone_godhead
+    }
+
+    option = {
+        name = amaranth.apotheosis.a
+        # "Yes."
+        # No mechanical effect. The answer is the mechanic.
+        add_prestige = 500
+        add_piety = 500
+        add_stress = -100
+    }
+
+    option = {
+        name = amaranth.apotheosis.b
+        # "No."
+        # Same outcome. The Godhead asked; the I replied.
+        add_prestige = 500
+        add_piety = 500
+        add_stress = -100
+    }
+
+    option = {
+        name = amaranth.apotheosis.c
+        # "[The text does not continue in any direction you can follow.]"
+        # For the player who understands.
+        add_prestige = 500
+        add_piety = 500
+        add_stress = -100
+    }
+}
+
+# ---------------------------------------------------------------
+# amaranth.dreamer_court  YEARLY FLAVOR FOR AMARANTH HOLDERS
+# Each year, the ruler perceives their realm as a story
+# they are writing rather than living.
+# ---------------------------------------------------------------
+amaranth.dreamer_court = {
+    type = character_event
+    title = amaranth.dreamer_court.t
+    desc  = {
+        first_valid = {
+            triggered_desc = {
+                trigger = { has_variable = dreamer_desc_offset  var:dreamer_desc_offset >= 3 }
+                desc = amaranth.dreamer_court.desc_d
+            }
+            triggered_desc = {
+                trigger = { has_variable = dreamer_desc_offset  var:dreamer_desc_offset >= 2 }
+                desc = amaranth.dreamer_court.desc_c
+            }
+            triggered_desc = {
+                trigger = { has_variable = dreamer_desc_offset  var:dreamer_desc_offset >= 1 }
+                desc = amaranth.dreamer_court.desc_b
+            }
+            desc = amaranth.dreamer_court.desc_a
+        }
+    }
+    theme = learning
+
+    trigger = {
+        has_trait = amaranth_achieved
+    }
+
+    immediate = {
+        if = {
+            limit = { has_variable = dreamer_desc_offset }
+            if = {
+                limit = { var:dreamer_desc_offset >= 3 }
+                set_variable = { name = dreamer_desc_offset value = 0 }
+            }
+            else = {
+                change_variable = { name = dreamer_desc_offset add = 1 }
+            }
+        }
+        else = {
+            set_variable = { name = dreamer_desc_offset value = 0 }
+        }
+    }
+
+    option = {
+        name = amaranth.dreamer_court.a   # "Yes. I wrote this part."
+        add_stress = -10
+        add_prestige = 20
+    }
+}

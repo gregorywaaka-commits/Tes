@@ -1,0 +1,389 @@
+# =============================================================
+#  Great War & White-Gold Concordat — Events
+#  Namespace: great_war
+#  File: mod/events/great_war_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  great_war.000  Hidden yearly — detects 4E 171; fires chain for
+#                 Imperial / Cyrodiilic rulers
+#  great_war.001  "The Thalmor Ultimatum" — Dominion demands compliance
+#  great_war.002  "The City Burns" — Imperial City falls to the Dominion
+#  great_war.003  "The Red Ring" — Mede's counterattack; retake the City
+#  great_war.004  "The White-Gold Concordat" — the peace terms arrive
+#  great_war.005  "Hammerfell Says No" — Redguard rulers reject the Concordat
+#  great_war.010  "Talos Shrine" — secret Talos worship discovered at court
+#
+#  HISTORICAL NOTE:
+#  The Great War (4E 171–175) was the defining conflict of the
+#  Fourth Era's early period.  The Aldmeri Dominion under its
+#  Thalmor leadership issued an ultimatum to Emperor Titus Mede II
+#  demanding the ban of Talos worship, the dissolution of the Blades,
+#  and the cession of southern Hammerfell.  The Empire refused;
+#  the Dominion invaded.  After four years of brutal fighting,
+#  including the sack of the Imperial City in 4E 174, the Battle
+#  of the Red Ring in 4E 175 broke the Dominion's main southern
+#  army.  The White-Gold Concordat that followed met almost every
+#  Thalmor demand — a peace that the Dominion could frame as victory
+#  and that the Empire quietly knew was defeat.
+#  Sources: UESP Lore:Great War; "The Great War" by Legate Justianus
+#  Quintius; ESV:Skyrim lore texts.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/great_war_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/great_war_traits.txt
+#      → great_war_veteran, white_gold_concordat_signer,
+#        talos_secret_devotee, stros_mkai_defender
+# =============================================================
+
+namespace = great_war
+
+# ---------------------------------------------------------------
+# great_war.000  The Great War Begins
+# A hidden yearly event that detects when the historical window
+# for the Great War opens (4E 171).  Fires the ultimatum event
+# for Imperial and Cyrodiilic rulers, and schedules the later
+# stages of the conflict.
+# ---------------------------------------------------------------
+great_war.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        current_date >= 4.171.1.1
+        current_date <= 4.172.1.1
+        NOT = { global_var:great_war_triggered = 1 }
+        OR = {
+            has_culture = imperial_culture
+            has_culture = cyrodiilic_culture
+            has_culture = redguard_culture
+        }
+    }
+
+    immediate = {
+        set_global_variable = { name = great_war_triggered value = 1 }
+        every_ruler = {
+            limit = {
+                OR = {
+                    has_culture = imperial_culture
+                    has_culture = cyrodiilic_culture
+                }
+            }
+            trigger_event = { id = great_war.001 days = 30 }
+        }
+        # Schedule the City's fall
+        every_ruler = {
+            limit = {
+                OR = {
+                    has_culture = imperial_culture
+                    has_culture = cyrodiilic_culture
+                }
+            }
+            trigger_event = { id = great_war.002 years = 3 }
+        }
+        # Schedule the Red Ring
+        every_ruler = {
+            limit = {
+                OR = {
+                    has_culture = imperial_culture
+                    has_culture = cyrodiilic_culture
+                }
+            }
+            trigger_event = { id = great_war.003 years = 4 }
+        }
+        # Schedule the Concordat
+        every_ruler = {
+            limit = {
+                OR = {
+                    has_culture = imperial_culture
+                    has_culture = cyrodiilic_culture
+                }
+            }
+            trigger_event = { id = great_war.004 years = 4 days = 180 }
+        }
+        # Schedule Hammerfell option for Redguard rulers
+        every_ruler = {
+            limit = {
+                has_culture = redguard_culture
+            }
+            trigger_event = { id = great_war.005 years = 4 days = 200 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# great_war.001  The Thalmor Ultimatum
+# The Aldmeri Dominion has delivered its demands to the Empire.
+# They are not negotiating.  They are announcing.  Three clauses:
+# ban Talos worship, dissolve the Blades, cede southern Hammerfell.
+# The silence in the throne room is very loud.
+# ---------------------------------------------------------------
+great_war.001 = {
+    type = character_event
+    title = great_war.001.t
+    desc  = great_war.001.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = fear
+    }
+
+    option = {
+        name = great_war.001.a   # "The Empire does not bow to ultimatums. Prepare for war."
+        add_prestige = 200
+        add_stress = 20
+        add_character_modifier = {
+            modifier = great_war_defiant_stance
+            days = 1825
+        }
+    }
+
+    option = {
+        name = great_war.001.b   # "We can negotiate terms. Give them something to gain more time."
+        add_prestige = -100
+        add_stress = 15
+        add_gold = -200
+    }
+
+    option = {
+        name = great_war.001.c   # "The Concordat's terms are severe, but war with the Dominion could destroy us."
+        trigger = { diplomacy >= 12 }
+        add_prestige = -200
+        add_stress = 30
+        add_character_modifier = {
+            modifier = great_war_concordat_negotiator
+            days = 1825
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# great_war.002  The City Burns
+# The unthinkable has happened.  Aldmeri forces have broken through
+# the defences of the Imperial City; fires are visible from the
+# White-Gold Tower across the entire Nibenay Valley.  The Emperor
+# must choose: evacuate and live to fight again, or stand and
+# perhaps die with the City.
+# ---------------------------------------------------------------
+great_war.002 = {
+    type = character_event
+    title = great_war.002.t
+    desc  = great_war.002.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = fear
+    }
+
+    option = {
+        name = great_war.002.a   # "Evacuate. A living emperor commands a future army."
+        add_prestige = -300
+        add_stress = 40
+        add_character_modifier = {
+            modifier = great_war_exile_emperor
+            days = 730
+        }
+        trigger_event = { id = great_war.003 years = 1 }
+    }
+
+    option = {
+        name = great_war.002.b   # "I will not abandon this City. Make our stand in the streets."
+        trigger = { martial >= 12 }
+        add_prestige = 300
+        add_stress = 25
+        add_trait = great_war_veteran
+        add_character_modifier = {
+            modifier = great_war_siege_defender
+            days = 365
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# great_war.003  The Red Ring
+# Titus Mede II's audacious counterattack: three Imperial armies
+# converging on the Imperial City simultaneously, encircling the
+# Aldmeri forces in the Red Ring formation.  The Dominion's main
+# southern army was destroyed.  The City was retaken.  This was
+# the moment that made the White-Gold Concordat possible — not a
+# victory, exactly, but the end of defeat.
+# ---------------------------------------------------------------
+great_war.003 = {
+    type = character_event
+    title = great_war.003.t
+    desc  = great_war.003.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = rage
+    }
+
+    option = {
+        name = great_war.003.a   # "I ride with the Emperor. We retake the City or we die in the attempt."
+        add_prestige = 500
+        add_stress = 20
+        add_trait = great_war_veteran
+        add_martial_skill = 1
+    }
+
+    option = {
+        name = great_war.003.b   # "Hold the flanks. Let the main thrust go in; we protect the supply lines."
+        add_prestige = 200
+        add_stress = 10
+        add_character_modifier = {
+            modifier = great_war_prepared_defenses
+            days = 1095
+        }
+    }
+
+    option = {
+        name = great_war.003.c   # "Wait. The battle's outcome will determine our next move."
+        add_prestige = -100
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# great_war.004  The White-Gold Concordat
+# The peace terms have arrived.  They are almost exactly the Thalmor
+# ultimatum from four years ago, dressed in the language of
+# negotiation.  Talos worship banned.  The Blades to be disbanded.
+# Southern Hammerfell ceded.  Thalmor Justiciars permitted access to
+# Imperial territory.  Sign this, and the war ends.  Refuse, and
+# the Empire fights on against a Dominion that, despite the Red Ring,
+# has deep reserves.
+# ---------------------------------------------------------------
+great_war.004 = {
+    type = character_event
+    title = great_war.004.t
+    desc  = great_war.004.desc
+    theme = diplomacy
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    option = {
+        name = great_war.004.a   # "Sign it. The Empire needs time to recover. Peace is a weapon too."
+        add_prestige = -400
+        add_stress = 50
+        add_trait = white_gold_concordat_signer
+        add_character_modifier = {
+            modifier = great_war_concordat_signed
+            days = 3650
+        }
+    }
+
+    option = {
+        name = great_war.004.b   # "Refuse. We did not fight the Red Ring to kneel at a treaty table."
+        trigger = { martial >= 14 }
+        add_prestige = 300
+        add_stress = 30
+        add_character_modifier = {
+            modifier = great_war_defiant_stance
+            days = 3650
+        }
+    }
+
+    option = {
+        name = great_war.004.c   # "Seek to amend the Talos clause. Everything else we can accept."
+        trigger = { diplomacy >= 14 }
+        add_prestige = -200
+        add_stress = 35
+        add_gold = -500
+        add_character_modifier = {
+            modifier = great_war_concordat_negotiator
+            days = 3650
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# great_war.005  Hammerfell Says No
+# The White-Gold Concordat was signed without Hammerfell's consent
+# and against its interests.  The Redguard were given away.  The
+# Crowns and Forebears have stopped fighting each other long enough
+# to agree on one thing: neither faction will submit.  This is the
+# moment when Hammerfell's warriors chose independence over peace.
+# ---------------------------------------------------------------
+great_war.005 = {
+    type = character_event
+    title = great_war.005.t
+    desc  = great_war.005.desc
+    theme = war
+    left_portrait = {
+        character = root
+        animation = rage
+    }
+
+    option = {
+        name = great_war.005.a   # "Hammerfell is not for sale. We fight on — alone if we must."
+        add_prestige = 400
+        add_stress = 20
+        add_trait = stros_mkai_defender
+        add_character_modifier = {
+            modifier = great_war_hammerfell_defiance
+            days = 3650
+        }
+    }
+
+    option = {
+        name = great_war.005.b   # "The Empire abandoned us. We must negotiate our own terms."
+        trigger = { diplomacy >= 10 }
+        add_prestige = 100
+        add_stress = 15
+        add_gold = -300
+    }
+}
+
+# ---------------------------------------------------------------
+# great_war.010  Talos Shrine Discovered
+# Someone in your court has been maintaining a hidden shrine to
+# Talos — a rough thing, carved from hearthstone, tucked behind
+# a false panel in the cellar.  The discovery is awkward: the
+# Concordat forbids this.  Thalmor eyes are watching.  But the
+# person who built it is someone you know, and their faith is real.
+# ---------------------------------------------------------------
+great_war.010 = {
+    type = character_event
+    title = great_war.010.t
+    desc  = great_war.010.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = worry
+    }
+
+    option = {
+        name = great_war.010.a   # "Protect them. Destroy the evidence before the Justiciars learn of it."
+        add_prestige = -100
+        add_stress = 20
+        add_piety = 50    # Talos's blessing for protecting the faithful
+        add_character_modifier = {
+            modifier = great_war_talos_protector
+            days = 1825
+        }
+    }
+
+    option = {
+        name = great_war.010.b   # "Expose them. We cannot afford Thalmor reprisals."
+        add_prestige = 100
+        add_stress = 40
+        add_piety = -100    # A betrayal of the faithful
+    }
+
+    option = {
+        name = great_war.010.c   # "Join them in prayer. We are all Talos's children here."
+        trigger = { piety >= 100 }
+        add_trait = talos_secret_devotee
+        add_prestige = -150
+        add_stress = -10
+    }
+}

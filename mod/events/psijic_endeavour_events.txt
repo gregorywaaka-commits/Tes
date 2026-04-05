@@ -1,0 +1,248 @@
+# =============================================================
+#  The Walking Ways — Path C: The Psijic Endeavour
+#  Namespace: psijic_endeavour
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  psijic_endeavour.intro       — Path chosen; the Old Ways call
+#  psijic_endeavour.rank1       — Seeking: silence found
+#  psijic_endeavour.rank2       — Striving: the advisors notice
+#  psijic_endeavour.rank3       — Threshold: time perception blurs
+#  psijic_endeavour.apotheosis  — The Endeavour complete
+#  psijic_endeavour.rewind      — The Rewind mechanic (once per reign)
+#  psijic_endeavour.silence_begin — Milestone: enter 180-day silence
+#
+#  LORE BASIS:
+#  ───────────
+#  The Psijic Order practices the "Old Ways" — magic predating
+#  the Mages Guild. The Endeavour is their philosophical framework
+#  for achieving a state of perception that transcends ordinary
+#  time. ESO Psijic quest line and Skyrim's Eye of Magnus both
+#  establish the Order's temporal perception abilities.
+#  [SOURCE: CANON — UESP Lore:Psijic Order; ESO Psijic storyline]
+# =============================================================
+
+namespace = psijic_endeavour
+
+# ---------------------------------------------------------------
+# psijic_endeavour.intro  THE OLD WAYS CALL
+# ---------------------------------------------------------------
+psijic_endeavour.intro = {
+    type = character_event
+    title = psijic_endeavour.intro.t
+    desc  = psijic_endeavour.intro.desc
+    theme = learning
+
+    option = {
+        name = psijic_endeavour.intro.a   # "Not learned. Remembered."
+        add_stress = -5
+        set_character_flag = psijic_contact
+        add_character_modifier = {
+            modifier = ww_path_psijic_active
+            years = 100
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic_endeavour.rank1  SEEKING — THE SILENCE FOUND
+# ---------------------------------------------------------------
+psijic_endeavour.rank1 = {
+    type = character_event
+    title = psijic_endeavour.rank1.t
+    desc  = psijic_endeavour.rank1.desc
+    theme = learning
+
+    option = {
+        name = psijic_endeavour.rank1.a
+        add_learning = 1
+        add_stress = -15
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic_endeavour.rank2  STRIVING — THE ADVISORS NOTICE
+# "The advisors have begun to notice that you sometimes
+# answer their questions before they ask them."
+# ---------------------------------------------------------------
+psijic_endeavour.rank2 = {
+    type = character_event
+    title = psijic_endeavour.rank2.t
+    desc  = psijic_endeavour.rank2.desc
+    theme = learning
+
+    option = {
+        name = psijic_endeavour.rank2.a   # Share with trusted courtier
+        # Gain an intellectual friend
+        random_courtier = {
+            limit = {
+                opinion = { target = root value >= 40 }
+                learning >= 14
+            }
+            add_opinion = { modifier = friend_opinion target = root years = 5 }
+            root = { add_opinion = { modifier = friend_opinion target = prev years = 5 } }
+        }
+        add_stress = -10
+    }
+
+    option = {
+        name = psijic_endeavour.rank2.b   # Keep entirely private
+        add_stress = -20
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic_endeavour.rank3  THRESHOLD — TIME PERCEPTION BLURS
+# ---------------------------------------------------------------
+psijic_endeavour.rank3 = {
+    type = character_event
+    title = psijic_endeavour.rank3.t
+    desc  = psijic_endeavour.rank3.desc
+    theme = learning
+
+    option = {
+        name = psijic_endeavour.rank3.a
+        add_prestige = 150
+        add_learning = 1
+        add_stress = -20
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic_endeavour.apotheosis  THE ENDEAVOUR COMPLETE
+# ---------------------------------------------------------------
+psijic_endeavour.apotheosis = {
+    type = character_event
+    title = psijic_endeavour.apotheosis.t
+    desc  = psijic_endeavour.apotheosis.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_psijic_endeavour_active
+        var:ww_psijic_endeavour_rank >= 4
+        NOT = { has_character_flag = ww_psijic_endeavour_completed }
+    }
+
+    immediate = {
+        complete_path_psijic_endeavour = yes
+        # Set rewind modifier — available once per reign
+        add_character_modifier = {
+            modifier = psijic_rewind_ready
+            years = -1   # permanent until used
+        }
+    }
+
+    option = {
+        name = psijic_endeavour.apotheosis.a   # "I remember what I have always known."
+        add_prestige = 200
+        add_piety = 100
+        add_stress = -50
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic_endeavour.rewind  THE REWIND
+# Once per reign. The adept perceives a moment before it
+# happens and acts differently.
+# ---------------------------------------------------------------
+psijic_endeavour.rewind = {
+    type = character_event
+    title = psijic_endeavour.rewind.t
+    desc  = psijic_endeavour.rewind.desc
+    theme = learning
+
+    option = {
+        name = psijic_endeavour.rewind.a   # "I saw it coming."
+        add_stress = -30
+        add_prestige = 100
+        # The mechanical "undo" is represented as a personal victory
+        # against whatever crisis prompted the use.
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic_endeavour.silence_begin  MILESTONE: THE SILENCE FOUND
+# Player triggers 180-day study period.
+# ---------------------------------------------------------------
+psijic_endeavour.silence_begin = {
+    type = character_event
+    title = psijic_endeavour.silence.t
+    desc  = psijic_endeavour.silence.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_psijic_endeavour_active
+        NOT = { has_character_flag = ww_psijic_milestone_silence }
+        NOT = { has_character_flag = ww_psijic_silence_pending }
+    }
+
+    option = {
+        name = psijic_endeavour.silence.a   # Enter 180 days of silence
+        add_gold = -20
+        add_stress = 5
+        set_character_flag = {
+            flag = ww_psijic_silence_pending
+            days = 180
+        }
+        trigger_event = { id = psijic_endeavour.silence_complete days = 180 }
+    }
+
+    option = {
+        name = psijic_endeavour.silence.b   # Not now
+    }
+}
+
+psijic_endeavour.silence_complete = {
+    type = character_event
+    hidden = yes
+    trigger = { has_character_flag = ww_psijic_silence_pending }
+    immediate = {
+        remove_character_flag = ww_psijic_silence_pending
+        set_character_flag = ww_psijic_milestone_silence
+    }
+    option = { name = "OK" }
+}
+
+# ---------------------------------------------------------------
+# psijic_endeavour.milestone_mastery_check  YEARLY CHECK
+# learning >= 22 sets mastery milestone.
+# ---------------------------------------------------------------
+psijic_endeavour.milestone_mastery_check = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_character_flag = ww_psijic_endeavour_active
+        NOT = { has_character_flag = ww_psijic_milestone_mastery }
+        learning >= 22
+    }
+
+    immediate = {
+        set_character_flag = ww_psijic_milestone_mastery
+    }
+
+    option = { name = "OK" }
+}
+
+# ---------------------------------------------------------------
+# psijic_endeavour.milestone_grief_check  YEARLY CHECK
+# Age 40+ without stress trait 'grief' sets milestone.
+# ---------------------------------------------------------------
+psijic_endeavour.milestone_grief_check = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_character_flag = ww_psijic_endeavour_active
+        NOT = { has_character_flag = ww_psijic_milestone_grief }
+        age >= 40
+        NOT = { has_trait = grief }
+    }
+
+    immediate = {
+        set_character_flag = ww_psijic_milestone_grief
+    }
+
+    option = { name = "OK" }
+}

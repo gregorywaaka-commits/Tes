@@ -40,15 +40,28 @@
 #
 #  DEFINES — identifiers this file exports to the mod:
 #    • artifact_corruption
+#    • azuras_star_bearer
+#    • black_star_bearer
+#    • dawnbreaker_bearer
 #    • ebony_blade_cursed
+#    • masque_clavicus_vile_bearer
+#    • mace_of_molag_bal_bearer
 #    • mehrunes_razor_bearer
+#    • oghma_infinium_reader
 #    • ring_of_namira_bearer
+#    • sanguine_rose_wielder
 #    • skull_of_corruption_bearer
+#    • spellbreaker_bearer
+#    • staff_of_magnus_bearer
 #    • wabbajack_wielder
 #
 #  REFERENCED BY — other files that import this file's definitions:
 #    events/daedric_artifacts_events.txt
-#      → artifact_corruption, ebony_blade_cursed, mehrunes_razor_bearer, ring_of_namira_bearer, skull_of_corruption_bearer, wabbajack_wielder
+#      → artifact_corruption, azuras_star_bearer, black_star_bearer, dawnbreaker_bearer,
+#        ebony_blade_cursed, masque_clavicus_vile_bearer, mace_of_molag_bal_bearer,
+#        mehrunes_razor_bearer, oghma_infinium_reader, ring_of_namira_bearer,
+#        sanguine_rose_wielder, skull_of_corruption_bearer, spellbreaker_bearer,
+#        staff_of_magnus_bearer, wabbajack_wielder
 # =============================================================
 
 mehrunes_razor_bearer = {
@@ -185,4 +198,232 @@ artifact_corruption = {
     stress_gain_mult = 0.15             # The Daedric presence frays the nerves
 
     flag = artifact_corruption
+}
+
+# ---------------------------------------------------------------
+#  OGHMA INFINIUM READER
+#  Hermaeus Mora's forbidden tome of absolute knowledge.
+#  Reading it grants mastery of every art and discipline, but
+#  the obsession it instils never fades — the Prince of
+#  Forbidden Knowledge does not release his readers.
+# ---------------------------------------------------------------
+oghma_infinium_reader = {
+    category = fame
+
+    learning    = 5
+    diplomacy   = 2
+    martial     = 2
+    stewardship = 2
+    intrigue    = 2
+    prowess     = 2
+
+    monthly_prestige_gain_mult = 0.20   # Famed as a scholar of forbidden depths
+    stress_gain_mult           = 0.20   # The Oghma's hunger is a constant torment
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: oghma_infinium
+    #   Slot: trinket / off-hand tome
+    #   Special effect: all skills +2 on equip; yearly obsession event chain
+    #   Lore source: UESP Lore:Oghma Infinium; Hermaeus Mora's artifact
+    #   See: ARTIFACTS_TODO.md
+
+    flag = oghma_infinium_reader
+}
+
+# ---------------------------------------------------------------
+#  AZURA'S STAR BEARER
+#  The perfect soulgem of the Twilight Queen.  It cannot be
+#  broken, and it captures the essence of the fallen for reuse.
+#  Azura watches those who carry her gift with particular care.
+# ---------------------------------------------------------------
+azuras_star_bearer = {
+    category = fame
+
+    intrigue = 2
+    learning = 2
+
+    monthly_prestige_gain_mult = 0.15   # The Star marks its bearer as touched by Azura
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: azuras_star
+    #   Slot: trinket / gem
+    #   Special effect: soul-capture opportunity event; Azura piety synergy
+    #   Lore source: UESP Lore:Azura's Star; Azura's artifact
+    #   See: ARTIFACTS_TODO.md
+
+    flag = azuras_star_bearer
+}
+
+# ---------------------------------------------------------------
+#  BLACK STAR BEARER
+#  Azura's Star corrupted by the necromancer Malyn Varen.
+#  The silver has gone dark; it reaches now for living souls.
+#  More powerful than Azura intended, and colder, and hungry.
+# ---------------------------------------------------------------
+black_star_bearer = {
+    category = fame
+
+    intrigue = 3
+    learning = 2
+
+    monthly_prestige_gain_mult = 0.15   # Feared as the bearer of a soul-hungry gem
+    health                     = -0.20  # Malyn's corruption gnaws at body and soul
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: black_star
+    #   Slot: trinket / gem
+    #   Special effect: soul-capture variant (captures living); corruption cost
+    #   Lore source: UESP Lore:The Black Star; Malyn Varen's corruption of Azura's artifact
+    #   See: ARTIFACTS_TODO.md
+
+    flag = black_star_bearer
+}
+
+# ---------------------------------------------------------------
+#  SANGUINE ROSE WIELDER
+#  Sanguine's conjuring staff, carved in the shape of a rose
+#  that does not wilt.  It summons a Dremora warrior from
+#  Oblivion — but the Dremora arrives with its own expectations.
+# ---------------------------------------------------------------
+sanguine_rose_wielder = {
+    category = fame
+
+    intrigue = 3
+    prowess  = 2
+
+    monthly_prestige_gain_mult = 0.15   # Sanguine's gift makes one a dangerous guest
+    stress_gain_mult           = -0.05  # The Prince of Debauchery makes care slide off
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: sanguine_rose
+    #   Slot: weapon (staff)
+    #   Special effect: periodic Dremora summon; Sanguine's debt event chain
+    #   Lore source: UESP Lore:Sanguine Rose; Sanguine's artifact
+    #   See: ARTIFACTS_TODO.md
+
+    flag = sanguine_rose_wielder
+}
+
+# ---------------------------------------------------------------
+#  MACE OF MOLAG BAL BEARER
+#  The soul-ripping mace of Molag Bal, King of Rape, Father
+#  of Vampires.  Its bearer earns fear throughout every court
+#  they visit.  Molag Bal's full gift waits at the journey's end.
+# ---------------------------------------------------------------
+mace_of_molag_bal_bearer = {
+    category = fame
+
+    prowess  = 4
+    martial  = 2
+
+    monthly_prestige_gain_mult = 0.20   # The soul-ripper's reputation precedes them
+    dread_gain_mult            = 0.15   # Nearby courts know what that mace does to souls
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: mace_of_molag_bal
+    #   Slot: weapon (mace)
+    #   Special effect: intimidation aura; vampirism pull event chain
+    #   Lore source: UESP Lore:Mace of Molag Bal; Molag Bal's artifact
+    #   See: ARTIFACTS_TODO.md
+
+    flag = mace_of_molag_bal_bearer
+}
+
+# ---------------------------------------------------------------
+#  MASQUE OF CLAVICUS VILE BEARER
+#  The golden face of the Prince of Bargains and Trickery,
+#  made into a wearable mask.  Courts adore whoever wears it.
+#  Clavicus's will flows through the wearer's every smile.
+# ---------------------------------------------------------------
+masque_clavicus_vile_bearer = {
+    category = fame
+
+    diplomacy = 5
+
+    monthly_prestige_gain_mult = 0.25   # The mask makes courts adore its wearer
+    stress_gain_mult           = 0.10   # Clavicus's will subtly supplants the bearer's own
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: masque_of_clavicus_vile
+    #   Slot: head / mask
+    #   Special effect: diplomacy bonus; Clavicus's bargain demand events
+    #   Lore source: UESP Lore:Masque of Clavicus Vile; Clavicus Vile's artifact
+    #   See: ARTIFACTS_TODO.md
+
+    flag = masque_clavicus_vile_bearer
+}
+
+# ---------------------------------------------------------------
+#  SPELLBREAKER BEARER
+#  Peryite's artifact: an ancient Dwemer-forged tower shield
+#  that wards against magic.  Every spell that strikes it is
+#  dissipated; every disease falters at the bearer's threshold.
+# ---------------------------------------------------------------
+spellbreaker_bearer = {
+    category = fame
+
+    prowess  = 3
+    learning = 2
+
+    monthly_prestige_gain_mult = 0.15   # The Dwemer-forged shield's bearer is well-known
+    health                     = 0.30   # Peryite's ward keeps the body whole
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: spellbreaker
+    #   Slot: shield / off-hand
+    #   Special effect: disease resistance; ward against magic modifier
+    #   Lore source: UESP Lore:Spellbreaker; Peryite's artifact (Dwemer origin)
+    #   See: ARTIFACTS_TODO.md
+
+    flag = spellbreaker_bearer
+}
+
+# ---------------------------------------------------------------
+#  DAWNBREAKER BEARER
+#  Meridia's blade of blazing golden light, found in sealed
+#  tombs.  It burns with radiance anathema to undead and
+#  Daedric spirits.  To carry it is to carry Meridia's purpose.
+# ---------------------------------------------------------------
+dawnbreaker_bearer = {
+    category = fame
+
+    martial  = 3
+    prowess  = 2
+
+    monthly_prestige_gain_mult = 0.15   # Meridia's champion is known in every court
+    monthly_piety_gain_mult    = 0.10   # Meridia's blessing flows through the bearer
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: dawnbreaker
+    #   Slot: weapon (sword)
+    #   Special effect: bonus vs undead traits; Meridia piety synergy
+    #   Lore source: UESP Lore:Dawnbreaker; Meridia's artifact
+    #   See: ARTIFACTS_TODO.md
+
+    flag = dawnbreaker_bearer
+}
+
+# ---------------------------------------------------------------
+#  STAFF OF MAGNUS BEARER
+#  The artifact of Magnus — the et'Ada who designed the world
+#  and fled before its completion.  The Staff drains all magic
+#  from the area; great mages feel it before they see it.
+# ---------------------------------------------------------------
+staff_of_magnus_bearer = {
+    category = fame
+
+    learning = 4
+    intrigue = 2
+
+    monthly_prestige_gain_mult = 0.15   # Magnus's staff marks its bearer as a great mage
+    stress_gain_mult           = 0.10   # The staff drains ambient magic, fraying nerves
+
+    # FUTURE ARTIFACT: Replace this trait with a CK3 legendary artifact.
+    #   artifact_id: staff_of_magnus
+    #   Slot: weapon (staff)
+    #   Special effect: magic drain aura; magnus_lore system synergy
+    #   Lore source: UESP Lore:Staff of Magnus; Magnus's artifact
+    #   See: ARTIFACTS_TODO.md
+
+    flag = staff_of_magnus_bearer
 }

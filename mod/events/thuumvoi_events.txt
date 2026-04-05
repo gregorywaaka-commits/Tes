@@ -165,6 +165,14 @@ thuumvoi.005 = {
         is_at_war = yes
     }
 
+    immediate = {
+        # Walking Ways integration — Talos milestone 1: using the Thu'um in battle
+        if = {
+            limit = { has_character_flag = ww_mantling_talos_active }
+            set_character_flag = ww_mantling_talos_milestone_shout
+        }
+    }
+
     option = {
         name = thuumvoi.005.a   # "FUS RO DAH.  The entire enemy line breaks."
         add_character_modifier = { modifier = thu_um_shout_cooldown days = 365 }

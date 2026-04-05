@@ -2,12 +2,34 @@
 #  Numidium / The Brass God — Events
 #  Namespace: numidium
 #
+#  ─────────────────────────────────────────────────────────────
+#  IMPORTANT DATE DISTINCTION — TWO NUMIDIUM ACTIVATIONS:
+#  ─────────────────────────────────────────────────────────────
+#  Numidium was activated TWICE in canon.  These must NOT be conflated:
+#
+#  1) 2E 896 — Tiber Septim activates Numidium to complete the
+#     unification of Tamriel.  This Dragon Break ends the Second Era
+#     and begins the Third Era.  In EK2 this is the end-state event.
+#     Fires when game approaches 2E 896.
+#     [CANON — UESP Lore:Numidium; Lore:Tiber Septim]
+#
+#  2) 3E 417 — The Warp in the West (TES II: Daggerfall).
+#     Multiple factions each use Numidium simultaneously; a Dragon Break
+#     resolves all six outcomes of Daggerfall as simultaneously true.
+#     This is numidium.010.  Fires at current_date >= 3.417.1.1.
+#     [CANON — TES II: Daggerfall; UESP Lore:Warp in the West]
+#
+#  numidium.010 = THE WARP IN THE WEST (3E 417 ONLY).
+#  The 2E 896 activation is a separate event that should be
+#  implemented as numidium.005 or handled in a distinct chain.
+#  ─────────────────────────────────────────────────────────────
+#
 #  SYSTEM OVERVIEW:
 #  ─────────────────
 #  • numidium.000 — hidden yearly: Dwemer scholar discovers Numidium refs
 #  • numidium.001 — "The Brass God Sleeps" — scholar finds Dwemer texts
 #  • numidium.002 — "The Mantella" — researcher learns the heart-gem exists
-#  • numidium.010 — "The Warp in the West" — CATASTROPHIC Dragon Break
+#  • numidium.010 — "The Warp in the West" — CATASTROPHIC Dragon Break (3E 417)
 #  • numidium.011 — "Time Fractures" — all rulers receive Dragon Break notice
 #
 #  KEY GLOBAL VARIABLES:

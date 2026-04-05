@@ -1,0 +1,279 @@
+# =============================================================
+#  Aetherium Forge Events
+#  Namespace: aetherium
+#  File: mod/events/aetherium_forge_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  aetherium.000  Yearly hidden trigger — attuned ruler with learning >= 14
+#  aetherium.001  "The Lost Forge" — clues to the Forge's location
+#  aetherium.002  "The Aetherium Wars" — old texts on the 1E 221–233 wars
+#  aetherium.003  "The Forge Fires" — the Forge is accessed; choose artifact
+#  aetherium.004  "The Aetherial Crown's Blessing" — Standing Stone attunement
+#  aetherium.005  "The Shield Banishes" — Shield expels an enemy spirit
+#  aetherium.006  "The Staff Commands" — Dwemer automatons emerge to serve
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEPENDS ON:
+#    common/traits/dwemer_ruins_traits.txt  → aetherium_attuned
+#    common/traits/aetherium_forge_traits.txt
+#      → aetherium_forge_master, aetherial_crown_bearer,
+#        aetherial_shield_bearer, aetherial_staff_bearer,
+#        aetherium_wars_heir
+#    common/decisions/aetherium_forge_decisions.txt → seek_aetherium_forge
+# =============================================================
+
+namespace = aetherium
+
+# ---------------------------------------------------------------
+# aetherium.000  The Crystal Speaks
+# Hidden yearly trigger: an aetherium_attuned ruler with learning >= 14
+# begins to hear the crystal's resonance point toward its source.
+# Unlocks the seek_aetherium_forge decision panel.
+# ---------------------------------------------------------------
+aetherium.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_trait = aetherium_attuned
+        learning  >= 14
+        NOT = { has_trait = aetherium_forge_master }
+        NOT = { has_character_flag = aetherium_forge_quest_active }
+        NOT = { has_character_flag = aetherium_forge_discovered }
+    }
+
+    immediate = {
+        set_character_flag = { flag = aetherium_forge_discovered days = 3650 }
+        trigger_event = { id = aetherium.001 days = 7 }
+    }
+}
+
+# ---------------------------------------------------------------
+# aetherium.001  The Lost Forge
+# The crystal resonance leads to references of the ancient Forge.
+# Options: pursue actively, delegate to scholars, or ignore.
+# ---------------------------------------------------------------
+aetherium.001 = {
+    type = character_event
+    title = aetherium.001.t
+    desc  = aetherium.001.desc
+    theme = learning
+
+    option = {
+        name = aetherium.001.a   # "I will follow this resonance myself."
+        add_prestige = 50
+        set_character_flag = { flag = aetherium_pursuing_forge days = 365 }
+        trigger_event = { id = aetherium.002 days = 30 }
+    }
+
+    option = {
+        name = aetherium.001.b   # "Send my scholars to trace this further."
+        add_gold = -50
+        trigger_event = { id = aetherium.002 days = 60 }
+    }
+
+    option = {
+        name = aetherium.001.c   # "The Dwemer kept it hidden for reason — leave it."
+        add_stress = -5
+        # The character flag expires naturally; decision remains available
+    }
+}
+
+# ---------------------------------------------------------------
+# aetherium.002  The Aetherium Wars
+# Old texts surface describing the war fought over the four mines.
+# The player chooses which faction's approach to study — military,
+# scholarly, or the neutral faction that ultimately forged the Crest.
+# Grants aetherium_wars_heir if not already held.
+# ---------------------------------------------------------------
+aetherium.002 = {
+    type = character_event
+    title = aetherium.002.t
+    desc  = aetherium.002.desc
+    theme = learning
+
+    option = {
+        name = aetherium.002.a   # "Study the military campaigns — the wars themselves."
+        add_martial   = 1
+        add_prestige  = 75
+        if = {
+            limit = { NOT = { has_trait = aetherium_wars_heir } }
+            add_trait = aetherium_wars_heir
+        }
+        trigger_event = { id = aetherium.003 days = 45 }
+    }
+
+    option = {
+        name = aetherium.002.b   # "Study the scholars who mapped the mines."
+        add_learning = 1
+        if = {
+            limit = { NOT = { has_trait = aetherium_wars_heir } }
+            add_trait = aetherium_wars_heir
+        }
+        trigger_event = { id = aetherium.003 days = 45 }
+    }
+
+    option = {
+        name = aetherium.002.c   # "Study the craftsmen who finally reached the Forge."
+        add_stewardship = 1
+        if = {
+            limit = { NOT = { has_trait = aetherium_wars_heir } }
+            add_trait = aetherium_wars_heir
+        }
+        trigger_event = { id = aetherium.003 days = 45 }
+    }
+}
+
+# ---------------------------------------------------------------
+# aetherium.003  The Forge Fires
+# The Aetherium Forge beneath Bthalft is reached. Its Aetherium fires
+# still burn after four thousand years. The player chooses which
+# legendary artifact to forge from the gathered Aetherium shards.
+# Grants aetherium_forge_master + the chosen artifact bearer trait.
+# ---------------------------------------------------------------
+aetherium.003 = {
+    type = character_event
+    title = aetherium.003.t
+    desc  = aetherium.003.desc
+    theme = learning
+
+    option = {
+        name = aetherium.003.a   # "Forge the Aetherial Crown."
+        add_trait = aetherium_forge_master
+        add_trait = aetherial_crown_bearer
+        add_prestige = 400
+        clr_character_flag = aetherium_forge_quest_active
+        trigger_event = { id = aetherium.004 days = 14 }
+    }
+
+    option = {
+        name = aetherium.003.b   # "Forge the Aetherial Shield."
+        add_trait = aetherium_forge_master
+        add_trait = aetherial_shield_bearer
+        add_prestige = 400
+        clr_character_flag = aetherium_forge_quest_active
+        trigger_event = { id = aetherium.005 days = 30 }
+    }
+
+    option = {
+        name = aetherium.003.c   # "Forge the Aetherial Staff."
+        add_trait = aetherium_forge_master
+        add_trait = aetherial_staff_bearer
+        add_prestige = 400
+        clr_character_flag = aetherium_forge_quest_active
+        trigger_event = { id = aetherium.006 days = 30 }
+    }
+
+    option = {
+        name = aetherium.003.d   # "Forge the Aetherium Crest — mark of mastery."
+        add_trait = aetherium_forge_master
+        add_prestige = 500
+        clr_character_flag = aetherium_forge_quest_active
+    }
+}
+
+# ---------------------------------------------------------------
+# aetherium.004  The Aetherial Crown's Blessing
+# The Crown activates fully for the first time. The bearer feels
+# the pull of the Standing Stones with new clarity — two boons
+# at once, where mortals can only bear one.
+# ---------------------------------------------------------------
+aetherium.004 = {
+    type = character_event
+    title = aetherium.004.t
+    desc  = aetherium.004.desc
+    theme = learning
+
+    trigger = {
+        has_trait = aetherial_crown_bearer
+    }
+
+    option = {
+        name = aetherium.004.a   # "The Stones... I hear them all at once."
+        add_piety    = 100
+        add_prestige = 100
+        add_character_modifier = {
+            modifier = aetherial_crown_resonance
+            days     = 365
+        }
+    }
+
+    option = {
+        name = aetherium.004.b   # "Two blessings where others bear one — I must use this wisely."
+        add_learning = 1
+        add_character_modifier = {
+            modifier = aetherial_crown_resonance
+            days     = 365
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# aetherium.005  The Shield Banishes
+# In the midst of an assassination attempt or spirit attack,
+# the Aetherial Shield blazes — and the attacker is expelled to Oblivion.
+# ---------------------------------------------------------------
+aetherium.005 = {
+    type = character_event
+    title = aetherium.005.t
+    desc  = aetherium.005.desc
+    theme = martial
+
+    trigger = {
+        has_trait = aetherial_shield_bearer
+    }
+
+    option = {
+        name = aetherium.005.a   # "The shield blazed white and they were simply... gone."
+        add_prestige = 200
+        add_character_modifier = {
+            modifier = aetherial_shield_reputation
+            days     = 730
+        }
+    }
+
+    option = {
+        name = aetherium.005.b   # "Oblivion took them. I will not mourn."
+        add_stress = -10
+        add_prestige = 150
+    }
+}
+
+# ---------------------------------------------------------------
+# aetherium.006  The Staff Commands
+# The Aetherial Staff is raised for the first time in open air.
+# Two Dwemer automatons — a Sphere and a Spider — emerge to serve.
+# ---------------------------------------------------------------
+aetherium.006 = {
+    type = character_event
+    title = aetherium.006.t
+    desc  = aetherium.006.desc
+    theme = learning
+
+    trigger = {
+        has_trait = aetherial_staff_bearer
+    }
+
+    option = {
+        name = aetherium.006.a   # "They are mine to command. What the Dwemer built, I have claimed."
+        add_prestige = 250
+        add_character_modifier = {
+            modifier = dwemer_automaton_retinue
+            days     = 730
+        }
+    }
+
+    option = {
+        name = aetherium.006.b   # "Set them to guard the approach to my hall."
+        add_character_modifier = {
+            modifier = dwemer_automaton_retinue
+            days     = 730
+        }
+        add_stewardship = 1
+    }
+}

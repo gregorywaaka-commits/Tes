@@ -2364,3 +2364,477 @@ almalexia_hands_blessing = {
     monthly_piety        = 2
     monthly_prestige     = 2
 }
+
+# =============================================================
+#  Daedric Artifacts — Extended Modifiers
+#  (Oghma Infinium, Azura's Star, Sanguine Rose,
+#   Mace of Molag Bal, Dawnbreaker)
+#  Defined here; used by mod/events/daedric_artifacts_events.txt
+# =============================================================
+
+# ---------------------------------------------------------------
+#  OGHMA KNOWLEDGE SURGE
+#  The Oghma Infinium floods its reader with all knowledge at
+#  once — an overwhelming burst of scholarship across every art.
+#  learning +4: every discipline suddenly clear.
+#  Duration: 365 days (the surge fades; the obsession remains).
+# ---------------------------------------------------------------
+oghma_knowledge_surge = {
+    learning                   = 4
+    monthly_prestige_gain_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  AZURA'S STAR SOUL-CHARGED
+#  The Star of Azura is full — a captured soul resonates within
+#  the gem, awaiting release or use.
+#  intrigue +2: the bearer can sense and leverage the trapped essence.
+#  Duration: 365 days (until the soul is spent or released).
+# ---------------------------------------------------------------
+azuras_star_soul_charged = {
+    intrigue                   = 2
+    monthly_prestige_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  SANGUINE ROSE DREMORA CONTRACT
+#  The Rose has bound a Dremora to the bearer's service under
+#  the laws of Oblivion.  The contract holds — for now.
+#  martial +2: the Dremora warrior reinforces the army.
+#  Duration: 730 days (2 years, or until contract is called in).
+# ---------------------------------------------------------------
+sanguine_rose_dremora_contract = {
+    martial                    = 2
+    monthly_prestige_gain_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  MACE OF MOLAG BAL INTIMIDATION
+#  Word has spread: this ruler carries the King of Rape's mace.
+#  Nearby rulers keep their distance.  Schemes feel less safe.
+#  dread_gain_mult +0.20: fear is the Mace's greatest weapon.
+#  Duration: 730 days (2 years — the stories spread and settle).
+# ---------------------------------------------------------------
+mace_molag_bal_intimidation = {
+    dread_gain_mult            = 0.20
+    monthly_prestige_gain_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  DAWNBREAKER BLESSED LIGHT
+#  Meridia's radiance shines through the bearer, purging the
+#  taint of undeath and disease from the surrounding area.
+#  health +0.50: Meridia's light is anathema to rot and disease.
+#  monthly_piety_gain_mult +0.10: the Lady of Infinite Energies blesses.
+#  Duration: 365 days (renewed through combat with undead).
+# ---------------------------------------------------------------
+dawnbreaker_blessed_light = {
+    health                     = 0.50
+    monthly_piety_gain_mult    = 0.10
+}
+
+# =============================================================
+#  BARROW EXPLORATION SYSTEM MODIFIERS
+#  Defined here; used by mod/events/barrow_events.txt
+#  and mod/common/decisions/barrow_decisions.txt
+# =============================================================
+
+barrow_expedition_active = {
+    martial              = 1
+    monthly_prestige     = 1
+}
+
+word_wall_resonance = {
+    learning             = 2
+    monthly_piety        = 1
+}
+
+# =============================================================
+#  BLACK BOOKS / APOCRYPHA SYSTEM MODIFIERS
+#  Defined here; used by mod/events/black_books_events.txt
+# =============================================================
+
+apocrypha_wandering = {
+    stress_gain_mult     = 0.20
+    learning             = 1
+}
+
+black_book_insight = {
+    learning             = 3
+    monthly_prestige     = 1
+}
+
+black_book_cunning = {
+    intrigue             = 3
+    monthly_prestige     = 1
+}
+
+# =============================================================
+#  PENITUS OCULATUS MODIFIERS
+#  Defined here; used by mod/events/penitus_oculatus_events.txt
+# =============================================================
+
+penitus_protection = {
+    intrigue             = 2
+    monthly_prestige     = 1
+}
+
+penitus_spy_network = {
+    intrigue             = 4
+    stewardship          = 2
+    monthly_prestige     = 2
+}
+
+# =============================================================
+#  THALMOR JUSTICIARS MODIFIERS
+#  Defined here; used by mod/events/thalmor_events.txt
+#  and mod/common/decisions/thalmor_decisions.txt
+# =============================================================
+
+thalmor_permitted_access = {
+    diplomacy            = 1        # Concordat compliance buys marginal Dominion goodwill
+    monthly_prestige     = -1       # Allowing Justiciars in your court is publicly humiliating
+}
+
+thalmor_delayed_access = {
+    intrigue             = 1
+    stress_gain_mult     = 0.05    # The legal manoeuvring is stressful
+}
+
+thalmor_underground_helper = {
+    monthly_piety        = 2        # Protecting Talos's faithful earns divine favour
+    monthly_prestige     = -1       # If discovered, reputation suffers
+}
+
+thalmor_double_game = {
+    intrigue             = 2
+    monthly_prestige     = 1
+}
+
+thalmor_resentment_stance = {
+    monthly_prestige     = 2
+    martial              = 1
+}
+
+talos_underground_shelter = {
+    monthly_piety        = 2
+    monthly_prestige     = 1
+}
+
+# =============================================================
+#  GREAT WAR MODIFIERS
+#  Defined here; used by mod/events/great_war_events.txt
+# =============================================================
+
+great_war_prepared_defenses = {
+    martial              = 2
+    monthly_prestige     = 1
+}
+
+great_war_concordat_signed = {
+    diplomacy            = 2
+    monthly_prestige     = -2      # The peace cost more than it gained
+}
+
+great_war_concordat_negotiator = {
+    diplomacy            = 3
+    learning             = 1
+}
+
+great_war_defiant_stance = {
+    martial              = 2
+    monthly_prestige     = 2
+}
+
+great_war_exile_emperor = {
+    stress_gain_mult     = 0.10
+    diplomacy            = 1
+}
+
+great_war_talos_protector = {
+    monthly_piety        = 2
+    monthly_prestige     = 1
+}
+
+great_war_siege_defender = {
+    martial              = 3
+    prowess              = 2
+}
+
+great_war_hammerfell_defiance = {
+    martial              = 2
+    monthly_prestige     = 3
+}
+
+# =============================================================
+#  JAGAR THARN / IMPERIAL SIMULACRUM MODIFIERS
+#  Defined here; used by mod/events/jagar_tharn_events.txt
+# =============================================================
+
+simulacrum_investigating = {
+    intrigue             = 2
+    stress_gain_mult     = 0.10    # The paranoia of investigating a deception runs deep
+}
+
+simulacrum_fragment_studied = {
+    learning             = 3
+    intrigue             = 1
+}
+
+simulacrum_aftermath_audit = {
+    stewardship          = 2
+    monthly_prestige     = 1
+}
+
+simulacrum_opportunist = {
+    intrigue             = 3
+    monthly_prestige     = 2
+}
+
+# =============================================================
+#  DAWNGUARD MODIFIERS
+#  Defined here; used by mod/events/dawnguard_events.txt
+# =============================================================
+
+dawnguard_training_program = {
+    martial              = 2
+    prowess              = 1
+}
+
+dawnguard_crossbow_training = {
+    martial              = 2
+    prowess              = 2
+}
+
+dawnguard_vampire_lore = {
+    intrigue             = 2
+    learning             = 1
+}
+
+dawnguard_volkihar_intelligence = {
+    intrigue             = 3
+    martial              = 1
+}
+
+dawnguard_merciful_hunter = {
+    diplomacy            = 2
+    monthly_piety        = 1
+}
+
+dawnguard_fortified_base = {
+    martial              = 2
+    monthly_prestige     = 2
+}
+
+dawnguard_expanded_armory = {
+    martial              = 3
+    prowess              = 1
+}
+
+dawnguard_cure_seeker = {
+    learning             = 2
+    stress_gain_mult     = 0.10    # The search for a cure creates internal tensions
+}
+
+dawnguard_declined_call = {
+    monthly_prestige     = -1
+}
+
+# =============================================================
+#  VIGILANTS OF STENDARR MODIFIERS
+#  Defined here; used by mod/events/vigilant_stendarr_events.txt
+# =============================================================
+
+vigilant_stendarr_blessed = {
+    monthly_piety        = 3
+    diplomacy            = 1
+}
+
+vigilant_anti_daedra_training = {
+    martial              = 2
+    monthly_piety        = 1
+}
+
+vigilant_hall_in_ashes = {
+    stress_gain_mult     = 0.10
+    monthly_prestige     = -1      # Failure to protect the Hall weighs heavily
+}
+
+vigilant_pragmatic_approach = {
+    intrigue             = 2
+    diplomacy            = 1
+}
+
+vigilant_artifact_retained = {
+    monthly_piety        = -1      # Vigilants frown on keeping Daedric items
+    intrigue             = 1
+}
+
+# =============================================================
+#  AETHERIUM FORGE MODIFIERS
+#  Defined here; used by mod/events/aetherium_forge_events.txt
+# =============================================================
+
+aetherial_crown_resonance = {
+    learning             = 3
+    monthly_piety        = 2
+}
+
+aetherial_shield_reputation = {
+    martial              = 2
+    monthly_prestige     = 2
+}
+
+dwemer_automaton_retinue = {
+    stewardship          = 2
+    martial              = 2
+}
+
+# =============================================================
+#  ALL FLAGS NAVY MODIFIERS
+#  Defined here; used by mod/events/all_flags_navy_events.txt
+# =============================================================
+
+thrassian_quarantine_active = {
+    stewardship          = -2
+    diplomacy            = -1
+    monthly_prestige     = -1
+}
+
+# =============================================================
+#  KAGRENAC'S AMBITION (ww_borrowed_divinity) MODIFIERS
+#  Defined here; used by mod/events/borrowed_divinity_events.txt
+#
+#  heart_starvation_modifier — Phase 2: reservoir empty; ascendant
+#    trait removed; character experiences the absence as a wound.
+#  heart_absorbed_modifier   — Route B failure: Heart absorbed the
+#    practitioner; severe permanent penalties.
+#  heart_overload            — Route A milestone 5A failure: the
+#    Tools failed; the draw inverted; character survives but scarred.
+#  consumed_another          — Permanent mark on a character who
+#    murdered another ascendant to drain their stored Heart power
+#    (the Almalexia Option).
+# =============================================================
+
+heart_starvation_modifier = {
+    learning             = -4
+    diplomacy            = -2
+    stress_gain_mult     = 0.40    # The absence is felt as a wound
+}
+
+heart_absorbed_modifier = {
+    intrigue             = -6
+    stress_gain_mult     = 1.00    # The Heart rearranged something fundamental
+}
+
+heart_overload = {
+    learning             = -4     # Applied as permanent stat loss via add_skill effect; modifier is the visible marker
+    stress_gain_mult     = 0.20
+}
+
+consumed_another = {
+    monthly_piety        = -2     # The act is not approved of
+    diplomacy            = -1
+}
+
+# =============================================================
+#  THE WALKING WAYS — PROGRESSION MODIFIERS
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ACTIVE PATH AURA MODIFIERS
+#  Applied when the rank variable advances to each stage.
+# ---------------------------------------------------------------
+
+ww_path_chim_active = {
+    learning             = 3
+    stress_gain_mult     = 0.10   # the expansion of CHIM is not comfortable
+}
+
+ww_path_mantling_active = {
+    prowess              = 2
+    monthly_prestige     = 2
+}
+
+ww_path_psijic_active = {
+    learning             = 2
+    stress_gain_mult     = -0.10
+}
+
+ww_path_enantiomorph_active = {
+    intrigue             = 3
+    diplomacy            = -2
+    dread_gain_mult      = 0.20
+}
+
+ww_path_amaranth_active = {
+    learning             = 1
+    diplomacy            = 1
+    martial              = 1
+    stewardship          = 1
+    intrigue             = 1
+    stress_gain_mult     = -0.30
+}
+
+# ---------------------------------------------------------------
+#  DAEDRIC MANTLE RISK MODIFIER
+#  Internal logic marker; no visible mechanical effect.
+# ---------------------------------------------------------------
+
+mantling_daedric_risk = {
+    # No displayed stat effects — used as a conditional check flag
+}
+
+# ---------------------------------------------------------------
+#  FAILURE STATE MODIFIER
+# ---------------------------------------------------------------
+
+enantiomorph_consumed_penalty = {
+    learning             = -5
+    intrigue             = -5
+    stress_gain_mult     = 0.40
+    monthly_prestige     = -3
+}
+
+# ---------------------------------------------------------------
+#  APEX MODIFIERS (applied at completion; some permanent)
+# ---------------------------------------------------------------
+
+amaranth_dreaming = {
+    stress_gain_mult     = -1.00   # zero stress — dreaming their own dream
+    monthly_piety        = 5
+    health               = 2.0
+}
+
+chim_sovereign_presence = {
+    dread_gain_mult      = 0.30
+    # opinion from scholar characters: +20 — applied via opinion modifier
+}
+
+talos_mantle_world_shift = {
+    monthly_prestige     = 5
+    # +20 opinion from Imperial-culture: applied via opinion modifier
+    # -30 from Thalmor agents: applied via opinion modifier on notify
+}
+
+arkay_mantle_deathsight = {
+    health               = 1.0    # additional stacking health on top of trait value
+    monthly_piety        = 3
+}
+
+psijic_rewind_ready = {
+    # Flavor indicator that the rewind decision is available.
+    # Removed when invoke_psijic_rewind decision is used.
+}
+
+# ---------------------------------------------------------------
+#  WORLD NOTIFICATION OPINION MODIFIERS
+# ---------------------------------------------------------------
+
+ww_thalmor_hostile_opinion = {
+    opinion              = -30
+}
+
+ww_pattern_wrong_opinion = {
+    opinion              = -20
+}

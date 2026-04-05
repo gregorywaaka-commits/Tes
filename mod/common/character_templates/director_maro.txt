@@ -1,0 +1,30 @@
+# =============================================================
+#  Commander Maro — Character Template
+#  File: mod/common/character_templates/director_maro.txt
+#
+#  USAGE:
+#  ──────
+#  Spawns Commander Maro, director of the Penitus Oculatus in
+#  4E 201 (TES V: Skyrim).  His son Gaius Maro was stationed
+#  at Solitude.  Maro orchestrated the destruction of Dark
+#  Brotherhood sanctuaries across the Empire.
+# =============================================================
+
+director_maro = {
+    name     = "Commander Maro"
+
+    culture  = cyrodiilic_culture
+    religion = eight_divines
+
+    trait = diligent
+    trait = patient
+    trait = just
+    trait = brave
+    trait = penitus_director
+
+    skill_diplomacy   = 14
+    skill_martial     = 12
+    skill_stewardship = 10
+    skill_intrigue    = 20
+    skill_learning    = 12
+}

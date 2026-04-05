@@ -1,0 +1,74 @@
+﻿l_english:
+
+ # =====================================================================
+ #  AETHERIUM FORGE & ARTIFACTS
+ # =====================================================================
+
+ # --- Decisions ---
+
+ seek_aetherium_forge: "Seek the Aetherium Forge"
+ seek_aetherium_forge_desc: "The Aetherium crystal that touched your mind has not grown quiet. It resonates — not outward but inward, toward a source. The ancient Dwemer city-states of Arkngthamz, Raldbthar, Bthalft, and Deep Folk Crossing went to war in the First Era over four Aetherium mines. At the heart of their conflict lay a single destination: the Aetherium Forge, buried beneath Bthalft, where raw crystal becomes legend. Your attunement is a map. You need only follow it."
+
+ # --- Events ---
+
+ aetherium.001.t: "The Lost Forge"
+ aetherium.001.desc: "The crystal fragment pressed against your skin has grown warm. In your scholar's chamber, surrounded by Dwemer rubbings and half-translated tonal notation, you find the reference you have been seeking: a passage describing a forge that runs on Aetherium fire itself, built not by craft but by resonance. The Dwemer called it the Forge. Four city-states bled for three generations to control the mines that fed it. And then they vanished — and the Forge was lost. Until now, perhaps. The resonance in your chest says: south and down. Into the old hills of Bthalft."
+ aetherium.001.a: "I will follow this resonance myself."
+ aetherium.001.b: "Send my scholars to trace this further."
+ aetherium.001.c: "The Dwemer kept it hidden for good reason — leave it."
+
+ aetherium.002.t: "The Aetherium Wars"
+ aetherium.002.desc: "The texts your expedition recovers from a sealed vault beneath the hills are extraordinary — a contemporary account of the Aetherium Wars (1E 221–233), written by a chronicler who served three of the four city-states in succession. The wars were not merely political. They were theological. Each faction believed the Forge was theirs by divine right, because each believed Aetherium itself — that pale blue mineral humming with Magnus-light — was sacred to their philosophy of creation. The military campaigns. The scholars who mapped the vein-paths. The craftsmen who finally reached the Forge when the warriors had exhausted one another. All three left records. Which legacy will you claim as your own?"
+ aetherium.002.a: "Study the military campaigns — the wars themselves."
+ aetherium.002.b: "Study the scholars who mapped the Aetherium veins."
+ aetherium.002.c: "Study the craftsmen who finally reached the Forge."
+
+ aetherium.003.t: "The Forge Fires"
+ aetherium.003.desc: "The chamber is vast beyond any ruin you have seen before: a cathedral of brass and pale blue fire, heat-shimmer distorting the far walls where Aetherium flows in molten channels carved by Dwemer hands four thousand years ago. The Forge burns. It has never stopped burning. At its heart, a crucible waits, and in your pack are the Aetherium shards your expedition assembled from the four old mine-sites. The Forge hums in recognition of what you carry. What you make here will be legendary. There is enough material for one artifact. Choose well — what is forged here cannot be unmade."
+ aetherium.003.a: "Forge the Aetherial Crown — to hold two blessings where others bear one."
+ aetherium.003.b: "Forge the Aetherial Shield — to banish enemies to Oblivion itself."
+ aetherium.003.c: "Forge the Aetherial Staff — to command Dwemer automatons as servants."
+ aetherium.003.d: "Forge the Aetherium Crest — mark of true mastery over the Forge."
+
+ aetherium.004.t: "The Aetherial Crown's Blessing"
+ aetherium.004.desc: "You place the Crown upon your head in the open air, away from the Forge's heat, and feel the Magnus lines of Nirn orient themselves around you. The Standing Stones — those ancient markers scattered across the land, each holding one thread of the Aedric gift — respond to the Crown's resonance. You feel two of them at once. Most mortals can sustain only one blessing. The Crown does not care. Its Aetherium frame holds the resonance perfectly, effortlessly, the way a great hall holds two fires without choosing between them. You understand now why the Dwemer Wars were fought over this material. What it makes is not merely powerful. It is impossible."
+ aetherium.004.a: "The Standing Stones... I hear them all at once."
+ aetherium.004.b: "Two blessings where others bear one — I must use this wisely."
+
+ aetherium.005.t: "The Shield Banishes"
+ aetherium.005.desc: "The attack comes at night — silent, measured, the way only spirits or trained killers move. You raise the Aetherial Shield on instinct more than thought, and when blade or claw meets its face the runes erupt in cold white light. The attacker freezes. Not from cold — from dislocation. The Aetherium binding-runes do not deflect. They redirect. One moment your attacker is in your chamber, the next they are simply not. The air where they stood smells faintly of Oblivion-gate: sulphur and nothing. No body. No blood. They are gone to wherever Oblivion keeps those it swallows. The Shield cools in your hand, patient and silent."
+ aetherium.005.a: "The Shield blazed white and they were simply... gone."
+ aetherium.005.b: "Oblivion took them. I will not mourn."
+
+ aetherium.006.t: "The Staff Commands"
+ aetherium.006.desc: "You raise the Aetherial Staff in the courtyard at dawn, following the notation carved into its handle — three motions, a spoken Dwemer command-phrase you spent three weeks learning to pronounce correctly. The air hums. From a distance of perhaps thirty paces, two shapes coalesce from the morning fog: a Dwemer Sphere, brass body unfolding to its full height, blade-arm extending; and a Dwemer Spider, eight legs finding purchase on the cobblestones with the careful precision of a thing that has never stumbled. They stop before you. They wait. The Dwemer are gone — but what they built was built to last. These constructs served their makers for four thousand years. Now they serve you."
+ aetherium.006.a: "They are mine to command. What the Dwemer built, I have claimed."
+ aetherium.006.b: "Set them to guard the approach to my hall."
+
+ # --- Traits ---
+
+ aetherium_forge_master: "Aetherium Forge Master"
+ aetherium_forge_master_desc: "This ruler has personally accessed and operated the Aetherium Forge beneath Bthalft — the ancient furnace that four Dwemer city-states fought the Aetherium Wars to control. They have walked where almost no living being has walked since the Dwemer vanished in the First Era."
+
+ aetherial_crown_bearer: "Aetherial Crown Bearer"
+ aetherial_crown_bearer_desc: "This ruler wears the Aetherial Crown forged at the ancient Dwemer Forge. The Crown's Aetherium frame resonates with Nirn's Magnus lines, allowing its bearer to hold two Standing Stone blessings simultaneously — an impossibility for unaugmented mortals."
+
+ aetherial_shield_bearer: "Aetherial Shield Bearer"
+ aetherial_shield_bearer_desc: "This ruler wields the Aetherial Shield, a Dwemer buckler whose face is etched with binding-runes that can banish struck enemies briefly to Oblivion. Spirits, assassins, and warriors who have faced it rarely speak of the experience twice."
+
+ aetherial_staff_bearer: "Aetherial Staff Bearer"
+ aetherial_staff_bearer_desc: "This ruler commands the Aetherial Staff — the Dwemer instrument that summons a Dwemer Sphere and Dwemer Spider as tireless automaton servitors. The staff marks its bearer as a true master of Dwemer animunculi."
+
+ aetherium_wars_heir: "Aetherium Wars Heir"
+ aetherium_wars_heir_desc: "This ruler claims descent from one of the four city-states that fought the Aetherium Wars (1E 221–233): Arkngthamz, Raldbthar, Bthalft, or Deep Folk Crossing. The legacy of those wars — glory and ruin in equal measure — shapes their understanding of power and sacrifice."
+
+ # --- Modifiers ---
+
+ aetherial_crown_resonance: "Aetherial Crown: Resonance Active"
+ aetherial_crown_resonance_desc: "The Aetherial Crown is fully attuned to the local Magnus lines. Two Standing Stone blessings flow simultaneously through its wearer, granting exceptional clarity of thought and spiritual fortitude."
+
+ aetherial_shield_reputation: "Aetherial Shield: Feared"
+ aetherial_shield_reputation_desc: "Word has spread of the banishment that occurred at this ruler's hand. Those who would strike against them in shadow think twice — Oblivion is a permanent destination."
+
+ dwemer_automaton_retinue: "Dwemer Automaton Retinue"
+ dwemer_automaton_retinue_desc: "A Dwemer Sphere and Dwemer Spider summoned by the Aetherial Staff serve this ruler as tireless automaton guardians. They do not sleep, do not defect, and do not fear."

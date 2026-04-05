@@ -1,0 +1,62 @@
+# =============================================================
+#  The Walking Ways — Amaranth Traits
+#  File: mod/common/traits/amaranth_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  amaranth_achieved  — Path E endgame apex. Hidden trait.
+#                       The dream is no longer theirs to live in.
+#                       They are dreaming a new one.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Amaranth is described in Kirkbride's Loveletter from
+#  the Fifth Era as the ultimate act: a CHIM-achieved being
+#  who achieves infinite dreaming — creating a new Aurbis
+#  entirely. Every universe exists because a previous being
+#  achieved the Amaranth. The ruler who reaches this does not
+#  become a god. They become something the Godhead once was.
+#  [SOURCE: MK SUPPLEMENTARY — Loveletter from the Fifth Era.
+#   NOT official game canon. Applied here as speculative lore.]
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES:
+#    • amaranth_achieved
+#
+#  REFERENCED BY:
+#    common/scripted_effects/walking_ways_effects.txt
+#    events/amaranth_events.txt
+# =============================================================
+
+# ---------------------------------------------------------------
+#  AMARANTH ACHIEVED
+#  The ruler is still here — but the "here" is changing.
+#  They do not rule the dream. They are dreaming their own.
+#  Stress does not reach them. Piety cannot measure them.
+#  They are not dead. But they are becoming something else.
+#  Hidden trait — visible only to the holder.
+# ---------------------------------------------------------------
+
+amaranth_achieved = {
+    category = fame
+
+    learning    = 10
+    diplomacy   = 5
+    stewardship = 5
+    martial     = 5
+    intrigue    = 5
+
+    health                        = 5.0    # beyond natural death's schedule
+    monthly_prestige              = 20
+    monthly_piety                 = 20
+    stress_gain_mult              = -1.00  # stress cannot reach someone dreaming their own dream
+
+    flag = amaranth_achieved
+
+    # This trait is not visible in the character's trait list to other rulers.
+    # They know something is different. They do not know what.
+}

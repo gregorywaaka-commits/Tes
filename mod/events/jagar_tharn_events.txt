@@ -1,0 +1,317 @@
+# =============================================================
+#  Jagar Tharn / Imperial Simulacrum — Events
+#  Namespace: jagar_tharn
+#  File: mod/events/jagar_tharn_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  jagar_tharn.000  Hidden trigger — fires at 3E 389 for the ruler
+#                   of Imperial City; initiates the Simulacrum arc
+#  jagar_tharn.001  "The Emperor Vanishes" — Uriel Septim VII
+#                   disappears; an impostor rules the Imperial City
+#  jagar_tharn.002  "The Staff Fragment" — a shard of the Staff of
+#                   Chaos surfaces in a ruin within the realm
+#  jagar_tharn.003  "The Impostor's Court" — rumours that the Emperor
+#                   is not who he seems; investigate or ignore
+#  jagar_tharn.004  "The Emperor Freed" — in 3E 399, Jagar Tharn's
+#                   decade-long deception collapses; Uriel returns
+#
+#  HISTORICAL NOTE:
+#  Jagar Tharn's Imperial Simulacrum (3E 389–399) was the defining
+#  political crisis of the Third Era's final century.  The Imperial
+#  Battlemage imprisoned the true Emperor using the Staff of Chaos,
+#  then ruled as a perfect magical duplicate for ten years.  The
+#  Simulacrum's existence was unknown to almost everyone — it was
+#  discovered only by Ria Silmane, Tharn's apprentice, who was
+#  murdered for the knowledge.  Her ghost guided the Arena protagonist
+#  to recover the Staff's eight fragments and free the Emperor.
+#  Sources: TES I: Arena; UESP Lore:Jagar Tharn;
+#  UESP Lore:Imperial Simulacrum.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/jagar_tharn_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/jagar_tharn_traits.txt
+#      → simulacrum_touched, staff_of_chaos_fragment
+# =============================================================
+
+namespace = jagar_tharn
+
+# ---------------------------------------------------------------
+# jagar_tharn.000  The Betrayal Begins
+# A hidden event that fires at 3E 389 for rulers near the Imperial
+# City.  Jagar Tharn's plot begins: the Emperor is imprisoned, the
+# Battlemage assumes his shape, and the Simulacrum era starts.
+# ---------------------------------------------------------------
+jagar_tharn.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        current_date >= 3.389.1.1
+        current_date <= 3.390.1.1
+        NOT = { global_var:simulacrum_active = 1 }
+        OR = {
+            has_culture = imperial_culture
+            has_culture = cyrodiilic_culture
+        }
+        any_held_county = {
+            geographical_region = world_cyrodiil
+        }
+    }
+
+    immediate = {
+        set_global_variable = { name = simulacrum_active value = 1 }
+        # Fire the main event for Cyrodiilic rulers
+        every_ruler = {
+            limit = {
+                OR = {
+                    has_culture = imperial_culture
+                    has_culture = cyrodiilic_culture
+                }
+            }
+            trigger_event = { id = jagar_tharn.001 days = 30 }
+        }
+        # Staff fragments appear across Tamriel — fire for all rulers
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                is_adult = yes
+            }
+            random = {
+                chance = 15    # Only some realms receive a fragment event
+                trigger_event = { id = jagar_tharn.002 years = 1 }
+            }
+        }
+        # Rumours spread — fire for rulers outside Cyrodiil
+        every_ruler = {
+            limit = {
+                is_landed = yes
+                NOT = {
+                    any_held_county = {
+                        geographical_region = world_cyrodiil
+                    }
+                }
+            }
+            trigger_event = { id = jagar_tharn.003 years = 3 }
+        }
+        # Schedule the resolution
+        every_ruler = {
+            limit = {
+                OR = {
+                    has_culture = imperial_culture
+                    has_culture = cyrodiilic_culture
+                }
+            }
+            trigger_event = { id = jagar_tharn.004 years = 10 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# jagar_tharn.001  The Emperor Vanishes
+# Uriel Septim VII has not been seen in public for three months.
+# His court is functioning; his correspondence continues; his
+# Battlemage Jagar Tharn speaks with his voice and makes his
+# decisions and sits in his chair.  The Empire does not know that
+# the Emperor is somewhere in Oblivion, imprisoned by the Staff
+# of Chaos, waiting for someone to find him.
+# ---------------------------------------------------------------
+jagar_tharn.001 = {
+    type = character_event
+    title = jagar_tharn.001.t
+    desc  = jagar_tharn.001.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = worry
+    }
+
+    option = {
+        name = jagar_tharn.001.a   # "Concerning, but the Imperial Court still functions. Continue normal relations."
+        add_prestige = -50
+        add_stress = 15
+        add_trait = simulacrum_touched
+    }
+
+    option = {
+        name = jagar_tharn.001.b   # "Send agents to the Imperial City. Something is wrong with this picture."
+        trigger = { intrigue >= 10 }
+        add_prestige = 50
+        add_stress = 20
+        add_gold = -100
+        add_character_modifier = {
+            modifier = simulacrum_investigating
+            days = 1825
+        }
+    }
+
+    option = {
+        name = jagar_tharn.001.c   # "Use the instability. A distracted Imperial court is an opportunity."
+        trigger = { intrigue >= 12 }
+        add_prestige = 100
+        add_stress = 10
+        add_gold = 200
+        add_character_modifier = {
+            modifier = simulacrum_opportunist
+            days = 1825
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# jagar_tharn.002  The Staff Fragment
+# One of the eight pieces of the Staff of Chaos has surfaced in
+# your territory — found in a ruin by treasure-hunters who did
+# not know what they had, described in a report from your court
+# wizard as 'a section of a magical staff, origin unknown, age
+# uncertain, and producing a faint but persistent warmth that
+# has no mundane explanation.'  It is not a weapon.  It is a key
+# to a prison.  Whether you know that depends on how good your
+# mages are.
+# ---------------------------------------------------------------
+jagar_tharn.002 = {
+    type = character_event
+    title = jagar_tharn.002.t
+    desc  = jagar_tharn.002.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    option = {
+        name = jagar_tharn.002.a   # "Take the fragment into my personal custody. It may be significant."
+        add_prestige = 100
+        add_stress = 10
+        add_trait = staff_of_chaos_fragment
+    }
+
+    option = {
+        name = jagar_tharn.002.b   # "Give it to the court wizard for study. Magic relics are their concern."
+        add_prestige = 50
+        add_stress = 5
+        add_learning_skill = 1
+        add_character_modifier = {
+            modifier = simulacrum_fragment_studied
+            days = 1825
+        }
+    }
+
+    option = {
+        name = jagar_tharn.002.c   # "Sell it. Magical relics command good prices in the right markets."
+        add_prestige = 50
+        add_gold = 300
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# jagar_tharn.003  The Impostor's Court
+# Rumours are spreading from the Imperial City — quiet rumours,
+# the kind that start in the servants' quarters and end up in the
+# correspondence of lords who have no particular reason to believe
+# them.  The Emperor is not himself.  The Emperor's Battlemage
+# speaks in his name with a certainty that doesn't read right.
+# A court astrologer who raised the question is no longer in
+# the City.  These are rumours.  Rumours about an Emperor.
+# ---------------------------------------------------------------
+jagar_tharn.003 = {
+    type = character_event
+    title = jagar_tharn.003.t
+    desc  = jagar_tharn.003.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = worry
+    }
+
+    option = {
+        name = jagar_tharn.003.a   # "Investigate discreetly. If true, this changes everything."
+        trigger = { intrigue >= 10 }
+        add_prestige = 100
+        add_stress = 20
+        add_gold = -150
+        add_character_modifier = {
+            modifier = simulacrum_investigating
+            days = 1825
+        }
+    }
+
+    option = {
+        name = jagar_tharn.003.b   # "Ignore it. Rumours about Emperors are a constant. This one will pass."
+        add_prestige = -50
+        add_stress = 10
+        add_trait = simulacrum_touched
+    }
+
+    option = {
+        name = jagar_tharn.003.c   # "Spread the rumours further. An Emperor whose legitimacy is questioned is useful."
+        trigger = { intrigue >= 14 }
+        add_prestige = 150
+        add_stress = 15
+        add_character_modifier = {
+            modifier = simulacrum_opportunist
+            days = 1095
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# jagar_tharn.004  The Emperor Freed
+# After ten years, the deception has collapsed.  A single hero —
+# an escaped prisoner of the Imperial dungeons, guided by the ghost
+# of Ria Silmane, Jagar Tharn's murdered apprentice — has
+# reassembled the Staff of Chaos from its eight scattered fragments
+# and used it to open the pocket of Oblivion where Uriel Septim VII
+# has been imprisoned since 3E 389.  The real Emperor has returned.
+# Jagar Tharn is dead.  The Simulacrum is over.  The Empire will
+# now discover what ten years of impersonation actually did.
+# ---------------------------------------------------------------
+jagar_tharn.004 = {
+    type = character_event
+    title = jagar_tharn.004.t
+    desc  = jagar_tharn.004.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = relief
+    }
+
+    immediate = {
+        set_global_variable = { name = simulacrum_active value = 0 }
+        set_global_variable = { name = simulacrum_ended value = 1 }
+    }
+
+    option = {
+        name = jagar_tharn.004.a   # "The real Emperor lives. Send congratulations to the court."
+        add_prestige = 100
+        add_stress = -15
+        add_piety = 50    # The restoration of rightful order has divine sanction
+    }
+
+    option = {
+        name = jagar_tharn.004.b   # "Audit every Imperial decree of the last ten years. Tharn may have acted against our interests."
+        trigger = { intrigue >= 12 }
+        add_prestige = 200
+        add_stress = 20
+        add_gold = -200
+        add_character_modifier = {
+            modifier = simulacrum_aftermath_audit
+            days = 1825
+        }
+    }
+
+    option = {
+        name = jagar_tharn.004.c   # "Ten years of Tharn's meddling. The Emperor who returns finds a changed Empire."
+        add_prestige = 50
+        add_stress = 15
+        add_trait = simulacrum_touched
+    }
+}

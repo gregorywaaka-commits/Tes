@@ -1,0 +1,67 @@
+﻿l_english:
+
+ # =====================================================================
+ #  SNOW ELVES / FALMER LORE SYSTEM
+ # =====================================================================
+
+
+ # --- Traits ---
+
+ snow_elf_pure_blood: "Snow Elf Pure Blood"
+ snow_elf_pure_blood_desc: "This character traces genuine descent from the Snow Elves — the sophisticated mer civilisation that built towers and kept libraries in Skyrim before the Five Hundred Companions came ashore. Their blood carries memories of Auri-El's canticles and architecture that Nords dismantled and called ruins. Almost no one alive shares it. The ones who do tend not to advertise the fact."
+
+ knight_paladin_blessed: "Knight-Paladin's Blessing"
+ knight_paladin_blessed_desc: "This character has received the blessing of Auri-El at one of the last surviving Snow Elf holy sites, in the tradition of Knight-Paladin Gelebor — the Snow Elf who kept his vigil through the entire span of recorded history rather than bend the knee to the Dwemer. The blessing is not a metaphor. The recipient heals faster, fights with a clarity that others find unnerving, and carries a warmth that the cold of Skyrim cannot quite reach."
+
+ auriel_bow_seeker: "Seeker of Auriel's Bow"
+ auriel_bow_seeker_desc: "This character is actively searching for Auriel's Bow — the divine weapon of Auri-El, the Elven aspect of Akatosh, capable of firing sunhallowed arrows that can dim the sun itself. The search has taken them through Snow Elf records, Dwemer archives, and the testimony of beings old enough to remember the Merethic Era. They have not found it yet. They are getting closer."
+
+ snow_prince_legacy: "Legacy of the Snow Prince"
+ snow_prince_legacy_desc: "This character claims verified descent from the honour-guard of the Snow Prince — the last great champion of the Snow Elves, who fell at the Battle of Moesring while his people were being destroyed around him. The guard did not break. They stood until there was nothing left to stand for, and a few survived to carry that discipline into the wreckage of a civilisation. This house is built on that refusal to yield."
+
+ falmer_lore_scholar: "Falmer Lore Scholar"
+ falmer_lore_scholar_desc: "This character has made a serious study of Snow Elf history and the Dwemer-engineered degeneration of the Falmer — the process by which a mer civilisation was unmade from the inside out through systematic deprivation, blindness, and forced diet. The scholarship is meticulous, necessary, and deeply uncomfortable to read. The Falmer that haunt the deep roads are not monsters. They are what happens when one civilisation destroys another slowly enough that no one has to take credit for it."
+
+
+ # --- Decisions ---
+
+ seek_snow_elf_ruins_desc: "The holds of Skyrim are built on foundations that predate the Nords. Send scholars and surveyors to investigate the pale ruins that the locals call 'old towers' — the ancient structures of the Snow Elves who ruled this land before Ysgramor crossed the sea. Whatever they left behind, it has survived four thousand years. It can survive a careful inquiry."
+
+ seek_auriels_shrine_desc: "The hunt for Auriel's Bow has led to a rumour of a rumour: somewhere in the frozen heights, there is a chapel that does not appear on any map, guarded by something — or someone — impossibly old. The pilgrimage will take time and faith. Auri-El does not open his doors to those who arrive merely curious. You must arrive ready to be judged."
+
+
+ # --- Events ---
+
+ snow_elf.001.t: "The Pale Tower's Silence"
+ snow_elf.001.desc: "The surveyors found it on the third week of the expedition — a structure set into a hillside so old that the stone has taken on the grey-white colour of the snow around it. It does not look like anything the Nords built. The arches are too narrow, the proportions too precise, the inscriptions above the lintel in a script that your court scholar identifies as proto-Aldmeri with visible reluctance, as if naming it makes the implications real.\n\nIt is older than Saarthal. Older than the Night of Tears. This is what Skyrim looked like before Ysgramor came ashore.\n\nThe door has not been opened in a very long time. Something on the other side is intact."
+ snow_elf.001.a: "Enter. Whatever they left behind belongs to those willing to look."
+ snow_elf.001.b: "Seal it. This is not a ruin — it is a grave, and graves should stay closed."
+ snow_elf.001.c: "Find a scholar who reads this script. I will not step inside uninformed."
+ snow_elf.001.c.tooltip: "Gains the #T auriel_bow_seeker# trait — the search itself becomes the education."
+
+ snow_elf.002.t: "The Last of the Falmer"
+ snow_elf.002.desc: "The lower halls are occupied.\n\nThey moved before you saw them — pale, hunched shapes that registered your torchlight as threat rather than warmth, scrambling across the ceiling with a facility that was wrong in a way that took a moment to identify. Then the identification arrived: they had no eyes. Not clouded eyes, not damaged eyes — the orbital sockets were sealed over with scar tissue as old as the creatures themselves.\n\nThey were elven once. The shape of the ear, the line of the jaw under the distortion of four thousand years of enforced degradation — undeniably elven. Undeniably Skyrim. The Dwemer blinded them and fed them fungi and waited for them to stop being people.\n\nIt did not take long."
+ snow_elf.002.a: "Study them. This is what the Dwemer made of a civilisation — it must be documented."
+ snow_elf.002.b: "They are dangerous. Drive them out and reclaim the ruin."
+ snow_elf.002.c: "Leave without disturbing them further. This is their place now, however it became so."
+
+ snow_elf.003.t: "Knight-Paladin's Vigil"
+ snow_elf.003.desc: "The chapel is not on any map.\n\nYou found it because the evidence led you here — the arrowhead fragment, the records in the old Aldmeri dialect, the gap in every account of Gelebor's fate that should have been a death notice and was instead a silence. The structure is Snow Elf architecture: fine white stone, arches too narrow for a Nord, an altar to Auri-El still bearing offerings that look fresh.\n\nThe figure kneeling before it rises as you enter.\n\nHe is tall and pale and dressed in armour that belongs to an order you have only read about in documents that themselves were copies of copies. His eyes are not the flat scars of the Falmer — they are clear and gold and have been counting years since before the First Era had a number. He looks at you for a long moment, with the particular patience of someone who has waited four thousand years and finds another few minutes entirely manageable.\n\n'Knight-Paladin Gelebor,' your interpreter says. 'He says... he has been expecting someone. He is not certain it was you. But he is willing to be proven wrong.'"
+ snow_elf.003.a: "Accept his blessing in the name of Auri-El. This is why the search led here."
+ snow_elf.003.b: "Ask him for the true history — not the Nord sagas, not the Dwemer records. His."
+ snow_elf.003.b.tooltip: "Gelebor's account fills in four millennia of gaps. Your #L learning# improves significantly."
+ snow_elf.003.c: "Leave the chapel as you found it. Some vigils are not ours to interrupt."
+
+ snow_elf.004.t: "Auriel's Arrow of Radiance"
+ snow_elf.004.desc: "It should not have survived. The hall collapsed centuries ago, the records that might have documented it were burned or rotted or simply never written down, and the Falmer that occupied the lower chambers had no use for objects they could not feel with their hands. By all reasonable calculation, it should have been dust.\n\nInstead it sits in your palm, warm in a way that has nothing to do with the temperature of the room, white as sunlight seen through closed eyes. A fragment of an arrow — the shaft is gone, but the head is intact — and inscribed along its length in Aldmeri script so precise it looks engraved rather than carved.\n\nYour scholar takes three hours with the inscription and then reads it to you with slightly shaking hands: 'The undimmed light of the first moment.'\n\nAuriel's Bow is real. It fires arrows like this one. Somewhere in these mountains, it is still being kept."
+ snow_elf.004.a: "The Bow must be found. This is no longer a curiosity — it is a purpose."
+ snow_elf.004.b: "A holy artefact belongs with those who have kept it. Leave it where it leads."
+ snow_elf.004.c: "Document everything. The scholarly community needs to know this evidence exists."
+ snow_elf.004.c.tooltip: "Your #L Falmer Lore# expertise makes the documentation authoritative. Significant prestige and learning gains."
+
+ snow_elf.005.t: "Blood of the Snow Prince"
+ snow_elf.005.desc: "The genealogist arrives with a cartload of documents and the focused energy of someone who believes they have turned up something significant. They are not wrong.\n\nThe chain of descent is partial — it crosses three languages, two burned archives, and one lineage record written in a margin — but the claim it supports is this: your house descends from a survivor of the Battle of Moesring. Not merely a Snow Elf refugee, not merely a mer who outlasted the war. A member of the Snow Prince's personal honour-guard — one of the warriors who stood at his side in the final battle of a civilisation, watched their lord fall, and then kept living because they had not yet been given permission to stop.\n\nThe Snow Prince himself is not the claim. The claim is what he stood for — what his guard stood for — in the last hours of the Snow Elf world."
+ snow_elf.005.a: "This is the lineage of this house. The Snow Prince's guard stood when it mattered."
+ snow_elf.005.b: "An intriguing story. A story is not a bloodline — I need more than this."
+ snow_elf.005.c: "The lore corroborates it. I have studied these records. The claim is sound."
+ snow_elf.005.c.tooltip: "Your expertise as a #L Falmer Lore Scholar# lets you authenticate the genealogist's findings personally."

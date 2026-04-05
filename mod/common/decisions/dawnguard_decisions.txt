@@ -1,0 +1,161 @@
+# =============================================================
+#  Dawnguard — Decisions
+#  File: mod/common/decisions/dawnguard_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • dawnguard_initiate, dawnguard_captain = from common/traits/dawnguard_traits.txt
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/dawnguard_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • join_dawnguard
+#    • build_dawnguard_fort
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/dawnguard_traits.txt
+#      → dawnguard_initiate, dawnguard_captain
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/dawnguard_events.txt
+#      → join_dawnguard, build_dawnguard_fort
+# =============================================================
+
+# ---------------------------------------------------------------
+#  JOIN THE DAWNGUARD
+#  The order is reforming under Isran's iron hand.  A martial ruler
+#  in Skyrim who is not already marked by vampirism may travel to
+#  Fort Dawnguard and present themselves for induction.  Isran does
+#  not make the induction easy — that is intentional.  The ones
+#  who clear the gate are worth keeping.
+# ---------------------------------------------------------------
+join_dawnguard = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc = join_dawnguard_desc
+
+    is_shown = {
+        is_adult = yes
+        is_ruler = yes
+        NOT = { has_trait = dawnguard_initiate }
+        NOT = { has_trait = dawnguard_hunter }
+        NOT = { has_trait = dawnguard_captain }
+        NOT = { has_trait = dawnguard_lord }
+        # Cannot be a vampire — Isran would shoot on sight
+        NOT = { has_trait = molag_bal_vampire }
+        NOT = { has_character_flag = dawnguard_declined_permanently }
+    }
+
+    is_valid = {
+        martial >= 10
+        is_adult = yes
+        is_ruler = yes
+        OR = {
+            any_held_county = {
+                geographical_region = world_region_skyrim
+            }
+            any_held_county = {
+                geographical_region = world_region_the_rift
+            }
+        }
+        NOT = { has_trait = molag_bal_vampire }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        NOT = { has_trait = molag_bal_vampire }
+    }
+
+    effect = {
+        add_prestige = 100
+        add_trait = dawnguard_initiate
+        trigger_event = { id = dawnguard.002 days = 60 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 10
+            martial >= 14
+        }
+        modifier = {
+            add = 5
+            has_trait = brave
+        }
+        modifier = {
+            add = 5
+            has_trait = zealous
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  BUILD DAWNGUARD FORT
+#  A Dawnguard captain who has proven their worth may undertake
+#  the construction of a proper fortification for the order's
+#  operations.  Fort Dawnguard as Isran conceived it cannot be
+#  taken by anything less than a siege — which is the point.
+#  The vampire hunters inside need to know the walls will hold
+#  long enough for them to reload.
+# ---------------------------------------------------------------
+build_dawnguard_fort = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = build_dawnguard_fort_desc
+
+    is_shown = {
+        is_adult = yes
+        is_ruler = yes
+        OR = {
+            has_trait = dawnguard_captain
+            has_trait = dawnguard_lord
+        }
+        NOT = { has_character_flag = dawnguard_fort_built }
+    }
+
+    is_valid = {
+        is_adult = yes
+        is_ruler = yes
+        OR = {
+            has_trait = dawnguard_captain
+            has_trait = dawnguard_lord
+        }
+        gold >= 300
+        OR = {
+            any_held_county = {
+                geographical_region = world_region_skyrim
+            }
+            any_held_county = {
+                geographical_region = world_region_the_rift
+            }
+        }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+        gold >= 300
+    }
+
+    effect = {
+        add_gold = -300
+        add_prestige = 250
+        set_character_flag = { flag = dawnguard_fort_built days = -1 }
+        add_character_modifier = {
+            modifier = dawnguard_fortress_established
+            days = -1
+        }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 8
+            gold >= 500
+        }
+        modifier = {
+            add = 5
+            has_trait = dawnguard_lord
+        }
+    }
+}

@@ -239,4 +239,52 @@ These are lore points that are `[CONTESTED]` and require careful handling in any
 
 ---
 
+## Kagrenac's Ambition (ww_borrowed_divinity) — Critical Implementation Rules
+
+> Writers and future contributors working on `borrowed_divinity_events.txt` must read this section.
+
+### ❌ Route A loses power instantly when the Heart is destroyed
+> **WRONG.** Route A (`heart_scholar_ascendant`) uses a **three-phase degradation model**.
+
+| Phase | Trigger date | Mechanical event | What fires |
+|---|---|---|---|
+| Phase 1 | **2E 882** (Dagoth Ur awakens, seizes Red Mountain) | Heart access severed; renewal impossible; reservoir drains -1/year | `borrowed_divinity.cutoff.001`; `heart_cut_off` flag set |
+| Phase 2 | When `heart_reservoir_counter` reaches **0** | `heart_scholar_ascendant` trait **removed**; `heart_starvation_modifier` applied | `borrowed_divinity.starvation.001` |
+| Phase 3 | **3E 427** (Heart destroyed by Nerevarine) | Reservoir drain doubles; narrative event fires | `borrowed_divinity.cutoff.002` + `borrowed_divinity.dissolution.001` |
+
+**Route B (`heart_fused_ascendant`) is instant death at Phase 3.** That is correct and non-negotiable — the fusion was total.
+
+**Source:** `[CANON — TES III: Morrowind + Tribunal expansion; UESP Lore:Tribunal; Almalexia; Sotha Sil]`
+
+---
+
+### ❌ `consumed_another` and `chim_attempt_from_starvation` can both be active
+> **WRONG.** These flags are **mutually exclusive.**
+
+- **`consumed_another`** — The Almalexia Option: the character killed another `heart_scholar_ascendant` ruler to drain their stored power. This is permanent. It closes the CHIM escape permanently.
+- **`chim_attempt_from_starvation`** — The Vivec Option: the character in Phase 2 starvation opens the desperation gate into the CHIM event chain. Requires `NOT has_character_modifier = consumed_another`.
+
+Taking the Almalexia Option and taking the Vivec Option are **incompatible.** Almalexia was killed still mad; Vivec, who chose the other path, simply left. The contrast is intentional. Do not create event paths that allow both.
+
+**Source:** `WALKING_WAYS_DESIGN.md §19.10a–b`; `[CANON — TES III: Tribunal; Soft canon — Vivec's fate]`
+
+---
+
+### ❌ `heart_scholar_ascendant` and `heart_fused_ascendant` are interchangeable
+> **WRONG.** They are mechanically and lore-distinct in a critical way.
+
+| Property | `heart_scholar_ascendant` (Route A) | `heart_fused_ascendant` (Route B) |
+|---|---|---|
+| Method | Kagrenac's Tools — mediated draw | Direct contact — total merger |
+| Power dependency | Periodic renewal required (yearly Heart-draw event) | No renewal needed — carried internally |
+| Heart destruction consequence | **Three-phase degradation** (see above) | **Instant death** — no phases, no options |
+| Almalexia Option | Available in Phase 2 starvation | Not applicable |
+| Vivec CHIM escape | Available in Phase 2 starvation if not `consumed_another` | Not applicable |
+
+Never describe a `heart_fused_ascendant` as "losing power gradually" — they do not. When the Heart dies, they die.
+
+**Source:** `WALKING_WAYS_DESIGN.md §19.6, §19.9, §19.10`; `[CANON — TES III: Morrowind; Dagoth Ur dialogue]`
+
+---
+
 *Back to [Index](README.md)*

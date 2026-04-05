@@ -1,0 +1,81 @@
+# =============================================================
+#  The Walking Ways — Enantiomorph Traits
+#  File: mod/common/traits/enantiomorph_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  enantiomorph_ascendant  — Path D apex. The Rebel's pattern
+#                            completed. The necessary opposition
+#                            that makes the Hero real.
+#  enantiomorph_consumed   — Path D failure. The pattern
+#                            consumed the practitioner instead.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Enantiomorph is the divine pattern of Hero/Rebel/Witness
+#  described in Vivec's 36 Lessons. Three roles complete the
+#  cosmological drama that creates Dragon Breaks. Normally
+#  the mortal is the Witness. This path is choosing to be the
+#  Rebel — the necessary opposition. Neither good nor evil:
+#  a cosmological function. The failure state occurs when the
+#  void at the centre of the pattern engulfs the practitioner.
+#  [SOURCE: SOFT CANON — 36 Lessons of Vivec, Sermon 11 (MK)]
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES:
+#    • enantiomorph_ascendant
+#    • enantiomorph_consumed
+#
+#  REFERENCED BY:
+#    common/scripted_effects/walking_ways_effects.txt
+#    events/enantiomorph_events.txt
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ENANTIOMORPH ASCENDANT
+#  The Rebel's pattern is complete. The ruler did not become
+#  a hero — they became the precise shape that heroes require
+#  to be heroes. This is not malice. It is cosmology.
+#  Those with shezarrine_vessel or chim_achieved sense
+#  something wrong with the pattern around this ruler.
+#  They are not wrong.
+# ---------------------------------------------------------------
+
+enantiomorph_ascendant = {
+    category = fame
+
+    intrigue    = 8
+    martial     = 5
+    diplomacy   = -4    # they are genuinely frightening now
+
+    monthly_prestige              = 8
+    dread_gain_mult               = 0.50
+    stress_gain_mult              = -0.30
+
+    flag = enantiomorph_ascendant
+}
+
+# ---------------------------------------------------------------
+#  ENANTIOMORPH CONSUMED
+#  The void at the centre consumed the practitioner. They
+#  pursued the Rebel's role without becoming it — and the
+#  pattern simply erased the distinction between the rebel
+#  and the nothing the rebel stood in opposition to.
+#  Temporary. Recoverable. But the wound is real.
+# ---------------------------------------------------------------
+
+enantiomorph_consumed = {
+    category = lifestyle
+
+    learning    = -5
+    intrigue    = -5
+
+    stress_gain_mult              = 0.40
+    monthly_prestige              = -3
+
+    flag = enantiomorph_consumed
+}

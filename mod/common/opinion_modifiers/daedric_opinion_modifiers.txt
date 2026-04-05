@@ -22,6 +22,7 @@
 #    • reformer_elven_resentment_opinion
 #    • same_guild_opinion
 #    • submitted_to_daedra_opinion
+#    • thalmor_resentment_opinion
 #    • tolerated_necromancer
 #    • welcomed_envoy_opinion
 #
@@ -40,6 +41,8 @@
 #      → tolerated_necromancer
 #    events/soul_shriven_events.txt
 #      → grateful_opinion
+#    events/thalmor_events.txt
+#      → thalmor_resentment_opinion
 #    events/warlord_events.txt
 #      → angry_opinion, grateful_opinion
 # =============================================================
@@ -129,6 +132,13 @@ reformer_elven_resentment_opinion = {
 }
 
 alessian_double_down_opinion = {
+    opinion = -30
+    decay_rate = 1
+}
+
+# ---- Thalmor Justiciar resentment (post White-Gold Concordat) ----
+
+thalmor_resentment_opinion = {
     opinion = -30
     decay_rate = 1
 }

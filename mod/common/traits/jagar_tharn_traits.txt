@@ -1,0 +1,95 @@
+# =============================================================
+#  Jagar Tharn / Imperial Simulacrum — Traits
+#  File: mod/common/traits/jagar_tharn_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  simulacrum_touched       — A ruler who survived (or governed
+#                             adjacent to) the Imperial Simulacrum
+#                             era (3E 389–399); permanently
+#                             suspicious of apparent certainties.
+#
+#  staff_of_chaos_fragment  — This ruler possesses one of the
+#                             eight shards of the Staff of Chaos,
+#                             scattered by Jagar Tharn to prevent
+#                             the Emperor's rescue.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  In 3E 389, Jagar Tharn — Imperial Battlemage and advisor to
+#  Emperor Uriel Septim VII — betrayed his master.  Using the
+#  Staff of Chaos, he imprisoned the Emperor in a pocket of
+#  Oblivion and took his place as a perfect magical simulacrum:
+#  indistinguishable to all senses, to all scribes, to all who
+#  served the Emperor daily.  Tharn then shattered the Staff of
+#  Chaos into eight fragments and scattered them across Tamriel,
+#  ensuring no one could reassemble the key to the Emperor's
+#  prison.  He ruled as Uriel Septim VII for a decade.
+#  His apprentice Ria Silmane discovered the truth and was
+#  murdered; her ghost guided the protagonist of The Elder Scrolls
+#  I: Arena, who reassembled the Staff and freed the true Emperor
+#  in 3E 399.
+#  Sources: TES I: Arena; UESP Lore:Jagar Tharn;
+#  UESP Lore:Imperial Simulacrum; UESP Lore:Staff of Chaos.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/jagar_tharn_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • simulacrum_touched
+#    • staff_of_chaos_fragment
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/jagar_tharn_events.txt
+#      → simulacrum_touched, staff_of_chaos_fragment
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SIMULACRUM TOUCHED
+#  For ten years, the man on the Ruby Throne was not the man on
+#  the Ruby Throne.  The correspondence that bore his seal was
+#  written by someone else.  The court that served him daily
+#  served a mask.  A ruler who lived through that decade and
+#  came out the other side carries something specific: not
+#  paranoia exactly, but a permanent awareness that apparent
+#  reality and actual reality can diverge for a very long time
+#  before anyone notices.  They are perceptive, watchful, and
+#  they ask twice about things that seem settled.
+# ---------------------------------------------------------------
+simulacrum_touched = {
+    category = fame
+
+    intrigue         = 2
+    stress_gain_mult = 0.10    # Paranoia about false rulers never fully leaves those who lived through the Simulacrum
+
+    flag = simulacrum_touched
+}
+
+# ---------------------------------------------------------------
+#  STAFF OF CHAOS FRAGMENT
+#  Jagar Tharn shattered the Staff of Chaos into eight pieces
+#  and scattered them across Tamriel precisely because a whole
+#  Staff of Chaos would be too obvious a vulnerability.  Fragments
+#  are harder to track, harder to identify, easier to dismiss
+#  as decorative relics.  This ruler has one.  The shard is
+#  active in the way that all artefacts of ancient magical weapons
+#  are active — not obviously, but persistently; a slight warmth
+#  that has no heat source, a tendency for candles to burn at
+#  odd angles nearby, the sensation when touching it of something
+#  that is waiting to be complete again.
+# ---------------------------------------------------------------
+staff_of_chaos_fragment = {
+    category = fame
+
+    learning         = 2
+    intrigue         = 2
+    stress_gain_mult = 0.10    # Possessing a shard of a weapon used to imprison the Emperor carries its own weight
+
+    flag = staff_of_chaos_fragment
+}

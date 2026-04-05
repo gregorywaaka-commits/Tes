@@ -1,0 +1,137 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ #  THE WALKING WAYS — Mantling Localization
+ # ═══════════════════════════════════════════════════════════════
+
+ # ─── Trait Names ───
+ mantle_talos: "Aspect of Talos"
+ mantle_talos_desc: "This ruler has walked in Talos's footsteps long enough that the footsteps are now theirs. They are not Talos — they ARE the pattern Talos expressed. The mortal god. The man who became divine by becoming the embodiment of human will."
+ mantle_arkay: "Walker of the Cycle"
+ mantle_arkay_desc: "This ruler has witnessed death, survived it, and grieved without anger. Arkay governs the cycle. The mantler is no longer merely subject to its arbitrary schedule."
+ mantle_kynareth: "Sky's Chosen"
+ mantle_kynareth_desc: "The wind recognises this ruler. The sky has watched. The sky has approved."
+ mantle_azura: "Aspect of Azura"
+ mantle_azura_desc: "The distinction between this ruler and the Prince of Dusk and Dawn has blurred. Whether this is mantling or something else entirely, the ruler cannot say. Azura has not clarified."
+ mantle_meridia: "Light's Instrument"
+ mantle_meridia_desc: "Meridia's pattern has overlapped completely with this ruler's. Purification absolute. Corruption finds no purchase near them."
+
+ # ─── Mantling Talos Events ───
+ mantling_talos.intro.t: "The Footstep"
+ mantling_talos.intro.desc: "The path is chosen. In a dream — or perhaps in a battle — the White Warrior's voice arrives. Not words. An echo. The ruler stood where Talos stood. They used his tools. They made his choices. The echo says: there is further to go.\n\n[Walk far enough in someone's footsteps. The distinction collapses.]"
+ mantling_talos.intro.a: "I will walk the same road."
+
+ mantling_talos.rank1.t: "The Shout and the Wound"
+ mantling_talos.rank1.desc: "The Thu'um has been used. The assassination attempt survived. The wounds are not the same as his wounds — they never are. But they are the same shape.\n\nHe was the man who was stabbed and did not fall. He was the man who shouted and the mountains answered. This ruler has done both."
+ mantling_talos.rank1.a: "His wounds were like this. Mine are like this."
+
+ mantling_talos.rank2.t: "The Empire Walks Your Steps"
+ mantling_talos.rank2.desc: "The rule extends across Imperial soil. Mercy was shown where a conqueror would not have shown it. The Shezarrine's burden was carried or acknowledged. The pattern is not simply similar to Tiber Septim's. It is the same pattern, expressed again, in different features."
+ mantling_talos.rank2.a: "He ruled this way too."
+ mantling_talos.rank2.b: "I am not him. I do not need to be."
+
+ mantling_talos.rank3.t: "The Pattern Recognises You"
+ mantling_talos.rank3.desc: "Something is different now. Courtiers sometimes stop mid-sentence when addressing the ruler, as if they briefly mistook them for someone else — someone not quite present, someone not quite in this era. No one mentions it. It keeps happening.\n\nThe pattern recognises the shape that is accumulating. It has seen this shape before."
+ mantling_talos.rank3.a: "Then let it complete itself."
+
+ mantling_talos.apotheosis.t: "The Footsteps Are Now Yours"
+ mantling_talos.apotheosis.desc: "The distinction is meaningless now.\n\nNot because the ruler became Talos. Not because Tiber Septim was reborn. Because the pattern that Talos expressed — general, emperor, wound-bearer, mercy-giver, man who held an empire together through force of will and something else — has been expressed again, fully, in this reign.\n\nThe ruler looks in the mirror.\n\nFor a fraction of a second, which is also every second, they see both faces."
+ mantling_talos.apotheosis.a: "I look in the mirror and see them."
+ mantling_talos.apotheosis.b: "I look in the mirror and see myself."
+
+ # ─── Mantling Arkay Events ───
+ mantling_arkay.intro.t: "The Cycle Calls"
+ mantling_arkay.intro.desc: "The Monomyth says Arkay may once have been a mortal merchant who died and came back with knowledge that death was not what he had assumed. He became the god of the cycle because he walked through it without understanding and came out understanding. The path is the same. The ruler is alive. They will not be, one day. Between now and then: everything Arkay governs."
+ mantling_arkay.intro.a: "I will walk the cycle."
+
+ mantling_arkay.rank1.t: "The Seam"
+ mantling_arkay.rank1.desc: "The plague survived. The burial attended. The ruler has looked at death's work — closely, without ceremony — and did not turn away.\n\nThe end is not an absence. It is a seam. The difference is everything."
+ mantling_arkay.rank1.a: "The end is not an absence. It is a seam."
+
+ mantling_arkay.rank2.t: "The Season's Turn"
+ mantling_arkay.rank2.desc: "Twenty years. The seasons have completed their full revolution more times than the ruler can easily count. They are still here. The throne is still theirs. The cycle has not consumed them.\n\nArkay does not cheat death. He governs it. The mantler, having watched this many cycles, is beginning to understand the difference."
+ mantling_arkay.rank2.a: "I have watched the seasons turn."
+
+ mantling_arkay.rank3.t: "The Cycle Names You"
+ mantling_arkay.rank3.desc: "The priests of Arkay in the capital have begun leaving things at the ruler's door. Flowers. A small carved bone. A note that says only: 'We see you.'\n\nThis is not a threat. This is recognition."
+ mantling_arkay.rank3.a: "I am ready for what comes after the after."
+
+ mantling_arkay.apotheosis.t: "The Cycle Is Complete"
+ mantling_arkay.apotheosis.desc: "All deaths return to the cycle. The cycle returns to Arkay. And Arkay — if the Monomyth is right, if the mortal merchant is the god — once walked through death and returned with authority over it.\n\nThe ruler has walked through enough deaths, grieved enough without anger, endured enough seasons, survived enough of what was supposed to end them.\n\nThe cycle is complete. The mantler is now, in some sense the priests are still debating, the cycle."
+ mantling_arkay.apotheosis.a: "All deaths return to me. I remember them."
+
+ # ─── Mantling Kynareth Events ───
+ mantling_kynareth.intro.t: "The Wind Turns"
+ mantling_kynareth.intro.desc: "Not all divine patterns are about power or knowledge. Kynareth's is about openness — the sky that does not hold its breath, the hand that gives without keeping a ledger, the storm that does not apologise for being a storm.\n\nThe ruler chose this path. The wind, for a moment, came from a direction it did not come from before."
+ mantling_kynareth.intro.a: "The wind comes before any banner."
+
+ mantling_kynareth.rank1.t: "Word and Wind"
+ mantling_kynareth.rank1.desc: "The Word Wall yielded its secret. The open hand gave without cause. Kynareth's patterns are accumulating in this reign."
+ mantling_kynareth.rank1.a: "The sky and I have an understanding."
+
+ mantling_kynareth.rank2.t: "Storm's Measure"
+ mantling_kynareth.rank2.desc: "The battle outnumbered, survived. The Companions' chain completed. The ruler has proven they can weather what the sky sends — and that the sky has noticed their willingness."
+ mantling_kynareth.rank2.a: "I did not ask the storm to be kinder. I asked myself to be equal to it."
+
+ mantling_kynareth.rank3.t: "The Sky Witnesses"
+ mantling_kynareth.rank3.desc: "Birds fly in unusual formations near the ruler's keep. The Greybeards sent a message. Kyne — Shor's widow, mother of men — has been watching longer than the ruler has been ruling.\n\nShe is almost satisfied."
+ mantling_kynareth.rank3.a: "Then I will give her the rest."
+
+ mantling_kynareth.apotheosis.t: "The Wind Is Yours"
+ mantling_kynareth.apotheosis.desc: "The sky opened.\n\nNot metaphorically. The sky opened, briefly, and the ruler felt something that was Kynareth's understanding of everything — the wideness of it, the indifference that is not cruelty but simply scale, the grief of Shor still carried millennia later, the love for men that is older than men's awareness of being loved.\n\nIt closed again. The ruler remained. The wind in the courtyard has not behaved the same way since."
+ mantling_kynareth.apotheosis.a: "The wind and I are one kind of thing now."
+
+ mantling_kynareth.openhand.t: "Kynareth Asks an Open Hand"
+ mantling_kynareth.openhand.desc: "The path requires a gesture of genuine generosity — not a calculated concession, but a gift with no political architecture. A vassal freed. A burden lifted. The sky is watching for this."
+ mantling_kynareth.openhand.a: "Let them go."
+ mantling_kynareth.openhand.b: "Not today."
+
+ # ─── Daedric Mantle Events ───
+ mantling_daedric.azura_intro.t: "Dusk and Dawn"
+ mantling_daedric.azura_intro.desc: "Azura's domain is transformation — the moment between states, the liminal passage. Dusk. Dawn. The edges of things.\n\nMantling a Daedric Prince is different from mantling an Aedra. The Aedra gave themselves to create the world. The Daedra did not. They remain distinct; they are worshipped, not walked alongside.\n\nThe mantler is proceeding anyway. The risk is possession."
+ mantling_daedric.azura_intro.a: "I understand the risk. I accept it."
+
+ mantling_daedric.azura_rank1.t: "The First Covenant"
+ mantling_daedric.azura_rank1.desc: "The first steps taken. Azura's pattern has been partly expressed. Her stars are in a different position than they were."
+ mantling_daedric.azura_rank1.a: "I see the stars differently now."
+
+ mantling_daedric.azura_rank2.t: "The Transformation Witnessed"
+ mantling_daedric.azura_rank2.desc: "The transformation is visible. Courtiers note the ruler seems to see things at dusk and dawn that others do not."
+ mantling_daedric.azura_rank2.a: "The boundary between states is thinner for me now."
+
+ mantling_daedric.azura_rank3.t: "The Distinction Fades"
+ mantling_daedric.azura_rank3.desc: "The distinction between the ruler and the Prince of Dusk and Dawn has blurred significantly. Whether this ends in mantling or possession is now a question of moments."
+ mantling_daedric.azura_rank3.a: "The distinction matters less and less."
+
+ mantling_daedric.azura_apotheosis.t: "Aspect or Vessel?"
+ mantling_daedric.azura_apotheosis.desc: "The moment arrives. The pattern completes — or it doesn't. Azura does not share her domain willingly.\n\n[Whether this ruler becomes her aspect or her champion is not their choice to make.]"
+ mantling_daedric.azura_apotheosis.a: "The distinction is complete. I am her aspect."
+ mantling_daedric.azura_apotheosis.uncertain: "Something is happening. I cannot tell what."
+
+ mantling_daedric.azura_possession.t: "Azura's Champion"
+ mantling_daedric.azura_possession.desc: "Not mantling. Something adjacent.\n\nThe ruler did not become Azura. They became Azura's champion — which carries power, and carries a patron, and is not what they were seeking.\n\nAzura seems pleased. She often does."
+ mantling_daedric.azura_possession.a: "This was not the goal. But it is not nothing."
+
+ mantling_daedric.meridia_intro.t: "Uncompromising Light"
+ mantling_daedric.meridia_intro.desc: "Meridia despises the undead with a totality that most divinities reserve for their own worship. Purification is not a preference for her — it is a calling, absolute, without remainder.\n\nThe mantler has carried her Beacon. They have fought the darkness she names. They are beginning to walk in her light's shape."
+ mantling_daedric.meridia_intro.a: "I walk in the light."
+
+ mantling_daedric.meridia_rank1.t: "The Darkness Recedes"
+ mantling_daedric.meridia_rank1.desc: "Undead in the vicinity of the ruler's court have become... uncomfortable. The necromancers refused their pardons. The pattern is accumulating."
+ mantling_daedric.meridia_rank1.a: "The light does not negotiate."
+
+ mantling_daedric.meridia_rank2.t: "The Temple Completed"
+ mantling_daedric.meridia_rank2.desc: "The ruler's dedication to Meridia's cause is complete enough to be visible. The light is not metaphor. It is visible."
+ mantling_daedric.meridia_rank2.a: "Corruption finds no purchase here."
+
+ mantling_daedric.meridia_rank3.t: "The Light Asks More"
+ mantling_daedric.meridia_rank3.desc: "Meridia's pattern is almost complete. The final distinction between the ruler and her uncompromising light is thin."
+ mantling_daedric.meridia_rank3.a: "I will give it what it asks."
+
+ mantling_daedric.meridia_apotheosis.t: "Aspect or Instrument?"
+ mantling_daedric.meridia_apotheosis.desc: "The purification is complete. Whether this ruler becomes Meridia's aspect or her instrument is not a distinction she has chosen to explain.\n\n[The light is the same either way.]"
+ mantling_daedric.meridia_apotheosis.a: "The light and I are one thing."
+ mantling_daedric.meridia_apotheosis.uncertain: "The light is very bright. I cannot see the boundary."
+
+ mantling_daedric.meridia_possession.t: "Meridia's Instrument"
+ mantling_daedric.meridia_possession.desc: "Not mantling. Something else.\n\nThe ruler did not become Meridia. They became her chosen instrument — which carries light, and carries purpose, and is not what they were seeking.\n\nMeridia, as is her custom, finds this sufficient."
+ mantling_daedric.meridia_possession.a: "I am her instrument. The light still burns."

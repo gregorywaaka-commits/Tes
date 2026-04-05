@@ -1,0 +1,116 @@
+# =============================================================
+#  All Flags Navy / Thrassian Plague Aftermath — Traits
+#  File: mod/common/traits/all_flags_navy_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  all_flags_admiral         — Commands a contingent of the All Flags Navy
+#  thrassian_plague_survivor — Survived the era of the Thrassian Plague
+#  bendu_olo_descendant      — Claims descent from Admiral Bendu Olo of Anvil
+#  thras_sinking_witness     — Was present when Thras was sunk beneath the Abecean Sea
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  In 1E 2200 the Sload of Thras unleashed the Thrassian Plague — the
+#  most devastating disease in Tamrielic history, killing roughly half
+#  the continent's population.  In 1E 2241 Admiral Bendu Olo of Anvil
+#  assembled the All Flags Navy: an unprecedented coalition of High Rock,
+#  Hammerfell, Cyrodiil, Argonia, Valenwood, Summerset, and even
+#  Morrowind.  In 1E 2260 the fleet attacked Thras and turned the Sload's
+#  own coral magic against them, sinking the archipelago beneath the
+#  Abecean Sea and halting the plague.
+#  Sources: UESP Lore:All Flags Navy; Pocket Guide to the Empire.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this file.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/all_flags_navy_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • all_flags_admiral
+#    • thrassian_plague_survivor
+#    • bendu_olo_descendant
+#    • thras_sinking_witness
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/all_flags_navy_events.txt
+#      → all_flags_admiral, thrassian_plague_survivor,
+#        bendu_olo_descendant, thras_sinking_witness
+# =============================================================
+
+# ---------------------------------------------------------------
+#  ALL FLAGS ADMIRAL
+#  To sail under the All Flags banner is to carry the weight of
+#  every people on Tamriel.  The fleet that sank Thras was not
+#  one nation's glory — it was proof that the races of men and
+#  mer could set aside centuries of grievance when the alternative
+#  was extinction.  Those who commanded contingents of that fleet
+#  are remembered in every port on the Abecean coast.
+# ---------------------------------------------------------------
+all_flags_admiral = {
+    category = fame
+
+    martial          = 4
+    prowess          = 2
+    monthly_prestige = 3
+
+    flag = all_flags_admiral
+}
+
+# ---------------------------------------------------------------
+#  THRASSIAN PLAGUE SURVIVOR
+#  The Thrassian Plague did not merely kill — it unmade.  Entire
+#  cities went silent in a season.  Those who lived through it
+#  carry a hardness that peacetime generations cannot manufacture:
+#  the knowledge that the world can end and you can still be
+#  standing when the dying stops.  Grief becomes armour.
+# ---------------------------------------------------------------
+thrassian_plague_survivor = {
+    category = fame
+
+    health           = 0.5
+    stress_gain_mult = -0.10
+
+    flag = thrassian_plague_survivor
+}
+
+# ---------------------------------------------------------------
+#  BENDU OLO DESCENDANT
+#  Bendu Olo, Count of Anvil, was the Colovian who stood up
+#  and said the unthinkable: that every nation on Tamriel should
+#  sail together.  That they actually did — that High Rock ships
+#  sailed alongside Argonian war-canoes and Altmer galleons — is
+#  his achievement as much as anyone's.  His descendants in
+#  Anvil and across Colovia claim that legacy with pride.
+# --------------------------------------------------------------
+bendu_olo_descendant = {
+    category = fame
+
+    martial          = 2
+    monthly_prestige = 2
+
+    flag = bendu_olo_descendant
+}
+
+# ---------------------------------------------------------------
+#  THRAS SINKING WITNESS
+#  No sailor who was on the Abecean that day ever fully described
+#  what they saw.  The coral towers did not fall — they descended,
+#  slowly, impossibly, as though the sea were swallowing something
+#  that had always belonged to it.  The Sload did not scream.
+#  Those who witnessed it carry a particular stillness.  They
+#  have seen magic at a scale that rewrites what the word means.
+# ---------------------------------------------------------------
+thras_sinking_witness = {
+    category = fame
+
+    monthly_prestige = 3
+    intrigue         = 2
+    learning         = 2
+
+    flag = thras_sinking_witness
+}

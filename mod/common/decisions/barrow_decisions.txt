@@ -1,0 +1,140 @@
+# =============================================================
+#  Barrow Exploration / Draugr System — Decisions
+#  File: mod/common/decisions/barrow_decisions.txt
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  common/traits/barrow_traits.txt
+#    → barrow_delver
+#  events/barrow_events.txt
+#    → barrow.001, barrow.005
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/barrow_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • explore_nordic_barrow
+#    • seek_ysgramors_tomb
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/barrow_traits.txt
+#      → barrow_delver
+#    common/traits/lore_races_traits.txt
+#      → companion_of_ysgramor
+#    events/barrow_events.txt
+#      → barrow.001, barrow.005
+# =============================================================
+
+# ---------------------------------------------------------------
+#  EXPLORE NORDIC BARROW
+#  A ruler who has heard of a nearby barrow — or who deliberately
+#  seeks one out — may organise a formal expedition.  Requires
+#  some martial credibility or prior delving experience; costs a
+#  modest amount of prestige in preparation.
+# ---------------------------------------------------------------
+explore_nordic_barrow = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = explore_nordic_barrow_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_culture = nord_culture
+            has_culture = atmoran_culture
+            has_trait = barrow_delver
+            martial >= 8
+        }
+        OR = {
+            any_held_county = { geographical_region = world_region_skyrim }
+        }
+    }
+
+    is_valid = {
+        prestige  >= 100
+        is_adult  = yes
+        is_ruler  = yes
+        NOT = { has_character_flag = barrow_heard_rumour }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -100
+        set_character_flag = {
+            flag = barrow_heard_rumour
+            days = 1825
+        }
+        trigger_event = { id = barrow.001 days = { 5 10 } }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 5
+            has_trait = barrow_delver
+        }
+        modifier = {
+            add = 3
+            martial >= 14
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  SEEK YSGRAMOR'S TOMB
+#  A Nord or Atmoran ruler who bears the Companion lineage —
+#  or who has earned exceptional martial renown — may make
+#  a pilgrimage to Ysgramor's Tomb at Hsaarik Head.  Entry
+#  to the tomb demands both the right of blood and the
+#  fortitude to face what waits inside.
+# ---------------------------------------------------------------
+seek_ysgramors_tomb = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = seek_ysgramors_tomb_desc
+
+    is_shown = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_culture = nord_culture
+            has_culture = atmoran_culture
+        }
+        OR = {
+            has_trait = companion_of_ysgramor
+            martial >= 18
+        }
+        NOT = { has_character_flag = ysgramors_tomb_visited }
+    }
+
+    is_valid = {
+        prestige  >= 300
+        is_adult  = yes
+        is_ruler  = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -300
+        trigger_event = { id = barrow.005 days = { 5 15 } }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 10
+            has_trait = companion_of_ysgramor
+        }
+        modifier = {
+            add = 5
+            martial >= 18
+        }
+    }
+}

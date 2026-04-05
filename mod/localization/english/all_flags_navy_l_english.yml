@@ -1,0 +1,50 @@
+﻿l_english:
+
+ # =====================================================================
+ #  ALL FLAGS NAVY / THRASSIAN PLAGUE AFTERMATH
+ # =====================================================================
+
+ # --- Traits ---
+
+ all_flags_admiral: "All Flags Admiral"
+ all_flags_admiral_desc: "This commander sailed under the All Flags banner — the unprecedented coalition of every human and elven people on Tamriel, assembled by Admiral Bendu Olo of Anvil to destroy the Sload and end the Thrassian Plague. To have commanded a contingent of that fleet is to have stood at the hinge of history."
+
+ thrassian_plague_survivor: "Thrassian Plague Survivor"
+ thrassian_plague_survivor_desc: "This ruler lived through the era of the Thrassian Plague — the most devastating disease Tamriel has ever known, which killed roughly half the continent's population between 1E 2200 and 2E 2260. Whatever survived in them is harder than what went in."
+
+ bendu_olo_descendant: "Descendant of Bendu Olo"
+ bendu_olo_descendant_desc: "This ruler claims descent from Admiral Bendu Olo of Anvil — the Colovian count who assembled the All Flags Navy and led the coalition that sank Thras. It is a lineage that commands respect from High Rock to Summerset."
+
+ thras_sinking_witness: "Witness to the Sinking of Thras"
+ thras_sinking_witness_desc: "This ruler was present on the Abecean Sea when the coral magic was turned against the Sload and Thras descended beneath the waves. No one who saw it ever quite explained what they saw. The memory sits behind their eyes like something too large for words."
+
+ # --- Modifiers ---
+ thrassian_quarantine_active: "Thrassian Quarantine"
+ thrassian_quarantine_active_desc: "This realm has sealed its ports and borders against the Thrassian Plague, posting guards at all entry points and burning the belongings of those who show symptoms."
+
+ # --- Events ---
+
+ all_flags_navy.001.t: "The Plague Ships"
+ all_flags_navy.001.desc: "The ships came from the southwest — that is all anyone agrees on. The sailors on the first vessels to reach port seemed healthy enough when they arrived, and by the next morning three of them were dead and two more were delirious with a fever that burned through them like fire through dry grass.\n\nThe Thrassian Plague. You had heard the name spoken in the same breath as 'stories' and 'exaggeration.' You are looking at the bodies now. It is neither.\n\nThe plague has come ashore. It moves faster than quarantine, faster than rumour, faster than armies. Someone will have to do something about the Sload — the slug-necromancers of Thras who bred this disease as a weapon. The question is who, and when, and whether there will be enough people left to do it."
+ all_flags_navy.001.a: "Seal the ports. Not one ship enters or leaves until this is contained."
+ all_flags_navy.001.b: "Send envoys to every coastal realm. If the Sload did this, we face them together."
+ all_flags_navy.001.c: "Move the court inland. Distance is the only medicine that works."
+
+ all_flags_navy.002.t: "The Call to Fleet"
+ all_flags_navy.002.desc: "The message bears the seal of Anvil — a count's seal, not an emperor's, which is either humility or pragmatism or both. Bendu Olo writes without ceremony: the Sload must be destroyed; the Thrassian Plague will not end while Thras stands; every coastal nation must contribute ships or watch its own ports die one by one.\n\nHe is not wrong. The All Flags Navy — that is what he is calling it, though there are no flags yet — has no precedent. High Rock ships beside Summerset galleys. Argonian war-canoes alongside Hammerfell dhows. It should be impossible. The plague has made it necessary.\n\nYour captains are waiting for orders."
+ all_flags_navy.002.a: "We sail. This is not one nation's war — it is everyone's."
+ all_flags_navy.002.b: "We cannot spare the ships. Let others carry this burden."
+
+ all_flags_navy.003.t: "The Abecean Crossing"
+ all_flags_navy.003.desc: "The Abecean Sea is the colour of old bronze in the late afternoon light, and Thras is visible on the horizon — or rather, what Thras has built on the horizon is visible. The coral towers.\n\nThey rise from the island like natural formations, except nothing natural grows that way: too regular, too tall, too clearly purposeful. They are the Sload's great working — the architecture of their necromancy, the physical expression of magic that should not exist. It is beautiful in the way that plague ships are beautiful from a distance.\n\nThe fleet spreads to your left and right for as far as you can see. Every people on Tamriel, or near enough. Bendu Olo's flagship is somewhere in the centre. The towers are getting larger.\n\nTomorrow, or the day after, you will be close enough to see what the Sload actually look like."
+ all_flags_navy.003.a: "Hold formation. We go in together or not at all."
+ all_flags_navy.003.b: "Signal Bendu Olo. Request the honour of the vanguard."
+
+ all_flags_navy.004.t: "Thras Sinks"
+ all_flags_navy.004.desc: "It did not happen the way you expected — there was no great battle, no final storm, no moment of obvious triumph. The Sload's coral magic was turned against itself by methods that Bendu Olo's mages had spent months preparing, and then Thras simply... went down.\n\nThe coral towers were the last to go. They descended into the Abecean Sea with a slowness that seemed almost ceremonial, as though the island were acknowledging the moment. The Sload did not scream. They did not flee. They went down with their towers, and the sea closed over them, and the water that swallowed Thras was oddly still afterward.\n\nThe Thrassian Plague ends today. The Sload are gone — or gone enough that they will not breed another plague for a very long time. You watched it happen. You were here.\n\nThe fleet is cheering. You are not sure you have the words for what you feel."
+ all_flags_navy.004.a: "We did this together. Every people on Tamriel. Remember this day."
+
+ all_flags_navy.005.t: "The Legacy of the Fleet"
+ all_flags_navy.005.desc: "The journey home takes two weeks, and you have time to think about what the All Flags Navy actually means — not the military achievement, but the fact of it. That it happened. That High Rock ships did not sink Summerset galleys out of habit. That Argonians and Altmer fought on the same side and the sea did not swallow them for the audacity.\n\nIt will not last. Everyone on the fleet knows this. The alliances will dissolve when the common enemy is gone, and within a generation the old grievances will reassert themselves, and someone will write a scholarly treatise arguing that the All Flags Navy was not as unified as the legends suggest.\n\nBut it happened. Whatever follows, whatever wars come, whatever empires rise and fall — for twenty years, the peoples of Tamriel looked at extinction and decided, together, to sail toward it instead of away. That is in the record now. It cannot be unwritten."
+ all_flags_navy.005.a: "This is what we are capable of, when the stakes are high enough. Hold that thought."
+ all_flags_navy.005.b: "The unity will not survive the peace. But the plague is over, and that is enough."

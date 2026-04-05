@@ -1,0 +1,48 @@
+﻿l_english:
+
+ # =====================================================================
+ #  PENITUS OCULATUS — IMPERIAL SECRET SERVICE
+ # =====================================================================
+
+ # --- Traits ---
+
+ penitus_agent: "Penitus Oculatus Agent"
+ penitus_agent_desc: "This character is a member of the Penitus Oculatus — the Emperor's personal intelligence and protection service, the organisation that replaced the Blades after the White-Gold Concordat disbanded them in 4E 22. Their distinctive white-trimmed armour is a common sight wherever Imperial authority still runs. They are loyal to the Emperor personally, not to any political faction, and their methods are efficient in ways that polite courts prefer not to examine too closely."
+
+ penitus_inspector: "Penitus Inspector"
+ penitus_inspector_desc: "This character holds senior rank in the Penitus Oculatus, the Imperial Secret Service — responsible for managing investigations, handling intelligence operations in a region, and coordinating the order's agents across a territory. They have seen the inside of the Empire's worst problems and helped fix several of them. They carry that knowledge with the particular weight that cannot be set down."
+
+ penitus_director: "Penitus Director"
+ penitus_director_desc: "This character commands the intelligence apparatus of the Penitus Oculatus across a significant portion of the Empire. They are among the Emperor's most trusted and most dangerous agents — not dangerous in the way a soldier is dangerous, but in the way a mind with access to every secret in a province is dangerous. When they walk into a room, the room gets quieter. The people in it know, even if they cannot say why, that this person already knows everything worth knowing about them."
+
+ # --- Modifiers ---
+
+ penitus_protection: "Penitus Oculatus Protection"
+ penitus_protection_desc: "The Penitus Oculatus has extended its protective services to this character. Their couriers carry protected dispatch; their court has been security-reviewed; their most dangerous enemies are being watched. The protection is real. It also comes with an implicit obligation that the organisation will collect on in due course."
+
+ penitus_spy_network: "Imperial Intelligence Network"
+ penitus_spy_network_desc: "This character has built out the Penitus Oculatus's intelligence apparatus in their territory into a comprehensive spy network. Nothing of political consequence happens in the realm without word reaching this character's desk. The network requires constant upkeep — in gold, in attention, and in the willingness to act on what it reveals."
+
+ # --- Events ---
+
+ penitus.001.t: "The Emperor's Eye"
+ penitus.001.desc: "The figure waiting in the outer hall wears the distinctive white-trimmed armour of the Penitus Oculatus — the Emperor's intelligence and protection service, the organisation that has operated in the shadow of Imperial authority since the White-Gold Concordat sent the Blades into exile.\n\nShe is patient. She has been waiting two hours. She has not asked for refreshment or complained about the wait; she is simply present, in the manner of someone accustomed to waiting for exactly as long as the job requires.\n\nWhen your chamberlain finally shows her in, she presents an identity seal, gives a very brief introduction, and makes a very brief proposal. The Penitus Oculatus has been watching your court for some time. They believe you have qualities useful to the Empire. They are inviting you to formalize an arrangement.\n\nThe invitation is polite. It does not feel optional."
+ penitus.001.a: "Accept the arrangement. Imperial intelligence has its uses."
+ penitus.001.b: "Decline with courtesy. I serve no master but my own."
+ penitus.001.c: "Investigate this person before committing to anything."
+
+ penitus.002.t: "The Dark Brotherhood Contract"
+ penitus.002.desc: "The intelligence report comes through the Penitus Oculatus's courier network rather than your own scouts, which tells you something about the reach of the apparatus you've joined. The information is specific: a Dark Brotherhood contract has been taken out. The target, after a certain amount of careful reading between the lines, appears to be you.\n\nThe Brotherhood does not often fail, which is why the Penitus Oculatus is telling you now rather than after the fact. There are options. The first is expensive. The second is less expensive but more reliant on your own preparedness. The third is to do nothing, which the Penitus courier pointedly does not offer as a recommendation."
+ penitus.002.a: "Increase security. Spare no gold to close every gap."
+ penitus.002.b: "Stay alert. I will handle this without additional expense."
+
+ penitus.003.t: "Dismantling the Sanctuaries"
+ penitus.003.desc: "The order comes through channels you are now familiar with: a coded dispatch, a wax seal whose device you would not recognise from outside the organisation, a message in the bland administrative language that the Penitus Oculatus uses when it is describing operations that would be alarming if stated plainly.\n\nThe Dark Brotherhood has a Sanctuary in Imperial territory. The Penitus Oculatus has located it. You have been assigned to the operation that will dismantle it.\n\nThis is not a request. The language makes that clear without saying so. You are a resource being deployed. The question is whether you are a willing one, and how much additional direction you require."
+ penitus.003.a: "Lead the operation personally. This is the work we are here to do."
+ penitus.003.b: "Coordinate from a distance. Let my agents handle the particulars."
+
+ penitus.004.t: "The Spy Network"
+ penitus.004.desc: "You have been with the Penitus Oculatus long enough now to see the shape of what could exist — and what does not yet. The intelligence apparatus in your territory is functional. It is not, by any rigorous assessment, optimal.\n\nThe organisation's senior liaison brings you a proposal: expand the network. More agents, more cut-outs, more embedded informants in the courts of your neighbours. The cost is significant. The capability it would create is more significant.\n\nThe alternative is to maintain what you have — which is already more than most rulers possess — and accept that there are things happening in your borders that your current network cannot see. The Penitus Oculatus does not tell you what those things are. That, of course, is the point."
+ penitus.004.a: "Expand the network. Full investment, full capability."
+ penitus.004.b: "Hold at current capacity. The expense is not justified."
+ penitus.004.c: "Redirect resources to personal security."

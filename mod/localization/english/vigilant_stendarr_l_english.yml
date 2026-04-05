@@ -1,0 +1,75 @@
+﻿l_english:
+
+ # =====================================================================
+ #  VIGILANTS OF STENDARR
+ # =====================================================================
+
+ # --- Modifiers ---
+
+ vigilant_anti_daedra_training: "Anti-Daedra Training"
+ vigilant_anti_daedra_training_desc: "The Hall of the Vigilant's library contains centuries of accumulated knowledge on Daedric physiology, weaknesses, and the specific vulnerabilities of each Prince's servants. This ruler has studied it."
+
+ vigilant_stendarr_blessed: "Stendarr's Blessing"
+ vigilant_stendarr_blessed_desc: "A formal blessing conferred by the Guardians of the Hall of the Vigilant, invoking Stendarr's mercy and might. The Divine's protection is not a guarantee, but it is not nothing either."
+
+ vigilant_pragmatic_approach: "Vigilant's Pragmatic Approach"
+ vigilant_pragmatic_approach_desc: "After a rehabilitation failure, this Vigilant has adjusted their methods toward Isran's more aggressive doctrine. Mercy first, still — but a shorter path to the second option."
+
+ vigilant_hall_in_ashes: "The Hall Burns in Memory"
+ vigilant_hall_in_ashes_desc: "The Hall of the Vigilant is gone — burned by the Volkihar, its Guardians massacred. What the Hall represented, and what it taught, must now be carried in those who survived."
+
+ vigilant_artifact_retained: "Daedric Artifact Kept"
+ vigilant_artifact_retained_desc: "Against Vigilant doctrine and the advice of Stendarr's servants, this ruler chose to retain a Daedric artifact. The power it offers is real. The question of what it is doing to its keeper is a slower one to answer."
+
+ vigilant_generous_patron: "Generous Patron of the Hall"
+ vigilant_generous_patron_desc: "A substantial donation to the Hall of the Vigilant has not gone unnoticed by the order's Guardians. Their respect is genuine; their blessing is an additional benefit."
+
+ # --- Traits ---
+
+ vigilant_of_stendarr: "Vigilant of Stendarr"
+ vigilant_of_stendarr_desc: "A member of the Vigilants of Stendarr — the pan-Tamrielic order that hunts Daedra, undead, and monsters in the name of Stendarr, the Divine of Mercy and Righteous Might. The Vigilants travel in small groups, carry blessed maces, and try to exhaust every option that does not involve killing before they try the one that does. This is the thing that Isran could not forgive about them. Whether it is wisdom or weakness is a question the Fourth Era has not yet finished answering."
+
+ vigilant_captain: "Vigilant Captain"
+ vigilant_captain_desc: "A chapter captain of the Vigilants of Stendarr, coordinating the order's operations across a region from one of the hall-chapters scattered through Tamriel. They have conducted interrogations, exorcisms, and at least one formal rehabilitation. They have also, inevitably, conducted the kind of operation that ends in a pyre rather than a release, and carried the weight of that judgment back to the Hall. The Vigilants' mercy is real. So is the cost of it."
+
+ hall_of_vigilant_guardian: "Guardian of the Hall of the Vigilant"
+ hall_of_vigilant_guardian_desc: "One of the senior wardens of the Hall of the Vigilant itself — the order's seat near the Pale Pass in Skyrim. The Guardians are the keepers of the order's deepest knowledge: how to detect a Daedric infiltration in a noble court, how to approach a lycanthrope who wants help, how to close a dark anchor when it opens. They are scholars as much as warriors. The Hall stood for centuries. When the Volkihar came for it, they found it was not as impregnable as its reputation."
+
+ # --- Events ---
+
+ vigilant.001.t: "Stendarr's Mercy"
+ vigilant.001.desc: "They arrive without announcement — three figures in travel-worn robes, their weapons peace-tied, carrying a letter sealed with the blazing eye of Stendarr and the words 'MERCY AND MIGHT' in formal Tamrielic script.\n\nVigilants of Stendarr. They have been in the region for weeks, they say, watching the Daedric activity, cataloguing the incursions, taking note of which rulers have the resolve and the faith to stand against what is coming. They have come to you because your name appears at the top of their list.\n\nThey offer what the order can: knowledge of Daedric weaknesses accumulated over three centuries of hunting, the blessing of Stendarr's formal rites, and the right arm of fighters who have faced things that make most soldiers look the other direction. All they ask is the chance to stand beside you against a common enemy.\n\n'Stendarr's mercy,' says the senior Vigilant, 'is not the mercy of inaction. It is the mercy of doing the hard thing so that others do not have to.'"
+ vigilant.001.a: "Accept their alliance. Stendarr's servants are welcome in this court."
+ vigilant.001.b: "Thank them and decline. We have our own methods against the Daedra."
+ vigilant.001.c: "Donate to their cause. The work is worthy even without a formal alliance."
+
+ vigilant.002.t: "The Hall of the Vigilant"
+ vigilant.002.desc: "The Hall of the Vigilant is not impressive from the outside. A stone building against a hillside, near the Pale Pass, surrounded by outbuildings and a practice yard. The sort of place that a traveller might pass without looking twice.\n\nInside it is something else entirely. The library occupies three rooms; the catalogue of Daedric entities alone fills two shelves. The armoury contains weapons that the smiths say have been in continuous use since the Second Era. The Guardians here have the careful, deliberate manner of people who have spent long enough thinking about dangerous things to know exactly how dangerous they are.\n\nThey show you to the library, to the practice yard, to the blessing room where the rites are conducted. You have a day. The question is where to spend it."
+ vigilant.002.a: "Study the anti-Daedra tactics. Three centuries of knowledge, all in one place."
+ vigilant.002.b: "Seek Stendarr's blessing. A wall of faith against the darkness."
+ vigilant.002.c: "Train with the combat Vigilants. Their fighting techniques are worth knowing."
+
+ vigilant.003.t: "Too Much Mercy"
+ vigilant.003.desc: "His name was Aldric. He was a werewolf — one of the Hircine-marked, taken in by the Vigilants eight months ago when he came to the Hall asking for help. The order had been working with him. Techniques for controlling the change. Rituals for the moon-nights. A Vigilant assigned to stay close on the dangerous days.\n\nLast night, the Vigilant assigned to him was found near the village of Ivarstead. Aldric was found in the village itself.\n\nThe surviving Vigilant — there is one — is in the infirmary, and will recover. Three villagers are dead. Aldric is somewhere in the hills to the east, and has not answered calls to return.\n\nThe order is waiting to hear what you want to do."
+ vigilant.003.a: "Hold to Stendarr's mercy. One failure does not condemn the entire program."
+ vigilant.003.b: "Change the approach. Isran's doctrine has a point, however much we dislike it."
+ vigilant.003.c: "Investigate how this happened. The failure has a cause; find it before judging."
+
+ vigilant.004.t: "Volkihar Attacks the Hall"
+ vigilant.004.desc: "The messenger was riding hard and barely made it to your gates before the horse gave out. The message was two sentences:\n\n'The Volkihar have attacked the Hall of the Vigilant. There is nothing left.'\n\nThe details come later, in pieces, from survivors who reached different corners of Skyrim. The attack was at night — of course it was at night. They came in large numbers, more than the Hall had ever faced before. The Guardians fought. The Hall had good walls and experienced defenders and three centuries of accumulated knowledge on how to kill things that don't die easily.\n\nNone of it was enough. The Volkihar burned the Hall and killed everyone they could find. A few Vigilants escaped into the hills. The rest are ash.\n\nIsran was right about one thing: the Volkihar's patience is not mercy. It is strategy."
+ vigilant.004.a: "The order cannot die with the Hall. Rebuild. Carry the memory forward."
+ vigilant.004.b: "Join the Dawnguard. Isran's methods were right. We were too slow to see it."
+
+ vigilant.010.t: "A Daedric Artifact Brought to the Vigilants"
+ vigilant.010.desc: "The scouting party brought it back wrapped in canvas, tied with rope, placed in a chest, which they then put inside a second chest. The two men who carried it the last ten miles say they heard something that might have been whispering for most of the journey, but that could also have been the wind.\n\nThe Vigilants identified it immediately. A Daedric artifact — significant, not decorative, the kind of object that has a name and a history and a current Prince who considers it property. The metal is an impossible colour in ordinary light. The shadow it casts does not match its shape.\n\nThe senior Vigilant makes the situation clear without emphasis: it is dangerous to own, dangerous to destroy, and dangerous to use. The order can attempt the destruction, or seal it in the Hall's vault, or you can keep it and accept what that means. They are not ordering you. They are informing you. The choice is yours."
+ vigilant.010.a: "Give it to the Vigilants for destruction. Stendarr's will over temptation."
+ vigilant.010.b: "Keep it. A Daedric weapon turned against Daedra may be exactly what we need."
+ vigilant.010.c: "Let the Vigilants seal it. Neither destroyed nor wielded — just contained."
+
+ # --- Decisions ---
+
+ join_vigilants_of_stendarr: "Join the Vigilants of Stendarr"
+ join_vigilants_of_stendarr_desc: "The Vigilants of Stendarr hunt Daedra, undead, and monsters across Tamriel in the name of the Divine of Mercy. Their methods favour warning and rehabilitation where possible, lethal force where not. Seek membership in the order and add your strength to their cause."
+
+ donate_to_hall_of_vigilant: "Donate to the Hall of the Vigilant"
+ donate_to_hall_of_vigilant_desc: "The Hall of the Vigilant operates on donations from pious rulers and devout individuals across Tamriel. A substantial contribution funds their hunts, their equipment, and the rehabilitation programs that represent the order's most controversial — and most distinctively Stendarr's — work."

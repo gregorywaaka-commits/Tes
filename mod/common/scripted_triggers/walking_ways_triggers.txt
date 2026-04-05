@@ -1,0 +1,379 @@
+# =============================================================
+#  The Walking Ways — Scripted Triggers
+#  File: mod/common/scripted_triggers/walking_ways_triggers.txt
+#
+#  Scripted triggers are reusable boolean conditions used in:
+#    • Decision is_shown / is_valid blocks
+#    • Event trigger blocks
+#    • Other scripted triggers
+#
+#  PATHS:
+#    Path A — CHIM Expanded        (path_key: chim_expanded)
+#    Path B — Mantling             (sub-paths: talos, arkay, kynareth, azura, meridia)
+#    Path C — Psijic Endeavour     (path_key: psijic_endeavour)
+#    Path D — The Enantiomorph     (path_key: enantiomorph)
+#    Path E — The Amaranth         (path_key: amaranth)
+#
+#  RANK VARIABLE CONVENTION:
+#    var:ww_[path]_rank = 0  — path started, no milestones
+#    var:ww_[path]_rank = 1  — milestones 1–2 done   (rank: Seeking)
+#    var:ww_[path]_rank = 2  — milestones 3–4 done   (rank: Striving)
+#    var:ww_[path]_rank = 3  — milestones 5–6 done   (rank: Threshold)
+#    var:ww_[path]_rank = 4  — all milestones done   → apotheosis fires
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES — identifiers this file exports:
+#    • is_on_walking_way
+#    • has_completed_any_walking_way
+#    • can_begin_walking_ways
+#    • can_begin_path_chim_expanded
+#    • can_begin_path_mantling
+#    • can_begin_path_psijic_endeavour
+#    • can_begin_path_enantiomorph
+#    • can_begin_path_amaranth
+#    • is_on_path_chim_expanded / mantling / psijic / enantiomorph / amaranth
+#    • has_completed_path_chim_expanded / mantling_* / psijic / enantiomorph / amaranth
+#
+#  DEPENDS ON:
+#    common/traits/chim_traits.txt          → chim_achieved
+#    common/traits/walking_ways_traits.txt  → walking_ways_seeker
+#    common/traits/mantling_traits.txt      → (apex traits)
+#    common/traits/dawnguard_traits.txt     → dawnguard_commander
+#    common/traits/shezarrine_traits.txt    → shezarrine_vessel
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SHARED BASE TRIGGERS
+# ---------------------------------------------------------------
+
+is_on_walking_way = {
+    has_character_flag = walking_ways_path_active
+}
+
+has_completed_any_walking_way = {
+    OR = {
+        has_character_flag = ww_chim_expanded_completed
+        has_character_flag = ww_mantling_talos_completed
+        has_character_flag = ww_mantling_arkay_completed
+        has_character_flag = ww_mantling_kynareth_completed
+        has_character_flag = ww_mantling_azura_completed
+        has_character_flag = ww_mantling_meridia_completed
+        has_character_flag = ww_psijic_endeavour_completed
+        has_character_flag = ww_enantiomorph_completed
+        has_character_flag = ww_amaranth_completed
+    }
+}
+
+can_begin_walking_ways = {
+    is_ruler = yes
+    is_adult = yes
+    age >= 18
+    NOT = { is_on_walking_way = yes }
+    NOT = { has_character_flag = walking_ways_refused }
+}
+
+# ---------------------------------------------------------------
+#  PATH A — CHIM EXPANDED
+# ---------------------------------------------------------------
+
+can_begin_path_chim_expanded = {
+    can_begin_walking_ways = yes
+    has_trait = chim_achieved
+    NOT = { has_character_flag = ww_chim_expanded_completed }
+}
+
+is_on_path_chim_expanded = {
+    is_on_walking_way = yes
+    has_character_flag = ww_chim_expanded_active
+}
+
+has_completed_path_chim_expanded = {
+    has_character_flag = ww_chim_expanded_completed
+}
+
+# ---------------------------------------------------------------
+#  PATH B — MANTLING (shared base + sub-paths)
+# ---------------------------------------------------------------
+
+can_begin_path_mantling = {
+    can_begin_walking_ways = yes
+    OR = {
+        learning >= 16
+        martial >= 16
+    }
+}
+
+is_on_path_mantling = {
+    is_on_walking_way = yes
+    OR = {
+        has_character_flag = ww_mantling_talos_active
+        has_character_flag = ww_mantling_arkay_active
+        has_character_flag = ww_mantling_kynareth_active
+        has_character_flag = ww_mantling_azura_active
+        has_character_flag = ww_mantling_meridia_active
+    }
+}
+
+# Talos
+can_begin_mantling_talos = {
+    can_begin_path_mantling = yes
+    OR = {
+        has_trait = shezarrine_vessel
+        AND = {
+            martial >= 20
+            OR = {
+                culture = { has_cultural_pillar = heritage_cyrodilic }
+                culture = { has_cultural_pillar = heritage_nordic }
+            }
+        }
+    }
+    NOT = { has_character_flag = ww_mantling_talos_completed }
+}
+
+# Arkay
+can_begin_mantling_arkay = {
+    can_begin_path_mantling = yes
+    learning >= 14
+    OR = {
+        has_trait = compassionate
+        has_trait = zealous
+    }
+    NOT = { has_character_flag = ww_mantling_arkay_completed }
+}
+
+# Kynareth / Kyne — goddess of sky, wind, and natural world.
+# Nordic form is Kyne (Shor's widow, mother of men).
+# The milestones — Word Walls, Companions, Shor's memory, the outnumbered
+# storm — are almost entirely tied to Nordic culture and the Thu'um.
+# A brave warrior with no connection to Nordic heritage or the Voice
+# cannot meaningfully walk Kynareth's path. [SOURCE: UESP Lore:Kynareth/Kyne]
+can_begin_mantling_kynareth = {
+    can_begin_path_mantling = yes
+    has_trait = brave
+    # Nordic culture/Voice connection requirement (design doc §7 "Mantling Kynareth")
+    OR = {
+        culture = { has_cultural_pillar = heritage_nordic }  # Nordic by heritage
+        has_character_flag = thuumvoi_event_1_seen           # has walked with the Thu'um
+    }
+    NOT = { has_character_flag = ww_mantling_kynareth_completed }
+}
+
+# Azura (Daedric — higher requirement)
+# Azura is the patron goddess of the Dunmer (Chimer) people.
+# Requires philosophical depth (chim_seeker/achieved) AND a genuine
+# cultural or spiritual connection to Azura or the Dunmer faith.
+# Without this, a foreign scholar with no Dunmer ties could mantle
+# a goddess whose entire identity is bound to Dunmeri covenant —
+# which is lore-inaccurate. [SOURCE: UESP Lore:Azura; Dunmer Pantheon]
+can_begin_mantling_azura = {
+    can_begin_path_mantling = yes
+    OR = {
+        has_trait = chim_seeker
+        has_trait = chim_achieved
+    }
+    # Dunmer culture/faith adjacency requirement (design doc §7 "Mantling Azura")
+    OR = {
+        has_culture = dunmer_culture               # is Dunmer
+        has_character_flag = vivec_vision_seen     # received Tribunal blessing (Dunmer faith immersion)
+        has_trait = azura_champion                 # already Azura's chosen champion
+    }
+    NOT = { has_character_flag = ww_mantling_azura_completed }
+}
+
+# Meridia (Daedric — Dawnguard adjacent)
+can_begin_mantling_meridia = {
+    can_begin_path_mantling = yes
+    OR = {
+        has_trait = dawnguard_commander
+        has_character_flag = dawnguard_victory_achieved
+    }
+    NOT = { has_character_flag = ww_mantling_meridia_completed }
+}
+
+has_completed_any_mantling = {
+    OR = {
+        has_character_flag = ww_mantling_talos_completed
+        has_character_flag = ww_mantling_arkay_completed
+        has_character_flag = ww_mantling_kynareth_completed
+        has_character_flag = ww_mantling_azura_completed
+        has_character_flag = ww_mantling_meridia_completed
+    }
+}
+
+# ---------------------------------------------------------------
+#  PATH C — PSIJIC ENDEAVOUR
+# ---------------------------------------------------------------
+
+can_begin_path_psijic_endeavour = {
+    can_begin_walking_ways = yes
+    learning >= 16
+    OR = {
+        has_trait = scholar
+        has_character_flag = psijic_contact
+        has_trait = chim_seeker
+        has_trait = chim_achieved
+    }
+    NOT = { has_character_flag = ww_psijic_endeavour_completed }
+}
+
+is_on_path_psijic_endeavour = {
+    is_on_walking_way = yes
+    has_character_flag = ww_psijic_endeavour_active
+}
+
+has_completed_path_psijic_endeavour = {
+    has_character_flag = ww_psijic_endeavour_completed
+}
+
+# ---------------------------------------------------------------
+#  PATH D — THE ENANTIOMORPH
+# ---------------------------------------------------------------
+
+can_begin_path_enantiomorph = {
+    can_begin_walking_ways = yes
+    intrigue >= 16
+    OR = {
+        has_trait = deceitful
+        has_trait = paranoid
+        has_trait = ruthless
+        has_character_flag = committed_regicide
+    }
+    NOT = { has_character_flag = ww_enantiomorph_completed }
+    NOT = { has_trait = enantiomorph_consumed }
+}
+
+is_on_path_enantiomorph = {
+    is_on_walking_way = yes
+    has_character_flag = ww_enantiomorph_active
+}
+
+has_completed_path_enantiomorph = {
+    has_character_flag = ww_enantiomorph_completed
+}
+
+# ---------------------------------------------------------------
+#  PATH E — THE AMARANTH (Hidden / Endgame)
+# ---------------------------------------------------------------
+
+can_begin_path_amaranth = {
+    can_begin_walking_ways = yes
+    has_trait = chim_achieved
+    has_completed_any_walking_way = yes
+    NOT = { has_character_flag = ww_amaranth_completed }
+}
+
+is_on_path_amaranth = {
+    is_on_walking_way = yes
+    has_character_flag = ww_amaranth_active
+}
+
+has_completed_path_amaranth = {
+    has_character_flag = ww_amaranth_completed
+}
+
+# ---------------------------------------------------------------
+#  MILESTONE HELPER TRIGGERS
+# ---------------------------------------------------------------
+
+# Has the named milestone flag for the active path?
+# Used by the progress engine to count completed milestones.
+
+has_any_chim_milestone = {
+    OR = {
+        has_character_flag = ww_chim_milestone_first_edit
+        has_character_flag = ww_chim_milestone_truth
+        has_character_flag = ww_chim_milestone_mercy
+        has_character_flag = ww_chim_milestone_stable
+        has_character_flag = ww_chim_milestone_silence
+        has_character_flag = ww_chim_milestone_name
+    }
+}
+
+has_any_mantling_talos_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_talos_milestone_shout
+        has_character_flag = ww_mantling_talos_milestone_empire
+        has_character_flag = ww_mantling_talos_milestone_wound
+        has_character_flag = ww_mantling_talos_milestone_mercy
+        has_character_flag = ww_mantling_talos_milestone_shezarrine
+        has_character_flag = ww_mantling_talos_milestone_throne
+    }
+}
+
+has_any_mantling_arkay_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_arkay_milestone_burial
+        has_character_flag = ww_mantling_arkay_milestone_plague
+        has_character_flag = ww_mantling_arkay_milestone_neardeath
+        has_character_flag = ww_mantling_arkay_milestone_season
+        has_character_flag = ww_mantling_arkay_milestone_grief
+        has_character_flag = ww_mantling_arkay_milestone_age
+    }
+}
+
+has_any_mantling_kynareth_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_kynareth_milestone_wordwall
+        has_character_flag = ww_mantling_kynareth_milestone_companions
+        has_character_flag = ww_mantling_kynareth_milestone_openhand
+        has_character_flag = ww_mantling_kynareth_milestone_skybattle
+        has_character_flag = ww_mantling_kynareth_milestone_shor
+        has_character_flag = ww_mantling_kynareth_milestone_storm
+    }
+}
+
+has_any_mantling_azura_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_azura_milestone_covenant
+        has_character_flag = ww_mantling_azura_milestone_dunmer
+        has_character_flag = ww_mantling_azura_milestone_dusk
+        has_character_flag = ww_mantling_azura_milestone_prophecy
+        has_character_flag = ww_mantling_azura_milestone_transformation
+        has_character_flag = ww_mantling_azura_milestone_stars
+    }
+}
+
+has_any_mantling_meridia_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_meridia_milestone_undead_slain
+        has_character_flag = ww_mantling_meridia_milestone_necro_refused
+        has_character_flag = ww_mantling_meridia_milestone_beacon
+        has_character_flag = ww_mantling_meridia_milestone_temple
+        has_character_flag = ww_mantling_meridia_milestone_light
+        has_character_flag = ww_mantling_meridia_milestone_corruption
+    }
+}
+
+has_any_psijic_milestone = {
+    OR = {
+        has_character_flag = ww_psijic_milestone_silence
+        has_character_flag = ww_psijic_milestone_text
+        has_character_flag = ww_psijic_milestone_eye_echo
+        has_character_flag = ww_psijic_milestone_prediction
+        has_character_flag = ww_psijic_milestone_grief
+        has_character_flag = ww_psijic_milestone_mastery
+    }
+}
+
+has_any_enantiomorph_milestone = {
+    OR = {
+        has_character_flag = ww_enant_milestone_throne
+        has_character_flag = ww_enant_milestone_betrayal
+        has_character_flag = ww_enant_milestone_witness
+        has_character_flag = ww_enant_milestone_survived
+        has_character_flag = ww_enant_milestone_creed
+        has_character_flag = ww_enant_milestone_void
+    }
+}
+
+has_any_amaranth_milestone = {
+    OR = {
+        has_character_flag = ww_amaranth_milestone_dream
+        has_character_flag = ww_amaranth_milestone_name
+        has_character_flag = ww_amaranth_milestone_godhead
+    }
+}

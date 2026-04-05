@@ -49,9 +49,11 @@ Key principles `[CANON — UESP]`:
 - **Location:** Vvardenfell, Morrowind
 - **Stone:** **Heart of Lorkhan** — the actual heart of the slain/cast-out et'Ada Lorkhan
 - **Builder:** Not constructed; formed naturally when the Heart of Lorkhan fell from the sky
-- **Status:** **Destroyed** — the Heart was destroyed by the Nerevarine in TES III: Morrowind (3E 427). Red Mountain subsequently erupted in 4E 5. `[CANON — TES III: Morrowind; UESP]`
-- **Significance:** The Tribunal (Vivec, Almalexia, Sotha Sil) drew their divine power directly from the Heart using Kagrenac's Tools. Destroying the Heart ended their divinity. The Dwemer also used the Heart — their disappearance at the Battle of Red Mountain (c. 1E 700) is related to Kagrenac's activation of his tools. `[CANON — TES III: Morrowind]`
+- **Status:** **Stone severed from Mundus** — the Nerevarine used Kagrenac's Tools (Sunder and Keening) in 3E 427 to break the enchantments binding the Heart of Lorkhan to the mortal plane. The Heart did not cease to exist; it **vanished from Tamriel**, departing the mortal world. As a divine artifact — the literal heart of a god — it cannot be truly destroyed. The severing ended all connections that mortals (the Tribunal, Dagoth Ur) had forged to it, killing those fully fused to it and stripping the rest of their borrowed divinity. Red Mountain subsequently erupted in 4E 5, likely destabilised by the loss of its Stone. `[CANON — TES III: Morrowind; UESP Lore:Heart of Lorkhan]`
+- ⚠️ **"Destroyed" is a common shorthand in casual discussion but is lore-inaccurate.** Canonical phrasing from UESP: "the Heart of Lorkhan seemingly vanished from Tamriel." The distinction matters: the Heart was *freed* from Mundus, not annihilated.
+- **Significance:** The Tribunal (Vivec, Almalexia, Sotha Sil) drew their divine power from the Heart using Kagrenac's Tools. Severing the Heart's connection to Mundus ended their divinity — what had been borrowed could no longer be sustained. The Dwemer also used the Heart — their disappearance at the Battle of Red Mountain (c. 1E 700) is related to Kagrenac's activation of his tools. `[CANON — TES III: Morrowind]`
 - **CK3 mod county:** `c_red_mountain` `[MOD CHOICE]`
+- ⚠️ **Path F cross-reference:** The Heart is the power source for `ww_borrowed_divinity` (Kagrenac's Ambition). Both the Tribunal (Route A, using the Tools) and Dagoth Ur (Route B, direct fusion) tapped this same Stone. The Heart is accessible to player characters only during `dagoth_ur_awakened = yes` (2E 882–3E 427). After 3E 427 the Heart has departed Mundus — all mortal connections are permanently severed and the path closes. See `WALKING_WAYS_DESIGN.md §19` for full details.
 
 ### 4. Crystal-Like-Law (Crystal Tower) `[CANON — UESP]`
 > **Source:** UESP Lore:Crystal Tower — https://en.uesp.net/wiki/Lore:Crystal_Tower
@@ -103,6 +105,18 @@ Key principles `[CANON — UESP]`:
 - **Significance:** Walk-Brass is unusual — it is a **mobile Tower** in the form of a giant brass golem. It can rewrite reality through brute force. Tiber Septim used it to conquer Tamriel; the Numidium's activation caused a **Dragon Break** (multiple contradictory timelines simultaneously true). `[CANON — UESP]`
 - **Dragon Break:** The "**Warp in the West**" at the end of Daggerfall is the most famous Dragon Break — all six endings of TES II: Daggerfall are simultaneously canon. `[CANON — UESP developer confirmation]`
 
+### 9. Orichalc Tower (Yokuda) `[SOFT CANON — UESP]`
+> **Source:** UESP Lore:Towers — https://en.uesp.net/wiki/Lore:Tower
+
+- **Location:** **Yokuda** — the Redguard homeland, now submerged beneath the ocean west of Tamriel
+- **Stone:** Unknown; likely an orichalcum artifact or equivalent (no in-game text names the Stone)
+- **Builder:** Unknown — pre-Ra Gada Yokudan civilisation
+- **Status:** **Destroyed** — Yokuda sank c. **1E 792**; the Orichalc Tower's fall is believed to be the proximate cause of the continent's destruction. `[SOFT CANON — the Tower/sinking connection is inferred from the Tower framework; no single in-game text states it directly]`
+- **Mod county:** *Omitted* — Yokuda is submerged; there is no playable county. Redguard characters carry cultural memory of Yokuda but no Tower Stone equivalent.
+- **Notes:** The Ra Gada who fled to Hammerfell carried Yokudan traditions (Ruptga, Tu'whacca, the Ansei sword-singers) but no functioning Tower. The absence of a Tower Stone mechanic in Hammerfell is therefore **lore-accurate** — the Stone sank with the continent. Any future mod content giving Hammerfell a Tower Stone would contradict this. `[CANON — UESP Lore:Yokuda; Lore:Ra Gada]`
+
+⚠️ **Implementation note:** `mod/events/yokuda_events.txt` correctly references "the Orichalc Tower fell" as the cause of Yokuda sinking. No event should contradict this framing.
+
 ---
 
 ## Disputed / Lesser Towers `[SOFT CANON or CONTESTED]`
@@ -122,7 +136,7 @@ Key principles `[CANON — UESP]`:
 |---|---|---|---|---|
 | Ada-Mantia | Balfiera, High Rock | Zero Stone | Intact | `c_balfiera` |
 | White-Gold | Imperial City, Cyrodiil | Chim-el Adabal (Amulet of Kings) | Damaged (3E 433) | `c_imperial_city` |
-| Red Tower | Vvardenfell, Morrowind | Heart of Lorkhan | **Destroyed** (3E 427) | `c_red_mountain` |
+| Red Tower | Vvardenfell, Morrowind | Heart of Lorkhan | **Stone severed/vanished** (3E 427) | `c_red_mountain` |
 | Crystal-Like-Law | Summerset Isle | Transparent Law | **Destroyed** (ESO era) | `c_alinor` |
 | Snow Throat | Skyrim | Unknown | Intact | `c_whiterun` |
 | Green-Sap | Valenwood (Falinesti) | Unknown | Uncertain | `c_falinesti` |

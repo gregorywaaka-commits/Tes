@@ -406,3 +406,172 @@ l_english:
  wounded: "Wounded"
  wounded_desc: "This character has sustained significant wounds. They recover — but it takes time, and the pain lingers."
 
+
+ # =====================================================================
+ #  BARROW EXPLORATION MODIFIERS
+ # =====================================================================
+
+ barrow_expedition_active: "Barrow Expedition Underway"
+ barrow_expedition_active_desc: "A formal expedition is currently exploring a nearby Nordic barrow."
+
+ word_wall_resonance: "Word Wall Resonance"
+ word_wall_resonance_desc: "This character stood before a Word Wall and allowed its inscription to resonate. The Word of Power is slowly being absorbed."
+
+ # =====================================================================
+ #  BLACK BOOKS / APOCRYPHA MODIFIERS
+ # =====================================================================
+
+ apocrypha_wandering: "Lost in Apocrypha"
+ apocrypha_wandering_desc: "This character is navigating the infinite stacks of Hermaeus Mora's realm."
+
+ black_book_insight: "Apocryphal Insight"
+ black_book_insight_desc: "Knowledge drawn from a Black Book has permanently sharpened this character's scholarly faculties."
+
+ black_book_cunning: "Apocryphal Cunning"
+ black_book_cunning_desc: "Knowledge drawn from a Black Book has rewired this character's understanding of deception and hidden truths."
+
+ # =====================================================================
+ #  PENITUS OCULATUS MODIFIERS
+ # =====================================================================
+
+ penitus_protection: "Penitus Oculatus Protection"
+ penitus_protection_desc: "The Penitus Oculatus has extended its protective services to this character."
+
+ penitus_spy_network: "Imperial Intelligence Network"
+ penitus_spy_network_desc: "This character has built out a comprehensive imperial intelligence network in their territory."
+
+ # =====================================================================
+ #  THALMOR JUSTICIARS MODIFIERS
+ # =====================================================================
+
+ thalmor_permitted_access: "Justiciars Permitted"
+ thalmor_permitted_access_desc: "Thalmor Justiciars have been permitted to operate freely in this ruler's territory under the terms of the White-Gold Concordat."
+
+ thalmor_delayed_access: "Justiciars Delayed"
+ thalmor_delayed_access_desc: "This ruler has found legal grounds to delay Thalmor access — but the maneuvering is stressful and temporary."
+
+ thalmor_underground_helper: "Talos Underground Helper"
+ thalmor_underground_helper_desc: "This ruler is secretly sheltering Talos worshippers from Thalmor persecution. If discovered, the consequences would be severe."
+
+ thalmor_double_game: "Playing Both Sides"
+ thalmor_double_game_desc: "This ruler is outwardly cooperating with the Thalmor while covertly undermining them — a dangerous but rewarding position."
+
+ thalmor_resentment_stance: "Open Defiance of the Justiciars"
+ thalmor_resentment_stance_desc: "This ruler has publicly refused Thalmor access, earning the respect of their Nord subjects and the enmity of the Aldmeri Dominion."
+
+ talos_underground_shelter: "Talos Refugee Shelter"
+ talos_underground_shelter_desc: "This ruler has formally opened their court to Talos worshippers fleeing Thalmor persecution."
+
+ # =====================================================================
+ #  GREAT WAR MODIFIERS
+ # =====================================================================
+
+ great_war_prepared_defenses: "Great War Fortifications"
+ great_war_prepared_defenses_desc: "This ruler has prepared defenses against the Aldmeri Dominion's invasion forces."
+
+ great_war_concordat_signed: "White-Gold Concordat Signatory"
+ great_war_concordat_signed_desc: "This ruler was part of the peace delegation that signed the White-Gold Concordat — a peace bought at great cost."
+
+ great_war_concordat_negotiator: "Concordat Negotiator"
+ great_war_concordat_negotiator_desc: "This ruler negotiated elements of the White-Gold Concordat, extracting what terms could be salvaged."
+
+ great_war_defiant_stance: "Defiant Against the Dominion"
+ great_war_defiant_stance_desc: "This ruler refused Thalmor demands and prepared for war — a costly decision that earned their subjects' respect."
+
+ great_war_exile_emperor: "Emperor in Exile"
+ great_war_exile_emperor_desc: "This ruler was forced to evacuate the Imperial City before the Aldmeri Dominion's advance."
+
+ great_war_talos_protector: "Protector of Talos's Faithful"
+ great_war_talos_protector_desc: "This ruler has taken steps to protect Talos worshippers from Concordat persecution."
+
+ great_war_siege_defender: "Red Ring Defender"
+ great_war_siege_defender_desc: "This ruler participated in the Battle of the Red Ring — the Imperial counterattack that recaptured the City."
+
+ great_war_hammerfell_defiance: "Hammerfell Defiance"
+ great_war_hammerfell_defiance_desc: "This ruler rejected the White-Gold Concordat's terms for Hammerfell and chose to fight on alone."
+
+ # =====================================================================
+ #  JAGAR THARN / SIMULACRUM MODIFIERS
+ # =====================================================================
+
+ simulacrum_investigating: "Investigating the Impostor"
+ simulacrum_investigating_desc: "This ruler is quietly investigating rumors that the Emperor in the Imperial City is not who he appears to be."
+
+ simulacrum_fragment_studied: "Staff of Chaos Fragment Studied"
+ simulacrum_fragment_studied_desc: "This ruler has studied a fragment of the shattered Staff of Chaos — Jagar Tharn's instrument of treachery."
+
+ simulacrum_aftermath_audit: "Post-Simulacrum Audit"
+ simulacrum_aftermath_audit_desc: "This ruler is reviewing the damage done during Jagar Tharn's decade of imposture."
+
+ simulacrum_opportunist: "Simulacrum Opportunist"
+ simulacrum_opportunist_desc: "This ruler exploited the chaos of Jagar Tharn's rule to expand their own power."
+
+ # =====================================================================
+ #  DAWNGUARD MODIFIERS
+ # =====================================================================
+
+ dawnguard_training_program: "Dawnguard Training Program"
+ dawnguard_training_program_desc: "This ruler has implemented the Dawnguard's rigorous anti-vampire training regimen in their forces."
+
+ dawnguard_crossbow_training: "Crossbow Mastery"
+ dawnguard_crossbow_training_desc: "This ruler has mastered the Dawnguard's signature crossbow technology — more accurate and more deadly against vampires than conventional bows."
+
+ dawnguard_vampire_lore: "Vampire Lore Training"
+ dawnguard_vampire_lore_desc: "This ruler has studied vampire weaknesses, habits, and bloodlines — knowledge that keeps hunters alive."
+
+ dawnguard_volkihar_intelligence: "Volkihar Intelligence Gathered"
+ dawnguard_volkihar_intelligence_desc: "This ruler has gathered detailed intelligence on the Volkihar vampire clan — their numbers, their feeding grounds, their fortress."
+
+ dawnguard_merciful_hunter: "The Merciful Path"
+ dawnguard_merciful_hunter_desc: "This ruler chose mercy in dealing with a sympathetic vampire — a decision that sits uneasily with Isran's methods."
+
+ dawnguard_fortified_base: "Fort Dawnguard Established"
+ dawnguard_fortified_base_desc: "This ruler has established Fort Dawnguard as the order's permanent base of operations in the Rift."
+
+ dawnguard_expanded_armory: "Expanded Dawnguard Armory"
+ dawnguard_expanded_armory_desc: "The Dawnguard's arsenal has been expanded — crossbows, runed bolts, and specialized anti-vampire equipment."
+
+ dawnguard_cure_seeker: "Seeking a Cure"
+ dawnguard_cure_seeker_desc: "This ruler is investigating whether vampirism can be reversed — a question that puts them at odds with Isran's kill-first philosophy."
+
+ dawnguard_declined_call: "Declined Isran's Call"
+ dawnguard_declined_call_desc: "This ruler declined Isran's call to join the Dawnguard's crusade against the Volkihar clan."
+
+ # =====================================================================
+ #  VIGILANTS OF STENDARR MODIFIERS
+ # =====================================================================
+
+ vigilant_stendarr_blessed: "Stendarr's Blessing"
+ vigilant_stendarr_blessed_desc: "This ruler has received the blessing of Stendarr, the Divine of Mercy, through the Vigilants' rites."
+
+ vigilant_anti_daedra_training: "Anti-Daedra Training"
+ vigilant_anti_daedra_training_desc: "This ruler has trained with the Vigilants of Stendarr in methods for confronting and banishing Daedra."
+
+ vigilant_hall_in_ashes: "Hall of the Vigilant Destroyed"
+ vigilant_hall_in_ashes_desc: "The Hall of the Vigilant has been burned and its defenders massacred by the Volkihar vampires. The failure weighs heavily."
+
+ vigilant_pragmatic_approach: "Pragmatic Mercy"
+ vigilant_pragmatic_approach_desc: "This ruler has adopted the Vigilants' pragmatic approach — mercy where possible, but without naivety."
+
+ vigilant_artifact_retained: "Daedric Artifact Retained"
+ vigilant_artifact_retained_desc: "This ruler kept a Daedric artifact rather than surrendering it to the Vigilants of Stendarr for destruction."
+
+ # =====================================================================
+ #  AETHERIUM FORGE MODIFIERS
+ # =====================================================================
+
+ aetherial_crown_resonance: "Aetherial Crown Attunement"
+ aetherial_crown_resonance_desc: "The Aetherial Crown has deepened this ruler's attunement to the Standing Stones of Skyrim."
+
+ aetherial_shield_reputation: "Aetherial Shield Renown"
+ aetherial_shield_reputation_desc: "Word has spread of the Aetherial Shield's power — enemies who know of it hesitate before attacking."
+
+ dwemer_automaton_retinue: "Dwemer Automaton Retinue"
+ dwemer_automaton_retinue_desc: "This ruler commands a small retinue of Dwemer automatons summoned by the Aetherial Staff."
+
+ # =====================================================================
+ #  ALL FLAGS NAVY MODIFIERS
+ # =====================================================================
+
+ thrassian_quarantine_active: "Thrassian Plague Quarantine"
+ thrassian_quarantine_active_desc: "This realm has imposed strict quarantine measures against the Thrassian Plague. Movement is restricted; trade suffers; the sick are isolated."

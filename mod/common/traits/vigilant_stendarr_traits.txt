@@ -1,0 +1,125 @@
+# =============================================================
+#  Vigilants of Stendarr — Traits
+#  File: mod/common/traits/vigilant_stendarr_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  vigilant_of_stendarr     — Member of the pan-Tamrielic order
+#                             dedicated to Stendarr, hunting Daedra,
+#                             undead, and monsters across the provinces.
+#
+#  vigilant_captain         — Chapter leader; coordinates a regional
+#                             cell of the order from a hall chapter.
+#
+#  hall_of_vigilant_guardian — One of the order's senior wardens,
+#                              stationed at the Hall of the Vigilant
+#                              near the Pale Pass.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Vigilants of Stendarr are a pan-Tamrielic religious military
+#  order devoted to Stendarr, the Divine of Mercy and Righteous
+#  Might.  Unlike the Dawnguard's militant specificity, the Vigilants
+#  range broadly — Daedra, undead, werewolves, and dangerous monsters
+#  all fall under their remit.  Their methods favour warning and
+#  rehabilitation where possible, lethal force where not.  Their
+#  headquarters, the Hall of the Vigilant, stood near the Pale Pass
+#  in Skyrim until 4E 201, when the Volkihar vampire clan burned it
+#  to the ground and massacred the order.  Isran, before founding
+#  the Dawnguard, was himself a Vigilant — and his break with the
+#  order was over exactly this: he believed their mercy was killing
+#  them.  He was right.
+#  Sources: UESP Lore:Vigilants of Stendarr; Skyrim — Dawnguard DLC.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/vigilant_stendarr_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • vigilant_of_stendarr
+#    • vigilant_captain
+#    • hall_of_vigilant_guardian
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/vigilant_stendarr_events.txt
+#      → vigilant_of_stendarr, vigilant_captain, hall_of_vigilant_guardian
+#    common/decisions/vigilant_stendarr_decisions.txt
+#      → vigilant_of_stendarr, vigilant_captain
+# =============================================================
+
+# ---------------------------------------------------------------
+#  VIGILANT OF STENDARR
+#  The Vigilants move through every province of Tamriel — small
+#  groups, rarely more than four, always armed, always watching.
+#  They knock on doors and ask if anything strange has been seen.
+#  They go into the barrows that the locals avoid.  They carry
+#  Stendarr's mercy in one hand and a blessed mace in the other,
+#  and they try very hard to use the mercy first.
+# ---------------------------------------------------------------
+vigilant_of_stendarr = {
+    category = fame
+
+    opposites = { vigilant_captain hall_of_vigilant_guardian }
+
+    monthly_piety = 2
+    intrigue = 1
+    diplomacy = 1
+
+    # Non-Daedric rulers in the region have reason to appreciate
+    # a group that handles the monsters in the barrows
+    same_opinion = 10
+
+    flag = vigilant_of_stendarr
+}
+
+# ---------------------------------------------------------------
+#  VIGILANT CAPTAIN
+#  A chapter leader, coordinating the order's operations across
+#  a region from one of the hall-chapters.  The captain plans
+#  the patrols, assigns the experienced hunters to the harder
+#  cases, and writes the reports that go back to the Hall of
+#  the Vigilant.  They have also, by this point, personally
+#  conducted at least one rehabilitation — which the order
+#  considers one of the defining tests of command judgment.
+# ---------------------------------------------------------------
+vigilant_captain = {
+    category = fame
+
+    opposites = { vigilant_of_stendarr hall_of_vigilant_guardian }
+
+    monthly_piety = 3
+    monthly_prestige = 1
+    martial = 2
+    diplomacy = 2
+
+    flag = vigilant_captain
+}
+
+# ---------------------------------------------------------------
+#  HALL OF THE VIGILANT GUARDIAN
+#  One of the order's most senior members, resident at the Hall
+#  of the Vigilant itself.  The Guardians of the Hall carry the
+#  full weight of the order's institutional knowledge: how to
+#  detect a Daedric infiltration, how to close a dark anchor,
+#  how to negotiate with a lycanthrope who wants to stop.  They
+#  are scholars as much as soldiers.  Isran, who left this path,
+#  would not call them soft.  He would call them dangerously
+#  optimistic, which in the Fourth Era is much the same thing.
+# ---------------------------------------------------------------
+hall_of_vigilant_guardian = {
+    category = fame
+
+    opposites = { vigilant_of_stendarr vigilant_captain }
+
+    monthly_piety = 4
+    monthly_prestige = 2
+    martial = 3
+    diplomacy = 3
+
+    flag = hall_of_vigilant_guardian
+}

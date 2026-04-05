@@ -1,0 +1,549 @@
+# =============================================================
+#  Kagrenac's Ambition — The Borrowed Divinity
+#  Namespace: borrowed_divinity
+#
+#  LORE:
+#  Both the Tribunal (Vivec, Almalexia, Sotha Sil) and Dagoth Ur
+#  achieved godhood by the same fundamental act: contact with the
+#  Heart of Lorkhan beneath Red Mountain.  The Tribunal used
+#  Kagrenac's Tools (Wraithguard + Keening + Sunder) to mediate
+#  the connection — Route A.  Dagoth Ur touched the Heart directly,
+#  without instruments, merging with it entirely — Route B.
+#
+#  This system allows any sufficiently knowledgeable ruler to
+#  attempt either method.  The path is available while Dagoth Ur
+#  has awakened (global_var:dagoth_ur_awakened = yes) and the
+#  Heart has not yet been destroyed (NOT has_global_flag = dagoth_ur_defeated).
+#
+#  PATH F in Walking Ways Design: ww_borrowed_divinity
+#
+#  EVENT OVERVIEW:
+#  ──────────────
+#  Milestones (shared → fork → route-specific):
+#    borrowed_divinity.000  — Hidden yearly: intro eligibility check
+#    borrowed_divinity.001  — The Scholar's Discovery (Milestone 1)
+#    borrowed_divinity.010  — The Theoretical Understanding (Milestone 2)
+#    borrowed_divinity.020  — THE FORK: choose Route A or Route B (Milestone 3)
+#    borrowed_divinity.030  — Route A: The First Instrument (Milestone 4A)
+#    borrowed_divinity.040  — Route A: The Full Apparatus (Milestone 5A)
+#    borrowed_divinity.041  — Route A: Failure — Tools Fail (heart_overload event)
+#    borrowed_divinity.050  — Route B: The Corprus Gate (Milestone 4B)
+#    borrowed_divinity.060  — Route B: The Plunge (Milestone 5B)
+#    borrowed_divinity.061  — Route B: Failure — Heart Takes You (heart_absorbed)
+#    borrowed_divinity.070  — The Stolen Fire (Milestone 6 — shared apex)
+#
+#  Degradation chain (Route A only):
+#    borrowed_divinity.cutoff.001  — Dagoth Ur severs Heart access (Phase 1)
+#    borrowed_divinity.cutoff.002  — Heart destroyed while reservoir remains
+#    borrowed_divinity.starvation.001  — Reservoir empty (Phase 2)
+#    borrowed_divinity.dissolution.001 — Heart destroyed (Phase 3 / narrative)
+#
+#  KEY GLOBAL FLAGS:
+#  ─────────────────
+#  global_var:dagoth_ur_awakened      — Heart is now accessible (set by dagoth_ur.000)
+#  has_global_flag = dagoth_ur_defeated — Heart has been destroyed
+#
+#  KEY CHARACTER FLAGS:
+#  ────────────────────
+#  heart_cut_off              — Route A: access to Heart severed (set at Dagoth Ur awakening)
+#  heart_cutoff_denial        — temporary: character refuses to accept the cut-off
+#  chim_attempt_from_starvation — Route A Phase 2: Vivec escape gate opened
+#
+#  KEY CHARACTER VARIABLES:
+#  ────────────────────────
+#  heart_reservoir_counter    — integer: stored Heart power (Route A); decrements by 1/year when cut off
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  common/traits/dagoth_ur_traits.txt
+#    → heart_scholar_ascendant, heart_fused_ascendant, corprus_afflicted, sixth_house_cultist
+#  common/traits/chim_traits.txt
+#    → chim_achieved
+#  common/modifiers/lore_races_modifiers.txt
+#    → heart_starvation_modifier, heart_absorbed_modifier, heart_overload, consumed_another
+#  common/on_actions/lore_races_on_actions.txt
+#    → borrowed_divinity.000, borrowed_divinity.cutoff.000, borrowed_divinity.heart_draw.000,
+#      borrowed_divinity.starvation.000, borrowed_divinity.almalexia.000
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/borrowed_divinity_events.txt
+# =============================================================
+#
+#  DEFINES — event IDs this file exports:
+#    • borrowed_divinity.000 – 070
+#    • borrowed_divinity.cutoff.001, borrowed_divinity.cutoff.002
+#    • borrowed_divinity.starvation.001
+#    • borrowed_divinity.dissolution.001
+#
+#  DEPENDS ON:
+#    common/traits/dagoth_ur_traits.txt
+#      → heart_scholar_ascendant, heart_fused_ascendant, corprus_afflicted, sixth_house_cultist
+#    common/traits/chim_traits.txt
+#      → chim_achieved
+#    common/modifiers/lore_races_modifiers.txt
+#      → heart_starvation_modifier, heart_absorbed_modifier, heart_overload, consumed_another
+#    events/chim_events.txt
+#      → chim.000 (entry gate for Walking Ways CHIM chain)
+#    events/dagoth_ur_events.txt
+#      → global_var:dagoth_ur_awakened context
+# =============================================================
+
+namespace = borrowed_divinity
+
+# ---------------------------------------------------------------
+# borrowed_divinity.000   Hidden yearly intro check
+# Fires once per year for every living ruler.
+# Checks eligibility and triggers the Scholar's Discovery
+# introduction event if conditions are met and the ruler has not
+# already seen it.
+# ---------------------------------------------------------------
+borrowed_divinity.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        exists = global_var:dagoth_ur_awakened
+        NOT = { has_global_flag = dagoth_ur_defeated }
+        NOT = { has_character_flag = borrowed_divinity_intro_seen }
+        NOT = { has_trait = heart_scholar_ascendant }
+        NOT = { has_trait = heart_fused_ascendant }
+        OR = {
+            learning >= 16
+            has_trait = dwemer_scholar
+            has_trait = sixth_house_cultist
+        }
+    }
+
+    immediate = {
+        trigger_event = { id = borrowed_divinity.001 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.001   Milestone 1 — The Scholar's Discovery
+# The ruler encounters evidence of Kagrenac's work: a text, a
+# Dwemer ruin, or a Sixth House sleeper who carries fragmentary
+# knowledge of what lies under Red Mountain.
+# ---------------------------------------------------------------
+borrowed_divinity.001 = {
+    type = character_event
+    title = borrowed_divinity.001.t
+    desc = borrowed_divinity.001.desc
+    theme = learning
+
+    trigger = {
+        is_ruler = yes
+        is_adult  = yes
+        exists = global_var:dagoth_ur_awakened
+        NOT = { has_global_flag = dagoth_ur_defeated }
+        NOT = { has_character_flag = borrowed_divinity_intro_seen }
+    }
+
+    option = {
+        name = borrowed_divinity.001.a   # "The Dwemer left records. I will find them."
+        add_character_flag = borrowed_divinity_intro_seen
+        add_stress   = 10
+        add_prestige = 50
+        trigger_event = { id = borrowed_divinity.010 days = 730 }    # 2 years to theoretical understanding
+    }
+
+    option = {
+        name = borrowed_divinity.001.b   # "This is Sixth House heresy. I will not entertain it."
+        add_character_flag = borrowed_divinity_intro_seen
+        add_piety  = 50
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.010   Milestone 2 — The Theoretical Understanding
+# The ruler achieves full intellectual understanding of what the
+# Heart of Lorkhan is and what tapping it means.  They cannot
+# un-know this.  The question is now what they intend to do.
+# ---------------------------------------------------------------
+borrowed_divinity.010 = {
+    type = character_event
+    title = borrowed_divinity.010.t
+    desc = borrowed_divinity.010.desc
+    theme = learning
+
+    option = {
+        name = borrowed_divinity.010.a   # "The Tribunal did this. So did Dagoth Ur. So can I."
+        add_stress = 20
+        trigger_event = { id = borrowed_divinity.020 days = 365 }
+    }
+
+    option = {
+        name = borrowed_divinity.010.b   # "I understand it. That is enough. I will not attempt it."
+        add_prestige = 100
+        add_stress   = -20
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.020   Milestone 3 — THE FORK
+# The character chooses Route A (Kagrenac's method — controlled,
+# mediated) or Route B (Dagoth's method — direct contact).
+# ---------------------------------------------------------------
+borrowed_divinity.020 = {
+    type = character_event
+    title = borrowed_divinity.020.t
+    desc = borrowed_divinity.020.desc
+    theme = learning
+
+    option = {
+        name = borrowed_divinity.020.a   # "Kagrenac's way. Instruments. Precision. Control."
+        add_stress = 10
+        trigger_event = { id = borrowed_divinity.030 days = 730 }
+    }
+
+    option = {
+        name = borrowed_divinity.020.b   # "Dagoth Ur's way. No instruments. Just will."
+        trigger = {
+            OR = {
+                has_trait = sixth_house_cultist
+                has_trait = corprus_afflicted
+                intrigue >= 14
+                prowess  >= 18
+            }
+        }
+        add_stress = 30
+        trigger_event = { id = borrowed_divinity.050 days = 365 }
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.030   Milestone 4A — The First Instrument (Route A)
+# The character obtains or commissions a replica of one of the
+# three Tools; first controlled touch of the Heart.
+# ---------------------------------------------------------------
+borrowed_divinity.030 = {
+    type = character_event
+    title = borrowed_divinity.030.t
+    desc = borrowed_divinity.030.desc
+    theme = learning
+
+    option = {
+        name = borrowed_divinity.030.a   # "One tool. A cautious draw. Enough to know it works."
+        add_stress   = 15
+        add_prestige = 100
+        trigger_event = { id = borrowed_divinity.040 days = 1095 }   # 3 years to full apparatus
+    }
+
+    option = {
+        name = borrowed_divinity.030.b   # "The cost is too great. I step back."
+        add_prestige = -50
+        add_stress   = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.040   Milestone 5A — The Full Apparatus (Route A)
+# All three Tools assembled; first full controlled draw of Heart
+# power.  Success grants heart_scholar_ascendant.  Failure fires
+# borrowed_divinity.041.
+# ---------------------------------------------------------------
+borrowed_divinity.040 = {
+    type = character_event
+    title = borrowed_divinity.040.t
+    desc = borrowed_divinity.040.desc
+    theme = learning
+
+    immediate = {
+        random_list = {
+            75 = {   # 75% success
+                trigger_event = { id = borrowed_divinity.070 days = 30 }
+            }
+            25 = {   # 25% failure — Tools fracture
+                trigger_event = { id = borrowed_divinity.041 days = 30 }
+            }
+        }
+    }
+
+    option = {
+        name = borrowed_divinity.040.a   # "The preparation is complete. I strike the Heart."
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.041   Route A Failure — The Tools Fail (heart_overload)
+# One of the replica Tools fractures under the draw; the resonance
+# inverts.  The character survives but cannot attempt Route A again.
+# ---------------------------------------------------------------
+borrowed_divinity.041 = {
+    type = character_event
+    title = borrowed_divinity.041.t
+    desc = borrowed_divinity.041.desc
+    theme = learning
+
+    option = {
+        name = borrowed_divinity.041.a   # "I am still standing. That is more than the Dwemer managed."
+        add_character_modifier = {
+            modifier = heart_overload
+            days     = -1     # Permanent visible marker
+        }
+        add_skill = {
+            field = learning
+            value = -4
+        }
+        add_stress = 60
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.050   Milestone 4B — The Corprus Gate (Route B)
+# The character must have corprus_afflicted already, or must
+# survive a deliberate Blight exposure event.  The disease is
+# the Heart's fingerprint — surviving it proves the practitioner
+# can endure the Heart's unmediated presence.
+# ---------------------------------------------------------------
+borrowed_divinity.050 = {
+    type = character_event
+    title = borrowed_divinity.050.t
+    desc = borrowed_divinity.050.desc
+    theme = health
+
+    option = {
+        name = borrowed_divinity.050.a   # "I know what this disease is. I choose it."
+        trigger = {
+            NOT = { has_trait = corprus_afflicted }
+        }
+        add_trait = corprus_afflicted
+        add_stress = 40
+        trigger_event = { id = borrowed_divinity.060 days = 730 }
+    }
+
+    option = {
+        name = borrowed_divinity.050.b   # "I already carry the Blight. I am ready."
+        trigger = {
+            has_trait = corprus_afflicted
+        }
+        add_stress = 20
+        trigger_event = { id = borrowed_divinity.060 days = 365 }
+    }
+
+    option = {
+        name = borrowed_divinity.050.c   # "Not like this. I turn back."
+        add_prestige = -75
+        add_stress   = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.060   Milestone 5B — The Plunge (Route B)
+# Direct contact event.  High stress damage.  40% failure risk —
+# on failure, the Heart takes the character's identity.
+# ---------------------------------------------------------------
+borrowed_divinity.060 = {
+    type = character_event
+    title = borrowed_divinity.060.t
+    desc = borrowed_divinity.060.desc
+    theme = health
+
+    immediate = {
+        random_list = {
+            60 = {   # 60% survival — merge achieved
+                trigger_event = { id = borrowed_divinity.070 days = 30 }
+            }
+            40 = {   # 40% failure — Heart takes you
+                trigger_event = { id = borrowed_divinity.061 days = 30 }
+            }
+        }
+    }
+
+    option = {
+        name = borrowed_divinity.060.a   # "I put my hands on the Heart. I hold."
+        add_stress = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.061   Route B Failure — The Heart Takes You (heart_absorbed)
+# The character could not sustain their identity against the weight
+# of a dead god's will.  Path permanently closed.
+# ---------------------------------------------------------------
+borrowed_divinity.061 = {
+    type = character_event
+    title = borrowed_divinity.061.t
+    desc = borrowed_divinity.061.desc
+    theme = health
+
+    option = {
+        name = borrowed_divinity.061.a   # "I walked away. Something walked away. It calls itself me."
+        add_character_modifier = {
+            modifier = heart_absorbed_modifier
+            days     = -1
+        }
+        add_trait    = corprus_afflicted
+        add_stress   = 80
+        add_prestige = -200
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.070   Milestone 6 — The Stolen Fire (shared apex)
+# The character holds the Heart's power.  It is divine.  It is
+# not theirs.  They have it anyway.  Different flavor per route.
+# ---------------------------------------------------------------
+borrowed_divinity.070 = {
+    type = character_event
+    title = borrowed_divinity.070.t
+    desc = {
+        triggered_desc = {
+            trigger = { has_character_flag = route_a_chosen }
+            desc = borrowed_divinity.070.desc.a    # Route A — Kagrenac's method flavor
+        }
+        triggered_desc = {
+            trigger = { NOT = { has_character_flag = route_a_chosen } }
+            desc = borrowed_divinity.070.desc.b    # Route B — Dagoth's method flavor
+        }
+    }
+    theme = learning
+
+    option = {
+        name = borrowed_divinity.070.a   # "I have it. Everything else is a question for tomorrow."
+        trigger = { has_character_flag = route_a_chosen }
+        add_trait   = heart_scholar_ascendant
+        set_variable = {
+            name  = heart_reservoir_counter
+            value = 10    # Base reservoir; supplemented by years_ascendant in scripted effects
+        }
+        add_prestige = 500
+        add_piety    = 200
+        add_stress   = -30
+    }
+
+    option = {
+        name = borrowed_divinity.070.b   # "Not borrowed. Not taken. Fused. This is different."
+        trigger = { NOT = { has_character_flag = route_a_chosen } }
+        add_trait   = heart_fused_ascendant
+        add_prestige = 750
+        add_piety    = 300
+        add_stress   = -50
+    }
+}
+
+
+# =============================================================
+#  ROUTE A DEGRADATION CHAIN
+#  Phase 1 — Cutoff (2E 882, when dagoth_ur_awakened fires)
+#  Phase 2 — Starvation (when heart_reservoir_counter reaches 0)
+#  Phase 3 — Heart Destroyed (3E 427, when dagoth_ur_defeated fires)
+# =============================================================
+
+# ---------------------------------------------------------------
+# borrowed_divinity.cutoff.001   Phase 1 — Heart Access Severed
+# Fires for all heart_scholar_ascendant characters when Dagoth Ur
+# awakens and seizes Red Mountain.  The Tribunal's path is blocked;
+# all Route A practitioners are cut off from the Heart.
+# ---------------------------------------------------------------
+borrowed_divinity.cutoff.001 = {
+    type = character_event
+    title = borrowed_divinity.cutoff.001.t
+    desc  = borrowed_divinity.cutoff.001.desc
+    theme = realm
+
+    option = {
+        name = borrowed_divinity.cutoff.001.a   # "Then I use what I have carefully."
+        set_character_flag = heart_cut_off
+        add_stress = -20
+    }
+
+    option = {
+        name = borrowed_divinity.cutoff.001.b   # "There must be another way in."
+        set_character_flag = heart_cut_off
+        set_character_flag = { flag = heart_cutoff_denial days = 1095 }   # 3-year denial window
+        add_stress = 30
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.cutoff.002   Phase 3 — Heart Destroyed, Reservoir Remains
+# Fires for all heart_scholar_ascendant characters who still have
+# stored power when the Heart is physically destroyed at 3E 427.
+# The drain accelerates; dissolution event follows.
+# ---------------------------------------------------------------
+borrowed_divinity.cutoff.002 = {
+    type = character_event
+    title = borrowed_divinity.cutoff.002.t
+    desc  = borrowed_divinity.cutoff.002.desc
+    theme = realm
+
+    option = {
+        name = borrowed_divinity.cutoff.002.a   # "The source is gone. What I hold will not last."
+        add_stress = 30
+        # Reservoir drain doubles to 2/year — implemented by on_yearly scripted effect
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.starvation.001   Phase 2 — Reservoir Empty
+# Fires when heart_reservoir_counter reaches 0.  The scholar
+# ascendant trait is removed; starvation modifier applied.
+# The Almalexia Option and Vivec (CHIM) Option now become available.
+# ---------------------------------------------------------------
+borrowed_divinity.starvation.001 = {
+    type = character_event
+    title = borrowed_divinity.starvation.001.t
+    desc  = borrowed_divinity.starvation.001.desc
+    theme = health
+
+    option = {
+        name = borrowed_divinity.starvation.001.a   # "I remember what it felt like. That much remains."
+        remove_trait = heart_scholar_ascendant
+        add_character_modifier = {
+            modifier = heart_starvation_modifier
+            days     = -1
+        }
+        add_stress   = 40
+        add_prestige = -200
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.dissolution.001   Heart Destroyed — Shared Narrative
+# Fires for ALL Route A practitioners (regardless of starvation phase)
+# when the Heart is physically destroyed.  Phase 1 characters also
+# receive borrowed_divinity.cutoff.002.  Phase 2 characters receive
+# this event only.  Both groups receive the same narrative moment.
+# Route B practitioners die instead — this event does not fire for them.
+# ---------------------------------------------------------------
+borrowed_divinity.dissolution.001 = {
+    type = character_event
+    title = borrowed_divinity.dissolution.001.t
+    desc  = borrowed_divinity.dissolution.001.desc
+    theme = realm
+
+    option = {
+        name = borrowed_divinity.dissolution.001.a   # "I had it while I had it. That was real."
+        add_prestige = 500
+        add_stress   = -30
+    }
+
+    option = {
+        name = borrowed_divinity.dissolution.001.b   # "Where did Vivec go?"
+        trigger = {
+            learning >= 18
+            NOT = { has_character_modifier = consumed_another }
+        }
+        set_character_flag = chim_attempt_from_starvation
+        add_piety  = 100
+        add_stress = 10
+    }
+
+    option = {
+        name = borrowed_divinity.dissolution.001.c   # "I should have taken more while I could."
+        trigger = {
+            has_character_modifier = consumed_another
+        }
+        add_stress = 50
+        add_character_modifier = {
+            modifier  = consumed_another
+            days      = 60    # re-applies a short pulse to dread; the modifier itself is permanent
+        }
+    }
+}
