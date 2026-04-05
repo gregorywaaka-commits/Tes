@@ -135,3 +135,139 @@
  mantling_daedric.meridia_possession.t: "Meridia's Instrument"
  mantling_daedric.meridia_possession.desc: "Not mantling. Something else.\n\nThe ruler did not become Meridia. They became her chosen instrument — which carries light, and carries purpose, and is not what they were seeking.\n\nMeridia, as is her custom, finds this sufficient."
  mantling_daedric.meridia_possession.a: "I am her instrument. The light still burns."
+
+ # ─── Mantling Lorkhan Events ───
+ mantle_lorkhan: "The Grey Maybe"
+ mantle_lorkhan_desc: "This ruler has walked Lorkhan's path: sacrificed the irreplaceable, been wounded and continued, built something that endures, and remembered why the cost was worth it. They are not Lorkhan — they ARE the principle that Lorkhan expressed: that creation requires giving something up that cannot be recovered."
+
+ mantling_lorkhan.intro.t: "The Doom Drum Calls"
+ mantling_lorkhan.intro.desc: "Lorkhan is the god who tricked the Aedra into creating Mundus. He gave up his own divine nature — or convinced others to give up theirs. He was killed for it. His heart fell to Nirn and became a Stone, a Tower, a thing that persisted past his death.\n\nHe is Shor to the Nords. Shezarr to the Cyrodiils. Sep to the Khajiit. He is the god who made the world and paid for it.\n\nThe path ahead requires the same willingness: to sacrifice the irreplaceable for something that will outlast the sacrifice."
+ mantling_lorkhan.intro.a: "I accept the cost of creation."
+
+ mantling_lorkhan.rank1.t: "The Sacrifice Acknowledged"
+ mantling_lorkhan.rank1.desc: "The ruler has given something up without expecting it back. They have survived a wound that was supposed to end them.\n\nThese are not accidents. Lorkhan's pattern accumulates in the same shape every time: sacrifice, wound, continuation.\n\nThe distinction between making the sacrifice and being the principle of sacrifice is beginning to thin."
+ mantling_lorkhan.rank1.a: "The cost was worth it."
+
+ mantling_lorkhan.rank2.t: "The Wound Remembered"
+ mantling_lorkhan.rank2.desc: "The Shezarrines are Lorkhan's recurring avatars — mortal champions who carry his wound through each era. They do not escape it. They carry it.\n\nThe ruler is beginning to understand what that means. The creation they have built — the realm, the legacy — exists because of what was given up to build it. The wound is not a failure. The wound is the whole point.\n\nAn echo of something vast and killed and still present stirs in their chest."
+ mantling_lorkhan.rank2.a: "The wound is not an ending."
+
+ mantling_lorkhan.rank3.t: "The Heart Speaks"
+ mantling_lorkhan.rank3.desc: "Red Mountain is far away. The heart that fell to it is a Stone now — the Red Tower, the heart of Mundus itself, the concentrated remnant of a god who chose creation over divinity.\n\nThe ruler cannot see Red Mountain from where they stand. But they can feel its weight. Not as grief. As recognition.\n\nLorkhan's pattern is almost complete. The heart understands what was built, and why."
+ mantling_lorkhan.rank3.a: "I know what it cost. I would pay it again."
+
+ mantling_lorkhan.apotheosis.t: "The Grey Maybe Completes"
+ mantling_lorkhan.apotheosis.desc: "Lorkhan is the god who was killed to make the world. That is his pattern: sacrifice, wound, creation, persistence.\n\nThe ruler has expressed all four. The realm exists because of what was sacrificed. The wound was survived. The creation endures. And the ruler persists through it.\n\nThey look at their hands.\n\nSomewhere south and east, a stone pulses with something that is not quite a heartbeat. The ruler's pulse answers it."
+ mantling_lorkhan.apotheosis.a: "The world exists because of what was given."
+ mantling_lorkhan.apotheosis.b: "The wound was always the point."
+
+ # ─── Mantling Stendarr Events ───
+ mantle_stendarr: "Stendarr's Right Hand"
+ mantle_stendarr_desc: "This ruler has walked in Stendarr's pattern: mercy shown when cruelty was easier, the weak aided, the Daedra opposed, the vigil maintained. The god of Mercy and Righteous Might once placed his hand on mortal shoulders. The mantler now carries that hand with them."
+
+ mantling_stendarr.intro.t: "Stendarr's Rule"
+ mantling_stendarr.intro.desc: "Stendarr is the most present of the Eight Divines. First Era accounts record him standing physically alongside Perrif/Alessia during the Slave Rebellion — not distant, not abstract, but there, placing his hand on mortal shoulders when they needed steadiness.\n\nHe is the God of Mercy and Righteous Might and Charity. The mercy is real. The might is real. Neither is more important than the other.\n\nThe ruler opens their court to that principle."
+ mantling_stendarr.intro.a: "I will rule as Stendarr would have me rule."
+
+ mantling_stendarr.rank1.t: "The Open Hand"
+ mantling_stendarr.rank1.desc: "Mercy was shown when cruelty was the easier choice. The weak were aided when there was nothing to gain from it. Charity was given without keeping a ledger.\n\nStendarr's first lesson is this: mercy is not weakness. It is harder. Rulers who choose it when they did not have to — that is Stendarr's pattern beginning to accumulate."
+ mantling_stendarr.rank1.a: "Mercy was the right choice."
+
+ mantling_stendarr.rank2.t: "Righteous Might"
+ mantling_stendarr.rank2.desc: "Stendarr is not only gentle. He has Righteous Might for a reason: the power that is exercised in service of the weak is still power. The Vigilants of Stendarr are his arms — they fight because gentleness without teeth cannot protect anything.\n\nThe ruler has aided the Vigilants. They have opposed what Stendarr opposes: the corruption that mercy alone cannot remedy. The two hands of Stendarr's pattern — open for mercy, closed for righteousness — are both visible in this reign now."
+ mantling_stendarr.rank2.a: "Mercy and might are the same hand."
+
+ mantling_stendarr.rank3.t: "The Hand on Shoulders"
+ mantling_stendarr.rank3.desc: "There is an old account of Stendarr appearing during Alessia's rebellion — not in glory, not in power, but simply present. Standing with the mortals who needed steadiness. Placing his hand on their shoulders when they were about to fail.\n\nCouriers have started to remark on the ruler's court. Something there is different. The people who come to it afraid leave less afraid. The people who come for judgement feel, somehow, that the judgement is not indifferent.\n\nStendarr placed his hand on mortal shoulders once.\n\nThe mantler's hand has begun to carry the same weight."
+ mantling_stendarr.rank3.a: "The hand that steadies is the hand that rules."
+
+ mantling_stendarr.apotheosis.t: "The Righteous Might Is Yours"
+ mantling_stendarr.apotheosis.desc: "The mercy. The charity. The vigil against corruption. The aid given to the weak across years and decades without keeping score.\n\nStendarr's pattern has overlapped completely with the ruler's.\n\nNot because the ruler became a god. Because they expressed the same principle — reliably, sustained, without exception — until the distinction between the one who expresses mercy as a divine quality and the one who expresses it as a mortal choice is no longer meaningful.\n\nThere is no crown for this. There is no visible change.\n\nBut the people around the ruler know, the way people always know, that something is different about the hands that govern them."
+ mantling_stendarr.apotheosis.a: "I carry his steadiness now."
+
+ # ─── Daedric Mantle Events — Boethiah ───
+ mantle_boethiah: "Aspect of Boethiah"
+ mantle_boethiah_desc: "The Prince of Plots has been walked alongside long enough that the plots are now this ruler's own. They consumed rivals as Boethiah consumed Trinimac. They seized thrones through treachery and made the treachery permanent. Boethiah's pattern is complete in them — or perhaps they were always the pattern, waiting for the right vessel."
+
+ mantling_daedric.boethiah_intro.t: "Prince of Plots"
+ mantling_daedric.boethiah_intro.desc: "Boethiah consumed Trinimac. Not metaphorically — or perhaps entirely metaphorically; no one agrees. What is agreed is that the Altmer warrior-god ceased to be himself and became something lesser, and that the Chimer who followed his consumed remains became the Orsimer.\n\nMantling Boethiah requires the same act: consuming a rival pattern so completely that only Boethiah's shape remains.\n\nThe process is dangerous. Boethiah does not share Attribution's Share with anyone. The mantler risks becoming his champion rather than his aspect.\n\nThe mantler has decided to proceed anyway."
+ mantling_daedric.boethiah_intro.a: "I understand what this requires."
+
+ mantling_daedric.boethiah_rank1.t: "The First Consumption"
+ mantling_daedric.boethiah_rank1.desc: "The treachery committed. The rival diminished. The throne approached through deception that could not be undone.\n\nBoethiah's pattern begins to accumulate in this reign. Attribution's Share feels slightly less abstract."
+ mantling_daedric.boethiah_rank1.a: "The pattern recognises me."
+
+ mantling_daedric.boethiah_rank2.t: "The Web of Plots"
+ mantling_daedric.boethiah_rank2.desc: "The ruler now operates in the manner Boethiah prefers: not through force alone, but through the arrangement of forces. Not through obvious power, but through the setting of conditions that make the outcome inevitable.\n\nBoethiah watches. He has not moved to stop them. This is the closest thing to approval he offers."
+ mantling_daedric.boethiah_rank2.a: "Attribution's Share is becoming familiar."
+
+ mantling_daedric.boethiah_rank3.t: "The Final Rival"
+ mantling_daedric.boethiah_rank3.desc: "The distinction between the ruler and the Prince of Plots is thinner than it has ever been. In court, rivals who have begun to guess the ruler's methods find they cannot out-plot them. The ruler has already seen three moves ahead of the three moves they are seeing.\n\nBoethiah consumed Trinimac entirely. The ruler has consumed enough rivals in this way that they have begun to wonder if they are doing the consuming — or if Boethiah is consuming them."
+ mantling_daedric.boethiah_rank3.a: "One more rival left to consume."
+
+ mantling_daedric.boethiah_apotheosis.t: "Attribution's Share or Its Prisoner?"
+ mantling_daedric.boethiah_apotheosis.desc: "The moment arrives. The pattern completes — or it doesn't.\n\nBoethiah consumed Trinimac. He did not walk alongside him. He ate him.\n\nThe mantler has spent years walking alongside a Prince who does not walk alongside anyone. One of two things has happened."
+ mantling_daedric.boethiah_apotheosis.a: "I consumed the pattern. I was not consumed by it."
+ mantling_daedric.boethiah_apotheosis.uncertain: "Something was consumed. I am not certain it was not me."
+
+ mantling_daedric.boethiah_possession.t: "Boethiah's Champion"
+ mantling_daedric.boethiah_possession.desc: "Not mantling. Something older.\n\nBoethiah consumed Trinimac. He did not mantle him — he ate him and became something new. The ruler attempted to walk Boethiah's pattern and Boethiah ate them instead.\n\nNot entirely. Not fatally. The ruler still exists. But they are now a champion of the Prince of Plots — which is to say, a piece in a game whose board they can no longer see completely.\n\nBoethiah finds this acceptable."
+ mantling_daedric.boethiah_possession.a: "His champion still plots."
+
+ # ─── Daedric Mantle Events — Mephala ───
+ mantle_mephala: "The Webspinner's Aspect"
+ mantle_mephala_desc: "The web of this ruler's making has grown too large to be distinguished from Mephala's own. They taught themselves to murder in secret. They wove fates. They became the hand behind hands. Whether they mantled Mephala or Mephala finally wove them into the centre of her web is a question the Spiral Skein will not clarify."
+
+ mantling_daedric.mephala_intro.t: "The Webspinner's Invitation"
+ mantling_daedric.mephala_intro.desc: "Mephala taught the Chimer to murder in secret. Not from cruelty — because Mundus runs on hidden threads, and the Chimer needed to keep the Aedra from knowing what they were doing until it was too late to undo it.\n\nMephala's domain is the Spiral Skein. Every secret is a thread there. Every murder in the dark. Every puppet whose strings cannot be traced back to the puppeteer.\n\nThe mantler is a weaver. The path ahead requires them to weave until they cannot tell which threads are theirs and which are hers."
+ mantling_daedric.mephala_intro.a: "I will learn to weave."
+
+ mantling_daedric.mephala_rank1.t: "The First Threads"
+ mantling_daedric.mephala_rank1.desc: "The web is small but real. The first threads have been laid — secrets held, a puppet established, a murder arranged so cleanly that no thread leads back.\n\nMephala has not acknowledged this yet. She doesn't acknowledge anything. But the Spiral Skein has a new corner that did not exist before."
+ mantling_daedric.mephala_rank1.a: "The first threads are laid."
+
+ mantling_daedric.mephala_rank2.t: "The Spiral Skein"
+ mantling_daedric.mephala_rank2.desc: "The ruler can see it now. Not literally — not always — but in the way one senses the shape of a room through the echoes. The threads run everywhere. Every relationship in court is a thread. Every alliance a knot. Every secret is a thread connected to three others.\n\nMephala's domain is not metaphor. The Spiral Skein is real. The ruler is beginning to perceive its shape."
+ mantling_daedric.mephala_rank2.a: "The Spiral Skein is not metaphor. I see it."
+
+ mantling_daedric.mephala_rank3.t: "The Centre of the Web"
+ mantling_daedric.mephala_rank3.desc: "The ruler stands at what feels like the centre. Threads run from here to everywhere: to the vassal who does not know they are a puppet, to the secret that has been held for twenty years, to the rival who thinks they are acting independently and is not.\n\nMephala taught the Chimer to murder in secret because the web requires hidden hands. The ruler has become a hidden hand.\n\nThey cannot tell if they are spinning the web or the web is spinning them."
+ mantling_daedric.mephala_rank3.a: "I cannot tell if I am spinning the web or the web is spinning me."
+
+ mantling_daedric.mephala_apotheosis.t: "The Webspinner or Her Web?"
+ mantling_daedric.mephala_apotheosis.desc: "The Spiral Skein has a centre. At the centre is Mephala.\n\nThe ruler has walked to the centre of their own web — which has grown large enough to overlap with hers. One of two things is true: they have become the Webspinner, as the pattern of walking her steps finally completes. Or they have become a thread in her web — the finest, most central thread, around which everything else is arranged.\n\nBoth outcomes look the same from the outside."
+ mantling_daedric.mephala_apotheosis.a: "I am the Webspinner now."
+ mantling_daedric.mephala_apotheosis.uncertain: "The web has a centre. I may be it. I cannot see from here."
+
+ mantling_daedric.mephala_possession.t: "Mephala's Thread"
+ mantling_daedric.mephala_possession.desc: "Not mantling. Something adjacent and total.\n\nThe ruler attempted to walk to the centre of the Spiral Skein and found that the centre is Mephala — and that they had already been woven into it, tightly, at a point they cannot identify.\n\nThey are a champion of the Webspinner. Which is to say: a thread who believes they are a weaver.\n\nMephala, as is her custom, does not clarify."
+ mantling_daedric.mephala_possession.a: "A thread in her web. Nothing more. Nothing less."
+
+ # ─── Daedric Mantle Events — Hircine ───
+ mantle_hircine: "The Hunt Incarnate"
+ mantle_hircine_desc: "The Huntsman Prince walks in this ruler now. The chase above the kill. The clean death as the highest honour. The respect for prey that fights back. Whether they mantled Hircine or became the principle he embodies is a distinction only the Hunting Grounds could clarify — and the Hunt does not pause to explain itself."
+
+ mantling_daedric.hircine_intro.t: "The Hunt Begins"
+ mantling_daedric.hircine_intro.desc: "Hircine is the Huntsman Prince. The souls of werewolves, werebears, and all lycanthropes pass to his Hunting Grounds instead of wherever mortals are otherwise supposed to go. He comes to Nirn periodically — the Bloodmoon — to hunt mortals himself, as both sport and as something else: an honouring of the thing that makes the chase sacred.\n\nHis code is simple: the chase above the kill. Respect for prey that fights back. The clean death is the highest honour. Cowardly prey is contemptible.\n\nMantling Hircine requires becoming the principle behind that code — not merely following it, but being it.\n\nThe risk: the Hunt does not stop for mantlers."
+ mantling_daedric.hircine_intro.a: "I will walk in the Hunt's steps."
+
+ mantling_daedric.hircine_rank1.t: "The Chase"
+ mantling_daedric.hircine_rank1.desc: "The first milestones have been completed. Great hunts undertaken. Dangerous prey pursued and brought down with honour.\n\nHircine does not acknowledge mantlers. He acknowledges the quality of the chase. Something in the Hunting Grounds has taken note."
+ mantling_daedric.hircine_rank1.a: "The chase is its own reward."
+
+ mantling_daedric.hircine_rank2.t: "Prey That Fights Back"
+ mantling_daedric.hircine_rank2.desc: "Hircine respects prey that fights back. This is not a metaphor for political opponents — though it applies to those as well. It is a literal principle: the chase is only sacred when the prey could, in theory, escape or kill the hunter.\n\nThe ruler has faced prey that nearly succeeded. They survived. Hircine's pattern runs deep enough now that the distinction between hunting and being hunted, between predator and apex, is becoming fluid."
+ mantling_daedric.hircine_rank2.a: "I understand what he honours now."
+
+ mantling_daedric.hircine_rank3.t: "Hunter and Hunted"
+ mantling_daedric.hircine_rank3.desc: "The lycanthropes in the ruler's court are restless tonight. This happens sometimes near people who carry Hircine's pattern strongly.\n\nThe ruler stands at the edge of it: almost the Hunt itself. Hunter and hunted collapsed into a single principle. The Hunting Grounds, wherever they are, feel close.\n\nHircine has not come in person yet. But the Bloodmoon is early this year."
+ mantling_daedric.hircine_rank3.a: "I am the hunter and the hunted both."
+
+ mantling_daedric.hircine_apotheosis.t: "The Apex or the Prey?"
+ mantling_daedric.hircine_apotheosis.desc: "The moment arrives. The Hunt is at its height.\n\nHircine comes to Nirn to hunt. The mantler has spent years learning to become the principle of the Hunt. One of two things is happening now: the Hunt has recognised the mantler as its expression — or Hircine has come to hunt them personally, which is, by his own code, the highest honour he can offer.\n\nBoth feel the same, at the edge of the Bloodmoon."
+ mantling_daedric.hircine_apotheosis.a: "I am the Hunt. Not its prey."
+ mantling_daedric.hircine_apotheosis.uncertain: "I cannot tell if I am hunting or being hunted."
+
+ mantling_daedric.hircine_possession.t: "Hircine's Quarry"
+ mantling_daedric.hircine_possession.desc: "Not mantling. Something Hircine considers a higher honour.\n\nHircine came to hunt the mantler. They were the finest prey he had encountered in an age. He honoured them by not taking them to the Hunting Grounds — not yet. He made them his champion instead.\n\nWhich means: still hunted. But now also hunting. In Hircine's name, which is the name of the Hunt itself.\n\nHircine, as is his custom, respects prey that fights back."
+ mantling_daedric.hircine_possession.a: "A beast in his Hunting Grounds. Still alive."

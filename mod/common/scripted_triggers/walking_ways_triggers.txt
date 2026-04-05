@@ -62,6 +62,11 @@ has_completed_any_walking_way = {
         has_character_flag = ww_mantling_kynareth_completed
         has_character_flag = ww_mantling_azura_completed
         has_character_flag = ww_mantling_meridia_completed
+        has_character_flag = ww_mantling_lorkhan_completed
+        has_character_flag = ww_mantling_stendarr_completed
+        has_character_flag = ww_mantling_boethiah_completed
+        has_character_flag = ww_mantling_mephala_completed
+        has_character_flag = ww_mantling_hircine_completed
         has_character_flag = ww_psijic_endeavour_completed
         has_character_flag = ww_enantiomorph_completed
         has_character_flag = ww_amaranth_completed
@@ -115,6 +120,11 @@ is_on_path_mantling = {
         has_character_flag = ww_mantling_kynareth_active
         has_character_flag = ww_mantling_azura_active
         has_character_flag = ww_mantling_meridia_active
+        has_character_flag = ww_mantling_lorkhan_active
+        has_character_flag = ww_mantling_stendarr_active
+        has_character_flag = ww_mantling_boethiah_active
+        has_character_flag = ww_mantling_mephala_active
+        has_character_flag = ww_mantling_hircine_active
     }
 }
 
@@ -194,6 +204,132 @@ can_begin_mantling_meridia = {
     NOT = { has_character_flag = ww_mantling_meridia_completed }
 }
 
+# Lorkhan / Shor (Aedric — the sacrificed creator-god)
+# Lorkhan gave up his divine nature to create Mundus; the Shezarrines
+# are his recurring avatars.  The mantler must carry either the
+# Shezarrine's wound or walk the path of a world-builder:
+# great martial power + an act of creation (realm-building).
+# [SOURCE: The Arcturian Heresy; UESP Lore:Lorkhan/Shor]
+can_begin_mantling_lorkhan = {
+    can_begin_path_mantling = yes
+    OR = {
+        has_trait = shezarrine_vessel       # already a Shezarrine avatar
+        AND = {
+            martial >= 18
+            stewardship >= 14
+            OR = {
+                culture = { has_cultural_pillar = heritage_nordic }   # Shor aspect
+                culture = { has_cultural_pillar = heritage_cyrodilic } # Shezarr aspect
+                has_character_flag = shezarrine_chain_begun           # engaged with the myth
+            }
+        }
+    }
+    # Cannot pursue both Talos and Lorkhan: Talos IS the Lorkhan mantle's completion
+    NOT = { has_character_flag = ww_mantling_talos_completed }
+    NOT = { has_character_flag = ww_mantling_talos_active }
+    NOT = { has_character_flag = ww_mantling_lorkhan_completed }
+}
+
+# Stendarr (Aedric — Mercy and Righteous Might)
+# Stendarr is the most "human-present" of the Divines; he stood with
+# Alessia.  The mantler must demonstrate genuine mercy repeated over
+# time, not calculated leniency.
+# [SOURCE: UESP Lore:Stendarr; The Monomyth]
+can_begin_mantling_stendarr = {
+    can_begin_path_mantling = yes
+    stewardship >= 14
+    OR = {
+        has_trait = compassionate
+        has_trait = generous
+        has_trait = zealous
+    }
+    # Stendarr's Vigilants are a natural entry point
+    OR = {
+        has_character_flag = vigilants_stendarr_aided
+        has_trait = compassionate
+        AND = {
+            learning >= 14
+            has_trait = zealous
+        }
+    }
+    NOT = { has_character_flag = ww_mantling_stendarr_completed }
+}
+
+# Boethiah (Daedric — Prince of Plots and Treachery)
+# Boethiah consumed Trinimac.  The mantler must have performed
+# genuine treachery and seized power through deception.
+# High intrigue, a committed betrayal, and Dunmer-adjacent faith
+# or daedric-champion status are required.
+# [SOURCE: UESP Lore:Boethiah; The True Nature of Orcs]
+can_begin_mantling_boethiah = {
+    can_begin_path_mantling = yes
+    intrigue >= 16
+    OR = {
+        has_character_flag = committed_treachery           # performed a major betrayal
+        has_character_flag = committed_regicide            # slew an overlord
+        AND = {
+            has_trait = deceitful
+            has_trait = ruthless
+        }
+    }
+    # Dunmer Good Daedra tie or daedric experience
+    OR = {
+        has_culture = dunmer_culture
+        has_trait = daedric_champion
+        has_character_flag = boethiah_shrine_visited
+    }
+    NOT = { has_character_flag = ww_mantling_boethiah_completed }
+}
+
+# Mephala (Daedric — The Webspinner)
+# Mephala's domain is secret murder and web-weaving.  The mantler
+# must be a master of intrigue who operates from shadow: high
+# intrigue, history of assassination or court manipulation, and
+# either Dunmer ties or Morag Tong / Dark Brotherhood adjacency.
+# [SOURCE: UESP Lore:Mephala; The Anticipations]
+can_begin_mantling_mephala = {
+    can_begin_path_mantling = yes
+    intrigue >= 18
+    OR = {
+        has_character_flag = morag_tong_contact
+        has_character_flag = dark_brotherhood_contact
+        AND = {
+            has_culture = dunmer_culture
+            intrigue >= 16
+        }
+    }
+    OR = {
+        has_trait = schemer
+        has_trait = deceitful
+        has_trait = paranoid
+    }
+    NOT = { has_character_flag = ww_mantling_mephala_completed }
+}
+
+# Hircine (Daedric — The Huntsman Prince)
+# Hircine's domain is the Hunt; all lycanthropes are his.
+# The mantler must have a genuine connection to the hunt —
+# either lycanthropy itself or extreme martial/hunting dedication.
+# [SOURCE: UESP Lore:Hircine; Bloodmoon; Skyrim]
+can_begin_mantling_hircine = {
+    can_begin_path_mantling = yes
+    martial >= 16
+    OR = {
+        has_trait = werewolf           # already touched by Hircine
+        has_trait = werebear
+        AND = {
+            martial >= 20
+            has_character_flag = hircine_hunt_survived  # survived a Hircine Hunt event
+        }
+        AND = {
+            martial >= 18
+            has_trait = brave
+            has_character_flag = great_hunt_completed   # completed a great hunt event chain
+        }
+    }
+    NOT = { has_character_flag = ww_mantling_hircine_completed }
+}
+
 has_completed_any_mantling = {
     OR = {
         has_character_flag = ww_mantling_talos_completed
@@ -201,6 +337,11 @@ has_completed_any_mantling = {
         has_character_flag = ww_mantling_kynareth_completed
         has_character_flag = ww_mantling_azura_completed
         has_character_flag = ww_mantling_meridia_completed
+        has_character_flag = ww_mantling_lorkhan_completed
+        has_character_flag = ww_mantling_stendarr_completed
+        has_character_flag = ww_mantling_boethiah_completed
+        has_character_flag = ww_mantling_mephala_completed
+        has_character_flag = ww_mantling_hircine_completed
     }
 }
 
@@ -345,6 +486,61 @@ has_any_mantling_meridia_milestone = {
         has_character_flag = ww_mantling_meridia_milestone_temple
         has_character_flag = ww_mantling_meridia_milestone_light
         has_character_flag = ww_mantling_meridia_milestone_corruption
+    }
+}
+
+has_any_mantling_lorkhan_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_lorkhan_milestone_sacrifice
+        has_character_flag = ww_mantling_lorkhan_milestone_creation
+        has_character_flag = ww_mantling_lorkhan_milestone_wound
+        has_character_flag = ww_mantling_lorkhan_milestone_shezarrine
+        has_character_flag = ww_mantling_lorkhan_milestone_tower
+        has_character_flag = ww_mantling_lorkhan_milestone_heart
+    }
+}
+
+has_any_mantling_stendarr_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_stendarr_milestone_mercy
+        has_character_flag = ww_mantling_stendarr_milestone_charity
+        has_character_flag = ww_mantling_stendarr_milestone_daedra
+        has_character_flag = ww_mantling_stendarr_milestone_weak
+        has_character_flag = ww_mantling_stendarr_milestone_vigil
+        has_character_flag = ww_mantling_stendarr_milestone_righteous
+    }
+}
+
+has_any_mantling_boethiah_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_boethiah_milestone_treachery
+        has_character_flag = ww_mantling_boethiah_milestone_consumed
+        has_character_flag = ww_mantling_boethiah_milestone_throne
+        has_character_flag = ww_mantling_boethiah_milestone_sacrifice
+        has_character_flag = ww_mantling_boethiah_milestone_tournament
+        has_character_flag = ww_mantling_boethiah_milestone_attribution
+    }
+}
+
+has_any_mantling_mephala_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_mephala_milestone_web
+        has_character_flag = ww_mantling_mephala_milestone_murder
+        has_character_flag = ww_mantling_mephala_milestone_secret
+        has_character_flag = ww_mantling_mephala_milestone_puppet
+        has_character_flag = ww_mantling_mephala_milestone_thread
+        has_character_flag = ww_mantling_mephala_milestone_skein
+    }
+}
+
+has_any_mantling_hircine_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_hircine_milestone_chase
+        has_character_flag = ww_mantling_hircine_milestone_prey
+        has_character_flag = ww_mantling_hircine_milestone_lycanthropy
+        has_character_flag = ww_mantling_hircine_milestone_bloodmoon
+        has_character_flag = ww_mantling_hircine_milestone_grounds
+        has_character_flag = ww_mantling_hircine_milestone_apex
     }
 }
 

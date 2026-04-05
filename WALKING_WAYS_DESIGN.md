@@ -689,7 +689,9 @@ progress engine. No existing events need structural changes — only a single
 | `mod/events/mantling_talos_events.txt` | `mantling_talos` | 8 events | Path-specific milestones + apotheosis |
 | `mod/events/mantling_arkay_events.txt` | `mantling_arkay` | 8 events | Path-specific milestones + apotheosis |
 | `mod/events/mantling_kynareth_events.txt` | `mantling_kynareth` | 8 events | Path-specific milestones + apotheosis |
-| `mod/events/mantling_daedric_events.txt` | `mantling_daedric` | 10 events | Covers Azura + Meridia; shared failure mechanic |
+| `mod/events/mantling_daedric_events.txt` | `mantling_daedric` | 22 events | Covers Azura + Meridia + Boethiah + Mephala + Hircine; shared failure mechanic |
+| `mod/events/mantling_lorkhan_events.txt` | `mantling_lorkhan` | 7 events | Path-specific milestones + apotheosis |
+| `mod/events/mantling_stendarr_events.txt` | `mantling_stendarr` | 7 events | Path-specific milestones + apotheosis |
 | `mod/events/psijic_endeavour_events.txt` | `psijic_endeavour` | 10 events | Meditation events + rewind mechanic setup |
 | `mod/events/enantiomorph_events.txt` | `enantiomorph` | 8 events | Dark path milestones + Dragon Break trigger |
 | `mod/events/amaranth_events.txt` | `amaranth` | 5 events | Short path; final apotheosis + world event |
@@ -699,7 +701,7 @@ progress engine. No existing events need structural changes — only a single
 | File | Traits Defined |
 |---|---|
 | `mod/common/traits/walking_ways_traits.txt` | `walking_ways_seeker`, all path-progress traits |
-| `mod/common/traits/mantling_traits.txt` | All 7 mantle apex traits |
+| `mod/common/traits/mantling_traits.txt` | All 12 mantle apex traits |
 | `mod/common/traits/psijic_adept_traits.txt` | `psijic_adept_supreme` |
 | `mod/common/traits/enantiomorph_traits.txt` | `enantiomorph_ascendant`, `enantiomorph_consumed` |
 | `mod/common/traits/amaranth_traits.txt` | `amaranth_achieved` (hidden) |
@@ -755,6 +757,11 @@ existing events), not by yearly random check.
 | `mantle_kynareth` | fame | Kynareth mantle apex | Path B |
 | `mantle_azura` | fame | Azura mantle apex (Daedric) | Path B |
 | `mantle_meridia` | fame | Meridia mantle apex (Daedric) | Path B |
+| `mantle_lorkhan` | fame | Lorkhan/Shor mantle apex | Path B |
+| `mantle_stendarr` | fame | Stendarr mantle apex | Path B |
+| `mantle_boethiah` | fame | Boethiah mantle apex (Daedric) | Path B |
+| `mantle_mephala` | fame | Mephala mantle apex (Daedric) | Path B |
+| `mantle_hircine` | fame | Hircine mantle apex (Daedric) | Path B |
 | `psijic_adept_supreme` | fame | Psijic Endeavour apex | Path C |
 | `enantiomorph_ascendant` | fame | Enantiomorph apex | Path D |
 | `enantiomorph_consumed` | lifestyle | Enantiomorph failure state | Path D |

@@ -180,6 +180,36 @@ walking_ways.progress_check = {
             if = { limit = { has_any_mantling_meridia_milestone = yes } count_ww_milestones_mantling_meridia = yes }
             advance_path_mantling_meridia = yes
         }
+        # PATH B — LORKHAN
+        else_if = {
+            limit = { has_character_flag = ww_mantling_lorkhan_active }
+            if = { limit = { has_any_mantling_lorkhan_milestone = yes } count_ww_milestones_mantling_lorkhan = yes }
+            advance_path_mantling_lorkhan = yes
+        }
+        # PATH B — STENDARR
+        else_if = {
+            limit = { has_character_flag = ww_mantling_stendarr_active }
+            if = { limit = { has_any_mantling_stendarr_milestone = yes } count_ww_milestones_mantling_stendarr = yes }
+            advance_path_mantling_stendarr = yes
+        }
+        # PATH B — BOETHIAH
+        else_if = {
+            limit = { has_character_flag = ww_mantling_boethiah_active }
+            if = { limit = { has_any_mantling_boethiah_milestone = yes } count_ww_milestones_mantling_boethiah = yes }
+            advance_path_mantling_boethiah = yes
+        }
+        # PATH B — MEPHALA
+        else_if = {
+            limit = { has_character_flag = ww_mantling_mephala_active }
+            if = { limit = { has_any_mantling_mephala_milestone = yes } count_ww_milestones_mantling_mephala = yes }
+            advance_path_mantling_mephala = yes
+        }
+        # PATH B — HIRCINE
+        else_if = {
+            limit = { has_character_flag = ww_mantling_hircine_active }
+            if = { limit = { has_any_mantling_hircine_milestone = yes } count_ww_milestones_mantling_hircine = yes }
+            advance_path_mantling_hircine = yes
+        }
         # PATH C
         else_if = {
             limit = { is_on_path_psijic_endeavour = yes }

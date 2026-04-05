@@ -9,6 +9,11 @@
 #  mantle_kynareth  — Path B apex: Kynareth/Kyne mantle achieved.
 #  mantle_azura     — Path B apex: Azura mantle achieved (Daedric).
 #  mantle_meridia   — Path B apex: Meridia mantle achieved (Daedric).
+#  mantle_lorkhan   — Path B apex: Lorkhan/Shor mantle achieved.
+#  mantle_stendarr  — Path B apex: Stendarr mantle achieved.
+#  mantle_boethiah  — Path B apex: Boethiah mantle achieved (Daedric).
+#  mantle_mephala   — Path B apex: Mephala mantle achieved (Daedric).
+#  mantle_hircine   — Path B apex: Hircine mantle achieved (Daedric).
 #
 #  LORE CONTEXT:
 #  ─────────────
@@ -31,6 +36,11 @@
 #    • mantle_kynareth
 #    • mantle_azura
 #    • mantle_meridia
+#    • mantle_lorkhan
+#    • mantle_stendarr
+#    • mantle_boethiah
+#    • mantle_mephala
+#    • mantle_hircine
 #
 #  REFERENCED BY:
 #    common/scripted_effects/walking_ways_effects.txt
@@ -38,6 +48,8 @@
 #    events/mantling_arkay_events.txt
 #    events/mantling_kynareth_events.txt
 #    events/mantling_daedric_events.txt
+#    events/mantling_lorkhan_events.txt
+#    events/mantling_stendarr_events.txt
 # =============================================================
 
 # ---------------------------------------------------------------
@@ -163,4 +175,140 @@ mantle_meridia = {
     health                        = 2.0
 
     flag = mantle_meridia
+}
+
+# ---------------------------------------------------------------
+#  MANTLE LORKHAN
+#  The Doom Drum. The Heart-Taker. The Grey Maybe.
+#  Lorkhan tricked the Aedra into sacrificing their divine
+#  essence to create Mundus; was slain for it; his heart
+#  fell to Red Mountain and became the Stone of the Tower.
+#  He is Shor to the Nords, Sep to the Khajiit, Sheor to
+#  the Bretons. The Shezarrines are his recurring avatars.
+#  To mantle him is to embrace the act of supreme sacrifice
+#  for creation — to give up the divine for the mortal world.
+#  [SOURCE: CANON — The Arcturian Heresy; UESP Lore:Lorkhan]
+# ---------------------------------------------------------------
+
+mantle_lorkhan = {
+    category = fame
+
+    martial     = 5
+    stewardship = 4
+    diplomacy   = 3
+    learning    = 2
+
+    monthly_prestige              = 12
+    monthly_piety                 = 4
+    stress_gain_mult              = -0.15
+
+    flag = mantle_lorkhan
+}
+
+# ---------------------------------------------------------------
+#  MANTLE STENDARR
+#  God of Mercy and Righteous Might. God of Charity.
+#  One of the Eight Divines, yet the most present: Stendarr
+#  is said to have stood with Perrif/Alessia during the Slave
+#  Rebellion and placed his hand on mortal shoulders.
+#  His Vigilants hunt Daedra and undead in his name.
+#  The mantler has given mercy when cruelty was easier, aided
+#  the weak, and faced what Stendarr opposes without flinching.
+#  [SOURCE: CANON — UESP Lore:Stendarr; The Monomyth]
+# ---------------------------------------------------------------
+
+mantle_stendarr = {
+    category = fame
+
+    stewardship = 5
+    learning    = 4
+    diplomacy   = 3
+
+    health                        = 2.0
+    monthly_piety                 = 12
+    stress_gain_mult              = -0.25  # mercy given freely lightens the soul
+
+    flag = mantle_stendarr
+}
+
+# ---------------------------------------------------------------
+#  MANTLE BOETHIAH
+#  Prince of Plots. Prince of Deceit and Treason.
+#  Boethiah consumed Trinimac, the Altmer warrior-god, and
+#  from his transformed remains made Malacath and the Orsimer.
+#  One of the three Good Daedra of the Dunmer, the Anticipation
+#  of Almalexia. His domain is Attribution's Share.
+#  To mantle Boethiah is to consume rivals, to weave treachery
+#  so complete it becomes a kind of creation.
+#  Possession risk: Boethiah is not easily walked alongside.
+#  [SOURCE: CANON — UESP Lore:Boethiah; The True Nature of Orcs]
+# ---------------------------------------------------------------
+
+mantle_boethiah = {
+    category = fame
+
+    intrigue    = 6
+    martial     = 4
+    diplomacy   = 2
+
+    monthly_prestige              = 12
+    monthly_piety                 = 8
+    dread_gain_mult               = 0.25  # the mantler's reputation carries Boethiah's shadow
+
+    flag = mantle_boethiah
+}
+
+# ---------------------------------------------------------------
+#  MANTLE MEPHALA
+#  The Webspinner. The Anticipation of Vivec.
+#  Mephala taught the Chimer to murder in secret — not from
+#  cruelty, but because Mundus runs on hidden threads.
+#  The Morag Tong serve her openly; the Dark Brotherhood is
+#  a rumoured shadow. Her domain is the Spiral Skein.
+#  To mantle Mephala is to see the web beneath all things —
+#  to become the hand behind hands, the secret at the centre.
+#  Possession risk: the web has no outside edge.
+#  [SOURCE: CANON — UESP Lore:Mephala; The Anticipations]
+# ---------------------------------------------------------------
+
+mantle_mephala = {
+    category = fame
+
+    intrigue    = 7
+    learning    = 4
+    diplomacy   = 1
+
+    monthly_prestige              = 10
+    monthly_piety                 = 10
+    stress_gain_mult              = -0.10  # secrets carried do not weigh the same when you are the secret
+
+    flag = mantle_mephala
+}
+
+# ---------------------------------------------------------------
+#  MANTLE HIRCINE
+#  The Huntsman Prince. Father of Man-Beasts.
+#  The souls of werewolves, werebears, and all lycanthropes
+#  pass to his Hunting Grounds instead of Sovngarde or Aetherius.
+#  He does not demand worship — he demands the Hunt.
+#  His code: the chase above the kill; respect for prey that
+#  fights back; the clean death as the highest honour.
+#  To mantle Hircine is to become the Hunt itself — not to chase,
+#  but to BE the principle that makes the chase sacred.
+#  Possession risk: the Hunt does not stop for mantlers.
+#  [SOURCE: CANON — UESP Lore:Hircine; Bloodmoon; Skyrim]
+# ---------------------------------------------------------------
+
+mantle_hircine = {
+    category = fame
+
+    martial     = 6
+    stewardship = 2
+    learning    = 2
+
+    monthly_prestige              = 11
+    monthly_piety                 = 7
+    health                        = 2.5   # the Hunt preserves the hunter
+
+    flag = mantle_hircine
 }

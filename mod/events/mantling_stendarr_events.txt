@@ -1,0 +1,187 @@
+# =============================================================
+#  The Walking Ways — Path B: Mantling Stendarr
+#  Namespace: mantling_stendarr
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  mantling_stendarr.intro                    — Path chosen
+#  mantling_stendarr.rank1                    — Seeking: mercy and charity
+#  mantling_stendarr.rank2                    — Striving: righteous might
+#  mantling_stendarr.rank3                    — Threshold: the hand placed on shoulders
+#  mantling_stendarr.apotheosis               — The righteous might is yours
+#  mantling_stendarr.milestone_vigil_check    — Yearly: Vigilant aid check
+#  mantling_stendarr.milestone_righteous_check — Yearly: ruled justly for 15+ years
+#
+#  LORE BASIS:
+#  ───────────
+#  Stendarr is the God of Mercy, Righteous Might, and Charity.
+#  He is the most "present" of the Eight Divines: accounts from
+#  the First Era record him standing physically alongside Perrif/
+#  Alessia during the Slave Rebellion, and placing his hand on
+#  mortal shoulders.  The Vigilants of Stendarr in later eras
+#  dedicate themselves to fighting Daedra and undead in his name.
+#  Mantling Stendarr requires genuine, sustained mercy — not
+#  calculated leniency — and active aid of the weak.
+#  [SOURCE: CANON — UESP Lore:Stendarr; The Monomyth]
+# =============================================================
+
+namespace = mantling_stendarr
+
+# ---------------------------------------------------------------
+# mantling_stendarr.intro  STENDARR'S RULE
+# Stendarr is not distant.  He is the god who has been known
+# to appear in person when mortals most needed steadiness.
+# The mantler opens their court to that principle.
+# ---------------------------------------------------------------
+mantling_stendarr.intro = {
+    type = character_event
+    title = mantling_stendarr.intro.t
+    desc  = mantling_stendarr.intro.desc
+    theme = piety
+
+    option = {
+        name = mantling_stendarr.intro.a   # "I will rule as Stendarr would have me rule."
+        add_piety = 50
+        add_stress = -10
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_stendarr.rank1  SEEKING — MERCY AND CHARITY
+# Stendarr's first lesson is that mercy is not weakness —
+# it is the harder choice.  The mantler has shown it when
+# cruelty was easier, and given when they did not need to.
+# ---------------------------------------------------------------
+mantling_stendarr.rank1 = {
+    type = character_event
+    title = mantling_stendarr.rank1.t
+    desc  = mantling_stendarr.rank1.desc
+    theme = piety
+
+    option = {
+        name = mantling_stendarr.rank1.a   # "Mercy was the right choice."
+        add_piety = 75
+        add_stress = -15
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_stendarr.rank2  STRIVING — RIGHTEOUS MIGHT
+# Stendarr is not only gentle.  Righteous Might is also his
+# domain — the power exercised in service of the weak.
+# The mantler has aided the Vigilants and opposed the Daedra.
+# ---------------------------------------------------------------
+mantling_stendarr.rank2 = {
+    type = character_event
+    title = mantling_stendarr.rank2.t
+    desc  = mantling_stendarr.rank2.desc
+    theme = piety
+
+    option = {
+        name = mantling_stendarr.rank2.a   # "Mercy and might are the same hand."
+        add_prestige = 100
+        add_piety = 100
+        add_stress = -15
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_stendarr.rank3  THRESHOLD — THE HAND ON SHOULDERS
+# Stendarr is said to have placed his hand on mortal shoulders
+# during Alessia's rebellion.  The mantler now feels the
+# weight of that hand — or perhaps they are beginning to
+# become the hand itself.
+# ---------------------------------------------------------------
+mantling_stendarr.rank3 = {
+    type = character_event
+    title = mantling_stendarr.rank3.t
+    desc  = mantling_stendarr.rank3.desc
+    theme = piety
+
+    option = {
+        name = mantling_stendarr.rank3.a   # "The hand that steadies is the hand that rules."
+        add_prestige = 150
+        add_piety = 125
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_stendarr.apotheosis  THE RIGHTEOUS MIGHT IS YOURS
+# Stendarr's pattern has fully overlapped with the ruler's.
+# The mercy shown so many times.  The Daedra opposed.
+# The weak aided.  The vigil maintained.
+# He placed his hand on mortal shoulders once.
+# The mantler now carries that hand with them.
+# ---------------------------------------------------------------
+mantling_stendarr.apotheosis = {
+    type = character_event
+    title = mantling_stendarr.apotheosis.t
+    desc  = mantling_stendarr.apotheosis.desc
+    theme = piety
+
+    trigger = {
+        has_character_flag = ww_mantling_stendarr_active
+        var:ww_mantling_stendarr_rank >= 4
+        NOT = { has_character_flag = ww_mantling_stendarr_completed }
+    }
+
+    immediate = {
+        complete_path_mantling_stendarr = yes
+    }
+
+    option = {
+        name = mantling_stendarr.apotheosis.a   # "I carry his steadiness now."
+        add_prestige = 250
+        add_piety = 300
+        add_stress = -30
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_stendarr.milestone_vigil_check  YEARLY HIDDEN
+# Has aided the Vigilants of Stendarr (flag set by
+# vigilants_stendarr events) or hosted their chapter.
+# ---------------------------------------------------------------
+mantling_stendarr.milestone_vigil_check = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_character_flag = ww_mantling_stendarr_active
+        NOT = { has_character_flag = ww_mantling_stendarr_milestone_vigil }
+        has_character_flag = vigilants_stendarr_aided
+    }
+
+    immediate = {
+        set_character_flag = ww_mantling_stendarr_milestone_vigil
+    }
+
+    option = { name = "OK" }
+}
+
+# ---------------------------------------------------------------
+# mantling_stendarr.milestone_righteous_check  YEARLY HIDDEN
+# Ruled justly for 15+ years (low tyranny, positive opinions).
+# ---------------------------------------------------------------
+mantling_stendarr.milestone_righteous_check = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_character_flag = ww_mantling_stendarr_active
+        NOT = { has_character_flag = ww_mantling_stendarr_milestone_righteous }
+        years_as_ruler >= 15
+        tyranny <= 5
+        is_ruler = yes
+    }
+
+    immediate = {
+        set_character_flag = ww_mantling_stendarr_milestone_righteous
+    }
+
+    option = { name = "OK" }
+}

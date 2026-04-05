@@ -460,6 +460,12 @@ on_yearly_pulse = {
         # --- MANTLING: ARKAY ---
         3   = mantling_arkay.milestone_season_check  # 20+ years ruled — mantling_arkay_active (mantling_arkay_events.txt)
         3   = mantling_arkay.milestone_age_check     # Age 55+ — mantling_arkay_active (mantling_arkay_events.txt)
+        # --- MANTLING: LORKHAN ---
+        3   = mantling_lorkhan.milestone_tower_check      # Tower province paramount — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        3   = mantling_lorkhan.milestone_creation_check   # Duchy+ realm size 10+ — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        # --- MANTLING: STENDARR ---
+        3   = mantling_stendarr.milestone_vigil_check     # Aided Vigilants — mantling_stendarr_active (mantling_stendarr_events.txt)
+        3   = mantling_stendarr.milestone_righteous_check # 15+ years just rule — mantling_stendarr_active (mantling_stendarr_events.txt)
         # --- PSIJIC ENDEAVOUR ---
         3   = psijic_endeavour.silence_begin          # 180-day silence offer — psijic_endeavour_active (psijic_endeavour_events.txt)
         3   = psijic_endeavour.milestone_mastery_check  # learning >= 22 — psijic_endeavour_active (psijic_endeavour_events.txt)
