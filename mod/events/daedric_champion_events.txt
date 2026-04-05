@@ -123,6 +123,11 @@ daedric_champion.azura.002 = {
         add_character_modifier = { modifier = azura_star_holder days = 3650 }
         add_prestige = 600
         add_piety    = 500
+        # Walking Ways integration — Azura mantle milestone 1: covenant with Azura fulfilled
+        if = {
+            limit = { has_character_flag = ww_mantling_azura_active }
+            set_character_flag = ww_mantling_azura_milestone_covenant
+        }
     }
     option = {
         name = daedric_champion.azura.002.b  # "Prophecy is a burden."

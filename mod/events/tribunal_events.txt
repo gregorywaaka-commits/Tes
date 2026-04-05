@@ -239,6 +239,11 @@ tribunal.030 = {
         add_prestige = 300
         add_stress   = -20
         custom_tooltip = tribunal_champion_complete_tt
+        # Walking Ways integration — Azura mantle milestone 2: lived as Dunmer faithful
+        if = {
+            limit = { has_character_flag = ww_mantling_azura_active }
+            set_character_flag = ww_mantling_azura_milestone_dunmer
+        }
     }
 
     option = {
@@ -248,5 +253,10 @@ tribunal.030 = {
         add_piety = 600
         add_stress = -30
         custom_tooltip = tribunal_champion_complete_tt
+        # Walking Ways integration — Azura mantle milestone 2: lived as Dunmer faithful
+        if = {
+            limit = { has_character_flag = ww_mantling_azura_active }
+            set_character_flag = ww_mantling_azura_milestone_dunmer
+        }
     }
 }

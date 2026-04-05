@@ -228,6 +228,14 @@ dragon_priest.002 = {
         NOT = { has_character_flag = dragon_priest_volsung_seen }
     }
 
+    immediate = {
+        # Walking Ways integration — Psijic milestone 3: encountering ancient tonal/metaphysical resonance
+        if = {
+            limit = { has_character_flag = ww_psijic_endeavour_active }
+            set_character_flag = ww_psijic_milestone_eye_echo
+        }
+    }
+
     option = {
         name = dragon_priest.002.a   # "I wear it. Let the world hear what Volsung heard."
         add_character_flag = dragon_priest_volsung_seen

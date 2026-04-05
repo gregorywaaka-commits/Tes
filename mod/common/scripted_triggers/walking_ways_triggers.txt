@@ -145,19 +145,41 @@ can_begin_mantling_arkay = {
     NOT = { has_character_flag = ww_mantling_arkay_completed }
 }
 
-# Kynareth
+# Kynareth / Kyne — goddess of sky, wind, and natural world.
+# Nordic form is Kyne (Shor's widow, mother of men).
+# The milestones — Word Walls, Companions, Shor's memory, the outnumbered
+# storm — are almost entirely tied to Nordic culture and the Thu'um.
+# A brave warrior with no connection to Nordic heritage or the Voice
+# cannot meaningfully walk Kynareth's path. [SOURCE: UESP Lore:Kynareth/Kyne]
 can_begin_mantling_kynareth = {
     can_begin_path_mantling = yes
     has_trait = brave
+    # Nordic culture/Voice connection requirement (design doc §7 "Mantling Kynareth")
+    OR = {
+        culture = { has_cultural_pillar = heritage_nordic }  # Nordic by heritage
+        has_character_flag = thuumvoi_event_1_seen           # has walked with the Thu'um
+    }
     NOT = { has_character_flag = ww_mantling_kynareth_completed }
 }
 
 # Azura (Daedric — higher requirement)
+# Azura is the patron goddess of the Dunmer (Chimer) people.
+# Requires philosophical depth (chim_seeker/achieved) AND a genuine
+# cultural or spiritual connection to Azura or the Dunmer faith.
+# Without this, a foreign scholar with no Dunmer ties could mantle
+# a goddess whose entire identity is bound to Dunmeri covenant —
+# which is lore-inaccurate. [SOURCE: UESP Lore:Azura; Dunmer Pantheon]
 can_begin_mantling_azura = {
     can_begin_path_mantling = yes
     OR = {
         has_trait = chim_seeker
         has_trait = chim_achieved
+    }
+    # Dunmer culture/faith adjacency requirement (design doc §7 "Mantling Azura")
+    OR = {
+        has_culture = dunmer_culture               # is Dunmer
+        has_character_flag = vivec_vision_seen     # received Tribunal blessing (Dunmer faith immersion)
+        has_trait = azura_champion                 # already Azura's chosen champion
     }
     NOT = { has_character_flag = ww_mantling_azura_completed }
 }
