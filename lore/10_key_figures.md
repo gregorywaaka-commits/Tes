@@ -102,19 +102,27 @@ Each entry includes:
 ### Vivec
 - Poet-warrior god of Morrowind; one of the most complex figures in TES lore
 - Wrote the **36 Lessons of Vivec** (in-game metaphysical/philosophical texts — deliberately unreliable narrators `[CONTESTED by design]`)
-- Held back **Baar Dau** (a moon the Sheogorath flung at Vivec City) with his divine will; when his power failed after 3E 427, Baar Dau eventually fell (4E 5 Red Year) `[CANON — UESP]`
+- Held back **Baar Dau** (a moon the Sheogorath flung at Vivec City) with his divine will; when his power failed after 3E 427, Baar Dau eventually fell (4E 5 Red Year — ~78 years later) `[CANON — UESP]`
+- ⚠️ **The 78-year gap is significant:** Baar Dau fell 78 years after the Heart's destruction. This implies Vivec maintained at least some power or presence for decades after losing the Heart, before finally departing or fading. His stored divine power did not drain instantly.
 - Disappeared after the events of TES III: Morrowind; fate unknown `[CANON — TES III: Morrowind]`
-- ⚠️ Whether Vivec achieved **CHIM** is `[CONTESTED — SPECULATION]`
+- ⚠️ Whether Vivec achieved **CHIM** is `[CONTESTED — SPECULATION]`. The most widely-held scholarly interpretation (based on the 36 Lessons and MK texts) is that Vivec, unlike Almalexia, responded to power-starvation with philosophy rather than violence, and used his final years of diminishing power to attempt or achieve CHIM — leaving Nirn voluntarily rather than dying like Almalexia or fading mindlessly. This is not confirmed in-game and should be flagged as `[SOFT CANON — MK texts; UESP analysis]` in any event text that references it.
 
 ### Almalexia
 - Goddess of compassion and motherhood; patron of **House Indoril** and **Ordinators**
-- After losing her divinity in TES III: Morrowind (Tribunal expansion), went mad and was killed by the Nerevarine in Mournhold `[CANON — TES III: Tribunal]`
+- After Dagoth Ur expelled the Tribunal from Red Mountain in **2E 882**, Almalexia could no longer renew her divinity from the Heart of Lorkhan; her power began a slow centuries-long drain `[CANON — TES III: Morrowind + Tribunal expansion]`
+- By the time of TES III: Morrowind (3E 427), her stored divine power was nearly exhausted; she had gone mad — a paranoid, messianic breakdown driven by the loss of something she had held for over three thousand years `[CANON — TES III: Tribunal]`
+- In her madness, she travelled to **Sotha Sil's Clockwork City** and killed him — believing (or pretending to believe) she could absorb his remaining divine power; in practice, the act gained her little or nothing lasting `[CANON — TES III: Tribunal]`
+- She then staged an elaborate deception in **Mournhold**, luring the **Nerevarine** to "save" the city from an attack she had orchestrated, intending to kill the Nerevarine and reclaim divine status through that victory; the Nerevarine killed her instead `[CANON — TES III: Tribunal]`
+- ⚠️ **Design note:** Almalexia's arc is the canonical example of what Heart-borrowed power does to a mortal mind when it is slowly taken away. The madness was not sudden — it developed over centuries. The murder of Sotha Sil was its culmination, not its beginning.
 
 ### Sotha Sil
 - "The Clockwork God"; Tinkerer; philosopher; rarely seen by mortals even when divine
 - Created the **Clockwork City** — a mechanical world-simulacrum built of brass, gears, and magic. It exists "outside space and time" — physically represented as a small globe, but inside it is as vast as a world. Sotha Sil used it as his workshop, laboratory, and reality-manipulation testing ground. Its inhabitants include **Factotums** (robotic servitors), **Fabricants** (flesh-machine hybrids), and **Clockwork Apostles** (followers devoted to his philosophy). The City is considered an extension of Sotha Sil himself — changes to it may have reality-altering effects on Nirn. `[CANON — UESP: Lore:Clockwork City; ESO: Clockwork City DLC; TES III: Tribunal]`
-- Killed by **Almalexia** before the events of TES III: Tribunal expansion `[CANON — TES III: Tribunal]`
+- After Dagoth Ur expelled the Tribunal from Red Mountain in 2E 882, Sotha Sil withdrew entirely to his Clockwork City; unlike Almalexia, his response to power-starvation appears to have been withdrawal and philosophical acceptance rather than madness `[INFERRED — TES III: Tribunal; the game implies he was already dead and his body cold when the Nerevarine found him, suggesting no struggle]`
+- Killed by **Almalexia** before the events of TES III: Tribunal expansion — she entered his Clockwork City and murdered him, apparently believing (in her broken state) that consuming his remaining divine power would restore her own `[CANON — TES III: Tribunal]`
+- His death triggered the mechanical inhabitants of the Clockwork City to behave erratically (Fabricants attacking intruders); the City itself began to destabilise `[CANON — TES III: Tribunal]`
 - After his death the Clockwork City was left largely abandoned except for its mechanical inhabitants; the Clockwork Apostles maintained it `[CANON — ESO / UESP]`
+- ⚠️ **Design note:** Sotha Sil and Almalexia are the same lore event — the same power-starvation — handled completely differently. Sotha Sil chose quiet and philosophy; Almalexia chose violence and delusion. Both died. The contrast is intentional in the game's writing and should be preserved in any mod event text that references either.
 
 ---
 

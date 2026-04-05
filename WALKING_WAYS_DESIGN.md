@@ -2645,33 +2645,271 @@ The Dagoth Ur-method ascendant. Raw. Total. Unseverable (until the Heart dies).
 
 ---
 
-### 19.10 Shared Hard Termination — When the Heart Dies
+### 19.10 Route A — Three-Phase Degradation (The Tribunal's True Arc)
 
-When `dagoth_ur_defeated` is set (the Heart of Lorkhan is destroyed in 3E 427):
+> ⚠️ **Critical lore correction vs. earlier draft:** Route A does NOT lose power
+> instantly when the Heart is destroyed. The Tribunal's canonical arc shows a
+> **three-phase degradation** beginning when access to the Heart was severed,
+> not when it was physically destroyed. This distinction is lore-essential and
+> must drive all mechanical design for Route A's ending.
+
+---
+
+#### The Lore Arc the Mechanics Must Model
+
+| Phase | Date | What happened | Mechanical equivalent |
+|---|---|---|---|
+| **Phase 0 — Abundance** | Before 2E 882 | Tribunal (and any Route A practitioner) can freely return to the Heart; power is renewable | Route A works as designed in §19.9: yearly renewal succeeds easily |
+| **Phase 1 — Starvation** | **2E 882** | Dagoth Ur awakens and seizes Red Mountain; the Tribunal (and Route A practitioners) are **physically expelled from the Heart**. They cannot renew. Power is now finite — they are living on whatever reservoir they built up. | `heart_cut_off` flag set on `dagoth_ur_awakened`; renewal events begin failing; starvation mechanics activate |
+| **Phase 2 — Madness** | **2E 882–3E 427** | Over the following 545 years, the Tribunal's stored power slowly drains. Sotha Sil withdraws to his Clockwork City and goes silent. Almalexia's mind breaks. She kills Sotha Sil in the Clockwork City — not because she can truly absorb his power, but because her broken mind believes it will help. | `heart_starvation_modifier` stacks over time; `almalexia_option` becomes available |
+| **Phase 3 — Dissolution** | **3E 427** | The Heart is physically destroyed by the Nerevarine. Whatever residual power remained is severed. Vivec disappears. Almalexia is killed in Mournhold (by the Nerevarine). What remains of Vivec's power holds Baar Dau aloft for ~78 more years before it fails. | Heart destruction fires `borrowed_divinity.dissolution.001`; CHIM escape option becomes available |
+
+**Canon source for all three phases:**
+`[CANON — TES III: Morrowind + Tribunal expansion; UESP Lore:Tribunal; UESP Lore:Almalexia; UESP Lore:Sotha Sil; UESP Lore:Vivec]`
+
+---
+
+#### Phase 1 Implementation — `heart_cut_off` (fires on `dagoth_ur_awakened = yes`)
+
+When Dagoth Ur awakens:
 
 ```
-# Route A holders lose their power but survive
-if = {
+# All Route A practitioners are now cut off from the Heart
+every_living_character = {
     limit = { has_trait = heart_scholar_ascendant }
-    trigger_event = { id = borrowed_divinity.dissolution.001 }
-    remove_trait = heart_scholar_ascendant
-    add_character_modifier = {
-        modifier = heart_void_modifier   # Learning -3 for 10 years; the absence hurts
-        years = 10
-    }
-    add_stress = 100
-}
-
-# Route B holders die — the Heart's death IS their death
-if = {
-    limit = { has_trait = heart_fused_ascendant }
-    kill_character = yes
-    # Death reason: borrowed_divinity_severed
-    # Death flavor event fires for nearby rulers: "Something in Red Mountain ended."
+    set_character_flag = heart_cut_off
+    trigger_event = { id = borrowed_divinity.cutoff.001 }
 }
 ```
 
-**The `borrowed_divinity.dissolution.001` event (Route A):**
+**The `borrowed_divinity.cutoff.001` event:**
+
+> *"Red Mountain has changed.*
+>
+> *You felt it before the reports arrived — a shift in what you relied on
+> without knowing you relied on it. The connection to the Heart's power has
+> not broken. It has simply… become unreachable. Something is between you
+> and the source. Something vast.*
+>
+> *The Tribunal have been cut off from it for the same reason. You know this
+> because you can feel the absence of their draw — the Heart was never meant
+> to feed so many.*
+>
+> *What you hold now is what you stored. It will not be replenished."*
+
+Options:
+- `"Then I use what I have carefully."` → -stress 20 (acceptance; slow starvation begins)
+- `"There must be another way in."` → +stress 30 (denial; sets `heart_cutoff_denial` flag;
+  character will attempt a proxy renewal next yearly tick, which automatically fails,
+  adding more stress each failure — 3 failures collapse the denial flag)
+
+**Mechanical effect once `heart_cut_off = yes`:**
+- The yearly renewal mechanic from §19.9 no longer succeeds even at Red Mountain
+  (Dagoth Ur controls Red Mountain; access is blocked)
+- `heart_scholar_ascendant` bonuses begin decreasing at **-1 Learning per year**
+  until Learning bonus reaches 0 (from +8 to 0 = 8 years before the stat bonus
+  fully drains)
+- `monthly_piety` halved while cut off
+- `stress_gain_mult` bonus reduced from -0.20 to -0.05
+
+**The reservoir:** The character has `heart_reservoir_counter` (10 + years_ascendant / 5).
+A ruler who achieved ascendancy recently has a small reservoir. One who has held
+it for decades has a larger one. Each year cut off reduces the reservoir by 1.
+When reservoir reaches 0, Phase 2 triggers.
+
+---
+
+#### Phase 2 Implementation — `heart_starvation` (fires when reservoir = 0)
+
+```
+borrowed_divinity.starvation.001    # "The reservoir is empty"
+```
+
+**The `borrowed_divinity.starvation.001` event:**
+
+> *"The last of it is gone.*
+>
+> *You can feel the difference. There is a quality to what you were —
+> a steadiness, a weight — that is simply absent now. You are mortal.
+> You were mortal before. The difference is that now you remember what
+> the other thing felt like.*
+>
+> *The Tribunal are in the same place. All of them. Almalexia has stopped
+> giving public audiences. The rumours from Mournhold are becoming
+> difficult to ignore.*
+>
+> *You understand why."*
+
+**Mechanical effects:**
+- `heart_scholar_ascendant` trait REMOVED
+- `heart_starvation_modifier` added: Learning -4, Diplomacy -2, stress_gain_mult +0.40
+  (the absence is felt as a wound; this is lore-accurate — the Tribunal's power
+  loss was experienced as decline and suffering, not clean departure)
+- **The Almalexia Option** becomes available (see §19.10a below)
+- Character is now in a *vulnerable* state: mortal again, worse than before
+  ascension in some stats, but not dead
+
+---
+
+#### 19.10a The Almalexia Option — Consuming Another
+
+> **Lore basis:** Almalexia killed Sotha Sil in his Clockwork City. She believed
+> — in her madness — that absorbing what remained of his stored Heart power would
+> restore her. The game implies it did not truly work; she was already gone in her
+> mind when she did it. But the *attempt* is canonical. `[CANON — TES III: Tribunal]`
+
+When a character is in `heart_starvation`, they receive a timed decision (available
+for 5 years before it expires):
+
+**Decision: *"There is one source of Heart power left in the world."***
+
+> *"The mathematics of this is simple. You once held borrowed fire. Another
+> holds it still. What they have was drawn from the same well.*
+>
+> *Almalexia understood this. Her mind was already breaking when she did what
+> she did in the Clockwork City. That is not the comfort it should be.*
+>
+> *But you are not Almalexia. You chose this deliberately. You are still choosing."*
+
+**Requirement to take this option:**
+- Another living ruler currently has `heart_scholar_ascendant`
+- Character has `intrigue >= 14`
+- Character is NOT `nerevarine_marked` (the Nerevarine's path is closure; not this)
+
+**Effect:**
+- Murder event: the target ruler must be killed (this uses existing assassination
+  mechanics — not a simple effect, requires genuine plot or direct combat)
+- If the target ruler dies while this flag is active: the consuming character regains
+  a partial reservoir (5 + target's years_ascendant / 5)
+- This **re-applies `heart_scholar_ascendant` at half effectiveness** for a number
+  of years equal to the reservoir recovered, then enters starvation again
+- **It does not work indefinitely.** Each subsequent consumption halves the
+  effective years gained. First consumption: full reservoir. Second: half. Third:
+  quarter. The law of diminishing returns mirrors the canon: Almalexia gained
+  nothing lasting from Sotha Sil's death.
+- **Piety cost:** -500 (this is murder; it is not approved of by any divine)
+- **Dread gain:** +40
+
+**If the character takes this option and completes it, they receive the permanent
+modifier `consumed_another`** (this modifier persists even after the power fades):
+- Opinion -20 from all Tribunal-faith rulers
+- Opinion -10 from all rulers with `heart_scholar_ascendant` (the community of
+  Heart-touchers knows what was done; the victim's `Divine Resonance` carried the
+  moment of death to all who shared the connection)
+- Cannot pursue the CHIM escape (see §19.10b) — the act of consumption closes the
+  contemplative door; Almalexia was killed still mad; Vivec, who chose the other
+  path, simply left
+
+**Flavor note for event text:** The murder of Sotha Sil is one of the most disturbing
+events in TES III. It should be written with full weight. The character is not
+heroic or clever here. They are doing what Almalexia did. The text should not
+glamourise it. If they choose it, they choose it with clear eyes.
+
+---
+
+#### 19.10b The Vivec Option — CHIM as the Last Door
+
+> **Lore basis:** Vivec disappeared around 3E 427. His fate is explicitly
+> `[CONTESTED — by design]`. The most widely-held scholarly interpretation is
+> that Vivec used the last of his stored Heart power, combined with his existing
+> understanding of the Aurbis (documented in the 36 Lessons), to attempt or
+> achieve **CHIM** — and either succeeded and left Nirn voluntarily, or simply
+> faded with grace rather than madness. Baar Dau did not fall until 4E 5 (~78
+> years after Heart destruction), which implies he maintained at least a thread
+> of presence or power for decades after. `[SOFT CANON — UESP analysis; MK texts;
+> in-game: 36 Lessons of Vivec]`
+
+When a character is in `heart_starvation` AND has NOT taken the Almalexia Option:
+
+**A new CHIM entry gate opens.** This is separate from the existing `chim.000`
+event chain. It is the *desperation gate* — not the scholar's gate.
+
+**Decision: *"The well is empty. But the sky is not."***
+
+> *"You came to the Heart because you wanted what it had. You wanted power
+> the ordinary ways of the world would not give you. You found it. You held
+> it. Now it is gone.*
+>
+> *Vivec walked this same diminishment. His power faded by the same steps
+> yours has. And then he was not there anymore.*
+>
+> *You have read enough to know what the 36 Lessons are actually saying.
+> You have held divine fire in your hands and felt it go cold. No one else
+> in the world has those two qualifications simultaneously.*
+>
+> *The scholars call it CHIM. The word sounds like a door closing from
+> the inside.*
+>
+> *You could try."*
+
+**Requirements:**
+- `heart_starvation` is active (character in Phase 2 degradation)
+- NOT `consumed_another` (cannot pursue CHIM after the Almalexia choice)
+- `learning >= 18` (the Heart-scholar, now desperate and reflective, has
+  the intellectual foundation; this is higher than the standard CHIM gate)
+- NOT already `has_trait = chim_achieved`
+
+**Effect:**
+- Sets `chim_attempt_from_starvation` flag
+- This flag gives the character **access to the existing CHIM event chain**
+  (`chim.000` and onward) with a different flavor intro event that acknowledges
+  the Heart context
+- The chance of CHIM success via this gate is **slightly higher** than the
+  standard gate (Learning ≥ 18 is a harder requirement, and the context of
+  having held divine power creates a unique understanding)
+- **If CHIM succeeds:** Character gains `chim_achieved`, the `heart_starvation_modifier`
+  is removed (CHIM is a new mode of being; the absence of Heart power is no longer
+  felt as loss — the character is no longer relating to the world through the lens
+  of borrowed divinity), and they enter Path A (CHIM Expanded, §259 of this document)
+- **If CHIM fails:** Standard failure consequences from the existing CHIM system apply;
+  `chim_attempt_from_starvation` is cleared; character remains in `heart_starvation`
+
+**Critical flavor note:**
+The CHIM attempt from starvation should explicitly reference the Heart journey:
+
+> *"You have held a slain god's power. You have felt it leave you. In that
+> specific experience — the having and the losing — there is a kind of
+> understanding that cannot be purchased any other way.*
+>
+> *Vivec knew this. His Lessons are full of it: the god who had everything,
+> who lost it, who understood that the losing was the lesson.*
+>
+> *Most who try CHIM come to it through philosophy. You came through the fire
+> itself. That is not a metaphor. You literally held borrowed divinity and
+> survived its departure.*
+>
+> *Whether that is enough is a question the Aurbis will answer for you."*
+
+**Design note:** This connection is `[MOD CHOICE — no direct canon confirmation that
+Heart power is a prerequisite or pathway to CHIM]`. However, it is **consistent
+with** the lore theme that CHIM requires understanding one's own nature within
+the Aurbis — and having held and lost divine power is precisely the kind of
+experience that forces that understanding. The mod is not claiming Vivec's CHIM
+(if he achieved it) required the Heart; it is claiming that *a character who
+went through this path* is unusually well-positioned for CHIM.
+
+---
+
+#### Phase 3 — Heart Destruction (3E 427)
+
+When `dagoth_ur_defeated` is set:
+
+**For characters in Phase 1 (still have reservoir):**
+```
+# Accelerate drain to 2 per year instead of 1
+modify_heart_reservoir_drain = 2
+# Notify: "The source has been destroyed. What remains will not last."
+trigger_event = { id = borrowed_divinity.cutoff.002 }
+```
+
+**For characters in Phase 2 (already in starvation):**
+```
+# No additional mechanical effect — they are already past the Heart's influence
+# But they receive a narrative event acknowledging the moment
+trigger_event = { id = borrowed_divinity.dissolution.001 }
+```
+
+**The `borrowed_divinity.dissolution.001` event (fires for both groups):**
 
 > *"You were in the middle of a sentence when it stopped.*
 >
@@ -2679,17 +2917,30 @@ if = {
 > a candle goes out. The Heart's ending was not a sound. It was the absence
 > of a sound you had stopped noticing you were always hearing.*
 >
-> *The Tribunal spent three thousand years drawing from that well. You had it
-> for far less. You are still standing. You are still yourself.*
+> *If you still had any of it, you feel it going faster now. If you already
+> lost it, there is simply a new quality to the silence — the source is
+> gone, not merely blocked.*
 >
-> *But the fire in the glass has gone cold. What you borrowed has been returned
-> to whatever remains of the dead."*
+> *The Tribunal spent three thousand years drawing from that well. Vivec held
+> Baar Dau aloft for years after this moment with what little remained.*
+>
+> *He is gone now too. Whether he found something else on the way out is a
+> question no one has answered convincingly."*
 
 Options:
-- `"I remain. I was something before the Heart. I will be something after."` →
-  +prestige 500 (they survive; the accomplishment is real even if it's over)
-- `"Three thousand years the Tribunal held this. I had it for a moment."` →
-  +stress 50, +piety 200 (grief and awe simultaneously)
+- `"I had it while I had it. That was real."` → +prestige 500, -stress 30
+- `"Where did Vivec go?"` → [only if learning ≥ 18 and NOT consumed_another]
+  This option sets `chim_attempt_from_starvation` even if not yet in starvation —
+  the character is already thinking about the other door → +piety 100
+- `"I should have taken more while I could."` → [only if consumed_another]
+  The character has no grace about this. → +stress 50, +dread 20
+
+---
+
+**Route B remains unchanged: `heart_fused_ascendant` characters die immediately
+on `dagoth_ur_defeated`. No phases. No options. This is because the fusion was
+total — there is no stored power separate from the Heart to drain slowly. When
+the Heart stops, they stop.**
 
 ---
 
@@ -2737,10 +2988,15 @@ mod/localization/english/borrowed_divinity_l_english.yml
 ```
 
 All event display text for this system goes here:
-- `borrowed_divinity.*` events (all milestones, both routes, termination)
+- `borrowed_divinity.*` events (all milestones, both routes, termination, cutoff, starvation)
+- `borrowed_divinity.cutoff.001` — Dagoth Ur severs Heart access
+- `borrowed_divinity.cutoff.002` — Heart destroyed while character still has reservoir
+- `borrowed_divinity.starvation.001` — reservoir empty; Phase 2 trigger
+- `borrowed_divinity.dissolution.001` — Heart destroyed; shared narrative acknowledgement
 - Trait display names: `heart_scholar_ascendant`, `heart_fused_ascendant`
-- Modifier display names: `heart_void_modifier`, `heart_absorbed_modifier`
-- Custom tooltips: `kagrenac_route_chosen_tt`, `dagoth_route_chosen_tt`
+- Modifier display names: `heart_starvation_modifier`, `heart_absorbed_modifier`, `consumed_another`
+- Custom tooltips: `kagrenac_route_chosen_tt`, `dagoth_route_chosen_tt`,
+  `almalexia_option_tt`, `chim_from_starvation_tt`
 
 **BOM reminder:** UTF-8 BOM required (`printf '\xef\xbb\xbf' | cat - file > tmp && mv tmp file`).
 
@@ -2754,7 +3010,9 @@ Per convention (`lore_races_on_actions.txt`, `on_yearly_pulse` block):
 |---|---|---|
 | `borrowed_divinity.000` | Hidden yearly: check if player is eligible for path intro | 50 |
 | `borrowed_divinity.dissolution.000` | Hidden yearly: check if Heart has been destroyed; fire termination | 100 |
-| `borrowed_divinity.heart_draw.000` | Hidden yearly: Route A dependency check (renewal event) | 80 |
+| `borrowed_divinity.heart_draw.000` | Hidden yearly: Route A dependency check (renewal event OR starvation tick) | 80 |
+| `borrowed_divinity.starvation.000` | Hidden yearly: check if reservoir has hit 0; fire Phase 2 | 90 |
+| `borrowed_divinity.almalexia.000` | Hidden yearly: check if Almalexia option should expire | 60 |
 
 ---
 
@@ -2763,25 +3021,39 @@ Per convention (`lore_races_on_actions.txt`, `on_yearly_pulse` block):
 - [ ] Internal key `ww_borrowed_divinity` added to `walking_ways_traits.txt`
 - [ ] `heart_scholar_ascendant` and `heart_fused_ascendant` traits defined in
   `dagoth_ur_traits.txt` (fits thematically; both are Heart-derived)
-- [ ] `heart_void_modifier`, `heart_absorbed_modifier`, `heart_overload` modifiers
-  added to `lore_races_modifiers.txt`
+- [ ] `heart_starvation_modifier`, `heart_absorbed_modifier`, `heart_overload`,
+  `consumed_another` modifiers added to `lore_races_modifiers.txt`
+- [ ] `heart_reservoir_counter` variable defined (integer, per character)
+- [ ] `heart_cut_off` flag defined (per character; set on `dagoth_ur_awakened`)
+- [ ] `chim_attempt_from_starvation` flag defined (per character; gate into CHIM chain)
 - [ ] All milestone events written in a new `borrowed_divinity_events.txt`
   (separate from `dagoth_ur_events.txt` — this path is broader than Dagoth's system)
+- [ ] `borrowed_divinity.cutoff.001/.002` events written (Heart access severed)
+- [ ] `borrowed_divinity.starvation.001` event written (reservoir empty)
+- [ ] `borrowed_divinity.dissolution.001` event written (Heart destroyed)
+- [ ] Almalexia Option decision written (5-year timed decision)
+- [ ] CHIM starvation gate decision written; hooks into existing `chim.000` chain
+  with `chim_attempt_from_starvation` flavor variant
 - [ ] `borrowed_divinity_l_english.yml` created with UTF-8 BOM
-- [ ] Three `on_yearly_pulse` registrations added to `lore_races_on_actions.txt`
-- [ ] Hard termination hooks added to `end_dagoth_ur_era` scripted effect in
-  `lore_races_effects.txt` (both routes handled separately)
+- [ ] Five `on_yearly_pulse` registrations added to `lore_races_on_actions.txt`
+- [ ] Route A degradation hooks added to `end_dagoth_ur_era` scripted effect in
+  `lore_races_effects.txt` (three-phase model); Route B hard death unchanged
+- [ ] `heart_cut_off` flag set in `on_dagoth_ur_awakened` scripted effect
 - [ ] Nerevarine + Tribunal interaction events written
-- [ ] `12_mod_pitfalls.md` updated with new entry: *"Heart-tapping path is
-  `ww_borrowed_divinity` (two routes); `sixth_house_cultist` is the entry gate
-  for Route B only; `heart_scholar_ascendant` and `heart_fused_ascendant` are
-  the two apex traits — do not confuse them with each other or with the Tribunal
-  traits"*
+- [ ] `12_mod_pitfalls.md` updated:
+  - *"Route A (`heart_scholar_ascendant`) loses power in THREE phases starting at
+    2E 882 (cut off), not instantly at 3E 427 (Heart destroyed)"*
+  - *"`consumed_another` and `chim_attempt_from_starvation` are mutually exclusive
+    — taking the Almalexia Option permanently closes the CHIM gate"*
+  - *"`heart_scholar_ascendant` and `heart_fused_ascendant` are not interchangeable —
+    Route A survives Heart's destruction; Route B dies instantly"*
 - [ ] `lore/06_towers.md` Red Tower entry updated to cross-reference this path
-  (the Heart = the Tower Stone; tapping it = this path)
+  *(already done — added in §19 revision)*
+- [ ] `lore/10_key_figures.md` Tribunal section updated with degradation/murder/CHIM detail
+  *(already done — Vivec, Almalexia, Sotha Sil entries expanded)*
 - [ ] §17.6 timeline table updated: *"2E 882 — Dagoth Ur expels Tribunal from
-  Red Mountain; Heart becomes accessible; `ww_borrowed_divinity` path becomes
-  available to any ruler with sufficient arcane knowledge"*
+  Red Mountain; Heart becomes inaccessible; Route A degradation begins for all
+  `heart_scholar_ascendant` characters"*
 
 ---
 
