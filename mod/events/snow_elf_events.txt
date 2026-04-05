@@ -1,0 +1,310 @@
+# =============================================================
+#  Snow Elves / Falmer — Events
+#  Namespace: snow_elf
+#  File: mod/events/snow_elf_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  snow_elf.000  Hidden yearly — learned rulers in Skyrim may
+#                stumble on Snow Elf remains without seeking them
+#  snow_elf.001  "The Pale Tower's Silence" — discovery of an
+#                ancient Snow Elf structure; three paths forward
+#  snow_elf.002  "The Last of the Falmer" — degenerated Falmer
+#                encountered in the caves below; study or destroy
+#  snow_elf.003  "Knight-Paladin's Vigil" — a being of impossible
+#                age and grace guards a snow-covered chapel
+#  snow_elf.004  "Auriel's Arrow of Radiance" — evidence of the
+#                Bow is found; pursue or leave it be
+#  snow_elf.005  "Blood of the Snow Prince" — genealogist surfaces
+#                a lineage claim to the Snow Prince's honour-guard
+#
+#  HISTORICAL NOTE:
+#  The Snow Elves were the dominant mer civilisation of Skyrim during
+#  the Merethic Era.  The Night of Tears — the Snow Elven sacking of
+#  Saarthal — provoked Ysgramor's Return and a war that ended the
+#  Snow Elves as a free people.  Their last champion, the Snow Prince,
+#  fell at the Battle of Moesring (exact date disputed: late Merethic
+#  to early 1E).  Survivors who took Dwemer shelter were enslaved,
+#  blinded, and reduced to the Falmer over generations.  Knight-Paladin
+#  Gelebor refused this fate, maintaining his vigil at Auri-El's Chapel
+#  until the Fourth Era.  Auriel's Bow can fire sunhallowed arrows that
+#  temporarily dim the sun.
+#  Sources: UESP Lore:Snow Elves; ESV Dawnguard; UESP Lore:Auriel's Bow.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/snow_elf_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/snow_elf_traits.txt
+#      → snow_elf_pure_blood, knight_paladin_blessed, auriel_bow_seeker,
+#        snow_prince_legacy, falmer_lore_scholar
+#    common/traits/dwemer_ruins_traits.txt
+#      → dwemer_scholar
+#    common/decisions/snow_elf_decisions.txt
+#      → seek_snow_elf_ruins, seek_auriels_shrine
+# =============================================================
+
+namespace = snow_elf
+
+# ---------------------------------------------------------------
+# snow_elf.000  The Old Towers
+# A hidden yearly trigger — a learned ruler holding lands in
+# Skyrim has a small chance of being drawn toward a Snow Elf
+# ruin without having sought one deliberately.  Fires snow_elf.001
+# directly, bypassing the decision requirement for this path.
+# Guarded by character flag so it fires only once per ruler.
+# ---------------------------------------------------------------
+snow_elf.000 = {
+    type   = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler  = yes
+        is_landed = yes
+        learning  >= 12
+        any_held_county = {
+            geographical_region = world_region_skyrim
+        }
+        NOT = { has_character_flag = snow_elf_ruins_sought }
+        NOT = { has_character_flag = snow_elf_000_fired }
+        NOT = { has_trait = snow_elf_pure_blood }
+    }
+
+    immediate = {
+        set_character_flag = { flag = snow_elf_000_fired }
+        trigger_event = { id = snow_elf.001 days = 30 }
+    }
+}
+
+# ---------------------------------------------------------------
+# snow_elf.001  The Pale Tower's Silence
+# The structure does not look like a Nord longhouse or an
+# Imperial ruin.  The stonework is too fine and too pale, the
+# arches too narrow, the writing on the lintel in a script no
+# living scholar reads comfortably.  It has been here longer
+# than Skyrim has been called Skyrim.
+# ---------------------------------------------------------------
+snow_elf.001 = {
+    type  = character_event
+    title = snow_elf.001.t
+    desc  = snow_elf.001.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = scholar
+    }
+
+    option = {
+        name = snow_elf.001.a   # "Press inside. Whatever is left here, I want to see it."
+        add_prestige = 50
+        add_stress   = 10
+        trigger_event = { id = snow_elf.002 days = 7 }
+    }
+
+    option = {
+        name = snow_elf.001.b   # "Seal it. This is a grave, not a trophy room."
+        add_piety    = 50
+        add_stress   = 5
+    }
+
+    option = {
+        name = snow_elf.001.c   # "Find a scholar who knows these symbols. I will not enter ignorant."
+        add_gold = -75
+        add_trait = auriel_bow_seeker   # The search itself teaches the seeker
+        custom_tooltip = snow_elf.001.c.tooltip
+    }
+}
+
+# ---------------------------------------------------------------
+# snow_elf.002  The Last of the Falmer
+# The lower halls of the ruin are occupied.  The things that
+# live there are blind and hunched and vicious, and they move
+# like creatures that have spent a thousand years in absolute
+# darkness.  They are also, unmistakably, elven in shape —
+# reduced, warped, but elven.  The Dwemer's cruelty echoes
+# down every generation that followed.
+# ---------------------------------------------------------------
+snow_elf.002 = {
+    type  = character_event
+    title = snow_elf.002.t
+    desc  = snow_elf.002.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = fear
+    }
+
+    option = {
+        name = snow_elf.002.a   # "Study them. This is what the Dwemer made of a people."
+        add_trait          = falmer_lore_scholar
+        add_stress         = 15
+        trigger_event = { id = snow_elf.004 days = 90 }
+    }
+
+    option = {
+        name = snow_elf.002.b   # "Drive them out. They are a danger and a grief."
+        trigger = { martial >= 10 }
+        add_prestige   = 100
+        add_martial_skill = 1
+    }
+
+    option = {
+        name = snow_elf.002.c   # "Leave quietly. Disturbing them further serves no purpose."
+        add_piety = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# snow_elf.003  Knight-Paladin's Vigil
+# The chapel should not exist.  The stonework belongs to an
+# architectural tradition that ended before the First Era had
+# a name.  The figure kneeling before the altar does not look
+# like the passage of millennia has touched them.  They rise
+# when you enter — unhurried, unafraid, and looking at you
+# with eyes that have assessed a thousand visitors and found
+# most of them insufficient — and they speak in a dialect of
+# Aldmeris so old that your interpreter can only guess at it.
+# Knight-Paladin Gelebor.  The last faithful Snow Elf.
+# He has been waiting here since before Ysgramor set sail.
+# ---------------------------------------------------------------
+snow_elf.003 = {
+    type  = character_event
+    title = snow_elf.003.t
+    desc  = snow_elf.003.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = awe
+    }
+
+    option = {
+        name = snow_elf.003.a   # "Receive his blessing in the name of Auri-El."
+        add_trait          = knight_paladin_blessed
+        remove_trait       = auriel_bow_seeker       # The shrine itself is the answer
+        add_piety          = 150
+        add_stress         = -20
+        trigger_event = { id = snow_elf.004 days = 14 }
+    }
+
+    option = {
+        name = snow_elf.003.b   # "Ask him about the Snow Elves — the true history, not Nord sagas."
+        add_learning_skill = 2
+        add_piety          = 75
+        custom_tooltip     = snow_elf.003.b.tooltip
+    }
+
+    option = {
+        name = snow_elf.003.c   # "Leave the chapel undisturbed. Some vigils are not ours to interrupt."
+        add_piety  = 50
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# snow_elf.004  Auriel's Arrow of Radiance
+# The evidence is not the Bow itself — that would be too simple.
+# It is a fragment of an arrow: pale white, warm to the touch
+# in a way that has nothing to do with temperature, and marked
+# with an inscription in Ayleid/Aldmeri script that your best
+# scholar translates — haltingly — as something like "the
+# undimmed light of the first moment."  Auriel's Bow is real.
+# Somewhere in these mountains, it is still being kept.
+# ---------------------------------------------------------------
+snow_elf.004 = {
+    type  = character_event
+    title = snow_elf.004.t
+    desc  = snow_elf.004.desc
+    theme = learning
+    left_portrait = {
+        character = root
+        animation = admiration
+    }
+
+    option = {
+        name = snow_elf.004.a   # "The Bow must be found. I will pursue this to the end."
+        trigger = { NOT = { has_trait = auriel_bow_seeker } }
+        add_trait     = auriel_bow_seeker
+        add_prestige  = 100
+        add_learning_skill = 1
+    }
+
+    option = {
+        name = snow_elf.004.b   # "A holy relic should stay with those who kept it. Let it be."
+        add_piety    = 100
+        add_prestige = 50
+    }
+
+    option = {
+        name = snow_elf.004.c   # "Record everything. The scholars need to know this."
+        trigger = { has_trait = falmer_lore_scholar }
+        add_prestige       = 150
+        add_learning_skill = 2
+        custom_tooltip     = snow_elf.004.c.tooltip
+    }
+}
+
+# ---------------------------------------------------------------
+# snow_elf.005  Blood of the Snow Prince
+# The genealogist arrived with a crate of documents and the
+# particular intensity of someone who believes they have found
+# something important.  The lines are faint and the records
+# are partial — half of them are in languages that had to be
+# translated twice — but the claim is this: your house descends
+# from a survivor of Moesring.  Not just a survivor of the war.
+# A survivor of the honour-guard.  Someone who stood at the
+# Snow Prince's side until the end, and then kept living when
+# they had no particular reason to.
+# ---------------------------------------------------------------
+snow_elf.005 = {
+    type  = character_event
+    title = snow_elf.005.t
+    desc  = snow_elf.005.desc
+    theme = culture
+    left_portrait = {
+        character = root
+        animation = shock
+    }
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_culture = nord_culture
+            has_culture = altmer_culture
+            any_held_county = {
+                geographical_region = world_region_skyrim
+            }
+        }
+        NOT = { has_trait = snow_prince_legacy }
+        NOT = { has_character_flag = snow_prince_claim_checked }
+    }
+
+    option = {
+        name = snow_elf.005.a   # "Accept the lineage. This is the house of the Snow Prince's guard."
+        trigger = { martial >= 10 }
+        add_trait          = snow_prince_legacy
+        add_prestige       = 200
+        add_stress         = 10
+        set_character_flag = { flag = snow_prince_claim_checked }
+    }
+
+    option = {
+        name = snow_elf.005.b   # "A compelling story. But a story is not a bloodline."
+        add_prestige = 50
+        add_gold     = 30        # The genealogist paid for their own time
+        set_character_flag = { flag = snow_prince_claim_checked }
+    }
+
+    option = {
+        name = snow_elf.005.c   # "Study the records. Partial proof is still proof."
+        trigger = { has_trait = falmer_lore_scholar }
+        add_trait          = snow_prince_legacy
+        add_learning_skill = 1
+        add_prestige       = 150
+        set_character_flag = { flag = snow_prince_claim_checked }
+        custom_tooltip     = snow_elf.005.c.tooltip
+    }
+}

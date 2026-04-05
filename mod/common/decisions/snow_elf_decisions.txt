@@ -1,0 +1,134 @@
+# =============================================================
+#  Snow Elves / Falmer — Decisions
+#  File: mod/common/decisions/snow_elf_decisions.txt
+#
+#  DECISIONS IN THIS FILE:
+#  ────────────────────────
+#  seek_snow_elf_ruins    — A learned ruler in Skyrim commits resources
+#                           to investigating rumoured Snow Elf remains.
+#                           Opens the snow_elf event chain.
+#
+#  seek_auriels_shrine    — A ruler already seeking Auriel's Bow makes
+#                           pilgrimage to the hidden shrine of Auri-El.
+#                           Requires auriel_bow_seeker + learning ≥ 12.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • auriel_bow_seeker   (snow_elf_traits.txt) — gating for second decision
+#  • world_region_skyrim  (EK2 geographical regions)
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/snow_elf_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • seek_snow_elf_ruins
+#    • seek_auriels_shrine
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/snow_elf_traits.txt
+#      → auriel_bow_seeker
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/snow_elf_events.txt
+#      → seek_snow_elf_ruins, seek_auriels_shrine
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SEEK SNOW ELF RUINS
+#  The holds of Skyrim are littered with structures that Nord
+#  archaeologists call "old towers" without asking who built
+#  them.  A ruler with the learning and the will to look
+#  further may find that the oldest stones in Skyrim are not
+#  Nordic at all — and that something may still be watching
+#  from the dark beyond their doors.
+# ---------------------------------------------------------------
+seek_snow_elf_ruins = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = seek_snow_elf_ruins_desc
+
+    is_shown = {
+        is_ruler  = yes
+        is_adult  = yes
+        any_held_county = {
+            geographical_region = world_region_skyrim
+        }
+        NOT = { has_character_flag = snow_elf_ruins_sought }
+        NOT = { has_trait = snow_elf_pure_blood }
+    }
+
+    is_valid = {
+        learning  >= 10
+        prestige  >= 200
+        is_adult  = yes
+        is_ruler  = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = -200
+        set_character_flag = { flag = snow_elf_ruins_sought days = 3650 }
+        trigger_event = { id = snow_elf.001 days = 14 }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 8
+            learning >= 14
+        }
+        modifier = {
+            add = 4
+            has_trait = curious
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  SEEK AURIEL'S SHRINE
+#  Auriel's Bow does not rest in a vault or a treasury.  It
+#  is kept at a chapel built by the last faithful Snow Elf,
+#  somewhere in the frozen heights of Skyrim — a place that
+#  does not appear on any map that Nords or Imperials have
+#  drawn.  Finding it requires more than a compass.  It
+#  requires knowing what you are looking for, and why Auri-El
+#  would allow you to find it at all.
+# ---------------------------------------------------------------
+seek_auriels_shrine = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = seek_auriels_shrine_desc
+
+    is_shown = {
+        has_trait = auriel_bow_seeker
+        NOT = { has_trait = knight_paladin_blessed }
+        NOT = { has_character_flag = auriels_shrine_sought }
+    }
+
+    is_valid = {
+        learning  >= 12
+        is_adult  = yes
+        is_ruler  = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_piety = -100
+        set_character_flag = { flag = auriels_shrine_sought days = 1825 }
+        trigger_event = { id = snow_elf.003 days = 30 }
+    }
+
+    ai_will_do = {
+        base = 6
+        modifier = {
+            add = 10
+            learning >= 16
+        }
+    }
+}

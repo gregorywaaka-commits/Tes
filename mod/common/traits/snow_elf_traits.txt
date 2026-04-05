@@ -1,0 +1,156 @@
+# =============================================================
+#  Snow Elves / Falmer — Traits
+#  File: mod/common/traits/snow_elf_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  snow_elf_pure_blood     — A character who traces genuine Snow Elf
+#                            lineage, distinct from the degenerated
+#                            Falmer.  Rare to the point of near-extinction.
+#
+#  knight_paladin_blessed  — Received the direct blessing of Auri-El
+#                            at a Snow Elf holy site, in the tradition
+#                            of Knight-Paladin Gelebor.
+#
+#  auriel_bow_seeker       — Actively pursuing the legendary bow of
+#                            Auri-El, the Elven aspect of Akatosh.
+#
+#  snow_prince_legacy      — Claims descent from the honour-guard of
+#                            the Snow Prince who fell at Moesring.
+#
+#  falmer_lore_scholar     — An expert in Snow Elf history and the
+#                            Falmer degeneration.  Builds on Dwemer
+#                            scholarship as a foundation.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Snow Elves (Falmer in the ancient Aldmeri tongue) were a
+#  sophisticated mer civilisation that ruled Skyrim during the late
+#  Merethic Era.  Ysgramor's return after the Night of Tears —
+#  the sacking of Saarthal — set the Five Hundred Companions against
+#  them in a war of extermination.  Their last great champion, the
+#  Snow Prince, fell at the Battle of Moesring.  The survivors fled
+#  to the Dwemer for refuge; the Dwemer enslaved them, blinded them,
+#  and fed them toxic fungi until they regressed into the savage,
+#  sightless Falmer of the deep caves.
+#  One Snow Elf refused: Knight-Paladin Gelebor, guardian of Auri-El's
+#  Chapel, maintained his oath and his clarity across four thousand
+#  years to stand whole in the Fourth Era.
+#  Auri-El's Bow — able to fire sunhallowed arrows that dim the sun
+#  itself — is the defining artefact of Snow Elf faith.
+#  Sources: UESP Lore:Snow Elves; ESV Dawnguard DLC; UESP Lore:Falmer;
+#  UESP Lore:Auriel's Bow; UESP Lore:Battle of Moesring.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • snow_elf_legacy     (lore_races_traits.txt) — prerequisite flavour trait
+#  • dwemer_scholar      (dwemer_ruins_traits.txt) — flavour link for falmer_lore_scholar
+#  • nord_culture        (EK2) — gating for snow_prince_legacy
+#  • altmer_culture      (EK2) — gating for snow_prince_legacy
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/snow_elf_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • snow_elf_pure_blood
+#    • knight_paladin_blessed
+#    • auriel_bow_seeker
+#    • snow_prince_legacy
+#    • falmer_lore_scholar
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/snow_elf_events.txt
+#      → snow_elf_pure_blood, knight_paladin_blessed, auriel_bow_seeker,
+#        snow_prince_legacy, falmer_lore_scholar
+#    common/decisions/snow_elf_decisions.txt
+#      → auriel_bow_seeker, falmer_lore_scholar
+# =============================================================
+
+# ---------------------------------------------------------------
+#  SNOW ELF PURE BLOOD
+#  The ancient mer who first carved civilisation into the frost
+#  of Skyrim were not the shambling horrors that Nord children
+#  fear in the dark.  They built towers.  They sang to Auri-El.
+#  They kept libraries.  To carry that blood unbroken is to carry
+#  a ghost of a world the Companions tried to end.
+# ---------------------------------------------------------------
+snow_elf_pure_blood = {
+    category = fame
+
+    learning  = 3
+    intrigue  = 2
+    monthly_piety    = 2
+
+    flag = snow_elf_pure_blood
+}
+
+# ---------------------------------------------------------------
+#  KNIGHT-PALADIN BLESSED
+#  Auri-El does not forget the faithful.  Somewhere beneath a
+#  glacier, behind a door that only the pure of purpose find,
+#  a Snow Elf who has kept his vigil for millennia can still
+#  bestow his lord's blessing.  The touch of that grace is not
+#  metaphorical: the recipient heals faster, strikes truer, and
+#  carries a light that the cold cannot reach.
+# ---------------------------------------------------------------
+knight_paladin_blessed = {
+    category = fame
+
+    martial       = 2
+    health        = 0.3
+    monthly_piety = 3
+
+    flag = knight_paladin_blessed
+}
+
+# ---------------------------------------------------------------
+#  AURIEL BOW SEEKER
+#  The bow that can pin sunlight to the sky was not lost —
+#  it was hidden.  The seeker who pursues it walks in the
+#  footsteps of Dawnguard legends and Aldmeri prophecy both.
+#  The search sharpens the mind as much as the sword arm.
+# ---------------------------------------------------------------
+auriel_bow_seeker = {
+    category = lifestyle
+
+    martial  = 1
+    learning = 1
+
+    flag = auriel_bow_seeker
+}
+
+# ---------------------------------------------------------------
+#  SNOW PRINCE LEGACY
+#  The Snow Prince who fell at Moesring did not fight alone.
+#  His honour-guard stood with him to the last, and a few
+#  survived the slaughter.  Their descendants carry the weight
+#  of that final stand: the memory of a nation that chose
+#  death over surrender, and a martial tradition built on a
+#  single day of absolute, costly defiance.
+# ---------------------------------------------------------------
+snow_prince_legacy = {
+    category = fame
+
+    martial          = 3
+    monthly_prestige = 2
+
+    flag = snow_prince_legacy
+}
+
+# ---------------------------------------------------------------
+#  FALMER LORE SCHOLAR
+#  The Falmer are not monsters born — they were made.  The
+#  scholar who pursues that truth through Dwemer records, Nord
+#  sagas, and the cave-ecology of the deep roads carries an
+#  uncomfortable burden: pity for the things that hunt in the
+#  dark, and fury at what was done to them.
+# ---------------------------------------------------------------
+falmer_lore_scholar = {
+    category = lifestyle
+
+    learning = 3
+
+    flag = falmer_lore_scholar
+}
