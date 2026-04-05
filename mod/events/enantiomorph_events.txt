@@ -221,3 +221,62 @@ enantiomorph.milestone_betrayal = {
     }
     option = { name = "OK" }
 }
+
+# ---------------------------------------------------------------
+# enantiomorph.witness_assigned  THE WITNESS CHOSEN
+# Fired when the path begins and a courtier is designated as
+# the Witness. The Enantiomorph requires someone to observe the
+# pattern from outside — without a Witness, the pattern has no
+# outside, and the failure risk increases dramatically.
+# ---------------------------------------------------------------
+enantiomorph.witness_assigned = {
+    type = character_event
+    title = enantiomorph.witness_assigned.t
+    desc  = enantiomorph.witness_assigned.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_enantiomorph_active
+        has_variable = ww_enantiomorph_witness_id
+    }
+
+    option = {
+        name = enantiomorph.witness_assigned.a   # "They will watch. They must."
+        # The Witness gains a minor opinion bonus as they sense the role being placed on them
+        if = {
+            limit = { exists = var:ww_enantiomorph_witness_id }
+            var:ww_enantiomorph_witness_id = {
+                add_opinion = {
+                    modifier = ww_enantiomorph_witness_bond
+                    target = root
+                    years = 30
+                }
+            }
+        }
+        add_stress = 5
+    }
+}
+
+# ---------------------------------------------------------------
+# enantiomorph.witness_lost  THE WITNESS IS GONE
+# Fired when the designated Witness dies or leaves court.
+# Without a Witness the pattern loses its outside observer —
+# the failure risk at rank 3 increases significantly.
+# ---------------------------------------------------------------
+enantiomorph.witness_lost = {
+    type = character_event
+    title = enantiomorph.witness_lost.t
+    desc  = enantiomorph.witness_lost.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_enantiomorph_active
+        has_character_flag = ww_enantiomorph_witness_dead
+    }
+
+    option = {
+        name = enantiomorph.witness_lost.a   # "The void has no outside now."
+        add_stress = 20
+        add_dread = 10
+    }
+}

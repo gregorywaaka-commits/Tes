@@ -147,6 +147,8 @@ walking_ways.progress_check = {
         # PATH A
         if = {
             limit = { is_on_path_chim_expanded = yes }
+            # Ego instability check: dock a milestone if ego-warning flag is set
+            check_chim_ego_instability = yes
             if = { limit = { has_any_chim_milestone = yes } count_ww_milestones_chim_expanded = yes }
             advance_path_chim_expanded = yes
         }
@@ -219,6 +221,21 @@ walking_ways.progress_check = {
         # PATH D
         else_if = {
             limit = { is_on_path_enantiomorph = yes }
+            # Witness death check: if Witness is dead, set doubled-failure flag
+            if = {
+                limit = {
+                    has_variable = ww_enantiomorph_witness_id
+                    NOT = { has_character_flag = ww_enantiomorph_witness_dead }
+                    var:ww_enantiomorph_witness_id = {
+                        OR = {
+                            is_alive = no
+                            NOT = { has_character_flag = ww_enantiomorph_witness }
+                        }
+                    }
+                }
+                set_character_flag = ww_enantiomorph_witness_dead
+                trigger_event = { id = enantiomorph.witness_lost days = 3 }
+            }
             if = { limit = { has_any_enantiomorph_milestone = yes } count_ww_milestones_enantiomorph = yes }
             advance_path_enantiomorph = yes
         }
@@ -227,6 +244,11 @@ walking_ways.progress_check = {
             limit = { is_on_path_amaranth = yes }
             if = { limit = { has_any_amaranth_milestone = yes } count_ww_milestones_amaranth = yes }
             advance_path_amaranth = yes
+        }
+        # AMARANTH COMPLETED — ongoing departure cost pulse
+        if = {
+            limit = { has_character_flag = ww_amaranth_completed }
+            apply_amaranth_departure_costs = yes
         }
     }
 
@@ -283,6 +305,41 @@ walking_ways.world_notify = {
                 scope:source = { has_trait = mantle_meridia }
             }
             desc = walking_ways.world_notify.mantle_meridia
+        }
+        # Lorkhan mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_lorkhan }
+            }
+            desc = walking_ways.world_notify.mantle_lorkhan
+        }
+        # Stendarr mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_stendarr }
+            }
+            desc = walking_ways.world_notify.mantle_stendarr
+        }
+        # Boethiah mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_boethiah }
+            }
+            desc = walking_ways.world_notify.mantle_boethiah
+        }
+        # Mephala mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_mephala }
+            }
+            desc = walking_ways.world_notify.mantle_mephala
+        }
+        # Hircine mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_hircine }
+            }
+            desc = walking_ways.world_notify.mantle_hircine
         }
         # Psijic Endeavour
         triggered_desc = {
@@ -546,5 +603,158 @@ walking_ways.chim_silence_complete = {
         remove_character_flag = ww_chim_silence_pending
         set_character_flag = ww_chim_milestone_silence
     }
+    option = { name = "OK" }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  THREE-FOLD COMPACT — GOOD DAEDRA SYNERGY
+# ═══════════════════════════════════════════════════════════════
+
+walking_ways.three_fold_compact_achieved = {
+    type = character_event
+    title = walking_ways.three_fold_compact_achieved.t
+    desc  = walking_ways.three_fold_compact_achieved.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_three_fold_compact_achieved
+    }
+
+    option = {
+        name = walking_ways.three_fold_compact_achieved.a   # "The Anticipations are complete in me."
+        add_prestige = 200
+        add_piety = 100
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  MEPHALA/BOETHIAH PACT ACHIEVED
+# ═══════════════════════════════════════════════════════════════
+
+walking_ways.mephala_boethiah_pact_achieved = {
+    type = character_event
+    title = walking_ways.mephala_boethiah_pact_achieved.t
+    desc  = walking_ways.mephala_boethiah_pact_achieved.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_mephala_boethiah_pact_active
+    }
+
+    option = {
+        name = walking_ways.mephala_boethiah_pact_achieved.a   # "Both sides of the shadow. I understand."
+        add_intrigue = 1
+        add_stress = -10
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  CHIM EXPANDED — EGO PUSHBACK
+# ═══════════════════════════════════════════════════════════════
+
+walking_ways.chim_ego_pushback = {
+    type = character_event
+    title = walking_ways.chim_ego_pushback.t
+    desc  = walking_ways.chim_ego_pushback.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_chim_expanded = yes
+    }
+
+    option = {
+        name = walking_ways.chim_ego_pushback.a   # "The dream noticed. I must be more careful."
+        add_stress = 10
+    }
+
+    option = {
+        name = walking_ways.chim_ego_pushback.b   # "I do not accept this correction."
+        # Refusing the correction costs more — set flag again for double-dock next year
+        set_character_flag = ww_chim_ego_warning
+        add_stress = 15
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  TALOS — EMPIRE ACKNOWLEDGED (Nordic/non-Imperial track milestone)
+#  Alternative to Ruby Throne: acknowledge the empire's pattern
+#  without literally holding the Ruby Throne.
+# ═══════════════════════════════════════════════════════════════
+
+walking_ways.talos_empire_acknowledged = {
+    type = character_event
+    title = walking_ways.talos_empire_acknowledged.t
+    desc  = walking_ways.talos_empire_acknowledged.desc
+    theme = martial
+    hidden = yes
+
+    trigger = {
+        has_character_flag = ww_mantling_talos_active
+        NOT = { has_character_flag = ww_mantling_talos_milestone_throne }
+        NOT = { has_character_flag = ww_mantling_talos_milestone_empire_ack }
+        # Has demonstrated Imperial/Nordic empire pattern without needing the Throne
+        OR = {
+            AND = {
+                culture = { has_cultural_pillar = heritage_nordic }
+                martial >= 22   # Ysmir-path: conquer through strength of arms
+            }
+            AND = {
+                has_trait = shezarrine_vessel
+                # Shezarrine acknowledgement: the pattern recognises itself
+            }
+            AND = {
+                primary_title = { tier >= tier_kingdom }   # Rules a kingdom-level polity
+                martial >= 20
+            }
+        }
+    }
+
+    immediate = {
+        set_character_flag = ww_mantling_talos_milestone_throne   # counts as the throne milestone
+        set_character_flag = ww_mantling_talos_milestone_empire_ack
+    }
+
+    option = { name = "OK" }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  CHIM EXPANDED — EGO WARNING DETECTION
+#  Hidden yearly event. Checks if the CHIM practitioner has
+#  been making choices that express the ego too loudly.
+#  Sets ww_chim_ego_warning flag if so.
+# ═══════════════════════════════════════════════════════════════
+
+walking_ways.chim_ego_check = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_on_path_chim_expanded = yes
+        NOT = { has_character_flag = ww_chim_ego_warning }
+        # Ego indicators: high dread combined with cruelty traits,
+        # OR has the tyranny trait, OR has committed atrocities recently
+        OR = {
+            AND = {
+                dread >= 40
+                OR = {
+                    has_trait = arbitrary
+                    has_trait = callous
+                    has_trait = sadistic
+                }
+            }
+            has_trait = tyrannical_reputation
+            AND = {
+                is_at_war = yes
+                primary_title = { is_target_of_dejure_claim = no }   # aggressive expansion
+                martial >= 18
+                diplomacy <= 10
+            }
+        }
+    }
+
+    immediate = {
+        set_character_flag = ww_chim_ego_warning
+    }
+
     option = { name = "OK" }
 }

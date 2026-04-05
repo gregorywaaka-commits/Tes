@@ -2838,3 +2838,39 @@ ww_thalmor_hostile_opinion = {
 ww_pattern_wrong_opinion = {
     opinion              = -20
 }
+
+# ═══════════════════════════════════════════════════════════════
+#  THE WALKING WAYS — SYNERGY MODIFIERS
+# ═══════════════════════════════════════════════════════════════
+
+# Three-Fold Compact: Azura + Boethiah + Mephala all mantled.
+# The full Anticipations triad — Almalexia, Sotha Sil,
+# and Vivec in pattern form.  Profound insight into the Good
+# Daedra's design for sentient life.
+# [SOURCE: CANON — The Anticipations; UESP Lore:Tribunal]
+three_fold_compact_path_bonus = {
+    intrigue             = 4
+    learning             = 3
+    diplomacy            = 2
+    monthly_prestige     = 8
+    monthly_piety        = 8
+    stress_gain_mult     = -0.15
+}
+
+# Enantiomorph Witness bond — the designated Witness is attuned
+# to the practitioner's pattern.
+ww_enantiomorph_witness_bond = {
+    opinion              = 20
+}
+
+# Three-Fold Compact consumed opinion — rivals devoured by the
+# compact's completion find it difficult to recover standing.
+ww_three_fold_consumed_opinion = {
+    opinion              = -25
+}
+
+# Amaranth uncanny unease — courtiers near an Amaranth practitioner
+# sense something is wrong at the foundation of reality.
+ww_amaranth_uncanny_unease = {
+    opinion              = -10
+}

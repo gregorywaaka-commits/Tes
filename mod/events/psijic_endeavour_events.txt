@@ -246,3 +246,58 @@ psijic_endeavour.milestone_grief_check = {
 
     option = { name = "OK" }
 }
+
+# ---------------------------------------------------------------
+# psijic_endeavour.artaeum_response  ARTAEUM RESPONDS
+# Fired 30 days after the Artaeum Correspondence decision.
+# The island does not appear — but a reply arrives. It is not
+# a simple letter. Something is different about the handwriting.
+# It seems to have been written before the question was sent.
+# ---------------------------------------------------------------
+psijic_endeavour.artaeum_response = {
+    type = character_event
+    title = psijic_endeavour.artaeum_response.t
+    desc  = psijic_endeavour.artaeum_response.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_psijic_endeavour = yes
+        has_character_flag = ww_psijic_milestone_text
+    }
+
+    option = {
+        name = psijic_endeavour.artaeum_response.a   # "They answered before I had finished asking."
+        add_prestige = 100
+        add_learning = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# psijic_endeavour.time_witnessed  THE MOMENT WITNESSED
+# Fired 14 days after the Time Witnessed decision.
+# The moment between what was and what will be. The practitioner
+# saw both simultaneously and did not lose themselves in either.
+# ---------------------------------------------------------------
+psijic_endeavour.time_witnessed = {
+    type = character_event
+    title = psijic_endeavour.time_witnessed.t
+    desc  = psijic_endeavour.time_witnessed.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_psijic_endeavour = yes
+        has_character_flag = ww_psijic_milestone_prediction
+    }
+
+    option = {
+        name = psijic_endeavour.time_witnessed.a   # "I saw the moment before it became a moment."
+        add_prestige = 125
+        add_stress = -15
+    }
+
+    option = {
+        name = psijic_endeavour.time_witnessed.b   # "I did not like what I saw. But I did not look away."
+        add_stress = -10
+        add_piety = 50
+    }
+}

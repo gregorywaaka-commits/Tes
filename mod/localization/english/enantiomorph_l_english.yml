@@ -36,3 +36,12 @@
  enantiomorph.creed.t: "The Rebel's Creed"
  enantiomorph.creed.desc: "The refusal is complete. No holy war. No crusade. Not from pacifism — from the Rebel's creed: the pattern of the Hero requires the Rebel's opposition, not the Rebel's participation.\n\nThe Rebel does not march under banners that heroes carry."
  enantiomorph.creed.a: "I refuse the Hero's war."
+
+ # ─── Witness Mechanic ───
+ enantiomorph.witness_assigned.t: "The Witness Is Named"
+ enantiomorph.witness_assigned.desc: "The Enantiomorph is not a solo act.\n\nThe three roles of the divine drama are Hero, Rebel, and Witness. The Hero acts. The Rebel opposes. The Witness observes — and by observing, makes the pattern real. Without a Witness, the Hero and Rebel are simply two forces in an empty space, and the drama collapses into noise.\n\nA courtier has been chosen. They do not know why they feel the weight of being looked at from a direction that has no direction. They know, on some level, that they are being asked to watch.\n\nThey have not refused. Not yet."
+ enantiomorph.witness_assigned.a: "They will watch. They must."
+
+ enantiomorph.witness_lost.t: "The Witness Is Gone"
+ enantiomorph.witness_lost.desc: "The pattern has lost its outside.\n\nThe Witness observed the ruler's choices — the throne seized by intrigue, the ally betrayed, the creed refused. They were the structural point from which the Rebel's pattern had an outside. They were how the drama knew it was being performed.\n\nThey are gone now. Dead, or departed, or simply no longer watching.\n\nThe void has no outside now. The pattern continues. But without a Witness, the distinction between the Rebel and the void is harder to maintain. The failure risk has increased substantially."
+ enantiomorph.witness_lost.a: "The void has no outside now."

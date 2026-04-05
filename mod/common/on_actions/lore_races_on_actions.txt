@@ -454,9 +454,11 @@ on_yearly_pulse = {
         5   = walking_ways.000               # Awareness intro — eligible rulers via 3 gates (walking_ways_events.txt)
         5   = walking_ways.progress_check    # Hidden progress engine — all active path holders (walking_ways_events.txt)
         2   = walking_ways.chim_silence_begin  # Silence milestone offer — chim_expanded path holders (walking_ways_events.txt)
+        2   = walking_ways.chim_ego_check      # CHIM ego-warning detection — chim_expanded path holders (walking_ways_events.txt)
         # --- MANTLING: TALOS ---
         3   = mantling_talos.milestone_empire_check  # Empire size check — mantling_talos_active (mantling_talos_events.txt)
         3   = mantling_talos.milestone_throne_check  # Cyrodiil paramount check — mantling_talos_active (mantling_talos_events.txt)
+        3   = walking_ways.talos_empire_acknowledged  # Nordic/non-Imperial empire pattern — mantling_talos_active (walking_ways_events.txt)
         # --- MANTLING: ARKAY ---
         3   = mantling_arkay.milestone_season_check  # 20+ years ruled — mantling_arkay_active (mantling_arkay_events.txt)
         3   = mantling_arkay.milestone_age_check     # Age 55+ — mantling_arkay_active (mantling_arkay_events.txt)

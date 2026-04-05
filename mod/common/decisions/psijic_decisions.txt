@@ -73,3 +73,101 @@ seek_psijic_tutelage = {
         }
     }
 }
+
+# ---------------------------------------------------------------
+#  ARTAEUM CORRESPONDENCE
+#  Once on the Psijic Endeavour, a practitioner may initiate
+#  a period of sustained correspondence with Artaeum — not
+#  by visiting (the island cannot be reached uninvited) but
+#  by composing a careful series of letters that demonstrate
+#  the practitioner has moved beyond ordinary scholarship.
+#  This is an active milestone replacement for the passive
+#  ww_psijic_milestone_text check — the ruler actively invests
+#  learning and gold to count this milestone.
+#  Available once per path, every 5 years.
+# ---------------------------------------------------------------
+
+artaeum_correspondence = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = artaeum_correspondence_desc
+
+    is_shown = {
+        is_on_path_psijic_endeavour = yes
+        NOT = { has_character_flag = ww_psijic_milestone_text }
+    }
+
+    is_valid = {
+        is_on_path_psijic_endeavour = yes
+        learning >= 20
+        gold >= 75
+        NOT = { has_character_flag = ww_psijic_milestone_text }
+        NOT = { has_character_flag = artaeum_correspondence_cooldown }
+    }
+
+    effect = {
+        add_gold = -75
+        add_prestige = -200
+        set_character_flag = ww_psijic_milestone_text
+        set_character_flag = {
+            flag = artaeum_correspondence_cooldown
+            years = 5
+        }
+        trigger_event = { id = psijic_endeavour.artaeum_response days = 30 }
+    }
+
+    ai_will_do = {
+        base = 3
+        modifier = {
+            add = 5
+            learning >= 24
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  TIME WITNESSED
+#  The Psijic practitioner has developed the capacity to
+#  perceive time as a texture rather than a flow.  Once,
+#  at a threshold moment, they may formally mark a moment
+#  of temporal awareness — witnessing past or future bleeding
+#  into the present without becoming lost in it.
+#  This counts as the ww_psijic_milestone_prediction milestone.
+# ---------------------------------------------------------------
+
+psijic_time_witnessed = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = psijic_time_witnessed_desc
+
+    is_shown = {
+        is_on_path_psijic_endeavour = yes
+        var:ww_psijic_endeavour_rank >= 1
+        NOT = { has_character_flag = ww_psijic_milestone_prediction }
+    }
+
+    is_valid = {
+        is_on_path_psijic_endeavour = yes
+        var:ww_psijic_endeavour_rank >= 1
+        learning >= 22
+        NOT = { has_character_flag = ww_psijic_milestone_prediction }
+        NOT = { has_character_flag = psijic_time_witnessed_cooldown }
+    }
+
+    effect = {
+        add_stress = -10
+        set_character_flag = ww_psijic_milestone_prediction
+        set_character_flag = {
+            flag = psijic_time_witnessed_cooldown
+            years = 10
+        }
+        trigger_event = { id = psijic_endeavour.time_witnessed days = 14 }
+    }
+
+    ai_will_do = {
+        base = 2
+        modifier = {
+            add = 8
+            learning >= 24
+            stress >= 30
+        }
+    }
+}

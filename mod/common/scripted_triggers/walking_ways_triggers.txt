@@ -573,3 +573,33 @@ has_any_amaranth_milestone = {
         has_character_flag = ww_amaranth_milestone_godhead
     }
 }
+
+# ---------------------------------------------------------------
+#  SYNERGY TRIGGERS
+#  Three Good Daedra compact + Mephala/Boethiah pact
+# ---------------------------------------------------------------
+
+# The Dunmer "Good Daedra" are Azura, Boethiah, and Mephala.
+# A ruler who has mantled all three of them has expressed the
+# full Anticipations triad — the pattern of ALMSIVI itself.
+# This is the Three-Fold Compact: all three Good Daedra walked.
+# [SOURCE: CANON — The Anticipations; UESP Lore:Tribunal]
+has_three_fold_compact = {
+    has_character_flag = ww_mantling_azura_completed
+    has_character_flag = ww_mantling_boethiah_completed
+    has_character_flag = ww_mantling_mephala_completed
+}
+
+# The Webspinner and the Prince of Plots have deep kinship in
+# the Dunmeri tradition — both taught the Chimer to operate
+# through concealment and treachery.  A ruler who walks both
+# their paths in sequence (Boethiah then Mephala, or either
+# order) has internalised both sides of the Dunmeri shadow-divine.
+# This pact reduces the Enantiomorph's failure risk: a ruler who
+# understands treachery-as-creation (Boethiah) and secrecy-as-order
+# (Mephala) is less likely to be consumed by the void, having
+# already consumed similar voids themselves.
+has_mephala_boethiah_pact = {
+    has_character_flag = ww_mantling_boethiah_completed
+    has_character_flag = ww_mantling_mephala_completed
+}

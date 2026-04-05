@@ -534,6 +534,8 @@ complete_path_mantling_azura = {
     clear_all_ww_active_flags = yes
     add_prestige = 600
     notify_world_ww_completion = yes
+    # Check if Three-Fold Compact is now achieved (Azura is one of the three Good Daedra)
+    check_three_fold_compact_achieved = yes
 }
 
 abandon_path_mantling_azura = {
@@ -886,6 +888,9 @@ complete_path_mantling_boethiah = {
     clear_all_ww_active_flags = yes
     add_prestige = 650
     notify_world_ww_completion = yes
+    # Check if Three-Fold Compact or Mephala/Boethiah pact is now achieved
+    check_three_fold_compact_achieved = yes
+    check_mephala_boethiah_pact_achieved = yes
 }
 
 abandon_path_mantling_boethiah = {
@@ -974,6 +979,9 @@ complete_path_mantling_mephala = {
     clear_all_ww_active_flags = yes
     add_prestige = 600
     notify_world_ww_completion = yes
+    # Check if Three-Fold Compact or Mephala/Boethiah pact is now achieved
+    check_three_fold_compact_achieved = yes
+    check_mephala_boethiah_pact_achieved = yes
 }
 
 abandon_path_mantling_mephala = {
@@ -1167,6 +1175,8 @@ begin_path_enantiomorph = {
     set_variable = { name = ww_enantiomorph_milestones value = 0 }
     set_character_flag = walking_ways_path_active
     set_character_flag = ww_enantiomorph_active
+    # Assign a Witness — the Enantiomorph requires someone to observe the pattern
+    assign_enantiomorph_witness = yes
     trigger_event = { id = enantiomorph.intro days = 30 }
 }
 
@@ -1217,10 +1227,47 @@ advance_path_enantiomorph = {
     else_if = {
         limit = { var:ww_enantiomorph_milestones >= 6  var:ww_enantiomorph_rank < 3 }
         set_variable = { name = ww_enantiomorph_rank value = 3 }
-        # 40% failure at rank 3
-        random = {
-            chance = 40
-            trigger_event = { id = enantiomorph.failure days = 7 }
+        # Failure risk at rank 3:
+        #   base: 40%
+        #   if Witness is dead: 65% (the pattern has no observer)
+        #   if Mephala/Boethiah pact: 20% (voids already walked)
+        #   if pact AND witness dead: 40% (pact partially compensates)
+        if = {
+            limit = {
+                has_character_flag = ww_enantiomorph_witness_dead
+                NOT = { has_mephala_boethiah_pact = yes }
+            }
+            random = {
+                chance = 65
+                trigger_event = { id = enantiomorph.failure days = 7 }
+                set_character_flag = ww_enantiomorph_failed
+            }
+        }
+        else_if = {
+            limit = {
+                has_character_flag = ww_enantiomorph_witness_dead
+                has_mephala_boethiah_pact = yes
+            }
+            random = {
+                chance = 40
+                trigger_event = { id = enantiomorph.failure days = 7 }
+                set_character_flag = ww_enantiomorph_failed
+            }
+        }
+        else_if = {
+            limit = { has_mephala_boethiah_pact = yes }
+            random = {
+                chance = 20
+                trigger_event = { id = enantiomorph.failure days = 7 }
+                set_character_flag = ww_enantiomorph_failed
+            }
+        }
+        else = {
+            random = {
+                chance = 40
+                trigger_event = { id = enantiomorph.failure days = 7 }
+                set_character_flag = ww_enantiomorph_failed
+            }
         }
         if = {
             limit = { NOT = { has_character_flag = ww_enantiomorph_failed } }
@@ -1342,4 +1389,157 @@ abandon_path_amaranth = {
     remove_variable = ww_amaranth_milestones
     set_character_flag = { flag = ww_path_abandoned years = 5 }
     trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  SYNERGY EFFECTS
+#  Three Good Daedra compact (Azura + Boethiah + Mephala)
+#  Mephala/Boethiah partial pact
+# ═══════════════════════════════════════════════════════════════
+
+# Called from complete_path_mantling_azura / boethiah / mephala.
+# Fires the compact-achieved event when all three are complete.
+check_three_fold_compact_achieved = {
+    if = {
+        limit = {
+            has_three_fold_compact = yes
+            NOT = { has_character_flag = ww_three_fold_compact_achieved }
+        }
+        set_character_flag = ww_three_fold_compact_achieved
+        add_prestige = 500
+        add_piety = 300
+        add_character_modifier = {
+            modifier = three_fold_compact_path_bonus
+            years = -1   # permanent
+        }
+        trigger_event = { id = walking_ways.three_fold_compact_achieved days = 7 }
+    }
+}
+
+# Called from complete_path_mantling_boethiah / mephala.
+# Activates the Mephala/Boethiah pact when both are complete.
+check_mephala_boethiah_pact_achieved = {
+    if = {
+        limit = {
+            has_mephala_boethiah_pact = yes
+            NOT = { has_character_flag = ww_mephala_boethiah_pact_active }
+        }
+        set_character_flag = ww_mephala_boethiah_pact_active
+        trigger_event = { id = walking_ways.mephala_boethiah_pact_achieved days = 7 }
+    }
+}
+
+# Effect called from the Three-Fold Compact decision
+# (once per ruler, allows a final consumption)
+invoke_three_fold_consumption_effect = {
+    add_prestige = 750
+    add_piety = 500
+    add_dread = 30
+    # All rivals at court suffer an opinion penalty that cannot be recovered
+    every_courtier = {
+        limit = {
+            opinion = {
+                target = root
+                value < 0
+            }
+        }
+        add_opinion = {
+            modifier = ww_three_fold_consumed_opinion
+            target = root
+            years = 20
+        }
+    }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  CHIM EXPANDED — EGO SOFT FAILURE CHECK
+#  The CHIM Expanded path requires the ruler to hold themselves
+#  together within the dream.  Ego-driven choices (unnecessary
+#  conquests, public cruelty, vanity projects) create instability
+#  in the practitioner's relationship to the dream.
+#  This check fires on progress_check and docks milestones.
+# ───────────────────────────────────────────────────────────────
+
+check_chim_ego_instability = {
+    # If the ruler has the ww_chim_ego_warning flag AND is on Path A,
+    # dock one milestone point from progress as the dream pushes back.
+    if = {
+        limit = {
+            is_on_path_chim_expanded = yes
+            has_character_flag = ww_chim_ego_warning
+            var:ww_chim_expanded_milestones >= 1
+        }
+        change_variable = { name = ww_chim_expanded_milestones add = -1 }
+        remove_character_flag = ww_chim_ego_warning
+        trigger_event = { id = walking_ways.chim_ego_pushback days = 3 }
+    }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  ENANTIOMORPH — WITNESS MECHANIC
+#  When the path begins, the ruler's highest-opinion living adult
+#  courtier is designated as the Witness.
+#  The Enantiomorph requires a Witness to observe the pattern —
+#  it cannot complete without one.  If the Witness dies before
+#  the path completes, the failure chance doubles at rank 3.
+# ───────────────────────────────────────────────────────────────
+
+assign_enantiomorph_witness = {
+    # Find the highest-opinion adult courtier and make them the Witness
+    random_courtier = {
+        limit = {
+            is_adult = yes
+            is_alive = yes
+            NOT = { this = root }
+        }
+        max_opinion = { target = root }
+        save_scope_as = ww_witness_candidate
+    }
+    if = {
+        limit = { exists = scope:ww_witness_candidate }
+        scope:ww_witness_candidate = {
+            set_character_flag = ww_enantiomorph_witness
+        }
+        set_variable = { name = ww_enantiomorph_witness_id value = scope:ww_witness_candidate }
+        trigger_event = { id = enantiomorph.witness_assigned days = 7 }
+    }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  AMARANTH — DEPARTURE COSTS
+#  Called as a yearly pulse from amaranth_events.
+#  The ruler who has achieved the Amaranth is dreaming the world.
+#  Other rulers, courtiers, and successors sense the wrongness —
+#  not in any articulable way, but in the way dreams feel wrong
+#  at their edges when the dreamer is about to wake.
+# ───────────────────────────────────────────────────────────────
+
+apply_amaranth_departure_costs = {
+    # Courtiers' opinion slowly drifts as they sense something
+    # is wrong at the foundation of the realm's reality.
+    every_courtier = {
+        limit = {
+            is_adult = yes
+            learning <= 16   # scholars are less disturbed; they sense it but accept it
+        }
+        random = {
+            chance = 15
+            add_opinion = {
+                modifier = ww_amaranth_uncanny_unease
+                target = root
+                years = 5
+            }
+        }
+    }
+    # Children born in this reign are marked by the dream's instability.
+    every_child = {
+        limit = {
+            is_alive = yes
+            age < 10
+        }
+        random = {
+            chance = 25
+            set_character_flag = ww_amaranth_dream_child
+        }
+    }
 }

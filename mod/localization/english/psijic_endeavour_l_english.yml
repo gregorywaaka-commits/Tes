@@ -35,3 +35,14 @@
  psijic_endeavour.silence.desc: "The Endeavour requires, at some point, a sustained period of discipline — not absence from court, but a quality of attention that is different from ordinary governance. The gold will go toward scholars and quiet. The year will be different."
  psijic_endeavour.silence.a: "Arrange it."
  psijic_endeavour.silence.b: "Not now."
+
+ # ─── Artaeum Correspondence ───
+ psijic_endeavour.artaeum_response.t: "Artaeum's Reply"
+ psijic_endeavour.artaeum_response.desc: "The letter arrived this morning.\n\nIt is not unusual in appearance. Parchment. Ink. A wax seal with a symbol that the household archivist cannot find in any heraldic register.\n\nThe content is careful. Precise. It responds to the questions that were asked — and also to three questions that were not asked yet, but that the practitioner was going to ask eventually.\n\nThe date on the letter is three weeks ago."
+ psijic_endeavour.artaeum_response.a: "They answered before I had finished asking."
+
+ # ─── Time Witnessed ───
+ psijic_endeavour.time_witnessed.t: "The Moment Between"
+ psijic_endeavour.time_witnessed.desc: "There was a moment in the great hall — or in the corridor outside, or in the garden at dusk — where both happened simultaneously.\n\nThe practitioner saw the conversation that was occurring and the conversation that would occur three days later in the same room with a different outcome. Both were present. Neither cancelled the other.\n\nThe practitioner did not fall. Did not freeze. Did not say anything alarming.\n\nThey returned to the conversation that was currently happening and completed it correctly.\n\nThis is what the Psijic Endeavour feels like from the inside, when it is working."
+ psijic_endeavour.time_witnessed.a: "I saw the moment before it became a moment."
+ psijic_endeavour.time_witnessed.b: "I did not like what I saw. But I did not look away."
