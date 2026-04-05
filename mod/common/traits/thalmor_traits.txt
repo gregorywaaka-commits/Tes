@@ -1,0 +1,90 @@
+# =============================================================
+#  Thalmor Justiciars — Traits
+#  File: mod/common/traits/thalmor_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  thalmor_justiciar     — An Aldmeri Dominion agent deployed to
+#                          enforce the White-Gold Concordat's ban
+#                          on Talos worship in Imperial territory.
+#                          Feared, effective, and despised.
+#
+#  talos_purge_survivor  — A person who survived Thalmor persecution
+#                          for Talos worship; carries the weight of
+#                          that survival as both wound and conviction.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Thalmor Justiciars were the enforcement arm of the White-Gold
+#  Concordat's religious provisions.  Permitted under the Concordat
+#  to operate within Imperial territory, they hunted Talos worshippers,
+#  conducted arrests and interrogations, and executed those convicted
+#  of the 'crime' of venerating the man-god.  In Skyrim they were
+#  a constant and deeply resented presence — a Thalmor patrol on an
+#  Imperial road was a universal symbol of the Empire's humiliation
+#  and the Dominion's reach.  Their presence was one of the factors
+#  that fed the Stormcloak rebellion.
+#  Sources: ESV Skyrim (Thalmor Embassy, Diplomatic Immunity quest);
+#  UESP Lore:Thalmor; UESP Lore:White-Gold Concordat.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/thalmor_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • thalmor_justiciar
+#    • talos_purge_survivor
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/thalmor_events.txt
+#      → thalmor_justiciar, talos_purge_survivor
+# =============================================================
+
+# ---------------------------------------------------------------
+#  THALMOR JUSTICIAR
+#  They arrive in grey and gold, bearing Thalmor writs that the
+#  White-Gold Concordat theoretically requires Imperial authorities
+#  to honour.  They ask questions with the patient certainty of
+#  people who already know the answers and are merely determining
+#  how much evidence they need.  In Skyrim they are hated with a
+#  consistency that spans factional lines — Imperials who resent
+#  what the Concordat cost, Nords who cannot forgive the persecution
+#  of Talos's own people, and everyone else who recognises that an
+#  agent empowered to arrest on religious grounds is a particular
+#  kind of danger to live among.
+# ---------------------------------------------------------------
+thalmor_justiciar = {
+    category = fame
+
+    intrigue   = 4
+    diplomacy  = 2
+    monthly_prestige = 1    # Respected within Aldmeri circles; despised outside them
+
+    flag = thalmor_justiciar
+}
+
+# ---------------------------------------------------------------
+#  TALOS PURGE SURVIVOR
+#  They were taken.  Maybe held for a week in a Thalmor inquisition
+#  cell; maybe interrogated for longer; maybe watched while someone
+#  they knew confessed to things that may or may not have been true.
+#  They came out the other side.  The experience did not break them —
+#  it clarified them.  They know, now, with the specific certainty
+#  of someone who has tested it, that their faith is stronger than
+#  whatever the Thalmor brought to the question.  The stress of being
+#  a target never fully leaves.  Neither does the knowledge that it
+#  was survived.
+# ---------------------------------------------------------------
+talos_purge_survivor = {
+    category = fame
+
+    monthly_piety    = 1        # Talos does not abandon those who held faith under pressure
+    stress_gain_mult = -0.10    # What didn't kill them made the rest of life look manageable
+
+    flag = talos_purge_survivor
+}

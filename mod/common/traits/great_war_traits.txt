@@ -1,0 +1,150 @@
+# =============================================================
+#  Great War & White-Gold Concordat — Traits
+#  File: mod/common/traits/great_war_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  great_war_veteran          — A warrior who fought through the
+#                               Great War (4E 171–175); carries
+#                               the scars of the Imperial City's
+#                               fall and the Battle of the Red Ring.
+#
+#  white_gold_concordat_signer — Was party to the peace delegation
+#                                that ended the Great War; bears
+#                                the controversial legacy of signing
+#                                the Concordat that banned Talos.
+#
+#  talos_secret_devotee       — Secretly worships Talos despite the
+#                               Concordat's prohibition; finds
+#                               strength in forbidden faith.
+#
+#  stros_mkai_defender        — A Redguard warrior who rejected the
+#                               White-Gold Concordat and fought the
+#                               Aldmeri Dominion to a stalemate,
+#                               securing Hammerfell's independence.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Great War (4E 171–175) began when the Aldmeri Dominion's
+#  ultimatum — demanding the Empire ban Talos worship, dissolve the
+#  Blades, and cede southern Hammerfell — was rejected by Emperor
+#  Titus Mede II.  The Dominion invaded on two fronts; the Imperial
+#  City was sacked in 4E 174.  The tide turned at the Battle of the
+#  Red Ring in 4E 175 when Mede's counterattack recaptured the City
+#  and shattered the Dominion's main army.  The resulting White-Gold
+#  Concordat met the Dominion's original demands — a humiliation
+#  dressed as a peace.
+#
+#  Hammerfell refused to accept the Concordat; its Redguard warriors
+#  fought the Dominion to a military stalemate.  The Second Treaty of
+#  Stros M'Kai in 4E 180 forced Dominion withdrawal and left
+#  Hammerfell formally independent of the Empire.
+#
+#  Sources: ESV Skyrim lore; UESP Lore:Great War; UESP Lore:Stros M'Kai;
+#  The Great War (in-game book by Legate Justianus Quintius).
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  None — self-contained in this mod.
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/traits/great_war_traits.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • great_war_veteran
+#    • white_gold_concordat_signer
+#    • talos_secret_devotee
+#    • stros_mkai_defender
+#
+#  REFERENCED BY — other files that import this file's definitions:
+#    events/great_war_events.txt
+#      → great_war_veteran, white_gold_concordat_signer,
+#        talos_secret_devotee, stros_mkai_defender
+#    common/decisions/great_war_decisions.txt
+#      → talos_secret_devotee, stros_mkai_defender
+# =============================================================
+
+# ---------------------------------------------------------------
+#  GREAT WAR VETERAN
+#  They marched south with Titus Mede II's army and did not
+#  flinch at Pale Pass.  They stood in the Imperial City while
+#  the Ruby District burned.  They were at the Red Ring —
+#  the hammer blow that shattered the Aldmeri southern army —
+#  and they came home carrying more than wounds.  The Great
+#  War left its mark on bone and sinew and the part of the
+#  mind that decides whether to be afraid.  Mostly: not afraid.
+# ---------------------------------------------------------------
+great_war_veteran = {
+    category = fame
+
+    martial  = 3
+    prowess  = 2
+    health   = -0.2    # Battle-scarred; the Great War took years from every survivor
+
+    flag = great_war_veteran
+}
+
+# ---------------------------------------------------------------
+#  WHITE-GOLD CONCORDAT SIGNER
+#  Someone had to sit across the table from the Thalmor and sign
+#  the document.  Someone had to write their name beneath the
+#  clauses that banned Talos, disbanded the Blades, and ceded
+#  southern Hammerfell.  The Concordat bought peace.  Whether that
+#  peace was worth the price is a question this ruler hears in
+#  every court they visit, sees in every temple they enter where
+#  the Talos shrines have been removed.  History has not yet
+#  decided whether they were pragmatic or cowardly.
+# ---------------------------------------------------------------
+white_gold_concordat_signer = {
+    category = fame
+
+    diplomacy       = 2
+    monthly_prestige = -1    # A controversial legacy that shadows every state occasion
+    monthly_piety_gain_mult = -0.05    # The betrayal of Talos erodes their standing with the devout
+
+    flag = white_gold_concordat_signer
+}
+
+# ---------------------------------------------------------------
+#  TALOS SECRET DEVOTEE
+#  The Concordat says Talos cannot be worshipped.  The Concordat
+#  is wrong.  The shrines are hidden — in cellars, behind false
+#  walls, beneath hearthstones — and the prayers are quiet, but
+#  they are prayers nonetheless.  The faith that Talos was a man
+#  who became a god, and that such ascension is possible, is not
+#  something that a piece of parchment can extinguish.  The risk
+#  is real; the Justiciars are watching.  But the strength that
+#  comes from knowing something true despite official prohibition
+#  is its own kind of armour.
+# ---------------------------------------------------------------
+talos_secret_devotee = {
+    category = fame
+
+    monthly_piety       = 2            # Talos's blessing flows quietly to the faithful
+    stress_gain_mult    = -0.10        # Inner conviction — the secret faith is a source of strength
+
+    flag = talos_secret_devotee
+}
+
+# ---------------------------------------------------------------
+#  STROS M'KAI DEFENDER
+#  When the White-Gold Concordat was signed, the Redguard said:
+#  not us.  Hammerfell's warriors — Crowns and Forebears fighting
+#  side by side for the first time in a generation — held back the
+#  Aldmeri Dominion through five years of brutal southern war
+#  while the Empire looked the other way.  The Second Treaty of
+#  Stros M'Kai proved them right: the Dominion withdrew; Hammerfell
+#  stood free.  A Stros M'Kai defender carries in their bones the
+#  knowledge that defiance can succeed when honour demands it.
+# ---------------------------------------------------------------
+stros_mkai_defender = {
+    category = fame
+
+    martial          = 3
+    prowess          = 2
+    monthly_prestige = 2    # A hero of Hammerfell's independence; celebrated across the south
+
+    flag = stros_mkai_defender
+}

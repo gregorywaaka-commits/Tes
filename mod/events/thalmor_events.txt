@@ -1,0 +1,326 @@
+# =============================================================
+#  Thalmor Justiciars — Events
+#  Namespace: thalmor
+#  File: mod/events/thalmor_events.txt
+#
+#  EVENT LIST:
+#  ─────────────────────────────────────────────────────────────
+#  thalmor.000  Hidden trigger — fires post 4E 175 for Nordic /
+#               Imperial rulers in Skyrim or Cyrodiil
+#  thalmor.001  "The Justiciar's Arrival" — Thalmor delegation
+#               demands access to investigate Talos worshippers
+#  thalmor.002  "The Arrest Warrant" — Justiciar demands you hand
+#               over a courtier accused of Talos worship
+#  thalmor.003  "The Underground Network" — court is hiding Talos
+#               worshippers; Thalmor agents are closing in
+#  thalmor.004  "Stormcloak Sympathy" — a Nord vassal defies the
+#               Justiciars; choose to back them or appease the Thalmor
+#
+#  HISTORICAL NOTE:
+#  Thalmor Justiciars were the enforcement arm of the White-Gold
+#  Concordat's religious clauses.  Their presence in Imperial
+#  territory — particularly in Skyrim — was a constant source of
+#  tension.  Nordic resentment of the Justiciars was one of the
+#  principal grievances that fed the Stormcloak rebellion; even
+#  Imperial-aligned Nords found the presence of Thalmor agents
+#  on their roads and in their cities an intolerable reminder of
+#  what the Concordat had cost.
+#  Sources: ESV Skyrim; UESP Lore:Thalmor; UESP Lore:Stormcloaks.
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/thalmor_events.txt
+# =============================================================
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/thalmor_traits.txt
+#      → thalmor_justiciar, talos_purge_survivor
+#    common/traits/great_war_traits.txt
+#      → talos_secret_devotee
+#    common/opinion_modifiers/daedric_opinion_modifiers.txt
+#      → thalmor_resentment_opinion
+# =============================================================
+
+namespace = thalmor
+
+# ---------------------------------------------------------------
+# thalmor.000  The Justiciars Come
+# A hidden trigger that fires post-4E 175 (after the White-Gold
+# Concordat) for Nordic and Imperial rulers.  The Justiciars are
+# now legally permitted in Imperial territory; this event marks
+# the beginning of their visible presence.
+# ---------------------------------------------------------------
+thalmor.000 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_landed = yes
+        current_date >= 4.175.6.1
+        current_date <= 4.180.1.1
+        NOT = { global_var:thalmor_active = 1 }
+        OR = {
+            has_culture = nord_culture
+            has_culture = imperial_culture
+            has_culture = cyrodiilic_culture
+        }
+    }
+
+    immediate = {
+        set_global_variable = { name = thalmor_active value = 1 }
+        every_ruler = {
+            limit = {
+                OR = {
+                    has_culture = nord_culture
+                    has_culture = imperial_culture
+                    has_culture = cyrodiilic_culture
+                }
+                OR = {
+                    any_held_county = {
+                        geographical_region = world_region_skyrim
+                    }
+                    any_held_county = {
+                        geographical_region = world_cyrodiil
+                    }
+                }
+            }
+            trigger_event = { id = thalmor.001 days = 60 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# thalmor.001  The Justiciar's Arrival
+# A Thalmor delegation has arrived at your court bearing the
+# full authority of the White-Gold Concordat.  They are polite
+# in the way that people are polite when they know the law is
+# behind them and you don't have a good argument against it.
+# They want access.  They want to ask questions.  Technically,
+# you agreed to let them.
+# ---------------------------------------------------------------
+thalmor.001 = {
+    type = character_event
+    title = thalmor.001.t
+    desc  = thalmor.001.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = worry
+    }
+
+    option = {
+        name = thalmor.001.a   # "Grant them access. The Concordat is clear."
+        add_prestige = -100
+        add_stress = 20
+        add_character_modifier = {
+            modifier = thalmor_permitted_access
+            days = 1825
+        }
+        # Nord rulers take extra stress from this humiliation
+        if = {
+            limit = { has_culture = nord_culture }
+            add_stress = 15
+        }
+    }
+
+    option = {
+        name = thalmor.001.b   # "Delay and deflect. Find legal grounds to limit their access."
+        trigger = { intrigue >= 10 }
+        add_prestige = 50
+        add_stress = 15
+        add_character_modifier = {
+            modifier = thalmor_delayed_access
+            days = 730
+        }
+        trigger_event = { id = thalmor.002 days = 180 }
+    }
+
+    option = {
+        name = thalmor.001.c   # "Refuse. The Concordat is the Empire's shame, not my law."
+        trigger = {
+            OR = {
+                has_culture = nord_culture
+                martial >= 14
+            }
+        }
+        add_prestige = 300
+        add_stress = 10
+        add_character_modifier = {
+            modifier = thalmor_resentment_stance
+            days = 1825
+        }
+        every_vassal = {
+            limit = { has_culture = nord_culture }
+            add_opinion = {
+                modifier = thalmor_resentment_opinion
+                target = root
+                opinion = 20
+            }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# thalmor.002  The Arrest Warrant
+# The Thalmor Justiciar who has been asking questions around your
+# court has arrived with something more formal: an arrest warrant,
+# bearing the Concordat's seal, for a named member of your
+# household.  The charge is Talos worship.  Whether it is true,
+# you may or may not know.  The warrant, technically, is legal.
+# ---------------------------------------------------------------
+thalmor.002 = {
+    type = character_event
+    title = thalmor.002.t
+    desc  = thalmor.002.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = throne
+    }
+
+    option = {
+        name = thalmor.002.a   # "Comply. Hand them over. The Concordat compels it."
+        add_prestige = -200
+        add_stress = 30
+        add_piety = -50    # A betrayal of the faithful weighs on the soul
+    }
+
+    option = {
+        name = thalmor.002.b   # "Refuse. No one in my court is taken on Thalmor authority."
+        add_prestige = 200
+        add_stress = 15
+        add_character_modifier = {
+            modifier = thalmor_resentment_stance
+            days = 1825
+        }
+        trigger_event = { id = thalmor.003 days = 90 }
+    }
+
+    option = {
+        name = thalmor.002.c   # "Warn the accused and help them disappear before the warrant is served."
+        trigger = { intrigue >= 12 }
+        add_prestige = 100
+        add_stress = 20
+        add_piety = 50    # Protecting the faithful earns divine favour
+        add_character_modifier = {
+            modifier = thalmor_underground_helper
+            days = 1095
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# thalmor.003  The Underground Network
+# The Thalmor agent who has been watching your court is no longer
+# watching the court.  Your spymaster reports that they have been
+# following different threads entirely — servants, merchants,
+# a priest who stopped at your gates last month.  Someone is
+# running a network of Talos worshippers under your nose, and the
+# Justiciars are very close to finding it.
+# ---------------------------------------------------------------
+thalmor.003 = {
+    type = character_event
+    title = thalmor.003.t
+    desc  = thalmor.003.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = worry
+    }
+
+    option = {
+        name = thalmor.003.a   # "Protect the network. Mislead the Justiciars and buy the faithful time."
+        trigger = { intrigue >= 10 }
+        add_prestige = -100
+        add_stress = 25
+        add_piety = 100    # Shielding Talos's faithful carries significant spiritual weight
+        add_trait_xp = {
+            trait = talos_secret_devotee
+            value = 10
+        }
+    }
+
+    option = {
+        name = thalmor.003.b   # "Expose it. Better the Justiciars find it through official channels than through yours."
+        add_prestige = 100
+        add_stress = 40
+        add_piety = -150    # A betrayal of secret faith is not lightly forgiven
+    }
+
+    option = {
+        name = thalmor.003.c   # "Scatter the network yourself. Get them out before the Justiciars close in."
+        trigger = { stewardship >= 10 }
+        add_prestige = 50
+        add_stress = 30
+        add_piety = 50
+        add_gold = -200    # Bribes, transport, false documents
+    }
+}
+
+# ---------------------------------------------------------------
+# thalmor.004  Stormcloak Sympathy
+# One of your Nord vassals has done something spectacular: publicly
+# accused the Thalmor Justiciar stationed in their domain of being
+# a foreign agent with no legitimate authority, and escorted them
+# to the border at sword-point.  The Justiciars are furious.
+# Your vassal is a hero to every Nord in the region.  The Thalmor
+# are demanding you discipline them.  Your vassal is grinning.
+# ---------------------------------------------------------------
+thalmor.004 = {
+    type = character_event
+    title = thalmor.004.t
+    desc  = thalmor.004.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = rage
+    }
+
+    option = {
+        name = thalmor.004.a   # "Back the vassal. The Justiciars have no authority I recognize."
+        trigger = {
+            OR = {
+                has_culture = nord_culture
+                martial >= 14
+            }
+        }
+        add_prestige = 300
+        add_stress = 10
+        every_vassal = {
+            limit = { has_culture = nord_culture }
+            add_opinion = {
+                modifier = thalmor_resentment_opinion
+                target = root
+                opinion = 25
+            }
+        }
+    }
+
+    option = {
+        name = thalmor.004.b   # "Discipline the vassal publicly but protect them privately."
+        trigger = { intrigue >= 12 }
+        add_prestige = 50
+        add_stress = 20
+        add_character_modifier = {
+            modifier = thalmor_double_game
+            days = 1095
+        }
+    }
+
+    option = {
+        name = thalmor.004.c   # "Appease the Thalmor. Formally rebuke the vassal and compensate the Justiciars."
+        add_prestige = -200
+        add_stress = 30
+        add_gold = -300
+        every_vassal = {
+            limit = { has_culture = nord_culture }
+            add_opinion = {
+                modifier = thalmor_resentment_opinion
+                target = root
+                opinion = -20
+            }
+        }
+    }
+}

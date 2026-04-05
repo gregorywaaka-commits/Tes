@@ -1,0 +1,149 @@
+# =============================================================
+#  Great War & White-Gold Concordat — Decisions
+#  File: mod/common/decisions/great_war_decisions.txt
+#
+#  DECISIONS IN THIS FILE:
+#  ────────────────────────
+#  build_talos_shrine           — A talos_secret_devotee ruler
+#                                 constructs a hidden Talos shrine;
+#                                 costly in piety but deepens faith.
+#
+#  reject_white_gold_concordat  — A Redguard or Hammerfell ruler
+#                                 formally rejects the Concordat
+#                                 and declares independence from
+#                                 the Empire's peace terms.
+#
+#  EXTERNAL DEPENDENCIES:
+#  ─────────────────────
+#  • talos_secret_devotee  (great_war_traits.txt)
+#  • stros_mkai_defender   (great_war_traits.txt)
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  common/decisions/great_war_decisions.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • build_talos_shrine
+#    • reject_white_gold_concordat
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/traits/great_war_traits.txt
+#      → talos_secret_devotee, stros_mkai_defender
+#    events/great_war_events.txt
+#      → great_war.010
+# =============================================================
+
+# ---------------------------------------------------------------
+#  BUILD TALOS SHRINE
+#  The Concordat says no shrines.  A talos_secret_devotee ignores
+#  the Concordat.  Construction is slow, careful, and conducted
+#  in the hours before dawn — the hiding of sacred things is its
+#  own kind of devotion.  The shrine will be small and secret and
+#  more meaningful for both.  The cost is substantial: building
+#  something true in a world that has forbidden it always is.
+# ---------------------------------------------------------------
+build_talos_shrine = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc = build_talos_shrine_desc
+
+    is_shown = {
+        has_trait = talos_secret_devotee
+        NOT = { has_character_flag = talos_shrine_built }
+    }
+
+    is_valid = {
+        piety    >= 100
+        is_adult  = yes
+        is_ruler  = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_piety = -100
+        add_prestige = 50
+        add_stress = -20    # The act of devotion brings peace
+        set_character_flag = { flag = talos_shrine_built days = 3650 }
+        add_character_modifier = {
+            modifier = great_war_hidden_shrine
+            days = 3650
+        }
+        # Risk: a 20% chance the shrine attracts Thalmor attention
+        random = {
+            chance = 20
+            trigger_event = { id = great_war.010 days = 180 }
+        }
+    }
+
+    ai_will_do = {
+        base = 5
+        modifier = {
+            add = 8
+            piety >= 200
+        }
+        modifier = {
+            add = 5
+            martial >= 12    # Warrior-faithful tend to be bolder
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  REJECT WHITE-GOLD CONCORDAT
+#  The Empire signed away Hammerfell without asking Hammerfell.
+#  A Redguard ruler with the martial standing to back the claim
+#  can formally repudiate the Concordat's terms — declaring that
+#  Hammerfell's warriors are bound by no peace they did not choose,
+#  and that the Aldmeri Dominion will find the south a harder road
+#  than the treaty imagined.  This decision opens the independence
+#  path and grants the stros_mkai_defender trait.
+# ---------------------------------------------------------------
+reject_white_gold_concordat = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc = reject_white_gold_concordat_desc
+
+    is_shown = {
+        has_culture = redguard_culture
+        NOT = { has_trait = stros_mkai_defender }
+        NOT = { has_character_flag = concordat_rejected }
+        current_date >= 4.175.1.1
+    }
+
+    is_valid = {
+        martial  >= 14
+        prestige >= 300
+        is_adult  = yes
+        is_ruler  = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_prestige = 400
+        add_stress = -10    # The decision clarifies everything
+        add_trait = stros_mkai_defender
+        set_character_flag = { flag = concordat_rejected days = 1825 }
+        add_character_modifier = {
+            modifier = great_war_hammerfell_defiance
+            days = 3650
+        }
+        trigger_event = { id = great_war.005 days = 14 }
+    }
+
+    ai_will_do = {
+        base = 8
+        modifier = {
+            add = 10
+            martial >= 16
+        }
+        modifier = {
+            add = 5
+            prestige >= 600
+        }
+    }
+}

@@ -1,0 +1,56 @@
+l_english:
+
+ # =====================================================================
+ #  THALMOR JUSTICIARS
+ # =====================================================================
+
+ # --- Traits ---
+
+ thalmor_justiciar: "Thalmor Justiciar"
+ thalmor_justiciar_desc: "This person bears the formal authority of the Aldmeri Dominion's Thalmor — the political-religious apparatus that controls the Summerset Isles and, through the White-Gold Concordat, extends its reach into Imperial territory. Their mandate is the enforcement of the Concordat's religious clauses: specifically, the identification, arrest, interrogation, and in persistent cases, execution of Talos worshippers. In Skyrim they are the most hated thing on the road. In Aldmeri circles they are the most necessary."
+
+ talos_purge_survivor: "Talos Purge Survivor"
+ talos_purge_survivor_desc: "This person was taken by Thalmor Justiciars on suspicion of Talos worship and survived the experience — either through being found innocent (officially), through release (for reasons the Justiciars keep private), or through simple endurance of whatever was done in their cells. They came out carrying something the Justiciars couldn't confiscate: the faith that got them arrested in the first place, and the specific, tested certainty that it is stronger than whatever the Thalmor brought to the question."
+
+ # --- Modifiers ---
+
+ thalmor_permitted_access: "Thalmor Access Granted"
+ thalmor_permitted_access_desc: "This ruler has formally permitted Thalmor Justiciars access to their domain under the terms of the White-Gold Concordat. The Justiciars are conducting their investigations. Whether anything of concern is discovered remains to be seen."
+
+ thalmor_delayed_access: "Thalmor Access Delayed"
+ thalmor_delayed_access_desc: "This ruler has found legal and procedural grounds to delay the Thalmor Justiciar's access to their domain. The Concordat is technically complied with. The compliance is, technically, temporary."
+
+ thalmor_resentment_stance: "Thalmor Resentment"
+ thalmor_resentment_stance_desc: "This ruler has publicly opposed or refused Thalmor Justiciar authority within their domain. Their Nord and Imperial subjects approve. The Aldmeri Dominion has noted the position and will remember it."
+
+ thalmor_underground_helper: "Protector of the Talos Underground"
+ thalmor_underground_helper_desc: "This ruler intervened to warn and protect a Talos worshipper from Thalmor arrest — helping them disappear before the warrant could be served. The faithful remember who helped them when the Justiciars came. The Thalmor remember that someone did."
+
+ thalmor_double_game: "Playing Both Sides Against the Thalmor"
+ thalmor_double_game_desc: "This ruler is managing a delicate balance: publicly disciplining a vassal for defying Thalmor authority while quietly ensuring that defiance continues. It is exhausting, expensive, and exactly the kind of thing that keeps realms from being swallowed by larger powers."
+
+ # --- Events ---
+
+ thalmor.001.t: "The Justiciar's Arrival"
+ thalmor.001.desc: "They arrived in the early morning — three Thalmor in grey and gold, a formal escort of four soldiers, and a writ bearing the Concordat's seal. The writ is not a request. It is a notification that, per the terms of the White-Gold Concordat — which the Empire signed, and which applies within Imperial territory, and by extension within your domain — the delegation has the right to conduct inquiries regarding religious compliance.\n\nThe senior Justiciar speaks Tamrielic with a Summerset accent so refined it sounds like politeness and means something else entirely. They have questions. They have the legal authority, technically, to ask them. And they are watching your face very carefully while they tell you this.\n\nThe Concordat is what it is. But so are you."
+ thalmor.001.a: "Grant them access. The Concordat compels it and I will not violate Imperial law."
+ thalmor.001.b: "Find procedural grounds to limit their scope. Let them in, but make it slow."
+ thalmor.001.c: "Refuse entry. The Concordat is the Empire's business, not mine."
+
+ thalmor.002.t: "The Arrest Warrant"
+ thalmor.002.desc: "The Thalmor Justiciar has produced something more specific: a formal arrest warrant, bearing both the Concordat's seal and a name from your court. The charge, rendered in the elegant bureaucratic language of Altmeri legal documents, reduces to this: this person has been observed conducting religious observances in violation of the Concordat's prohibition on Talos worship.\n\nYou look at the name on the warrant. You look at the Justiciar. Whatever the truth of the accusation — and you may know, or may not — the warrant is technically legal. The Concordat grants them this authority. Your ability to refuse it is not unlimited.\n\nBut neither is theirs."
+ thalmor.002.a: "Comply. Hand them over. The Concordat is clear and I will not risk war over one person."
+ thalmor.002.b: "Refuse. No one is arrested in my court on Thalmor authority."
+ thalmor.002.c: "Warn the accused. Get them out before the warrant is formally served."
+
+ thalmor.003.t: "The Underground Network"
+ thalmor.003.desc: "Your spymaster's report is careful and specific: the Thalmor agent who arrived three months ago has stopped asking questions about known suspects. They have started watching different people entirely — a laundress who visits a particular basement twice a week; a merchant who receives sealed packages from three different cities; a traveling priest who stopped at your gates for one night and was seen speaking quietly with four of your household staff before dawn.\n\nThere is a network of Talos worshippers operating in your domain. It is organized, careful, and functional. The Justiciars are aware of it and are very close to having enough information for formal arrests.\n\nThis is your moment to choose whose side you are on — and whether that choice will be visible or quiet."
+ thalmor.003.a: "Protect the network. Feed the Justiciars false information and buy the faithful time."
+ thalmor.003.b: "Expose it. Better they find it through official channels than conduct a broader purge."
+ thalmor.003.c: "Dismantle it yourself. Get the faithful out before the net closes."
+
+ thalmor.004.t: "Stormcloak Sympathy"
+ thalmor.004.desc: "The news arrived with a certain amount of barely concealed glee from the messengers: your vassal, [thalmor.004.vassal_name], the Thane of [thalmor.004.hold_name], has done something extraordinary. When the Thalmor Justiciar assigned to their hold produced a list of names for investigation, [thalmor.004.vassal_name] took the list, tore it in half, handed half back to the Justiciar, and informed them — in the presence of a hundred witnesses in the main hall — that the White-Gold Concordat had no legal force in their hold because they had not signed it, and that the Justiciar had until sunset to leave through the south gate or they would be assisted.\n\nThe Justiciar left through the south gate.\n\nEvery Nord in the region is telling this story. The Thalmor are demanding formal discipline. Your vassal is making no apologies whatsoever."
+ thalmor.004.a: "I support the vassal. The Justiciars are not welcome here."
+ thalmor.004.b: "Publicly rebuke them; privately make clear I approve completely."
+ thalmor.004.c: "Formally discipline the vassal and compensate the Thalmor delegation."

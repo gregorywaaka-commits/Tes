@@ -1,0 +1,90 @@
+l_english:
+
+ # =====================================================================
+ #  GREAT WAR & WHITE-GOLD CONCORDAT
+ # =====================================================================
+
+ # --- Traits ---
+
+ great_war_veteran: "Great War Veteran"
+ great_war_veteran_desc: "This warrior marched through the Great War (4E 171–175) — the most devastating conflict the Empire had faced since the Akaviri invasion. They were at the Red Ring when three Imperial armies closed like a fist around the Aldmeri southern force, and they came home carrying the war in their posture: watchful, economical, scarred in ways that don't show on the surface. The Great War took years off everyone who fought in it. What it gave back was an education in what human beings are capable of when there is no alternative."
+
+ white_gold_concordat_signer: "White-Gold Concordat Signer"
+ white_gold_concordat_signer_desc: "Someone had to put their name on the document. Someone had to sit across from the Thalmor delegation and sign the clauses that banned Talos worship, disbanded the Blades, ceded southern Hammerfell, and permitted Aldmeri Justiciars access to Imperial territory. The Concordat ended the Great War. Whether it should have been signed at all is the question every court, every temple, and every Talos-worshipping Nord is still arguing. This ruler's name is attached to that question permanently."
+
+ talos_secret_devotee: "Talos Secret Devotee"
+ talos_secret_devotee_desc: "The White-Gold Concordat forbids it. The Thalmor enforce the prohibition with arrest warrants and Justiciar patrols. None of that changes the fundamental reality: Talos was a man who became a god through will and deed and the strange alchemy of Tamriel's metaphysical rules, and this ruler believes that truth more than they believe any piece of parchment signed in the Fourth Era. The shrine is hidden. The prayers are quiet. The faith is not."
+
+ stros_mkai_defender: "Stros M'Kai Defender"
+ stros_mkai_defender_desc: "When the Empire signed the White-Gold Concordat and handed southern Hammerfell to the Aldmeri Dominion without so much as consulting the Redguard, the Redguard responded with the one language the Dominion understands: war. This ruler fought in the five-year conflict that ended at the Second Treaty of Stros M'Kai — the treaty where the Dominion withdrew and Hammerfell stood free. They did not need the Empire's permission to win. They did not ask for it."
+
+ # --- Modifiers ---
+
+ great_war_defiant_stance: "Defiant Stance Against the Dominion"
+ great_war_defiant_stance_desc: "This ruler has publicly refused the Aldmeri Dominion's terms. Their realm is on a war footing — preparations being made, alliances tested, borders reinforced. The Dominion will not forget. Neither will history."
+
+ great_war_concordat_negotiator: "Concordat Negotiator"
+ great_war_concordat_negotiator_desc: "This ruler is engaged in the delicate process of negotiating the Concordat's terms — trying to preserve what can be preserved while conceding what cannot. It is the most exhausting and least celebrated form of warfare."
+
+ great_war_concordat_signed: "White-Gold Concordat In Force"
+ great_war_concordat_signed_desc: "The White-Gold Concordat has been signed. Talos shrines are being dismantled. The Blades are disbanding. Thalmor Justiciars will soon patrol Imperial roads. Whether this buys peace or merely postpones a larger reckoning remains to be seen."
+
+ great_war_exile_emperor: "Evacuated the Imperial City"
+ great_war_exile_emperor_desc: "The Imperial City has fallen to the Aldmeri Dominion. This ruler made the hard decision to evacuate rather than die in its defence — preserving the Empire's command structure at the cost of the City itself. A living general commands a future army."
+
+ great_war_siege_defender: "Defender of the Imperial City"
+ great_war_siege_defender_desc: "This ruler chose to stand and fight in the Imperial City when the Aldmeri forces broke through. The decision cost lives and nearly cost everything. What remained is a reputation for courage that even the Dominion acknowledges."
+
+ great_war_prepared_defenses: "Battle of the Red Ring: Flanking Position"
+ great_war_prepared_defenses_desc: "At the Red Ring, this commander held the flanking position — protecting the supply lines of Mede's main thrust, ensuring the encirclement held. The role was unglamorous and essential. The victory belongs to everyone who fought there."
+
+ great_war_hammerfell_defiance: "Hammerfell Defiance"
+ great_war_hammerfell_defiance_desc: "This ruler has formally rejected the White-Gold Concordat and declared Hammerfell's warriors unbound by its terms. The Aldmeri Dominion will bring war. Hammerfell will bring the same thing it always has: Redguard steel and the memory of the Ra Gada."
+
+ great_war_hidden_shrine: "Hidden Talos Shrine"
+ great_war_hidden_shrine_desc: "Somewhere in this realm — behind a false wall, beneath a hearthstone, in a cellar known only to the faithful — there is a small shrine to Talos, the man who became a god. The prayers spoken there are quiet and real. The Thalmor are looking."
+
+ great_war_talos_protector: "Protector of Talos's Faithful"
+ great_war_talos_protector_desc: "This ruler intervened to protect a Talos worshipper from exposure — destroying evidence, misdirecting inquiry, keeping silence. The act was dangerous and generous. Talos's people remember who stood with them when standing with them was forbidden."
+
+ # --- Events ---
+
+ great_war.001.t: "The Thalmor Ultimatum"
+ great_war.001.desc: "The Aldmeri Dominion's emissary has delivered its ultimatum to the Imperial court. The document is precise, confident, and entirely non-negotiable in tone: ban the worship of Talos throughout Imperial territory; dissolve the Blades immediately; cede the southern territories of Hammerfell to Aldmeri governance; permit Thalmor agents access to Imperial lands for the purpose of enforcing compliance.\n\nThe emissary delivered this with the serenity of someone who expects to be obeyed. The silence in the throne room afterward lasted a very long time.\n\nThe Aldmeri Dominion has been rebuilding its strength since the first Oblivion Crisis. Its armies are experienced and its intelligence networks are deep. The question is not whether the Empire can match them in a long war. The question is whether the Empire can afford to find out."
+ great_war.001.a: "The Empire does not kneel to ultimatums. Prepare the legions."
+ great_war.001.b: "Seek to negotiate. Give them something small to buy time for preparations."
+ great_war.001.c: "The terms are severe — but war with the Dominion could be worse. Explore compliance."
+
+ great_war.002.t: "The City Burns"
+ great_war.002.desc: "The reports confirm what the smoke already announced: the Aldmeri Dominion has breached the Imperial City's defences. The Ruby District is on fire. The Green Emperor Road is held by Dominion forces. Survivors are streaming out through the secondary gates, carrying what they can, and the stories they bring are precise and terrible.\n\nThe City is not yet taken. The White-Gold Tower still stands. But the army that was supposed to hold the outer walls is gone — broken in the southern passes three weeks ago, and the reinforcements that were supposed to replace them never arrived.\n\nTitus Mede II faces a choice that will define the Fourth Era's first century: evacuate and preserve the Empire's command structure, or remain and risk everything on a siege that may be unsustainable. Both options have costs. Only one of them has a future attached."
+ great_war.002.a: "Evacuate the City. Preserve the command. We fight from the field."
+ great_war.002.b: "I will not abandon this City. Fortify the Tower. Make them take it room by room."
+
+ great_war.003.t: "The Red Ring"
+ great_war.003.desc: "Titus Mede II's plan is audacious to the point of madness: three Imperial armies converging simultaneously on the occupied City, forming a complete encirclement — the Red Ring. The Aldmeri forces inside do not yet know it is coming. If the timing holds, if all three columns arrive within hours of each other, the Dominion's main southern army will be destroyed in a pocket with no exit.\n\nIf the timing fails — if one column is delayed, if the Dominion receives warning — the encirclement becomes three isolated armies being attacked from multiple directions.\n\nThe Red Ring is the Empire's answer to the White-Gold Concordat before it was ever written: a statement that the Empire can still strike, still win, still reclaim what was taken. The question is whether to be part of that statement."
+ great_war.003.a: "I ride with the Emperor. Commit everything to the Red Ring assault."
+ great_war.003.b: "Hold the flanks and supply lines. The encirclement needs to hold at every point."
+ great_war.003.c: "Wait for the outcome. This battle will decide the war — I will not risk my force prematurely."
+
+ great_war.004.t: "The White-Gold Concordat"
+ great_war.004.desc: "The peace terms have arrived from the Thalmor delegation, and they are almost exactly what was demanded four years ago: the ban on Talos worship throughout Imperial territory; the dissolution of the Blades; the cession of southern Hammerfell; the right of Thalmor Justiciars to operate within Imperial borders; and a clause so deeply buried in the formal language that it took the Imperial legal counsel two days to fully parse it — a clause that essentially acknowledges the Aldmeri Dominion's right to enforce its religious interpretation within the Empire's own lands.\n\nThe Battle of the Red Ring broke the Dominion's main army. It did not break the Dominion. The Empire fought brilliantly and won a battle and still lost the war.\n\nSign this, and there is peace. Refuse, and there is more war — against an adversary that, despite the Red Ring, has not run out of soldiers, money, or patience."
+ great_war.004.a: "Sign the Concordat. Peace is a weapon. The Empire needs time."
+ great_war.004.b: "Refuse. We did not fight the Red Ring to sign this. The war continues."
+ great_war.004.c: "Negotiate the Talos clause. Concede the rest; that one is impossible."
+
+ great_war.005.t: "Hammerfell Says No"
+ great_war.005.desc: "Word has reached Hammerfell of the White-Gold Concordat's terms, and the Redguard reaction is not diplomatic.\n\nThe Empire sold the south. Not even sold — gave it away, in exchange for a peace that doesn't even cover the territory it sacrificed. The Crowns and the Forebears — who have been fighting each other for a generation over matters of succession and trade and memory — have found, for perhaps the first time in living experience, a position they both hold: the Aldmeri Dominion will not have Hammerfell.\n\nThe choice ahead is hard. The Empire is exhausted and will offer no support. The Dominion has armies that were not at the Red Ring. But the Ra Gada did not cross the Yokudan Seas because the odds were good. They crossed them because staying was worse."
+ great_war.005.a: "Hammerfell fights on. Alone if necessary. The Dominion will not find us gentle."
+ great_war.005.b: "Negotiate separately. The Empire failed us; we must secure our own terms."
+
+ great_war.010.t: "A Talos Shrine"
+ great_war.010.desc: "One of your household staff — cleaning the cellar, moving barrels before the autumn stores arrive — has found it: a small shrine, clearly old, tucked behind a false panel in the stone wall. A carved figure of Talos, warrior-god, man-who-became-divine. A few candles worn to stubs. An offering of silver coins and dried flowers.\n\nThe White-Gold Concordat is clear on this subject. The Thalmor who inspect your correspondence are clear on this subject. The Justiciar who arrived in your city last month and has been asking questions about 'compliance matters' is, by all accounts, exceptionally clear on this subject.\n\nSomeone in your court has been coming down here at night to pray to a god the Empire agreed to pretend doesn't exist. You know who it is. The question is what you do about it."
+ great_war.010.a: "Protect them. Dismantle the shrine quietly before the Justiciars learn of it."
+ great_war.010.b: "Report it. We cannot afford Thalmor reprisals over one person's private faith."
+ great_war.010.c: "Join them in prayer. We are all Talos's children in this cellar."
+
+ # --- Decisions ---
+
+ build_talos_shrine_desc: "The Concordat forbids shrines to Talos. You will build one anyway. Small, hidden, known only to those you trust with your life — because that is what this will require. The act of construction is itself a prayer: careful, patient, done in the hours before dawn. Talos was a warrior who became a god through will and deed. You honour that by doing the impossible quietly."
+
+ reject_white_gold_concordat_desc: "The Empire signed away Hammerfell without your consent and against your interests. The White-Gold Concordat's terms will not bind you or your warriors. Formally repudiate the agreement, rally the Redguard who refused to submit, and begin the campaign that history will call the Hammerfell Resistance. The Dominion will bring war. You will bring Redguard steel."

@@ -1,0 +1,53 @@
+l_english:
+
+ # =====================================================================
+ #  JAGAR THARN / IMPERIAL SIMULACRUM
+ # =====================================================================
+
+ # --- Traits ---
+
+ simulacrum_touched: "Simulacrum Touched"
+ simulacrum_touched_desc: "This ruler governed during the Imperial Simulacrum (3E 389–399) — the decade when the man on the Ruby Throne was not the man on the Ruby Throne. Jagar Tharn, the Imperial Battlemage, had imprisoned the true Emperor Uriel Septim VII in a pocket of Oblivion and taken his place as a perfect magical duplicate. Everyone in the Empire served the wrong man for ten years and did not know it. This ruler emerged from that knowledge carrying something specific: not quite paranoia, but a permanent, lived understanding that apparent certainty and actual truth can diverge for a very long time before anyone notices."
+
+ staff_of_chaos_fragment: "Staff of Chaos Fragment"
+ staff_of_chaos_fragment_desc: "This ruler possesses one of the eight pieces into which Jagar Tharn shattered the Staff of Chaos — the artefact he used to imprison Emperor Uriel Septim VII. Tharn scattered the fragments across Tamriel to prevent anyone from reassembling the key to the Emperor's prison. This shard is not obviously dangerous. It is warm in a way that has no heat source. It makes candles behave strangely in its vicinity. It carries the faint, persistent quality of something that is incomplete and knows it. A mage with the right knowledge would recognise it immediately. Anyone else might simply wonder why they cannot stop thinking about it."
+
+ # --- Modifiers ---
+
+ simulacrum_investigating: "Investigating the Simulacrum"
+ simulacrum_investigating_desc: "This ruler has dispatched agents to the Imperial City to investigate rumours that Emperor Uriel Septim VII is not who he appears. The investigation is discreet, expensive, and dangerous — because if the rumours are true, whoever is currently on the Ruby Throne knows they have secrets to protect."
+
+ simulacrum_opportunist: "Simulacrum Opportunist"
+ simulacrum_opportunist_desc: "This ruler is exploiting the Imperial court's distraction and internal confusion during the Simulacrum era — making moves, consolidating positions, and conducting negotiations that a fully functioning Empire would have complicated. The window is narrow. They intend to use it."
+
+ simulacrum_fragment_studied: "Staff Fragment Under Study"
+ simulacrum_fragment_studied_desc: "This ruler's court wizard is analysing a fragment of a magical artefact recovered from a ruin. The study is ongoing. The wizard's notes describe the fragment as 'possessing properties inconsistent with any school of magic currently practised in Tamriel, and apparently designed to interface with other fragments of the same object.' They have not determined what the object is. Yet."
+
+ simulacrum_aftermath_audit: "Post-Simulacrum Audit"
+ simulacrum_aftermath_audit_desc: "This ruler is systematically reviewing Imperial decrees, treaties, and correspondence issued during the Simulacrum era (3E 389–399), working to identify decisions made by Jagar Tharn that may have damaged their realm's interests. The work is slow, expensive, and revealing in ways that are not always comfortable."
+
+ # --- Events ---
+
+ jagar_tharn.001.t: "The Emperor Vanishes"
+ jagar_tharn.001.desc: "The news from the Imperial City is strange rather than alarming — and strangeness about the Imperial court is, in normal times, simply the Empire being the Empire. But the pattern of it is odd.\n\nEmperor Uriel Septim VII has not held a public audience in three months. His correspondence continues; his edicts bear his seal; his Battlemage Jagar Tharn speaks in his name with the easy authority of someone completely confident in their mandate. The chamberlain's office reports the Emperor in good health. Two court officials who sent personal requests for private audience received polite deflections.\n\nIn the Imperial dungeons, there is an escape that the guards aren't talking about. In the mages' quarters, an apprentice has not been seen since she raised a question in a private meeting with the Battlemage.\n\nThese may be unconnected. They may not be."
+ jagar_tharn.001.a: "Concerning — but the court functions. Continue normal relations for now."
+ jagar_tharn.001.b: "Send agents to the City. Something is wrong with this picture."
+ jagar_tharn.001.c: "A distracted court is an opportunity. Use the instability carefully."
+
+ jagar_tharn.002.t: "The Staff Fragment"
+ jagar_tharn.002.desc: "The report from your court wizard is careful and specific — the kind of careful that means they are not certain about something important and are managing the uncertainty through precision of language.\n\nA party of treasure-hunters, working a ruin in the [jagar_tharn.002.province] region, recovered a section of an artefact — clearly a staff of some kind, the magical kind rather than the walking kind, the shaft and perhaps a quarter of its length. It is not warm the way fire is warm. It is warm the way a word you cannot quite remember hovers at the edge of articulation. It makes candles in its vicinity lean toward it slightly. Three of the treasure-hunters reported dreams about reassembly.\n\nThe wizard does not know what it is. They are confident it is significant. They would like your instructions."
+ jagar_tharn.002.a: "Take it into my personal custody. This is too significant for the treasury."
+ jagar_tharn.002.b: "Give it to the court wizard for proper study. Magic is their domain."
+ jagar_tharn.002.c: "Sell it. Magical relics command excellent prices in the right market."
+
+ jagar_tharn.003.t: "The Impostor's Court"
+ jagar_tharn.003.desc: "It starts as rumour. It is always rumour at first, before it is fact, before it is history.\n\nThe story moving through the courts of Tamriel — carefully, quietly, in letters that are sealed and in conversations that happen in gardens rather than halls — goes like this: Emperor Uriel Septim VII is not in the Imperial City. Jagar Tharn, the Imperial Battlemage, is in the Imperial City. The Emperor in the City is not the Emperor. The Battlemage used some artefact or spell — no one is clear on the mechanism — to take the Emperor's place, and the real Uriel Septim VII is somewhere else entirely, imprisoned somewhere that correspondence cannot reach.\n\nThe court astrologer who wrote this down in a letter was recalled to the City. They have not been heard from since.\n\nRumours about Emperors are constant. Most of them are false. The ones that are true tend to be exactly this quiet."
+ jagar_tharn.003.a: "Investigate discreetly. If this is true, it changes everything in Tamriel."
+ jagar_tharn.003.b: "Ignore it. Every generation has its Emperor conspiracy theory."
+ jagar_tharn.003.c: "Amplify the rumours. An Emperor with a questioned claim is a useful tool."
+
+ jagar_tharn.004.t: "The Emperor Freed"
+ jagar_tharn.004.desc: "The news arrives all at once, which is the only way this kind of news can arrive.\n\nJagar Tharn is dead. The Imperial Battlemage who took Uriel Septim VII's place in 3E 389 — who ruled as the Emperor of Tamriel for ten years, signing edicts, receiving delegations, conducting wars, dispensing justice as a man who did not exist in the way emperors are supposed to exist — died in the Imperial City's most secure chamber at the hands of a single person: an escaped prisoner, guided by the ghost of Tharn's murdered apprentice Ria Silmane, who had spent a decade reassembling the eight shattered fragments of the Staff of Chaos.\n\nThe Staff is whole again. The pocket of Oblivion that held the true Emperor is open. Uriel Septim VII has returned.\n\nThe Empire has ten years of decisions to audit."
+ jagar_tharn.004.a: "The rightful Emperor lives. Send formal congratulations to the Imperial court."
+ jagar_tharn.004.b: "Audit every Imperial decree from the Simulacrum years. Tharn may have acted against us."
+ jagar_tharn.004.c: "The Emperor returns to an Empire that changed without him. This will not be simple."
