@@ -212,6 +212,42 @@ walking_ways.progress_check = {
             if = { limit = { has_any_mantling_hircine_milestone = yes } count_ww_milestones_mantling_hircine = yes }
             advance_path_mantling_hircine = yes
         }
+        # PATH B — DIBELLA
+        else_if = {
+            limit = { has_character_flag = ww_mantling_dibella_active }
+            if = { limit = { has_any_mantling_dibella_milestone = yes } count_ww_milestones_mantling_dibella = yes }
+            advance_path_mantling_dibella = yes
+        }
+        # PATH B — MARA
+        else_if = {
+            limit = { has_character_flag = ww_mantling_mara_active }
+            if = { limit = { has_any_mantling_mara_milestone = yes } count_ww_milestones_mantling_mara = yes }
+            advance_path_mantling_mara = yes
+        }
+        # PATH B — SHEOGORATH
+        else_if = {
+            limit = { has_character_flag = ww_mantling_sheogorath_active }
+            if = { limit = { has_any_mantling_sheogorath_milestone = yes } count_ww_milestones_mantling_sheogorath = yes }
+            advance_path_mantling_sheogorath = yes
+        }
+        # PATH B — VIVEC (Tribunal)
+        else_if = {
+            limit = { has_character_flag = ww_mantling_vivec_active }
+            if = { limit = { has_any_mantling_vivec_milestone = yes } count_ww_milestones_mantling_vivec = yes }
+            advance_path_mantling_vivec = yes
+        }
+        # PATH B — ALMALEXIA (Tribunal)
+        else_if = {
+            limit = { has_character_flag = ww_mantling_almalexia_active }
+            if = { limit = { has_any_mantling_almalexia_milestone = yes } count_ww_milestones_mantling_almalexia = yes }
+            advance_path_mantling_almalexia = yes
+        }
+        # PATH B — SOTHA SIL (Tribunal)
+        else_if = {
+            limit = { has_character_flag = ww_mantling_sotha_sil_active }
+            if = { limit = { has_any_mantling_sotha_sil_milestone = yes } count_ww_milestones_mantling_sotha_sil = yes }
+            advance_path_mantling_sotha_sil = yes
+        }
         # PATH C
         else_if = {
             limit = { is_on_path_psijic_endeavour = yes }
@@ -340,6 +376,48 @@ walking_ways.world_notify = {
                 scope:source = { has_trait = mantle_hircine }
             }
             desc = walking_ways.world_notify.mantle_hircine
+        }
+        # Dibella mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_dibella }
+            }
+            desc = walking_ways.world_notify.mantle_dibella
+        }
+        # Mara mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_mara }
+            }
+            desc = walking_ways.world_notify.mantle_mara
+        }
+        # Sheogorath mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_sheogorath }
+            }
+            desc = walking_ways.world_notify.mantle_sheogorath
+        }
+        # Vivec mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_vivec }
+            }
+            desc = walking_ways.world_notify.mantle_vivec
+        }
+        # Almalexia mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_almalexia }
+            }
+            desc = walking_ways.world_notify.mantle_almalexia
+        }
+        # Sotha Sil mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_sotha_sil }
+            }
+            desc = walking_ways.world_notify.mantle_sotha_sil
         }
         # Psijic Endeavour
         triggered_desc = {

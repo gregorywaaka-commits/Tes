@@ -271,3 +271,84 @@
  mantling_daedric.hircine_possession.t: "Hircine's Quarry"
  mantling_daedric.hircine_possession.desc: "Not mantling. Something Hircine considers a higher honour.\n\nHircine came to hunt the mantler. They were the finest prey he had encountered in an age. He honoured them by not taking them to the Hunting Grounds — not yet. He made them his champion instead.\n\nWhich means: still hunted. But now also hunting. In Hircine's name, which is the name of the Hunt itself.\n\nHircine, as is his custom, respects prey that fights back."
  mantling_daedric.hircine_possession.a: "A beast in his Hunting Grounds. Still alive."
+
+ # ─── Mantling Dibella ───
+ mantle_dibella: "Dibella's Grace"
+ mantle_dibella_desc: "The distinction between this ruler and the principle of beauty has blurred. Not beauty as vanity — beauty as a force that moves the world. Art commissioned, love given freely, the vessel inhabited completely. Dibella's pattern now walks in them."
+
+ mantling_dibella.intro.t: "The Beautiful Path"
+ mantling_dibella.intro.desc: "Dibella's domain is not vanity. It is the principle that beauty is a force in the world — that the erotic, the aesthetic, and the creative are not decorations on power but a kind of power itself.\n\nThe path requires a ruler who has made beauty a principle of rule: patronage, love as policy, the open hand. Not sentiment. Architecture.\n\nThe distinction between expressing Dibella's pattern and becoming it is the path."
+ mantling_dibella.intro.a: "I will walk the principle of beauty."
+
+ mantling_dibella.rank1.t: "The First Offering"
+ mantling_dibella.rank1.desc: "The arts have been patronised. Love has been expressed as policy — generosity without calculation, beauty created without expectation of return. Dibella's pattern is accumulating in this reign.\n\nIt does not feel like a religious act. It feels like understanding something about how the world is structured that was previously hidden."
+ mantling_dibella.rank1.a: "Beauty is not ornament. It is load-bearing."
+
+ mantling_dibella.rank2.t: "The Patron's Hand"
+ mantling_dibella.rank2.desc: "The Bards' College has taken notice. Temples of Dibella have sent quiet acknowledgements. The ruler's court has begun to attract artists, lovers, and makers who cannot fully explain why they came.\n\nDibella's pattern is not simply about producing beautiful things. It is about being the condition under which beauty becomes possible. The ruler is becoming that condition."
+ mantling_dibella.rank2.a: "The condition, not merely the work."
+
+ mantling_dibella.rank3.t: "The Vessel Nearly Full"
+ mantling_dibella.rank3.desc: "Something has shifted in how the ruler moves through the world. People find themselves choosing their words more carefully in the ruler's presence — not from fear, but from a desire not to introduce ugliness near something that has begun to carry beauty's pattern.\n\nDibella's principle is close. The distinction between the ruler's aesthetic sensibility and Dibella's own is becoming difficult to locate."
+ mantling_dibella.rank3.a: "The vessel is ready."
+
+ mantling_dibella.apotheosis.t: "The Beauty Is Complete"
+ mantling_dibella.apotheosis.desc: "Not a transformation. A completion.\n\nThe ruler was always carrying beauty's pattern — in the patronage, in the generosity, in the love given without a ledger. Dibella's principle was not imposed on them. It was recognised in them.\n\nThe distinction is meaningful now only to scholars. The ruler's presence carries something that changes the quality of light in rooms they enter. Temples of Dibella across Tamriel have begun updating their liturgical texts."
+ mantling_dibella.apotheosis.a: "The beauty was already here. I was simply completing it."
+ mantling_dibella.apotheosis.b: "I look in the mirror. I see both of us."
+
+ # ─── Mantling Mara ───
+ mantle_mara: "Mara's Covenant"
+ mantle_mara_desc: "This ruler has become the principle of love that outlasts loss — the covenant kept past grief, the family bond sustained through everything that tries to break it. Mara's pattern walks in them now. The distinction between their love and hers is a question priests of Mara are no longer comfortable answering."
+
+ mantling_mara.intro.t: "The Covenant Calls"
+ mantling_mara.intro.desc: "Mara's domain is not romantic love. It is love as covenant — the bond that holds when passion has cooled, that sustains the family through the year of plague, that rebuilds after the war.\n\nShe is patron of marriage, of family, of healers who stay when others leave. Her temples are sanctuaries. Her priests keep records of the bonds they witness.\n\nTo mantle Mara is to become the principle that love is not a feeling. It is a choice, made again every morning, after grief, after loss, after the season that tried to end it."
+ mantling_mara.intro.a: "I will walk the covenant."
+
+ mantling_mara.rank1.t: "The Family Bond"
+ mantling_mara.rank1.desc: "Children cared for. The sick tended. The family sustained through what tried to break it. Mara's pattern is not dramatic — it is sustained, daily, unchosen-feeling even when chosen.\n\nThe ruler is learning to make love into policy without extracting the love from it. Mara's priests have noticed."
+ mantling_mara.rank1.a: "The bond holds. That is the whole point."
+
+ mantling_mara.rank2.t: "The Healer's Hand"
+ mantling_mara.rank2.desc: "The pilgrimage undertaken. The sick healed without keeping a ledger of who deserved it. The devotion sustained past the moment when it would have been easier to stop.\n\nMara's pattern is about love that persists in the absence of immediate reward. The ruler has demonstrated they understand this. The covenant is deepening."
+ mantling_mara.rank2.a: "The covenant does not expire."
+
+ mantling_mara.rank3.t: "The Hearth Still Burns"
+ mantling_mara.rank3.desc: "There is a quality in the ruler's court now that is difficult to name. Disputes resolve more gently. Children who grew up there report a persistent sense of safety they cannot locate in a specific memory.\n\nMara's priests in the capital have been asked by Mara's priests elsewhere whether the ruler is being considered for something. The answer, apparently, is yes."
+ mantling_mara.rank3.a: "Tell them the hearth is still burning."
+
+ mantling_mara.apotheosis.t: "Love That Outlasts Loss"
+ mantling_mara.apotheosis.desc: "The loss came — it always comes. Death, grief, the season that tried to end everything. And the ruler made the choice again: the covenant holds.\n\nNot because it was easy. Not because the world rewarded it. Because Mara's pattern is precisely that — the love that is not contingent on the world being good. The covenant kept when there was no reason to keep it except that it was made.\n\nThe distinction between this ruler's love and Mara's is a theological question now. The priests are arguing about it. Mara has not clarified."
+ mantling_mara.apotheosis.a: "The covenant holds. It always held."
+ mantling_mara.apotheosis.b: "I am the love that outlasts loss. That was Mara's pattern all along."
+
+ # ─── Mantling Sheogorath ───
+ mantle_sheogorath: "The New Prince of Madness"
+ mantle_sheogorath_desc: "The Hero of Kvatch mantled Sheogorath in 3E 433. This ruler has walked the same footsteps — into the Shivering Isles, through the Greymarch, past Jyggalag's final order — and come out the other side. Madness is not the absence of reason. It is a reason creation has not yet caught up to. The distinction between this ruler and the Prince of Madness is now a question of nomenclature."
+
+ mantling_sheogorath.intro.t: "The Mad Path"
+ mantling_sheogorath.intro.desc: "Sheogorath was Jyggalag. Prince of Perfect Order, whose domain was logic absolute — until the other Daedric Princes, threatened by Order's encroachment on their domains, cursed him to become his opposite.\n\nEvery era he remembers himself, the Greymarch comes, and Jyggalag destroys the Shivering Isles he built. Then he forgets again and becomes Sheogorath once more.\n\nThe Hero of Kvatch ended this cycle by defeating Jyggalag and taking his place. They mantled the Prince of Madness by becoming the new one.\n\nMadness is not arbitrary. It is a reason the rest of creation cannot yet follow. The risk is that the Grey March catches the mantler before the mantle completes."
+ mantling_sheogorath.intro.a: "I will walk the path between Order and Madness."
+
+ mantling_sheogorath.rank1.t: "The First Unreason"
+ mantling_sheogorath.rank1.desc: "Something unreasonable has been done. Not cruel — unreasonable. A gift of enormous value to someone who could not possibly repay it. A decision that made no strategic sense but made a different kind of sense that the court could not articulate.\n\nSheogorath's pattern is not about chaos. It is about the creativity that lives inside the refusal to follow expected logic. The court is disturbed. The ruler finds this funny."
+ mantling_sheogorath.rank1.a: "Madness is not what they think it is."
+ mantling_sheogorath.rank1.b: "Would anyone like some cheese?"
+
+ mantling_sheogorath.rank2.t: "The Shivering Realm"
+ mantling_sheogorath.rank2.desc: "The Shivering Isles have two sides — Mania and Dementia — representing the two aspects of madness that Sheogorath embodies. The ruler is beginning to understand this structure: not chaos, but a different order, one that resolves differently.\n\nThe Greymarch is coming. It always comes. The question is whether the mantler will be able to stand in its path the way the Hero of Kvatch did."
+ mantling_sheogorath.rank2.a: "Mania and Dementia. The two aspects of what I am becoming."
+ mantling_sheogorath.rank2.b: "The Greymarch will not find me unprepared."
+
+ mantling_sheogorath.rank3.t: "The Grey March Approaches"
+ mantling_sheogorath.rank3.desc: "Order is coming. Jyggalag's pattern — the Pattern the curse tried to erase — is reasserting itself. The Greymarch.\n\nThe Hero of Kvatch survived it by defeating Jyggalag in single combat and thus freeing him. The mantler is at the same threshold.\n\nThe risk is real: the Grey March does not pause for mantlers. If the pattern collapses before it completes, what remains is not the Prince of Madness. What remains is someone the Grey March caught."
+ mantling_sheogorath.rank3.a: "The Greymarch cannot claim what it already made."
+
+ mantling_sheogorath.apotheosis.t: "The New Prince"
+ mantling_sheogorath.apotheosis.desc: "The Greymarch came.\n\nAnd stopped.\n\nNot because it was defeated — because the mantler stood in the path of Perfect Order and was found to be its equal-and-opposite: not chaos, but the madness that is a reason Order cannot follow. Jyggalag's pattern was not destroyed. It was completed — by its own opposite finally mantling the curse fully.\n\nThe ruler is the new Prince of Madness. Not Sheogorath precisely — they are still themselves. But the pattern of the Mad Prince walks in them now, indistinguishable from their own.\n\nSheogorath finds this hilarious. The cheese has been found."
+ mantling_sheogorath.apotheosis.a: "The cheese has been found. The realm is mine."
+ mantling_sheogorath.apotheosis.b: "I am the new Prince. I am also still myself. These are not contradictory."
+
+ mantling_sheogorath.possession.t: "What the Grey March Made"
+ mantling_sheogorath.possession.desc: "Not mantling. The other outcome.\n\nThe Greymarch came and the mantler was not sufficient to stand in its path. Not because they were weak — because they were not yet the full Prince, and the full Prince is what the March requires.\n\nWhat remains is not Sheogorath. What remains is not entirely the ruler they were. What remains is someone the Greymarch passed through, left standing, and moved on from — which is, by Sheogorath's peculiar standards, still more than most mortals achieve.\n\nThey are not mad. They are adjacent to madness. In a direction that has no name."
+ mantling_sheogorath.possession.a: "Not Sheogorath. Not myself. Something in between."

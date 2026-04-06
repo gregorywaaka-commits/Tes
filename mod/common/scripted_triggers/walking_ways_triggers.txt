@@ -29,6 +29,9 @@
 #  DEFINES — identifiers this file exports:
 #    • is_on_walking_way
 #    • has_completed_any_walking_way
+#    • has_completed_any_mantling
+#    • has_completed_any_tribunal_mantle
+#    • has_three_fold_tribunal
 #    • can_begin_walking_ways
 #    • can_begin_path_chim_expanded
 #    • can_begin_path_mantling
@@ -37,6 +40,10 @@
 #    • can_begin_path_amaranth
 #    • is_on_path_chim_expanded / mantling / psijic / enantiomorph / amaranth
 #    • has_completed_path_chim_expanded / mantling_* / psijic / enantiomorph / amaranth
+#    • can_begin_mantling_dibella / mara / sheogorath
+#    • can_begin_mantling_vivec / almalexia / sotha_sil
+#    • has_any_mantling_dibella_milestone / mara / sheogorath
+#    • has_any_mantling_vivec_milestone / almalexia / sotha_sil
 #
 #  DEPENDS ON:
 #    common/traits/chim_traits.txt          → chim_achieved
@@ -67,6 +74,12 @@ has_completed_any_walking_way = {
         has_character_flag = ww_mantling_boethiah_completed
         has_character_flag = ww_mantling_mephala_completed
         has_character_flag = ww_mantling_hircine_completed
+        has_character_flag = ww_mantling_dibella_completed
+        has_character_flag = ww_mantling_mara_completed
+        has_character_flag = ww_mantling_sheogorath_completed
+        has_character_flag = ww_mantling_vivec_completed
+        has_character_flag = ww_mantling_almalexia_completed
+        has_character_flag = ww_mantling_sotha_sil_completed
         has_character_flag = ww_psijic_endeavour_completed
         has_character_flag = ww_enantiomorph_completed
         has_character_flag = ww_amaranth_completed
@@ -125,6 +138,12 @@ is_on_path_mantling = {
         has_character_flag = ww_mantling_boethiah_active
         has_character_flag = ww_mantling_mephala_active
         has_character_flag = ww_mantling_hircine_active
+        has_character_flag = ww_mantling_dibella_active
+        has_character_flag = ww_mantling_mara_active
+        has_character_flag = ww_mantling_sheogorath_active
+        has_character_flag = ww_mantling_vivec_active
+        has_character_flag = ww_mantling_almalexia_active
+        has_character_flag = ww_mantling_sotha_sil_active
     }
 }
 
@@ -342,6 +361,9 @@ has_completed_any_mantling = {
         has_character_flag = ww_mantling_boethiah_completed
         has_character_flag = ww_mantling_mephala_completed
         has_character_flag = ww_mantling_hircine_completed
+        has_character_flag = ww_mantling_dibella_completed
+        has_character_flag = ww_mantling_mara_completed
+        has_character_flag = ww_mantling_sheogorath_completed
     }
 }
 
@@ -602,4 +624,205 @@ has_three_fold_compact = {
 has_mephala_boethiah_pact = {
     has_character_flag = ww_mantling_boethiah_completed
     has_character_flag = ww_mantling_mephala_completed
+}
+
+# ---------------------------------------------------------------
+#  PATH B — MANTLING: DIBELLA (Aedric)
+#  Goddess of beauty, love, art, and aesthetics.
+#  The mantler must be a diplomat and patron of beauty —
+#  someone who has made aesthetics and love a principle of rule.
+#  [SOURCE: CANON — UESP Lore:Dibella]
+# ---------------------------------------------------------------
+
+# Dibella (Aedric — beauty, love, art)
+can_begin_mantling_dibella = {
+    can_begin_path_mantling = yes
+    diplomacy >= 18
+    OR = {
+        has_trait = generous
+        has_trait = charming
+        has_character_flag = bards_college_patron
+        has_character_flag = art_patronage_established
+    }
+    NOT = { has_character_flag = ww_mantling_dibella_completed }
+}
+
+# ---------------------------------------------------------------
+#  PATH B — MANTLING: MARA (Aedric)
+#  Goddess of love, family, and fertility.
+#  Mara's path is one of sustained compassionate love:
+#  children, family bonds, healing, pilgrimage.
+#  [SOURCE: CANON — UESP Lore:Mara]
+# ---------------------------------------------------------------
+
+# Mara (Aedric — love, family, fertility)
+can_begin_mantling_mara = {
+    can_begin_path_mantling = yes
+    diplomacy >= 16
+    has_living_child = yes
+    OR = {
+        has_trait = compassionate
+        has_trait = generous
+        has_trait = devoted
+    }
+    NOT = { has_character_flag = ww_mantling_mara_completed }
+}
+
+# ---------------------------------------------------------------
+#  PATH B — MANTLING: SHEOGORATH (Daedric)
+#  Prince of Madness. Was Jyggalag before the curse.
+#  The Hero of Kvatch mantled him in 3E 433.
+#  Requires a direct connection to madness, the Shivering Isles,
+#  or the Jyggalag chain — and sufficient intrigue to operate
+#  within unreason without being destroyed by it.
+#  Possession risk: the Grey March does not wait for mantlers.
+#  [SOURCE: CANON — Shivering Isles; UESP Lore:Sheogorath]
+# ---------------------------------------------------------------
+
+# Sheogorath (Daedric — Madness; formerly Jyggalag)
+can_begin_mantling_sheogorath = {
+    can_begin_path_mantling = yes
+    intrigue >= 14
+    OR = {
+        has_trait = jyggalag_champion
+        has_character_flag = shivering_isles_visited
+        has_trait = lunatic
+        has_trait = possessed
+    }
+    NOT = { has_character_flag = ww_mantling_sheogorath_completed }
+}
+
+# ---------------------------------------------------------------
+#  TRIBUNAL MANTLES — second-tier paths
+#  These use can_begin_walking_ways (not can_begin_path_mantling)
+#  and require the corresponding Anticipation (Good Daedra)
+#  mantle to already be complete.
+# ---------------------------------------------------------------
+
+# Vivec — Anticipation of Mephala
+# Warrior-poet; duality; the 36 Lessons; CHIM; Baar Dau.
+# [SOURCE: CANON — 36 Lessons of Vivec; UESP Lore:Vivec]
+can_begin_mantling_vivec = {
+    can_begin_walking_ways = yes
+    has_character_flag = ww_mantling_mephala_completed
+    martial >= 14
+    learning >= 16
+    NOT = { has_character_flag = ww_mantling_vivec_completed }
+}
+
+# Almalexia — Anticipation of Boethiah
+# Mother-protector; healer; divine compassion turned to wrath.
+# [SOURCE: CANON — Tribunal DLC; UESP Lore:Almalexia]
+can_begin_mantling_almalexia = {
+    can_begin_walking_ways = yes
+    has_character_flag = ww_mantling_boethiah_completed
+    diplomacy >= 16
+    OR = {
+        has_trait = compassionate
+        has_trait = zealous
+    }
+    NOT = { has_character_flag = ww_mantling_almalexia_completed }
+}
+
+# Sotha Sil — Anticipation of Azura
+# Clockwork God; mysticism; logic; philosophical withdrawal.
+# [SOURCE: CANON — Tribunal DLC; UESP Lore:Sotha Sil]
+can_begin_mantling_sotha_sil = {
+    can_begin_walking_ways = yes
+    has_character_flag = ww_mantling_azura_completed
+    learning >= 18
+    OR = {
+        has_trait = tonal_architect
+        has_trait = scholar
+        has_character_flag = clockwork_city_visited
+    }
+    NOT = { has_character_flag = ww_mantling_sotha_sil_completed }
+}
+
+# ---------------------------------------------------------------
+#  TRIBUNAL COMPACT TRIGGER
+# ---------------------------------------------------------------
+
+has_completed_any_tribunal_mantle = {
+    OR = {
+        has_character_flag = ww_mantling_vivec_completed
+        has_character_flag = ww_mantling_almalexia_completed
+        has_character_flag = ww_mantling_sotha_sil_completed
+    }
+}
+
+has_three_fold_tribunal = {
+    has_character_flag = ww_mantling_vivec_completed
+    has_character_flag = ww_mantling_almalexia_completed
+    has_character_flag = ww_mantling_sotha_sil_completed
+}
+
+# ---------------------------------------------------------------
+#  MILESTONE HELPER TRIGGERS — Phase 1 & 2 new mantles
+# ---------------------------------------------------------------
+
+has_any_mantling_dibella_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_dibella_milestone_beauty
+        has_character_flag = ww_mantling_dibella_milestone_love
+        has_character_flag = ww_mantling_dibella_milestone_art
+        has_character_flag = ww_mantling_dibella_milestone_patron
+        has_character_flag = ww_mantling_dibella_milestone_vessel
+        has_character_flag = ww_mantling_dibella_milestone_divine
+    }
+}
+
+has_any_mantling_mara_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_mara_milestone_family
+        has_character_flag = ww_mantling_mara_milestone_healing
+        has_character_flag = ww_mantling_mara_milestone_devotion
+        has_character_flag = ww_mantling_mara_milestone_children
+        has_character_flag = ww_mantling_mara_milestone_pilgrimage
+        has_character_flag = ww_mantling_mara_milestone_hearth
+    }
+}
+
+has_any_mantling_sheogorath_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_sheogorath_milestone_madness
+        has_character_flag = ww_mantling_sheogorath_milestone_obelisk
+        has_character_flag = ww_mantling_sheogorath_milestone_realm
+        has_character_flag = ww_mantling_sheogorath_milestone_greymarch
+        has_character_flag = ww_mantling_sheogorath_milestone_jyggalag_defeated
+        has_character_flag = ww_mantling_sheogorath_milestone_new_prince
+    }
+}
+
+has_any_mantling_vivec_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_vivec_milestone_warrior
+        has_character_flag = ww_mantling_vivec_milestone_poet
+        has_character_flag = ww_mantling_vivec_milestone_contradiction
+        has_character_flag = ww_mantling_vivec_milestone_sermon
+        has_character_flag = ww_mantling_vivec_milestone_duality
+        has_character_flag = ww_mantling_vivec_milestone_apotheosis
+    }
+}
+
+has_any_mantling_almalexia_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_almalexia_milestone_protector
+        has_character_flag = ww_mantling_almalexia_milestone_hands
+        has_character_flag = ww_mantling_almalexia_milestone_mother
+        has_character_flag = ww_mantling_almalexia_milestone_healer
+        has_character_flag = ww_mantling_almalexia_milestone_reclame
+        has_character_flag = ww_mantling_almalexia_milestone_divine_wrath
+    }
+}
+
+has_any_mantling_sotha_sil_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_sotha_sil_milestone_workshop
+        has_character_flag = ww_mantling_sotha_sil_milestone_construct
+        has_character_flag = ww_mantling_sotha_sil_milestone_clockwork
+        has_character_flag = ww_mantling_sotha_sil_milestone_hidden
+        has_character_flag = ww_mantling_sotha_sil_milestone_mechanism
+        has_character_flag = ww_mantling_sotha_sil_milestone_revelation
+    }
 }

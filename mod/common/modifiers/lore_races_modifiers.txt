@@ -2939,3 +2939,49 @@ nerevarine_turned_modifier = {
     dread_gain_mult            = 0.15
     intrigue                   = 2
 }
+
+# ---------------------------------------------------------------
+#  WALKING WAYS — PATH-ACTIVE MODIFIERS (Phase 1 & 2 new mantles)
+#  Applied at path start; removed by clear_all_ww_active_flags.
+# ---------------------------------------------------------------
+
+ww_path_mantling_dibella_active = {
+    diplomacy            = 2
+    stress_gain_mult     = -0.05
+}
+
+ww_path_mantling_mara_active = {
+    diplomacy            = 1
+    health               = 0.5
+}
+
+ww_path_mantling_sheogorath_active = {
+    intrigue             = 2
+    stress_gain_mult     = 0.10
+}
+
+ww_path_mantling_vivec_active = {
+    learning             = 2
+    martial              = 2
+}
+
+ww_path_mantling_almalexia_active = {
+    diplomacy            = 2
+    monthly_piety_gain_mult = 0.05
+}
+
+ww_path_mantling_sotha_sil_active = {
+    learning             = 3
+    stewardship          = 1
+}
+
+# ---------------------------------------------------------------
+#  TRIBUNAL ANTICIPATION SEEN
+#  Flavor modifier: Dunmeri clergy notes that the three-fold
+#  Anticipation pattern has been walked, and the Tribunal's
+#  second layer is now being expressed. Lasts 5 years.
+# ---------------------------------------------------------------
+
+mantling_tribunal_anticipation_seen = {
+    monthly_piety_gain_mult = 0.10
+}

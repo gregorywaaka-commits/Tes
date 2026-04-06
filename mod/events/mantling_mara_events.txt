@@ -1,0 +1,118 @@
+# =============================================================
+#  The Walking Ways — Path B: Mantling Mara
+#  Namespace: mantling_mara
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  mantling_mara.intro      — Path chosen
+#  mantling_mara.rank1      — Seeking (family, healing)
+#  mantling_mara.rank2      — Striving (devotion, children)
+#  mantling_mara.rank3      — Threshold (pilgrimage, hearth)
+#  mantling_mara.apotheosis — Apotheosis: love that outlasts loss
+#
+#  LORE BASIS:
+#  ───────────
+#  Mara is the Aedric Divine of love, family, and fertility.
+#  Her domain is the love that sustains: the family bond,
+#  the healer's hand, the covenant kept past grief.
+#  Mara's temples serve as sanctuaries and healing houses.
+#  To mantle Mara is to become the principle of enduring love —
+#  not the love of passion, but the love that remains when
+#  everything else has changed.
+#  [SOURCE: CANON — UESP Lore:Mara]
+# =============================================================
+
+namespace = mantling_mara
+
+# ═══════════════════════════════════════════════════════════════
+#  MARA — LOVE, FAMILY, AND HEALING
+# ═══════════════════════════════════════════════════════════════
+
+mantling_mara.intro = {
+    type = character_event
+    title = mantling_mara.intro.t
+    desc  = mantling_mara.intro.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_mara.intro.a
+        add_stress = 10
+        add_piety = 50
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+    }
+}
+
+mantling_mara.rank1 = {
+    type = character_event
+    title = mantling_mara.rank1.t
+    desc  = mantling_mara.rank1.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_mara.rank1.a
+        add_prestige = 75
+        add_piety = 75
+        health_modifier_add = 0.5
+    }
+}
+
+mantling_mara.rank2 = {
+    type = character_event
+    title = mantling_mara.rank2.t
+    desc  = mantling_mara.rank2.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_mara.rank2.a
+        add_prestige = 125
+        add_piety = 100
+    }
+}
+
+mantling_mara.rank3 = {
+    type = character_event
+    title = mantling_mara.rank3.t
+    desc  = mantling_mara.rank3.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_mara.rank3.a
+        add_prestige = 175
+        add_piety = 125
+        add_stress = -10
+    }
+}
+
+mantling_mara.apotheosis = {
+    type = character_event
+    title = mantling_mara.apotheosis.t
+    desc  = mantling_mara.apotheosis.desc
+    theme = diplomacy
+
+    trigger = {
+        has_character_flag = ww_mantling_mara_active
+        var:ww_mantling_mara_rank >= 4
+        NOT = { has_character_flag = ww_mantling_mara_completed }
+    }
+
+    immediate = {
+        complete_path_mantling_mara = yes
+    }
+
+    option = {
+        name = mantling_mara.apotheosis.a
+        add_prestige = 300
+        add_piety = 300
+        add_stress = -25
+    }
+
+    option = {
+        name = mantling_mara.apotheosis.b
+        add_prestige = 200
+        add_piety = 200
+        health_modifier_add = 1.0
+    }
+}
