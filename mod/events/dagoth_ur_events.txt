@@ -277,6 +277,11 @@ dagoth_ur.030 = {
         is_ruler   = yes
         dagoth_ur_awakened = yes
         NOT = { has_character_flag = nerevarine_prophecy_heard }
+        # §19.11: A living heart_fused_ascendant ruler suppresses the
+        # Nerevarine prophecy by +3 years for nearby Dunmer — the Heart's
+        # corruption emanating from them muffles Azura's prophetic signal.
+        # borrowed_divinity.081 sets this flag (1095-day window).
+        NOT = { has_character_flag = fused_suppresses_prophecy }
     }
 
     option = {

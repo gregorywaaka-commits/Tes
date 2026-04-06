@@ -2876,6 +2876,20 @@ ww_amaranth_uncanny_unease = {
 }
 
 # =====================================================================
+#  §19.11 — BORROWED DIVINITY: TRIBUNAL INTERACTION MODIFIERS
+# =====================================================================
+
+# borrowed_divinity_tribunal_heresy_opinion — A Tribunal-aligned ruler's
+# opinion of any heart_scholar_ascendant ruler.  The Tribunal claim
+# exclusive ownership of Kagrenac's method; a mortal who replicates
+# their act is a heretic and a rival.
+# Applied via borrowed_divinity.080.
+# [SOURCE: WALKING_WAYS_DESIGN.md §19.11]
+borrowed_divinity_tribunal_heresy_opinion = {
+    opinion              = -30
+}
+
+# =====================================================================
 #  §20 NEREVARINE SYSTEM — Modifiers
 # =====================================================================
 

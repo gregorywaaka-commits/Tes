@@ -121,3 +121,10 @@
  borrowed_divinity.dissolution.001.a: "I had it while I had it. That was real."
  borrowed_divinity.dissolution.001.b: "Where did Vivec go?"
  borrowed_divinity.dissolution.001.c: "I should have taken more while I could."
+
+ # --- §19.11 Tribunal Notification (borrowed_divinity.080) ---
+
+ borrowed_divinity.080.t: "The Tools Were Not Yours"
+ borrowed_divinity.080.desc: "Word reaches you — not through official channels, not as a formal declaration, but through the particular quality of silence that falls when something unsayable has happened.\n\nSomeone has tapped the Heart of Lorkhan using Kagrenac's Tools.\n\nNot the Tribunal. Someone else. A mortal who found the scholarship, built or obtained replicas of the instruments, and performed the act that the ALMSIVI performed at the Battle of Red Mountain.\n\nThe Tribunal are gods because they did this. The Dunmer faithful are asked to revere them for this specific act. A mortal who replicates the act without sanction — who treats the ALMSIVI's divine covenant as a method anyone can learn rather than a gift reserved for the three — is not merely a heretic.\n\nThey are an argument."
+ borrowed_divinity.080.a: "Heresy. The Tools were ours. The ALMSIVI did not build this road to share it."
+ borrowed_divinity.080.b: "Alarming — and fascinating — that someone else found the path. The theology is uncomfortable."

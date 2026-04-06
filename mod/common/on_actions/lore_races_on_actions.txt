@@ -450,6 +450,9 @@ on_yearly_pulse = {
         4   = borrowed_divinity.cutoff.002  # Heart destroyed while reservoir active — heart_scholar_ascendant rulers on dagoth_ur_defeated (borrowed_divinity_events.txt)
         5   = borrowed_divinity.starvation.001  # Reservoir empty check — heart_scholar_ascendant with heart_cut_off and reservoir=0 (borrowed_divinity_events.txt)
         3   = borrowed_divinity.dissolution.001  # Heart destroyed narrative — all Route A practitioners on dagoth_ur_defeated (borrowed_divinity_events.txt)
+        # §19.11 Tribunal + Fused interaction events
+        2   = borrowed_divinity.080  # Tribunal notification — Tribunal-trait rulers when heart_scholar_ascendant exists; opinion -30 (borrowed_divinity_events.txt)
+        4   = borrowed_divinity.081  # Fused suppression — Dunmer rulers not yet prophecy-heard when heart_fused_ascendant exists; +3y cooldown (borrowed_divinity_events.txt)
         # --- §20 NEREVARINE SYSTEM ---
         5   = nerevarine.099   # Sharmat's Dream hidden milestone check — heart_fused_ascendant while dagoth_ur_awakened (nerevarine_events.txt)
         3   = nerevarine.010   # Cross-path: Nerevarine meets Heart Scholar — nerevarine_marked + living heart_scholar (nerevarine_events.txt)
