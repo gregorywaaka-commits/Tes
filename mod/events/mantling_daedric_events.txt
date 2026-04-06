@@ -292,3 +292,413 @@ mantling_daedric.meridia_possession = {
         add_piety = 150
     }
 }
+
+# ═══════════════════════════════════════════════════════════════
+#  BOETHIAH — PRINCE OF PLOTS
+# ═══════════════════════════════════════════════════════════════
+#  Boethiah consumed Trinimac to create Malacath and the
+#  Orsimer.  One of the three Good Daedra of the Dunmer.
+#  His domain is Attribution's Share.  His artifact: Goldbrand.
+#  The mantler must consume rivals as Boethiah consumed Trinimac —
+#  not by eating, but by overwriting a competing pattern so
+#  completely that only Boethiah's shape remains.
+#  [SOURCE: CANON — UESP Lore:Boethiah; The True Nature of Orcs]
+# ═══════════════════════════════════════════════════════════════
+
+mantling_daedric.boethiah_intro = {
+    type = character_event
+    title = mantling_daedric.boethiah_intro.t
+    desc  = mantling_daedric.boethiah_intro.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.boethiah_intro.a   # "I understand what this requires."
+        add_stress = 15
+        add_prestige = 50
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+        add_character_modifier = {
+            modifier = mantling_daedric_risk
+            years = 100
+        }
+    }
+}
+
+mantling_daedric.boethiah_rank1 = {
+    type = character_event
+    title = mantling_daedric.boethiah_rank1.t
+    desc  = mantling_daedric.boethiah_rank1.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.boethiah_rank1.a   # "The pattern recognises me."
+        add_prestige = 75
+        add_piety = 50
+    }
+}
+
+mantling_daedric.boethiah_rank2 = {
+    type = character_event
+    title = mantling_daedric.boethiah_rank2.t
+    desc  = mantling_daedric.boethiah_rank2.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.boethiah_rank2.a   # "Attribution's Share is becoming familiar."
+        add_prestige = 125
+        add_stress = 10
+    }
+}
+
+mantling_daedric.boethiah_rank3 = {
+    type = character_event
+    title = mantling_daedric.boethiah_rank3.t
+    desc  = mantling_daedric.boethiah_rank3.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.boethiah_rank3.a   # "One more rival left to consume."
+        add_prestige = 175
+        add_piety = 75
+    }
+}
+
+mantling_daedric.boethiah_apotheosis = {
+    type = character_event
+    title = mantling_daedric.boethiah_apotheosis.t
+    desc  = mantling_daedric.boethiah_apotheosis.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_mantling_boethiah_active
+        var:ww_mantling_boethiah_rank >= 4
+        NOT = { has_character_flag = ww_mantling_boethiah_completed }
+    }
+
+    immediate = {
+        random = {
+            chance = 25
+            trigger_event = { id = mantling_daedric.boethiah_possession days = 3 }
+            set_character_flag = ww_daedric_mantle_failed
+        }
+        if = {
+            limit = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+            complete_path_mantling_boethiah = yes
+        }
+    }
+
+    option = {
+        name = mantling_daedric.boethiah_apotheosis.a
+        trigger = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+        add_prestige = 350
+        add_piety = 200
+    }
+
+    option = {
+        name = mantling_daedric.boethiah_apotheosis.uncertain
+        trigger = { has_character_flag = ww_daedric_mantle_failed }
+        add_stress = 30
+    }
+}
+
+mantling_daedric.boethiah_possession = {
+    type = character_event
+    title = mantling_daedric.boethiah_possession.t
+    desc  = mantling_daedric.boethiah_possession.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_daedric_mantle_failed
+    }
+
+    immediate = {
+        remove_trait = walking_ways_seeker
+        clear_all_ww_active_flags = yes
+        remove_variable = ww_mantling_boethiah_rank
+        remove_variable = ww_mantling_boethiah_milestones
+        remove_character_flag = ww_daedric_mantle_failed
+        add_trait = daedric_champion
+    }
+
+    option = {
+        name = mantling_daedric.boethiah_possession.a   # "His champion still plots."
+        add_stress = 25
+        add_prestige = 150
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  MEPHALA — THE WEBSPINNER
+# ═══════════════════════════════════════════════════════════════
+#  Mephala taught the Chimer to murder in secret.
+#  The Morag Tong serve her openly.
+#  Her domain is the Spiral Skein.
+#  The mantler's web has grown large enough to become
+#  indistinguishable from hers — or perhaps she has simply
+#  drawn them into the centre of it.
+#  [SOURCE: CANON — UESP Lore:Mephala; The Anticipations]
+# ═══════════════════════════════════════════════════════════════
+
+mantling_daedric.mephala_intro = {
+    type = character_event
+    title = mantling_daedric.mephala_intro.t
+    desc  = mantling_daedric.mephala_intro.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.mephala_intro.a   # "I will learn to weave."
+        add_stress = 10
+        add_prestige = 25
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+        add_character_modifier = {
+            modifier = mantling_daedric_risk
+            years = 100
+        }
+    }
+}
+
+mantling_daedric.mephala_rank1 = {
+    type = character_event
+    title = mantling_daedric.mephala_rank1.t
+    desc  = mantling_daedric.mephala_rank1.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.mephala_rank1.a   # "The first threads are laid."
+        add_prestige = 50
+        add_piety = 50
+    }
+}
+
+mantling_daedric.mephala_rank2 = {
+    type = character_event
+    title = mantling_daedric.mephala_rank2.t
+    desc  = mantling_daedric.mephala_rank2.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.mephala_rank2.a   # "The Spiral Skein is not metaphor. I see it."
+        add_prestige = 100
+        add_stress = -10
+    }
+}
+
+mantling_daedric.mephala_rank3 = {
+    type = character_event
+    title = mantling_daedric.mephala_rank3.t
+    desc  = mantling_daedric.mephala_rank3.desc
+    theme = intrigue
+
+    option = {
+        name = mantling_daedric.mephala_rank3.a   # "I cannot tell if I am spinning the web or the web is spinning me."
+        add_prestige = 150
+        add_piety = 100
+    }
+}
+
+mantling_daedric.mephala_apotheosis = {
+    type = character_event
+    title = mantling_daedric.mephala_apotheosis.t
+    desc  = mantling_daedric.mephala_apotheosis.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_mantling_mephala_active
+        var:ww_mantling_mephala_rank >= 4
+        NOT = { has_character_flag = ww_mantling_mephala_completed }
+    }
+
+    immediate = {
+        random = {
+            chance = 25
+            trigger_event = { id = mantling_daedric.mephala_possession days = 3 }
+            set_character_flag = ww_daedric_mantle_failed
+        }
+        if = {
+            limit = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+            complete_path_mantling_mephala = yes
+        }
+    }
+
+    option = {
+        name = mantling_daedric.mephala_apotheosis.a
+        trigger = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+        add_prestige = 300
+        add_piety = 250
+    }
+
+    option = {
+        name = mantling_daedric.mephala_apotheosis.uncertain
+        trigger = { has_character_flag = ww_daedric_mantle_failed }
+        add_stress = 35
+    }
+}
+
+mantling_daedric.mephala_possession = {
+    type = character_event
+    title = mantling_daedric.mephala_possession.t
+    desc  = mantling_daedric.mephala_possession.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_daedric_mantle_failed
+    }
+
+    immediate = {
+        remove_trait = walking_ways_seeker
+        clear_all_ww_active_flags = yes
+        remove_variable = ww_mantling_mephala_rank
+        remove_variable = ww_mantling_mephala_milestones
+        remove_character_flag = ww_daedric_mantle_failed
+        add_trait = daedric_champion
+    }
+
+    option = {
+        name = mantling_daedric.mephala_possession.a   # "A thread in her web. Nothing more. Nothing less."
+        add_stress = 30
+        add_prestige = 100
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  HIRCINE — THE HUNTSMAN PRINCE
+# ═══════════════════════════════════════════════════════════════
+#  Father of man-beasts.  Lycanthropes go to his Hunting Grounds.
+#  He comes to Nirn periodically to hunt mortals (the Bloodmoon).
+#  His code: the chase above the kill.  Respect for prey that
+#  fights back.  The clean death as the highest honour.
+#  To mantle him is to become the principle of the hunt, not
+#  merely a participant in it.
+#  Possession risk: the Hunt is what Hircine IS.  He does not
+#  share that easily.
+#  [SOURCE: CANON — UESP Lore:Hircine; Bloodmoon; Skyrim]
+# ═══════════════════════════════════════════════════════════════
+
+mantling_daedric.hircine_intro = {
+    type = character_event
+    title = mantling_daedric.hircine_intro.t
+    desc  = mantling_daedric.hircine_intro.desc
+    theme = martial
+
+    option = {
+        name = mantling_daedric.hircine_intro.a   # "I will walk in the Hunt's steps."
+        add_stress = 10
+        add_prestige = 50
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+        add_character_modifier = {
+            modifier = mantling_daedric_risk
+            years = 100
+        }
+    }
+}
+
+mantling_daedric.hircine_rank1 = {
+    type = character_event
+    title = mantling_daedric.hircine_rank1.t
+    desc  = mantling_daedric.hircine_rank1.desc
+    theme = martial
+
+    option = {
+        name = mantling_daedric.hircine_rank1.a   # "The chase is its own reward."
+        add_prestige = 75
+        add_piety = 50
+    }
+}
+
+mantling_daedric.hircine_rank2 = {
+    type = character_event
+    title = mantling_daedric.hircine_rank2.t
+    desc  = mantling_daedric.hircine_rank2.desc
+    theme = martial
+
+    option = {
+        name = mantling_daedric.hircine_rank2.a   # "I understand what he honours now."
+        add_prestige = 125
+        add_piety = 75
+    }
+}
+
+mantling_daedric.hircine_rank3 = {
+    type = character_event
+    title = mantling_daedric.hircine_rank3.t
+    desc  = mantling_daedric.hircine_rank3.desc
+    theme = martial
+
+    option = {
+        name = mantling_daedric.hircine_rank3.a   # "I am the hunter and the hunted both."
+        add_prestige = 175
+        add_piety = 100
+    }
+}
+
+mantling_daedric.hircine_apotheosis = {
+    type = character_event
+    title = mantling_daedric.hircine_apotheosis.t
+    desc  = mantling_daedric.hircine_apotheosis.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_mantling_hircine_active
+        var:ww_mantling_hircine_rank >= 4
+        NOT = { has_character_flag = ww_mantling_hircine_completed }
+    }
+
+    immediate = {
+        random = {
+            chance = 25
+            trigger_event = { id = mantling_daedric.hircine_possession days = 3 }
+            set_character_flag = ww_daedric_mantle_failed
+        }
+        if = {
+            limit = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+            complete_path_mantling_hircine = yes
+        }
+    }
+
+    option = {
+        name = mantling_daedric.hircine_apotheosis.a
+        trigger = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+        add_prestige = 300
+        add_piety = 200
+    }
+
+    option = {
+        name = mantling_daedric.hircine_apotheosis.uncertain
+        trigger = { has_character_flag = ww_daedric_mantle_failed }
+        add_stress = 30
+    }
+}
+
+mantling_daedric.hircine_possession = {
+    type = character_event
+    title = mantling_daedric.hircine_possession.t
+    desc  = mantling_daedric.hircine_possession.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_daedric_mantle_failed
+    }
+
+    immediate = {
+        remove_trait = walking_ways_seeker
+        clear_all_ww_active_flags = yes
+        remove_variable = ww_mantling_hircine_rank
+        remove_variable = ww_mantling_hircine_milestones
+        remove_character_flag = ww_daedric_mantle_failed
+        add_trait = daedric_champion
+    }
+
+    option = {
+        name = mantling_daedric.hircine_possession.a   # "A beast in his Hunting Grounds. Still alive."
+        add_stress = 20
+        add_piety = 100
+    }
+}

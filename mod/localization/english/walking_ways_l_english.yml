@@ -24,6 +24,11 @@
  walking_ways.world_notify.mantle_kynareth: "The wind changed over [scope:source.primary_title.name] without reason. Birds flew in patterns that do not correspond to any migration. The Greybeards have taken note."
  walking_ways.world_notify.mantle_azura: "From Azura's shrine near [scope:source.primary_title.name], her priests sent a message that arrived before it was written: 'The distinction is complete.'"
  walking_ways.world_notify.mantle_meridia: "A light has gone on in [scope:source.primary_title.name] that has no source the architects can find. Vampires in the neighbouring realm have begun to avoid the border."
+ walking_ways.world_notify.mantle_lorkhan: "The realm of [scope:source.primary_title.name] trembles differently today. A ruler has walked Lorkhan's full pattern — sacrifice, wound, creation, persistence. Scholars of cosmological architecture note that the weight from Red Mountain shifted slightly. The Shezarrines stir."
+ walking_ways.world_notify.mantle_stendarr: "Priests of Stendarr across Tamriel report an unusual peace settling near [scope:source.primary_title.name]. The weak there find their burdens lighter. The Vigil of Stendarr has issued a rare commendation. Something of Stendarr walks in [scope:source.char_name|U]."
+ walking_ways.world_notify.mantle_boethiah: "Courts near [scope:source.primary_title.name] have begun losing their most troublesome rivals under circumstances no one can explain. The Tribunal's Anticipation of Almalexia has a new pattern expressing itself. Dunmer theologians call this the Attribution's Full Share."
+ walking_ways.world_notify.mantle_mephala: "A message arrived today from [scope:source.primary_title.name] that reached its destinations before it was written. It contained only this: [scope:source.char_name|U] is no longer weaving. They are the web. The Morag Tong has taken note."
+ walking_ways.world_notify.mantle_hircine: "The Hunting Grounds are closer to [scope:source.primary_title.name] than they were yesterday. Lycanthropes in the neighbouring realms are restless. The Bloodmoon rose early over [scope:source.primary_title.name]. The Hunt has a new principle walking in [scope:source.char_name|U]."
  walking_ways.world_notify.psijic: "The Psijic Order has sent a rare message to every major court: one who pursued the Old Ways has completed the Endeavour. The message concludes: 'Time is now optional for them.'"
  walking_ways.world_notify.enantiomorph: "Something has gone wrong with the pattern. The Hero of [scope:source.primary_title.name] is no longer the Hero. Those with experience in cosmological architecture are advised to update their maps."
  walking_ways.world_notify.amaranth: "The dream has changed.\n\n[There is no further message. There is no messenger. The fact of it, however, is impossible to dispute.]"
@@ -48,6 +53,16 @@
  choose_walking_way.path_b_azura_desc: "A Daedric mantle is different. Azura does not share her pattern easily. Possession is the failure state. [Requires: chim_seeker or chim_achieved]"
  choose_walking_way.path_b_meridia: "Path B: Mantling Meridia — Uncompromising Light [DANGEROUS]"
  choose_walking_way.path_b_meridia_desc: "Purification absolute. Meridia's light does not warm — it exposes. Walk in it long enough and you become it. [Requires: dawnguard_commander or dawnguard_victory_achieved]"
+ choose_walking_way.path_b_lorkhan: "Path B: Mantling Lorkhan — The Doom Drum's Sacrifice"
+ choose_walking_way.path_b_lorkhan_desc: "Lorkhan gave up his divine nature to create Mundus and was killed for it. His wound still pulses at Red Mountain. Walk the same path: sacrifice the irreplaceable, survive the wound, build something that endures. [Requires: shezarrine_vessel OR martial 18+ stewardship 14+ with Nordic/Imperial/Shezarrine tie]"
+ choose_walking_way.path_b_stendarr: "Path B: Mantling Stendarr — Mercy and Righteous Might"
+ choose_walking_way.path_b_stendarr_desc: "Stendarr stood with Alessia when she needed steadiness. He is the most present of the Divines. Rule with mercy when cruelty would be easier. Aid the weak. Oppose corruption not through disgust but through duty. [Requires: stewardship 14+, compassionate or generous or zealous]"
+ choose_walking_way.path_b_boethiah: "Path B: Mantling Boethiah — Consume the Rival [DANGEROUS]"
+ choose_walking_way.path_b_boethiah_desc: "Boethiah consumed Trinimac entirely. Treachery becomes creation; destruction becomes a kind of making. The mantler must consume rivals as completely. Possession risk: Boethiah does not share Attribution's Share. [Requires: intrigue 16+, committed betrayal or regicide, Dunmer/daedric tie]"
+ choose_walking_way.path_b_mephala: "Path B: Mantling Mephala — The Spiral Skein [DANGEROUS]"
+ choose_walking_way.path_b_mephala_desc: "Mephala taught the Chimer to murder in secret because Mundus runs on hidden threads. Weave until you cannot distinguish your web from hers. Possession risk: the Spiral Skein has no outside edge. [Requires: intrigue 18+, Morag Tong or Dark Brotherhood contact]"
+ choose_walking_way.path_b_hircine: "Path B: Mantling Hircine — The Hunt Itself [DANGEROUS]"
+ choose_walking_way.path_b_hircine_desc: "Hircine demands the chase above the kill. Respect for prey that fights back. The clean death as the highest honour. Become the principle of the hunt, not merely its participant. Possession risk: the Hunt does not pause for mantlers. [Requires: martial 16+, lycanthropy or great hunt]"
  choose_walking_way.path_c: "Path C: The Psijic Endeavour — The Old Ways"
  choose_walking_way.path_c_desc: "Not learned. Remembered. The Psijic Order's path to temporal perception and the transcendence of ordinary urgency. [Requires: learning 16+, scholar/psijic_contact/chim_seeker]"
  choose_walking_way.path_d: "Path D: The Enantiomorph — The Rebel's Pattern"
@@ -93,3 +108,30 @@
  walking_ways.chim_silence.desc: "The path requires a year of deep study. Not isolation — but discipline. The court will notice the change in priorities. The gold will go toward scholars and study materials and the quiet that purchasing silence always requires."
  walking_ways.chim_silence.a: "Arrange it."
  walking_ways.chim_silence.b: "Not yet."
+
+ # ─── Three-Fold Compact ───
+ walking_ways.three_fold_compact_achieved.t: "The Three-Fold Compact"
+ walking_ways.three_fold_compact_achieved.desc: "Azura. Boethiah. Mephala.\n\nThe three Good Daedra of the Dunmer — the Anticipations of Almalexia, Sotha Sil, and Vivec. The rulers of Tribunal all carried aspects of this compact. Their divinity was built on a foundation that included all three.\n\nThis ruler has now walked the pattern of all three. Not as the Tribunal walked it — through the Heart of Lorkhan and Kagrenac's Tools — but through mantling. Through becoming the pattern of what each Daedra represents.\n\nThe Spiral Skein, Attribution's Share, and the threshold of Dusk and Dawn are all present in this ruler simultaneously.\n\nThe Dunmeri clergy will have opinions about this."
+ walking_ways.three_fold_compact_achieved.a: "The Anticipations are complete in me."
+
+ # ─── Mephala/Boethiah Pact ───
+ walking_ways.mephala_boethiah_pact_achieved.t: "The Twin Darks"
+ walking_ways.mephala_boethiah_pact_achieved.desc: "Boethiah consumes. Mephala weaves.\n\nThey are not the same. But they operate in adjacent territory: both require the hidden hand, the act that cannot be traced to its source, the destruction of a rival so complete it becomes a kind of making.\n\nA ruler who has walked both of their patterns understands something that most mortals do not: the void is not empty. It has structure. It can be navigated without being consumed by it — if you have already consumed enough of it yourself.\n\nThe Enantiomorph will be less likely to claim you."
+ walking_ways.mephala_boethiah_pact_achieved.a: "Both sides of the shadow. I understand now."
+
+ # ─── CHIM Ego Pushback ───
+ walking_ways.chim_ego_pushback.t: "The Dream Noticed"
+ walking_ways.chim_ego_pushback.desc: "CHIM is a door that opens inward. The practitioner who walks through it understands that they exist within the Godhead's dream — and that the dream permits certain operations to those who understand it fully.\n\nBut the dream is not a servant. It does not reward those who treat it as a stage for their own ambitions.\n\nSomething was done recently that expressed the ego too loudly. The dream noticed. A milestone on the path has receded. The understanding was smaller than it appeared."
+ walking_ways.chim_ego_pushback.a: "The dream noticed. I must be more careful."
+ walking_ways.chim_ego_pushback.b: "I refuse this correction."
+
+ # ─── Talos Nordic Empire Milestone ───
+ walking_ways.talos_nordic_empire_milestone.t: "The Empire Is Already Yours"
+ walking_ways.talos_nordic_empire_milestone.desc: "Tiber Septim's pattern includes the Ruby Throne — but it is not reducible to one seat or one city.\n\nThe pattern is: conquer, unify, hold the centre by being the centre. Rule so that the realm exists because of your specific kind of will and not despite it.\n\nThis ruler has done that. Not at the Ruby Throne. At their own. The pattern recognises the same shape, expressed in different geography."
+
+ # ─── Psijic Active Decisions ───
+ artaeum_correspondence_desc: "Artaeum cannot be visited uninvited — the island appears and disappears at the Order's will. But it can be written to. The correspondence must be careful, sustained, and demonstrate that the writer has moved beyond ordinary scholarship. If the Order judges it worthy of reply, they will respond."
+ psijic_time_witnessed_desc: "There is a capacity that develops on the Psijic Endeavour: the ability to hold two points in time simultaneously without becoming lost between them. I have not fully mastered it. But I am close enough that I can formally witness a moment — marking the place where past and future are both present — without being pulled in either direction. Once. Today."
+
+ # ─── Decision: Three-Fold Consumption ───
+ invoke_three_fold_consumption_desc: "I carry all three. Azura, who transforms at the threshold. Boethiah, who consumes the rival entirely. Mephala, who weaves what remains into the web. Together they are a complete instrument. I will use them once — on the rivals who stand against me — and they will not recover their standing."

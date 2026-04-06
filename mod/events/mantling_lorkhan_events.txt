@@ -1,0 +1,209 @@
+# =============================================================
+#  The Walking Ways — Path B: Mantling Lorkhan / Shor
+#  Namespace: mantling_lorkhan
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  mantling_lorkhan.intro                   — Path chosen
+#  mantling_lorkhan.rank1                   — Seeking: the sacrifice acknowledged
+#  mantling_lorkhan.rank2                   — Striving: the wound remembered
+#  mantling_lorkhan.rank3                   — Threshold: the heart speaks
+#  mantling_lorkhan.apotheosis              — The Grey Maybe completes
+#  mantling_lorkhan.milestone_tower_check   — Yearly: Tower ruled check
+#  mantling_lorkhan.milestone_creation_check — Yearly: realm creation milestone
+#
+#  LORE BASIS:
+#  ───────────
+#  Lorkhan is the god who tricked the Aedra into creating Mundus
+#  by sacrificing their divine nature.  He was slain for this;
+#  his heart was torn out and fell to Nirn, where it became the
+#  Stone of Red Mountain, the Red Tower.  His recurring avatars
+#  are the Shezarrines — mortal champions who carry his wound
+#  and his purpose.  Mantling Lorkhan requires embracing the
+#  paradox of sacrifice: to give up the divine for the mortal.
+#  Known as Shor (Nords), Shezarr (Cyrodilic), Sep (Khajiit),
+#  Sheor (Bretons), LKHAN (Yokudan).
+#  [SOURCE: CANON — The Arcturian Heresy; UESP Lore:Lorkhan/Shor]
+# =============================================================
+
+namespace = mantling_lorkhan
+
+# ---------------------------------------------------------------
+# mantling_lorkhan.intro  THE GREY MAYBE CALLS
+# Lorkhan is the "Grey Maybe" — neither fully Aedra nor
+# fully absent.  He is the space between the divine and the
+# mortal.  The mantler begins to walk that line.
+# ---------------------------------------------------------------
+mantling_lorkhan.intro = {
+    type = character_event
+    title = mantling_lorkhan.intro.t
+    desc  = mantling_lorkhan.intro.desc
+    theme = martial
+
+    option = {
+        name = mantling_lorkhan.intro.a   # "I accept the cost of creation."
+        add_stress = 20
+        add_prestige = 50
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_lorkhan.rank1  SEEKING — THE SACRIFICE
+# The first milestones: the mantler has given something up
+# without expecting it back, and has survived being wounded.
+# These are Lorkhan's defining acts — sacrifice and wound.
+# ---------------------------------------------------------------
+mantling_lorkhan.rank1 = {
+    type = character_event
+    title = mantling_lorkhan.rank1.t
+    desc  = mantling_lorkhan.rank1.desc
+    theme = martial
+
+    option = {
+        name = mantling_lorkhan.rank1.a   # "The cost was worth it."
+        add_prestige = 75
+        add_piety = 25
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_lorkhan.rank2  STRIVING — THE WOUND REMEMBERED
+# Lorkhan's wound is not a failure — it is the price of
+# creation.  The mantler has created something that endures,
+# has been struck down and continued.  The Shezarrine's echo
+# grows louder in them.
+# ---------------------------------------------------------------
+mantling_lorkhan.rank2 = {
+    type = character_event
+    title = mantling_lorkhan.rank2.t
+    desc  = mantling_lorkhan.rank2.desc
+    theme = martial
+
+    option = {
+        name = mantling_lorkhan.rank2.a   # "The wound is not an ending."
+        add_prestige = 125
+        add_stress = -15
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_lorkhan.rank3  THRESHOLD — THE HEART SPEAKS
+# Red Mountain is far away.  The heart that fell to it is
+# a Stone now, a Tower, a remnant of what was given.
+# The mantler begins to understand what that giving cost —
+# and why it was worth it.
+# ---------------------------------------------------------------
+mantling_lorkhan.rank3 = {
+    type = character_event
+    title = mantling_lorkhan.rank3.t
+    desc  = mantling_lorkhan.rank3.desc
+    theme = martial
+
+    option = {
+        name = mantling_lorkhan.rank3.a   # "I know what it cost. I would pay it again."
+        add_prestige = 175
+        add_piety = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_lorkhan.apotheosis  THE GREY MAYBE COMPLETES
+# Lorkhan is the god who was killed to make the world.
+# The mantler has sacrificed, been wounded, created, and
+# remembered.  The distinction between the mantler and the
+# Doom Drum is now the same kind of nothing that separates
+# any mortal who has given themselves fully to a purpose
+# from the divine principle that purpose expressed.
+# ---------------------------------------------------------------
+mantling_lorkhan.apotheosis = {
+    type = character_event
+    title = mantling_lorkhan.apotheosis.t
+    desc  = mantling_lorkhan.apotheosis.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_mantling_lorkhan_active
+        var:ww_mantling_lorkhan_rank >= 4
+        NOT = { has_character_flag = ww_mantling_lorkhan_completed }
+    }
+
+    immediate = {
+        complete_path_mantling_lorkhan = yes
+    }
+
+    option = {
+        name = mantling_lorkhan.apotheosis.a   # "The world exists because of what was given."
+        add_prestige = 300
+        add_piety = 100
+    }
+
+    option = {
+        name = mantling_lorkhan.apotheosis.b   # "The wound was always the point."
+        add_stress = -25
+        add_prestige = 200
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_lorkhan.milestone_tower_check  YEARLY HIDDEN
+# Rules a paramount realm centred on a Tower-significant
+# province (Red Mountain / Vvardenfell, Throat of the World,
+# White-Gold Tower) — sets the Tower milestone.
+# ---------------------------------------------------------------
+mantling_lorkhan.milestone_tower_check = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_character_flag = ww_mantling_lorkhan_active
+        NOT = { has_character_flag = ww_mantling_lorkhan_milestone_tower }
+        is_ruler = yes
+        # Paramount ruler of a realm containing a Tower-significant capital
+        OR = {
+            capital_province = { has_province_modifier = red_mountain_province }
+            capital_province = { has_province_modifier = throat_of_the_world_province }
+            capital_province = { has_province_modifier = white_gold_tower_province }
+            # Fallback: any paramount-level ruler with Vvardenfell/Cyrodiil heritage
+            AND = {
+                primary_title.tier >= tier_kingdom
+                culture = { has_cultural_pillar = heritage_cyrodilic }
+            }
+        }
+    }
+
+    immediate = {
+        set_character_flag = ww_mantling_lorkhan_milestone_tower
+    }
+
+    option = { name = "OK" }
+}
+
+# ---------------------------------------------------------------
+# mantling_lorkhan.milestone_creation_check  YEARLY HIDDEN
+# Has built a new realm or restored a fallen one —
+# primary title tier >= duchy AND has expanded realm
+# significantly since path began (5+ new counties).
+# ---------------------------------------------------------------
+mantling_lorkhan.milestone_creation_check = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_character_flag = ww_mantling_lorkhan_active
+        NOT = { has_character_flag = ww_mantling_lorkhan_milestone_creation }
+        is_ruler = yes
+        primary_title.tier >= tier_duchy
+        realm_size >= 10
+    }
+
+    immediate = {
+        set_character_flag = ww_mantling_lorkhan_milestone_creation
+    }
+
+    option = { name = "OK" }
+}

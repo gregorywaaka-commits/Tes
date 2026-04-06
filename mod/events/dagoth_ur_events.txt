@@ -67,6 +67,14 @@
 #      → azura_champion
 #    common/traits/dagoth_ur_traits.txt
 #      → ash_devotee, corprus_afflicted, ghost_fence_keeper, nerevarine_marked, sixth_house_cultist
+#
+#  REFERENCED BY — other files that extend this system:
+#    events/nerevarine_events.txt  (§20)
+#      → dagoth_ur.100 (dagoth_ur.100 fires when nerevarine.210/211 call end_dagoth_ur_era)
+#    events/kagrenac_events.txt
+#      → option B of kagrenac.030 now fires nerevarine.200
+#    common/on_actions/lore_races_on_actions.txt
+#      → on_character_death: nerevarine succession hook fires nerevarine.001
 # =============================================================
 
 namespace = dagoth_ur

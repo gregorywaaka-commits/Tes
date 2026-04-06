@@ -1,0 +1,159 @@
+﻿l_english:
+
+ # =====================================================================
+ #  §20 — THE NEREVARINE SYSTEM
+ # =====================================================================
+
+ # --- Trait names & descriptions ---
+
+ nerevarine_forsaken: "Nerevarine Forsaken"
+ nerevarine_forsaken_desc: "This character stood at the Heart of Lorkhan with the Tools of Kagrenac in hand and turned away from Azura's prophecy, joining the Sixth House instead. The Daedric Prince of dusk and dawn does not forgive traitors to destiny. Where once there was divine guidance, there is now cold silence and the weight of a god's permanent displeasure."
+
+ nerevarine_shadow: "Nerevarine Shadow"
+ nerevarine_shadow_desc: "This character walked every side of the Heart's war and served none cleanly. They accepted Azura's call, betrayed it for Dagoth Ur, then betrayed Dagoth Ur for Mephala or Boethiah — severing the Heart's Mundane binding not with prophetic purpose but with Daedric cunning. They carry the silence of one who has outplayed gods. Even their allies are never entirely sure they are safe."
+
+ sharmat_ascendant: "Sharmat Ascendant"
+ sharmat_ascendant_desc: "This ruler fused with the Heart of Lorkhan and survived long enough to stop being driven by the Blight — and start directing it. The divine disease that once seeped outward from Red Mountain now answers to their will. The Blight is no longer a symptom; it is a weapon. This is what Dagoth Ur always hoped to become before the Nerevarine stopped him. In this timeline, nothing stopped the Sharmat's heir."
+
+ tower_breaker: "Tower Breaker"
+ tower_breaker_desc: "The Heart of Lorkhan was severed from Mundus, but not by Azura's prophecy. This ruler used the knowledge of the Heart's chamber — knowledge earned through betrayal and blood — to break the Tower-binding through Daedric means. It is not the ending Azura planned. It is an ending nonetheless. The Tower above Red Mountain will not stand as it stood."
+
+ # --- Modifier names & descriptions ---
+
+ nerevarine_succession_open: "The Prophecy Calls"
+ nerevarine_succession_open_desc: "Azura's chosen vessel has fallen before the prophecy was fulfilled. The call still echoes. A new incarnation may yet answer it — and Azura's attention rests on any who might claim the mantle."
+
+ sharmat_dream_spreads: "The Dream Spreads"
+ sharmat_dream_spreads_desc: "The Heart of Lorkhan's dream-whisper flows outward from its vessel. This ruler directs the Sixth House's expansion with divine purpose rather than desperate faith. The Blight and the dreaming are now one current, and both answer to them."
+
+ heart_anchor_modifier: "Heart Anchored"
+ heart_anchor_modifier_desc: "The Nerevarine has been slain. The Heart of Lorkhan's binding to Mundus is undisturbed — the prophecy's fulfilment delayed. The divine power remains accessible, the Blight continues to spread, and borrowed divinity may still be gathered from the Heart's presence beneath Red Mountain."
+
+ tower_breaker_modifier: "Tower-Breaking Resonance"
+ tower_breaker_modifier_desc: "The Heart of Lorkhan has departed Tamriel, its Mundane binding broken by Daedric means rather than prophetic fulfilment. The cosmos registers the act as a Tower-breaking. The Prince who was served in this moment marks their servant with a lingering echo of that tremendous act."
+
+ nerevarine_turned_modifier: "Traitor to the Prophecy"
+ nerevarine_turned_modifier_desc: "This character betrayed Azura's call at the final moment, turning to the Sixth House. Dunmer communities are shocked. The Ashlanders mourn. The Tribunal is grimly vindicated. The Sixth House dreams of triumph. None of these reactions are comfortable to live with."
+
+ # --- Decision descriptions ---
+
+ claim_nerevarine_prophecy_desc: "Azura's chosen vessel has fallen before reaching Red Mountain. The prophecy is incomplete. The Daedric Prince of dusk and dawn still calls for a new incarnation — one who bears her champion's mark and is willing to carry the weight of ages to the Heart of Lorkhan. The claim is not without cost, and Azura remembers every failure. But the mantle is still there, waiting."
+
+ betray_azura_for_dagoth_desc: "The Tools are gathered. Red Mountain waits. And Dagoth Ur's voice is clearer than it has ever been — not the whisper of a dead god's dream, but a direct offer: join the Sixth House in its truest form, fuse with the Heart rather than severing it, and share in the power the Tribunal stole at the Battle of Red Mountain. Azura's prophecy demands sacrifice. Dagoth Ur demands only the will to choose."
+
+ betray_dagoth_for_mephala_desc: "The spider's web was always the shape of this betrayal. You took Azura's call and turned it. You took Dagoth Ur's offer and used it to enter the Heart's chamber. Now you stand with the knowledge of how the binding works — and Mephala's path has always been about using knowledge against those who gave it to you. The Heart can be severed from Mundus in silence. Let the spider claim the echo."
+
+ betray_dagoth_for_boethiah_desc: "Boethiah does not accept alliances — only usurpations. You betrayed Azura to stand beside the Sharmat. Now Boethiah offers a final challenge: betray the Sharmat himself, at the Heart's core, in a direct contest of divine will. The Prince of Plots has always rewarded those who take the highest possible throne by the most direct possible means. There is no higher act of usurpation than breaking the Heart's binding against the will of the one fused with it."
+
+ slay_the_nerevarine_desc: "The Nerevarine marked by Azura's prophecy is gathering momentum toward Red Mountain. When they reach the Heart and strike it with the Tools of Kagrenac, the binding will be severed — the Heart will depart Tamriel. For those whose power derives from the Heart's continued presence, this cannot be allowed. The prophecy's vessel must not complete their task."
+
+ # --- Event titles and text ---
+
+ # nerevarine.001
+ nerevarine.001.t: "The Prophecy's Vessel Has Fallen"
+ nerevarine.001.desc: "Word reaches every Dunmer court: the one Azura named as her vessel — the Nerevarine-marked, the reincarnation of Nerevar Indoril — has died before completing the prophecy. Red Mountain still breathes Blight. Dagoth Ur still stirs beneath the ash. The Heart of Lorkhan still beats to a dream that should have ended. The vessel is gone. The prophecy is not."
+ nerevarine.001.a: "Azura's chosen has fallen. The prophecy is incomplete. The Blight will not recede on its own."
+ nerevarine.001.b: "The prophecy still echoes. Another vessel must be found. Azura has not abandoned Morrowind — only this incarnation."
+ nerevarine.001.c: "This changes nothing for me. Dagoth Ur's threat remains regardless of who carries Azura's mark."
+
+ # nerevarine.010
+ nerevarine.010.t: "The Scholar and the Prophecy"
+ nerevarine.010.desc: "Among the great rulers of the age, one stands apart: a figure who has tapped the Heart of Lorkhan using Kagrenac's methodical tools, drinking divine power from the same source that sustains the Tribunal. They are not the Nerevarine. They are something the prophecy did not anticipate — a second thread in the same divine web."
+ nerevarine.010.a: "Approach them. Their understanding of the Heart's workings may illuminate the path forward."
+ nerevarine.010.b: "Keep distance. Their borrowed divinity is a distraction from the prophecy's demands."
+ nerevarine.010.c: "Challenge them — the Heart's power should answer only the prophecy's purpose."
+
+ # nerevarine.011
+ nerevarine.011.t: "The Scholar's Counsel"
+ nerevarine.011.desc: "The heart_scholar speaks carefully and honestly — they have studied the Heart's inner logic longer than most. They describe the binding, the chamber's architecture of divine resonance, the moment the Tools must be used and in which sequence. They have no interest in preventing the prophecy's completion. The Heart's departure will end their borrowed divinity, yes. But they reached their conclusions about mortality long ago."
+ nerevarine.011.a: "Their insight is genuinely invaluable. The path into Red Mountain's heart holds fewer unknown variables now."
+
+ # nerevarine.012
+ nerevarine.012.t: "The Scholar Opposes"
+ nerevarine.012.desc: "The scholar does not speak diplomatically. They speak directly: the Heart's departure will end their life's accumulated power, and they will not assist in that. What they gained from the Heart is real, and they intend to keep it. The Nerevarine and the scholar stand at opposite purposes — and the scholar is, by any measure, a formidable opponent."
+ nerevarine.012.a: "Their opposition ends here. The prophecy cannot be blocked by a scholar's personal ambitions."
+ nerevarine.012.b: "Pull back for now. Confronting them directly would cost too much."
+
+ # nerevarine.020
+ nerevarine.020.t: "The Fused One and the Prophecy"
+ nerevarine.020.desc: "There is a ruler alive who did what Dagoth Ur did — fused with the Heart of Lorkhan directly, without tools, without mediation. They carry a fragment of Lorkhan's divine presence within them constantly. They are everything the Nerevarine is here to end. The question is whether they know it yet, and what they will offer to prevent it."
+ nerevarine.020.a: "Listen to them before moving against them. They may offer something useful."
+ nerevarine.020.b: "There is no negotiation. They will die when the Heart's binding is severed. Better they know now."
+
+ # nerevarine.021
+ nerevarine.021.t: "The Fused One's Offer"
+ nerevarine.021.desc: "The fused one speaks without desperation — they have been part of the Heart long enough that the prospect of its departure is abstract rather than immediate. They offer something unexpected: not an alliance, but an invitation. The Heart's power could sustain two vessels if the fusion were willing. The Nerevarine could carry the same divine fire Dagoth Ur always wanted to share with his people.\n\nThis is Dagoth Ur's dream, offered by a different mouth. It is also, unmistakably, a temptation."
+ nerevarine.021.a: "No. The prophecy is clear, and no offer of shared power will change what must be done."
+ nerevarine.021.b: "Listen more carefully. The Tribunal were gods too. Perhaps the line between prophecy and ambition is narrower than Azura claimed."
+
+ # nerevarine.022
+ nerevarine.022.t: "The Fused One Moves Against You"
+ nerevarine.022.desc: "The fused one has decided that negotiation is not the path they prefer. They move against the Nerevarine with the full weight of the Heart's power — Blight-touched strength, divine certainty, and the absolute conviction of one who cannot allow the Heart to be taken from them without dying. This is the purest possible confrontation the Dagoth Ur era has produced."
+ nerevarine.022.a: "I prevail. The Heart's power cannot protect them from Nerevar's heir."
+ nerevarine.022.b: "They escape. But the encounter has cost them as well — and revealed their limits."
+
+ # nerevarine.030
+ nerevarine.030.t: "The Assassin's Decision"
+ nerevarine.030.desc: "The Nerevarine-marked is real. They are moving toward Red Mountain. When they arrive and use the Tools, the Heart's binding will be severed and everything that depends on the Heart's continued presence — every gram of borrowed divinity, every Ash Vampire, every fragment of fusion — will be gone.\n\nYou have chosen to prevent this. The question is whether you are capable of it."
+ nerevarine.030.a: "Move now. Cleanly. The Heart cannot be lost over a prophecy."
+ nerevarine.030.b: "The attempt fails. The Nerevarine is stronger than anticipated — and they know someone just tried to kill them."
+
+ # nerevarine.099 — hidden, no text needed
+
+ # nerevarine.100
+ nerevarine.100.t: "Sharmat Milestone 1 — The Dream Spreads"
+ nerevarine.100.desc: "The Heart of Lorkhan beats within you, and the dream it carries is not contained to Red Mountain anymore. The Sixth House's dream-whisper moves through you with new urgency — not the distant command of a dormant god beneath an ash mountain, but the immediate, directed will of a living vessel. The dream is spreading. Let it."
+ nerevarine.100.a: "The Sixth House roots deepen. The Blight-will flows outward. This is the beginning of the Sharmat's true work."
+
+ # nerevarine.101
+ nerevarine.101.t: "Sharmat Milestone 2 — Corprus as Gift"
+ nerevarine.101.desc: "A lord among your followers has accepted the corprus gift — not the random, desperate affliction that strikes common soldiers near the ashfields, but the deliberate, dignified Sixth House bestowal. They understand what they carry. They understand why.\n\nThe plague is no longer simply a plague. In your hands it is a distinction: the Sharmat's personal attention, made biological."
+ nerevarine.101.a: "Let this be the model. Corprus is not punishment — it is proximity to the dream."
+
+ # nerevarine.102
+ nerevarine.102.t: "Sharmat Milestone 3 — The Ghost Fence Falls"
+ nerevarine.102.desc: "The great magical barrier the Tribunal erected around Red Mountain — built from their own divine power, renewed at every visit they made to the Heart before you sealed them out — has finally failed. It was built by gods who no longer have access to the source that made them gods. Without renewal, the Fence collapses.\n\nMorrowind's roads no longer have a boundary between the blight and the living."
+ nerevarine.102.a: "The Fence falls. There is no longer anything between Red Mountain and the rest of Morrowind. Let the dream breathe."
+
+ # nerevarine.103
+ nerevarine.103.t: "Sharmat Milestone 4 — The Nerevarine Approaches"
+ nerevarine.103.desc: "Intelligence from your dream-agents reaches you: there is a Nerevarine-marked character gathering momentum toward Red Mountain. Azura's prophecy has found a vessel, or it has found one already and survived long enough to be dangerous.\n\nThe prophecy and the dream are now on a collision course. The outcome of that collision is not written."
+ nerevarine.103.a: "Let them come. The Heart is mine. The prophecy is older than Azura's use of it, and I am not Dagoth Ur — I do not fear it."
+ nerevarine.103.b: "The prophesied champion approaches. I should consider whether an accord is possible before it comes to Red Mountain."
+
+ # nerevarine.104
+ nerevarine.104.t: "Sharmat Milestone 5 — The Heart Sings"
+ nerevarine.104.desc: "Ten years. You have carried a fragment of the Heart of Lorkhan for a decade, and where earlier wielders — Ash Vampires, desperate Sixth House initiates, the Tribunal themselves — struggled with the relationship between vessel and source, you have achieved something none of them managed: genuine stability.\n\nThe power is not merely sustaining you. It is building. The Heart does not merely beat inside you — it §Hsings§!."
+ nerevarine.104.a: "The Heart no longer merely keeps me alive. I direct its resonance. The song of Lorkhan's remains answers to my will."
+
+ # nerevarine.105
+ nerevarine.105.t: "Sharmat Enthroned"
+ nerevarine.105.desc: "This is the throne Dagoth Ur always dreamed of and never reached.\n\nThe Heart of Lorkhan is no longer a source you draw from — it is a part of you that has learned to obey. The Blight that once crept outward from Red Mountain like a wound now moves at your direction. The dream that sustained the Sixth House for three thousand years is yours to command.\n\nThis is what the Sharmat always called his dream: a world remade by the Heart's will. In this timeline, the will belongs to you."
+ nerevarine.105.a: "The Sharmat's dream was always mine. I complete what he could not finish before the Nerevarine reached him. The Heart is enthroned."
+
+ # nerevarine.200
+ nerevarine.200.t: "The Prophecy Betrayed"
+ nerevarine.200.desc: "Word spreads through Dunmer courts with the speed of a dream-whisper: the Nerevarine-marked has turned. Azura's chosen vessel stood at the Heart of Lorkhan with the Tools of Kagrenac in hand and chose the Sixth House instead of the prophecy. The goddess of dusk and dawn does not speak to comfort her people. Her silence says everything.\n\nThe prophecy is broken. The Heart of Lorkhan remains bound to Mundus. Dagoth Ur's dream has won a vessel that should have ended it."
+ nerevarine.200.a: "The prophecy has been betrayed. The Blight will not end. Azura's hope is ash on the wind."
+ nerevarine.200.b: "Dagoth Ur was always the truer power at Red Mountain. The vessel chose correctly."
+
+ # nerevarine.210
+ nerevarine.210.t: "Mephala's Last Thread"
+ nerevarine.210.desc: "The web was always this shape.\n\nYou took Azura's call and turned it against her. You took Dagoth Ur's offer and used it to stand inside the Heart's chamber with knowledge you could only have gained through that betrayal. And now, with Mephala's silk woven through every choice you have made since Red Mountain first called to you, you cut the final thread.\n\nThe Heart's Mundane binding severs. Not cleanly — not with the dignity of the prophesied hero. In silence, in secret, with blood on both hands and no patron willing to name you openly. The Heart §Hvanishes from Tamriel§!.\n\nMephala does not speak. But you feel her approval in the silence."
+ nerevarine.210.a: "The spider weaves her final thread. The Heart departs. The silence is her gift, and I accept it."
+
+ # nerevarine.211
+ nerevarine.211.t: "Boethiah's Final Challenge"
+ nerevarine.211.desc: "Every throne falls to the next challenger. This has always been Boethiah's truth.\n\nYou betrayed Azura. You took Dagoth Ur's offer. And now you stand at the Heart's core — the centre of the greatest source of divine power remaining on Mundus — and challenge the Sharmat himself in the only way Boethiah recognises: direct, open, and total. Not a quiet severance. A §Hchallenge§!.\n\nDagoth Ur does not expect the betrayal to come from inside his own chosen. He has no defence against someone who stands where the Heart sings and still says: §H'This is not yours. And now it is no one's.'§!\n\nThe Heart of Lorkhan departs Tamriel in a cascade of divine resonance. Boethiah marks the act. A Tower has been broken by usurpation."
+ nerevarine.211.a: "The usurper is usurped. Every throne falls to the next challenger. The Heart departs on my terms."
+
+ # --- Custom tooltips ---
+
+ nerevarine_claim_available_tt: "The mantle of the Nerevarine is now unclaimed. Any Dunmer ruler with Azura's champion mark may seek to take it up through the §Yclaim_nerevarine_prophecy§! decision."
+ nerevarine_claim_done_tt: "You have claimed the Nerevarine prophecy. The nerevarine_marked trait has been applied. You may now pursue the Tools of Kagrenac via the §Yseek_tools_of_kagrenac§! decision or prove yourself to the Great Houses and Ashlanders."
+ nerevarine_slain_tt: "The Nerevarine has been slain. The global succession flag §Ydagoth_ur_quest_incomplete§! has been set — another vessel may eventually claim the mantle. The heart_anchor_modifier delays the Heart's departure while the power of borrowed divinity remains accessible."
+ nerevarine_turned_tt: "You have betrayed Azura's prophecy and joined the Sixth House. The §Ynerevarine_forsaken§! trait replaces Azura's mark. You are now on the Dagoth Route B path (§Yheart_fused_ascendant§!). The §Ybetray_dagoth_for_mephala§! and §Ybetray_dagoth_for_boethiah§! decisions are now available if you carry the appropriate mantle."
+ fused_offer_considered_tt: "You have listened to the Heart Fused ruler's offer. This does not commit you to anything — but Azura will notice the hesitation."
+ sharmat_enthroned_tt: "You have achieved the §Ysharmat_ascendant§! trait. The Blight is no longer a disease leaking outward from Red Mountain — it is a weapon that answers to your will. This is the apex of Route B of §19 (Kagrenac's Ambition). §RWarning§!: you will still die instantly if the Heart of Lorkhan is severed from Mundus by the Nerevarine or another means."
+ mephala_sever_tt: "The Heart of Lorkhan has departed Tamriel. You have gained §Ynerevarine_shadow§! and §Ytower_breaker§! traits. §end_dagoth_ur_era§! fires: the Blight recedes, Dagoth Ur is ended."
+ boethiah_sever_tt: "The Heart of Lorkhan has departed Tamriel. You have gained §Ynerevarine_shadow§! and §Ytower_breaker§! traits. §end_dagoth_ur_era§! fires: the Blight recedes, Dagoth Ur is ended."

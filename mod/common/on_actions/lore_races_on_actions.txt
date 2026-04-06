@@ -450,16 +450,28 @@ on_yearly_pulse = {
         4   = borrowed_divinity.cutoff.002  # Heart destroyed while reservoir active — heart_scholar_ascendant rulers on dagoth_ur_defeated (borrowed_divinity_events.txt)
         5   = borrowed_divinity.starvation.001  # Reservoir empty check — heart_scholar_ascendant with heart_cut_off and reservoir=0 (borrowed_divinity_events.txt)
         3   = borrowed_divinity.dissolution.001  # Heart destroyed narrative — all Route A practitioners on dagoth_ur_defeated (borrowed_divinity_events.txt)
+        # --- §20 NEREVARINE SYSTEM ---
+        5   = nerevarine.099   # Sharmat's Dream hidden milestone check — heart_fused_ascendant while dagoth_ur_awakened (nerevarine_events.txt)
+        3   = nerevarine.010   # Cross-path: Nerevarine meets Heart Scholar — nerevarine_marked + living heart_scholar (nerevarine_events.txt)
+        3   = nerevarine.020   # Cross-path: Nerevarine meets Heart Fused — nerevarine_marked + living heart_fused (nerevarine_events.txt)
         # --- THE WALKING WAYS — Core Engine ---
         5   = walking_ways.000               # Awareness intro — eligible rulers via 3 gates (walking_ways_events.txt)
         5   = walking_ways.progress_check    # Hidden progress engine — all active path holders (walking_ways_events.txt)
         2   = walking_ways.chim_silence_begin  # Silence milestone offer — chim_expanded path holders (walking_ways_events.txt)
+        2   = walking_ways.chim_ego_check      # CHIM ego-warning detection — chim_expanded path holders (walking_ways_events.txt)
         # --- MANTLING: TALOS ---
         3   = mantling_talos.milestone_empire_check  # Empire size check — mantling_talos_active (mantling_talos_events.txt)
         3   = mantling_talos.milestone_throne_check  # Cyrodiil paramount check — mantling_talos_active (mantling_talos_events.txt)
+        3   = walking_ways.talos_nordic_empire_milestone  # Nordic/Shezarrine alternative to Ruby Throne milestone — mantling_talos_active (walking_ways_events.txt)
         # --- MANTLING: ARKAY ---
         3   = mantling_arkay.milestone_season_check  # 20+ years ruled — mantling_arkay_active (mantling_arkay_events.txt)
         3   = mantling_arkay.milestone_age_check     # Age 55+ — mantling_arkay_active (mantling_arkay_events.txt)
+        # --- MANTLING: LORKHAN ---
+        3   = mantling_lorkhan.milestone_tower_check      # Tower province paramount — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        3   = mantling_lorkhan.milestone_creation_check   # Duchy+ realm size 10+ — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        # --- MANTLING: STENDARR ---
+        3   = mantling_stendarr.milestone_vigil_check     # Aided Vigilants — mantling_stendarr_active (mantling_stendarr_events.txt)
+        3   = mantling_stendarr.milestone_righteous_check # 15+ years just rule — mantling_stendarr_active (mantling_stendarr_events.txt)
         # --- PSIJIC ENDEAVOUR ---
         3   = psijic_endeavour.silence_begin          # 180-day silence offer — psijic_endeavour_active (psijic_endeavour_events.txt)
         3   = psijic_endeavour.milestone_mastery_check  # learning >= 22 — psijic_endeavour_active (psijic_endeavour_events.txt)
@@ -548,6 +560,32 @@ on_character_death = {
                     has_character_flag = silvenar_green_lady_paired
                 }
                 kill_character = yes
+            }
+        }
+        # --- §20 Nerevarine Succession ---
+        # This hook fires on NATURAL DEATH (battle, age, disease) of a nerevarine_marked
+        # character.  It is distinct from nerevarine.030 (assassination attempt), which is
+        # an active decision by a rival and resolves through event options.  This hook handles
+        # the passive "the vessel dies before completing the quest" case and opens the
+        # claim_nerevarine_prophecy decision for new candidates.
+        if = {
+            limit = {
+                has_trait = nerevarine_marked
+                NOT = { has_trait = nerevarine_victor }
+                NOT = { has_trait = nerevarine_forsaken }
+            }
+            set_global_flag = nerevarine_quest_incomplete
+            if = {
+                limit = { NOT = { exists = global_var:false_nerevarine_count } }
+                set_global_variable = { name = false_nerevarine_count value = 0 }
+            }
+            change_global_variable = { name = false_nerevarine_count add = 1 }
+            every_ruler = {
+                limit = {
+                    is_alive = yes
+                    has_culture = dunmer_culture
+                }
+                trigger_event = { id = nerevarine.001 days = 7 }
             }
         }
     }

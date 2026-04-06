@@ -190,6 +190,133 @@ choose_walking_way = {
     }
 
     option = {
+        name        = choose_walking_way.path_b_lorkhan
+        desc        = choose_walking_way.path_b_lorkhan_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_lorkhan = yes }
+
+        effect = {
+            begin_path_mantling_lorkhan = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = shezarrine_vessel
+            }
+            modifier = {
+                add = 3
+                martial >= 20
+                stewardship >= 16
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_stendarr
+        desc        = choose_walking_way.path_b_stendarr_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_stendarr = yes }
+
+        effect = {
+            begin_path_mantling_stendarr = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = compassionate
+                stewardship >= 16
+            }
+            modifier = {
+                add = 3
+                has_character_flag = vigilants_stendarr_aided
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_boethiah
+        desc        = choose_walking_way.path_b_boethiah_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_boethiah = yes }
+
+        effect = {
+            begin_path_mantling_boethiah = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 4
+                intrigue >= 20
+                has_trait = deceitful
+            }
+            modifier = {
+                add = 3
+                has_culture = dunmer_culture
+                intrigue >= 18
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_mephala
+        desc        = choose_walking_way.path_b_mephala_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_mephala = yes }
+
+        effect = {
+            begin_path_mantling_mephala = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 4
+                intrigue >= 22
+                has_trait = schemer
+            }
+            modifier = {
+                add = 3
+                OR = {
+                    has_character_flag = morag_tong_contact
+                    has_character_flag = dark_brotherhood_contact
+                }
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_hircine
+        desc        = choose_walking_way.path_b_hircine_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_hircine = yes }
+
+        effect = {
+            begin_path_mantling_hircine = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 6
+                OR = {
+                    has_trait = werewolf
+                    has_trait = werebear
+                }
+            }
+            modifier = {
+                add = 4
+                martial >= 22
+                has_character_flag = great_hunt_completed
+            }
+        }
+    }
+
+    option = {
         name        = choose_walking_way.path_c
         desc        = choose_walking_way.path_c_desc
         is_shown    = { always = yes }
@@ -340,6 +467,47 @@ enantiomorph_rebel_creed = {
 }
 
 # ---------------------------------------------------------------
+#  INVOKE THREE-FOLD CONSUMPTION
+#  A once-per-reign decision available to rulers who have
+#  completed the Three-Fold Compact (Azura + Boethiah + Mephala).
+#  The ruler channels all three Good Daedra's patterns
+#  simultaneously — a final consumption of their rivals'
+#  standing in court.
+# ---------------------------------------------------------------
+
+invoke_three_fold_consumption = {
+    picture = "gfx/interface/icons/decisions/decision_personal.dds"
+    desc    = invoke_three_fold_consumption_desc
+
+    is_shown = {
+        has_three_fold_compact = yes
+        NOT = { has_character_flag = three_fold_consumption_used }
+    }
+
+    is_valid = {
+        has_three_fold_compact = yes
+        NOT = { has_character_flag = three_fold_consumption_used }
+        # At least three rivals at court with negative opinion
+        any_courtier = {
+            count >= 3
+            opinion = {
+                target = root
+                value < 0
+            }
+        }
+    }
+
+    effect = {
+        set_character_flag = three_fold_consumption_used
+        invoke_three_fold_consumption_effect = yes
+    }
+
+    ai_will_do = {
+        base = 0   # player-facing mechanical choice
+    }
+}
+
+# ---------------------------------------------------------------
 #  ABANDON WALKING WAY
 #  A ruler can step off the path at any time. The cost is
 #  the loss of all accumulated progress and a five-year
@@ -383,6 +551,26 @@ abandon_walking_way = {
         else_if = {
             limit = { has_character_flag = ww_mantling_meridia_active }
             abandon_path_mantling_meridia = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_lorkhan_active }
+            abandon_path_mantling_lorkhan = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_stendarr_active }
+            abandon_path_mantling_stendarr = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_boethiah_active }
+            abandon_path_mantling_boethiah = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_mephala_active }
+            abandon_path_mantling_mephala = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_hircine_active }
+            abandon_path_mantling_hircine = yes
         }
         else_if = {
             limit = { has_character_flag = ww_psijic_endeavour_active }
