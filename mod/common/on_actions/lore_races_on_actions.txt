@@ -517,7 +517,8 @@ on_yearly_pulse = {
         # --- MANTLING TALOS MILESTONES ---
         3   = mantling_talos.milestone_mercy       # Mercy — spared rival claim — mantling_talos_active (mantling_talos_events.txt)
         3   = mantling_talos.milestone_wound       # Wound — major battle scar — mantling_talos_active (mantling_talos_events.txt)
-        4   = mantling_talos.wulf_encounter        # Wulf avatar encounter — mantling_talos_active OR nerevarine_marked, while dagoth_ur_awakened (mantling_talos_events.txt)
+        4   = mantling_talos.wulf_encounter            # Wulf avatar encounter — mantling_talos_active OR nerevarine_marked, while dagoth_ur_awakened (mantling_talos_events.txt)
+        4   = mantling_talos.wulf_encounter_successor  # Successor Wulf variant — same gate but talos_broken_count >= 1 (mantling_talos_events.txt)
         # --- MANTLING KYNARETH MILESTONES ---
         3   = mantling_kynareth.milestone_companions  # Companions — allied with Companions — mantling_kynareth_active (mantling_kynareth_events.txt)
         3   = mantling_kynareth.milestone_shor        # Shor's breath — survived storm — mantling_kynareth_active (mantling_kynareth_events.txt)
@@ -730,6 +731,48 @@ on_character_death = {
                 trigger_event = { id = nerevarine.001 days = 7 }
             }
         }
+        # --- Talos Mantling Death Contingency ---
+        #
+        # SCENARIO A: Character dies MID-PATH (has ww_mantling_talos_active but NOT mantle_talos)
+        #   → The Oversoul fragment disperses back into the world.  The path may be resumed by
+        #     another — Talos is lore-canonically a composite of multiple souls (Tiber Septim,
+        #     Hjalti Early-Beard, Ysmir Wulfharth), so a successor mantler is metaphysically valid.
+        #   → Sets global_flag talos_path_broken; increments talos_broken_count global var.
+        #   → Fires mantling_talos.path_broken world event after 7 days.
+        #
+        # SCENARIO B: Character dies AFTER achieving mantle_talos (already ascended to godhood)
+        #   → A god does not simply die.  The mantle persists as a divine presence.
+        #   → Sets global_flag talos_throne_occupied to block any new character from fully
+        #     claiming the Talos apex (they can walk the path but reach only "aspect" status).
+        #   → Fires mantling_talos.throne_vacant event to notify the world.
+        #
+        # [SOURCE: UESP Lore:Talos — composite nature of Talos (Septim + Wulfharth + Arctus);
+        #  TES metaphysics "mantling" from The 36 Lessons of Vivec; Michael Kirkbride commentary]
+        if = {
+            limit = {
+                has_character_flag = ww_mantling_talos_active
+                NOT = { has_trait = mantle_talos }
+            }
+            # Scenario A — died mid-path
+            set_global_flag = talos_path_broken
+            if = {
+                limit = { NOT = { exists = global_var:talos_broken_count } }
+                set_global_variable = { name = talos_broken_count value = 0 }
+            }
+            change_global_variable = { name = talos_broken_count add = 1 }
+            every_player = {
+                trigger_event = { id = mantling_talos.path_broken days = 7 }
+            }
+        }
+        if = {
+            limit = { has_trait = mantle_talos }
+            # Scenario B — ascended god departs; throne occupied as divine presence
+            set_global_flag = talos_throne_occupied
+            every_player = {
+                trigger_event = { id = mantling_talos.throne_vacant days = 7 }
+            }
+        }
+
         # --- §20 Jyggalag Liberation Contingency ---
         # Jyggalag is only freed if the Sheogorath mantle is completed by the champion
         # who defeated him (the mantling_sheogorath path). If the active champion dies

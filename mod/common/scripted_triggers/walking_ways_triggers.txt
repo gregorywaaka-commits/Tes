@@ -165,6 +165,12 @@ can_begin_mantling_talos = {
         }
     }
     NOT = { has_character_flag = ww_mantling_talos_completed }
+    # If a previous mantler already fully ascended, the throne is occupied as a
+    # divine presence — new characters can walk the path but cannot achieve the
+    # full mantle_talos apex.  The decision to begin is still allowed; the apex
+    # trait grant is blocked separately.  This flag simply prevents beginning the
+    # path if the throne is cosmologically closed (second mantler check is at apex).
+    # Walking the path while throne is occupied yields "Talos Aspect" status only.
 }
 
 # Arkay

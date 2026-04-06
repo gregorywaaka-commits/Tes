@@ -410,3 +410,25 @@ wulf_blessed = {
 
     flag = wulf_blessed
 }
+
+# ---------------------------------------------------------------
+#  TALOS ASPECT
+#  The Talos mantle is occupied by a prior ascendant, but this
+#  character has walked far enough along the path to become a
+#  fragment of the Oversoul — a lesser echo, not the full god.
+#  Talos is canonically composite (Septim + Wulfharth + Arctus),
+#  so aspects are lore-accurate; they cannot claim the throne
+#  but carry real divine resonance.
+#  [SOURCE: UESP Lore:Talos; Michael Kirkbride commentary on
+#   Tiber Septim as a composite being]
+# ---------------------------------------------------------------
+
+talos_aspect = {
+    category = fame
+
+    martial     = 3
+    diplomacy   = 2
+    monthly_prestige = 6
+
+    flag = talos_aspect
+}

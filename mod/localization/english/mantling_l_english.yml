@@ -631,3 +631,23 @@
  lalatia_recognition_desc: "Oracle Lalatia Varian of the Imperial Cult has identified this character as blessed by a divine visitation. The faithful of the Imperial Cult watch them with awe."
  wulf_blessed: "Wulf-Blessed"
  wulf_blessed_desc: "An old legionnaire named Wulf gave this character a lucky coin near Red Mountain, then vanished. Lalatia Varian believes — and most who hear the story come to agree — that Wulf was no mortal soldier, but an avatar of Tiber Septim himself."
+
+ # ═══════════════════════════════════════════════════════════════
+ #  TALOS PATH BROKEN / THRONE VACANT / SUCCESSOR WULF
+ # ═══════════════════════════════════════════════════════════════
+ mantling_talos.path_broken.t: "The Walk Interrupted"
+ mantling_talos.path_broken.desc: "Someone who had begun walking the path of Talos has died before completing it. The Oversoul does not diminish — it disperses, returns to the dream of Mundus, waits. Talos was never one man. He was Hjalti Early-Beard who learned the thu'um from the Greybeards. He was Ysmir Wulfharth who burned the Reachmen. He was Tiber Septim who stood at the doors of the White-Gold Tower and said: this too is mine. A path walked once can be walked again. The question is whether anyone will."
+ mantling_talos.path_broken.a: "The walk is interrupted. But the path remains."
+
+ mantling_talos.throne_vacant.t: "The God's Mortal Shell Departs"
+ mantling_talos.throne_vacant.desc: "The mortal who wore the Talos mantle has died. But the Divine does not end with flesh. Talos is among the Nine — his presence in the Aurbis is not contingent on a single body. The throne, in the divine sense, is occupied. What changes is that no new mortal may walk the full path to claim what is already held. Future walkers may become aspects — fragments of the Oversoul, echoes of the god — but the complete mantle belongs to the one who already crossed that threshold."
+ mantling_talos.throne_vacant.a: "Talos's mortal life has ended. His divine life has not."
+
+ mantling_talos.wulf_encounter_successor.t: "The Old Man at the Road — Again"
+ mantling_talos.wulf_encounter_successor.desc: "You did not expect to find him here. Others have walked this road before you — walked it and fallen short. And yet the old man waits at the same stretch of path, as patient as stone, as old as a coin that has passed through a thousand hands. He does not ask whether you are the first. He only looks at you with those eyes — eyes you have seen on coins, on chapel icons, on the face of every dead emperor ever memorialized in marble — and he presses the coin into your palm again. The Luck of the Emperor does not run dry. It finds whoever is still walking."
+ mantling_talos.wulf_encounter_successor.a: "I take the coin. 'Were you here before, for someone else?' His smile does not waver. 'I am always here.'"
+ mantling_talos.wulf_encounter_successor.b: "I have enough burdens. I decline, respectfully."
+
+ # Trait
+ talos_aspect: "Talos Aspect"
+ talos_aspect_desc: "The Talos mantle is held by another — but this character has walked far enough along the path to become a fragment of the Oversoul. Talos is composite; aspects are lore-valid. They carry real divine resonance, but cannot claim the full throne."
