@@ -40,6 +40,12 @@
 #                      for eligible rulers when dagoth_ur_awakening_possible
 #                      but BEFORE the full awakening; auto-marks multiple
 #                      candidates as nerevarine_marked across all races
+#    nerevarine.345  — The Vessels Are Called (hidden, one-shot): fires once
+#                      when dagoth_ur_awakening_possible = yes; SPAWNS TEN
+#                      NEW NPC characters (one per Morrowind playable race)
+#                      each with nerevarine_marked + nerevarine_canonical_vessel
+#                      flag.  A player may still claim via the decision as an
+#                      extra aspect; the first to complete the prophecy wins.
 #
 #  Cross-path interactions:
 #    nerevarine.010  — Nerevarine encounters a Heart Scholar (yearly trigger)
@@ -1094,4 +1100,205 @@ nerevarine.340 = {
     }
 
     option = { name = nerevarine.340.a }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.345  The Vessels Are Called (hidden, one-shot)
+#
+# Fires ONCE when dagoth_ur_awakening_possible = yes, guarded by
+# the global flag nerevarine_canonical_spawned.
+#
+# Spawns ten NEW NPC characters — one for each Morrowind playable
+# race (Dunmer, Nord, Imperial, Breton, Redguard, Altmer, Bosmer,
+# Orc, Khajiit, Argonian) — each receiving nerevarine_marked and
+# the nerevarine_canonical_vessel character flag.  These represent
+# the canonical prophetic vessels: Azura casts her gaze across all
+# races simultaneously, not only the Dunmeri people.
+#
+# The spawned characters are landless (wanderers) — they exist in
+# the world as potential Incarnates but must still fulfil the
+# prophecy chain to become the True Nerevarine.  A player character
+# of any race may additionally claim via claim_nerevarine_prophecy
+# as an "extra aspect"; the first to achieve nerevarine_victor wins.
+#
+# "The stranger from across the water is known to us — but Azura
+#  calls many strangers in many skins.  Only one will stand at
+#  Red Mountain.  The others are false Incarnates, walking the
+#  wrong dream."  — Ashlander elder's warning, TES III lore variant
+#
+# Triggered by: first dunmer_culture ruler eligible when
+#               dagoth_ur_awakening_possible fires.
+# One-shot guard: nerevarine_canonical_spawned global flag.
+# Registered in: on_yearly_pulse random_events weight 2
+# ---------------------------------------------------------------
+nerevarine.345 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        dagoth_ur_awakening_possible = yes
+        NOT = { has_global_flag = nerevarine_canonical_spawned }
+        NOT = { has_global_flag = dagoth_ur_defeated }
+        has_culture = dunmer_culture
+        is_ruler = yes
+        is_adult = yes
+    }
+
+    immediate = {
+        set_global_flag = nerevarine_canonical_spawned
+
+        # Ensure the spirit counter exists before incrementing
+        if = {
+            limit = { NOT = { exists = global_var:active_nerevarine_spirit_count } }
+            set_global_variable = { name = active_nerevarine_spirit_count value = 0 }
+        }
+
+        # ── 1. Dunmer Vessel — the most lore-expected Incarnate ─────────────────
+        create_character = {
+            culture = dunmer_culture
+            religion = azura_faith
+            age = 25
+            save_scope_as = nerevarine_vessel_dunmer
+        }
+        scope:nerevarine_vessel_dunmer = {
+            set_character_flag = nerevarine_canonical_vessel
+            add_trait = nerevarine_marked
+            change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+            trigger_event = { id = nerevarine.310 days = 3 }
+        }
+
+        # ── 2. Nord Vessel ──────────────────────────────────────────────────────
+        create_character = {
+            culture = nord_culture
+            religion = eight_divines
+            age = 24
+            save_scope_as = nerevarine_vessel_nord
+        }
+        scope:nerevarine_vessel_nord = {
+            set_character_flag = nerevarine_canonical_vessel
+            add_trait = nerevarine_marked
+            change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+            trigger_event = { id = nerevarine.300 days = 2 }
+            trigger_event = { id = nerevarine.310 days = 5 }
+        }
+
+        # ── 3. Imperial Vessel ──────────────────────────────────────────────────
+        create_character = {
+            culture = imperial_culture
+            religion = eight_divines
+            age = 26
+            save_scope_as = nerevarine_vessel_imperial
+        }
+        scope:nerevarine_vessel_imperial = {
+            set_character_flag = nerevarine_canonical_vessel
+            add_trait = nerevarine_marked
+            change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+            trigger_event = { id = nerevarine.300 days = 2 }
+            trigger_event = { id = nerevarine.310 days = 5 }
+        }
+
+        # ── 4. Breton Vessel ────────────────────────────────────────────────────
+        create_character = {
+            culture = breton_culture
+            religion = eight_divines
+            age = 23
+            save_scope_as = nerevarine_vessel_breton
+        }
+        scope:nerevarine_vessel_breton = {
+            set_character_flag = nerevarine_canonical_vessel
+            add_trait = nerevarine_marked
+            change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+            trigger_event = { id = nerevarine.300 days = 2 }
+            trigger_event = { id = nerevarine.310 days = 5 }
+        }
+
+        # ── 5. Redguard Vessel ──────────────────────────────────────────────────
+        create_character = {
+            culture = redguard_culture
+            religion = eight_divines
+            age = 27
+            save_scope_as = nerevarine_vessel_redguard
+        }
+        scope:nerevarine_vessel_redguard = {
+            set_character_flag = nerevarine_canonical_vessel
+            add_trait = nerevarine_marked
+            change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+            trigger_event = { id = nerevarine.300 days = 2 }
+            trigger_event = { id = nerevarine.310 days = 5 }
+        }
+
+        # ── 6. Altmer Vessel ────────────────────────────────────────────────────
+        create_character = {
+            culture = altmer_culture
+            religion = eight_divines
+            age = 22
+            save_scope_as = nerevarine_vessel_altmer
+        }
+        scope:nerevarine_vessel_altmer = {
+            set_character_flag = nerevarine_canonical_vessel
+            add_trait = nerevarine_marked
+            change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+            trigger_event = { id = nerevarine.300 days = 2 }
+            trigger_event = { id = nerevarine.310 days = 5 }
+        }
+
+        # ── 7. Bosmer Vessel ────────────────────────────────────────────────────
+        create_character = {
+            culture = bosmer_culture
+            religion = green_pact_faith
+            age = 21
+            save_scope_as = nerevarine_vessel_bosmer
+        }
+        scope:nerevarine_vessel_bosmer = {
+            set_character_flag = nerevarine_canonical_vessel
+            add_trait = nerevarine_marked
+            change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+            trigger_event = { id = nerevarine.300 days = 2 }
+            trigger_event = { id = nerevarine.310 days = 5 }
+        }
+
+        # ── 8. Orc Vessel ───────────────────────────────────────────────────────
+        create_character = {
+            culture = orc_culture
+            age = 28
+            save_scope_as = nerevarine_vessel_orc
+        }
+        scope:nerevarine_vessel_orc = {
+            set_character_flag = nerevarine_canonical_vessel
+            add_trait = nerevarine_marked
+            change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+            trigger_event = { id = nerevarine.300 days = 2 }
+            trigger_event = { id = nerevarine.310 days = 5 }
+        }
+
+        # ── 9. Khajiit Vessel ───────────────────────────────────────────────────
+        create_character = {
+            culture = khajiit_culture
+            age = 24
+            save_scope_as = nerevarine_vessel_khajiit
+        }
+        scope:nerevarine_vessel_khajiit = {
+            set_character_flag = nerevarine_canonical_vessel
+            add_trait = nerevarine_marked
+            change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+            trigger_event = { id = nerevarine.300 days = 2 }
+            trigger_event = { id = nerevarine.310 days = 5 }
+        }
+
+        # ── 10. Argonian Vessel ─────────────────────────────────────────────────
+        create_character = {
+            culture = argonian_culture
+            age = 26
+            save_scope_as = nerevarine_vessel_argonian
+        }
+        scope:nerevarine_vessel_argonian = {
+            set_character_flag = nerevarine_canonical_vessel
+            add_trait = nerevarine_marked
+            change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+            trigger_event = { id = nerevarine.300 days = 2 }
+            trigger_event = { id = nerevarine.310 days = 5 }
+        }
+    }
+
+    option = { name = nerevarine.345.a }
 }

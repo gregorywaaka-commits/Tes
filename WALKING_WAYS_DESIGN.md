@@ -3974,3 +3974,79 @@ When `nerevarine_victor` is achieved (kagrenac.030 option A):
 - [x] `nerevarine.340` registered in `on_yearly_pulse` (weight 3)
 - [x] Localization added: `.330.a`, `.331.*`, `.340.a`, `nerevarine_pretender_desc`,
       `shezarrine.sovngarde_entry.*`, `nerevarine_dual_soul_tt`, updated `shors_throne_vacant_tt`
+
+---
+
+## §23 Canonical Nerevarine Vessels — One Per Race, Spawned New
+
+### 23.1 Design Principle
+
+**The Problem:** §22's `nerevarine.340` auto-marks *existing rulers* as potential Incarnates.
+But the user requirement says the canonical vessels should be **spawned as new characters**, not
+converted from existing people.  The lore supports this: the Nerevarine prophecy describes a
+stranger who "comes from across the water" — an outsider, not a current power-holder.
+
+**Solution:** A one-shot event `nerevarine.345` spawns exactly **ten new NPC characters**, one
+for each Morrowind playable race (Dunmer, Nord, Imperial, Breton, Redguard, Altmer, Bosmer, Orc,
+Khajiit, Argonian), as landless wanderers at the moment the prophecy stirs.  Each receives
+`nerevarine_marked` and the `nerevarine_canonical_vessel` character flag.
+
+**Lore basis:**
+- TES III: Morrowind allows the player to be any of the ten standard races — Azura's prophecy
+  is not racially exclusive.  The lore calls these claimants "the stranger" regardless of
+  ethnicity.
+- The competing Incarnates in the game's lore (Conoon Chodala, Wulf, etc.) show that multiple
+  candidates arise simultaneously.  The §23 system makes this visible in gameplay.
+- Players using any race remain free to claim via `claim_nerevarine_prophecy`; they join the
+  existing field of canonical vessels as an extra prophetic aspect.
+  [SOURCE: TES III:Morrowind — Nerevarine Prophecies, character creation races; UESP Lore:Nerevarine]
+
+### 23.2 Mechanical Implementation
+
+#### 23.2.1 Guard Flag
+`nerevarine_canonical_spawned` global flag — set on first fire, prevents re-spawning.
+
+#### 23.2.2 Trigger Conditions for `nerevarine.345`
+| Trigger | Value |
+|---|---|
+| `dagoth_ur_awakening_possible` | `yes` |
+| `has_global_flag = nerevarine_canonical_spawned` | `NOT` (one-shot) |
+| `has_global_flag = dagoth_ur_defeated` | `NOT` |
+| `has_culture` | `dunmer_culture` |
+| `is_ruler` | `yes` |
+| `is_adult` | `yes` |
+
+#### 23.2.3 Characters Spawned
+| Race | Culture | Religion | Age |
+|---|---|---|---|
+| Dunmer | `dunmer_culture` | `azura_faith` | 25 |
+| Nord | `nord_culture` | `eight_divines` | 24 |
+| Imperial | `imperial_culture` | `eight_divines` | 26 |
+| Breton | `breton_culture` | `eight_divines` | 23 |
+| Redguard | `redguard_culture` | `eight_divines` | 27 |
+| Altmer | `altmer_culture` | `eight_divines` | 22 |
+| Bosmer | `bosmer_culture` | `green_pact_faith` | 21 |
+| Orc | `orc_culture` | (culture default) | 28 |
+| Khajiit | `khajiit_culture` | (culture default) | 24 |
+| Argonian | `argonian_culture` | (culture default) | 26 |
+
+Each character also:
+- Sets `nerevarine_canonical_vessel` character flag
+- Gets `add_trait = nerevarine_marked`
+- Increments `active_nerevarine_spirit_count`
+- Non-Dunmer fire `nerevarine.300` (Outlander revelation, days = 2)
+- All fire `nerevarine.310` (Vision of Past Incarnations, days = 3–5)
+
+#### 23.2.4 Player as Extra Aspect
+The existing `claim_nerevarine_prophecy` decision (§21–§22) remains available to player
+characters of any race.  A player who claims is an additional potential Incarnate on top of
+the ten spawned vessels.  The pretender system (§22: nerevarine.330/331) means only the
+first to achieve `nerevarine_victor` is recognised — all others become False Incarnates
+regardless of whether they were canonical spawned NPCs or player claimants.
+
+### 23.3 Integration Checklist — §23
+
+- [x] `nerevarine.345` (canonical vessel spawn) added to `nerevarine_events.txt`
+- [x] `nerevarine.345` registered in `on_yearly_pulse` (weight 2)
+- [x] Event header in `nerevarine_events.txt` updated to document §23
+- [x] Localization added: `nerevarine.345.a`, `nerevarine_canonical_vessel_flag_tt`

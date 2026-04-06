@@ -464,6 +464,8 @@ on_yearly_pulse = {
         2   = nerevarine.321   # Hidden dual-soul check — nerevarine_marked + shezarrine_vessel + no convergence yet (nerevarine_events.txt)
         # §22 Pre-cursor prophetic stirring — fires BEFORE dagoth_ur_awakened; marks multiple candidates
         3   = nerevarine.340   # Pre-cursor auto-mark — dagoth_ur_awakening_possible + NOT awakened yet (nerevarine_events.txt)
+        # §23 Canonical vessel spawn — one-shot, creates 10 race-specific NPC Nerevarines
+        2   = nerevarine.345   # Canonical vessels spawned (one-shot) — dunmer ruler + awakening_possible + NOT canonical_spawned (nerevarine_events.txt)
         # §22 Shor's Throne — Shezarrine enters Sovngarde while alive
         2   = shezarrine.sovngarde_entry  # shezarrine_vessel + (shor_marked OR martial>=22) (shezarrine_events.txt)
         # --- THE WALKING WAYS — Core Engine ---
