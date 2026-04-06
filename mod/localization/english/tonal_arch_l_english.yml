@@ -60,3 +60,8 @@
 
  # ─── World Notification ───
  walking_ways.world_notify.tonal_transcendent: "Scholars in [scope:source.primary_title.name] report that [scope:source.char_name|U] has completed an experiment that the Dwemer attempted once and did not survive. The tonal signature of the ruler has changed — not subtly. The animunculi in nearby Dwemer ruins have begun behaving unusually. The Dwemer would have understood this. They are not available for comment."
+
+ tonal_arch.milestone_nullify.t: "The Null Tone"
+ tonal_arch.milestone_nullify.desc: "The Dwemer understood that every note in the tonal architecture could be cancelled by its inversion — that the deep grammar of reality could be written over, erased, countered. The practitioner has found a nullification: a place in the tonal structure where the old tone was cancelling the new, where the architecture of the past was preventing the future from speaking. They have silenced the old note. The new one rings clean."
+ tonal_arch.milestone_nullify.a: "What was spoken before was speaking against us. I found its inversion."
+ tonal_arch.milestone_nullify.b: "Silence is not absence. Silence is the null tone, and it has its own music."

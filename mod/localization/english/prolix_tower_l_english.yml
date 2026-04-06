@@ -61,3 +61,12 @@
  # ─── World Notifications ───
  walking_ways.world_notify.prolix_sovereign: "A text from [scope:source.primary_title.name] is circulating through scholarly courts with unsettling effect. It appears to name its own author as divine — and the language it uses is not metaphorical. [scope:source.char_name|U] has walked Vivec's path not through Kagrenac's tools but through the architecture of language itself. The Tower is complete. Whether to read it is a choice each court must make for itself."
  walking_ways.world_notify.lost_in_the_tower: "Reports from [scope:source.primary_title.name] suggest that [scope:source.char_name|U] is present but somehow distant — as if inhabiting the same court from a slightly different angle than everyone else. Scholars who have corresponded with the ruler describe the sensation of conversing with someone who is simultaneously inside and outside the conversation. The Tower was built. The author chose to live in it."
+
+ prolix_tower.milestone_author.t: "The Author's Fingerprints"
+ prolix_tower.milestone_author.desc: "The Prolix Tower holds that the universe was authored — not created, not shaped, but written — and that the author's fingerprints are visible in the deep grammar of reality if you are literate enough to read them. The practitioner has achieved authorial literacy: they can distinguish between the parts of the world that were deliberate and the parts that were errors, interpolations, marginalia. This is not knowing the author's intent. It is knowing the author existed."
+ prolix_tower.milestone_author.a: "I have found the author's voice in the margin of the world."
+ prolix_tower.milestone_author.b: "The text precedes the author. The author is only catching up."
+ prolix_tower.milestone_uncontrolled.t: "The Tower Speaks Without Us"
+ prolix_tower.milestone_uncontrolled.desc: "The Prolix Tower's fundamental danger: Stone speaks without ceasing, whether or not the speaker intends it. The practitioner has encountered the uncontrolled variable — a moment when the Tower's speaking extended beyond their grip, when reality wrote itself without their participation. They survived. More importantly, they understood. The uncontrolled variable is not failure. It is proof that the Tower is real."
+ prolix_tower.milestone_uncontrolled.a: "The Tower spoke without me. I listened."
+ prolix_tower.milestone_uncontrolled.b: "What I could not control, I could at least witness."

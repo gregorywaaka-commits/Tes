@@ -280,3 +280,148 @@ enantiomorph.witness_lost = {
         add_dread = 10
     }
 }
+
+# ─── Milestone Events ───
+
+enantiomorph.milestone_void = {
+    type = character_event
+    title = enantiomorph.milestone_void.t
+    desc = enantiomorph.milestone_void.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_enantiomorph_active
+        NOT = { has_character_flag = ww_enant_milestone_void }
+        OR = {
+            stress >= 20
+            intrigue >= 16
+        }
+    }
+
+    option = {
+        name = enantiomorph.milestone_void.a
+        set_character_flag = ww_enant_milestone_void
+        add_stress = -20
+        add_intrigue_xp = 150
+    }
+
+    option = {
+        name = enantiomorph.milestone_void.b
+        set_character_flag = ww_enant_milestone_void
+        add_dread = 10
+        add_prestige = 75
+    }
+}
+
+enantiomorph.milestone_witness = {
+    type = character_event
+    title = enantiomorph.milestone_witness.t
+    desc = enantiomorph.milestone_witness.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_enantiomorph_active
+        NOT = { has_character_flag = ww_enant_milestone_witness }
+        intrigue >= 18
+    }
+
+    option = {
+        name = enantiomorph.milestone_witness.a
+        set_character_flag = ww_enant_milestone_witness
+        add_intrigue_xp = 200
+        add_stress = -15
+    }
+
+    option = {
+        name = enantiomorph.milestone_witness.b
+        set_character_flag = ww_enant_milestone_witness
+        add_prestige = 100
+        add_dread = 15
+    }
+}
+
+enantiomorph.milestone_creed = {
+    type = character_event
+    title = enantiomorph.milestone_creed.t
+    desc = enantiomorph.milestone_creed.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_enantiomorph_active
+        NOT = { has_character_flag = ww_enant_milestone_creed }
+        OR = {
+            has_trait = devoted
+            piety >= 200
+        }
+    }
+
+    option = {
+        name = enantiomorph.milestone_creed.a
+        set_character_flag = ww_enant_milestone_creed
+        add_piety = 100
+        add_stress = -15
+    }
+
+    option = {
+        name = enantiomorph.milestone_creed.b
+        set_character_flag = ww_enant_milestone_creed
+        add_prestige = 75
+        add_learning_xp = 100
+    }
+}
+
+enantiomorph.milestone_survived = {
+    type = character_event
+    title = enantiomorph.milestone_survived.t
+    desc = enantiomorph.milestone_survived.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_enantiomorph_active
+        NOT = { has_character_flag = ww_enant_milestone_survived }
+        years_as_ruler >= 8
+        is_at_war = no
+    }
+
+    option = {
+        name = enantiomorph.milestone_survived.a
+        set_character_flag = ww_enant_milestone_survived
+        add_stress = -25
+        add_prestige = 150
+    }
+
+    option = {
+        name = enantiomorph.milestone_survived.b
+        set_character_flag = ww_enant_milestone_survived
+        add_dread = 20
+        add_learning_xp = 100
+    }
+}
+
+enantiomorph.milestone_throne = {
+    type = character_event
+    title = enantiomorph.milestone_throne.t
+    desc = enantiomorph.milestone_throne.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_enantiomorph_active
+        NOT = { has_character_flag = ww_enant_milestone_throne }
+        realm_size >= 15
+        is_ruler = yes
+    }
+
+    option = {
+        name = enantiomorph.milestone_throne.a
+        set_character_flag = ww_enant_milestone_throne
+        add_prestige = 150
+        add_stress = -10
+    }
+
+    option = {
+        name = enantiomorph.milestone_throne.b
+        set_character_flag = ww_enant_milestone_throne
+        add_dread = 25
+        add_prestige = 100
+    }
+}

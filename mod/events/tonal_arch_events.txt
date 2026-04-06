@@ -314,3 +314,34 @@ tonal_arch.milestone_gestalt = {
         add_prestige = 100
     }
 }
+
+# ─── Milestone Events ───
+
+tonal_arch.milestone_nullify = {
+    type = character_event
+    title = tonal_arch.milestone_nullify.t
+    desc = tonal_arch.milestone_nullify.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_tonal_architecture_active
+        NOT = { has_character_flag = ww_tonal_milestone_nullify }
+        learning >= 18
+        stewardship >= 14
+    }
+
+    option = {
+        name = tonal_arch.milestone_nullify.a
+        set_character_flag = ww_tonal_milestone_nullify
+        add_learning_xp = 200
+        add_prestige = 100
+        add_stress = -15
+    }
+
+    option = {
+        name = tonal_arch.milestone_nullify.b
+        set_character_flag = ww_tonal_milestone_nullify
+        add_stewardship_xp = 100
+        add_learning_xp = 150
+    }
+}
