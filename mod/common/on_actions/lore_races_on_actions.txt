@@ -485,6 +485,142 @@ on_yearly_pulse = {
         3   = enantiomorph.milestone_betrayal         # Betrayal flag check — enantiomorph_active (enantiomorph_events.txt)
         # --- AMARANTH ---
         2   = amaranth.dreamer_court                  # Yearly dreamer flavor — amaranth_achieved holders (amaranth_events.txt)
+        # --- CHIM EXPANDED MILESTONES ---
+        3   = chim.milestone_mercy      # Mercy — piety+compassionate — chim_expanded_active (chim_events.txt)
+        3   = chim.milestone_stable     # Stable ego — survived assassination — chim_expanded_active (chim_events.txt)
+        3   = chim.milestone_truth      # Truth — learning 18+ — chim_expanded_active (chim_events.txt)
+        3   = chim.milestone_name       # Name — silence done+learning 20+ — chim_expanded_active (chim_events.txt)
+        # --- ENANTIOMORPH MILESTONES ---
+        3   = enantiomorph.milestone_void      # Void — exile/imprisonment history — enantiomorph_active (enantiomorph_events.txt)
+        3   = enantiomorph.milestone_witness   # Witness — high intrigue — enantiomorph_active (enantiomorph_events.txt)
+        3   = enantiomorph.milestone_creed     # Creed — devoted/zealous — enantiomorph_active (enantiomorph_events.txt)
+        3   = enantiomorph.milestone_survived  # Survived — survived war/battle — enantiomorph_active (enantiomorph_events.txt)
+        3   = enantiomorph.milestone_throne    # Throne — royal title holder — enantiomorph_active (enantiomorph_events.txt)
+        # --- PSIJIC ENDEAVOUR MILESTONES ---
+        3   = psijic_endeavour.milestone_prediction  # Prediction — prophecy fulfilled — psijic_endeavour_active (psijic_endeavour_events.txt)
+        3   = psijic_endeavour.milestone_text        # Text — learning 20+ scholar — psijic_endeavour_active (psijic_endeavour_events.txt)
+        # --- PROLIX TOWER MILESTONES ---
+        3   = prolix_tower.milestone_author         # Author — published text — prolix_tower_active (prolix_tower_events.txt)
+        3   = prolix_tower.milestone_uncontrolled   # Uncontrolled — text spread without intent — prolix_tower_active (prolix_tower_events.txt)
+        # --- TONAL ARCHITECTURE MILESTONES ---
+        3   = tonal_arch.milestone_nullify   # Nullify — tonal dissonance survived — tonal_architecture_active (tonal_arch_events.txt)
+        # --- MANTLING ARKAY MILESTONES ---
+        3   = mantling_arkay.milestone_burial    # Burial rite — personal loss — mantling_arkay_active (mantling_arkay_events.txt)
+        3   = mantling_arkay.milestone_grief     # Grief witnessed — mass death event — mantling_arkay_active (mantling_arkay_events.txt)
+        3   = mantling_arkay.milestone_neardeath # Near death survived — mantling_arkay_active (mantling_arkay_events.txt)
+        3   = mantling_arkay.milestone_plague    # Plague passed — maintained cycle — mantling_arkay_active (mantling_arkay_events.txt)
+        # --- MANTLING STENDARR MILESTONES ---
+        3   = mantling_stendarr.milestone_charity  # Charity — aided the weak — mantling_stendarr_active (mantling_stendarr_events.txt)
+        3   = mantling_stendarr.milestone_daedra   # Daedra opposed — banished daedra — mantling_stendarr_active (mantling_stendarr_events.txt)
+        3   = mantling_stendarr.milestone_mercy    # Mercy — spared a defeated foe — mantling_stendarr_active (mantling_stendarr_events.txt)
+        3   = mantling_stendarr.milestone_weak     # Protected weak — aided peasants — mantling_stendarr_active (mantling_stendarr_events.txt)
+        # --- MANTLING TALOS MILESTONES ---
+        3   = mantling_talos.milestone_mercy   # Mercy — spared rival claim — mantling_talos_active (mantling_talos_events.txt)
+        3   = mantling_talos.milestone_wound   # Wound — major battle scar — mantling_talos_active (mantling_talos_events.txt)
+        # --- MANTLING KYNARETH MILESTONES ---
+        3   = mantling_kynareth.milestone_companions  # Companions — allied with Companions — mantling_kynareth_active (mantling_kynareth_events.txt)
+        3   = mantling_kynareth.milestone_shor        # Shor's breath — survived storm — mantling_kynareth_active (mantling_kynareth_events.txt)
+        3   = mantling_kynareth.milestone_skybattle   # Skybattle — aerial/siege victory — mantling_kynareth_active (mantling_kynareth_events.txt)
+        3   = mantling_kynareth.milestone_storm       # Storm survived — natural disaster — mantling_kynareth_active (mantling_kynareth_events.txt)
+        # --- MANTLING LORKHAN MILESTONES ---
+        3   = mantling_lorkhan.milestone_heart       # Heart — Red Mountain awareness — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        3   = mantling_lorkhan.milestone_sacrifice   # Sacrifice — gave up irreplaceable thing — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        3   = mantling_lorkhan.milestone_shezarrine  # Shezarrine — touched that lineage — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        3   = mantling_lorkhan.milestone_wound       # Wound — personal defeat survived — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        # --- SHEZARRINE MILESTONES ---
+        3   = shezarrine.milestone_whitestrake  # Whitestrake vision — shezarrine_ascendant_active (shezarrine_events.txt)
+        # --- MANTLING BOETHIAH MILESTONES ---
+        3   = mantling_daedric.boethiah_attribution  # Attribution's Share — mantling_boethiah_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.boethiah_consumed     # Consumed rival — mantling_boethiah_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.boethiah_sacrifice    # Sacrifice — mantling_boethiah_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.boethiah_throne       # Throne contested — mantling_boethiah_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.boethiah_tournament   # Tournament victory — mantling_boethiah_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.boethiah_treachery    # Treachery survived — mantling_boethiah_active (mantling_daedric_events.txt)
+        # --- MANTLING MEPHALA MILESTONES ---
+        3   = mantling_daedric.mephala_murder   # Murder arranged — mantling_mephala_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.mephala_puppet   # Puppet master — mantling_mephala_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.mephala_secret   # Secret held — mantling_mephala_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.mephala_skein    # The Skein — mantling_mephala_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.mephala_thread   # First thread — mantling_mephala_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.mephala_web      # Web complete — mantling_mephala_active (mantling_daedric_events.txt)
+        # --- MANTLING MERIDIA MILESTONES ---
+        3   = mantling_daedric.meridia_beacon       # Beacon found — mantling_meridia_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.meridia_corruption   # Corruption cleansed — mantling_meridia_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.meridia_light        # Inner light — mantling_meridia_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.meridia_necro_refused # Necromancy refused — mantling_meridia_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.meridia_temple       # Temple built — mantling_meridia_active (mantling_daedric_events.txt)
+        # --- MANTLING AZURA MILESTONES ---
+        3   = mantling_daedric.azura_dusk            # Dusk witnessed — mantling_azura_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.azura_prophecy        # Prophecy received — mantling_azura_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.azura_stars           # Stars aligned — mantling_azura_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.azura_transformation  # Transformation — mantling_azura_active (mantling_daedric_events.txt)
+        # --- MANTLING HIRCINE MILESTONES ---
+        3   = mantling_daedric.hircine_apex        # Apex predator — mantling_hircine_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.hircine_bloodmoon   # Bloodmoon — mantling_hircine_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.hircine_chase       # The Chase — mantling_hircine_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.hircine_grounds     # Hunting Grounds — mantling_hircine_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.hircine_lycanthropy # Lycanthropy — mantling_hircine_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.hircine_prey        # First prey — mantling_hircine_active (mantling_daedric_events.txt)
+        # --- MANTLING ALMALEXIA MILESTONES ---
+        3   = mantling_tribunal.almalexia_hands      # Hands of Almalexia — mantling_almalexia_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.almalexia_healer     # Healer — mantling_almalexia_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.almalexia_mother     # Mother — mantling_almalexia_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.almalexia_protector  # Protector — mantling_almalexia_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.almalexia_reclame    # Reclamation — mantling_almalexia_active (mantling_tribunal_events.txt)
+        # --- MANTLING SOTHA SIL MILESTONES ---
+        3   = mantling_tribunal.sotha_sil_clockwork  # Clockwork insight — mantling_sotha_sil_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.sotha_sil_construct  # Construct built — mantling_sotha_sil_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.sotha_sil_hidden     # Hidden withdrawal — mantling_sotha_sil_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.sotha_sil_mechanism  # Mechanism understood — mantling_sotha_sil_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.sotha_sil_workshop   # Workshop established — mantling_sotha_sil_active (mantling_tribunal_events.txt)
+        # --- MANTLING VIVEC MILESTONES ---
+        3   = mantling_tribunal.vivec_contradiction  # Contradiction held — mantling_vivec_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.vivec_duality        # Duality mastered — mantling_vivec_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.vivec_poet           # Poet — mantling_vivec_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.vivec_sermon         # Sermon written — mantling_vivec_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.vivec_warrior        # Warrior victory — mantling_vivec_active (mantling_tribunal_events.txt)
+        # --- MANTLING DIBELLA MILESTONES ---
+        3   = mantling_dibella.milestone_art     # Art patronage — mantling_dibella_active (mantling_dibella_events.txt)
+        3   = mantling_dibella.milestone_beauty  # Beauty embodied — mantling_dibella_active (mantling_dibella_events.txt)
+        3   = mantling_dibella.milestone_divine  # Divine glimpse — mantling_dibella_active (mantling_dibella_events.txt)
+        3   = mantling_dibella.milestone_love    # Love expressed — mantling_dibella_active (mantling_dibella_events.txt)
+        3   = mantling_dibella.milestone_patron  # Patron of arts — mantling_dibella_active (mantling_dibella_events.txt)
+        3   = mantling_dibella.milestone_vessel  # Vessel — mantling_dibella_active (mantling_dibella_events.txt)
+        # --- MANTLING MARA MILESTONES ---
+        3   = mantling_mara.milestone_children   # Living children — mantling_mara_active (mantling_mara_events.txt)
+        3   = mantling_mara.milestone_devotion   # Devotion — mantling_mara_active (mantling_mara_events.txt)
+        3   = mantling_mara.milestone_family     # Family intact — mantling_mara_active (mantling_mara_events.txt)
+        3   = mantling_mara.milestone_healing    # Healing given — mantling_mara_active (mantling_mara_events.txt)
+        3   = mantling_mara.milestone_hearth     # Hearth kept — mantling_mara_active (mantling_mara_events.txt)
+        3   = mantling_mara.milestone_pilgrimage # Pilgrimage completed — mantling_mara_active (mantling_mara_events.txt)
+        # --- MANTLING SHEOGORATH MILESTONES ---
+        3   = mantling_sheogorath.milestone_greymarch         # Greymarch witnessed — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        3   = mantling_sheogorath.milestone_jyggalag_defeated # Jyggalag defeated — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        3   = mantling_sheogorath.milestone_madness           # Madness survived — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        3   = mantling_sheogorath.milestone_new_prince        # New Prince — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        3   = mantling_sheogorath.milestone_obelisk           # Obelisk used — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        3   = mantling_sheogorath.milestone_realm             # Realm entered — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        # --- PATH K: MANTLING JYGGALAG MILESTONES ---
+        3   = mantling_jyggalag.milestone_order_kept        # Order kept — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        3   = mantling_jyggalag.milestone_chaos_suppressed  # Chaos suppressed — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        3   = mantling_jyggalag.milestone_greymarch_echo    # Greymarch echo — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        3   = mantling_jyggalag.milestone_crystal_pact      # Crystal pact — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        3   = mantling_jyggalag.milestone_madness_refused   # Madness refused — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        3   = mantling_jyggalag.milestone_instrument        # Instrument of Order — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        # --- PATH K-2: SHEOGORATH'S ECHO MILESTONES ---
+        3   = sheogorath_echo.milestone_insight           # Insight — sheogorath_echo_active (sheogorath_echo_events.txt)
+        3   = sheogorath_echo.milestone_chaos_wielded     # Chaos wielded — sheogorath_echo_active (sheogorath_echo_events.txt)
+        3   = sheogorath_echo.milestone_obelisk           # Obelisk — sheogorath_echo_active (sheogorath_echo_events.txt)
+        3   = sheogorath_echo.milestone_greymarch_witness # Greymarch witness — sheogorath_echo_active (sheogorath_echo_events.txt)
+        3   = sheogorath_echo.milestone_court_jester      # Court jester — sheogorath_echo_active (sheogorath_echo_events.txt)
+        3   = sheogorath_echo.milestone_realm_glimpsed    # Realm glimpsed — sheogorath_echo_active (sheogorath_echo_events.txt)
+        # --- PATH L: NECROMANCER'S THIRD WAY MILESTONES ---
+        3   = necromancer_third_way.milestone_arkay_defied          # Arkay defied — necromancer_third_way_active (necromancer_third_way_events.txt)
+        3   = necromancer_third_way.milestone_mannimarco_rejected   # Mannimarco rejected — necromancer_third_way_active (necromancer_third_way_events.txt)
+        3   = necromancer_third_way.milestone_death_taxonomy        # Death taxonomy — necromancer_third_way_active (necromancer_third_way_events.txt)
+        3   = necromancer_third_way.milestone_ideal_masters_refused # Ideal Masters refused — necromancer_third_way_active (necromancer_third_way_events.txt)
+        3   = necromancer_third_way.milestone_sovereign_rite        # Sovereign rite — necromancer_third_way_active (necromancer_third_way_events.txt)
+        3   = necromancer_third_way.milestone_boundary              # Boundary stood at — necromancer_third_way_active (necromancer_third_way_events.txt)
     }
 }
 
