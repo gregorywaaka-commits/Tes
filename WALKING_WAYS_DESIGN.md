@@ -1597,6 +1597,185 @@ is_valid = {
 }
 ```
 
+---
+
+### 17.2a-i Wulf — Avatar of Talos: Design Notes Across Timeline Scenarios
+
+#### Canonical Lore Basis (Online-Verified)
+
+Wulf is the avatar of Tiber Septim (Talos) who appears in the Tower of Dusk at
+Ghostgate in TES III: Morrowind. He manifests as an aged Imperial legionnaire and
+offers the player character ("the Nerevarine") an *Old Man's Lucky Coin*, which
+grants the greater power "Luck of the Emperor." He is invisible to everyone else
+at Ghostgate. Lalatia Varian, Oracle of the Imperial Chapels at Ebonheart, later
+confirms the encounter was a divine visitation — the face of Tiber Septim walking
+among the living.
+
+Key canon conditions for the encounter:
+- The Nerevarine has received Wraithguard from Vivec (fully committed to the path).
+- Dagoth Ur has awakened and the crisis is active (i.e., the confrontation is imminent).
+- After the confrontation window closes, Wulf disappears permanently.
+
+His name is lore-significant: Wulf evokes *Ysmir Wulfharth*, one of the three
+mortals whose souls Tiber Septim absorbed to form his divine Oversoul. The avatar
+therefore embodies the *composite nature* of Talos — not solely Tiber Septim.
+
+[SOURCE: Morrowind:Wulf (UESP); Morrowind:A Lucky Coin (UESP); Lalatia Varian
+dialogue; UESP Lore:Wulfharth; UESP Lore:Talos composite Oversoul]
+
+---
+
+#### Scenario A — Pre-Dagoth Awakening (EK2 base window: 2E 440–882)
+
+**Problem:** The current `wulf_encounter` trigger requires `dagoth_ur_awakened`.
+In the EK2 base timeline (start ~2E 440–582), a player could be walking the
+Talos/Shezarrine path decades or centuries before Dagoth Ur is awakened at 2E 882.
+Under the current code, Wulf can never appear during this long window.
+
+**Design intent:** Wulf represents Talos's divine will reaching back to mark the
+mortal who carries the Shezarrine pattern. Because Talos exists *across time* (the
+divine is not constrained by linear chronology — the 36 Lessons of Vivec describe
+the gods acting on mortal history before and after their worship begins), a Talos
+mantler in 2E 500 would still attract the avatar's attention.
+
+**Proposed pre-awakening trigger condition for a "harbinger" Wulf encounter:**
+
+```
+# Wulf as Harbinger — fires BEFORE Dagoth Ur awakens
+# Replaces wulf_encounter when dagoth_ur_awakened is NOT set
+trigger = {
+    has_character_flag = ww_mantling_talos_active
+    NOT = { has_global_flag = dagoth_ur_awakened }
+    NOT = { has_character_flag = wulf_visited }
+    NOT = { has_character_flag = wulf_encounter_seen }
+    var:ww_talos_rank >= 3          # Must be at milestone 3 — the path is serious
+    OR = {
+        martial >= 16               # High martial mastery
+        has_character_flag = ww_mantling_talos_milestone_shezarrine
+    }
+}
+```
+
+**Narrative flavour distinction:** The pre-awakening Wulf encounter should feel
+*prophetic* rather than confirmatory. He does not grant "Luck of the Emperor" with
+the same certainty — instead his coin carries a *warning* that the work ahead will
+determine whether the god exists at all. Event text should reflect:
+> *"The old soldier presses the coin into your palm without a word. You have not
+> yet faced the test that will make or unmake your legend — but he looks at you as
+> though the outcome is already decided."*
+
+The `wulf_blessed` trait and `luck_of_the_emperor` modifier are still granted, but
+the Lalatia oracle follow-up (`mantling_talos.lalatia_oracle`) should only fire if
+the date is post-2E 854 (when the Imperial Cult has an Ebonheart presence in
+Vvardenfell) OR if an alternative oracle stand-in is available.
+
+**Mechanical gate:** Add global flag `wulf_harbinger_seen` so the harbinger
+variant and the canonical variant are mutually exclusive (a mantler who saw the
+harbinger Wulf still has `wulf_encounter_seen` set and will not see him again
+during the Dagoth crisis window unless specifically designed for that).
+
+---
+
+#### Scenario B — Canonical Nerevarine Dead; Successor Holds the Prophecy
+
+**Problem:** The Nerevarine system (§20) implements `nerevarine_shadow` and a
+succession hook via `on_character_death`. If the canonical Nerevarine dies before
+defeating Dagoth Ur, the `nerevarine_shadow` trait passes to a successor. The
+current `wulf_encounter` checks `has_trait = nerevarine_marked` but does not
+explicitly handle the `nerevarine_shadow` successor case.
+
+**Design intent:** Wulf's avatar allegiance is to *whoever currently carries the
+prophetic burden*, not to the specific original individual. The prophecy of the
+Nerevarine is about a pattern — not a person. A successor bearing `nerevarine_shadow`
+is, metaphysically, the continuation of the same pattern.
+
+**Proposed adjustment to the Wulf trigger:**
+
+```
+trigger = {
+    OR = {
+        has_character_flag = ww_mantling_talos_active
+        has_trait = nerevarine_marked       # Canon Nerevarine
+        has_trait = nerevarine_shadow       # Successor who holds the mantle
+    }
+    OR = {
+        has_global_flag = dagoth_ur_awakened    # Crisis is active (canon or early)
+        AND = {                                  # Pre-awakening harbinger path
+            NOT = { has_global_flag = dagoth_ur_awakened }
+            var:ww_talos_rank >= 3
+        }
+    }
+    NOT = { has_character_flag = wulf_visited }
+    NOT = { has_character_flag = wulf_encounter_seen }
+    NOT = { has_global_flag = dagoth_ur_defeated }
+}
+```
+
+**Important:** The `nerevarine_shadow` trigger should carry an additional flavour
+check. If the original Nerevarine died by `nerevarine_forsaken` (betrayed the
+prophecy), Wulf's flavour text for the successor should reflect the extra weight of
+carrying a broken lineage:
+> *"The old man's eye lingers on you longer than it should. He presses the coin
+> into your hand, but his gaze holds no warmth — only the cold arithmetic of what
+> must be done, since the first was found wanting."*
+
+---
+
+#### Scenario C — Dagoth Ur Awakened Earlier Than Canon (Divergent Timeline)
+
+**Problem:** In a divergent playthrough, a player could fulfil the in-game
+conditions for `dagoth_ur_awakened` before 2E 882 (the canonical date). For
+example: Kagrenac's Tools research accelerated via the `borrowed_divinity` system
+(§19), or a player-triggered event that stirs Dagoth prematurely. If `dagoth_ur_awakened`
+fires at, say, 2E 650, and a Talos mantler exists, the current `wulf_encounter`
+would fire — but the Lalatia oracle follow-up assumes the 3E context.
+
+**Design intent:** The encounter itself is fully valid in this scenario. Wulf
+appears whenever the Dagoth crisis is active AND a Talos mantler (or Nerevarine
+bearer) exists, regardless of the calendar date. The divine does not operate on
+the Merethic calendar.
+
+**Required guard for the Lalatia oracle follow-up only:**
+
+```
+# mantling_talos.lalatia_oracle
+# Only fire if the Imperial Cult's Ebonheart chapter is plausibly present.
+# Before 2E 854 the Imperial presence in Morrowind is minimal.
+trigger = {
+    OR = {
+        current_date >= 2.854.1.1        # Imperial Cult established in Vvardenfell
+        # Fallback: player holds a county in Morrowind with sufficient Imperial
+        # culture presence (EK2 culture flag)
+        any_held_county = {
+            culture = { has_cultural_tradition = tradition_imperial_cult }
+        }
+    }
+}
+```
+
+If the Lalatia oracle cannot fire (pre-854, no Imperial presence), the confirmation
+of Wulf's identity is instead provided by an alternative diviner — a Psijic monk
+(if the player has `artaeum_correspondence` flag from the Psijic path) or by Vivec
+himself (if `vivec_patron` flag is set from the Nerevarine arc).
+
+---
+
+#### Summary — Wulf Trigger Logic (All Scenarios)
+
+| Scenario | Global flags / traits required | Wulf variant | Notes |
+|---|---|---|---|
+| Pre-Dagoth awakening, Talos mantler | `ww_mantling_talos_active`, `ww_talos_rank >= 3`, NOT `dagoth_ur_awakened` | Harbinger Wulf | Prophetic tone; no Lalatia follow-up pre-854 |
+| Canon/late: Dagoth awake, first mantler | `dagoth_ur_awakened`, `ww_mantling_talos_active` OR `nerevarine_marked`, `talos_broken_count < 1` | `wulf_encounter` (existing) | Canonical path; Lalatia fires if post-854 |
+| Canon: Dagoth awake, successor mantler | `dagoth_ur_awakened`, `talos_broken_count >= 1` | `wulf_encounter_successor` (existing) | Throne may be occupied — see Sole Heir notes |
+| Nerevarine dead, `nerevarine_shadow` successor | `dagoth_ur_awakened`, `nerevarine_shadow` | Extended `wulf_encounter` (add `nerevarine_shadow` to OR block) | Heavier flavour text; "broken lineage" variant |
+| Early Dagoth awakening (divergent) | `dagoth_ur_awakened` (any date), mantler or Nerevarine bearer | `wulf_encounter` (no date guard needed) | Lalatia oracle gated by culture/date check |
+
+**Shared invariant across ALL scenarios:**
+- `NOT = { has_character_flag = wulf_visited }` — Wulf only ever appears once per character.
+- `NOT = { has_global_flag = dagoth_ur_defeated }` — Once the Heart severs from Mundus, the crisis is over and Wulf has no more reason to walk among the living.
+
+---
+
 #### 17.2b Mantling Arkay
 
 **Lore accuracy:** Arkay is an Aedra who governs birth, death, and the cycle of

@@ -292,9 +292,33 @@ mantling_talos.milestone_wound = {
 #   - Lalatia Varian, Imperial Cult oracle, later confirms
 #     the encounter's divine nature
 #   - If the ruler also has nerevarine_marked, cross-event fires
+#   - No one else at Ghostgate can perceive Wulf — he is divine
+#   - His name evokes Ysmir Wulfharth, one of the three souls
+#     that composed Talos's Oversoul
+#
+# TIMELINE SCENARIOS — see WALKING_WAYS_DESIGN.md §17.2a-i for full notes:
+#
+#   Scenario A: Pre-Dagoth awakening (EK2 base 2E 440–882)
+#     → A separate "harbinger" variant should fire when dagoth_ur_awakened
+#       is NOT set but ww_talos_rank >= 3.  Trigger: wulf_harbinger.
+#     → Lalatia oracle does NOT fire pre-2E 854 (no Ebonheart chapel yet).
+#
+#   Scenario B: Canonical Nerevarine dead; nerevarine_shadow holds prophecy
+#     → Extend the OR block in this trigger to include nerevarine_shadow.
+#     → Use heavier "broken lineage" flavour text variant for shadow bearers.
+#
+#   Scenario C: Dagoth awakened early (divergent timeline)
+#     → No date guard needed on the encounter itself.
+#     → Lalatia oracle follow-up gated by current_date >= 2.854.1.1 OR
+#       Imperial culture presence in Morrowind county.
+#
+#   Shared invariant across ALL scenarios:
+#     → wulf_visited flag ensures one appearance per character (ever).
+#     → dagoth_ur_defeated must NOT be set — crisis window must be open.
 #
 # [SOURCE: TES III: Morrowind quest "A Lucky Coin";
-#  UESP Lore:Wulf; Oracle Lalatia Varian dialogue]
+#  UESP Lore:Wulf; Oracle Lalatia Varian dialogue;
+#  WALKING_WAYS_DESIGN.md §17.2a-i]
 # ---------------------------------------------------------------
 mantling_talos.wulf_encounter = {
     type = character_event
@@ -439,6 +463,9 @@ mantling_talos.throne_vacant = {
 # receives the Wulf encounter.  The Luck of the Emperor flows to
 # those who persist, not only those who first attempted.
 # Triggered instead of wulf_encounter when talos_broken_count >= 1.
+#
+# See also: WALKING_WAYS_DESIGN.md §17.2a-i for full scenario notes
+# (pre-Dagoth harbinger, nerevarine_shadow succession, early awakening).
 # ---------------------------------------------------------------
 mantling_talos.wulf_encounter_successor = {
     type = character_event
