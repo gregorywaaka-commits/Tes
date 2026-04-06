@@ -684,16 +684,21 @@ can_begin_mantling_mara = {
 # ---------------------------------------------------------------
 
 # Sheogorath (Daedric — Madness; formerly Jyggalag)
+# jyggalag_ascendant is preferred gate: they walked Order's domain and the vacant
+# Madness throne now recognises them as its natural counterpart.
+# Blocked if the Echo path was taken — echo closes the succession door.
 can_begin_mantling_sheogorath = {
     can_begin_path_mantling = yes
     intrigue >= 14
     OR = {
+        has_trait = jyggalag_ascendant          # preferred: fully walked Order's domain
         has_trait = jyggalag_champion
         has_character_flag = shivering_isles_visited
         has_trait = lunatic
         has_trait = possessed
     }
     NOT = { has_character_flag = ww_mantling_sheogorath_completed }
+    NOT = { has_character_flag = ww_sheogorath_echo_closed_throne }
 }
 
 # ---------------------------------------------------------------
@@ -947,5 +952,111 @@ has_any_shezarrine_ascendant_milestone = {
         has_character_flag = ww_shezarrine_milestone_proclaimed
         has_character_flag = ww_shezarrine_milestone_merger
         has_character_flag = ww_shezarrine_milestone_complete
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 — PATH K: MANTLING JYGGALAG
+#  Prince of Order. Domain vacant after 3E 433.
+#  [SOURCE: CANON — Shivering Isles DLC; UESP Lore:Jyggalag]
+# ═══════════════════════════════════════════════════════════════
+
+can_begin_mantling_jyggalag = {
+    has_trait = jyggalag_champion
+    learning >= 14
+    martial >= 16
+    has_global_flag = jyggalag_freed
+    NOT = { has_character_flag = ww_mantling_jyggalag_completed }
+    NOT = { has_character_flag = walking_ways_path_active }
+}
+
+is_on_path_mantling_jyggalag = {
+    has_character_flag = ww_mantling_jyggalag_active
+}
+
+has_completed_path_mantling_jyggalag = {
+    has_character_flag = ww_mantling_jyggalag_completed
+}
+
+has_any_mantling_jyggalag_milestone = {
+    OR = {
+        has_character_flag = ww_jyggalag_milestone_order_kept
+        has_character_flag = ww_jyggalag_milestone_chaos_suppressed
+        has_character_flag = ww_jyggalag_milestone_greymarch_echo
+        has_character_flag = ww_jyggalag_milestone_crystal_pact
+        has_character_flag = ww_jyggalag_milestone_madness_refused
+        has_character_flag = ww_jyggalag_milestone_instrument
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 — PATH K-2: SHEOGORATH'S ECHO
+#  Channelling the domain of Madness without claiming the throne.
+#  [SOFT CANON — extrapolated from mantling metaphysics]
+# ═══════════════════════════════════════════════════════════════
+
+can_begin_sheogorath_echo = {
+    OR = {
+        has_trait = lunatic
+        has_trait = possessed
+        has_character_flag = shivering_isles_visited
+        intrigue >= 18
+    }
+    learning >= 12
+    NOT = { has_character_flag = ww_sheogorath_echo_completed }
+    NOT = { has_character_flag = ww_mantling_sheogorath_completed }
+    NOT = { has_character_flag = walking_ways_path_active }
+}
+
+is_on_sheogorath_echo_path = {
+    has_character_flag = ww_sheogorath_echo_active
+}
+
+has_completed_sheogorath_echo = {
+    has_character_flag = ww_sheogorath_echo_completed
+}
+
+has_any_sheogorath_echo_milestone = {
+    OR = {
+        has_character_flag = ww_echo_milestone_insight
+        has_character_flag = ww_echo_milestone_chaos_wielded
+        has_character_flag = ww_echo_milestone_obelisk
+        has_character_flag = ww_echo_milestone_greymarch_witness
+        has_character_flag = ww_echo_milestone_court_jester
+        has_character_flag = ww_echo_milestone_realm_glimpsed
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 — PATH L: NECROMANCER'S THIRD WAY
+#  Independent necromancy — no Worm Cult, no Ideal Masters.
+#  [CANON — independent necromancers confirmed by UESP]
+# ═══════════════════════════════════════════════════════════════
+
+can_begin_necromancer_third_way = {
+    has_trait = necromancer
+    learning >= 16
+    NOT = { has_trait = worm_cult_adept }
+    NOT = { has_character_flag = ww_worm_apotheosis_completed }
+    NOT = { has_character_flag = ww_necromancer_third_way_completed }
+    NOT = { has_character_flag = walking_ways_path_active }
+}
+
+is_on_necromancer_third_way_path = {
+    has_character_flag = ww_necromancer_third_way_active
+}
+
+has_completed_necromancer_third_way = {
+    has_character_flag = ww_necromancer_third_way_completed
+}
+
+has_any_necromancer_third_way_milestone = {
+    OR = {
+        has_character_flag = ww_third_way_milestone_arkay_defied
+        has_character_flag = ww_third_way_milestone_mannimarco_rejected
+        has_character_flag = ww_third_way_milestone_death_taxonomy
+        has_character_flag = ww_third_way_milestone_ideal_masters_refused
+        has_character_flag = ww_third_way_milestone_sovereign_rite
+        has_character_flag = ww_third_way_milestone_boundary
     }
 }

@@ -305,6 +305,24 @@ walking_ways.progress_check = {
             if = { limit = { has_any_shezarrine_ascendant_milestone = yes } count_ww_milestones_shezarrine_ascendant = yes }
             advance_path_shezarrine_ascendant = yes
         }
+        # PATH K — MANTLING JYGGALAG
+        else_if = {
+            limit = { is_on_path_mantling_jyggalag = yes }
+            if = { limit = { has_any_mantling_jyggalag_milestone = yes } count_ww_milestones_mantling_jyggalag = yes }
+            advance_path_mantling_jyggalag = yes
+        }
+        # PATH K-2 — SHEOGORATH'S ECHO
+        else_if = {
+            limit = { is_on_sheogorath_echo_path = yes }
+            if = { limit = { has_any_sheogorath_echo_milestone = yes } count_ww_milestones_sheogorath_echo = yes }
+            advance_path_sheogorath_echo = yes
+        }
+        # PATH L — NECROMANCER'S THIRD WAY
+        else_if = {
+            limit = { is_on_necromancer_third_way_path = yes }
+            if = { limit = { has_any_necromancer_third_way_milestone = yes } count_ww_milestones_necromancer_third_way = yes }
+            advance_path_necromancer_third_way = yes
+        }
         # AMARANTH COMPLETED — ongoing departure cost pulse
         if = {
             limit = { has_character_flag = ww_amaranth_completed }
@@ -505,6 +523,27 @@ walking_ways.world_notify = {
                 scope:source = { has_trait = shezarrine_ascendant }
             }
             desc = walking_ways.world_notify.shezarrine_ascendant
+        }
+        # Jyggalag Ascendant (Path K)
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = jyggalag_ascendant }
+            }
+            desc = walking_ways.world_notify.jyggalag_ascendant
+        }
+        # Madness Prophet / Sheogorath's Echo (Path K-2)
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = madness_prophet }
+            }
+            desc = walking_ways.world_notify.madness_prophet
+        }
+        # Death Sovereign / Necromancer's Third Way (Path L)
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = death_sovereign }
+            }
+            desc = walking_ways.world_notify.death_sovereign
         }
         # Fallback
         desc = walking_ways.world_notify.generic

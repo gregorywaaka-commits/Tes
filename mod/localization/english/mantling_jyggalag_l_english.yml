@@ -1,0 +1,52 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ # PATH K — MANTLING JYGGALAG LOCALIZATION
+ # ═══════════════════════════════════════════════════════════════
+
+ # Decision option
+ choose_walking_way.path_k_jyggalag: "Path K: Mantling Jyggalag — The Instrument of Order"
+ choose_walking_way.path_k_jyggalag_desc: "Jyggalag was freed. His domain — perfect logical Order, crystalline certainty, the Library predicting all things — stands untended. Walk into that vacancy. Walk like him until the domain must walk like you. [Requires: jyggalag_champion, martial 16+, learning 14+, Jyggalag freed]"
+
+ # Event titles and descriptions
+ mantling_jyggalag.intro.t: "The Domain of Order"
+ mantling_jyggalag.intro.desc: "The domain of Order stood empty.\n\nJyggalag was gone — freed, departed, walking his own realms after an eternity of imprisonment in the shape of madness. The Shivering Isles had a new ruler. But Order itself had no Prince. The domain — crystalline logic, perfect deduction, the great Library — existed without a keeper.\n\nYou had walked with Jyggalag's knights. You had enforced the laws they lived by. You understood, in the way that only the truly disciplined can understand, what it meant to see every variable and account for them all.\n\nThe domain noticed. Something crystalline acknowledged you at the edge of your awareness. It was not a command. It was a recognition.\n\n#italic 'Walk like them until they must walk like you.'"
+ mantling_jyggalag.intro.a: "Order is not imposed. It is embodied. I begin."
+
+ mantling_jyggalag.rank1.t: "Crystals and Consequence"
+ mantling_jyggalag.rank1.desc: "Order keeps itself when the keeper is present.\n\nYou had held the law with a precision that the Shivering Isles' crystalline knights would have recognised — every deviation noted, every correction made, every consequence applied without sentiment and without exception. Not cruelty. Exactness. The difference matters.\n\nThe domain of Order is not cruel. Cruelty is irrational. It produces unpredictable outcomes. Order produces inevitable ones."
+ mantling_jyggalag.rank1.a: "Order is not cruelty. It is the condition under which things persist."
+ mantling_jyggalag.rank1.b: "Every deviation was catalogued. Every correction made."
+
+ mantling_jyggalag.rank2.t: "The Crystal Pact"
+ mantling_jyggalag.rank2.desc: "Something acknowledged you that had not spoken to mortals since Jyggalag departed.\n\nThe Knights of Order — those pale, crystalline Daedra who had carried Jyggalag's will into every Greymarch — had no master now. They existed in the structure of Order's domain, purposeless but present. When you walked into their space with the discipline you had spent years embodying, they did not attack.\n\nThey waited. They observed. Then something that might have been recognition passed through them like a cold light.\n\nYou had survived what the Greymarch would have unmade."
+ mantling_jyggalag.rank2.a: "The crystal pact is made. The knights acknowledged me."
+ mantling_jyggalag.rank2.b: "I survived what the Greymarch would have made of lesser realms."
+
+ mantling_jyggalag.rank3.t: "The Threshold of Order"
+ mantling_jyggalag.rank3.desc: "The domain pressed harder now.\n\nJyggalag had not been a Prince of gentle Order. He had been the *most powerful* of all Daedric Princes — feared enough that the others conspired together to unmake him. The Order he embodied was not a bookkeeper's tidiness. It was the kind of certainty that could predict everything, catalogue everything, and consume everything that could not be predicted or catalogued.\n\nYou stood at the boundary of that. The domain asked, without words, whether you could hold its full weight.\n\nThe question was not comfortable."
+ mantling_jyggalag.rank3.a: "Order does not accommodate. It encompasses."
+
+ mantling_jyggalag.apotheosis.t: "The Domain Knows You"
+ mantling_jyggalag.apotheosis.desc: "No ceremony. No pronouncement. No thunderous acknowledgment from the Daedric Princes who had feared what Jyggalag represented.\n\nJust a stillness.\n\nThe domain of Order — the crystalline principle that Jyggalag had embodied and that had stood untended since his liberation — settled around you like a garment that had been waiting for the right wearer. The Library at the heart of his domain, which had once predicted every event in both Mundus and Oblivion, reopened its pages.\n\nYou were not Jyggalag. You would never be Jyggalag. But you had walked so precisely in the tracks of Order that the domain could not tell the difference.\n\nAnd so it did not need to."
+ mantling_jyggalag.apotheosis.a: "The domain knows me. I walk where Jyggalag walked, and the pattern holds."
+ mantling_jyggalag.apotheosis.b: "Order without the Prince. The domain persists. I am its new instrument."
+
+ mantling_jyggalag.order_shattered.t: "The Grip Broke"
+ mantling_jyggalag.order_shattered.desc: "The domain of Order, forced through a mortal vessel without Jyggalag's capacity, produced brittleness rather than strength.\n\nJyggalag had been the *most powerful* of the Daedric Princes. The crystalline certainty of his nature was not a technique. It was his substance. You had tried to embody something too large, too absolute, too perfectly defined — and where a Prince would have crystallised, you fractured.\n\nThe obsession remains. The certainty is gone. What is left is the need for Order without the understanding of it — a compulsion without a philosophy."
+ mantling_jyggalag.order_shattered.a: "The Order was too rigid. It broke me before I could break into it."
+
+ # Liberation contingency events
+ mantling_jyggalag.liberation_failed.t: "The Greymarch Will Return"
+ mantling_jyggalag.liberation_failed.desc: "The champion who had stood closest to freeing Jyggalag from his imprisonment is dead.\n\nThe Shivering Isles have a ruler — the mantled Sheogorath remains — but the cycle that created that throne was not broken. Jyggalag was never fully confronted. The Greymarch was deflected, not ended. At the close of the next era, when the cycle resets and Order prepares to consume Madness again, no champion will stand in the way.\n\nScholars of Oblivion are already updating their cycle charts."
+ mantling_jyggalag.liberation_failed.a: "Then the Greymarch will come again."
+
+ mantling_jyggalag.throne_vacant.t: "The Shivering Isles Have No Ruler"
+ mantling_jyggalag.throne_vacant.desc: "It is confirmed: Jyggalag is free.\n\nThe champion who walked his domain so completely that the curse broke did not survive to take the Sheogorath throne. Jyggalag has departed — truly departed, walking his own realms for the first time in an eternity. The Greymarch will not return.\n\nBut the Shivering Isles are empty.\n\nNo Sheogorath sits the throne of Madness. The domain of Madness is untended. For the first time in recorded history, both Order and Madness stand without their Princes.\n\nScholars of Oblivion are not sure whether to celebrate or run."
+ mantling_jyggalag.throne_vacant.a: "Then both thrones are open. The world has changed."
+
+ # World notify
+ walking_ways.world_notify.jyggalag_ascendant: "The domain of Order, untended since Jyggalag's liberation, has found a new expression. [scope:source.char_name|U] in [scope:source.primary_title.name] has walked so precisely in the tracks of crystalline certainty that the domain could not distinguish between them and the absent Prince. Jyggalag's Knights of Order have acknowledged [scope:source.char_name|U]. Scholars of Oblivion note that the great Library at the heart of Order's domain has reopened its pages."
+
+ # Trait localization
+ jyggalag_ascendant: "Jyggalag Ascendant"
+ jyggalag_ascendant_desc: "The domain of Order — crystalline, absolute, the most powerful Daedric sphere before the curse — recognises this ruler as its new expression. Not Jyggalag; something that walked so precisely in his tracks that the domain could not tell the difference. The Library is open. The Knights have acknowledged. Order has a new face."

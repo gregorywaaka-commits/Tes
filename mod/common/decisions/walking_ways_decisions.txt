@@ -602,6 +602,83 @@ choose_walking_way = {
     }
 
     option = {
+        name        = choose_walking_way.path_k_jyggalag
+        desc        = choose_walking_way.path_k_jyggalag_desc
+        is_shown    = { has_global_flag = jyggalag_freed }
+        is_valid    = { can_begin_mantling_jyggalag = yes }
+
+        effect = {
+            begin_path_mantling_jyggalag = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = jyggalag_ascendant
+                martial >= 18
+            }
+            modifier = {
+                add = 3
+                has_trait = jyggalag_champion
+                learning >= 16
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_k2_sheogorath_echo
+        desc        = choose_walking_way.path_k2_sheogorath_echo_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_sheogorath_echo = yes }
+
+        effect = {
+            begin_path_sheogorath_echo = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 4
+                has_trait = lunatic
+                intrigue >= 16
+            }
+            modifier = {
+                add = 3
+                OR = {
+                    has_trait = possessed
+                    has_character_flag = shivering_isles_visited
+                }
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_l_necromancer_third_way
+        desc        = choose_walking_way.path_l_necromancer_third_way_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_necromancer_third_way = yes }
+
+        effect = {
+            begin_path_necromancer_third_way = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = necromancer
+                learning >= 18
+                NOT = { has_trait = worm_cult_adept }
+            }
+            modifier = {
+                add = 3
+                learning >= 20
+            }
+        }
+    }
+
+    option = {
         name    = choose_walking_way.decline
         desc    = choose_walking_way.decline_desc
         is_shown = { always = yes }
@@ -848,6 +925,18 @@ abandon_walking_way = {
         else_if = {
             limit = { has_character_flag = ww_shezarrine_ascendant_active }
             abandon_path_shezarrine_ascendant = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_jyggalag_active }
+            abandon_path_mantling_jyggalag = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_sheogorath_echo_active }
+            abandon_path_sheogorath_echo = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_necromancer_third_way_active }
+            abandon_path_necromancer_third_way = yes
         }
     }
 

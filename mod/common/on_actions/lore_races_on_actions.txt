@@ -593,5 +593,43 @@ on_character_death = {
                 trigger_event = { id = nerevarine.001 days = 7 }
             }
         }
+        # --- §20 Jyggalag Liberation Contingency ---
+        # Jyggalag is only freed if the Sheogorath mantle is completed by the champion
+        # who defeated him (the mantling_sheogorath path). If the active champion dies
+        # mid-path, Jyggalag remains imprisoned in the Sheogorath cycle.
+        #
+        # SCENARIO 1: Champion dies while actively on ww_mantling_sheogorath_active
+        #   → Greymarch cycle resumes; throne unfilled; world notified
+        # SCENARIO 2: Champion has jyggalag_ascendant (completed Path K) but dies before
+        #   completing Sheogorath mantle → jyggalag_freed IS set (they walked his domain
+        #   fully enough to free him) but throne is empty; world notified of vacancy
+        # SCENARIO 3: Handled at complete_path_mantling_sheogorath — canonical succession
+        #   sets jyggalag_freed directly; no death hook needed for that path
+        if = {
+            limit = {
+                has_character_flag = ww_mantling_sheogorath_active
+                NOT = { has_character_flag = ww_mantling_sheogorath_completed }
+            }
+            # Scenario 1: died mid-Sheogorath mantle with NO jyggalag_ascendant
+            if = {
+                limit = { NOT = { has_trait = jyggalag_ascendant } }
+                # Greymarch continues — Jyggalag remains trapped
+                set_global_flag = greymarch_unresolved
+                remove_global_flag = jyggalag_freed
+                every_player = {
+                    trigger_event = { id = mantling_jyggalag.liberation_failed days = 14 }
+                }
+            }
+            # Scenario 2: died mid-Sheogorath mantle but DID have jyggalag_ascendant
+            else_if = {
+                limit = { has_trait = jyggalag_ascendant }
+                # The domain walk was complete enough — Jyggalag is freed, but throne is empty
+                set_global_flag = jyggalag_freed
+                remove_global_flag = greymarch_unresolved
+                every_player = {
+                    trigger_event = { id = mantling_jyggalag.throne_vacant days = 14 }
+                }
+            }
+        }
     }
 }

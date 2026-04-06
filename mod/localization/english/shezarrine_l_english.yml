@@ -124,3 +124,6 @@
  shezarrine.202.t: "A Convergence Spoken"
  shezarrine.202.desc: "From [scope:source.primary_title.name], word has reached your scholars of a ruler who has walked more than one of the Shezarrine paths. The mythic chain — Pelinal, Reman, Talos, the Nerevarine, the Hero, the Dragonborn — appears to be coalescing again."
  shezarrine.202.a: "This is either a great wonder or a great danger."
+
+ # World notify (gap-fill: previously missing from walking_ways_events.txt dispatch)
+ walking_ways.world_notify.shezarrine_ascendant: "The weight of Lorkhan's wound shifted slightly near [scope:source.primary_title.name] today. Scholars of cosmological architecture report that a new name has been added to the chain: Pelinal, Reman, Talos — and now [scope:source.char_name|U]. The Shezarrine has found another vessel. The pattern of Mankind's champion walks again in a new form. The Greybeards and the Companions have both taken note and have not agreed on what it means."

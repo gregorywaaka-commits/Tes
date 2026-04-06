@@ -1,0 +1,43 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ # PATH L — NECROMANCER'S THIRD WAY LOCALIZATION
+ # ═══════════════════════════════════════════════════════════════
+
+ # Decision option
+ choose_walking_way.path_l_necromancer_third_way: "Path L: The Necromancer's Third Way — I Owe No Master"
+ choose_walking_way.path_l_necromancer_third_way_desc: "Mannimarco's road leads to his apotheosis, not yours. The Ideal Masters' bargain leads to their harvest, not your sovereignty. You will study death as a domain — original, independent, governed on your own terms. No cult doctrine. No Soul Cairn creditors. The Third Way. [Requires: necromancer trait, learning 16+, NOT worm_cult_adept]"
+
+ # Events
+ necromancer_third_way.intro.t: "Neither Master Will Do"
+ necromancer_third_way.intro.desc: "The Worm Cult had come eventually, as the Worm Cult always came.\n\nTheir offer was simple: doctrine, framework, access to Mannimarco's compiled centuries of necromantic research, and the promise of apotheosis at the end of the road. All you had to do was walk his road. All you had to do was be his heir.\n\nYou refused.\n\nNot because the knowledge was worthless — it was not worthless. But because to follow Mannimarco's road was to complete *his* work, not yours. You would not be his footnote. You had also encountered, at the edges of your research, the Ideal Masters' bargain — the Soul Cairn and its crystalline former-humans, feeding on the souls their petitioners traded away. That road led to dissolution. You refused that too.\n\nDeath was a domain. You intended to govern it. On your own terms. With no master holding the deed."
+ necromancer_third_way.intro.a: "I will not be Mannimarco's footnote. I will not be the Ideal Masters' harvest."
+
+ necromancer_third_way.rank1.t: "Arkay's Habit"
+ necromancer_third_way.rank1.desc: "Arkay's cycle was not a law. It was a habit.\n\nThis was the first genuinely original conclusion your research had reached — the one the Worm Cult's doctrine assumed but never proved, and the Ideal Masters' framework circumvented without questioning. Arkay's domain over death was not absolute. It was *established*. It had been in place so long and so consistently that practitioners treated it as bedrock rather than soil.\n\nYou had found a different approach — not borrowed, not derived. Yours.\n\nThe Worm Cult noticed. Their recruitment approach was not subtle. You had refused with sufficient clarity that they would not ask again."
+ necromancer_third_way.rank1.a: "Arkay's cycle is not a law. It is a habit. I found a different approach."
+ necromancer_third_way.rank1.b: "The Worm Cult recruitment came. I refused with sufficient clarity that they will not ask again."
+
+ necromancer_third_way.rank2.t: "The Death Taxonomy"
+ necromancer_third_way.rank2.desc: "The codex was finished.\n\nNot Mannimarco's codex, revised. Not the Ideal Masters' records, annotated. Something new — a taxonomy of death that had not existed before you compiled it. Soul types the Worm Cult had not named. Binding techniques that the Soul Cairn practitioners had not patented. Methods that worked, that were yours, that belonged to no prior tradition.\n\nThe Ideal Masters had been aware of you. Their offer arrived the same week — subtly, through the dreams of a soul gem researcher in your court, a message that was almost polite in its condescension: *We could use someone like you. The terms are reasonable.*\n\nYou declined. They did not persist. That was, in retrospect, slightly worrying."
+ necromancer_third_way.rank2.a: "The codex is mine. No master's doctrine. No borrowed framework."
+ necromancer_third_way.rank2.b: "The Ideal Masters offered. I declined. They did not persist."
+
+ necromancer_third_way.rank3.t: "The Boundary"
+ necromancer_third_way.rank3.desc: "Standing at the boundary between life and death without anyone's tools was a different experience than you had expected.\n\nMannimarco had his phylactery, his Black Soul Gems, his Necromancer's Moon ritual framework — anchors against the pull. The Ideal Masters had their crystalline forms, their bargained soul-energy, their millennia of accumulated dissolution-experience. You had none of these.\n\nYou had your own understanding. Your own codex. Your own taxonomy of what death was and how it behaved and what it would accept instead of a tithe.\n\nDeath looked back at you from the boundary. You looked back. Neither of you flinched."
+ necromancer_third_way.rank3.a: "I stood at the boundary. Death looked back. Neither of us flinched."
+
+ necromancer_third_way.apotheosis.t: "Death Sovereign"
+ necromancer_third_way.apotheosis.desc: "There was no ceremony.\n\nMannimarco had his Moon. The Ideal Masters had their Soul Cairn. The Divines had their temples and their priesthoods and their centuries of liturgical affirmation.\n\nYou had a moment of absolute clarity, standing alone at the boundary of your own ending, understanding exactly what death was and how it moved and what it would allow — and then the understanding settled into something permanent. Not divinity in the old sense. Not godhood as the Daedric Princes understood it. Something new. Something that had not been named yet because you were the first to arrive here.\n\nYou were sovereign over your own ending. Death was a domain. You had walked into it and closed the gate behind you, and the gate was yours now.\n\nSomewhere, Mannimarco would have found this either impressive or deeply irritating. He was not available to specify which."
+ necromancer_third_way.apotheosis.a: "I am sovereign over my own ending. No cult. No masters. My own terms."
+ necromancer_third_way.apotheosis.b: "Something new has been added to the taxonomy of death. My name is in it."
+
+ necromancer_third_way.unmoored.t: "The Boundary Pushed Back"
+ necromancer_third_way.unmoored.desc: "There was a reason practitioners used frameworks.\n\nNot because the frameworks were correct — they weren't always correct. But because the boundary between life and death was not a polite space. It did not reward original research with a gentle failure. When you stood there without Mannimarco's anchors, without the Ideal Masters' crystalline scaffold, without any prior path to fall back on — the boundary noticed the absence and acted accordingly.\n\nYou did not die. In some ways this was the unsettling part. Something of you had crossed the boundary and remained there, partially. Your soul was present but the connection was loose now, rattling around in the architecture of your body like an occupant who cannot quite remember they are not a ghost.\n\nYou survive. You are alive. It does not feel as clean as it used to."
+ necromancer_third_way.unmoored.a: "No framework. No precedent. Just the raw consequence of standing at the boundary."
+
+ # World notify
+ walking_ways.world_notify.death_sovereign: "Practitioners of necromancy across Tamriel are reporting a phenomenon they cannot categorise: in [scope:source.primary_title.name], [scope:source.char_name|U] appears to have established a relationship with the domain of death that does not correspond to any existing tradition. The Worm Cult's hierarchy describes it as apostasy. Arkay's clergy describes it as a threat. The Ideal Masters have not commented. This is unusual — they always comment."
+
+ # Trait localization
+ death_sovereign: "Death Sovereign"
+ death_sovereign_desc: "This ruler forged an original relationship with the domain of death — not Mannimarco's road, not the Ideal Masters' dissolution, not Arkay's cycle. Something unprecedented. They are sovereign over their own ending, and the domain acknowledges it. Independent necromancers regard them with the respect given to something entirely new. The Worm Cult regards them as apostasy made flesh."
