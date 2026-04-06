@@ -22,7 +22,12 @@
 #  Ranser declared war; Emeric built a coalition with Redguards and
 #  Orcs alongside loyal Bretons.  Ranser was defeated at Markwasten Moor;
 #  his castle fell soon after.  The coalition that defeated him became
-#  the seed of the Daggerfall Covenant (formally established 2E 566).
+#  the seed of the Daggerfall Covenant.  Emeric's alliance began
+#  crystallising in 2E 566 as he assembled Redguard and Orcish allies
+#  against Ranser; the Covenant was formally ratified after Ranser's
+#  defeat at Markwasten Moor — making 2E 566 the founding date but the
+#  formal ratification occurring after the battle.
+#  [DATE ACCURACY — UESP Lore:Ranser's War; Lore:Daggerfall Covenant]
 #  Sources: UESP Lore:Ranser's War; ESO in-game book "The Reachmen of
 #  the Reach"; ESO prologue materials.
 # =============================================================
