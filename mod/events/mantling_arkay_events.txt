@@ -168,3 +168,136 @@ mantling_arkay.milestone_age_check = {
 
     option = { name = "OK" }
 }
+
+# ---------------------------------------------------------------
+# mantling_arkay.milestone_burial
+# Visible event: ruler has overseen a proper burial.
+# ---------------------------------------------------------------
+mantling_arkay.milestone_burial = {
+    type = character_event
+    title = mantling_arkay.milestone_burial.t
+    desc = mantling_arkay.milestone_burial.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_arkay_active
+        NOT = { has_character_flag = ww_mantling_arkay_milestone_burial }
+        years_as_ruler >= 5
+        piety >= 100
+    }
+
+    option = {
+        name = mantling_arkay.milestone_burial.a
+        set_character_flag = ww_mantling_arkay_milestone_burial
+        add_piety = 100
+        add_stress = -10
+    }
+
+    option = {
+        name = mantling_arkay.milestone_burial.b
+        set_character_flag = ww_mantling_arkay_milestone_burial
+        add_piety = 75
+        add_learning_xp = 75
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_arkay.milestone_grief
+# Visible event: ruler has known true grief.
+# ---------------------------------------------------------------
+mantling_arkay.milestone_grief = {
+    type = character_event
+    title = mantling_arkay.milestone_grief.t
+    desc = mantling_arkay.milestone_grief.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_arkay_active
+        NOT = { has_character_flag = ww_mantling_arkay_milestone_grief }
+        age >= 30
+        OR = {
+            stress >= 30
+            has_character_flag = ww_mantling_arkay_milestone_burial
+        }
+    }
+
+    option = {
+        name = mantling_arkay.milestone_grief.a
+        set_character_flag = ww_mantling_arkay_milestone_grief
+        add_piety = 125
+        add_stress = -20
+    }
+
+    option = {
+        name = mantling_arkay.milestone_grief.b
+        set_character_flag = ww_mantling_arkay_milestone_grief
+        add_piety = 100
+        add_learning_xp = 75
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_arkay.milestone_neardeath
+# Visible event: ruler has approached their own death.
+# ---------------------------------------------------------------
+mantling_arkay.milestone_neardeath = {
+    type = character_event
+    title = mantling_arkay.milestone_neardeath.t
+    desc = mantling_arkay.milestone_neardeath.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_arkay_active
+        NOT = { has_character_flag = ww_mantling_arkay_milestone_neardeath }
+        OR = {
+            health <= 4
+            age >= 45
+        }
+    }
+
+    option = {
+        name = mantling_arkay.milestone_neardeath.a
+        set_character_flag = ww_mantling_arkay_milestone_neardeath
+        add_piety = 150
+        add_stress = -25
+    }
+
+    option = {
+        name = mantling_arkay.milestone_neardeath.b
+        set_character_flag = ww_mantling_arkay_milestone_neardeath
+        add_piety = 125
+        add_learning_xp = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_arkay.milestone_plague
+# Visible event: ruler has governed through pestilence.
+# ---------------------------------------------------------------
+mantling_arkay.milestone_plague = {
+    type = character_event
+    title = mantling_arkay.milestone_plague.t
+    desc = mantling_arkay.milestone_plague.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_arkay_active
+        NOT = { has_character_flag = ww_mantling_arkay_milestone_plague }
+        piety >= 200
+        years_as_ruler >= 10
+    }
+
+    option = {
+        name = mantling_arkay.milestone_plague.a
+        set_character_flag = ww_mantling_arkay_milestone_plague
+        add_piety = 175
+        add_prestige = 100
+    }
+
+    option = {
+        name = mantling_arkay.milestone_plague.b
+        set_character_flag = ww_mantling_arkay_milestone_plague
+        add_piety = 150
+        add_stress = -20
+    }
+}
