@@ -651,3 +651,23 @@
  # Trait
  talos_aspect: "Talos Aspect"
  talos_aspect_desc: "The Talos mantle is held by another — but this character has walked far enough along the path to become a fragment of the Oversoul. Talos is composite; aspects are lore-valid. They carry real divine resonance, but cannot claim the full throne."
+
+ # ---------------------------------------------------------------
+ # Aspect Fragment Dispersal & Sole Heir events
+ # ---------------------------------------------------------------
+ mantling_talos.aspect_dies_notify.t: "A Fragment Returns to the Dream"
+ mantling_talos.aspect_dies_notify.desc: "Someone else was walking the same road as you — another vessel, another echo of the same composite pattern. Now they are gone. You felt it before you heard it: a warmth in the chest like embers, a word half-spoken in a voice that was not yours, a weight that settles on your shoulders without making a sound. Talos has always been more than one man. Hjalti, Wulfharth, Arctus — none of them were the whole. Neither are you. But you are still here."
+ mantling_talos.aspect_dies_notify.a: "I carry what they dropped. The road remains."
+ mantling_talos.aspect_dies_notify.b: "Their pattern finds mine. The walk continues — heavier, but clearer."
+
+ mantling_talos.sole_heir_ascendant.t: "The Last Walker"
+ mantling_talos.sole_heir_ascendant.desc: "The others are gone. Every other soul who had begun to trace the Talos pattern — every other vessel who carried some fragment of Hjalti's stride or Wulfharth's fire or Arctus's cleverness — is dead or departed. The road behind you is empty. The road ahead is yours alone. You feel it settle: not a burden, exactly, but a completion of geometry. The composite Oversoul does not require three vessels to express itself. It requires one vessel who holds all three. That, now, is you. The question is only whether you will walk the remaining distance."
+ mantling_talos.sole_heir_ascendant.a: "The road is mine alone. I will not waste it."
+ mantling_talos.sole_heir_ascendant.b: "I carry them. I do not pretend to become them. But I carry them."
+
+ # Modifiers
+ ww_aspect_fragment_absorbed: "Oversoul Fragment Absorbed"
+ ww_aspect_fragment_absorbed_desc: "A fellow walker of the Talos path has fallen. Some fragment of their Oversoul-echo has dispersed and settled into the pattern already forming in you. The road grows heavier — and the stride grows longer."
+
+ talos_sole_heir: "Sole Heir of the Oversoul"
+ talos_sole_heir_desc: "All other concurrent walkers of the Talos path are gone. The full composite weight of the pattern — every fragment of Hjalti's nerve, Wulfharth's fire, Arctus's cunning — has contracted to you alone. The road ahead is uncontested. The pattern is complete enough to carry itself."

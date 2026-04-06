@@ -355,6 +355,36 @@ This is a second nested choice in the decision UI.
   of the same archetypal pattern. In-universe, their legacy will be comparable to
   Reman Cyrodiil's.
 
+##### Concurrent Aspect-Holder Death: Sole Heir Mechanic
+
+> *DESIGN NOTE — Lore basis: The Arcturian Heresy*
+>
+> Talos was not a single man. He was Hjalti Early-Beard (the tactician), Ysmir Wulfharth
+> (the fire), and Zurin Arctus (the clever man). Each contributed a soul-fragment to the
+> composite Oversoul. When Wulfharth was consumed by Numidium and Arctus's soul was crushed
+> into the Mantella, those fragments did not vanish — they fed the surviving vessel.
+> Tiber Septim became Talos **because he was the last aspect-holder standing**.
+> This mechanic is therefore not a gameplay convenience; it is the lore outcome.
+
+When multiple characters are concurrently walking the Talos path and one dies mid-path:
+
+**Fragment Absorption (2+ survivors):**
+- All surviving active walkers receive the `mantling_talos.aspect_dies_notify` event
+- Each survivor gains `ww_aspect_fragment_absorbed` modifier (Martial +2, prestige/month +2, dread +10%) for 15 years
+- One free bonus milestone is granted (the absorbed fragment counts as pattern recognition)
+- Flavor distinguishes a peer dying vs. a rival being killed
+
+**Sole Heir (last walker remaining):**
+- If only one active walker survives, `mantling_talos.sole_heir_ascendant` fires
+- Grants `talos_sole_heir` modifier (Martial +4, Learning +2, prestige +4/month, stress gain −25%) for the remainder of the path
+- Two bonus milestones are granted (one for each absorbed peer, capped at 6 total)
+- The path's rank can now advance to 4 even if milestones would otherwise fall short
+- The Sole Heir still must reach Rank 4 through active play — the mantle is never automatic
+
+**Global Tracking:**
+- `active_talos_aspects_count` (global var) is incremented by `begin_path_mantling_talos` and decremented on death or abandonment
+- The death hook fires `aspect_dies_notify` to all living concurrent walkers before firing the existing `path_broken` world event
+
 ##### Mantling Arkay
 > *The god of the cycle. Some texts suggest he was once a mortal merchant who died
 > and returned with divine knowledge. The cycle can be walked as well as observed.*

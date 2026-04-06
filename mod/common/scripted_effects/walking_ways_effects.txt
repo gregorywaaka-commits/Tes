@@ -227,6 +227,15 @@ begin_path_mantling_talos = {
     set_variable = { name = ww_mantling_talos_milestones value = 0 }
     set_character_flag = walking_ways_path_active
     set_character_flag = ww_mantling_talos_active
+    # Track concurrent aspect count so the sole-heir mechanic can fire correctly.
+    # [SOURCE: The Arcturian Heresy — Tiber Septim was a composite being; when one
+    #  aspect-holder fell (Wulfharth consumed by Numidium, Arctus soul-crushed into
+    #  the Mantella), the survivor absorbed their fragment and grew stronger.]
+    if = {
+        limit = { NOT = { exists = global_var:active_talos_aspects_count } }
+        set_global_variable = { name = active_talos_aspects_count value = 0 }
+    }
+    change_global_variable = { name = active_talos_aspects_count add = 1 }
     trigger_event = { id = mantling_talos.intro days = 30 }
 }
 
@@ -301,6 +310,10 @@ abandon_path_mantling_talos = {
     clear_all_ww_active_flags = yes
     remove_variable = ww_mantling_talos_rank
     remove_variable = ww_mantling_talos_milestones
+    if = {
+        limit = { exists = global_var:active_talos_aspects_count }
+        change_global_variable = { name = active_talos_aspects_count add = -1 }
+    }
     set_character_flag = { flag = ww_path_abandoned years = 5 }
     trigger_event = { id = walking_ways.abandon days = 7 }
 }

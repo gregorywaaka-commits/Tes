@@ -499,3 +499,167 @@ mantling_talos.wulf_encounter_successor = {
         add_stress = -10
     }
 }
+
+# ---------------------------------------------------------------
+# mantling_talos.aspect_dies_notify  FRAGMENT DISPERSAL
+#
+# A fellow walker of the Talos path has died before completing
+# it.  Their Oversoul fragment disperses — and some of it finds
+# you.  You feel it as a warmth, a weight, a word that you
+# almost recognise.
+#
+# This event fires to every SURVIVING active walker when any
+# peer dies mid-path.  The recipient checks whether they are
+# now the sole remaining walker.  If so, the sole-heir event
+# fires instead of granting only the smaller fragment bonus.
+#
+# [SOURCE: The Arcturian Heresy — when Wulfharth was consumed
+#  by Numidium, his Ysmir-pattern fed the composite Tiber Septim.
+#  When Arctus's soul was crushed into the Mantella, that fragment
+#  likewise contributed to the Oversoul Talos inherited.
+#  Survival of one aspect-holder is lore-canonical.]
+# ---------------------------------------------------------------
+mantling_talos.aspect_dies_notify = {
+    type  = character_event
+    title = mantling_talos.aspect_dies_notify.t
+    desc  = mantling_talos.aspect_dies_notify.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_mantling_talos_active
+    }
+
+    immediate = {
+        # If we are now the sole remaining walker, escalate to the sole-heir event.
+        if = {
+            limit = {
+                NOT = {
+                    any_ruler = {
+                        is_alive = yes
+                        has_character_flag = ww_mantling_talos_active
+                        NOT = { this = root }
+                    }
+                }
+            }
+            trigger_event = { id = mantling_talos.sole_heir_ascendant days = 1 }
+        }
+    }
+
+    # Option A — Accept the weight of the fallen pattern
+    option = {
+        name = mantling_talos.aspect_dies_notify.a
+        trigger = {
+            NOT = {
+                any_ruler = {
+                    is_alive = yes
+                    has_character_flag = ww_mantling_talos_active
+                    NOT = { this = root }
+                }
+            }
+        }
+        # Sole heir branch — small preview before sole_heir_ascendant fires
+        add_prestige = 75
+        add_stress  = 5
+    }
+
+    # Option B — for walkers with peers still alive (fragment absorbed, others remain)
+    option = {
+        name = mantling_talos.aspect_dies_notify.b
+        trigger = {
+            any_ruler = {
+                is_alive = yes
+                has_character_flag = ww_mantling_talos_active
+                NOT = { this = root }
+            }
+        }
+        add_prestige = 50
+        add_stress   = 5
+        add_character_modifier = {
+            modifier = ww_aspect_fragment_absorbed
+            years    = 15
+        }
+        # Absorbing a fragment accelerates pattern recognition — grant a bonus milestone
+        if = {
+            limit = { NOT = { has_character_flag = ww_mantling_talos_milestone_fragment_absorbed } }
+            set_character_flag = ww_mantling_talos_milestone_fragment_absorbed
+            change_variable = { name = ww_mantling_talos_milestones add = 1 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.sole_heir_ascendant  THE LAST WALKER
+#
+# All other concurrent walkers of the Talos path are gone.
+# This character is now the only living vessel of the
+# Oversoul's potential.  The road is uncontested.  The full
+# composite weight of the pattern — Hjalti, Wulfharth, Arctus
+# — settles on a single set of shoulders.
+#
+# Mechanical effect: grants talos_sole_heir modifier (stronger
+# stat boost, no-decay assurance) and a free milestone
+# representing the absorbed fragments.  The mantle is still
+# not automatic — Rank 4 must be reached through play.
+#
+# DESIGN NOTE: This is the lore outcome of The Arcturian Heresy.
+# Tiber Septim became Talos because he was the last surviving
+# vessel after Wulfharth and Arctus fell.  The "sole heir"
+# advantage is therefore canon, not a mechanical shortcut.
+# [SOURCE: The Arcturian Heresy; UESP Lore:Tiber Septim]
+# ---------------------------------------------------------------
+mantling_talos.sole_heir_ascendant = {
+    type  = character_event
+    title = mantling_talos.sole_heir_ascendant.t
+    desc  = mantling_talos.sole_heir_ascendant.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_mantling_talos_active
+        NOT = {
+            any_ruler = {
+                is_alive = yes
+                has_character_flag = ww_mantling_talos_active
+                NOT = { this = root }
+            }
+        }
+    }
+
+    immediate = {
+        # Remove fragment modifier if held; sole_heir supersedes it
+        if = {
+            limit = { has_character_modifier = ww_aspect_fragment_absorbed }
+            remove_character_modifier = ww_aspect_fragment_absorbed
+        }
+        add_character_modifier = {
+            modifier = talos_sole_heir
+            years    = 100     # effectively permanent for the path duration
+        }
+        # Grant two bonus milestones representing Wulfharth + Arctus absorption
+        # (capped: won't exceed 6 to avoid skipping rank gates improperly)
+        if = {
+            limit = { NOT = { has_character_flag = ww_mantling_talos_milestone_fragment_absorbed } }
+            set_character_flag = ww_mantling_talos_milestone_fragment_absorbed
+            change_variable = { name = ww_mantling_talos_milestones add = 1 }
+        }
+        if = {
+            limit = {
+                var:ww_mantling_talos_milestones < 6
+                NOT = { has_character_flag = ww_mantling_talos_milestone_second_fragment } }
+            set_character_flag = ww_mantling_talos_milestone_second_fragment
+            change_variable = { name = ww_mantling_talos_milestones add = 1 }
+        }
+    }
+
+    option = {
+        name = mantling_talos.sole_heir_ascendant.a   # "The road is mine alone."
+        add_prestige = 200
+        add_piety    = 75
+        add_stress   = -20
+    }
+
+    option = {
+        name = mantling_talos.sole_heir_ascendant.b   # "I carry them. I do not become them."
+        add_prestige = 150
+        add_stress   = -30
+    }
+}

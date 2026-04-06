@@ -760,6 +760,24 @@ on_character_death = {
                 set_global_variable = { name = talos_broken_count value = 0 }
             }
             change_global_variable = { name = talos_broken_count add = 1 }
+            # Decrement the concurrent aspect counter
+            if = {
+                limit = { exists = global_var:active_talos_aspects_count }
+                change_global_variable = { name = active_talos_aspects_count add = -1 }
+            }
+            # --- Aspect Fragment Dispersal ---
+            # Notify surviving active walkers. Each recipient then checks whether
+            # they are now the sole remaining walker (sole-heir) or one of several.
+            # Lore: Wulfharth's death fed Tiber Septim; Arctus's soul-fragment
+            # likewise strengthened the composite Oversoul. Survivors absorb.
+            # [SOURCE: The Arcturian Heresy; UESP Lore:Tiber Septim; Lore:Wulfharth]
+            every_ruler = {
+                limit = {
+                    is_alive = yes
+                    has_character_flag = ww_mantling_talos_active
+                }
+                trigger_event = { id = mantling_talos.aspect_dies_notify days = 7 }
+            }
             every_player = {
                 trigger_event = { id = mantling_talos.path_broken days = 7 }
             }

@@ -3146,3 +3146,38 @@ lalatia_recognition = {
     monthly_piety  = 2
     monthly_prestige = 2
 }
+
+# ---------------------------------------------------------------
+#  WW ASPECT FRAGMENT ABSORBED  (Talos path — peer died)
+#  A fellow walker of the Talos path has fallen before you.
+#  Their fragment of the Oversoul has dispersed and settled into
+#  the pattern you are still walking.  The road grows heavier
+#  but the stride grows longer.
+#  [SOURCE: The Arcturian Heresy — Wulfharth consumed by Numidium,
+#   Arctus crushed into the Mantella; both fragments fed Tiber Septim]
+# ---------------------------------------------------------------
+
+ww_aspect_fragment_absorbed = {
+    martial          = 2
+    monthly_prestige = 2
+    dread_gain_mult  = 0.10
+}
+
+# ---------------------------------------------------------------
+#  TALOS SOLE HEIR  (Talos path — last walker remaining)
+#  All other concurrent walkers of the Talos path are gone.
+#  The composite Oversoul has contracted to a single vessel.
+#  This character now carries the full potential of the pattern
+#  without competition or division.  The path ahead is uncontested.
+#  [SOURCE: The Arcturian Heresy; Tiber Septim was the final
+#   surviving aspect-holder when the other soul-fragments fell;
+#   his apotheosis as Talos was the outcome of sole inheritance]
+# ---------------------------------------------------------------
+
+talos_sole_heir = {
+    martial          = 4
+    learning         = 2
+    monthly_prestige = 4
+    dread_gain_mult  = 0.20
+    stress_gain_mult = -0.25
+}
