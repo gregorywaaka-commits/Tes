@@ -610,3 +610,24 @@
  mantling_sheogorath.milestone_realm.desc: "The Shivering Isles exist at the edge of the possible — where the dream of the Mad God takes physical form, where the landscape reflects a divine mind that is part Order and part Chaos and has been at war with itself for ages. The practitioner has made their realm into an echo of this: not literally insane, but thoroughly suffused with their own particular pattern, recognizably a domain shaped by their mind rather than by convention."
  mantling_sheogorath.milestone_realm.a: "My realm reflects my mind. Those who enter it know whose domain this is."
  mantling_sheogorath.milestone_realm.b: "The Shivering Isles are beautiful because they are mad. My domain is beautiful because it is mine."
+
+ # ═══════════════════════════════════════════════════════════════
+ #  WULF — AVATAR OF TALOS
+ # ═══════════════════════════════════════════════════════════════
+ mantling_talos.wulf_encounter.t: "The Old Legionnaire"
+ mantling_talos.wulf_encounter.desc: "An old man waits at the edge of the road — a veteran of the Legion by the look of him, too aged to march, too stubborn to stay behind. He says he has come to witness the great doom at Red Mountain. He presses a coin into your palm. It is copper, nothing remarkable. But his eyes are not the eyes of an old man. His face is a face you have seen before: on coins, on the icons in every Imperial chapel, on the mosaic in the throne hall at the White-Gold Tower. Oracle Lalatia Varian will later say she always knew this moment would come. She will say the gods do not send signs — they send themselves."
+ mantling_talos.wulf_encounter.a: "I take the coin. 'What is your name, old man?' He smiles. 'Wulf.'"
+ mantling_talos.wulf_encounter.b: "I am not a vessel for another's destiny. I decline, gently."
+
+ mantling_talos.lalatia_oracle.t: "The Oracle's Recognition"
+ mantling_talos.lalatia_oracle.desc: "Word reaches Oracle Lalatia Varian of the Imperial Cult — she has heard the report of the old soldier at the road, and she knows what the face on your coin means. 'Look at the emperor's face on any minted coin,' she says. 'Now tell me the man you met was a stranger.' The cult fervour spreads quietly: the Nerevarine — or whoever carries this story — walks under the Luck of the Emperor. Talos himself has marked them."
+ mantling_talos.lalatia_oracle.a: "I accept the Oracle's blessing and the cult's recognition."
+ mantling_talos.lalatia_oracle.b: "I thank her, but prefer to carry this quietly."
+
+ # Modifier/trait display
+ luck_of_the_emperor: "Luck of the Emperor"
+ luck_of_the_emperor_desc: "Wulf pressed a lucky coin into the character's hand at Ghostgate — a copper token charged with the divine fortune of Tiber Septim. The Luck of the Emperor does not desert those it chooses."
+ lalatia_recognition: "Lalatia's Recognition"
+ lalatia_recognition_desc: "Oracle Lalatia Varian of the Imperial Cult has identified this character as blessed by a divine visitation. The faithful of the Imperial Cult watch them with awe."
+ wulf_blessed: "Wulf-Blessed"
+ wulf_blessed_desc: "An old legionnaire named Wulf gave this character a lucky coin near Red Mountain, then vanished. Lalatia Varian believes — and most who hear the story come to agree — that Wulf was no mortal soldier, but an avatar of Tiber Septim himself."

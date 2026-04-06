@@ -515,8 +515,9 @@ on_yearly_pulse = {
         3   = mantling_stendarr.milestone_mercy    # Mercy — spared a defeated foe — mantling_stendarr_active (mantling_stendarr_events.txt)
         3   = mantling_stendarr.milestone_weak     # Protected weak — aided peasants — mantling_stendarr_active (mantling_stendarr_events.txt)
         # --- MANTLING TALOS MILESTONES ---
-        3   = mantling_talos.milestone_mercy   # Mercy — spared rival claim — mantling_talos_active (mantling_talos_events.txt)
-        3   = mantling_talos.milestone_wound   # Wound — major battle scar — mantling_talos_active (mantling_talos_events.txt)
+        3   = mantling_talos.milestone_mercy       # Mercy — spared rival claim — mantling_talos_active (mantling_talos_events.txt)
+        3   = mantling_talos.milestone_wound       # Wound — major battle scar — mantling_talos_active (mantling_talos_events.txt)
+        4   = mantling_talos.wulf_encounter        # Wulf avatar encounter — mantling_talos_active OR nerevarine_marked, while dagoth_ur_awakened (mantling_talos_events.txt)
         # --- MANTLING KYNARETH MILESTONES ---
         3   = mantling_kynareth.milestone_companions  # Companions — allied with Companions — mantling_kynareth_active (mantling_kynareth_events.txt)
         3   = mantling_kynareth.milestone_shor        # Shor's breath — survived storm — mantling_kynareth_active (mantling_kynareth_events.txt)

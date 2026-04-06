@@ -390,3 +390,23 @@ mantle_sheogorath = {
 
     flag = mantle_sheogorath
 }
+
+# ---------------------------------------------------------------
+#  WULF-BLESSED
+#  The character was visited by Wulf — an old legionnaire who
+#  was almost certainly the Avatar of Talos himself. He gave
+#  the lucky coin: a token of imperial destiny, the Luck of the
+#  Emperor made manifest in copper and divine will.
+#  [SOURCE: CANON — TES III: Morrowind, "A Lucky Coin";
+#   UESP Lore:Wulf; Lalatia Varian oracle dialogue]
+# ---------------------------------------------------------------
+
+wulf_blessed = {
+    category = fame
+
+    diplomacy   = 2
+    martial     = 1
+    monthly_prestige = 5
+
+    flag = wulf_blessed
+}

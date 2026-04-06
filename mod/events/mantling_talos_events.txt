@@ -278,3 +278,104 @@ mantling_talos.milestone_wound = {
         add_martial_xp = 100
     }
 }
+
+# ---------------------------------------------------------------
+# mantling_talos.wulf_encounter
+#
+# The Avatar of Talos appears as an aged legionnaire — Wulf —
+# and offers the lucky coin to rulers walking the Talos path or
+# bearing the nerevarine_marked trait, while dagoth_ur_awakened.
+#
+# Lore conditions (UESP canon):
+#   - Only appears during the pivotal Dagoth Ur crisis window
+#   - Grants "Luck of the Emperor" blessing (lucky coin)
+#   - Lalatia Varian, Imperial Cult oracle, later confirms
+#     the encounter's divine nature
+#   - If the ruler also has nerevarine_marked, cross-event fires
+#
+# [SOURCE: TES III: Morrowind quest "A Lucky Coin";
+#  UESP Lore:Wulf; Oracle Lalatia Varian dialogue]
+# ---------------------------------------------------------------
+mantling_talos.wulf_encounter = {
+    type = character_event
+    title = mantling_talos.wulf_encounter.t
+    desc  = mantling_talos.wulf_encounter.desc
+    theme = faith
+
+    trigger = {
+        OR = {
+            has_character_flag = ww_mantling_talos_active
+            has_trait = nerevarine_marked
+        }
+        has_global_flag = dagoth_ur_awakened
+        NOT = { has_character_flag = wulf_visited }
+        NOT = { has_character_flag = wulf_encounter_seen }
+        OR = {
+            martial >= 14
+            has_trait = nerevarine_marked
+        }
+    }
+
+    option = {
+        # Accept the coin
+        name = mantling_talos.wulf_encounter.a
+        set_character_flag = wulf_visited
+        set_character_flag = wulf_encounter_seen
+        add_trait = wulf_blessed
+        add_character_modifier = {
+            modifier = luck_of_the_emperor
+            years = 10
+        }
+        if = {
+            limit = { has_character_flag = ww_mantling_talos_active }
+            set_character_flag = ww_mantling_talos_milestone_shezarrine
+        }
+        if = {
+            limit = { has_trait = nerevarine_marked }
+            set_character_flag = nerevarine_talos_blessed
+        }
+        trigger_event = { id = mantling_talos.lalatia_oracle days = 30 }
+        add_prestige = 200
+        add_piety = 100
+    }
+
+    option = {
+        # Decline the coin
+        name = mantling_talos.wulf_encounter.b
+        set_character_flag = wulf_encounter_seen
+        add_stress = -10
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.lalatia_oracle
+#
+# Oracle Lalatia Varian of the Imperial Cult contacts the ruler
+# having heard reports of their encounter with the old veteran.
+# She recognises what they saw: the face of Tiber Septim on the
+# emperor's coins, walking among the living.
+#
+# [SOURCE: TES III: Morrowind; Lalatia Varian dialogue;
+#  UESP Lore:Wulf — "Lalatia recognises it as a sign of doom"]
+# ---------------------------------------------------------------
+mantling_talos.lalatia_oracle = {
+    type = character_event
+    title = mantling_talos.lalatia_oracle.t
+    desc  = mantling_talos.lalatia_oracle.desc
+    theme = faith
+
+    option = {
+        name = mantling_talos.lalatia_oracle.a
+        add_character_modifier = {
+            modifier = lalatia_recognition
+            years = 5
+        }
+        add_piety = 150
+    }
+
+    option = {
+        name = mantling_talos.lalatia_oracle.b
+        add_prestige = 100
+    }
+}

@@ -3113,3 +3113,36 @@ sheogorath_consumed = {
     stress_gain_mult = 0.40
     health           = -1.0
 }
+
+# ---------------------------------------------------------------
+#  LUCK OF THE EMPEROR (Wulf's Coin — Talos Avatar Blessing)
+#  Tiber Septim appeared as an old legionnaire named Wulf at
+#  Ghostgate, offering a lucky coin to the Nerevarine. The coin
+#  channels the divine luck of the emperor himself.
+#  [SOURCE: CANON — TES III: Morrowind, quest "A Lucky Coin";
+#   UESP Lore:Wulf; Oracle Lalatia Varian's dialogue]
+# ---------------------------------------------------------------
+
+luck_of_the_emperor = {
+    diplomacy   = 1
+    martial     = 1
+    stewardship = 1
+    intrigue    = 1
+    learning    = 1
+    health      = 0.5
+    monthly_prestige = 3
+}
+
+# ---------------------------------------------------------------
+#  LALATIA'S RECOGNITION (Oracle blessing — Imperial Cult)
+#  After witnessing the Wulf encounter, the Oracle of the
+#  Imperial Cult recognises the blessed character as touched
+#  by Talos himself. Morale spreads; followers grow fervent.
+#  [SOURCE: CANON — TES III: Morrowind; Imperial Cult oracle]
+# ---------------------------------------------------------------
+
+lalatia_recognition = {
+    diplomacy      = 2
+    monthly_piety  = 2
+    monthly_prestige = 2
+}
