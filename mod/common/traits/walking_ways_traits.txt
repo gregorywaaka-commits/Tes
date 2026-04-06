@@ -8,6 +8,11 @@
 #                         has begun. Applied to all active paths.
 #  chim_sovereign       — Path A apex (CHIM Expanded). The
 #                         dream is not just understood — it bends.
+#  shezarrine_convergence — Cross-path apex. A ruler who has
+#                         accumulated 3+ Shezarrine-branch
+#                         completions (Talos, Lorkhan, vessel,
+#                         Sheogorath mantle, Vivec mantle, etc.).
+#                         The mythic chain recognises itself.
 #
 #  LORE CONTEXT:
 #  ─────────────
@@ -29,11 +34,13 @@
 #  DEFINES:
 #    • walking_ways_seeker
 #    • chim_sovereign
+#    • shezarrine_convergence
 #
 #  REFERENCED BY:
 #    common/scripted_effects/walking_ways_effects.txt
 #    common/decisions/walking_ways_decisions.txt
 #    events/walking_ways_events.txt
+#    events/shezarrine_events.txt (shezarrine.201)
 # =============================================================
 
 # ---------------------------------------------------------------
@@ -81,4 +88,217 @@ chim_sovereign = {
     dread_gain_mult               = 0.30    # reality bends in your presence
 
     flag = chim_sovereign
+}
+
+# ---------------------------------------------------------------
+#  TONAL TRANSCENDENT
+#  Path G apex. The Dwemer's path was the wrong Walking Way —
+#  materialist, scientific, dangerous. But those who survive
+#  it are rewritten at the tonal level. The self is not
+#  understood; it is reconstructed. Learning and order are
+#  elevated beyond mortal norms, but the cost was nearly
+#  annihilation.
+#  [SOURCE: UESP Lore:Tonal Architecture; Lore:Numidium]
+# ---------------------------------------------------------------
+
+tonal_transcendent = {
+    category = fame
+
+    learning    = 8
+    stewardship = 6
+
+    monthly_prestige = 15
+    stress_gain_mult = -0.30   # the reconstructed self does not bruise easily
+
+    flag = tonal_transcendent
+}
+
+# ---------------------------------------------------------------
+#  PROLIX SOVEREIGN
+#  Path H apex. Language achieved godhood. The text became
+#  real. The author survived — standing outside the narrative
+#  that wrote itself. Vivec's path. The 36 Lessons made literal.
+#  [SOURCE: UESP Lore:Walking Ways; 36 Lessons of Vivec]
+# ---------------------------------------------------------------
+
+prolix_sovereign = {
+    category = fame
+
+    learning         = 7
+    monthly_piety    = 12
+    monthly_prestige = 10
+
+    flag = prolix_sovereign
+}
+
+# ---------------------------------------------------------------
+#  LOST IN THE TOWER
+#  Path H alternate outcome. The author chose to enter the text
+#  rather than stand outside it. They are still in there —
+#  capable, brilliant, half-present. A mind that operates from
+#  inside a narrative it wrote but cannot fully exit.
+#  No death. Permanent partial displacement.
+# ---------------------------------------------------------------
+
+lost_in_the_tower = {
+    category = lifestyle
+
+    learning         = 3
+    stress_gain_mult = 0.25   # the text's pressures are constant
+
+    flag = lost_in_the_tower
+}
+
+# ---------------------------------------------------------------
+#  NECROMANCER'S ASCENDANT
+#  Path I apex. Mannimarco's completed path. The Necromancer's
+#  Moon is not a metaphor — it is a domain. Arkay's cycle
+#  broken. Death no longer flows one way. The ascendant rules
+#  from the intersection of life and death.
+#  [SOURCE: UESP Lore:Mannimarco; Daggerfall; ESO]
+# ---------------------------------------------------------------
+
+necromancers_ascendant = {
+    category = fame
+
+    intrigue         = 6
+    learning         = 5
+    health           = 2.0
+    monthly_piety    = 10
+    stress_gain_mult = -0.20   # death is no longer something that happens to you
+
+    flag = necromancers_ascendant
+}
+
+# ---------------------------------------------------------------
+#  SOUL FRACTURED
+#  Path I failure outcome. The phylactery held — the soul was
+#  bound — but the ascension broke mid-way. The character did
+#  not die. They became a lich instead. The fractured soul
+#  is a side-state: extraordinary, but not what was sought.
+# ---------------------------------------------------------------
+
+soul_fractured = {
+    category = lifestyle
+
+    flag = soul_fractured
+}
+
+# ---------------------------------------------------------------
+#  SHEZARRINE ASCENDANT
+#  Path J apex. Lorkhan's pattern completed in a mortal vessel.
+#  The merger did not destroy the character — it completed
+#  them as a mythic instrument. The White Warrior's final form.
+#  The prestige is enormous. The cost was the self, willingly.
+#  [SOURCE: Songs of the Return; The Song of Pelinal]
+# ---------------------------------------------------------------
+
+shezarrine_ascendant = {
+    category = fame
+
+    martial          = 8
+    prowess          = 5
+    monthly_prestige = 15
+    dread_gain_mult  = 0.25   # Lorkhan's wrath radiates outward
+
+    flag = shezarrine_ascendant
+}
+
+# ---------------------------------------------------------------
+#  SHEZARRINE CONVERGENCE
+#  Cross-path apex. A ruler who has accumulated 3+ Shezarrine-
+#  branch completions in a single lifetime — Talos mantle,
+#  Lorkhan mantle, shezarrine_vessel, Sheogorath mantle, Vivec
+#  mantle, Nerevarine-branch traits, Mephala web, etc.
+#  These are not separate stories. They are one story told many
+#  times. This ruler has lived more than one of its chapters.
+#  The mythic weight of the chain is visible now.
+#  [SOURCE: TES lore: Pelinal → Reman → Talos chain; Hero of
+#   Kvatch (Sheogorath mantle); Nerevarine; Dragonborn]
+# ---------------------------------------------------------------
+
+shezarrine_convergence = {
+    category = fame
+
+    martial          = 5
+    learning         = 4
+    intrigue         = 3
+    diplomacy        = 3
+    monthly_prestige = 20
+    monthly_piety    = 8
+    health           = 2.0
+    dread_gain_mult  = 0.30
+
+    flag = shezarrine_convergence
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 NEW APEX TRAITS
+# ═══════════════════════════════════════════════════════════════
+
+# ---------------------------------------------------------------
+#  JYGGALAG ASCENDANT
+#  Apex of Path K — Jyggalag's Champion ("The Instrument of Order").
+#  The character has embodied Order so completely that Jyggalag,
+#  the freed Prince, recognizes them as a kindred expression of
+#  his domain. Not a throne claim — a pattern recognition.
+#  The character is not Jyggalag; they are the shape Jyggalag's
+#  will moved through. Crystal-clear. Uncompromising. Free.
+#  [SOURCE: CANON — Shivering Isles DLC; UESP Lore:Jyggalag]
+# ---------------------------------------------------------------
+jyggalag_ascendant = {
+    category = fame
+
+    martial          = 4
+    learning         = 3
+    monthly_prestige_gain_mult = 0.35
+    health           = 0.5
+    stress_loss_mult = 0.15
+
+    flag = jyggalag_ascendant
+}
+
+# ---------------------------------------------------------------
+#  MADNESS PROPHET
+#  Apex of Path K-2 — Sheogorath's Echo ("The Prophet of Madness").
+#  The character channels Sheogorath's domain — creative chaos,
+#  the logic that reason cannot follow — without claiming the
+#  throne of the Shivering Isles. They are the echo, not the
+#  source. They wield madness as insight, as strategy, as art —
+#  and have not been consumed. Yet.
+#  [SOURCE: CANON — Shivering Isles DLC; UESP Lore:Sheogorath]
+# ---------------------------------------------------------------
+madness_prophet = {
+    category = fame
+
+    intrigue = 5
+    learning = 3
+    diplomacy = 2
+    monthly_prestige_gain_mult = 0.25
+    stress_loss_mult = 0.20
+
+    flag = madness_prophet
+}
+
+# ---------------------------------------------------------------
+#  DEATH SOVEREIGN
+#  Apex of Path L — The Necromancer's Third Way ("I Owe No Master").
+#  The character forged a relationship with death that has no
+#  precedent — neither Mannimarco's apotheosis, nor the Ideal
+#  Masters' dissolution, nor Arkay's cycle. They are sovereign
+#  over their own ending. Not the god of necromancy — something
+#  newer and stranger than that.
+#  [SOURCE: Lore synthesis — UESP Lore:Mannimarco; Soul Cairn;
+#   extrapolated from established necromantic lore gaps]
+# ---------------------------------------------------------------
+death_sovereign = {
+    category = fame
+
+    learning         = 6
+    intrigue         = 4
+    health           = 1.0
+    monthly_prestige_gain_mult = 0.40
+    stress_gain_mult = -0.15
+
+    flag = death_sovereign
 }

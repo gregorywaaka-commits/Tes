@@ -166,6 +166,8 @@
 - **Plane:** The Shivering Isles (split between Mania — manic joy — and Dementia — paranoid despair)
 - **Key artifacts:** Wabbajack, Staff of Sheogorath
 - **Identity:** ⚠️ Sheogorath IS **Jyggalag** transformed by the other Princes' curse. `[CANON — TES IV: Shivering Isles]` The "Sheogorath" of TES V: Skyrim is the **Champion of Cyrodiil** who took the mantle after defeating Jyggalag. `[CANON — TES IV/V]`
+- **Jyggalag (original form):** Prince of Order, Logic, and Prediction — crystalline constructs, perfect systems, absolute predictability. Cursed by the other Princes (who feared him) to become his opposite. Every era, Jyggalag returned during the **Greymarch** to destroy the Shivering Isles, then reverted to Sheogorath. The Champion of Cyrodiil broke this cycle at 3E 433. Jyggalag is now free as a separate entity. `[CANON — TES IV: Shivering Isles; UESP Lore:Jyggalag]`
+- **Mantling note:** The Hero of Kvatch mantled Sheogorath by completing the Shivering Isles quest — the most explicit canonical example of **mortal → Daedric Prince** mantling in the series. `[CANON — TES IV: Shivering Isles; confirmed by TES V: Skyrim dialogue]`
 - **Relation to mortals:** Wildly unpredictable. Interactions range from amusing to horrifying to both simultaneously. Worshipped and feared in equal measure.
 
 ### 17. Vaermina `[CANON — UESP]`
@@ -182,15 +184,15 @@
 
 | Prince | Sphere | Plane | Mod-relevant notes |
 |---|---|---|---|
-| Azura | Dusk/Dawn/Prophecy | Moonshadow | Invasion weight 2; Good Daedra `[CANON]` |
-| Boethiah | Deceit/Assassination | Attribution's Share | Good Daedra `[CANON]` |
+| Azura | Dusk/Dawn/Prophecy | Moonshadow | Invasion weight 2; Good Daedra; **Anticipation of Sotha Sil** `[CANON]` |
+| Boethiah | Deceit/Assassination | Attribution's Share | Good Daedra; **Anticipation of Almalexia** `[CANON]` |
 | Clavicus Vile | Wishes/Bargains | Clavicus Vile's Realm | — |
 | Hermaeus Mora | Knowledge/Forbidden Lore | Apocrypha | Trait = arbitrary, NOT paranoid `[CONFIRMED FIX]` |
 | Hircine | The Hunt/Lycanthropy | Hunting Grounds | Werewolves are his; they go to Hunting Grounds on death |
 | Jyggalag | Order/Logic | Unknown | Weight = 0 before 3E 400 `[MOD CHOICE]`; IS Sheogorath transformed |
 | Malacath | Ostracised/Oaths | Ashpit | Orsimer patron; was Trinimac `[CONTESTED identity]` |
 | Mehrunes Dagon | Destruction/Revolution | The Deadlands | Main antagonist of Oblivion |
-| Mephala | Lies/Secret Murder | Spiral Skein | Night Mother = Mephala is `[CONTESTED]` |
+| Mephala | Lies/Secret Murder | Spiral Skein | Night Mother = Mephala is `[CONTESTED]`; **Anticipation of Vivec** `[CANON]` |
 | Meridia | Life/Light | The Colored Rooms | Invasion weight 1; hates undead |
 | Molag Bal | Domination/Vampirism | Coldharbour | "King of Corruption" NOT "King of Rape" `[CONFIRMED FIX]` |
 | Namira | Decay/Darkness | Scuttling Void | — |

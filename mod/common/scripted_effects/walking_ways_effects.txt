@@ -42,6 +42,17 @@
 #    • begin_path_mantling_kynareth / advance / complete / abandon
 #    • begin_path_mantling_azura / advance / complete / abandon
 #    • begin_path_mantling_meridia / advance / complete / abandon
+#    • begin_path_mantling_lorkhan / advance / complete / abandon
+#    • begin_path_mantling_stendarr / advance / complete / abandon
+#    • begin_path_mantling_boethiah / advance / complete / abandon
+#    • begin_path_mantling_mephala / advance / complete / abandon
+#    • begin_path_mantling_hircine / advance / complete / abandon
+#    • begin_path_mantling_dibella / advance / complete / abandon
+#    • begin_path_mantling_mara / advance / complete / abandon
+#    • begin_path_mantling_sheogorath / advance / complete / abandon
+#    • begin_path_mantling_vivec / advance / complete / abandon
+#    • begin_path_mantling_almalexia / advance / complete / abandon
+#    • begin_path_mantling_sotha_sil / advance / complete / abandon
 #    • begin_path_psijic_endeavour / advance / complete / abandon
 #    • begin_path_enantiomorph / advance / complete / abandon
 #    • begin_path_amaranth / advance / complete / abandon
@@ -81,9 +92,22 @@ clear_all_ww_active_flags = {
     remove_character_flag = ww_mantling_boethiah_active
     remove_character_flag = ww_mantling_mephala_active
     remove_character_flag = ww_mantling_hircine_active
+    remove_character_flag = ww_mantling_dibella_active
+    remove_character_flag = ww_mantling_mara_active
+    remove_character_flag = ww_mantling_sheogorath_active
+    remove_character_flag = ww_mantling_vivec_active
+    remove_character_flag = ww_mantling_almalexia_active
+    remove_character_flag = ww_mantling_sotha_sil_active
     remove_character_flag = ww_psijic_endeavour_active
     remove_character_flag = ww_enantiomorph_active
     remove_character_flag = ww_amaranth_active
+    remove_character_flag = ww_tonal_architecture_active
+    remove_character_flag = ww_prolix_tower_active
+    remove_character_flag = ww_worm_apotheosis_active
+    remove_character_flag = ww_shezarrine_ascendant_active
+    remove_character_flag = ww_mantling_jyggalag_active
+    remove_character_flag = ww_sheogorath_echo_active
+    remove_character_flag = ww_necromancer_third_way_active
 }
 
 # ───────────────────────────────────────────────────────────────
@@ -203,6 +227,15 @@ begin_path_mantling_talos = {
     set_variable = { name = ww_mantling_talos_milestones value = 0 }
     set_character_flag = walking_ways_path_active
     set_character_flag = ww_mantling_talos_active
+    # Track concurrent aspect count so the sole-heir mechanic can fire correctly.
+    # [SOURCE: The Arcturian Heresy — Tiber Septim was a composite being; when one
+    #  aspect-holder fell (Wulfharth consumed by Numidium, Arctus soul-crushed into
+    #  the Mantella), the survivor absorbed their fragment and grew stronger.]
+    if = {
+        limit = { NOT = { exists = global_var:active_talos_aspects_count } }
+        set_global_variable = { name = active_talos_aspects_count value = 0 }
+    }
+    change_global_variable = { name = active_talos_aspects_count add = 1 }
     trigger_event = { id = mantling_talos.intro days = 30 }
 }
 
@@ -277,6 +310,10 @@ abandon_path_mantling_talos = {
     clear_all_ww_active_flags = yes
     remove_variable = ww_mantling_talos_rank
     remove_variable = ww_mantling_talos_milestones
+    if = {
+        limit = { exists = global_var:active_talos_aspects_count }
+        change_global_variable = { name = active_talos_aspects_count add = -1 }
+    }
     set_character_flag = { flag = ww_path_abandoned years = 5 }
     trigger_event = { id = walking_ways.abandon days = 7 }
 }
@@ -1542,4 +1579,1281 @@ apply_amaranth_departure_costs = {
             set_character_flag = ww_amaranth_dream_child
         }
     }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  PATH B — MANTLING: DIBELLA (Aedric)
+# ───────────────────────────────────────────────────────────────
+
+begin_path_mantling_dibella = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_mantling_dibella_rank value = 0 }
+    set_variable = { name = ww_mantling_dibella_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_mantling_dibella_active
+    add_character_modifier = {
+        modifier = ww_path_mantling_dibella_active
+        years = 100
+    }
+    trigger_event = { id = mantling_dibella.intro days = 30 }
+}
+
+count_ww_milestones_mantling_dibella = {
+    if = {
+        limit = { has_character_flag = ww_mantling_dibella_milestone_beauty }
+        change_variable = { name = ww_mantling_dibella_milestones add = 1 }
+        remove_character_flag = ww_mantling_dibella_milestone_beauty
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_dibella_milestone_love }
+        change_variable = { name = ww_mantling_dibella_milestones add = 1 }
+        remove_character_flag = ww_mantling_dibella_milestone_love
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_dibella_milestone_art }
+        change_variable = { name = ww_mantling_dibella_milestones add = 1 }
+        remove_character_flag = ww_mantling_dibella_milestone_art
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_dibella_milestone_patron }
+        change_variable = { name = ww_mantling_dibella_milestones add = 1 }
+        remove_character_flag = ww_mantling_dibella_milestone_patron
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_dibella_milestone_vessel }
+        change_variable = { name = ww_mantling_dibella_milestones add = 1 }
+        remove_character_flag = ww_mantling_dibella_milestone_vessel
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_dibella_milestone_divine }
+        change_variable = { name = ww_mantling_dibella_milestones add = 1 }
+        remove_character_flag = ww_mantling_dibella_milestone_divine
+    }
+}
+
+advance_path_mantling_dibella = {
+    if = {
+        limit = { var:ww_mantling_dibella_milestones >= 2  var:ww_mantling_dibella_rank < 1 }
+        set_variable = { name = ww_mantling_dibella_rank value = 1 }
+        trigger_event = { id = mantling_dibella.rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_dibella_milestones >= 4  var:ww_mantling_dibella_rank < 2 }
+        set_variable = { name = ww_mantling_dibella_rank value = 2 }
+        trigger_event = { id = mantling_dibella.rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_dibella_milestones >= 6  var:ww_mantling_dibella_rank < 3 }
+        set_variable = { name = ww_mantling_dibella_rank value = 3 }
+        trigger_event = { id = mantling_dibella.rank3 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_dibella_rank >= 3  var:ww_mantling_dibella_milestones >= 6 }
+        set_variable = { name = ww_mantling_dibella_rank value = 4 }
+        trigger_event = { id = mantling_dibella.apotheosis days = 14 }
+    }
+}
+
+complete_path_mantling_dibella = {
+    add_trait = mantle_dibella
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_mantling_dibella_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 550
+    notify_world_ww_completion = yes
+}
+
+abandon_path_mantling_dibella = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_mantling_dibella_rank
+    remove_variable = ww_mantling_dibella_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  PATH B — MANTLING: MARA (Aedric)
+# ───────────────────────────────────────────────────────────────
+
+begin_path_mantling_mara = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_mantling_mara_rank value = 0 }
+    set_variable = { name = ww_mantling_mara_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_mantling_mara_active
+    add_character_modifier = {
+        modifier = ww_path_mantling_mara_active
+        years = 100
+    }
+    trigger_event = { id = mantling_mara.intro days = 30 }
+}
+
+count_ww_milestones_mantling_mara = {
+    if = {
+        limit = { has_character_flag = ww_mantling_mara_milestone_family }
+        change_variable = { name = ww_mantling_mara_milestones add = 1 }
+        remove_character_flag = ww_mantling_mara_milestone_family
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_mara_milestone_healing }
+        change_variable = { name = ww_mantling_mara_milestones add = 1 }
+        remove_character_flag = ww_mantling_mara_milestone_healing
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_mara_milestone_devotion }
+        change_variable = { name = ww_mantling_mara_milestones add = 1 }
+        remove_character_flag = ww_mantling_mara_milestone_devotion
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_mara_milestone_children }
+        change_variable = { name = ww_mantling_mara_milestones add = 1 }
+        remove_character_flag = ww_mantling_mara_milestone_children
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_mara_milestone_pilgrimage }
+        change_variable = { name = ww_mantling_mara_milestones add = 1 }
+        remove_character_flag = ww_mantling_mara_milestone_pilgrimage
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_mara_milestone_hearth }
+        change_variable = { name = ww_mantling_mara_milestones add = 1 }
+        remove_character_flag = ww_mantling_mara_milestone_hearth
+    }
+}
+
+advance_path_mantling_mara = {
+    if = {
+        limit = { var:ww_mantling_mara_milestones >= 2  var:ww_mantling_mara_rank < 1 }
+        set_variable = { name = ww_mantling_mara_rank value = 1 }
+        trigger_event = { id = mantling_mara.rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_mara_milestones >= 4  var:ww_mantling_mara_rank < 2 }
+        set_variable = { name = ww_mantling_mara_rank value = 2 }
+        trigger_event = { id = mantling_mara.rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_mara_milestones >= 6  var:ww_mantling_mara_rank < 3 }
+        set_variable = { name = ww_mantling_mara_rank value = 3 }
+        trigger_event = { id = mantling_mara.rank3 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_mara_rank >= 3  var:ww_mantling_mara_milestones >= 6 }
+        set_variable = { name = ww_mantling_mara_rank value = 4 }
+        trigger_event = { id = mantling_mara.apotheosis days = 14 }
+    }
+}
+
+complete_path_mantling_mara = {
+    add_trait = mantle_mara
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_mantling_mara_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 500
+    add_piety = 200
+    notify_world_ww_completion = yes
+}
+
+abandon_path_mantling_mara = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_mantling_mara_rank
+    remove_variable = ww_mantling_mara_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  PATH B — MANTLING: SHEOGORATH (Daedric)
+# ───────────────────────────────────────────────────────────────
+
+begin_path_mantling_sheogorath = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_mantling_sheogorath_rank value = 0 }
+    set_variable = { name = ww_mantling_sheogorath_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_mantling_sheogorath_active
+    add_character_modifier = {
+        modifier = ww_path_mantling_sheogorath_active
+        years = 100
+    }
+    add_character_modifier = {
+        modifier = mantling_daedric_risk
+        years = 100
+    }
+    trigger_event = { id = mantling_sheogorath.intro days = 30 }
+}
+
+count_ww_milestones_mantling_sheogorath = {
+    if = {
+        limit = { has_character_flag = ww_mantling_sheogorath_milestone_madness }
+        change_variable = { name = ww_mantling_sheogorath_milestones add = 1 }
+        remove_character_flag = ww_mantling_sheogorath_milestone_madness
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_sheogorath_milestone_obelisk }
+        change_variable = { name = ww_mantling_sheogorath_milestones add = 1 }
+        remove_character_flag = ww_mantling_sheogorath_milestone_obelisk
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_sheogorath_milestone_realm }
+        change_variable = { name = ww_mantling_sheogorath_milestones add = 1 }
+        remove_character_flag = ww_mantling_sheogorath_milestone_realm
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_sheogorath_milestone_greymarch }
+        change_variable = { name = ww_mantling_sheogorath_milestones add = 1 }
+        remove_character_flag = ww_mantling_sheogorath_milestone_greymarch
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_sheogorath_milestone_jyggalag_defeated }
+        change_variable = { name = ww_mantling_sheogorath_milestones add = 1 }
+        remove_character_flag = ww_mantling_sheogorath_milestone_jyggalag_defeated
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_sheogorath_milestone_new_prince }
+        change_variable = { name = ww_mantling_sheogorath_milestones add = 1 }
+        remove_character_flag = ww_mantling_sheogorath_milestone_new_prince
+    }
+}
+
+advance_path_mantling_sheogorath = {
+    if = {
+        limit = { var:ww_mantling_sheogorath_milestones >= 2  var:ww_mantling_sheogorath_rank < 1 }
+        set_variable = { name = ww_mantling_sheogorath_rank value = 1 }
+        trigger_event = { id = mantling_sheogorath.rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_sheogorath_milestones >= 4  var:ww_mantling_sheogorath_rank < 2 }
+        set_variable = { name = ww_mantling_sheogorath_rank value = 2 }
+        trigger_event = { id = mantling_sheogorath.rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_sheogorath_milestones >= 6  var:ww_mantling_sheogorath_rank < 3 }
+        set_variable = { name = ww_mantling_sheogorath_rank value = 3 }
+        # Possession risk at rank 3: 30% chance the Grey March claims the mantler
+        random = {
+            chance = 30
+            trigger_event = { id = mantling_sheogorath.possession days = 7 }
+            set_character_flag = ww_daedric_mantle_failed
+        }
+        if = {
+            limit = { NOT = { has_character_flag = ww_daedric_mantle_failed } }
+            trigger_event = { id = mantling_sheogorath.rank3 days = 7 }
+        }
+    }
+    else_if = {
+        limit = { var:ww_mantling_sheogorath_rank >= 3  var:ww_mantling_sheogorath_milestones >= 6 }
+        set_variable = { name = ww_mantling_sheogorath_rank value = 4 }
+        trigger_event = { id = mantling_sheogorath.apotheosis days = 14 }
+    }
+}
+
+complete_path_mantling_sheogorath = {
+    add_trait = mantle_sheogorath
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_mantling_sheogorath_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 700
+    # Canonical liberation: the Greymarch cycle is broken; Jyggalag is freed.
+    # His domain (Order) is now untended — this opens Path K for other characters.
+    set_global_flag = jyggalag_freed
+    remove_global_flag = greymarch_unresolved
+    notify_world_ww_completion = yes
+}
+
+abandon_path_mantling_sheogorath = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_mantling_sheogorath_rank
+    remove_variable = ww_mantling_sheogorath_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  PATH B — MANTLING: VIVEC (Tribunal)
+# ───────────────────────────────────────────────────────────────
+
+begin_path_mantling_vivec = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_mantling_vivec_rank value = 0 }
+    set_variable = { name = ww_mantling_vivec_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_mantling_vivec_active
+    add_character_modifier = {
+        modifier = ww_path_mantling_vivec_active
+        years = 100
+    }
+    add_character_modifier = {
+        modifier = mantling_tribunal_anticipation_seen
+        years = 5
+    }
+    trigger_event = { id = mantling_tribunal.vivec_intro days = 30 }
+}
+
+count_ww_milestones_mantling_vivec = {
+    if = {
+        limit = { has_character_flag = ww_mantling_vivec_milestone_warrior }
+        change_variable = { name = ww_mantling_vivec_milestones add = 1 }
+        remove_character_flag = ww_mantling_vivec_milestone_warrior
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_vivec_milestone_poet }
+        change_variable = { name = ww_mantling_vivec_milestones add = 1 }
+        remove_character_flag = ww_mantling_vivec_milestone_poet
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_vivec_milestone_contradiction }
+        change_variable = { name = ww_mantling_vivec_milestones add = 1 }
+        remove_character_flag = ww_mantling_vivec_milestone_contradiction
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_vivec_milestone_sermon }
+        change_variable = { name = ww_mantling_vivec_milestones add = 1 }
+        remove_character_flag = ww_mantling_vivec_milestone_sermon
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_vivec_milestone_duality }
+        change_variable = { name = ww_mantling_vivec_milestones add = 1 }
+        remove_character_flag = ww_mantling_vivec_milestone_duality
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_vivec_milestone_apotheosis }
+        change_variable = { name = ww_mantling_vivec_milestones add = 1 }
+        remove_character_flag = ww_mantling_vivec_milestone_apotheosis
+    }
+}
+
+advance_path_mantling_vivec = {
+    if = {
+        limit = { var:ww_mantling_vivec_milestones >= 2  var:ww_mantling_vivec_rank < 1 }
+        set_variable = { name = ww_mantling_vivec_rank value = 1 }
+        trigger_event = { id = mantling_tribunal.vivec_rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_vivec_milestones >= 4  var:ww_mantling_vivec_rank < 2 }
+        set_variable = { name = ww_mantling_vivec_rank value = 2 }
+        trigger_event = { id = mantling_tribunal.vivec_rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_vivec_milestones >= 6  var:ww_mantling_vivec_rank < 3 }
+        set_variable = { name = ww_mantling_vivec_rank value = 3 }
+        trigger_event = { id = mantling_tribunal.vivec_rank3 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_vivec_rank >= 3  var:ww_mantling_vivec_milestones >= 6 }
+        set_variable = { name = ww_mantling_vivec_rank value = 4 }
+        trigger_event = { id = mantling_tribunal.vivec_apotheosis days = 14 }
+    }
+}
+
+complete_path_mantling_vivec = {
+    add_trait = mantle_vivec
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_mantling_vivec_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 650
+    add_piety = 300
+    notify_world_ww_completion = yes
+}
+
+abandon_path_mantling_vivec = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_mantling_vivec_rank
+    remove_variable = ww_mantling_vivec_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  PATH B — MANTLING: ALMALEXIA (Tribunal)
+# ───────────────────────────────────────────────────────────────
+
+begin_path_mantling_almalexia = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_mantling_almalexia_rank value = 0 }
+    set_variable = { name = ww_mantling_almalexia_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_mantling_almalexia_active
+    add_character_modifier = {
+        modifier = ww_path_mantling_almalexia_active
+        years = 100
+    }
+    add_character_modifier = {
+        modifier = mantling_tribunal_anticipation_seen
+        years = 5
+    }
+    trigger_event = { id = mantling_tribunal.almalexia_intro days = 30 }
+}
+
+count_ww_milestones_mantling_almalexia = {
+    if = {
+        limit = { has_character_flag = ww_mantling_almalexia_milestone_protector }
+        change_variable = { name = ww_mantling_almalexia_milestones add = 1 }
+        remove_character_flag = ww_mantling_almalexia_milestone_protector
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_almalexia_milestone_hands }
+        change_variable = { name = ww_mantling_almalexia_milestones add = 1 }
+        remove_character_flag = ww_mantling_almalexia_milestone_hands
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_almalexia_milestone_mother }
+        change_variable = { name = ww_mantling_almalexia_milestones add = 1 }
+        remove_character_flag = ww_mantling_almalexia_milestone_mother
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_almalexia_milestone_healer }
+        change_variable = { name = ww_mantling_almalexia_milestones add = 1 }
+        remove_character_flag = ww_mantling_almalexia_milestone_healer
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_almalexia_milestone_reclame }
+        change_variable = { name = ww_mantling_almalexia_milestones add = 1 }
+        remove_character_flag = ww_mantling_almalexia_milestone_reclame
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_almalexia_milestone_divine_wrath }
+        change_variable = { name = ww_mantling_almalexia_milestones add = 1 }
+        remove_character_flag = ww_mantling_almalexia_milestone_divine_wrath
+    }
+}
+
+advance_path_mantling_almalexia = {
+    if = {
+        limit = { var:ww_mantling_almalexia_milestones >= 2  var:ww_mantling_almalexia_rank < 1 }
+        set_variable = { name = ww_mantling_almalexia_rank value = 1 }
+        trigger_event = { id = mantling_tribunal.almalexia_rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_almalexia_milestones >= 4  var:ww_mantling_almalexia_rank < 2 }
+        set_variable = { name = ww_mantling_almalexia_rank value = 2 }
+        trigger_event = { id = mantling_tribunal.almalexia_rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_almalexia_milestones >= 6  var:ww_mantling_almalexia_rank < 3 }
+        set_variable = { name = ww_mantling_almalexia_rank value = 3 }
+        trigger_event = { id = mantling_tribunal.almalexia_rank3 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_almalexia_rank >= 3  var:ww_mantling_almalexia_milestones >= 6 }
+        set_variable = { name = ww_mantling_almalexia_rank value = 4 }
+        trigger_event = { id = mantling_tribunal.almalexia_apotheosis days = 14 }
+    }
+}
+
+complete_path_mantling_almalexia = {
+    add_trait = mantle_almalexia
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_mantling_almalexia_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 600
+    add_piety = 350
+    notify_world_ww_completion = yes
+}
+
+abandon_path_mantling_almalexia = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_mantling_almalexia_rank
+    remove_variable = ww_mantling_almalexia_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  PATH B — MANTLING: SOTHA SIL (Tribunal)
+# ───────────────────────────────────────────────────────────────
+
+begin_path_mantling_sotha_sil = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_mantling_sotha_sil_rank value = 0 }
+    set_variable = { name = ww_mantling_sotha_sil_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_mantling_sotha_sil_active
+    add_character_modifier = {
+        modifier = ww_path_mantling_sotha_sil_active
+        years = 100
+    }
+    add_character_modifier = {
+        modifier = mantling_tribunal_anticipation_seen
+        years = 5
+    }
+    trigger_event = { id = mantling_tribunal.sotha_sil_intro days = 30 }
+}
+
+count_ww_milestones_mantling_sotha_sil = {
+    if = {
+        limit = { has_character_flag = ww_mantling_sotha_sil_milestone_workshop }
+        change_variable = { name = ww_mantling_sotha_sil_milestones add = 1 }
+        remove_character_flag = ww_mantling_sotha_sil_milestone_workshop
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_sotha_sil_milestone_construct }
+        change_variable = { name = ww_mantling_sotha_sil_milestones add = 1 }
+        remove_character_flag = ww_mantling_sotha_sil_milestone_construct
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_sotha_sil_milestone_clockwork }
+        change_variable = { name = ww_mantling_sotha_sil_milestones add = 1 }
+        remove_character_flag = ww_mantling_sotha_sil_milestone_clockwork
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_sotha_sil_milestone_hidden }
+        change_variable = { name = ww_mantling_sotha_sil_milestones add = 1 }
+        remove_character_flag = ww_mantling_sotha_sil_milestone_hidden
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_sotha_sil_milestone_mechanism }
+        change_variable = { name = ww_mantling_sotha_sil_milestones add = 1 }
+        remove_character_flag = ww_mantling_sotha_sil_milestone_mechanism
+    }
+    if = {
+        limit = { has_character_flag = ww_mantling_sotha_sil_milestone_revelation }
+        change_variable = { name = ww_mantling_sotha_sil_milestones add = 1 }
+        remove_character_flag = ww_mantling_sotha_sil_milestone_revelation
+    }
+}
+
+advance_path_mantling_sotha_sil = {
+    if = {
+        limit = { var:ww_mantling_sotha_sil_milestones >= 2  var:ww_mantling_sotha_sil_rank < 1 }
+        set_variable = { name = ww_mantling_sotha_sil_rank value = 1 }
+        trigger_event = { id = mantling_tribunal.sotha_sil_rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_sotha_sil_milestones >= 4  var:ww_mantling_sotha_sil_rank < 2 }
+        set_variable = { name = ww_mantling_sotha_sil_rank value = 2 }
+        trigger_event = { id = mantling_tribunal.sotha_sil_rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_sotha_sil_milestones >= 6  var:ww_mantling_sotha_sil_rank < 3 }
+        set_variable = { name = ww_mantling_sotha_sil_rank value = 3 }
+        trigger_event = { id = mantling_tribunal.sotha_sil_rank3 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_sotha_sil_rank >= 3  var:ww_mantling_sotha_sil_milestones >= 6 }
+        set_variable = { name = ww_mantling_sotha_sil_rank value = 4 }
+        trigger_event = { id = mantling_tribunal.sotha_sil_apotheosis days = 14 }
+    }
+}
+
+complete_path_mantling_sotha_sil = {
+    add_trait = mantle_sotha_sil
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_mantling_sotha_sil_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 600
+    add_piety = 250
+    notify_world_ww_completion = yes
+}
+
+abandon_path_mantling_sotha_sil = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_mantling_sotha_sil_rank
+    remove_variable = ww_mantling_sotha_sil_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  PATH G — TONAL ARCHITECTURE
+# ───────────────────────────────────────────────────────────────
+
+begin_path_tonal_architecture = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_tonal_architecture_rank value = 0 }
+    set_variable = { name = ww_tonal_architecture_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_tonal_architecture_active
+    trigger_event = { id = tonal_arch.intro days = 30 }
+}
+
+count_ww_milestones_tonal_architecture = {
+    if = {
+        limit = { has_character_flag = ww_tonal_milestone_principles }
+        change_variable = { name = ww_tonal_architecture_milestones add = 1 }
+        remove_character_flag = ww_tonal_milestone_principles
+    }
+    if = {
+        limit = { has_character_flag = ww_tonal_milestone_construct }
+        change_variable = { name = ww_tonal_architecture_milestones add = 1 }
+        remove_character_flag = ww_tonal_milestone_construct
+    }
+    if = {
+        limit = { has_character_flag = ww_tonal_milestone_frequency }
+        change_variable = { name = ww_tonal_architecture_milestones add = 1 }
+        remove_character_flag = ww_tonal_milestone_frequency
+    }
+    if = {
+        limit = { has_character_flag = ww_tonal_milestone_resonator }
+        change_variable = { name = ww_tonal_architecture_milestones add = 1 }
+        remove_character_flag = ww_tonal_milestone_resonator
+    }
+    if = {
+        limit = { has_character_flag = ww_tonal_milestone_gestalt }
+        change_variable = { name = ww_tonal_architecture_milestones add = 1 }
+        remove_character_flag = ww_tonal_milestone_gestalt
+    }
+    if = {
+        limit = { has_character_flag = ww_tonal_milestone_nullify }
+        change_variable = { name = ww_tonal_architecture_milestones add = 1 }
+        remove_character_flag = ww_tonal_milestone_nullify
+    }
+}
+
+advance_path_tonal_architecture = {
+    if = {
+        limit = { var:ww_tonal_architecture_milestones >= 2  var:ww_tonal_architecture_rank < 1 }
+        set_variable = { name = ww_tonal_architecture_rank value = 1 }
+        trigger_event = { id = tonal_arch.rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_tonal_architecture_milestones >= 4  var:ww_tonal_architecture_rank < 2 }
+        set_variable = { name = ww_tonal_architecture_rank value = 2 }
+        trigger_event = { id = tonal_arch.rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_tonal_architecture_milestones >= 6  var:ww_tonal_architecture_rank < 3 }
+        set_variable = { name = ww_tonal_architecture_rank value = 3 }
+        trigger_event = { id = tonal_arch.rank3 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_tonal_architecture_rank >= 3  var:ww_tonal_architecture_milestones >= 6 }
+        set_variable = { name = ww_tonal_architecture_rank value = 4 }
+        trigger_event = { id = tonal_arch.apotheosis days = 14 }
+    }
+}
+
+complete_path_tonal_architecture = {
+    add_trait = tonal_transcendent
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_tonal_architecture_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 600
+    notify_world_ww_completion = yes
+}
+
+abandon_path_tonal_architecture = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_tonal_architecture_rank
+    remove_variable = ww_tonal_architecture_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  PATH H — PROLIX TOWER
+# ───────────────────────────────────────────────────────────────
+
+begin_path_prolix_tower = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_prolix_tower_rank value = 0 }
+    set_variable = { name = ww_prolix_tower_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_prolix_tower_active
+    trigger_event = { id = prolix_tower.intro days = 30 }
+}
+
+count_ww_milestones_prolix_tower = {
+    if = {
+        limit = { has_character_flag = ww_prolix_milestone_first_paradox }
+        change_variable = { name = ww_prolix_tower_milestones add = 1 }
+        remove_character_flag = ww_prolix_milestone_first_paradox
+    }
+    if = {
+        limit = { has_character_flag = ww_prolix_milestone_distributed }
+        change_variable = { name = ww_prolix_tower_milestones add = 1 }
+        remove_character_flag = ww_prolix_milestone_distributed
+    }
+    if = {
+        limit = { has_character_flag = ww_prolix_milestone_vision }
+        change_variable = { name = ww_prolix_tower_milestones add = 1 }
+        remove_character_flag = ww_prolix_milestone_vision
+    }
+    if = {
+        limit = { has_character_flag = ww_prolix_milestone_lessons }
+        change_variable = { name = ww_prolix_tower_milestones add = 1 }
+        remove_character_flag = ww_prolix_milestone_lessons
+    }
+    if = {
+        limit = { has_character_flag = ww_prolix_milestone_uncontrolled }
+        change_variable = { name = ww_prolix_tower_milestones add = 1 }
+        remove_character_flag = ww_prolix_milestone_uncontrolled
+    }
+    if = {
+        limit = { has_character_flag = ww_prolix_milestone_author }
+        change_variable = { name = ww_prolix_tower_milestones add = 1 }
+        remove_character_flag = ww_prolix_milestone_author
+    }
+}
+
+advance_path_prolix_tower = {
+    if = {
+        limit = { var:ww_prolix_tower_milestones >= 2  var:ww_prolix_tower_rank < 1 }
+        set_variable = { name = ww_prolix_tower_rank value = 1 }
+        trigger_event = { id = prolix_tower.rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_prolix_tower_milestones >= 4  var:ww_prolix_tower_rank < 2 }
+        set_variable = { name = ww_prolix_tower_rank value = 2 }
+        trigger_event = { id = prolix_tower.rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_prolix_tower_milestones >= 6  var:ww_prolix_tower_rank < 3 }
+        set_variable = { name = ww_prolix_tower_rank value = 3 }
+        trigger_event = { id = prolix_tower.rank3 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_prolix_tower_rank >= 3  var:ww_prolix_tower_milestones >= 6 }
+        set_variable = { name = ww_prolix_tower_rank value = 4 }
+        trigger_event = { id = prolix_tower.apotheosis days = 14 }
+    }
+}
+
+complete_path_prolix_tower = {
+    add_trait = prolix_sovereign
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_prolix_tower_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 500
+    add_piety = 200
+    notify_world_ww_completion = yes
+}
+
+complete_path_prolix_tower_lost = {
+    add_trait = lost_in_the_tower
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_prolix_tower_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 150
+    notify_world_ww_completion = yes
+}
+
+abandon_path_prolix_tower = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_prolix_tower_rank
+    remove_variable = ww_prolix_tower_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  PATH I — WORM APOTHEOSIS
+# ───────────────────────────────────────────────────────────────
+
+begin_path_worm_apotheosis = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_worm_apotheosis_rank value = 0 }
+    set_variable = { name = ww_worm_apotheosis_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_worm_apotheosis_active
+    trigger_event = { id = worm_apotheosis.intro days = 30 }
+}
+
+count_ww_milestones_worm_apotheosis = {
+    if = {
+        limit = { has_character_flag = ww_worm_milestone_black_soul }
+        change_variable = { name = ww_worm_apotheosis_milestones add = 1 }
+        remove_character_flag = ww_worm_milestone_black_soul
+    }
+    if = {
+        limit = { has_character_flag = ww_worm_milestone_phylactery }
+        change_variable = { name = ww_worm_apotheosis_milestones add = 1 }
+        remove_character_flag = ww_worm_milestone_phylactery
+    }
+    if = {
+        limit = { has_character_flag = ww_worm_milestone_necromancers_moon }
+        change_variable = { name = ww_worm_apotheosis_milestones add = 1 }
+        remove_character_flag = ww_worm_milestone_necromancers_moon
+    }
+    if = {
+        limit = { has_character_flag = ww_worm_milestone_arkays_cycle }
+        change_variable = { name = ww_worm_apotheosis_milestones add = 1 }
+        remove_character_flag = ww_worm_milestone_arkays_cycle
+    }
+    if = {
+        limit = { has_character_flag = ww_worm_milestone_soul_vessel }
+        change_variable = { name = ww_worm_apotheosis_milestones add = 1 }
+        remove_character_flag = ww_worm_milestone_soul_vessel
+    }
+    if = {
+        limit = { has_character_flag = ww_worm_milestone_ascension }
+        change_variable = { name = ww_worm_apotheosis_milestones add = 1 }
+        remove_character_flag = ww_worm_milestone_ascension
+    }
+}
+
+advance_path_worm_apotheosis = {
+    if = {
+        limit = { var:ww_worm_apotheosis_milestones >= 2  var:ww_worm_apotheosis_rank < 1 }
+        set_variable = { name = ww_worm_apotheosis_rank value = 1 }
+        trigger_event = { id = worm_apotheosis.rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_worm_apotheosis_milestones >= 4  var:ww_worm_apotheosis_rank < 2 }
+        set_variable = { name = ww_worm_apotheosis_rank value = 2 }
+        trigger_event = { id = worm_apotheosis.rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_worm_apotheosis_milestones >= 6  var:ww_worm_apotheosis_rank < 3 }
+        set_variable = { name = ww_worm_apotheosis_rank value = 3 }
+        trigger_event = { id = worm_apotheosis.rank3 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_worm_apotheosis_rank >= 3  var:ww_worm_apotheosis_milestones >= 6 }
+        set_variable = { name = ww_worm_apotheosis_rank value = 4 }
+        trigger_event = { id = worm_apotheosis.apotheosis days = 14 }
+    }
+}
+
+complete_path_worm_apotheosis = {
+    add_trait = necromancers_ascendant
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_worm_apotheosis_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 500
+    notify_world_ww_completion = yes
+}
+
+complete_path_worm_apotheosis_fractured = {
+    add_trait = lich_essence
+    add_trait = soul_fractured
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_worm_apotheosis_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_stress = 30
+}
+
+abandon_path_worm_apotheosis = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_worm_apotheosis_rank
+    remove_variable = ww_worm_apotheosis_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ───────────────────────────────────────────────────────────────
+#  PATH J — SHEZARRINE ASCENDANT
+# ───────────────────────────────────────────────────────────────
+
+begin_path_shezarrine_ascendant = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_shezarrine_ascendant_rank value = 0 }
+    set_variable = { name = ww_shezarrine_ascendant_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_shezarrine_ascendant_active
+    trigger_event = { id = shezarrine.100 days = 14 }
+}
+
+count_ww_milestones_shezarrine_ascendant = {
+    if = {
+        limit = { has_character_flag = ww_shezarrine_milestone_whitestrake }
+        change_variable = { name = ww_shezarrine_ascendant_milestones add = 1 }
+        remove_character_flag = ww_shezarrine_milestone_whitestrake
+    }
+    if = {
+        limit = { has_character_flag = ww_shezarrine_milestone_berserker }
+        change_variable = { name = ww_shezarrine_ascendant_milestones add = 1 }
+        remove_character_flag = ww_shezarrine_milestone_berserker
+    }
+    if = {
+        limit = { has_character_flag = ww_shezarrine_milestone_cultural_enemy }
+        change_variable = { name = ww_shezarrine_ascendant_milestones add = 1 }
+        remove_character_flag = ww_shezarrine_milestone_cultural_enemy
+    }
+    if = {
+        limit = { has_character_flag = ww_shezarrine_milestone_proclaimed }
+        change_variable = { name = ww_shezarrine_ascendant_milestones add = 1 }
+        remove_character_flag = ww_shezarrine_milestone_proclaimed
+    }
+    if = {
+        limit = { has_character_flag = ww_shezarrine_milestone_merger }
+        change_variable = { name = ww_shezarrine_ascendant_milestones add = 1 }
+        remove_character_flag = ww_shezarrine_milestone_merger
+    }
+    if = {
+        limit = { has_character_flag = ww_shezarrine_milestone_complete }
+        change_variable = { name = ww_shezarrine_ascendant_milestones add = 1 }
+        remove_character_flag = ww_shezarrine_milestone_complete
+    }
+}
+
+advance_path_shezarrine_ascendant = {
+    if = {
+        limit = { var:ww_shezarrine_ascendant_milestones >= 2  var:ww_shezarrine_ascendant_rank < 1 }
+        set_variable = { name = ww_shezarrine_ascendant_rank value = 1 }
+        trigger_event = { id = shezarrine.103 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_shezarrine_ascendant_milestones >= 4  var:ww_shezarrine_ascendant_rank < 2 }
+        set_variable = { name = ww_shezarrine_ascendant_rank value = 2 }
+        trigger_event = { id = shezarrine.106 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_shezarrine_ascendant_milestones >= 6  var:ww_shezarrine_ascendant_rank < 3 }
+        set_variable = { name = ww_shezarrine_ascendant_rank value = 3 }
+        trigger_event = { id = shezarrine.109 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_shezarrine_ascendant_rank >= 3  var:ww_shezarrine_ascendant_milestones >= 6 }
+        set_variable = { name = ww_shezarrine_ascendant_rank value = 4 }
+        trigger_event = { id = shezarrine.112 days = 14 }
+    }
+}
+
+complete_path_shezarrine_ascendant = {
+    add_trait = shezarrine_ascendant
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_shezarrine_ascendant_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 1000
+    every_ruler = {
+        limit = {
+            NOT = { this = root }
+            OR = {
+                culture = { has_cultural_pillar = heritage_nordic }
+                culture = { has_cultural_pillar = heritage_cyrodilic }
+            }
+        }
+        add_opinion = {
+            modifier = ww_shezarrine_completed_opinion
+            target = root
+            years = 20
+        }
+    }
+    notify_world_ww_completion = yes
+}
+
+abandon_path_shezarrine_ascendant = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_shezarrine_ascendant_rank
+    remove_variable = ww_shezarrine_ascendant_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 — PATH K: MANTLING JYGGALAG
+# ═══════════════════════════════════════════════════════════════
+
+begin_path_mantling_jyggalag = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_mantling_jyggalag_rank value = 0 }
+    set_variable = { name = ww_mantling_jyggalag_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_mantling_jyggalag_active
+    add_character_modifier = {
+        modifier = ww_path_mantling_jyggalag_active
+        years = 100
+    }
+    trigger_event = { id = mantling_jyggalag.intro days = 30 }
+}
+
+count_ww_milestones_mantling_jyggalag = {
+    if = {
+        limit = { has_character_flag = ww_jyggalag_milestone_order_kept }
+        change_variable = { name = ww_mantling_jyggalag_milestones add = 1 }
+        remove_character_flag = ww_jyggalag_milestone_order_kept
+    }
+    if = {
+        limit = { has_character_flag = ww_jyggalag_milestone_chaos_suppressed }
+        change_variable = { name = ww_mantling_jyggalag_milestones add = 1 }
+        remove_character_flag = ww_jyggalag_milestone_chaos_suppressed
+    }
+    if = {
+        limit = { has_character_flag = ww_jyggalag_milestone_greymarch_echo }
+        change_variable = { name = ww_mantling_jyggalag_milestones add = 1 }
+        remove_character_flag = ww_jyggalag_milestone_greymarch_echo
+    }
+    if = {
+        limit = { has_character_flag = ww_jyggalag_milestone_crystal_pact }
+        change_variable = { name = ww_mantling_jyggalag_milestones add = 1 }
+        remove_character_flag = ww_jyggalag_milestone_crystal_pact
+    }
+    if = {
+        limit = { has_character_flag = ww_jyggalag_milestone_madness_refused }
+        change_variable = { name = ww_mantling_jyggalag_milestones add = 1 }
+        remove_character_flag = ww_jyggalag_milestone_madness_refused
+    }
+    if = {
+        limit = { has_character_flag = ww_jyggalag_milestone_instrument }
+        change_variable = { name = ww_mantling_jyggalag_milestones add = 1 }
+        remove_character_flag = ww_jyggalag_milestone_instrument
+    }
+}
+
+advance_path_mantling_jyggalag = {
+    if = {
+        limit = { var:ww_mantling_jyggalag_milestones >= 2  var:ww_mantling_jyggalag_rank < 1 }
+        set_variable = { name = ww_mantling_jyggalag_rank value = 1 }
+        trigger_event = { id = mantling_jyggalag.rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_jyggalag_milestones >= 4  var:ww_mantling_jyggalag_rank < 2 }
+        set_variable = { name = ww_mantling_jyggalag_rank value = 2 }
+        trigger_event = { id = mantling_jyggalag.rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_mantling_jyggalag_milestones >= 6  var:ww_mantling_jyggalag_rank < 3 }
+        set_variable = { name = ww_mantling_jyggalag_rank value = 3 }
+        # 20% failure risk at threshold
+        if = {
+            limit = { random <= 20 }
+            set_character_flag = ww_daedric_mantle_failed
+            trigger_event = { id = mantling_jyggalag.order_shattered days = 7 }
+        }
+        else = {
+            trigger_event = { id = mantling_jyggalag.rank3 days = 7 }
+        }
+    }
+    else_if = {
+        limit = { var:ww_mantling_jyggalag_rank >= 3  var:ww_mantling_jyggalag_milestones >= 6
+                  NOT = { has_character_flag = ww_daedric_mantle_failed } }
+        set_variable = { name = ww_mantling_jyggalag_rank value = 4 }
+        trigger_event = { id = mantling_jyggalag.apotheosis days = 14 }
+    }
+}
+
+complete_path_mantling_jyggalag = {
+    add_trait = jyggalag_ascendant
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_mantling_jyggalag_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 500
+    notify_world_ww_completion = yes
+}
+
+abandon_path_mantling_jyggalag = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_mantling_jyggalag_rank
+    remove_variable = ww_mantling_jyggalag_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 — PATH K-2: SHEOGORATH'S ECHO
+# ═══════════════════════════════════════════════════════════════
+
+begin_path_sheogorath_echo = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_sheogorath_echo_rank value = 0 }
+    set_variable = { name = ww_sheogorath_echo_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_sheogorath_echo_active
+    add_character_modifier = {
+        modifier = ww_path_sheogorath_echo_active
+        years = 100
+    }
+    trigger_event = { id = sheogorath_echo.intro days = 30 }
+}
+
+count_ww_milestones_sheogorath_echo = {
+    if = {
+        limit = { has_character_flag = ww_echo_milestone_insight }
+        change_variable = { name = ww_sheogorath_echo_milestones add = 1 }
+        remove_character_flag = ww_echo_milestone_insight
+    }
+    if = {
+        limit = { has_character_flag = ww_echo_milestone_chaos_wielded }
+        change_variable = { name = ww_sheogorath_echo_milestones add = 1 }
+        remove_character_flag = ww_echo_milestone_chaos_wielded
+    }
+    if = {
+        limit = { has_character_flag = ww_echo_milestone_obelisk }
+        change_variable = { name = ww_sheogorath_echo_milestones add = 1 }
+        remove_character_flag = ww_echo_milestone_obelisk
+    }
+    if = {
+        limit = { has_character_flag = ww_echo_milestone_greymarch_witness }
+        change_variable = { name = ww_sheogorath_echo_milestones add = 1 }
+        remove_character_flag = ww_echo_milestone_greymarch_witness
+    }
+    if = {
+        limit = { has_character_flag = ww_echo_milestone_court_jester }
+        change_variable = { name = ww_sheogorath_echo_milestones add = 1 }
+        remove_character_flag = ww_echo_milestone_court_jester
+    }
+    if = {
+        limit = { has_character_flag = ww_echo_milestone_realm_glimpsed }
+        change_variable = { name = ww_sheogorath_echo_milestones add = 1 }
+        remove_character_flag = ww_echo_milestone_realm_glimpsed
+    }
+}
+
+advance_path_sheogorath_echo = {
+    if = {
+        limit = { var:ww_sheogorath_echo_milestones >= 2  var:ww_sheogorath_echo_rank < 1 }
+        set_variable = { name = ww_sheogorath_echo_rank value = 1 }
+        trigger_event = { id = sheogorath_echo.rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_sheogorath_echo_milestones >= 4  var:ww_sheogorath_echo_rank < 2 }
+        set_variable = { name = ww_sheogorath_echo_rank value = 2 }
+        trigger_event = { id = sheogorath_echo.rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_sheogorath_echo_milestones >= 6  var:ww_sheogorath_echo_rank < 3 }
+        set_variable = { name = ww_sheogorath_echo_rank value = 3 }
+        # 15% possession risk at threshold
+        if = {
+            limit = { random <= 15 }
+            set_character_flag = ww_sheogorath_echo_possessed
+            trigger_event = { id = sheogorath_echo.possessed days = 7 }
+        }
+        else = {
+            trigger_event = { id = sheogorath_echo.rank3 days = 7 }
+        }
+    }
+    else_if = {
+        limit = { var:ww_sheogorath_echo_rank >= 3  var:ww_sheogorath_echo_milestones >= 6
+                  NOT = { has_character_flag = ww_sheogorath_echo_possessed } }
+        set_variable = { name = ww_sheogorath_echo_rank value = 4 }
+        trigger_event = { id = sheogorath_echo.apotheosis days = 14 }
+    }
+}
+
+complete_path_sheogorath_echo = {
+    add_trait = madness_prophet
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_sheogorath_echo_completed
+    set_character_flag = walking_ways_any_path_completed
+    # Echo path closes the Sheogorath succession door
+    set_character_flag = ww_sheogorath_echo_closed_throne
+    clear_all_ww_active_flags = yes
+    add_prestige = 400
+    notify_world_ww_completion = yes
+}
+
+abandon_path_sheogorath_echo = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_sheogorath_echo_rank
+    remove_variable = ww_sheogorath_echo_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 — PATH L: NECROMANCER'S THIRD WAY
+# ═══════════════════════════════════════════════════════════════
+
+begin_path_necromancer_third_way = {
+    add_trait = walking_ways_seeker
+    set_variable = { name = ww_necromancer_third_way_rank value = 0 }
+    set_variable = { name = ww_necromancer_third_way_milestones value = 0 }
+    set_character_flag = walking_ways_path_active
+    set_character_flag = ww_necromancer_third_way_active
+    add_character_modifier = {
+        modifier = ww_path_necromancer_third_way_active
+        years = 100
+    }
+    trigger_event = { id = necromancer_third_way.intro days = 30 }
+}
+
+count_ww_milestones_necromancer_third_way = {
+    if = {
+        limit = { has_character_flag = ww_third_way_milestone_arkay_defied }
+        change_variable = { name = ww_necromancer_third_way_milestones add = 1 }
+        remove_character_flag = ww_third_way_milestone_arkay_defied
+    }
+    if = {
+        limit = { has_character_flag = ww_third_way_milestone_mannimarco_rejected }
+        change_variable = { name = ww_necromancer_third_way_milestones add = 1 }
+        remove_character_flag = ww_third_way_milestone_mannimarco_rejected
+    }
+    if = {
+        limit = { has_character_flag = ww_third_way_milestone_death_taxonomy }
+        change_variable = { name = ww_necromancer_third_way_milestones add = 1 }
+        remove_character_flag = ww_third_way_milestone_death_taxonomy
+    }
+    if = {
+        limit = { has_character_flag = ww_third_way_milestone_ideal_masters_refused }
+        change_variable = { name = ww_necromancer_third_way_milestones add = 1 }
+        remove_character_flag = ww_third_way_milestone_ideal_masters_refused
+    }
+    if = {
+        limit = { has_character_flag = ww_third_way_milestone_sovereign_rite }
+        change_variable = { name = ww_necromancer_third_way_milestones add = 1 }
+        remove_character_flag = ww_third_way_milestone_sovereign_rite
+    }
+    if = {
+        limit = { has_character_flag = ww_third_way_milestone_boundary }
+        change_variable = { name = ww_necromancer_third_way_milestones add = 1 }
+        remove_character_flag = ww_third_way_milestone_boundary
+    }
+}
+
+advance_path_necromancer_third_way = {
+    if = {
+        limit = { var:ww_necromancer_third_way_milestones >= 2  var:ww_necromancer_third_way_rank < 1 }
+        set_variable = { name = ww_necromancer_third_way_rank value = 1 }
+        trigger_event = { id = necromancer_third_way.rank1 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_necromancer_third_way_milestones >= 4  var:ww_necromancer_third_way_rank < 2 }
+        set_variable = { name = ww_necromancer_third_way_rank value = 2 }
+        trigger_event = { id = necromancer_third_way.rank2 days = 7 }
+    }
+    else_if = {
+        limit = { var:ww_necromancer_third_way_milestones >= 6  var:ww_necromancer_third_way_rank < 3 }
+        set_variable = { name = ww_necromancer_third_way_rank value = 3 }
+        # 30% soul-unmooring risk at threshold
+        if = {
+            limit = { random <= 30 }
+            set_character_flag = ww_third_way_unmoored
+            trigger_event = { id = necromancer_third_way.unmoored days = 7 }
+        }
+        else = {
+            trigger_event = { id = necromancer_third_way.rank3 days = 7 }
+        }
+    }
+    else_if = {
+        limit = { var:ww_necromancer_third_way_rank >= 3  var:ww_necromancer_third_way_milestones >= 6
+                  NOT = { has_character_flag = ww_third_way_unmoored } }
+        set_variable = { name = ww_necromancer_third_way_rank value = 4 }
+        trigger_event = { id = necromancer_third_way.apotheosis days = 14 }
+    }
+}
+
+complete_path_necromancer_third_way = {
+    add_trait = death_sovereign
+    remove_trait = walking_ways_seeker
+    set_character_flag = ww_necromancer_third_way_completed
+    set_character_flag = walking_ways_any_path_completed
+    clear_all_ww_active_flags = yes
+    add_prestige = 500
+    notify_world_ww_completion = yes
+}
+
+abandon_path_necromancer_third_way = {
+    remove_trait = walking_ways_seeker
+    clear_all_ww_active_flags = yes
+    remove_variable = ww_necromancer_third_way_rank
+    remove_variable = ww_necromancer_third_way_milestones
+    set_character_flag = { flag = ww_path_abandoned years = 5 }
+    trigger_event = { id = walking_ways.abandon days = 7 }
 }

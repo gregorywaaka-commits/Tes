@@ -1,0 +1,350 @@
+# =============================================================
+#  Worm Apotheosis — Events
+#  Namespace: worm_apotheosis
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • worm_apotheosis.intro      — Path I intro: Mannimarco's road
+#  • worm_apotheosis.rank1      — Seeking: Black Soul Gem + phylactery
+#  • worm_apotheosis.rank2      — Striving: the Necromancer's Moon
+#  • worm_apotheosis.rank3      — Threshold: Arkay's cycle broken
+#  • worm_apotheosis.apotheosis — Full ascension (40% fractured)
+#  • worm_apotheosis.fractured  — Soul fractured: becomes lich_essence
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  Mannimarco's path. He became the Necromancer's Moon — a
+#  celestial body opposing Arkay's cycle — after achieving
+#  lichdom and breaking Arkay's domain. His apotheosis is
+#  unique: a necromantic ascension through soul-science and
+#  dominion over death. NOT one of the six canonical Walking
+#  Ways, but a documented lore path to divinity.
+#  [SOURCE: UESP Lore:Mannimarco; ESO; Daggerfall]
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEPENDS ON:
+#    common/traits/walking_ways_traits.txt
+#      → necromancers_ascendant, soul_fractured
+#    common/traits/worm_cult_traits.txt
+#      → worm_cult_adept, lich_essence
+#    common/scripted_effects/walking_ways_effects.txt
+#      → complete_path_worm_apotheosis, complete_path_worm_apotheosis_fractured
+# =============================================================
+
+namespace = worm_apotheosis
+
+# ---------------------------------------------------------------
+# worm_apotheosis.intro  MANNIMARCO'S ROAD
+# The ruler has decided to walk the path that ended with
+# Mannimarco becoming a moon. The Worm Cult's teachings
+# pointed here. Now the practitioner walks beyond them.
+# ---------------------------------------------------------------
+worm_apotheosis.intro = {
+    type = character_event
+    title = worm_apotheosis.intro.t
+    desc  = worm_apotheosis.intro.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_worm_apotheosis = yes
+    }
+
+    option = {
+        name = worm_apotheosis.intro.a   # "The Worm Cult taught me to touch death. I intend to own it."
+        add_stress = 15
+        add_character_modifier = {
+            modifier = ww_path_worm_apotheosis_active
+            years = 100
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_apotheosis.rank1  SEEKING — Black Soul Gem and Phylactery
+# Two milestones done. The first true Black Soul Gem created;
+# the ruler's own soul bound to a phylactery vessel.
+# ---------------------------------------------------------------
+worm_apotheosis.rank1 = {
+    type = character_event
+    title = worm_apotheosis.rank1.t
+    desc  = worm_apotheosis.rank1.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_worm_apotheosis = yes
+        var:ww_worm_apotheosis_rank >= 1
+    }
+
+    immediate = {
+        set_character_flag = ww_worm_milestone_black_soul
+    }
+
+    option = {
+        name = worm_apotheosis.rank1.a   # "The gem holds a mortal soul. Mine is held elsewhere. This is the beginning."
+        add_intrigue_xp = 200
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_apotheosis.rank2  STRIVING — The Necromancer's Moon
+# Four milestones done. The ruler has witnessed or triggered
+# the Necromancer's Moon cycle; Arkay's opposition is known.
+# ---------------------------------------------------------------
+worm_apotheosis.rank2 = {
+    type = character_event
+    title = worm_apotheosis.rank2.t
+    desc  = worm_apotheosis.rank2.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_worm_apotheosis = yes
+        var:ww_worm_apotheosis_rank >= 2
+    }
+
+    option = {
+        name = worm_apotheosis.rank2.a   # "The Moon rose red. Arkay's domain flickered. I saw the gap."
+        add_prestige = 100
+        add_stress = 20
+    }
+
+    option = {
+        name = worm_apotheosis.rank2.b   # "The gap between Arkay's exhalation and inhalation — that is where Mannimarco stood."
+        add_intrigue = 1
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_apotheosis.rank3  THRESHOLD — Arkay's Cycle Broken
+# Six milestones done. The ruler has broken Arkay's cycle
+# for their realm — one year with no natural deaths.
+# The soul vessel is constructed.
+# ---------------------------------------------------------------
+worm_apotheosis.rank3 = {
+    type = character_event
+    title = worm_apotheosis.rank3.t
+    desc  = worm_apotheosis.rank3.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_worm_apotheosis = yes
+        var:ww_worm_apotheosis_rank >= 3
+    }
+
+    option = {
+        name = worm_apotheosis.rank3.a   # "A year passed. Nothing died of natural causes in my realm. Arkay was elsewhere. I held the gap."
+        add_prestige = 300
+        add_piety = -100
+        add_stress = -20
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_apotheosis.apotheosis  FULL ASCENSION
+# All milestones complete. 60% success, 40% soul fractured.
+# On success: necromancers_ascendant.
+# On failure: lich_essence + soul_fractured; no death.
+# ---------------------------------------------------------------
+worm_apotheosis.apotheosis = {
+    type = character_event
+    title = worm_apotheosis.apotheosis.t
+    desc  = worm_apotheosis.apotheosis.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_worm_apotheosis = yes
+        var:ww_worm_apotheosis_rank >= 4
+        NOT = { has_character_flag = ww_worm_apotheosis_completed }
+    }
+
+    immediate = {
+        random_list = {
+            60 = {
+                complete_path_worm_apotheosis = yes
+            }
+            40 = {
+                trigger_event = { id = worm_apotheosis.fractured days = 1 }
+            }
+        }
+    }
+
+    option = {
+        name = worm_apotheosis.apotheosis.a   # "The Moon rises. I rise with it."
+        trigger = { has_trait = necromancers_ascendant }
+        add_prestige = 250
+        add_stress = -40
+    }
+
+    option = {
+        name = worm_apotheosis.apotheosis.b   # "The ascension begins."
+        trigger = { NOT = { has_trait = necromancers_ascendant } }
+        # failure branch; soul fractured fires shortly
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_apotheosis.fractured  SOUL FRACTURED
+# The ascension broke mid-way. The soul was bound to the
+# phylactery but the divine portion was not claimed.
+# The character gains lich_essence instead. Not death.
+# ---------------------------------------------------------------
+worm_apotheosis.fractured = {
+    type = character_event
+    title = worm_apotheosis.fractured.t
+    desc  = worm_apotheosis.fractured.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_worm_apotheosis_active
+        NOT = { has_trait = necromancers_ascendant }
+    }
+
+    immediate = {
+        complete_path_worm_apotheosis_fractured = yes
+    }
+
+    option = {
+        name = worm_apotheosis.fractured.a   # "I did not become the Moon. But I did not die. The phylactery held."
+        add_stress = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_apotheosis.milestone_phylactery  BIND THE SOUL
+# Milestone 2: the ruler binds their own soul to a phylactery.
+# Cost in gold and stress; the alternative is spiritual death.
+# ---------------------------------------------------------------
+worm_apotheosis.milestone_phylactery = {
+    type = character_event
+    title = worm_apotheosis.milestone_phylactery.t
+    desc  = worm_apotheosis.milestone_phylactery.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_worm_apotheosis = yes
+        NOT = { has_character_flag = ww_worm_milestone_phylactery }
+        has_character_flag = ww_worm_milestone_black_soul
+    }
+
+    option = {
+        name = worm_apotheosis.milestone_phylactery.a   # "Bind the soul. The alternative is oblivion."
+        add_gold = -60
+        set_character_flag = ww_worm_milestone_phylactery
+        add_stress = 20
+        health = 0.5
+    }
+
+    option = {
+        name = worm_apotheosis.milestone_phylactery.b   # "Not yet. I must be certain the vessel will hold."
+        # No milestone; can fire again
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_apotheosis.milestone_necromancers_moon  WITNESS THE MOON
+# Milestone 3: the Necromancer's Moon rises over the realm.
+# ---------------------------------------------------------------
+worm_apotheosis.milestone_necromancers_moon = {
+    type = character_event
+    title = worm_apotheosis.milestone_necromancers_moon.t
+    desc  = worm_apotheosis.milestone_necromancers_moon.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_worm_apotheosis = yes
+        NOT = { has_character_flag = ww_worm_milestone_necromancers_moon }
+        var:ww_worm_apotheosis_rank >= 1
+    }
+
+    option = {
+        name = worm_apotheosis.milestone_necromancers_moon.a   # "The red moon against the black sky. Arkay's light was nowhere."
+        set_character_flag = ww_worm_milestone_necromancers_moon
+        add_piety = -50
+        add_prestige = 75
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_apotheosis.milestone_arkays_cycle  BREAK THE CYCLE
+# Milestone 4: a year passes with no natural deaths in the
+# realm. Arkay's cycle is interrupted.
+# ---------------------------------------------------------------
+worm_apotheosis.milestone_arkays_cycle = {
+    type = character_event
+    title = worm_apotheosis.milestone_arkays_cycle.t
+    desc  = worm_apotheosis.milestone_arkays_cycle.desc
+    theme = learning
+    hidden = yes
+
+    trigger = {
+        is_on_path_worm_apotheosis = yes
+        NOT = { has_character_flag = ww_worm_milestone_arkays_cycle }
+        has_character_flag = ww_worm_milestone_necromancers_moon
+    }
+
+    immediate = {
+        set_character_flag = ww_worm_milestone_arkays_cycle
+    }
+
+    option = { name = "OK" }
+}
+
+# ---------------------------------------------------------------
+# worm_apotheosis.milestone_soul_vessel  THE DIVINE VESSEL
+# Milestone 5: a soul vessel large enough to hold a divine
+# portion of Arkay's domain is constructed.
+# ---------------------------------------------------------------
+worm_apotheosis.milestone_soul_vessel = {
+    type = character_event
+    title = worm_apotheosis.milestone_soul_vessel.t
+    desc  = worm_apotheosis.milestone_soul_vessel.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_worm_apotheosis = yes
+        NOT = { has_character_flag = ww_worm_milestone_soul_vessel }
+        has_character_flag = ww_worm_milestone_arkays_cycle
+    }
+
+    option = {
+        name = worm_apotheosis.milestone_soul_vessel.a   # "The vessel is large enough. Now I must fill it."
+        add_gold = -100
+        set_character_flag = ww_worm_milestone_soul_vessel
+        add_prestige = 150
+    }
+
+    option = {
+        name = worm_apotheosis.milestone_soul_vessel.b   # "Not sufficient. The vessel must be larger."
+        add_gold = -30
+        # No milestone; can fire again
+    }
+}
+
+# ---------------------------------------------------------------
+# worm_apotheosis.milestone_ascension  THE ATTEMPT
+# Milestone 6: the ruler formally attempts full ascension,
+# triggering the apotheosis event chain.
+# ---------------------------------------------------------------
+worm_apotheosis.milestone_ascension = {
+    type = character_event
+    title = worm_apotheosis.milestone_ascension.t
+    desc  = worm_apotheosis.milestone_ascension.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_worm_apotheosis = yes
+        NOT = { has_character_flag = ww_worm_milestone_ascension }
+        has_character_flag = ww_worm_milestone_soul_vessel
+    }
+
+    option = {
+        name = worm_apotheosis.milestone_ascension.a   # "Then I ascend."
+        set_character_flag = ww_worm_milestone_ascension
+        add_stress = 30
+    }
+}

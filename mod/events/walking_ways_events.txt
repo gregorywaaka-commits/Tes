@@ -212,6 +212,42 @@ walking_ways.progress_check = {
             if = { limit = { has_any_mantling_hircine_milestone = yes } count_ww_milestones_mantling_hircine = yes }
             advance_path_mantling_hircine = yes
         }
+        # PATH B — DIBELLA
+        else_if = {
+            limit = { has_character_flag = ww_mantling_dibella_active }
+            if = { limit = { has_any_mantling_dibella_milestone = yes } count_ww_milestones_mantling_dibella = yes }
+            advance_path_mantling_dibella = yes
+        }
+        # PATH B — MARA
+        else_if = {
+            limit = { has_character_flag = ww_mantling_mara_active }
+            if = { limit = { has_any_mantling_mara_milestone = yes } count_ww_milestones_mantling_mara = yes }
+            advance_path_mantling_mara = yes
+        }
+        # PATH B — SHEOGORATH
+        else_if = {
+            limit = { has_character_flag = ww_mantling_sheogorath_active }
+            if = { limit = { has_any_mantling_sheogorath_milestone = yes } count_ww_milestones_mantling_sheogorath = yes }
+            advance_path_mantling_sheogorath = yes
+        }
+        # PATH B — VIVEC (Tribunal)
+        else_if = {
+            limit = { has_character_flag = ww_mantling_vivec_active }
+            if = { limit = { has_any_mantling_vivec_milestone = yes } count_ww_milestones_mantling_vivec = yes }
+            advance_path_mantling_vivec = yes
+        }
+        # PATH B — ALMALEXIA (Tribunal)
+        else_if = {
+            limit = { has_character_flag = ww_mantling_almalexia_active }
+            if = { limit = { has_any_mantling_almalexia_milestone = yes } count_ww_milestones_mantling_almalexia = yes }
+            advance_path_mantling_almalexia = yes
+        }
+        # PATH B — SOTHA SIL (Tribunal)
+        else_if = {
+            limit = { has_character_flag = ww_mantling_sotha_sil_active }
+            if = { limit = { has_any_mantling_sotha_sil_milestone = yes } count_ww_milestones_mantling_sotha_sil = yes }
+            advance_path_mantling_sotha_sil = yes
+        }
         # PATH C
         else_if = {
             limit = { is_on_path_psijic_endeavour = yes }
@@ -244,6 +280,48 @@ walking_ways.progress_check = {
             limit = { is_on_path_amaranth = yes }
             if = { limit = { has_any_amaranth_milestone = yes } count_ww_milestones_amaranth = yes }
             advance_path_amaranth = yes
+        }
+        # PATH G — TONAL ARCHITECTURE
+        else_if = {
+            limit = { is_on_path_tonal_architecture = yes }
+            if = { limit = { has_any_tonal_architecture_milestone = yes } count_ww_milestones_tonal_architecture = yes }
+            advance_path_tonal_architecture = yes
+        }
+        # PATH H — PROLIX TOWER
+        else_if = {
+            limit = { is_on_path_prolix_tower = yes }
+            if = { limit = { has_any_prolix_tower_milestone = yes } count_ww_milestones_prolix_tower = yes }
+            advance_path_prolix_tower = yes
+        }
+        # PATH I — WORM APOTHEOSIS
+        else_if = {
+            limit = { is_on_path_worm_apotheosis = yes }
+            if = { limit = { has_any_worm_apotheosis_milestone = yes } count_ww_milestones_worm_apotheosis = yes }
+            advance_path_worm_apotheosis = yes
+        }
+        # PATH J — SHEZARRINE ASCENDANT
+        else_if = {
+            limit = { is_on_shezarrine_ascendant_path = yes }
+            if = { limit = { has_any_shezarrine_ascendant_milestone = yes } count_ww_milestones_shezarrine_ascendant = yes }
+            advance_path_shezarrine_ascendant = yes
+        }
+        # PATH K — MANTLING JYGGALAG
+        else_if = {
+            limit = { is_on_path_mantling_jyggalag = yes }
+            if = { limit = { has_any_mantling_jyggalag_milestone = yes } count_ww_milestones_mantling_jyggalag = yes }
+            advance_path_mantling_jyggalag = yes
+        }
+        # PATH K-2 — SHEOGORATH'S ECHO
+        else_if = {
+            limit = { is_on_sheogorath_echo_path = yes }
+            if = { limit = { has_any_sheogorath_echo_milestone = yes } count_ww_milestones_sheogorath_echo = yes }
+            advance_path_sheogorath_echo = yes
+        }
+        # PATH L — NECROMANCER'S THIRD WAY
+        else_if = {
+            limit = { is_on_necromancer_third_way_path = yes }
+            if = { limit = { has_any_necromancer_third_way_milestone = yes } count_ww_milestones_necromancer_third_way = yes }
+            advance_path_necromancer_third_way = yes
         }
         # AMARANTH COMPLETED — ongoing departure cost pulse
         if = {
@@ -341,6 +419,48 @@ walking_ways.world_notify = {
             }
             desc = walking_ways.world_notify.mantle_hircine
         }
+        # Dibella mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_dibella }
+            }
+            desc = walking_ways.world_notify.mantle_dibella
+        }
+        # Mara mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_mara }
+            }
+            desc = walking_ways.world_notify.mantle_mara
+        }
+        # Sheogorath mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_sheogorath }
+            }
+            desc = walking_ways.world_notify.mantle_sheogorath
+        }
+        # Vivec mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_vivec }
+            }
+            desc = walking_ways.world_notify.mantle_vivec
+        }
+        # Almalexia mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_almalexia }
+            }
+            desc = walking_ways.world_notify.mantle_almalexia
+        }
+        # Sotha Sil mantle
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = mantle_sotha_sil }
+            }
+            desc = walking_ways.world_notify.mantle_sotha_sil
+        }
         # Psijic Endeavour
         triggered_desc = {
             trigger = {
@@ -361,6 +481,69 @@ walking_ways.world_notify = {
                 scope:source = { has_trait = amaranth_achieved }
             }
             desc = walking_ways.world_notify.amaranth
+        }
+        # Tonal Transcendent
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = tonal_transcendent }
+            }
+            desc = walking_ways.world_notify.tonal_transcendent
+        }
+        # Prolix Sovereign
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = prolix_sovereign }
+            }
+            desc = walking_ways.world_notify.prolix_sovereign
+        }
+        # Lost in the Tower
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = lost_in_the_tower }
+            }
+            desc = walking_ways.world_notify.lost_in_the_tower
+        }
+        # Necromancer's Ascendant
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = necromancers_ascendant }
+            }
+            desc = walking_ways.world_notify.necromancers_ascendant
+        }
+        # Soul Fractured
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = soul_fractured }
+            }
+            desc = walking_ways.world_notify.soul_fractured
+        }
+        # Shezarrine Ascendant
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = shezarrine_ascendant }
+            }
+            desc = walking_ways.world_notify.shezarrine_ascendant
+        }
+        # Jyggalag Ascendant (Path K)
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = jyggalag_ascendant }
+            }
+            desc = walking_ways.world_notify.jyggalag_ascendant
+        }
+        # Madness Prophet / Sheogorath's Echo (Path K-2)
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = madness_prophet }
+            }
+            desc = walking_ways.world_notify.madness_prophet
+        }
+        # Death Sovereign / Necromancer's Third Way (Path L)
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = death_sovereign }
+            }
+            desc = walking_ways.world_notify.death_sovereign
         }
         # Fallback
         desc = walking_ways.world_notify.generic

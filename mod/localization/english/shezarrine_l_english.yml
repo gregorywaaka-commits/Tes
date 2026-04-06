@@ -47,3 +47,88 @@
  shezarrine.004.desc: "Standing in the old Imperial provinces — or reading their histories — something resonates at a frequency below ordinary thought.\n\nReman Cyrodiil. Another Shezarrine. Another mortal who carried Shor's fire and built an empire on it. The Second Empire grew from the same root as Pelinal's crusade. The same divine fury wore different faces across different centuries, but it was always the same essence.\n\nYou are part of a chain that began before recorded history and has not yet ended."
  shezarrine.004.a: "I will claim what Reman built and carry it forward."
  shezarrine.004.b: "Reman's chain ends with me. I forge a new legacy."
+
+ # ═══════════════════════════════════════════════════════════════
+ #  PATH J — SHEZARRINE ASCENDANT
+ # ═══════════════════════════════════════════════════════════════
+
+ # ─── Trait ───
+ shezarrine_ascendant: "Shezarrine Ascendant"
+ shezarrine_ascendant_desc: "The merger is complete. Lorkhan's pattern and this mortal's identity have converged into something that is neither the dead god nor the mortal ruler but a third thing that partakes of both. The White Warrior's final form. The martial capacity is beyond what any training could produce. The presence is divine-adjacent. Nord and Cyrodilic courts recognise the pattern and are awed by it. The cost was the ordinary self. The result was something greater."
+
+ # ─── Entry Event ───
+ shezarrine.ascending_call.a: "The call deepens."
+
+ # ─── Path Intro ───
+ shezarrine.100.t: "Lorkhan Deepens"
+ shezarrine.100.desc: "The vessel was always going to become more than a vessel. That is what vessels are for.\n\nPelinal Whitestrake was a vessel until the elf-mages tore him apart, and even then his purpose was complete. Reman Cyrodiil was a vessel until the Tsaesci blade found him in his own throne room. The vessels are used and the pattern is served and the dead god is satisfied.\n\nYou are not yet satisfied. The divine essence that has been burning in your blood since the dream in which the White Warrior spoke — it is not content to remain a loan. It is seeking to become a merger. It is asking, in the way that gods ask, which is more command than request, whether you are willing to stop being the vessel and start being the thing carried.\n\nThere is only one answer Lorkhan accepts."
+ shezarrine.100.a: "I was already his. Now he is becoming mine."
+
+ # ─── Milestone Events ───
+ shezarrine.101.t: "Pelinal's Memory"
+ shezarrine.101.desc: "The memory arrived without warning, as memories that are not yours tend to do.\n\nPelinal Whitestrake, standing before an Ayleid tower that he was about to reduce to rubble, the white fire already gathering in his hands. The elves inside the tower knew what was coming. He could hear them through the stone — hear their fear, hear their prayers to gods who would not reach them in time. He felt nothing. Not cruelty. Just certainty.\n\nThe certainty is in your hands now. It has always been there. You are only now recognising it for what it is."
+ shezarrine.101.a: "His hatred was not his own. It was Lorkhan's. Now it is mine."
+ shezarrine.101.b: "I accept the memory but I will not be consumed by it."
+
+ shezarrine.102.t: "The Enemy's Capital"
+ shezarrine.102.desc: "The army stood in the ruins of the capital. The cultural enemy that had defined itself in opposition to mankind's heritage — the towers, the administrations, the court that had been the heart of that opposition — was gone.\n\nThe pattern was satisfied. Pelinal had done this in every lifetime the Shezarrine walked. Reman had done it with different enemies and a different sword. Tiber Septim had done it with an empire and a voice that shook mountains.\n\nYou have done it with what you had. Lorkhan's pattern does not require a particular method. It requires the act."
+ shezarrine.102.a: "The capital fell. The pattern is satisfied."
+
+ shezarrine.103.t: "Shor's Vessel Stirs"
+ shezarrine.103.desc: "The courts have begun to notice that something about you is not entirely ordinary.\n\nNot the martial reputation — that has always been there. Not the proclamations. Something quieter. The way a room changes when you enter it. The way a battle changes when you arrive at the field. A war-leader, a seneschal, three jarls, and a Cyrodilic bishop have all independently used the same phrase: 'a touch of the divine.'\n\nThey are not wrong. Lorkhan's pattern is becoming visible in your presence."
+ shezarrine.103.a: "They call me Shor's vessel. Let them. It is not wrong."
+
+ shezarrine.104.t: "The Proclamation"
+ shezarrine.104.desc: "The court convened — a gathering of Nord and Cyrodilic lords, jarls, and churchmen — and made the proclamation that has been building for years.\n\nShor's vessel. Shezarr's sword. The White Warrior walking again.\n\nThe words are older than most of the buildings in the room. The Nords have used them for rulers before — Ysmir, who wore Tiber Septim's face and Lorkhan's fire simultaneously. The pattern is recognised. You have been given the oldest name in their tradition.\n\nLorkhan's essence stirs in response. It was always going to be recognised."
+ shezarrine.104.a: "They crowned me with words older than crowns."
+
+ shezarrine.105.t: "The Merger Begins"
+ shezarrine.105.desc: "There was a moment — during a battle, or during a council meeting, or lying awake in the dark — when you could no longer fully locate the boundary between where the Shezarrine essence ended and where you began.\n\nNot loss of self. Not possession. Convergence. Two things becoming one thing that is not reducible to either of its components. The dead god's pattern and your pattern have been running in parallel so long that they have started to overlap.\n\nThe merger is happening. It may not be possible to stop it. The question is whether you want to."
+ shezarrine.105.a: "I can feel the boundary thinning. I do not want it to stop."
+ shezarrine.105.b: "I will not lose myself in this. I am the vessel. Not the god."
+
+ shezarrine.106.t: "The Pattern Takes Shape"
+ shezarrine.106.desc: "Pelinal fought to the end. Every Shezarrine has fought to the end.\n\nThe pattern requires it. Not because Lorkhan is cruel — though the dead god is not, in any recognisable sense, kind — but because the pattern was always a sacrifice. Shor/Lorkhan gave himself to create the world. The vessels give themselves to serve the world that was created. The giving does not always mean death. It always means completion.\n\nYou are closer to completion than you have ever been. The fighting is not over."
+ shezarrine.106.a: "Pelinal fought to the end. So will I."
+
+ shezarrine.107.t: "The Merger Complete"
+ shezarrine.107.desc: "There is no more boundary. There has not been a boundary for some time. You only noticed its absence just now.\n\nYou are still you. The memories are still yours, the choices still your choices, the court still your court. But Lorkhan's pattern is not a thing you carry anymore — it is a thing you are. The divine fire and the mortal will have resolved into a single operating principle.\n\nPelinal described this, in the fragments of his speech that survived: 'I am Shor's voice and I am my own sword.' He was not speaking metaphorically.\n\nNeither are you."
+ shezarrine.107.a: "We are one. I do not know where he ends and I begin. I am not certain it matters."
+
+ shezarrine.109.t: "The Final Battle Awaits"
+ shezarrine.109.desc: "Every Shezarrine has a final battle. Pelinal's was against Umaril the Unfeathered in the White-Gold Tower. Reman's was against the Tsaesci in his own throne room. Tiber Septim built an empire large enough that his final battle was with the concept of time itself.\n\nYours is coming. The pattern has identified it. The convergence of the merger and the completion of the mythic arc requires one final act — one final expression of Lorkhan's fire in the world that fire created.\n\nYou are ready. You have always been ready. That was the point."
+ shezarrine.109.a: "The pattern demands a final act. I go to meet it."
+
+ # ─── Apotheosis ───
+ shezarrine.112.t: "The Pattern Completes"
+ shezarrine.112.desc: "The final battle is not always a battle. Sometimes it is a siege. Sometimes it is a negotiation that ends in the only way a Shezarrine's negotiations can end. Sometimes it is standing at the top of a tower and understanding, completely, what you are.\n\nLorkhan's pattern, expressed through every vessel he has ever worn, has been leading to this moment since before Mundus was made. The fire, the fury, the divine hatred that is not hatred but is the closest mortal language can come to describing what a god-aspect feels when it operates in the world — all of it has been building toward one final completion.\n\nWhether you survive the completion is part of the pattern. Pelinal didn't. Reman didn't. Tiber Septim, arguably, did not survive intact.\n\nThe pattern requires the act, not the survival. Survival is between you and fate."
+ shezarrine.112.a: "The pattern is complete. I remain. Lorkhan's fire is mine."
+ shezarrine.112.b: "The final battle comes. I go to meet it."
+
+ # ─── Death Events ───
+ shezarrine.115.t: "The White Warrior Returns"
+ shezarrine.115.desc: "The pattern is complete."
+
+ shezarrine.115.world.t: "The White Warrior Has Returned"
+ shezarrine.115.world.desc: "Word has come from [scope:source.primary_title.name]: [scope:source.char_name|U] is dead.\n\nNord poets and Cyrodilic chroniclers will argue for generations about the precise nature of what was accomplished. The dead god's pattern was expressed, completely, in a mortal vessel. The vessel served its purpose. The fire has returned to Lorkhan.\n\nThe pattern is complete."
+ shezarrine.115.world.a: "The pattern is complete. The dead god is satisfied."
+
+ shezarrine_convergence: "The Shezarrine's Chain"
+ shezarrine_convergence_desc: "The mythic pattern of Lorkhan's champions has converged in this ruler. Pelinal's fury. Reman's empire. Talos's wound. The Nerevarine's burden. The Hero's mad throne. The Dragonborn's Voice. These are not separate stories — they are one story told many times. This ruler has lived more than one of its chapters. The weight of the chain is visible now."
+
+ shezarrine.200.a: "Continue."
+ shezarrine.201.t: "The Chain Recognises Itself"
+ shezarrine.201.desc: "It began as a feeling — the sense that you had walked this road before, under other names, in other ages. Pelinal's white fire. Reman's dragon-cry at Pale Pass. Talos's empire bought in blood and mercy. The Nerevarine's exile and return. The Hero's madness-throne at New Sheoth. These were not stories. They were reports.\n\nYou have lived more than one of these chapters. The pattern — Shor's recurring will made flesh — has recognised itself in you. Scholars would call this coincidence. Dunmer priests would call it the next verse of a very old song.\n\nYou have a choice about what to call it yourself."
+ shezarrine.201.a: "I am the pattern. I will not pretend otherwise."
+ shezarrine.201.b: "The pattern does not own me. I am my own story."
+ shezarrine.202.t: "A Convergence Spoken"
+ shezarrine.202.desc: "From [scope:source.primary_title.name], word has reached your scholars of a ruler who has walked more than one of the Shezarrine paths. The mythic chain — Pelinal, Reman, Talos, the Nerevarine, the Hero, the Dragonborn — appears to be coalescing again."
+ shezarrine.202.a: "This is either a great wonder or a great danger."
+
+ # World notify (gap-fill: previously missing from walking_ways_events.txt dispatch)
+ walking_ways.world_notify.shezarrine_ascendant: "The weight of Lorkhan's wound shifted slightly near [scope:source.primary_title.name] today. Scholars of cosmological architecture report that a new name has been added to the chain: Pelinal, Reman, Talos — and now [scope:source.char_name|U]. The Shezarrine has found another vessel. The pattern of Mankind's champion walks again in a new form. The Greybeards and the Companions have both taken note and have not agreed on what it means."
+
+ shezarrine.milestone_whitestrake.t: "The Whitestrake Current"
+ shezarrine.milestone_whitestrake.desc: "Pelinal Whitestrake was the most terrible of Lorkhan's echoes — a divine warrior vessel so filled with divine rage that he could not distinguish Aldmer from Ayleid. The Shezarrine has found in themselves the Whitestrake current: the capacity for violence so absolute that it frightens them. This is the dangerous part, the edge that must be held or it will cut in every direction. They have held it. For now."
+ shezarrine.milestone_whitestrake.a: "I understand the Whitestrake. I carry his fire. I will not let it be undirected."
+ shezarrine.milestone_whitestrake.b: "Pelinal was made wrong. I am trying to be made right."

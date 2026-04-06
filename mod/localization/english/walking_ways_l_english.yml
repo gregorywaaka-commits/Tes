@@ -135,3 +135,35 @@
 
  # ─── Decision: Three-Fold Consumption ───
  invoke_three_fold_consumption_desc: "I carry all three. Azura, who transforms at the threshold. Boethiah, who consumes the rival entirely. Mephala, who weaves what remains into the web. Together they are a complete instrument. I will use them once — on the rivals who stand against me — and they will not recover their standing."
+
+ # ─── World Notify — Phase 1 & 2 ───
+ walking_ways.world_notify.mantle_dibella: "The court of [scope:source.primary_title.name] has begun to change in ways architects and theologians both struggle to describe. Beauty is not a decoration there — it is a load-bearing element. Temples of Dibella across Tamriel have updated their liturgical texts. Something of Dibella walks in [scope:source.char_name|U]."
+ walking_ways.world_notify.mantle_mara: "The priests of Mara across Tamriel report that a covenant has been completed in [scope:source.primary_title.name] that they have not witnessed in living memory. The hearth still burns. The bond held past every loss. [scope:source.char_name|U] has walked Mara's pattern to its end."
+ walking_ways.world_notify.mantle_sheogorath: "The Greymarch came to [scope:source.primary_title.name] and stopped. Scholars of Oblivion report that the Shivering Isles have a new ruler. The old Prince found this hilarious. The new one finds it appropriate. Something of the Mad Prince walks in [scope:source.char_name|U] — and it is not entirely comfortable company."
+ walking_ways.world_notify.mantle_vivec: "The 36 Lessons of Vivec have been quoted in [scope:source.primary_title.name] in a context that makes their meaning literal. Warrior and poet have resolved into a single pattern in [scope:source.char_name|U]. Dunmeri theologians report that the Anticipation is complete. The pattern of the warrior-poet god walks again."
+ walking_ways.world_notify.mantle_almalexia: "The Hands of Almalexia in [scope:source.primary_title.name] have begun leaving offerings at the ruler's door — not from piety, but from recognition. Something of the Mother of Morrowind walks in [scope:source.char_name|U]. The protection held even when the wrath came. That is the pattern."
+ walking_ways.world_notify.mantle_sotha_sil: "The Clockwork City somewhere beneath [scope:source.primary_title.name] has begun running differently. Scholars report mechanisms they cannot find, operations they cannot explain, and the sense of a vast withdrawal from the world. Sotha Sil's pattern walks in [scope:source.char_name|U]. The mechanism runs. The clockwork god has gone to tend to it."
+
+ # ─── Decision Options — Phase 1 ───
+ choose_walking_way.path_b_dibella: "Path B: Mantling Dibella — The Principle of Beauty"
+ choose_walking_way.path_b_dibella_desc: "Beauty is not ornament. It is load-bearing. Dibella's pattern is about becoming the condition under which beauty is possible — in the court, in the realm, in the world. Not sentiment. Architecture. [Requires: diplomacy 18+, generous or charming or art patronage]"
+ choose_walking_way.path_b_mara: "Path B: Mantling Mara — Love That Outlasts Loss"
+ choose_walking_way.path_b_mara_desc: "Mara's domain is love as covenant — the bond that persists past grief, past loss, past the season that tried to end it. To mantle Mara is to become the principle of enduring love. Not the love of passion. The love that chooses again every morning. [Requires: diplomacy 16+, living children, compassionate or generous or devoted]"
+ choose_walking_way.path_b_sheogorath: "Path B: Mantling Sheogorath — The Mad Prince's Footsteps [DANGEROUS]"
+ choose_walking_way.path_b_sheogorath_desc: "Sheogorath was Jyggalag before the curse. The Hero of Kvatch mantled him by surviving the Greymarch. Madness is not the absence of reason — it is a reason creation cannot yet follow. Possession risk: the Grey March does not pause for mantlers. [Requires: intrigue 14+, jyggalag_champion or shivering_isles or lunatic or possessed]"
+
+ # ─── Decision Options — Phase 2 (Tribunal) ───
+ choose_walking_way.path_b_vivec: "Path B: Mantling Vivec — Warrior and Poet [TRIBUNAL TIER]"
+ choose_walking_way.path_b_vivec_desc: "The warrior-poet god. Both male and female. The 36 Lessons. CHIM achieved. Baar Dau suspended by will. Vivec's pattern is contradiction held in balance — art and war, duality and language. Unlocked by completing the Mephala mantle (Anticipation of Vivec). [Requires: Mephala Mantle completed, martial 14+, learning 16+]"
+ choose_walking_way.path_b_almalexia: "Path B: Mantling Almalexia — Mother of Morrowind [TRIBUNAL TIER]"
+ choose_walking_way.path_b_almalexia_desc: "The healer, the protector, the mother. Almalexia led the Hands of Almalexia and held Mournhold together. Her madness after losing the Heart is also part of the pattern. Unlocked by completing the Boethiah mantle (Anticipation of Almalexia). [Requires: Boethiah Mantle completed, diplomacy 16+, compassionate or zealous]"
+ choose_walking_way.path_b_sotha_sil: "Path B: Mantling Sotha Sil — The Clockwork God [TRIBUNAL TIER]"
+ choose_walking_way.path_b_sotha_sil_desc: "The Clockwork God built the Clockwork City and then withdrew from the world to maintain it. Mysticism, logic, artifice, and time. Philosophical detachment so complete he disappeared. Unlocked by completing the Azura mantle (Anticipation of Sotha Sil). [Requires: Azura Mantle completed, learning 18+, tonal_architect or scholar or clockwork_city_visited]"
+
+ # ─── New Path Decision Options ───
+ choose_walking_way.path_g: "Path G: Tonal Architecture — The Dwemer's Way [DANGEROUS]"
+ choose_walking_way.path_g_desc: "The Dwemer used tonal manipulation of reality to rewrite the self. Kagrenac used it on the Heart of Lorkhan. The Dwemer used it on themselves and vanished. This is explicitly the wrong Walking Way — dangerous, materialist, the path of science not spirit. Those who survive are rewritten. Many do not survive. [Requires: tonal_architect trait, learning 18+]"
+ choose_walking_way.path_h: "Path H: Prolix Tower — The Language of Divinity"
+ choose_walking_way.path_h_desc: "Achieving divinity through language, recursive logic, and the power of naming. The 36 Lessons of Vivec ARE a Prolix Tower. The path uses writing and self-referential text to construct godhood. Lower risk than other paths — survivable even in failure. [Requires: learning 18+, vivec_blessed OR black_book_found]"
+ choose_walking_way.path_i: "Path I: Worm Apotheosis — Mannimarco's Road [DANGEROUS]"
+ choose_walking_way.path_i_desc: "Mannimarco's path. He became the Necromancer's Moon — a celestial body opposing Arkay's cycle. A documented lore path to divinity through soul-science and dominion over death. Failure results in lich_essence, not death. [Requires: worm_cult_adept trait, NOT lich_essence]"

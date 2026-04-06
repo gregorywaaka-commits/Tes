@@ -355,6 +355,36 @@ This is a second nested choice in the decision UI.
   of the same archetypal pattern. In-universe, their legacy will be comparable to
   Reman Cyrodiil's.
 
+##### Concurrent Aspect-Holder Death: Sole Heir Mechanic
+
+> *DESIGN NOTE — Lore basis: The Arcturian Heresy*
+>
+> Talos was not a single man. He was Hjalti Early-Beard (the tactician), Ysmir Wulfharth
+> (the fire), and Zurin Arctus (the clever man). Each contributed a soul-fragment to the
+> composite Oversoul. When Wulfharth was consumed by Numidium and Arctus's soul was crushed
+> into the Mantella, those fragments did not vanish — they fed the surviving vessel.
+> Tiber Septim became Talos **because he was the last aspect-holder standing**.
+> This mechanic is therefore not a gameplay convenience; it is the lore outcome.
+
+When multiple characters are concurrently walking the Talos path and one dies mid-path:
+
+**Fragment Absorption (2+ survivors):**
+- All surviving active walkers receive the `mantling_talos.aspect_dies_notify` event
+- Each survivor gains `ww_aspect_fragment_absorbed` modifier (Martial +2, prestige/month +2, dread +10%) for 15 years
+- One free bonus milestone is granted (the absorbed fragment counts as pattern recognition)
+- Flavor distinguishes a peer dying vs. a rival being killed
+
+**Sole Heir (last walker remaining):**
+- If only one active walker survives, `mantling_talos.sole_heir_ascendant` fires
+- Grants `talos_sole_heir` modifier (Martial +4, Learning +2, prestige +4/month, stress gain −25%) for the remainder of the path
+- Two bonus milestones are granted (one for each absorbed peer, capped at 6 total)
+- The path's rank can now advance to 4 even if milestones would otherwise fall short
+- The Sole Heir still must reach Rank 4 through active play — the mantle is never automatic
+
+**Global Tracking:**
+- `active_talos_aspects_count` (global var) is incremented by `begin_path_mantling_talos` and decremented on death or abandonment
+- The death hook fires `aspect_dies_notify` to all living concurrent walkers before firing the existing `path_broken` world event
+
 ##### Mantling Arkay
 > *The god of the cycle. Some texts suggest he was once a mortal merchant who died
 > and returned with divine knowledge. The cycle can be walked as well as observed.*
@@ -1566,6 +1596,185 @@ is_valid = {
     }
 }
 ```
+
+---
+
+### 17.2a-i Wulf — Avatar of Talos: Design Notes Across Timeline Scenarios
+
+#### Canonical Lore Basis (Online-Verified)
+
+Wulf is the avatar of Tiber Septim (Talos) who appears in the Tower of Dusk at
+Ghostgate in TES III: Morrowind. He manifests as an aged Imperial legionnaire and
+offers the player character ("the Nerevarine") an *Old Man's Lucky Coin*, which
+grants the greater power "Luck of the Emperor." He is invisible to everyone else
+at Ghostgate. Lalatia Varian, Oracle of the Imperial Chapels at Ebonheart, later
+confirms the encounter was a divine visitation — the face of Tiber Septim walking
+among the living.
+
+Key canon conditions for the encounter:
+- The Nerevarine has received Wraithguard from Vivec (fully committed to the path).
+- Dagoth Ur has awakened and the crisis is active (i.e., the confrontation is imminent).
+- After the confrontation window closes, Wulf disappears permanently.
+
+His name is lore-significant: Wulf evokes *Ysmir Wulfharth*, one of the three
+mortals whose souls Tiber Septim absorbed to form his divine Oversoul. The avatar
+therefore embodies the *composite nature* of Talos — not solely Tiber Septim.
+
+[SOURCE: Morrowind:Wulf (UESP); Morrowind:A Lucky Coin (UESP); Lalatia Varian
+dialogue; UESP Lore:Wulfharth; UESP Lore:Talos composite Oversoul]
+
+---
+
+#### Scenario A — Pre-Dagoth Awakening (EK2 base window: 2E 440–882)
+
+**Problem:** The current `wulf_encounter` trigger requires `dagoth_ur_awakened`.
+In the EK2 base timeline (start ~2E 440–582), a player could be walking the
+Talos/Shezarrine path decades or centuries before Dagoth Ur is awakened at 2E 882.
+Under the current code, Wulf can never appear during this long window.
+
+**Design intent:** Wulf represents Talos's divine will reaching back to mark the
+mortal who carries the Shezarrine pattern. Because Talos exists *across time* (the
+divine is not constrained by linear chronology — the 36 Lessons of Vivec describe
+the gods acting on mortal history before and after their worship begins), a Talos
+mantler in 2E 500 would still attract the avatar's attention.
+
+**Proposed pre-awakening trigger condition for a "harbinger" Wulf encounter:**
+
+```
+# Wulf as Harbinger — fires BEFORE Dagoth Ur awakens
+# Replaces wulf_encounter when dagoth_ur_awakened is NOT set
+trigger = {
+    has_character_flag = ww_mantling_talos_active
+    NOT = { has_global_flag = dagoth_ur_awakened }
+    NOT = { has_character_flag = wulf_visited }
+    NOT = { has_character_flag = wulf_encounter_seen }
+    var:ww_talos_rank >= 3          # Must be at milestone 3 — the path is serious
+    OR = {
+        martial >= 16               # High martial mastery
+        has_character_flag = ww_mantling_talos_milestone_shezarrine
+    }
+}
+```
+
+**Narrative flavour distinction:** The pre-awakening Wulf encounter should feel
+*prophetic* rather than confirmatory. He does not grant "Luck of the Emperor" with
+the same certainty — instead his coin carries a *warning* that the work ahead will
+determine whether the god exists at all. Event text should reflect:
+> *"The old soldier presses the coin into your palm without a word. You have not
+> yet faced the test that will make or unmake your legend — but he looks at you as
+> though the outcome is already decided."*
+
+The `wulf_blessed` trait and `luck_of_the_emperor` modifier are still granted, but
+the Lalatia oracle follow-up (`mantling_talos.lalatia_oracle`) should only fire if
+the date is post-2E 854 (when the Imperial Cult has an Ebonheart presence in
+Vvardenfell) OR if an alternative oracle stand-in is available.
+
+**Mechanical gate:** Add global flag `wulf_harbinger_seen` so the harbinger
+variant and the canonical variant are mutually exclusive (a mantler who saw the
+harbinger Wulf still has `wulf_encounter_seen` set and will not see him again
+during the Dagoth crisis window unless specifically designed for that).
+
+---
+
+#### Scenario B — Canonical Nerevarine Dead; Successor Holds the Prophecy
+
+**Problem:** The Nerevarine system (§20) implements `nerevarine_shadow` and a
+succession hook via `on_character_death`. If the canonical Nerevarine dies before
+defeating Dagoth Ur, the `nerevarine_shadow` trait passes to a successor. The
+current `wulf_encounter` checks `has_trait = nerevarine_marked` but does not
+explicitly handle the `nerevarine_shadow` successor case.
+
+**Design intent:** Wulf's avatar allegiance is to *whoever currently carries the
+prophetic burden*, not to the specific original individual. The prophecy of the
+Nerevarine is about a pattern — not a person. A successor bearing `nerevarine_shadow`
+is, metaphysically, the continuation of the same pattern.
+
+**Proposed adjustment to the Wulf trigger:**
+
+```
+trigger = {
+    OR = {
+        has_character_flag = ww_mantling_talos_active
+        has_trait = nerevarine_marked       # Canon Nerevarine
+        has_trait = nerevarine_shadow       # Successor who holds the mantle
+    }
+    OR = {
+        has_global_flag = dagoth_ur_awakened    # Crisis is active (canon or early)
+        AND = {                                  # Pre-awakening harbinger path
+            NOT = { has_global_flag = dagoth_ur_awakened }
+            var:ww_talos_rank >= 3
+        }
+    }
+    NOT = { has_character_flag = wulf_visited }
+    NOT = { has_character_flag = wulf_encounter_seen }
+    NOT = { has_global_flag = dagoth_ur_defeated }
+}
+```
+
+**Important:** The `nerevarine_shadow` trigger should carry an additional flavour
+check. If the original Nerevarine died by `nerevarine_forsaken` (betrayed the
+prophecy), Wulf's flavour text for the successor should reflect the extra weight of
+carrying a broken lineage:
+> *"The old man's eye lingers on you longer than it should. He presses the coin
+> into your hand, but his gaze holds no warmth — only the cold arithmetic of what
+> must be done, since the first was found wanting."*
+
+---
+
+#### Scenario C — Dagoth Ur Awakened Earlier Than Canon (Divergent Timeline)
+
+**Problem:** In a divergent playthrough, a player could fulfil the in-game
+conditions for `dagoth_ur_awakened` before 2E 882 (the canonical date). For
+example: Kagrenac's Tools research accelerated via the `borrowed_divinity` system
+(§19), or a player-triggered event that stirs Dagoth prematurely. If `dagoth_ur_awakened`
+fires at, say, 2E 650, and a Talos mantler exists, the current `wulf_encounter`
+would fire — but the Lalatia oracle follow-up assumes the 3E context.
+
+**Design intent:** The encounter itself is fully valid in this scenario. Wulf
+appears whenever the Dagoth crisis is active AND a Talos mantler (or Nerevarine
+bearer) exists, regardless of the calendar date. The divine does not operate on
+the Merethic calendar.
+
+**Required guard for the Lalatia oracle follow-up only:**
+
+```
+# mantling_talos.lalatia_oracle
+# Only fire if the Imperial Cult's Ebonheart chapter is plausibly present.
+# Before 2E 854 the Imperial presence in Morrowind is minimal.
+trigger = {
+    OR = {
+        current_date >= 2.854.1.1        # Imperial Cult established in Vvardenfell
+        # Fallback: player holds a county in Morrowind with sufficient Imperial
+        # culture presence (EK2 culture flag)
+        any_held_county = {
+            culture = { has_cultural_tradition = tradition_imperial_cult }
+        }
+    }
+}
+```
+
+If the Lalatia oracle cannot fire (pre-854, no Imperial presence), the confirmation
+of Wulf's identity is instead provided by an alternative diviner — a Psijic monk
+(if the player has `artaeum_correspondence` flag from the Psijic path) or by Vivec
+himself (if `vivec_patron` flag is set from the Nerevarine arc).
+
+---
+
+#### Summary — Wulf Trigger Logic (All Scenarios)
+
+| Scenario | Global flags / traits required | Wulf variant | Notes |
+|---|---|---|---|
+| Pre-Dagoth awakening, Talos mantler | `ww_mantling_talos_active`, `ww_talos_rank >= 3`, NOT `dagoth_ur_awakened` | Harbinger Wulf | Prophetic tone; no Lalatia follow-up pre-854 |
+| Canon/late: Dagoth awake, first mantler | `dagoth_ur_awakened`, `ww_mantling_talos_active` OR `nerevarine_marked`, `talos_broken_count < 1` | `wulf_encounter` (existing) | Canonical path; Lalatia fires if post-854 |
+| Canon: Dagoth awake, successor mantler | `dagoth_ur_awakened`, `talos_broken_count >= 1` | `wulf_encounter_successor` (existing) | Throne may be occupied — see Sole Heir notes |
+| Nerevarine dead, `nerevarine_shadow` successor | `dagoth_ur_awakened`, `nerevarine_shadow` | Extended `wulf_encounter` (add `nerevarine_shadow` to OR block) | Heavier flavour text; "broken lineage" variant |
+| Early Dagoth awakening (divergent) | `dagoth_ur_awakened` (any date), mantler or Nerevarine bearer | `wulf_encounter` (no date guard needed) | Lalatia oracle gated by culture/date check |
+
+**Shared invariant across ALL scenarios:**
+- `NOT = { has_character_flag = wulf_visited }` — Wulf only ever appears once per character.
+- `NOT = { has_global_flag = dagoth_ur_defeated }` — Once the Heart severs from Mundus, the crisis is over and Wulf has no more reason to walk among the living.
+
+---
 
 #### 17.2b Mantling Arkay
 
@@ -3103,3 +3312,741 @@ theft rather than the specific context of Dagoth Ur's cult.*
 *End of session 2026-04-05 (fourth pass) notes.*
 
 *§18 records audit findings. §19 is a self-contained design spec for the Heart-theft path. Both can be implemented independently of the rest of Walking Ways.*
+
+---
+
+## 20. Three New Paths — Jyggalag's Champion, Sheogorath's Echo, and the Necromancer's Third Way
+
+> **Added:** Session 2026-04-06 — Three paths that fill gaps in the current taxonomy:
+> two Daedric-adjacent paths (Jyggalag order and Sheogorath influence-without-succession)
+> and a third branch for the nascent Necromancer tree that rejects both Mannimarco and
+> the Ideal Masters.
+
+---
+
+### 20.1 Lore Foundation
+
+#### The Hero of Kvatch, Jyggalag, and Sheogorath
+
+Jyggalag is the Daedric Prince of Order — the most powerful of all Daedric Princes,
+feared and envied by the others. To neutralise him, the other Daedric Princes collectively
+cursed him to forget himself, becoming his own opposite: Sheogorath, Prince of Madness.
+
+Every era, at the Greymarch, Jyggalag briefly re-emerges: he destroys the Shivering Isles,
+then is forced back into Sheogorath by the curse. It is a cycle of imprisonment that repeats
+endlessly — until the Hero of Kvatch.
+
+The Hero of Kvatch is **Jyggalag's instrument**. They fight through the Greymarch, defeat
+Jyggalag's forces, confront Jyggalag in his true crystalline form, and in defeating him —
+break the cycle. Jyggalag is freed. He departs. The curse is broken.
+
+The throne of the Shivering Isles is now empty. The Hero of Kvatch fills it — becoming
+Sheogorath. This is confirmed in Skyrim's *The Mind of Madness*, where the Hero, now
+fully Sheogorath, inhabits Pelagius's mind.
+
+This gives us two distinct moments:
+
+1. **Before Jyggalag departs**: The Hero embodies the principle of Order completely enough
+   to be Jyggalag's instrument. They are not Jyggalag — they are the shape Jyggalag's
+   will moved through. **This is the Jyggalag path**: walking so precisely in the tracks of
+   Order that Order itself finds you useful.
+
+2. **After the empty throne**: The Hero takes the mantle of Sheogorath — full succession.
+   This is already modelled as `mantling_sheogorath` (the existing path). But there is a
+   third option the game does not explore: **what if a character channels Sheogorath's
+   principle — creative chaos, the madness that contains its own logic — without claiming
+   the throne?** The Prophet of Madness rather than the Mad God.
+
+#### The Ideal Masters and the Third Necromantic Way
+
+The Ideal Masters were once powerful mortal mages who abandoned flesh entirely to become
+crystalline constructs of pure soul-energy, residing in their own pocket realm (the Soul
+Cairn). They are neither Daedra nor mortal — they have transcended both categories by
+surrendering them. They feed on captured souls.
+
+The Worm Apotheosis path (Path I, Mannimarco's Road) leads to godhood through soul-science
+and lichdom. The Ideal Masters path (Path I-B, not yet implemented) leads to dissolution —
+you give up selfhood to become pure soul-construct. But a third option exists:
+
+**What if you reject both masters?** The Worm Apotheosis requires following Mannimarco's
+specific road — his tools, his moon, his cult's framework. The Ideal Masters' path
+requires surrendering to their bargain. A necromancer who is more powerful, more original,
+or more politically independent than Mannimarco might reject both and forge an entirely
+new relationship with death — neither Mannimarco's heir nor the Ideal Masters' sacrifice.
+This is **the Necromancer's Third Way**: original necromantic philosophy, forging a
+relationship with death that has no precedent.
+
+---
+
+### 20.2 Path K — Jyggalag's Champion ("The Instrument of Order")
+
+**Key:** `ww_mantling_jyggalag`
+**Flag:** `ww_mantling_jyggalag_active`
+**Apex Trait:** `jyggalag_ascendant`
+**Path type:** Path B (Mantling — Daedric sub-category)
+
+#### 20.2.1 Lore Basis
+
+This path does not ask you to become Jyggalag — he exists and is free after 3E 433. It
+asks you to **embody the principle of Order so completely** that Jyggalag recognizes you
+as a kindred pattern. You are not the Prince; you are the crystalline expression of his
+domain walking in mortal flesh.
+
+The path models the Hero of Kvatch's *role* in Shivering Isles: instrument of Order against
+chaos, the one who ends a cycle of madness through absolute clarity of purpose.
+
+**Availability:** Available after 3E 433 (Greymarch ended, Jyggalag free). Before this,
+Jyggalag is trapped and cannot recognize mortal champions. The `jyggalag_champion` trait
+(from Daedric invasion system) is the gate — it represents prior service to Jyggalag's
+crystalline forces.
+
+**Note:** This path does NOT use Jyggalag's name as a replacement for a Daedric title.
+Jyggalag is free — he is not a god you replace; he is a principle you embody. The apex
+trait `jyggalag_ascendant` is distinct from the base `jyggalag_champion` daedric champion
+trait.
+
+**After completion:** The `jyggalag_ascendant` trait is the Tier 1 prerequisite for
+`mantling_sheogorath` (the existing full-succession path). You walked Order so completely
+that Madness found you as its mirror and offered you the empty throne. A character may
+choose to pursue Sheogorath succession afterward — or stop here with Order as their apex.
+
+#### 20.2.2 Requirements
+
+```
+can_begin_mantling_jyggalag trigger:
+    has_trait = jyggalag_champion
+    learning >= 14
+    martial >= 16
+    NOT has_character_flag = ww_mantling_jyggalag_completed
+    NOT has_character_flag = walking_ways_path_active
+```
+
+#### 20.2.3 Milestones (6 total, 2 per rank)
+
+| # | Milestone Key | Lore Action |
+|---|---|---|
+| 1 | `ww_jyggalag_milestone_order_kept` | Maintained absolute law in realm — no mercy pardons, full legal code enforced |
+| 2 | `ww_jyggalag_milestone_chaos_suppressed` | Defeated a lunatic, possessed, or heresy-spreading character in direct action |
+| 3 | `ww_jyggalag_milestone_greymarch_echo` | Survived a Daedric invasion or comparable catastrophic assault on own realm |
+| 4 | `ww_jyggalag_milestone_crystal_pact` | Made a pact with Jyggalag's crystal knights / followed a pure Order-aligned decision |
+| 5 | `ww_jyggalag_milestone_madness_refused` | Rejected a Sheogorath/lunatic path event option in favour of clarity |
+| 6 | `ww_jyggalag_milestone_instrument` | Fought and defeated Sheogorath-aligned forces or madness-patron claimant |
+
+#### 20.2.4 Rank Events
+
+| Rank | Event ID | Trigger |
+|---|---|---|
+| Intro | `mantling_jyggalag.intro` | Path begins |
+| Rank 1 | `mantling_jyggalag.rank1` | 2 milestones |
+| Rank 2 | `mantling_jyggalag.rank2` | 4 milestones |
+| Rank 3 | `mantling_jyggalag.rank3` | 6 milestones (threshold — 20% failure risk) |
+| Apotheosis | `mantling_jyggalag.apotheosis` | Rank 4 |
+| Failure | `mantling_jyggalag.order_shattered` | Failure at rank 3 threshold |
+
+#### 20.2.5 Failure State
+
+At rank 3 threshold, **20% chance** of `order_shattered`: the character's grip on Order
+was too rigid. Jyggalag's crystalline focus, when forced through a mortal vessel without
+his capacity, produces brittleness rather than strength. The character gains `obsessed`
+trait + `compulsive_lawgiver` modifier (all council/vassal relations −20; cannot grant
+mercy). Not death — a lasting mechanical consequence. They cannot attempt this path again.
+
+#### 20.2.6 Apex Trait — `jyggalag_ascendant`
+
+```
+jyggalag_ascendant = {
+    category = fame
+    martial = 4
+    learning = 3
+    monthly_prestige_gain_mult = 0.35
+    health = 0.5
+    stress_loss_mult = 0.15
+    flag = jyggalag_ascendant
+}
+```
+
+- Champions of Order recognize you. `jyggalag_champion` rulers gain opinion +20.
+- Sheogorath-mantle path (`can_begin_mantling_sheogorath`) recognizes `jyggalag_ascendant`
+  as equivalent to (and preferred over) the base `jyggalag_champion` gate.
+- Madness-type events (Daedric madness, lunatic possession) have −30% base chance
+  to fire on this ruler.
+
+---
+
+### 20.3 Path K-2 — Sheogorath's Echo ("The Prophet of Madness")
+
+**Key:** `ww_sheogorath_echo`
+**Flag:** `ww_sheogorath_echo_active`
+**Apex Trait:** `madness_prophet`
+**Path type:** Path B (Mantling — Daedric, non-succession variant)
+
+#### 20.3.1 Lore Basis
+
+The existing `mantling_sheogorath` path models full divine succession — you *become*
+Sheogorath, taking his throne. This path models something different: you channel the
+**principle** of Sheogorath — creative chaos, the madness that contains logic, the laughter
+that understands something rational thought cannot — **without claiming the throne**.
+
+The Prophet of Madness understands that Sheogorath's domain is not nonsense: it is a
+reason creation has not yet learned to follow. They walk in that understanding, wielding
+unpredictability as strategy, chaos as creative power, and madness as political tool —
+without losing themselves to full possession.
+
+The distinction from `mantling_sheogorath` is:
+- **Mantling Sheogorath** = "I AM the new Mad God. The throne is mine."
+- **Sheogorath's Echo** = "I understand what madness *is* and can use it. I did not
+  take the throne — I carry the echo of it."
+
+This path is **safer** (lower possession risk) but **weaker** (lower apex stats). It
+is available to characters who *cannot* or *choose not to* make the full succession claim.
+
+**Availability:** Does not require `jyggalag_champion` or `jyggalag_ascendant`. Available
+to rulers with lunatic/possessed traits or Shivering Isles exposure. This represents
+a character who came to madness organically — as insight, as survival, as scholarship —
+rather than through Order's mirror.
+
+#### 20.3.2 Requirements
+
+```
+can_begin_sheogorath_echo trigger:
+    OR = {
+        has_trait = lunatic
+        has_trait = possessed
+        has_character_flag = shivering_isles_visited
+        intrigue >= 18
+    }
+    learning >= 12
+    NOT has_character_flag = ww_sheogorath_echo_completed
+    NOT has_character_flag = ww_mantling_sheogorath_completed   # can't have already taken the throne
+    NOT has_character_flag = walking_ways_path_active
+```
+
+#### 20.3.3 Milestones (6 total, 2 per rank)
+
+| # | Milestone Key | Lore Action |
+|---|---|---|
+| 1 | `ww_echo_milestone_insight` | Survived a possession/madness event and gained understanding rather than suffering |
+| 2 | `ww_echo_milestone_chaos_wielded` | Made a chaotic political decision (unexpected alliance, bizarre demand) with positive outcome |
+| 3 | `ww_echo_milestone_obelisk` | Interacted with Sheogorath-realm artefact or prophet |
+| 4 | `ww_echo_milestone_greymarch_witness` | Witnessed or participated in a Greymarch-cycle event |
+| 5 | `ww_echo_milestone_court_jester` | Held a court event where deliberate madness served political purpose |
+| 6 | `ww_echo_milestone_realm_glimpsed` | Had a vision of the Shivering Isles structure — understood it as architecture, not chaos |
+
+#### 20.3.4 Rank Events
+
+| Rank | Event ID | Trigger |
+|---|---|---|
+| Intro | `sheogorath_echo.intro` | Path begins |
+| Rank 1 | `sheogorath_echo.rank1` | 2 milestones |
+| Rank 2 | `sheogorath_echo.rank2` | 4 milestones |
+| Rank 3 | `sheogorath_echo.rank3` | 6 milestones (threshold — 15% possession risk) |
+| Apotheosis | `sheogorath_echo.apotheosis` | Rank 4 |
+| Possession | `sheogorath_echo.possessed` | Failure at rank 3 |
+
+#### 20.3.5 Failure State
+
+At rank 3 threshold, **15% chance** of `echo_possessed`: the character stopped echoing
+and started being consumed. They gain `lunatic` + `possessed` + the madness escalates into
+full Sheogorath-realm devotion. Not death — but the character is effectively Sheogorath's
+unwilling vessel. Grants `sheogorath_consumed` modifier (large intrigue bonus, catastrophic
+stress gain mult). The path is closed but the character is permanently altered.
+
+#### 20.3.6 Apex Trait — `madness_prophet`
+
+```
+madness_prophet = {
+    category = fame
+    intrigue = 5
+    learning = 3
+    diplomacy = 2
+    monthly_prestige_gain_mult = 0.25
+    stress_loss_mult = 0.20
+    flag = madness_prophet
+}
+```
+
+- Chaotic/lunatic/jester characters gain opinion +15 toward this ruler.
+- This ruler's schemes have +10% base success (madness as misdirection).
+- Stress events from madness-type triggers have −40% chance to fire.
+- Does **not** grant immunity to possession — they channel madness, they do not master it.
+- Does **not** unlock the Sheogorath throne. A `madness_prophet` ruler cannot later take
+  `mantling_sheogorath` — they chose echo over succession and the throne does not re-offer.
+
+---
+
+### 20.4 Path L — The Necromancer's Third Way ("I Owe No Master")
+
+**Key:** `ww_necromancer_third_way`
+**Flag:** `ww_necromancer_third_way_active`
+**Apex Trait:** `death_sovereign`
+**Path type:** Part of the broader Necromancer super-tree (parallel to `worm_apotheosis` and
+the yet-to-be-implemented `ideal_masters` path)
+
+#### 20.4.1 Lore Basis
+
+The Necromancer's Third Way explicitly rejects the two established necromantic models:
+
+**Why reject Mannimarco's Road (Worm Apotheosis)?**
+Mannimarco's path requires following the specific tools, techniques, and doctrine of the
+Order of the Black Worm — and accepting that you are completing *his* work, not your own.
+The Worm Apotheosis makes you a reflection of Mannimarco at his apex. A more original
+or politically independent necromancer refuses this: they will not be his footnote.
+
+**Why reject the Ideal Masters?**
+The Ideal Masters' bargain requires surrendering your soul's energy incrementally to them
+in exchange for power. It is a transaction with masters you can never equal, leading toward
+dissolution of self. The Third Way practitioner refuses to be anyone's sacrifice.
+
+**What is the Third Way?**
+Original necromantic philosophy. Not Arkay's death cycle (cyclical, oppressive). Not
+Mannimarco's apotheosis (hierarchical, derivative). Not the Ideal Masters' dissolution
+(transcendent but selfless). Something that has not been named yet — a practitioner who
+studies death as a **domain** to be understood and ultimately governed on their own terms.
+The apex of this path is `death_sovereign`: not the god of necromancy, but the sovereign
+over one's own relationship with death.
+
+[SOURCE: UESP Lore:Mannimarco (Worm Apotheosis context); UESP Lore:Soul Cairn (Ideal
+Masters context); CANON with original synthesis — the Third Way is extrapolated from
+established lore gaps, not from a specific TES source]
+
+#### 20.4.2 Requirements
+
+```
+can_begin_necromancer_third_way trigger:
+    has_trait = necromancer      # base necromancer trait
+    learning >= 16
+    NOT has_trait = worm_cult_adept          # rejected the Worm Cult's path
+    NOT has_character_flag = ww_worm_apotheosis_completed
+    NOT has_character_flag = ww_necromancer_third_way_completed
+    NOT has_character_flag = walking_ways_path_active
+```
+
+Note: Requires `necromancer` trait but explicitly NOT `worm_cult_adept`. This path is
+for necromancers who developed independently — either before encountering the Worm Cult,
+or who studied necromancy and rejected the Cult's doctrine.
+
+#### 20.4.3 Milestones (6 total, 2 per rank)
+
+| # | Milestone Key | Lore Action |
+|---|---|---|
+| 1 | `ww_third_way_milestone_arkay_defied` | First successful act of necromancy that violated Arkay's cycle in a novel (non-Worm Cult) manner |
+| 2 | `ww_third_way_milestone_mannimarco_rejected` | Actively refused Worm Cult recruitment, destroyed a Black Soul Gem, or purged a Worm Cult agent |
+| 3 | `ww_third_way_milestone_death_taxonomy` | Completed original research into the nature of death — a new codex, a novel binding, an unexplored soul-type |
+| 4 | `ww_third_way_milestone_ideal_masters_refused` | Encountered Soul Cairn influence (via Dawnguard events, soul gem research) and rejected their bargain |
+| 5 | `ww_third_way_milestone_sovereign_rite` | Performed a custom death rite — one the character invented, not derived from any existing tradition |
+| 6 | `ww_third_way_milestone_boundary` | Stood at the boundary between life and death (phylactery creation, near-death survived, death-vision) without following either the Worm or Ideal Masters framework |
+
+#### 20.4.4 Rank Events
+
+| Rank | Event ID | Trigger |
+|---|---|---|
+| Intro | `necromancer_third_way.intro` | Path begins |
+| Rank 1 | `necromancer_third_way.rank1` | 2 milestones |
+| Rank 2 | `necromancer_third_way.rank2` | 4 milestones |
+| Rank 3 | `necromancer_third_way.rank3` | 6 milestones (threshold — 30% soul-unmooring risk) |
+| Apotheosis | `necromancer_third_way.apotheosis` | Rank 4 |
+| Failure | `necromancer_third_way.unmoored` | Failure at rank 3 |
+
+#### 20.4.5 Failure State
+
+At rank 3 threshold, **30% chance** of `unmoored`: the character attempted to forge a
+relationship with death that had no precedent, and death turned back on them. Not through
+Mannimarco's tools, not through the Ideal Masters' dissolution — just the raw consequence
+of standing at the boundary without a framework. They gain `lich_essence` (they stumbled
+into near-death survival) + `soul_unmoored` modifier (−2 health, permanent stress gain;
+their soul is partially dissociated from their body). Still alive, still powerful — but
+unstable. Cannot attempt this path again. Can still pursue `worm_apotheosis` as a fallback
+(the failure taught them why a framework matters).
+
+#### 20.4.6 Apex Trait — `death_sovereign`
+
+```
+death_sovereign = {
+    category = fame
+    learning = 6
+    intrigue = 4
+    health = 1.0
+    monthly_prestige_gain_mult = 0.40
+    stress_gain_mult = -0.15
+    flag = death_sovereign
+}
+```
+
+- Immune to standard death-by-old-age events (not immortal — the engine still applies
+  health — but the narrative death-by-age events that other paths use do not fire).
+- Other necromancers (worm_cult_adept, lich_essence) gain opinion +25 — you are
+  something they have not seen before; you command respect across doctrinal lines.
+- Worm Cult NPCs gain opinion −30 — you rejected their path and succeeded; this is
+  apostasy.
+- Arkay-aligned characters gain opinion −25.
+- This ruler may *assist* the Ideal Masters path for another character (they understand
+  the theory) without being consumed by it themselves.
+
+---
+
+### 20.5 Necromancer Super-Tree Structure
+
+The three necromantic paths now form a coherent super-tree:
+
+```
+                ENTRY GATE: necromancer trait + learning≥14
+                        (shared with worm_apotheosis)
+                               │
+                ┌──────────────┼──────────────┐
+                │              │              │
+        BRANCH A           BRANCH B        BRANCH C
+    worm_apotheosis      ideal_masters   necromancer_third_way
+    (Mannimarco's        (Soul Cairn —   (Independent — no
+     Road)               dissolution)    master; own way)
+        │                    │                │
+   necromancers_         ideal_master_    death_sovereign
+   ascendant /           ascendant /
+   soul_fractured        soul_cairn_bound
+```
+
+Branch B (ideal_masters) is designed but not yet fully implemented. It shares the
+entry gate with Branch A and C but routes through Soul Cairn contact events rather
+than Worm Cult milestones. See §20.6 below for its brief design specification.
+
+---
+
+### 20.6 Branch B (Ideal Masters) — Abbreviated Spec
+
+**Key:** `ww_ideal_masters`
+**Flag:** `ww_ideal_masters_active`
+**Apex Trait:** `ideal_master_ascendant`
+
+Entry requirement: `necromancer` trait + `soul_gem_master` flag (from advanced soul gem
+research) OR `has_character_flag = soul_cairn_contacted`. Mutually exclusive with
+`worm_apotheosis` and `necromancer_third_way`.
+
+Milestones focus on: Soul Cairn bargaining (give up a permanent health point in exchange
+for power), staged fragmentation events (shed positive traits, gain soul-purity modifiers),
+progressive dissolution of self.
+
+Failure state (`soul_cairn_bound`): Partially crystalline. You stopped before full
+dissolution. You are neither mortal nor Ideal Master. Not death — soft failure.
+
+This branch is noted here for design completeness. Full implementation is deferred.
+
+---
+
+### 20.7 Integration Checklist — §20 New Paths
+
+- [ ] Apex traits added to `walking_ways_traits.txt`:
+  `jyggalag_ascendant`, `madness_prophet`, `death_sovereign`
+- [ ] New failure modifier `soul_unmoored` added to `lore_races_modifiers.txt`
+- [ ] New active-path modifiers added to `lore_races_modifiers.txt`:
+  `ww_path_mantling_jyggalag_active`, `ww_path_sheogorath_echo_active`,
+  `ww_path_necromancer_third_way_active`
+- [ ] Scripted effects added to `walking_ways_effects.txt`:
+  begin/advance/complete/abandon + count_milestones for all 3 paths
+- [ ] `clear_all_ww_active_flags` updated with 3 new active flags
+- [ ] Scripted triggers added to `walking_ways_triggers.txt`:
+  can_begin/is_on/has_completed/has_any_milestone for all 3 paths
+- [ ] Decision options added to `walking_ways_decisions.txt` (choose + abandon branches)
+- [ ] `can_begin_mantling_sheogorath` trigger updated to accept `jyggalag_ascendant`
+  as equivalent gate (alongside existing `jyggalag_champion`)
+- [ ] Event files created:
+  `mantling_jyggalag_events.txt`, `sheogorath_echo_events.txt`,
+  `necromancer_third_way_events.txt`
+- [ ] Progress_check dispatch updated in `walking_ways_events.txt`
+- [ ] Localization added to `walking_ways_l_english.yml`
+- [ ] No new on_actions registration needed (all three paths run through the existing
+  `walking_ways.progress_check` engine registered at weight 5)
+
+
+---
+
+## §21 Nerevarine: Race-Agnostic Prophecy / Multi-Spirit Lineage / Shezarrine Convergence
+
+### 21.1 Lore Basis — The Nerevarine Is a Soul, Not a Race
+
+The Nerevarine system previously restricted `claim_nerevarine_prophecy` to characters with
+`has_culture = dunmer_culture`.  This restriction has been **removed** in favour of a
+lore-accurate race-agnostic model.
+
+**Canonical evidence:**
+- In TES III: Morrowind the player character — the canonical Nerevarine — can be any of the
+  ten playable races.  The game explicitly calls them "the outlander" and "the stranger from
+  across the water" in Ashlander prophecy variants.
+- The Nerevarine prophecy concerns the *soul* of Lord Nerevar Indoril reincarnating, not
+  a product of Dunmeri blood.  Azura's domain is love, dusk, dawn, and *the perseverance of
+  souls across time*.  She does not require that soul to wear Dunmer flesh.
+- [SOURCE: TES III:Morrowind — Nerevarine Prophecies, Azura shrine dialogue;
+  UESP Lore:Nerevarine]
+
+**Mechanical change:**
+- `has_culture = dunmer_culture` removed from `claim_nerevarine_prophecy.is_shown`
+- Non-Dunmer claimants fire `nerevarine.300` (Outlander Nerevarine) 3 days after claiming,
+  granting `nerevarine_outlander_recognition` modifier for 5 years while the Ashlanders
+  slowly accept the "stranger the prophecies spoke of"
+- The on_character_death notification now sends `nerevarine.001` to all `azura_champion`
+  rulers rather than only Dunmer rulers
+
+---
+
+### 21.2 Multi-Spirit Nerevarine — Simultaneous Vessels
+
+**Canonical evidence:**
+- In TES III: Morrowind the player can meet the *souls of past Nervarines* inside
+  Dagoth Ur's citadel at Red Mountain.  These souls are not erased — they persist as
+  conscious echoes in Azura's realm (Moonshadow).  Lord Nerevar's soul has lived many
+  lives, and the earlier incarnations remain.
+- This implies the soul is not a singular baton passed from one dying body to the next:
+  it is a vast essence that can manifest in more than one living body simultaneously,
+  because the earlier incarnations' echoes prove the soul does not simply "move on".
+- [SOURCE: TES III:Morrowind — past Nerevarine encounters; UESP Lore:Azura/Moonshadow]
+
+**Mechanical change:**
+- New global variable `active_nerevarine_spirit_count` tracks simultaneous living vessels
+- `claim_nerevarine_prophecy.is_shown` has an additional OR branch: a second claimant may
+  rise while a first is still alive, provided `active_nerevarine_spirit_count < 3`
+  (capped at three simultaneous spirits — matching the number of past Nerevarine souls
+  visible in-game in Morrowind)
+- On claim: `active_nerevarine_spirit_count += 1`
+- On death (nerevarine_marked + not victor/forsaken): `active_nerevarine_spirit_count -= 1`
+- `nerevarine_quest_incomplete` is only re-set on death if NO other living Nerevarine
+  exists at that moment
+
+---
+
+### 21.3 Shezarrine-Nerevarine Convergence — Two Dead Gods, One Body
+
+**Canonical evidence:**
+- The Shezarrine is a recurring vessel of Shor (Lorkhan's mortal aspect): Pelinal
+  Whitestrake, Talos/Tiber Septim, the Dragonborn of Skyrim.
+- Wulf — the avatar of Talos who appears to the Nerevarine in TES III — is himself a
+  Shezarrine-aspect (Talos IS a Shezarrine; see UESP Lore:Shezarrine).  Wulf visits the
+  Nerevarine in person.  At the moment of that meeting, two Shezarrine-touched beings
+  coexist on Nirn simultaneously: the Nerevarine (touched by Shor's essence through the
+  Lorkhan-path connection) and Wulf (an avatar of a Shezarrine).
+- In TES V: Skyrim, Shor's throne in Sovngarde is conspicuously *empty* — because the
+  Dragonborn (the reincarnation of Shor and a Shezarrine) is alive on Nirn.  The throne
+  can only be occupied while no piece of Shor's soul walks the world.
+- This proves: (a) two Shezarrine-aspects can coexist on Nirn, and (b) while a Shezarrine
+  lives on Nirn, Shor's throne in Aetherius/Sovngarde is vacant.
+- [SOURCE: TES III:Morrowind — Wulf NPC; UESP Lore:Shezarrine; UESP Lore:Shor;
+  TES V:Skyrim — Sovngarde, Shor's throne; UESP Lore:Dragonborn]
+
+**Mechanical implementation:**
+
+#### 21.3.1 Trigger Conditions
+- A character with BOTH `nerevarine_marked` AND `shezarrine_vessel` triggers the
+  Dual-Soul Convergence chain
+- Either at claim-time (via `nerevarine.310` option B) or later (via the yearly hidden
+  event `nerevarine.321` which checks `nerevarine_marked + shezarrine_vessel + NOT
+  nerevarine_shezarrine_convergence + NOT nerevarine_shezarrine_declined`)
+
+#### 21.3.2 Events
+| Event ID | Name | Notes |
+|---|---|---|
+| nerevarine.310 | Vision of Past Incarnations | Fires for all new claimants; Shezarrine gets option B |
+| nerevarine.320 | Dual-Soul Convergence | Acknowledges the dual-soul nature; **does NOT set Shor's throne empty** (see §22) |
+| nerevarine.321 | Hidden yearly check | Catches characters who gain shezarrine_vessel after claiming |
+
+#### 21.3.3 Outcome — Option A (Accept Convergence)
+- Sets `character_flag = nerevarine_shezarrine_convergence`
+- **NOTE (§22 correction):** does NOT set `shors_throne_nerevarine` — that flag is only set
+  when the Shezarrine physically enters Sovngarde (`shezarrine.sovngarde_entry`)
+- Applies `dual_soul_convergence_modifier` (martial +4, prowess +4, monthly_piety +8,
+  prestige_gain_mult +30%, stress_gain_mult +10%, health +0.5)
+
+#### 21.3.4 Outcome — Option B (Decline / Choose Nerevar Only)
+- Sets `character_flag = nerevarine_shezarrine_declined` (prevents re-prompting)
+- Character remains `shezarrine_vessel` and `nerevarine_marked` with no convergence
+- Lore-valid: the character has both souls but consciously suppresses Shor's aspect
+
+#### 21.3.5 New Modifiers — §21
+| Modifier | Duration | Applied by |
+|---|---|---|
+| `nerevarine_outlander_recognition` | 1825 days (5 years) | nerevarine.300 |
+| `nerevar_soul_witnessed` | 730 days (2 years) | nerevarine.310 option A |
+| `dual_soul_convergence_modifier` | 99 years (effectively permanent) | nerevarine.320 option A |
+
+---
+
+### 21.4 Integration Checklist — §21
+
+- [x] `has_culture = dunmer_culture` removed from `claim_nerevarine_prophecy.is_shown`
+- [x] Multi-spirit OR branch added to `claim_nerevarine_prophecy.is_shown` (spirit count removed per §22)
+- [x] `active_nerevarine_spirit_count` global var incremented on claim
+- [x] `active_nerevarine_spirit_count` global var decremented on death (on_actions)
+- [x] `nerevarine_quest_incomplete` only re-set if no other living Nerevarine
+- [x] nerevarine.001 notification sent to azura_champion rulers (all races)
+- [x] nerevarine.300 (Outlander Nerevarine) added — fires for non-Dunmer claimants
+- [x] nerevarine.310 (Vision of Past Incarnations) added — fires for all claimants
+- [x] nerevarine.320 (Dual-Soul Convergence) added — fires for Shezarrine-Nervarines
+- [x] nerevarine.321 (hidden yearly check) added — catches late shezarrine_vessel gain
+- [x] `nerevarine_outlander_recognition` modifier added to lore_races_modifiers.txt
+- [x] `nerevar_soul_witnessed` modifier added to lore_races_modifiers.txt
+- [x] `dual_soul_convergence_modifier` modifier added to lore_races_modifiers.txt
+- [x] `shors_throne_nerevarine` — CORRECTED in §22: now tied to Sovngarde entry, not convergence
+- [x] Localization added to nerevarine_l_english.yml
+
+---
+
+## §22 Shor's Throne Correction / Multi-Pretender Nerevarine
+
+### 22.1 Shor's Throne Lore Correction
+
+**Lore issue identified:** The original §21 implementation set `shors_throne_nerevarine` whenever a
+Nerevarine+Shezarrine convergence vessel lived on Nirn.  This was lore-inaccurate.
+
+**Corrected lore:** Shor's throne in Sovngarde stands empty **only when a Shezarrine physically
+enters Sovngarde** — not merely because a Shezarrine exists on Nirn.  In TES V: Skyrim, the
+Dragonborn (a Shezarrine) enters Sovngarde alive to fight Alduin; at that moment the throne is
+empty because Shor's avatar has crossed into the hall.  Simply walking Nirn as a Shezarrine does
+not vacate the throne.
+[SOURCE: TES V:Skyrim — Sovngarde questline; UESP Lore:Shor; UESP Lore:Sovngarde]
+
+**Mechanical change:**
+- `nerevarine.320` option A no longer sets `shors_throne_nerevarine`
+- New event `shezarrine.sovngarde_entry` fires yearly for `shezarrine_vessel` characters with
+  `shor_marked` OR `martial >= 22`; option A sets `shors_throne_nerevarine` +
+  `shezarrine_sovngarde_entered` character flag
+- `on_character_death` hook clears `shors_throne_nerevarine` when `shezarrine_sovngarde_entered`
+  character dies (both inside and outside the `nerevarine_marked` gate)
+
+### 22.2 Multi-Pretender Nerevarine System
+
+**Design principle:** Any number of characters may simultaneously hold `nerevarine_marked`.  Only
+the first to achieve `nerevarine_victor` (complete the prophecy at Red Mountain) is the True
+Nerevarine.  All others become **False Incarnates** (`nerevarine_pretender` trait), consistent with
+TES lore in which multiple claimants tried and failed before the canonical Incarnate succeeded.
+[SOURCE: UESP Lore:Nerevarine — Incarnate history; TES III:Morrowind Ashlander lore]
+
+#### 22.2.1 Pre-cursor Auto-Marking (`nerevarine.340`)
+- Fires as a **hidden yearly event** when `dagoth_ur_awakening_possible = yes` but **before**
+  `dagoth_ur_awakened = yes` — the prophecy stirs as a precursor to the Sleeper's waking
+- Eligible characters: `azura_champion`, OR Dunmer with `piety >= 150` + `learning >= 8`
+- Mean-time-to-happen: 4 months (Dunmer modifier 0.5×, azura_champion modifier 0.75×)
+- Effect: grants `nerevarine_marked`, increments `active_nerevarine_spirit_count`, fires
+  `nerevarine.300` (if non-Dunmer) and `nerevarine.310` (all claimants)
+- Multiple characters across all races are auto-marked simultaneously, creating a field of
+  competing Incarnates before Dagoth fully wakes
+
+#### 22.2.2 No Spirit-Count Cap
+- The `active_nerevarine_spirit_count < 3` cap is removed from `claim_nerevarine_prophecy`
+- Any number of vessels may simultaneously hold the mark
+- `claim_nerevarine_prophecy` is still available after `dagoth_ur_awakened = yes` for characters
+  not auto-marked by nerevarine.340
+
+#### 22.2.3 Exotic-Race Additional Requirements
+Characters of non-standard Tamrielic cultures (Dremora, Dwemer automata, etc.) must additionally
+satisfy one of: `piety >= 600`, `learning >= 16`, or `has_trait = shezarrine_vessel`.
+This represents Azura's greater scepticism toward extra-planar or non-mortal vessels — not an
+absolute bar, but a higher threshold of spiritual attunement.
+
+#### 22.2.4 Pretender System (`nerevarine.330` / `nerevarine.331`)
+When `nerevarine_victor` is achieved (kagrenac.030 option A):
+- `nerevarine.330` (hidden) fires immediately: notifies every other `nerevarine_marked` ruler
+- `nerevarine.331` "Pretender's Reckoning" fires for each: two options (acceptance or denial),
+  both result in `remove_trait = nerevarine_marked`, `add_trait = nerevarine_pretender`,
+  decrement `active_nerevarine_spirit_count`
+
+#### 22.2.5 New Trait — `nerevarine_pretender`
+| Attribute | Value |
+|---|---|
+| Category | personality |
+| is_good | no |
+| learning | +3 |
+| monthly_piety_gain_mult | -0.15 |
+| monthly_prestige_gain_mult | -0.10 |
+| stress_gain_mult | +0.10 |
+
+### 22.3 Integration Checklist — §22
+
+- [x] `nerevarine.320` option A: removed `set_global_flag = shors_throne_nerevarine`
+- [x] `nerevarine.320` comment + description updated — clarifies throne NOT emptied here
+- [x] `shezarrine.sovngarde_entry` event added to `shezarrine_events.txt`
+- [x] `shezarrine.sovngarde_entry` registered in `on_yearly_pulse` (weight 2)
+- [x] `on_character_death`: updated to check `shezarrine_sovngarde_entered` for throne clear
+- [x] Second death-hook block added for non-Nerevarine Shezarrines who entered Sovngarde
+- [x] `nerevarine_pretender` trait added to `nerevarine_traits.txt`
+- [x] Spirit-count cap removed from `claim_nerevarine_prophecy.is_shown`
+- [x] `nerevarine_pretender` NOT gate added to `claim_nerevarine_prophecy.is_shown`
+- [x] Exotic-race extra requirements added to `claim_nerevarine_prophecy.is_valid`
+- [x] `nerevarine.330` (hidden victor broadcast) added to `nerevarine_events.txt`
+- [x] `nerevarine.331` (Pretender's Reckoning) added to `nerevarine_events.txt`
+- [x] `nerevarine.340` (pre-cursor auto-mark) added to `nerevarine_events.txt`
+- [x] `nerevarine.330` trigger hooked into `kagrenac.030` option A
+- [x] `nerevarine.340` registered in `on_yearly_pulse` (weight 3)
+- [x] Localization added: `.330.a`, `.331.*`, `.340.a`, `nerevarine_pretender_desc`,
+      `shezarrine.sovngarde_entry.*`, `nerevarine_dual_soul_tt`, updated `shors_throne_vacant_tt`
+
+---
+
+## §23 Canonical Nerevarine Vessels — One Per Race, Spawned New
+
+### 23.1 Design Principle
+
+**The Problem:** §22's `nerevarine.340` auto-marks *existing rulers* as potential Incarnates.
+But the user requirement says the canonical vessels should be **spawned as new characters**, not
+converted from existing people.  The lore supports this: the Nerevarine prophecy describes a
+stranger who "comes from across the water" — an outsider, not a current power-holder.
+
+**Solution:** A one-shot event `nerevarine.345` spawns exactly **ten new NPC characters**, one
+for each Morrowind playable race (Dunmer, Nord, Imperial, Breton, Redguard, Altmer, Bosmer, Orc,
+Khajiit, Argonian), as landless wanderers at the moment the prophecy stirs.  Each receives
+`nerevarine_marked` and the `nerevarine_canonical_vessel` character flag.
+
+**Lore basis:**
+- TES III: Morrowind allows the player to be any of the ten standard races — Azura's prophecy
+  is not racially exclusive.  The lore calls these claimants "the stranger" regardless of
+  ethnicity.
+- The competing Incarnates in the game's lore (Conoon Chodala, Wulf, etc.) show that multiple
+  candidates arise simultaneously.  The §23 system makes this visible in gameplay.
+- Players using any race remain free to claim via `claim_nerevarine_prophecy`; they join the
+  existing field of canonical vessels as an extra prophetic aspect.
+  [SOURCE: TES III:Morrowind — Nerevarine Prophecies, character creation races; UESP Lore:Nerevarine]
+
+### 23.2 Mechanical Implementation
+
+#### 23.2.1 Guard Flag
+`nerevarine_canonical_spawned` global flag — set on first fire, prevents re-spawning.
+
+#### 23.2.2 Trigger Conditions for `nerevarine.345`
+| Trigger | Value |
+|---|---|
+| `dagoth_ur_awakening_possible` | `yes` |
+| `has_global_flag = nerevarine_canonical_spawned` | `NOT` (one-shot) |
+| `has_global_flag = dagoth_ur_defeated` | `NOT` |
+| `has_culture` | `dunmer_culture` |
+| `is_ruler` | `yes` |
+| `is_adult` | `yes` |
+
+#### 23.2.3 Characters Spawned
+| Race | Culture | Religion | Age |
+|---|---|---|---|
+| Dunmer | `dunmer_culture` | `azura_faith` | 25 |
+| Nord | `nord_culture` | `eight_divines` | 24 |
+| Imperial | `imperial_culture` | `eight_divines` | 26 |
+| Breton | `breton_culture` | `eight_divines` | 23 |
+| Redguard | `redguard_culture` | `eight_divines` | 27 |
+| Altmer | `altmer_culture` | `eight_divines` | 22 |
+| Bosmer | `bosmer_culture` | `green_pact_faith` | 21 |
+| Orc | `orc_culture` | (culture default) | 28 |
+| Khajiit | `khajiit_culture` | (culture default) | 24 |
+| Argonian | `argonian_culture` | (culture default) | 26 |
+
+Each character also:
+- Sets `nerevarine_canonical_vessel` character flag
+- Gets `add_trait = nerevarine_marked`
+- Increments `active_nerevarine_spirit_count`
+- Non-Dunmer fire `nerevarine.300` (Outlander revelation, days = 2)
+- All fire `nerevarine.310` (Vision of Past Incarnations, days = 3–5)
+
+#### 23.2.4 Player as Extra Aspect
+The existing `claim_nerevarine_prophecy` decision (§21–§22) remains available to player
+characters of any race.  A player who claims is an additional potential Incarnate on top of
+the ten spawned vessels.  The pretender system (§22: nerevarine.330/331) means only the
+first to achieve `nerevarine_victor` is recognised — all others become False Incarnates
+regardless of whether they were canonical spawned NPCs or player claimants.
+
+### 23.3 Integration Checklist — §23
+
+- [x] `nerevarine.345` (canonical vessel spawn) added to `nerevarine_events.txt`
+- [x] `nerevarine.345` registered in `on_yearly_pulse` (weight 2)
+- [x] Event header in `nerevarine_events.txt` updated to document §23
+- [x] Localization added: `nerevarine.345.a`, `nerevarine_canonical_vessel_flag_tt`

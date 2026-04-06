@@ -14,6 +14,9 @@
 #  mantle_boethiah  — Path B apex: Boethiah mantle achieved (Daedric).
 #  mantle_mephala   — Path B apex: Mephala mantle achieved (Daedric).
 #  mantle_hircine   — Path B apex: Hircine mantle achieved (Daedric).
+#  mantle_dibella   — Path B apex: Dibella mantle achieved (Aedric).
+#  mantle_mara      — Path B apex: Mara mantle achieved (Aedric).
+#  mantle_sheogorath — Path B apex: Sheogorath mantle achieved (Daedric).
 #
 #  LORE CONTEXT:
 #  ─────────────
@@ -41,6 +44,9 @@
 #    • mantle_boethiah
 #    • mantle_mephala
 #    • mantle_hircine
+#    • mantle_dibella
+#    • mantle_mara
+#    • mantle_sheogorath
 #
 #  REFERENCED BY:
 #    common/scripted_effects/walking_ways_effects.txt
@@ -311,4 +317,118 @@ mantle_hircine = {
     health                        = 2.5   # the Hunt preserves the hunter
 
     flag = mantle_hircine
+}
+
+# ---------------------------------------------------------------
+#  MANTLE DIBELLA
+#  Aedric Divine, goddess of beauty, love, art, and aesthetics.
+#  Dibella's domain encompasses the erotic and the aesthetic —
+#  the beauty of form, the beauty of making, the beauty of love
+#  expressed as creation rather than possession.
+#  The mantler has walked the path of patronage, of beauty
+#  given freely, of the divine vessel fully inhabited.
+#  [SOURCE: CANON — UESP Lore:Dibella]
+# ---------------------------------------------------------------
+
+mantle_dibella = {
+    category = fame
+
+    diplomacy   = 7
+    stewardship = 2
+
+    monthly_prestige              = 10
+    stress_gain_mult              = -0.20  # beauty and love carried freely lighten the soul
+
+    flag = mantle_dibella
+}
+
+# ---------------------------------------------------------------
+#  MANTLE MARA
+#  Aedric Divine, goddess of love, family, and fertility.
+#  Mara's domain is the love that sustains: the family bond,
+#  the healer's hand, the mercy given without expectation.
+#  To mantle Mara is to become the principle of love that
+#  outlasts loss — the covenant that persists past grief.
+#  [SOURCE: CANON — UESP Lore:Mara]
+# ---------------------------------------------------------------
+
+mantle_mara = {
+    category = fame
+
+    diplomacy   = 5
+    stewardship = 3
+
+    health                        = 2.0
+    monthly_piety                 = 12
+
+    flag = mantle_mara
+}
+
+# ---------------------------------------------------------------
+#  MANTLE SHEOGORATH
+#  Daedric Prince of Madness. Was once Jyggalag, Prince of
+#  Order, cursed by the other Princes to become madness itself.
+#  The Hero of Kvatch mantled him in 3E 433 (Shivering Isles).
+#  To walk his footsteps is to embrace contradiction, unreason,
+#  and the terrible creativity that lives inside collapse.
+#  Madness is not the absence of reason — it is a reason
+#  the rest of creation cannot yet follow.
+#  Possession risk: the Grey March does not wait for mantlers.
+#  [SOURCE: CANON — Shivering Isles; UESP Lore:Sheogorath]
+# ---------------------------------------------------------------
+
+mantle_sheogorath = {
+    category = fame
+
+    intrigue    = 4
+    learning    = 3
+    diplomacy   = -3   # instability is part of the pattern
+
+    monthly_prestige              = 14
+    stress_gain_mult              = 0.30   # +30% stress gain — madness has a cost
+    dread_gain_mult               = 0.30
+
+    flag = mantle_sheogorath
+}
+
+# ---------------------------------------------------------------
+#  WULF-BLESSED
+#  The character was visited by Wulf — an old legionnaire who
+#  was almost certainly the Avatar of Talos himself. He gave
+#  the lucky coin: a token of imperial destiny, the Luck of the
+#  Emperor made manifest in copper and divine will.
+#  [SOURCE: CANON — TES III: Morrowind, "A Lucky Coin";
+#   UESP Lore:Wulf; Lalatia Varian oracle dialogue]
+# ---------------------------------------------------------------
+
+wulf_blessed = {
+    category = fame
+
+    diplomacy   = 2
+    martial     = 1
+    monthly_prestige = 5
+
+    flag = wulf_blessed
+}
+
+# ---------------------------------------------------------------
+#  TALOS ASPECT
+#  The Talos mantle is occupied by a prior ascendant, but this
+#  character has walked far enough along the path to become a
+#  fragment of the Oversoul — a lesser echo, not the full god.
+#  Talos is canonically composite (Septim + Wulfharth + Arctus),
+#  so aspects are lore-accurate; they cannot claim the throne
+#  but carry real divine resonance.
+#  [SOURCE: UESP Lore:Talos; Michael Kirkbride commentary on
+#   Tiber Septim as a composite being]
+# ---------------------------------------------------------------
+
+talos_aspect = {
+    category = fame
+
+    martial     = 3
+    diplomacy   = 2
+    monthly_prestige = 6
+
+    flag = talos_aspect
 }

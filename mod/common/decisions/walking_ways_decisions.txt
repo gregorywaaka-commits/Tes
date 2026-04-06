@@ -317,6 +317,155 @@ choose_walking_way = {
     }
 
     option = {
+        name        = choose_walking_way.path_b_dibella
+        desc        = choose_walking_way.path_b_dibella_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_dibella = yes }
+
+        effect = {
+            begin_path_mantling_dibella = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                diplomacy >= 22
+                OR = {
+                    has_trait = generous
+                    has_trait = charming
+                }
+            }
+            modifier = {
+                add = 3
+                has_character_flag = bards_college_patron
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_mara
+        desc        = choose_walking_way.path_b_mara_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_mara = yes }
+
+        effect = {
+            begin_path_mantling_mara = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = compassionate
+                diplomacy >= 18
+            }
+            modifier = {
+                add = 3
+                has_living_child = yes
+                has_trait = devoted
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_sheogorath
+        desc        = choose_walking_way.path_b_sheogorath_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_mantling_sheogorath = yes }
+
+        effect = {
+            begin_path_mantling_sheogorath = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 4
+                has_trait = jyggalag_champion
+            }
+            modifier = {
+                add = 3
+                OR = {
+                    has_trait = lunatic
+                    has_character_flag = shivering_isles_visited
+                }
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_vivec
+        desc        = choose_walking_way.path_b_vivec_desc
+        is_shown    = { can_begin_mantling_vivec = yes }
+        is_valid    = { can_begin_mantling_vivec = yes }
+
+        effect = {
+            begin_path_mantling_vivec = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                martial >= 18
+                learning >= 20
+                has_character_flag = ww_mantling_mephala_completed
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_almalexia
+        desc        = choose_walking_way.path_b_almalexia_desc
+        is_shown    = { can_begin_mantling_almalexia = yes }
+        is_valid    = { can_begin_mantling_almalexia = yes }
+
+        effect = {
+            begin_path_mantling_almalexia = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = compassionate
+                has_character_flag = ww_mantling_boethiah_completed
+            }
+            modifier = {
+                add = 3
+                has_trait = zealous
+                diplomacy >= 18
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_b_sotha_sil
+        desc        = choose_walking_way.path_b_sotha_sil_desc
+        is_shown    = { can_begin_mantling_sotha_sil = yes }
+        is_valid    = { can_begin_mantling_sotha_sil = yes }
+
+        effect = {
+            begin_path_mantling_sotha_sil = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                learning >= 22
+                has_character_flag = ww_mantling_azura_completed
+            }
+            modifier = {
+                add = 3
+                has_trait = scholar
+                has_character_flag = clockwork_city_visited
+            }
+        }
+    }
+
+    option = {
         name        = choose_walking_way.path_c
         desc        = choose_walking_way.path_c_desc
         is_shown    = { always = yes }
@@ -372,6 +521,159 @@ choose_walking_way = {
                 add = 2
                 has_trait = chim_achieved
                 has_completed_any_walking_way = yes
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_g
+        desc        = choose_walking_way.path_g_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_path_tonal_architecture = yes }
+
+        effect = {
+            begin_path_tonal_architecture = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = tonal_architect
+                learning >= 20
+            }
+            modifier = {
+                add = 3
+                stewardship >= 18
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_h
+        desc        = choose_walking_way.path_h_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_path_prolix_tower = yes }
+
+        effect = {
+            begin_path_prolix_tower = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                learning >= 22
+                OR = {
+                    has_trait = vivec_blessed
+                    has_character_flag = black_book_found
+                }
+            }
+            modifier = {
+                add = 3
+                has_trait = scholar
+                learning >= 20
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_i
+        desc        = choose_walking_way.path_i_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_path_worm_apotheosis = yes }
+
+        effect = {
+            begin_path_worm_apotheosis = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 6
+                has_trait = worm_cult_adept
+                intrigue >= 18
+            }
+            modifier = {
+                add = 3
+                learning >= 20
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_k_jyggalag
+        desc        = choose_walking_way.path_k_jyggalag_desc
+        is_shown    = { has_global_flag = jyggalag_freed }
+        is_valid    = { can_begin_mantling_jyggalag = yes }
+
+        effect = {
+            begin_path_mantling_jyggalag = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = jyggalag_ascendant
+                martial >= 18
+            }
+            modifier = {
+                add = 3
+                has_trait = jyggalag_champion
+                learning >= 16
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_k2_sheogorath_echo
+        desc        = choose_walking_way.path_k2_sheogorath_echo_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_sheogorath_echo = yes }
+
+        effect = {
+            begin_path_sheogorath_echo = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 4
+                has_trait = lunatic
+                intrigue >= 16
+            }
+            modifier = {
+                add = 3
+                OR = {
+                    has_trait = possessed
+                    has_character_flag = shivering_isles_visited
+                }
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_l_necromancer_third_way
+        desc        = choose_walking_way.path_l_necromancer_third_way_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_necromancer_third_way = yes }
+
+        effect = {
+            begin_path_necromancer_third_way = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = necromancer
+                learning >= 18
+                NOT = { has_trait = worm_cult_adept }
+            }
+            modifier = {
+                add = 3
+                learning >= 20
             }
         }
     }
@@ -573,6 +875,30 @@ abandon_walking_way = {
             abandon_path_mantling_hircine = yes
         }
         else_if = {
+            limit = { has_character_flag = ww_mantling_dibella_active }
+            abandon_path_mantling_dibella = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_mara_active }
+            abandon_path_mantling_mara = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_sheogorath_active }
+            abandon_path_mantling_sheogorath = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_vivec_active }
+            abandon_path_mantling_vivec = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_almalexia_active }
+            abandon_path_mantling_almalexia = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_sotha_sil_active }
+            abandon_path_mantling_sotha_sil = yes
+        }
+        else_if = {
             limit = { has_character_flag = ww_psijic_endeavour_active }
             abandon_path_psijic_endeavour = yes
         }
@@ -583,6 +909,34 @@ abandon_walking_way = {
         else_if = {
             limit = { has_character_flag = ww_amaranth_active }
             abandon_path_amaranth = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_tonal_architecture_active }
+            abandon_path_tonal_architecture = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_prolix_tower_active }
+            abandon_path_prolix_tower = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_worm_apotheosis_active }
+            abandon_path_worm_apotheosis = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_shezarrine_ascendant_active }
+            abandon_path_shezarrine_ascendant = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_mantling_jyggalag_active }
+            abandon_path_mantling_jyggalag = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_sheogorath_echo_active }
+            abandon_path_sheogorath_echo = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_necromancer_third_way_active }
+            abandon_path_necromancer_third_way = yes
         }
     }
 

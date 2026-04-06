@@ -14,8 +14,12 @@
 #
 #  LORE:
 #  The Thieves Guild operates in most major Tamrielic cities under
-#  a strict code: no killing on Guild jobs.  During the 2E Interregnum,
-#  without Imperial enforcement, the Guild expanded significantly.
+#  a strict code: no killing on Guild jobs.  This code is attested
+#  in the Second Era (ESO Larceny questline) — it is not a Third Era
+#  invention.  During the 2E Interregnum, without stable Imperial law,
+#  Guild discipline is harder to maintain: some members treat the code
+#  as an optional courtesy rather than a contract, but the Guild's
+#  leadership enforces it with difficulty.  [CANON — ESO; TES V: Skyrim]
 #  This system is distinct from the Nightingale Covenant — the Guild
 #  is a secular criminal institution; the Nightingales are a specific
 #  daedric subset of its leadership.

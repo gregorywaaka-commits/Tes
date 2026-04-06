@@ -76,18 +76,24 @@
 #    • borrowed_divinity.cutoff.001, borrowed_divinity.cutoff.002
 #    • borrowed_divinity.starvation.001
 #    • borrowed_divinity.dissolution.001
+#    • borrowed_divinity.080 (§19.11 — Tribunal notification)
+#    • borrowed_divinity.081 (§19.11 — Fused suppression / Nerevarine cooldown)
 #
 #  DEPENDS ON:
 #    common/traits/dagoth_ur_traits.txt
 #      → heart_scholar_ascendant, heart_fused_ascendant, corprus_afflicted, sixth_house_cultist
+#    common/traits/tribunal_traits.txt
+#      → vivec_blessed, almalexia_devoted, sotha_sil_student, tribunal_champion
 #    common/traits/chim_traits.txt
 #      → chim_achieved
 #    common/modifiers/lore_races_modifiers.txt
 #      → heart_starvation_modifier, heart_absorbed_modifier, heart_overload, consumed_another
+#      → borrowed_divinity_tribunal_heresy_opinion (opinion −30; §19.11)
 #    events/chim_events.txt
 #      → chim.000 (entry gate for Walking Ways CHIM chain)
 #    events/dagoth_ur_events.txt
 #      → global_var:dagoth_ur_awakened context
+#      → dagoth_ur.030 trigger must include NOT = { has_character_flag = fused_suppresses_prophecy }
 # =============================================================
 
 namespace = borrowed_divinity
@@ -545,5 +551,124 @@ borrowed_divinity.dissolution.001 = {
             modifier  = consumed_another
             days      = 60    # re-applies a short pulse to dread; the modifier itself is permanent
         }
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.080  Tribunal Notification — The Tools Were Not Yours
+#
+# §19.11 TRIBUNAL INTERACTION.
+# Fires yearly for Tribunal-aligned rulers
+# (vivec_blessed / almalexia_devoted / sotha_sil_student / tribunal_champion)
+# when at least one heart_scholar_ascendant ruler is alive in the world.
+#
+# The Tribunal are the canonical Route A practitioners — they invented
+# this method.  A mortal who replicates their act without their sanction
+# is a heretic and a rival.  They are afraid to say so too loudly (because
+# acknowledging the parallel would expose what they themselves did), but
+# the opinion penalty is real and permanent while the Scholar lives.
+#
+# DESIGN NOTE (§19.11): Opinion −30 applied via immediate block so it
+# fires at notification time regardless of which option the ruler picks.
+# No direct dialogue with the Scholar fires here — that is nerevarine.010/012.
+# ---------------------------------------------------------------
+borrowed_divinity.080 = {
+    type  = character_event
+    title = borrowed_divinity.080.t
+    desc  = borrowed_divinity.080.desc
+    theme = faith
+
+    trigger = {
+        is_ruler = yes
+        is_alive = yes
+        OR = {
+            has_trait = vivec_blessed
+            has_trait = almalexia_devoted
+            has_trait = sotha_sil_student
+            has_trait = tribunal_champion
+        }
+        NOT = { has_character_flag = tribunal_scholar_notified }
+        any_living_character = {
+            has_trait = heart_scholar_ascendant
+        }
+    }
+
+    immediate = {
+        add_character_flag = { flag = tribunal_scholar_notified days = 3650 }
+        # Apply opinion penalty toward every living heart_scholar_ascendant ruler.
+        # The Tribunal's exclusive claim to Kagrenac's method is an article of
+        # religious conviction among Dunmer — a mortal who replicates it without
+        # ALMSIVI sanction is treated as a heretic.
+        every_living_character = {
+            limit = { has_trait = heart_scholar_ascendant }
+            add_opinion = {
+                modifier = borrowed_divinity_tribunal_heresy_opinion
+                target   = root
+                years    = 30
+            }
+        }
+    }
+
+    option = {
+        name = borrowed_divinity.080.a   # "Heresy. The Tools were ours. The ALMSIVI did not build this road to share it."
+        add_piety  = 30
+        add_stress = 15
+    }
+
+    option = {
+        name = borrowed_divinity.080.b   # "Interesting — and alarming — that someone else found the path."
+        trigger = { learning >= 14 }
+        add_learning = 1
+        add_stress   = 10
+        add_piety    = -20
+    }
+}
+
+# ---------------------------------------------------------------
+# borrowed_divinity.081  The Dream Grows Louder (Fused Suppression)
+#
+# §19.11 HEART_FUSED INTERACTION — NEREVARINE COOLDOWN.
+# Fires yearly (hidden) for Dunmer rulers with the
+# nerevarine_prophecy_heard flag NOT yet set, when a
+# heart_fused_ascendant ruler exists in the world.
+#
+# A heart_fused_ascendant ruler emanates a version of Dagoth Ur's
+# Dream — the Heart's corruption made personal and constant.  This
+# makes Azura's prophetic signal harder to hear, adding a
+# 3-year cooldown on the dagoth_ur.030 trigger by extending the
+# fused_suppresses_prophecy flag window.
+#
+# DESIGN NOTE (§19.11):
+# "heart_fused_ascendant rulers apply a Nerevarine path cooldown
+# on all Dunmer rulers within 5 counties — the Heart's corruption
+# emanates outward; the prophecy is harder to hear."
+# Implementation: global flag rather than proximity check, since
+# CK3 does not natively support county-radius cross-character flags.
+# The effect is applied world-wide for all Dunmer rulers who have
+# not yet heard the prophecy; lore-accurate flavour note included.
+# ---------------------------------------------------------------
+borrowed_divinity.081 = {
+    type   = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler    = yes
+        is_alive    = yes
+        has_culture = dunmer_culture
+        # The ruler has not heard the Nerevarine prophecy yet —
+        # they are still in the window where the Dream can muffle Azura's call
+        NOT = { has_character_flag = nerevarine_prophecy_heard }
+        NOT = { has_character_flag = fused_suppresses_prophecy }
+        any_living_character = {
+            has_trait = heart_fused_ascendant
+        }
+    }
+
+    immediate = {
+        # Extend the fused suppression window by 3 years (1095 days).
+        # dagoth_ur.030's trigger must check:
+        #   NOT = { has_character_flag = fused_suppresses_prophecy }
+        # to give this flag effect.
+        add_character_flag = { flag = fused_suppresses_prophecy days = 1095 }
     }
 }

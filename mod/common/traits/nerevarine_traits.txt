@@ -6,6 +6,10 @@
 #  ────────────────────
 #  nerevarine_forsaken    — Azura's mark revoked; branded traitor after
 #                           betraying the prophecy for Dagoth Ur.
+#  nerevarine_pretender   — False Incarnate: carried Nerevar's soul-mark but
+#                           was not the first to fulfil the prophecy.  Another
+#                           vessel struck the Heart first; this one is now a
+#                           False Incarnate, found wanting by Azura's test.
 #  nerevarine_shadow      — Served Mephala or Boethiah at the Heart of
 #                           Lorkhan, severing the binding on Daedric terms
 #                           rather than Azura's.  Mystery and silence.
@@ -49,6 +53,7 @@
 #
 #  DEFINES — identifiers this file exports to the mod:
 #    • nerevarine_forsaken
+#    • nerevarine_pretender
 #    • nerevarine_shadow
 #    • sharmat_ascendant
 #    • tower_breaker
@@ -148,6 +153,31 @@ sharmat_ascendant = {
     }
 
     flag = sharmat_ascendant
+}
+
+# ---------------------------------------------------------------
+#  NEREVARINE PRETENDER
+#  This vessel bore the soul-mark of Nerevar but was not the first
+#  to fulfil the prophecy.  When another Incarnate struck the Heart
+#  of Lorkhan, the world recognised only one True Nerevarine.  All
+#  others who had carried the mark are now called False Incarnates —
+#  those whom Azura tested and found wanting, or who simply arrived
+#  too late.  The weight of an unfulfilled divine destiny is its
+#  own punishment.
+#  [LORE: UESP Lore:Nerevarine — the False Incarnates; TES III:Morrowind
+#   Ashlander lore of the Seventh Trial]
+#  Gained via nerevarine.331 when another Nerevarine achieves victory.
+# ---------------------------------------------------------------
+nerevarine_pretender = {
+    category  = personality
+    is_good   = no
+
+    learning  = 3             # The weight of knowing the prophecy's truth — but not living it
+    monthly_piety_gain_mult    = -0.15    # Azura's regard has cooled — the vessel was found wanting
+    monthly_prestige_gain_mult = -0.10    # Called False Incarnate by those who know the lore
+    stress_gain_mult           = 0.10     # The unfulfilled destiny becomes a burden
+
+    flag = nerevarine_pretender
 }
 
 # ---------------------------------------------------------------

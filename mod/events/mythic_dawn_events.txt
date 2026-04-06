@@ -57,6 +57,10 @@ mythic_dawn.000 = {
         intrigue >= 12
         NOT = { has_character_flag = mythic_dawn_contacted }
         NOT = { has_character_flag = mythic_dawn_exposed }
+        # Mythic Dawn destroyed with Martin Septim's sacrifice at the end of
+        # the Oblivion Crisis (3E 433).  Cult events must not fire after that.
+        # [CANON — TES IV: Oblivion main quest; UESP Lore:Mythic Dawn]
+        NOT = { current_date >= 3.434.1.1 }
     }
 
     option = {

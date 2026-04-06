@@ -185,3 +185,137 @@ mantling_stendarr.milestone_righteous_check = {
 
     option = { name = "OK" }
 }
+
+# ---------------------------------------------------------------
+# mantling_stendarr.milestone_charity
+# Visible event: ruler has given freely to those in need.
+# ---------------------------------------------------------------
+mantling_stendarr.milestone_charity = {
+    type = character_event
+    title = mantling_stendarr.milestone_charity.t
+    desc = mantling_stendarr.milestone_charity.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_stendarr_active
+        NOT = { has_character_flag = ww_mantling_stendarr_milestone_charity }
+        gold >= 200
+        piety >= 150
+    }
+
+    option = {
+        name = mantling_stendarr.milestone_charity.a
+        set_character_flag = ww_mantling_stendarr_milestone_charity
+        add_piety = 150
+        add_stress = -15
+    }
+
+    option = {
+        name = mantling_stendarr.milestone_charity.b
+        set_character_flag = ww_mantling_stendarr_milestone_charity
+        add_piety = 125
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_stendarr.milestone_daedra
+# Visible event: ruler has faced and refused a Daedric force.
+# ---------------------------------------------------------------
+mantling_stendarr.milestone_daedra = {
+    type = character_event
+    title = mantling_stendarr.milestone_daedra.t
+    desc = mantling_stendarr.milestone_daedra.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_stendarr_active
+        NOT = { has_character_flag = ww_mantling_stendarr_milestone_daedra }
+        piety >= 200
+        martial >= 12
+    }
+
+    option = {
+        name = mantling_stendarr.milestone_daedra.a
+        set_character_flag = ww_mantling_stendarr_milestone_daedra
+        add_piety = 175
+        add_dread = 10
+    }
+
+    option = {
+        name = mantling_stendarr.milestone_daedra.b
+        set_character_flag = ww_mantling_stendarr_milestone_daedra
+        add_piety = 150
+        add_prestige = 75
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_stendarr.milestone_mercy
+# Visible event: ruler has shown mercy as a sustained pattern.
+# ---------------------------------------------------------------
+mantling_stendarr.milestone_mercy = {
+    type = character_event
+    title = mantling_stendarr.milestone_mercy.t
+    desc = mantling_stendarr.milestone_mercy.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_stendarr_active
+        NOT = { has_character_flag = ww_mantling_stendarr_milestone_mercy }
+        OR = {
+            has_trait = compassionate
+            has_trait = forgiving
+        }
+        piety >= 150
+    }
+
+    option = {
+        name = mantling_stendarr.milestone_mercy.a
+        set_character_flag = ww_mantling_stendarr_milestone_mercy
+        add_piety = 150
+        add_stress = -20
+    }
+
+    option = {
+        name = mantling_stendarr.milestone_mercy.b
+        set_character_flag = ww_mantling_stendarr_milestone_mercy
+        add_piety = 125
+        add_learning_xp = 75
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_stendarr.milestone_weak
+# Visible event: ruler has accepted their own vulnerability.
+# ---------------------------------------------------------------
+mantling_stendarr.milestone_weak = {
+    type = character_event
+    title = mantling_stendarr.milestone_weak.t
+    desc = mantling_stendarr.milestone_weak.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_stendarr_active
+        NOT = { has_character_flag = ww_mantling_stendarr_milestone_weak }
+        OR = {
+            has_trait = humble
+            stress >= 40
+        }
+        piety >= 100
+    }
+
+    option = {
+        name = mantling_stendarr.milestone_weak.a
+        set_character_flag = ww_mantling_stendarr_milestone_weak
+        add_piety = 125
+        add_stress = -30
+    }
+
+    option = {
+        name = mantling_stendarr.milestone_weak.b
+        set_character_flag = ww_mantling_stendarr_milestone_weak
+        add_piety = 100
+        add_learning_xp = 100
+    }
+}

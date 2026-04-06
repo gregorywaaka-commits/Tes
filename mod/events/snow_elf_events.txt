@@ -159,16 +159,17 @@ snow_elf.002 = {
 
 # ---------------------------------------------------------------
 # snow_elf.003  Knight-Paladin's Vigil
-# The chapel should not exist.  The stonework belongs to an
-# architectural tradition that ended before the First Era had
-# a name.  The figure kneeling before the altar does not look
-# like the passage of millennia has touched them.  They rise
-# when you enter — unhurried, unafraid, and looking at you
-# with eyes that have assessed a thousand visitors and found
-# most of them insufficient — and they speak in a dialect of
-# Aldmeris so old that your interpreter can only guess at it.
-# Knight-Paladin Gelebor.  The last faithful Snow Elf.
-# He has been waiting here since before Ysgramor set sail.
+# A being of impossible age and grace guards a snow-covered chapel.
+#
+# ⚠️ LORE DATE NOTE — ERA-ACCURATE FRAMING:
+# Knight-Paladin Gelebor (TES V: Skyrim, 4E 201) has maintained his
+# vigil since the Merethic Era — he is alive in all eras.  However,
+# in the Second Era (EK2's primary window) he is entirely unknown to
+# the outside world: no scholar has found him, no record names him.
+# The EVENT DESC must NOT presuppose knowledge of his name before the
+# meeting.  The figure introduces himself; the player learns his name
+# at the chapel.  Only Third / Fourth Era content may treat "Gelebor"
+# as a known historical name.  [CANON — TES V: Skyrim (Dawnguard)]
 # ---------------------------------------------------------------
 snow_elf.003 = {
     type  = character_event

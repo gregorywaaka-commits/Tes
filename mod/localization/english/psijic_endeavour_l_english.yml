@@ -46,3 +46,12 @@
  psijic_endeavour.time_witnessed.desc: "There was a moment in the great hall — or in the corridor outside, or in the garden at dusk — where both happened simultaneously.\n\nThe practitioner saw the conversation that was occurring and the conversation that would occur three days later in the same room with a different outcome. Both were present. Neither cancelled the other.\n\nThe practitioner did not fall. Did not freeze. Did not say anything alarming.\n\nThey returned to the conversation that was currently happening and completed it correctly.\n\nThis is what the Psijic Endeavour feels like from the inside, when it is working."
  psijic_endeavour.time_witnessed.a: "I saw the moment before it became a moment."
  psijic_endeavour.time_witnessed.b: "I did not like what I saw. But I did not look away."
+
+ psijic_endeavour.milestone_prediction.t: "The Artaeum Stillness"
+ psijic_endeavour.milestone_prediction.desc: "The Order's deepest teaching is not the manipulation of magical energies but the reading of time as a text — the understanding that what will be is as legible as what was, if you know how to hold the page still. The practitioner has achieved their first genuine prediction: not a guess, not an estimate, but a true reading of the moment-before-it-becomes. The Psijics call this the Artaeum Stillness."
+ psijic_endeavour.milestone_prediction.a: "I saw it coming. I did not change it. I understood why."
+ psijic_endeavour.milestone_prediction.b: "The future is not written. It is already written. These are the same."
+ psijic_endeavour.milestone_text.t: "The Deep Grammar"
+ psijic_endeavour.milestone_text.desc: "The Psijics hold that Mundus is a text — that the bones of the world were laid down in language before they were laid down in stone. The practitioner has achieved the reading: they can perceive the ur-text beneath the surface of events, the deep grammar governing why empires rise and why they fall in the precise way that they fall. The Psijic masters call this the Old Way, and it is older than the Aldmer."
+ psijic_endeavour.milestone_text.a: "I have read the text. I understand what is grammar and what is error."
+ psijic_endeavour.milestone_text.b: "To read it is to know one could revise it. I choose not to — not yet."

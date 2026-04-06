@@ -99,6 +99,27 @@ The **First Council** (combining Chimer and Dwemer Houses) governed Morrowind jo
 
 ---
 
+## The Tribunal and the Anticipations `[CANON — TES III: Morrowind]`
+> **Source:** In-game book: *The Anticipations* (Morrowind); UESP Lore:Tribunal; UESP Lore:Anticipations
+
+### Tribunal Apotheosis
+The **Tribunal** — Vivec, Almalexia, and Sotha Sil — achieved godhood at the **Battle of Red Mountain (c. 1E 700)** using **Kagrenac's Tools** (Keening, Sunder, Wraithguard) to draw power from the **Heart of Lorkhan**. Nerevar's role in or opposition to this act is `[CONTESTED]` — Ashlander oral tradition says he opposed it; the Tribunal's official account says he endorsed it. Azura cursed the Chimer to become the grey-skinned, red-eyed **Dunmer** immediately after as punishment. `[CANON — TES III: Morrowind]`
+
+### The Anticipations Doctrine
+The Tribunal Temple taught that the **Three Good Daedra** each *anticipated* a Tribunal member — they were predecessors whose nature the Tribunal member fulfilled and transcended when they achieved apotheosis. `[CANON — in-game book: The Anticipations, Morrowind]`
+
+| Daedra | Anticipates | Shared domain | Daedra's plane |
+|---|---|---|---|
+| **Mephala** | **Vivec** | Secrets, art, contradiction, the web of hidden killing | Spiral Skein |
+| **Boethiah** | **Almalexia** | Power through consuming rivals; protection through overwhelming strength | Attribution's Share |
+| **Azura** | **Sotha Sil** | Cycles, transitions, prophecy, hidden knowledge | Moonshadow |
+
+**Theological implication:** The Daedra were not rivals but *shadows of what the greatest Dunmer would become*. Ashlanders rejected this framing, maintaining the Good Daedra as their true ancestors and the Tribunal as usurpers. `[CANON — UESP Lore:Ashlanders]`
+
+**Mod mechanic:** In the Walking Ways system, completing a Good Daedra mantle unlocks the corresponding Tribunal mantle as a second-tier path: `mantle_mephala` → `mantle_vivec`; `mantle_boethiah` → `mantle_almalexia`; `mantle_azura` → `mantle_sotha_sil`. `[MOD MECHANIC]`
+
+---
+
 ## Post-Red Year Changes `[CANON — UESP]`
 
 | Change | Details |

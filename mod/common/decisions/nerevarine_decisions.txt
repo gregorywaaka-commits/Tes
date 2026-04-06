@@ -65,9 +65,30 @@
 # ---------------------------------------------------------------
 #  CLAIM THE NEREVARINE PROPHECY
 #  When the prophecy's chosen vessel has fallen without completing
-#  their task, Azura calls for a new incarnation.  Any Dunmer ruler
-#  who bears the azura_champion mark and has the will to carry the
+#  their task, Azura calls for a new incarnation.  Any ruler who
+#  bears the azura_champion mark and has the will to carry the
 #  burden may step forward to take up the mantle.
+#
+#  LORE NOTE — RACE-AGNOSTIC PROPHECY:
+#  The Nerevarine is a reincarnation of Lord Nerevar's SOUL, not a
+#  product of Dunmeri blood.  Azura's prophecy speaks of incarnation
+#  across lifetimes — the soul returns wearing whatever flesh it
+#  chooses.  In the canonical events of TES III, the Nerevarine is
+#  an outlander (the player can be any race), explicitly called
+#  "the Stranger" in some Ashlander prophecy variants.  The souls
+#  of past Nervarines remain in Azura's realm (Moonshadow) and can
+#  be encountered in Morrowind — proving the spirit of Nerevar does
+#  not extinguish between lives but persists as multiple echoes.
+#  Race does not gatekeep the prophecy; Azura's recognition does.
+#  [SOURCE: TES III:Morrowind — Nerevarine Prophecies; Azura shrine
+#  dialogue; UESP Lore:Nerevarine]
+#
+#  MULTI-SPIRIT MECHANIC:
+#  The active_nerevarine_spirit_count global var tracks simultaneous
+#  living vessels.  A second claimant while a first lives becomes
+#  a "second spirit" — lore-valid, as Nerevar's soul is large enough
+#  to manifest more than once.  nerevarine.310 fires for all new
+#  claimants; nerevarine.300 fires for non-Dunmer specifically.
 #
 #  The new Nerevarine inherits the quest at its current stage —
 #  if the previous vessel had already been named Hortator or
@@ -81,21 +102,59 @@ claim_nerevarine_prophecy = {
     desc = claim_nerevarine_prophecy_desc
 
     is_shown = {
-        has_global_flag = nerevarine_quest_incomplete
+        # Prophecy can be claimed when a vessel has died (quest open) OR while
+        # existing vessels still live — any number of simultaneous claimants is
+        # lore-valid.  Only the first to fulfil the prophecy is the True Nerevarine;
+        # the rest become False Incarnates (nerevarine_pretender) via nerevarine.331.
+        OR = {
+            has_global_flag = nerevarine_quest_incomplete
+            # A new spirit rising alongside existing vessels — no upper cap
+            any_living_character = { has_trait = nerevarine_marked }
+        }
         has_trait = azura_champion
-        has_culture = dunmer_culture
+        # Race is NOT a requirement — the Nerevarine is a soul reincarnation,
+        # not a racial prophecy.  Any worthy vessel may be called.
         is_ruler = yes
         NOT = { has_trait = nerevarine_marked }
         NOT = { has_trait = nerevarine_victor }
         NOT = { has_trait = nerevarine_forsaken }
+        NOT = { has_trait = nerevarine_pretender }
         dagoth_ur_awakened = yes
         NOT = { has_global_flag = dagoth_ur_defeated }
     }
 
     is_valid = {
+        # Standard cost for all races
         piety >= 300
         prestige >= 200
         is_adult = yes
+        # Exotic / non-canonical races (any culture that is not a standard
+        # Tamrielic mortal race) additionally require high spiritual knowledge
+        # — Azura's recognition must be earned through understanding, not birth.
+        # Standard Tamrielic cultures are implicitly valid; extra-planar or
+        # long-dead-race characters require additional scholarship.
+        if = {
+            limit = {
+                NOR = {
+                    has_culture = dunmer_culture
+                    has_culture = nord_culture
+                    has_culture = breton_culture
+                    has_culture = imperial_culture
+                    has_culture = redguard_culture
+                    has_culture = orsimer_culture
+                    has_culture = altmer_culture
+                    has_culture = bosmer_culture
+                    has_culture = khajiit_culture
+                    has_culture = argonian_culture
+                }
+            }
+            # Exotic vessels (Dremora, Dwemer, etc.) need deeper spiritual attunement
+            OR = {
+                piety >= 600
+                learning >= 16
+                has_trait = shezarrine_vessel
+            }
+        }
     }
 
     is_valid_showing_failures_only = {
@@ -106,7 +165,17 @@ claim_nerevarine_prophecy = {
         add_piety    = -300
         add_prestige = -200
         add_trait    = nerevarine_marked
-        remove_global_flag = nerevarine_quest_incomplete
+        # Clear the "quest open" flag only when no other spirit is active
+        if = {
+            limit = { has_global_flag = nerevarine_quest_incomplete }
+            remove_global_flag = nerevarine_quest_incomplete
+        }
+        # Track simultaneous spirits
+        if = {
+            limit = { NOT = { exists = global_var:active_nerevarine_spirit_count } }
+            set_global_variable = { name = active_nerevarine_spirit_count value = 0 }
+        }
+        change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
         if = {
             limit = { NOT = { exists = global_var:false_nerevarine_count } }
             set_global_variable = { name = false_nerevarine_count value = 0 }
@@ -116,6 +185,13 @@ claim_nerevarine_prophecy = {
             days = 3650
         }
         add_prestige = 400
+        # Outlander Nerevarine revelation — fires for non-Dunmer claimants
+        if = {
+            limit = { NOT = { has_culture = dunmer_culture } }
+            trigger_event = { id = nerevarine.300 days = 3 }
+        }
+        # Vision of past incarnations — fires for all new claimants
+        trigger_event = { id = nerevarine.310 days = 7 }
         custom_tooltip = nerevarine_claim_done_tt
     }
 

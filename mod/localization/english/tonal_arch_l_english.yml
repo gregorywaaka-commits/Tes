@@ -1,0 +1,67 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ #  PATH G — TONAL ARCHITECTURE
+ # ═══════════════════════════════════════════════════════════════
+
+ # ─── Traits ───
+ tonal_transcendent: "Tonal Transcendent"
+ tonal_transcendent_desc: "This ruler has walked the Dwemer's path to its end and survived — which is more than the Dwemer did. Tonal Architecture is the wrong Walking Way, according to those who survived the others: materialist, scientific, precise to the point of erasure. This ruler rewrote their own tonal signature at the deepest level. The self that remains is not the self that began. The learning and order that resulted are beyond what ordinary scholarship achieves. The cost was nearly annihilation."
+
+ # ─── Decision Options ───
+ choose_walking_way.path_g: "Path G: Tonal Architecture — The Dwemer's Way [DANGEROUS]"
+ choose_walking_way.path_g_desc: "The Dwemer used tonal manipulation of reality to rewrite the self. Kagrenac used it on the Heart of Lorkhan. The Dwemer used it on themselves and vanished. This is explicitly the wrong Walking Way — dangerous, materialist, the path of science not spirit. Those who survive are rewritten. Many do not survive. [Requires: tonal_architect trait, learning 18+]"
+
+ # ─── Path Intro ───
+ tonal_arch.intro.t: "The Wrong Walking Way"
+ tonal_arch.intro.desc: "The Dwemer archives are explicit. Not metaphorical, not religious — explicit. The Dwemer believed reality was structured tonally: a vast harmonic architecture underpinning existence, in which every soul was a note and every Tower a major chord.\n\nKagrenac had the tools. The Dwemer had the theory. They did not survive the experiment.\n\nYou are not the Dwemer. You have studied what they left behind. You understand, at least in principle, what they were attempting — a rewriting of the self from the tonal level up. Not understanding. Not mysticism. Engineering applied to divinity.\n\nThe other Walking Ways say this is wrong. That does not make it impossible."
+ tonal_arch.intro.a: "The Dwemer found the answer. I will find where they hid it."
+
+ # ─── Rank Events ───
+ tonal_arch.rank1.t: "Resonance Confirmed"
+ tonal_arch.rank1.desc: "The theory is sound. The animunculus responds — not to commands in the ordinary sense, but to intent shaped through tonal means. The scholar's notes become an engineering manual. The engineering manual becomes something more personal.\n\nThe resonance is consistent. That means it can be reproduced. That means it can be scaled."
+ tonal_arch.rank1.a: "The resonance is consistent. I can reproduce it."
+
+ tonal_arch.rank2.t: "The Tower Has a Frequency"
+ tonal_arch.rank2.desc: "Every Tower that holds Mundus together has a fundamental tone — a tonal keystone that, if you know how to listen, you can identify. The divine artifact responded to the resonator in a way that suggests it, too, has a tonal signature.\n\nOthers are affected by the resonator. Their behaviour shifts in small, measurable ways that align with the intended tonal adjustment. The ethics of this are complicated. The results are not."
+ tonal_arch.rank2.a: "The Tower has a frequency. I am learning to read it."
+ tonal_arch.rank2.b: "The resonator affects others. But what does it do to me?"
+
+ tonal_arch.rank3.t: "Twelve Seconds of Gestalt"
+ tonal_arch.rank3.desc: "Twelve willing participants. Twelve separate tonal signatures, each consenting, each prepared.\n\nFor twelve seconds, the resonator held all twelve in partial merge — not quite one consciousness, but not quite twelve separate ones either. The experience was unlike anything. The Dwemer held it longer. The Dwemer held it so long they never came back.\n\nOne step remains."
+ tonal_arch.rank3.a: "The gestalt held. For twelve seconds, we were not separate."
+
+ # ─── Apotheosis ───
+ tonal_arch.apotheosis.t: "Nullify the Self"
+ tonal_arch.apotheosis.desc: "The final step. The Dwemer all attempted it simultaneously. They are not here to describe what happened.\n\nThe theory says: nullify your own tonal signature entirely. Dissolve the note that constitutes the self. Then rewrite it from the fundamental frequency up. The new self is not the old self. It is better. More stable. More precisely tuned.\n\nThe theory does not address what happens if the nullification succeeds but the rewrite fails."
+ tonal_arch.apotheosis.a: "The Dwemer vanished because they succeeded. I will succeed and remain."
+ tonal_arch.apotheosis.b: "I hear my own tone. I will rewrite it."
+
+ # ─── Failure ───
+ tonal_arch.failure.t: "Erasure"
+ tonal_arch.failure.desc: "They sought what the Dwemer sought."
+
+ # ─── Milestone Events ───
+ tonal_arch.milestone_construct.t: "The Animunculus Responds"
+ tonal_arch.milestone_construct.desc: "A functioning Dwemer animunculus, recovered from the ruins and painstakingly retuned. The standard animunculi respond to operational instructions embedded in their tonal cores. This one responds to intent — not words, not commands, but the shaped intention of a mind attuned to the correct frequency.\n\nIt is expensive. It is imprecise. It is proof of concept."
+ tonal_arch.milestone_construct.a: "It responds. Not to commands — to my intent."
+ tonal_arch.milestone_construct.b: "Not yet. The tolerances are not precise enough."
+
+ tonal_arch.milestone_frequency.t: "The Note Beneath the Note"
+ tonal_arch.milestone_frequency.desc: "The Tower Stones that anchor Mundus to the world resonate at frequencies that most scholars cannot detect. Most scholars are not tonal architects with a functioning animunculus tuned to divine artifacts.\n\nThe frequency exists. It is ancient beyond measurement. It is the note the Towers were struck to create."
+ tonal_arch.milestone_frequency.a: "The Tower has a note. It is older than the Towers."
+
+ tonal_arch.milestone_resonator.t: "The Volunteer"
+ tonal_arch.milestone_resonator.desc: "A courtier volunteered — a scholar, curious and brave in equal measure — to serve as the first test subject for the tonal resonator. The consent was given fully and freely.\n\nThe adjustment held for three days. The courtier's behaviour shifted in the predicted direction. The courtier reported no discomfort, only a persistent sense of clarity.\n\nThe experiment was a success. The ethical implications are considerable."
+ tonal_arch.milestone_resonator.a: "The volunteer agreed. Their song changed. They are not harmed."
+
+ tonal_arch.milestone_gestalt.t: "The Partial Merge"
+ tonal_arch.milestone_gestalt.desc: "Twelve willing participants sat in a circle in the archive's deepest chamber. The resonator was activated. The individual tonal signatures began to blend.\n\nFor twelve seconds, the circle was not twelve people. It was something between one and twelve — a partial gestalt, briefly coherent, briefly unified in a way that had no equivalent in ordinary experience.\n\nThe Dwemer held it longer. The Dwemer are gone."
+ tonal_arch.milestone_gestalt.a: "Twelve seconds. The Dwemer must have held it longer."
+
+ # ─── World Notification ───
+ walking_ways.world_notify.tonal_transcendent: "Scholars in [scope:source.primary_title.name] report that [scope:source.char_name|U] has completed an experiment that the Dwemer attempted once and did not survive. The tonal signature of the ruler has changed — not subtly. The animunculi in nearby Dwemer ruins have begun behaving unusually. The Dwemer would have understood this. They are not available for comment."
+
+ tonal_arch.milestone_nullify.t: "The Null Tone"
+ tonal_arch.milestone_nullify.desc: "The Dwemer understood that every note in the tonal architecture could be cancelled by its inversion — that the deep grammar of reality could be written over, erased, countered. The practitioner has found a nullification: a place in the tonal structure where the old tone was cancelling the new, where the architecture of the past was preventing the future from speaking. They have silenced the old note. The new one rings clean."
+ tonal_arch.milestone_nullify.a: "What was spoken before was speaking against us. I found its inversion."
+ tonal_arch.milestone_nullify.b: "Silence is not absence. Silence is the null tone, and it has its own music."

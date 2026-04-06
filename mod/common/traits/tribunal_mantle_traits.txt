@@ -1,0 +1,108 @@
+# =============================================================
+#  The Walking Ways — Tribunal Mantle Traits
+#  File: mod/common/traits/tribunal_mantle_traits.txt
+#
+#  TRAITS IN THIS FILE:
+#  ────────────────────
+#  mantle_vivec      — Tribunal mantle: Vivec achieved.
+#  mantle_almalexia  — Tribunal mantle: Almalexia achieved.
+#  mantle_sotha_sil  — Tribunal mantle: Sotha Sil achieved.
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Tribunal (ALMSIVI) achieved divinity through Kagrenac's
+#  Tools and the Heart of Lorkhan, not through mantling alone.
+#  These mantles represent a ruler who walks the PATTERN of
+#  each Tribunal member — a second-tier path unlocked only after
+#  completing the Anticipation (Good Daedra) mantle:
+#    Mephala → Vivec   (warrior-poet; secret murder becomes art)
+#    Boethiah → Almalexia (treachery becomes protection)
+#    Azura → Sotha Sil   (cycles become clockwork order)
+#  The risk at rank 3 is the Heart Temptation: the pattern
+#  of the Tribunal always leads toward the Heart.
+#  [SOURCE: CANON — The Anticipations; UESP Lore:Tribunal]
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES:
+#    • mantle_vivec
+#    • mantle_almalexia
+#    • mantle_sotha_sil
+#
+#  REFERENCED BY:
+#    common/scripted_effects/walking_ways_effects.txt
+#    events/mantling_tribunal_events.txt
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MANTLE VIVEC
+#  The warrior-poet. Both male and female. Achieved CHIM.
+#  Wrote the 36 Lessons. Fought the Numidium. Held Baar Dau
+#  suspended over Vivec City by force of will.
+#  His domain is contradiction held in balance: art and war,
+#  duality and language, the joke and its punchline.
+#  Anticipation of Mephala — secret murder becomes poetry.
+#  [SOURCE: CANON — 36 Lessons of Vivec; UESP Lore:Vivec]
+# ---------------------------------------------------------------
+
+mantle_vivec = {
+    category = fame
+
+    martial     = 5
+    learning    = 6
+
+    monthly_piety                 = 12
+    monthly_prestige              = 10
+    stress_gain_mult              = -0.15  # contradiction held in balance is its own peace
+
+    flag = mantle_vivec
+}
+
+# ---------------------------------------------------------------
+#  MANTLE ALMALEXIA
+#  Mother of Morrowind. Healer, protector, mother.
+#  Led the Hands of Almalexia. Held Mournhold together.
+#  Went mad after losing her connection to the Heart.
+#  Her madness is part of her pattern too — the protector who
+#  becomes the danger, the mother who devours.
+#  Anticipation of Boethiah — treachery becomes protection.
+#  [SOURCE: CANON — Tribunal DLC; UESP Lore:Almalexia]
+# ---------------------------------------------------------------
+
+mantle_almalexia = {
+    category = fame
+
+    diplomacy   = 6
+    martial     = 3
+    stewardship = 3
+
+    health                        = 1.5
+    monthly_piety                 = 14
+
+    flag = mantle_almalexia
+}
+
+# ---------------------------------------------------------------
+#  MANTLE SOTHA SIL
+#  The Clockwork God. Built the Clockwork City deep beneath
+#  Morrowind. Domains: mysticism, logic, artifice, time.
+#  Achieved philosophical detachment so complete he withdrew
+#  from the world entirely. His machines still run.
+#  Anticipation of Azura — cycles become clockwork order.
+#  [SOURCE: CANON — Tribunal DLC; UESP Lore:Sotha Sil]
+# ---------------------------------------------------------------
+
+mantle_sotha_sil = {
+    category = fame
+
+    learning    = 8
+    stewardship = 4
+
+    monthly_prestige              = 8
+    stress_gain_mult              = -0.25  # philosophical detachment carries its own quiet
+
+    flag = mantle_sotha_sil
+}

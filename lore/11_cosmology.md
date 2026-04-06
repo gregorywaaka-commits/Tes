@@ -194,6 +194,40 @@ Magic in Tamriel is divided into **six recognised schools** (though some culture
 
 ---
 
+## The Walking Ways `[SOFT CANON — MK supplementary texts + in-game inference]`
+> **Source:** UESP Lore:Walking Ways — https://en.uesp.net/wiki/Lore:Walking_Ways  
+> **Source:** 36 Lessons of Vivec, Sermon 6 ("Six are the walking ways")  
+> ⚠️ The specific list of six Walking Ways is drawn from in-game philosophical texts and developer supplementary writings. Treat as `[SOFT CANON]`.
+
+The **Walking Ways** are six metaphysical paths toward apotheosis — methods by which a mortal can become something beyond mortal. They are not metaphor; they are formulas.
+
+| # | Walking Way | Method | Key example |
+|---|---|---|---|
+| 1 | **Psijic Endeavour** | Self-mastery, discipline, "stepping outside" Mundus's rules | The Psijic Order's Old Ways |
+| 2 | **Tonal Architecture / Numidium** | Reality rewriting through sound, mathematics, and divine resonance | The Dwemer — collectively vanished attempting this at 1E 700 |
+| 3 | **Prolix Tower** | Achieving divinity through language, recursive text, the power of naming | The 36 Lessons of Vivec (possibly a Prolix Tower built by Vivec himself) |
+| 4 | **CHIM** | Recognising you exist within the Godhead's dream while maintaining individual will | Vivec, Tiber Septim (theorised) |
+| 5 | **Enantiomorph / Mantling** | Completing the mythic Hero/Rebel/Witness pattern; walking in a divine's footsteps until the distinction erases | Tiber Septim mantling Lorkhan/Talos; Champion of Cyrodiil mantling Sheogorath |
+| 6 | **The Scarab / Amaranth** | Dreaming your own dream — becoming a new Godhead entirely | No confirmed examples; ultimate theoretical endpoint |
+
+**Key distinctions:**
+- Tonal Architecture is described by some lore texts as "the wrong walking way" — the Dwemer succeeded in escaping Mundus but not as intended. `[SOFT CANON — UESP]`
+- Ways 6–8 in some texts: The number varies between sources (six vs. eight). The three unnamed or lost Ways are not implemented in this mod. `[MOD CHOICE]`
+
+### The Shezarrine — Lorkhan's Recurring Champion
+Lorkhan (**Shor** to Nords; **Shezarr** to Imperials) recurs in mortal champions at moments when Tamriel needs fundamental change. These figures are called **Shezarrines** — not strict reincarnations but mythic resonances of Lorkhan's will in flesh.
+
+| Figure | Era | Evidence | Canon tier |
+|---|---|---|---|
+| **Pelinal Whitestrake** | c. 1E 243 | Explicitly called Shezarrine in Imperial texts; divine fury, anti-elven mission | `[CANON — Song of Pelinal]` |
+| **Reman Cyrodiil** | c. 1E 2703 | Appeared at Pale Pass crying "REMAN" (Lorkhan connection); Dragon-blessed | `[SOFT CANON — UESP]` |
+| **Tiber Septim** | 2E 828–3E 38 | United Tamriel; mantled Lorkhan/Talos; most prominent candidate | `[SOFT CANON — The Arcturian Heresy]` |
+| Nerevarine, Hero of Kvatch, Last Dragonborn | Various | Community-theorised pattern-completions | `[CONTESTED — no direct source]` |
+
+**Mod mechanic:** The Walking Ways **Shezarrine Convergence** system (`shezarrine.200`) tracks when a character accumulates ≥ 3 Shezarrine-branch completions (Talos mantle, Lorkhan mantle, shezarrine_vessel, Sheogorath mantle, Vivec mantle, Nerevarine traits). At threshold, `shezarrine_convergence` trait is offered. `[MOD MECHANIC]`
+
+---
+
 ## The Dragon Break `[CANON — UESP]`
 > **Source:** UESP Lore:Dragon Break — https://en.uesp.net/wiki/Lore:Dragon_Break
 

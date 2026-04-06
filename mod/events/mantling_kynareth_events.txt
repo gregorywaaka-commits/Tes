@@ -151,3 +151,134 @@ mantling_kynareth.openhand = {
         # No effect
     }
 }
+
+# ---------------------------------------------------------------
+# mantling_kynareth.milestone_companions
+# Visible event: ruler has gathered worthy companions.
+# ---------------------------------------------------------------
+mantling_kynareth.milestone_companions = {
+    type = character_event
+    title = mantling_kynareth.milestone_companions.t
+    desc = mantling_kynareth.milestone_companions.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_kynareth_active
+        NOT = { has_character_flag = ww_mantling_kynareth_milestone_companions }
+        OR = {
+            has_trait = gregarious
+            has_trait = brave
+        }
+        prestige >= 200
+    }
+
+    option = {
+        name = mantling_kynareth.milestone_companions.a
+        set_character_flag = ww_mantling_kynareth_milestone_companions
+        add_prestige = 150
+        add_stress = -15
+    }
+
+    option = {
+        name = mantling_kynareth.milestone_companions.b
+        set_character_flag = ww_mantling_kynareth_milestone_companions
+        add_piety = 75
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_kynareth.milestone_shor
+# Visible event: ruler understands Kynareth's grief for Shor.
+# ---------------------------------------------------------------
+mantling_kynareth.milestone_shor = {
+    type = character_event
+    title = mantling_kynareth.milestone_shor.t
+    desc = mantling_kynareth.milestone_shor.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_kynareth_active
+        NOT = { has_character_flag = ww_mantling_kynareth_milestone_shor }
+        piety >= 200
+        age >= 35
+    }
+
+    option = {
+        name = mantling_kynareth.milestone_shor.a
+        set_character_flag = ww_mantling_kynareth_milestone_shor
+        add_piety = 150
+        add_stress = -15
+    }
+
+    option = {
+        name = mantling_kynareth.milestone_shor.b
+        set_character_flag = ww_mantling_kynareth_milestone_shor
+        add_piety = 125
+        add_learning_xp = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_kynareth.milestone_skybattle
+# Visible event: ruler has won a battle through mastery of terrain.
+# ---------------------------------------------------------------
+mantling_kynareth.milestone_skybattle = {
+    type = character_event
+    title = mantling_kynareth.milestone_skybattle.t
+    desc = mantling_kynareth.milestone_skybattle.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_kynareth_active
+        NOT = { has_character_flag = ww_mantling_kynareth_milestone_skybattle }
+        martial >= 12
+        years_as_ruler >= 3
+    }
+
+    option = {
+        name = mantling_kynareth.milestone_skybattle.a
+        set_character_flag = ww_mantling_kynareth_milestone_skybattle
+        add_prestige = 150
+        add_martial_xp = 100
+    }
+
+    option = {
+        name = mantling_kynareth.milestone_skybattle.b
+        set_character_flag = ww_mantling_kynareth_milestone_skybattle
+        add_prestige = 125
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_kynareth.milestone_storm
+# Visible event: ruler has stood in the eye of a great storm.
+# ---------------------------------------------------------------
+mantling_kynareth.milestone_storm = {
+    type = character_event
+    title = mantling_kynareth.milestone_storm.t
+    desc = mantling_kynareth.milestone_storm.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_kynareth_active
+        NOT = { has_character_flag = ww_mantling_kynareth_milestone_storm }
+        piety >= 150
+        years_as_ruler >= 7
+    }
+
+    option = {
+        name = mantling_kynareth.milestone_storm.a
+        set_character_flag = ww_mantling_kynareth_milestone_storm
+        add_piety = 150
+        add_stress = -25
+    }
+
+    option = {
+        name = mantling_kynareth.milestone_storm.b
+        set_character_flag = ww_mantling_kynareth_milestone_storm
+        add_piety = 125
+        add_prestige = 75
+    }
+}

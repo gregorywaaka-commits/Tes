@@ -2876,6 +2876,20 @@ ww_amaranth_uncanny_unease = {
 }
 
 # =====================================================================
+#  §19.11 — BORROWED DIVINITY: TRIBUNAL INTERACTION MODIFIERS
+# =====================================================================
+
+# borrowed_divinity_tribunal_heresy_opinion — A Tribunal-aligned ruler's
+# opinion of any heart_scholar_ascendant ruler.  The Tribunal claim
+# exclusive ownership of Kagrenac's method; a mortal who replicates
+# their act is a heretic and a rival.
+# Applied via borrowed_divinity.080.
+# [SOURCE: WALKING_WAYS_DESIGN.md §19.11]
+borrowed_divinity_tribunal_heresy_opinion = {
+    opinion              = -30
+}
+
+# =====================================================================
 #  §20 NEREVARINE SYSTEM — Modifiers
 # =====================================================================
 
@@ -2924,4 +2938,284 @@ nerevarine_turned_modifier = {
     monthly_prestige_gain_mult = -0.20
     dread_gain_mult            = 0.15
     intrigue                   = 2
+}
+
+# ---------------------------------------------------------------
+#  §21 RACE-AGNOSTIC NEREVARINE / MULTI-SPIRIT / SHEZARRINE MODIFIERS
+# ---------------------------------------------------------------
+
+# nerevarine_outlander_recognition — applied to a non-Dunmer Nerevarine
+# for 5 years while the Ashlanders slowly reconcile "the Stranger"
+# fulfilling their prophecy.  Mixed reception: the faithful grant
+# piety; the proud see an outlander who bypassed tradition.
+nerevarine_outlander_recognition = {
+    monthly_piety_gain_mult    = 0.15
+    monthly_prestige_gain_mult = -0.10    # Dunmeri traditionalists sceptical
+    diplomacy                  = 2        # Must convince by word, not blood
+    learning                   = 1        # Study of Dunmeri prophecy required
+}
+
+# nerevar_soul_witnessed — lingering resonance after seeing past Nerevarine
+# souls in Azura's realm (Moonshadow).  The vessel carries the weight
+# of all their combined memories for a time.
+nerevar_soul_witnessed = {
+    learning                   = 2
+    monthly_piety_gain_mult    = 0.10
+    stress_gain_mult           = -0.05   # the ancestors share their peace
+}
+
+# dual_soul_convergence_modifier — the Nerevarine who is also a Shezarrine
+# carries both Nerevar's soul and Shor's essence.  While both are present,
+# Shor's throne in Aetherius stands empty (shors_throne_nerevarine flag).
+# The vessel is extraordinary — dual divine heritage grants exceptional
+# martial and spiritual power at the cost of bearing immense inner weight.
+dual_soul_convergence_modifier = {
+    martial                    = 4
+    prowess                    = 4
+    monthly_piety              = 8
+    monthly_prestige_gain_mult = 0.30
+    stress_gain_mult           = 0.10    # two divine souls press outward
+    health                     = 0.5
+}
+
+# ---------------------------------------------------------------
+#  WALKING WAYS — PATH-ACTIVE MODIFIERS (Phase 1 & 2 new mantles)
+#  Applied at path start; removed by clear_all_ww_active_flags.
+# ---------------------------------------------------------------
+
+ww_path_mantling_dibella_active = {
+    diplomacy            = 2
+    stress_gain_mult     = -0.05
+}
+
+ww_path_mantling_mara_active = {
+    diplomacy            = 1
+    health               = 0.5
+}
+
+ww_path_mantling_sheogorath_active = {
+    intrigue             = 2
+    stress_gain_mult     = 0.10
+}
+
+ww_path_mantling_vivec_active = {
+    learning             = 2
+    martial              = 2
+}
+
+ww_path_mantling_almalexia_active = {
+    diplomacy            = 2
+    monthly_piety_gain_mult = 0.05
+}
+
+ww_path_mantling_sotha_sil_active = {
+    learning             = 3
+    stewardship          = 1
+}
+
+# ---------------------------------------------------------------
+#  TRIBUNAL ANTICIPATION SEEN
+#  Flavor modifier: Dunmeri clergy notes that the three-fold
+#  Anticipation pattern has been walked, and the Tribunal's
+#  second layer is now being expressed. Lasts 5 years.
+# ---------------------------------------------------------------
+
+mantling_tribunal_anticipation_seen = {
+    monthly_piety_gain_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  PATH G — TONAL ARCHITECTURE ACTIVE
+#  The Dwemer's engineering approach to the soul applied to
+#  the self. Learning reward; stress cost of dangerous precision.
+# ---------------------------------------------------------------
+
+ww_path_tonal_architecture_active = {
+    learning         = 3
+    stress_gain_mult = 0.10   # the reconstruction process is not comfortable
+}
+
+# ---------------------------------------------------------------
+#  PATH H — PROLIX TOWER ACTIVE
+#  Language building godhood. Learning reward; minor stress
+#  reduction as the text absorbs anxieties.
+# ---------------------------------------------------------------
+
+ww_path_prolix_tower_active = {
+    learning         = 3
+    stress_gain_mult = -0.05
+}
+
+# ---------------------------------------------------------------
+#  PATH I — WORM APOTHEOSIS ACTIVE
+#  Necromantic ascension in progress. Intrigue reward;
+#  health bonus as the phylactery insulates from mortality.
+# ---------------------------------------------------------------
+
+ww_path_worm_apotheosis_active = {
+    intrigue = 2
+    health   = 0.5
+}
+
+# ---------------------------------------------------------------
+#  PATH J — SHEZARRINE ASCENDANT ACTIVE
+#  Lorkhan's essence merging with the vessel. Martial and
+#  prowess reward; stress cost of the divine merger.
+# ---------------------------------------------------------------
+
+ww_path_shezarrine_ascendant_active = {
+    martial          = 3
+    prowess          = 2
+    stress_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  SHEZARRINE COMPLETED OPINION
+#  Opinion modifier for Nord/Cyrodilic rulers when the
+#  Shezarrine path is completed.
+# ---------------------------------------------------------------
+
+ww_shezarrine_completed_opinion = {
+    opinion = 20
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 NEW PATH ACTIVE MODIFIERS AND FAILURE MODIFIERS
+# ═══════════════════════════════════════════════════════════════
+
+# ---------------------------------------------------------------
+#  PATH K — JYGGALAG'S CHAMPION ACTIVE
+#  Order is imposing itself. Clarity above all else.
+# ---------------------------------------------------------------
+
+ww_path_mantling_jyggalag_active = {
+    martial  = 2
+    learning = 1
+    stress_loss_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  PATH K-2 — SHEOGORATH'S ECHO ACTIVE
+#  Madness as insight, not madness as disease.
+# ---------------------------------------------------------------
+
+ww_path_sheogorath_echo_active = {
+    intrigue = 2
+    diplomacy = 1
+    stress_loss_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  PATH L — NECROMANCER'S THIRD WAY ACTIVE
+#  Original inquiry into death. No master's tools.
+# ---------------------------------------------------------------
+
+ww_path_necromancer_third_way_active = {
+    learning = 2
+    intrigue = 1
+    health   = 0.3
+}
+
+# ---------------------------------------------------------------
+#  SOUL UNMOORED (FAILURE STATE — Path L)
+#  The soul is partially dissociated from the body. The practitioner
+#  stood at the boundary without a framework and the boundary
+#  pushed back. They survive, but unstably.
+# ---------------------------------------------------------------
+
+soul_unmoored = {
+    health           = -2.0
+    stress_gain_mult = 0.20
+}
+
+# ---------------------------------------------------------------
+#  ORDER SHATTERED (FAILURE STATE — Path K)
+#  Jyggalag's crystalline focus, forced through a mortal vessel
+#  without his capacity, produced brittleness. The character's
+#  grip on Order collapsed into compulsion.
+# ---------------------------------------------------------------
+
+order_shattered_compulsion = {
+    diplomacy        = -3
+    opinion          = -20
+}
+
+# ---------------------------------------------------------------
+#  SHEOGORATH CONSUMED (FAILURE STATE — Path K-2)
+#  The character stopped echoing and started being consumed.
+#  They are Sheogorath's unwilling vessel.
+# ---------------------------------------------------------------
+
+sheogorath_consumed = {
+    intrigue         = 6
+    stress_gain_mult = 0.40
+    health           = -1.0
+}
+
+# ---------------------------------------------------------------
+#  LUCK OF THE EMPEROR (Wulf's Coin — Talos Avatar Blessing)
+#  Tiber Septim appeared as an old legionnaire named Wulf at
+#  Ghostgate, offering a lucky coin to the Nerevarine. The coin
+#  channels the divine luck of the emperor himself.
+#  [SOURCE: CANON — TES III: Morrowind, quest "A Lucky Coin";
+#   UESP Lore:Wulf; Oracle Lalatia Varian's dialogue]
+# ---------------------------------------------------------------
+
+luck_of_the_emperor = {
+    diplomacy   = 1
+    martial     = 1
+    stewardship = 1
+    intrigue    = 1
+    learning    = 1
+    health      = 0.5
+    monthly_prestige = 3
+}
+
+# ---------------------------------------------------------------
+#  LALATIA'S RECOGNITION (Oracle blessing — Imperial Cult)
+#  After witnessing the Wulf encounter, the Oracle of the
+#  Imperial Cult recognises the blessed character as touched
+#  by Talos himself. Morale spreads; followers grow fervent.
+#  [SOURCE: CANON — TES III: Morrowind; Imperial Cult oracle]
+# ---------------------------------------------------------------
+
+lalatia_recognition = {
+    diplomacy      = 2
+    monthly_piety  = 2
+    monthly_prestige = 2
+}
+
+# ---------------------------------------------------------------
+#  WW ASPECT FRAGMENT ABSORBED  (Talos path — peer died)
+#  A fellow walker of the Talos path has fallen before you.
+#  Their fragment of the Oversoul has dispersed and settled into
+#  the pattern you are still walking.  The road grows heavier
+#  but the stride grows longer.
+#  [SOURCE: The Arcturian Heresy — Wulfharth consumed by Numidium,
+#   Arctus crushed into the Mantella; both fragments fed Tiber Septim]
+# ---------------------------------------------------------------
+
+ww_aspect_fragment_absorbed = {
+    martial          = 2
+    monthly_prestige = 2
+    dread_gain_mult  = 0.10
+}
+
+# ---------------------------------------------------------------
+#  TALOS SOLE HEIR  (Talos path — last walker remaining)
+#  All other concurrent walkers of the Talos path are gone.
+#  The composite Oversoul has contracted to a single vessel.
+#  This character now carries the full potential of the pattern
+#  without competition or division.  The path ahead is uncontested.
+#  [SOURCE: The Arcturian Heresy; Tiber Septim was the final
+#   surviving aspect-holder when the other soul-fragments fell;
+#   his apotheosis as Talos was the outcome of sole inheritance]
+# ---------------------------------------------------------------
+
+talos_sole_heir = {
+    martial          = 4
+    learning         = 2
+    monthly_prestige = 4
+    dread_gain_mult  = 0.20
+    stress_gain_mult = -0.25
 }

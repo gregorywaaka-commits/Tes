@@ -1,0 +1,282 @@
+# =============================================================
+#  The Walking Ways — Path B: Mantling Mara
+#  Namespace: mantling_mara
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  mantling_mara.intro      — Path chosen
+#  mantling_mara.rank1      — Seeking (family, healing)
+#  mantling_mara.rank2      — Striving (devotion, children)
+#  mantling_mara.rank3      — Threshold (pilgrimage, hearth)
+#  mantling_mara.apotheosis — Apotheosis: love that outlasts loss
+#
+#  LORE BASIS:
+#  ───────────
+#  Mara is the Aedric Divine of love, family, and fertility.
+#  Her domain is the love that sustains: the family bond,
+#  the healer's hand, the covenant kept past grief.
+#  Mara's temples serve as sanctuaries and healing houses.
+#  To mantle Mara is to become the principle of enduring love —
+#  not the love of passion, but the love that remains when
+#  everything else has changed.
+#  [SOURCE: CANON — UESP Lore:Mara]
+# =============================================================
+
+namespace = mantling_mara
+
+# ═══════════════════════════════════════════════════════════════
+#  MARA — LOVE, FAMILY, AND HEALING
+# ═══════════════════════════════════════════════════════════════
+
+mantling_mara.intro = {
+    type = character_event
+    title = mantling_mara.intro.t
+    desc  = mantling_mara.intro.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_mara.intro.a
+        add_stress = 10
+        add_piety = 50
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+    }
+}
+
+mantling_mara.rank1 = {
+    type = character_event
+    title = mantling_mara.rank1.t
+    desc  = mantling_mara.rank1.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_mara.rank1.a
+        add_prestige = 75
+        add_piety = 75
+        health_modifier_add = 0.5
+    }
+}
+
+mantling_mara.rank2 = {
+    type = character_event
+    title = mantling_mara.rank2.t
+    desc  = mantling_mara.rank2.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_mara.rank2.a
+        add_prestige = 125
+        add_piety = 100
+    }
+}
+
+mantling_mara.rank3 = {
+    type = character_event
+    title = mantling_mara.rank3.t
+    desc  = mantling_mara.rank3.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_mara.rank3.a
+        add_prestige = 175
+        add_piety = 125
+        add_stress = -10
+    }
+}
+
+mantling_mara.apotheosis = {
+    type = character_event
+    title = mantling_mara.apotheosis.t
+    desc  = mantling_mara.apotheosis.desc
+    theme = diplomacy
+
+    trigger = {
+        has_character_flag = ww_mantling_mara_active
+        var:ww_mantling_mara_rank >= 4
+        NOT = { has_character_flag = ww_mantling_mara_completed }
+    }
+
+    immediate = {
+        complete_path_mantling_mara = yes
+    }
+
+    option = {
+        name = mantling_mara.apotheosis.a
+        add_prestige = 300
+        add_piety = 300
+        add_stress = -25
+    }
+
+    option = {
+        name = mantling_mara.apotheosis.b
+        add_prestige = 200
+        add_piety = 200
+        health_modifier_add = 1.0
+    }
+}
+
+# ─── Mara Milestone Events ───
+
+mantling_mara.milestone_children = {
+    type = character_event
+    title = mantling_mara.milestone_children.t
+    desc = mantling_mara.milestone_children.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_mara_active
+        NOT = { has_character_flag = ww_mantling_mara_milestone_children }
+        piety >= 100
+        prestige >= 100
+    }
+
+    option = {
+        name = mantling_mara.milestone_children.a
+        set_character_flag = ww_mantling_mara_milestone_children
+        add_piety = 150
+        add_stress = -15
+    }
+    option = {
+        name = mantling_mara.milestone_children.b
+        set_character_flag = ww_mantling_mara_milestone_children
+        add_piety = 125
+        add_prestige = 50
+    }
+}
+
+mantling_mara.milestone_devotion = {
+    type = character_event
+    title = mantling_mara.milestone_devotion.t
+    desc = mantling_mara.milestone_devotion.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_mara_active
+        NOT = { has_character_flag = ww_mantling_mara_milestone_devotion }
+        piety >= 200
+        prestige >= 100
+    }
+
+    option = {
+        name = mantling_mara.milestone_devotion.a
+        set_character_flag = ww_mantling_mara_milestone_devotion
+        add_piety = 175
+        add_stress = -20
+    }
+    option = {
+        name = mantling_mara.milestone_devotion.b
+        set_character_flag = ww_mantling_mara_milestone_devotion
+        add_piety = 150
+        add_prestige = 50
+    }
+}
+
+mantling_mara.milestone_family = {
+    type = character_event
+    title = mantling_mara.milestone_family.t
+    desc = mantling_mara.milestone_family.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_mara_active
+        NOT = { has_character_flag = ww_mantling_mara_milestone_family }
+        piety >= 100
+        years_as_ruler >= 5
+    }
+
+    option = {
+        name = mantling_mara.milestone_family.a
+        set_character_flag = ww_mantling_mara_milestone_family
+        add_piety = 150
+        add_stress = -20
+    }
+    option = {
+        name = mantling_mara.milestone_family.b
+        set_character_flag = ww_mantling_mara_milestone_family
+        add_piety = 125
+        add_prestige = 50
+    }
+}
+
+mantling_mara.milestone_healing = {
+    type = character_event
+    title = mantling_mara.milestone_healing.t
+    desc = mantling_mara.milestone_healing.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_mara_active
+        NOT = { has_character_flag = ww_mantling_mara_milestone_healing }
+        piety >= 150
+        stewardship >= 10
+    }
+
+    option = {
+        name = mantling_mara.milestone_healing.a
+        set_character_flag = ww_mantling_mara_milestone_healing
+        add_piety = 150
+        add_stress = -15
+    }
+    option = {
+        name = mantling_mara.milestone_healing.b
+        set_character_flag = ww_mantling_mara_milestone_healing
+        add_piety = 125
+        add_learning_xp = 75
+    }
+}
+
+mantling_mara.milestone_hearth = {
+    type = character_event
+    title = mantling_mara.milestone_hearth.t
+    desc = mantling_mara.milestone_hearth.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_mara_active
+        NOT = { has_character_flag = ww_mantling_mara_milestone_hearth }
+        piety >= 100
+        years_as_ruler >= 8
+    }
+
+    option = {
+        name = mantling_mara.milestone_hearth.a
+        set_character_flag = ww_mantling_mara_milestone_hearth
+        add_piety = 150
+        add_stress = -20
+    }
+    option = {
+        name = mantling_mara.milestone_hearth.b
+        set_character_flag = ww_mantling_mara_milestone_hearth
+        add_piety = 125
+        add_prestige = 50
+    }
+}
+
+mantling_mara.milestone_pilgrimage = {
+    type = character_event
+    title = mantling_mara.milestone_pilgrimage.t
+    desc = mantling_mara.milestone_pilgrimage.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_mara_active
+        NOT = { has_character_flag = ww_mantling_mara_milestone_pilgrimage }
+        piety >= 200
+        prestige >= 150
+    }
+
+    option = {
+        name = mantling_mara.milestone_pilgrimage.a
+        set_character_flag = ww_mantling_mara_milestone_pilgrimage
+        add_piety = 175
+        add_stress = -20
+    }
+    option = {
+        name = mantling_mara.milestone_pilgrimage.b
+        set_character_flag = ww_mantling_mara_milestone_pilgrimage
+        add_piety = 150
+        add_prestige = 75
+    }
+}

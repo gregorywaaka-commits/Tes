@@ -29,6 +29,9 @@
 #  DEFINES — identifiers this file exports:
 #    • is_on_walking_way
 #    • has_completed_any_walking_way
+#    • has_completed_any_mantling
+#    • has_completed_any_tribunal_mantle
+#    • has_three_fold_tribunal
 #    • can_begin_walking_ways
 #    • can_begin_path_chim_expanded
 #    • can_begin_path_mantling
@@ -37,6 +40,10 @@
 #    • can_begin_path_amaranth
 #    • is_on_path_chim_expanded / mantling / psijic / enantiomorph / amaranth
 #    • has_completed_path_chim_expanded / mantling_* / psijic / enantiomorph / amaranth
+#    • can_begin_mantling_dibella / mara / sheogorath
+#    • can_begin_mantling_vivec / almalexia / sotha_sil
+#    • has_any_mantling_dibella_milestone / mara / sheogorath
+#    • has_any_mantling_vivec_milestone / almalexia / sotha_sil
 #
 #  DEPENDS ON:
 #    common/traits/chim_traits.txt          → chim_achieved
@@ -67,9 +74,19 @@ has_completed_any_walking_way = {
         has_character_flag = ww_mantling_boethiah_completed
         has_character_flag = ww_mantling_mephala_completed
         has_character_flag = ww_mantling_hircine_completed
+        has_character_flag = ww_mantling_dibella_completed
+        has_character_flag = ww_mantling_mara_completed
+        has_character_flag = ww_mantling_sheogorath_completed
+        has_character_flag = ww_mantling_vivec_completed
+        has_character_flag = ww_mantling_almalexia_completed
+        has_character_flag = ww_mantling_sotha_sil_completed
         has_character_flag = ww_psijic_endeavour_completed
         has_character_flag = ww_enantiomorph_completed
         has_character_flag = ww_amaranth_completed
+        has_character_flag = ww_tonal_architecture_completed
+        has_character_flag = ww_prolix_tower_completed
+        has_character_flag = ww_worm_apotheosis_completed
+        has_character_flag = ww_shezarrine_ascendant_completed
     }
 }
 
@@ -125,6 +142,12 @@ is_on_path_mantling = {
         has_character_flag = ww_mantling_boethiah_active
         has_character_flag = ww_mantling_mephala_active
         has_character_flag = ww_mantling_hircine_active
+        has_character_flag = ww_mantling_dibella_active
+        has_character_flag = ww_mantling_mara_active
+        has_character_flag = ww_mantling_sheogorath_active
+        has_character_flag = ww_mantling_vivec_active
+        has_character_flag = ww_mantling_almalexia_active
+        has_character_flag = ww_mantling_sotha_sil_active
     }
 }
 
@@ -142,6 +165,12 @@ can_begin_mantling_talos = {
         }
     }
     NOT = { has_character_flag = ww_mantling_talos_completed }
+    # If a previous mantler already fully ascended, the throne is occupied as a
+    # divine presence — new characters can walk the path but cannot achieve the
+    # full mantle_talos apex.  The decision to begin is still allowed; the apex
+    # trait grant is blocked separately.  This flag simply prevents beginning the
+    # path if the throne is cosmologically closed (second mantler check is at apex).
+    # Walking the path while throne is occupied yields "Talos Aspect" status only.
 }
 
 # Arkay
@@ -342,6 +371,9 @@ has_completed_any_mantling = {
         has_character_flag = ww_mantling_boethiah_completed
         has_character_flag = ww_mantling_mephala_completed
         has_character_flag = ww_mantling_hircine_completed
+        has_character_flag = ww_mantling_dibella_completed
+        has_character_flag = ww_mantling_mara_completed
+        has_character_flag = ww_mantling_sheogorath_completed
     }
 }
 
@@ -602,4 +634,435 @@ has_three_fold_compact = {
 has_mephala_boethiah_pact = {
     has_character_flag = ww_mantling_boethiah_completed
     has_character_flag = ww_mantling_mephala_completed
+}
+
+# ---------------------------------------------------------------
+#  PATH B — MANTLING: DIBELLA (Aedric)
+#  Goddess of beauty, love, art, and aesthetics.
+#  The mantler must be a diplomat and patron of beauty —
+#  someone who has made aesthetics and love a principle of rule.
+#  [SOURCE: CANON — UESP Lore:Dibella]
+# ---------------------------------------------------------------
+
+# Dibella (Aedric — beauty, love, art)
+can_begin_mantling_dibella = {
+    can_begin_path_mantling = yes
+    diplomacy >= 18
+    OR = {
+        has_trait = generous
+        has_trait = charming
+        has_character_flag = bards_college_patron
+        has_character_flag = art_patronage_established
+    }
+    NOT = { has_character_flag = ww_mantling_dibella_completed }
+}
+
+# ---------------------------------------------------------------
+#  PATH B — MANTLING: MARA (Aedric)
+#  Goddess of love, family, and fertility.
+#  Mara's path is one of sustained compassionate love:
+#  children, family bonds, healing, pilgrimage.
+#  [SOURCE: CANON — UESP Lore:Mara]
+# ---------------------------------------------------------------
+
+# Mara (Aedric — love, family, fertility)
+can_begin_mantling_mara = {
+    can_begin_path_mantling = yes
+    diplomacy >= 16
+    has_living_child = yes
+    OR = {
+        has_trait = compassionate
+        has_trait = generous
+        has_trait = devoted
+    }
+    NOT = { has_character_flag = ww_mantling_mara_completed }
+}
+
+# ---------------------------------------------------------------
+#  PATH B — MANTLING: SHEOGORATH (Daedric)
+#  Prince of Madness. Was Jyggalag before the curse.
+#  The Hero of Kvatch mantled him in 3E 433.
+#  Requires a direct connection to madness, the Shivering Isles,
+#  or the Jyggalag chain — and sufficient intrigue to operate
+#  within unreason without being destroyed by it.
+#  Possession risk: the Grey March does not wait for mantlers.
+#  [SOURCE: CANON — Shivering Isles; UESP Lore:Sheogorath]
+# ---------------------------------------------------------------
+
+# Sheogorath (Daedric — Madness; formerly Jyggalag)
+# jyggalag_ascendant is preferred gate: they walked Order's domain and the vacant
+# Madness throne now recognises them as its natural counterpart.
+# Blocked if the Echo path was taken — echo closes the succession door.
+can_begin_mantling_sheogorath = {
+    can_begin_path_mantling = yes
+    intrigue >= 14
+    OR = {
+        has_trait = jyggalag_ascendant          # preferred: fully walked Order's domain
+        has_trait = jyggalag_champion
+        has_character_flag = shivering_isles_visited
+        has_trait = lunatic
+        has_trait = possessed
+    }
+    NOT = { has_character_flag = ww_mantling_sheogorath_completed }
+    NOT = { has_character_flag = ww_sheogorath_echo_closed_throne }
+}
+
+# ---------------------------------------------------------------
+#  TRIBUNAL MANTLES — second-tier paths
+#  These use can_begin_walking_ways (not can_begin_path_mantling)
+#  and require the corresponding Anticipation (Good Daedra)
+#  mantle to already be complete.
+# ---------------------------------------------------------------
+
+# Vivec — Anticipation of Mephala
+# Warrior-poet; duality; the 36 Lessons; CHIM; Baar Dau.
+# [SOURCE: CANON — 36 Lessons of Vivec; UESP Lore:Vivec]
+can_begin_mantling_vivec = {
+    can_begin_walking_ways = yes
+    has_character_flag = ww_mantling_mephala_completed
+    martial >= 14
+    learning >= 16
+    NOT = { has_character_flag = ww_mantling_vivec_completed }
+}
+
+# Almalexia — Anticipation of Boethiah
+# Mother-protector; healer; divine compassion turned to wrath.
+# [SOURCE: CANON — Tribunal DLC; UESP Lore:Almalexia]
+can_begin_mantling_almalexia = {
+    can_begin_walking_ways = yes
+    has_character_flag = ww_mantling_boethiah_completed
+    diplomacy >= 16
+    OR = {
+        has_trait = compassionate
+        has_trait = zealous
+    }
+    NOT = { has_character_flag = ww_mantling_almalexia_completed }
+}
+
+# Sotha Sil — Anticipation of Azura
+# Clockwork God; mysticism; logic; philosophical withdrawal.
+# [SOURCE: CANON — Tribunal DLC; UESP Lore:Sotha Sil]
+can_begin_mantling_sotha_sil = {
+    can_begin_walking_ways = yes
+    has_character_flag = ww_mantling_azura_completed
+    learning >= 18
+    OR = {
+        has_trait = tonal_architect
+        has_trait = scholar
+        has_character_flag = clockwork_city_visited
+    }
+    NOT = { has_character_flag = ww_mantling_sotha_sil_completed }
+}
+
+# ---------------------------------------------------------------
+#  TRIBUNAL COMPACT TRIGGER
+# ---------------------------------------------------------------
+
+has_completed_any_tribunal_mantle = {
+    OR = {
+        has_character_flag = ww_mantling_vivec_completed
+        has_character_flag = ww_mantling_almalexia_completed
+        has_character_flag = ww_mantling_sotha_sil_completed
+    }
+}
+
+has_three_fold_tribunal = {
+    has_character_flag = ww_mantling_vivec_completed
+    has_character_flag = ww_mantling_almalexia_completed
+    has_character_flag = ww_mantling_sotha_sil_completed
+}
+
+# ---------------------------------------------------------------
+#  MILESTONE HELPER TRIGGERS — Phase 1 & 2 new mantles
+# ---------------------------------------------------------------
+
+has_any_mantling_dibella_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_dibella_milestone_beauty
+        has_character_flag = ww_mantling_dibella_milestone_love
+        has_character_flag = ww_mantling_dibella_milestone_art
+        has_character_flag = ww_mantling_dibella_milestone_patron
+        has_character_flag = ww_mantling_dibella_milestone_vessel
+        has_character_flag = ww_mantling_dibella_milestone_divine
+    }
+}
+
+has_any_mantling_mara_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_mara_milestone_family
+        has_character_flag = ww_mantling_mara_milestone_healing
+        has_character_flag = ww_mantling_mara_milestone_devotion
+        has_character_flag = ww_mantling_mara_milestone_children
+        has_character_flag = ww_mantling_mara_milestone_pilgrimage
+        has_character_flag = ww_mantling_mara_milestone_hearth
+    }
+}
+
+has_any_mantling_sheogorath_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_sheogorath_milestone_madness
+        has_character_flag = ww_mantling_sheogorath_milestone_obelisk
+        has_character_flag = ww_mantling_sheogorath_milestone_realm
+        has_character_flag = ww_mantling_sheogorath_milestone_greymarch
+        has_character_flag = ww_mantling_sheogorath_milestone_jyggalag_defeated
+        has_character_flag = ww_mantling_sheogorath_milestone_new_prince
+    }
+}
+
+has_any_mantling_vivec_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_vivec_milestone_warrior
+        has_character_flag = ww_mantling_vivec_milestone_poet
+        has_character_flag = ww_mantling_vivec_milestone_contradiction
+        has_character_flag = ww_mantling_vivec_milestone_sermon
+        has_character_flag = ww_mantling_vivec_milestone_duality
+        has_character_flag = ww_mantling_vivec_milestone_apotheosis
+    }
+}
+
+has_any_mantling_almalexia_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_almalexia_milestone_protector
+        has_character_flag = ww_mantling_almalexia_milestone_hands
+        has_character_flag = ww_mantling_almalexia_milestone_mother
+        has_character_flag = ww_mantling_almalexia_milestone_healer
+        has_character_flag = ww_mantling_almalexia_milestone_reclame
+        has_character_flag = ww_mantling_almalexia_milestone_divine_wrath
+    }
+}
+
+has_any_mantling_sotha_sil_milestone = {
+    OR = {
+        has_character_flag = ww_mantling_sotha_sil_milestone_workshop
+        has_character_flag = ww_mantling_sotha_sil_milestone_construct
+        has_character_flag = ww_mantling_sotha_sil_milestone_clockwork
+        has_character_flag = ww_mantling_sotha_sil_milestone_hidden
+        has_character_flag = ww_mantling_sotha_sil_milestone_mechanism
+        has_character_flag = ww_mantling_sotha_sil_milestone_revelation
+    }
+}
+
+# ---------------------------------------------------------------
+#  PATH G — TONAL ARCHITECTURE
+# ---------------------------------------------------------------
+
+can_begin_path_tonal_architecture = {
+    can_begin_walking_ways = yes
+    has_trait = tonal_architect
+    learning >= 18
+    NOT = { has_character_flag = ww_tonal_architecture_completed }
+}
+
+is_on_path_tonal_architecture = {
+    is_on_walking_way = yes
+    has_character_flag = ww_tonal_architecture_active
+}
+
+has_completed_path_tonal_architecture = {
+    has_character_flag = ww_tonal_architecture_completed
+}
+
+has_any_tonal_architecture_milestone = {
+    OR = {
+        has_character_flag = ww_tonal_milestone_principles
+        has_character_flag = ww_tonal_milestone_construct
+        has_character_flag = ww_tonal_milestone_frequency
+        has_character_flag = ww_tonal_milestone_resonator
+        has_character_flag = ww_tonal_milestone_gestalt
+        has_character_flag = ww_tonal_milestone_nullify
+    }
+}
+
+# ---------------------------------------------------------------
+#  PATH H — PROLIX TOWER
+# ---------------------------------------------------------------
+
+can_begin_path_prolix_tower = {
+    can_begin_walking_ways = yes
+    learning >= 18
+    OR = {
+        has_trait = vivec_blessed
+        has_character_flag = black_book_found
+    }
+    NOT = { has_character_flag = ww_prolix_tower_completed }
+}
+
+is_on_path_prolix_tower = {
+    is_on_walking_way = yes
+    has_character_flag = ww_prolix_tower_active
+}
+
+has_completed_path_prolix_tower = {
+    has_character_flag = ww_prolix_tower_completed
+}
+
+has_any_prolix_tower_milestone = {
+    OR = {
+        has_character_flag = ww_prolix_milestone_first_paradox
+        has_character_flag = ww_prolix_milestone_distributed
+        has_character_flag = ww_prolix_milestone_vision
+        has_character_flag = ww_prolix_milestone_lessons
+        has_character_flag = ww_prolix_milestone_uncontrolled
+        has_character_flag = ww_prolix_milestone_author
+    }
+}
+
+# ---------------------------------------------------------------
+#  PATH I — WORM APOTHEOSIS
+# ---------------------------------------------------------------
+
+can_begin_path_worm_apotheosis = {
+    can_begin_walking_ways = yes
+    has_trait = worm_cult_adept
+    NOT = { has_trait = lich_essence }
+    NOT = { has_character_flag = ww_worm_apotheosis_completed }
+}
+
+is_on_path_worm_apotheosis = {
+    is_on_walking_way = yes
+    has_character_flag = ww_worm_apotheosis_active
+}
+
+has_completed_path_worm_apotheosis = {
+    has_character_flag = ww_worm_apotheosis_completed
+}
+
+has_any_worm_apotheosis_milestone = {
+    OR = {
+        has_character_flag = ww_worm_milestone_black_soul
+        has_character_flag = ww_worm_milestone_phylactery
+        has_character_flag = ww_worm_milestone_necromancers_moon
+        has_character_flag = ww_worm_milestone_arkays_cycle
+        has_character_flag = ww_worm_milestone_soul_vessel
+        has_character_flag = ww_worm_milestone_ascension
+    }
+}
+
+# ---------------------------------------------------------------
+#  PATH J — SHEZARRINE ASCENDANT (involuntary entry)
+# ---------------------------------------------------------------
+
+is_on_shezarrine_ascendant_path = {
+    has_character_flag = ww_shezarrine_ascendant_active
+}
+
+has_completed_path_shezarrine_ascendant = {
+    has_character_flag = ww_shezarrine_ascendant_completed
+}
+
+has_any_shezarrine_ascendant_milestone = {
+    OR = {
+        has_character_flag = ww_shezarrine_milestone_whitestrake
+        has_character_flag = ww_shezarrine_milestone_berserker
+        has_character_flag = ww_shezarrine_milestone_cultural_enemy
+        has_character_flag = ww_shezarrine_milestone_proclaimed
+        has_character_flag = ww_shezarrine_milestone_merger
+        has_character_flag = ww_shezarrine_milestone_complete
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 — PATH K: MANTLING JYGGALAG
+#  Prince of Order. Domain vacant after 3E 433.
+#  [SOURCE: CANON — Shivering Isles DLC; UESP Lore:Jyggalag]
+# ═══════════════════════════════════════════════════════════════
+
+can_begin_mantling_jyggalag = {
+    has_trait = jyggalag_champion
+    learning >= 14
+    martial >= 16
+    has_global_flag = jyggalag_freed
+    NOT = { has_character_flag = ww_mantling_jyggalag_completed }
+    NOT = { has_character_flag = walking_ways_path_active }
+}
+
+is_on_path_mantling_jyggalag = {
+    has_character_flag = ww_mantling_jyggalag_active
+}
+
+has_completed_path_mantling_jyggalag = {
+    has_character_flag = ww_mantling_jyggalag_completed
+}
+
+has_any_mantling_jyggalag_milestone = {
+    OR = {
+        has_character_flag = ww_jyggalag_milestone_order_kept
+        has_character_flag = ww_jyggalag_milestone_chaos_suppressed
+        has_character_flag = ww_jyggalag_milestone_greymarch_echo
+        has_character_flag = ww_jyggalag_milestone_crystal_pact
+        has_character_flag = ww_jyggalag_milestone_madness_refused
+        has_character_flag = ww_jyggalag_milestone_instrument
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 — PATH K-2: SHEOGORATH'S ECHO
+#  Channelling the domain of Madness without claiming the throne.
+#  [SOFT CANON — extrapolated from mantling metaphysics]
+# ═══════════════════════════════════════════════════════════════
+
+can_begin_sheogorath_echo = {
+    OR = {
+        has_trait = lunatic
+        has_trait = possessed
+        has_character_flag = shivering_isles_visited
+        intrigue >= 18
+    }
+    learning >= 12
+    NOT = { has_character_flag = ww_sheogorath_echo_completed }
+    NOT = { has_character_flag = ww_mantling_sheogorath_completed }
+    NOT = { has_character_flag = walking_ways_path_active }
+}
+
+is_on_sheogorath_echo_path = {
+    has_character_flag = ww_sheogorath_echo_active
+}
+
+has_completed_sheogorath_echo = {
+    has_character_flag = ww_sheogorath_echo_completed
+}
+
+has_any_sheogorath_echo_milestone = {
+    OR = {
+        has_character_flag = ww_echo_milestone_insight
+        has_character_flag = ww_echo_milestone_chaos_wielded
+        has_character_flag = ww_echo_milestone_obelisk
+        has_character_flag = ww_echo_milestone_greymarch_witness
+        has_character_flag = ww_echo_milestone_court_jester
+        has_character_flag = ww_echo_milestone_realm_glimpsed
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 — PATH L: NECROMANCER'S THIRD WAY
+#  Independent necromancy — no Worm Cult, no Ideal Masters.
+#  [CANON — independent necromancers confirmed by UESP]
+# ═══════════════════════════════════════════════════════════════
+
+can_begin_necromancer_third_way = {
+    has_trait = necromancer
+    learning >= 16
+    NOT = { has_trait = worm_cult_adept }
+    NOT = { has_character_flag = ww_worm_apotheosis_completed }
+    NOT = { has_character_flag = ww_necromancer_third_way_completed }
+    NOT = { has_character_flag = walking_ways_path_active }
+}
+
+is_on_necromancer_third_way_path = {
+    has_character_flag = ww_necromancer_third_way_active
+}
+
+has_completed_necromancer_third_way = {
+    has_character_flag = ww_necromancer_third_way_completed
+}
+
+has_any_necromancer_third_way_milestone = {
+    OR = {
+        has_character_flag = ww_third_way_milestone_arkay_defied
+        has_character_flag = ww_third_way_milestone_mannimarco_rejected
+        has_character_flag = ww_third_way_milestone_death_taxonomy
+        has_character_flag = ww_third_way_milestone_ideal_masters_refused
+        has_character_flag = ww_third_way_milestone_sovereign_rite
+        has_character_flag = ww_third_way_milestone_boundary
+    }
 }

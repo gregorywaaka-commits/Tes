@@ -191,7 +191,7 @@ on_yearly_pulse = {
         5   = dagoth_ur.000          # Sixth House awakening check — fires once when dagoth_ur_awakening_possible (dagoth_ur_events.txt)
         5   = dagoth_ur.002          # Ghost Fence Strains — Dunmer ruler flavor post-awakening (dagoth_ur_events.txt)
         4   = dagoth_ur.010          # A Sixth House sleeper is discovered at court (dagoth_ur_events.txt)
-        3   = dagoth_ur.030          # Azura's call: Nerevarine Prophecy for azura_champion Dunmer (dagoth_ur_events.txt)
+        3   = dagoth_ur.030          # Azura's call: Nerevarine Prophecy for azura_champion rulers — race-agnostic per §21 (dagoth_ur_events.txt)
         4   = tribunal.000           # Vision of Vivec — warrior-poet aspect for martial Dunmer rulers (tribunal_events.txt)
         3   = tribunal.010           # Almalexia's Grace — mother-protector aspect for diplomatic Dunmer rulers (tribunal_events.txt)
         3   = tribunal.020           # Sotha Sil's Revelation — clockwork philosophy for learned rulers (tribunal_events.txt)
@@ -249,6 +249,8 @@ on_yearly_pulse = {
         2   = gray_host.000          # Gray Host invasion check — date-window 1E 800 – 2E 200 (gray_host_events.txt)
         1   = shezarrine.000         # Shezarrine vessel check — martial>=18 + brave/zealous (shezarrine_events.txt) [very rare]
         2   = shezarrine.002         # Berserker's Rage — existing shezarrine_vessel rulers (shezarrine_events.txt)
+        3   = shezarrine.ascending_call  # Shezarrine Ascendant path entry — vessel + martial + conquest history (shezarrine_events.txt)
+        3   = shezarrine.200         # Shezarrine convergence count check — multi-branch accumulation (shezarrine_events.txt)
         2   = direnni.000            # Direnni Hegemony legacy — direnni_bloodline / Altmer in High Rock (direnni_events.txt)
         2   = direnni.004            # Lorkhan's Children — Direnni philosophical event (direnni_events.txt)
         2   = skaal.000              # Bones of the All-Maker — Nord rulers near Solstheim (skaal_allmaker_events.txt)
@@ -450,10 +452,22 @@ on_yearly_pulse = {
         4   = borrowed_divinity.cutoff.002  # Heart destroyed while reservoir active — heart_scholar_ascendant rulers on dagoth_ur_defeated (borrowed_divinity_events.txt)
         5   = borrowed_divinity.starvation.001  # Reservoir empty check — heart_scholar_ascendant with heart_cut_off and reservoir=0 (borrowed_divinity_events.txt)
         3   = borrowed_divinity.dissolution.001  # Heart destroyed narrative — all Route A practitioners on dagoth_ur_defeated (borrowed_divinity_events.txt)
+        # §19.11 Tribunal + Fused interaction events
+        2   = borrowed_divinity.080  # Tribunal notification — Tribunal-trait rulers when heart_scholar_ascendant exists; opinion -30 (borrowed_divinity_events.txt)
+        4   = borrowed_divinity.081  # Fused suppression — Dunmer rulers not yet prophecy-heard when heart_fused_ascendant exists; +3y cooldown (borrowed_divinity_events.txt)
         # --- §20 NEREVARINE SYSTEM ---
         5   = nerevarine.099   # Sharmat's Dream hidden milestone check — heart_fused_ascendant while dagoth_ur_awakened (nerevarine_events.txt)
         3   = nerevarine.010   # Cross-path: Nerevarine meets Heart Scholar — nerevarine_marked + living heart_scholar (nerevarine_events.txt)
         3   = nerevarine.020   # Cross-path: Nerevarine meets Heart Fused — nerevarine_marked + living heart_fused (nerevarine_events.txt)
+        # §21 Dual-Soul convergence check — fires nerevarine.320 for a Nerevarine who later
+        # acquires shezarrine_vessel (or missed the initial claim-time option)
+        2   = nerevarine.321   # Hidden dual-soul check — nerevarine_marked + shezarrine_vessel + no convergence yet (nerevarine_events.txt)
+        # §22 Pre-cursor prophetic stirring — fires BEFORE dagoth_ur_awakened; marks multiple candidates
+        3   = nerevarine.340   # Pre-cursor auto-mark — dagoth_ur_awakening_possible + NOT awakened yet (nerevarine_events.txt)
+        # §23 Canonical vessel spawn — one-shot, creates 10 race-specific NPC Nerevarines
+        2   = nerevarine.345   # Canonical vessels spawned (one-shot) — dunmer ruler + awakening_possible + NOT canonical_spawned (nerevarine_events.txt)
+        # §22 Shor's Throne — Shezarrine enters Sovngarde while alive
+        2   = shezarrine.sovngarde_entry  # shezarrine_vessel + (shor_marked OR martial>=22) (shezarrine_events.txt)
         # --- THE WALKING WAYS — Core Engine ---
         5   = walking_ways.000               # Awareness intro — eligible rulers via 3 gates (walking_ways_events.txt)
         5   = walking_ways.progress_check    # Hidden progress engine — all active path holders (walking_ways_events.txt)
@@ -480,6 +494,144 @@ on_yearly_pulse = {
         3   = enantiomorph.milestone_betrayal         # Betrayal flag check — enantiomorph_active (enantiomorph_events.txt)
         # --- AMARANTH ---
         2   = amaranth.dreamer_court                  # Yearly dreamer flavor — amaranth_achieved holders (amaranth_events.txt)
+        # --- CHIM EXPANDED MILESTONES ---
+        3   = chim.milestone_mercy      # Mercy — piety+compassionate — chim_expanded_active (chim_events.txt)
+        3   = chim.milestone_stable     # Stable ego — survived assassination — chim_expanded_active (chim_events.txt)
+        3   = chim.milestone_truth      # Truth — learning 18+ — chim_expanded_active (chim_events.txt)
+        3   = chim.milestone_name       # Name — silence done+learning 20+ — chim_expanded_active (chim_events.txt)
+        # --- ENANTIOMORPH MILESTONES ---
+        3   = enantiomorph.milestone_void      # Void — exile/imprisonment history — enantiomorph_active (enantiomorph_events.txt)
+        3   = enantiomorph.milestone_witness   # Witness — high intrigue — enantiomorph_active (enantiomorph_events.txt)
+        3   = enantiomorph.milestone_creed     # Creed — devoted/zealous — enantiomorph_active (enantiomorph_events.txt)
+        3   = enantiomorph.milestone_survived  # Survived — survived war/battle — enantiomorph_active (enantiomorph_events.txt)
+        3   = enantiomorph.milestone_throne    # Throne — royal title holder — enantiomorph_active (enantiomorph_events.txt)
+        # --- PSIJIC ENDEAVOUR MILESTONES ---
+        3   = psijic_endeavour.milestone_prediction  # Prediction — prophecy fulfilled — psijic_endeavour_active (psijic_endeavour_events.txt)
+        3   = psijic_endeavour.milestone_text        # Text — learning 20+ scholar — psijic_endeavour_active (psijic_endeavour_events.txt)
+        # --- PROLIX TOWER MILESTONES ---
+        3   = prolix_tower.milestone_author         # Author — published text — prolix_tower_active (prolix_tower_events.txt)
+        3   = prolix_tower.milestone_uncontrolled   # Uncontrolled — text spread without intent — prolix_tower_active (prolix_tower_events.txt)
+        # --- TONAL ARCHITECTURE MILESTONES ---
+        3   = tonal_arch.milestone_nullify   # Nullify — tonal dissonance survived — tonal_architecture_active (tonal_arch_events.txt)
+        # --- MANTLING ARKAY MILESTONES ---
+        3   = mantling_arkay.milestone_burial    # Burial rite — personal loss — mantling_arkay_active (mantling_arkay_events.txt)
+        3   = mantling_arkay.milestone_grief     # Grief witnessed — mass death event — mantling_arkay_active (mantling_arkay_events.txt)
+        3   = mantling_arkay.milestone_neardeath # Near death survived — mantling_arkay_active (mantling_arkay_events.txt)
+        3   = mantling_arkay.milestone_plague    # Plague passed — maintained cycle — mantling_arkay_active (mantling_arkay_events.txt)
+        # --- MANTLING STENDARR MILESTONES ---
+        3   = mantling_stendarr.milestone_charity  # Charity — aided the weak — mantling_stendarr_active (mantling_stendarr_events.txt)
+        3   = mantling_stendarr.milestone_daedra   # Daedra opposed — banished daedra — mantling_stendarr_active (mantling_stendarr_events.txt)
+        3   = mantling_stendarr.milestone_mercy    # Mercy — spared a defeated foe — mantling_stendarr_active (mantling_stendarr_events.txt)
+        3   = mantling_stendarr.milestone_weak     # Protected weak — aided peasants — mantling_stendarr_active (mantling_stendarr_events.txt)
+        # --- MANTLING TALOS MILESTONES ---
+        3   = mantling_talos.milestone_mercy       # Mercy — spared rival claim — mantling_talos_active (mantling_talos_events.txt)
+        3   = mantling_talos.milestone_wound       # Wound — major battle scar — mantling_talos_active (mantling_talos_events.txt)
+        4   = mantling_talos.wulf_encounter            # Wulf avatar encounter — mantling_talos_active OR nerevarine_marked, while dagoth_ur_awakened (mantling_talos_events.txt)
+        4   = mantling_talos.wulf_encounter_successor  # Successor Wulf variant — same gate but talos_broken_count >= 1 (mantling_talos_events.txt)
+        # --- MANTLING KYNARETH MILESTONES ---
+        3   = mantling_kynareth.milestone_companions  # Companions — allied with Companions — mantling_kynareth_active (mantling_kynareth_events.txt)
+        3   = mantling_kynareth.milestone_shor        # Shor's breath — survived storm — mantling_kynareth_active (mantling_kynareth_events.txt)
+        3   = mantling_kynareth.milestone_skybattle   # Skybattle — aerial/siege victory — mantling_kynareth_active (mantling_kynareth_events.txt)
+        3   = mantling_kynareth.milestone_storm       # Storm survived — natural disaster — mantling_kynareth_active (mantling_kynareth_events.txt)
+        # --- MANTLING LORKHAN MILESTONES ---
+        3   = mantling_lorkhan.milestone_heart       # Heart — Red Mountain awareness — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        3   = mantling_lorkhan.milestone_sacrifice   # Sacrifice — gave up irreplaceable thing — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        3   = mantling_lorkhan.milestone_shezarrine  # Shezarrine — touched that lineage — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        3   = mantling_lorkhan.milestone_wound       # Wound — personal defeat survived — mantling_lorkhan_active (mantling_lorkhan_events.txt)
+        # --- SHEZARRINE MILESTONES ---
+        3   = shezarrine.milestone_whitestrake  # Whitestrake vision — shezarrine_ascendant_active (shezarrine_events.txt)
+        # --- MANTLING BOETHIAH MILESTONES ---
+        3   = mantling_daedric.boethiah_attribution  # Attribution's Share — mantling_boethiah_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.boethiah_consumed     # Consumed rival — mantling_boethiah_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.boethiah_sacrifice    # Sacrifice — mantling_boethiah_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.boethiah_throne       # Throne contested — mantling_boethiah_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.boethiah_tournament   # Tournament victory — mantling_boethiah_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.boethiah_treachery    # Treachery survived — mantling_boethiah_active (mantling_daedric_events.txt)
+        # --- MANTLING MEPHALA MILESTONES ---
+        3   = mantling_daedric.mephala_murder   # Murder arranged — mantling_mephala_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.mephala_puppet   # Puppet master — mantling_mephala_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.mephala_secret   # Secret held — mantling_mephala_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.mephala_skein    # The Skein — mantling_mephala_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.mephala_thread   # First thread — mantling_mephala_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.mephala_web      # Web complete — mantling_mephala_active (mantling_daedric_events.txt)
+        # --- MANTLING MERIDIA MILESTONES ---
+        3   = mantling_daedric.meridia_beacon       # Beacon found — mantling_meridia_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.meridia_corruption   # Corruption cleansed — mantling_meridia_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.meridia_light        # Inner light — mantling_meridia_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.meridia_necro_refused # Necromancy refused — mantling_meridia_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.meridia_temple       # Temple built — mantling_meridia_active (mantling_daedric_events.txt)
+        # --- MANTLING AZURA MILESTONES ---
+        3   = mantling_daedric.azura_dusk            # Dusk witnessed — mantling_azura_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.azura_prophecy        # Prophecy received — mantling_azura_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.azura_stars           # Stars aligned — mantling_azura_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.azura_transformation  # Transformation — mantling_azura_active (mantling_daedric_events.txt)
+        # --- MANTLING HIRCINE MILESTONES ---
+        3   = mantling_daedric.hircine_apex        # Apex predator — mantling_hircine_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.hircine_bloodmoon   # Bloodmoon — mantling_hircine_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.hircine_chase       # The Chase — mantling_hircine_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.hircine_grounds     # Hunting Grounds — mantling_hircine_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.hircine_lycanthropy # Lycanthropy — mantling_hircine_active (mantling_daedric_events.txt)
+        3   = mantling_daedric.hircine_prey        # First prey — mantling_hircine_active (mantling_daedric_events.txt)
+        # --- MANTLING ALMALEXIA MILESTONES ---
+        3   = mantling_tribunal.almalexia_hands      # Hands of Almalexia — mantling_almalexia_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.almalexia_healer     # Healer — mantling_almalexia_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.almalexia_mother     # Mother — mantling_almalexia_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.almalexia_protector  # Protector — mantling_almalexia_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.almalexia_reclame    # Reclamation — mantling_almalexia_active (mantling_tribunal_events.txt)
+        # --- MANTLING SOTHA SIL MILESTONES ---
+        3   = mantling_tribunal.sotha_sil_clockwork  # Clockwork insight — mantling_sotha_sil_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.sotha_sil_construct  # Construct built — mantling_sotha_sil_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.sotha_sil_hidden     # Hidden withdrawal — mantling_sotha_sil_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.sotha_sil_mechanism  # Mechanism understood — mantling_sotha_sil_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.sotha_sil_workshop   # Workshop established — mantling_sotha_sil_active (mantling_tribunal_events.txt)
+        # --- MANTLING VIVEC MILESTONES ---
+        3   = mantling_tribunal.vivec_contradiction  # Contradiction held — mantling_vivec_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.vivec_duality        # Duality mastered — mantling_vivec_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.vivec_poet           # Poet — mantling_vivec_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.vivec_sermon         # Sermon written — mantling_vivec_active (mantling_tribunal_events.txt)
+        3   = mantling_tribunal.vivec_warrior        # Warrior victory — mantling_vivec_active (mantling_tribunal_events.txt)
+        # --- MANTLING DIBELLA MILESTONES ---
+        3   = mantling_dibella.milestone_art     # Art patronage — mantling_dibella_active (mantling_dibella_events.txt)
+        3   = mantling_dibella.milestone_beauty  # Beauty embodied — mantling_dibella_active (mantling_dibella_events.txt)
+        3   = mantling_dibella.milestone_divine  # Divine glimpse — mantling_dibella_active (mantling_dibella_events.txt)
+        3   = mantling_dibella.milestone_love    # Love expressed — mantling_dibella_active (mantling_dibella_events.txt)
+        3   = mantling_dibella.milestone_patron  # Patron of arts — mantling_dibella_active (mantling_dibella_events.txt)
+        3   = mantling_dibella.milestone_vessel  # Vessel — mantling_dibella_active (mantling_dibella_events.txt)
+        # --- MANTLING MARA MILESTONES ---
+        3   = mantling_mara.milestone_children   # Living children — mantling_mara_active (mantling_mara_events.txt)
+        3   = mantling_mara.milestone_devotion   # Devotion — mantling_mara_active (mantling_mara_events.txt)
+        3   = mantling_mara.milestone_family     # Family intact — mantling_mara_active (mantling_mara_events.txt)
+        3   = mantling_mara.milestone_healing    # Healing given — mantling_mara_active (mantling_mara_events.txt)
+        3   = mantling_mara.milestone_hearth     # Hearth kept — mantling_mara_active (mantling_mara_events.txt)
+        3   = mantling_mara.milestone_pilgrimage # Pilgrimage completed — mantling_mara_active (mantling_mara_events.txt)
+        # --- MANTLING SHEOGORATH MILESTONES ---
+        3   = mantling_sheogorath.milestone_greymarch         # Greymarch witnessed — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        3   = mantling_sheogorath.milestone_jyggalag_defeated # Jyggalag defeated — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        3   = mantling_sheogorath.milestone_madness           # Madness survived — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        3   = mantling_sheogorath.milestone_new_prince        # New Prince — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        3   = mantling_sheogorath.milestone_obelisk           # Obelisk used — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        3   = mantling_sheogorath.milestone_realm             # Realm entered — mantling_sheogorath_active (mantling_sheogorath_events.txt)
+        # --- PATH K: MANTLING JYGGALAG MILESTONES ---
+        3   = mantling_jyggalag.milestone_order_kept        # Order kept — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        3   = mantling_jyggalag.milestone_chaos_suppressed  # Chaos suppressed — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        3   = mantling_jyggalag.milestone_greymarch_echo    # Greymarch echo — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        3   = mantling_jyggalag.milestone_crystal_pact      # Crystal pact — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        3   = mantling_jyggalag.milestone_madness_refused   # Madness refused — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        3   = mantling_jyggalag.milestone_instrument        # Instrument of Order — mantling_jyggalag_active (mantling_jyggalag_events.txt)
+        # --- PATH K-2: SHEOGORATH'S ECHO MILESTONES ---
+        3   = sheogorath_echo.milestone_insight           # Insight — sheogorath_echo_active (sheogorath_echo_events.txt)
+        3   = sheogorath_echo.milestone_chaos_wielded     # Chaos wielded — sheogorath_echo_active (sheogorath_echo_events.txt)
+        3   = sheogorath_echo.milestone_obelisk           # Obelisk — sheogorath_echo_active (sheogorath_echo_events.txt)
+        3   = sheogorath_echo.milestone_greymarch_witness # Greymarch witness — sheogorath_echo_active (sheogorath_echo_events.txt)
+        3   = sheogorath_echo.milestone_court_jester      # Court jester — sheogorath_echo_active (sheogorath_echo_events.txt)
+        3   = sheogorath_echo.milestone_realm_glimpsed    # Realm glimpsed — sheogorath_echo_active (sheogorath_echo_events.txt)
+        # --- PATH L: NECROMANCER'S THIRD WAY MILESTONES ---
+        3   = necromancer_third_way.milestone_arkay_defied          # Arkay defied — necromancer_third_way_active (necromancer_third_way_events.txt)
+        3   = necromancer_third_way.milestone_mannimarco_rejected   # Mannimarco rejected — necromancer_third_way_active (necromancer_third_way_events.txt)
+        3   = necromancer_third_way.milestone_death_taxonomy        # Death taxonomy — necromancer_third_way_active (necromancer_third_way_events.txt)
+        3   = necromancer_third_way.milestone_ideal_masters_refused # Ideal Masters refused — necromancer_third_way_active (necromancer_third_way_events.txt)
+        3   = necromancer_third_way.milestone_sovereign_rite        # Sovereign rite — necromancer_third_way_active (necromancer_third_way_events.txt)
+        3   = necromancer_third_way.milestone_boundary              # Boundary stood at — necromancer_third_way_active (necromancer_third_way_events.txt)
     }
 }
 
@@ -562,30 +714,173 @@ on_character_death = {
                 kill_character = yes
             }
         }
-        # --- §20 Nerevarine Succession ---
+        # --- §20 / §21 Nerevarine Succession + Multi-Spirit Tracking ---
         # This hook fires on NATURAL DEATH (battle, age, disease) of a nerevarine_marked
         # character.  It is distinct from nerevarine.030 (assassination attempt), which is
         # an active decision by a rival and resolves through event options.  This hook handles
         # the passive "the vessel dies before completing the quest" case and opens the
         # claim_nerevarine_prophecy decision for new candidates.
+        #
+        # §21 RACE-AGNOSTIC SUCCESSION: The nerevarine.001 notification is sent to ALL
+        # rulers (not just Dunmer) because any race may now carry Nerevar's soul.
+        #
+        # §21 MULTI-SPIRIT TRACKING: active_nerevarine_spirit_count tracks simultaneous
+        # living vessels.  On death, decrement the counter.  Clear shors_throne_nerevarine
+        # global flag if this vessel entered Sovngarde (shezarrine_sovngarde_entered).
+        # NOTE: shors_throne_nerevarine is now set ONLY by shezarrine.sovngarde_entry
+        # (not by the Nerevarine-Shezarrine convergence alone — §22 correction).
         if = {
             limit = {
                 has_trait = nerevarine_marked
                 NOT = { has_trait = nerevarine_victor }
                 NOT = { has_trait = nerevarine_forsaken }
             }
-            set_global_flag = nerevarine_quest_incomplete
+            # Decrement living spirit counter
+            if = {
+                limit = { exists = global_var:active_nerevarine_spirit_count }
+                change_global_variable = { name = active_nerevarine_spirit_count add = -1 }
+            }
+            # Clear Shor's throne vacant flag if this was a Shezarrine who entered Sovngarde
+            if = {
+                limit = {
+                    has_character_flag = shezarrine_sovngarde_entered
+                    has_global_flag = shors_throne_nerevarine
+                }
+                remove_global_flag = shors_throne_nerevarine
+            }
+            # Only open the quest slot if no other living Nerevarine exists
+            if = {
+                limit = {
+                    NOT = {
+                        any_living_character = {
+                            has_trait = nerevarine_marked
+                            NOT = { this = prev }
+                        }
+                    }
+                }
+                set_global_flag = nerevarine_quest_incomplete
+            }
             if = {
                 limit = { NOT = { exists = global_var:false_nerevarine_count } }
                 set_global_variable = { name = false_nerevarine_count value = 0 }
             }
             change_global_variable = { name = false_nerevarine_count add = 1 }
+            # Notify all azura_champion rulers — race-agnostic per §21 lore
             every_ruler = {
                 limit = {
                     is_alive = yes
-                    has_culture = dunmer_culture
+                    has_trait = azura_champion
                 }
                 trigger_event = { id = nerevarine.001 days = 7 }
+            }
+        }
+        # --- §22 Shor's Throne: Shezarrine-entered-Sovngarde death cleanup ---
+        # If a Shezarrine who entered Sovngarde dies (but was NOT nerevarine_marked,
+        # which handles its own cleanup above), clear the throne flag.
+        if = {
+            limit = {
+                NOT = { has_trait = nerevarine_marked }
+                has_character_flag = shezarrine_sovngarde_entered
+                has_global_flag = shors_throne_nerevarine
+            }
+            remove_global_flag = shors_throne_nerevarine
+        }
+        # --- Talos Mantling Death Contingency ---
+        #
+        # SCENARIO A: Character dies MID-PATH (has ww_mantling_talos_active but NOT mantle_talos)
+        #   → The Oversoul fragment disperses back into the world.  The path may be resumed by
+        #     another — Talos is lore-canonically a composite of multiple souls (Tiber Septim,
+        #     Hjalti Early-Beard, Ysmir Wulfharth), so a successor mantler is metaphysically valid.
+        #   → Sets global_flag talos_path_broken; increments talos_broken_count global var.
+        #   → Fires mantling_talos.path_broken world event after 7 days.
+        #
+        # SCENARIO B: Character dies AFTER achieving mantle_talos (already ascended to godhood)
+        #   → A god does not simply die.  The mantle persists as a divine presence.
+        #   → Sets global_flag talos_throne_occupied to block any new character from fully
+        #     claiming the Talos apex (they can walk the path but reach only "aspect" status).
+        #   → Fires mantling_talos.throne_vacant event to notify the world.
+        #
+        # [SOURCE: UESP Lore:Talos — composite nature of Talos (Septim + Wulfharth + Arctus);
+        #  TES metaphysics "mantling" from The 36 Lessons of Vivec; Michael Kirkbride commentary]
+        if = {
+            limit = {
+                has_character_flag = ww_mantling_talos_active
+                NOT = { has_trait = mantle_talos }
+            }
+            # Scenario A — died mid-path
+            set_global_flag = talos_path_broken
+            if = {
+                limit = { NOT = { exists = global_var:talos_broken_count } }
+                set_global_variable = { name = talos_broken_count value = 0 }
+            }
+            change_global_variable = { name = talos_broken_count add = 1 }
+            # Decrement the concurrent aspect counter
+            if = {
+                limit = { exists = global_var:active_talos_aspects_count }
+                change_global_variable = { name = active_talos_aspects_count add = -1 }
+            }
+            # --- Aspect Fragment Dispersal ---
+            # Notify surviving active walkers. Each recipient then checks whether
+            # they are now the sole remaining walker (sole-heir) or one of several.
+            # Lore: Wulfharth's death fed Tiber Septim; Arctus's soul-fragment
+            # likewise strengthened the composite Oversoul. Survivors absorb.
+            # [SOURCE: The Arcturian Heresy; UESP Lore:Tiber Septim; Lore:Wulfharth]
+            every_ruler = {
+                limit = {
+                    is_alive = yes
+                    has_character_flag = ww_mantling_talos_active
+                }
+                trigger_event = { id = mantling_talos.aspect_dies_notify days = 7 }
+            }
+            every_player = {
+                trigger_event = { id = mantling_talos.path_broken days = 7 }
+            }
+        }
+        if = {
+            limit = { has_trait = mantle_talos }
+            # Scenario B — ascended god departs; throne occupied as divine presence
+            set_global_flag = talos_throne_occupied
+            every_player = {
+                trigger_event = { id = mantling_talos.throne_vacant days = 7 }
+            }
+        }
+
+        # --- §20 Jyggalag Liberation Contingency ---
+        # Jyggalag is only freed if the Sheogorath mantle is completed by the champion
+        # who defeated him (the mantling_sheogorath path). If the active champion dies
+        # mid-path, Jyggalag remains imprisoned in the Sheogorath cycle.
+        #
+        # SCENARIO 1: Champion dies while actively on ww_mantling_sheogorath_active
+        #   → Greymarch cycle resumes; throne unfilled; world notified
+        # SCENARIO 2: Champion has jyggalag_ascendant (completed Path K) but dies before
+        #   completing Sheogorath mantle → jyggalag_freed IS set (they walked his domain
+        #   fully enough to free him) but throne is empty; world notified of vacancy
+        # SCENARIO 3: Handled at complete_path_mantling_sheogorath — canonical succession
+        #   sets jyggalag_freed directly; no death hook needed for that path
+        if = {
+            limit = {
+                has_character_flag = ww_mantling_sheogorath_active
+                NOT = { has_character_flag = ww_mantling_sheogorath_completed }
+            }
+            # Scenario 1: died mid-Sheogorath mantle with NO jyggalag_ascendant
+            if = {
+                limit = { NOT = { has_trait = jyggalag_ascendant } }
+                # Greymarch continues — Jyggalag remains trapped
+                set_global_flag = greymarch_unresolved
+                remove_global_flag = jyggalag_freed
+                every_player = {
+                    trigger_event = { id = mantling_jyggalag.liberation_failed days = 14 }
+                }
+            }
+            # Scenario 2: died mid-Sheogorath mantle but DID have jyggalag_ascendant
+            else_if = {
+                limit = { has_trait = jyggalag_ascendant }
+                # The domain walk was complete enough — Jyggalag is freed, but throne is empty
+                set_global_flag = jyggalag_freed
+                remove_global_flag = greymarch_unresolved
+                every_player = {
+                    trigger_event = { id = mantling_jyggalag.throne_vacant days = 14 }
+                }
             }
         }
     }

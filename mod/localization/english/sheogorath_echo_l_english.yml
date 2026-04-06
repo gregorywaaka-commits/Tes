@@ -1,0 +1,43 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ # PATH K-2 — SHEOGORATH'S ECHO LOCALIZATION
+ # ═══════════════════════════════════════════════════════════════
+
+ # Decision option
+ choose_walking_way.path_k2_sheogorath_echo: "Path K-2: Sheogorath's Echo — The Prophet of Madness"
+ choose_walking_way.path_k2_sheogorath_echo_desc: "Sheogorath's domain is not nonsense. It is a reason creation has not yet learned to follow. You will channel it without claiming the throne — madness as insight, as strategy, as art. The echo does not succeed the Prince. It understands him. [Requires: lunatic/possessed OR shivering_isles_visited OR intrigue 18+, learning 12+. Closes Sheogorath succession door permanently.]"
+
+ # Events
+ sheogorath_echo.intro.t: "The Echo That Does Not Claim"
+ sheogorath_echo.intro.desc: "There was a throne you could have taken.\n\nThe Sheogorath succession — the path the Hero of Kvatch had walked, living in the Prince's realm until the realm could no longer tell them apart — was technically available. You had touched the edge of that madness. You could feel it, pulling like a tide.\n\nBut succession was not what you wanted.\n\nSuccession meant becoming. And what you wanted was to *understand*. Madness not as disease but as insight. Not 'the absence of reason' but 'a reason creation cannot yet follow.' The echo, not the source. The prophet, not the Prince.\n\nIt was a smaller thing. And it was entirely yours."
+ sheogorath_echo.intro.a: "I understand what madness is. I will not become it."
+
+ sheogorath_echo.rank1.t: "The Map of the Unreachable"
+ sheogorath_echo.rank1.desc: "You had survived something that most minds would not have survived intact.\n\nThe lunacy, or the possession, or the Shivering Isles — whatever had brought you to the edge of Sheogorath's domain — was now a reference, not a wound. You had been there. You had come back. You had noted what reason could not reach from this side, and you had brought the notes with you.\n\nMadness survived becomes a map of what reason cannot touch directly. The chaotic decision had served its purpose. The outcome was yours."
+ sheogorath_echo.rank1.a: "Madness survived becomes a map of what reason cannot reach."
+ sheogorath_echo.rank1.b: "The chaos served its purpose. The outcome was mine."
+
+ sheogorath_echo.rank2.t: "The Obelisk Recognises"
+ sheogorath_echo.rank2.desc: "The obelisk — one of those crystalline pillars that the Knights of Order used to reshape the Shivering Isles during each Greymarch — sat in the corner of a scholar's collection, inert and theoretically harmless.\n\nWhen you touched it, it was not harmless.\n\nNot dangerous, exactly. But it looked back. Something in it — the last whisper of Jyggalag's presence, or perhaps Sheogorath's — observed you with the kind of attention that acknowledged: *yes. This one is close to it. This one understands.*\n\nThe feeling was mutual."
+ sheogorath_echo.rank2.a: "The obelisk recognises something in me. The feeling is mutual."
+ sheogorath_echo.rank2.b: "I witnessed the Greymarch and held myself together. That is the test."
+
+ sheogorath_echo.rank3.t: "Blueprint of the Shivering Isles"
+ sheogorath_echo.rank3.desc: "The Shivering Isles are not random.\n\nYou had assumed — most people assumed — that Madness as a domain was simply chaos, simply disorder, simply the absence of coherent structure. You were wrong. The Shivering Isles have a geography. Mania and Dementia occupy specific territories in a specific proportion. The architecture follows rules. Sheogorath *designed* it.\n\nMadness is not the absence of reason. It is a reason so large that ordinary minds cannot contain it. You had been studying the blueprints. You were beginning to read them."
+ sheogorath_echo.rank3.a: "The Shivering Isles are an architecture. I can read the blueprints."
+
+ sheogorath_echo.apotheosis.t: "The Echo Sustains"
+ sheogorath_echo.apotheosis.desc: "No title. No throne. No world-shaking announcement that the Mad Prince had a new heir.\n\nJust this: you understood Sheogorath's domain, and you were not consumed by it.\n\nYou channelled the creative chaos — the politics of unpredictability, the art of the unexpected, the laughter that knows something the straight-faced council cannot — and you remained yourself. The echo did not become the source. The echo sustained.\n\nElsewhere, in a Realm of Oblivion that was briefly less empty than it had been, something vast and absent noticed this. Whether it approved was not clear. Whether it mattered was a question only you could answer."
+ sheogorath_echo.apotheosis.a: "I understand the Prince of Madness. I chose not to become him. The echo is enough."
+ sheogorath_echo.apotheosis.b: "The madness is a tool. I am still the hand that holds it."
+
+ sheogorath_echo.possessed.t: "The Echo Became the Voice"
+ sheogorath_echo.possessed.desc: "There is a difference between channelling madness and being consumed by it.\n\nYou had been walking the line. And the line shifted.\n\nIt happened between one thought and the next — one moment you were the prophet, understanding the domain from a safe distance, and the next you were in it up to the neck with no distance at all. The echo you had been cultivating turned out to have been cultivating you back.\n\nYou are alive. Definitively, unusually alive. The court has noticed something different about the way you hold a cup of water. And about everything else."
+ sheogorath_echo.possessed.a: "I stopped echoing. Something walked in."
+
+ # World notify
+ walking_ways.world_notify.madness_prophet: "Courts near [scope:source.primary_title.name] have begun reporting unusual outcomes from their dealings with [scope:source.char_name|U]. The unexpected is not what it used to be — under [scope:source.char_name|U]'s direction, it appears to be a policy. A scholar of Oblivion writes: 'They understand Sheogorath's domain without claiming his throne. That is either very wise or the part of the test that comes before the failure.' He was subsequently unable to clarify which."
+
+ # Trait localization
+ madness_prophet: "Prophet of Madness"
+ madness_prophet_desc: "This ruler channels Sheogorath's domain — creative chaos, the logic creation cannot yet follow — without claiming the throne of the Shivering Isles. They are the echo, not the source. The prophet, not the Prince. Madness as insight. The throne door is permanently closed; they chose understanding over succession."

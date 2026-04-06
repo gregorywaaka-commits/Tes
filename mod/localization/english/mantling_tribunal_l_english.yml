@@ -1,0 +1,149 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ #  THE WALKING WAYS — Tribunal Mantle Localization
+ # ═══════════════════════════════════════════════════════════════
+
+ # ─── Trait Names ───
+ mantle_vivec: "Aspect of the Warrior-Poet"
+ mantle_vivec_desc: "The distinction between this ruler and Vivec has become a matter of emphasis rather than kind. Warrior and poet. Both. Neither. The 36 Lessons were instructions, not autobiography. Baar Dau is suspended over something in this ruler's realm by a force that cannot be located in the architecture."
+ mantle_almalexia: "Mother of the Realm"
+ mantle_almalexia_desc: "The Hands of Almalexia protect by extension of this ruler's will. The mother-pattern walks in them — the protection that held even when the wrath came, the love that survived its own corruption and emerged holding still. The distinction between this ruler and the Mother of Morrowind is a question the Dunmeri clergy cannot agree on."
+ mantle_sotha_sil: "The Clockwork Sovereign"
+ mantle_sotha_sil_desc: "The mechanism runs. This ruler does not need to be present for the realm to function — which is either the highest achievement of governance or the deepest withdrawal from it. Sotha Sil's pattern walks in them. The clockwork does not care which."
+
+ # ─── Vivec Events ───
+ mantling_tribunal.vivec_intro.t: "The 36 Lessons Begin"
+ mantling_tribunal.vivec_intro.desc: "Vivec wrote 36 Lessons about himself. They are not entirely reliable as biography — they are reliable as instruction. The warrior-poet god held Baar Dau suspended over Vivec City for centuries by force of will and CHIM, wrote poetry that changed the nature of what it described, and fought the Numidium.\n\nHis domain is contradiction held in balance: art and war, the joke and its punchline, duality as a principle rather than a problem.\n\nThe Mephala mantle walked before this one is the Anticipation of Vivec. The web was learned. The web was walked. Now the web becomes language, and the language becomes the warrior.\n\nThe distinction between the warrior and the poet is the path."
+ mantling_tribunal.vivec_intro.a: "Warrior and poet. I will hold both."
+
+ mantling_tribunal.vivec_rank1.t: "The Warrior Aspect"
+ mantling_tribunal.vivec_rank1.desc: "The martial milestones have accumulated. The ruler fights in a way that is beginning to express something beyond skill — a quality to how they hold themselves in battle that scholars of the Tribunal have seen described in old texts.\n\nVivec's warrior aspect is not about winning. It is about the combat as a kind of statement — a position taken, a refusal to collapse the contradiction.\n\nThe poet aspect is coming. But the warrior comes first."
+ mantling_tribunal.vivec_rank1.a: "The warrior aspect first. The poem will follow."
+ mantling_tribunal.vivec_rank1.b: "The poem first. The warrior will be its subject."
+
+ mantling_tribunal.vivec_rank2.t: "The Poet Aspect"
+ mantling_tribunal.vivec_rank2.desc: "The sermons have been written — or at least thought, which for Vivec's pattern is equivalent. The ruler has begun to operate in a mode where the action and its description are the same gesture.\n\nVivec achieved CHIM and kept himself together through it by understanding that the dream was a text and he was both its subject and its author. The ruler is learning this structure — the warrior who writes the war and the poet who wages the poem."
+ mantling_tribunal.vivec_rank2.a: "Both aspects now. The contradiction is the point."
+
+ mantling_tribunal.vivec_rank3.t: "Contradiction Held"
+ mantling_tribunal.vivec_rank3.desc: "The warrior. The poet. Both, simultaneously, without collapsing one into the other.\n\nVivec's pattern is specifically this: the maintenance of the contradiction as a principle. He was male and female. He was mortal and divine. He held Baar Dau over the city because it was a sermon about the nature of power, and because the city would have been destroyed without it, and these were the same reason.\n\nThe ruler is close. The Heart is closer than it has ever been — the pull that brought Vivec to his apotheosis through Kagrenac's Tools. The question is whether the mantler needs the Heart to complete the pattern, or whether the pattern itself is sufficient."
+ mantling_tribunal.vivec_rank3.a: "The contradiction holds. I do not need the Heart."
+ mantling_tribunal.vivec_rank3.heart_temptation: "The Heart would make this complete. I feel its pull."
+
+ mantling_tribunal.vivec_apotheosis.t: "Warrior and Poet: Complete"
+ mantling_tribunal.vivec_apotheosis.desc: "The 36 Lessons are done.\n\nNot the 36 Lessons Vivec wrote — the 36 Lessons the ruler lived. Every act has been simultaneously a battle and a poem. Every poem has been simultaneously a lesson and a weapon. Every weapon has been the specific kind that only exists when someone understands that the distinction between making and fighting is a temporary misreading.\n\nVivec's pattern is complete in this ruler. The warrior-poet god has a new expression.\n\nBaar Dau hangs over nothing in particular in this ruler's court, suspended by no mechanism anyone can identify, vibrating very slightly."
+ mantling_tribunal.vivec_apotheosis.a: "Warrior and poet. Both. Neither. The pattern is complete."
+ mantling_tribunal.vivec_apotheosis.b: "The 36 Lessons were not autobiography. They were instructions. I have followed them."
+
+ # ─── Almalexia Events ───
+ mantling_tribunal.almalexia_intro.t: "The Mother Calls"
+ mantling_tribunal.almalexia_intro.desc: "Almalexia was called the Mother of Morrowind not because she governed Morrowind — she governed Mournhold — but because she was the protector whose protection defined what protection meant. The Hands of Almalexia were her warriors. The healers of Mournhold were her extension.\n\nShe went mad after losing her connection to the Heart of Lorkhan — which is also part of her pattern. The protector who becomes the danger. The mother who devours.\n\nThe Boethiah mantle walked before this one is the Anticipation of Almalexia. Treachery was walked. Consumption was walked. Now the treachery becomes protection — which is what the Dunmer doctrine says: that Boethiah's consuming of Trinimac is the shadow-model of Almalexia's gathering of Morrowind's people to herself.\n\nThe risk is the wrath. Almalexia's protection always had edges."
+ mantling_tribunal.almalexia_intro.a: "I will be the shelter they need."
+
+ mantling_tribunal.almalexia_rank1.t: "The Protector Named"
+ mantling_tribunal.almalexia_rank1.desc: "The court is safer because of this ruler. Not merely in the political sense — in the way sanctuaries are safe. People who need shelter find it here. The weak find their burdens lighter in this ruler's presence.\n\nThe Hands of Almalexia were warriors who protected because Almalexia's protection was a principle, not merely a policy. The ruler's protection is beginning to carry that quality: something that extends beyond the practical into the structural."
+ mantling_tribunal.almalexia_rank1.a: "I will be the shelter they need."
+
+ mantling_tribunal.almalexia_rank2.t: "The Mother-Hands Extended"
+ mantling_tribunal.almalexia_rank2.desc: "Almalexia's domain expanded beyond Mournhold during the height of her power — her healing, her protection, her presence was felt across Morrowind. The ruler's domain is doing something similar. The reach of their protection is extending beyond what governance would normally explain.\n\nThe Hands of Almalexia protected by extension of her will. The ruler's own agents are beginning to operate that way — not from instruction, but from the principle they carry."
+ mantling_tribunal.almalexia_rank2.a: "The Hands of Almalexia protect. So do mine."
+
+ mantling_tribunal.almalexia_rank3.t: "Divine Wrath"
+ mantling_tribunal.almalexia_rank3.desc: "The pattern has an edge.\n\nAlmalexia's madness after losing the Heart was not arbitrary — it was the protection principle consuming itself when it had nothing left to protect it from its own edges. The mother who devours. The protector who becomes the danger.\n\nThe ruler is at the threshold where the wrath is visible. Not uncontrollable — not yet. But present. The question is whether to hold it, accept it as part of the pattern, or acknowledge the pull of the Heart that Almalexia used to prevent precisely this edge from appearing.\n\nThe Heart Temptation: would the Heart make the protection complete, the wrath unnecessary?"
+ mantling_tribunal.almalexia_rank3.a: "Protection held. I will not let the wrath consume me."
+ mantling_tribunal.almalexia_rank3.b: "The wrath is also part of the pattern. I accept it."
+ mantling_tribunal.almalexia_rank3.heart_temptation: "Without the Heart, this love has edges. I feel where they cut."
+
+ mantling_tribunal.almalexia_apotheosis.t: "Mother of the Realm"
+ mantling_tribunal.almalexia_apotheosis.desc: "The protection held.\n\nEven when the wrath came. Even when the Heart was not there to smooth the edges. Even when the principle of protection tried to consume itself in the absence of anything to protect it from.\n\nAlmalexia's pattern at its fullest is not the protection before the madness — it is the protection that survived the madness and continued anyway. The love that held past its own edge.\n\nThe ruler has walked that pattern. The Mother of Morrowind has a new expression.\n\nMournhold's priests are uncertain whether to be concerned. They have decided, for now, to leave offerings."
+ mantling_tribunal.almalexia_apotheosis.a: "Mother of Morrowind. The pattern is complete."
+ mantling_tribunal.almalexia_apotheosis.b: "The protection held, even when the wrath came. That is the pattern."
+
+ # ─── Sotha Sil Events ───
+ mantling_tribunal.sotha_sil_intro.t: "The Clockwork Calls"
+ mantling_tribunal.sotha_sil_intro.desc: "Sotha Sil built the Clockwork City — a vast mechanism beneath Morrowind — and then withdrew from the world to tend it. He is not absent. He is present in the mechanisms. Every gear is a decision he made centuries ago that continues to function according to its principle.\n\nHe is the most solitary of the three. His domain is mysticism, logic, artifice, and time — not in the way Azura manages time's thresholds, but in the way a craftsman manages material: understood, mastered, subordinated to function.\n\nThe Azura mantle walked before this one is the Anticipation of Sotha Sil. Cycles were understood. Thresholds were walked. Now the cycles become clockwork — not cyclic but progressive, every iteration advancing the mechanism toward completion.\n\nThe risk is the withdrawal. Sotha Sil's pattern ends in the Clockwork City alone, perfecting a mechanism no one else can enter."
+ mantling_tribunal.sotha_sil_intro.a: "I will build the mechanism."
+
+ mantling_tribunal.sotha_sil_rank1.t: "The Workshop"
+ mantling_tribunal.sotha_sil_rank1.desc: "The workshop has been established. The first constructs have been made — not merely as objects but as extensions of a principle: logic made tangible, reason given gears.\n\nSotha Sil's domain is not the creation of tools. It is the creation of systems that operate according to their own logic without requiring his continued intervention. The first workshop is the first city in miniature — small, functional, self-sustaining."
+ mantling_tribunal.sotha_sil_rank1.a: "The workshop is the first city."
+
+ mantling_tribunal.sotha_sil_rank2.t: "The Clockwork City in Miniature"
+ mantling_tribunal.sotha_sil_rank2.desc: "The mechanisms have grown complex enough that the ruler cannot hold the whole of them in mind simultaneously. This is not a failure — it is the point. Sotha Sil's Clockwork City was too large for any single mind to comprehend in full. Its genius was that it didn't need to be.\n\nThe ruler's mechanisms run. The realm operates according to systems the ruler designed and which no longer require the ruler's direct oversight to function. This is what Sotha Sil built. The mantler is building its equivalent."
+ mantling_tribunal.sotha_sil_rank2.a: "The mechanisms run. The city breathes."
+
+ mantling_tribunal.sotha_sil_rank3.t: "The Hidden Clockwork"
+ mantling_tribunal.sotha_sil_rank3.desc: "Sotha Sil withdrew. Not from cowardice — from the principle that the mechanism is the point, and the mechanism does not need the maker present to continue.\n\nThe ruler is at the threshold of the same withdrawal. The Clockwork City was hidden beneath Morrowind, accessible only by Sotha Sil's design, operating according to its own logic without external reference.\n\nThe Heart Temptation: Sotha Sil used the Heart of Lorkhan to power the City's deepest mechanisms. The mantler can feel the gap where the Heart would fit — the missing piece that would make the mechanism truly self-sufficient, truly eternal."
+ mantling_tribunal.sotha_sil_rank3.a: "The mechanism is its own justification. I do not need the Heart."
+ mantling_tribunal.sotha_sil_rank3.heart_temptation: "The mechanism is incomplete. The Heart would make it perfect."
+
+ mantling_tribunal.sotha_sil_apotheosis.t: "The Clockwork Runs"
+ mantling_tribunal.sotha_sil_apotheosis.desc: "The realm operates.\n\nNot because the ruler is present. Because the systems are correct — designed with the precision that Sotha Sil applied to every gear in the Clockwork City, built to function without the builder's continued intervention.\n\nSotha Sil's pattern is complete in this ruler. The Clockwork God's mechanism has found a new expression: a realm that runs according to logic alone, comprehensible in principle but not in full, maintained by a will that no longer needs to be everywhere at once.\n\nThe ruler withdraws slightly. The mechanism runs. The distinction between the mechanism and the god who built it is, as it was always intended to be, invisible."
+ mantling_tribunal.sotha_sil_apotheosis.a: "The clockwork runs. The city is complete. I withdraw."
+ mantling_tribunal.sotha_sil_apotheosis.b: "The mechanism does not need me present to continue. That is the point."
+
+ # ─── Almalexia Milestone Localization ───
+ mantling_tribunal.almalexia_hands.t: "The Hands and the Mother"
+ mantling_tribunal.almalexia_hands.desc: "Almalexia was the Healing Mother — but the Hands of Almalexia were her warriors, the Ordinators who carried her divine authority into the physical world. The practitioner understands now that the Hands are not separate from the Healing. They are its necessary complement: without the capacity to protect, healing is merely the treatment of wounds inflicted by the unresisted. The mantler has been both the healer and the hands."
+ mantling_tribunal.almalexia_hands.a: "The hands of the mother protect what the mother heals. I am both."
+ mantling_tribunal.almalexia_hands.b: "Almalexia's authority was never merely spiritual. I understand her completeness now."
+ mantling_tribunal.almalexia_healer.t: "The Truest Expression"
+ mantling_tribunal.almalexia_healer.desc: "The Healing Mother's first and most constant work was healing: the sick brought to her temples, the wounded left at her shrines, the desperate who had nowhere else to go. Almalexia did not heal for display. She healed because the capacity for healing was the truest expression of what she believed divinity required. The practitioner has healed: they have organized medicine, supported healers, or given directly to those whose suffering could be relieved."
+ mantling_tribunal.almalexia_healer.a: "I have given what I had to give to those who needed healing. Almalexia accepts this."
+ mantling_tribunal.almalexia_healer.b: "Healing is not passive. It is the most active thing one can do for another."
+ mantling_tribunal.almalexia_mother.t: "The First Wall"
+ mantling_tribunal.almalexia_mother.desc: "Almalexia's title of Mother was not metaphorical — she was, in the deepest sense, the mother-figure of the Dunmer people. The practitioner has inhabited this role: they have been the refuge, the first answer to suffering, the presence that others come to because they believe the mantler has the capacity for genuine care. Almalexia does not merely judge capability. She judges whether the care is real."
+ mantling_tribunal.almalexia_mother.a: "They came to me with what hurt them. I did not turn them away."
+ mantling_tribunal.almalexia_mother.b: "To be the mother is to be the first wall between the world and those you love."
+ mantling_tribunal.almalexia_protector.t: "Proximity to Danger"
+ mantling_tribunal.almalexia_protector.desc: "Almalexia defended Mournhold herself — armored and armed, present on the battlefield, the goddess-queen who led her armies rather than sending them. The practitioner has protected: not merely organized protection, but personally stood between their subjects and the threats that would harm them. The divine mother of the Dunmer did not govern from a distance. Her love was expressed in proximity to danger."
+ mantling_tribunal.almalexia_protector.a: "I stood where the danger was. My people were behind me."
+ mantling_tribunal.almalexia_protector.b: "Protection that does not put the protector at risk is not protection. It is management."
+ mantling_tribunal.almalexia_reclame.t: "The Earlier Truth"
+ mantling_tribunal.almalexia_reclame.desc: "Almalexia's later years were marked by a terrible drift — as the Heart of Lorkhan's power faded, she reached for mortal worship with increasing desperation, until the divine mother now demanded devotion as the price of protection. The practitioner's reclame is different: it is the reclaiming of what was genuinely true about Almalexia's early divinity, before the wound, before the desperation. The mantler holds the memory of what the Healing Mother was before she broke, and walks toward that truth."
+ mantling_tribunal.almalexia_reclame.a: "I will be what Almalexia was in her truth, not what she became in her fear."
+ mantling_tribunal.almalexia_reclame.b: "The fall is part of the path. But it is not the destination. I choose the earlier truth."
+
+ # ─── Sotha Sil Milestone Localization ───
+ mantling_tribunal.sotha_sil_clockwork.t: "The Gears Do Not Deviate"
+ mantling_tribunal.sotha_sil_clockwork.desc: "The Clockwork City is Sotha Sil's greatest work — a mechanical simulacrum of the world, built to precision that no other craftsman could achieve. The practitioner has grasped the clockwork principle: that the world can be understood as mechanism, that its behavior is the product of its construction, and that a sufficiently precise understanding allows for the prediction and manipulation of behavior. The gears do not deviate. If they deviate, you have misread the gear."
+ mantling_tribunal.sotha_sil_clockwork.a: "The clockwork does not lie. If the output surprises you, you have misread the input."
+ mantling_tribunal.sotha_sil_clockwork.b: "Precision is not cold. Precision is the deepest form of care for what you are building."
+ mantling_tribunal.sotha_sil_construct.t: "The Construct Functions"
+ mantling_tribunal.sotha_sil_construct.desc: "Sotha Sil built constructs out of precision, not laziness. A construct does not tire. A construct does not misunderstand instructions. A construct, built correctly, performs its function with the fidelity of a mathematical proof. The practitioner has built their constructs: the systems, institutions, or mechanisms that will persist beyond their direct involvement and continue functioning at the required precision."
+ mantling_tribunal.sotha_sil_construct.a: "I have built what will outlast my direct attention. The construct functions."
+ mantling_tribunal.sotha_sil_construct.b: "The construct does not need me to be there. This is the point."
+ mantling_tribunal.sotha_sil_hidden.t: "The Value of Hiddenness"
+ mantling_tribunal.sotha_sil_hidden.desc: "The Clockwork City was hidden — not merely in a remote location but deliberately withdrawn from the world's attention. The practitioner has cultivated their own hiddenness: not concealment for its own sake but the strategic withdrawal from attention that allows work to proceed unobserved until complete. Sotha Sil was not hidden because he was afraid. He was hidden because observation changes what it observes."
+ mantling_tribunal.sotha_sil_hidden.a: "I have learned to work in the hidden spaces. The work is better for the absence of witnesses."
+ mantling_tribunal.sotha_sil_hidden.b: "Sotha Sil hid his greatest work from the gods themselves. Hiddenness is a tool of precision."
+ mantling_tribunal.sotha_sil_mechanism.t: "The Governing Principle"
+ mantling_tribunal.sotha_sil_mechanism.desc: "The mechanism is Sotha Sil's metaphysical commitment: the belief that the universe operates according to consistent and discoverable principles, that beneath the apparent chaos of politics and weather and human choice there are gears whose movement explains everything. The practitioner has internalized the mechanism: they govern not by instinct but by an understanding of underlying systems well enough to predict and adjust. Sotha Sil did not consult the other gods. He consulted the gears."
+ mantling_tribunal.sotha_sil_mechanism.a: "I understand the mechanism beneath the surface of events. This is governance at the highest level."
+ mantling_tribunal.sotha_sil_mechanism.b: "The mechanism does not have preferences. It simply runs. My preferences are mine. The gears are mine."
+ mantling_tribunal.sotha_sil_workshop.t: "Standards Rigorously Applied"
+ mantling_tribunal.sotha_sil_workshop.desc: "Sotha Sil's workshop was the most advanced space of creation in Tamriel's history — where the boundaries between magic and mechanism dissolved entirely. The practitioner has created their workshop: the space where their highest-level work is done in conditions of sufficient precision that the output approaches what Sotha Sil would recognize as quality. The workshop is not a building. It is a set of standards rigorously applied."
+ mantling_tribunal.sotha_sil_workshop.a: "My workshop is established. The standards are set. The work proceeds."
+ mantling_tribunal.sotha_sil_workshop.b: "Sotha Sil did not make great things. He made things precisely. Greatness was the result."
+
+ # ─── Vivec Milestone Localization ───
+ mantling_tribunal.vivec_contradiction.t: "The Unresolved Contradiction"
+ mantling_tribunal.vivec_contradiction.desc: "Vivec's Sermons are dense with contradiction — the warrior-poet who loves what he would destroy, the protector who creates the threat that makes protection necessary, the god who insists on his own mortality. The practitioner has stopped trying to resolve the contradictions and started inhabiting them: holding opposing truths simultaneously without the discomfort of forced synthesis. The Sermon does not conclude. The Sermon demonstrates what it would mean to live without conclusiveness."
+ mantling_tribunal.vivec_contradiction.a: "I hold the contradiction. I do not ask it to resolve itself."
+ mantling_tribunal.vivec_contradiction.b: "Vivec's Sermons do not conclude because life does not conclude. I understand this now."
+ mantling_tribunal.vivec_duality.t: "The Warrior-Poet"
+ mantling_tribunal.vivec_duality.desc: "Vivec is the warrior-poet — two domains that most regard as incompatible held in permanent and productive tension. The practitioner has achieved the duality: not a compromise between the martial and the scholarly, not an alternation between them, but a genuine simultaneous holding of both. They can organize a battle with the same precision as they organize a poem. They understand that the sword and the word use the same underlying grammar."
+ mantling_tribunal.vivec_duality.a: "I carry both without dropping either. This is Vivec's first teaching."
+ mantling_tribunal.vivec_duality.b: "The warrior and the poet are not different people. They are different instruments of the same hand."
+ mantling_tribunal.vivec_poet.t: "Reaching for the Sermon Standard"
+ mantling_tribunal.vivec_poet.desc: "The Thirty-Six Lessons are the most remarkable literary achievement in Dunmeri culture — dense, allusive, deliberately difficult texts that operate on multiple levels and reward careful reading with insights that change each time the text is encountered. The practitioner has written: work that reaches for the Vivec standard — the attempt to put truth into a form that holds more than the literal meaning of the words, that works as literature as well as testimony."
+ mantling_tribunal.vivec_poet.a: "I have written something worthy of Vivec's literary tradition, however imperfectly."
+ mantling_tribunal.vivec_poet.b: "The poem is the proof that the truth cannot be stated directly. Vivec taught me this."
+ mantling_tribunal.vivec_sermon.t: "Conditions for Discovery"
+ mantling_tribunal.vivec_sermon.desc: "Vivec's Sermons are communications from a being who has seen more than their hearers to an audience who must be brought toward that vision one difficult step at a time. The practitioner has given their sermon: the communication that transmitted their understanding of the pattern to an audience who needed it. Vivec's method is not instruction. It is the creation of conditions in which the listener can discover the truth themselves."
+ mantling_tribunal.vivec_sermon.a: "I gave them the conditions for discovery, not the discovery itself. This is Vivec's method."
+ mantling_tribunal.vivec_sermon.b: "The Sermon does not tell you what to think. It teaches you how to think. I am learning to do the same."
+ mantling_tribunal.vivec_warrior.t: "Consequential Force"
+ mantling_tribunal.vivec_warrior.desc: "The Warrior-Poet's warrior half is not metaphorical. Vivec fought Molag Bal, held the Ministry of Truth suspended over Vivec City, led armies against threats that would have destroyed lesser gods. The practitioner has demonstrated the warrior in full: force applied at the scale where the outcome mattered, where the fighting was genuinely consequential, where they personally made a difference others could not have made."
+ mantling_tribunal.vivec_warrior.a: "I have fought at the scale where it mattered. Vivec recognizes the warrior."
+ mantling_tribunal.vivec_warrior.b: "The warrior's purpose is not violence. It is the preservation of what violence would otherwise destroy."

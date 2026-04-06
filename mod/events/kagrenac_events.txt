@@ -352,6 +352,8 @@ kagrenac.030 = {
         remove_character_flag = sunder_found
         remove_character_flag = keening_found
         remove_character_flag = wraithguard_found
+        # Notify all other nerevarine_marked vessels — they are False Incarnates
+        trigger_event = { id = nerevarine.330 days = 3 }
     }
 
     # ---------------------------------------------------------------

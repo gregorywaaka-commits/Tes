@@ -260,9 +260,10 @@ dagoth_ur.020 = {
 
 # ---------------------------------------------------------------
 # dagoth_ur.030  Azura's Call: The Nerevarine Prophecy
-# Fires for Dunmer rulers who hold the azura_champion trait
-# once Dagoth Ur has awakened.  Azura foretold that one of
-# Nerevar's blood would return to end Dagoth Ur's threat.
+# Fires for rulers who hold the azura_champion trait once Dagoth Ur
+# has awakened.  Azura foretold that Nerevar's soul would return to
+# end Dagoth Ur's threat.  Race does not gatekeep this — the soul
+# of Nerevar may reincarnate into any mortal flesh (§21).
 # Only fires once per character.
 # ---------------------------------------------------------------
 dagoth_ur.030 = {
@@ -273,22 +274,40 @@ dagoth_ur.030 = {
 
     trigger = {
         has_trait  = azura_champion
-        has_culture = dunmer_culture
+        # §21: Race-agnostic — Nerevar's soul reincarnates regardless of race
         is_ruler   = yes
         dagoth_ur_awakened = yes
         NOT = { has_character_flag = nerevarine_prophecy_heard }
+        # §19.11: A living heart_fused_ascendant ruler suppresses the
+        # Nerevarine prophecy by +3 years for nearby Dunmer — the Heart's
+        # corruption emanating from them muffles Azura's prophetic signal.
+        # borrowed_divinity.081 sets this flag (1095-day window).
+        NOT = { has_character_flag = fused_suppresses_prophecy }
     }
 
     option = {
         name = dagoth_ur.030.a   # "I am the Nerevarine. I will face what the Tribunal cannot."
         add_character_flag = { flag = nerevarine_prophecy_heard }
         add_trait    = nerevarine_marked
+        # §21: Track active spirit count
+        if = {
+            limit = { NOT = { exists = global_var:active_nerevarine_spirit_count } }
+            set_global_variable = { name = active_nerevarine_spirit_count value = 0 }
+        }
+        change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
         add_character_modifier = {
             modifier = dagoth_ur_champion_modifier
             days = 3650    # 10-year window to confront Dagoth Ur
         }
         add_prestige = 500
         add_piety    = 300
+        # §21: Outlander Nerevarine event for non-Dunmer
+        if = {
+            limit = { NOT = { has_culture = dunmer_culture } }
+            trigger_event = { id = nerevarine.300 days = 3 }
+        }
+        # §21: Vision of past incarnations for all
+        trigger_event = { id = nerevarine.310 days = 7 }
         custom_tooltip = nerevarine_path_begin_tt
     }
 

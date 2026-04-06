@@ -211,3 +211,482 @@ mantling_talos.milestone_throne_check = {
 
     option = { name = "OK" }
 }
+
+# ---------------------------------------------------------------
+# mantling_talos.milestone_mercy
+# Visible event: ruler showed mercy at the moment of total victory.
+# ---------------------------------------------------------------
+mantling_talos.milestone_mercy = {
+    type = character_event
+    title = mantling_talos.milestone_mercy.t
+    desc = mantling_talos.milestone_mercy.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_mantling_talos_active
+        NOT = { has_character_flag = ww_mantling_talos_milestone_mercy }
+        OR = {
+            has_trait = compassionate
+            piety >= 200
+        }
+        martial >= 14
+    }
+
+    option = {
+        name = mantling_talos.milestone_mercy.a
+        set_character_flag = ww_mantling_talos_milestone_mercy
+        add_piety = 125
+        add_prestige = 100
+    }
+
+    option = {
+        name = mantling_talos.milestone_mercy.b
+        set_character_flag = ww_mantling_talos_milestone_mercy
+        add_prestige = 150
+        add_stress = -15
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.milestone_wound
+# Visible event: ruler has carried the cost of campaigns.
+# ---------------------------------------------------------------
+mantling_talos.milestone_wound = {
+    type = character_event
+    title = mantling_talos.milestone_wound.t
+    desc = mantling_talos.milestone_wound.desc
+    theme = intrigue
+
+    trigger = {
+        has_character_flag = ww_mantling_talos_active
+        NOT = { has_character_flag = ww_mantling_talos_milestone_wound }
+        martial >= 14
+        years_as_ruler >= 5
+    }
+
+    option = {
+        name = mantling_talos.milestone_wound.a
+        set_character_flag = ww_mantling_talos_milestone_wound
+        add_prestige = 125
+        add_stress = -15
+    }
+
+    option = {
+        name = mantling_talos.milestone_wound.b
+        set_character_flag = ww_mantling_talos_milestone_wound
+        add_prestige = 100
+        add_martial_xp = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.wulf_encounter
+#
+# The Avatar of Talos appears as an aged legionnaire — Wulf —
+# and offers the lucky coin to rulers walking the Talos path or
+# bearing the nerevarine_marked trait, while dagoth_ur_awakened.
+#
+# Lore conditions (UESP canon):
+#   - Only appears during the pivotal Dagoth Ur crisis window
+#   - Grants "Luck of the Emperor" blessing (lucky coin)
+#   - Lalatia Varian, Imperial Cult oracle, later confirms
+#     the encounter's divine nature
+#   - If the ruler also has nerevarine_marked, cross-event fires
+#   - No one else at Ghostgate can perceive Wulf — he is divine
+#   - His name evokes Ysmir Wulfharth, one of the three souls
+#     that composed Talos's Oversoul
+#
+# TIMELINE SCENARIOS — see WALKING_WAYS_DESIGN.md §17.2a-i for full notes:
+#
+#   Scenario A: Pre-Dagoth awakening (EK2 base 2E 440–882)
+#     → A separate "harbinger" variant should fire when dagoth_ur_awakened
+#       is NOT set but ww_talos_rank >= 3.  Trigger: wulf_harbinger.
+#     → Lalatia oracle does NOT fire pre-2E 854 (no Ebonheart chapel yet).
+#
+#   Scenario B: Canonical Nerevarine dead; nerevarine_shadow holds prophecy
+#     → Extend the OR block in this trigger to include nerevarine_shadow.
+#     → Use heavier "broken lineage" flavour text variant for shadow bearers.
+#
+#   Scenario C: Dagoth awakened early (divergent timeline)
+#     → No date guard needed on the encounter itself.
+#     → Lalatia oracle follow-up gated by current_date >= 2.854.1.1 OR
+#       Imperial culture presence in Morrowind county.
+#
+#   Shared invariant across ALL scenarios:
+#     → wulf_visited flag ensures one appearance per character (ever).
+#     → dagoth_ur_defeated must NOT be set — crisis window must be open.
+#
+# [SOURCE: TES III: Morrowind quest "A Lucky Coin";
+#  UESP Lore:Wulf; Oracle Lalatia Varian dialogue;
+#  WALKING_WAYS_DESIGN.md §17.2a-i]
+# ---------------------------------------------------------------
+mantling_talos.wulf_encounter = {
+    type = character_event
+    title = mantling_talos.wulf_encounter.t
+    desc  = mantling_talos.wulf_encounter.desc
+    theme = faith
+
+    trigger = {
+        OR = {
+            has_character_flag = ww_mantling_talos_active
+            has_trait = nerevarine_marked
+        }
+        has_global_flag = dagoth_ur_awakened
+        NOT = { has_character_flag = wulf_visited }
+        NOT = { has_character_flag = wulf_encounter_seen }
+        # Only the FIRST walker triggers this event.
+        # Successors (talos_broken_count >= 1) get wulf_encounter_successor instead.
+        OR = {
+            NOT = { exists = global_var:talos_broken_count }
+            global_var:talos_broken_count < 1
+        }
+        OR = {
+            martial >= 14
+            has_trait = nerevarine_marked
+        }
+    }
+
+    option = {
+        # Accept the coin
+        name = mantling_talos.wulf_encounter.a
+        set_character_flag = wulf_visited
+        set_character_flag = wulf_encounter_seen
+        add_trait = wulf_blessed
+        add_character_modifier = {
+            modifier = luck_of_the_emperor
+            years = 10
+        }
+        if = {
+            limit = { has_character_flag = ww_mantling_talos_active }
+            set_character_flag = ww_mantling_talos_milestone_shezarrine
+        }
+        if = {
+            limit = { has_trait = nerevarine_marked }
+            set_character_flag = nerevarine_talos_blessed
+        }
+        trigger_event = { id = mantling_talos.lalatia_oracle days = 30 }
+        add_prestige = 200
+        add_piety = 100
+    }
+
+    option = {
+        # Decline the coin
+        name = mantling_talos.wulf_encounter.b
+        set_character_flag = wulf_encounter_seen
+        add_stress = -10
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.lalatia_oracle
+#
+# Oracle Lalatia Varian of the Imperial Cult contacts the ruler
+# having heard reports of their encounter with the old veteran.
+# She recognises what they saw: the face of Tiber Septim on the
+# emperor's coins, walking among the living.
+#
+# [SOURCE: TES III: Morrowind; Lalatia Varian dialogue;
+#  UESP Lore:Wulf — "Lalatia recognises it as a sign of doom"]
+# ---------------------------------------------------------------
+mantling_talos.lalatia_oracle = {
+    type = character_event
+    title = mantling_talos.lalatia_oracle.t
+    desc  = mantling_talos.lalatia_oracle.desc
+    theme = faith
+
+    option = {
+        name = mantling_talos.lalatia_oracle.a
+        add_character_modifier = {
+            modifier = lalatia_recognition
+            years = 5
+        }
+        add_piety = 150
+    }
+
+    option = {
+        name = mantling_talos.lalatia_oracle.b
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.path_broken
+#
+# A character was walking the Talos path and died before completing
+# it.  The Oversoul fragment disperses.  Lore: Talos is composite —
+# Tiber Septim, Hjalti Early-Beard, Ysmir Wulfharth all contributed
+# to the oversoul.  A successor may resume the walk.
+# [SOURCE: UESP Lore:Talos; UESP Lore:Wulfharth; 36 Lessons of Vivec]
+# ---------------------------------------------------------------
+mantling_talos.path_broken = {
+    type = character_event
+    title = mantling_talos.path_broken.t
+    desc  = mantling_talos.path_broken.desc
+    theme = faith
+
+    option = {
+        name = mantling_talos.path_broken.a
+        # The path can be resumed — no mechanical penalty, but the world knows
+        add_prestige = -50
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.throne_vacant
+#
+# A character who achieved full mantle_talos has died.  A god does
+# not simply cease.  Their divine presence persists — the Talos
+# throne is occupied.  No new mortal may claim the full mantle;
+# successors become Aspects only.
+# [SOURCE: UESP Lore:Talos as a Divine; TES II/III/IV/V canonical
+#  treatment of the Nine Divines as persistent]
+# ---------------------------------------------------------------
+mantling_talos.throne_vacant = {
+    type = character_event
+    title = mantling_talos.throne_vacant.t
+    desc  = mantling_talos.throne_vacant.desc
+    theme = faith
+
+    option = {
+        name = mantling_talos.throne_vacant.a
+        # Throne is occupied — successors can only become Aspects
+        add_piety = 100
+        add_prestige = 50
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.wulf_encounter_successor
+#
+# A successor mantler — continuing a path someone else began —
+# receives the Wulf encounter.  The Luck of the Emperor flows to
+# those who persist, not only those who first attempted.
+# Triggered instead of wulf_encounter when talos_broken_count >= 1.
+#
+# See also: WALKING_WAYS_DESIGN.md §17.2a-i for full scenario notes
+# (pre-Dagoth harbinger, nerevarine_shadow succession, early awakening).
+# ---------------------------------------------------------------
+mantling_talos.wulf_encounter_successor = {
+    type = character_event
+    title = mantling_talos.wulf_encounter_successor.t
+    desc  = mantling_talos.wulf_encounter_successor.desc
+    theme = faith
+
+    trigger = {
+        OR = {
+            has_character_flag = ww_mantling_talos_active
+            has_trait = nerevarine_marked
+        }
+        has_global_flag = dagoth_ur_awakened
+        exists = global_var:talos_broken_count
+        global_var:talos_broken_count >= 1
+        NOT = { has_character_flag = wulf_visited }
+        NOT = { has_character_flag = wulf_encounter_seen }
+    }
+
+    option = {
+        name = mantling_talos.wulf_encounter_successor.a
+        set_character_flag = wulf_visited
+        set_character_flag = wulf_encounter_seen
+        # Successor cannot achieve full mantle_talos if throne is occupied;
+        # they receive Aspect status instead when they complete the path.
+        if = {
+            limit = { NOT = { has_global_flag = talos_throne_occupied } }
+            add_trait = wulf_blessed
+            add_character_modifier = {
+                modifier = luck_of_the_emperor
+                years = 10
+            }
+            if = {
+                limit = { has_character_flag = ww_mantling_talos_active }
+                set_character_flag = ww_mantling_talos_milestone_shezarrine
+            }
+        }
+        if = {
+            limit = { has_global_flag = talos_throne_occupied }
+            add_trait = talos_aspect
+            add_character_modifier = {
+                modifier = luck_of_the_emperor
+                years = 5
+            }
+        }
+        if = {
+            limit = { has_trait = nerevarine_marked }
+            set_character_flag = nerevarine_talos_blessed
+        }
+        trigger_event = { id = mantling_talos.lalatia_oracle days = 30 }
+        add_prestige = 150
+        add_piety = 75
+    }
+
+    option = {
+        name = mantling_talos.wulf_encounter_successor.b
+        set_character_flag = wulf_encounter_seen
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.aspect_dies_notify  FRAGMENT DISPERSAL
+#
+# A fellow walker of the Talos path has died before completing
+# it.  Their Oversoul fragment disperses — and some of it finds
+# you.  You feel it as a warmth, a weight, a word that you
+# almost recognise.
+#
+# This event fires to every SURVIVING active walker when any
+# peer dies mid-path.  The recipient checks whether they are
+# now the sole remaining walker.  If so, the sole-heir event
+# fires instead of granting only the smaller fragment bonus.
+#
+# [SOURCE: The Arcturian Heresy — when Wulfharth was consumed
+#  by Numidium, his Ysmir-pattern fed the composite Tiber Septim.
+#  When Arctus's soul was crushed into the Mantella, that fragment
+#  likewise contributed to the Oversoul Talos inherited.
+#  Survival of one aspect-holder is lore-canonical.]
+# ---------------------------------------------------------------
+mantling_talos.aspect_dies_notify = {
+    type  = character_event
+    title = mantling_talos.aspect_dies_notify.t
+    desc  = mantling_talos.aspect_dies_notify.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_mantling_talos_active
+    }
+
+    immediate = {
+        # If we are now the sole remaining walker, escalate to the sole-heir event.
+        if = {
+            limit = {
+                NOT = {
+                    any_ruler = {
+                        is_alive = yes
+                        has_character_flag = ww_mantling_talos_active
+                        NOT = { this = root }
+                    }
+                }
+            }
+            trigger_event = { id = mantling_talos.sole_heir_ascendant days = 1 }
+        }
+    }
+
+    # Option A — Accept the weight of the fallen pattern
+    option = {
+        name = mantling_talos.aspect_dies_notify.a
+        trigger = {
+            NOT = {
+                any_ruler = {
+                    is_alive = yes
+                    has_character_flag = ww_mantling_talos_active
+                    NOT = { this = root }
+                }
+            }
+        }
+        # Sole heir branch — small preview before sole_heir_ascendant fires
+        add_prestige = 75
+        add_stress  = 5
+    }
+
+    # Option B — for walkers with peers still alive (fragment absorbed, others remain)
+    option = {
+        name = mantling_talos.aspect_dies_notify.b
+        trigger = {
+            any_ruler = {
+                is_alive = yes
+                has_character_flag = ww_mantling_talos_active
+                NOT = { this = root }
+            }
+        }
+        add_prestige = 50
+        add_stress   = 5
+        add_character_modifier = {
+            modifier = ww_aspect_fragment_absorbed
+            years    = 15
+        }
+        # Absorbing a fragment accelerates pattern recognition — grant a bonus milestone
+        if = {
+            limit = { NOT = { has_character_flag = ww_mantling_talos_milestone_fragment_absorbed } }
+            set_character_flag = ww_mantling_talos_milestone_fragment_absorbed
+            change_variable = { name = ww_mantling_talos_milestones add = 1 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# mantling_talos.sole_heir_ascendant  THE LAST WALKER
+#
+# All other concurrent walkers of the Talos path are gone.
+# This character is now the only living vessel of the
+# Oversoul's potential.  The road is uncontested.  The full
+# composite weight of the pattern — Hjalti, Wulfharth, Arctus
+# — settles on a single set of shoulders.
+#
+# Mechanical effect: grants talos_sole_heir modifier (stronger
+# stat boost, no-decay assurance) and a free milestone
+# representing the absorbed fragments.  The mantle is still
+# not automatic — Rank 4 must be reached through play.
+#
+# DESIGN NOTE: This is the lore outcome of The Arcturian Heresy.
+# Tiber Septim became Talos because he was the last surviving
+# vessel after Wulfharth and Arctus fell.  The "sole heir"
+# advantage is therefore canon, not a mechanical shortcut.
+# [SOURCE: The Arcturian Heresy; UESP Lore:Tiber Septim]
+# ---------------------------------------------------------------
+mantling_talos.sole_heir_ascendant = {
+    type  = character_event
+    title = mantling_talos.sole_heir_ascendant.t
+    desc  = mantling_talos.sole_heir_ascendant.desc
+    theme = martial
+
+    trigger = {
+        has_character_flag = ww_mantling_talos_active
+        NOT = {
+            any_ruler = {
+                is_alive = yes
+                has_character_flag = ww_mantling_talos_active
+                NOT = { this = root }
+            }
+        }
+    }
+
+    immediate = {
+        # Remove fragment modifier if held; sole_heir supersedes it
+        if = {
+            limit = { has_character_modifier = ww_aspect_fragment_absorbed }
+            remove_character_modifier = ww_aspect_fragment_absorbed
+        }
+        add_character_modifier = {
+            modifier = talos_sole_heir
+            years    = 100     # effectively permanent for the path duration
+        }
+        # Grant two bonus milestones representing Wulfharth + Arctus absorption
+        # (capped: won't exceed 6 to avoid skipping rank gates improperly)
+        if = {
+            limit = { NOT = { has_character_flag = ww_mantling_talos_milestone_fragment_absorbed } }
+            set_character_flag = ww_mantling_talos_milestone_fragment_absorbed
+            change_variable = { name = ww_mantling_talos_milestones add = 1 }
+        }
+        if = {
+            limit = {
+                var:ww_mantling_talos_milestones < 6
+                NOT = { has_character_flag = ww_mantling_talos_milestone_second_fragment } }
+            set_character_flag = ww_mantling_talos_milestone_second_fragment
+            change_variable = { name = ww_mantling_talos_milestones add = 1 }
+        }
+    }
+
+    option = {
+        name = mantling_talos.sole_heir_ascendant.a   # "The road is mine alone."
+        add_prestige = 200
+        add_piety    = 75
+        add_stress   = -20
+    }
+
+    option = {
+        name = mantling_talos.sole_heir_ascendant.b   # "I carry them. I do not become them."
+        add_prestige = 150
+        add_stress   = -30
+    }
+}

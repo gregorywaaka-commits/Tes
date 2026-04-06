@@ -301,3 +301,60 @@ psijic_endeavour.time_witnessed = {
         add_piety = 50
     }
 }
+
+# ─── Milestone Events ───
+
+psijic_endeavour.milestone_prediction = {
+    type = character_event
+    title = psijic_endeavour.milestone_prediction.t
+    desc = psijic_endeavour.milestone_prediction.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_psijic_endeavour_active
+        NOT = { has_character_flag = ww_psijic_milestone_prediction }
+        learning >= 18
+    }
+
+    option = {
+        name = psijic_endeavour.milestone_prediction.a
+        set_character_flag = ww_psijic_milestone_prediction
+        add_learning_xp = 200
+        add_stress = -20
+    }
+
+    option = {
+        name = psijic_endeavour.milestone_prediction.b
+        set_character_flag = ww_psijic_milestone_prediction
+        add_piety = 100
+        add_prestige = 75
+    }
+}
+
+psijic_endeavour.milestone_text = {
+    type = character_event
+    title = psijic_endeavour.milestone_text.t
+    desc = psijic_endeavour.milestone_text.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_psijic_endeavour_active
+        NOT = { has_character_flag = ww_psijic_milestone_text }
+        learning >= 16
+        has_character_flag = ww_psijic_milestone_prediction
+    }
+
+    option = {
+        name = psijic_endeavour.milestone_text.a
+        set_character_flag = ww_psijic_milestone_text
+        add_learning_xp = 250
+        add_piety = 100
+    }
+
+    option = {
+        name = psijic_endeavour.milestone_text.b
+        set_character_flag = ww_psijic_milestone_text
+        add_prestige = 100
+        add_stress = -15
+    }
+}

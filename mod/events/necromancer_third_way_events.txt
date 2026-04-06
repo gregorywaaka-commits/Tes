@@ -1,0 +1,354 @@
+# =============================================================
+#  The Walking Ways — Path L: Necromancer's Third Way
+#  Namespace: necromancer_third_way
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  necromancer_third_way.intro      — Path chosen
+#  necromancer_third_way.rank1      — Seeking (Arkay defied, Mannimarco rejected)
+#  necromancer_third_way.rank2      — Striving (death taxonomy, Ideal Masters refused)
+#  necromancer_third_way.rank3      — Threshold (30% soul-unmooring risk)
+#  necromancer_third_way.apotheosis — Apotheosis: Death Sovereign
+#  necromancer_third_way.unmoored   — Failure: soul partially dissociated
+#
+#  LORE BASIS:
+#  ───────────
+#  Independent necromancers existed in Tamriel outside the Worm Cult
+#  and the Ideal Masters' framework — this is confirmed by UESP and
+#  the Order of the Black Worm lore pages. Such practitioners were
+#  hunted by both Mannimarco (who viewed unsanctioned necromancy as
+#  apostasy and competition) and mainstream society.
+#  The Third Way rejects both established necromantic hierarchies:
+#  — Worm Apotheosis (Path I): Mannimarco's road, requires cult doctrine
+#  — Ideal Masters path: the Soul Cairn bargain, leads to dissolution
+#  The Third Way practitioner studies death as a domain to be governed
+#  on entirely original terms. The apex — death_sovereign — is not the
+#  god of necromancy. It is something newer and stranger.
+#  [SOURCE: CANON — UESP Lore:Mannimarco; UESP Lore:Order of the Black Worm;
+#   UESP Lore:Ideal Masters; UESP Lore:Soul Cairn]
+# =============================================================
+
+namespace = necromancer_third_way
+
+# ═══════════════════════════════════════════════════════════════
+#  NECROMANCER'S THIRD WAY — I OWE NO MASTER
+# ═══════════════════════════════════════════════════════════════
+
+necromancer_third_way.intro = {
+    type = character_event
+    title = necromancer_third_way.intro.t
+    desc  = necromancer_third_way.intro.desc
+    theme = learning
+
+    trigger = {
+        is_on_necromancer_third_way_path = yes
+    }
+
+    option = {
+        name = necromancer_third_way.intro.a   # "I will not be Mannimarco's footnote. I will not be the Ideal Masters' harvest."
+        add_stress = 20
+        add_character_modifier = {
+            modifier = ww_path_necromancer_third_way_active
+            years = 100
+        }
+    }
+}
+
+necromancer_third_way.rank1 = {
+    type = character_event
+    title = necromancer_third_way.rank1.t
+    desc  = necromancer_third_way.rank1.desc
+    theme = learning
+
+    trigger = {
+        is_on_necromancer_third_way_path = yes
+        var:ww_necromancer_third_way_rank >= 1
+    }
+
+    option = {
+        name = necromancer_third_way.rank1.a   # "Arkay's cycle is not a law. It is a habit. I found a different approach."
+        add_learning_xp = 200
+        add_stress = 15
+    }
+
+    option = {
+        name = necromancer_third_way.rank1.b   # "The Worm Cult recruitment came. I refused with sufficient clarity that they will not ask again."
+        add_prestige = 100
+        add_intrigue_xp = 150
+        add_stress = 5
+    }
+}
+
+necromancer_third_way.rank2 = {
+    type = character_event
+    title = necromancer_third_way.rank2.t
+    desc  = necromancer_third_way.rank2.desc
+    theme = learning
+
+    trigger = {
+        is_on_necromancer_third_way_path = yes
+        var:ww_necromancer_third_way_rank >= 2
+    }
+
+    option = {
+        name = necromancer_third_way.rank2.a   # "The codex is mine. No master's doctrine. No borrowed framework."
+        add_learning_xp = 250
+        add_prestige = 125
+        add_stress = 10
+    }
+
+    option = {
+        name = necromancer_third_way.rank2.b   # "The Ideal Masters offered. I declined. They did not persist."
+        add_learning_xp = 200
+        add_intrigue_xp = 100
+        add_piety = 20   # Rejecting the Soul Cairn pleases Arkay's faithful — briefly
+        add_stress = 5
+    }
+}
+
+necromancer_third_way.rank3 = {
+    type = character_event
+    title = necromancer_third_way.rank3.t
+    desc  = necromancer_third_way.rank3.desc
+    theme = learning
+
+    option = {
+        name = necromancer_third_way.rank3.a   # "I stood at the boundary. Death looked back. Neither of us flinched."
+        add_learning_xp = 300
+        add_prestige = 200
+        add_stress = 25
+    }
+}
+
+necromancer_third_way.apotheosis = {
+    type = character_event
+    title = necromancer_third_way.apotheosis.t
+    desc  = necromancer_third_way.apotheosis.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_necromancer_third_way_active
+        var:ww_necromancer_third_way_rank >= 4
+        NOT = { has_character_flag = ww_necromancer_third_way_completed }
+        NOT = { has_character_flag = ww_third_way_unmoored }
+    }
+
+    immediate = {
+        complete_path_necromancer_third_way = yes
+    }
+
+    option = {
+        name = necromancer_third_way.apotheosis.a   # "I am sovereign over my own ending. No cult. No masters. My own terms."
+        add_prestige = 500
+        add_learning_xp = 400
+        add_stress = -25
+    }
+
+    option = {
+        name = necromancer_third_way.apotheosis.b   # "Something new has been added to the taxonomy of death. My name is in it."
+        add_prestige = 450
+        add_piety = -50   # Arkay's clergy take note
+        add_dread = 10
+    }
+}
+
+necromancer_third_way.unmoored = {
+    type = character_event
+    title = necromancer_third_way.unmoored.t
+    desc  = necromancer_third_way.unmoored.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_third_way_unmoored
+        has_character_flag = ww_necromancer_third_way_active
+    }
+
+    immediate = {
+        remove_trait = walking_ways_seeker
+        clear_all_ww_active_flags = yes
+        remove_variable = ww_necromancer_third_way_rank
+        remove_variable = ww_necromancer_third_way_milestones
+        remove_character_flag = ww_third_way_unmoored
+        add_trait = lich_essence   # stumbled into near-death survival as a side-effect
+        add_character_modifier = {
+            modifier = soul_unmoored
+            years = 30
+        }
+    }
+
+    option = {
+        name = necromancer_third_way.unmoored.a   # "No framework. No precedent. Just the raw consequence of standing at the boundary."
+        add_stress = 40
+        add_learning_xp = 300
+        # The failure taught them why a framework exists — they may now pursue worm_apotheosis
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  NECROMANCER THIRD WAY MILESTONE EVENTS
+# ═══════════════════════════════════════════════════════════════
+
+necromancer_third_way.milestone_arkay_defied = {
+    type = character_event
+    title = necromancer_third_way.milestone_arkay_defied.t
+    desc = necromancer_third_way.milestone_arkay_defied.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_necromancer_third_way_active
+        NOT = { has_character_flag = ww_third_way_milestone_arkay_defied }
+        learning >= 12
+        prestige >= 100
+    }
+
+    option = {
+        name = necromancer_third_way.milestone_arkay_defied.a
+        set_character_flag = ww_third_way_milestone_arkay_defied
+        add_learning_xp = 150
+        add_piety = -25
+    }
+    option = {
+        name = necromancer_third_way.milestone_arkay_defied.b
+        set_character_flag = ww_third_way_milestone_arkay_defied
+        add_learning_xp = 125
+        add_prestige = 75
+    }
+}
+
+necromancer_third_way.milestone_boundary = {
+    type = character_event
+    title = necromancer_third_way.milestone_boundary.t
+    desc = necromancer_third_way.milestone_boundary.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_necromancer_third_way_active
+        NOT = { has_character_flag = ww_third_way_milestone_boundary }
+        learning >= 16
+        prestige >= 150
+    }
+
+    option = {
+        name = necromancer_third_way.milestone_boundary.a
+        set_character_flag = ww_third_way_milestone_boundary
+        add_learning_xp = 200
+        add_stress = -20
+    }
+    option = {
+        name = necromancer_third_way.milestone_boundary.b
+        set_character_flag = ww_third_way_milestone_boundary
+        add_learning_xp = 175
+        add_prestige = 75
+    }
+}
+
+necromancer_third_way.milestone_death_taxonomy = {
+    type = character_event
+    title = necromancer_third_way.milestone_death_taxonomy.t
+    desc = necromancer_third_way.milestone_death_taxonomy.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_necromancer_third_way_active
+        NOT = { has_character_flag = ww_third_way_milestone_death_taxonomy }
+        learning >= 18
+        stewardship >= 12
+    }
+
+    option = {
+        name = necromancer_third_way.milestone_death_taxonomy.a
+        set_character_flag = ww_third_way_milestone_death_taxonomy
+        add_learning_xp = 225
+        add_prestige = 100
+    }
+    option = {
+        name = necromancer_third_way.milestone_death_taxonomy.b
+        set_character_flag = ww_third_way_milestone_death_taxonomy
+        add_learning_xp = 200
+        add_stress = -15
+    }
+}
+
+necromancer_third_way.milestone_ideal_masters_refused = {
+    type = character_event
+    title = necromancer_third_way.milestone_ideal_masters_refused.t
+    desc = necromancer_third_way.milestone_ideal_masters_refused.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_necromancer_third_way_active
+        NOT = { has_character_flag = ww_third_way_milestone_ideal_masters_refused }
+        learning >= 14
+        OR = {
+            piety >= 150
+            prestige >= 200
+        }
+    }
+
+    option = {
+        name = necromancer_third_way.milestone_ideal_masters_refused.a
+        set_character_flag = ww_third_way_milestone_ideal_masters_refused
+        add_learning_xp = 175
+        add_piety = 75
+    }
+    option = {
+        name = necromancer_third_way.milestone_ideal_masters_refused.b
+        set_character_flag = ww_third_way_milestone_ideal_masters_refused
+        add_prestige = 100
+        add_learning_xp = 150
+    }
+}
+
+necromancer_third_way.milestone_mannimarco_rejected = {
+    type = character_event
+    title = necromancer_third_way.milestone_mannimarco_rejected.t
+    desc = necromancer_third_way.milestone_mannimarco_rejected.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_necromancer_third_way_active
+        NOT = { has_character_flag = ww_third_way_milestone_mannimarco_rejected }
+        learning >= 14
+        prestige >= 150
+    }
+
+    option = {
+        name = necromancer_third_way.milestone_mannimarco_rejected.a
+        set_character_flag = ww_third_way_milestone_mannimarco_rejected
+        add_learning_xp = 150
+        add_prestige = 75
+    }
+    option = {
+        name = necromancer_third_way.milestone_mannimarco_rejected.b
+        set_character_flag = ww_third_way_milestone_mannimarco_rejected
+        add_learning_xp = 125
+        add_piety = 75
+    }
+}
+
+necromancer_third_way.milestone_sovereign_rite = {
+    type = character_event
+    title = necromancer_third_way.milestone_sovereign_rite.t
+    desc = necromancer_third_way.milestone_sovereign_rite.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_necromancer_third_way_active
+        NOT = { has_character_flag = ww_third_way_milestone_sovereign_rite }
+        learning >= 18
+        piety >= 100
+    }
+
+    option = {
+        name = necromancer_third_way.milestone_sovereign_rite.a
+        set_character_flag = ww_third_way_milestone_sovereign_rite
+        add_learning_xp = 250
+        add_prestige = 125
+    }
+    option = {
+        name = necromancer_third_way.milestone_sovereign_rite.b
+        set_character_flag = ww_third_way_milestone_sovereign_rite
+        add_learning_xp = 200
+        add_piety = 50
+    }
+}

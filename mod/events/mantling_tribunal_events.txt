@@ -1,0 +1,800 @@
+# =============================================================
+#  The Walking Ways — Path B: Mantling Tribunal
+#  Namespace: mantling_tribunal
+#  Covers: Vivec + Almalexia + Sotha Sil
+#
+#  EVENTS IN THIS FILE:
+#  ────────────────────
+#  VIVEC:
+#  mantling_tribunal.vivec_intro       — Path chosen
+#  mantling_tribunal.vivec_rank1       — Warrior aspect emerges
+#  mantling_tribunal.vivec_rank2       — Poet aspect emerges
+#  mantling_tribunal.vivec_rank3       — Contradiction held (Heart temptation)
+#  mantling_tribunal.vivec_apotheosis  — Apotheosis: warrior-poet complete
+#
+#  ALMALEXIA:
+#  mantling_tribunal.almalexia_intro      — Path chosen
+#  mantling_tribunal.almalexia_rank1      — The protector named
+#  mantling_tribunal.almalexia_rank2      — The mother-hands extended
+#  mantling_tribunal.almalexia_rank3      — Divine wrath surfaces (Heart temptation)
+#  mantling_tribunal.almalexia_apotheosis — Apotheosis: protection held
+#
+#  SOTHA SIL:
+#  mantling_tribunal.sotha_sil_intro      — Path chosen
+#  mantling_tribunal.sotha_sil_rank1      — The workshop begun
+#  mantling_tribunal.sotha_sil_rank2      — The clockwork city in miniature
+#  mantling_tribunal.sotha_sil_rank3      — Withdrawal deepens (Heart temptation)
+#  mantling_tribunal.sotha_sil_apotheosis — Apotheosis: the clockwork runs
+#
+#  LORE BASIS:
+#  ───────────
+#  The Tribunal (ALMSIVI) achieved divinity through Kagrenac's
+#  Tools and the Heart of Lorkhan beneath Red Mountain. These
+#  are second-tier Walking Ways paths — the mantler walks the
+#  PATTERN of each Tribunal member, unlocked by first completing
+#  their corresponding Good Daedra (Anticipation) mantle:
+#    Mephala → Vivec     (secret murder becomes art-and-war)
+#    Boethiah → Almalexia (treachery becomes protection)
+#    Azura → Sotha Sil   (cycles become clockwork order)
+#  Rank 3 always includes a Heart Temptation — the pattern
+#  of each Tribunal member ultimately leads toward the Heart,
+#  and the mantler must choose whether to follow that pull.
+#  [SOURCE: CANON — The Anticipations; UESP Lore:Tribunal]
+# =============================================================
+
+namespace = mantling_tribunal
+
+# ═══════════════════════════════════════════════════════════════
+#  VIVEC — WARRIOR-POET
+# ═══════════════════════════════════════════════════════════════
+
+mantling_tribunal.vivec_intro = {
+    type = character_event
+    title = mantling_tribunal.vivec_intro.t
+    desc  = mantling_tribunal.vivec_intro.desc
+    theme = learning
+
+    option = {
+        name = mantling_tribunal.vivec_intro.a
+        add_stress = 15
+        add_piety = 50
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+    }
+}
+
+mantling_tribunal.vivec_rank1 = {
+    type = character_event
+    title = mantling_tribunal.vivec_rank1.t
+    desc  = mantling_tribunal.vivec_rank1.desc
+    theme = martial
+
+    option = {
+        name = mantling_tribunal.vivec_rank1.a   # "The warrior aspect first."
+        add_prestige = 100
+        add_martial = 1
+    }
+
+    option = {
+        name = mantling_tribunal.vivec_rank1.b   # "The poet aspect first."
+        add_prestige = 75
+        add_learning = 1
+        add_piety = 50
+    }
+}
+
+mantling_tribunal.vivec_rank2 = {
+    type = character_event
+    title = mantling_tribunal.vivec_rank2.t
+    desc  = mantling_tribunal.vivec_rank2.desc
+    theme = learning
+
+    option = {
+        name = mantling_tribunal.vivec_rank2.a   # "Both aspects now. The contradiction is the point."
+        add_prestige = 150
+        add_piety = 100
+    }
+}
+
+mantling_tribunal.vivec_rank3 = {
+    type = character_event
+    title = mantling_tribunal.vivec_rank3.t
+    desc  = mantling_tribunal.vivec_rank3.desc
+    theme = learning
+
+    # Heart Temptation option — only if character does not already have heart_scholar_ascendant
+    option = {
+        name = mantling_tribunal.vivec_rank3.a   # "The contradiction holds. I do not need the Heart."
+        trigger = { always = yes }
+        add_prestige = 200
+        add_piety = 150
+        add_stress = -15
+        set_character_flag = ww_mantling_vivec_milestone_apotheosis
+    }
+
+    option = {
+        name = mantling_tribunal.vivec_rank3.heart_temptation   # "The Heart would make this complete. I feel its pull."
+        trigger = {
+            NOT = { has_trait = heart_scholar_ascendant }
+        }
+        add_prestige = 150
+        add_piety = 100
+        add_stress = 20
+        # Sets a flag that the Heart has been acknowledged — may unlock Path F branching
+        set_character_flag = ww_tribunal_heart_temptation_vivec
+    }
+}
+
+mantling_tribunal.vivec_apotheosis = {
+    type = character_event
+    title = mantling_tribunal.vivec_apotheosis.t
+    desc  = mantling_tribunal.vivec_apotheosis.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_vivec_active
+        var:ww_mantling_vivec_rank >= 4
+        NOT = { has_character_flag = ww_mantling_vivec_completed }
+    }
+
+    immediate = {
+        complete_path_mantling_vivec = yes
+    }
+
+    option = {
+        name = mantling_tribunal.vivec_apotheosis.a   # "Warrior and poet. Both. Neither. The pattern is complete."
+        add_prestige = 400
+        add_piety = 300
+    }
+
+    option = {
+        name = mantling_tribunal.vivec_apotheosis.b   # "The 36 Lessons were not autobiography. They were instructions."
+        add_prestige = 350
+        add_piety = 250
+        add_learning = 1
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  ALMALEXIA — MOTHER OF MORROWIND
+# ═══════════════════════════════════════════════════════════════
+
+mantling_tribunal.almalexia_intro = {
+    type = character_event
+    title = mantling_tribunal.almalexia_intro.t
+    desc  = mantling_tribunal.almalexia_intro.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_tribunal.almalexia_intro.a
+        add_stress = 10
+        add_piety = 75
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+    }
+}
+
+mantling_tribunal.almalexia_rank1 = {
+    type = character_event
+    title = mantling_tribunal.almalexia_rank1.t
+    desc  = mantling_tribunal.almalexia_rank1.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_tribunal.almalexia_rank1.a   # "I will be the shelter they need."
+        add_prestige = 100
+        add_piety = 100
+        add_stress = -5
+    }
+}
+
+mantling_tribunal.almalexia_rank2 = {
+    type = character_event
+    title = mantling_tribunal.almalexia_rank2.t
+    desc  = mantling_tribunal.almalexia_rank2.desc
+    theme = diplomacy
+
+    option = {
+        name = mantling_tribunal.almalexia_rank2.a   # "The Hands of Almalexia protect. So do mine."
+        add_prestige = 150
+        add_piety = 125
+    }
+}
+
+mantling_tribunal.almalexia_rank3 = {
+    type = character_event
+    title = mantling_tribunal.almalexia_rank3.t
+    desc  = mantling_tribunal.almalexia_rank3.desc
+    theme = diplomacy
+
+    # The divine wrath option — Almalexia's protection became violence
+    option = {
+        name = mantling_tribunal.almalexia_rank3.a   # "Protection held. I will not let the wrath consume me."
+        trigger = { always = yes }
+        add_prestige = 200
+        add_piety = 175
+        add_stress = -10
+        set_character_flag = ww_mantling_almalexia_milestone_divine_wrath
+    }
+
+    option = {
+        name = mantling_tribunal.almalexia_rank3.b   # "The wrath is also part of the pattern. I accept it."
+        trigger = { always = yes }
+        add_prestige = 175
+        add_piety = 100
+        add_dread = 15
+        add_stress = 15
+        set_character_flag = ww_mantling_almalexia_milestone_divine_wrath
+    }
+
+    option = {
+        name = mantling_tribunal.almalexia_rank3.heart_temptation   # "Without the Heart, this love has edges. I feel where they cut."
+        trigger = {
+            NOT = { has_trait = heart_scholar_ascendant }
+        }
+        add_prestige = 150
+        add_piety = 125
+        add_stress = 20
+        set_character_flag = ww_tribunal_heart_temptation_almalexia
+    }
+}
+
+mantling_tribunal.almalexia_apotheosis = {
+    type = character_event
+    title = mantling_tribunal.almalexia_apotheosis.t
+    desc  = mantling_tribunal.almalexia_apotheosis.desc
+    theme = diplomacy
+
+    trigger = {
+        has_character_flag = ww_mantling_almalexia_active
+        var:ww_mantling_almalexia_rank >= 4
+        NOT = { has_character_flag = ww_mantling_almalexia_completed }
+    }
+
+    immediate = {
+        complete_path_mantling_almalexia = yes
+    }
+
+    option = {
+        name = mantling_tribunal.almalexia_apotheosis.a   # "Mother of Morrowind. The pattern is complete."
+        add_prestige = 400
+        add_piety = 350
+        add_stress = -20
+    }
+
+    option = {
+        name = mantling_tribunal.almalexia_apotheosis.b   # "The protection held, even when the wrath came. That is the pattern."
+        add_prestige = 350
+        add_piety = 300
+        add_diplomacy = 1
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+#  SOTHA SIL — THE CLOCKWORK GOD
+# ═══════════════════════════════════════════════════════════════
+
+mantling_tribunal.sotha_sil_intro = {
+    type = character_event
+    title = mantling_tribunal.sotha_sil_intro.t
+    desc  = mantling_tribunal.sotha_sil_intro.desc
+    theme = learning
+
+    option = {
+        name = mantling_tribunal.sotha_sil_intro.a
+        add_stress = 15
+        add_piety = 50
+        add_character_modifier = {
+            modifier = ww_path_mantling_active
+            years = 100
+        }
+    }
+}
+
+mantling_tribunal.sotha_sil_rank1 = {
+    type = character_event
+    title = mantling_tribunal.sotha_sil_rank1.t
+    desc  = mantling_tribunal.sotha_sil_rank1.desc
+    theme = learning
+
+    option = {
+        name = mantling_tribunal.sotha_sil_rank1.a   # "The workshop is the first city."
+        add_prestige = 75
+        add_piety = 50
+        add_learning = 1
+    }
+}
+
+mantling_tribunal.sotha_sil_rank2 = {
+    type = character_event
+    title = mantling_tribunal.sotha_sil_rank2.t
+    desc  = mantling_tribunal.sotha_sil_rank2.desc
+    theme = learning
+
+    option = {
+        name = mantling_tribunal.sotha_sil_rank2.a   # "The mechanisms run. The city breathes."
+        add_prestige = 125
+        add_piety = 75
+        add_stress = -10
+    }
+}
+
+mantling_tribunal.sotha_sil_rank3 = {
+    type = character_event
+    title = mantling_tribunal.sotha_sil_rank3.t
+    desc  = mantling_tribunal.sotha_sil_rank3.desc
+    theme = learning
+
+    option = {
+        name = mantling_tribunal.sotha_sil_rank3.a   # "The mechanism is its own justification. I do not need the Heart."
+        trigger = { always = yes }
+        add_prestige = 175
+        add_piety = 100
+        add_stress = -15
+        set_character_flag = ww_mantling_sotha_sil_milestone_revelation
+    }
+
+    option = {
+        name = mantling_tribunal.sotha_sil_rank3.heart_temptation   # "The mechanism is incomplete. The Heart would make it perfect."
+        trigger = {
+            NOT = { has_trait = heart_scholar_ascendant }
+        }
+        add_prestige = 150
+        add_piety = 75
+        add_stress = 20
+        set_character_flag = ww_tribunal_heart_temptation_sotha_sil
+    }
+}
+
+mantling_tribunal.sotha_sil_apotheosis = {
+    type = character_event
+    title = mantling_tribunal.sotha_sil_apotheosis.t
+    desc  = mantling_tribunal.sotha_sil_apotheosis.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_sotha_sil_active
+        var:ww_mantling_sotha_sil_rank >= 4
+        NOT = { has_character_flag = ww_mantling_sotha_sil_completed }
+    }
+
+    immediate = {
+        complete_path_mantling_sotha_sil = yes
+    }
+
+    option = {
+        name = mantling_tribunal.sotha_sil_apotheosis.a   # "The clockwork runs. The city is complete. I withdraw."
+        add_prestige = 350
+        add_piety = 250
+        add_stress = -25
+    }
+
+    option = {
+        name = mantling_tribunal.sotha_sil_apotheosis.b   # "The mechanism does not need me present to continue. That is the point."
+        add_prestige = 400
+        add_piety = 200
+        add_stewardship = 1
+    }
+}
+
+# ─── Almalexia Milestone Events ───
+
+mantling_tribunal.almalexia_hands = {
+    type = character_event
+    title = mantling_tribunal.almalexia_hands.t
+    desc = mantling_tribunal.almalexia_hands.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_almalexia_active
+        NOT = { has_character_flag = ww_mantling_almalexia_milestone_hands }
+        martial >= 12
+        piety >= 200
+    }
+
+    option = {
+        name = mantling_tribunal.almalexia_hands.a
+        set_character_flag = ww_mantling_almalexia_milestone_hands
+        add_piety = 150
+        add_martial_xp = 100
+    }
+    option = {
+        name = mantling_tribunal.almalexia_hands.b
+        set_character_flag = ww_mantling_almalexia_milestone_hands
+        add_prestige = 125
+        add_piety = 100
+    }
+}
+
+mantling_tribunal.almalexia_healer = {
+    type = character_event
+    title = mantling_tribunal.almalexia_healer.t
+    desc = mantling_tribunal.almalexia_healer.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_almalexia_active
+        NOT = { has_character_flag = ww_mantling_almalexia_milestone_healer }
+        piety >= 200
+        OR = {
+            has_trait = compassionate
+            learning >= 14
+        }
+    }
+
+    option = {
+        name = mantling_tribunal.almalexia_healer.a
+        set_character_flag = ww_mantling_almalexia_milestone_healer
+        add_piety = 175
+        add_stress = -20
+    }
+    option = {
+        name = mantling_tribunal.almalexia_healer.b
+        set_character_flag = ww_mantling_almalexia_milestone_healer
+        add_piety = 150
+        add_learning_xp = 75
+    }
+}
+
+mantling_tribunal.almalexia_mother = {
+    type = character_event
+    title = mantling_tribunal.almalexia_mother.t
+    desc = mantling_tribunal.almalexia_mother.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_almalexia_active
+        NOT = { has_character_flag = ww_mantling_almalexia_milestone_mother }
+        piety >= 150
+        prestige >= 200
+    }
+
+    option = {
+        name = mantling_tribunal.almalexia_mother.a
+        set_character_flag = ww_mantling_almalexia_milestone_mother
+        add_piety = 175
+        add_stress = -15
+    }
+    option = {
+        name = mantling_tribunal.almalexia_mother.b
+        set_character_flag = ww_mantling_almalexia_milestone_mother
+        add_piety = 150
+        add_prestige = 75
+    }
+}
+
+mantling_tribunal.almalexia_protector = {
+    type = character_event
+    title = mantling_tribunal.almalexia_protector.t
+    desc = mantling_tribunal.almalexia_protector.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_almalexia_active
+        NOT = { has_character_flag = ww_mantling_almalexia_milestone_protector }
+        martial >= 14
+        piety >= 150
+    }
+
+    option = {
+        name = mantling_tribunal.almalexia_protector.a
+        set_character_flag = ww_mantling_almalexia_milestone_protector
+        add_piety = 150
+        add_prestige = 125
+    }
+    option = {
+        name = mantling_tribunal.almalexia_protector.b
+        set_character_flag = ww_mantling_almalexia_milestone_protector
+        add_martial_xp = 100
+        add_piety = 125
+    }
+}
+
+mantling_tribunal.almalexia_reclame = {
+    type = character_event
+    title = mantling_tribunal.almalexia_reclame.t
+    desc = mantling_tribunal.almalexia_reclame.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_almalexia_active
+        NOT = { has_character_flag = ww_mantling_almalexia_milestone_reclame }
+        prestige >= 300
+        piety >= 250
+    }
+
+    option = {
+        name = mantling_tribunal.almalexia_reclame.a
+        set_character_flag = ww_mantling_almalexia_milestone_reclame
+        add_piety = 200
+        add_prestige = 100
+    }
+    option = {
+        name = mantling_tribunal.almalexia_reclame.b
+        set_character_flag = ww_mantling_almalexia_milestone_reclame
+        add_piety = 175
+        add_stress = -25
+    }
+}
+
+# ─── Sotha Sil Milestone Events ───
+
+mantling_tribunal.sotha_sil_clockwork = {
+    type = character_event
+    title = mantling_tribunal.sotha_sil_clockwork.t
+    desc = mantling_tribunal.sotha_sil_clockwork.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_sotha_sil_active
+        NOT = { has_character_flag = ww_mantling_sotha_sil_milestone_clockwork }
+        learning >= 18
+        stewardship >= 14
+    }
+
+    option = {
+        name = mantling_tribunal.sotha_sil_clockwork.a
+        set_character_flag = ww_mantling_sotha_sil_milestone_clockwork
+        add_learning_xp = 200
+        add_stewardship_xp = 100
+    }
+    option = {
+        name = mantling_tribunal.sotha_sil_clockwork.b
+        set_character_flag = ww_mantling_sotha_sil_milestone_clockwork
+        add_learning_xp = 150
+        add_prestige = 75
+    }
+}
+
+mantling_tribunal.sotha_sil_construct = {
+    type = character_event
+    title = mantling_tribunal.sotha_sil_construct.t
+    desc = mantling_tribunal.sotha_sil_construct.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_sotha_sil_active
+        NOT = { has_character_flag = ww_mantling_sotha_sil_milestone_construct }
+        learning >= 16
+        stewardship >= 12
+    }
+
+    option = {
+        name = mantling_tribunal.sotha_sil_construct.a
+        set_character_flag = ww_mantling_sotha_sil_milestone_construct
+        add_stewardship_xp = 150
+        add_prestige = 100
+    }
+    option = {
+        name = mantling_tribunal.sotha_sil_construct.b
+        set_character_flag = ww_mantling_sotha_sil_milestone_construct
+        add_learning_xp = 150
+        add_stress = -15
+    }
+}
+
+mantling_tribunal.sotha_sil_hidden = {
+    type = character_event
+    title = mantling_tribunal.sotha_sil_hidden.t
+    desc = mantling_tribunal.sotha_sil_hidden.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_sotha_sil_active
+        NOT = { has_character_flag = ww_mantling_sotha_sil_milestone_hidden }
+        learning >= 14
+        intrigue >= 12
+    }
+
+    option = {
+        name = mantling_tribunal.sotha_sil_hidden.a
+        set_character_flag = ww_mantling_sotha_sil_milestone_hidden
+        add_intrigue_xp = 100
+        add_learning_xp = 150
+    }
+    option = {
+        name = mantling_tribunal.sotha_sil_hidden.b
+        set_character_flag = ww_mantling_sotha_sil_milestone_hidden
+        add_learning_xp = 125
+        add_prestige = 75
+    }
+}
+
+mantling_tribunal.sotha_sil_mechanism = {
+    type = character_event
+    title = mantling_tribunal.sotha_sil_mechanism.t
+    desc = mantling_tribunal.sotha_sil_mechanism.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_sotha_sil_active
+        NOT = { has_character_flag = ww_mantling_sotha_sil_milestone_mechanism }
+        learning >= 18
+        OR = {
+            stewardship >= 14
+            prestige >= 300
+        }
+    }
+
+    option = {
+        name = mantling_tribunal.sotha_sil_mechanism.a
+        set_character_flag = ww_mantling_sotha_sil_milestone_mechanism
+        add_learning_xp = 200
+        add_stewardship_xp = 100
+    }
+    option = {
+        name = mantling_tribunal.sotha_sil_mechanism.b
+        set_character_flag = ww_mantling_sotha_sil_milestone_mechanism
+        add_learning_xp = 175
+        add_stress = -15
+    }
+}
+
+mantling_tribunal.sotha_sil_workshop = {
+    type = character_event
+    title = mantling_tribunal.sotha_sil_workshop.t
+    desc = mantling_tribunal.sotha_sil_workshop.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_sotha_sil_active
+        NOT = { has_character_flag = ww_mantling_sotha_sil_milestone_workshop }
+        learning >= 16
+        prestige >= 250
+    }
+
+    option = {
+        name = mantling_tribunal.sotha_sil_workshop.a
+        set_character_flag = ww_mantling_sotha_sil_milestone_workshop
+        add_learning_xp = 175
+        add_prestige = 125
+    }
+    option = {
+        name = mantling_tribunal.sotha_sil_workshop.b
+        set_character_flag = ww_mantling_sotha_sil_milestone_workshop
+        add_learning_xp = 150
+        add_stewardship_xp = 125
+    }
+}
+
+# ─── Vivec Milestone Events ───
+
+mantling_tribunal.vivec_contradiction = {
+    type = character_event
+    title = mantling_tribunal.vivec_contradiction.t
+    desc = mantling_tribunal.vivec_contradiction.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_vivec_active
+        NOT = { has_character_flag = ww_mantling_vivec_milestone_contradiction }
+        learning >= 16
+        piety >= 200
+    }
+
+    option = {
+        name = mantling_tribunal.vivec_contradiction.a
+        set_character_flag = ww_mantling_vivec_milestone_contradiction
+        add_learning_xp = 175
+        add_stress = -20
+    }
+    option = {
+        name = mantling_tribunal.vivec_contradiction.b
+        set_character_flag = ww_mantling_vivec_milestone_contradiction
+        add_piety = 125
+        add_learning_xp = 125
+    }
+}
+
+mantling_tribunal.vivec_duality = {
+    type = character_event
+    title = mantling_tribunal.vivec_duality.t
+    desc = mantling_tribunal.vivec_duality.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_vivec_active
+        NOT = { has_character_flag = ww_mantling_vivec_milestone_duality }
+        martial >= 14
+        learning >= 14
+        prestige >= 200
+    }
+
+    option = {
+        name = mantling_tribunal.vivec_duality.a
+        set_character_flag = ww_mantling_vivec_milestone_duality
+        add_martial_xp = 100
+        add_learning_xp = 150
+    }
+    option = {
+        name = mantling_tribunal.vivec_duality.b
+        set_character_flag = ww_mantling_vivec_milestone_duality
+        add_prestige = 125
+        add_piety = 75
+    }
+}
+
+mantling_tribunal.vivec_poet = {
+    type = character_event
+    title = mantling_tribunal.vivec_poet.t
+    desc = mantling_tribunal.vivec_poet.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_vivec_active
+        NOT = { has_character_flag = ww_mantling_vivec_milestone_poet }
+        learning >= 14
+        piety >= 150
+    }
+
+    option = {
+        name = mantling_tribunal.vivec_poet.a
+        set_character_flag = ww_mantling_vivec_milestone_poet
+        add_learning_xp = 150
+        add_piety = 100
+    }
+    option = {
+        name = mantling_tribunal.vivec_poet.b
+        set_character_flag = ww_mantling_vivec_milestone_poet
+        add_piety = 125
+        add_stress = -15
+    }
+}
+
+mantling_tribunal.vivec_sermon = {
+    type = character_event
+    title = mantling_tribunal.vivec_sermon.t
+    desc = mantling_tribunal.vivec_sermon.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_vivec_active
+        NOT = { has_character_flag = ww_mantling_vivec_milestone_sermon }
+        piety >= 200
+        learning >= 16
+    }
+
+    option = {
+        name = mantling_tribunal.vivec_sermon.a
+        set_character_flag = ww_mantling_vivec_milestone_sermon
+        add_piety = 150
+        add_learning_xp = 125
+    }
+    option = {
+        name = mantling_tribunal.vivec_sermon.b
+        set_character_flag = ww_mantling_vivec_milestone_sermon
+        add_piety = 125
+        add_prestige = 75
+    }
+}
+
+mantling_tribunal.vivec_warrior = {
+    type = character_event
+    title = mantling_tribunal.vivec_warrior.t
+    desc = mantling_tribunal.vivec_warrior.desc
+    theme = learning
+
+    trigger = {
+        has_character_flag = ww_mantling_vivec_active
+        NOT = { has_character_flag = ww_mantling_vivec_milestone_warrior }
+        martial >= 14
+        prestige >= 200
+    }
+
+    option = {
+        name = mantling_tribunal.vivec_warrior.a
+        set_character_flag = ww_mantling_vivec_milestone_warrior
+        add_martial_xp = 150
+        add_prestige = 125
+    }
+    option = {
+        name = mantling_tribunal.vivec_warrior.b
+        set_character_flag = ww_mantling_vivec_milestone_warrior
+        add_prestige = 150
+        add_piety = 75
+    }
+}

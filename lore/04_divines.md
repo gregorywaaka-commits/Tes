@@ -35,10 +35,15 @@ Unlike the **Daedra**, Aedra generally cannot directly and physically manifest i
 - **Notes:** Some in-game texts suggest Arkay was once a mortal who achieved divinity, making him an earlier precedent for Talos. `[SOFT CANON — IN-GAME BOOK: The Monomyth]`
 
 ### 3. Dibella `[CANON — UESP]`
+> **Source:** UESP Lore:Dibella — https://en.uesp.net/wiki/Lore:Dibella
+
 - **Domain:** Beauty, love, art, music, affection, sexual instruction
 - **Also known as:** Mother Dibella, Lady of Love
 - **Symbol:** A rose or heart
 - **Role:** Goddess of beauty and the arts. Temples to Dibella appear throughout Tamriel. Her cult in Skyrim practices **the Sybil** tradition — a girl is chosen as the living vessel of Dibella's will. `[CANON — TES V: Skyrim]`
+- **Sibyls:** In Markarth specifically, Dibella's priestesses are called **Sibyls** (oracles/seers) rather than ordinary clergy. The Sybil is believed to speak with Dibella's voice. `[CANON — TES V: Skyrim, The Forsworn Conspiracy quest]`
+- **Dibella's Order:** Maintains temples in Markarth and other major cities. The Order is dedicated to aesthetic transcendence — approaching the divine through beauty and love. `[CANON — UESP]`
+- **Worshippers:** Bards, artists, lovers, and those who seek the beautiful. Dibella is patron of all who pursue the transcendent dimension of art and love — she is **NOT** merely a goddess of physical beauty. She represents the transformative power of art and love as pathways to the divine. `[SOURCE: UESP Lore:Dibella]`
 
 ### 4. Julianos `[CANON — UESP]`
 - **Domain:** Wisdom, logic, literature, law, history, contradiction
