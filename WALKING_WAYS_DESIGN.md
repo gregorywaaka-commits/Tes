@@ -3103,3 +3103,446 @@ theft rather than the specific context of Dagoth Ur's cult.*
 *End of session 2026-04-05 (fourth pass) notes.*
 
 *§18 records audit findings. §19 is a self-contained design spec for the Heart-theft path. Both can be implemented independently of the rest of Walking Ways.*
+
+---
+
+## 20. Three New Paths — Jyggalag's Champion, Sheogorath's Echo, and the Necromancer's Third Way
+
+> **Added:** Session 2026-04-06 — Three paths that fill gaps in the current taxonomy:
+> two Daedric-adjacent paths (Jyggalag order and Sheogorath influence-without-succession)
+> and a third branch for the nascent Necromancer tree that rejects both Mannimarco and
+> the Ideal Masters.
+
+---
+
+### 20.1 Lore Foundation
+
+#### The Hero of Kvatch, Jyggalag, and Sheogorath
+
+Jyggalag is the Daedric Prince of Order — the most powerful of all Daedric Princes,
+feared and envied by the others. To neutralise him, the other Daedric Princes collectively
+cursed him to forget himself, becoming his own opposite: Sheogorath, Prince of Madness.
+
+Every era, at the Greymarch, Jyggalag briefly re-emerges: he destroys the Shivering Isles,
+then is forced back into Sheogorath by the curse. It is a cycle of imprisonment that repeats
+endlessly — until the Hero of Kvatch.
+
+The Hero of Kvatch is **Jyggalag's instrument**. They fight through the Greymarch, defeat
+Jyggalag's forces, confront Jyggalag in his true crystalline form, and in defeating him —
+break the cycle. Jyggalag is freed. He departs. The curse is broken.
+
+The throne of the Shivering Isles is now empty. The Hero of Kvatch fills it — becoming
+Sheogorath. This is confirmed in Skyrim's *The Mind of Madness*, where the Hero, now
+fully Sheogorath, inhabits Pelagius's mind.
+
+This gives us two distinct moments:
+
+1. **Before Jyggalag departs**: The Hero embodies the principle of Order completely enough
+   to be Jyggalag's instrument. They are not Jyggalag — they are the shape Jyggalag's
+   will moved through. **This is the Jyggalag path**: walking so precisely in the tracks of
+   Order that Order itself finds you useful.
+
+2. **After the empty throne**: The Hero takes the mantle of Sheogorath — full succession.
+   This is already modelled as `mantling_sheogorath` (the existing path). But there is a
+   third option the game does not explore: **what if a character channels Sheogorath's
+   principle — creative chaos, the madness that contains its own logic — without claiming
+   the throne?** The Prophet of Madness rather than the Mad God.
+
+#### The Ideal Masters and the Third Necromantic Way
+
+The Ideal Masters were once powerful mortal mages who abandoned flesh entirely to become
+crystalline constructs of pure soul-energy, residing in their own pocket realm (the Soul
+Cairn). They are neither Daedra nor mortal — they have transcended both categories by
+surrendering them. They feed on captured souls.
+
+The Worm Apotheosis path (Path I, Mannimarco's Road) leads to godhood through soul-science
+and lichdom. The Ideal Masters path (Path I-B, not yet implemented) leads to dissolution —
+you give up selfhood to become pure soul-construct. But a third option exists:
+
+**What if you reject both masters?** The Worm Apotheosis requires following Mannimarco's
+specific road — his tools, his moon, his cult's framework. The Ideal Masters' path
+requires surrendering to their bargain. A necromancer who is more powerful, more original,
+or more politically independent than Mannimarco might reject both and forge an entirely
+new relationship with death — neither Mannimarco's heir nor the Ideal Masters' sacrifice.
+This is **the Necromancer's Third Way**: original necromantic philosophy, forging a
+relationship with death that has no precedent.
+
+---
+
+### 20.2 Path K — Jyggalag's Champion ("The Instrument of Order")
+
+**Key:** `ww_mantling_jyggalag`
+**Flag:** `ww_mantling_jyggalag_active`
+**Apex Trait:** `jyggalag_ascendant`
+**Path type:** Path B (Mantling — Daedric sub-category)
+
+#### 20.2.1 Lore Basis
+
+This path does not ask you to become Jyggalag — he exists and is free after 3E 433. It
+asks you to **embody the principle of Order so completely** that Jyggalag recognizes you
+as a kindred pattern. You are not the Prince; you are the crystalline expression of his
+domain walking in mortal flesh.
+
+The path models the Hero of Kvatch's *role* in Shivering Isles: instrument of Order against
+chaos, the one who ends a cycle of madness through absolute clarity of purpose.
+
+**Availability:** Available after 3E 433 (Greymarch ended, Jyggalag free). Before this,
+Jyggalag is trapped and cannot recognize mortal champions. The `jyggalag_champion` trait
+(from Daedric invasion system) is the gate — it represents prior service to Jyggalag's
+crystalline forces.
+
+**Note:** This path does NOT use Jyggalag's name as a replacement for a Daedric title.
+Jyggalag is free — he is not a god you replace; he is a principle you embody. The apex
+trait `jyggalag_ascendant` is distinct from the base `jyggalag_champion` daedric champion
+trait.
+
+**After completion:** The `jyggalag_ascendant` trait is the Tier 1 prerequisite for
+`mantling_sheogorath` (the existing full-succession path). You walked Order so completely
+that Madness found you as its mirror and offered you the empty throne. A character may
+choose to pursue Sheogorath succession afterward — or stop here with Order as their apex.
+
+#### 20.2.2 Requirements
+
+```
+can_begin_mantling_jyggalag trigger:
+    has_trait = jyggalag_champion
+    learning >= 14
+    martial >= 16
+    NOT has_character_flag = ww_mantling_jyggalag_completed
+    NOT has_character_flag = walking_ways_path_active
+```
+
+#### 20.2.3 Milestones (6 total, 2 per rank)
+
+| # | Milestone Key | Lore Action |
+|---|---|---|
+| 1 | `ww_jyggalag_milestone_order_kept` | Maintained absolute law in realm — no mercy pardons, full legal code enforced |
+| 2 | `ww_jyggalag_milestone_chaos_suppressed` | Defeated a lunatic, possessed, or heresy-spreading character in direct action |
+| 3 | `ww_jyggalag_milestone_greymarch_echo` | Survived a Daedric invasion or comparable catastrophic assault on own realm |
+| 4 | `ww_jyggalag_milestone_crystal_pact` | Made a pact with Jyggalag's crystal knights / followed a pure Order-aligned decision |
+| 5 | `ww_jyggalag_milestone_madness_refused` | Rejected a Sheogorath/lunatic path event option in favour of clarity |
+| 6 | `ww_jyggalag_milestone_instrument` | Fought and defeated Sheogorath-aligned forces or madness-patron claimant |
+
+#### 20.2.4 Rank Events
+
+| Rank | Event ID | Trigger |
+|---|---|---|
+| Intro | `mantling_jyggalag.intro` | Path begins |
+| Rank 1 | `mantling_jyggalag.rank1` | 2 milestones |
+| Rank 2 | `mantling_jyggalag.rank2` | 4 milestones |
+| Rank 3 | `mantling_jyggalag.rank3` | 6 milestones (threshold — 20% failure risk) |
+| Apotheosis | `mantling_jyggalag.apotheosis` | Rank 4 |
+| Failure | `mantling_jyggalag.order_shattered` | Failure at rank 3 threshold |
+
+#### 20.2.5 Failure State
+
+At rank 3 threshold, **20% chance** of `order_shattered`: the character's grip on Order
+was too rigid. Jyggalag's crystalline focus, when forced through a mortal vessel without
+his capacity, produces brittleness rather than strength. The character gains `obsessed`
+trait + `compulsive_lawgiver` modifier (all council/vassal relations −20; cannot grant
+mercy). Not death — a lasting mechanical consequence. They cannot attempt this path again.
+
+#### 20.2.6 Apex Trait — `jyggalag_ascendant`
+
+```
+jyggalag_ascendant = {
+    category = fame
+    martial = 4
+    learning = 3
+    monthly_prestige_gain_mult = 0.35
+    health = 0.5
+    stress_loss_mult = 0.15
+    flag = jyggalag_ascendant
+}
+```
+
+- Champions of Order recognize you. `jyggalag_champion` rulers gain opinion +20.
+- Sheogorath-mantle path (`can_begin_mantling_sheogorath`) recognizes `jyggalag_ascendant`
+  as equivalent to (and preferred over) the base `jyggalag_champion` gate.
+- Madness-type events (Daedric madness, lunatic possession) have −30% base chance
+  to fire on this ruler.
+
+---
+
+### 20.3 Path K-2 — Sheogorath's Echo ("The Prophet of Madness")
+
+**Key:** `ww_sheogorath_echo`
+**Flag:** `ww_sheogorath_echo_active`
+**Apex Trait:** `madness_prophet`
+**Path type:** Path B (Mantling — Daedric, non-succession variant)
+
+#### 20.3.1 Lore Basis
+
+The existing `mantling_sheogorath` path models full divine succession — you *become*
+Sheogorath, taking his throne. This path models something different: you channel the
+**principle** of Sheogorath — creative chaos, the madness that contains logic, the laughter
+that understands something rational thought cannot — **without claiming the throne**.
+
+The Prophet of Madness understands that Sheogorath's domain is not nonsense: it is a
+reason creation has not yet learned to follow. They walk in that understanding, wielding
+unpredictability as strategy, chaos as creative power, and madness as political tool —
+without losing themselves to full possession.
+
+The distinction from `mantling_sheogorath` is:
+- **Mantling Sheogorath** = "I AM the new Mad God. The throne is mine."
+- **Sheogorath's Echo** = "I understand what madness *is* and can use it. I did not
+  take the throne — I carry the echo of it."
+
+This path is **safer** (lower possession risk) but **weaker** (lower apex stats). It
+is available to characters who *cannot* or *choose not to* make the full succession claim.
+
+**Availability:** Does not require `jyggalag_champion` or `jyggalag_ascendant`. Available
+to rulers with lunatic/possessed traits or Shivering Isles exposure. This represents
+a character who came to madness organically — as insight, as survival, as scholarship —
+rather than through Order's mirror.
+
+#### 20.3.2 Requirements
+
+```
+can_begin_sheogorath_echo trigger:
+    OR = {
+        has_trait = lunatic
+        has_trait = possessed
+        has_character_flag = shivering_isles_visited
+        intrigue >= 18
+    }
+    learning >= 12
+    NOT has_character_flag = ww_sheogorath_echo_completed
+    NOT has_character_flag = ww_mantling_sheogorath_completed   # can't have already taken the throne
+    NOT has_character_flag = walking_ways_path_active
+```
+
+#### 20.3.3 Milestones (6 total, 2 per rank)
+
+| # | Milestone Key | Lore Action |
+|---|---|---|
+| 1 | `ww_echo_milestone_insight` | Survived a possession/madness event and gained understanding rather than suffering |
+| 2 | `ww_echo_milestone_chaos_wielded` | Made a chaotic political decision (unexpected alliance, bizarre demand) with positive outcome |
+| 3 | `ww_echo_milestone_obelisk` | Interacted with Sheogorath-realm artefact or prophet |
+| 4 | `ww_echo_milestone_greymarch_witness` | Witnessed or participated in a Greymarch-cycle event |
+| 5 | `ww_echo_milestone_court_jester` | Held a court event where deliberate madness served political purpose |
+| 6 | `ww_echo_milestone_realm_glimpsed` | Had a vision of the Shivering Isles structure — understood it as architecture, not chaos |
+
+#### 20.3.4 Rank Events
+
+| Rank | Event ID | Trigger |
+|---|---|---|
+| Intro | `sheogorath_echo.intro` | Path begins |
+| Rank 1 | `sheogorath_echo.rank1` | 2 milestones |
+| Rank 2 | `sheogorath_echo.rank2` | 4 milestones |
+| Rank 3 | `sheogorath_echo.rank3` | 6 milestones (threshold — 15% possession risk) |
+| Apotheosis | `sheogorath_echo.apotheosis` | Rank 4 |
+| Possession | `sheogorath_echo.possessed` | Failure at rank 3 |
+
+#### 20.3.5 Failure State
+
+At rank 3 threshold, **15% chance** of `echo_possessed`: the character stopped echoing
+and started being consumed. They gain `lunatic` + `possessed` + the madness escalates into
+full Sheogorath-realm devotion. Not death — but the character is effectively Sheogorath's
+unwilling vessel. Grants `sheogorath_consumed` modifier (large intrigue bonus, catastrophic
+stress gain mult). The path is closed but the character is permanently altered.
+
+#### 20.3.6 Apex Trait — `madness_prophet`
+
+```
+madness_prophet = {
+    category = fame
+    intrigue = 5
+    learning = 3
+    diplomacy = 2
+    monthly_prestige_gain_mult = 0.25
+    stress_loss_mult = 0.20
+    flag = madness_prophet
+}
+```
+
+- Chaotic/lunatic/jester characters gain opinion +15 toward this ruler.
+- This ruler's schemes have +10% base success (madness as misdirection).
+- Stress events from madness-type triggers have −40% chance to fire.
+- Does **not** grant immunity to possession — they channel madness, they do not master it.
+- Does **not** unlock the Sheogorath throne. A `madness_prophet` ruler cannot later take
+  `mantling_sheogorath` — they chose echo over succession and the throne does not re-offer.
+
+---
+
+### 20.4 Path L — The Necromancer's Third Way ("I Owe No Master")
+
+**Key:** `ww_necromancer_third_way`
+**Flag:** `ww_necromancer_third_way_active`
+**Apex Trait:** `death_sovereign`
+**Path type:** Part of the broader Necromancer super-tree (parallel to `worm_apotheosis` and
+the yet-to-be-implemented `ideal_masters` path)
+
+#### 20.4.1 Lore Basis
+
+The Necromancer's Third Way explicitly rejects the two established necromantic models:
+
+**Why reject Mannimarco's Road (Worm Apotheosis)?**
+Mannimarco's path requires following the specific tools, techniques, and doctrine of the
+Order of the Black Worm — and accepting that you are completing *his* work, not your own.
+The Worm Apotheosis makes you a reflection of Mannimarco at his apex. A more original
+or politically independent necromancer refuses this: they will not be his footnote.
+
+**Why reject the Ideal Masters?**
+The Ideal Masters' bargain requires surrendering your soul's energy incrementally to them
+in exchange for power. It is a transaction with masters you can never equal, leading toward
+dissolution of self. The Third Way practitioner refuses to be anyone's sacrifice.
+
+**What is the Third Way?**
+Original necromantic philosophy. Not Arkay's death cycle (cyclical, oppressive). Not
+Mannimarco's apotheosis (hierarchical, derivative). Not the Ideal Masters' dissolution
+(transcendent but selfless). Something that has not been named yet — a practitioner who
+studies death as a **domain** to be understood and ultimately governed on their own terms.
+The apex of this path is `death_sovereign`: not the god of necromancy, but the sovereign
+over one's own relationship with death.
+
+[SOURCE: UESP Lore:Mannimarco (Worm Apotheosis context); UESP Lore:Soul Cairn (Ideal
+Masters context); CANON with original synthesis — the Third Way is extrapolated from
+established lore gaps, not from a specific TES source]
+
+#### 20.4.2 Requirements
+
+```
+can_begin_necromancer_third_way trigger:
+    has_trait = necromancer      # base necromancer trait
+    learning >= 16
+    NOT has_trait = worm_cult_adept          # rejected the Worm Cult's path
+    NOT has_character_flag = ww_worm_apotheosis_completed
+    NOT has_character_flag = ww_necromancer_third_way_completed
+    NOT has_character_flag = walking_ways_path_active
+```
+
+Note: Requires `necromancer` trait but explicitly NOT `worm_cult_adept`. This path is
+for necromancers who developed independently — either before encountering the Worm Cult,
+or who studied necromancy and rejected the Cult's doctrine.
+
+#### 20.4.3 Milestones (6 total, 2 per rank)
+
+| # | Milestone Key | Lore Action |
+|---|---|---|
+| 1 | `ww_third_way_milestone_arkay_defied` | First successful act of necromancy that violated Arkay's cycle in a novel (non-Worm Cult) manner |
+| 2 | `ww_third_way_milestone_mannimarco_rejected` | Actively refused Worm Cult recruitment, destroyed a Black Soul Gem, or purged a Worm Cult agent |
+| 3 | `ww_third_way_milestone_death_taxonomy` | Completed original research into the nature of death — a new codex, a novel binding, an unexplored soul-type |
+| 4 | `ww_third_way_milestone_ideal_masters_refused` | Encountered Soul Cairn influence (via Dawnguard events, soul gem research) and rejected their bargain |
+| 5 | `ww_third_way_milestone_sovereign_rite` | Performed a custom death rite — one the character invented, not derived from any existing tradition |
+| 6 | `ww_third_way_milestone_boundary` | Stood at the boundary between life and death (phylactery creation, near-death survived, death-vision) without following either the Worm or Ideal Masters framework |
+
+#### 20.4.4 Rank Events
+
+| Rank | Event ID | Trigger |
+|---|---|---|
+| Intro | `necromancer_third_way.intro` | Path begins |
+| Rank 1 | `necromancer_third_way.rank1` | 2 milestones |
+| Rank 2 | `necromancer_third_way.rank2` | 4 milestones |
+| Rank 3 | `necromancer_third_way.rank3` | 6 milestones (threshold — 30% soul-unmooring risk) |
+| Apotheosis | `necromancer_third_way.apotheosis` | Rank 4 |
+| Failure | `necromancer_third_way.unmoored` | Failure at rank 3 |
+
+#### 20.4.5 Failure State
+
+At rank 3 threshold, **30% chance** of `unmoored`: the character attempted to forge a
+relationship with death that had no precedent, and death turned back on them. Not through
+Mannimarco's tools, not through the Ideal Masters' dissolution — just the raw consequence
+of standing at the boundary without a framework. They gain `lich_essence` (they stumbled
+into near-death survival) + `soul_unmoored` modifier (−2 health, permanent stress gain;
+their soul is partially dissociated from their body). Still alive, still powerful — but
+unstable. Cannot attempt this path again. Can still pursue `worm_apotheosis` as a fallback
+(the failure taught them why a framework matters).
+
+#### 20.4.6 Apex Trait — `death_sovereign`
+
+```
+death_sovereign = {
+    category = fame
+    learning = 6
+    intrigue = 4
+    health = 1.0
+    monthly_prestige_gain_mult = 0.40
+    stress_gain_mult = -0.15
+    flag = death_sovereign
+}
+```
+
+- Immune to standard death-by-old-age events (not immortal — the engine still applies
+  health — but the narrative death-by-age events that other paths use do not fire).
+- Other necromancers (worm_cult_adept, lich_essence) gain opinion +25 — you are
+  something they have not seen before; you command respect across doctrinal lines.
+- Worm Cult NPCs gain opinion −30 — you rejected their path and succeeded; this is
+  apostasy.
+- Arkay-aligned characters gain opinion −25.
+- This ruler may *assist* the Ideal Masters path for another character (they understand
+  the theory) without being consumed by it themselves.
+
+---
+
+### 20.5 Necromancer Super-Tree Structure
+
+The three necromantic paths now form a coherent super-tree:
+
+```
+                ENTRY GATE: necromancer trait + learning≥14
+                        (shared with worm_apotheosis)
+                               │
+                ┌──────────────┼──────────────┐
+                │              │              │
+        BRANCH A           BRANCH B        BRANCH C
+    worm_apotheosis      ideal_masters   necromancer_third_way
+    (Mannimarco's        (Soul Cairn —   (Independent — no
+     Road)               dissolution)    master; own way)
+        │                    │                │
+   necromancers_         ideal_master_    death_sovereign
+   ascendant /           ascendant /
+   soul_fractured        soul_cairn_bound
+```
+
+Branch B (ideal_masters) is designed but not yet fully implemented. It shares the
+entry gate with Branch A and C but routes through Soul Cairn contact events rather
+than Worm Cult milestones. See §20.6 below for its brief design specification.
+
+---
+
+### 20.6 Branch B (Ideal Masters) — Abbreviated Spec
+
+**Key:** `ww_ideal_masters`
+**Flag:** `ww_ideal_masters_active`
+**Apex Trait:** `ideal_master_ascendant`
+
+Entry requirement: `necromancer` trait + `soul_gem_master` flag (from advanced soul gem
+research) OR `has_character_flag = soul_cairn_contacted`. Mutually exclusive with
+`worm_apotheosis` and `necromancer_third_way`.
+
+Milestones focus on: Soul Cairn bargaining (give up a permanent health point in exchange
+for power), staged fragmentation events (shed positive traits, gain soul-purity modifiers),
+progressive dissolution of self.
+
+Failure state (`soul_cairn_bound`): Partially crystalline. You stopped before full
+dissolution. You are neither mortal nor Ideal Master. Not death — soft failure.
+
+This branch is noted here for design completeness. Full implementation is deferred.
+
+---
+
+### 20.7 Integration Checklist — §20 New Paths
+
+- [ ] Apex traits added to `walking_ways_traits.txt`:
+  `jyggalag_ascendant`, `madness_prophet`, `death_sovereign`
+- [ ] New failure modifier `soul_unmoored` added to `lore_races_modifiers.txt`
+- [ ] New active-path modifiers added to `lore_races_modifiers.txt`:
+  `ww_path_mantling_jyggalag_active`, `ww_path_sheogorath_echo_active`,
+  `ww_path_necromancer_third_way_active`
+- [ ] Scripted effects added to `walking_ways_effects.txt`:
+  begin/advance/complete/abandon + count_milestones for all 3 paths
+- [ ] `clear_all_ww_active_flags` updated with 3 new active flags
+- [ ] Scripted triggers added to `walking_ways_triggers.txt`:
+  can_begin/is_on/has_completed/has_any_milestone for all 3 paths
+- [ ] Decision options added to `walking_ways_decisions.txt` (choose + abandon branches)
+- [ ] `can_begin_mantling_sheogorath` trigger updated to accept `jyggalag_ascendant`
+  as equivalent gate (alongside existing `jyggalag_champion`)
+- [ ] Event files created:
+  `mantling_jyggalag_events.txt`, `sheogorath_echo_events.txt`,
+  `necromancer_third_way_events.txt`
+- [ ] Progress_check dispatch updated in `walking_ways_events.txt`
+- [ ] Localization added to `walking_ways_l_english.yml`
+- [ ] No new on_actions registration needed (all three paths run through the existing
+  `walking_ways.progress_check` engine registered at weight 5)
+

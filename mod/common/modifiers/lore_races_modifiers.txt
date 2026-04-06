@@ -3040,3 +3040,76 @@ ww_path_shezarrine_ascendant_active = {
 ww_shezarrine_completed_opinion = {
     opinion = 20
 }
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 NEW PATH ACTIVE MODIFIERS AND FAILURE MODIFIERS
+# ═══════════════════════════════════════════════════════════════
+
+# ---------------------------------------------------------------
+#  PATH K — JYGGALAG'S CHAMPION ACTIVE
+#  Order is imposing itself. Clarity above all else.
+# ---------------------------------------------------------------
+
+ww_path_mantling_jyggalag_active = {
+    martial  = 2
+    learning = 1
+    stress_loss_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  PATH K-2 — SHEOGORATH'S ECHO ACTIVE
+#  Madness as insight, not madness as disease.
+# ---------------------------------------------------------------
+
+ww_path_sheogorath_echo_active = {
+    intrigue = 2
+    diplomacy = 1
+    stress_loss_mult = 0.10
+}
+
+# ---------------------------------------------------------------
+#  PATH L — NECROMANCER'S THIRD WAY ACTIVE
+#  Original inquiry into death. No master's tools.
+# ---------------------------------------------------------------
+
+ww_path_necromancer_third_way_active = {
+    learning = 2
+    intrigue = 1
+    health   = 0.3
+}
+
+# ---------------------------------------------------------------
+#  SOUL UNMOORED (FAILURE STATE — Path L)
+#  The soul is partially dissociated from the body. The practitioner
+#  stood at the boundary without a framework and the boundary
+#  pushed back. They survive, but unstably.
+# ---------------------------------------------------------------
+
+soul_unmoored = {
+    health           = -2.0
+    stress_gain_mult = 0.20
+}
+
+# ---------------------------------------------------------------
+#  ORDER SHATTERED (FAILURE STATE — Path K)
+#  Jyggalag's crystalline focus, forced through a mortal vessel
+#  without his capacity, produced brittleness. The character's
+#  grip on Order collapsed into compulsion.
+# ---------------------------------------------------------------
+
+order_shattered_compulsion = {
+    diplomacy        = -3
+    opinion          = -20
+}
+
+# ---------------------------------------------------------------
+#  SHEOGORATH CONSUMED (FAILURE STATE — Path K-2)
+#  The character stopped echoing and started being consumed.
+#  They are Sheogorath's unwilling vessel.
+# ---------------------------------------------------------------
+
+sheogorath_consumed = {
+    intrigue         = 6
+    stress_gain_mult = 0.40
+    health           = -1.0
+}

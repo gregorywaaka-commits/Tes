@@ -231,3 +231,74 @@ shezarrine_convergence = {
 
     flag = shezarrine_convergence
 }
+
+# ═══════════════════════════════════════════════════════════════
+#  §20 NEW APEX TRAITS
+# ═══════════════════════════════════════════════════════════════
+
+# ---------------------------------------------------------------
+#  JYGGALAG ASCENDANT
+#  Apex of Path K — Jyggalag's Champion ("The Instrument of Order").
+#  The character has embodied Order so completely that Jyggalag,
+#  the freed Prince, recognizes them as a kindred expression of
+#  his domain. Not a throne claim — a pattern recognition.
+#  The character is not Jyggalag; they are the shape Jyggalag's
+#  will moved through. Crystal-clear. Uncompromising. Free.
+#  [SOURCE: CANON — Shivering Isles DLC; UESP Lore:Jyggalag]
+# ---------------------------------------------------------------
+jyggalag_ascendant = {
+    category = fame
+
+    martial          = 4
+    learning         = 3
+    monthly_prestige_gain_mult = 0.35
+    health           = 0.5
+    stress_loss_mult = 0.15
+
+    flag = jyggalag_ascendant
+}
+
+# ---------------------------------------------------------------
+#  MADNESS PROPHET
+#  Apex of Path K-2 — Sheogorath's Echo ("The Prophet of Madness").
+#  The character channels Sheogorath's domain — creative chaos,
+#  the logic that reason cannot follow — without claiming the
+#  throne of the Shivering Isles. They are the echo, not the
+#  source. They wield madness as insight, as strategy, as art —
+#  and have not been consumed. Yet.
+#  [SOURCE: CANON — Shivering Isles DLC; UESP Lore:Sheogorath]
+# ---------------------------------------------------------------
+madness_prophet = {
+    category = fame
+
+    intrigue = 5
+    learning = 3
+    diplomacy = 2
+    monthly_prestige_gain_mult = 0.25
+    stress_loss_mult = 0.20
+
+    flag = madness_prophet
+}
+
+# ---------------------------------------------------------------
+#  DEATH SOVEREIGN
+#  Apex of Path L — The Necromancer's Third Way ("I Owe No Master").
+#  The character forged a relationship with death that has no
+#  precedent — neither Mannimarco's apotheosis, nor the Ideal
+#  Masters' dissolution, nor Arkay's cycle. They are sovereign
+#  over their own ending. Not the god of necromancy — something
+#  newer and stranger than that.
+#  [SOURCE: Lore synthesis — UESP Lore:Mannimarco; Soul Cairn;
+#   extrapolated from established necromantic lore gaps]
+# ---------------------------------------------------------------
+death_sovereign = {
+    category = fame
+
+    learning         = 6
+    intrigue         = 4
+    health           = 1.0
+    monthly_prestige_gain_mult = 0.40
+    stress_gain_mult = -0.15
+
+    flag = death_sovereign
+}
