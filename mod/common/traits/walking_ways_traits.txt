@@ -8,6 +8,11 @@
 #                         has begun. Applied to all active paths.
 #  chim_sovereign       — Path A apex (CHIM Expanded). The
 #                         dream is not just understood — it bends.
+#  shezarrine_convergence — Cross-path apex. A ruler who has
+#                         accumulated 3+ Shezarrine-branch
+#                         completions (Talos, Lorkhan, vessel,
+#                         Sheogorath mantle, Vivec mantle, etc.).
+#                         The mythic chain recognises itself.
 #
 #  LORE CONTEXT:
 #  ─────────────
@@ -29,11 +34,13 @@
 #  DEFINES:
 #    • walking_ways_seeker
 #    • chim_sovereign
+#    • shezarrine_convergence
 #
 #  REFERENCED BY:
 #    common/scripted_effects/walking_ways_effects.txt
 #    common/decisions/walking_ways_decisions.txt
 #    events/walking_ways_events.txt
+#    events/shezarrine_events.txt (shezarrine.201)
 # =============================================================
 
 # ---------------------------------------------------------------
@@ -195,4 +202,32 @@ shezarrine_ascendant = {
     dread_gain_mult  = 0.25   # Lorkhan's wrath radiates outward
 
     flag = shezarrine_ascendant
+}
+
+# ---------------------------------------------------------------
+#  SHEZARRINE CONVERGENCE
+#  Cross-path apex. A ruler who has accumulated 3+ Shezarrine-
+#  branch completions in a single lifetime — Talos mantle,
+#  Lorkhan mantle, shezarrine_vessel, Sheogorath mantle, Vivec
+#  mantle, Nerevarine-branch traits, Mephala web, etc.
+#  These are not separate stories. They are one story told many
+#  times. This ruler has lived more than one of its chapters.
+#  The mythic weight of the chain is visible now.
+#  [SOURCE: TES lore: Pelinal → Reman → Talos chain; Hero of
+#   Kvatch (Sheogorath mantle); Nerevarine; Dragonborn]
+# ---------------------------------------------------------------
+
+shezarrine_convergence = {
+    category = fame
+
+    martial          = 5
+    learning         = 4
+    intrigue         = 3
+    diplomacy        = 3
+    monthly_prestige = 20
+    monthly_piety    = 8
+    health           = 2.0
+    dread_gain_mult  = 0.30
+
+    flag = shezarrine_convergence
 }

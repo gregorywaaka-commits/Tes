@@ -19,6 +19,15 @@
 #  DEPENDS ON — identifiers used here that are defined elsewhere:
 #    common/traits/shezarrine_traits.txt
 #      → elf_hate, pelinal_rage, shezarrine_vessel
+#    common/traits/walking_ways_traits.txt
+#      → shezarrine_convergence  (granted by shezarrine.201)
+#    common/traits/nerevarine_traits.txt (or equivalent)
+#      → nerevarine_shadow, sharmat_ascendant, tower_breaker
+#    Character flags set by other Walking Ways paths:
+#      → ww_mantling_talos_completed, ww_mantling_lorkhan_completed
+#      → ww_shezarrine_ascendant_completed
+#      → ww_mantling_sheogorath_completed, ww_mantling_vivec_completed
+#      → ww_mantling_mephala_completed
 # =============================================================
 
 namespace = shezarrine
@@ -580,5 +589,106 @@ shezarrine.115.world = {
     option = {
         name = shezarrine.115.world.a   # "The pattern is complete. The dead god is satisfied."
         add_piety = 25
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.200  Hidden Yearly — Shezarrine Convergence Count
+# Fires yearly, recounts Shezarrine-branch completions and fires
+# the convergence event if threshold met (>= 3).
+# ---------------------------------------------------------------
+shezarrine.200 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        is_ruler = yes
+        is_adult = yes
+        OR = {
+            has_character_flag = ww_mantling_talos_completed
+            has_character_flag = ww_mantling_lorkhan_completed
+            has_trait = shezarrine_vessel
+            has_character_flag = ww_shezarrine_ascendant_completed
+            has_character_flag = ww_mantling_sheogorath_completed
+            has_character_flag = ww_mantling_vivec_completed
+            has_trait = nerevarine_shadow
+            has_trait = tower_breaker
+        }
+        NOT = { has_trait = shezarrine_convergence }
+        NOT = { has_character_flag = shezarrine_convergence_seen }
+    }
+
+    immediate = {
+        set_variable = { name = ww_shezarrine_convergence_count value = 0 }
+        if = { limit = { has_character_flag = ww_mantling_talos_completed }
+            change_variable = { name = ww_shezarrine_convergence_count add = 1 } }
+        if = { limit = { has_character_flag = ww_mantling_lorkhan_completed }
+            change_variable = { name = ww_shezarrine_convergence_count add = 1 } }
+        if = { limit = { OR = { has_trait = shezarrine_vessel  has_character_flag = ww_shezarrine_ascendant_completed } }
+            change_variable = { name = ww_shezarrine_convergence_count add = 1 } }
+        if = { limit = { has_character_flag = ww_mantling_sheogorath_completed }
+            change_variable = { name = ww_shezarrine_convergence_count add = 1 } }
+        if = { limit = { has_character_flag = ww_mantling_vivec_completed }
+            change_variable = { name = ww_shezarrine_convergence_count add = 1 } }
+        if = { limit = { OR = { has_trait = nerevarine_shadow  has_trait = sharmat_ascendant  has_trait = tower_breaker } }
+            change_variable = { name = ww_shezarrine_convergence_count add = 1 } }
+        if = { limit = { has_character_flag = ww_mantling_mephala_completed }
+            change_variable = { name = ww_shezarrine_convergence_count add = 1 } }
+
+        if = {
+            limit = { var:ww_shezarrine_convergence_count >= 3 }
+            trigger_event = { id = shezarrine.201 days = 30 }
+        }
+    }
+
+    option = { name = shezarrine.200.a }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.201  The Chain Recognises Itself
+# Fires when a character has accumulated 3+ Shezarrine-branch
+# completions.  The mythic weight is becoming undeniable.
+# ---------------------------------------------------------------
+shezarrine.201 = {
+    type = character_event
+    title = shezarrine.201.t
+    desc  = shezarrine.201.desc
+    theme = faith
+
+    option = {
+        name = shezarrine.201.a   # "I am the pattern. I accept what it demands."
+        add_trait = shezarrine_convergence
+        add_prestige = 500
+        add_piety = 200
+        add_stress = 30
+        set_character_flag = shezarrine_convergence_seen
+
+        every_ruler = {
+            limit = { NOT = { this = root } }
+            trigger_event = { id = shezarrine.202 days = 7 }
+        }
+    }
+
+    option = {
+        name = shezarrine.201.b   # "The pattern does not own me."
+        add_prestige = 100
+        add_stress = -20
+        set_character_flag = shezarrine_convergence_seen
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.202  World Notification — A Convergence Spoken
+# Sent to all other rulers when a character accepts the
+# Shezarrine Convergence trait.
+# ---------------------------------------------------------------
+shezarrine.202 = {
+    type = character_event
+    title = shezarrine.202.t
+    desc  = shezarrine.202.desc
+    theme = faith
+
+    option = {
+        name = shezarrine.202.a   # "This is either a great wonder or a great danger."
     }
 }

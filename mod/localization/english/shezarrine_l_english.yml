@@ -112,3 +112,15 @@
  shezarrine.115.world.t: "The White Warrior Has Returned"
  shezarrine.115.world.desc: "Word has come from [scope:source.primary_title.name]: [scope:source.char_name|U] is dead.\n\nNord poets and Cyrodilic chroniclers will argue for generations about the precise nature of what was accomplished. The dead god's pattern was expressed, completely, in a mortal vessel. The vessel served its purpose. The fire has returned to Lorkhan.\n\nThe pattern is complete."
  shezarrine.115.world.a: "The pattern is complete. The dead god is satisfied."
+
+ shezarrine_convergence: "The Shezarrine's Chain"
+ shezarrine_convergence_desc: "The mythic pattern of Lorkhan's champions has converged in this ruler. Pelinal's fury. Reman's empire. Talos's wound. The Nerevarine's burden. The Hero's mad throne. The Dragonborn's Voice. These are not separate stories — they are one story told many times. This ruler has lived more than one of its chapters. The weight of the chain is visible now."
+
+ shezarrine.200.a: "Continue."
+ shezarrine.201.t: "The Chain Recognises Itself"
+ shezarrine.201.desc: "It began as a feeling — the sense that you had walked this road before, under other names, in other ages. Pelinal's white fire. Reman's dragon-cry at Pale Pass. Talos's empire bought in blood and mercy. The Nerevarine's exile and return. The Hero's madness-throne at New Sheoth. These were not stories. They were reports.\n\nYou have lived more than one of these chapters. The pattern — Shor's recurring will made flesh — has recognised itself in you. Scholars would call this coincidence. Dunmer priests would call it the next verse of a very old song.\n\nYou have a choice about what to call it yourself."
+ shezarrine.201.a: "I am the pattern. I will not pretend otherwise."
+ shezarrine.201.b: "The pattern does not own me. I am my own story."
+ shezarrine.202.t: "A Convergence Spoken"
+ shezarrine.202.desc: "From [scope:source.primary_title.name], word has reached your scholars of a ruler who has walked more than one of the Shezarrine paths. The mythic chain — Pelinal, Reman, Talos, the Nerevarine, the Hero, the Dragonborn — appears to be coalescing again."
+ shezarrine.202.a: "This is either a great wonder or a great danger."
