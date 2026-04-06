@@ -175,12 +175,31 @@
 
  # nerevarine.320 — Dual-Soul Convergence
  nerevarine.320.t: "Two Dead Gods, One Breathing Body"
- nerevarine.320.desc: "You have seen the past Nervarines in Azura's realm. And you carry the shezarrine_vessel trait — you know what that means, the burning divine weight of Shor's essence pressing outward from somewhere behind your sternum.\n\nNow both things are true at once.\n\nNerevar Indoril: the greatest general Resdayn ever produced, the man who united Chimer and Dwemer against Dagoth Ur before there was a Red Mountain crisis to fight — and whose soul never stopped returning. And Shor: the dead god in the earth, the heart torn out of creation, the missing god who empties his throne in Aetherius every time he rises to walk among mortals.\n\nAn avatar of Talos once walked the ashlands of Morrowind — Wulf, a lucky coin in his hand — to visit a Nerevarine who was also touched by his divine lineage. That visitor was himself a Shezarrine-aspect. Two bearers of Shor's essence coexisted on Nirn in that moment. The lore is clear: Shor's soul can be in multiple places, §Hbut his throne cannot be occupied while any piece of him walks Nirn§!.\n\nWhile you breathe — Nerevarine and Shezarrine both — Shor's throne in Sovngarde sits empty."
- nerevarine.320.a: "Two souls, one purpose. I carry the heart and the war-cry both. Let Shor's throne stand empty — it means I am still alive."
+ nerevarine.320.desc: "You have seen the past Nervarines in Azura's realm. And you carry the shezarrine_vessel trait — you know what that means, the burning divine weight of Shor's essence pressing outward from somewhere behind your sternum.\n\nNow both things are true at once.\n\nNerevar Indoril: the greatest general Resdayn ever produced, the man who united Chimer and Dwemer against Dagoth Ur before there was a Red Mountain crisis to fight — and whose soul never stopped returning. And Shor: the dead god in the earth, the heart torn out of creation, the missing god who empties his throne in Aetherius every time he §Hphysically walks into Sovngarde§!.\n\nWhile you breathe on Nirn, the two souls coexist within you. Shor's throne does not sit empty merely because his avatar walks the world — it sits empty only when that avatar enters his own mead-hall and approaches the seat of the absent god. That moment, if it comes, will be something else entirely."
+ nerevarine.320.a: "Two souls, one purpose. I carry the heart and the war-cry both. I know what I am."
  nerevarine.320.b: "The weight of two dead gods is more than I can carry with grace. I choose Nerevar alone. Shor can wait for another body."
 
  # Custom tooltips — §21 new
  nerevarine_outlander_tt: "You have received the §Ynerevarine_outlander_recognition§! modifier. The Ashlanders are sceptical — but Azura has spoken, and the mark on you is real. Over the next five years, the faithful will reconcile tradition with what stands before them."
  nerevarine_shezarrine_revelation_tt: "You have recognised both the Nerevarine lineage and the Shezarrine essence within you. §Ynerevarine.320§! will fire shortly — the Dual-Soul Convergence event."
- shors_throne_vacant_tt: "§Yshors_throne_nerevarine§! flag set. While you live as both Nerevarine and Shezarrine, Shor's throne in Sovngarde/Aetherius stands empty. This will be cleared on your death."
+ nerevarine_dual_soul_tt: "You bear both Nerevar's mark and the Shezarrine soul. The §Ynerevarine_shezarrine_convergence§! character flag is set. Shor's throne in Sovngarde is §HNOT§! emptied by this alone — that only happens if you physically enter Sovngarde (§Yshezarrine.sovngarde_entry§!)."
+ shors_throne_vacant_tt: "§Yshors_throne_nerevarine§! flag set. You have entered Sovngarde as a living Shezarrine — Shor's throne stands empty because his avatar walks the golden hall. This will be cleared on your death."
  nerevarine_only_path_tt: "You have suppressed Shor's aspect in favour of Nerevar's. You remain §Yshezarrine_vessel§! and §Ynerevarine_marked§! but will not trigger the Convergence. The §Ynerevarine_shezarrine_declined§! flag prevents repeated prompts."
+
+ # §22 Multi-Pretender Nerevarine — new localization
+ nerevarine.330.a: "The Prophecy is Fulfilled"
+
+ nerevarine.331.t: "A False Incarnate"
+ nerevarine.331.desc: "The news reaches you like a spear to the sternum.\n\nAnother has done it. Another vessel of Azura's choosing stood at the Heart of Lorkhan beneath Red Mountain — with Sunder and Keening and Wraithguard in hand — and struck. The Heart's binding is severed. The Blight retreats. Dagoth Ur is ended.\n\nYou carried the same mark. You believed yourself to be the one the prophecy spoke of. Perhaps Azura tested more than one vessel, as she always has — the lore is full of those who came before and were found wanting. The False Incarnates of old, trapped in their final moments, cursing a destiny that passed them by.\n\nNow you are one of them."
+ nerevarine.331.a: "Then I am a False Incarnate. The soul found its true vessel in another. I accept this."
+ nerevarine.331.b: "I refuse to believe it. My mark was real — I will find another way to prove Azura's choosing."
+
+ nerevarine.340.a: "The Prophetic Stirring"
+
+ nerevarine_pretender_desc: "You were marked as a potential vessel of the Nerevarine prophecy — but another fulfilled the ancient destiny before you. The Ashlanders call those who carried the mark without completing it the §IFalse Incarnates§!: souls touched by the prophecy but not its final vessel."
+
+ # Shezarrine Sovngarde entry
+ shezarrine.sovngarde_entry.t: "Shor's Empty Hall"
+ shezarrine.sovngarde_entry.desc: "You are Shor's flesh.\n\nSomewhere in the deep awareness you carry as a Shezarrine — behind the battle-howl, behind the divine fury that seizes you in the violence of great wars — you have always known there was a hall somewhere that smelled of mead and old glory and the smoke of a fire that has been burning since before the bones of the world were set.\n\nNow the way is open.\n\nSovngarde — Shor's golden mead-hall — waits for those who died with honour. The honoured dead feast there, and drink, and fight, and feast again. But the throne at the heart of the hall sits empty. It has always sat empty, because the god who should occupy it is somewhere else: in the ground, in the world, in the broken hearts of mortals who carry his essence and call it strength.\n\nYou are that essence. And the threshold to his hall stands before you.\n\nIf you cross it as a living Shezarrine, the throne will still be empty — because you are what should sit there, and you are on the wrong side of the door."
+ shezarrine.sovngarde_entry.a: "I enter. Shor's hall will know that its absent god has come home, wearing a mortal face."
+ shezarrine.sovngarde_entry.b: "I am not yet done with Nirn. Sovngarde and its empty throne can wait."

@@ -725,3 +725,57 @@ shezarrine.milestone_whitestrake = {
         add_piety = 75
     }
 }
+
+# ---------------------------------------------------------------
+# shezarrine.sovngarde_entry  A Living Shezarrine Enters Shor's Hall
+# A character bearing shezarrine_vessel — Shor's living avatar on
+# Nirn — enters Sovngarde while still alive.  In TES V: Skyrim the
+# Dragonborn (a Shezarrine) walked into Shor's Hall to fight Alduin;
+# at that moment Shor's throne stood empty, for the god himself was
+# walking the mortal world in the Dragonborn's flesh.
+#
+# This is the ONLY mechanic that sets shors_throne_nerevarine.
+# Simply existing on Nirn as a Shezarrine does NOT empty the throne —
+# it only empties when the Shezarrine actually steps into Sovngarde.
+# [SOURCE: TES V:Skyrim — Sovngarde questline; UESP Lore:Shor;
+#  UESP Lore:Shezarrine; UESP Lore:Sovngarde]
+#
+# Trigger: shezarrine_vessel + (shor_marked OR martial >= 22)
+#          + NOT already entered + NOT throne already empty
+# Registered in: on_yearly_pulse random_events weight 2
+# ---------------------------------------------------------------
+shezarrine.sovngarde_entry = {
+    type = character_event
+    title = shezarrine.sovngarde_entry.t
+    desc  = shezarrine.sovngarde_entry.desc
+    theme = faith
+
+    trigger = {
+        has_trait = shezarrine_vessel
+        OR = {
+            has_trait = shor_marked
+            martial >= 22
+        }
+        NOT = { has_character_flag = shezarrine_sovngarde_entered }
+        NOT = { has_character_flag = shezarrine_sovngarde_declined }
+        NOT = { has_global_flag = shors_throne_nerevarine }   # only one can empty the throne at a time
+    }
+
+    option = {
+        name = shezarrine.sovngarde_entry.a   # "I walk into Shor's mead-hall, living and whole, and the throne is mine to approach."
+        set_character_flag = shezarrine_sovngarde_entered
+        set_global_flag    = shors_throne_nerevarine
+        add_prestige = 400
+        add_piety    = 300
+        add_martial_xp = 100
+        add_stress = -10
+        custom_tooltip = shors_throne_vacant_tt
+    }
+
+    option = {
+        name = shezarrine.sovngarde_entry.b   # "Sovngarde is for the dead and the destined. I am not yet done with Nirn."
+        set_character_flag = shezarrine_sovngarde_declined
+        add_prestige = 100
+        add_stress   = 5
+    }
+}

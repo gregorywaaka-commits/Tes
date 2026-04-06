@@ -102,16 +102,14 @@ claim_nerevarine_prophecy = {
     desc = claim_nerevarine_prophecy_desc
 
     is_shown = {
-        # Prophecy can be claimed when the previous vessel has died OR a second
-        # spirit can rise alongside an existing one (multi-spirit lore).
+        # Prophecy can be claimed when a vessel has died (quest open) OR while
+        # existing vessels still live — any number of simultaneous claimants is
+        # lore-valid.  Only the first to fulfil the prophecy is the True Nerevarine;
+        # the rest become False Incarnates (nerevarine_pretender) via nerevarine.331.
         OR = {
             has_global_flag = nerevarine_quest_incomplete
-            # A second soul claiming while first still lives — second spirit mechanic
-            AND = {
-                any_living_character = { has_trait = nerevarine_marked }
-                global_var:active_nerevarine_spirit_count >= 1
-                global_var:active_nerevarine_spirit_count < 3   # lore cap: three past souls visible in Morrowind
-            }
+            # A new spirit rising alongside existing vessels — no upper cap
+            any_living_character = { has_trait = nerevarine_marked }
         }
         has_trait = azura_champion
         # Race is NOT a requirement — the Nerevarine is a soul reincarnation,
@@ -120,14 +118,43 @@ claim_nerevarine_prophecy = {
         NOT = { has_trait = nerevarine_marked }
         NOT = { has_trait = nerevarine_victor }
         NOT = { has_trait = nerevarine_forsaken }
+        NOT = { has_trait = nerevarine_pretender }
         dagoth_ur_awakened = yes
         NOT = { has_global_flag = dagoth_ur_defeated }
     }
 
     is_valid = {
+        # Standard cost for all races
         piety >= 300
         prestige >= 200
         is_adult = yes
+        # Exotic / non-canonical races (any culture that is not a standard
+        # Tamrielic mortal race) additionally require high spiritual knowledge
+        # — Azura's recognition must be earned through understanding, not birth.
+        # Standard Tamrielic cultures are implicitly valid; extra-planar or
+        # long-dead-race characters require additional scholarship.
+        if = {
+            limit = {
+                NOR = {
+                    has_culture = dunmer_culture
+                    has_culture = nord_culture
+                    has_culture = breton_culture
+                    has_culture = imperial_culture
+                    has_culture = redguard_culture
+                    has_culture = orsimer_culture
+                    has_culture = altmer_culture
+                    has_culture = bosmer_culture
+                    has_culture = khajiit_culture
+                    has_culture = argonian_culture
+                }
+            }
+            # Exotic vessels (Dremora, Dwemer, etc.) need deeper spiritual attunement
+            OR = {
+                piety >= 600
+                learning >= 16
+                has_trait = shezarrine_vessel
+            }
+        }
     }
 
     is_valid_showing_failures_only = {

@@ -25,8 +25,21 @@
 #                      the souls of previous Nervarines in Azura's realm;
 #                      shezarrine_vessel claimants gain an extra option
 #    nerevarine.320  — Dual-Soul Convergence: fires when a nerevarine_marked
-#                      character also bears shezarrine_vessel; Shor's throne
-#                      in Aetherius goes vacant (shors_throne_nerevarine flag)
+#                      character also bears shezarrine_vessel; acknowledges
+#                      the dual-soul nature; Shor's throne is NOT affected here
+#                      (throne only empties when Shezarrine enters Sovngarde)
+#
+#  §22 Multi-Pretender / Pre-cursor events (NEW):
+#    nerevarine.330  — True Nerevarine Proclaimed (hidden): fires when a
+#                      character achieves nerevarine_victor; notifies all
+#                      other nerevarine_marked vessels to become pretenders
+#    nerevarine.331  — Pretender's Reckoning: fires for each surviving
+#                      nerevarine_marked vessel when the prophecy is fulfilled;
+#                      they lose nerevarine_marked and gain nerevarine_pretender
+#    nerevarine.340  — The Prophecy Stirs (hidden yearly pre-cursor): fires
+#                      for eligible rulers when dagoth_ur_awakening_possible
+#                      but BEFORE the full awakening; auto-marks multiple
+#                      candidates as nerevarine_marked across all races
 #
 #  Cross-path interactions:
 #    nerevarine.010  — Nerevarine encounters a Heart Scholar (yearly trigger)
@@ -64,11 +77,16 @@
 #  global_var:active_nerevarine_spirit_count     ← NEW §21
 #                    — integer tracking simultaneous living vessels;
 #                      incremented on claim, decremented on death
-#  has_global_flag = shors_throne_nerevarine      ← NEW §21
-#                    — set while a Nerevarine+Shezarrine convergence vessel lives;
-#                      cleared on that vessel's death
-#  character_flag: nerevarine_shezarrine_convergence  ← NEW §21
-#                    — marks the vessel that triggered the dual-soul event
+#  has_global_flag = shors_throne_nerevarine      ← §21 (corrected §22)
+#                    — set ONLY when a Shezarrine physically enters Sovngarde
+#                      (shezarrine.sovngarde_entry); NOT set by the Nerevarine-
+#                      Shezarrine convergence alone (nerevarine.320 no longer
+#                      sets this — see §22 correction)
+#                      cleared on that Shezarrine's death
+#  character_flag: nerevarine_shezarrine_convergence  ← §21
+#                    — marks the vessel that acknowledged their dual Nerevarine/
+#                      Shezarrine nature (nerevarine.320 option A).  Shor's
+#                      throne is unaffected by this flag alone.
 #  character_flag: nerevarine_turned_dagoth
 #                    — set when the Nerevarine betrays Azura for Dagoth
 #  var:sharmat_rank (character)
@@ -834,10 +852,11 @@ nerevarine.310 = {
 # [SOURCE: TES III:Morrowind — Wulf NPC; UESP Lore:Shezarrine;
 #  UESP Lore:Shor; TES V:Skyrim — Sovngarde empty throne]
 #
-# Mechanical result: sets shors_throne_nerevarine global flag
-# (Shor's throne is vacant while this character lives) and marks
-# the character with nerevarine_shezarrine_convergence flag so the
-# on_death hook can clear it properly.
+# Mechanical result: sets nerevarine_shezarrine_convergence character flag
+# (the dual-soul nature is acknowledged) and applies dual_soul_convergence_modifier.
+# NOTE: Shor's throne empty flag (shors_throne_nerevarine) is NOT set here.
+# The throne only becomes empty when the Shezarrine physically enters Sovngarde
+# (shezarrine.sovngarde_entry), NOT merely because the convergence exists on Nirn.
 # Fired by: nerevarine.310 option B
 # ---------------------------------------------------------------
 nerevarine.320 = {
@@ -849,7 +868,10 @@ nerevarine.320 = {
     option = {
         name = nerevarine.320.a   # "Two souls, one purpose — I carry the heart and the war-cry both."
         set_character_flag = nerevarine_shezarrine_convergence
-        set_global_flag = shors_throne_nerevarine
+        # NOTE: Shor's throne is NOT made empty simply because this convergence
+        # happens on Nirn.  Shor's throne only stands empty when a Shezarrine
+        # physically enters Sovngarde (shezarrine.sovngarde_entry event).
+        # [SOURCE: TES V:Skyrim — Dragonborn enters Sovngarde; UESP Lore:Shor]
         add_piety    = 500
         add_prestige = 600
         add_stress   = -20
@@ -857,7 +879,7 @@ nerevarine.320 = {
             modifier = dual_soul_convergence_modifier
             years = 99    # effectively permanent — cleared on death
         }
-        custom_tooltip = shors_throne_vacant_tt
+        custom_tooltip = nerevarine_dual_soul_tt
     }
 
     option = {
@@ -900,4 +922,176 @@ nerevarine.321 = {
     immediate = {
         trigger_event = { id = nerevarine.320 days = 3 }
     }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.330  True Nerevarine Proclaimed (hidden)
+# Fires immediately after a character achieves nerevarine_victor
+# (kagrenac.030 option A).  Notifies every other living
+# nerevarine_marked vessel that the prophecy has been fulfilled —
+# they are False Incarnates and will receive nerevarine.331.
+# Registered: triggered directly from kagrenac.030 option A.
+# ---------------------------------------------------------------
+nerevarine.330 = {
+    type = character_event
+    hidden = yes
+
+    immediate = {
+        every_ruler = {
+            limit = {
+                has_trait = nerevarine_marked
+                NOT = { this = root }
+                NOT = { has_trait = nerevarine_victor }
+                NOT = { has_trait = nerevarine_forsaken }
+            }
+            trigger_event = { id = nerevarine.331 days = 7 }
+        }
+    }
+
+    option = { name = nerevarine.330.a }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.331  Pretender's Reckoning
+# Fires for every nerevarine_marked vessel when another character
+# achieves nerevarine_victor.  The vessel learns they are a False
+# Incarnate — they carried Nerevar's soul-mark but were not the
+# one destined to fulfil the prophecy first.
+# [LORE: UESP Lore:Nerevarine — Incarnate history; TES III:Morrowind
+#  Ashlander lore of the "failed" Incarnates before the true one]
+# ---------------------------------------------------------------
+nerevarine.331 = {
+    type = character_event
+    title = nerevarine.331.t
+    desc = nerevarine.331.desc
+    theme = faith
+
+    option = {
+        name = nerevarine.331.a   # "Then I am but a False Incarnate. The soul found its true vessel."
+        remove_trait = nerevarine_marked
+        add_trait    = nerevarine_pretender
+        if = {
+            limit = { exists = global_var:active_nerevarine_spirit_count }
+            change_global_variable = { name = active_nerevarine_spirit_count add = -1 }
+        }
+        add_stress   = 30
+        add_prestige = -200
+        # Remove the modifiers tied to the active nerevarine path
+        if = {
+            limit = { has_character_modifier = dagoth_ur_champion_modifier }
+            remove_character_modifier = dagoth_ur_champion_modifier
+        }
+    }
+
+    option = {
+        name = nerevarine.331.b   # "I refuse this. I will find another way to prove Azura's mark was mine."
+        # Still lose the formal nerevarine_marked status — the prophecy
+        # is fulfilled regardless of the pretender's refusal — but they
+        # do not receive the pretender trait immediately, only its spiritual cost.
+        remove_trait = nerevarine_marked
+        add_trait    = nerevarine_pretender
+        if = {
+            limit = { exists = global_var:active_nerevarine_spirit_count }
+            change_global_variable = { name = active_nerevarine_spirit_count add = -1 }
+        }
+        add_stress   = 50    # Denial adds greater stress than acceptance
+        add_prestige = -100
+        if = {
+            limit = { has_character_modifier = dagoth_ur_champion_modifier }
+            remove_character_modifier = dagoth_ur_champion_modifier
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.340  The Prophecy Stirs (hidden yearly pre-cursor)
+# Fires for eligible rulers when dagoth_ur_awakening_possible = yes
+# but BEFORE Dagoth Ur is fully awake.  This represents the
+# prophetic force of Azura beginning to seek vessels across all
+# of Tamriel — not one chosen hero, but many potential Incarnates
+# simultaneously stirred, as the lore suggests the prophecy did:
+# "The Nerevarine will come as a stranger to these lands."
+# Multiple characters of different races are marked as potential
+# vessels.  Only the first to fulfil the prophecy (nerevarine_victor)
+# will be the True Nerevarine; the rest become False Incarnates.
+#
+# Non-canonical races (Dremora, Dwemer, Hist-bound Argonians, etc.)
+# may still receive the mark if they carry azura_champion — Azura's
+# judgement is the only gate, not bloodline.
+#
+# Mean-time-to-happen is short so that several characters are marked
+# within the first year of dagoth_ur_awakening_possible.
+# Registered in: on_yearly_pulse random_events weight 3
+# ---------------------------------------------------------------
+nerevarine.340 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        dagoth_ur_awakening_possible = yes
+        NOT = { dagoth_ur_awakened = yes }   # fires as PRE-CURSOR, before full awakening
+        NOT = { has_global_flag = dagoth_ur_defeated }
+        is_ruler = yes
+        is_adult = yes
+        NOT = { has_trait = nerevarine_marked }
+        NOT = { has_trait = nerevarine_victor }
+        NOT = { has_trait = nerevarine_forsaken }
+        NOT = { has_trait = nerevarine_pretender }
+        NOT = { has_character_flag = nerevarine_precursor_offered }
+        # Primary gate: Azura's recognition (any race)
+        OR = {
+            has_trait = azura_champion
+            # Dunmer with cultural/spiritual ties to the prophecy
+            AND = {
+                has_culture = dunmer_culture
+                piety    >= 150
+                learning >= 8
+            }
+        }
+    }
+
+    mean_time_to_happen = {
+        months = 4    # Multiple vessels will be marked in the first months of the stirring
+        modifier = {
+            factor = 0.5
+            has_culture = dunmer_culture    # Dunmer vessels are more quickly called
+        }
+        modifier = {
+            factor = 0.75
+            has_trait = azura_champion
+        }
+    }
+
+    immediate = {
+        set_character_flag = nerevarine_precursor_offered
+        add_trait = nerevarine_marked
+        if = {
+            limit = { NOT = { exists = global_var:active_nerevarine_spirit_count } }
+            set_global_variable = { name = active_nerevarine_spirit_count value = 0 }
+        }
+        change_global_variable = { name = active_nerevarine_spirit_count add = 1 }
+        if = {
+            limit = { NOT = { exists = global_var:false_nerevarine_count } }
+            set_global_variable = { name = false_nerevarine_count value = 0 }
+        }
+        change_global_variable = { name = false_nerevarine_count add = 1 }
+        # Clear any open quest flag — the prophecy is actively seeking
+        if = {
+            limit = { has_global_flag = nerevarine_quest_incomplete }
+            remove_global_flag = nerevarine_quest_incomplete
+        }
+        add_character_modifier = {
+            modifier = dagoth_ur_champion_modifier
+            days = 3650
+        }
+        # Non-Dunmer claimants get the outlander revelation
+        if = {
+            limit = { NOT = { has_culture = dunmer_culture } }
+            trigger_event = { id = nerevarine.300 days = 3 }
+        }
+        # All new claimants see the vision of past incarnations
+        trigger_event = { id = nerevarine.310 days = 7 }
+    }
+
+    option = { name = nerevarine.340.a }
 }

@@ -462,6 +462,10 @@ on_yearly_pulse = {
         # §21 Dual-Soul convergence check — fires nerevarine.320 for a Nerevarine who later
         # acquires shezarrine_vessel (or missed the initial claim-time option)
         2   = nerevarine.321   # Hidden dual-soul check — nerevarine_marked + shezarrine_vessel + no convergence yet (nerevarine_events.txt)
+        # §22 Pre-cursor prophetic stirring — fires BEFORE dagoth_ur_awakened; marks multiple candidates
+        3   = nerevarine.340   # Pre-cursor auto-mark — dagoth_ur_awakening_possible + NOT awakened yet (nerevarine_events.txt)
+        # §22 Shor's Throne — Shezarrine enters Sovngarde while alive
+        2   = shezarrine.sovngarde_entry  # shezarrine_vessel + (shor_marked OR martial>=22) (shezarrine_events.txt)
         # --- THE WALKING WAYS — Core Engine ---
         5   = walking_ways.000               # Awareness intro — eligible rulers via 3 gates (walking_ways_events.txt)
         5   = walking_ways.progress_check    # Hidden progress engine — all active path holders (walking_ways_events.txt)
@@ -720,7 +724,9 @@ on_character_death = {
         #
         # §21 MULTI-SPIRIT TRACKING: active_nerevarine_spirit_count tracks simultaneous
         # living vessels.  On death, decrement the counter.  Clear shors_throne_nerevarine
-        # global flag if this vessel held it (dual Nerevarine/Shezarrine status).
+        # global flag if this vessel entered Sovngarde (shezarrine_sovngarde_entered).
+        # NOTE: shors_throne_nerevarine is now set ONLY by shezarrine.sovngarde_entry
+        # (not by the Nerevarine-Shezarrine convergence alone — §22 correction).
         if = {
             limit = {
                 has_trait = nerevarine_marked
@@ -732,10 +738,10 @@ on_character_death = {
                 limit = { exists = global_var:active_nerevarine_spirit_count }
                 change_global_variable = { name = active_nerevarine_spirit_count add = -1 }
             }
-            # Clear Shor's throne occupied flag if this was the Shezarrine-Nerevarine
+            # Clear Shor's throne vacant flag if this was a Shezarrine who entered Sovngarde
             if = {
                 limit = {
-                    has_character_flag = nerevarine_shezarrine_convergence
+                    has_character_flag = shezarrine_sovngarde_entered
                     has_global_flag = shors_throne_nerevarine
                 }
                 remove_global_flag = shors_throne_nerevarine
@@ -765,6 +771,17 @@ on_character_death = {
                 }
                 trigger_event = { id = nerevarine.001 days = 7 }
             }
+        }
+        # --- §22 Shor's Throne: Shezarrine-entered-Sovngarde death cleanup ---
+        # If a Shezarrine who entered Sovngarde dies (but was NOT nerevarine_marked,
+        # which handles its own cleanup above), clear the throne flag.
+        if = {
+            limit = {
+                NOT = { has_trait = nerevarine_marked }
+                has_character_flag = shezarrine_sovngarde_entered
+                has_global_flag = shors_throne_nerevarine
+            }
+            remove_global_flag = shors_throne_nerevarine
         }
         # --- Talos Mantling Death Contingency ---
         #

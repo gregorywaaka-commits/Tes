@@ -3842,15 +3842,15 @@ lore-accurate race-agnostic model.
 | Event ID | Name | Notes |
 |---|---|---|
 | nerevarine.310 | Vision of Past Incarnations | Fires for all new claimants; Shezarrine gets option B |
-| nerevarine.320 | Dual-Soul Convergence | The convergence itself; two options |
+| nerevarine.320 | Dual-Soul Convergence | Acknowledges the dual-soul nature; **does NOT set Shor's throne empty** (see §22) |
 | nerevarine.321 | Hidden yearly check | Catches characters who gain shezarrine_vessel after claiming |
 
 #### 21.3.3 Outcome — Option A (Accept Convergence)
 - Sets `character_flag = nerevarine_shezarrine_convergence`
-- Sets `global_flag = shors_throne_nerevarine`
+- **NOTE (§22 correction):** does NOT set `shors_throne_nerevarine` — that flag is only set
+  when the Shezarrine physically enters Sovngarde (`shezarrine.sovngarde_entry`)
 - Applies `dual_soul_convergence_modifier` (martial +4, prowess +4, monthly_piety +8,
   prestige_gain_mult +30%, stress_gain_mult +10%, health +0.5)
-- On death: `shors_throne_nerevarine` cleared; the throne is reoccupied
 
 #### 21.3.4 Outcome — Option B (Decline / Choose Nerevar Only)
 - Sets `character_flag = nerevarine_shezarrine_declined` (prevents re-prompting)
@@ -3869,7 +3869,7 @@ lore-accurate race-agnostic model.
 ### 21.4 Integration Checklist — §21
 
 - [x] `has_culture = dunmer_culture` removed from `claim_nerevarine_prophecy.is_shown`
-- [x] Multi-spirit OR branch added to `claim_nerevarine_prophecy.is_shown` (spirit count < 3)
+- [x] Multi-spirit OR branch added to `claim_nerevarine_prophecy.is_shown` (spirit count removed per §22)
 - [x] `active_nerevarine_spirit_count` global var incremented on claim
 - [x] `active_nerevarine_spirit_count` global var decremented on death (on_actions)
 - [x] `nerevarine_quest_incomplete` only re-set if no other living Nerevarine
@@ -3881,5 +3881,96 @@ lore-accurate race-agnostic model.
 - [x] `nerevarine_outlander_recognition` modifier added to lore_races_modifiers.txt
 - [x] `nerevar_soul_witnessed` modifier added to lore_races_modifiers.txt
 - [x] `dual_soul_convergence_modifier` modifier added to lore_races_modifiers.txt
-- [x] `shors_throne_nerevarine` global flag cleared on nerevarine_shezarrine convergence death
+- [x] `shors_throne_nerevarine` — CORRECTED in §22: now tied to Sovngarde entry, not convergence
 - [x] Localization added to nerevarine_l_english.yml
+
+---
+
+## §22 Shor's Throne Correction / Multi-Pretender Nerevarine
+
+### 22.1 Shor's Throne Lore Correction
+
+**Lore issue identified:** The original §21 implementation set `shors_throne_nerevarine` whenever a
+Nerevarine+Shezarrine convergence vessel lived on Nirn.  This was lore-inaccurate.
+
+**Corrected lore:** Shor's throne in Sovngarde stands empty **only when a Shezarrine physically
+enters Sovngarde** — not merely because a Shezarrine exists on Nirn.  In TES V: Skyrim, the
+Dragonborn (a Shezarrine) enters Sovngarde alive to fight Alduin; at that moment the throne is
+empty because Shor's avatar has crossed into the hall.  Simply walking Nirn as a Shezarrine does
+not vacate the throne.
+[SOURCE: TES V:Skyrim — Sovngarde questline; UESP Lore:Shor; UESP Lore:Sovngarde]
+
+**Mechanical change:**
+- `nerevarine.320` option A no longer sets `shors_throne_nerevarine`
+- New event `shezarrine.sovngarde_entry` fires yearly for `shezarrine_vessel` characters with
+  `shor_marked` OR `martial >= 22`; option A sets `shors_throne_nerevarine` +
+  `shezarrine_sovngarde_entered` character flag
+- `on_character_death` hook clears `shors_throne_nerevarine` when `shezarrine_sovngarde_entered`
+  character dies (both inside and outside the `nerevarine_marked` gate)
+
+### 22.2 Multi-Pretender Nerevarine System
+
+**Design principle:** Any number of characters may simultaneously hold `nerevarine_marked`.  Only
+the first to achieve `nerevarine_victor` (complete the prophecy at Red Mountain) is the True
+Nerevarine.  All others become **False Incarnates** (`nerevarine_pretender` trait), consistent with
+TES lore in which multiple claimants tried and failed before the canonical Incarnate succeeded.
+[SOURCE: UESP Lore:Nerevarine — Incarnate history; TES III:Morrowind Ashlander lore]
+
+#### 22.2.1 Pre-cursor Auto-Marking (`nerevarine.340`)
+- Fires as a **hidden yearly event** when `dagoth_ur_awakening_possible = yes` but **before**
+  `dagoth_ur_awakened = yes` — the prophecy stirs as a precursor to the Sleeper's waking
+- Eligible characters: `azura_champion`, OR Dunmer with `piety >= 150` + `learning >= 8`
+- Mean-time-to-happen: 4 months (Dunmer modifier 0.5×, azura_champion modifier 0.75×)
+- Effect: grants `nerevarine_marked`, increments `active_nerevarine_spirit_count`, fires
+  `nerevarine.300` (if non-Dunmer) and `nerevarine.310` (all claimants)
+- Multiple characters across all races are auto-marked simultaneously, creating a field of
+  competing Incarnates before Dagoth fully wakes
+
+#### 22.2.2 No Spirit-Count Cap
+- The `active_nerevarine_spirit_count < 3` cap is removed from `claim_nerevarine_prophecy`
+- Any number of vessels may simultaneously hold the mark
+- `claim_nerevarine_prophecy` is still available after `dagoth_ur_awakened = yes` for characters
+  not auto-marked by nerevarine.340
+
+#### 22.2.3 Exotic-Race Additional Requirements
+Characters of non-standard Tamrielic cultures (Dremora, Dwemer automata, etc.) must additionally
+satisfy one of: `piety >= 600`, `learning >= 16`, or `has_trait = shezarrine_vessel`.
+This represents Azura's greater scepticism toward extra-planar or non-mortal vessels — not an
+absolute bar, but a higher threshold of spiritual attunement.
+
+#### 22.2.4 Pretender System (`nerevarine.330` / `nerevarine.331`)
+When `nerevarine_victor` is achieved (kagrenac.030 option A):
+- `nerevarine.330` (hidden) fires immediately: notifies every other `nerevarine_marked` ruler
+- `nerevarine.331` "Pretender's Reckoning" fires for each: two options (acceptance or denial),
+  both result in `remove_trait = nerevarine_marked`, `add_trait = nerevarine_pretender`,
+  decrement `active_nerevarine_spirit_count`
+
+#### 22.2.5 New Trait — `nerevarine_pretender`
+| Attribute | Value |
+|---|---|
+| Category | personality |
+| is_good | no |
+| learning | +3 |
+| monthly_piety_gain_mult | -0.15 |
+| monthly_prestige_gain_mult | -0.10 |
+| stress_gain_mult | +0.10 |
+
+### 22.3 Integration Checklist — §22
+
+- [x] `nerevarine.320` option A: removed `set_global_flag = shors_throne_nerevarine`
+- [x] `nerevarine.320` comment + description updated — clarifies throne NOT emptied here
+- [x] `shezarrine.sovngarde_entry` event added to `shezarrine_events.txt`
+- [x] `shezarrine.sovngarde_entry` registered in `on_yearly_pulse` (weight 2)
+- [x] `on_character_death`: updated to check `shezarrine_sovngarde_entered` for throne clear
+- [x] Second death-hook block added for non-Nerevarine Shezarrines who entered Sovngarde
+- [x] `nerevarine_pretender` trait added to `nerevarine_traits.txt`
+- [x] Spirit-count cap removed from `claim_nerevarine_prophecy.is_shown`
+- [x] `nerevarine_pretender` NOT gate added to `claim_nerevarine_prophecy.is_shown`
+- [x] Exotic-race extra requirements added to `claim_nerevarine_prophecy.is_valid`
+- [x] `nerevarine.330` (hidden victor broadcast) added to `nerevarine_events.txt`
+- [x] `nerevarine.331` (Pretender's Reckoning) added to `nerevarine_events.txt`
+- [x] `nerevarine.340` (pre-cursor auto-mark) added to `nerevarine_events.txt`
+- [x] `nerevarine.330` trigger hooked into `kagrenac.030` option A
+- [x] `nerevarine.340` registered in `on_yearly_pulse` (weight 3)
+- [x] Localization added: `.330.a`, `.331.*`, `.340.a`, `nerevarine_pretender_desc`,
+      `shezarrine.sovngarde_entry.*`, `nerevarine_dual_soul_tt`, updated `shors_throne_vacant_tt`
