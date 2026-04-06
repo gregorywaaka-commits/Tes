@@ -191,7 +191,7 @@ on_yearly_pulse = {
         5   = dagoth_ur.000          # Sixth House awakening check — fires once when dagoth_ur_awakening_possible (dagoth_ur_events.txt)
         5   = dagoth_ur.002          # Ghost Fence Strains — Dunmer ruler flavor post-awakening (dagoth_ur_events.txt)
         4   = dagoth_ur.010          # A Sixth House sleeper is discovered at court (dagoth_ur_events.txt)
-        3   = dagoth_ur.030          # Azura's call: Nerevarine Prophecy for azura_champion Dunmer (dagoth_ur_events.txt)
+        3   = dagoth_ur.030          # Azura's call: Nerevarine Prophecy for azura_champion rulers — race-agnostic per §21 (dagoth_ur_events.txt)
         4   = tribunal.000           # Vision of Vivec — warrior-poet aspect for martial Dunmer rulers (tribunal_events.txt)
         3   = tribunal.010           # Almalexia's Grace — mother-protector aspect for diplomatic Dunmer rulers (tribunal_events.txt)
         3   = tribunal.020           # Sotha Sil's Revelation — clockwork philosophy for learned rulers (tribunal_events.txt)
@@ -459,6 +459,9 @@ on_yearly_pulse = {
         5   = nerevarine.099   # Sharmat's Dream hidden milestone check — heart_fused_ascendant while dagoth_ur_awakened (nerevarine_events.txt)
         3   = nerevarine.010   # Cross-path: Nerevarine meets Heart Scholar — nerevarine_marked + living heart_scholar (nerevarine_events.txt)
         3   = nerevarine.020   # Cross-path: Nerevarine meets Heart Fused — nerevarine_marked + living heart_fused (nerevarine_events.txt)
+        # §21 Dual-Soul convergence check — fires nerevarine.320 for a Nerevarine who later
+        # acquires shezarrine_vessel (or missed the initial claim-time option)
+        2   = nerevarine.321   # Hidden dual-soul check — nerevarine_marked + shezarrine_vessel + no convergence yet (nerevarine_events.txt)
         # --- THE WALKING WAYS — Core Engine ---
         5   = walking_ways.000               # Awareness intro — eligible rulers via 3 gates (walking_ways_events.txt)
         5   = walking_ways.progress_check    # Hidden progress engine — all active path holders (walking_ways_events.txt)
@@ -705,28 +708,60 @@ on_character_death = {
                 kill_character = yes
             }
         }
-        # --- §20 Nerevarine Succession ---
+        # --- §20 / §21 Nerevarine Succession + Multi-Spirit Tracking ---
         # This hook fires on NATURAL DEATH (battle, age, disease) of a nerevarine_marked
         # character.  It is distinct from nerevarine.030 (assassination attempt), which is
         # an active decision by a rival and resolves through event options.  This hook handles
         # the passive "the vessel dies before completing the quest" case and opens the
         # claim_nerevarine_prophecy decision for new candidates.
+        #
+        # §21 RACE-AGNOSTIC SUCCESSION: The nerevarine.001 notification is sent to ALL
+        # rulers (not just Dunmer) because any race may now carry Nerevar's soul.
+        #
+        # §21 MULTI-SPIRIT TRACKING: active_nerevarine_spirit_count tracks simultaneous
+        # living vessels.  On death, decrement the counter.  Clear shors_throne_nerevarine
+        # global flag if this vessel held it (dual Nerevarine/Shezarrine status).
         if = {
             limit = {
                 has_trait = nerevarine_marked
                 NOT = { has_trait = nerevarine_victor }
                 NOT = { has_trait = nerevarine_forsaken }
             }
-            set_global_flag = nerevarine_quest_incomplete
+            # Decrement living spirit counter
+            if = {
+                limit = { exists = global_var:active_nerevarine_spirit_count }
+                change_global_variable = { name = active_nerevarine_spirit_count add = -1 }
+            }
+            # Clear Shor's throne occupied flag if this was the Shezarrine-Nerevarine
+            if = {
+                limit = {
+                    has_character_flag = nerevarine_shezarrine_convergence
+                    has_global_flag = shors_throne_nerevarine
+                }
+                remove_global_flag = shors_throne_nerevarine
+            }
+            # Only open the quest slot if no other living Nerevarine exists
+            if = {
+                limit = {
+                    NOT = {
+                        any_living_character = {
+                            has_trait = nerevarine_marked
+                            NOT = { this = prev }
+                        }
+                    }
+                }
+                set_global_flag = nerevarine_quest_incomplete
+            }
             if = {
                 limit = { NOT = { exists = global_var:false_nerevarine_count } }
                 set_global_variable = { name = false_nerevarine_count value = 0 }
             }
             change_global_variable = { name = false_nerevarine_count add = 1 }
+            # Notify all azura_champion rulers — race-agnostic per §21 lore
             every_ruler = {
                 limit = {
                     is_alive = yes
-                    has_culture = dunmer_culture
+                    has_trait = azura_champion
                 }
                 trigger_event = { id = nerevarine.001 days = 7 }
             }

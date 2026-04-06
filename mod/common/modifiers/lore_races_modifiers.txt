@@ -2941,6 +2941,44 @@ nerevarine_turned_modifier = {
 }
 
 # ---------------------------------------------------------------
+#  §21 RACE-AGNOSTIC NEREVARINE / MULTI-SPIRIT / SHEZARRINE MODIFIERS
+# ---------------------------------------------------------------
+
+# nerevarine_outlander_recognition — applied to a non-Dunmer Nerevarine
+# for 5 years while the Ashlanders slowly reconcile "the Stranger"
+# fulfilling their prophecy.  Mixed reception: the faithful grant
+# piety; the proud see an outlander who bypassed tradition.
+nerevarine_outlander_recognition = {
+    monthly_piety_gain_mult    = 0.15
+    monthly_prestige_gain_mult = -0.10    # Dunmeri traditionalists sceptical
+    diplomacy                  = 2        # Must convince by word, not blood
+    learning                   = 1        # Study of Dunmeri prophecy required
+}
+
+# nerevar_soul_witnessed — lingering resonance after seeing past Nerevarine
+# souls in Azura's realm (Moonshadow).  The vessel carries the weight
+# of all their combined memories for a time.
+nerevar_soul_witnessed = {
+    learning                   = 2
+    monthly_piety_gain_mult    = 0.10
+    stress_gain_mult           = -0.05   # the ancestors share their peace
+}
+
+# dual_soul_convergence_modifier — the Nerevarine who is also a Shezarrine
+# carries both Nerevar's soul and Shor's essence.  While both are present,
+# Shor's throne in Aetherius stands empty (shors_throne_nerevarine flag).
+# The vessel is extraordinary — dual divine heritage grants exceptional
+# martial and spiritual power at the cost of bearing immense inner weight.
+dual_soul_convergence_modifier = {
+    martial                    = 4
+    prowess                    = 4
+    monthly_piety              = 8
+    monthly_prestige_gain_mult = 0.30
+    stress_gain_mult           = 0.10    # two divine souls press outward
+    health                     = 0.5
+}
+
+# ---------------------------------------------------------------
 #  WALKING WAYS — PATH-ACTIVE MODIFIERS (Phase 1 & 2 new mantles)
 #  Applied at path start; removed by clear_all_ww_active_flags.
 # ---------------------------------------------------------------

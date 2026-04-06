@@ -3755,3 +3755,131 @@ This branch is noted here for design completeness. Full implementation is deferr
 - [ ] No new on_actions registration needed (all three paths run through the existing
   `walking_ways.progress_check` engine registered at weight 5)
 
+
+---
+
+## §21 Nerevarine: Race-Agnostic Prophecy / Multi-Spirit Lineage / Shezarrine Convergence
+
+### 21.1 Lore Basis — The Nerevarine Is a Soul, Not a Race
+
+The Nerevarine system previously restricted `claim_nerevarine_prophecy` to characters with
+`has_culture = dunmer_culture`.  This restriction has been **removed** in favour of a
+lore-accurate race-agnostic model.
+
+**Canonical evidence:**
+- In TES III: Morrowind the player character — the canonical Nerevarine — can be any of the
+  ten playable races.  The game explicitly calls them "the outlander" and "the stranger from
+  across the water" in Ashlander prophecy variants.
+- The Nerevarine prophecy concerns the *soul* of Lord Nerevar Indoril reincarnating, not
+  a product of Dunmeri blood.  Azura's domain is love, dusk, dawn, and *the perseverance of
+  souls across time*.  She does not require that soul to wear Dunmer flesh.
+- [SOURCE: TES III:Morrowind — Nerevarine Prophecies, Azura shrine dialogue;
+  UESP Lore:Nerevarine]
+
+**Mechanical change:**
+- `has_culture = dunmer_culture` removed from `claim_nerevarine_prophecy.is_shown`
+- Non-Dunmer claimants fire `nerevarine.300` (Outlander Nerevarine) 3 days after claiming,
+  granting `nerevarine_outlander_recognition` modifier for 5 years while the Ashlanders
+  slowly accept the "stranger the prophecies spoke of"
+- The on_character_death notification now sends `nerevarine.001` to all `azura_champion`
+  rulers rather than only Dunmer rulers
+
+---
+
+### 21.2 Multi-Spirit Nerevarine — Simultaneous Vessels
+
+**Canonical evidence:**
+- In TES III: Morrowind the player can meet the *souls of past Nervarines* inside
+  Dagoth Ur's citadel at Red Mountain.  These souls are not erased — they persist as
+  conscious echoes in Azura's realm (Moonshadow).  Lord Nerevar's soul has lived many
+  lives, and the earlier incarnations remain.
+- This implies the soul is not a singular baton passed from one dying body to the next:
+  it is a vast essence that can manifest in more than one living body simultaneously,
+  because the earlier incarnations' echoes prove the soul does not simply "move on".
+- [SOURCE: TES III:Morrowind — past Nerevarine encounters; UESP Lore:Azura/Moonshadow]
+
+**Mechanical change:**
+- New global variable `active_nerevarine_spirit_count` tracks simultaneous living vessels
+- `claim_nerevarine_prophecy.is_shown` has an additional OR branch: a second claimant may
+  rise while a first is still alive, provided `active_nerevarine_spirit_count < 3`
+  (capped at three simultaneous spirits — matching the number of past Nerevarine souls
+  visible in-game in Morrowind)
+- On claim: `active_nerevarine_spirit_count += 1`
+- On death (nerevarine_marked + not victor/forsaken): `active_nerevarine_spirit_count -= 1`
+- `nerevarine_quest_incomplete` is only re-set on death if NO other living Nerevarine
+  exists at that moment
+
+---
+
+### 21.3 Shezarrine-Nerevarine Convergence — Two Dead Gods, One Body
+
+**Canonical evidence:**
+- The Shezarrine is a recurring vessel of Shor (Lorkhan's mortal aspect): Pelinal
+  Whitestrake, Talos/Tiber Septim, the Dragonborn of Skyrim.
+- Wulf — the avatar of Talos who appears to the Nerevarine in TES III — is himself a
+  Shezarrine-aspect (Talos IS a Shezarrine; see UESP Lore:Shezarrine).  Wulf visits the
+  Nerevarine in person.  At the moment of that meeting, two Shezarrine-touched beings
+  coexist on Nirn simultaneously: the Nerevarine (touched by Shor's essence through the
+  Lorkhan-path connection) and Wulf (an avatar of a Shezarrine).
+- In TES V: Skyrim, Shor's throne in Sovngarde is conspicuously *empty* — because the
+  Dragonborn (the reincarnation of Shor and a Shezarrine) is alive on Nirn.  The throne
+  can only be occupied while no piece of Shor's soul walks the world.
+- This proves: (a) two Shezarrine-aspects can coexist on Nirn, and (b) while a Shezarrine
+  lives on Nirn, Shor's throne in Aetherius/Sovngarde is vacant.
+- [SOURCE: TES III:Morrowind — Wulf NPC; UESP Lore:Shezarrine; UESP Lore:Shor;
+  TES V:Skyrim — Sovngarde, Shor's throne; UESP Lore:Dragonborn]
+
+**Mechanical implementation:**
+
+#### 21.3.1 Trigger Conditions
+- A character with BOTH `nerevarine_marked` AND `shezarrine_vessel` triggers the
+  Dual-Soul Convergence chain
+- Either at claim-time (via `nerevarine.310` option B) or later (via the yearly hidden
+  event `nerevarine.321` which checks `nerevarine_marked + shezarrine_vessel + NOT
+  nerevarine_shezarrine_convergence + NOT nerevarine_shezarrine_declined`)
+
+#### 21.3.2 Events
+| Event ID | Name | Notes |
+|---|---|---|
+| nerevarine.310 | Vision of Past Incarnations | Fires for all new claimants; Shezarrine gets option B |
+| nerevarine.320 | Dual-Soul Convergence | The convergence itself; two options |
+| nerevarine.321 | Hidden yearly check | Catches characters who gain shezarrine_vessel after claiming |
+
+#### 21.3.3 Outcome — Option A (Accept Convergence)
+- Sets `character_flag = nerevarine_shezarrine_convergence`
+- Sets `global_flag = shors_throne_nerevarine`
+- Applies `dual_soul_convergence_modifier` (martial +4, prowess +4, monthly_piety +8,
+  prestige_gain_mult +30%, stress_gain_mult +10%, health +0.5)
+- On death: `shors_throne_nerevarine` cleared; the throne is reoccupied
+
+#### 21.3.4 Outcome — Option B (Decline / Choose Nerevar Only)
+- Sets `character_flag = nerevarine_shezarrine_declined` (prevents re-prompting)
+- Character remains `shezarrine_vessel` and `nerevarine_marked` with no convergence
+- Lore-valid: the character has both souls but consciously suppresses Shor's aspect
+
+#### 21.3.5 New Modifiers — §21
+| Modifier | Duration | Applied by |
+|---|---|---|
+| `nerevarine_outlander_recognition` | 1825 days (5 years) | nerevarine.300 |
+| `nerevar_soul_witnessed` | 730 days (2 years) | nerevarine.310 option A |
+| `dual_soul_convergence_modifier` | 99 years (effectively permanent) | nerevarine.320 option A |
+
+---
+
+### 21.4 Integration Checklist — §21
+
+- [x] `has_culture = dunmer_culture` removed from `claim_nerevarine_prophecy.is_shown`
+- [x] Multi-spirit OR branch added to `claim_nerevarine_prophecy.is_shown` (spirit count < 3)
+- [x] `active_nerevarine_spirit_count` global var incremented on claim
+- [x] `active_nerevarine_spirit_count` global var decremented on death (on_actions)
+- [x] `nerevarine_quest_incomplete` only re-set if no other living Nerevarine
+- [x] nerevarine.001 notification sent to azura_champion rulers (all races)
+- [x] nerevarine.300 (Outlander Nerevarine) added — fires for non-Dunmer claimants
+- [x] nerevarine.310 (Vision of Past Incarnations) added — fires for all claimants
+- [x] nerevarine.320 (Dual-Soul Convergence) added — fires for Shezarrine-Nervarines
+- [x] nerevarine.321 (hidden yearly check) added — catches late shezarrine_vessel gain
+- [x] `nerevarine_outlander_recognition` modifier added to lore_races_modifiers.txt
+- [x] `nerevar_soul_witnessed` modifier added to lore_races_modifiers.txt
+- [x] `dual_soul_convergence_modifier` modifier added to lore_races_modifiers.txt
+- [x] `shors_throne_nerevarine` global flag cleared on nerevarine_shezarrine convergence death
+- [x] Localization added to nerevarine_l_english.yml

@@ -18,6 +18,16 @@
 #  Succession:
 #    nerevarine.001  — world notification: the prophecy's vessel has fallen
 #
+#  §21 Race-Agnostic / Multi-Spirit / Shezarrine events (NEW):
+#    nerevarine.300  — Outlander Nerevarine: non-Dunmer claimant receives
+#                      Azura's acknowledgement + Ashlander recognition vision
+#    nerevarine.310  — Vision of Past Incarnations: all new claimants see
+#                      the souls of previous Nervarines in Azura's realm;
+#                      shezarrine_vessel claimants gain an extra option
+#    nerevarine.320  — Dual-Soul Convergence: fires when a nerevarine_marked
+#                      character also bears shezarrine_vessel; Shor's throne
+#                      in Aetherius goes vacant (shors_throne_nerevarine flag)
+#
 #  Cross-path interactions:
 #    nerevarine.010  — Nerevarine encounters a Heart Scholar (yearly trigger)
 #    nerevarine.011  — Scholar assists: shares Kagrenac knowledge
@@ -51,6 +61,14 @@
 #  global_var:false_nerevarine_count
 #                    — integer tracking failed incarnations;
 #                      Azura grows harder to approach at 3+
+#  global_var:active_nerevarine_spirit_count     ← NEW §21
+#                    — integer tracking simultaneous living vessels;
+#                      incremented on claim, decremented on death
+#  has_global_flag = shors_throne_nerevarine      ← NEW §21
+#                    — set while a Nerevarine+Shezarrine convergence vessel lives;
+#                      cleared on that vessel's death
+#  character_flag: nerevarine_shezarrine_convergence  ← NEW §21
+#                    — marks the vessel that triggered the dual-soul event
 #  character_flag: nerevarine_turned_dagoth
 #                    — set when the Nerevarine betrays Azura for Dagoth
 #  var:sharmat_rank (character)
@@ -84,6 +102,7 @@
 #    • nerevarine.030
 #    • nerevarine.099-105
 #    • nerevarine.200, nerevarine.210-211
+#    • nerevarine.300, nerevarine.310, nerevarine.320   ← NEW §21
 #
 #  REFERENCED BY — other files that use these events:
 #    common/on_actions/lore_races_on_actions.txt
@@ -719,5 +738,166 @@ nerevarine.211 = {
         remove_character_flag = nerevarine_turned_dagoth
         end_dagoth_ur_era = yes
         custom_tooltip = boethiah_sever_tt
+    }
+}
+
+
+# =============================================================
+#  §21 NEW EVENTS — Race-Agnostic Nerevarine / Multi-Spirit /
+#                   Shezarrine-Nerevarine Convergence
+# =============================================================
+
+# ---------------------------------------------------------------
+# nerevarine.300  Outlander Nerevarine — The Stranger the Prophecies Spoke Of
+# Fires when a non-Dunmer character claims the Nerevarine prophecy.
+# Azura's voice reaches across the racial barrier; the Ashlanders'
+# deepest prophecy variants always spoke of "the Stranger from across
+# the water" — this character is that stranger.
+# Fired by: claim_nerevarine_prophecy effect (non-Dunmer claimant)
+# ---------------------------------------------------------------
+nerevarine.300 = {
+    type = character_event
+    title = nerevarine.300.t
+    desc = nerevarine.300.desc
+    theme = faith
+
+    option = {
+        name = nerevarine.300.a   # "I am not of your blood, but I carry your ancestor's soul."
+        add_piety    = 200
+        add_prestige = 300
+        add_character_modifier = {
+            modifier = nerevarine_outlander_recognition
+            days = 1825    # 5 years — Ashlanders slowly accept the stranger
+        }
+        custom_tooltip = nerevarine_outlander_tt
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.310  Vision of Past Incarnations — Souls in Moonshadow
+# Every new Nerevarine, upon claiming the prophecy, receives a vision
+# of Azura's realm (Moonshadow) where the souls of past Nervarines wait.
+# This proves the multi-spirit lore: Nerevar's soul is not reborn once
+# and gone — it manifests in generation after generation, and those
+# earlier souls remain conscious echoes in the Daedric Prince's realm.
+# A claimant who also bears shezarrine_vessel gains an extra option,
+# recognising the dual nature of their soul (Nerevar + Shor both
+# stirring at once).
+# Fired by: claim_nerevarine_prophecy effect (all claimants)
+# ---------------------------------------------------------------
+nerevarine.310 = {
+    type = character_event
+    title = nerevarine.310.t
+    desc = nerevarine.310.desc
+    theme = faith
+
+    option = {
+        name = nerevarine.310.a   # "I see them all — every life Nerevar has ever lived."
+        add_piety    = 150
+        add_stress   = -10
+        add_character_modifier = {
+            modifier = nerevar_soul_witnessed
+            days = 730    # 2 years of lingering vision
+        }
+    }
+
+    # Extra option for a Shezarrine who is also the Nerevarine
+    option = {
+        name = nerevarine.310.b   # "Among the past souls I see something vast — Shor stirs in me too."
+        trigger = {
+            has_trait = shezarrine_vessel
+        }
+        add_piety    = 300
+        add_stress   = -15
+        trigger_event = { id = nerevarine.320 days = 3 }
+        custom_tooltip = nerevarine_shezarrine_revelation_tt
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.320  Dual-Soul Convergence — Nerevar and Shor, One Flesh
+# A character who is both the Nerevarine (nerevarine_marked) and a
+# Shezarrine (shezarrine_vessel) undergoes a profound metaphysical
+# convergence.  Both souls are reincarnations of dead gods:
+# Nerevar was the greatest champion Resdayn ever knew, and his soul
+# is beloved of Azura; Shor is the dead god in the ground, the heart
+# torn from the world.  When these two lineages meet in a single body
+# the world notices.
+#
+# Lore basis: Wulf (an avatar of Talos, himself a Shezarrine) appears
+# to the Nerevarine in Morrowind, proving two Shezarrine-touched
+# beings can coexist on Nirn simultaneously.  Talos-as-Wulf is a
+# manifest avatar, not the full soul; but it demonstrates that the
+# Shezarrine lineage is not a singular monopoly.  The Dragonborn of
+# Skyrim shows the further corollary: while a Shezarrine lives on
+# Nirn, Shor's throne in Aetherius stands empty.
+# [SOURCE: TES III:Morrowind — Wulf NPC; UESP Lore:Shezarrine;
+#  UESP Lore:Shor; TES V:Skyrim — Sovngarde empty throne]
+#
+# Mechanical result: sets shors_throne_nerevarine global flag
+# (Shor's throne is vacant while this character lives) and marks
+# the character with nerevarine_shezarrine_convergence flag so the
+# on_death hook can clear it properly.
+# Fired by: nerevarine.310 option B
+# ---------------------------------------------------------------
+nerevarine.320 = {
+    type = character_event
+    title = nerevarine.320.t
+    desc = nerevarine.320.desc
+    theme = faith
+
+    option = {
+        name = nerevarine.320.a   # "Two souls, one purpose — I carry the heart and the war-cry both."
+        set_character_flag = nerevarine_shezarrine_convergence
+        set_global_flag = shors_throne_nerevarine
+        add_piety    = 500
+        add_prestige = 600
+        add_stress   = -20
+        add_character_modifier = {
+            modifier = dual_soul_convergence_modifier
+            years = 99    # effectively permanent — cleared on death
+        }
+        custom_tooltip = shors_throne_vacant_tt
+    }
+
+    option = {
+        name = nerevarine.320.b   # "The weight of two dead gods is more than I can bear.  I choose Nerevar alone."
+        add_piety    = 100
+        add_prestige = 200
+        add_stress   = 10
+        # Set a flag so the yearly pulse (nerevarine.321) does not
+        # keep offering the convergence to a character who declined.
+        set_character_flag = nerevarine_shezarrine_declined
+        # Character remains shezarrine_vessel and nerevarine_marked
+        # but does not trigger the convergence — lore-valid: they
+        # have the dual soul but suppress Shor's aspect deliberately
+        custom_tooltip = nerevarine_only_path_tt
+    }
+}
+
+# ---------------------------------------------------------------
+# nerevarine.321  Hidden Dual-Soul Check (yearly pulse)
+# Fires for any character who is BOTH nerevarine_marked AND
+# shezarrine_vessel but has NOT yet undergone the convergence
+# event.  This catches characters who acquired shezarrine_vessel
+# AFTER claiming the prophecy (e.g., through a Shezarrine event
+# chain that fires later in their reign) and ensures they still
+# get the chance to acknowledge the dual-soul nature.
+# Registered in: on_yearly_pulse random_events weight 2
+# ---------------------------------------------------------------
+nerevarine.321 = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_trait = nerevarine_marked
+        has_trait = shezarrine_vessel
+        NOT = { has_character_flag = nerevarine_shezarrine_convergence }
+        NOT = { has_character_flag = nerevarine_shezarrine_declined }
+        NOT = { has_global_flag = dagoth_ur_defeated }
+    }
+
+    immediate = {
+        trigger_event = { id = nerevarine.320 days = 3 }
     }
 }
