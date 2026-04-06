@@ -1,0 +1,316 @@
+# =============================================================
+#  Tonal Architecture — Events
+#  Namespace: tonal_arch
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • tonal_arch.intro      — Path G intro: the wrong Walking Way
+#  • tonal_arch.rank1      — Seeking: tonal resonance theory mastered
+#  • tonal_arch.rank2      — Striving: animunculus and frequency work
+#  • tonal_arch.rank3      — Threshold: the gestalt attempt
+#  • tonal_arch.apotheosis — Nullify the self: 50% death
+#  • tonal_arch.failure    — Death: "They sought what the Dwemer sought."
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Dwemer believed reality could be rewritten through
+#  tonal manipulation — the same method Kagrenac used on the
+#  Heart of Lorkhan. Their collective attempt at apotheosis
+#  caused the entire Dwemer race to vanish simultaneously.
+#  This is explicitly "the wrong Walking Way" — materialist,
+#  scientific, dangerous. [SOURCE: UESP Lore:Tonal Architecture]
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEPENDS ON:
+#    common/traits/walking_ways_traits.txt  → tonal_transcendent
+#    common/traits/dwemer_ruins_traits.txt  → tonal_architect
+#    common/scripted_effects/walking_ways_effects.txt
+#      → complete_path_tonal_architecture, abandon_path_tonal_architecture
+# =============================================================
+
+namespace = tonal_arch
+
+# ---------------------------------------------------------------
+# tonal_arch.intro  THE WRONG WAY
+# The ruler commits to the Dwemer's path. Tonal Architecture
+# is not a spiritual road — it is an engineering problem applied
+# to the soul. The intro makes this explicit: this is dangerous.
+# ---------------------------------------------------------------
+tonal_arch.intro = {
+    type = character_event
+    title = tonal_arch.intro.t
+    desc  = tonal_arch.intro.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_tonal_architecture = yes
+    }
+
+    option = {
+        name = tonal_arch.intro.a   # "The Dwemer found the answer. I will find where they hid it."
+        add_stress = 20
+        add_character_modifier = {
+            modifier = ww_path_tonal_architecture_active
+            years = 100
+        }
+        set_character_flag = {
+            flag = ww_tonal_principles_pending
+            years = 2
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# tonal_arch.rank1  SEEKING — Tonal Resonance Theory
+# Two milestones done. The ruler has mastered the theoretical
+# foundation and built a functioning animunculus.
+# ---------------------------------------------------------------
+tonal_arch.rank1 = {
+    type = character_event
+    title = tonal_arch.rank1.t
+    desc  = tonal_arch.rank1.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_tonal_architecture = yes
+        var:ww_tonal_architecture_rank >= 1
+    }
+
+    immediate = {
+        set_character_flag = ww_tonal_milestone_principles
+    }
+
+    option = {
+        name = tonal_arch.rank1.a   # "The resonance is consistent. I can reproduce it."
+        add_learning_xp = 300
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# tonal_arch.rank2  STRIVING — Frequency and the Resonator
+# Four milestones done. The ruler has identified a Tower tone
+# and begun affecting other souls through tonal means.
+# ---------------------------------------------------------------
+tonal_arch.rank2 = {
+    type = character_event
+    title = tonal_arch.rank2.t
+    desc  = tonal_arch.rank2.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_tonal_architecture = yes
+        var:ww_tonal_architecture_rank >= 2
+    }
+
+    option = {
+        name = tonal_arch.rank2.a   # "The Tower has a frequency. I am learning to read it."
+        add_learning = 1
+        add_stress = 15
+    }
+
+    option = {
+        name = tonal_arch.rank2.b   # "The resonator affects others. But what does it do to me?"
+        add_stewardship = 1
+        add_stress = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# tonal_arch.rank3  THRESHOLD — The Gestalt Attempt
+# Six milestones done. The ruler has attempted a partial
+# collective merge with willing subjects. Something changed.
+# ---------------------------------------------------------------
+tonal_arch.rank3 = {
+    type = character_event
+    title = tonal_arch.rank3.t
+    desc  = tonal_arch.rank3.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_tonal_architecture = yes
+        var:ww_tonal_architecture_rank >= 3
+    }
+
+    option = {
+        name = tonal_arch.rank3.a   # "The gestalt held. For twelve seconds, we were not separate."
+        add_prestige = 200
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# tonal_arch.apotheosis  NULLIFY THE SELF
+# All milestones complete. The ruler attempts to nullify their
+# own song and rewrite the self from the tonal level up.
+# 50% death chance. The Dwemer all tried this. They are gone.
+# ---------------------------------------------------------------
+tonal_arch.apotheosis = {
+    type = character_event
+    title = tonal_arch.apotheosis.t
+    desc  = tonal_arch.apotheosis.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_tonal_architecture = yes
+        var:ww_tonal_architecture_rank >= 4
+        NOT = { has_character_flag = ww_tonal_architecture_completed }
+    }
+
+    immediate = {
+        random_list = {
+            50 = {
+                complete_path_tonal_architecture = yes
+            }
+            50 = {
+                trigger_event = { id = tonal_arch.failure days = 1 }
+            }
+        }
+    }
+
+    option = {
+        name = tonal_arch.apotheosis.a   # "The Dwemer vanished because they succeeded."
+        trigger = { has_trait = tonal_transcendent }
+        add_prestige = 300
+        add_stress = -50
+    }
+
+    option = {
+        name = tonal_arch.apotheosis.b   # "I hear my own tone. I will rewrite it."
+        trigger = { NOT = { has_trait = tonal_transcendent } }
+        # failure branch; death fires in tonal_arch.failure
+    }
+}
+
+# ---------------------------------------------------------------
+# tonal_arch.failure  ERASURE
+# The nullification failed. The self was dissolved but not
+# rewritten. As the Dwemer: gone.
+# ---------------------------------------------------------------
+tonal_arch.failure = {
+    type = character_event
+    title = tonal_arch.failure.t
+    desc  = tonal_arch.failure.desc
+    theme = learning
+    hidden = yes
+
+    trigger = {
+        NOT = { has_trait = tonal_transcendent }
+        has_character_flag = ww_tonal_architecture_active
+    }
+
+    immediate = {
+        clear_all_ww_active_flags = yes
+        kill_character = {
+            death_reason = death_chim_erasure
+        }
+    }
+
+    option = { name = "OK" }
+}
+
+# ---------------------------------------------------------------
+# tonal_arch.milestone_construct  BUILD THE ANIMUNCULUS
+# Milestone 2: the ruler commissions and tunes a functioning
+# animunculus — a Dwemer automaton attuned to their will.
+# ---------------------------------------------------------------
+tonal_arch.milestone_construct = {
+    type = character_event
+    title = tonal_arch.milestone_construct.t
+    desc  = tonal_arch.milestone_construct.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_tonal_architecture = yes
+        NOT = { has_character_flag = ww_tonal_milestone_construct }
+    }
+
+    option = {
+        name = tonal_arch.milestone_construct.a   # "It responds. Not to commands — to my intent."
+        add_gold = -50
+        set_character_flag = ww_tonal_milestone_construct
+        add_stress = 10
+    }
+
+    option = {
+        name = tonal_arch.milestone_construct.b   # "Not yet. The tolerances are not precise enough."
+        # No milestone; can fire again
+    }
+}
+
+# ---------------------------------------------------------------
+# tonal_arch.milestone_frequency  THE TOWER'S TONE
+# Milestone 3: the ruler identifies the tonal frequency of a
+# Tower Stone or divine artifact — a note that reality itself
+# is built on.
+# ---------------------------------------------------------------
+tonal_arch.milestone_frequency = {
+    type = character_event
+    title = tonal_arch.milestone_frequency.t
+    desc  = tonal_arch.milestone_frequency.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_tonal_architecture = yes
+        NOT = { has_character_flag = ww_tonal_milestone_frequency }
+        var:ww_tonal_architecture_rank >= 1
+    }
+
+    option = {
+        name = tonal_arch.milestone_frequency.a   # "The Tower has a note. It is older than the Towers."
+        set_character_flag = ww_tonal_milestone_frequency
+        add_learning_xp = 200
+    }
+}
+
+# ---------------------------------------------------------------
+# tonal_arch.milestone_resonator  THE RESONATOR EFFECT
+# Milestone 4: the ruler creates a tonal resonator that affects
+# another soul — consent given, test controlled.
+# ---------------------------------------------------------------
+tonal_arch.milestone_resonator = {
+    type = character_event
+    title = tonal_arch.milestone_resonator.t
+    desc  = tonal_arch.milestone_resonator.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_tonal_architecture = yes
+        NOT = { has_character_flag = ww_tonal_milestone_resonator }
+        var:ww_tonal_architecture_rank >= 2
+    }
+
+    option = {
+        name = tonal_arch.milestone_resonator.a   # "The volunteer agreed. Their song changed. They are not harmed."
+        set_character_flag = ww_tonal_milestone_resonator
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# tonal_arch.milestone_gestalt  THE PARTIAL MERGE
+# Milestone 5: the gestalt attempt. Willing subjects only.
+# For a brief moment, the individual songs merge into one.
+# ---------------------------------------------------------------
+tonal_arch.milestone_gestalt = {
+    type = character_event
+    title = tonal_arch.milestone_gestalt.t
+    desc  = tonal_arch.milestone_gestalt.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_tonal_architecture = yes
+        NOT = { has_character_flag = ww_tonal_milestone_gestalt }
+        var:ww_tonal_architecture_rank >= 2
+    }
+
+    option = {
+        name = tonal_arch.milestone_gestalt.a   # "Twelve seconds. The Dwemer must have held it longer."
+        set_character_flag = ww_tonal_milestone_gestalt
+        add_prestige = 100
+    }
+}

@@ -1,0 +1,272 @@
+# =============================================================
+#  Prolix Tower — Events
+#  Namespace: prolix_tower
+#
+#  SYSTEM OVERVIEW:
+#  ─────────────────
+#  • prolix_tower.intro      — Path H intro: the power of naming
+#  • prolix_tower.rank1      — Seeking: the self-referential text
+#  • prolix_tower.rank2      — Striving: distribution and vision
+#  • prolix_tower.rank3      — Threshold: the 36 Lessons and beyond
+#  • prolix_tower.apotheosis — Be the author or enter the text
+#  • prolix_tower.distributed_world — World event when text spreads
+#
+#  LORE CONTEXT:
+#  ─────────────
+#  The Prolix Tower is the third canonical Walking Way.
+#  Achieving divinity through language, recursive logic, and
+#  the power of naming. Vivec's 36 Lessons ARE a Prolix Tower —
+#  a text that constructs the godhood of its author recursively.
+#  Lower risk than other paths: the Tower is survivable even
+#  in failure, though the author may become lost in the text.
+#  [SOURCE: UESP Lore:Walking Ways; 36 Lessons of Vivec]
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEPENDS ON:
+#    common/traits/walking_ways_traits.txt
+#      → prolix_sovereign, lost_in_the_tower
+#    common/traits/tribunal_traits.txt
+#      → vivec_blessed
+#    common/scripted_effects/walking_ways_effects.txt
+#      → complete_path_prolix_tower, complete_path_prolix_tower_lost
+# =============================================================
+
+namespace = prolix_tower
+
+# ---------------------------------------------------------------
+# prolix_tower.intro  THE TOWER OF LANGUAGE
+# The path begins with a paradox: writing about the act of
+# writing. The text that refers to itself as author.
+# ---------------------------------------------------------------
+prolix_tower.intro = {
+    type = character_event
+    title = prolix_tower.intro.t
+    desc  = prolix_tower.intro.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_prolix_tower = yes
+    }
+
+    option = {
+        name = prolix_tower.intro.a   # "I will write myself into existence."
+        add_stress = 10
+        add_character_modifier = {
+            modifier = ww_path_prolix_tower_active
+            years = 100
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# prolix_tower.rank1  SEEKING — The Self-Referential Text
+# Two milestones done. The ruler has written a text that refers
+# to itself as author, and that text has begun to spread.
+# ---------------------------------------------------------------
+prolix_tower.rank1 = {
+    type = character_event
+    title = prolix_tower.rank1.t
+    desc  = prolix_tower.rank1.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_prolix_tower = yes
+        var:ww_prolix_tower_rank >= 1
+    }
+
+    immediate = {
+        set_character_flag = ww_prolix_milestone_first_paradox
+    }
+
+    option = {
+        name = prolix_tower.rank1.a   # "The text names its own author. I am the author it names."
+        add_learning_xp = 200
+        add_stress = -5
+    }
+}
+
+# ---------------------------------------------------------------
+# prolix_tower.rank2  STRIVING — Distribution and Vision
+# Four milestones done. The text has spread to other courts.
+# The ruler has seen themselves writing what they are living.
+# ---------------------------------------------------------------
+prolix_tower.rank2 = {
+    type = character_event
+    title = prolix_tower.rank2.t
+    desc  = prolix_tower.rank2.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_prolix_tower = yes
+        var:ww_prolix_tower_rank >= 2
+    }
+
+    option = {
+        name = prolix_tower.rank2.a   # "Three rulers quoted the text before I wrote the final line."
+        add_prestige = 150
+        add_stress = 10
+    }
+
+    option = {
+        name = prolix_tower.rank2.b   # "I saw myself writing. I was writing about having seen myself writing."
+        add_learning = 1
+        add_stress = 15
+    }
+}
+
+# ---------------------------------------------------------------
+# prolix_tower.rank3  THRESHOLD — The Uncontrolled Text
+# Six milestones done. The 36 Lessons are complete. The text
+# has begun to write itself beyond the ruler's control.
+# ---------------------------------------------------------------
+prolix_tower.rank3 = {
+    type = character_event
+    title = prolix_tower.rank3.t
+    desc  = prolix_tower.rank3.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_prolix_tower = yes
+        var:ww_prolix_tower_rank >= 3
+    }
+
+    option = {
+        name = prolix_tower.rank3.a   # "The text is writing tomorrow. It is writing next year."
+        add_prestige = 250
+        add_stress = -15
+    }
+}
+
+# ---------------------------------------------------------------
+# prolix_tower.apotheosis  BE THE AUTHOR OR ENTER THE TEXT
+# All milestones complete. The ruler must choose: stand outside
+# the narrative as its sovereign author, or enter the text
+# and become part of it forever.
+# ---------------------------------------------------------------
+prolix_tower.apotheosis = {
+    type = character_event
+    title = prolix_tower.apotheosis.t
+    desc  = prolix_tower.apotheosis.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_prolix_tower = yes
+        var:ww_prolix_tower_rank >= 4
+        NOT = { has_character_flag = ww_prolix_tower_completed }
+    }
+
+    option = {
+        name = prolix_tower.apotheosis.a   # "I am the author. The text does not contain me."
+        complete_path_prolix_tower = yes
+        add_prestige = 250
+    }
+
+    option = {
+        name = prolix_tower.apotheosis.b   # "I will enter the text. I will live inside what I wrote."
+        complete_path_prolix_tower_lost = yes
+        add_stress = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# prolix_tower.distributed_world  THE TEXT SPREADS
+# Milestone 2 world event. When the text has been read by
+# at least 3 rulers, a world notification fires.
+# ---------------------------------------------------------------
+prolix_tower.distributed_world = {
+    type = character_event
+    title = prolix_tower.distributed_world.t
+    desc  = prolix_tower.distributed_world.desc
+    theme = learning
+    hidden = yes
+
+    trigger = {
+        is_on_path_prolix_tower = yes
+        NOT = { has_character_flag = ww_prolix_milestone_distributed }
+    }
+
+    immediate = {
+        set_character_flag = ww_prolix_milestone_distributed
+        every_ruler = {
+            limit = { NOT = { this = root } }
+            trigger_event = { id = prolix_tower.distributed_notify days = 7 }
+        }
+    }
+
+    option = { name = "OK" }
+}
+
+prolix_tower.distributed_notify = {
+    type = character_event
+    title = prolix_tower.distributed_notify.t
+    desc  = prolix_tower.distributed_notify.desc
+    theme = learning
+
+    option = {
+        name = prolix_tower.distributed_notify.a   # "An unusual text. Someone is attempting something unusual."
+        add_learning_xp = 50
+    }
+
+    option = {
+        name = prolix_tower.distributed_notify.b   # "This reads like the 36 Lessons. That is not a compliment."
+        add_piety = 20
+    }
+}
+
+# ---------------------------------------------------------------
+# prolix_tower.milestone_lessons  THE 36 LESSONS COMPLETE
+# Milestone 4: the ruler completes their set of 36 themed
+# texts — each one a lesson, each one a verse of becoming.
+# ---------------------------------------------------------------
+prolix_tower.milestone_lessons = {
+    type = character_event
+    title = prolix_tower.milestone_lessons.t
+    desc  = prolix_tower.milestone_lessons.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_prolix_tower = yes
+        NOT = { has_character_flag = ww_prolix_milestone_lessons }
+        var:ww_prolix_tower_rank >= 2
+    }
+
+    option = {
+        name = prolix_tower.milestone_lessons.a   # "Thirty-six. Each one a door I walked through."
+        add_gold = -40
+        set_character_flag = ww_prolix_milestone_lessons
+        add_prestige = 100
+    }
+
+    option = {
+        name = prolix_tower.milestone_lessons.b   # "Not ready. The lessons must mean what I intend."
+        # No milestone; can fire again
+    }
+}
+
+# ---------------------------------------------------------------
+# prolix_tower.milestone_vision  THE RECURSIVE VISION
+# Milestone 3: the ruler sees themselves in the act of writing
+# what they are currently living. Time folds.
+# ---------------------------------------------------------------
+prolix_tower.milestone_vision = {
+    type = character_event
+    title = prolix_tower.milestone_vision.t
+    desc  = prolix_tower.milestone_vision.desc
+    theme = learning
+
+    trigger = {
+        is_on_path_prolix_tower = yes
+        NOT = { has_character_flag = ww_prolix_milestone_vision }
+        var:ww_prolix_tower_rank >= 1
+    }
+
+    option = {
+        name = prolix_tower.milestone_vision.a   # "I was the writer. I was also what was written."
+        set_character_flag = ww_prolix_milestone_vision
+        add_stress = 10
+    }
+}

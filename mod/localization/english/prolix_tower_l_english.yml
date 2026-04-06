@@ -1,0 +1,63 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ #  PATH H — PROLIX TOWER
+ # ═══════════════════════════════════════════════════════════════
+
+ # ─── Traits ───
+ prolix_sovereign: "Prolix Sovereign"
+ prolix_sovereign_desc: "Language achieved godhood. The author stood outside the text and watched it become real. The 36 Lessons of Vivec are not a metaphor — they are a Prolix Tower, a recursive architecture in which the author's divinity is constructed by the act of writing. This ruler walked that path and chose to remain the author. The text is still out there. It is still being read. Every reading adds to the sovereign's reality."
+
+ lost_in_the_tower: "Lost in the Tower"
+ lost_in_the_tower_desc: "The author chose to enter the text. They are still in there — capable, brilliant, operating from inside a narrative they wrote but cannot fully exit. The learning is extraordinary. The stress is constant. The world this ruler inhabits is the world the text describes, which is almost but not quite the same as the world everyone else inhabits."
+
+ # ─── Decision Options ───
+ choose_walking_way.path_h: "Path H: Prolix Tower — The Language of Divinity"
+ choose_walking_way.path_h_desc: "Achieving divinity through language, recursive logic, and the power of naming. The 36 Lessons of Vivec ARE a Prolix Tower. The path uses writing and self-referential text to construct godhood. Lower risk than other paths — the Prolix Tower is survivable even in failure. [Requires: learning 18+, vivec_blessed OR black_book_found]"
+
+ # ─── Path Intro ───
+ prolix_tower.intro.t: "The Tower of Language"
+ prolix_tower.intro.desc: "The Prolix Tower is not a place. It is a structure made of words.\n\nVivec understood this. The 36 Lessons are not scripture — they are engineering. Each Lesson is a brick in a tower that, when complete, constitutes the divinity of its author. The author does not need to believe it. The author only needs to mean it, and to mean it precisely enough that the meaning becomes real.\n\nThe warrior-poet god wrote their way to divinity. The text is still being read. Every reader adds another stone to the Tower. It grows. It has always been growing.\n\nYou will write the Tower. Whether you choose to live inside it when it is complete — that decision comes later."
+ prolix_tower.intro.a: "I will write myself into existence."
+
+ # ─── Rank Events ───
+ prolix_tower.rank1.t: "The Text Names Its Author"
+ prolix_tower.rank1.desc: "The text is finished — or rather, finished enough to be circulated. It does something that ordinary texts do not: it names its own author in the act of describing the author's composition of the text.\n\nThe paradox is not accidental. It is the first brick. The text that refers to itself as author is the first sentence of the Tower.\n\nThree rulers have already sent copies to their scholars. The Tower has begun."
+ prolix_tower.rank1.a: "The text names its own author. I am the author it names."
+
+ prolix_tower.rank2.t: "The Vision in the Tower"
+ prolix_tower.rank2.desc: "The distributed text is being read by courts across the realm. Scholars debate it. Priests argue about it. Three rulers have ordered copies made.\n\nAnd then: the vision. You were writing — a sentence, a careful sentence — when you saw yourself writing it, from a perspective outside your own body. You were writing about the moment of writing. The text contained the vision of the text's composition.\n\nThe Tower is recursive. It was always going to be recursive."
+ prolix_tower.rank2.a: "Three rulers quoted the text before I wrote the final line."
+ prolix_tower.rank2.b: "I saw myself writing. I was writing about having seen myself writing."
+
+ prolix_tower.rank3.t: "The Uncontrolled Text"
+ prolix_tower.rank3.desc: "The 36 Lessons are complete. Each one is a door. Each one describes a transformation that, in writing about it, constitutes it.\n\nBut the last three Lessons wrote themselves. You sat down to write them and found the words already present — not on the page, but in a place slightly adjacent to the page, waiting for your hand to make them visible.\n\nThe Tower is writing tomorrow. It is writing next year. It knows what the author has not yet done because it contains the author as a character."
+ prolix_tower.rank3.a: "The text is writing tomorrow. It is writing next year."
+
+ # ─── Apotheosis ───
+ prolix_tower.apotheosis.t: "Author or Character"
+ prolix_tower.apotheosis.desc: "The Tower is complete. It stands — not in stone, not in timber — in language, recursive and vast, a structure whose walls are made of meaning and whose foundations are the paradox of self-reference applied to divinity.\n\nThe author stands at the threshold of the Tower.\n\nTwo paths. Stand outside the Tower as its sovereign author — the one who wrote it and therefore stands above it. Or enter the text, become a character in the story, live inside the constructed world of the Tower's logic forever.\n\nVivec chose something like the first option. Eventually. The 36 Lessons are still being read."
+ prolix_tower.apotheosis.a: "I am the author. The text does not contain me — I contain the text."
+ prolix_tower.apotheosis.b: "I will enter the text. I choose to live inside what I wrote."
+
+ # ─── Distribution Events ───
+ prolix_tower.distributed_world.t: "A Text Spreads"
+ prolix_tower.distributed_world.desc: "A text has spread from [scope:source.primary_title.name]."
+
+ prolix_tower.distributed_notify.t: "A Circulating Text"
+ prolix_tower.distributed_notify.desc: "A text has arrived from [scope:source.primary_title.name]. It is unusual. It refers to its own author in the act of being read. Scholars describe it as 'self-completing' — as if the act of reading adds something to it that was not there before.\n\nThe resemblance to the 36 Lessons of Vivec is noted by several of the more alarmed recipients."
+ prolix_tower.distributed_notify.a: "An unusual text. Someone is attempting something unusual."
+ prolix_tower.distributed_notify.b: "This reads like the 36 Lessons. That is not a compliment."
+
+ # ─── Milestone Events ───
+ prolix_tower.milestone_lessons.t: "Thirty-Six"
+ prolix_tower.milestone_lessons.desc: "Thirty-six Lessons. Each one a door. Each one a transformation described so precisely that the description constitutes the transformation.\n\nVivec wrote their Lessons over a lifetime. Or a mythology. Or a self-writing fiction in which the lifetime and the mythology and the fiction are all the same thing.\n\nThese thirty-six are shorter. They are also not finished. The Tower grows as they are read."
+ prolix_tower.milestone_lessons.a: "Thirty-six. Each one a door I walked through."
+ prolix_tower.milestone_lessons.b: "Not ready. The lessons must mean what I intend."
+
+ prolix_tower.milestone_vision.t: "The Recursive Vision"
+ prolix_tower.milestone_vision.desc: "While writing — carefully, precisely — the vision arrived.\n\nYou saw yourself, from outside your own body, writing the sentence you were writing. In the vision, you were watching yourself have the vision. The vision was inside the sentence. The sentence was inside the vision.\n\nThe Tower is recursive. This is not a problem. This is the architecture."
+ prolix_tower.milestone_vision.a: "I was the writer. I was also what was written."
+
+ # ─── World Notifications ───
+ walking_ways.world_notify.prolix_sovereign: "A text from [scope:source.primary_title.name] is circulating through scholarly courts with unsettling effect. It appears to name its own author as divine — and the language it uses is not metaphorical. [scope:source.char_name|U] has walked Vivec's path not through Kagrenac's tools but through the architecture of language itself. The Tower is complete. Whether to read it is a choice each court must make for itself."
+ walking_ways.world_notify.lost_in_the_tower: "Reports from [scope:source.primary_title.name] suggest that [scope:source.char_name|U] is present but somehow distant — as if inhabiting the same court from a slightly different angle than everyone else. Scholars who have corresponded with the ruler describe the sensation of conversing with someone who is simultaneously inside and outside the conversation. The Tower was built. The author chose to live in it."

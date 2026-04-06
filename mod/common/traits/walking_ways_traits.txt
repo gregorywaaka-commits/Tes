@@ -82,3 +82,117 @@ chim_sovereign = {
 
     flag = chim_sovereign
 }
+
+# ---------------------------------------------------------------
+#  TONAL TRANSCENDENT
+#  Path G apex. The Dwemer's path was the wrong Walking Way —
+#  materialist, scientific, dangerous. But those who survive
+#  it are rewritten at the tonal level. The self is not
+#  understood; it is reconstructed. Learning and order are
+#  elevated beyond mortal norms, but the cost was nearly
+#  annihilation.
+#  [SOURCE: UESP Lore:Tonal Architecture; Lore:Numidium]
+# ---------------------------------------------------------------
+
+tonal_transcendent = {
+    category = fame
+
+    learning    = 8
+    stewardship = 6
+
+    monthly_prestige = 15
+    stress_gain_mult = -0.30   # the reconstructed self does not bruise easily
+
+    flag = tonal_transcendent
+}
+
+# ---------------------------------------------------------------
+#  PROLIX SOVEREIGN
+#  Path H apex. Language achieved godhood. The text became
+#  real. The author survived — standing outside the narrative
+#  that wrote itself. Vivec's path. The 36 Lessons made literal.
+#  [SOURCE: UESP Lore:Walking Ways; 36 Lessons of Vivec]
+# ---------------------------------------------------------------
+
+prolix_sovereign = {
+    category = fame
+
+    learning         = 7
+    monthly_piety    = 12
+    monthly_prestige = 10
+
+    flag = prolix_sovereign
+}
+
+# ---------------------------------------------------------------
+#  LOST IN THE TOWER
+#  Path H alternate outcome. The author chose to enter the text
+#  rather than stand outside it. They are still in there —
+#  capable, brilliant, half-present. A mind that operates from
+#  inside a narrative it wrote but cannot fully exit.
+#  No death. Permanent partial displacement.
+# ---------------------------------------------------------------
+
+lost_in_the_tower = {
+    category = lifestyle
+
+    learning         = 3
+    stress_gain_mult = 0.25   # the text's pressures are constant
+
+    flag = lost_in_the_tower
+}
+
+# ---------------------------------------------------------------
+#  NECROMANCER'S ASCENDANT
+#  Path I apex. Mannimarco's completed path. The Necromancer's
+#  Moon is not a metaphor — it is a domain. Arkay's cycle
+#  broken. Death no longer flows one way. The ascendant rules
+#  from the intersection of life and death.
+#  [SOURCE: UESP Lore:Mannimarco; Daggerfall; ESO]
+# ---------------------------------------------------------------
+
+necromancers_ascendant = {
+    category = fame
+
+    intrigue         = 6
+    learning         = 5
+    health           = 2.0
+    monthly_piety    = 10
+    stress_gain_mult = -0.20   # death is no longer something that happens to you
+
+    flag = necromancers_ascendant
+}
+
+# ---------------------------------------------------------------
+#  SOUL FRACTURED
+#  Path I failure outcome. The phylactery held — the soul was
+#  bound — but the ascension broke mid-way. The character did
+#  not die. They became a lich instead. The fractured soul
+#  is a side-state: extraordinary, but not what was sought.
+# ---------------------------------------------------------------
+
+soul_fractured = {
+    category = lifestyle
+
+    flag = soul_fractured
+}
+
+# ---------------------------------------------------------------
+#  SHEZARRINE ASCENDANT
+#  Path J apex. Lorkhan's pattern completed in a mortal vessel.
+#  The merger did not destroy the character — it completed
+#  them as a mythic instrument. The White Warrior's final form.
+#  The prestige is enormous. The cost was the self, willingly.
+#  [SOURCE: Songs of the Return; The Song of Pelinal]
+# ---------------------------------------------------------------
+
+shezarrine_ascendant = {
+    category = fame
+
+    martial          = 8
+    prowess          = 5
+    monthly_prestige = 15
+    dread_gain_mult  = 0.25   # Lorkhan's wrath radiates outward
+
+    flag = shezarrine_ascendant
+}

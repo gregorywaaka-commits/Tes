@@ -207,3 +207,378 @@ shezarrine.004 = {
         set_character_flag = reman_echo_seen
     }
 }
+
+# =============================================================
+#  SHEZARRINE ASCENDANT — WALKING WAY PATH J
+#  Events shezarrine.100-shezarrine.115
+#
+#  ENTRY: shezarrine.ascending_call fires for rulers who are
+#  shezarrine_vessel AND martial >= 18 AND have the active flag.
+#  The path is involuntary — Lorkhan calls, the vessel answers.
+# =============================================================
+
+# ---------------------------------------------------------------
+# shezarrine.ascending_call  HIDDEN YEARLY — ASCENDANT PATH TRIGGER
+# Fires for rulers who are shezarrine_vessel with sufficient
+# martial and conquest history. Lorkhan's pattern deepening
+# beyond the initial vessel state into Walking Ways territory.
+# ---------------------------------------------------------------
+shezarrine.ascending_call = {
+    type = character_event
+    hidden = yes
+
+    trigger = {
+        has_trait = shezarrine_vessel
+        has_character_flag = shezarrine_vessel_active
+        martial >= 18
+        is_ruler = yes
+        is_adult = yes
+        NOT = { is_on_walking_way = yes }
+        NOT = { has_character_flag = ww_shezarrine_ascendant_active }
+        NOT = { has_character_flag = ww_shezarrine_ascendant_completed }
+        OR = {
+            has_character_flag = ww_mantling_talos_milestone_empire
+            martial >= 22
+        }
+    }
+
+    mean_time_to_happen = {
+        months = 120
+    }
+
+    option = {
+        name = shezarrine.ascending_call.a
+        begin_path_shezarrine_ascendant = yes
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.100  PATH J INTRO — LORKHAN DEEPENS
+# The path has begun. Lorkhan's essence is asserting itself
+# more strongly than the initial vessel possession.
+# ---------------------------------------------------------------
+shezarrine.100 = {
+    type = character_event
+    title = shezarrine.100.t
+    desc  = shezarrine.100.desc
+    theme = war
+
+    trigger = {
+        is_on_shezarrine_ascendant_path = yes
+    }
+
+    option = {
+        name = shezarrine.100.a   # "I was already his. Now he is becoming mine."
+        add_stress = 25
+        add_character_modifier = {
+            modifier = ww_path_shezarrine_ascendant_active
+            years = 100
+        }
+        set_character_flag = {
+            flag = ww_shezarrine_milestone_whitestrake
+            years = 100
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.101  MILESTONE — PELINAL'S MEMORY
+# The vision of Pelinal Whitestrake — a memory not the ruler's
+# own, flooding through the shared essence.
+# ---------------------------------------------------------------
+shezarrine.101 = {
+    type = character_event
+    title = shezarrine.101.t
+    desc  = shezarrine.101.desc
+    theme = war
+
+    trigger = {
+        is_on_shezarrine_ascendant_path = yes
+        NOT = { has_character_flag = ww_shezarrine_milestone_berserker }
+    }
+
+    option = {
+        name = shezarrine.101.a   # "His hatred was not his own. It was Lorkhan's. Now it is mine."
+        add_prowess_xp = 400
+        add_stress = 20
+        set_character_flag = ww_shezarrine_milestone_berserker
+    }
+
+    option = {
+        name = shezarrine.101.b   # "I accept the memory but I will not be consumed by it."
+        add_prowess_xp = 200
+        add_stress = 5
+        set_character_flag = ww_shezarrine_milestone_berserker
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.102  MILESTONE — CULTURAL ENEMY DESTROYED
+# The Shezarrine's purpose requires the destruction of an
+# enemy of mankind's heritage — a cultural or military act.
+# ---------------------------------------------------------------
+shezarrine.102 = {
+    type = character_event
+    title = shezarrine.102.t
+    desc  = shezarrine.102.desc
+    theme = war
+
+    trigger = {
+        is_on_shezarrine_ascendant_path = yes
+        NOT = { has_character_flag = ww_shezarrine_milestone_cultural_enemy }
+        has_character_flag = ww_shezarrine_milestone_berserker
+        is_at_war = no
+    }
+
+    option = {
+        name = shezarrine.102.a   # "The capital fell. The pattern is satisfied."
+        add_prestige = 200
+        set_character_flag = ww_shezarrine_milestone_cultural_enemy
+        add_dread = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.103  RANK 1 — SEEKING THE PATTERN
+# Two milestones done. The vessel begins to be recognised
+# by surrounding courts as something other than a warrior.
+# ---------------------------------------------------------------
+shezarrine.103 = {
+    type = character_event
+    title = shezarrine.103.t
+    desc  = shezarrine.103.desc
+    theme = war
+
+    trigger = {
+        is_on_shezarrine_ascendant_path = yes
+        var:ww_shezarrine_ascendant_rank >= 1
+    }
+
+    option = {
+        name = shezarrine.103.a   # "They call me Shor's vessel. Let them. It is not wrong."
+        add_prestige = 100
+        add_stress = -10
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.104  MILESTONE — PROCLAIMED
+# Milestone 4: a Nord or Cyrodilic court formally proclaims
+# the ruler as Shor's vessel or Shezarr's sword.
+# ---------------------------------------------------------------
+shezarrine.104 = {
+    type = character_event
+    title = shezarrine.104.t
+    desc  = shezarrine.104.desc
+    theme = war
+
+    trigger = {
+        is_on_shezarrine_ascendant_path = yes
+        NOT = { has_character_flag = ww_shezarrine_milestone_proclaimed }
+        has_character_flag = ww_shezarrine_milestone_cultural_enemy
+        any_vassal = {
+            OR = {
+                culture = { has_cultural_pillar = heritage_nordic }
+                culture = { has_cultural_pillar = heritage_cyrodilic }
+            }
+        }
+    }
+
+    option = {
+        name = shezarrine.104.a   # "They crowned me with words older than crowns."
+        add_prestige = 300
+        set_character_flag = ww_shezarrine_milestone_proclaimed
+        add_piety = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.105  MILESTONE — THE MERGER BEGINS
+# Milestone 5: the Lorkhan essence begins merging with the
+# character's identity. The vessel and the divine are converging.
+# ---------------------------------------------------------------
+shezarrine.105 = {
+    type = character_event
+    title = shezarrine.105.t
+    desc  = shezarrine.105.desc
+    theme = war
+
+    trigger = {
+        is_on_shezarrine_ascendant_path = yes
+        NOT = { has_character_flag = ww_shezarrine_milestone_merger }
+        has_character_flag = ww_shezarrine_milestone_proclaimed
+    }
+
+    option = {
+        name = shezarrine.105.a   # "I can feel the boundary between where he ends and I begin thinning."
+        set_character_flag = ww_shezarrine_milestone_merger
+        add_stress = 30
+        add_prestige = 150
+    }
+
+    option = {
+        name = shezarrine.105.b   # "I will not lose myself in this. I am still the vessel. Not the god."
+        set_character_flag = ww_shezarrine_milestone_merger
+        add_stress = 10
+        add_martial = 1
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.106  RANK 2 — STRIVING
+# Four milestones done. The Shezarrine pattern is becoming
+# harder to separate from the character's own nature.
+# ---------------------------------------------------------------
+shezarrine.106 = {
+    type = character_event
+    title = shezarrine.106.t
+    desc  = shezarrine.106.desc
+    theme = war
+
+    trigger = {
+        is_on_shezarrine_ascendant_path = yes
+        var:ww_shezarrine_ascendant_rank >= 2
+    }
+
+    option = {
+        name = shezarrine.106.a   # "Pelinal fought to the end. So will I."
+        add_prestige = 200
+        add_martial = 1
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.107  MILESTONE — THE MERGER COMPLETE
+# Milestone 6: the merger is complete. The Lorkhan essence
+# and the character's identity are fully converged.
+# ---------------------------------------------------------------
+shezarrine.107 = {
+    type = character_event
+    title = shezarrine.107.t
+    desc  = shezarrine.107.desc
+    theme = war
+
+    trigger = {
+        is_on_shezarrine_ascendant_path = yes
+        NOT = { has_character_flag = ww_shezarrine_milestone_complete }
+        has_character_flag = ww_shezarrine_milestone_merger
+        var:ww_shezarrine_ascendant_rank >= 2
+    }
+
+    option = {
+        name = shezarrine.107.a   # "We are one. I do not know where I end and he begins. I am not certain it matters."
+        set_character_flag = ww_shezarrine_milestone_complete
+        add_stress = -20
+        add_prowess = 2
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.109  RANK 3 — THRESHOLD
+# Six milestones done. The final battle awaits.
+# ---------------------------------------------------------------
+shezarrine.109 = {
+    type = character_event
+    title = shezarrine.109.t
+    desc  = shezarrine.109.desc
+    theme = war
+
+    trigger = {
+        is_on_shezarrine_ascendant_path = yes
+        var:ww_shezarrine_ascendant_rank >= 3
+    }
+
+    option = {
+        name = shezarrine.109.a   # "The pattern demands a final act. I go to meet it."
+        add_prestige = 300
+        add_stress = -30
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.112  APOTHEOSIS — THE FINAL BATTLE
+# All milestones complete. The merger completes; the final
+# battle awaits. 35% chance of death (completing the pattern).
+# On success: shezarrine_ascendant trait; world notification.
+# On death: death_chim_erasure; "The White Warrior has returned."
+# ---------------------------------------------------------------
+shezarrine.112 = {
+    type = character_event
+    title = shezarrine.112.t
+    desc  = shezarrine.112.desc
+    theme = war
+
+    trigger = {
+        is_on_shezarrine_ascendant_path = yes
+        var:ww_shezarrine_ascendant_rank >= 4
+        NOT = { has_character_flag = ww_shezarrine_ascendant_completed }
+    }
+
+    immediate = {
+        random_list = {
+            65 = {
+                complete_path_shezarrine_ascendant = yes
+            }
+            35 = {
+                trigger_event = { id = shezarrine.115 days = 1 }
+            }
+        }
+    }
+
+    option = {
+        name = shezarrine.112.a   # "The pattern is complete. I remain."
+        trigger = { has_trait = shezarrine_ascendant }
+        add_prestige = 500
+        add_stress = -50
+    }
+
+    option = {
+        name = shezarrine.112.b   # "The final battle comes."
+        trigger = { NOT = { has_trait = shezarrine_ascendant } }
+        # death fires in shezarrine.115
+    }
+}
+
+# ---------------------------------------------------------------
+# shezarrine.115  DEATH — THE WHITE WARRIOR RETURNS
+# The Shezarrine dies completing the mythic pattern.
+# The character dies in a final battle. World notification fires.
+# ---------------------------------------------------------------
+shezarrine.115 = {
+    type = character_event
+    title = shezarrine.115.t
+    desc  = shezarrine.115.desc
+    theme = war
+    hidden = yes
+
+    trigger = {
+        has_character_flag = ww_shezarrine_ascendant_active
+        NOT = { has_trait = shezarrine_ascendant }
+    }
+
+    immediate = {
+        every_ruler = {
+            limit = { NOT = { this = root } }
+            trigger_event = { id = shezarrine.115.world days = 3 }
+        }
+        clear_all_ww_active_flags = yes
+        kill_character = {
+            death_reason = death_chim_erasure
+        }
+    }
+
+    option = { name = "OK" }
+}
+
+shezarrine.115.world = {
+    type = character_event
+    title = shezarrine.115.world.t
+    desc  = shezarrine.115.world.desc
+    theme = war
+
+    option = {
+        name = shezarrine.115.world.a   # "The pattern is complete. The dead god is satisfied."
+        add_piety = 25
+    }
+}

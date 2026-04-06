@@ -249,6 +249,7 @@ on_yearly_pulse = {
         2   = gray_host.000          # Gray Host invasion check — date-window 1E 800 – 2E 200 (gray_host_events.txt)
         1   = shezarrine.000         # Shezarrine vessel check — martial>=18 + brave/zealous (shezarrine_events.txt) [very rare]
         2   = shezarrine.002         # Berserker's Rage — existing shezarrine_vessel rulers (shezarrine_events.txt)
+        3   = shezarrine.ascending_call  # Shezarrine Ascendant path entry — vessel + martial + conquest history (shezarrine_events.txt)
         2   = direnni.000            # Direnni Hegemony legacy — direnni_bloodline / Altmer in High Rock (direnni_events.txt)
         2   = direnni.004            # Lorkhan's Children — Direnni philosophical event (direnni_events.txt)
         2   = skaal.000              # Bones of the All-Maker — Nord rulers near Solstheim (skaal_allmaker_events.txt)

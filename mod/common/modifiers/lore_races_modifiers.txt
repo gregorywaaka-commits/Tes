@@ -2985,3 +2985,58 @@ ww_path_mantling_sotha_sil_active = {
 mantling_tribunal_anticipation_seen = {
     monthly_piety_gain_mult = 0.10
 }
+
+# ---------------------------------------------------------------
+#  PATH G — TONAL ARCHITECTURE ACTIVE
+#  The Dwemer's engineering approach to the soul applied to
+#  the self. Learning reward; stress cost of dangerous precision.
+# ---------------------------------------------------------------
+
+ww_path_tonal_architecture_active = {
+    learning         = 3
+    stress_gain_mult = 0.10   # the reconstruction process is not comfortable
+}
+
+# ---------------------------------------------------------------
+#  PATH H — PROLIX TOWER ACTIVE
+#  Language building godhood. Learning reward; minor stress
+#  reduction as the text absorbs anxieties.
+# ---------------------------------------------------------------
+
+ww_path_prolix_tower_active = {
+    learning         = 3
+    stress_gain_mult = -0.05
+}
+
+# ---------------------------------------------------------------
+#  PATH I — WORM APOTHEOSIS ACTIVE
+#  Necromantic ascension in progress. Intrigue reward;
+#  health bonus as the phylactery insulates from mortality.
+# ---------------------------------------------------------------
+
+ww_path_worm_apotheosis_active = {
+    intrigue = 2
+    health   = 0.5
+}
+
+# ---------------------------------------------------------------
+#  PATH J — SHEZARRINE ASCENDANT ACTIVE
+#  Lorkhan's essence merging with the vessel. Martial and
+#  prowess reward; stress cost of the divine merger.
+# ---------------------------------------------------------------
+
+ww_path_shezarrine_ascendant_active = {
+    martial          = 3
+    prowess          = 2
+    stress_gain_mult = 0.05
+}
+
+# ---------------------------------------------------------------
+#  SHEZARRINE COMPLETED OPINION
+#  Opinion modifier for Nord/Cyrodilic rulers when the
+#  Shezarrine path is completed.
+# ---------------------------------------------------------------
+
+ww_shezarrine_completed_opinion = {
+    opinion = 20
+}

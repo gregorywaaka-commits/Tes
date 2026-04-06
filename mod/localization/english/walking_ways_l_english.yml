@@ -159,3 +159,11 @@
  choose_walking_way.path_b_almalexia_desc: "The healer, the protector, the mother. Almalexia led the Hands of Almalexia and held Mournhold together. Her madness after losing the Heart is also part of the pattern. Unlocked by completing the Boethiah mantle (Anticipation of Almalexia). [Requires: Boethiah Mantle completed, diplomacy 16+, compassionate or zealous]"
  choose_walking_way.path_b_sotha_sil: "Path B: Mantling Sotha Sil — The Clockwork God [TRIBUNAL TIER]"
  choose_walking_way.path_b_sotha_sil_desc: "The Clockwork God built the Clockwork City and then withdrew from the world to maintain it. Mysticism, logic, artifice, and time. Philosophical detachment so complete he disappeared. Unlocked by completing the Azura mantle (Anticipation of Sotha Sil). [Requires: Azura Mantle completed, learning 18+, tonal_architect or scholar or clockwork_city_visited]"
+
+ # ─── New Path Decision Options ───
+ choose_walking_way.path_g: "Path G: Tonal Architecture — The Dwemer's Way [DANGEROUS]"
+ choose_walking_way.path_g_desc: "The Dwemer used tonal manipulation of reality to rewrite the self. Kagrenac used it on the Heart of Lorkhan. The Dwemer used it on themselves and vanished. This is explicitly the wrong Walking Way — dangerous, materialist, the path of science not spirit. Those who survive are rewritten. Many do not survive. [Requires: tonal_architect trait, learning 18+]"
+ choose_walking_way.path_h: "Path H: Prolix Tower — The Language of Divinity"
+ choose_walking_way.path_h_desc: "Achieving divinity through language, recursive logic, and the power of naming. The 36 Lessons of Vivec ARE a Prolix Tower. The path uses writing and self-referential text to construct godhood. Lower risk than other paths — survivable even in failure. [Requires: learning 18+, vivec_blessed OR black_book_found]"
+ choose_walking_way.path_i: "Path I: Worm Apotheosis — Mannimarco's Road [DANGEROUS]"
+ choose_walking_way.path_i_desc: "Mannimarco's path. He became the Necromancer's Moon — a celestial body opposing Arkay's cycle. A documented lore path to divinity through soul-science and dominion over death. Failure results in lich_essence, not death. [Requires: worm_cult_adept trait, NOT lich_essence]"

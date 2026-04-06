@@ -526,6 +526,82 @@ choose_walking_way = {
     }
 
     option = {
+        name        = choose_walking_way.path_g
+        desc        = choose_walking_way.path_g_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_path_tonal_architecture = yes }
+
+        effect = {
+            begin_path_tonal_architecture = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                has_trait = tonal_architect
+                learning >= 20
+            }
+            modifier = {
+                add = 3
+                stewardship >= 18
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_h
+        desc        = choose_walking_way.path_h_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_path_prolix_tower = yes }
+
+        effect = {
+            begin_path_prolix_tower = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 5
+                learning >= 22
+                OR = {
+                    has_trait = vivec_blessed
+                    has_character_flag = black_book_found
+                }
+            }
+            modifier = {
+                add = 3
+                has_trait = scholar
+                learning >= 20
+            }
+        }
+    }
+
+    option = {
+        name        = choose_walking_way.path_i
+        desc        = choose_walking_way.path_i_desc
+        is_shown    = { always = yes }
+        is_valid    = { can_begin_path_worm_apotheosis = yes }
+
+        effect = {
+            begin_path_worm_apotheosis = yes
+        }
+
+        ai_will_do = {
+            base = 0
+            modifier = {
+                add = 6
+                has_trait = worm_cult_adept
+                intrigue >= 18
+            }
+            modifier = {
+                add = 3
+                learning >= 20
+            }
+        }
+    }
+
+    option = {
         name    = choose_walking_way.decline
         desc    = choose_walking_way.decline_desc
         is_shown = { always = yes }
@@ -756,6 +832,22 @@ abandon_walking_way = {
         else_if = {
             limit = { has_character_flag = ww_amaranth_active }
             abandon_path_amaranth = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_tonal_architecture_active }
+            abandon_path_tonal_architecture = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_prolix_tower_active }
+            abandon_path_prolix_tower = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_worm_apotheosis_active }
+            abandon_path_worm_apotheosis = yes
+        }
+        else_if = {
+            limit = { has_character_flag = ww_shezarrine_ascendant_active }
+            abandon_path_shezarrine_ascendant = yes
         }
     }
 

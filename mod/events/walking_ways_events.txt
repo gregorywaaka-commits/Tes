@@ -281,6 +281,30 @@ walking_ways.progress_check = {
             if = { limit = { has_any_amaranth_milestone = yes } count_ww_milestones_amaranth = yes }
             advance_path_amaranth = yes
         }
+        # PATH G — TONAL ARCHITECTURE
+        else_if = {
+            limit = { is_on_path_tonal_architecture = yes }
+            if = { limit = { has_any_tonal_architecture_milestone = yes } count_ww_milestones_tonal_architecture = yes }
+            advance_path_tonal_architecture = yes
+        }
+        # PATH H — PROLIX TOWER
+        else_if = {
+            limit = { is_on_path_prolix_tower = yes }
+            if = { limit = { has_any_prolix_tower_milestone = yes } count_ww_milestones_prolix_tower = yes }
+            advance_path_prolix_tower = yes
+        }
+        # PATH I — WORM APOTHEOSIS
+        else_if = {
+            limit = { is_on_path_worm_apotheosis = yes }
+            if = { limit = { has_any_worm_apotheosis_milestone = yes } count_ww_milestones_worm_apotheosis = yes }
+            advance_path_worm_apotheosis = yes
+        }
+        # PATH J — SHEZARRINE ASCENDANT
+        else_if = {
+            limit = { is_on_shezarrine_ascendant_path = yes }
+            if = { limit = { has_any_shezarrine_ascendant_milestone = yes } count_ww_milestones_shezarrine_ascendant = yes }
+            advance_path_shezarrine_ascendant = yes
+        }
         # AMARANTH COMPLETED — ongoing departure cost pulse
         if = {
             limit = { has_character_flag = ww_amaranth_completed }
@@ -439,6 +463,48 @@ walking_ways.world_notify = {
                 scope:source = { has_trait = amaranth_achieved }
             }
             desc = walking_ways.world_notify.amaranth
+        }
+        # Tonal Transcendent
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = tonal_transcendent }
+            }
+            desc = walking_ways.world_notify.tonal_transcendent
+        }
+        # Prolix Sovereign
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = prolix_sovereign }
+            }
+            desc = walking_ways.world_notify.prolix_sovereign
+        }
+        # Lost in the Tower
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = lost_in_the_tower }
+            }
+            desc = walking_ways.world_notify.lost_in_the_tower
+        }
+        # Necromancer's Ascendant
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = necromancers_ascendant }
+            }
+            desc = walking_ways.world_notify.necromancers_ascendant
+        }
+        # Soul Fractured
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = soul_fractured }
+            }
+            desc = walking_ways.world_notify.soul_fractured
+        }
+        # Shezarrine Ascendant
+        triggered_desc = {
+            trigger = {
+                scope:source = { has_trait = shezarrine_ascendant }
+            }
+            desc = walking_ways.world_notify.shezarrine_ascendant
         }
         # Fallback
         desc = walking_ways.world_notify.generic

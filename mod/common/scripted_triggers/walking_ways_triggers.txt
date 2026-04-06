@@ -83,6 +83,10 @@ has_completed_any_walking_way = {
         has_character_flag = ww_psijic_endeavour_completed
         has_character_flag = ww_enantiomorph_completed
         has_character_flag = ww_amaranth_completed
+        has_character_flag = ww_tonal_architecture_completed
+        has_character_flag = ww_prolix_tower_completed
+        has_character_flag = ww_worm_apotheosis_completed
+        has_character_flag = ww_shezarrine_ascendant_completed
     }
 }
 
@@ -824,5 +828,124 @@ has_any_mantling_sotha_sil_milestone = {
         has_character_flag = ww_mantling_sotha_sil_milestone_hidden
         has_character_flag = ww_mantling_sotha_sil_milestone_mechanism
         has_character_flag = ww_mantling_sotha_sil_milestone_revelation
+    }
+}
+
+# ---------------------------------------------------------------
+#  PATH G — TONAL ARCHITECTURE
+# ---------------------------------------------------------------
+
+can_begin_path_tonal_architecture = {
+    can_begin_walking_ways = yes
+    has_trait = tonal_architect
+    learning >= 18
+    NOT = { has_character_flag = ww_tonal_architecture_completed }
+}
+
+is_on_path_tonal_architecture = {
+    is_on_walking_way = yes
+    has_character_flag = ww_tonal_architecture_active
+}
+
+has_completed_path_tonal_architecture = {
+    has_character_flag = ww_tonal_architecture_completed
+}
+
+has_any_tonal_architecture_milestone = {
+    OR = {
+        has_character_flag = ww_tonal_milestone_principles
+        has_character_flag = ww_tonal_milestone_construct
+        has_character_flag = ww_tonal_milestone_frequency
+        has_character_flag = ww_tonal_milestone_resonator
+        has_character_flag = ww_tonal_milestone_gestalt
+        has_character_flag = ww_tonal_milestone_nullify
+    }
+}
+
+# ---------------------------------------------------------------
+#  PATH H — PROLIX TOWER
+# ---------------------------------------------------------------
+
+can_begin_path_prolix_tower = {
+    can_begin_walking_ways = yes
+    learning >= 18
+    OR = {
+        has_trait = vivec_blessed
+        has_character_flag = black_book_found
+    }
+    NOT = { has_character_flag = ww_prolix_tower_completed }
+}
+
+is_on_path_prolix_tower = {
+    is_on_walking_way = yes
+    has_character_flag = ww_prolix_tower_active
+}
+
+has_completed_path_prolix_tower = {
+    has_character_flag = ww_prolix_tower_completed
+}
+
+has_any_prolix_tower_milestone = {
+    OR = {
+        has_character_flag = ww_prolix_milestone_first_paradox
+        has_character_flag = ww_prolix_milestone_distributed
+        has_character_flag = ww_prolix_milestone_vision
+        has_character_flag = ww_prolix_milestone_lessons
+        has_character_flag = ww_prolix_milestone_uncontrolled
+        has_character_flag = ww_prolix_milestone_author
+    }
+}
+
+# ---------------------------------------------------------------
+#  PATH I — WORM APOTHEOSIS
+# ---------------------------------------------------------------
+
+can_begin_path_worm_apotheosis = {
+    can_begin_walking_ways = yes
+    has_trait = worm_cult_adept
+    NOT = { has_trait = lich_essence }
+    NOT = { has_character_flag = ww_worm_apotheosis_completed }
+}
+
+is_on_path_worm_apotheosis = {
+    is_on_walking_way = yes
+    has_character_flag = ww_worm_apotheosis_active
+}
+
+has_completed_path_worm_apotheosis = {
+    has_character_flag = ww_worm_apotheosis_completed
+}
+
+has_any_worm_apotheosis_milestone = {
+    OR = {
+        has_character_flag = ww_worm_milestone_black_soul
+        has_character_flag = ww_worm_milestone_phylactery
+        has_character_flag = ww_worm_milestone_necromancers_moon
+        has_character_flag = ww_worm_milestone_arkays_cycle
+        has_character_flag = ww_worm_milestone_soul_vessel
+        has_character_flag = ww_worm_milestone_ascension
+    }
+}
+
+# ---------------------------------------------------------------
+#  PATH J — SHEZARRINE ASCENDANT (involuntary entry)
+# ---------------------------------------------------------------
+
+is_on_shezarrine_ascendant_path = {
+    has_character_flag = ww_shezarrine_ascendant_active
+}
+
+has_completed_path_shezarrine_ascendant = {
+    has_character_flag = ww_shezarrine_ascendant_completed
+}
+
+has_any_shezarrine_ascendant_milestone = {
+    OR = {
+        has_character_flag = ww_shezarrine_milestone_whitestrake
+        has_character_flag = ww_shezarrine_milestone_berserker
+        has_character_flag = ww_shezarrine_milestone_cultural_enemy
+        has_character_flag = ww_shezarrine_milestone_proclaimed
+        has_character_flag = ww_shezarrine_milestone_merger
+        has_character_flag = ww_shezarrine_milestone_complete
     }
 }

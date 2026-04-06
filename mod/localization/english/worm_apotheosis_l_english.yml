@@ -1,0 +1,71 @@
+﻿l_english:
+ # ═══════════════════════════════════════════════════════════════
+ #  PATH I — WORM APOTHEOSIS
+ # ═══════════════════════════════════════════════════════════════
+
+ # ─── Traits ───
+ necromancers_ascendant: "Necromancer's Ascendant"
+ necromancers_ascendant_desc: "Mannimarco became the Necromancer's Moon — a celestial body visible from Tamriel, opposing Arkay's cycle. This ruler has walked the same path to its end. The Worm Cult's teachings were the foundation; this is the apex. Arkay's domain is not broken — it is extended by a second authority. Death flows both directions now, and one direction is controlled by this ruler."
+
+ soul_fractured: "Soul Fractured"
+ soul_fractured_desc: "The ascension broke at the moment of completion. The soul was bound to the phylactery — that much succeeded — but the divine portion of Arkay's domain was not claimed. The character did not die. They became something between what they were and what they sought to be: a practitioner of extraordinary power, bound to their phylactery, unable to complete the ascension but also unable to fully die. The lich_essence protects them. The fracture reminds them."
+
+ # ─── Decision Options ───
+ choose_walking_way.path_i: "Path I: Worm Apotheosis — Mannimarco's Road [DANGEROUS]"
+ choose_walking_way.path_i_desc: "Mannimarco's path. He became the Necromancer's Moon — a celestial body opposing Arkay's cycle — after achieving lichdom and breaking Arkay's domain. This is NOT one of the six canonical Walking Ways, but a documented lore path to divinity. Failure results in lich_essence, not death. [Requires: worm_cult_adept trait, NOT lich_essence]"
+
+ # ─── Path Intro ───
+ worm_apotheosis.intro.t: "The King of Worms Did Not Stop at King"
+ worm_apotheosis.intro.desc: "The Worm Cult was a means to an end. Mannimarco understood this. Lichdom was a means to an end. Mannimarco understood this too.\n\nThe end was the Necromancer's Moon. A new celestial body in Tamriel's sky, visible on certain nights, red against the black, draining Arkay's light from the dead. Mannimarco did not become a god through Aedric or Daedric means. He became a god through soul-science — through understanding death so thoroughly that he positioned himself on the far side of it and refused to leave.\n\nThe Worm Cult taught you to touch death. The path you are now walking will teach you to own it."
+ worm_apotheosis.intro.a: "The Worm Cult taught me to touch death. I intend to own it."
+
+ # ─── Rank Events ───
+ worm_apotheosis.rank1.t: "The Bound Soul"
+ worm_apotheosis.rank1.desc: "The Black Soul Gem holds a mortal soul — a true one, not a petty or greater soul, but a consciousness that was once a person. The gem was created through methods the Worm Cult teaches only to the adept: a specific convergence of enchantment, necromantic theory, and timing relative to the Necromancer's Moon cycle.\n\nYour own soul is bound elsewhere. The phylactery is not comfortable to contemplate. But it is there, and it holds, and that means death has a different relationship with your continued existence than it has with everyone else's."
+ worm_apotheosis.rank1.a: "The gem holds a mortal soul. Mine is held elsewhere. This is the beginning."
+
+ worm_apotheosis.rank2.t: "The Red Moon"
+ worm_apotheosis.rank2.desc: "The Necromancer's Moon rose on the predicted night.\n\nThe astronomers in the court who track such things noted the anomaly: Arkay's light did not fully illuminate the dead for three nights surrounding the event. The gap between his exhalation and inhalation was wider than usual. In that gap, something else operated.\n\nYou saw where Mannimarco stood. You understand why he stood there. The question is whether you can reach that position from where you are."
+ worm_apotheosis.rank2.a: "The Moon rose red. Arkay's domain flickered. I saw the gap."
+ worm_apotheosis.rank2.b: "The gap between Arkay's exhalation and inhalation — that is where Mannimarco stood."
+
+ worm_apotheosis.rank3.t: "The Year of No Natural Deaths"
+ worm_apotheosis.rank3.desc: "A year has passed. No one in the realm has died of natural causes.\n\nNot accident, not murder, not war — those proceed as normal. But age, disease, the ordinary dissolution of bodies that have lived their span — those ceased for twelve months. Arkay's cycle was interrupted in this realm, gently but completely.\n\nThe clergy are alarmed. The physicians are baffled. The soul vessel constructed during this period is large enough to hold something divine. Barely. The question of whether you can fill it remains."
+ worm_apotheosis.rank3.a: "A year passed. Nothing died of natural causes in my realm. Arkay was elsewhere. I held the gap."
+
+ # ─── Apotheosis ───
+ worm_apotheosis.apotheosis.t: "The Ascension Attempt"
+ worm_apotheosis.apotheosis.desc: "The soul vessel is ready. The phylactery holds. The Necromancer's Moon will rise tonight.\n\nThe theory says: at the peak of the Moon's influence on Arkay's cycle, a practitioner with a sufficiently large soul vessel and a properly bound soul can step into the gap between Arkay's domain and the gap's absence, and claim a portion of that domain as their own.\n\nMannimarco became a moon. You may become something adjacent to a moon. Or the soul may fracture at the threshold and you will be left as a very powerful, very frustrated, very immortal lich.\n\nEither way, death no longer has ordinary authority over you. That is something."
+ worm_apotheosis.apotheosis.a: "The Moon rises. I rise with it."
+ worm_apotheosis.apotheosis.b: "The ascension begins."
+
+ # ─── Failure ───
+ worm_apotheosis.fractured.t: "The Soul Fractured"
+ worm_apotheosis.fractured.desc: "The ascension reached the threshold and stopped.\n\nThe soul vessel was not large enough. Or the timing was wrong. Or Arkay's exhalation was shorter than predicted, and the gap closed before the full claim could be made.\n\nThe phylactery held. That is the only reason you are still here. The soul did not dissolve — it fractured, split between what it was and what it nearly became. The lich's immortality is there, acquired at the threshold. The Moon is not.\n\nMannimarco kept trying until it worked. You are still alive. That option remains."
+ worm_apotheosis.fractured.a: "I did not become the Moon. But I did not die. The phylactery held."
+
+ # ─── Milestone Events ───
+ worm_apotheosis.milestone_phylactery.t: "Bind the Soul"
+ worm_apotheosis.milestone_phylactery.desc: "The binding ritual requires precision, an appropriate vessel, and the specific form of consent that comes from understanding exactly what you are consenting to — the deliberate displacement of your soul from your body into an external container.\n\nIf the ritual works, you will not die when your body is destroyed. If it does not work, you will die immediately. The Worm Cult regards this as a reasonable risk profile."
+ worm_apotheosis.milestone_phylactery.a: "Bind the soul. The alternative is oblivion."
+ worm_apotheosis.milestone_phylactery.b: "Not yet. I must be certain the vessel will hold."
+
+ worm_apotheosis.milestone_necromancers_moon.t: "The Necromancer's Moon Rises"
+ worm_apotheosis.milestone_necromancers_moon.desc: "The red moon against the black sky. Arkay's light was nowhere.\n\nFor one night, the dead in the realm's graveyards were unguarded by Arkay's covenant. The necromantic potential of everything that had ever died in this territory was briefly available, briefly unprotected, briefly belonging to whoever had the skill and the preparation to reach it.\n\nYou were prepared. You reached. You understood, in that moment, why Mannimarco chose this method."
+ worm_apotheosis.milestone_necromancers_moon.a: "The red moon against the black sky. Arkay's light was nowhere."
+
+ worm_apotheosis.milestone_arkays_cycle.t: "The Cycle Interrupted"
+ worm_apotheosis.milestone_arkays_cycle.desc: "A year without natural deaths in the realm. Arkay's cycle interrupted.\n\nThe gap has been held open for twelve months. What was briefly possible on the night of the Necromancer's Moon has been extended, sustained, maintained through continuous effort and the soul vessel's growing capacity.\n\nThe next step is to step into the gap yourself."
+
+ worm_apotheosis.milestone_soul_vessel.t: "The Divine Vessel"
+ worm_apotheosis.milestone_soul_vessel.desc: "The soul vessel is complete. It is large enough to hold something that is not quite a mortal soul — something adjacent to divinity, something that has domains rather than mere contents.\n\nMannimarco's ascension required a vessel of similar construction. The Worm Cult's highest teachings describe the specific geometry of such a vessel. The construction was expensive. The result is extraordinary."
+ worm_apotheosis.milestone_soul_vessel.a: "The vessel is large enough. Now I must fill it."
+ worm_apotheosis.milestone_soul_vessel.b: "Not sufficient. The vessel must be larger."
+
+ worm_apotheosis.milestone_ascension.t: "The Final Preparation"
+ worm_apotheosis.milestone_ascension.desc: "Everything is in place. The Necromancer's Moon is on its predicted cycle. The soul vessel is ready. The phylactery holds. The year of interrupted deaths has demonstrated that Arkay's authority can be suspended.\n\nThe ascension attempt will take place on the next rising of the Necromancer's Moon.\n\nMannimarco did this alone. So will you."
+ worm_apotheosis.milestone_ascension.a: "Then I ascend."
+
+ # ─── World Notification ───
+ walking_ways.world_notify.necromancers_ascendant: "The Necromancer's Moon burned brighter over [scope:source.primary_title.name] last night than astronomers have recorded in living memory. Arkay's clergy across Tamriel are reporting anomalous readings in their death-cycle instruments. [scope:source.char_name|U] has walked Mannimarco's path to its end. Death in [scope:source.primary_title.name] no longer flows in only one direction."
+ walking_ways.world_notify.soul_fractured: "Something was attempted in [scope:source.primary_title.name] that the Mages Guild and Arkay's clergy are describing in terms that do not agree with each other. [scope:source.char_name|U] is alive. Definitively, unusually, improbably alive. The Necromancer's Moon cycle was disrupted. The ascension appears to have stopped at the threshold. The phylactery held. Mannimarco would understand. He is not available for comment."
