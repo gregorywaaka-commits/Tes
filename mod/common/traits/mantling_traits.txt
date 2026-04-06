@@ -385,7 +385,7 @@ mantle_sheogorath = {
     diplomacy   = -3   # instability is part of the pattern
 
     monthly_prestige              = 14
-    stress_gain_mult              = 0.30   # madness is not free
+    stress_gain_mult              = 0.30   # +30% stress gain — madness has a cost
     dread_gain_mult               = 0.30
 
     flag = mantle_sheogorath

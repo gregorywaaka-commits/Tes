@@ -13,7 +13,7 @@
 #  The Tribunal (ALMSIVI) achieved divinity through Kagrenac's
 #  Tools and the Heart of Lorkhan, not through mantling alone.
 #  These mantles represent a ruler who walks the PATTERN of
-#  each Tribun member — a second-tier path unlocked only after
+#  each Tribunal member — a second-tier path unlocked only after
 #  completing the Anticipation (Good Daedra) mantle:
 #    Mephala → Vivec   (warrior-poet; secret murder becomes art)
 #    Boethiah → Almalexia (treachery becomes protection)
