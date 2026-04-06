@@ -127,3 +127,8 @@
 
  # World notify (gap-fill: previously missing from walking_ways_events.txt dispatch)
  walking_ways.world_notify.shezarrine_ascendant: "The weight of Lorkhan's wound shifted slightly near [scope:source.primary_title.name] today. Scholars of cosmological architecture report that a new name has been added to the chain: Pelinal, Reman, Talos — and now [scope:source.char_name|U]. The Shezarrine has found another vessel. The pattern of Mankind's champion walks again in a new form. The Greybeards and the Companions have both taken note and have not agreed on what it means."
+
+ shezarrine.milestone_whitestrake.t: "The Whitestrake Current"
+ shezarrine.milestone_whitestrake.desc: "Pelinal Whitestrake was the most terrible of Lorkhan's echoes — a divine warrior vessel so filled with divine rage that he could not distinguish Aldmer from Ayleid. The Shezarrine has found in themselves the Whitestrake current: the capacity for violence so absolute that it frightens them. This is the dangerous part, the edge that must be held or it will cut in every direction. They have held it. For now."
+ shezarrine.milestone_whitestrake.a: "I understand the Whitestrake. I carry his fire. I will not let it be undirected."
+ shezarrine.milestone_whitestrake.b: "Pelinal was made wrong. I am trying to be made right."
