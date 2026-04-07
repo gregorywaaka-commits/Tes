@@ -50,6 +50,7 @@
 # =============================================================
 #
 #  DEFINES — identifiers this file exports to the mod:
+#    • akullakhan_scholar
 #    • ash_devotee
 #    • corprus_afflicted
 #    • ghost_fence_keeper
@@ -69,6 +70,8 @@
 #      → nerevarine_marked, sixth_house_cultist
 #    common/scripted_triggers/lore_races_triggers.txt
 #      → sixth_house_cultist
+#    events/akullakhan_events.txt
+#      → akullakhan_scholar
 #    events/almsivi_interdict_events.txt
 #      → sixth_house_cultist
 #    events/ashlander_events.txt
@@ -248,4 +251,30 @@ heart_fused_ascendant = {
     dread_gain_mult        = 0.40  # The Blight emanation frightens those nearby
 
     flag = heart_fused_ascendant
+}
+
+# ---------------------------------------------------------------
+#  AKULLAKHAN SCHOLAR  (§24 — The God-Builder's Project)
+#  A character who has discovered that Dagoth Ur's ambition
+#  reaches far beyond his own divinity.  Beneath Red Mountain
+#  he is constructing Akulakhan — the Second Numidium — a brass
+#  god-construct powered by the Heart of Lorkhan itself.
+#
+#  The scholar knows what the Nerevarine does not: destroying
+#  Dagoth Ur the god is only half the battle.  The construct
+#  must also be unmade, or the Sharmat's dream outlives him.
+#
+#  This knowledge is a burden.  Those who carry it are sharper
+#  for it — and more troubled.
+# ---------------------------------------------------------------
+akullakhan_scholar = {
+    category = lifestyle
+
+    learning  = 3    # Forbidden knowledge sharpens the mind
+    intrigue  = 2    # Understanding the Sixth House's true purpose grants insight
+
+    monthly_piety_gain_mult    = -0.10   # The Tribunal would call this heresy; so would most faiths
+    stress_gain_mult            = 0.10   # The weight of knowing sits heavily
+
+    flag = akullakhan_scholar
 }

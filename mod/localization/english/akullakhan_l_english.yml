@@ -1,0 +1,52 @@
+﻿l_english:
+
+ # =====================================================================
+ #  AKULAKHAN — THE GOD-BUILDER'S PROJECT
+ #  Namespace: akullakhan
+ #  §24 — The Second Numidium discovery chain
+ # =====================================================================
+
+ # --- Trait ---
+
+ akullakhan_scholar: "Akulakhan Scholar"
+ akullakhan_scholar_desc: "This ruler knows what most of Tamriel does not: that Dagoth Ur is not merely a god who seized the Heart of Lorkhan for himself. He is building something — Akulakhan, the Second Numidium, a brass god-construct designed to carry his will across Tamriel with the Heart as its engine. The corprus disease is a harvest. The Sixth House sleepers are building material.\n\nThis knowledge is dangerous. The Tribunal would name it heresy. The Nerevarine would call it essential. The scholar who carries it is sharper for the knowing — and unable to unlearn it."
+
+ # --- Modifier ---
+
+ akullakhan_revelation_modifier: "The Weight of What Lies Beneath"
+ akullakhan_revelation_modifier_desc: "This ruler understands Dagoth Ur's true ambition. Akulakhan — the Second Numidium — is being built beneath Red Mountain. The corprus plague is not merely a plague. Every infected soul is slowly drawn toward the construct, feeding its growth. Knowing this changes how one thinks about everything else."
+
+ # --- akullakhan.001: The Walking God ---
+
+ akullakhan.001.t: "The Walking God"
+ akullakhan.001.desc: "You have noticed something that does not fit the pattern you expected.\n\nThe corprus disease spreads. You knew that. The Sixth House expands its network of sleepers. You knew that too. But there is a direction to it that should not exist in a simple plague — the infected are being drawn toward Red Mountain as much as they spread from it. Cultist whispers speak of 'the gift being returned.' Sixth House agents report, with reverent vagueness, that 'the Walking God approaches completion.'\n\nA walking god. Not Dagoth Ur himself — he is already a god, fused with the Heart of Lorkhan. Something he is building. Something that will walk.\n\nThe Dwemer built something like that once. You remember the texts."
+ akullakhan.001.a: "What is the Sharmat building? I will find out."
+ akullakhan.001.b: "I want no part of whatever this is."
+
+ # --- akullakhan.010: The God-Builder's Design ---
+
+ akullakhan.010.t: "The God-Builder's Design"
+ akullakhan.010.desc: "The evidence converges.\n\nSixth House records — the kind that circulate only among ash devotees who have been trusted with deeper knowledge — describe something that has been under construction since before Dagoth Ur's awakening became public knowledge. The passages beneath Red Mountain that the Tribunal sealed are not sealed. They are active. The construct is vast: man-formed, enormous, built of consolidated divine essence and bound brass.\n\nYou have read enough Dwemer scholarship to recognize the shape of the ambition. Numidium. The Dwemer's god-machine. The Brass God that Tiber Septim used to conquer Tamriel.\n\nDagoth Ur is not merely a god who has claimed the Heart. He is making a second one — one that will walk, and will not be containable by the Tribunal, the Ghost Fence, or anyone else. The Nerevarine who comes to Red Mountain expecting only Dagoth Ur will be surprised by what else is waiting there."
+ akullakhan.010.a: "A god-construct. Powered by the Heart. Akulakhan — the Second Numidium."
+ akullakhan.010.b: "I have seen enough. This is beyond what I can act on."
+
+ # --- akullakhan.020: Akulakhan — The Second Numidium ---
+
+ akullakhan.020.t: "Akulakhan — The Second Numidium"
+ akullakhan.020.desc: "It has a name.\n\nAkulakhan. That is what Dagoth Ur calls it: the Second Numidium. A brass god-construct built in the deep chambers beneath Red Mountain, powered by the Heart of Lorkhan, intended to carry the Sharmat's will across Tamriel when it is complete. The corprus disease is not spreading randomly — it is a harvest. Every soul infected becomes, in time, a source of divine essence drawn downward, toward the construct's growth. The Sixth House does not merely serve Dagoth Ur. It feeds his god.\n\nThe Nerevarine's task, as the prophecy describes it, is to defeat Dagoth Ur and sever his connection to the Heart. That is necessary. It is not sufficient. Akulakhan exists independently of whether Dagoth Ur lives. If the construct is completed and the Nerevarine does not destroy it — if they reach the Heart without first breaking the brass body — then the Sharmat's dream survives him.\n\nYou are the only person outside the Sixth House who knows this. What you do with it determines everything."
+ akullakhan.020.a: "The Nerevarine must know. Dagoth Ur is building a god, not only being one."
+ akullakhan.020.b: "I tell no one. I carry this alone."
+ akullakhan.020.c: "Dagoth Ur builds something new. I will serve the god-builder's vision."
+
+ # --- akullakhan.021: Warning received by the Nerevarine ---
+
+ akullakhan.021.t: "The Walking God Stirs"
+ akullakhan.021.desc: "A messenger reaches you — or a vision arrives in the night, carrying the weight of someone else's discovery — with knowledge that changes the shape of what waits for you at Red Mountain.\n\nDagoth Ur is not only a god who has claimed the Heart of Lorkhan. He is building Akulakhan: the Second Numidium. A brass god-construct of enormous scale, powered by the Heart itself, fed by the harvested essence of thousands of corprus-infected souls. The Sixth House does not merely spread a plague — it feeds a god-machine.\n\nThe prophecy of Azura said to go to Red Mountain, defeat Dagoth Ur, and sever his connection to the Heart. The prophecy did not mention what else is waiting there.\n\nIt does now."
+ akullakhan.021.a: "The construct. He is building Numidium again. I must destroy it as well as him."
+ akullakhan.021.b: "I had not understood the scale of the Sharmat's ambition. Now I do."
+
+ # --- Custom Tooltips ---
+
+ akullakhan_warn_nerevarine_tt: "You share knowledge of Akulakhan — the Second Numidium — with living Nerevarine-marked rulers. They will understand what waits for them at Red Mountain."
+ akullakhan_keep_secret_tt: "You keep the knowledge of Akulakhan to yourself. Whatever the Nerevarine faces at Red Mountain, they will face it without this warning."
+ akullakhan_serve_construct_tt: "You pledge to serve the god-building project. The Sixth House's deepest circle now numbers one more among its architects."

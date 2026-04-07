@@ -4050,3 +4050,117 @@ regardless of whether they were canonical spawned NPCs or player claimants.
 - [x] `nerevarine.345` registered in `on_yearly_pulse` (weight 2)
 - [x] Event header in `nerevarine_events.txt` updated to document §23
 - [x] Localization added: `nerevarine.345.a`, `nerevarine_canonical_vessel_flag_tt`
+
+---
+
+## §24 Akulakhan — The God-Builder's Project
+
+### 24.1 Design Intent
+
+**The Problem:** The existing Dagoth Ur systems cover his awakening, his influence over sleepers,
+the Nerevarine prophecy, and the Borrowed Divinity (Heart-tapping) path.  None of them address
+his *deeper* ambition: he is not merely a god who seized the Heart for himself — he is
+*constructing* a new god.
+
+**The Request:** Add an investigative event chain for characters who search for information on
+Dagoth Ur's plan to *make* a god, not just *be* one.
+
+**Lore Basis:**
+- Akulakhan (also rendered Akullakhan) is the "Second Numidium" — a brass god-construct that
+  Dagoth Ur has been building beneath Red Mountain using the Heart of Lorkhan as its divine
+  engine.
+- The corprus disease serves a dual purpose: spreading Dagoth Ur's influence *and* harvesting
+  mortal essence to feed the construct's growth.  Sixth House sleepers are building material as
+  much as they are agents.
+- The Nerevarine's canonical task in TES III: Morrowind includes destroying Akulakhan (in the
+  construct chamber beneath Red Mountain) *before* reaching the Heart of Lorkhan — the construct
+  is a separate target from Dagoth Ur himself.
+- Key canonical sources: Dagoth Ur's own dialogue in TES III; the construct chamber as an
+  in-game location; UESP Lore:Akulakhan; the in-game text "The Plan of Dagoth Ur."
+  `[CANON — TES III: Morrowind main quest; UESP Lore:Akulakhan]`
+
+### 24.2 Event Chain — `akullakhan` Namespace
+
+#### 24.2.1 Discovery Trigger (`akullakhan.000`)
+Hidden yearly event.  Fires for rulers who have:
+- `dagoth_ur_awakened = yes`
+- NOT `akullakhan_known` character flag
+- NOT `dagoth_ur_defeated` global flag
+- Any of: `sixth_house_cultist` / `ash_devotee` / `numidium_researcher` / (`dwemer_scholar`
+  AND `learning >= 16`)
+
+25% chance per year once eligible.  On fire: sets `akullakhan_known` flag, triggers
+`akullakhan.001` in 7 days.
+
+#### 24.2.2 Event 1 — "The Walking God" (`akullakhan.001`)
+The character notices that corprus essence is being *directed* toward Red Mountain, not simply
+spreading from it.  Sixth House whispers reference "the Walking God approaching completion."
+
+**Options:**
+- A: Investigate → gains `akullakhan_scholar` trait, triggers `akullakhan.010` in 180 days
+- B: Refuse → chain ends; small piety gain
+
+#### 24.2.3 Event 2 — "The God-Builder's Design" (`akullakhan.010`)
+Deep investigation confirms: something vast is being assembled beneath Red Mountain.  Man-formed,
+enormous, built of consolidated divine essence and bound brass.  Anyone who has studied Numidium
+recognises the shape of the ambition.
+
+**Options:**
+- A: Name it → sets `akullakhan_design_confirmed` flag, triggers `akullakhan.020` in 180 days
+- B: Step back → sets flag, small piety gain; prestige loss (knowledge without courage)
+
+#### 24.2.4 Event 3 — "Akulakhan — The Second Numidium" (`akullakhan.020`)
+Full revelation.  The character learns the construct's name, purpose, and the fact that
+destroying Dagoth Ur alone will not end the threat — Akulakhan must also be destroyed.
+
+**Option A — Warn the Nerevarine:**
+- Sets `akullakhan_revealed` character flag
+- Fires `akullakhan.021` for all living `nerevarine_marked` rulers (notification)
+- Grants prestige +300, piety +200, `akullakhan_revelation_modifier` (5 years)
+
+**Option B — Keep the Secret:**
+- Character carries the knowledge alone
+- Grants learning +2, `akullakhan_revelation_modifier` (10 years — longer burden)
+
+**Option C — Serve the God-Builder** (requires `sixth_house_cultist` OR `ash_devotee`):
+- Sets `akullakhan_sixth_house_role` character flag
+- `ash_devotee` XP gain; piety loss −200; stress relief −20
+
+#### 24.2.5 Nerevarine Notification (`akullakhan.021`)
+Fires for each living `nerevarine_marked` ruler when Option A is chosen.  They learn of
+Akulakhan's existence and receive `akullakhan_revelation_modifier` (5 years).
+
+### 24.3 New Trait — `akullakhan_scholar`
+
+| Attribute | Value |
+|---|---|
+| Category | lifestyle |
+| is_good | (unset — neutral) |
+| learning | +3 |
+| intrigue | +2 |
+| monthly_piety_gain_mult | −0.10 |
+| stress_gain_mult | +0.10 |
+
+**Lore justification:** Knowing Dagoth Ur's deeper plan is forbidden knowledge — the Tribunal
+would name it heresy, the Imperial Cult would call it sedition.  The learning bonus reflects the
+sharpening that comes from holding a truth too large for comfort.  The stress reflects that
+same truth's weight.
+
+### 24.4 New Modifier — `akullakhan_revelation_modifier`
+
+| Attribute | Value |
+|---|---|
+| learning | +2 |
+| stress_gain_mult | +0.05 |
+
+Applied for 5 years (warning path) or 10 years (secret-keeper path).  The weight of the knowledge
+outlasts the initial discovery.
+
+### 24.5 Integration Checklist — §24
+
+- [x] `mod/events/akullakhan_events.txt` created with events `akullakhan.000` – `.021`
+- [x] `akullakhan_scholar` trait added to `mod/common/traits/dagoth_ur_traits.txt`
+- [x] `akullakhan_revelation_modifier` added to `mod/common/modifiers/lore_races_modifiers.txt`
+- [x] `akullakhan.000` registered in `lore_races_on_actions.txt` `on_yearly_pulse` (weight 2)
+- [x] `mod/localization/english/akullakhan_l_english.yml` created with UTF-8 BOM
+- [x] Cross-reference updated in `dagoth_ur_traits.txt` DEFINES + REFERENCED BY sections
