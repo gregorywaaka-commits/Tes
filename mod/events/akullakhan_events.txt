@@ -34,6 +34,15 @@
 #  • akullakhan.001  — "The Walking God" — first whisper of the construct
 #  • akullakhan.010  — "The God-Builder's Design" — deeper evidence confirmed
 #  • akullakhan.020  — "Akulakhan — The Second Numidium" — full revelation + response
+#                      Option A: warn Nerevarine
+#                      Option B: keep secret
+#                      Option C: serve the construct (Sixth House only)
+#                      Option D: Dwemer scholarly path (tonal_architect or dwemer_scholar+numidium_researcher)
+#
+#  Dwemer path continuations (from Option D above):
+#  • akullakhan.030  — "Kagrenac's Purpose, Revisited" — scholar recognises the flaw in Dagoth Ur's design
+#  • akullakhan.031  — "The Proof of Concept" — engineering analysis of Akulakhan's tonal mechanism
+#  • akullakhan.032  — "The Living Blueprint" — culmination: advances tonal_arch path or enables entry
 #
 #  ELIGIBILITY:
 #  ────────────
@@ -50,9 +59,11 @@
 #
 #  KEY CHARACTER FLAGS:
 #  ────────────────────
-#  akullakhan_known        — discovery check has fired; prevents repeat
-#  akullakhan_revealed     — character shared knowledge with the Nerevarine
+#  akullakhan_known            — discovery check has fired; prevents repeat
+#  akullakhan_revealed         — character shared knowledge with the Nerevarine
 #  akullakhan_sixth_house_role — character chose to serve the god-building project
+#  akullakhan_dwemer_path_chosen — character chose the Dwemer scholarly interpretation
+#  akullakhan_blueprint_absorbed — character has absorbed the construct's tonal record (§24 Dwemer path)
 #
 #  EXTERNAL DEPENDENCIES:
 #  ─────────────────────
@@ -73,7 +84,7 @@
 # =============================================================
 #
 #  DEFINES — event IDs this file exports:
-#    • akullakhan.000 – .020
+#    • akullakhan.000 – .032
 #
 #  DEPENDS ON:
 #    common/traits/dagoth_ur_traits.txt
@@ -274,6 +285,45 @@ akullakhan.020 = {
         }
         custom_tooltip = akullakhan_serve_construct_tt
     }
+
+    # ---------------------------------------------------------------
+    # Option D — The Dwemer Interpretation
+    # A tonal architect or deep Dwemer scholar who reaches this
+    # moment does not see what a cultist sees, and does not see
+    # what a Nerevarine sees.  They see Kagrenac's Purpose being
+    # executed by the wrong person, toward the wrong end.
+    #
+    # Kagrenac did not build Numidium to give a god more power.
+    # He built it to make the gods irrelevant.  Akulakhan is the
+    # same methodology applied to serve a god — a fundamental
+    # perversion of the original Dwemer ambition.
+    #
+    # The Dwemer path: study the construct.  Not to help it.
+    # Not to stop it.  To understand what Kagrenac actually knew,
+    # and determine whether that knowledge can be reclaimed.
+    # ---------------------------------------------------------------
+    option = {
+        name = akullakhan.020.d   # "Kagrenac built Numidium to deny the gods. Dagoth Ur has built the same thing to serve one. He has done it wrong."
+        trigger = {
+            OR = {
+                has_trait = tonal_architect
+                AND = {
+                    has_trait = dwemer_scholar
+                    has_trait = numidium_researcher
+                }
+            }
+        }
+        add_character_flag = { flag = akullakhan_response_given }
+        set_character_flag = { flag = akullakhan_dwemer_path_chosen }
+        add_learning = 2
+        add_stress   = 20    # The weight of recognising both the genius and the error
+        add_character_modifier = {
+            modifier = akullakhan_revelation_modifier
+            days = 3650   # 10 years of carrying this perspective
+        }
+        trigger_event = { id = akullakhan.030 days = 90 }
+        custom_tooltip = akullakhan_dwemer_path_tt
+    }
 }
 
 # ---------------------------------------------------------------
@@ -304,5 +354,271 @@ akullakhan.021 = {
         name = akullakhan.021.b   # "I had not known the scale of it. The Sharmat's ambition is vast."
         add_learning = 2
         add_stress   = 10
+    }
+}
+
+# ===================================================================
+#  §24 DWEMER PATH — Events akullakhan.030 – .032
+#
+#  These events fire only for characters who chose Option D at
+#  akullakhan.020: the Dwemer scholarly interpretation.
+#
+#  LORE CONTEXT:
+#  Kagrenac's original purpose was NOT to build a god to serve him.
+#  It was to build a machine that would make the gods irrelevant —
+#  proof that divinity is a material phenomenon that can be
+#  reverse-engineered by mortal craft.  Numidium was an engine
+#  designed to negate the divine, not to replicate it.
+#
+#  Dagoth Ur has taken Kagrenac's methodology and inverted it:
+#  Akulakhan draws on the Heart of Lorkhan not to transcend
+#  godhood but to create a god that SERVES the Sharmat.  From
+#  a Dwemer scholarly perspective this is a catastrophic
+#  misapplication — like using the principles of Aetherium
+#  resonance to build a prison rather than a door.
+#
+#  The Dwemer path through Akulakhan is about recovering what
+#  Kagrenac actually knew — not from his texts, which are
+#  incomplete, but from the construct itself, which is the
+#  most detailed physical record of his methodology that has
+#  ever existed.
+#
+#  [LORE SOURCES: UESP Lore:Tonal Architecture; in-game book
+#  "Chimarvamidium"; in-game book "Kagrenac's Motivations"
+#  (ESO); TES III: Morrowind main quest; UESP Lore:Numidium]
+# ===================================================================
+
+# ---------------------------------------------------------------
+# akullakhan.030  Kagrenac's Purpose, Revisited
+# The Dwemer scholar has now connected the dots.  What Dagoth Ur
+# is building beneath Red Mountain is the second application of
+# Kagrenac's methodology — and it is being applied to the
+# diametrically opposed purpose.
+#
+# Kagrenac built Numidium to demonstrate that divinity is a
+# material property of the universe, not a supernatural one —
+# and that mortals could, through sufficient craft, exceed
+# what the gods represented.  Numidium was not a god.  It
+# was a machine that could negate gods.
+#
+# Akulakhan is Kagrenac's method applied backwards: instead
+# of a tool to negate divinity, a tool to PROJECT it — under
+# the Sharmat's will, forever.  It is a masterwork built
+# toward the wrong answer.
+# ---------------------------------------------------------------
+akullakhan.030 = {
+    type = character_event
+    title = akullakhan.030.t
+    desc = akullakhan.030.desc
+    theme = education_learning
+
+    trigger = {
+        has_character_flag = akullakhan_dwemer_path_chosen
+        NOT = { has_character_flag = akullakhan_030_seen }
+    }
+
+    option = {
+        name = akullakhan.030.a   # "He built the door and walked through it backwards. Everything Kagrenac designed this for — he has reversed."
+        add_character_flag = { flag = akullakhan_030_seen }
+        add_learning = 1
+        add_stress   = 15    # The clarity is not comfortable
+        trigger_event = { id = akullakhan.031 days = 180 }
+    }
+
+    option = {
+        name = akullakhan.030.b   # "Kagrenac designed a machine to make gods irrelevant. Dagoth Ur has used the same method to make himself into one."
+        add_character_flag = { flag = akullakhan_030_seen }
+        add_prestige = 100
+        add_stress   = 20
+        trigger_event = { id = akullakhan.031 days = 180 }
+    }
+}
+
+# ---------------------------------------------------------------
+# akullakhan.031  The Proof of Concept
+# The scholar obtains, through whatever means — Sixth House
+# texts, personal observation, tonal projection, spies — a
+# detailed structural analysis of Akulakhan's tonal framework.
+# What they find changes everything they thought they understood
+# about why the Dwemer disappeared.
+#
+# The Dwemer debate has always been: did Kagrenac succeed or
+# fail?  Most scholars assume failure — the Dwemer are gone.
+# But the tonal record embedded in Akulakhan's structure
+# suggests the original Numidium DID achieve the resonance
+# Kagrenac intended.  The Dwemer didn't vanish because
+# Kagrenac failed.  They vanished because he succeeded.
+#
+# The Dwemer are not dead.  They are distributed.  Kagrenac
+# tapped the Heart and the Heart's frequency pulled every
+# Dwemer soul into its resonance at once.  The construct they
+# were building was meant to give them a body for that
+# distributed existence to inhabit.  Numidium wasn't a war
+# machine.  It was a housing.
+#
+# This is contested among scholars.  It may be wrong.
+# But it is what the tonal record of Akulakhan implies.
+# ---------------------------------------------------------------
+akullakhan.031 = {
+    type = character_event
+    title = akullakhan.031.t
+    desc = akullakhan.031.desc
+    theme = education_learning
+
+    trigger = {
+        has_character_flag = akullakhan_dwemer_path_chosen
+        has_character_flag = akullakhan_030_seen
+        NOT = { has_character_flag = akullakhan_031_seen }
+    }
+
+    option = {
+        name = akullakhan.031.a   # "The Dwemer didn't fail. Numidium was a body for a distributed people. And it was never completed in time."
+        add_character_flag = { flag = akullakhan_031_seen }
+        add_learning = 2
+        add_stress   = 25    # This overturns everything
+        trigger_event = { id = akullakhan.032 days = 180 }
+    }
+
+    option = {
+        name = akullakhan.031.b   # "I do not fully accept this. But the tonal evidence is extraordinary."
+        add_character_flag = { flag = akullakhan_031_seen }
+        add_learning = 1
+        add_stress   = 10
+        trigger_event = { id = akullakhan.032 days = 180 }
+    }
+}
+
+# ---------------------------------------------------------------
+# akullakhan.032  The Living Blueprint
+# The full Dwemer path culmination.  The scholar has studied
+# Akulakhan as no living person outside the Sixth House has —
+# and decoded the tonal architecture record embedded in its
+# construction.  They now possess a working understanding of
+# Kagrenac's methodology that goes beyond anything preserved
+# in conventional Dwemer scholarship.
+#
+# What they do with this determines the mechanical outcome.
+# If they are already on the Tonal Architecture Walking Way,
+# this is a breakthrough — a milestone gained without the
+# usual months of study.  If they are not yet on the path,
+# this is the moment it becomes possible at extraordinary
+# minimum requirements.  In either case, the experience leaves
+# a permanent mark.
+# ---------------------------------------------------------------
+akullakhan.032 = {
+    type = character_event
+    title = akullakhan.032.t
+    desc = akullakhan.032.desc
+    theme = education_learning
+
+    trigger = {
+        has_character_flag = akullakhan_dwemer_path_chosen
+        has_character_flag = akullakhan_031_seen
+        NOT = { has_character_flag = akullakhan_blueprint_absorbed }
+    }
+
+    option = {
+        # Option A — Already on the Tonal Architecture path
+        # The blueprint provides a direct milestone: the scholar has
+        # seen the Dwemer's gestalt attempt in architectural form,
+        # which is equivalent to years of theoretical progress.
+        name = akullakhan.032.a   # "I am already walking the Dwemer's road. This is a map of where it leads."
+        trigger = {
+            is_on_path_tonal_architecture = yes
+        }
+        add_character_flag = { flag = akullakhan_blueprint_absorbed }
+        add_character_modifier = {
+            modifier = akullakhan_dwemer_insight_modifier
+            days = 3650   # 10 years
+        }
+        # Grant the gestalt milestone flag directly — Akulakhan's
+        # partially-complete gestalt architecture demonstrates it
+        # working in practice.  This is equivalent to the tonal_arch
+        # milestone_gestalt event's achievement without the study time.
+        if = {
+            limit = { NOT = { has_character_flag = ww_tonal_milestone_gestalt } }
+            set_character_flag = ww_tonal_milestone_gestalt
+        }
+        # Also grant the nullify milestone if the scholar has learning >= 22
+        # — the blueprint makes the final step's theory legible.
+        if = {
+            limit = {
+                learning >= 22
+                NOT = { has_character_flag = ww_tonal_milestone_nullify }
+            }
+            set_character_flag = ww_tonal_milestone_nullify
+        }
+        add_learning = 3
+        add_prestige = 500
+        add_stress   = 20
+        custom_tooltip = akullakhan_blueprint_path_advance_tt
+    }
+
+    option = {
+        # Option B — Not on the path, but eligible and willing to start
+        # The blueprint is an invitation as much as a discovery.
+        name = akullakhan.032.b   # "This is the Dwemer's method, made visible. I can follow it."
+        trigger = {
+            can_begin_path_tonal_architecture = yes
+            NOT = { is_on_path_tonal_architecture = yes }
+        }
+        add_character_flag = { flag = akullakhan_blueprint_absorbed }
+        add_character_modifier = {
+            modifier = akullakhan_dwemer_insight_modifier
+            days = 3650
+        }
+        begin_path_tonal_architecture = yes
+        # Start with two milestone flags already set — the blueprint
+        # provides the first two milestone equivalent insights:
+        # principles (the fundamental tonal theory is now visible)
+        # and construct (the scholar has seen an animunculus-scale
+        # construct in operation; building one is now comprehensible).
+        if = {
+            limit = { NOT = { has_character_flag = ww_tonal_milestone_principles } }
+            set_character_flag = ww_tonal_milestone_principles
+        }
+        if = {
+            limit = { NOT = { has_character_flag = ww_tonal_milestone_construct } }
+            set_character_flag = ww_tonal_milestone_construct
+        }
+        add_learning = 2
+        add_stress   = 25
+        custom_tooltip = akullakhan_blueprint_path_begin_tt
+    }
+
+    option = {
+        # Option C — Dwemer scholar who has the Borrowed Divinity
+        # Route A (heart_scholar_ascendant): unique convergence.
+        # They already have a mediated connection to the Heart of
+        # Lorkhan — Akulakhan's blueprint reveals they have been
+        # doing a cruder version of what Akulakhan was designed for.
+        # The realisation is profound and destabilising.
+        name = akullakhan.032.c   # "I already draw from the Heart using the Tools. Akulakhan is the Heart drawing through a constructed body. I am the same thing, smaller."
+        trigger = {
+            has_trait = heart_scholar_ascendant
+        }
+        add_character_flag = { flag = akullakhan_blueprint_absorbed }
+        add_character_modifier = {
+            modifier = akullakhan_dwemer_insight_modifier
+            days = 3650
+        }
+        add_learning   = 4
+        add_stress     = 40    # The self-recognition is shattering
+        add_prestige   = 200
+        custom_tooltip = akullakhan_blueprint_heart_scholar_tt
+    }
+
+    option = {
+        # Option D — The scholar cannot or will not pursue the path
+        # They record what they know and step back.
+        name = akullakhan.032.d   # "I will document what I have learned and leave the rest to those who come after."
+        add_character_flag = { flag = akullakhan_blueprint_absorbed }
+        add_character_modifier = {
+            modifier = akullakhan_dwemer_insight_modifier
+            days = 1825   # 5 years — shorter burden without the path
+        }
+        add_learning = 1
+        add_prestige = 200
+        custom_tooltip = akullakhan_blueprint_record_tt
     }
 }

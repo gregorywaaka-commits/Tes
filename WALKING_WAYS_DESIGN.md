@@ -4164,3 +4164,85 @@ outlasts the initial discovery.
 - [x] `akullakhan.000` registered in `lore_races_on_actions.txt` `on_yearly_pulse` (weight 2)
 - [x] `mod/localization/english/akullakhan_l_english.yml` created with UTF-8 BOM
 - [x] Cross-reference updated in `dagoth_ur_traits.txt` DEFINES + REFERENCED BY sections
+
+---
+
+## §24 Extension: The Dwemer Path through Akulakhan
+
+### 24.6 Lore Research Summary (Online Search)
+
+The following lore was researched to ensure accuracy of the Dwemer path:
+
+**Kagrenac's Purpose — What the Dwemer Were Actually Trying to Do**
+- Kagrenac was not building Numidium as a weapon, though it became one. His goal was to use the Heart of Lorkhan as a divine power source to transform the Dwemer as a people — to cross the threshold the et'Ada had crossed when they became the Aedra, but through mortal craft rather than self-sacrifice.
+- The in-game book "Kagrenac's Motivations" (ESO) explicitly frames this as the Dwemer attempting to transcend the mortal condition entirely through tonal engineering applied to a divine object.
+- The Dwemer rejection of divinity was not atheism in the modern sense but a rejection of the *supernatural* as a category. They believed divinity was a material property that could be reproduced by sufficiently advanced craft. `[CANON — ESO: Kagrenac's Motivations; UESP Lore:Tonal Architecture]`
+
+**The Dwemer Disappearance — Did Kagrenac Succeed or Fail?**
+- The canonical text is ambiguous. UESP: "What happened to the Dwemer is officially listed as 'Unknown.' Multiple theories exist." The most debated: Kagrenac accidentally destroyed all Dwemer souls; Kagrenac successfully incorporated all Dwemer souls into the Heart/Numidium; the Dwemer transcended to a different plane.
+- The "they transcended/became distributed" theory is supported by some in-game texts and is mechanically interesting. It is flagged as `[CONTESTED]` in this mod's lore files.
+- For this mod: the Dwemer path treats the "succeeded but too soon" reading as the scholar's conclusion from studying Akulakhan, while explicitly labelling it as the scholar's interpretation, not absolute canonical truth. This is lore-accurate.
+  `[SOFT CANON — UESP Lore:Dwemer Theories; in-game book: "Ruins of Kemel-Ze"]`
+
+**Numidium vs Akulakhan — The Key Difference**
+- Numidium was powered by the **Mantella** (a bottled soul — Zurin Arctus's). This mediated the relationship between construct and divine power; the Mantella was a heart-substitute.
+- Akulakhan is powered directly by the **Heart of Lorkhan** — no mediation. This is both more powerful and more dangerous. It also means Akulakhan is inseparable from the Heart in the same way Dagoth Ur himself is.
+- From a Dwemer scholarly perspective: Kagrenac's method used the Tools (Wraithguard, Keening, Sunder) as mediators. Direct Heart connection (Dagoth Ur's method) was the thing Kagrenac's Tools were designed to *avoid* — the backlash risk was too great. Dagoth Ur's survival of direct contact was unique.
+  `[CANON — TES III: Morrowind; UESP Lore:Numidium; UESP Lore:Heart of Lorkhan]`
+
+**Why a Dwemer Scholar Interprets Akulakhan Differently**
+- For a Sixth House cultist: Akulakhan is Dagoth Ur's masterwork, a vessel for his divine will.
+- For a Nerevarine: Akulakhan is a second target to destroy.
+- For a Dwemer scholar/tonal architect: Akulakhan is **Kagrenac's methodology applied to the wrong goal** — proof that the method works, but subverted to serve divinity rather than transcend it. The scholar sees genius and tragedy simultaneously.
+  `[MOD INTERPRETATION — consistent with UESP lore]`
+
+### 24.7 New Events — Dwemer Path (akullakhan.030–.032)
+
+#### 24.7.1 Eligibility Gate — Option D of `akullakhan.020`
+Requires: `tonal_architect` OR (`dwemer_scholar` AND `numidium_researcher`).
+Sets `akullakhan_dwemer_path_chosen` character flag. Triggers `akullakhan.030` in 90 days.
+
+#### 24.7.2 `akullakhan.030` — "Kagrenac's Purpose, Revisited"
+The scholar articulates the core insight: Dagoth Ur walked through Kagrenac's door backwards.
+Numidium was designed to negate the gods; Akulakhan is designed to project one.
+**Both options** lead to `akullakhan.031` in 180 days. Stress cost. Learning gain.
+
+#### 24.7.3 `akullakhan.031` — "The Proof of Concept"
+Deep structural analysis of Akulakhan's tonal framework implies a contested but lore-grounded
+reading of the Dwemer Disappearance: the resonance at Red Mountain was not catastrophic failure
+but successful incorporation. Numidium was to have been the Dwemer's collective body after the
+distributed resonance. The project was activated before the vessel was complete.
+**Both options** lead to `akullakhan.032` in 180 days.
+Stress cost +25 (option A) or +10 (option B). Learning gain.
+
+#### 24.7.4 `akullakhan.032` — "The Living Blueprint"
+**Four-option culmination** based on where the character is:
+
+| Option | Gate | Mechanical Effect |
+|---|---|---|
+| A — Already on Path | `is_on_path_tonal_architecture` | Grants `ww_tonal_milestone_gestalt` flag (and `nullify` if learning ≥ 22); `akullakhan_dwemer_insight_modifier` (10 years) |
+| B — Not on path, eligible | `can_begin_path_tonal_architecture` | Calls `begin_path_tonal_architecture`; grants `principles` + `construct` milestone flags pre-loaded; modifier |
+| C — Heart Scholar | `heart_scholar_ascendant` trait | Self-recognition event (Heart draw = Akulakhan scaled down); learning +4, stress +40 |
+| D — Record only | (any) | Learning +1, prestige +200; modifier 5 years |
+
+### 24.8 New Modifier — `akullakhan_dwemer_insight_modifier`
+
+| Attribute | Value |
+|---|---|
+| learning | +4 |
+| stewardship | +2 |
+| monthly_prestige_gain_mult | +0.10 |
+
+Applied 5–10 years depending on option. Represents absorbed knowledge of Kagrenac's actual methodology decoded from Akulakhan's structure.
+
+### 24.9 Integration Checklist — §24 Dwemer Path Extension
+
+- [x] Option D added to `akullakhan.020` (gate: `tonal_architect` OR `dwemer_scholar`+`numidium_researcher`)
+- [x] `akullakhan_dwemer_path_chosen` character flag documented in file header
+- [x] `akullakhan.030` ("Kagrenac's Purpose, Revisited") added to `akullakhan_events.txt`
+- [x] `akullakhan.031` ("The Proof of Concept") added to `akullakhan_events.txt`
+- [x] `akullakhan.032` ("The Living Blueprint") added — 4-option culmination with tonal path integration
+- [x] `akullakhan_dwemer_insight_modifier` added to `lore_races_modifiers.txt`
+- [x] All new event/option localization added to `akullakhan_l_english.yml`
+- [x] Event ID range updated in file header: `akullakhan.000 – .032`
+- [x] §24 design notes updated with full lore research summary

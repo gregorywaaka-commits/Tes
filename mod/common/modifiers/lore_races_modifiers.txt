@@ -2252,6 +2252,16 @@ akullakhan_revelation_modifier = {
     stress_gain_mult     = 0.05    # The weight of knowing
 }
 
+# Akulakhan Dwemer Insight: a scholar who has decoded the tonal
+# architecture record embedded in Akulakhan's construction — the
+# clearest surviving record of Kagrenac's actual methodology.
+# Applied by akullakhan.032 (§24 Dwemer path culmination).
+akullakhan_dwemer_insight_modifier = {
+    learning             = 4
+    stewardship          = 2
+    monthly_prestige_gain_mult = 0.10
+}
+
 # =============================================================
 #  DWEMER RUINS MODIFIERS
 #  Defined here; used by mod/events/dwemer_ruins_effects.txt
