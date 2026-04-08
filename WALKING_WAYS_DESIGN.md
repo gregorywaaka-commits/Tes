@@ -4635,22 +4635,25 @@ decision: hide_imperial_heirs_at_priory
 
 **If heirs NOT hidden when the assassination fires:**
 - All heirs die (event `oblivion_crisis.assassination_heirs`).
-- A **Martin-role NPC** is spawned. Who this is depends on four conditions (see §26.5a):
+- **For NPC emperors only** — a Martin-role NPC is spawned. Who this is depends on four conditions (see §26.5a):
   - **Canonical Martin Septim** spawns **only when all four hold**:
     1. The emperor is an NPC (non-player) of Septim dynasty (`septim_dynasty = yes`)
     2. The player is NOT the emperor on any track (`is_player_controlled = no`)
     3. The emperor does NOT have the `talos_path_emperor` flag (Talos-path AI emperors → random spawn)
     4. The current year is ≥ 3E 389 (Martin's approximate birth year — see §26.5a)
-  - **Random bastard of the emperor's dynasty** spawns in all other cases:
-    - Player is the emperor (any dynasty, including Talos-path player) → random spawn from player's dynasty
+  - **Random bastard of the emperor's dynasty** spawns for NPC emperors in all other non-canonical cases:
     - Current year < 3E 389 (too early for Martin to exist) → random spawn from emperor's dynasty
     - Non-Septim dynasty NPC emperor → random spawn from that emperor's dynasty
     - Septim NPC emperor with `talos_path_emperor` flag → random spawn from Septim dynasty
-  - The random bastard NPC always belongs to the dying emperor's dynasty (`dynasty = root.dynasty`),
+  - The random bastard NPC always belongs to the dying NPC emperor's dynasty (`dynasty = root.dynasty`),
     not the Septim dynasty specifically — the heir is whoever would realistically continue that bloodline.
   - The random bastard NPC is given `dragonborn_blood` trait if the dynasty holds a
     Dragonborn claim, or `amulet_worthy` flag if not, to allow the narrative to proceed.
   - This NPC (canonical or random) is placed in a Kvatch-equivalent county under Mythic Dawn siege.
+- **For player emperors** — no heir or bastard is spawned. The player's real heirs were not hidden
+  and have been killed by the Mythic Dawn (see §31.9). The HoK candidates (Bendu Olo, etc.) handle
+  the crisis entirely. There is no bloodline Martin-role character from the player's dynasty.
+  The narrative proceeds through the HoK track only (see §26.7 / §31.8).
 
 ---
 
@@ -4668,20 +4671,30 @@ birth-window rule (§31.3), an anonymous placeholder must be used instead.
 | NPC Septim emperor dies, year ≥ 3E 389, player is not emperor, NOT `talos_path_emperor` | **Yes — canonical Martin** | — |
 | NPC Septim emperor dies, year < 3E 389 | **No** | Septim dynasty |
 | NPC Septim emperor with `talos_path_emperor` flag dies | **No** | Septim dynasty |
-| Player is emperor on any track (Talos-path, player Septim, etc.) | **No** | Player's dynasty |
-| Non-Septim dynasty NPC emperor dies | **No** | Emperor's dynasty |
+| Player is emperor, heirs NOT hidden | **No** | **No spawn** — HoK handles crisis without bloodline heir (§31.9) |
+| Player is emperor, heirs hidden, player dies | **No** | No spawn — player transitions to surviving heir (§31.9) |
+| Player is emperor, heirs hidden, player survives | **No** | No spawn — player can delegate or act personally (§31.9) |
+| Non-Septim dynasty NPC emperor dies | **No** | Emperor's own dynasty |
 
-> **Key principle:** The random bastard is always from the *emperor's own dynasty*, regardless of which dynasty that is. The Septim dynasty is only relevant when checking whether canonical Martin can be spawned.
+> **Key principle:** The random bastard is always from the *emperor's own dynasty*, regardless of which dynasty that is. The Septim dynasty is only relevant when checking whether canonical Martin can be spawned. For player emperors, NO random bastard is ever spawned — only real existing heirs count (§31.9).
 
 ```
 # Martin birth gate — controls whether canonical Martin fires
 # Called from oblivion_crisis.assassination_heirs
+# NOTE (§31.9): Player emperors NEVER reach this effect — their path is handled
+# separately (heir-succession on death, delegate on survival). This effect is
+# only called when root is an NPC emperor.
 martin_septim_spawn_or_random_effect = {
+    # Safety guard: never spawn for player emperors (§31.9)
     if = {
+        limit = { is_player = yes }
+        # No-op: player-emperor heir logic is handled by oblivion_crisis.player_heir_succession
+        # and oblivion_crisis.delegate_paradise_retrieval (§31.9)
+    }
+    else_if = {
         # Canonical Martin: non-player NPC Septim emperor, correct time period,
         # NOT a Talos-path emperor (Talos AI emperors always use random spawn)
         limit = {
-            NOT = { is_player = yes }
             dynasty = septim_dynasty
             current_year >= 3389  # 3E 389 in game calendar
             NOT = { has_character_flag = talos_path_emperor }
@@ -4696,8 +4709,8 @@ martin_septim_spawn_or_random_effect = {
         }
     }
     else = {
-        # Random bastard of the emperor's own dynasty — all other cases
-        # (wrong era, player emperor, non-Septim dynasty, Talos-path AI emperor)
+        # Random bastard of the NPC emperor's own dynasty — all other NPC cases
+        # (wrong era, non-Septim dynasty, Talos-path AI emperor)
         # dynasty = root.dynasty ensures the heir belongs to whichever dynasty
         # holds the throne, not always the Septim dynasty.
         create_character = {
@@ -4724,11 +4737,26 @@ The bastard's name is drawn from the emperor's dynasty culture list — so a non
 produces a non-Septim named heir, fitting whatever dynasty holds the throne.
 
 **If heirs ARE hidden:**
-- Heirs survive. Player-Emperor can choose to:
+- Heirs survive with the `heir_hidden_at_priory` flag (cannot be targeted by assassination events).
+- Player-Emperor can choose to:
   - A) **Send heir to Kvatch** — heir enters the crisis as the Martin-role character,
     eventually becoming Avatar of Akatosh (player loses heir but ends Dragonfires).
   - B) **Go personally** — Emperor goes to Kvatch themselves and the heir remains
     hidden (see §26.8 for Emperor-as-Avatar path).
+  - C) **Delegate to HoK candidates** — Emperor remains in the Imperial City and
+    dispatches surviving HoK candidates (Bendu Olo, etc.) to handle Kvatch and Paradise.
+    The heir stays hidden. See `oblivion_crisis.delegate_paradise_retrieval` (§31.7).
+
+**If the player emperor dies (any point in the crisis):**
+- The game checks for surviving heirs with the `heir_hidden_at_priory` flag.
+- If one or more hidden heirs exist:
+  - The player is transferred to the **oldest surviving hidden heir** as their new character.
+  - This heir assumes the Martin-role: they are the one who must close the Dragonfires.
+  - They retain `heir_hidden_at_priory` until they are formally revealed by the narrative.
+  - Event `oblivion_crisis.player_heir_succession` fires to narrate the transition.
+- If no hidden heirs exist (heirs were not hidden or were killed before the emperor's death):
+  - The player is transferred normally per CK3 succession rules.
+  - The crisis proceeds via HoK candidates only — no bloodline Martin-role character exists.
 
 ---
 
@@ -6546,3 +6574,139 @@ is always required regardless of imperial survival path; §31.6 amulet-stolen co
 
 ---
 
+
+### 31.9 Correction to §26.5 — Player Emperor Heir Spawning (No Fabricated Bastard)
+
+> **Added:** Session 2026-04-08. Supersedes the "random spawn from player's dynasty"
+> clause in §26.5 "heirs NOT hidden" and the "Player is emperor" row in §26.5a.
+
+---
+
+#### 31.9.1 Problem with Previous Design
+
+§26.5's "heirs NOT hidden" case listed a fallback for player emperors:
+> "Player is the emperor (any dynasty, including Talos-path player) → random spawn from player's dynasty"
+
+This is wrong for two reasons:
+1. **It fabricates a child the player never had.** The player's dynasty heir should only ever be a character the player actually raised in-game — not an NPC conjured by the crisis event.
+2. **It removes agency.** The decision to protect heirs by sending them into hiding is a meaningful pre-crisis choice. Fabricating a replacement bastard negates the consequence of not taking that decision.
+
+---
+
+#### 31.9.2 Corrected Rule — Player Emperor, Heirs NOT Hidden
+
+When a player emperor's heirs are **not** hidden at the time of the Mythic Dawn assassination:
+- All heirs die in `oblivion_crisis.assassination_heirs`.
+- **No replacement NPC is spawned from the player's dynasty.**
+- The crisis proceeds entirely through HoK candidates (Bendu Olo, etc.).
+- There is no bloodline Martin-role character. The player must delegate or act personally.
+
+This is a **narrative consequence** of failing to protect the imperial line.
+
+---
+
+#### 31.9.3 Corrected Rule — Player Emperor, Heirs Hidden, Emperor Dies
+
+When a player emperor's heirs **are** hidden (`heir_hidden_at_priory` flag) and the player emperor subsequently dies (during or after the sewer escape):
+- The game searches for surviving heirs with the `heir_hidden_at_priory` flag.
+- If any exist: the **player is transferred to the oldest surviving hidden heir**.
+  - That heir becomes the player character and assumes the Martin-role narrative function.
+  - They are "in hiding" until formally revealed (flag remains until the crisis resolves or they are sent to Kvatch).
+  - Event `oblivion_crisis.player_heir_succession` fires to narrate the transition.
+- If no hidden heirs remain: standard CK3 succession applies. The crisis has no bloodline Martin-role character.
+
+---
+
+#### 31.9.4 Corrected Rule — Player Emperor, Heirs Hidden, Emperor Survives
+
+When a player emperor's heirs are hidden and the emperor **survives** the crisis:
+- Player chooses (via `oblivion_crisis.delegate_paradise_retrieval` or equivalent):
+  - **Delegate:** Dispatch HoK candidates to Kvatch / Paradise. The heir remains hidden.
+  - **Handle personally:** Emperor goes to Kvatch / Paradise themselves (§26.8 Emperor-as-Avatar path).
+  - **Send heir:** Heir is revealed and sent to Kvatch as the Martin-role character.
+- This is unchanged from the original §26.5 Track B options A/B, now with a third explicit option (delegate to HoK).
+
+---
+
+#### 31.9.5 Updated Pseudocode
+
+```
+# Called from oblivion_crisis.assassination_heirs
+# Determines whether to fire a Martin-role spawn
+# NPC path: fire martin_septim_spawn_or_random_effect (§26.5a)
+# Player path: NO spawn — check for hidden heirs instead
+oblivion_crisis.assassination_heirs = {
+    type = character_event
+    hidden = yes
+    effect = {
+        if = {
+            limit = { is_player = yes }
+            # Player emperor: kill all non-hidden heirs; never spawn a bastard
+            every_child = {
+                limit = {
+                    is_heir = yes
+                    NOT = { has_character_flag = heir_hidden_at_priory }
+                }
+                death = { death_reason = death_murder }
+            }
+            # No spawn — HoK handles crisis if heirs all died
+        }
+        else = {
+            # NPC emperor: kill all heirs AND fire Martin/random spawn
+            every_child = {
+                limit = { is_heir = yes }
+                death = { death_reason = death_murder }
+            }
+            martin_septim_spawn_or_random_effect = yes
+        }
+    }
+}
+```
+
+```
+# Fires if player emperor dies and hidden heirs exist
+oblivion_crisis.player_heir_succession = {
+    type = character_event
+    trigger = {
+        is_player = yes
+        any_child = { has_character_flag = heir_hidden_at_priory }
+    }
+    # Transition player to oldest surviving hidden heir
+    effect = {
+        random_child = {
+            limit = { has_character_flag = heir_hidden_at_priory }
+            order_by = age  # oldest first
+            limit = { count = 1 }
+            # Player inherits this character
+            set_player_character = yes
+            add_character_flag = heir_in_martin_role
+        }
+    }
+}
+```
+
+---
+
+#### 31.9.6 New Flags and Events — §31.9
+
+| Identifier | Type | Description |
+|---|---|---|
+| `heir_in_martin_role` | character flag | Set on a player-emperor's heir who has assumed the Martin narrative role after the emperor's death. |
+| `oblivion_crisis.player_heir_succession` | event | Fires when a player emperor dies with hidden heirs present; transitions player to oldest surviving hidden heir. |
+
+---
+
+#### 31.9.7 Amendment Summary — §26.5 Changes
+
+| §26.5 Original Text | Corrected Behaviour (§31.9) |
+|---|---|
+| "Player is the emperor → random spawn from player's dynasty" | **Removed.** No bastard is spawned for player emperors. Only real existing heirs count. |
+| "If heirs ARE hidden: send to Kvatch or go personally" | **Expanded.** Third option added: delegate to HoK. Player-death path now transitions player to surviving hidden heir. |
+| §26.5a table: "Player is emperor on any track → No, Player's dynasty" | **Replaced.** Three rows: heirs not hidden (no spawn), heirs hidden + emperor dies (player becomes heir), heirs hidden + emperor survives (delegate or personal). |
+
+`[SOURCE: design principle: player dynasties must only contain characters the player
+created — no fabricated crisis bastards; player-death must have narrative continuity
+via surviving hidden heirs; TES IV: Oblivion — Martin Septim is the emperor's son,
+not a random noble; §26.5 Track B; §31.7 prisoner choice amendment]`
+
+---
