@@ -5966,7 +5966,7 @@ confirmed as later Sheogorath via dialogue referencing the Oblivion Crisis perso
 | **§26.3** | Mark as "template for universal rule" — all canonical NPC spawns must use birth-window gates. |
 | **§26–§30** (general) | Add §31.3 universal temporal spawning principle — anonymous placeholders for out-of-window characters. |
 | **§26.1, §27.1, §27.3** | Bendu Olo is the canonical NPC champion's name in this mod. "Hero of Kvatch" / "Champion of Cyrodiil" are lore titles used in flavor text only. |
-| **§31.2** (further correction) | `mythic_dawn_suppressed_by_tiber` suppression flag is REMOVED. Mythic Dawn always attempts assassination when active. Against Tiber Septim (NPC) or any emperor who survives: attempt fails to kill, Amulet of Kings is stolen. Crisis proceeds without emperor dying. See §31.6. |
+| **§31.2** (further correction) | `mythic_dawn_suppressed_by_tiber` suppression flag is REMOVED. Mythic Dawn always attempts assassination when active. If the emperor **dies**: Amulet passes to HoK → HoK takes it to Weynon Priory → stolen from Priory later (canonical path). If the emperor **survives** (Tiber Septim NPC or player): Amulet stolen directly in the assassination chaos; `amulet_stolen_in_sewers` flag set; surviving emperor pursues Mankar personally. See §31.6. |
 
 ---
 
@@ -5991,18 +5991,26 @@ depending on who the target is:
 
 | Emperor Target | Assassination Outcome | Amulet of Kings | Crisis Proceeds? |
 |---|---|---|---|
-| Uriel Septim VII (canon NPC, mortal, elderly) | Emperor killed | Stolen + given to Martin | Yes |
-| Tiber Septim (canonical NPC, semi-divine, height of power) | Attempt fails — emperor survives | **Stolen anyway** | Yes |
-| Player emperor who survives the attempt | Attempt fails — player survives | **Stolen anyway** | Yes |
-| Any mortal NPC emperor (not Tiber Septim) | Emperor killed (standard result) | Stolen | Yes |
+| Uriel Septim VII (canon NPC, mortal, elderly) | Emperor killed | Dying emperor hands Amulet to HoK in the sewers → HoK delivers to Jauffre at Weynon Priory → Mythic Dawn steal it from the Priory later | Yes |
+| Tiber Septim (canonical NPC, semi-divine, height of power) | Attempt fails — emperor survives | **Stolen directly in the chaos of the failed attempt** | Yes |
+| Player emperor who survives the attempt | Attempt fails — player survives | **Stolen directly in the chaos of the failed attempt** | Yes |
+| Any mortal NPC emperor (not Tiber Septim) | Emperor killed (standard result) | Dying emperor (or Blades escort) → Amulet follows the canonical HoK-to-Priory path | Yes |
 
-**Why Mehrunes Dagon can still act even if the emperor lives:**
+**Why the crisis proceeds in both cases:**
 
-The Mythic Dawn's purpose was never solely to kill the emperor — it was to obtain
-the Amulet of Kings. The Amulet's theft breaks the barrier of Dragonfires, allowing
-Oblivion Gates to open. Uriel's death was the *method* of taking the Amulet in canon
-(Martin needed it to relight the fires). But if the emperor *survives*, the cult can
-still take the Amulet in the chaos of the failed attempt. The Gates still open.
+The Mythic Dawn's goal is the Amulet of Kings — not necessarily the emperor's death.
+What changes is *how* the Amulet leaves imperial hands:
+
+- **Emperor dies:** The dying emperor presses the Amulet into the Hero of Kvatch's
+  hands with his last words — "Find Jauffre." The HoK takes it to Weynon Priory.
+  Mankar Camoran's agents then raid the Priory and steal it from there. The Dragonfires
+  go dark, Oblivion Gates open. This is the canonical Oblivion path.
+
+- **Emperor survives (Tiber Septim NPC or player emperor):** There is no dying handoff
+  — the emperor keeps the Amulet as he fights back. Mankar's agents seize it in the
+  chaos of the failed assassination attempt itself, before the emperor can reach safety.
+  The Amulet vanishes to Gaiar Alata immediately. Set `amulet_stolen_in_sewers` flag.
+  The surviving emperor (not a hero-proxy) must pursue Mankar personally into Paradise.
 
 The difference is that with a living emperor:
 - The standard "Martin must light the Dragonfires" chain is replaced by the
@@ -6019,25 +6027,33 @@ The flag `mythic_dawn_suppressed_by_tiber` introduced in §31.2 should be
 in the assassination event itself:
 
 - If Tiber Septim (`tiber_septim_canonical` flag) is emperor: assassination attempt
-  fires normally, fails to kill him, but the Amulet of Kings is stolen. He then
-  pursues Mankar Camoran personally. Set `survived_mythic_dawn_attempt` flag.
+  fires normally, fails to kill him, and the Amulet of Kings is stolen directly
+  in the chaos. He then pursues Mankar Camoran personally. Set `survived_mythic_dawn_attempt` flag.
 - If a player emperor survives (player choice at the attack event): same outcome —
-  assassination fails, Amulet stolen, player goes to Paradise.
-- If any other mortal NPC emperor: assassination succeeds (standard result).
+  assassination fails, Amulet stolen directly in the chaos, player goes to Paradise.
+- If any mortal NPC emperor (including Uriel Septim VII): assassination succeeds,
+  emperor dies in the sewers and hands the Amulet to the Hero of Kvatch. The HoK
+  takes it to Jauffre at Weynon Priory. The theft from the Priory is a separate
+  downstream event in the Oblivion Crisis chain. Do NOT set `amulet_stolen_in_sewers`
+  for the dead-emperor path — that flag is exclusive to the survival track.
 
-In all three cases the Oblivion Gates open because the Amulet has been taken. The
-crisis always proceeds. The only variable is whether the emperor lives to chase it.
+In all cases the Oblivion Gates open because the Amulet eventually reaches Mankar.
+The only variable is *when* and *how* it leaves imperial hands.
 
 **Key design principle — corrected:**
 
 > The Mythic Dawn does not need to kill the emperor to trigger the Oblivion Crisis.
-> They need the Amulet. Any emperor — mortal or semi-divine — loses the Amulet
-> when the attempt occurs. The emperor's survival only changes who has to go to
-> Paradise to get it back.
+> They need the Amulet. When the emperor **dies**, the Amulet passes canonically to
+> the Hero of Kvatch, who carries it to Weynon Priory — and Mankar's agents steal it
+> *from the Priory*. When the emperor **survives**, there is no dying handoff: the
+> Amulet is taken directly in the chaos of the failed assassination attempt.
+> `amulet_stolen_in_sewers` is a **survival-path-only flag** and must never be set
+> on the dead-emperor branch.
 
 `[SOURCE: TES IV: Oblivion main quest — Amulet of Kings and Dragonfires mechanic;
 UESP Lore:Amulet of Kings; UESP Lore:Uriel Septim VII assassination; §26.1 player
-emperor fork; §31.2 (this section supersedes the suppression approach)]`
+emperor fork; §31.2 (this section supersedes the suppression approach);
+correction: Amulet stolen-in-sewers is survival-path only — dead emperor → HoK → Priory path]`
 
 ---
 
