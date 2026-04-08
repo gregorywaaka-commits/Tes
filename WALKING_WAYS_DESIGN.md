@@ -5967,6 +5967,7 @@ confirmed as later Sheogorath via dialogue referencing the Oblivion Crisis perso
 | **§26–§30** (general) | Add §31.3 universal temporal spawning principle — anonymous placeholders for out-of-window characters. |
 | **§26.1, §27.1, §27.3** | Bendu Olo is the canonical NPC champion's name in this mod. "Hero of Kvatch" / "Champion of Cyrodiil" are lore titles used in flavor text only. |
 | **§31.2** (further correction) | `mythic_dawn_suppressed_by_tiber` suppression flag is REMOVED. Mythic Dawn always attempts assassination when active. If the emperor **dies**: Amulet passes to HoK → HoK takes it to Weynon Priory → stolen from Priory later (canonical path). If the emperor **survives** (Tiber Septim NPC or player): Amulet stolen directly in the assassination chaos; `amulet_stolen_in_sewers` flag set; surviving emperor pursues Mankar personally. See §31.6. |
+| **§26.3, §26.5** (new addition) | Player Emperor encounters HoK candidate prisoners during the sewer escape. Player may choose per-candidate to attempt a rescue or leave them. Save throw required; emperor can die in the attempt. Survivors remain valid HoK candidates. Another player can step in for Amulet retrieval if the emperor delegates or dies. See §31.7. |
 
 ---
 
@@ -6054,6 +6055,219 @@ The only variable is *when* and *how* it leaves imperial hands.
 UESP Lore:Amulet of Kings; UESP Lore:Uriel Septim VII assassination; §26.1 player
 emperor fork; §31.2 (this section supersedes the suppression approach);
 correction: Amulet stolen-in-sewers is survival-path only — dead emperor → HoK → Priory path]`
+
+---
+
+### 31.7 Player Emperor — Prisoner Choice in the Sewers (§26 Amendment)
+
+> **Added:** Session 2026-04-08. Amends §26.3 and §26.5 — Track B sewer escape sequence.
+
+---
+
+#### 31.7.1 Context
+
+During the sewer escape sequence, the Imperial Prison holds other prisoners whose cells
+adjoin the secret passage. In the canonical timeline these are the pool from which the
+Hero of Kvatch is drawn. When a **player character holds the Ruby Throne** and survives
+the Mythic Dawn assassination attempt, they travel the same escape route — and therefore
+pass those same cells.
+
+The player Emperor must be given explicit agency: save specific prisoners, leave them,
+or pass entirely. This decision matters because:
+- Survivors remain valid HoK candidates for the downstream chain.
+- Another player can step in as the HoK if the surviving emperor does not personally
+  retrieve the Amulet from Paradise.
+- The rescue attempt carries genuine risk — the emperor can die trying.
+
+---
+
+#### 31.7.2 Per-Prisoner Choice Event
+
+For each HoK candidate prisoner encountered in the sewer, a character event fires once
+per candidate in the scope of the player emperor:
+
+```
+# oblivion_crisis.emperor_prisoner_choice
+# scope = player emperor; saved_scope:candidate = specific HoK candidate prisoner
+
+oblivion_crisis.emperor_prisoner_choice = {
+    type = character_event
+
+    option = {
+        name = oblivion_crisis.emperor_prisoner_choice.a
+        # "Free them. Get out. Find Jauffre."
+        trigger_event = { id = oblivion_crisis.emperor_save_attempt days = 0 }
+    }
+    option = {
+        name = oblivion_crisis.emperor_prisoner_choice.b
+        # "No time. They take their chances."
+        # Candidate stays behind; processed by independent-escape event (31.7.4)
+    }
+}
+```
+
+The emperor may save some candidates and skip others — the events chain through all
+present HoK candidates sequentially. Any candidate the emperor declines to rescue is
+then resolved by the independent-escape path (31.7.4).
+
+---
+
+#### 31.7.3 Save Throw — Emperor at Risk
+
+When the player emperor attempts to free a prisoner, the rescue is not automatic.
+Mythic Dawn agents remain in the corridor; the emperor must fight or outmanoeuvre them:
+
+```
+# emperor_prisoner_save_throw — scripted effect
+# Called from oblivion_crisis.emperor_save_attempt
+
+emperor_prisoner_save_throw = {
+    # High competence: clean rescue
+    if = {
+        limit = {
+            OR = {
+                martial >= 14
+                intrigue >= 14
+                AND = { martial >= 10  intrigue >= 10 }
+            }
+        }
+        saved_scope:candidate = { add_character_flag = hok_candidate_rescued_by_emperor }
+        add_prestige = 100
+    }
+    # Moderate competence: rescue at cost — emperor wounded
+    else_if = {
+        limit = { OR = { martial >= 8  intrigue >= 8 } }
+        saved_scope:candidate = { add_character_flag = hok_candidate_rescued_by_emperor }
+        add_character_modifier = { modifier = sewer_wounds days = 90 }
+    }
+    # Low competence: rescue fails — prisoner dies; emperor at risk
+    else = {
+        saved_scope:candidate = { death = { death_reason = death_murder } }
+        random = {
+            chance = 20
+            add_character_modifier = { modifier = sewer_wounds days = 180 }
+            add_stress = 30
+        }
+        # Critical failure (5%): emperor dies in the attempt
+        random = {
+            chance = 5
+            death = { death_reason = death_murder }
+        }
+    }
+}
+```
+
+**Key invariant:** If the emperor dies during the rescue attempt the
+`emperor_survived_prison` flag is cleared and the chain falls through to the canonical
+dead-emperor branch — the HoK retrieves the Amulet and carries it to Weynon Priory as
+normal. The Oblivion Crisis always proceeds.
+
+---
+
+#### 31.7.4 Independent Escape — Unsaved Candidates
+
+A candidate the emperor chose not to rescue is not automatically dead — they attempt
+to escape on their own:
+
+```
+# oblivion_crisis.prisoner_independent_escape
+# scope = HoK candidate; fires for each candidate skipped by the emperor
+
+oblivion_crisis.prisoner_independent_escape = {
+    type = character_event
+
+    # Base survival chance 50%; modified by empire strength
+    # +10 if imperial_strength_score >= 3 (guard rotation less vigilant)
+    # -15 if imperial_strength_score <= 1 (prison fully under Mythic Dawn control)
+    random = {
+        chance = 50
+        add_character_flag = hok_candidate_survived_independently
+    }
+    # Candidates who fail the roll die in the prison during the chaos
+}
+```
+
+All candidates who survive — whether rescued by the emperor or escaped independently —
+receive the `hok_candidate_valid` flag and remain eligible for the downstream HoK chain.
+
+---
+
+#### 31.7.5 Multi-Player Amulet Retrieval
+
+When the player emperor holds `survived_mythic_dawn_attempt` AND `amulet_stolen_in_sewers`
+they have **first priority** to pursue Mankar Camoran into Gaiar Alata. However:
+
+- If the player emperor **delegates** via the `delegate_paradise_retrieval` decision,
+  any surviving HoK candidate — including one controlled by another player — may
+  pursue the Amulet retrieval using the standard HoK Paradise chain.
+- If the player emperor **dies** (in the sewer rescue or later), the chain automatically
+  falls to the surviving HoK pool; any player in that pool may act.
+- The emperor does not lose their option silently. If they neither delegate nor enter
+  Paradise within a deadline window, the chain auto-delegates to the highest-ranked
+  living HoK candidate.
+
+```
+# decision: delegate_paradise_retrieval
+# Available to surviving player emperor after Amulet stolen
+
+decision: delegate_paradise_retrieval
+    is_shown = {
+        has_character_flag = survived_mythic_dawn_attempt
+        has_character_flag = amulet_stolen_in_sewers
+        NOT = { has_character_flag = emperor_entered_paradise }
+        any_character = { has_character_flag = hok_candidate_valid }
+    }
+    effect = {
+        add_character_flag = emperor_delegated_paradise
+        # Trigger HoK Paradise chain for the top-ranked surviving candidate
+        random_character = {
+            limit = { has_character_flag = hok_candidate_valid }
+            trigger_event = { id = oblivion_crisis.hok_paradise_entry }
+        }
+    }
+```
+
+This ensures the Oblivion Crisis is solvable even if the player emperor sits out the
+Paradise run — by any surviving HoK candidate, including one played by a second player.
+
+---
+
+#### 31.7.6 New Flags, Effects, and Decisions — §31.7
+
+| Identifier | Type | Description |
+|---|---|---|
+| `hok_candidate_rescued_by_emperor` | character flag | Candidate freed by the player emperor. |
+| `hok_candidate_survived_independently` | character flag | Candidate who escaped without the emperor's help. |
+| `hok_candidate_valid` | character flag | Union flag — any candidate alive after the sewer sequence. |
+| `emperor_delegated_paradise` | character flag | Player emperor handed off the Amulet retrieval. |
+| `sewer_wounds` | character modifier | Temporary wound modifier after a partial-success rescue. |
+| `emperor_prisoner_save_throw` | scripted effect | Save-throw logic for emperor rescue attempt (§31.7.3). |
+| `oblivion_crisis.emperor_prisoner_choice` | event | Per-candidate choice event for the player emperor. |
+| `oblivion_crisis.emperor_save_attempt` | event | Fires the save throw; resolves prisoner fate and emperor injury. |
+| `oblivion_crisis.prisoner_independent_escape` | event | Independent escape roll for skipped candidates. |
+| `delegate_paradise_retrieval` | decision | Explicit emperor delegation of the Paradise run. |
+
+---
+
+#### 31.7.7 Integration Notes — §31.7
+
+- **§26.3** (Blades spawn): Unchanged. Prisoner choice events are a parallel chain that
+  fires alongside the Blades escort resolution.
+- **§26.5** (Track B): `hide_imperial_heirs_at_priory` is unchanged. Prisoner choice events
+  fire after the heirs decision but before the Amulet-stolen event.
+- **§26.6** (Amulet stolen): `oblivion_crisis.amulet_stolen` fires normally after the sewer
+  sequence; prisoner choice does not gate or delay it.
+- **Event ordering — Track B sewer sequence:**
+  1. `oblivion_crisis.010` — Mythic Dawn attack begins.
+  2. `hok_prison_blades_spawn_effect` — Blades context gate.
+  3. `oblivion_crisis.emperor_prisoner_choice` (×N) — Per-candidate choice.
+  4. `oblivion_crisis.prisoner_independent_escape` (×M) — For skipped candidates.
+  5. `oblivion_crisis.amulet_stolen` — Amulet taken (survival path only; §31.6).
+  6. `oblivion_crisis.emperor_fast_track` — Martin / Cloud Ruler Temple.
+
+`[SOURCE: TES IV: Oblivion — Imperial Prison escape; §26.3 Blades spawn; §26.5 Track B
+player emperor; §26.6 Amulet stolen; §31.6 survival-path correction; design principle:
+player choices must carry real stakes — save throws can kill the player emperor]`
 
 ---
 
