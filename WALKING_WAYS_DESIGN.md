@@ -6271,3 +6271,197 @@ player choices must carry real stakes — save throws can kill the player empero
 
 ---
 
+### 31.8 Correction to §26.7 — HoK Always Dispatched Through Canonical Priory → Kvatch Chain
+
+> **Added:** Session 2026-04-08. Supersedes the "fast-track" described in §26.7.
+
+---
+
+#### 31.8.1 The Problem with §26.7's Fast-Track
+
+§26.7 specifies that when the player Emperor survives the sewer escape, the quest chain
+**skips** Weynon Priory (Jauffre comes to the Emperor instead) and skips the personal
+Kvatch journey (Jauffre is sent, or the hidden heir acts as Martin's escort). This is
+incorrect for two reasons:
+
+1. **The Priory → Jauffre → Kvatch chain is canonical regardless of whether the Emperor
+   lives.** In the original Oblivion timeline, the Kvatch siege is the *first Oblivion
+   gate* to open — the city is already under Daedric attack before the Hero arrives.
+   This siege is an independent consequence of the Mythic Dawn's ritual, not something
+   that only happens because the Emperor died. The siege fires regardless of the imperial
+   survival path.
+
+2. **The Emperor surviving does not grant foreknowledge of Martin's exact location.**
+   Even if the Emperor knows a secret heir exists and is hidden in Kvatch, the canonical
+   route is to send the Hero of Kvatch — the very prisoner(s) the emperor just freed or
+   who escaped independently — to the priory first. Jauffre is the Grandmaster of the
+   Blades; he is the one with the intelligence network and the authority to name Martin
+   and send the HoK to retrieve him. The Emperor dispatching directly without Jauffre
+   breaks the Blades chain of command and the dramatic weight of the sequence.
+
+---
+
+#### 31.8.2 Corrected Track B Sequence — Emperor Survival Path
+
+The revised flow for Track B (player Emperor survives) is:
+
+```
+Track B — Corrected Sewer → Priory → Kvatch chain
+
+1. [§26.5]  Mythic Dawn strikes. Emperor survives. Heirs hidden at Priory (if decision taken).
+2. [§31.7]  Emperor prisoner choices fire per HoK candidate in the sewer.
+3. [§26.6]  Amulet stolen in the sewer chaos (survival path — §31.6 confirmed).
+4. [NEW]    Emperor dispatches surviving HoK candidate(s) to Weynon Priory.
+            → Event: oblivion_crisis.emperor_dispatches_hok
+5. [NEW]    HoK arrives at Weynon Priory. Jauffre is present.
+            → Jauffre reveals Martin's location in Kvatch.
+            → Event: oblivion_crisis.jauffre_sends_to_kvatch
+6. [NEW]    Kvatch is under Daedric siege (canonical — always fires; §31.8.3).
+            → HoK enters Kvatch, closes the Oblivion Gate, rescues Martin.
+            → Event: oblivion_crisis.kvatch_siege
+7. [§26.8]  Martin delivered to Cloud Ruler Temple. Emperor pursues the Amulet
+            personally OR delegates via delegate_paradise_retrieval (§31.7.5).
+```
+
+**The fast-track of §26.7 is replaced entirely.** Jauffre does NOT travel to the
+Emperor. The Kvatch siege ALWAYS fires. The HoK ALWAYS travels the canonical route.
+
+---
+
+#### 31.8.3 Kvatch Siege — Always Canonical
+
+The siege of Kvatch is the first Oblivion gate in the canonical timeline. It is a
+consequence of Mythic Dawn ritual timing, not a consequence of the Emperor dying.
+Therefore:
+
+- `oblivion_crisis.kvatch_siege` fires regardless of whether the Emperor is alive,
+  dead, player-controlled, or NPC.
+- The global flag `kvatch_oblivion_gate_opened` is set when the siege begins.
+- This flag is independent of any imperial survival path.
+- If the HoK pool is empty (all candidates died in the sewers), an anonymous
+  champion NPC is spawned at Kvatch to fill the Martin-escort role, following
+  §31.3 temporal spawning rules.
+
+```
+# oblivion_crisis.kvatch_siege
+# Fires automatically when mythic_dawn_ritual_complete flag is set
+# Scope: global event → spawns siege in Kvatch county equivalent
+
+oblivion_crisis.kvatch_siege = {
+    type = character_event
+    # scope = top HoK candidate with hok_candidate_valid flag
+
+    trigger = {
+        has_global_flag = mythic_dawn_ritual_complete
+        NOT = { has_global_flag = kvatch_oblivion_gate_opened }
+    }
+
+    immediate = {
+        set_global_flag = kvatch_oblivion_gate_opened
+        # Siege modifier applied to Kvatch county
+        # Martin (or dynasty-equivalent) present in Kvatch as priest NPC
+    }
+
+    option = {
+        name = oblivion_crisis.kvatch_siege.a
+        # "We must breach the gate. Martin may still be alive inside."
+        trigger_event = { id = oblivion_crisis.kvatch_gate_closes days = 30 }
+    }
+}
+```
+
+---
+
+#### 31.8.4 Emperor Dispatches HoK — New Event
+
+After surviving the sewers, the player Emperor is given an explicit decision to send
+the surviving HoK candidates to Weynon Priory:
+
+```
+# oblivion_crisis.emperor_dispatches_hok
+# Fires immediately after the sewer prisoner chain (§31.7) resolves
+# Scope = player emperor
+
+oblivion_crisis.emperor_dispatches_hok = {
+    type = character_event
+    trigger = {
+        has_character_flag = emperor_survived_prison
+        any_character = { has_character_flag = hok_candidate_valid }
+    }
+
+    option = {
+        name = oblivion_crisis.emperor_dispatches_hok.a
+        # "Find Jauffre at Weynon Priory. He will tell you what to do next."
+        effect = {
+            # All hok_candidate_valid characters dispatched to Priory chain
+            every_character = {
+                limit = { has_character_flag = hok_candidate_valid }
+                trigger_event = { id = oblivion_crisis.jauffre_sends_to_kvatch days = 7 }
+            }
+            add_character_flag = hok_dispatched_to_priory
+        }
+    }
+    # No second option — the emperor has no alternative.
+    # The canonical chain cannot be bypassed here.
+}
+```
+
+**Design note:** There is no "skip Jauffre" option. The Emperor does not have the
+information, the authority, or the resources to shortcut the Blades network. Sending
+the HoK to Jauffre is the only canonical path forward on this track.
+
+---
+
+#### 31.8.5 Updated Event Ordering — Track B Corrected Sequence
+
+Replace the ordering in §31.7.7 step 6 with the following full sequence:
+
+```
+Track B — Full Corrected Event Ordering:
+
+1.  oblivion_crisis.010                    — Mythic Dawn attack begins.
+2.  hok_prison_blades_spawn_effect         — Blades context gate (§26.3).
+3.  oblivion_crisis.emperor_prisoner_choice (×N)  — Per-candidate choice (§31.7).
+4.  oblivion_crisis.prisoner_independent_escape (×M) — Skipped candidates (§31.7).
+5.  oblivion_crisis.amulet_stolen          — Amulet taken (survival path; §31.6).
+6.  oblivion_crisis.emperor_dispatches_hok — Emperor sends HoK to Priory (§31.8).
+7.  oblivion_crisis.jauffre_sends_to_kvatch — Jauffre names Martin; sends HoK.
+8.  oblivion_crisis.kvatch_siege           — Kvatch Daedric siege (always fires).
+9.  oblivion_crisis.kvatch_gate_closes     — Gate closed; Martin rescued.
+10. oblivion_crisis.martin_at_cloud_ruler  — Martin delivered to Cloud Ruler Temple.
+11. oblivion_crisis.paradise_required      — Emperor or HoK must enter Gaiar Alata.
+```
+
+`oblivion_crisis.emperor_fast_track` (§26.7) is **retired**. Remove it from the
+event file. Replace its two options with the new dispatch event at step 6.
+
+---
+
+#### 31.8.6 New Flags and Events — §31.8
+
+| Identifier | Type | Description |
+|---|---|---|
+| `kvatch_oblivion_gate_opened` | global flag | Set when the Kvatch siege begins. Always fires on the Oblivion Crisis path. |
+| `hok_dispatched_to_priory` | character flag | Emperor confirmed HoK sent to Jauffre. |
+| `oblivion_crisis.emperor_dispatches_hok` | event | Emperor sends surviving HoK to Weynon Priory. |
+| `oblivion_crisis.jauffre_sends_to_kvatch` | event | Jauffre names Martin; HoK directed to Kvatch. |
+| `oblivion_crisis.kvatch_siege` | event | Kvatch Daedric siege — always fires regardless of imperial path. |
+| `oblivion_crisis.kvatch_gate_closes` | event | HoK closes the gate; Martin rescued. |
+
+---
+
+#### 31.8.7 Amendment Summary — §26.7 Changes
+
+| §26.7 Original Text | Corrected Behaviour (§31.8) |
+|---|---|
+| "The quest chain skips: The journey to Weynon Priory (Jauffre comes to the Emperor instead)." | **Removed.** HoK always travels to Weynon Priory. Jauffre does NOT come to the Emperor. |
+| "The personal trip to Kvatch to rescue Martin (Jauffre is sent, or the heir hidden at the Priory acts as Martin's escort)." | **Removed.** The HoK always rescues Martin from Kvatch during the Daedric siege. The heir at the Priory remains in hiding until Martin arrives. |
+| `oblivion_crisis.emperor_fast_track` options A and B. | **Retired.** Replaced by `oblivion_crisis.emperor_dispatches_hok` (§31.8.4). |
+
+`[SOURCE: TES IV: Oblivion — Kvatch siege canonical sequence; Oblivion:Jauffre;
+Lore:Kvatch; Lore:Oblivion Crisis; design principle: canonical Priory → Kvatch chain
+is always required regardless of imperial survival path; §31.6 amulet-stolen correction;
+§31.7 prisoner choice amendment]`
+
+---
+
