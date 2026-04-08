@@ -343,6 +343,7 @@ kagrenac.030 = {
     option = {
         name = kagrenac.030.a   # "I strike the Heart. For Nerevar. For Morrowind. For truth."
         add_trait = nerevarine_victor
+        add_trait = shezarrine_nerevar    # Star Made Knight — the Nerevar-specific Shezarrine mark
         add_piety    = 1000      # The prophecy of Azura fulfilled — divine recognition is enormous
         add_prestige = 2000      # The Nerevarine is now the most celebrated figure in Dunmer history
         add_stress   = -50       # The burden of the prophecy is lifted at last
