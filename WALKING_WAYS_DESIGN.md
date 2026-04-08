@@ -5673,78 +5673,148 @@ events that fire during and after the carriage ride, not whether you board it.
 
 ---
 
-### 31.2 Correction — Talos and the Mythic Dawn: Clarifying the Canonical Timeline (§30 Amendment)
+### 31.2 Correction — Tiber Septim Alive When HoK Fires Early (§30 Full Reframe)
 
-**Correction to §30's framing:**
+**What §30 was originally describing vs. what it should describe:**
 
-The example given in planning notes — "Talos kicking assassins across the room" —
-was used to *illustrate* why a semi-divine being would not die the same way as
-Uriel Septim VII, **not** to imply that the Mythic Dawn routinely attempts Talos.
+The original §30 framing assumed a *player character* walking the Talos mantling
+path (who is also the Emperor) surviving an assassination attempt. **This is wrong.**
 
-**The canonical timeline makes §30 an extreme edge case:**
+The actual scenario is simpler and more lore-critical:
 
-| Date | Event |
-|---|---|
-| **3E 38** | Tiber Septim (Talos) dies — unstated cause, presumed old age. Ascends to godhood. |
-| **3E 433** | Uriel Septim VII assassinated by Mythic Dawn. Oblivion Crisis begins. |
+> **If the Oblivion Crisis triggers early** (because the political conditions in
+> §29 are met before 3E 433), **Tiber Septim himself may not have died yet.** His
+> canonical death is 3E 38. If HoK fires at, say, 2E 900 or 3E 100 due to player
+> actions completing the Dragonborn-Emperor + Blades + Talos-ascended conditions,
+> Tiber Septim could still be on the Ruby Throne.
+>
+> The question is: **can the Mythic Dawn assassinate Tiber Septim the same way they
+> killed Uriel Septim VII?** The answer is no — and not because a player is
+> "playing Talos." It is because Tiber Septim as a historical NPC at the height of
+> his power is a fundamentally different target than an elderly Uriel.
 
-The gap between Tiber Septim's death and the Oblivion Crisis is **395 years**.
-In any canonical run, Talos has been dead for nearly four centuries before the
-Mythic Dawn becomes active. The §30 divergent scenario only arises if:
+**Why Uriel's assassination worked:**
 
-1. The player has walked the Talos mantle path far enough to still be mortal in
-   the late Third Era (~3E 300+), AND
-2. The player has used `delay_talos_ascent` decisions to postpone apotheosis, AND
-3. Mythic Dawn forms early (via §29 formation gates), AND
-4. The player holds the Imperial throne.
+Uriel Septim VII was killed because:
+- He was **old** (~80 at time of death) and physically diminished.
+- The Mythic Dawn had **centuries** to infiltrate the Imperial apparatus.
+- He was caught in a **secret passage** with only three Blades, moving on foot
+  through the Imperial City sewers.
+- His entire line of legitimate heirs had already been killed in co-ordinated
+  simultaneous strikes.
 
-**This chain of events is unlikely if not impossible under normal circumstances.**
-The §30 assassination scenario is the intersection of multiple extreme divergences.
-The flavor text in §30.2 should reflect this rarity — the cultists coming for a
-character they think is an ordinary emperor finding something entirely unlike a
-mortal is the *point* of the scene. It is not meant to suggest that the Mythic
-Dawn would ever realistically target Tiber Septim in canon.
+**Why the same attempt on Tiber Septim would fail:**
 
-**Lore anchor for the "death resistance" narrative:**
+Tiber Septim at the height of his reign:
+- Conquered all of Tamriel through military force and, by lore accounts, through
+  the partial use of Numidium and his own semi-divine will.
+- Was surrounded by a fully organized Blades apparatus at its peak formation.
+- Was, by the time he could be targeted by the Mythic Dawn (who require
+  `talos_ascended_to_godhood` — i.e., his own worship — to form), *already
+  functioning as a semi-divine being*. He had the Voice, absorbed the Shezarrine
+  pattern, and by accounts in *The Arcturian Heresy* had already undergone
+  significant metaphysical transformation.
+- Could not be killed by ceremonial daggers wielded by cultists who were
+  designed to murder an elderly mortal emperor. The "assassins across the room"
+  example captures this: Tiber Septim at his height would not be found asleep
+  and defenseless. He would fight back, and the fight would not go the way the
+  cultists expected.
 
-A character at `ww_talos_rank >= 3` is no longer entirely mortal. They have
-absorbed the Nordic Oversoul fragments (see §17), their body is partially composed
-of divine resonance, and CK3's normal assassination mechanics may not even apply.
-*The "assassins across the room" example was a shorthand for this: the cultists
-came expecting a weak old man, not something that no longer fully obeys the rules
-of mortal flesh.*
+**Design rule — §30 reframe:**
 
-**Implementation guidance — death resistance:**
+§30 is NOT about a player character walking a spiritual path. It is about the
+**historical NPC Tiber Septim** being alive on the throne when the crisis fires
+early. The implementation must gate the standard assassination event:
 
 ```
-# Add to mantling_talos_events.txt — passive effect at rank 3+
-# These are scripted triggers/modifiers, not immunity flags
-# (immunity from standard assassination uses existing CK3 hooks)
+# In oblivion_crisis_events.txt — assassination trigger
+# Standard Mythic Dawn assassination fires ONLY when Tiber Septim is NOT
+# the current Emperor (i.e., is dead or has ascended)
 
-talos_partial_divine_protection = {
-    # Applies while ww_talos_rank >= 3
-    # Reduces assassination success chance via stress_impact scripted modifier
-    # (Same approach as existing "divine_protection" modifiers in EK2)
-    modifier = talos_oversoul_resilience
-    # +25 to assassination resistance (uses EK2 hostile_scheme_power variable)
-    # NOT full immunity — can still be killed, but much harder
+oblivion_crisis.mythic_dawn_assassination = {
+    trigger = {
+        has_global_flag = mythic_dawn_active
+        # Gate: Tiber Septim must not be the current ruler on the Imperial Throne
+        NOT = {
+            any_ruler = {
+                holds_imperial_throne = yes
+                has_character_flag = tiber_septim_canonical   # NPC flag set on spawn
+            }
+        }
+    }
+    # Standard assassination sequence fires against whoever holds the throne
 }
 ```
 
-**Key distinction between Talos-walker death and Uriel's canonical death:**
+**If Tiber Septim IS the Emperor when Mythic Dawn becomes active:**
 
-| Character | How They Die in Canon | Why |
+The cult cannot execute the assassination-in-the-palace method. Instead:
+
+```
+# Mythic Dawn formation stalls — cult recognizes the target is not killable
+# by their standard methods
+
+mythic_dawn.tiber_septim_on_throne = {
+    type = character_event
+    # Fires to Tiber Septim NPC when cult forms while he is Emperor
+    title = "The Red Scribblers"
+    desc = "Your intelligence agents have brought you a red-robed body.
+            The Mythic Dawn — a cult of Mehrunes Dagon. They have been
+            watching the palace. Apparently they want you dead.
+            Apparently they did not think this through."
+
+    option = {
+        name = "Deal with them."
+        # Tiber Septim suppresses the early cult cell
+        # Mythic Dawn progress resets — they cannot act while he lives
+        change_global_variable = {
+            name = cult_formation_progress
+            add = -5  # Major setback — driven underground
+        }
+        # Modifier: cult goes dormant until Tiber Septim dies or ascends
+        set_global_flag = mythic_dawn_suppressed_by_tiber
+    }
+}
+
+# The Mythic Dawn can only re-emerge AFTER tiber_septim_canonical dies/ascends:
+can_mythic_dawn_reactivate = {
+    has_global_flag = mythic_dawn_suppressed_by_tiber
+    NOT = {
+        any_ruler = {
+            holds_imperial_throne = yes
+            has_character_flag = tiber_septim_canonical
+        }
+    }
+}
+```
+
+**What happens after Tiber Septim dies or ascends:**
+
+When Tiber Septim's NPC dies (or fires his ascension event), the `mythic_dawn_suppressed_by_tiber`
+flag clears and the cult formation progress resumes from where it was set back.
+They begin their centuries-long infiltration of the *next* Dragonborn Emperor's
+apparatus — eventually culminating in the assassination of whoever currently
+holds the throne, with the same three-blades-in-a-sewer sequence.
+
+**Key distinction — this is about the NPC, not the player:**
+
+| Scenario | Subject | Outcome |
 |---|---|---|
-| **Uriel Septim VII** | Stabbed by Mythic Dawn cultists | Mortal, elderly, unguarded, cult had infiltrated palace |
-| **Tiber Septim / Talos** | Natural/unstated causes at 3E 38 | Old age; had unified the Empire; no violent event recorded |
-| **Player Talos-walker (rank 3+)** | Cannot die the same way as Uriel | Partial divine nature resists mortal assassination methods |
+| Mythic Dawn targets Uriel Septim VII | NPC Emperor, mortal, elderly, unprotected | Assassination succeeds canonically |
+| Mythic Dawn targets Tiber Septim (alive, early HoK) | Semi-divine NPC Emperor, at height of power | Assassination fails; cult suppressed; must wait |
+| Mythic Dawn targets any other dynasty's Emperor | Mortal NPC or player character | Standard crisis fires; result depends on player action (§26) |
 
-The §30 assassination scenario reflects this: the Mythic Dawn *attempts* what
-they did to Uriel, but the outcome is fundamentally different because the target
-is no longer entirely mortal.
+**The "assassins across the room" example clarified:**
 
-`[SOURCE: UESP Lore:Tiber Septim — death 3E 38, ascension to Talos; §17.2 (this
-document) — Oversoul absorption at rank 3+; §29 — Mythic Dawn formation gates]`
+That example was given to illustrate *why* the assassination fails against Tiber
+Septim — not as a designed fight scene for the player. The image is of the
+cultists arriving expecting the same scenario they used on Uriel, finding instead
+something that does not react the way a mortal emperor would. It is shorthand for:
+*the target is not what they expected, and the method doesn't work.*
+
+`[SOURCE: UESP Lore:Tiber Septim — death 3E 38, ascension to Talos; UESP Lore:Uriel
+Septim VII — assassination 3E 433; The Arcturian Heresy — Tiber Septim semi-divine
+nature; §29 — Mythic Dawn formation gates (require talos_ascended_to_godhood)]`
 
 ---
 
@@ -5837,46 +5907,48 @@ surviving escort. The crisis plays out with period-appropriate characters.
 
 ---
 
-### 31.4 Hero of Kvatch — Name Research Result (§26–§27 Confirmation)
+### 31.4 Hero of Kvatch — Name: Bendu Olo (§26–§27 Confirmed Rule)
 
 **Confirmed via UESP and online research (2026-04-08):**
 
-The player character of *The Elder Scrolls IV: Oblivion* has **no canonical name**.
-Their race, gender, and background are entirely player-defined. The lore references
-to this character use only titles:
+The player character of *The Elder Scrolls IV: Oblivion* has no canonical name in
+lore. The lore titles are **"Hero of Kvatch"** and **"Champion of Cyrodiil."** No
+in-game source assigns the character a personal name.
 
-- **"Hero of Kvatch"** — earned after saving the city of Kvatch from the Oblivion Gate.
-  Primary lore title used in retrospective accounts.
-- **"Champion of Cyrodiil"** — used interchangeably in some sources; refers to the same
-  character at the peak of their career.
+The **Oblivion Construction Set** (the developer toolset) uses **"Bendu Olo"** as
+the default placeholder name. This name was borrowed from the historical First Era
+Colovian Baron-Admiral who organized the All Flags Navy (~1E 2260). It is a
+developer in-joke, not a lore assignment.
 
-**The "Bendu Olo" reference:**
+**This mod's rule:**
 
-`Bendu Olo` is the **developer placeholder name** assigned in the Oblivion Construction
-Set (the modding toolset). It is not a lore name — it was borrowed by developers from
-the historical First Era Colovian Baron-Admiral famous for organizing the All Flags Navy
-against the Sload of Thras (~1E 2260). Using this as the name of an NPC "canonical
-champion" in the mod is a convention that honors the developer in-joke while acknowledging
-there is no true canonical name.
+**The canonical champion NPC spawned by this mod is named Bendu Olo.** This is
+the name used in all spawn scripts, localization, and event text when referring
+to the NPC version of the Champion. It is not described as a "placeholder" or
+"developer convention" in player-facing text — he is simply Bendu Olo, the
+Champion of Cyrodiil.
 
-**Design rule (re-stated from §27.3 for clarity):**
+The lore titles "Hero of Kvatch" and "Champion of Cyrodiil" are used as *titles*
+in flavor text (e.g., "the Hero of Kvatch closed the final Gate"), never as the
+character's personal name in event windows.
 
-| Context | Name Used | Reason |
-|---|---|---|
-| Canonical NPC champion spawn (§27.3) | `"Bendu Olo"` | Developer convention; acknowledges no canon name |
-| Player character takes the champion role | Player's character name | No naming override |
-| Retrospective lore flavor text | "the Hero of Kvatch" or "the Champion" | UESP-accurate title |
-| NPC who becomes Sheogorath (§27.4) | "Bendu Olo" (if spawned NPC) OR player name | Whoever performed the mantling |
+**Complete naming rule:**
 
-**Canonical title hierarchy:**
-1. **In-game titles:** "Hero of Kvatch," "Champion of Cyrodiil" — use these in flavor text.
-2. **NPC placeholder name:** "Bendu Olo" — use only for spawned NPCs, not for player references.
-3. **Name on UESP:** Listed as "unknown" with note that "Hero of Kvatch" is the standardised
-   lore reference.
+| Context | Name/Title Used |
+|---|---|
+| Canonical NPC champion — all spawn scripts | `"Bendu Olo"` |
+| Canonical NPC champion — event flavor text | "Bendu Olo" (personal name) |
+| Lore/historical retrospective text | "the Hero of Kvatch" / "the Champion of Cyrodiil" (titles) |
+| Player character takes the champion role | Player's own character name — no override |
+| NPC Bendu Olo becoming Sheogorath (§27.4) | "Bendu Olo" until mantling fires; "Sheogorath" after |
 
-`[SOURCE: UESP Lore:Hero of Kvatch; UESP Bendu Olo (Oblivion) — notes the CS default name;
-Lore:All Flags Navy — the historical Bendu Olo; Skyrim:Sheogorath — Oblivion player
-character's later fate confirmed by Sheogorath's own dialogue referencing the Oblivion Crisis]`
+**Important:** if a *player* completes the Shivering Isles chain and mantles
+Sheogorath, the player's own character name is used throughout. "Bendu Olo" only
+applies to the auto-spawned NPC fallback. The two paths are entirely separate.
+
+`[SOURCE: UESP Lore:Hero of Kvatch; UESP Bendu Olo (Oblivion) — CS default name note;
+Lore:All Flags Navy — the historical First Era Bendu Olo; Skyrim:Sheogorath — Champion
+confirmed as later Sheogorath via dialogue referencing the Oblivion Crisis personally]`
 
 ---
 
@@ -5887,9 +5959,11 @@ character's later fate confirmed by Sheogorath's own dialogue referencing the Ob
 | **§28.2** | Remove `nordic_culture_group` gate from ambush trigger. Any character in Skyrim territory can be caught. |
 | **§28.4** | Mark as "additional emperor-specific flavor" only — base carriage experience applies to all. |
 | **§28** (new note) | Add character-type flavor table (§31.1) showing what varies based on who you are. |
-| **§30.1** | Strengthen "extreme divergence" framing — Tiber Septim died 395 years before HoK in canon. |
-| **§30.2** | Clarify that "assassins across the room" is an illustrative example, not a design centerpiece. |
+| **§30** (full reframe) | §30 is about Tiber Septim (the NPC) being alive on the throne when HoK fires early — NOT about a player walking the Talos path. The Mythic Dawn cannot assassinate him via the standard palace method. |
+| **§30.1** | Tiber Septim dies 3E 38; HoK fires 3E 433 in canon. If HoK fires early, Tiber Septim may still be alive. |
+| **§30.2** | "Assassins across the room" was an illustrative example of why the attempt fails against a semi-divine NPC — not a designed player fight scene. |
+| **§29 gate** | `can_mythic_dawn_form` requires `talos_ascended_to_godhood`. This paradoxically means the Mythic Dawn requires Tiber Septim to ALREADY have died/ascended before they can act. §31.2 resolves this by adding `mythic_dawn_suppressed_by_tiber` if he forms early. |
 | **§26.3** | Mark as "template for universal rule" — all canonical NPC spawns must use birth-window gates. |
 | **§26–§30** (general) | Add §31.3 universal temporal spawning principle — anonymous placeholders for out-of-window characters. |
-| **§26.1, §27.1** | Confirm "Bendu Olo" as developer convention; "Hero of Kvatch" as canonical lore title. |
+| **§26.1, §27.1, §27.3** | Bendu Olo is the canonical NPC champion's name in this mod. "Hero of Kvatch" / "Champion of Cyrodiil" are lore titles used in flavor text only. |
 
