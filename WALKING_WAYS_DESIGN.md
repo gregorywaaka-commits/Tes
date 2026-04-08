@@ -4538,9 +4538,9 @@ Ruby Throne when the Mythic Dawn first moves:
 
 | Track | Condition | Summary |
 |---|---|---|
-| **A — Standard Hero** | Player is NOT the Emperor; has no direct claim | Canonical path. Hero escapes prison, delivers Amulet to Jauffre, rescues Martin **only if** the emperor is the canonical non-player Septim NPC **and** the current year is ≥ 3E 389. Otherwise an unnamed Septim bastard is spawned in Martin's role. |
-| **B — Player Emperor** | Player holds the Imperial throne (any dynasty, including Talos-path) | Emperor survives the assassination; different narrative begins. Martin is **never** spawned on this track — the Martin-role heir is always the player's own heir or a randomly spawned illegitimate NPC. |
-| **C — Other NPC Emperor** | An NPC rules the Empire (non-Septim dynasty) | NPC dies. A random illegitimate child NPC is spawned for their dynasty (never canonical Martin — Martin is Septim-lineage only). |
+| **A — Standard Hero** | Player is NOT the Emperor; has no direct claim | Canonical path. Hero escapes prison, delivers Amulet to Jauffre, rescues Martin **only if** the emperor is a canonical non-player non-Talos-path Septim NPC **and** the current year is ≥ 3E 389. Otherwise a random illegitimate bastard of the emperor's dynasty is spawned in Martin's role. |
+| **B — Player Emperor** | Player holds the Imperial throne (any dynasty, including Talos-path) | Emperor survives the assassination; different narrative begins. Martin is **never** spawned on this track — the Martin-role heir is always the player's own heir or a randomly spawned illegitimate NPC from the player's dynasty. |
+| **C — Other NPC Emperor** | An NPC rules the Empire (non-Septim dynasty, or Septim emperor with `talos_path_emperor` flag) | NPC dies. A random illegitimate bastard NPC is spawned from the emperor's actual dynasty (never canonical Martin — Martin is Septim-lineage only, and only valid in the correct era). |
 
 ---
 
@@ -4635,15 +4635,19 @@ decision: hide_imperial_heirs_at_priory
 
 **If heirs NOT hidden when the assassination fires:**
 - All heirs die (event `oblivion_crisis.assassination_heirs`).
-- A **Martin-role NPC** is spawned. Who this is depends on three conditions (see §26.5a):
-  - **Canonical Martin Septim** spawns **only when all three hold**:
+- A **Martin-role NPC** is spawned. Who this is depends on four conditions (see §26.5a):
+  - **Canonical Martin Septim** spawns **only when all four hold**:
     1. The emperor is an NPC (non-player) of Septim dynasty (`septim_dynasty = yes`)
     2. The player is NOT the emperor on any track (`is_player_controlled = no`)
-    3. The current year is ≥ 3E 389 (Martin's approximate birth year — see §26.5a)
-  - **Random unnamed bastard** spawns in all other cases:
-    - Player is the emperor (any dynasty, including Talos-path player) → random spawn
-    - Current year < 3E 389 (too early for Martin to exist) → random spawn
-    - Non-Septim dynasty NPC emperor → random spawn
+    3. The emperor does NOT have the `talos_path_emperor` flag (Talos-path AI emperors → random spawn)
+    4. The current year is ≥ 3E 389 (Martin's approximate birth year — see §26.5a)
+  - **Random bastard of the emperor's dynasty** spawns in all other cases:
+    - Player is the emperor (any dynasty, including Talos-path player) → random spawn from player's dynasty
+    - Current year < 3E 389 (too early for Martin to exist) → random spawn from emperor's dynasty
+    - Non-Septim dynasty NPC emperor → random spawn from that emperor's dynasty
+    - Septim NPC emperor with `talos_path_emperor` flag → random spawn from Septim dynasty
+  - The random bastard NPC always belongs to the dying emperor's dynasty (`dynasty = root.dynasty`),
+    not the Septim dynasty specifically — the heir is whoever would realistically continue that bloodline.
   - The random bastard NPC is given `dragonborn_blood` trait if the dynasty holds a
     Dragonborn claim, or `amulet_worthy` flag if not, to allow the narrative to proceed.
   - This NPC (canonical or random) is placed in a Kvatch-equivalent county under Mythic Dawn siege.
@@ -4657,21 +4661,25 @@ the events of the Oblivion Crisis (3E 433). If the Crisis fires before 3E 389 du
 early player conditions, the canonical Martin cannot exist yet. Per the universal
 birth-window rule (§31.3), an anonymous placeholder must be used instead.
 
-**Who gets canonical Martin vs. a random bastard:**
+**Who gets canonical Martin vs. a random bastard from the emperor's dynasty:**
 
-| Condition | Martin spawns? |
-|---|---|
-| NPC Septim emperor dies, year ≥ 3E 389, player is not emperor | **Yes — canonical Martin** |
-| NPC Septim emperor dies, year < 3E 389 | **No — random bastard** |
-| Player is emperor on any track (Talos-path, player Septim, etc.) | **No — random bastard** |
-| Non-Septim dynasty NPC emperor dies | **No — random bastard** |
+| Condition | Martin spawns? | Random bastard dynasty |
+|---|---|---|
+| NPC Septim emperor dies, year ≥ 3E 389, player is not emperor, NOT `talos_path_emperor` | **Yes — canonical Martin** | — |
+| NPC Septim emperor dies, year < 3E 389 | **No** | Septim dynasty |
+| NPC Septim emperor with `talos_path_emperor` flag dies | **No** | Septim dynasty |
+| Player is emperor on any track (Talos-path, player Septim, etc.) | **No** | Player's dynasty |
+| Non-Septim dynasty NPC emperor dies | **No** | Emperor's dynasty |
+
+> **Key principle:** The random bastard is always from the *emperor's own dynasty*, regardless of which dynasty that is. The Septim dynasty is only relevant when checking whether canonical Martin can be spawned.
 
 ```
 # Martin birth gate — controls whether canonical Martin fires
 # Called from oblivion_crisis.assassination_heirs
 martin_septim_spawn_or_random_effect = {
     if = {
-        # Canonical Martin: non-player NPC Septim emperor, correct time period
+        # Canonical Martin: non-player NPC Septim emperor, correct time period,
+        # NOT a Talos-path emperor (Talos AI emperors always use random spawn)
         limit = {
             NOT = { is_player = yes }
             dynasty = septim_dynasty
@@ -4688,7 +4696,10 @@ martin_septim_spawn_or_random_effect = {
         }
     }
     else = {
-        # Random unnamed bastard — all other cases (wrong era, player emperor, non-Septim)
+        # Random bastard of the emperor's own dynasty — all other cases
+        # (wrong era, player emperor, non-Septim dynasty, Talos-path AI emperor)
+        # dynasty = root.dynasty ensures the heir belongs to whichever dynasty
+        # holds the throne, not always the Septim dynasty.
         create_character = {
             # Name and appearance randomised via dynasty's culture name list
             dynasty = root.dynasty
@@ -4709,6 +4720,8 @@ martin_septim_spawn_or_random_effect = {
 **Flavor:** The random bastard is described in event text as "a priest of Akatosh"
 (if `amulet_worthy`) or "a distant scion of the [DYNASTY] bloodline" (if `dragonborn_blood`),
 preserving the narrative function without using a lore character who may not yet exist.
+The bastard's name is drawn from the emperor's dynasty culture list — so a non-Septim emperor
+produces a non-Septim named heir, fitting whatever dynasty holds the throne.
 
 **If heirs ARE hidden:**
 - Heirs survive. Player-Emperor can choose to:
