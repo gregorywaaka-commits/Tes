@@ -3827,51 +3827,80 @@ lore-accurate race-agnostic model.
 
 ---
 
-### 21.3 Shezarrine-Nerevarine Convergence — Two Dead Gods, One Body
+### 21.3 Lorkhan Resonance — Nerevar, Shor, and the Dead God's Pattern
 
-**Canonical evidence:**
-- The Shezarrine is a recurring vessel of Shor (Lorkhan's mortal aspect): Pelinal
-  Whitestrake, Talos/Tiber Septim, the Dragonborn of Skyrim.
-- Wulf — the avatar of Talos who appears to the Nerevarine in TES III — is himself a
-  Shezarrine-aspect (Talos IS a Shezarrine; see UESP Lore:Shezarrine).  Wulf visits the
-  Nerevarine in person.  At the moment of that meeting, two Shezarrine-touched beings
-  coexist on Nirn simultaneously: the Nerevarine (touched by Shor's essence through the
-  Lorkhan-path connection) and Wulf (an avatar of a Shezarrine).
-- In TES V: Skyrim, Shor's throne in Sovngarde is conspicuously *empty* — because the
-  Dragonborn (the reincarnation of Shor and a Shezarrine) is alive on Nirn.  The throne
-  can only be occupied while no piece of Shor's soul walks the world.
-- This proves: (a) two Shezarrine-aspects can coexist on Nirn, and (b) while a Shezarrine
-  lives on Nirn, Shor's throne in Aetherius/Sovngarde is vacant.
-- [SOURCE: TES III:Morrowind — Wulf NPC; UESP Lore:Shezarrine; UESP Lore:Shor;
-  TES V:Skyrim — Sovngarde, Shor's throne; UESP Lore:Dragonborn]
+**The Nerevar-as-Shezarrine question:**
+
+The claim that "Nerevar IS a Shezarrine — therefore the convergence event is redundant" rests on
+MK supplementary texts and the 36 Lessons of Vivec (Sermon 1), which names Nerevar **"Pelin-El"**
+— "the Star-Made Knight" — a title otherwise used for Pelinal Whitestrake, the confirmed Shezarrine
+(UESP Lore:Shezarrine).  This is not coincidence; it encodes identity.  Nerevar carried the same
+Lorkhan-resonance that every Shezarrine carries.
+
+However, UESP's canonical Shezarrine article does **not** list Nerevar as a confirmed Shezarrine.
+The connection is scholarly inference from the Sermons, not established hard canon.
+
+**Why the convergence is kept (not removed):**
+
+The mechanical distinction is valid precisely because the two traits arrive through different
+mythic mechanisms:
+- `nerevarine_marked` — Dunmeri/Daedric mechanism (Azura's prophecy, Nerevar's reincarnated soul)
+- `shezarrine_vessel` / `dragonborn` — Nordic/Aedric mechanism (Shor's wandering echo, the
+  "dead god in the ground")
+
+A character who holds both is **not** simply "a Shezarrine who is also the Nerevarine."  They are
+the first living demonstration that the Nerevar soul and the Shor echo are **harmonics of the same
+absent god's dispersed essence**, converging from different directions simultaneously.
+
+**Canonical evidence for the resonance framing:**
+- 36 Lessons of Vivec, Sermon 1: Nerevar called "Pelin-El" (the Star-Made Knight), the same title
+  as Pelinal Whitestrake (Shezarrine).  Pattern identity across mythic vessels.
+  [SOURCE: The 36 Lessons of Vivec, Sermon 1; UESP Lore:Shezarrine]
+- Wulf (avatar of Talos, himself a confirmed Shezarrine) appears to the Nerevarine in TES III.
+  Two Lorkhan-resonant beings coexist on Nirn simultaneously — the resonance is not exclusive.
+  [SOURCE: TES III:Morrowind — Wulf NPC; UESP Lore:Talos/Tiber Septim]
+- The Dragonborn (UESP: "a Shezarrine") empties Shor's throne in Sovngarde only upon physically
+  entering — while alive on Nirn the throne does not stand empty.
+  [SOURCE: TES V:Skyrim — Sovngarde; UESP Lore:Shor; UESP Lore:Dragonborn/Shezarrine]
+
+**Framing update (§21 revision):**
+The previous implementation framed this as *"two separate souls meeting in one body"* — inaccurate
+even before accepting the MK reading.  The correct framing is: the character recognises that the
+Nerevar soul and the Shor echo are drawn to the same pattern — not competing souls, but
+**harmonics of the same dead god's dispersed essence**, arriving from different mythic angles.
+
+**Dragonborn co-gate (§21 addition):**
+`dragonborn` (EK2's trait) is now co-equal to `shezarrine_vessel` in all convergence triggers
+(`nerevarine.310` option B, `nerevarine.321`).  The Dragonborn is canonically Shezarrine-class;
+excluding them from the mechanic was an oversight.
 
 **Mechanical implementation:**
 
 #### 21.3.1 Trigger Conditions
-- A character with BOTH `nerevarine_marked` AND `shezarrine_vessel` triggers the
-  Dual-Soul Convergence chain
+- A character with BOTH `nerevarine_marked` AND (`shezarrine_vessel` OR `dragonborn`) triggers the
+  Lorkhan Resonance chain
 - Either at claim-time (via `nerevarine.310` option B) or later (via the yearly hidden
-  event `nerevarine.321` which checks `nerevarine_marked + shezarrine_vessel + NOT
+  event `nerevarine.321` which checks `nerevarine_marked + (shezarrine_vessel OR dragonborn) + NOT
   nerevarine_shezarrine_convergence + NOT nerevarine_shezarrine_declined`)
 
 #### 21.3.2 Events
 | Event ID | Name | Notes |
 |---|---|---|
-| nerevarine.310 | Vision of Past Incarnations | Fires for all new claimants; Shezarrine gets option B |
-| nerevarine.320 | Dual-Soul Convergence | Acknowledges the dual-soul nature; **does NOT set Shor's throne empty** (see §22) |
-| nerevarine.321 | Hidden yearly check | Catches characters who gain shezarrine_vessel after claiming |
+| nerevarine.310 | Vision of Past Incarnations | Fires for all new claimants; Shezarrine/Dragonborn gets option B |
+| nerevarine.320 | Lorkhan Resonance | Acknowledges the harmonic pattern; **does NOT set Shor's throne empty** (see §22) |
+| nerevarine.321 | Hidden yearly check | Catches characters who gain shezarrine_vessel or dragonborn after claiming |
 
-#### 21.3.3 Outcome — Option A (Accept Convergence)
+#### 21.3.3 Outcome — Option A (Acknowledge Resonance)
 - Sets `character_flag = nerevarine_shezarrine_convergence`
 - **NOTE (§22 correction):** does NOT set `shors_throne_nerevarine` — that flag is only set
   when the Shezarrine physically enters Sovngarde (`shezarrine.sovngarde_entry`)
 - Applies `dual_soul_convergence_modifier` (martial +4, prowess +4, monthly_piety +8,
   prestige_gain_mult +30%, stress_gain_mult +10%, health +0.5)
 
-#### 21.3.4 Outcome — Option B (Decline / Choose Nerevar Only)
+#### 21.3.4 Outcome — Option B (Decline / Hold Nerevar Pattern Only)
 - Sets `character_flag = nerevarine_shezarrine_declined` (prevents re-prompting)
-- Character remains `shezarrine_vessel` and `nerevarine_marked` with no convergence
-- Lore-valid: the character has both souls but consciously suppresses Shor's aspect
+- Character retains `shezarrine_vessel`/`dragonborn` and `nerevarine_marked` with no convergence
+- Lore-valid: the character carries both resonances but consciously holds only Nerevar's pattern
 
 #### 21.3.5 New Modifiers — §21
 | Modifier | Duration | Applied by |
@@ -3892,13 +3921,15 @@ lore-accurate race-agnostic model.
 - [x] nerevarine.001 notification sent to azura_champion rulers (all races)
 - [x] nerevarine.300 (Outlander Nerevarine) added — fires for non-Dunmer claimants
 - [x] nerevarine.310 (Vision of Past Incarnations) added — fires for all claimants
-- [x] nerevarine.320 (Dual-Soul Convergence) added — fires for Shezarrine-Nervarines
-- [x] nerevarine.321 (hidden yearly check) added — catches late shezarrine_vessel gain
+- [x] nerevarine.320 (Lorkhan Resonance) — convergence kept; reframed as harmonic resonance, not two-souls-meeting; 36 Lessons Sermon 1 "Pelin-El" citation added
+- [x] nerevarine.321 (hidden yearly check) — trigger updated: `shezarrine_vessel OR dragonborn`
+- [x] nerevarine.310 option B — trigger updated: `shezarrine_vessel OR dragonborn`
+- [x] `dragonborn` (EK2 trait) added as co-equal Lorkhan-resonance carrier in all convergence triggers
 - [x] `nerevarine_outlander_recognition` modifier added to lore_races_modifiers.txt
 - [x] `nerevar_soul_witnessed` modifier added to lore_races_modifiers.txt
 - [x] `dual_soul_convergence_modifier` modifier added to lore_races_modifiers.txt
 - [x] `shors_throne_nerevarine` — CORRECTED in §22: now tied to Sovngarde entry, not convergence
-- [x] Localization added to nerevarine_l_english.yml
+- [x] Localization updated: nerevarine.320 title/desc reframed; nerevarine.310.b, tooltips updated
 
 ---
 
