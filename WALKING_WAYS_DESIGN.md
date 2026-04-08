@@ -5598,3 +5598,298 @@ Dragonfires in one event.
 - [ ] Crossover event: Talos + Emperor + Avatar of Akatosh path (§26.8 + §30.4 intersection)
 - [ ] Localization file with UTF-8 BOM
 
+---
+
+## §31 Design Corrections and Clarifications — §26–§30
+
+> **Added:** Session 2026-04-08. Addresses four corrections to the §26–§30 design notes:
+> (1) Helgen carriage open to all players; (2) Talos canonical timeline and why
+> the §30 assassination is a rare divergence; (3) universal temporal spawning
+> principle; (4) Hero of Kvatch name research result.
+
+---
+
+### 31.1 Correction — Helgen Carriage Is Open to ALL Players (§28 Amendment)
+
+**Correction to §28.2 and §28.4:**
+
+The "Emperor being thrown on a carriage to Helgen" example in the planning notes was
+used to illustrate *one possible version* of the event — not a gate restricting the
+event to Emperor characters. **Any player character** can end up on the carriage to
+Helgen. The Emperor path (§28.4–§28.5) is additional identity-flavored content layered
+on top of the universal entry path.
+
+**General entry — applies to ALL characters:**
+
+The carriage to Helgen represents getting caught in the wrong place at the wrong time.
+The Imperial sweep targeted the Windhelm rebel convoy; bystanders, travelers, and
+anyone near the ambush were swept up alongside the rebels. A character does not need
+to be Nordic, Imperial, or of any specific culture to end up on the carriage.
+
+**Corrected ambush trigger gate (replaces §28.2 culture gate):**
+
+```
+# on_yearly_pulse — weight 3
+helgen.ambush_trigger = {
+    trigger = {
+        OR = {
+            current_date >= 4.201.1.1
+            AND = {
+                has_global_flag = skyrim_civil_war_active
+                any_county_in_region = {
+                    region = skyrim_region
+                    title_province = { controls_county = yes }  # character controls land in Skyrim
+                }
+            }
+        }
+        # ANY ruler present in Skyrim territory — no culture gate
+        any_county_in_region = {
+            region = skyrim_region
+            holder = root
+        }
+        NOT = { has_character_flag = helgen_survived }
+        NOT = { has_global_flag = helgen_event_fired }
+    }
+    effect = {
+        trigger_event = { id = helgen.001 }
+        set_global_flag = helgen_event_fired
+    }
+}
+```
+
+**Layer structure — what varies by character type:**
+
+| Character Type | Base Carriage Experience | Additional Flavor |
+|---|---|---|
+| **Any ruler** | Captured, bound, heading to Helgen. Alduin attack. Survival event. | None (base path only) |
+| **Emperor (holds imperial throne)** | Same base path | +Identity events: §28.4 "No One Believes You" + §28.5 Captain Recognition chance |
+| **Talos-path walker** | Same base path | +Divine dissonance: being captured feels *wrong* at a bone-deep level. Modifier reduces stress of imprisonment. |
+| **Shezarrine** | Same base path | +Pattern recognition: the imprisonment echoes earlier lives. Minor prestige for surviving. |
+| **Dragonborn (any)** | Same base path | +Alduin recognition event during the dragon attack — Alduin hesitates a fraction of a second. |
+
+**Design principle:** The carriage sequence is the *entry point* for Helgen regardless
+of who you are. Your identity — Emperor, god-walker, dragonborn — shapes the flavor
+events that fire during and after the carriage ride, not whether you board it.
+
+---
+
+### 31.2 Correction — Talos and the Mythic Dawn: Clarifying the Canonical Timeline (§30 Amendment)
+
+**Correction to §30's framing:**
+
+The example given in planning notes — "Talos kicking assassins across the room" —
+was used to *illustrate* why a semi-divine being would not die the same way as
+Uriel Septim VII, **not** to imply that the Mythic Dawn routinely attempts Talos.
+
+**The canonical timeline makes §30 an extreme edge case:**
+
+| Date | Event |
+|---|---|
+| **3E 38** | Tiber Septim (Talos) dies — unstated cause, presumed old age. Ascends to godhood. |
+| **3E 433** | Uriel Septim VII assassinated by Mythic Dawn. Oblivion Crisis begins. |
+
+The gap between Tiber Septim's death and the Oblivion Crisis is **395 years**.
+In any canonical run, Talos has been dead for nearly four centuries before the
+Mythic Dawn becomes active. The §30 divergent scenario only arises if:
+
+1. The player has walked the Talos mantle path far enough to still be mortal in
+   the late Third Era (~3E 300+), AND
+2. The player has used `delay_talos_ascent` decisions to postpone apotheosis, AND
+3. Mythic Dawn forms early (via §29 formation gates), AND
+4. The player holds the Imperial throne.
+
+**This chain of events is unlikely if not impossible under normal circumstances.**
+The §30 assassination scenario is the intersection of multiple extreme divergences.
+The flavor text in §30.2 should reflect this rarity — the cultists coming for a
+character they think is an ordinary emperor finding something entirely unlike a
+mortal is the *point* of the scene. It is not meant to suggest that the Mythic
+Dawn would ever realistically target Tiber Septim in canon.
+
+**Lore anchor for the "death resistance" narrative:**
+
+A character at `ww_talos_rank >= 3` is no longer entirely mortal. They have
+absorbed the Nordic Oversoul fragments (see §17), their body is partially composed
+of divine resonance, and CK3's normal assassination mechanics may not even apply.
+*The "assassins across the room" example was a shorthand for this: the cultists
+came expecting a weak old man, not something that no longer fully obeys the rules
+of mortal flesh.*
+
+**Implementation guidance — death resistance:**
+
+```
+# Add to mantling_talos_events.txt — passive effect at rank 3+
+# These are scripted triggers/modifiers, not immunity flags
+# (immunity from standard assassination uses existing CK3 hooks)
+
+talos_partial_divine_protection = {
+    # Applies while ww_talos_rank >= 3
+    # Reduces assassination success chance via stress_impact scripted modifier
+    # (Same approach as existing "divine_protection" modifiers in EK2)
+    modifier = talos_oversoul_resilience
+    # +25 to assassination resistance (uses EK2 hostile_scheme_power variable)
+    # NOT full immunity — can still be killed, but much harder
+}
+```
+
+**Key distinction between Talos-walker death and Uriel's canonical death:**
+
+| Character | How They Die in Canon | Why |
+|---|---|---|
+| **Uriel Septim VII** | Stabbed by Mythic Dawn cultists | Mortal, elderly, unguarded, cult had infiltrated palace |
+| **Tiber Septim / Talos** | Natural/unstated causes at 3E 38 | Old age; had unified the Empire; no violent event recorded |
+| **Player Talos-walker (rank 3+)** | Cannot die the same way as Uriel | Partial divine nature resists mortal assassination methods |
+
+The §30 assassination scenario reflects this: the Mythic Dawn *attempts* what
+they did to Uriel, but the outcome is fundamentally different because the target
+is no longer entirely mortal.
+
+`[SOURCE: UESP Lore:Tiber Septim — death 3E 38, ascension to Talos; §17.2 (this
+document) — Oversoul absorption at rank 3+; §29 — Mythic Dawn formation gates]`
+
+---
+
+### 31.3 Universal Temporal Spawning Principle (§26–§30 General Rule)
+
+**Correction / expansion of §26.3:**
+
+Section 26.3 established a birth-date gate specifically for Baurus. This principle
+must be applied universally to **all named canonical characters** across §26–§30.
+
+**The rule:**
+
+> A named canonical character (Baurus, Glenroy, Captain Renault, Jauffre, Martin
+> Septim, Mankar Camoran, Delphine, Ulfric Stormcloak, General Tullius, etc.) may
+> ONLY be spawned if the current in-game date falls within their lore-accurate
+> lifespan window. If the triggering event fires outside that window — because
+> political conditions triggered it early — an **anonymous placeholder NPC** fills
+> their role instead.
+
+**Birth window reference table — §26–§30 canonical characters:**
+
+| Character | Earliest Possible Spawn | Notes |
+|---|---|---|
+| **Baurus** | 3E 409 | Born ~3E 409–415 per UESP |
+| **Glenroy** | 3E 390 (approx.) | No stated birth; adult blade at 3E 433; arbitrary 40-year prior |
+| **Captain Renault** | 3E 395 (approx.) | Same constraint as Glenroy |
+| **Jauffre** | 3E 350 (approx.) | Breton monk; must be old enough to be Blades Grandmaster by 3E 433; no birth date stated |
+| **Martin Septim** | 3E 395 (approx.) | Illegitimate son of Uriel VII; must be ~38 at time of Oblivion Crisis |
+| **Mankar Camoran** | 3E 200 (minimum) | Bosmer; long-lived; but Mysterium Xarxes obsession is Third Era |
+| **Delphine** | 4E 000 (approx.) | Active in 4E 201 Skyrim — NEVER appears in §26 prison sequence |
+| **Ulfric Stormcloak** | 4E 175 (approx.) | Active in 4E 201; must not appear before late 4E |
+| **General Tullius** | 4E 175 (approx.) | Same as Ulfric |
+
+**Placeholder behavior when trigger fires outside the canonical window:**
+
+```
+# Template pattern — applies to all named canonical NPC spawns
+
+hok_spawn_canonical_npc_template = {
+    if = {
+        # Named character window: in this example, Baurus
+        limit = {
+            current_date >= 3.409.1.1
+            current_date <= 3.434.1.1
+        }
+        # Spawn named canonical character
+        create_character = {
+            name = "Baurus"
+            culture = redguard_culture
+            trait = brave
+            trait = loyal
+            add_character_flag = canonical_baurus
+        }
+    }
+    else = {
+        # Named character does not exist yet — spawn anonymous placeholder
+        # These are NOT lore characters; they exist only to fill narrative roles
+        create_character = {
+            # Name: generated from culture pool of whoever controls the Empire
+            culture = scope:empire_holder.culture
+            trait = brave
+            trait = loyal
+            # Flag distinguishes them from canonical characters
+            add_character_flag = anonymous_blades_escort
+        }
+    }
+}
+```
+
+**Replacement philosophy:**
+
+Anonymous placeholders are explicitly *random* in name and appearance. They fill
+the narrative slot (the escort blade, the loyal monk, the hidden heir) but they
+have no lore identity. If a player wants the canonical characters to appear, the
+game must be in the correct time window OR the triggering conditions must hold off
+until those characters would naturally exist.
+
+This prevents anachronistic spawning while still allowing the event chain to resolve.
+The emotional weight of the canonical characters (Baurus surviving the sewers, Martin's
+sacrifice) only fires when the lore timeline supports their existence.
+
+**Lore justification for early-trigger replacements:**
+
+The Oblivion Crisis conditions — a Dragonborn Imperial line, the Blades active, Talos
+a recognised god, Mythic Dawn formed — can be achieved by player actions before 3E 433.
+If they are, the *story* of that crisis is the same structurally, but the *cast* is
+different. Whoever the Emperor is, their equivalent of "Martin" is their own dynasty's
+hidden heir. Whoever the Blades are, their equivalent of "Baurus" is their best
+surviving escort. The crisis plays out with period-appropriate characters.
+
+---
+
+### 31.4 Hero of Kvatch — Name Research Result (§26–§27 Confirmation)
+
+**Confirmed via UESP and online research (2026-04-08):**
+
+The player character of *The Elder Scrolls IV: Oblivion* has **no canonical name**.
+Their race, gender, and background are entirely player-defined. The lore references
+to this character use only titles:
+
+- **"Hero of Kvatch"** — earned after saving the city of Kvatch from the Oblivion Gate.
+  Primary lore title used in retrospective accounts.
+- **"Champion of Cyrodiil"** — used interchangeably in some sources; refers to the same
+  character at the peak of their career.
+
+**The "Bendu Olo" reference:**
+
+`Bendu Olo` is the **developer placeholder name** assigned in the Oblivion Construction
+Set (the modding toolset). It is not a lore name — it was borrowed by developers from
+the historical First Era Colovian Baron-Admiral famous for organizing the All Flags Navy
+against the Sload of Thras (~1E 2260). Using this as the name of an NPC "canonical
+champion" in the mod is a convention that honors the developer in-joke while acknowledging
+there is no true canonical name.
+
+**Design rule (re-stated from §27.3 for clarity):**
+
+| Context | Name Used | Reason |
+|---|---|---|
+| Canonical NPC champion spawn (§27.3) | `"Bendu Olo"` | Developer convention; acknowledges no canon name |
+| Player character takes the champion role | Player's character name | No naming override |
+| Retrospective lore flavor text | "the Hero of Kvatch" or "the Champion" | UESP-accurate title |
+| NPC who becomes Sheogorath (§27.4) | "Bendu Olo" (if spawned NPC) OR player name | Whoever performed the mantling |
+
+**Canonical title hierarchy:**
+1. **In-game titles:** "Hero of Kvatch," "Champion of Cyrodiil" — use these in flavor text.
+2. **NPC placeholder name:** "Bendu Olo" — use only for spawned NPCs, not for player references.
+3. **Name on UESP:** Listed as "unknown" with note that "Hero of Kvatch" is the standardised
+   lore reference.
+
+`[SOURCE: UESP Lore:Hero of Kvatch; UESP Bendu Olo (Oblivion) — notes the CS default name;
+Lore:All Flags Navy — the historical Bendu Olo; Skyrim:Sheogorath — Oblivion player
+character's later fate confirmed by Sheogorath's own dialogue referencing the Oblivion Crisis]`
+
+---
+
+### 31.5 Summary of Amendments — §26–§30
+
+| Section | Change |
+|---|---|
+| **§28.2** | Remove `nordic_culture_group` gate from ambush trigger. Any character in Skyrim territory can be caught. |
+| **§28.4** | Mark as "additional emperor-specific flavor" only — base carriage experience applies to all. |
+| **§28** (new note) | Add character-type flavor table (§31.1) showing what varies based on who you are. |
+| **§30.1** | Strengthen "extreme divergence" framing — Tiber Septim died 395 years before HoK in canon. |
+| **§30.2** | Clarify that "assassins across the room" is an illustrative example, not a design centerpiece. |
+| **§26.3** | Mark as "template for universal rule" — all canonical NPC spawns must use birth-window gates. |
+| **§26–§30** (general) | Add §31.3 universal temporal spawning principle — anonymous placeholders for out-of-window characters. |
+| **§26.1, §27.1** | Confirm "Bendu Olo" as developer convention; "Hero of Kvatch" as canonical lore title. |
+
