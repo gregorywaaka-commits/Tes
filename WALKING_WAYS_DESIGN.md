@@ -5962,8 +5962,82 @@ confirmed as later Sheogorath via dialogue referencing the Oblivion Crisis perso
 | **§30** (full reframe) | §30 is about Tiber Septim (the NPC) being alive on the throne when HoK fires early — NOT about a player walking the Talos path. The Mythic Dawn cannot assassinate him via the standard palace method. |
 | **§30.1** | Tiber Septim dies 3E 38; HoK fires 3E 433 in canon. If HoK fires early, Tiber Septim may still be alive. |
 | **§30.2** | "Assassins across the room" was an illustrative example of why the attempt fails against a semi-divine NPC — not a designed player fight scene. |
-| **§29 gate** | `can_mythic_dawn_form` requires `talos_ascended_to_godhood`. This paradoxically means the Mythic Dawn requires Tiber Septim to ALREADY have died/ascended before they can act. §31.2 resolves this by adding `mythic_dawn_suppressed_by_tiber` if he forms early. |
+| **§29 gate** | `can_mythic_dawn_form` requires `talos_ascended_to_godhood`. This paradoxically means the Mythic Dawn requires Tiber Septim to ALREADY have died/ascended before they can act. §31.6 supersedes §31.2: no suppression flag — the cult fires normally, fails to kill Tiber Septim, and steals the Amulet instead. |
 | **§26.3** | Mark as "template for universal rule" — all canonical NPC spawns must use birth-window gates. |
 | **§26–§30** (general) | Add §31.3 universal temporal spawning principle — anonymous placeholders for out-of-window characters. |
 | **§26.1, §27.1, §27.3** | Bendu Olo is the canonical NPC champion's name in this mod. "Hero of Kvatch" / "Champion of Cyrodiil" are lore titles used in flavor text only. |
+| **§31.2** (further correction) | `mythic_dawn_suppressed_by_tiber` suppression flag is REMOVED. Mythic Dawn always attempts assassination when active. Against Tiber Septim (NPC) or any emperor who survives: attempt fails to kill, Amulet of Kings is stolen. Crisis proceeds without emperor dying. See §31.6. |
+
+---
+
+### 31.6 Correction to §31.2 — Mythic Dawn Still Attempts; Amulet Stolen, Not Emperor Killed
+
+> **Added:** Session 2026-04-08 (follow-up correction to §31.2).
+
+**The problem with §31.2's `mythic_dawn_suppressed_by_tiber` approach:**
+
+§31.2 resolved the paradox of Tiber Septim being alive when the Mythic Dawn forms
+by introducing a `mythic_dawn_suppressed_by_tiber` flag that *halted the cult entirely*
+until he died or ascended. **This is wrong.** The Mythic Dawn does not need to be
+locked. They still attempt the assassination — they just *fail to kill the emperor*.
+The same logic applies to any player character who holds the throne and survives
+the assassination attempt.
+
+**The corrected design:**
+
+The Mythic Dawn always proceeds with their assassination attempt when `mythic_dawn_active`
+is true and a Dragonborn Emperor holds the Ruby Throne. What changes is the *outcome*
+depending on who the target is:
+
+| Emperor Target | Assassination Outcome | Amulet of Kings | Crisis Proceeds? |
+|---|---|---|---|
+| Uriel Septim VII (canon NPC, mortal, elderly) | Emperor killed | Stolen + given to Martin | Yes |
+| Tiber Septim (canonical NPC, semi-divine, height of power) | Attempt fails — emperor survives | **Stolen anyway** | Yes |
+| Player emperor who survives the attempt | Attempt fails — player survives | **Stolen anyway** | Yes |
+| Any mortal NPC emperor (not Tiber Septim) | Emperor killed (standard result) | Stolen | Yes |
+
+**Why Mehrunes Dagon can still act even if the emperor lives:**
+
+The Mythic Dawn's purpose was never solely to kill the emperor — it was to obtain
+the Amulet of Kings. The Amulet's theft breaks the barrier of Dragonfires, allowing
+Oblivion Gates to open. Uriel's death was the *method* of taking the Amulet in canon
+(Martin needed it to relight the fires). But if the emperor *survives*, the cult can
+still take the Amulet in the chaos of the failed attempt. The Gates still open.
+
+The difference is that with a living emperor:
+- The standard "Martin must light the Dragonfires" chain is replaced by the
+  actual surviving emperor (Tiber Septim or the player) being the one who must
+  pursue Mankar Camoran into Gaiar Alata to recover it.
+- There is no hidden heir to protect — the Blades pivot to guarding the living emperor.
+- The emotional stakes shift: instead of mourning Uriel and protecting his last son,
+  the crisis is about reclaiming what was taken from a still-living, still-powerful ruler.
+
+**Removing `mythic_dawn_suppressed_by_tiber`:**
+
+The flag `mythic_dawn_suppressed_by_tiber` introduced in §31.2 should be
+**discarded entirely**. The suppression logic is replaced by outcome-branching
+in the assassination event itself:
+
+- If Tiber Septim (`tiber_septim_canonical` flag) is emperor: assassination attempt
+  fires normally, fails to kill him, but the Amulet of Kings is stolen. He then
+  pursues Mankar Camoran personally. Set `survived_mythic_dawn_attempt` flag.
+- If a player emperor survives (player choice at the attack event): same outcome —
+  assassination fails, Amulet stolen, player goes to Paradise.
+- If any other mortal NPC emperor: assassination succeeds (standard result).
+
+In all three cases the Oblivion Gates open because the Amulet has been taken. The
+crisis always proceeds. The only variable is whether the emperor lives to chase it.
+
+**Key design principle — corrected:**
+
+> The Mythic Dawn does not need to kill the emperor to trigger the Oblivion Crisis.
+> They need the Amulet. Any emperor — mortal or semi-divine — loses the Amulet
+> when the attempt occurs. The emperor's survival only changes who has to go to
+> Paradise to get it back.
+
+`[SOURCE: TES IV: Oblivion main quest — Amulet of Kings and Dragonfires mechanic;
+UESP Lore:Amulet of Kings; UESP Lore:Uriel Septim VII assassination; §26.1 player
+emperor fork; §31.2 (this section supersedes the suppression approach)]`
+
+---
 
