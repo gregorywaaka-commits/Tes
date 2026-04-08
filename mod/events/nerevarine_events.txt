@@ -804,11 +804,8 @@ nerevarine.300 = {
 # This proves the multi-spirit lore: Nerevar's soul is not reborn once
 # and gone — it manifests in generation after generation, and those
 # earlier souls remain conscious echoes in the Daedric Prince's realm.
-# A claimant who also bears shezarrine_vessel OR dragonborn gains an extra option,
-# recognising the Lorkhan-resonance in their soul.  Both shezarrine_vessel
-# and dragonborn are canonical carriers of Shor/Lorkhan's dispersed essence —
-# the Dragonborn is explicitly Shezarrine-class in UESP canon
-# (UESP Lore:Shezarrine — "the Dragonborn is a Shezarrine").
+# A claimant who also bears shezarrine_vessel gains an extra option,
+# recognising the Lorkhan-resonance in their soul.
 # Fired by: claim_nerevarine_prophecy effect (all claimants)
 # ---------------------------------------------------------------
 nerevarine.310 = {
@@ -827,16 +824,11 @@ nerevarine.310 = {
         }
     }
 
-    # Extra option for a Shezarrine or Dragonborn who is also the Nerevarine
-    # Both are canonical Lorkhan-resonance carriers; dragonborn is co-equal
-    # to shezarrine_vessel for the purposes of this recognition.
+    # Extra option for a Shezarrine who is also the Nerevarine
     option = {
         name = nerevarine.310.b   # "Among the past souls I see something vast — Lorkhan's echo resonates in me too."
         trigger = {
-            OR = {
-                has_trait = shezarrine_vessel
-                has_trait = dragonborn
-            }
+            has_trait = shezarrine_vessel
         }
         add_piety    = 300
         add_stress   = -15
@@ -848,19 +840,18 @@ nerevarine.310 = {
 # ---------------------------------------------------------------
 # nerevarine.320  Lorkhan Resonance — Nerevar and the Dead God's Echo
 # A character who is both the Nerevarine (nerevarine_marked) and a
-# Shezarrine/Dragonborn (shezarrine_vessel or dragonborn) recognises
-# a profound pattern: the Nerevar soul and the Shor echo in their body
-# are not two strangers who happened to share a vessel.  They are
-# harmonics of the same dispersed essence — Lorkhan's dead god signal,
-# propagating through the world from different directions at once.
+# Shezarrine (shezarrine_vessel) recognises a profound pattern: the
+# Nerevar soul and the Shor echo in their body are not two strangers
+# who happened to share a vessel.  They are harmonics of the same
+# dispersed essence — Lorkhan's dead god signal, propagating through
+# the world from different directions at once.
 #
 # Lore basis:
 # - The Nerevar-as-Shezarrine connection is attested in the 36 Lessons
 #   of Vivec (Sermon 1), which calls Nerevar "Pelin-El" — "The Star-Made
 #   Knight" — a title otherwise applied to Pelinal Whitestrake, the
 #   confirmed Shezarrine.  This is not coincidence but identity: Nerevar
-#   carries Lorkhan's resonance just as Pelinal, Tiber Septim, and the
-#   Dragonborn do.
+#   carries Lorkhan's resonance just as Pelinal and Tiber Septim do.
 # - UESP canon does not list Nerevar as a *confirmed* Shezarrine, which
 #   is why the mod distinguishes the two traits.  The convergence event
 #   models the rare and cosmologically significant case where a single
@@ -913,7 +904,7 @@ nerevarine.320 = {
         # Set a flag so the yearly pulse (nerevarine.321) does not
         # keep offering the convergence to a character who declined.
         set_character_flag = nerevarine_shezarrine_declined
-        # Character remains shezarrine_vessel/dragonborn and nerevarine_marked
+        # Character remains shezarrine_vessel and nerevarine_marked
         # but does not trigger the convergence — lore-valid: they
         # have the dual resonance but suppress Shor's aspect deliberately
         custom_tooltip = nerevarine_only_path_tt
@@ -923,13 +914,11 @@ nerevarine.320 = {
 # ---------------------------------------------------------------
 # nerevarine.321  Hidden Lorkhan-Resonance Check (yearly pulse)
 # Fires for any character who is BOTH nerevarine_marked AND
-# shezarrine_vessel or dragonborn, but has NOT yet undergone the
-# convergence event.  This catches characters who acquired
-# shezarrine_vessel or dragonborn AFTER claiming the prophecy (e.g.,
-# through a Shezarrine event chain that fires later in their reign)
-# and ensures they still get the chance to acknowledge the resonance.
-# Dragonborn is co-equal to shezarrine_vessel here — both are
-# canonical Lorkhan-resonance carriers.
+# shezarrine_vessel but has NOT yet undergone the convergence event.
+# This catches characters who acquired shezarrine_vessel AFTER claiming
+# the prophecy (e.g., through a Shezarrine event chain that fires later
+# in their reign) and ensures they still get the chance to acknowledge
+# the resonance.
 # Registered in: on_yearly_pulse random_events weight 2
 # ---------------------------------------------------------------
 nerevarine.321 = {
@@ -938,10 +927,7 @@ nerevarine.321 = {
 
     trigger = {
         has_trait = nerevarine_marked
-        OR = {
-            has_trait = shezarrine_vessel
-            has_trait = dragonborn
-        }
+        has_trait = shezarrine_vessel
         NOT = { has_character_flag = nerevarine_shezarrine_convergence }
         NOT = { has_character_flag = nerevarine_shezarrine_declined }
         NOT = { has_global_flag = dagoth_ur_defeated }

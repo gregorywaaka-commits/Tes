@@ -3845,8 +3845,7 @@ The connection is scholarly inference from the Sermons, not established hard can
 The mechanical distinction is valid precisely because the two traits arrive through different
 mythic mechanisms:
 - `nerevarine_marked` — Dunmeri/Daedric mechanism (Azura's prophecy, Nerevar's reincarnated soul)
-- `shezarrine_vessel` / `dragonborn` — Nordic/Aedric mechanism (Shor's wandering echo, the
-  "dead god in the ground")
+- `shezarrine_vessel` — Nordic/Aedric mechanism (Shor's wandering echo, the "dead god in the ground")
 
 A character who holds both is **not** simply "a Shezarrine who is also the Nerevarine."  They are
 the first living demonstration that the Nerevar soul and the Shor echo are **harmonics of the same
@@ -3869,26 +3868,21 @@ even before accepting the MK reading.  The correct framing is: the character rec
 Nerevar soul and the Shor echo are drawn to the same pattern — not competing souls, but
 **harmonics of the same dead god's dispersed essence**, arriving from different mythic angles.
 
-**Dragonborn co-gate (§21 addition):**
-`dragonborn` (EK2's trait) is now co-equal to `shezarrine_vessel` in all convergence triggers
-(`nerevarine.310` option B, `nerevarine.321`).  The Dragonborn is canonically Shezarrine-class;
-excluding them from the mechanic was an oversight.
-
 **Mechanical implementation:**
 
 #### 21.3.1 Trigger Conditions
-- A character with BOTH `nerevarine_marked` AND (`shezarrine_vessel` OR `dragonborn`) triggers the
+- A character with BOTH `nerevarine_marked` AND `shezarrine_vessel` triggers the
   Lorkhan Resonance chain
 - Either at claim-time (via `nerevarine.310` option B) or later (via the yearly hidden
-  event `nerevarine.321` which checks `nerevarine_marked + (shezarrine_vessel OR dragonborn) + NOT
+  event `nerevarine.321` which checks `nerevarine_marked + shezarrine_vessel + NOT
   nerevarine_shezarrine_convergence + NOT nerevarine_shezarrine_declined`)
 
 #### 21.3.2 Events
 | Event ID | Name | Notes |
 |---|---|---|
-| nerevarine.310 | Vision of Past Incarnations | Fires for all new claimants; Shezarrine/Dragonborn gets option B |
+| nerevarine.310 | Vision of Past Incarnations | Fires for all new claimants; Shezarrine gets option B |
 | nerevarine.320 | Lorkhan Resonance | Acknowledges the harmonic pattern; **does NOT set Shor's throne empty** (see §22) |
-| nerevarine.321 | Hidden yearly check | Catches characters who gain shezarrine_vessel or dragonborn after claiming |
+| nerevarine.321 | Hidden yearly check | Catches characters who gain shezarrine_vessel after claiming |
 
 #### 21.3.3 Outcome — Option A (Acknowledge Resonance)
 - Sets `character_flag = nerevarine_shezarrine_convergence`
@@ -3899,7 +3893,7 @@ excluding them from the mechanic was an oversight.
 
 #### 21.3.4 Outcome — Option B (Decline / Hold Nerevar Pattern Only)
 - Sets `character_flag = nerevarine_shezarrine_declined` (prevents re-prompting)
-- Character retains `shezarrine_vessel`/`dragonborn` and `nerevarine_marked` with no convergence
+- Character retains `shezarrine_vessel` and `nerevarine_marked` with no convergence
 - Lore-valid: the character carries both resonances but consciously holds only Nerevar's pattern
 
 #### 21.3.5 New Modifiers — §21
@@ -3920,16 +3914,14 @@ excluding them from the mechanic was an oversight.
 - [x] `nerevarine_quest_incomplete` only re-set if no other living Nerevarine
 - [x] nerevarine.001 notification sent to azura_champion rulers (all races)
 - [x] nerevarine.300 (Outlander Nerevarine) added — fires for non-Dunmer claimants
-- [x] nerevarine.310 (Vision of Past Incarnations) added — fires for all claimants
+- [x] nerevarine.310 (Vision of Past Incarnations) added — fires for all claimants; Shezarrine gets option B
 - [x] nerevarine.320 (Lorkhan Resonance) — convergence kept; reframed as harmonic resonance, not two-souls-meeting; 36 Lessons Sermon 1 "Pelin-El" citation added
-- [x] nerevarine.321 (hidden yearly check) — trigger updated: `shezarrine_vessel OR dragonborn`
-- [x] nerevarine.310 option B — trigger updated: `shezarrine_vessel OR dragonborn`
-- [x] `dragonborn` (EK2 trait) added as co-equal Lorkhan-resonance carrier in all convergence triggers
+- [x] nerevarine.321 (hidden yearly check) — trigger: `nerevarine_marked + shezarrine_vessel`
 - [x] `nerevarine_outlander_recognition` modifier added to lore_races_modifiers.txt
 - [x] `nerevar_soul_witnessed` modifier added to lore_races_modifiers.txt
 - [x] `dual_soul_convergence_modifier` modifier added to lore_races_modifiers.txt
 - [x] `shors_throne_nerevarine` — CORRECTED in §22: now tied to Sovngarde entry, not convergence
-- [x] Localization updated: nerevarine.320 title/desc reframed; nerevarine.310.b, tooltips updated
+- [x] Localization updated: nerevarine.320 title/desc reframed; nerevarine.310.b and tooltips updated
 
 ---
 
