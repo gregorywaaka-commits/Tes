@@ -20,9 +20,13 @@
 7. [The Five Paths — Detailed Design](#7-the-five-paths--detailed-design)
    - [Path A: CHIM Expanded](#path-a-chim-expanded)
    - [Path B: Mantling](#path-b-mantling--the-core-mandela-analog)
+     - B-Jyggalag: Jyggalag's Champion (§20.2)
+     - B-Sheogorath-Echo: Sheogorath's Echo (§20.3)
    - [Path C: The Psijic Endeavour](#path-c-the-psijic-endeavour)
    - [Path D: The Enantiomorph](#path-d-the-enantiomorph-dark-path)
    - [Path E: The Amaranth](#path-e-the-amaranth-hidden--endgame)
+   - [Path F: Kagrenac's Ambition (§19)](#19-path-f--kagrenacs-ambition-the-borrowed-divinity)
+   - [Path G: Tonal Architecture (§25)](#25-path-g--tonal-architecture-the-wrong-walking-way)
 8. [Stage 4 — Apotheosis Events](#8-stage-4--apotheosis-events)
 9. [World Notification System](#9-world-notification-system)
 10. [Integration with Existing Mod Systems](#10-integration-with-existing-mod-systems)
@@ -792,12 +796,15 @@ existing events), not by yearly random check.
 | `mantle_boethiah` | fame | Boethiah mantle apex (Daedric) | Path B |
 | `mantle_mephala` | fame | Mephala mantle apex (Daedric) | Path B |
 | `mantle_hircine` | fame | Hircine mantle apex (Daedric) | Path B |
+| `jyggalag_ascendant` | fame | Jyggalag's Champion apex (Order embodied) | Path B (B-Jyggalag) |
+| `madness_prophet` | fame | Sheogorath's Echo apex (madness as insight) | Path B (B-Sheogorath-Echo) |
 | `psijic_adept_supreme` | fame | Psijic Endeavour apex | Path C |
 | `enantiomorph_ascendant` | fame | Enantiomorph apex | Path D |
 | `enantiomorph_consumed` | lifestyle | Enantiomorph failure state | Path D |
 | `amaranth_achieved` | fame (hidden) | Amaranth endgame | Path E |
+| `tonal_transcendent` | fame | Tonal Architecture apex (Dwemer transcendence) | Path G |
 
-**Total new traits:** 11
+**Total new traits:** 14
 
 ---
 
@@ -3315,12 +3322,21 @@ theft rather than the specific context of Dagoth Ur's cult.*
 
 ---
 
-## 20. Three New Paths — Jyggalag's Champion, Sheogorath's Echo, and the Necromancer's Third Way
+## 20. Path B Sub-Types (Jyggalag, Sheogorath's Echo) and Path L — Necromancer's Third Way
 
 > **Added:** Session 2026-04-06 — Three paths that fill gaps in the current taxonomy:
-> two Daedric-adjacent paths (Jyggalag order and Sheogorath influence-without-succession)
-> and a third branch for the nascent Necromancer tree that rejects both Mannimarco and
-> the Ideal Masters.
+> two Daedric-adjacent paths reclassified as **Path B sub-types** (Jyggalag champion-role
+> and Sheogorath influence-without-succession) and a third branch for the nascent Necromancer
+> tree that rejects both Mannimarco and the Ideal Masters.
+>
+> **Reclassification note (2026-04-08):** The Jyggalag and Sheogorath paths were originally
+> designated "Path K" and "Path K-2" in this section's headings, but their **Path type**
+> fields already correctly said Path B (Mantling — Daedric sub-category). The section headers
+> have been updated to match. Jyggalag and Sheogorath belong in Path B because:
+> - Both are structurally mantling-class paths (same rank/milestone engine as B-Talos, B-Azura, etc.)
+> - The lore basis for both is a mantling relationship with a Daedric Prince's domain
+>   (Jyggalag = champion-role embodying Order; Sheogorath = echo/influence without succession)
+> - Internal scripted keys (`ww_mantling_jyggalag`, `ww_sheogorath_echo`) remain unchanged
 
 ---
 
@@ -3378,7 +3394,7 @@ relationship with death that has no precedent.
 
 ---
 
-### 20.2 Path K — Jyggalag's Champion ("The Instrument of Order")
+### 20.2 Path B — Jyggalag's Champion ("The Instrument of Order") [B-Jyggalag]
 
 **Key:** `ww_mantling_jyggalag`
 **Flag:** `ww_mantling_jyggalag_active`
@@ -3473,7 +3489,7 @@ jyggalag_ascendant = {
 
 ---
 
-### 20.3 Path K-2 — Sheogorath's Echo ("The Prophet of Madness")
+### 20.3 Path B — Sheogorath's Echo ("The Prophet of Madness") [B-Sheogorath-Echo]
 
 **Key:** `ww_sheogorath_echo`
 **Flag:** `ww_sheogorath_echo_active`
@@ -4246,3 +4262,201 @@ Applied 5–10 years depending on option. Represents absorbed knowledge of Kagre
 - [x] All new event/option localization added to `akullakhan_l_english.yml`
 - [x] Event ID range updated in file header: `akullakhan.000 – .032`
 - [x] §24 design notes updated with full lore research summary
+
+---
+
+## 25. Path G — Tonal Architecture ("The Wrong Walking Way")
+
+> **Added:** Session 2026-04-08 — Formalises the existing `tonal_arch` event system
+> (already implemented in `mod/events/tonal_arch_events.txt` and
+> `mod/common/traits/walking_ways_traits.txt`) as the canonical **Path G** of the
+> Walking Ways framework.
+
+---
+
+### 25.1 Lore Foundation
+
+The Dwemer believed reality itself was song — a tonal structure that could be understood,
+measured, and rewritten by sufficiently precise mortal craft. Their apex expression of this
+was Kagrenac's attempt to use the Heart of Lorkhan as a divine power source: not to worship
+a god, but to *reproduce* godhood through tonal engineering.
+
+The outcome of their collective attempt is the single most important data point in the
+mod: the entire Dwemer race vanished simultaneously at the moment of Red Mountain's
+resonance. Whether this was catastrophic failure or unprecedented success remains
+explicitly contested (see §24.6 for the scholarly analysis). What is not contested is the
+method: they used tonal architecture to attempt a fundamental rewrite of what Dwemer *were*.
+
+This path is **"the wrong Walking Way"** not because it is evil, but because it is
+*materialist*: it treats the ascent to divinity as an engineering problem rather than a
+spiritual or metaphysical one. It is the most dangerous path precisely because it might
+be the most *correct* in its theory — the Dwemer understood more about tonal reality than
+any other civilization — and yet it ended in mass erasure.
+
+**Lore sources:** UESP Lore:Tonal Architecture; UESP Lore:Numidium; ESO: Kagrenac's
+Motivations; TES III: Morrowind (Kagrenac's Tools, Red Mountain)
+
+---
+
+### 25.2 Path Identity
+
+**Key:** `ww_tonal_architecture`
+**Flag:** `ww_tonal_architecture_active`
+**Apex Trait:** `tonal_transcendent`
+**Path type:** Path G (standalone — neither Mantling nor CHIM; materialist transcendence)
+**Namespace:** `tonal_arch`
+**Event file:** `mod/events/tonal_arch_events.txt`
+
+---
+
+### 25.3 Requirements
+
+```
+can_begin_path_tonal_architecture trigger:
+    has_trait = tonal_architect
+    learning >= 18
+    stewardship >= 14
+    NOT = { has_character_flag = ww_tonal_architecture_completed }
+    NOT = { has_character_flag = walking_ways_path_active }
+```
+
+The `tonal_architect` trait gate represents years of prior Dwemer ruin study
+(see `dwemer_ruins_traits.txt` tree). This path cannot begin without genuine mastery
+of Dwemer tonal theory, enforced through the trait system rather than a stat check alone.
+
+---
+
+### 25.4 Milestones (6 total, 2 per rank)
+
+| # | Flag Key | Event | Lore Action |
+|---|---|---|---|
+| 1 | `ww_tonal_milestone_principles` | `tonal_arch.rank1` | Mastered tonal resonance theory — the foundation |
+| 2 | `ww_tonal_milestone_construct` | `tonal_arch.milestone_construct` | Built and tuned a functioning animunculus |
+| 3 | `ww_tonal_milestone_frequency` | `tonal_arch.milestone_frequency` | Identified the Tower's tonal frequency |
+| 4 | `ww_tonal_milestone_resonator` | `tonal_arch.milestone_resonator` | Affected another soul through tonal means (controlled test) |
+| 5 | `ww_tonal_milestone_gestalt` | `tonal_arch.milestone_gestalt` | Achieved a 12-second partial collective merge with willing subjects |
+| 6 | `ww_tonal_milestone_nullify` | `tonal_arch.milestone_nullify` | Nullified own tonal signature and reconstructed it — partial rehearsal |
+
+The `ww_tonal_milestone_gestalt` flag is also used by the §24 Akulakhan system
+(see §24.7.4 Option A) as a milestone advance reward, providing a natural
+crossover point between the two systems.
+
+---
+
+### 25.5 Rank Events
+
+| Rank | Event ID | Trigger |
+|---|---|---|
+| Intro | `tonal_arch.intro` | Path begins (`is_on_path_tonal_architecture = yes`) |
+| Rank 1 | `tonal_arch.rank1` | 2 milestones — "Seeking: tonal resonance theory mastered" |
+| Rank 2 | `tonal_arch.rank2` | 4 milestones — "Striving: animunculus and frequency work" |
+| Rank 3 | `tonal_arch.rank3` | 6 milestones — "Threshold: the gestalt attempt" |
+| Apotheosis | `tonal_arch.apotheosis` | Rank 4 — 50% death, 50% `tonal_transcendent` |
+| Failure | `tonal_arch.failure` | Failure branch at apotheosis — erasure death |
+
+---
+
+### 25.6 Apotheosis — The 50% Death
+
+At apotheosis (`tonal_arch.apotheosis`), the character attempts to **nullify their own
+tonal song and rewrite it from the ground up**. This is the full Dwemer attempt.
+
+- **50% chance — success:** `complete_path_tonal_architecture` fires; character gains
+  `tonal_transcendent` trait (learning +8, stewardship +6, monthly prestige +15,
+  stress_gain_mult −30%). The reconstructed self is genuinely different.
+- **50% chance — failure:** `tonal_arch.failure` fires; character is killed via
+  `death_reason = death_chim_erasure`. As the Dwemer: gone without a trace.
+
+The 50/50 death chance is the highest of any Walking Ways path and is intentional.
+The Dwemer all tried this. They are gone.
+
+---
+
+### 25.7 Apex Trait — `tonal_transcendent`
+
+```
+tonal_transcendent = {
+    category = fame
+    learning    = 8
+    stewardship = 6
+    monthly_prestige = 15
+    stress_gain_mult = -0.30   # the reconstructed self does not bruise easily
+    flag = tonal_transcendent
+}
+```
+
+The reconstructed self experiences stress differently — not because it is stronger, but
+because the individual song has been rewritten with that awareness built in. The learning
+and stewardship reflect that this character now *understands* the architecture of reality
+in a way no other path achieves.
+
+---
+
+### 25.8 Path G vs. Path F — How They Combine
+
+Path F (§19, Kagrenac's Ambition) and Path G are **complementary approaches to the same
+Dwemer question**, and they interact at a specific convergence point.
+
+#### The Core Philosophical Difference
+
+| | **Path F — Kagrenac's Ambition** | **Path G — Tonal Architecture** |
+|---|---|---|
+| **Philosophy** | Borrow the Heart of Lorkhan's existing divine power through Kagrenac's Tools | Reproduce divine power through tonal engineering from first principles |
+| **Root question** | Can mortals *access* the divine? | Can mortals *manufacture* the divine through craft? |
+| **Heart relationship** | Dependent — Route A degrades when Heart is severed (§19.10) | Studies Heart as proof of concept, not power source |
+| **Kagrenac's role** | His Tools (Wraithguard/Keening/Sunder) mediate Heart contact | His tonal theory *is* the goal |
+| **Timeline gate** | Requires `dagoth_ur_awakened = yes` | No divine object dependency |
+| **Apotheosis risk** | Route A: slow degradation; Route B: death when Heart departs | Always 50% instant death |
+
+#### The Convergence Point — Akulakhan
+
+Akulakhan is the physical intersection of both paths because it uses the Heart of Lorkhan
+(Path F's domain) animated by Kagrenac's tonal engineering methodology (Path G's domain).
+This is documented in §24 and enforced in `akullakhan.032`:
+
+- A **Path G walker** (`is_on_path_tonal_architecture = yes`) who studies Akulakhan receives
+  `ww_tonal_milestone_gestalt` — a full milestone advance — because the construct demonstrates
+  Kagrenac's methodology at scale. Option A of `akullakhan.032` also grants
+  `ww_tonal_milestone_nullify` if learning ≥ 22.
+- A **Path F Route A** apex (`heart_scholar_ascendant` trait) who studies Akulakhan gets
+  Option C of `akullakhan.032`: self-recognition that their own Heart-draw relationship is
+  Akulakhan reproduced at mortal scale — learning +4, stress +40.
+- A character eligible for Path G but not yet on it gets Option B of `akullakhan.032`:
+  `begin_path_tonal_architecture` is called directly, with `principles` and `construct`
+  milestone flags pre-loaded. Akulakhan itself can *start* Path G.
+
+#### The Philosophical Arc (If You Walk Both)
+
+Path F is an *empirical shortcut* that reveals what Path G is trying to reach the long way.
+
+> "If you have already borrowed divinity through the Heart and survived, you have touched
+> the boundary between mortal and divine through direct contact. The Dwemer wanted to
+> *manufacture* that boundary-crossing. You have already crossed it. Path G asks: can you
+> reproduce what you already experienced — not by borrowing it, but by rewriting yourself
+> into it?"
+
+A character who survives Path F (via CHIM escape from starvation — §19.10b — or Route A
+without full dissolution) is mechanically ideal to begin Path G: their reservoir experience
+with the Heart gave them empirical data that 10,000 years of tonal research could not.
+
+**Note on mutual exclusion:** A character cannot be on Path F *and* Path G simultaneously
+(the `walking_ways_path_active` gate prevents it), but they may complete one and begin the
+other sequentially. The design intends this: Path F teaches you the material truth of divine
+power; Path G asks you to engineer it yourself.
+
+---
+
+### 25.9 Integration Status
+
+| Component | Status |
+|---|---|
+| `mod/events/tonal_arch_events.txt` | ✅ Implemented |
+| `tonal_transcendent` apex trait in `walking_ways_traits.txt` | ✅ Implemented |
+| `tonal_architect` prerequisite trait in `dwemer_ruins_traits.txt` | ✅ Implemented |
+| `ww_path_tonal_architecture_active` modifier | ✅ Implemented |
+| Scripted triggers: `is_on_path_tonal_architecture`, `can_begin_path_tonal_architecture` | ✅ Implemented |
+| Scripted effects: `complete_path_tonal_architecture`, `abandon_path_tonal_architecture` | ✅ Implemented |
+| §24 Akulakhan crossover (`akullakhan.032` Options A/B/C) | ✅ Implemented |
+| `mod/localization/english/tonal_arch_l_english.yml` | ✅ Implemented |
+| §25 design documentation | ✅ This section |
+
