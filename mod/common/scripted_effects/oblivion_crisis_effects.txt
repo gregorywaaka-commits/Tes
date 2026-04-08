@@ -1,0 +1,159 @@
+# =============================================================
+#  Oblivion Crisis — Scripted Effects
+#  File: mod/common/scripted_effects/oblivion_crisis_effects.txt
+#
+#  CALL GRAPH:
+#  ────────────────────────────────────────────────────────────
+#  martin_septim_spawn_or_random_effect
+#      ← oblivion_crisis.assassination_heirs (NPC emperor branch only)
+#
+#  emperor_prisoner_save_throw
+#      ← oblivion_crisis.emperor_save_attempt
+#
+#  SCOPE REQUIREMENTS:
+#  ───────────────────
+#  martin_septim_spawn_or_random_effect : root = dying NPC emperor
+#  emperor_prisoner_save_throw          : root = player emperor;
+#                                         scope:candidate must be saved
+# =============================================================
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • emperor_prisoner_save_throw
+#    • martin_septim_spawn_or_random_effect
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/modifiers/lore_races_modifiers.txt
+#      → sewer_wounds
+#    common/traits/lore_races_traits.txt
+#      → dragonborn_blood, devoted_akatosh_priest
+# =============================================================
+
+# ---------------------------------------------------------------
+#  MARTIN SEPTIM SPAWN OR RANDOM BASTARD
+#
+#  Determines whether to spawn canonical Martin Septim or a
+#  random bastard of the dying emperor's own dynasty.
+#
+#  MUST NOT be called when root = player emperor (§31.9).
+#  That guard is enforced in oblivion_crisis.assassination_heirs.
+#
+#  Canonical Martin fires ONLY when all four hold:
+#    1. root dynasty = septim_dynasty
+#    2. root NOT player-controlled (player is not emperor)
+#    3. root NOT talos_path_emperor
+#    4. current_year >= 3389  (3E 389 — Martin's birth year gate)
+#
+#  All other NPC cases → random bastard from root.dynasty.
+# ---------------------------------------------------------------
+martin_septim_spawn_or_random_effect = {
+    # Safety guard: player-emperor path is handled by
+    # oblivion_crisis.player_heir_succession and
+    # oblivion_crisis.delegate_paradise_retrieval (§31.9).
+    if = {
+        limit = { is_player = yes }
+        # No-op intentionally.
+    }
+    else_if = {
+        # Canonical Martin Septim — all four conditions must hold.
+        limit = {
+            dynasty = septim_dynasty
+            NOT = { is_player = yes }
+            NOT = { has_character_flag = talos_path_emperor }
+            current_year >= 3389
+        }
+        create_character = {
+            name = "Martin"
+            dynasty = septim_dynasty
+            trait = dragonborn_blood
+            trait = devoted_akatosh_priest
+            add_character_flag = martin_septim_canonical
+            add_character_flag = martin_avatar_eligible
+        }
+    }
+    else = {
+        # Random bastard of the NPC emperor's own dynasty.
+        # dynasty = root.dynasty means the heir belongs to whatever
+        # dynasty holds the throne, never forcibly Septim.
+        create_character = {
+            dynasty = root.dynasty
+            random_traits_count = 2
+            if = {
+                limit = { root = { has_dragonborn_claim = yes } }
+                trait = dragonborn_blood
+            }
+            else = {
+                add_character_flag = amulet_worthy
+            }
+            add_character_flag = martin_role_placeholder
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+#  EMPEROR PRISONER SAVE THROW
+#
+#  Called from oblivion_crisis.emperor_save_attempt when the
+#  player emperor tries to free a HoK candidate prisoner.
+#
+#  Scope: root = player emperor
+#  Requires: scope:candidate = the HoK prisoner being freed
+#
+#  Three outcomes:
+#    High competence  → clean rescue, no injury
+#    Medium competence → rescue at cost; emperor wounded
+#    Low competence   → rescue fails; prisoner dies;
+#                        small chance emperor also dies
+# ---------------------------------------------------------------
+emperor_prisoner_save_throw = {
+    if = {
+        limit = {
+            OR = {
+                martial >= 14
+                intrigue >= 14
+                AND = { martial >= 10  intrigue >= 10 }
+            }
+        }
+        # Clean rescue.
+        scope:candidate = {
+            add_character_flag = hok_candidate_rescued_by_emperor
+            add_character_flag = hok_candidate_valid
+        }
+        add_prestige = 100
+    }
+    else_if = {
+        limit = { OR = { martial >= 8  intrigue >= 8 } }
+        # Partial rescue — emperor wounded.
+        scope:candidate = {
+            add_character_flag = hok_candidate_rescued_by_emperor
+            add_character_flag = hok_candidate_valid
+        }
+        add_character_modifier = {
+            modifier = sewer_wounds
+            days = 90
+        }
+    }
+    else = {
+        # Failed rescue — prisoner dies; emperor at risk.
+        scope:candidate = {
+            death = { death_reason = death_murder }
+        }
+        # 20 % chance: serious wound + stress.
+        random = {
+            chance = 20
+            add_character_modifier = {
+                modifier = sewer_wounds
+                days = 180
+            }
+            add_stress = 30
+        }
+        # 5 % chance: emperor dies in the attempt.
+        random = {
+            chance = 5
+            death = { death_reason = death_murder }
+        }
+    }
+}

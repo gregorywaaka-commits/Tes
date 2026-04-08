@@ -1,0 +1,66 @@
+l_english:
+
+ # =====================================================================
+ #  OBLIVION CRISIS — Player Emperor Heir System (§31.9)
+ # =====================================================================
+
+ # ---- Decision: hide_imperial_heirs_at_priory ----
+
+ hide_imperial_heirs_at_priory_desc: "Weynon Priory is a fortified chapel, discreet and defensible, in the hills east of Chorrol. The abbot is trustworthy — or at least, trustworthy enough. The reports from the Penitus Oculatus are not reassuring. There are people asking questions about the imperial succession that have no innocent explanation. If something is coming for the bloodline, the heirs need to not be findable. The priory will not appear on any official itinerary. The court will notice the children are gone. They will draw conclusions. Some of those conclusions will involve words like 'weakness' and 'fear'. That is acceptable."
+
+ hide_imperial_heirs_at_priory: "Send the Heirs to Weynon Priory"
+
+ # ---- Decision: delegate_paradise_retrieval ----
+
+ delegate_paradise_retrieval_desc: "The Amulet is gone. Whoever took it went somewhere the palace guard cannot follow. The Hero of Kvatch is still alive. The choice is not whether this gets resolved — it is whether the Emperor resolves it personally."
+
+ delegate_paradise_retrieval: "Delegate the Paradise Retrieval"
+
+ # ---- oblivion_crisis.010 — Heirs Hidden Confirmation ----
+
+ oblivion_crisis.010.t: "Word from Weynon"
+ oblivion_crisis.010.desc: "The abbot confirms it. The children arrived three days after departing the capital; the route was clean; no one followed. They are settled. There are tutors and guards dressed as monks, and the nearest village has no idea who the well-dressed children in the garden belong to. The priory's records show two servants' children from a Colovian estate. For now, that is all they are. Whatever happens next — whether the threats are real, whether this was necessary — the heirs are not where anyone looking for them will look."
+ oblivion_crisis.010.a: "Good. Whatever comes, they are safe."
+ oblivion_crisis.010.b: "I hope Weynon Priory is enough to hide them."
+
+ # ---- oblivion_crisis.assassination_heirs ----
+
+ oblivion_crisis.assassination_heirs.t: "The Night of Assassins"
+ oblivion_crisis.assassination_heirs.desc: "The red-robed figures came in the dark hours before dawn, through windows that should not have opened, past guards who were found dead at their posts. They knew where to look. They knew every chamber, every corridor, every face. The imperial heirs did not have time to cry out. By the time the palace guard raised the alarm, the Mythic Dawn had already done what they came to do and were gone. The succession is broken. The Dragonfires are unlit. The gates will open."
+
+ # ---- oblivion_crisis.player_heir_succession ----
+
+ oblivion_crisis.player_heir_succession.t: "A Scion in Hiding"
+ oblivion_crisis.player_heir_succession.desc: "The abbot of Weynon Priory arrives at the door just before dawn with a sealed letter and very pale face. The Emperor is dead. The palace is in chaos. The Mythic Dawn has done what was always their real purpose. But there is a child in the priory who does not know yet that they are now the last scion of the imperial bloodline, and that the fate of the Dragonfires — and perhaps all of Tamriel — is about to be placed in their hands. That child is you."
+ oblivion_crisis.player_heir_succession.a: "My father is dead. I am all that remains."
+
+ # ---- oblivion_crisis.emperor_prisoner_choice ----
+
+ oblivion_crisis.emperor_prisoner_choice.t: "A Voice in the Dark"
+ oblivion_crisis.emperor_prisoner_choice.desc: "[scope:candidate.GetFirstName] is in the cell across the passage — alive, unwounded, hands still bound. They were arrested two days ago on charges that were obviously fabricated. You pass their door at a run with Mythic Dawn agents twenty seconds behind you. This is the moment. There is no good version of this decision, only a fast one."
+ oblivion_crisis.emperor_prisoner_choice.a: "Free them. Get out. Find Jauffre."
+ oblivion_crisis.emperor_prisoner_choice.b: "No time. They take their chances."
+
+ # ---- oblivion_crisis.emperor_save_attempt ----
+
+ oblivion_crisis.emperor_save_attempt.t: "Through the Bars"
+ oblivion_crisis.emperor_save_attempt.desc: "The lock is not complicated. The problem is the two red-robed figures coming around the corner at the end of the passage."
+
+ # ---- oblivion_crisis.prisoner_independent_escape ----
+
+ oblivion_crisis.prisoner_independent_escape.t: "Left Behind"
+ oblivion_crisis.prisoner_independent_escape.desc: "The chaos of the assassination night creates something that might almost be called an opportunity. The guards are distracted. Some of them are dead. The passage doors are not all locked. This is the only kind of luck available."
+
+ # ---- oblivion_crisis.delegate_paradise_retrieval ----
+
+ oblivion_crisis.delegate_paradise_retrieval.t: "The Emperor's Choice"
+ oblivion_crisis.delegate_paradise_retrieval.desc: "The Amulet of Kings is gone. Whoever took it fled into a portal that has since closed. The Imperial City's gates are sealed; the Oblivion Gates are opening in every county with reports still coming in. The Hero of Kvatch has survived the night and is waiting for orders. The heir is still safe at Weynon Priory, waiting for news that is going to be very bad. The decision left for the Emperor is not whether the world is in crisis. It is who carries the weight of resolving it."
+ oblivion_crisis.delegate_paradise_retrieval.a: "I send the Champion. Let them carry the burden."
+ oblivion_crisis.delegate_paradise_retrieval.b: "I am the Emperor. I will enter Paradise myself."
+ oblivion_crisis.delegate_paradise_retrieval.c: "My heir is ready. The burden is theirs to carry."
+
+ # ---- oblivion_crisis.hok_paradise_entry ----
+
+ oblivion_crisis.hok_paradise_entry.t: "Gaiar Alata"
+ oblivion_crisis.hok_paradise_entry.desc: "The portal opens onto something that is the wrong colour. Not the wrong shade — the wrong category. The sky is not sky. The ground under foot feels like ground but the soul knows it is not. Mankar Camoran built this place from will and the Mysterium Xarxes — a realm carved out of Oblivion by a mortal with enough conviction to make Oblivion believe him. He is here. The Amulet is here. The way forward is through whatever he has made of this place, and then through whatever he has made of himself."
+ oblivion_crisis.hok_paradise_entry.a: "I step through — into a world that should not exist."
