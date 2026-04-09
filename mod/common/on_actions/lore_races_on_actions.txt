@@ -192,6 +192,7 @@ on_yearly_pulse = {
         5   = dagoth_ur.002          # Ghost Fence Strains — Dunmer ruler flavor post-awakening (dagoth_ur_events.txt)
         4   = dagoth_ur.010          # A Sixth House sleeper is discovered at court (dagoth_ur_events.txt)
         3   = dagoth_ur.030          # Azura's call: Nerevarine Prophecy for azura_champion rulers — race-agnostic per §21 (dagoth_ur_events.txt)
+        2   = akullakhan.000         # Akulakhan discovery — Sixth House/Numidium scholars learn of the god-construct (akullakhan_events.txt) [§24]
         4   = tribunal.000           # Vision of Vivec — warrior-poet aspect for martial Dunmer rulers (tribunal_events.txt)
         3   = tribunal.010           # Almalexia's Grace — mother-protector aspect for diplomatic Dunmer rulers (tribunal_events.txt)
         3   = tribunal.020           # Sotha Sil's Revelation — clockwork philosophy for learned rulers (tribunal_events.txt)

@@ -35,6 +35,7 @@
 #  DEFINES — identifiers this file exports to the mod:
 #    • elf_hate
 #    • pelinal_rage
+#    • shezarrine_nerevar
 #    • shezarrine_vessel
 #
 #  REFERENCED BY — other files that import this file's definitions:
@@ -42,6 +43,8 @@
 #      → shezarrine_vessel
 #    events/shezarrine_events.txt
 #      → elf_hate, pelinal_rage, shezarrine_vessel
+#    events/kagrenac_events.txt
+#      → shezarrine_nerevar
 # =============================================================
 
 shezarrine_vessel = {
@@ -55,6 +58,37 @@ shezarrine_vessel = {
     stress_gain_mult = 0.15   # divine berserker rage builds internal pressure
 
     flag = shezarrine_vessel
+}
+
+# ---------------------------------------------------------------
+#  SHEZARRINE NEREVAR  (Star Made Knight)
+#  The Nerevar-specific expression of the Shezarrine principle.
+#  When the confirmed Nerevarine strikes the Heart of Lorkhan
+#  they are recognised not only as Azura's champion but as a
+#  living echo of the dead god's pattern — Nerevar was himself
+#  a Shezarrine, Shor's will expressed through Indoril blood.
+#  The Star Made Knight carries both marks simultaneously:
+#  Azura's prophecy fulfilled, and Lorkhan's fire relit.
+#  Gained via kagrenac.030 option A (strike the Heart).
+# ---------------------------------------------------------------
+shezarrine_nerevar = {
+    category = fame
+
+    martial  = 7
+    prowess  = 8
+    learning = 2              # Nerevar's wisdom as well as Pelinal's fury
+
+    monthly_prestige = 4      # Both the prophecy's fame and the Shezarrine's legend
+
+    monthly_piety_gain_mult = 0.15    # Azura's continued blessing
+    stress_gain_mult = 0.10           # Lighter than the generic vessel — the prophecy's completion brings peace
+
+    command_modifier = {
+        advantage = 3
+        damage    = 0.10
+    }
+
+    flag = shezarrine_nerevar
 }
 
 # ---------------------------------------------------------------

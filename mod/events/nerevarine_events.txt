@@ -805,8 +805,7 @@ nerevarine.300 = {
 # and gone — it manifests in generation after generation, and those
 # earlier souls remain conscious echoes in the Daedric Prince's realm.
 # A claimant who also bears shezarrine_vessel gains an extra option,
-# recognising the dual nature of their soul (Nerevar + Shor both
-# stirring at once).
+# recognising the Lorkhan-resonance in their soul.
 # Fired by: claim_nerevarine_prophecy effect (all claimants)
 # ---------------------------------------------------------------
 nerevarine.310 = {
@@ -827,7 +826,7 @@ nerevarine.310 = {
 
     # Extra option for a Shezarrine who is also the Nerevarine
     option = {
-        name = nerevarine.310.b   # "Among the past souls I see something vast — Shor stirs in me too."
+        name = nerevarine.310.b   # "Among the past souls I see something vast — Lorkhan's echo resonates in me too."
         trigger = {
             has_trait = shezarrine_vessel
         }
@@ -839,30 +838,39 @@ nerevarine.310 = {
 }
 
 # ---------------------------------------------------------------
-# nerevarine.320  Dual-Soul Convergence — Nerevar and Shor, One Flesh
+# nerevarine.320  Lorkhan Resonance — Nerevar and the Dead God's Echo
 # A character who is both the Nerevarine (nerevarine_marked) and a
-# Shezarrine (shezarrine_vessel) undergoes a profound metaphysical
-# convergence.  Both souls are reincarnations of dead gods:
-# Nerevar was the greatest champion Resdayn ever knew, and his soul
-# is beloved of Azura; Shor is the dead god in the ground, the heart
-# torn from the world.  When these two lineages meet in a single body
-# the world notices.
+# Shezarrine (shezarrine_vessel) recognises a profound pattern: the
+# Nerevar soul and the Shor echo in their body are not two strangers
+# who happened to share a vessel.  They are harmonics of the same
+# dispersed essence — Lorkhan's dead god signal, propagating through
+# the world from different directions at once.
 #
-# Lore basis: Wulf (an avatar of Talos, himself a Shezarrine) appears
-# to the Nerevarine in Morrowind, proving two Shezarrine-touched
-# beings can coexist on Nirn simultaneously.  Talos-as-Wulf is a
-# manifest avatar, not the full soul; but it demonstrates that the
-# Shezarrine lineage is not a singular monopoly.  The Dragonborn of
-# Skyrim shows the further corollary: while a Shezarrine lives on
-# Nirn, Shor's throne in Aetherius stands empty.
-# [SOURCE: TES III:Morrowind — Wulf NPC; UESP Lore:Shezarrine;
-#  UESP Lore:Shor; TES V:Skyrim — Sovngarde empty throne]
+# Lore basis:
+# - The Nerevar-as-Shezarrine connection is attested in the 36 Lessons
+#   of Vivec (Sermon 1), which calls Nerevar "Pelin-El" — "The Star-Made
+#   Knight" — a title otherwise applied to Pelinal Whitestrake, the
+#   confirmed Shezarrine.  This is not coincidence but identity: Nerevar
+#   carries Lorkhan's resonance just as Pelinal and Tiber Septim do.
+# - UESP canon does not list Nerevar as a *confirmed* Shezarrine, which
+#   is why the mod distinguishes the two traits.  The convergence event
+#   models the rare and cosmologically significant case where a single
+#   vessel holds the Nerevar soul AND manifests the Lorkhan-resonance
+#   independently — two aspects of the same dead god's pattern converging
+#   from different mythic directions.
+# - This is why the event is kept rather than collapsed: the character is
+#   NOT simply "a Shezarrine who is also the Nerevarine".  They are the
+#   first living demonstration that the Nerevar soul and the Shor echo
+#   are harmonics, not rivals.
+# [SOURCE: 36 Lessons of Vivec, Sermon 1 — "Pelin-El";
+#  UESP Lore:Shezarrine; UESP Lore:Nerevar; TES III:Morrowind — Wulf NPC;
+#  TES V:Skyrim — Sovngarde, Shor's throne]
 #
 # Mechanical result: sets nerevarine_shezarrine_convergence character flag
-# (the dual-soul nature is acknowledged) and applies dual_soul_convergence_modifier.
+# (the Lorkhan-resonance is acknowledged) and applies dual_soul_convergence_modifier.
 # NOTE: Shor's throne empty flag (shors_throne_nerevarine) is NOT set here.
 # The throne only becomes empty when the Shezarrine physically enters Sovngarde
-# (shezarrine.sovngarde_entry), NOT merely because the convergence exists on Nirn.
+# (shezarrine.sovngarde_entry), NOT merely because the resonance exists on Nirn.
 # Fired by: nerevarine.310 option B
 # ---------------------------------------------------------------
 nerevarine.320 = {
@@ -872,10 +880,10 @@ nerevarine.320 = {
     theme = faith
 
     option = {
-        name = nerevarine.320.a   # "Two souls, one purpose — I carry the heart and the war-cry both."
+        name = nerevarine.320.a   # "Not two souls fighting for one body — one pattern, two names.  I understand."
         set_character_flag = nerevarine_shezarrine_convergence
-        # NOTE: Shor's throne is NOT made empty simply because this convergence
-        # happens on Nirn.  Shor's throne only stands empty when a Shezarrine
+        # NOTE: Shor's throne is NOT made empty simply because this resonance
+        # is acknowledged on Nirn.  Shor's throne only stands empty when a Shezarrine
         # physically enters Sovngarde (shezarrine.sovngarde_entry event).
         # [SOURCE: TES V:Skyrim — Dragonborn enters Sovngarde; UESP Lore:Shor]
         add_piety    = 500
@@ -889,7 +897,7 @@ nerevarine.320 = {
     }
 
     option = {
-        name = nerevarine.320.b   # "The weight of two dead gods is more than I can bear.  I choose Nerevar alone."
+        name = nerevarine.320.b   # "Whatever is resonating in me — I will not let it drown out Nerevar.  Not now."
         add_piety    = 100
         add_prestige = 200
         add_stress   = 10
@@ -898,19 +906,19 @@ nerevarine.320 = {
         set_character_flag = nerevarine_shezarrine_declined
         # Character remains shezarrine_vessel and nerevarine_marked
         # but does not trigger the convergence — lore-valid: they
-        # have the dual soul but suppress Shor's aspect deliberately
+        # have the dual resonance but suppress Shor's aspect deliberately
         custom_tooltip = nerevarine_only_path_tt
     }
 }
 
 # ---------------------------------------------------------------
-# nerevarine.321  Hidden Dual-Soul Check (yearly pulse)
+# nerevarine.321  Hidden Lorkhan-Resonance Check (yearly pulse)
 # Fires for any character who is BOTH nerevarine_marked AND
-# shezarrine_vessel but has NOT yet undergone the convergence
-# event.  This catches characters who acquired shezarrine_vessel
-# AFTER claiming the prophecy (e.g., through a Shezarrine event
-# chain that fires later in their reign) and ensures they still
-# get the chance to acknowledge the dual-soul nature.
+# shezarrine_vessel but has NOT yet undergone the convergence event.
+# This catches characters who acquired shezarrine_vessel AFTER claiming
+# the prophecy (e.g., through a Shezarrine event chain that fires later
+# in their reign) and ensures they still get the chance to acknowledge
+# the resonance.
 # Registered in: on_yearly_pulse random_events weight 2
 # ---------------------------------------------------------------
 nerevarine.321 = {

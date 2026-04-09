@@ -20,9 +20,13 @@
 7. [The Five Paths — Detailed Design](#7-the-five-paths--detailed-design)
    - [Path A: CHIM Expanded](#path-a-chim-expanded)
    - [Path B: Mantling](#path-b-mantling--the-core-mandela-analog)
+     - B-Jyggalag: Jyggalag's Champion (§20.2)
+     - B-Sheogorath-Echo: Sheogorath's Echo (§20.3)
    - [Path C: The Psijic Endeavour](#path-c-the-psijic-endeavour)
    - [Path D: The Enantiomorph](#path-d-the-enantiomorph-dark-path)
    - [Path E: The Amaranth](#path-e-the-amaranth-hidden--endgame)
+   - [Path F: Kagrenac's Ambition (§19)](#19-path-f--kagrenacs-ambition-the-borrowed-divinity)
+   - [Path G: Tonal Architecture (§25)](#25-path-g--tonal-architecture-the-wrong-walking-way)
 8. [Stage 4 — Apotheosis Events](#8-stage-4--apotheosis-events)
 9. [World Notification System](#9-world-notification-system)
 10. [Integration with Existing Mod Systems](#10-integration-with-existing-mod-systems)
@@ -792,12 +796,15 @@ existing events), not by yearly random check.
 | `mantle_boethiah` | fame | Boethiah mantle apex (Daedric) | Path B |
 | `mantle_mephala` | fame | Mephala mantle apex (Daedric) | Path B |
 | `mantle_hircine` | fame | Hircine mantle apex (Daedric) | Path B |
+| `jyggalag_ascendant` | fame | Jyggalag's Champion apex (Order embodied) | Path B (B-Jyggalag) |
+| `madness_prophet` | fame | Sheogorath's Echo apex (madness as insight) | Path B (B-Sheogorath-Echo) |
 | `psijic_adept_supreme` | fame | Psijic Endeavour apex | Path C |
 | `enantiomorph_ascendant` | fame | Enantiomorph apex | Path D |
 | `enantiomorph_consumed` | lifestyle | Enantiomorph failure state | Path D |
 | `amaranth_achieved` | fame (hidden) | Amaranth endgame | Path E |
+| `tonal_transcendent` | fame | Tonal Architecture apex (Dwemer transcendence) | Path G |
 
-**Total new traits:** 11
+**Total new traits:** 14
 
 ---
 
@@ -3315,12 +3322,21 @@ theft rather than the specific context of Dagoth Ur's cult.*
 
 ---
 
-## 20. Three New Paths — Jyggalag's Champion, Sheogorath's Echo, and the Necromancer's Third Way
+## 20. Path B Sub-Types (Jyggalag, Sheogorath's Echo) and Path L — Necromancer's Third Way
 
 > **Added:** Session 2026-04-06 — Three paths that fill gaps in the current taxonomy:
-> two Daedric-adjacent paths (Jyggalag order and Sheogorath influence-without-succession)
-> and a third branch for the nascent Necromancer tree that rejects both Mannimarco and
-> the Ideal Masters.
+> two Daedric-adjacent paths reclassified as **Path B sub-types** (Jyggalag champion-role
+> and Sheogorath influence-without-succession) and a third branch for the nascent Necromancer
+> tree that rejects both Mannimarco and the Ideal Masters.
+>
+> **Reclassification note (2026-04-08):** The Jyggalag and Sheogorath paths were originally
+> designated "Path K" and "Path K-2" in this section's headings, but their **Path type**
+> fields already correctly said Path B (Mantling — Daedric sub-category). The section headers
+> have been updated to match. Jyggalag and Sheogorath belong in Path B because:
+> - Both are structurally mantling-class paths (same rank/milestone engine as B-Talos, B-Azura, etc.)
+> - The lore basis for both is a mantling relationship with a Daedric Prince's domain
+>   (Jyggalag = champion-role embodying Order; Sheogorath = echo/influence without succession)
+> - Internal scripted keys (`ww_mantling_jyggalag`, `ww_sheogorath_echo`) remain unchanged
 
 ---
 
@@ -3378,7 +3394,7 @@ relationship with death that has no precedent.
 
 ---
 
-### 20.2 Path K — Jyggalag's Champion ("The Instrument of Order")
+### 20.2 Path B — Jyggalag's Champion ("The Instrument of Order") [B-Jyggalag]
 
 **Key:** `ww_mantling_jyggalag`
 **Flag:** `ww_mantling_jyggalag_active`
@@ -3473,7 +3489,7 @@ jyggalag_ascendant = {
 
 ---
 
-### 20.3 Path K-2 — Sheogorath's Echo ("The Prophet of Madness")
+### 20.3 Path B — Sheogorath's Echo ("The Prophet of Madness") [B-Sheogorath-Echo]
 
 **Key:** `ww_sheogorath_echo`
 **Flag:** `ww_sheogorath_echo_active`
@@ -3811,29 +3827,52 @@ lore-accurate race-agnostic model.
 
 ---
 
-### 21.3 Shezarrine-Nerevarine Convergence — Two Dead Gods, One Body
+### 21.3 Lorkhan Resonance — Nerevar, Shor, and the Dead God's Pattern
 
-**Canonical evidence:**
-- The Shezarrine is a recurring vessel of Shor (Lorkhan's mortal aspect): Pelinal
-  Whitestrake, Talos/Tiber Septim, the Dragonborn of Skyrim.
-- Wulf — the avatar of Talos who appears to the Nerevarine in TES III — is himself a
-  Shezarrine-aspect (Talos IS a Shezarrine; see UESP Lore:Shezarrine).  Wulf visits the
-  Nerevarine in person.  At the moment of that meeting, two Shezarrine-touched beings
-  coexist on Nirn simultaneously: the Nerevarine (touched by Shor's essence through the
-  Lorkhan-path connection) and Wulf (an avatar of a Shezarrine).
-- In TES V: Skyrim, Shor's throne in Sovngarde is conspicuously *empty* — because the
-  Dragonborn (the reincarnation of Shor and a Shezarrine) is alive on Nirn.  The throne
-  can only be occupied while no piece of Shor's soul walks the world.
-- This proves: (a) two Shezarrine-aspects can coexist on Nirn, and (b) while a Shezarrine
-  lives on Nirn, Shor's throne in Aetherius/Sovngarde is vacant.
-- [SOURCE: TES III:Morrowind — Wulf NPC; UESP Lore:Shezarrine; UESP Lore:Shor;
-  TES V:Skyrim — Sovngarde, Shor's throne; UESP Lore:Dragonborn]
+**The Nerevar-as-Shezarrine question:**
+
+The claim that "Nerevar IS a Shezarrine — therefore the convergence event is redundant" rests on
+MK supplementary texts and the 36 Lessons of Vivec (Sermon 1), which names Nerevar **"Pelin-El"**
+— "the Star-Made Knight" — a title otherwise used for Pelinal Whitestrake, the confirmed Shezarrine
+(UESP Lore:Shezarrine).  This is not coincidence; it encodes identity.  Nerevar carried the same
+Lorkhan-resonance that every Shezarrine carries.
+
+However, UESP's canonical Shezarrine article does **not** list Nerevar as a confirmed Shezarrine.
+The connection is scholarly inference from the Sermons, not established hard canon.
+
+**Why the convergence is kept (not removed):**
+
+The mechanical distinction is valid precisely because the two traits arrive through different
+mythic mechanisms:
+- `nerevarine_marked` — Dunmeri/Daedric mechanism (Azura's prophecy, Nerevar's reincarnated soul)
+- `shezarrine_vessel` — Nordic/Aedric mechanism (Shor's wandering echo, the "dead god in the ground")
+
+A character who holds both is **not** simply "a Shezarrine who is also the Nerevarine."  They are
+the first living demonstration that the Nerevar soul and the Shor echo are **harmonics of the same
+absent god's dispersed essence**, converging from different directions simultaneously.
+
+**Canonical evidence for the resonance framing:**
+- 36 Lessons of Vivec, Sermon 1: Nerevar called "Pelin-El" (the Star-Made Knight), the same title
+  as Pelinal Whitestrake (Shezarrine).  Pattern identity across mythic vessels.
+  [SOURCE: The 36 Lessons of Vivec, Sermon 1; UESP Lore:Shezarrine]
+- Wulf (avatar of Talos, himself a confirmed Shezarrine) appears to the Nerevarine in TES III.
+  Two Lorkhan-resonant beings coexist on Nirn simultaneously — the resonance is not exclusive.
+  [SOURCE: TES III:Morrowind — Wulf NPC; UESP Lore:Talos/Tiber Septim]
+- The Dragonborn (UESP: "a Shezarrine") empties Shor's throne in Sovngarde only upon physically
+  entering — while alive on Nirn the throne does not stand empty.
+  [SOURCE: TES V:Skyrim — Sovngarde; UESP Lore:Shor; UESP Lore:Dragonborn/Shezarrine]
+
+**Framing update (§21 revision):**
+The previous implementation framed this as *"two separate souls meeting in one body"* — inaccurate
+even before accepting the MK reading.  The correct framing is: the character recognises that the
+Nerevar soul and the Shor echo are drawn to the same pattern — not competing souls, but
+**harmonics of the same dead god's dispersed essence**, arriving from different mythic angles.
 
 **Mechanical implementation:**
 
 #### 21.3.1 Trigger Conditions
 - A character with BOTH `nerevarine_marked` AND `shezarrine_vessel` triggers the
-  Dual-Soul Convergence chain
+  Lorkhan Resonance chain
 - Either at claim-time (via `nerevarine.310` option B) or later (via the yearly hidden
   event `nerevarine.321` which checks `nerevarine_marked + shezarrine_vessel + NOT
   nerevarine_shezarrine_convergence + NOT nerevarine_shezarrine_declined`)
@@ -3842,20 +3881,20 @@ lore-accurate race-agnostic model.
 | Event ID | Name | Notes |
 |---|---|---|
 | nerevarine.310 | Vision of Past Incarnations | Fires for all new claimants; Shezarrine gets option B |
-| nerevarine.320 | Dual-Soul Convergence | Acknowledges the dual-soul nature; **does NOT set Shor's throne empty** (see §22) |
+| nerevarine.320 | Lorkhan Resonance | Acknowledges the harmonic pattern; **does NOT set Shor's throne empty** (see §22) |
 | nerevarine.321 | Hidden yearly check | Catches characters who gain shezarrine_vessel after claiming |
 
-#### 21.3.3 Outcome — Option A (Accept Convergence)
+#### 21.3.3 Outcome — Option A (Acknowledge Resonance)
 - Sets `character_flag = nerevarine_shezarrine_convergence`
 - **NOTE (§22 correction):** does NOT set `shors_throne_nerevarine` — that flag is only set
   when the Shezarrine physically enters Sovngarde (`shezarrine.sovngarde_entry`)
 - Applies `dual_soul_convergence_modifier` (martial +4, prowess +4, monthly_piety +8,
   prestige_gain_mult +30%, stress_gain_mult +10%, health +0.5)
 
-#### 21.3.4 Outcome — Option B (Decline / Choose Nerevar Only)
+#### 21.3.4 Outcome — Option B (Decline / Hold Nerevar Pattern Only)
 - Sets `character_flag = nerevarine_shezarrine_declined` (prevents re-prompting)
-- Character remains `shezarrine_vessel` and `nerevarine_marked` with no convergence
-- Lore-valid: the character has both souls but consciously suppresses Shor's aspect
+- Character retains `shezarrine_vessel` and `nerevarine_marked` with no convergence
+- Lore-valid: the character carries both resonances but consciously holds only Nerevar's pattern
 
 #### 21.3.5 New Modifiers — §21
 | Modifier | Duration | Applied by |
@@ -3875,14 +3914,14 @@ lore-accurate race-agnostic model.
 - [x] `nerevarine_quest_incomplete` only re-set if no other living Nerevarine
 - [x] nerevarine.001 notification sent to azura_champion rulers (all races)
 - [x] nerevarine.300 (Outlander Nerevarine) added — fires for non-Dunmer claimants
-- [x] nerevarine.310 (Vision of Past Incarnations) added — fires for all claimants
-- [x] nerevarine.320 (Dual-Soul Convergence) added — fires for Shezarrine-Nervarines
-- [x] nerevarine.321 (hidden yearly check) added — catches late shezarrine_vessel gain
+- [x] nerevarine.310 (Vision of Past Incarnations) added — fires for all claimants; Shezarrine gets option B
+- [x] nerevarine.320 (Lorkhan Resonance) — convergence kept; reframed as harmonic resonance, not two-souls-meeting; 36 Lessons Sermon 1 "Pelin-El" citation added
+- [x] nerevarine.321 (hidden yearly check) — trigger: `nerevarine_marked + shezarrine_vessel`
 - [x] `nerevarine_outlander_recognition` modifier added to lore_races_modifiers.txt
 - [x] `nerevar_soul_witnessed` modifier added to lore_races_modifiers.txt
 - [x] `dual_soul_convergence_modifier` modifier added to lore_races_modifiers.txt
 - [x] `shors_throne_nerevarine` — CORRECTED in §22: now tied to Sovngarde entry, not convergence
-- [x] Localization added to nerevarine_l_english.yml
+- [x] Localization updated: nerevarine.320 title/desc reframed; nerevarine.310.b and tooltips updated
 
 ---
 
@@ -4050,3 +4089,2624 @@ regardless of whether they were canonical spawned NPCs or player claimants.
 - [x] `nerevarine.345` registered in `on_yearly_pulse` (weight 2)
 - [x] Event header in `nerevarine_events.txt` updated to document §23
 - [x] Localization added: `nerevarine.345.a`, `nerevarine_canonical_vessel_flag_tt`
+
+---
+
+## §24 Akulakhan — The God-Builder's Project
+
+### 24.1 Design Intent
+
+**The Problem:** The existing Dagoth Ur systems cover his awakening, his influence over sleepers,
+the Nerevarine prophecy, and the Borrowed Divinity (Heart-tapping) path.  None of them address
+his *deeper* ambition: he is not merely a god who seized the Heart for himself — he is
+*constructing* a new god.
+
+**The Request:** Add an investigative event chain for characters who search for information on
+Dagoth Ur's plan to *make* a god, not just *be* one.
+
+**Lore Basis:**
+- Akulakhan (also rendered Akullakhan) is the "Second Numidium" — a brass god-construct that
+  Dagoth Ur has been building beneath Red Mountain using the Heart of Lorkhan as its divine
+  engine.
+- The corprus disease serves a dual purpose: spreading Dagoth Ur's influence *and* harvesting
+  mortal essence to feed the construct's growth.  Sixth House sleepers are building material as
+  much as they are agents.
+- The Nerevarine's canonical task in TES III: Morrowind includes destroying Akulakhan (in the
+  construct chamber beneath Red Mountain) *before* reaching the Heart of Lorkhan — the construct
+  is a separate target from Dagoth Ur himself.
+- Key canonical sources: Dagoth Ur's own dialogue in TES III; the construct chamber as an
+  in-game location; UESP Lore:Akulakhan; the in-game text "The Plan of Dagoth Ur."
+  `[CANON — TES III: Morrowind main quest; UESP Lore:Akulakhan]`
+
+### 24.2 Event Chain — `akullakhan` Namespace
+
+#### 24.2.1 Discovery Trigger (`akullakhan.000`)
+Hidden yearly event.  Fires for rulers who have:
+- `dagoth_ur_awakened = yes`
+- NOT `akullakhan_known` character flag
+- NOT `dagoth_ur_defeated` global flag
+- Any of: `sixth_house_cultist` / `ash_devotee` / `numidium_researcher` / (`dwemer_scholar`
+  AND `learning >= 16`)
+
+25% chance per year once eligible.  On fire: sets `akullakhan_known` flag, triggers
+`akullakhan.001` in 7 days.
+
+#### 24.2.2 Event 1 — "The Walking God" (`akullakhan.001`)
+The character notices that corprus essence is being *directed* toward Red Mountain, not simply
+spreading from it.  Sixth House whispers reference "the Walking God approaching completion."
+
+**Options:**
+- A: Investigate → gains `akullakhan_scholar` trait, triggers `akullakhan.010` in 180 days
+- B: Refuse → chain ends; small piety gain
+
+#### 24.2.3 Event 2 — "The God-Builder's Design" (`akullakhan.010`)
+Deep investigation confirms: something vast is being assembled beneath Red Mountain.  Man-formed,
+enormous, built of consolidated divine essence and bound brass.  Anyone who has studied Numidium
+recognises the shape of the ambition.
+
+**Options:**
+- A: Name it → sets `akullakhan_design_confirmed` flag, triggers `akullakhan.020` in 180 days
+- B: Step back → sets flag, small piety gain; prestige loss (knowledge without courage)
+
+#### 24.2.4 Event 3 — "Akulakhan — The Second Numidium" (`akullakhan.020`)
+Full revelation.  The character learns the construct's name, purpose, and the fact that
+destroying Dagoth Ur alone will not end the threat — Akulakhan must also be destroyed.
+
+**Option A — Warn the Nerevarine:**
+- Sets `akullakhan_revealed` character flag
+- Fires `akullakhan.021` for all living `nerevarine_marked` rulers (notification)
+- Grants prestige +300, piety +200, `akullakhan_revelation_modifier` (5 years)
+
+**Option B — Keep the Secret:**
+- Character carries the knowledge alone
+- Grants learning +2, `akullakhan_revelation_modifier` (10 years — longer burden)
+
+**Option C — Serve the God-Builder** (requires `sixth_house_cultist` OR `ash_devotee`):
+- Sets `akullakhan_sixth_house_role` character flag
+- `ash_devotee` XP gain; piety loss −200; stress relief −20
+
+#### 24.2.5 Nerevarine Notification (`akullakhan.021`)
+Fires for each living `nerevarine_marked` ruler when Option A is chosen.  They learn of
+Akulakhan's existence and receive `akullakhan_revelation_modifier` (5 years).
+
+### 24.3 New Trait — `akullakhan_scholar`
+
+| Attribute | Value |
+|---|---|
+| Category | lifestyle |
+| is_good | (unset — neutral) |
+| learning | +3 |
+| intrigue | +2 |
+| monthly_piety_gain_mult | −0.10 |
+| stress_gain_mult | +0.10 |
+
+**Lore justification:** Knowing Dagoth Ur's deeper plan is forbidden knowledge — the Tribunal
+would name it heresy, the Imperial Cult would call it sedition.  The learning bonus reflects the
+sharpening that comes from holding a truth too large for comfort.  The stress reflects that
+same truth's weight.
+
+### 24.4 New Modifier — `akullakhan_revelation_modifier`
+
+| Attribute | Value |
+|---|---|
+| learning | +2 |
+| stress_gain_mult | +0.05 |
+
+Applied for 5 years (warning path) or 10 years (secret-keeper path).  The weight of the knowledge
+outlasts the initial discovery.
+
+### 24.5 Integration Checklist — §24
+
+- [x] `mod/events/akullakhan_events.txt` created with events `akullakhan.000` – `.021`
+- [x] `akullakhan_scholar` trait added to `mod/common/traits/dagoth_ur_traits.txt`
+- [x] `akullakhan_revelation_modifier` added to `mod/common/modifiers/lore_races_modifiers.txt`
+- [x] `akullakhan.000` registered in `lore_races_on_actions.txt` `on_yearly_pulse` (weight 2)
+- [x] `mod/localization/english/akullakhan_l_english.yml` created with UTF-8 BOM
+- [x] Cross-reference updated in `dagoth_ur_traits.txt` DEFINES + REFERENCED BY sections
+
+---
+
+## §24 Extension: The Dwemer Path through Akulakhan
+
+### 24.6 Lore Research Summary (Online Search)
+
+The following lore was researched to ensure accuracy of the Dwemer path:
+
+**Kagrenac's Purpose — What the Dwemer Were Actually Trying to Do**
+- Kagrenac was not building Numidium as a weapon, though it became one. His goal was to use the Heart of Lorkhan as a divine power source to transform the Dwemer as a people — to cross the threshold the et'Ada had crossed when they became the Aedra, but through mortal craft rather than self-sacrifice.
+- The in-game book "Kagrenac's Motivations" (ESO) explicitly frames this as the Dwemer attempting to transcend the mortal condition entirely through tonal engineering applied to a divine object.
+- The Dwemer rejection of divinity was not atheism in the modern sense but a rejection of the *supernatural* as a category. They believed divinity was a material property that could be reproduced by sufficiently advanced craft. `[CANON — ESO: Kagrenac's Motivations; UESP Lore:Tonal Architecture]`
+
+**The Dwemer Disappearance — Did Kagrenac Succeed or Fail?**
+- The canonical text is ambiguous. UESP: "What happened to the Dwemer is officially listed as 'Unknown.' Multiple theories exist." The most debated: Kagrenac accidentally destroyed all Dwemer souls; Kagrenac successfully incorporated all Dwemer souls into the Heart/Numidium; the Dwemer transcended to a different plane.
+- The "they transcended/became distributed" theory is supported by some in-game texts and is mechanically interesting. It is flagged as `[CONTESTED]` in this mod's lore files.
+- For this mod: the Dwemer path treats the "succeeded but too soon" reading as the scholar's conclusion from studying Akulakhan, while explicitly labelling it as the scholar's interpretation, not absolute canonical truth. This is lore-accurate.
+  `[SOFT CANON — UESP Lore:Dwemer Theories; in-game book: "Ruins of Kemel-Ze"]`
+
+**Numidium vs Akulakhan — The Key Difference**
+- Numidium was powered by the **Mantella** (a bottled soul — Zurin Arctus's). This mediated the relationship between construct and divine power; the Mantella was a heart-substitute.
+- Akulakhan is powered directly by the **Heart of Lorkhan** — no mediation. This is both more powerful and more dangerous. It also means Akulakhan is inseparable from the Heart in the same way Dagoth Ur himself is.
+- From a Dwemer scholarly perspective: Kagrenac's method used the Tools (Wraithguard, Keening, Sunder) as mediators. Direct Heart connection (Dagoth Ur's method) was the thing Kagrenac's Tools were designed to *avoid* — the backlash risk was too great. Dagoth Ur's survival of direct contact was unique.
+  `[CANON — TES III: Morrowind; UESP Lore:Numidium; UESP Lore:Heart of Lorkhan]`
+
+**Why a Dwemer Scholar Interprets Akulakhan Differently**
+- For a Sixth House cultist: Akulakhan is Dagoth Ur's masterwork, a vessel for his divine will.
+- For a Nerevarine: Akulakhan is a second target to destroy.
+- For a Dwemer scholar/tonal architect: Akulakhan is **Kagrenac's methodology applied to the wrong goal** — proof that the method works, but subverted to serve divinity rather than transcend it. The scholar sees genius and tragedy simultaneously.
+  `[MOD INTERPRETATION — consistent with UESP lore]`
+
+### 24.7 New Events — Dwemer Path (akullakhan.030–.032)
+
+#### 24.7.1 Eligibility Gate — Option D of `akullakhan.020`
+Requires: `tonal_architect` OR (`dwemer_scholar` AND `numidium_researcher`).
+Sets `akullakhan_dwemer_path_chosen` character flag. Triggers `akullakhan.030` in 90 days.
+
+#### 24.7.2 `akullakhan.030` — "Kagrenac's Purpose, Revisited"
+The scholar articulates the core insight: Dagoth Ur walked through Kagrenac's door backwards.
+Numidium was designed to negate the gods; Akulakhan is designed to project one.
+**Both options** lead to `akullakhan.031` in 180 days. Stress cost. Learning gain.
+
+#### 24.7.3 `akullakhan.031` — "The Proof of Concept"
+Deep structural analysis of Akulakhan's tonal framework implies a contested but lore-grounded
+reading of the Dwemer Disappearance: the resonance at Red Mountain was not catastrophic failure
+but successful incorporation. Numidium was to have been the Dwemer's collective body after the
+distributed resonance. The project was activated before the vessel was complete.
+**Both options** lead to `akullakhan.032` in 180 days.
+Stress cost +25 (option A) or +10 (option B). Learning gain.
+
+#### 24.7.4 `akullakhan.032` — "The Living Blueprint"
+**Four-option culmination** based on where the character is:
+
+| Option | Gate | Mechanical Effect |
+|---|---|---|
+| A — Already on Path | `is_on_path_tonal_architecture` | Grants `ww_tonal_milestone_gestalt` flag (and `nullify` if learning ≥ 22); `akullakhan_dwemer_insight_modifier` (10 years) |
+| B — Not on path, eligible | `can_begin_path_tonal_architecture` | Calls `begin_path_tonal_architecture`; grants `principles` + `construct` milestone flags pre-loaded; modifier |
+| C — Heart Scholar | `heart_scholar_ascendant` trait | Self-recognition event (Heart draw = Akulakhan scaled down); learning +4, stress +40 |
+| D — Record only | (any) | Learning +1, prestige +200; modifier 5 years |
+
+### 24.8 New Modifier — `akullakhan_dwemer_insight_modifier`
+
+| Attribute | Value |
+|---|---|
+| learning | +4 |
+| stewardship | +2 |
+| monthly_prestige_gain_mult | +0.10 |
+
+Applied 5–10 years depending on option. Represents absorbed knowledge of Kagrenac's actual methodology decoded from Akulakhan's structure.
+
+### 24.9 Integration Checklist — §24 Dwemer Path Extension
+
+- [x] Option D added to `akullakhan.020` (gate: `tonal_architect` OR `dwemer_scholar`+`numidium_researcher`)
+- [x] `akullakhan_dwemer_path_chosen` character flag documented in file header
+- [x] `akullakhan.030` ("Kagrenac's Purpose, Revisited") added to `akullakhan_events.txt`
+- [x] `akullakhan.031` ("The Proof of Concept") added to `akullakhan_events.txt`
+- [x] `akullakhan.032` ("The Living Blueprint") added — 4-option culmination with tonal path integration
+- [x] `akullakhan_dwemer_insight_modifier` added to `lore_races_modifiers.txt`
+- [x] All new event/option localization added to `akullakhan_l_english.yml`
+- [x] Event ID range updated in file header: `akullakhan.000 – .032`
+- [x] §24 design notes updated with full lore research summary
+
+---
+
+## 25. Path G — Tonal Architecture ("The Wrong Walking Way")
+
+> **Added:** Session 2026-04-08 — Formalises the existing `tonal_arch` event system
+> (already implemented in `mod/events/tonal_arch_events.txt` and
+> `mod/common/traits/walking_ways_traits.txt`) as the canonical **Path G** of the
+> Walking Ways framework.
+
+---
+
+### 25.1 Lore Foundation
+
+The Dwemer believed reality itself was song — a tonal structure that could be understood,
+measured, and rewritten by sufficiently precise mortal craft. Their apex expression of this
+was Kagrenac's attempt to use the Heart of Lorkhan as a divine power source: not to worship
+a god, but to *reproduce* godhood through tonal engineering.
+
+The outcome of their collective attempt is the single most important data point in the
+mod: the entire Dwemer race vanished simultaneously at the moment of Red Mountain's
+resonance. Whether this was catastrophic failure or unprecedented success remains
+explicitly contested (see §24.6 for the scholarly analysis). What is not contested is the
+method: they used tonal architecture to attempt a fundamental rewrite of what Dwemer *were*.
+
+This path is **"the wrong Walking Way"** not because it is evil, but because it is
+*materialist*: it treats the ascent to divinity as an engineering problem rather than a
+spiritual or metaphysical one. It is the most dangerous path precisely because it might
+be the most *correct* in its theory — the Dwemer understood more about tonal reality than
+any other civilization — and yet it ended in mass erasure.
+
+**Lore sources:** UESP Lore:Tonal Architecture; UESP Lore:Numidium; ESO: Kagrenac's
+Motivations; TES III: Morrowind (Kagrenac's Tools, Red Mountain)
+
+---
+
+### 25.2 Path Identity
+
+**Key:** `ww_tonal_architecture`
+**Flag:** `ww_tonal_architecture_active`
+**Apex Trait:** `tonal_transcendent`
+**Path type:** Path G (standalone — neither Mantling nor CHIM; materialist transcendence)
+**Namespace:** `tonal_arch`
+**Event file:** `mod/events/tonal_arch_events.txt`
+
+---
+
+### 25.3 Requirements
+
+```
+can_begin_path_tonal_architecture trigger:
+    has_trait = tonal_architect
+    learning >= 18
+    stewardship >= 14
+    NOT = { has_character_flag = ww_tonal_architecture_completed }
+    NOT = { has_character_flag = walking_ways_path_active }
+```
+
+The `tonal_architect` trait gate represents years of prior Dwemer ruin study
+(see `dwemer_ruins_traits.txt` tree). This path cannot begin without genuine mastery
+of Dwemer tonal theory, enforced through the trait system rather than a stat check alone.
+
+---
+
+### 25.4 Milestones (6 total, 2 per rank)
+
+| # | Flag Key | Event | Lore Action |
+|---|---|---|---|
+| 1 | `ww_tonal_milestone_principles` | `tonal_arch.rank1` | Mastered tonal resonance theory — the foundation |
+| 2 | `ww_tonal_milestone_construct` | `tonal_arch.milestone_construct` | Built and tuned a functioning animunculus |
+| 3 | `ww_tonal_milestone_frequency` | `tonal_arch.milestone_frequency` | Identified the Tower's tonal frequency |
+| 4 | `ww_tonal_milestone_resonator` | `tonal_arch.milestone_resonator` | Affected another soul through tonal means (controlled test) |
+| 5 | `ww_tonal_milestone_gestalt` | `tonal_arch.milestone_gestalt` | Achieved a 12-second partial collective merge with willing subjects |
+| 6 | `ww_tonal_milestone_nullify` | `tonal_arch.milestone_nullify` | Nullified own tonal signature and reconstructed it — partial rehearsal |
+
+The `ww_tonal_milestone_gestalt` flag is also used by the §24 Akulakhan system
+(see §24.7.4 Option A) as a milestone advance reward, providing a natural
+crossover point between the two systems.
+
+---
+
+### 25.5 Rank Events
+
+| Rank | Event ID | Trigger |
+|---|---|---|
+| Intro | `tonal_arch.intro` | Path begins (`is_on_path_tonal_architecture = yes`) |
+| Rank 1 | `tonal_arch.rank1` | 2 milestones — "Seeking: tonal resonance theory mastered" |
+| Rank 2 | `tonal_arch.rank2` | 4 milestones — "Striving: animunculus and frequency work" |
+| Rank 3 | `tonal_arch.rank3` | 6 milestones — "Threshold: the gestalt attempt" |
+| Apotheosis | `tonal_arch.apotheosis` | Rank 4 — 50% death, 50% `tonal_transcendent` |
+| Failure | `tonal_arch.failure` | Failure branch at apotheosis — erasure death |
+
+---
+
+### 25.6 Apotheosis — The 50% Death
+
+At apotheosis (`tonal_arch.apotheosis`), the character attempts to **nullify their own
+tonal song and rewrite it from the ground up**. This is the full Dwemer attempt.
+
+- **50% chance — success:** `complete_path_tonal_architecture` fires; character gains
+  `tonal_transcendent` trait (learning +8, stewardship +6, monthly prestige +15,
+  stress_gain_mult −30%). The reconstructed self is genuinely different.
+- **50% chance — failure:** `tonal_arch.failure` fires; character is killed via
+  `death_reason = death_chim_erasure`. As the Dwemer: gone without a trace.
+
+The 50/50 death chance is the highest of any Walking Ways path and is intentional.
+The Dwemer all tried this. They are gone.
+
+---
+
+### 25.7 Apex Trait — `tonal_transcendent`
+
+```
+tonal_transcendent = {
+    category = fame
+    learning    = 8
+    stewardship = 6
+    monthly_prestige = 15
+    stress_gain_mult = -0.30   # the reconstructed self does not bruise easily
+    flag = tonal_transcendent
+}
+```
+
+The reconstructed self experiences stress differently — not because it is stronger, but
+because the individual song has been rewritten with that awareness built in. The learning
+and stewardship reflect that this character now *understands* the architecture of reality
+in a way no other path achieves.
+
+---
+
+### 25.8 Path G vs. Path F — How They Combine
+
+Path F (§19, Kagrenac's Ambition) and Path G are **complementary approaches to the same
+Dwemer question**, and they interact at a specific convergence point.
+
+#### The Core Philosophical Difference
+
+| | **Path F — Kagrenac's Ambition** | **Path G — Tonal Architecture** |
+|---|---|---|
+| **Philosophy** | Borrow the Heart of Lorkhan's existing divine power through Kagrenac's Tools | Reproduce divine power through tonal engineering from first principles |
+| **Root question** | Can mortals *access* the divine? | Can mortals *manufacture* the divine through craft? |
+| **Heart relationship** | Dependent — Route A degrades when Heart is severed (§19.10) | Studies Heart as proof of concept, not power source |
+| **Kagrenac's role** | His Tools (Wraithguard/Keening/Sunder) mediate Heart contact | His tonal theory *is* the goal |
+| **Timeline gate** | Requires `dagoth_ur_awakened = yes` | No divine object dependency |
+| **Apotheosis risk** | Route A: slow degradation; Route B: death when Heart departs | Always 50% instant death |
+
+#### The Convergence Point — Akulakhan
+
+Akulakhan is the physical intersection of both paths because it uses the Heart of Lorkhan
+(Path F's domain) animated by Kagrenac's tonal engineering methodology (Path G's domain).
+This is documented in §24 and enforced in `akullakhan.032`:
+
+- A **Path G walker** (`is_on_path_tonal_architecture = yes`) who studies Akulakhan receives
+  `ww_tonal_milestone_gestalt` — a full milestone advance — because the construct demonstrates
+  Kagrenac's methodology at scale. Option A of `akullakhan.032` also grants
+  `ww_tonal_milestone_nullify` if learning ≥ 22.
+- A **Path F Route A** apex (`heart_scholar_ascendant` trait) who studies Akulakhan gets
+  Option C of `akullakhan.032`: self-recognition that their own Heart-draw relationship is
+  Akulakhan reproduced at mortal scale — learning +4, stress +40.
+- A character eligible for Path G but not yet on it gets Option B of `akullakhan.032`:
+  `begin_path_tonal_architecture` is called directly, with `principles` and `construct`
+  milestone flags pre-loaded. Akulakhan itself can *start* Path G.
+
+#### The Philosophical Arc (If You Walk Both)
+
+Path F is an *empirical shortcut* that reveals what Path G is trying to reach the long way.
+
+> "If you have already borrowed divinity through the Heart and survived, you have touched
+> the boundary between mortal and divine through direct contact. The Dwemer wanted to
+> *manufacture* that boundary-crossing. You have already crossed it. Path G asks: can you
+> reproduce what you already experienced — not by borrowing it, but by rewriting yourself
+> into it?"
+
+A character who survives Path F (via CHIM escape from starvation — §19.10b — or Route A
+without full dissolution) is mechanically ideal to begin Path G: their reservoir experience
+with the Heart gave them empirical data that 10,000 years of tonal research could not.
+
+**Note on mutual exclusion:** A character cannot be on Path F *and* Path G simultaneously
+(the `walking_ways_path_active` gate prevents it), but they may complete one and begin the
+other sequentially. The design intends this: Path F teaches you the material truth of divine
+power; Path G asks you to engineer it yourself.
+
+---
+
+### 25.9 Integration Status
+
+| Component | Status |
+|---|---|
+| `mod/events/tonal_arch_events.txt` | ✅ Implemented |
+| `tonal_transcendent` apex trait in `walking_ways_traits.txt` | ✅ Implemented |
+| `tonal_architect` prerequisite trait in `dwemer_ruins_traits.txt` | ✅ Implemented |
+| `ww_path_tonal_architecture_active` modifier | ✅ Implemented |
+| Scripted triggers: `is_on_path_tonal_architecture`, `can_begin_path_tonal_architecture` | ✅ Implemented |
+| Scripted effects: `complete_path_tonal_architecture`, `abandon_path_tonal_architecture` | ✅ Implemented |
+| §24 Akulakhan crossover (`akullakhan.032` Options A/B/C) | ✅ Implemented |
+| `mod/localization/english/tonal_arch_l_english.yml` | ✅ Implemented |
+| §25 design documentation | ✅ This section |
+
+
+---
+
+## §26 The Oblivion Crisis — The Emperor's Gambit
+
+> **Added:** Session 2026-04-08. Covers the HOK quest line, dynamic Blades spawning, empire
+> strength modifiers, Emperor survival path, heirs-in-hiding decision, Amulet stolen route,
+> Gaiar Alata retrieval, Avatar of Akatosh covenant choice, and heir-as-avatar variant.
+
+---
+
+### 26.1 Lore Foundation
+
+In **3E 433** Emperor Uriel Septim VII and his three legitimate sons are assassinated by the
+Mythic Dawn cult. The Emperor and his Blades bodyguards escape through the Imperial City Prison
+using a secret passage. The Blades present are **Baurus** (Redguard, born ~3E 409–415),
+**Glenroy** (Imperial, killed in the sewers), and **Captain Renault** (killed first). Uriel dies
+in the sewers and entrusts the **Amulet of Kings** to the Hero with orders to find **Jauffre**
+at **Weynon Priory**.
+
+> *Note: "Geoffrey" referenced in planning notes = **Jauffre**, Breton monk and Blades
+> Grandmaster at Weynon Priory. The Emperor's dying words direct the Hero to him specifically.*
+
+Jauffre reveals that Uriel had a secret illegitimate son — **Martin Septim** — hidden as a
+priest of Akatosh in Kvatch. The Hero rescues Martin, delivers him to Jauffre and
+**Cloud Ruler Temple** (Blades HQ in the Jerall Mountains, NW of Bruma). Later the Amulet is
+**stolen by Mankar Camoran** and taken to his pocket realm **Gaiar Alata** (Paradise). The Hero
+enters Paradise, kills Camoran, retrieves the Amulet. Martin then **shatters the Amulet**,
+becoming the **Avatar of Akatosh**, defeats Mehrunes Dagon, and turns to stone — permanently
+sealing the liminal barrier. The Dragonfires are no longer required.
+
+**Key lore constraints for the mod:**
+- Baurus is born ~3E 409–415 — should NOT appear before 3E 409.
+- Glenroy has no stated birth year, but is an adult Imperial Blade active only in 3E 433.
+- Delphine is a *Skyrim-era* Blade (4E 201) — she must NEVER appear in the prison scene.
+- The "Hero of Kvatch" has no canonical name. The Oblivion Construction Set default placeholder
+  is **"Bendu Olo"** — this is the closest thing to a canonical stand-in for a spawned NPC.
+  *Note: The historical Bendu Olo was a First Era Colovian king; the name as default character
+  name is a developer in-joke, not a lore assignment. When spawning a canonical champion NPC,
+  using this name preserves the developer intent.*
+- Martin's sacrifice as Avatar of Akatosh **permanently** ends the need for Dragonfires.
+  Choosing to preserve the Dragonfires is a divergent path — lore-valid but non-canonical.
+
+`[SOURCES: UESP Lore:Uriel VII; Lore:Martin Septim; Lore:Oblivion Crisis; Lore:Dragonfires;
+Lore:Gaiar Alata; Oblivion:Jauffre; Oblivion:Baurus; Lore:Hero of Kvatch]`
+
+---
+
+### 26.2 System Overview — Three Entry Tracks
+
+The Oblivion Crisis event chain has three distinct entry tracks based on who holds the
+Ruby Throne when the Mythic Dawn first moves:
+
+| Track | Condition | Summary |
+|---|---|---|
+| **A — Standard Hero** | Player is NOT the Emperor; has no direct claim | Canonical path. Hero escapes prison, delivers Amulet to Jauffre, rescues Martin **only if** the emperor is a canonical non-player non-Talos-path Septim NPC **and** the current year is ≥ 3E 389. Otherwise a random illegitimate bastard of the emperor's dynasty is spawned in Martin's role. |
+| **B — Player Emperor** | Player holds the Imperial throne (any dynasty, including Talos-path) | Emperor survives the assassination; different narrative begins. Martin is **never** spawned on this track — the Martin-role heir is always the player's own heir or a randomly spawned illegitimate NPC from the player's dynasty. |
+| **C — Other NPC Emperor** | An NPC rules the Empire (non-Septim dynasty, or Septim emperor with `talos_path_emperor` flag) | NPC dies. A random illegitimate bastard NPC is spawned from the emperor's actual dynasty (never canonical Martin — Martin is Septim-lineage only, and only valid in the correct era). |
+
+---
+
+### 26.3 Dynamic Blades — Imperial Prison Sequence
+
+**Problem:** In early EK2 time windows (2E 440–3E 408), neither Baurus nor Glenroy can
+canonically exist. Delphine's birth date (~late 3E) means she can never appear here.
+Spawning named Blades before their time is a lore violation.
+
+**Solution:** The prison sequence spawns Blades contextually.
+
+```
+# Imperial Prison Escape — Blades Context Gate
+# In the sewers, the number and identity of Blades escorting the Emperor
+# is determined by the current date and the Blades organization status.
+
+hok_prison_blades_spawn_effect = {
+    # Time-correct named Blades (canonical window: 3E 433 only)
+    if = {
+        limit = {
+            current_date >= 3.409.1.1   # Baurus can exist
+            current_date <= 3.434.1.1   # Oblivion Crisis window
+            has_global_flag = blades_organization_active
+        }
+        # Spawn Baurus (survives) + Glenroy (dies) + Captain Renault (dies first)
+        set_global_flag = hok_named_blades_spawned
+    }
+    # Early window or Blades not yet formed — spawn 3 anonymous Blades
+    else = {
+        # Three anonymous Blades generated from court pool
+        # Named: "Imperial Blade" with bodyguard_blade trait
+        # No named characters; all three may die or survive contextually
+        set_global_flag = hok_anonymous_blades_spawned
+    }
+}
+```
+
+**Anonymous Blade Outcomes:**
+- All three may survive or die depending on empire strength (see §26.4).
+- If the empire is strong (`imperial_strength_score >= 4`), at least one survives to escort
+  the Emperor/Hero to Jauffre.
+- If the empire is weak (`imperial_strength_score <= 1`), all three may die, leaving the
+  Hero/Emperor alone in the sewers.
+
+---
+
+### 26.4 Empire Strength Modifier — Aid Level
+
+The state of the Empire at the time of the Oblivion Crisis directly affects how much
+institutional support the Hero or Emperor receives.
+
+| Empire State | Condition | Aid Received |
+|---|---|---|
+| **Strong Empire** | `imperial_strength_score >= 4` (EK2 variable) | Blades escort survives; Jauffre has full resources at Weynon Priory; troop reinforcement at Cloud Ruler Temple. Modifier: `oblivion_crisis_imperial_support` (+2 martial, +1 diplomacy) |
+| **Weakened Empire** | `imperial_strength_score 2–3` | Partial escort. Jauffre has limited resources. Cloud Ruler Temple undermanned. Neutral modifier. |
+| **Crumbling Empire** | `imperial_strength_score <= 1` | No escort survives. Weynon Priory deserted or hostile. Cloud Ruler Temple abandoned; Martin must be taken elsewhere. Modifier: `oblivion_crisis_alone` (+2 stress, but +3 intrigue from isolation) |
+| **Player IS Emperor** | `is_ruler = yes` + `holds_imperial_throne = yes` | Personal track — see §26.5–26.9. |
+
+---
+
+### 26.5 Track B — The Emperor Survives
+
+**Trigger:** The player holds the Imperial throne when `mythic_dawn_stirs` fires.
+
+**Lore justification:** Canon assumes Uriel Septim VII is killed because he is old,
+unguarded at night, and the cult has infiltrated the palace. A player Emperor who has
+built a strong intelligence network, kept personal guard, or is themselves a warrior
+does not have to accept the same fate.
+
+**Gate decision — pre-requisite (fires once Mythic Dawn is forming):**
+
+```
+decision: hide_imperial_heirs_at_priory
+    is_shown = {
+        holds_imperial_throne = yes
+        has_character_flag = mythic_dawn_threat_known  # Set by §29 formation chain
+        NOT = { has_character_flag = heirs_hidden }
+    }
+    effect = {
+        # Mark all direct heirs as hidden at Weynon Priory
+        # They gain 'heir_in_hiding' flag — cannot be targeted by assassination
+        every_child = {
+            limit = { is_heir = yes }
+            add_character_flag = heir_hidden_at_priory
+        }
+        add_character_flag = heirs_hidden
+        trigger_event = { id = oblivion_crisis.010 days = 60 }
+        # Cost: significant prestige (publicly the heirs "disappear" — looks weak)
+        add_prestige = -150
+    }
+```
+
+**If heirs NOT hidden when the assassination fires:**
+- All heirs die (event `oblivion_crisis.assassination_heirs`).
+- **For NPC emperors only** — a Martin-role NPC is spawned. Who this is depends on four conditions (see §26.5a):
+  - **Canonical Martin Septim** spawns **only when all four hold**:
+    1. The emperor is an NPC (non-player) of Septim dynasty (`septim_dynasty = yes`)
+    2. The player is NOT the emperor on any track (`is_player_controlled = no`)
+    3. The emperor does NOT have the `talos_path_emperor` flag (Talos-path AI emperors → random spawn)
+    4. The current year is ≥ 3E 389 (Martin's approximate birth year — see §26.5a)
+  - **Random bastard of the emperor's dynasty** spawns for NPC emperors in all other non-canonical cases:
+    - Current year < 3E 389 (too early for Martin to exist) → random spawn from emperor's dynasty
+    - Non-Septim dynasty NPC emperor → random spawn from that emperor's dynasty
+    - Septim NPC emperor with `talos_path_emperor` flag → random spawn from Septim dynasty
+  - The random bastard NPC always belongs to the dying NPC emperor's dynasty (`dynasty = root.dynasty`),
+    not the Septim dynasty specifically — the heir is whoever would realistically continue that bloodline.
+  - The random bastard NPC is given `dragonborn_blood` trait if the dynasty holds a
+    Dragonborn claim, or `amulet_worthy` flag if not, to allow the narrative to proceed.
+  - This NPC (canonical or random) is placed in a Kvatch-equivalent county under Mythic Dawn siege.
+- **For player emperors** — no heir or bastard is spawned. The player's real heirs were not hidden
+  and have been killed by the Mythic Dawn (see §31.9). The HoK candidates (Bendu Olo, etc.) handle
+  the crisis entirely. There is no bloodline Martin-role character from the player's dynasty.
+  The narrative proceeds through the HoK track only (see §26.7 / §31.8).
+
+---
+
+### 26.5a Martin Septim Birth Gate
+
+**Lore note:** Martin Septim was born approximately **3E 389**, forty-four years before
+the events of the Oblivion Crisis (3E 433). If the Crisis fires before 3E 389 due to
+early player conditions, the canonical Martin cannot exist yet. Per the universal
+birth-window rule (§31.3), an anonymous placeholder must be used instead.
+
+**Who gets canonical Martin vs. a random bastard from the emperor's dynasty:**
+
+| Condition | Martin spawns? | Random bastard dynasty |
+|---|---|---|
+| NPC Septim emperor dies, year ≥ 3E 389, player is not emperor, NOT `talos_path_emperor` | **Yes — canonical Martin** | — |
+| NPC Septim emperor dies, year < 3E 389 | **No** | Septim dynasty |
+| NPC Septim emperor with `talos_path_emperor` flag dies | **No** | Septim dynasty |
+| Player is emperor, heirs NOT hidden | **No** | **No spawn** — HoK handles crisis without bloodline heir (§31.9) |
+| Player is emperor, heirs hidden, player dies | **No** | No spawn — player transitions to surviving heir (§31.9) |
+| Player is emperor, heirs hidden, player survives | **No** | No spawn — player can delegate or act personally (§31.9) |
+| Non-Septim dynasty NPC emperor dies | **No** | Emperor's own dynasty |
+
+> **Key principle:** The random bastard is always from the *emperor's own dynasty*, regardless of which dynasty that is. The Septim dynasty is only relevant when checking whether canonical Martin can be spawned. For player emperors, NO random bastard is ever spawned — only real existing heirs count (§31.9).
+
+```
+# Martin birth gate — controls whether canonical Martin fires
+# Called from oblivion_crisis.assassination_heirs
+# NOTE (§31.9): Player emperors NEVER reach this effect — their path is handled
+# separately (heir-succession on death, delegate on survival). This effect is
+# only called when root is an NPC emperor.
+martin_septim_spawn_or_random_effect = {
+    # Safety guard: never spawn for player emperors (§31.9)
+    if = {
+        limit = { is_player = yes }
+        # No-op: player-emperor heir logic is handled by oblivion_crisis.player_heir_succession
+        # and oblivion_crisis.delegate_paradise_retrieval (§31.9)
+    }
+    else_if = {
+        # Canonical Martin: non-player NPC Septim emperor, correct time period,
+        # NOT a Talos-path emperor (Talos AI emperors always use random spawn)
+        limit = {
+            dynasty = septim_dynasty
+            current_year >= 3389  # 3E 389 in game calendar
+            NOT = { has_character_flag = talos_path_emperor }
+        }
+        create_character = {
+            name = "Martin"
+            dynasty = septim_dynasty
+            trait = dragonborn_blood
+            trait = devoted_akatosh_priest
+            add_character_flag = martin_septim_canonical
+            add_character_flag = martin_avatar_eligible
+        }
+    }
+    else = {
+        # Random bastard of the NPC emperor's own dynasty — all other NPC cases
+        # (wrong era, non-Septim dynasty, Talos-path AI emperor)
+        # dynasty = root.dynasty ensures the heir belongs to whichever dynasty
+        # holds the throne, not always the Septim dynasty.
+        create_character = {
+            # Name and appearance randomised via dynasty's culture name list
+            dynasty = root.dynasty
+            random_traits_count = 2
+            if = {
+                limit = { root = { has_dragonborn_claim = yes } }
+                trait = dragonborn_blood
+            }
+            else = {
+                add_character_flag = amulet_worthy
+            }
+            add_character_flag = martin_role_placeholder
+        }
+    }
+}
+```
+
+**Flavor:** The random bastard is described in event text as "a priest of Akatosh"
+(if `amulet_worthy`) or "a distant scion of the [DYNASTY] bloodline" (if `dragonborn_blood`),
+preserving the narrative function without using a lore character who may not yet exist.
+The bastard's name is drawn from the emperor's dynasty culture list — so a non-Septim emperor
+produces a non-Septim named heir, fitting whatever dynasty holds the throne.
+
+**If heirs ARE hidden:**
+- Heirs survive with the `heir_hidden_at_priory` flag (cannot be targeted by assassination events).
+- Player-Emperor can choose to:
+  - A) **Send heir to Kvatch** — heir enters the crisis as the Martin-role character,
+    eventually becoming Avatar of Akatosh (player loses heir but ends Dragonfires).
+  - B) **Go personally** — Emperor goes to Kvatch themselves and the heir remains
+    hidden (see §26.8 for Emperor-as-Avatar path).
+  - C) **Delegate to HoK candidates** — Emperor remains in the Imperial City and
+    dispatches surviving HoK candidates (Bendu Olo, etc.) to handle Kvatch and Paradise.
+    The heir stays hidden. See `oblivion_crisis.delegate_paradise_retrieval` (§31.7).
+
+**If the player emperor dies (any point in the crisis):**
+- The game checks for surviving heirs with the `heir_hidden_at_priory` flag.
+- If one or more hidden heirs exist:
+  - The player is transferred to the **oldest surviving hidden heir** as their new character.
+  - This heir assumes the Martin-role: they are the one who must close the Dragonfires.
+  - They retain `heir_hidden_at_priory` until they are formally revealed by the narrative.
+  - Event `oblivion_crisis.player_heir_succession` fires to narrate the transition.
+- If no hidden heirs exist (heirs were not hidden or were killed before the emperor's death):
+  - The player is transferred normally per CK3 succession rules.
+  - The crisis proceeds via HoK candidates only — no bloodline Martin-role character exists.
+
+---
+
+### 26.6 The Amulet Stolen in the Sewers (Emperor Path)
+
+**Canonical deviation:** In the standard HOK path, the Amulet reaches Jauffre at
+Weynon Priory before the Mythic Dawn steal it. For a surviving Emperor, the theft
+happens in the sewers during the escape — Mankar Camoran's agents strike before
+the Emperor can deliver it.
+
+```
+# Amulet stolen during sewer escape — Emperor track only
+oblivion_crisis.amulet_stolen = {
+    type = character_event
+    trigger = {
+        has_character_flag = emperor_survived_prison
+        NOT = { has_character_flag = amulet_delivered_to_jauffre }
+    }
+    # Mankar's agent intercepts during the escape
+    # The Amulet vanishes — taken to Gaiar Alata (Paradise)
+    effect = {
+        set_global_flag = amulet_in_paradise
+        remove_character_flag = has_amulet_of_kings  # uses existing scripted effect
+        add_character_flag = amulet_stolen_in_sewers
+        trigger_event = { id = oblivion_crisis.paradise_required days = 30 }
+    }
+}
+```
+
+**Consequence:** The Emperor now must either:
+- Enter Gaiar Alata to retrieve the Amulet themselves (personal quest chain).
+- Delegate to the Hero/heir if one exists and is capable.
+
+**Paradise Entry** (Emperor track): Uses the same `paradise_entry_effect` as the
+standard HOK chain but with Emperor-specific flavor text and a different portal
+opening method (the Emperor's own Dragonborn blood substitutes for the ritual
+items Jauffre would normally prepare).
+
+---
+
+### 26.7 Emperor's Fast-Track to Cloud Ruler Temple
+
+When the Emperor survives and the Amulet is stolen, the quest chain **skips**:
+- The journey to Weynon Priory (Jauffre comes to the Emperor instead).
+- The personal trip to Kvatch to rescue Martin (Jauffre is sent, or the heir
+  hidden at the Priory acts as Martin's escort).
+
+```
+# Fast-track — Emperor already knows Martin's location
+# (Uriel Septim VII hid Martin himself; the player-Emperor inherits this knowledge)
+oblivion_crisis.emperor_fast_track = {
+    type = character_event
+    trigger = {
+        has_character_flag = emperor_survived_prison
+        has_character_flag = amulet_stolen_in_sewers
+    }
+    option = {
+        name = oblivion_crisis.emperor_fast_track.a
+        # "Jauffre — take Martin to Cloud Ruler Temple. I will deal with Camoran myself."
+        effect = {
+            add_character_flag = emperor_handling_paradise
+            add_character_flag = martin_at_cloud_ruler
+            trigger_event = { id = oblivion_crisis.paradise_entry days = 45 }
+        }
+    }
+    option = {
+        name = oblivion_crisis.emperor_fast_track.b
+        # "Send my heir to Kvatch. I must not risk myself further."
+        trigger = { any_child = { has_character_flag = heir_hidden_at_priory } }
+        effect = {
+            add_character_flag = heir_sent_to_kvatch
+            trigger_event = { id = oblivion_crisis.heir_kvatch_path days = 30 }
+        }
+    }
+}
+```
+
+---
+
+### 26.8 Avatar of Akatosh — The Covenant Choice
+
+When the Amulet is recovered from Gaiar Alata (whether by the Emperor personally or
+returned by the Hero), the wielder faces the final choice at the Temple of the One.
+
+**Important lore note:** Martin's sacrifice did not literally "mantle" Akatosh — he
+became the **Avatar of Akatosh**, a vessel through which Akatosh directly intervened.
+The game refers to this as *"the Dragon Blood merged with Akatosh's divine essence."*
+For mod purposes this is treated as an **avatar path** — not a Walking Ways mantle —
+because the sacrifice is a *one-way* divine intervention, not a philosophical attainment.
+However, it DOES interact with the existing `mantling_akatosh` path if that mechanic
+is implemented separately.
+
+#### Scenario 1 — Standard / NPC Martin
+
+Martin (or the dynasty-equivalent NPC) shatters the Amulet → becomes Avatar →
+defeats Dagon → turns to stone. The player receives:
+- Global flag: `dragonfires_covenant_ended`
+- Modifier: `oblivion_crisis_resolved_canonical` (prestige +300 realm-wide, 10 years)
+- Daedric invasion probability permanently reduced (Dragonfires are no longer needed).
+
+#### Scenario 2 — Emperor Performs the Sacrifice
+
+The Emperor player themselves shatters the Amulet at the Temple of the One.
+
+```
+oblivion_crisis.emperor_avatar_choice = {
+    type = character_event
+    title = "The Dragon's Blood Calls"
+    desc = "The Amulet is in your hands. Mehrunes Dagon walks Tamriel. Only one thing
+            remains — but it will cost everything."
+
+    option = {
+        name = "I will shatter the Amulet. Akatosh, hear me."
+        # OPTION A — Change the Pact (canonical ending, Emperor dies)
+        effect = {
+            set_global_flag = dragonfires_covenant_ended
+            set_global_flag = emperor_became_avatar_of_akatosh
+            remove_short_term_modifier = amulet_of_kings_dragonborn_modifier
+            # Character dies — transforms into Avatar, turns to stone
+            death = { death_reason = death_became_avatar_of_akatosh }
+            # World notification: The Dragon God walks again
+            every_ruler = {
+                trigger_event = { id = oblivion_crisis.avatar_world_notification }
+            }
+        }
+    }
+    option = {
+        name = "There must be another way. The Dragonfires must be relit — not ended."
+        # OPTION B — Preserve the Dragonfires (non-canonical; Emperor survives)
+        effect = {
+            add_character_flag = dragonfires_preserved_by_emperor
+            # Dagon is repelled but NOT permanently banished
+            # The Dragonfires must be relit manually each reign
+            # If a new Dragonborn Emperor does not relight them within 20 years,
+            # daedric_invasion_possible fires again
+            set_global_variable = {
+                name = dragonfires_relight_deadline
+                value = { add = current_date add = 7300 }  # 20 years
+            }
+            add_character_modifier = {
+                modifier = oblivion_crisis_dragonfires_burden
+                days = -1  # permanent until relit
+            }
+            # Dagon retreats but Dragonfires are extinguished — not destroyed
+            trigger_event = { id = oblivion_crisis.dragonfires_preserved days = 30 }
+        }
+    }
+}
+```
+
+**Option B Consequences (Dragonfires Preserved):**
+- The Amulet of Kings is retained by the Emperor.
+- Mehrunes Dagon is *repelled* but not permanently banished.
+- Every 20 years without relighting: `oblivion_crisis_recurrence` can fire, allowing
+  Dagon or any other Daedric Prince to attempt invasion again via the standard
+  `daedric_invasion` chain.
+- Relighting the fires requires: Emperor alive + has Amulet + `is_dragonborn = yes` +
+  travels to the Temple of the One (decision: `relight_the_dragonfires`).
+- This creates an ongoing mechanic that fires across multiple reigns.
+
+---
+
+### 26.9 Heir as Avatar — The Third Path
+
+If the player-Emperor sent their heir to Kvatch with the `heir_hidden_at_priory`
+decision, and the heir survived Kvatch, the heir can perform the sacrifice instead.
+
+```
+oblivion_crisis.heir_avatar = {
+    type = character_event
+    trigger = {
+        has_character_flag = heir_sent_to_kvatch
+        any_child = {
+            has_character_flag = heir_survived_kvatch
+            has_character_flag = amulet_worthy  # or dragonborn_blood
+        }
+    }
+    option = {
+        name = "Send [heir] to the Temple. Let them carry the burden."
+        # Heir becomes Avatar — Emperor survives; heir dies
+        effect = {
+            random_child = {
+                limit = { has_character_flag = heir_survived_kvatch }
+                death = { death_reason = death_became_avatar_of_akatosh }
+            }
+            set_global_flag = dragonfires_covenant_ended
+            set_global_flag = heir_became_avatar_of_akatosh
+            # Emperor survives with full title intact
+            add_prestige = 500
+            add_piety   = 300
+        }
+    }
+    option = {
+        name = "No. I will not send my child to die. I will go myself."
+        # Redirect to §26.8 Emperor Avatar Choice
+        trigger_event = { id = oblivion_crisis.emperor_avatar_choice days = 7 }
+    }
+}
+```
+
+---
+
+### 26.10 New Traits and Modifiers — §26
+
+| Identifier | Type | Description |
+|---|---|---|
+| `oblivion_crisis_imperial_support` | modifier | +2 martial, +1 diplomacy, 10y. Strong Empire aid. |
+| `oblivion_crisis_alone` | modifier | +2 stress, +3 intrigue. No Imperial backup. |
+| `oblivion_crisis_dragonfires_burden` | modifier | -1 monthly piety, -2 diplomacy. Permanent cost of keeping Dragonfires alive. |
+| `oblivion_crisis_resolved_canonical` | modifier | +15 monthly prestige (realm-wide), 10 years. Avatar sacrifice made. |
+| `emperor_survived_prison` | flag | Character flag. Emperor lived through the sewer escape. |
+| `amulet_stolen_in_sewers` | flag | Character flag. Amulet taken before reaching Jauffre. |
+| `heir_hidden_at_priory` | flag | Character flag. Set by `hide_imperial_heirs_at_priory` decision. |
+| `heir_survived_kvatch` | flag | Character flag. Heir rescued from the Kvatch siege. |
+| `dragonfires_covenant_ended` | global flag | Permanent. Martin's sacrifice (or equivalent) has ended the Dragonfires requirement. |
+| `amulet_in_paradise` | global flag | Amulet is in Gaiar Alata. Cleared when retrieved. |
+| `bodyguard_blade` | trait | Generic Blades bodyguard trait for anonymous escorts. Low learning, high martial. |
+| `amulet_worthy` | flag | Character flag. Non-Dragonborn heir who can still channel the sacrifice. |
+
+---
+
+### 26.11 New Files — §26
+
+| File | Contents |
+|---|---|
+| `mod/events/oblivion_crisis_events.txt` | Full `oblivion_crisis` namespace (~30 events) |
+| `mod/common/decisions/oblivion_crisis_decisions.txt` | `hide_imperial_heirs_at_priory`, `relight_the_dragonfires` |
+| `mod/localization/english/oblivion_crisis_l_english.yml` | All §26 localization (UTF-8 BOM required) |
+
+---
+
+### 26.12 Integration Checklist — §26
+
+- [ ] `oblivion_crisis_events.txt` — 30 events covering all 3 tracks
+- [ ] `oblivion_crisis_decisions.txt` — `hide_imperial_heirs_at_priory`, `relight_the_dragonfires`
+- [ ] `hok_prison_blades_spawn_effect` added to `walking_ways_effects.txt` (or own scripted effects file)
+- [ ] `imperial_strength_score` variable verified exists in EK2 or proxied via `realm_size + vassal_opinion`
+- [ ] `death_became_avatar_of_akatosh` death reason added to EK2 death reasons
+- [ ] `dragonfires_covenant_ended` global flag gates `daedric_invasion` events — add NOT-check there
+- [ ] §29 (Mythic Dawn gates) must set `mythic_dawn_threat_known` flag before §26 decisions are shown
+- [ ] Amulet of Kings existing system (`amulet_of_kings_events.txt`) — cross-reference so `has_amulet_of_kings` and `lose_amulet_of_kings` effects are consistent with the stolen route
+- [ ] Localization file with UTF-8 BOM
+
+---
+
+## §27 The Shivering Isles — Throne of Madness
+
+> **Added:** Session 2026-04-08. Covers the champion search that follows Akatosh's
+> manifestation, canonical champion spawning (default: Bendu Olo), Sheogorath succession
+> mantling, and player interference options.
+
+---
+
+### 27.1 Lore Foundation
+
+In **3E 433**, the same year as the Oblivion Crisis, the **Champion of Cyrodiil** (the
+Hero of Kvatch) enters the Shivering Isles — Sheogorath's realm — and eventually
+defeats **Jyggalag** (the Prince of Order, cursed to become Sheogorath each Greymarch).
+Jyggalag is freed from his curse and departs. He names the Champion as the new Sheogorath.
+This is a **canonical mantling** — the Champion metaphysically becomes Sheogorath, the
+Daedric Prince of Madness.
+
+This is confirmed by Skyrim's Sheogorath (4E 201) who appears to retain the Champion's
+memories of the Oblivion Crisis, implying full identity succession.
+
+**The Champion of Cyrodiil has no canonical name.** The Oblivion Construction Set
+developer default is **"Bendu Olo"** — a name borrowed from the First Era
+Colovian Baron-Admiral famous for the All Flags Navy. As a modding convention, "Bendu Olo"
+is the default placeholder name for any spawned canonical Champion NPC.
+
+`[SOURCE: UESP Lore:Hero of Kvatch; Shivering Isles questline; Skyrim:Sheogorath;
+UESP note on Construction Set default name "Bendu Olo"]`
+
+---
+
+### 27.2 Trigger Conditions
+
+The Shivering Isles champion search fires after:
+1. `dragonfires_covenant_ended` OR `emperor_became_avatar_of_akatosh` is set (the
+   Oblivion Crisis has concluded by any route), AND
+2. No player character currently holds the `sheogorath_mantle` trait or flag, AND
+3. The Greymarch timer has elapsed (global variable `shivering_isles_greymarch_cycle`,
+   fires every ~200 years after the previous Sheogorath's enthronement).
+
+```
+# on_yearly_pulse — weight 3
+shivering_isles.champion_search = {
+    trigger = {
+        has_global_flag = dragonfires_covenant_ended
+        NOT = { has_global_flag = sheogorath_mantled }
+        NOT = { any_ruler = { has_character_flag = sheogorath_mantle } }
+    }
+    # Search for any ruler who has entered the Shivering Isles portal
+    # (has_character_flag = shivering_isles_entered)
+}
+```
+
+---
+
+### 27.3 Champion Spawn — Bendu Olo Fallback
+
+If no player character or eligible NPC has the Shivering Isles entry flag
+(`shivering_isles_entered`) by the time the Greymarch crisis peaks, the mod spawns
+a canonical champion NPC:
+
+```
+shivering_isles.spawn_canonical_champion = {
+    # Guard: only fires if no champion exists
+    trigger = {
+        NOT = { any_ruler = { has_character_flag = shivering_isles_entered } }
+        NOT = { has_global_flag = canonical_champion_spawned }
+    }
+    effect = {
+        set_global_flag = canonical_champion_spawned
+        # Spawn "Bendu Olo" — the canonical default Champion
+        # Race: use_scope = random from imperial/breton/redguard pool
+        # (Champion has no canonical race; Breton preferred per user design intent)
+        create_character = {
+            name = "Bendu Olo"
+            culture = breton_culture     # user design preference
+            faith = eight_divines_faith  # Imperial cult
+            trait = brave
+            trait = gifted_magician
+            trait = wanderer            # models the prisoner background
+            add_character_flag = shivering_isles_entered
+            add_character_flag = canonical_champion_of_cyrodiil
+        }
+        trigger_event = { id = shivering_isles.greymarch_begins days = 90 }
+    }
+}
+```
+
+---
+
+### 27.4 Sheogorath Succession — Mantling Path
+
+Once a champion (player or Bendu Olo NPC) completes the Shivering Isles quest chain
+and defeats Jyggalag:
+
+```
+shivering_isles.mantle_sheogorath = {
+    type = character_event
+    option = {
+        name = "I accept the throne of madness."
+        effect = {
+            add_trait = sheogorath_mantle
+            set_global_flag = sheogorath_mantled
+            # Character departs as Sheogorath — removed from mortal play
+            # (same removal pattern as amaranth_achieved in §8)
+            set_character_flag = departed_to_shivering_isles
+        }
+    }
+}
+```
+
+**If the champion is the canonical NPC Bendu Olo:** the mantling fires automatically
+(NPC always accepts). Sheogorath is filled and the Shivering Isles are stable until
+the next Greymarch cycle.
+
+---
+
+### 27.5 Player Interference
+
+A player who has previously entered the Shivering Isles (`shivering_isles_entered`) can
+**interfere** with Bendu Olo's succession — either to take the throne themselves, to
+redirect it, or to break the cycle entirely:
+
+```
+decision: interfere_with_sheogorath_succession
+    is_shown = {
+        has_character_flag = shivering_isles_entered
+        has_global_flag = canonical_champion_spawned
+        NOT = { has_global_flag = sheogorath_mantled }
+    }
+    effect = {
+        # Opens a rival claim to the Shivering Isles throne
+        # Triggers a contest event between player and Bendu Olo
+        trigger_event = { id = shivering_isles.throne_contest days = 30 }
+    }
+```
+
+---
+
+### 27.6 New Traits and Modifiers — §27
+
+| Identifier | Type | Description |
+|---|---|---|
+| `sheogorath_mantle` | trait | Prince of Madness. Permanent insanity trait; massive diplomacy penalty; huge monthly prestige; character "departs" to the Shivering Isles (removed from mortal play). |
+| `shivering_isles_entered` | flag | Character flag. Character has stepped through the portal. Gate for succession contest. |
+| `canonical_champion_of_cyrodiil` | flag | Character flag. Marks the spawned Bendu Olo NPC. |
+| `sheogorath_mantled` | global flag | Set when any character takes the throne. Blocks further spawning. |
+
+---
+
+### 27.7 Integration Checklist — §27
+
+- [ ] `shivering_isles_events.txt` — champion search, spawn, greymarch, throne contest
+- [ ] `sheogorath_mantle` trait in appropriate traits file
+- [ ] `shivering_isles_entered` flag available as portal decision (decision file TBD)
+- [ ] `sheogorath_mantled` global flag blocks `daedric_invasion` Sheogorath-type events
+- [ ] Bendu Olo spawn cross-referenced with `canonical_champion_spawned` guard
+- [ ] Localization file with UTF-8 BOM
+
+---
+
+## §28 Skyrim — The Civil War and the Road to Helgen
+
+> **Added:** Session 2026-04-08. Covers the ambush-trigger carriage event, dynamic
+> civil war factions based on Windhelm control, Emperor carriage path, and
+> Skyrim-control recognition by the captain at Helgen.
+
+---
+
+### 28.1 Lore Foundation
+
+In **4E 201** the player character of TES V: Skyrim is captured near **Darkwater Crossing**
+during an Imperial ambush targeting **Ulfric Stormcloak** (who killed High King Torygg and
+sparked the civil war). The Stormcloaks were ambushed and captured along with several
+bystanders. All prisoners are loaded onto a carriage and taken to **Helgen** for execution.
+**General Tullius** orders the executions. As they begin, **Alduin** attacks, freeing the
+prisoners.
+
+**Key lore facts:**
+- The civil war is between the **Empire of Tamriel** and the **Stormcloak Rebellion**
+  (based in Windhelm, Eastern Skyrim, led by Ulfric). BUT in the mod's dynamic political
+  system, whoever controls Windhelm could be any faction — the civil war becomes
+  whoever holds Eastern Skyrim vs. Imperial authority.
+- Ulfric was gagged to prevent Thu'um use during capture.
+- The carriage sequence is canon; the prisoner's name/race are not.
+- **Delphine** (Riverwood innkeeper, secret Blade) is active in 4E 201 — she is the
+  appropriate era for Blades content in this timeframe.
+
+`[SOURCE: UESP Lore:Helgen; Skyrim:Ulfric Stormcloak; Lore:Stormcloak Rebellion;
+Lore:Thalmor Dossier:Ulfric Stormcloak]`
+
+---
+
+### 28.2 The Ambush Trigger — "A Walk That Goes Wrong"
+
+The Helgen event is triggered for the player character by an on-action event:
+the character goes on a routine journey/patrol in Skyrim territory and is caught
+in an Imperial net meant for the Windhelm rebel leader.
+
+```
+# on_yearly_pulse — weight 3
+# Fires only in the 4E 201 window or equivalent political state
+helgen.ambush_trigger = {
+    trigger = {
+        # Time window (canonical) or equivalent political state
+        OR = {
+            current_date >= 4.201.1.1
+            AND = {
+                # Early-fire alternative: civil war conditions met
+                has_global_flag = skyrim_civil_war_active
+                controls_county = windhelm_county  # or equivalent
+            }
+        }
+        culture = { has_cultural_pillar = nordic_culture_group }
+        NOT = { has_character_flag = helgen_survived }
+        NOT = { has_global_flag = helgen_event_fired }
+    }
+    effect = {
+        trigger_event = { id = helgen.001 }
+        set_global_flag = helgen_event_fired
+    }
+}
+```
+
+---
+
+### 28.3 Dynamic Civil War Factions
+
+In EK2 the Skyrim civil war is not locked to Stormcloaks vs. Empire. Whoever
+controls Windhelm is the rebel faction. This is the basis for the carriage's
+captors:
+
+| Windhelm Controller | Rebel Faction Name | Flavor |
+|---|---|---|
+| Stormcloak culture/claimant | Stormcloak Rebellion (canonical) | Ulfric-adjacent. Nordic independence narrative. |
+| Forsworn/Reach faction | Forsworn Uprising | Reach natives reclaim Eastern Skyrim. |
+| Thalmor puppet | Aldmeri Suppression | Thalmor eliminating "undesirables" from Skyrim. |
+| Rogue Imperial claimant | Imperial Pretender Revolt | Internal imperial dispute; player caught in the crossfire. |
+| Any other faction | `[faction_name]` Rebellion | Generic rebellion; carriage flavor text adjusts to captor culture. |
+
+The key mechanic: **whoever ordered the carriage** is determined by
+`windhelm_controller_culture_flag`. This character (if a named NPC exists) receives
+the notification that a suspicious person was captured with the rebel convoy.
+
+---
+
+### 28.4 Emperor Captured — "No One Believes You"
+
+If the player IS the Emperor at the time of the ambush, they are treated as any other
+prisoner — the soldiers in the field either don't recognize them or don't believe them
+(the Emperor traveling without guards in Skyrim is implausible to a field unit).
+
+```
+helgen.emperor_in_carriage = {
+    type = character_event
+    desc = "You are bound on a cart heading for Helgen. You tell the soldier beside
+            you who you are. He laughs. The captain doesn't even look up."
+    trigger = {
+        holds_imperial_throne = yes
+        has_character_flag = helgen_captured
+    }
+    option = {
+        name = "I AM the Emperor. This is treason."
+        # No effect — prisoner treatment continues
+        # Sets flag for possible recognition later (§28.5)
+        add_character_flag = emperor_claimed_identity_at_helgen
+    }
+    option = {
+        name = "...Say nothing. Wait for the right moment."
+        add_character_flag = emperor_stayed_silent_at_helgen
+        add_intrigue = 1
+    }
+}
+```
+
+---
+
+### 28.5 Skyrim Control Recognition — The Captain Knows
+
+If Skyrim has high Imperial control (`skyrim_imperial_control_score >= 4`), a
+well-organized Imperial administration is in place — the Captain at Helgen
+may have access to Imperial records and recognizes the Emperor.
+
+```
+helgen.captain_recognizes_emperor = {
+    type = character_event
+    trigger = {
+        holds_imperial_throne = yes
+        has_character_flag = emperor_claimed_identity_at_helgen
+        # High Skyrim Imperial control
+        any_county_in_region = {
+            region = skyrim_region
+            has_variable = imperial_control_high
+        }
+    }
+    option = {
+        name = helgen.captain_recognizes.a
+        # Captain pulls the Emperor aside — does NOT send to the block
+        # Emperor survives Helgen with authority intact
+        effect = {
+            remove_character_flag = helgen_captured
+            add_character_flag = helgen_escaped_imperial_recognition
+            add_prestige = 100
+            trigger_event = { id = helgen.dragon_attack days = 7 }  # Alduin still attacks
+        }
+    }
+    option = {
+        name = helgen.captain_recognizes.b
+        # Captain suspects but follows orders — Emperor goes to the block
+        # (Same as non-recognized path; survival depends on Alduin attack timing)
+        effect = {
+            add_character_flag = helgen_goes_to_block
+            trigger_event = { id = helgen.block_sequence days = 1 }
+        }
+    }
+}
+```
+
+**Note:** Alduin's attack at Helgen fires regardless. The difference is:
+- Recognized Emperor: starts escape from a position of authority (guards assist).
+- Unrecognized Emperor: must escape through the chaos of the dragon attack like any prisoner.
+
+---
+
+### 28.6 New Traits and Modifiers — §28
+
+| Identifier | Type | Description |
+|---|---|---|
+| `helgen_survivor` | trait | Survived the Helgen execution/dragon attack. Minor intrigue bonus. |
+| `helgen_escaped_imperial_recognition` | flag | Emperor was recognized and not sent to the block. |
+| `helgen_goes_to_block` | flag | Character was placed on the execution block. |
+| `skyrim_civil_war_active` | global flag | Set when civil war conditions are met regardless of date. |
+| `windhelm_controller_culture_flag` | variable | Set to culture of Windhelm's ruler. Used for faction naming. |
+
+---
+
+### 28.7 Integration Checklist — §28
+
+- [ ] `helgen_events.txt` — ambush, carriage, Emperor identity, captain recognition, block, dragon attack
+- [ ] `skyrim_civil_war_active` global flag — trigger conditions defined (Windhelm rebel control + Imperial claim overlap)
+- [ ] `windhelm_controller_culture_flag` scripted trigger per county setup
+- [ ] `helgen_survivor` trait added to appropriate traits file
+- [ ] Dynamic faction flavor text in localization (culture-conditional `[CULTURE_NAME]` scripted localization)
+- [ ] Alduin attack event cross-referenced with dragonborn/Thu'um system events
+- [ ] Localization file with UTF-8 BOM
+
+---
+
+## §29 Mythic Dawn Formation — The Cult's Rise
+
+> **Added:** Session 2026-04-08. Covers the lore-accurate formation requirements for
+> the Mythic Dawn. The cult does NOT exist at game start. It forms reactively in response
+> to specific in-game conditions, primarily the formation of the Blades as an organization
+> and Talos ascending to godhood.
+
+---
+
+### 29.1 Lore Foundation
+
+The Mythic Dawn was founded by **Mankar Camoran**, a Bosmer sorcerer who became obsessed
+with **Mehrunes Dagon** after reading the forbidden **Mysterium Xarxes** (Dagon's own
+scripture). The cult spent **centuries** building toward the simultaneous assassination
+of the Septim line and the opening of every Oblivion Gate in Tamriel. Their most significant
+recorded activity begins in the **Third Era**, not before.
+
+**Formation trigger logic:** The cult's readiness to act is reactive to the geopolitical
+state of Tamriel — specifically, the consolidation of Imperial power around a Dragonborn
+line (the Blades are the enforcers of this line) and Talos's divine status (which
+validates the Septim covenant that the Mythic Dawn seeks to break). It makes no lore sense
+for the cult to be active during the Second Era Interregnum when the Septim dynasty does not
+yet exist. They form when the thing they want to destroy is powerful enough to be worth
+destroying.
+
+`[SOURCE: UESP Lore:Mythic Dawn; Oblivion:Mankar Camoran; Oblivion:Commentaries on the
+Mysterium Xarxes; §18 (this document, date guard review); §29.2 below]`
+
+---
+
+### 29.2 Formation Gate — Requirements
+
+The Mythic Dawn cannot form until ALL of the following are true:
+
+```
+# Scripted trigger: can_mythic_dawn_form
+can_mythic_dawn_form = {
+    # Blades organization exists and is active
+    has_global_flag = blades_organization_active
+
+    # Talos has ascended — the Septim covenant is in place
+    # (Talos's divine status confirms the Dragonborn Emperor line)
+    has_global_flag = talos_ascended_to_godhood
+
+    # The Empire is consolidated enough to be a target worth striking
+    # (proxy: at least one Dragonborn Emperor holds the Ruby Throne)
+    any_ruler = {
+        holds_imperial_throne = yes
+        OR = {
+            has_trait = dragonborn_soul
+            has_character_flag = dragonborn_emperor
+        }
+    }
+
+    # Not already active
+    NOT = { has_global_flag = mythic_dawn_active }
+
+    # Not already defeated
+    NOT = { has_global_flag = oblivion_crisis_resolved_canonical }
+}
+```
+
+---
+
+### 29.3 Formation Chain — Reactive, Not Instant
+
+Once `can_mythic_dawn_form` becomes true, the formation does not fire immediately.
+The cult builds over time:
+
+```
+# on_yearly_pulse — weight 2 — fires only when formation gate is met
+mythic_dawn.formation_check = {
+    trigger = { can_mythic_dawn_form = yes }
+    effect = {
+        # Increment cult_formation_progress global variable
+        change_global_variable = {
+            name = cult_formation_progress
+            add = 1
+        }
+        # Threshold: cult becomes active after 5–10 years of building
+        if = {
+            limit = { global_variable:cult_formation_progress >= 7 }
+            set_global_flag = mythic_dawn_active
+            set_global_flag = mythic_dawn_threat_known  # enables §26 heir-hiding decision
+            trigger_event = { id = mythic_dawn.cult_emerges }
+        }
+    }
+}
+```
+
+**Accelerators** (each reduces the threshold by 1):
+- A Dragonborn Emperor has just died without a confirmed heir: `-2` (cult sees opportunity).
+- The Blades organization recently purged: `-1` (reduced surveillance).
+- A character with `mehrunes_dagon_aspect` trait is active at court: `-1` (Dagon pushes).
+
+**Blockers** (pause progress while true):
+- Strong Blades (`blades_strength_score >= 4`): no accumulation while active.
+- Dragonfires currently lit: rate halved.
+
+---
+
+### 29.4 Mankar Camoran — Canonical NPC Spawn
+
+When `mythic_dawn_active` fires, **Mankar Camoran** is spawned as a living NPC:
+
+```
+mythic_dawn.spawn_mankar = {
+    effect = {
+        NOT = { has_global_flag = mankar_camoran_spawned }
+        create_character = {
+            name = "Mankar Camoran"
+            culture = bosmer_culture
+            faith = mehrunes_dagon_faith
+            trait = genius
+            trait = ambitious
+            trait = zealous
+            trait = schemer
+            add_character_flag = mankar_camoran_canonical
+            add_character_flag = mysterium_xarxes_bearer
+        }
+        set_global_flag = mankar_camoran_spawned
+    }
+}
+```
+
+Mankar is associated with the `gaiar_alata_pocket_realm` flag when the Amulet is
+stolen — this is the anchor for the Paradise quest in §26.
+
+---
+
+### 29.5 Integration Checklist — §29
+
+- [ ] `can_mythic_dawn_form` scripted trigger in `walking_ways_triggers.txt` (or new file)
+- [ ] `cult_formation_progress` global variable initialized to 0 at game start
+- [ ] `blades_organization_active` global flag — defined by Blades formation events/decision
+- [ ] `talos_ascended_to_godhood` global flag — defined by mantling_talos apex (§8/§17)
+- [ ] `mythic_dawn_formation_check` on_yearly_pulse entry in `lore_races_on_actions.txt`
+- [ ] `mythic_dawn.cult_emerges` event sets `mythic_dawn_threat_known` for §26
+- [ ] Existing `mythic_dawn_events.txt` date guard (§18.1b) replaced with `can_mythic_dawn_form` trigger
+- [ ] Mankar Camoran NPC spawn integrated with Paradise events in §26
+- [ ] Localization file with UTF-8 BOM
+
+---
+
+## §30 Talos on the Throne — The God Who Would Not Leave
+
+> **Added:** Session 2026-04-08. Covers the special assassination response available
+> to Tiber Septim / Talos if the player character IS Talos on the throne when
+> the Mythic Dawn strikes, plus the mechanic for delaying his ascent to godhood
+> and the inevitable canonical ending.
+
+---
+
+### 30.1 Lore Foundation
+
+In canon, **Tiber Septim** (Talos) dies in **3E 38** as an old man and ascends to
+godhood post-mortem. He is not assassinated. The Mythic Dawn does not target him
+canonically because the cult's active phase is ~3E 400s, long after Tiber Septim's death.
+
+However, in the mod's divergent timeline (where Talos may be on the Walking Ways path
+and still mortal in 3E 100–250), if the Mythic Dawn forms early (see §29) AND Talos is
+still alive on the Ruby Throne, the cult could plausibly attempt to remove him as the
+keystone of the Dragonborn covenant they seek to destroy.
+
+**This section handles that divergent scenario only.** The invariant is:
+
+> *If `ww_mantling_talos_active = yes` AND `is_ruler = yes` AND `holds_imperial_throne = yes`
+> AND `mythic_dawn_active = yes` — then Talos receives a special assassination attempt event.*
+
+`[SOURCE: UESP Lore:Talos; Lore:Tiber Septim; §17.2 Wulf avatar notes (this document);
+§29 Mythic Dawn formation; Oblivion:Uriel Septim VII assassination]`
+
+---
+
+### 30.2 The Assassination Attempt — "They Came for the Wrong Emperor"
+
+```
+mythic_dawn.assassination_attempt_talos = {
+    type = character_event
+    title = "The Red Robes in the Night"
+    desc = "Your chamberlain wakes you with blood on his hands. Three of them —
+            red-robed, carrying ceremonial daggers. They know where you sleep.
+            They came for an old man who would not fight back.
+            They found something else entirely."
+
+    trigger = {
+        ww_mantling_talos_active = yes  # on the Talos path
+        holds_imperial_throne = yes
+        has_global_flag = mythic_dawn_active
+        NOT = { has_character_flag = assassination_attempt_survived }
+    }
+
+    option = {
+        name = mythic_dawn.talos_fight_back.a
+        # "Across the room with them."
+        # Talos fights — martial-check outcome
+        trigger = { martial >= 14 }
+        effect = {
+            add_character_flag = assassination_attempt_survived
+            add_character_modifier = {
+                modifier = talos_survived_assassination_modifier
+                days = 1825  # 5 years
+            }
+            # Mythic Dawn loses a cell — set back formation progress
+            change_global_variable = {
+                name = cult_formation_progress
+                add = -3
+            }
+            add_prestige = 200
+            add_stress   = 20
+        }
+    }
+    option = {
+        name = mythic_dawn.talos_fight_back.b
+        # "They will find the Blades waiting." — forewarned response
+        trigger = { has_character_flag = mythic_dawn_threat_known }
+        effect = {
+            add_character_flag = assassination_attempt_survived
+            add_character_modifier = {
+                modifier = talos_survived_assassination_modifier
+                days = 1825
+            }
+            change_global_variable = {
+                name = cult_formation_progress
+                add = -2
+            }
+            add_prestige = 150
+        }
+    }
+    option = {
+        name = mythic_dawn.talos_wounded.c
+        # "I drove them back — but they marked me."
+        # Survives but takes a wound modifier
+        effect = {
+            add_character_flag = assassination_attempt_survived
+            add_character_modifier = {
+                modifier = assassination_wound
+                days = 365
+            }
+        }
+    }
+}
+```
+
+---
+
+### 30.3 Delay Mechanics — The God Who Stays
+
+Every time Talos survives an assassination attempt, the `talos_ascent_delay_counter`
+increments. Ascending to godhood (`talos_apotheosis` event — currently defined in
+`mantling_talos_events.txt`) checks this counter.
+
+```
+# In mantling_talos_events.txt — add to apotheosis trigger check:
+# talos_apotheosis fires normally UNLESS the player has actively delayed
+
+talos_apotheosis_delay_check = {
+    trigger = {
+        ww_mantling_talos_active = yes
+        ww_talos_rank >= 4        # apex rank reached
+    }
+    # If delay counter is 0 — fire apotheosis normally
+    if = {
+        limit = { global_variable:talos_ascent_delay_counter <= 0 }
+        trigger_event = { id = mantling_talos.apotheosis }
+    }
+    # If delay counter > 0 — fire delay event instead
+    else = {
+        trigger_event = { id = mantling_talos.delay_apotheosis }
+    }
+}
+```
+
+**Delay Decision** (player action, shown once Talos is at rank 4):
+
+```
+decision: delay_talos_ascent
+    is_shown = {
+        ww_mantling_talos_active = yes
+        ww_talos_rank >= 4
+        NOT = { has_character_flag = talos_apotheosis_complete }
+    }
+    cost = { piety = 500 }
+    effect = {
+        change_global_variable = {
+            name = talos_ascent_delay_counter
+            add = 1
+        }
+        add_character_modifier = {
+            modifier = talos_delay_of_godhood_modifier
+            days = 3650  # 10 years
+        }
+        # Stress cost — fighting your own divine nature
+        add_stress = 40
+        trigger_event = { id = mantling_talos.delay_flavor days = 30 }
+    }
+    # Can be taken repeatedly, but each time costs more
+    # (piety cost increases: 500 → 1000 → 2000 per additional delay)
+```
+
+---
+
+### 30.4 The Inevitable Ending
+
+Talos cannot delay apotheosis indefinitely. The mod enforces a soft cap:
+
+- After **3 delays** (30 years minimum): The `talos_cannot_delay_further` modifier fires,
+  the delay decision becomes unavailable, and the apotheosis event fires within 1 year.
+- **Flavor:** Each delay event makes it clearer that Talos is fighting his own transformation.
+  The final delay flavor text should echo Martin Septim's sacrifice — the god-who-was-mortal
+  accepts what he is becoming.
+
+```
+mantling_talos.cannot_delay_further = {
+    type = character_event
+    desc = "You have walked as a man long enough. The Nordic dead wait. The Oversoul
+            calls. You have delayed the stars themselves — but stars do not forget."
+    option = {
+        name = "Then let it end as it began. At the top of the world."
+        effect = {
+            trigger_event = { id = mantling_talos.apotheosis days = 365 }
+        }
+    }
+}
+```
+
+**If Talos delays and the Mythic Dawn triggers the Oblivion Crisis while he is still
+mortal:** This creates a unique crossover — Talos is on the throne when the assassination
+chain for the standard Emperor fires. He survives (§30.2 combat response) but the
+crisis still unfolds. He can potentially perform the Avatar of Akatosh sacrifice
+himself (§26.8), replacing Martin entirely — ending both his mortal life AND the
+Dragonfires in one event.
+
+---
+
+### 30.5 New Traits and Modifiers — §30
+
+| Identifier | Type | Description |
+|---|---|---|
+| `talos_survived_assassination_modifier` | modifier | +2 martial, +1 prestige/month, 5 years. Mythic Dawn failed against the Oversoul. |
+| `talos_delay_of_godhood_modifier` | modifier | -1 monthly piety, +10 stress, 10 years. Holding back divinity has a cost. |
+| `talos_cannot_delay_further` | modifier | Permanent until apotheosis fires. Removes delay decision. |
+| `assassination_attempt_survived` | flag | Character flag. Prevents the same attempt firing twice. |
+| `talos_ascent_delay_counter` | global variable | Counts delays taken. Capped at 3. |
+
+---
+
+### 30.6 Integration Checklist — §30
+
+- [ ] `mythic_dawn.assassination_attempt_talos` event added to `mythic_dawn_events.txt`
+- [ ] `delay_talos_ascent` decision added to `mantling_talos_decisions.txt` (or Walking Ways decisions file)
+- [ ] `talos_apotheosis_delay_check` scripted trigger/effect added to `mantling_talos_events.txt` apotheosis path
+- [ ] `talos_ascent_delay_counter` global variable initialized to 0 at game start
+- [ ] `talos_survived_assassination_modifier` and `talos_delay_of_godhood_modifier` added to `lore_races_modifiers.txt`
+- [ ] `talos_cannot_delay_further` cap check at counter >= 3
+- [ ] Crossover event: Talos + Emperor + Avatar of Akatosh path (§26.8 + §30.4 intersection)
+- [ ] Localization file with UTF-8 BOM
+
+---
+
+## §31 Design Corrections and Clarifications — §26–§30
+
+> **Added:** Session 2026-04-08. Addresses four corrections to the §26–§30 design notes:
+> (1) Helgen carriage open to all players; (2) Talos canonical timeline and why
+> the §30 assassination is a rare divergence; (3) universal temporal spawning
+> principle; (4) Hero of Kvatch name research result.
+
+---
+
+### 31.1 Correction — Helgen Carriage Is Open to ALL Players (§28 Amendment)
+
+**Correction to §28.2 and §28.4:**
+
+The "Emperor being thrown on a carriage to Helgen" example in the planning notes was
+used to illustrate *one possible version* of the event — not a gate restricting the
+event to Emperor characters. **Any player character** can end up on the carriage to
+Helgen. The Emperor path (§28.4–§28.5) is additional identity-flavored content layered
+on top of the universal entry path.
+
+**General entry — applies to ALL characters:**
+
+The carriage to Helgen represents getting caught in the wrong place at the wrong time.
+The Imperial sweep targeted the Windhelm rebel convoy; bystanders, travelers, and
+anyone near the ambush were swept up alongside the rebels. A character does not need
+to be Nordic, Imperial, or of any specific culture to end up on the carriage.
+
+**Corrected ambush trigger gate (replaces §28.2 culture gate):**
+
+```
+# on_yearly_pulse — weight 3
+helgen.ambush_trigger = {
+    trigger = {
+        OR = {
+            current_date >= 4.201.1.1
+            AND = {
+                has_global_flag = skyrim_civil_war_active
+                any_county_in_region = {
+                    region = skyrim_region
+                    title_province = { controls_county = yes }  # character controls land in Skyrim
+                }
+            }
+        }
+        # ANY ruler present in Skyrim territory — no culture gate
+        any_county_in_region = {
+            region = skyrim_region
+            holder = root
+        }
+        NOT = { has_character_flag = helgen_survived }
+        NOT = { has_global_flag = helgen_event_fired }
+    }
+    effect = {
+        trigger_event = { id = helgen.001 }
+        set_global_flag = helgen_event_fired
+    }
+}
+```
+
+**Layer structure — what varies by character type:**
+
+| Character Type | Base Carriage Experience | Additional Flavor |
+|---|---|---|
+| **Any ruler** | Captured, bound, heading to Helgen. Alduin attack. Survival event. | None (base path only) |
+| **Emperor (holds imperial throne)** | Same base path | +Identity events: §28.4 "No One Believes You" + §28.5 Captain Recognition chance |
+| **Talos-path walker** | Same base path | +Divine dissonance: being captured feels *wrong* at a bone-deep level. Modifier reduces stress of imprisonment. |
+| **Shezarrine** | Same base path | +Pattern recognition: the imprisonment echoes earlier lives. Minor prestige for surviving. |
+| **Dragonborn (any)** | Same base path | +Alduin recognition event during the dragon attack — Alduin hesitates a fraction of a second. |
+
+**Design principle:** The carriage sequence is the *entry point* for Helgen regardless
+of who you are. Your identity — Emperor, god-walker, dragonborn — shapes the flavor
+events that fire during and after the carriage ride, not whether you board it.
+
+---
+
+### 31.2 Correction — Tiber Septim Alive When HoK Fires Early (§30 Full Reframe)
+
+**What §30 was originally describing vs. what it should describe:**
+
+The original §30 framing assumed a *player character* walking the Talos mantling
+path (who is also the Emperor) surviving an assassination attempt. **This is wrong.**
+
+The actual scenario is simpler and more lore-critical:
+
+> **If the Oblivion Crisis triggers early** (because the political conditions in
+> §29 are met before 3E 433), **Tiber Septim himself may not have died yet.** His
+> canonical death is 3E 38. If HoK fires at, say, 2E 900 or 3E 100 due to player
+> actions completing the Dragonborn-Emperor + Blades + Talos-ascended conditions,
+> Tiber Septim could still be on the Ruby Throne.
+>
+> The question is: **can the Mythic Dawn assassinate Tiber Septim the same way they
+> killed Uriel Septim VII?** The answer is no — and not because a player is
+> "playing Talos." It is because Tiber Septim as a historical NPC at the height of
+> his power is a fundamentally different target than an elderly Uriel.
+
+**Why Uriel's assassination worked:**
+
+Uriel Septim VII was killed because:
+- He was **old** (~80 at time of death) and physically diminished.
+- The Mythic Dawn had **centuries** to infiltrate the Imperial apparatus.
+- He was caught in a **secret passage** with only three Blades, moving on foot
+  through the Imperial City sewers.
+- His entire line of legitimate heirs had already been killed in co-ordinated
+  simultaneous strikes.
+
+**Why the same attempt on Tiber Septim would fail:**
+
+Tiber Septim at the height of his reign:
+- Conquered all of Tamriel through military force and, by lore accounts, through
+  the partial use of Numidium and his own semi-divine will.
+- Was surrounded by a fully organized Blades apparatus at its peak formation.
+- Was, by the time he could be targeted by the Mythic Dawn (who require
+  `talos_ascended_to_godhood` — i.e., his own worship — to form), *already
+  functioning as a semi-divine being*. He had the Voice, absorbed the Shezarrine
+  pattern, and by accounts in *The Arcturian Heresy* had already undergone
+  significant metaphysical transformation.
+- Could not be killed by ceremonial daggers wielded by cultists who were
+  designed to murder an elderly mortal emperor. The "assassins across the room"
+  example captures this: Tiber Septim at his height would not be found asleep
+  and defenseless. He would fight back, and the fight would not go the way the
+  cultists expected.
+
+**Design rule — §30 reframe:**
+
+§30 is NOT about a player character walking a spiritual path. It is about the
+**historical NPC Tiber Septim** being alive on the throne when the crisis fires
+early. The implementation must gate the standard assassination event:
+
+```
+# In oblivion_crisis_events.txt — assassination trigger
+# Standard Mythic Dawn assassination fires ONLY when Tiber Septim is NOT
+# the current Emperor (i.e., is dead or has ascended)
+
+oblivion_crisis.mythic_dawn_assassination = {
+    trigger = {
+        has_global_flag = mythic_dawn_active
+        # Gate: Tiber Septim must not be the current ruler on the Imperial Throne
+        NOT = {
+            any_ruler = {
+                holds_imperial_throne = yes
+                has_character_flag = tiber_septim_canonical   # NPC flag set on spawn
+            }
+        }
+    }
+    # Standard assassination sequence fires against whoever holds the throne
+}
+```
+
+**If Tiber Septim IS the Emperor when Mythic Dawn becomes active:**
+
+The cult cannot execute the assassination-in-the-palace method. Instead:
+
+```
+# Mythic Dawn formation stalls — cult recognizes the target is not killable
+# by their standard methods
+
+mythic_dawn.tiber_septim_on_throne = {
+    type = character_event
+    # Fires to Tiber Septim NPC when cult forms while he is Emperor
+    title = "The Red Scribblers"
+    desc = "Your intelligence agents have brought you a red-robed body.
+            The Mythic Dawn — a cult of Mehrunes Dagon. They have been
+            watching the palace. Apparently they want you dead.
+            Apparently they did not think this through."
+
+    option = {
+        name = "Deal with them."
+        # Tiber Septim suppresses the early cult cell
+        # Mythic Dawn progress resets — they cannot act while he lives
+        change_global_variable = {
+            name = cult_formation_progress
+            add = -5  # Major setback — driven underground
+        }
+        # Modifier: cult goes dormant until Tiber Septim dies or ascends
+        set_global_flag = mythic_dawn_suppressed_by_tiber
+    }
+}
+
+# The Mythic Dawn can only re-emerge AFTER tiber_septim_canonical dies/ascends:
+can_mythic_dawn_reactivate = {
+    has_global_flag = mythic_dawn_suppressed_by_tiber
+    NOT = {
+        any_ruler = {
+            holds_imperial_throne = yes
+            has_character_flag = tiber_septim_canonical
+        }
+    }
+}
+```
+
+**What happens after Tiber Septim dies or ascends:**
+
+When Tiber Septim's NPC dies (or fires his ascension event), the `mythic_dawn_suppressed_by_tiber`
+flag clears and the cult formation progress resumes from where it was set back.
+They begin their centuries-long infiltration of the *next* Dragonborn Emperor's
+apparatus — eventually culminating in the assassination of whoever currently
+holds the throne, with the same three-blades-in-a-sewer sequence.
+
+**Key distinction — this is about the NPC, not the player:**
+
+| Scenario | Subject | Outcome |
+|---|---|---|
+| Mythic Dawn targets Uriel Septim VII | NPC Emperor, mortal, elderly, unprotected | Assassination succeeds canonically |
+| Mythic Dawn targets Tiber Septim (alive, early HoK) | Semi-divine NPC Emperor, at height of power | Assassination fails; cult suppressed; must wait |
+| Mythic Dawn targets any other dynasty's Emperor | Mortal NPC or player character | Standard crisis fires; result depends on player action (§26) |
+
+**The "assassins across the room" example clarified:**
+
+That example was given to illustrate *why* the assassination fails against Tiber
+Septim — not as a designed fight scene for the player. The image is of the
+cultists arriving expecting the same scenario they used on Uriel, finding instead
+something that does not react the way a mortal emperor would. It is shorthand for:
+*the target is not what they expected, and the method doesn't work.*
+
+`[SOURCE: UESP Lore:Tiber Septim — death 3E 38, ascension to Talos; UESP Lore:Uriel
+Septim VII — assassination 3E 433; The Arcturian Heresy — Tiber Septim semi-divine
+nature; §29 — Mythic Dawn formation gates (require talos_ascended_to_godhood)]`
+
+---
+
+### 31.3 Universal Temporal Spawning Principle (§26–§30 General Rule)
+
+**Correction / expansion of §26.3:**
+
+Section 26.3 established a birth-date gate specifically for Baurus. This principle
+must be applied universally to **all named canonical characters** across §26–§30.
+
+**The rule:**
+
+> A named canonical character (Baurus, Glenroy, Captain Renault, Jauffre, Martin
+> Septim, Mankar Camoran, Delphine, Ulfric Stormcloak, General Tullius, etc.) may
+> ONLY be spawned if the current in-game date falls within their lore-accurate
+> lifespan window. If the triggering event fires outside that window — because
+> political conditions triggered it early — an **anonymous placeholder NPC** fills
+> their role instead.
+
+**Birth window reference table — §26–§30 canonical characters:**
+
+| Character | Earliest Possible Spawn | Notes |
+|---|---|---|
+| **Baurus** | 3E 409 | Born ~3E 409–415 per UESP |
+| **Glenroy** | 3E 390 (approx.) | No stated birth; adult blade at 3E 433; arbitrary 40-year prior |
+| **Captain Renault** | 3E 395 (approx.) | Same constraint as Glenroy |
+| **Jauffre** | 3E 350 (approx.) | Breton monk; must be old enough to be Blades Grandmaster by 3E 433; no birth date stated |
+| **Martin Septim** | 3E 395 (approx.) | Illegitimate son of Uriel VII; must be ~38 at time of Oblivion Crisis |
+| **Mankar Camoran** | 3E 200 (minimum) | Bosmer; long-lived; but Mysterium Xarxes obsession is Third Era |
+| **Delphine** | 4E 000 (approx.) | Active in 4E 201 Skyrim — NEVER appears in §26 prison sequence |
+| **Ulfric Stormcloak** | 4E 175 (approx.) | Active in 4E 201; must not appear before late 4E |
+| **General Tullius** | 4E 175 (approx.) | Same as Ulfric |
+
+**Placeholder behavior when trigger fires outside the canonical window:**
+
+```
+# Template pattern — applies to all named canonical NPC spawns
+
+hok_spawn_canonical_npc_template = {
+    if = {
+        # Named character window: in this example, Baurus
+        limit = {
+            current_date >= 3.409.1.1
+            current_date <= 3.434.1.1
+        }
+        # Spawn named canonical character
+        create_character = {
+            name = "Baurus"
+            culture = redguard_culture
+            trait = brave
+            trait = loyal
+            add_character_flag = canonical_baurus
+        }
+    }
+    else = {
+        # Named character does not exist yet — spawn anonymous placeholder
+        # These are NOT lore characters; they exist only to fill narrative roles
+        create_character = {
+            # Name: generated from culture pool of whoever controls the Empire
+            culture = scope:empire_holder.culture
+            trait = brave
+            trait = loyal
+            # Flag distinguishes them from canonical characters
+            add_character_flag = anonymous_blades_escort
+        }
+    }
+}
+```
+
+**Replacement philosophy:**
+
+Anonymous placeholders are explicitly *random* in name and appearance. They fill
+the narrative slot (the escort blade, the loyal monk, the hidden heir) but they
+have no lore identity. If a player wants the canonical characters to appear, the
+game must be in the correct time window OR the triggering conditions must hold off
+until those characters would naturally exist.
+
+This prevents anachronistic spawning while still allowing the event chain to resolve.
+The emotional weight of the canonical characters (Baurus surviving the sewers, Martin's
+sacrifice) only fires when the lore timeline supports their existence.
+
+**Lore justification for early-trigger replacements:**
+
+The Oblivion Crisis conditions — a Dragonborn Imperial line, the Blades active, Talos
+a recognised god, Mythic Dawn formed — can be achieved by player actions before 3E 433.
+If they are, the *story* of that crisis is the same structurally, but the *cast* is
+different. Whoever the Emperor is, their equivalent of "Martin" is their own dynasty's
+hidden heir. Whoever the Blades are, their equivalent of "Baurus" is their best
+surviving escort. The crisis plays out with period-appropriate characters.
+
+---
+
+### 31.4 Hero of Kvatch — Name: Bendu Olo (§26–§27 Confirmed Rule)
+
+**Confirmed via UESP and online research (2026-04-08):**
+
+The player character of *The Elder Scrolls IV: Oblivion* has no canonical name in
+lore. The lore titles are **"Hero of Kvatch"** and **"Champion of Cyrodiil."** No
+in-game source assigns the character a personal name.
+
+The **Oblivion Construction Set** (the developer toolset) uses **"Bendu Olo"** as
+the default placeholder name. This name was borrowed from the historical First Era
+Colovian Baron-Admiral who organized the All Flags Navy (~1E 2260). It is a
+developer in-joke, not a lore assignment.
+
+**This mod's rule:**
+
+**The canonical champion NPC spawned by this mod is named Bendu Olo.** This is
+the name used in all spawn scripts, localization, and event text when referring
+to the NPC version of the Champion. It is not described as a "placeholder" or
+"developer convention" in player-facing text — he is simply Bendu Olo, the
+Champion of Cyrodiil.
+
+The lore titles "Hero of Kvatch" and "Champion of Cyrodiil" are used as *titles*
+in flavor text (e.g., "the Hero of Kvatch closed the final Gate"), never as the
+character's personal name in event windows.
+
+**Complete naming rule:**
+
+| Context | Name/Title Used |
+|---|---|
+| Canonical NPC champion — all spawn scripts | `"Bendu Olo"` |
+| Canonical NPC champion — event flavor text | "Bendu Olo" (personal name) |
+| Lore/historical retrospective text | "the Hero of Kvatch" / "the Champion of Cyrodiil" (titles) |
+| Player character takes the champion role | Player's own character name — no override |
+| NPC Bendu Olo becoming Sheogorath (§27.4) | "Bendu Olo" until mantling fires; "Sheogorath" after |
+
+**Important:** if a *player* completes the Shivering Isles chain and mantles
+Sheogorath, the player's own character name is used throughout. "Bendu Olo" only
+applies to the auto-spawned NPC fallback. The two paths are entirely separate.
+
+`[SOURCE: UESP Lore:Hero of Kvatch; UESP Bendu Olo (Oblivion) — CS default name note;
+Lore:All Flags Navy — the historical First Era Bendu Olo; Skyrim:Sheogorath — Champion
+confirmed as later Sheogorath via dialogue referencing the Oblivion Crisis personally]`
+
+---
+
+### 31.5 Summary of Amendments — §26–§30
+
+| Section | Change |
+|---|---|
+| **§28.2** | Remove `nordic_culture_group` gate from ambush trigger. Any character in Skyrim territory can be caught. |
+| **§28.4** | Mark as "additional emperor-specific flavor" only — base carriage experience applies to all. |
+| **§28** (new note) | Add character-type flavor table (§31.1) showing what varies based on who you are. |
+| **§30** (full reframe) | §30 is about Tiber Septim (the NPC) being alive on the throne when HoK fires early — NOT about a player walking the Talos path. The Mythic Dawn cannot assassinate him via the standard palace method. |
+| **§30.1** | Tiber Septim dies 3E 38; HoK fires 3E 433 in canon. If HoK fires early, Tiber Septim may still be alive. |
+| **§30.2** | "Assassins across the room" was an illustrative example of why the attempt fails against a semi-divine NPC — not a designed player fight scene. |
+| **§29 gate** | `can_mythic_dawn_form` requires `talos_ascended_to_godhood`. This paradoxically means the Mythic Dawn requires Tiber Septim to ALREADY have died/ascended before they can act. §31.6 supersedes §31.2: no suppression flag — the cult fires normally, fails to kill Tiber Septim, and steals the Amulet instead. |
+| **§26.3** | Mark as "template for universal rule" — all canonical NPC spawns must use birth-window gates. |
+| **§26–§30** (general) | Add §31.3 universal temporal spawning principle — anonymous placeholders for out-of-window characters. |
+| **§26.1, §27.1, §27.3** | Bendu Olo is the canonical NPC champion's name in this mod. "Hero of Kvatch" / "Champion of Cyrodiil" are lore titles used in flavor text only. |
+| **§31.2** (further correction) | `mythic_dawn_suppressed_by_tiber` suppression flag is REMOVED. Mythic Dawn always attempts assassination when active. If the emperor **dies**: Amulet passes to HoK → HoK takes it to Weynon Priory → stolen from Priory later (canonical path). If the emperor **survives** (Tiber Septim NPC or player): Amulet stolen directly in the assassination chaos; `amulet_stolen_in_sewers` flag set; surviving emperor pursues Mankar personally. See §31.6. |
+| **§26.3, §26.5** (new addition) | Player Emperor encounters HoK candidate prisoners during the sewer escape. Player may choose per-candidate to attempt a rescue or leave them. Save throw required; emperor can die in the attempt. Survivors remain valid HoK candidates. Another player can step in for Amulet retrieval if the emperor delegates or dies. See §31.7. |
+
+---
+
+### 31.6 Correction to §31.2 — Mythic Dawn Still Attempts; Amulet Stolen, Not Emperor Killed
+
+> **Added:** Session 2026-04-08 (follow-up correction to §31.2).
+
+**The problem with §31.2's `mythic_dawn_suppressed_by_tiber` approach:**
+
+§31.2 resolved the paradox of Tiber Septim being alive when the Mythic Dawn forms
+by introducing a `mythic_dawn_suppressed_by_tiber` flag that *halted the cult entirely*
+until he died or ascended. **This is wrong.** The Mythic Dawn does not need to be
+locked. They still attempt the assassination — they just *fail to kill the emperor*.
+The same logic applies to any player character who holds the throne and survives
+the assassination attempt.
+
+**The corrected design:**
+
+The Mythic Dawn always proceeds with their assassination attempt when `mythic_dawn_active`
+is true and a Dragonborn Emperor holds the Ruby Throne. What changes is the *outcome*
+depending on who the target is:
+
+| Emperor Target | Assassination Outcome | Amulet of Kings | Crisis Proceeds? |
+|---|---|---|---|
+| Uriel Septim VII (canon NPC, mortal, elderly) | Emperor killed | Dying emperor hands Amulet to HoK in the sewers → HoK delivers to Jauffre at Weynon Priory → Mythic Dawn steal it from the Priory later | Yes |
+| Tiber Septim (canonical NPC, semi-divine, height of power) | Attempt fails — emperor survives | **Stolen directly in the chaos of the failed attempt** | Yes |
+| Player emperor who survives the attempt | Attempt fails — player survives | **Stolen directly in the chaos of the failed attempt** | Yes |
+| Any mortal NPC emperor (not Tiber Septim) | Emperor killed (standard result) | Dying emperor (or Blades escort) → Amulet follows the canonical HoK-to-Priory path | Yes |
+
+**Why the crisis proceeds in both cases:**
+
+The Mythic Dawn's goal is the Amulet of Kings — not necessarily the emperor's death.
+What changes is *how* the Amulet leaves imperial hands:
+
+- **Emperor dies:** The dying emperor presses the Amulet into the Hero of Kvatch's
+  hands with his last words — "Find Jauffre." The HoK takes it to Weynon Priory.
+  Mankar Camoran's agents then raid the Priory and steal it from there. The Dragonfires
+  go dark, Oblivion Gates open. This is the canonical Oblivion path.
+
+- **Emperor survives (Tiber Septim NPC or player emperor):** There is no dying handoff
+  — the emperor keeps the Amulet as he fights back. Mankar's agents seize it in the
+  chaos of the failed assassination attempt itself, before the emperor can reach safety.
+  The Amulet vanishes to Gaiar Alata immediately. Set `amulet_stolen_in_sewers` flag.
+  The surviving emperor (not a hero-proxy) must pursue Mankar personally into Paradise.
+
+The difference is that with a living emperor:
+- The standard "Martin must light the Dragonfires" chain is replaced by the
+  actual surviving emperor (Tiber Septim or the player) being the one who must
+  pursue Mankar Camoran into Gaiar Alata to recover it.
+- There is no hidden heir to protect — the Blades pivot to guarding the living emperor.
+- The emotional stakes shift: instead of mourning Uriel and protecting his last son,
+  the crisis is about reclaiming what was taken from a still-living, still-powerful ruler.
+
+**Removing `mythic_dawn_suppressed_by_tiber`:**
+
+The flag `mythic_dawn_suppressed_by_tiber` introduced in §31.2 should be
+**discarded entirely**. The suppression logic is replaced by outcome-branching
+in the assassination event itself:
+
+- If Tiber Septim (`tiber_septim_canonical` flag) is emperor: assassination attempt
+  fires normally, fails to kill him, and the Amulet of Kings is stolen directly
+  in the chaos. He then pursues Mankar Camoran personally. Set `survived_mythic_dawn_attempt` flag.
+- If a player emperor survives (player choice at the attack event): same outcome —
+  assassination fails, Amulet stolen directly in the chaos, player goes to Paradise.
+- If any mortal NPC emperor (including Uriel Septim VII): assassination succeeds,
+  emperor dies in the sewers and hands the Amulet to the Hero of Kvatch. The HoK
+  takes it to Jauffre at Weynon Priory. The theft from the Priory is a separate
+  downstream event in the Oblivion Crisis chain. Do NOT set `amulet_stolen_in_sewers`
+  for the dead-emperor path — that flag is exclusive to the survival track.
+
+In all cases the Oblivion Gates open because the Amulet eventually reaches Mankar.
+The only variable is *when* and *how* it leaves imperial hands.
+
+**Key design principle — corrected:**
+
+> The Mythic Dawn does not need to kill the emperor to trigger the Oblivion Crisis.
+> They need the Amulet. When the emperor **dies**, the Amulet passes canonically to
+> the Hero of Kvatch, who carries it to Weynon Priory — and Mankar's agents steal it
+> *from the Priory*. When the emperor **survives**, there is no dying handoff: the
+> Amulet is taken directly in the chaos of the failed assassination attempt.
+> `amulet_stolen_in_sewers` is a **survival-path-only flag** and must never be set
+> on the dead-emperor branch.
+
+`[SOURCE: TES IV: Oblivion main quest — Amulet of Kings and Dragonfires mechanic;
+UESP Lore:Amulet of Kings; UESP Lore:Uriel Septim VII assassination; §26.1 player
+emperor fork; §31.2 (this section supersedes the suppression approach);
+correction: Amulet stolen-in-sewers is survival-path only — dead emperor → HoK → Priory path]`
+
+---
+
+### 31.7 Player Emperor — Prisoner Choice in the Sewers (§26 Amendment)
+
+> **Added:** Session 2026-04-08. Amends §26.3 and §26.5 — Track B sewer escape sequence.
+
+---
+
+#### 31.7.1 Context
+
+During the sewer escape sequence, the Imperial Prison holds other prisoners whose cells
+adjoin the secret passage. In the canonical timeline these are the pool from which the
+Hero of Kvatch is drawn. When a **player character holds the Ruby Throne** and survives
+the Mythic Dawn assassination attempt, they travel the same escape route — and therefore
+pass those same cells.
+
+The player Emperor must be given explicit agency: save specific prisoners, leave them,
+or pass entirely. This decision matters because:
+- Survivors remain valid HoK candidates for the downstream chain.
+- Another player can step in as the HoK if the surviving emperor does not personally
+  retrieve the Amulet from Paradise.
+- The rescue attempt carries genuine risk — the emperor can die trying.
+
+---
+
+#### 31.7.2 Per-Prisoner Choice Event
+
+For each HoK candidate prisoner encountered in the sewer, a character event fires once
+per candidate in the scope of the player emperor:
+
+```
+# oblivion_crisis.emperor_prisoner_choice
+# scope = player emperor; saved_scope:candidate = specific HoK candidate prisoner
+
+oblivion_crisis.emperor_prisoner_choice = {
+    type = character_event
+
+    option = {
+        name = oblivion_crisis.emperor_prisoner_choice.a
+        # "Free them. Get out. Find Jauffre."
+        trigger_event = { id = oblivion_crisis.emperor_save_attempt days = 0 }
+    }
+    option = {
+        name = oblivion_crisis.emperor_prisoner_choice.b
+        # "No time. They take their chances."
+        # Candidate stays behind; processed by independent-escape event (31.7.4)
+    }
+}
+```
+
+The emperor may save some candidates and skip others — the events chain through all
+present HoK candidates sequentially. Any candidate the emperor declines to rescue is
+then resolved by the independent-escape path (31.7.4).
+
+---
+
+#### 31.7.3 Save Throw — Emperor at Risk
+
+When the player emperor attempts to free a prisoner, the rescue is not automatic.
+Mythic Dawn agents remain in the corridor; the emperor must fight or outmanoeuvre them:
+
+```
+# emperor_prisoner_save_throw — scripted effect
+# Called from oblivion_crisis.emperor_save_attempt
+
+emperor_prisoner_save_throw = {
+    # High competence: clean rescue
+    if = {
+        limit = {
+            OR = {
+                martial >= 14
+                intrigue >= 14
+                AND = { martial >= 10  intrigue >= 10 }
+            }
+        }
+        saved_scope:candidate = { add_character_flag = hok_candidate_rescued_by_emperor }
+        add_prestige = 100
+    }
+    # Moderate competence: rescue at cost — emperor wounded
+    else_if = {
+        limit = { OR = { martial >= 8  intrigue >= 8 } }
+        saved_scope:candidate = { add_character_flag = hok_candidate_rescued_by_emperor }
+        add_character_modifier = { modifier = sewer_wounds days = 90 }
+    }
+    # Low competence: rescue fails — prisoner dies; emperor at risk
+    else = {
+        saved_scope:candidate = { death = { death_reason = death_murder } }
+        random = {
+            chance = 20
+            add_character_modifier = { modifier = sewer_wounds days = 180 }
+            add_stress = 30
+        }
+        # Critical failure (5%): emperor dies in the attempt
+        random = {
+            chance = 5
+            death = { death_reason = death_murder }
+        }
+    }
+}
+```
+
+**Key invariant:** If the emperor dies during the rescue attempt the
+`emperor_survived_prison` flag is cleared and the chain falls through to the canonical
+dead-emperor branch — the HoK retrieves the Amulet and carries it to Weynon Priory as
+normal. The Oblivion Crisis always proceeds.
+
+---
+
+#### 31.7.4 Independent Escape — Unsaved Candidates
+
+A candidate the emperor chose not to rescue is not automatically dead — they attempt
+to escape on their own:
+
+```
+# oblivion_crisis.prisoner_independent_escape
+# scope = HoK candidate; fires for each candidate skipped by the emperor
+
+oblivion_crisis.prisoner_independent_escape = {
+    type = character_event
+
+    # Base survival chance 50%; modified by empire strength
+    # +10 if imperial_strength_score >= 3 (guard rotation less vigilant)
+    # -15 if imperial_strength_score <= 1 (prison fully under Mythic Dawn control)
+    random = {
+        chance = 50
+        add_character_flag = hok_candidate_survived_independently
+    }
+    # Candidates who fail the roll die in the prison during the chaos
+}
+```
+
+All candidates who survive — whether rescued by the emperor or escaped independently —
+receive the `hok_candidate_valid` flag and remain eligible for the downstream HoK chain.
+
+---
+
+#### 31.7.5 Multi-Player Amulet Retrieval
+
+When the player emperor holds `survived_mythic_dawn_attempt` AND `amulet_stolen_in_sewers`
+they have **first priority** to pursue Mankar Camoran into Gaiar Alata. However:
+
+- If the player emperor **delegates** via the `delegate_paradise_retrieval` decision,
+  any surviving HoK candidate — including one controlled by another player — may
+  pursue the Amulet retrieval using the standard HoK Paradise chain.
+- If the player emperor **dies** (in the sewer rescue or later), the chain automatically
+  falls to the surviving HoK pool; any player in that pool may act.
+- The emperor does not lose their option silently. If they neither delegate nor enter
+  Paradise within a deadline window, the chain auto-delegates to the highest-ranked
+  living HoK candidate.
+
+```
+# decision: delegate_paradise_retrieval
+# Available to surviving player emperor after Amulet stolen
+
+decision: delegate_paradise_retrieval
+    is_shown = {
+        has_character_flag = survived_mythic_dawn_attempt
+        has_character_flag = amulet_stolen_in_sewers
+        NOT = { has_character_flag = emperor_entered_paradise }
+        any_character = { has_character_flag = hok_candidate_valid }
+    }
+    effect = {
+        add_character_flag = emperor_delegated_paradise
+        # Trigger HoK Paradise chain for the top-ranked surviving candidate
+        random_character = {
+            limit = { has_character_flag = hok_candidate_valid }
+            trigger_event = { id = oblivion_crisis.hok_paradise_entry }
+        }
+    }
+```
+
+This ensures the Oblivion Crisis is solvable even if the player emperor sits out the
+Paradise run — by any surviving HoK candidate, including one played by a second player.
+
+---
+
+#### 31.7.6 New Flags, Effects, and Decisions — §31.7
+
+| Identifier | Type | Description |
+|---|---|---|
+| `hok_candidate_rescued_by_emperor` | character flag | Candidate freed by the player emperor. |
+| `hok_candidate_survived_independently` | character flag | Candidate who escaped without the emperor's help. |
+| `hok_candidate_valid` | character flag | Union flag — any candidate alive after the sewer sequence. |
+| `emperor_delegated_paradise` | character flag | Player emperor handed off the Amulet retrieval. |
+| `sewer_wounds` | character modifier | Temporary wound modifier after a partial-success rescue. |
+| `emperor_prisoner_save_throw` | scripted effect | Save-throw logic for emperor rescue attempt (§31.7.3). |
+| `oblivion_crisis.emperor_prisoner_choice` | event | Per-candidate choice event for the player emperor. |
+| `oblivion_crisis.emperor_save_attempt` | event | Fires the save throw; resolves prisoner fate and emperor injury. |
+| `oblivion_crisis.prisoner_independent_escape` | event | Independent escape roll for skipped candidates. |
+| `delegate_paradise_retrieval` | decision | Explicit emperor delegation of the Paradise run. |
+
+---
+
+#### 31.7.7 Integration Notes — §31.7
+
+- **§26.3** (Blades spawn): Unchanged. Prisoner choice events are a parallel chain that
+  fires alongside the Blades escort resolution.
+- **§26.5** (Track B): `hide_imperial_heirs_at_priory` is unchanged. Prisoner choice events
+  fire after the heirs decision but before the Amulet-stolen event.
+- **§26.6** (Amulet stolen): `oblivion_crisis.amulet_stolen` fires normally after the sewer
+  sequence; prisoner choice does not gate or delay it.
+- **Event ordering — Track B sewer sequence:**
+  1. `oblivion_crisis.010` — Mythic Dawn attack begins.
+  2. `hok_prison_blades_spawn_effect` — Blades context gate.
+  3. `oblivion_crisis.emperor_prisoner_choice` (×N) — Per-candidate choice.
+  4. `oblivion_crisis.prisoner_independent_escape` (×M) — For skipped candidates.
+  5. `oblivion_crisis.amulet_stolen` — Amulet taken (survival path only; §31.6).
+  6. `oblivion_crisis.emperor_fast_track` — Martin / Cloud Ruler Temple.
+
+`[SOURCE: TES IV: Oblivion — Imperial Prison escape; §26.3 Blades spawn; §26.5 Track B
+player emperor; §26.6 Amulet stolen; §31.6 survival-path correction; design principle:
+player choices must carry real stakes — save throws can kill the player emperor]`
+
+---
+
+### 31.8 Correction to §26.7 — HoK Always Dispatched Through Canonical Priory → Kvatch Chain
+
+> **Added:** Session 2026-04-08. Supersedes the "fast-track" described in §26.7.
+
+---
+
+#### 31.8.1 The Problem with §26.7's Fast-Track
+
+§26.7 specifies that when the player Emperor survives the sewer escape, the quest chain
+**skips** Weynon Priory (Jauffre comes to the Emperor instead) and skips the personal
+Kvatch journey (Jauffre is sent, or the hidden heir acts as Martin's escort). This is
+incorrect for two reasons:
+
+1. **The Priory → Jauffre → Kvatch chain is canonical regardless of whether the Emperor
+   lives.** In the original Oblivion timeline, the Kvatch siege is the *first Oblivion
+   gate* to open — the city is already under Daedric attack before the Hero arrives.
+   This siege is an independent consequence of the Mythic Dawn's ritual, not something
+   that only happens because the Emperor died. The siege fires regardless of the imperial
+   survival path.
+
+2. **The Emperor surviving does not grant foreknowledge of Martin's exact location.**
+   Even if the Emperor knows a secret heir exists and is hidden in Kvatch, the canonical
+   route is to send the Hero of Kvatch — the very prisoner(s) the emperor just freed or
+   who escaped independently — to the priory first. Jauffre is the Grandmaster of the
+   Blades; he is the one with the intelligence network and the authority to name Martin
+   and send the HoK to retrieve him. The Emperor dispatching directly without Jauffre
+   breaks the Blades chain of command and the dramatic weight of the sequence.
+
+---
+
+#### 31.8.2 Corrected Track B Sequence — Emperor Survival Path
+
+The revised flow for Track B (player Emperor survives) is:
+
+```
+Track B — Corrected Sewer → Priory → Kvatch chain
+
+1. [§26.5]  Mythic Dawn strikes. Emperor survives. Heirs hidden at Priory (if decision taken).
+2. [§31.7]  Emperor prisoner choices fire per HoK candidate in the sewer.
+3. [§26.6]  Amulet stolen in the sewer chaos (survival path — §31.6 confirmed).
+4. [NEW]    Emperor dispatches surviving HoK candidate(s) to Weynon Priory.
+            → Event: oblivion_crisis.emperor_dispatches_hok
+5. [NEW]    HoK arrives at Weynon Priory. Jauffre is present.
+            → Jauffre reveals Martin's location in Kvatch.
+            → Event: oblivion_crisis.jauffre_sends_to_kvatch
+6. [NEW]    Kvatch is under Daedric siege (canonical — always fires; §31.8.3).
+            → HoK enters Kvatch, closes the Oblivion Gate, rescues Martin.
+            → Event: oblivion_crisis.kvatch_siege
+7. [§26.8]  Martin delivered to Cloud Ruler Temple. Emperor pursues the Amulet
+            personally OR delegates via delegate_paradise_retrieval (§31.7.5).
+```
+
+**The fast-track of §26.7 is replaced entirely.** Jauffre does NOT travel to the
+Emperor. The Kvatch siege ALWAYS fires. The HoK ALWAYS travels the canonical route.
+
+---
+
+#### 31.8.3 Kvatch Siege — Always Canonical
+
+The siege of Kvatch is the first Oblivion gate in the canonical timeline. It is a
+consequence of Mythic Dawn ritual timing, not a consequence of the Emperor dying.
+Therefore:
+
+- `oblivion_crisis.kvatch_siege` fires regardless of whether the Emperor is alive,
+  dead, player-controlled, or NPC.
+- The global flag `kvatch_oblivion_gate_opened` is set when the siege begins.
+- This flag is independent of any imperial survival path.
+- If the HoK pool is empty (all candidates died in the sewers), an anonymous
+  champion NPC is spawned at Kvatch to fill the Martin-escort role, following
+  §31.3 temporal spawning rules.
+
+```
+# oblivion_crisis.kvatch_siege
+# Fires automatically when mythic_dawn_ritual_complete flag is set
+# Scope: global event → spawns siege in Kvatch county equivalent
+
+oblivion_crisis.kvatch_siege = {
+    type = character_event
+    # scope = top HoK candidate with hok_candidate_valid flag
+
+    trigger = {
+        has_global_flag = mythic_dawn_ritual_complete
+        NOT = { has_global_flag = kvatch_oblivion_gate_opened }
+    }
+
+    immediate = {
+        set_global_flag = kvatch_oblivion_gate_opened
+        # Siege modifier applied to Kvatch county
+        # Martin (or dynasty-equivalent) present in Kvatch as priest NPC
+    }
+
+    option = {
+        name = oblivion_crisis.kvatch_siege.a
+        # "We must breach the gate. Martin may still be alive inside."
+        trigger_event = { id = oblivion_crisis.kvatch_gate_closes days = 30 }
+    }
+}
+```
+
+---
+
+#### 31.8.4 Emperor Dispatches HoK — New Event
+
+After surviving the sewers, the player Emperor is given an explicit decision to send
+the surviving HoK candidates to Weynon Priory:
+
+```
+# oblivion_crisis.emperor_dispatches_hok
+# Fires immediately after the sewer prisoner chain (§31.7) resolves
+# Scope = player emperor
+
+oblivion_crisis.emperor_dispatches_hok = {
+    type = character_event
+    trigger = {
+        has_character_flag = emperor_survived_prison
+        any_character = { has_character_flag = hok_candidate_valid }
+    }
+
+    option = {
+        name = oblivion_crisis.emperor_dispatches_hok.a
+        # "Find Jauffre at Weynon Priory. He will tell you what to do next."
+        effect = {
+            # All hok_candidate_valid characters dispatched to Priory chain
+            every_character = {
+                limit = { has_character_flag = hok_candidate_valid }
+                trigger_event = { id = oblivion_crisis.jauffre_sends_to_kvatch days = 7 }
+            }
+            add_character_flag = hok_dispatched_to_priory
+        }
+    }
+    # No second option — the emperor has no alternative.
+    # The canonical chain cannot be bypassed here.
+}
+```
+
+**Design note:** There is no "skip Jauffre" option. The Emperor does not have the
+information, the authority, or the resources to shortcut the Blades network. Sending
+the HoK to Jauffre is the only canonical path forward on this track.
+
+---
+
+#### 31.8.5 Updated Event Ordering — Track B Corrected Sequence
+
+Replace the ordering in §31.7.7 step 6 with the following full sequence:
+
+```
+Track B — Full Corrected Event Ordering:
+
+1.  oblivion_crisis.010                    — Mythic Dawn attack begins.
+2.  hok_prison_blades_spawn_effect         — Blades context gate (§26.3).
+3.  oblivion_crisis.emperor_prisoner_choice (×N)  — Per-candidate choice (§31.7).
+4.  oblivion_crisis.prisoner_independent_escape (×M) — Skipped candidates (§31.7).
+5.  oblivion_crisis.amulet_stolen          — Amulet taken (survival path; §31.6).
+6.  oblivion_crisis.emperor_dispatches_hok — Emperor sends HoK to Priory (§31.8).
+7.  oblivion_crisis.jauffre_sends_to_kvatch — Jauffre names Martin; sends HoK.
+8.  oblivion_crisis.kvatch_siege           — Kvatch Daedric siege (always fires).
+9.  oblivion_crisis.kvatch_gate_closes     — Gate closed; Martin rescued.
+10. oblivion_crisis.martin_at_cloud_ruler  — Martin delivered to Cloud Ruler Temple.
+11. oblivion_crisis.paradise_required      — Emperor or HoK must enter Gaiar Alata.
+```
+
+`oblivion_crisis.emperor_fast_track` (§26.7) is **retired**. Remove it from the
+event file. Replace its two options with the new dispatch event at step 6.
+
+---
+
+#### 31.8.6 New Flags and Events — §31.8
+
+| Identifier | Type | Description |
+|---|---|---|
+| `kvatch_oblivion_gate_opened` | global flag | Set when the Kvatch siege begins. Always fires on the Oblivion Crisis path. |
+| `hok_dispatched_to_priory` | character flag | Emperor confirmed HoK sent to Jauffre. |
+| `oblivion_crisis.emperor_dispatches_hok` | event | Emperor sends surviving HoK to Weynon Priory. |
+| `oblivion_crisis.jauffre_sends_to_kvatch` | event | Jauffre names Martin; HoK directed to Kvatch. |
+| `oblivion_crisis.kvatch_siege` | event | Kvatch Daedric siege — always fires regardless of imperial path. |
+| `oblivion_crisis.kvatch_gate_closes` | event | HoK closes the gate; Martin rescued. |
+
+---
+
+#### 31.8.7 Amendment Summary — §26.7 Changes
+
+| §26.7 Original Text | Corrected Behaviour (§31.8) |
+|---|---|
+| "The quest chain skips: The journey to Weynon Priory (Jauffre comes to the Emperor instead)." | **Removed.** HoK always travels to Weynon Priory. Jauffre does NOT come to the Emperor. |
+| "The personal trip to Kvatch to rescue Martin (Jauffre is sent, or the heir hidden at the Priory acts as Martin's escort)." | **Removed.** The HoK always rescues Martin from Kvatch during the Daedric siege. The heir at the Priory remains in hiding until Martin arrives. |
+| `oblivion_crisis.emperor_fast_track` options A and B. | **Retired.** Replaced by `oblivion_crisis.emperor_dispatches_hok` (§31.8.4). |
+
+`[SOURCE: TES IV: Oblivion — Kvatch siege canonical sequence; Oblivion:Jauffre;
+Lore:Kvatch; Lore:Oblivion Crisis; design principle: canonical Priory → Kvatch chain
+is always required regardless of imperial survival path; §31.6 amulet-stolen correction;
+§31.7 prisoner choice amendment]`
+
+---
+
+
+### 31.9 Correction to §26.5 — Player Emperor Heir Spawning (No Fabricated Bastard)
+
+> **Added:** Session 2026-04-08. Supersedes the "random spawn from player's dynasty"
+> clause in §26.5 "heirs NOT hidden" and the "Player is emperor" row in §26.5a.
+
+---
+
+#### 31.9.1 Problem with Previous Design
+
+§26.5's "heirs NOT hidden" case listed a fallback for player emperors:
+> "Player is the emperor (any dynasty, including Talos-path player) → random spawn from player's dynasty"
+
+This is wrong for two reasons:
+1. **It fabricates a child the player never had.** The player's dynasty heir should only ever be a character the player actually raised in-game — not an NPC conjured by the crisis event.
+2. **It removes agency.** The decision to protect heirs by sending them into hiding is a meaningful pre-crisis choice. Fabricating a replacement bastard negates the consequence of not taking that decision.
+
+---
+
+#### 31.9.2 Corrected Rule — Player Emperor, Heirs NOT Hidden
+
+When a player emperor's heirs are **not** hidden at the time of the Mythic Dawn assassination:
+- All heirs die in `oblivion_crisis.assassination_heirs`.
+- **No replacement NPC is spawned from the player's dynasty.**
+- The crisis proceeds entirely through HoK candidates (Bendu Olo, etc.).
+- There is no bloodline Martin-role character. The player must delegate or act personally.
+
+This is a **narrative consequence** of failing to protect the imperial line.
+
+---
+
+#### 31.9.3 Corrected Rule — Player Emperor, Heirs Hidden, Emperor Dies
+
+When a player emperor's heirs **are** hidden (`heir_hidden_at_priory` flag) and the player emperor subsequently dies (during or after the sewer escape):
+- The game searches for surviving heirs with the `heir_hidden_at_priory` flag.
+- If any exist: the **player is transferred to the oldest surviving hidden heir**.
+  - That heir becomes the player character and assumes the Martin-role narrative function.
+  - They are "in hiding" until formally revealed (flag remains until the crisis resolves or they are sent to Kvatch).
+  - Event `oblivion_crisis.player_heir_succession` fires to narrate the transition.
+- If no hidden heirs remain: standard CK3 succession applies. The crisis has no bloodline Martin-role character.
+
+---
+
+#### 31.9.4 Corrected Rule — Player Emperor, Heirs Hidden, Emperor Survives
+
+When a player emperor's heirs are hidden and the emperor **survives** the crisis:
+- Player chooses (via `oblivion_crisis.delegate_paradise_retrieval` or equivalent):
+  - **Delegate:** Dispatch HoK candidates to Kvatch / Paradise. The heir remains hidden.
+  - **Handle personally:** Emperor goes to Kvatch / Paradise themselves (§26.8 Emperor-as-Avatar path).
+  - **Send heir:** Heir is revealed and sent to Kvatch as the Martin-role character.
+- This is unchanged from the original §26.5 Track B options A/B, now with a third explicit option (delegate to HoK).
+
+---
+
+#### 31.9.5 Updated Pseudocode
+
+```
+# Called from oblivion_crisis.assassination_heirs
+# Determines whether to fire a Martin-role spawn
+# NPC path: fire martin_septim_spawn_or_random_effect (§26.5a)
+# Player path: NO spawn — check for hidden heirs instead
+oblivion_crisis.assassination_heirs = {
+    type = character_event
+    hidden = yes
+    effect = {
+        if = {
+            limit = { is_player = yes }
+            # Player emperor: kill all non-hidden heirs; never spawn a bastard
+            every_child = {
+                limit = {
+                    is_heir = yes
+                    NOT = { has_character_flag = heir_hidden_at_priory }
+                }
+                death = { death_reason = death_murder }
+            }
+            # No spawn — HoK handles crisis if heirs all died
+        }
+        else = {
+            # NPC emperor: kill all heirs AND fire Martin/random spawn
+            every_child = {
+                limit = { is_heir = yes }
+                death = { death_reason = death_murder }
+            }
+            martin_septim_spawn_or_random_effect = yes
+        }
+    }
+}
+```
+
+```
+# Fires if player emperor dies and hidden heirs exist
+oblivion_crisis.player_heir_succession = {
+    type = character_event
+    trigger = {
+        is_player = yes
+        any_child = { has_character_flag = heir_hidden_at_priory }
+    }
+    # Transition player to oldest surviving hidden heir
+    effect = {
+        random_child = {
+            limit = { has_character_flag = heir_hidden_at_priory }
+            order_by = age  # oldest first
+            limit = { count = 1 }
+            # Player inherits this character
+            set_player_character = yes
+            add_character_flag = heir_in_martin_role
+        }
+    }
+}
+```
+
+---
+
+#### 31.9.6 New Flags and Events — §31.9
+
+| Identifier | Type | Description |
+|---|---|---|
+| `heir_in_martin_role` | character flag | Set on a player-emperor's heir who has assumed the Martin narrative role after the emperor's death. |
+| `oblivion_crisis.player_heir_succession` | event | Fires when a player emperor dies with hidden heirs present; transitions player to oldest surviving hidden heir. |
+
+---
+
+#### 31.9.7 Amendment Summary — §26.5 Changes
+
+| §26.5 Original Text | Corrected Behaviour (§31.9) |
+|---|---|
+| "Player is the emperor → random spawn from player's dynasty" | **Removed.** No bastard is spawned for player emperors. Only real existing heirs count. |
+| "If heirs ARE hidden: send to Kvatch or go personally" | **Expanded.** Third option added: delegate to HoK. Player-death path now transitions player to surviving hidden heir. |
+| §26.5a table: "Player is emperor on any track → No, Player's dynasty" | **Replaced.** Three rows: heirs not hidden (no spawn), heirs hidden + emperor dies (player becomes heir), heirs hidden + emperor survives (delegate or personal). |
+
+`[SOURCE: design principle: player dynasties must only contain characters the player
+created — no fabricated crisis bastards; player-death must have narrative continuity
+via surviving hidden heirs; TES IV: Oblivion — Martin Septim is the emperor's son,
+not a random noble; §26.5 Track B; §31.7 prisoner choice amendment]`
+
+---

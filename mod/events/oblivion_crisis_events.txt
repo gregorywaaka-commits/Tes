@@ -1,0 +1,399 @@
+# =============================================================
+#  Oblivion Crisis Events
+#  Namespace: oblivion_crisis
+#
+#  LORE CONTEXT:
+#  The Oblivion Crisis (3E 433) — Mehrunes Dagon's cult, the
+#  Mythic Dawn, simultaneously murdered every scion of the
+#  Septim line and opened the Oblivion Gates.  One survivor —
+#  Martin Septim, illegitimate son of Uriel VII — closed the
+#  Crisis by shattering the Amulet of Kings and becoming
+#  the Avatar of Akatosh.  [TES IV: Oblivion]
+#
+#  EVENT LIST:
+#  ────────────────────────────────────────────────────────────
+#  oblivion_crisis.010   Heirs hidden notification (§26.5 / §31.9)
+#  oblivion_crisis.assassination_heirs
+#                        Kills non-hidden heirs; NPC → Martin spawn;
+#                        player → no bastard (§31.9)
+#  oblivion_crisis.player_heir_succession
+#                        Player emperor died; transition to oldest
+#                        surviving hidden heir (§31.9.3)
+#  oblivion_crisis.emperor_prisoner_choice
+#                        Per-candidate prisoner choice in sewers (§31.7)
+#  oblivion_crisis.emperor_save_attempt
+#                        Save-throw resolution for the rescue (§31.7.3)
+#  oblivion_crisis.prisoner_independent_escape
+#                        Independent escape roll for skipped candidates
+#                        (§31.7.4)
+#  oblivion_crisis.delegate_paradise_retrieval
+#                        Surviving emperor chooses delegate / personal /
+#                        send heir (§31.7.5 / §31.9.4)
+#
+#  DESIGN REFERENCES:
+#  §26.5, §26.5a, §26.8, §31.7, §31.8, §31.9
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX  —  events/oblivion_crisis_events.txt
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • oblivion_crisis.010
+#    • oblivion_crisis.assassination_heirs
+#    • oblivion_crisis.player_heir_succession
+#    • oblivion_crisis.emperor_prisoner_choice
+#    • oblivion_crisis.emperor_save_attempt
+#    • oblivion_crisis.prisoner_independent_escape
+#    • oblivion_crisis.delegate_paradise_retrieval
+#    • oblivion_crisis.hok_paradise_entry
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    common/scripted_effects/oblivion_crisis_effects.txt
+#      → emperor_prisoner_save_throw
+#      → martin_septim_spawn_or_random_effect
+#    common/decisions/oblivion_crisis_decisions.txt
+#      → hide_imperial_heirs_at_priory
+#      → delegate_paradise_retrieval (decision)
+# =============================================================
+
+namespace = oblivion_crisis
+
+# ---------------------------------------------------------------
+# oblivion_crisis.010  — Heirs Hidden at Weynon Priory
+#
+# Fires ~60 days after the player emperor takes the
+# hide_imperial_heirs_at_priory decision.  Confirms the heirs
+# have reached the Priory safely and reminds the player they are
+# now protected from assassination — but cannot act in the world.
+# ---------------------------------------------------------------
+oblivion_crisis.010 = {
+    type  = character_event
+    title = oblivion_crisis.010.t
+    desc  = oblivion_crisis.010.desc
+    theme = diplomacy
+
+    trigger = {
+        is_player = yes
+        has_character_flag = heirs_hidden
+        any_child = { has_character_flag = heir_hidden_at_priory }
+    }
+
+    option = {
+        name = oblivion_crisis.010.a
+        # "Good.  Whatever comes, they are safe."
+        add_prestige = 50
+    }
+
+    option = {
+        name = oblivion_crisis.010.b
+        # "I hope Weynon Priory is enough to hide them."
+        add_stress = 10
+    }
+}
+
+# ---------------------------------------------------------------
+# oblivion_crisis.assassination_heirs  — The Night of Assassins
+#
+# Fires at the start of the Oblivion Crisis.  Kills all heirs who
+# were NOT sent into hiding.
+#
+# Player emperor  → no bastard is spawned (§31.9).
+#                   All non-hidden heirs die.  The crisis proceeds
+#                   via HoK candidates only.
+# NPC emperor     → all heirs die, then martin_septim_spawn_or_random_effect
+#                   is called to place a Martin-role NPC (§26.5a).
+# ---------------------------------------------------------------
+oblivion_crisis.assassination_heirs = {
+    type   = character_event
+    title  = oblivion_crisis.assassination_heirs.t
+    desc   = oblivion_crisis.assassination_heirs.desc
+    theme  = intrigue
+    hidden = yes
+
+    immediate = {
+        if = {
+            limit = { is_player = yes }
+            # Player emperor: kill all non-hidden heirs only.
+            # Never spawn a bastard replacement (§31.9).
+            every_child = {
+                limit = {
+                    is_heir = yes
+                    NOT = { has_character_flag = heir_hidden_at_priory }
+                }
+                death = { death_reason = death_murder }
+            }
+            # No martin_septim_spawn_or_random_effect — intentional.
+        }
+        else = {
+            # NPC emperor: kill all heirs unconditionally.
+            every_child = {
+                limit = { is_heir = yes }
+                death = { death_reason = death_murder }
+            }
+            # Spawn Martin or a random dynasty bastard (§26.5a).
+            martin_septim_spawn_or_random_effect = yes
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# oblivion_crisis.player_heir_succession  — The Hidden Heir Revealed
+#
+# Fires when a player emperor dies and at least one child carries
+# the heir_hidden_at_priory flag.  The player is transferred to
+# the oldest surviving hidden heir, who now takes on the
+# Martin-role narrative function.  (§31.9.3)
+#
+# If the emperor dies with NO hidden heirs this event does NOT
+# fire; standard CK3 succession applies instead.
+# ---------------------------------------------------------------
+oblivion_crisis.player_heir_succession = {
+    type  = character_event
+    title = oblivion_crisis.player_heir_succession.t
+    desc  = oblivion_crisis.player_heir_succession.desc
+    theme = realm
+
+    trigger = {
+        is_player = yes
+        any_child = {
+            has_character_flag = heir_hidden_at_priory
+            is_alive = yes
+        }
+    }
+
+    immediate = {
+        # Transition the player to the oldest surviving hidden heir.
+        # order_by = age with limit = { count = 1 } picks the eldest.
+        random_child = {
+            limit = {
+                has_character_flag = heir_hidden_at_priory
+                is_alive = yes
+            }
+            order_by = { value = age  direction = descending }
+            add_character_flag = heir_in_martin_role
+            set_player_character = yes
+        }
+    }
+
+    option = {
+        name = oblivion_crisis.player_heir_succession.a
+        # "My father is dead.  I am all that remains."
+        add_stress = 20
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# oblivion_crisis.emperor_prisoner_choice  — A Prisoner in the Dark
+#
+# Fires once per HoK candidate prisoner during the player
+# emperor's sewer escape.  The emperor must decide: attempt
+# to free the prisoner (risky) or leave them to fend alone.
+#
+# scope:candidate = the HoK candidate encountered in the cell.
+# ---------------------------------------------------------------
+oblivion_crisis.emperor_prisoner_choice = {
+    type  = character_event
+    title = oblivion_crisis.emperor_prisoner_choice.t
+    desc  = oblivion_crisis.emperor_prisoner_choice.desc
+    theme = intrigue
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+    right_portrait = {
+        character = scope:candidate
+        animation = worry
+    }
+
+    option = {
+        name = oblivion_crisis.emperor_prisoner_choice.a
+        # "Free them.  Get out.  Find Jauffre."
+        trigger_event = { id = oblivion_crisis.emperor_save_attempt days = 0 }
+    }
+
+    option = {
+        name = oblivion_crisis.emperor_prisoner_choice.b
+        # "No time.  They take their chances."
+        # Candidate left behind; resolves via independent escape.
+        scope:candidate = {
+            trigger_event = { id = oblivion_crisis.prisoner_independent_escape days = 1 }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# oblivion_crisis.emperor_save_attempt  — Through the Bars
+#
+# Resolves the rescue attempt via emperor_prisoner_save_throw.
+# Success gives the candidate hok_candidate_valid; failure can
+# kill the candidate or wound the emperor; critical failure
+# (5 %) can kill the emperor outright (§31.7.3).
+#
+# scope:candidate = prisoner being freed.
+# ---------------------------------------------------------------
+oblivion_crisis.emperor_save_attempt = {
+    type   = character_event
+    title  = oblivion_crisis.emperor_save_attempt.t
+    desc   = oblivion_crisis.emperor_save_attempt.desc
+    theme  = intrigue
+    hidden = yes
+
+    immediate = {
+        emperor_prisoner_save_throw = yes
+    }
+}
+
+# ---------------------------------------------------------------
+# oblivion_crisis.prisoner_independent_escape  — On Their Own
+#
+# Fires for each HoK candidate the emperor chose not to rescue.
+# Base 50 % survival chance; survivors receive hok_candidate_valid.
+# Failures die in the prison during the chaos.  (§31.7.4)
+#
+# Scope: root = the HoK candidate.
+# ---------------------------------------------------------------
+oblivion_crisis.prisoner_independent_escape = {
+    type   = character_event
+    title  = oblivion_crisis.prisoner_independent_escape.t
+    desc   = oblivion_crisis.prisoner_independent_escape.desc
+    theme  = intrigue
+    hidden = yes
+
+    immediate = {
+        random = {
+            chance = 50
+            add_character_flag = hok_candidate_survived_independently
+            add_character_flag = hok_candidate_valid
+        }
+        # Candidates who fail the roll die in the prison.
+        if = {
+            limit = { NOT = { has_character_flag = hok_candidate_valid } }
+            death = { death_reason = death_murder }
+        }
+    }
+}
+
+# ---------------------------------------------------------------
+# oblivion_crisis.delegate_paradise_retrieval  — The Emperor's Choice
+#
+# Fires for a surviving player emperor once the Amulet has been
+# stolen (amulet_stolen_in_sewers).  Three paths:
+#
+#   A) Delegate to HoK — dispatch surviving HoK candidates.
+#      Heir stays hidden.  (§31.7.5)
+#   B) Handle personally — emperor goes to Kvatch / Paradise.
+#      Heir stays hidden.  (§26.8 Emperor-as-Avatar path)
+#   C) Send the heir — heir is revealed and dispatched to Kvatch
+#      as the Martin-role character.  (§31.9.4 / §26.5 Track B)
+#
+# Option C is only available when at least one heir with
+# heir_hidden_at_priory exists.
+# ---------------------------------------------------------------
+oblivion_crisis.delegate_paradise_retrieval = {
+    type  = character_event
+    title = oblivion_crisis.delegate_paradise_retrieval.t
+    desc  = oblivion_crisis.delegate_paradise_retrieval.desc
+    theme = realm
+    left_portrait = {
+        character = root
+        animation = personality_bold
+    }
+
+    trigger = {
+        is_player = yes
+        has_character_flag = survived_mythic_dawn_attempt
+        has_character_flag = amulet_stolen_in_sewers
+        NOT = { has_character_flag = emperor_entered_paradise }
+        NOT = { has_character_flag = emperor_delegated_paradise }
+    }
+
+    # ── Option A: Delegate to the Hero of Kvatch ──────────────
+    option = {
+        name = oblivion_crisis.delegate_paradise_retrieval.a
+        # "I send the Champion.  Let them carry the burden."
+        trigger = {
+            any_character = { has_character_flag = hok_candidate_valid }
+        }
+        add_character_flag = emperor_delegated_paradise
+        random_character = {
+            limit = { has_character_flag = hok_candidate_valid }
+            trigger_event = { id = oblivion_crisis.hok_paradise_entry days = 7 }
+        }
+    }
+
+    # ── Option B: Go personally ───────────────────────────────
+    option = {
+        name = oblivion_crisis.delegate_paradise_retrieval.b
+        # "I am the Emperor.  I will enter Paradise myself."
+        add_character_flag = emperor_entered_paradise
+        add_prestige = 300
+        add_stress = 25
+        # Emperor-as-Avatar resolution handled by §26.8 chain
+        # (not yet implemented; placeholder prestige award above).
+    }
+
+    # ── Option C: Send the hidden heir ────────────────────────
+    option = {
+        name = oblivion_crisis.delegate_paradise_retrieval.c
+        # "My heir is ready.  The burden is theirs to carry."
+        trigger = {
+            any_child = {
+                has_character_flag = heir_hidden_at_priory
+                is_alive = yes
+            }
+        }
+        random_child = {
+            limit = {
+                has_character_flag = heir_hidden_at_priory
+                is_alive = yes
+            }
+            order_by = { value = age  direction = descending }
+            # Heir is revealed and enters the Kvatch/Martin-role chain.
+            remove_character_flag = heir_hidden_at_priory
+            add_character_flag = heir_in_martin_role
+            trigger_event = { id = oblivion_crisis.hok_paradise_entry days = 7 }
+        }
+        add_prestige = 100
+    }
+}
+
+# ---------------------------------------------------------------
+# oblivion_crisis.hok_paradise_entry  — Into Gaiar Alata
+#
+# Entry point for any character (HoK candidate or revealed heir)
+# entering Mankar Camoran's Paradise to recover the Amulet of Kings.
+#
+# Scope: root = the character entering Paradise.
+#
+# NOTE: Full Paradise chain (§26.8) is a future implementation.
+#       This event is a placeholder that awards the resolution
+#       and sets the relevant flags.
+# ---------------------------------------------------------------
+oblivion_crisis.hok_paradise_entry = {
+    type  = character_event
+    title = oblivion_crisis.hok_paradise_entry.t
+    desc  = oblivion_crisis.hok_paradise_entry.desc
+    theme = faith
+    left_portrait = {
+        character = root
+        animation = personality_honorable
+    }
+
+    option = {
+        name = oblivion_crisis.hok_paradise_entry.a
+        # "I step through — into a world that should not exist."
+        add_prestige = 500
+        add_piety    = 300
+        # Mark the Amulet recovered; downstream events will close
+        # the Crisis (§26.8 / full Paradise chain).
+        add_character_flag = hok_amulet_recovered
+        add_character_flag = kvatch_oblivion_gate_opened
+        set_global_variable = {
+            name  = kvatch_oblivion_gate_opened
+            value = yes
+        }
+    }
+}

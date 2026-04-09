@@ -1,0 +1,140 @@
+# =============================================================
+#  Oblivion Crisis — Decisions
+#  File: mod/common/decisions/oblivion_crisis_decisions.txt
+#
+#  LORE CONTEXT:
+#  In the Third Era, the Imperial family kept secret bolt-holes
+#  and safe-houses throughout Cyrodiil.  A wise emperor who
+#  feared assassination might quietly move their most vulnerable
+#  heirs to Weynon Priory — a fortified Chapel of Kynareth whose
+#  abbot, Jauffre (later revealed as a Blade), was known to the
+#  Crown.  The decision carries prestige loss (the heirs'
+#  disappearance looks like weakness) but protects the bloodline.
+#
+#  DESIGN REFERENCES:
+#  §26.5 Track B, §31.9 (player emperor heir spawning correction)
+# =============================================================
+
+
+# =============================================================
+#  CROSS-REFERENCE INDEX
+# =============================================================
+#
+#  DEFINES — identifiers this file exports to the mod:
+#    • hide_imperial_heirs_at_priory
+#    • delegate_paradise_retrieval
+#
+#  DEPENDS ON — identifiers used here that are defined elsewhere:
+#    events/oblivion_crisis_events.txt
+#      → oblivion_crisis.010
+#      → oblivion_crisis.delegate_paradise_retrieval
+# =============================================================
+
+# ---------------------------------------------------------------
+#  HIDE IMPERIAL HEIRS AT WEYNON PRIORY
+#
+#  Available to a player emperor before the Oblivion Crisis
+#  assassination fires.  Sends all direct heirs to Weynon Priory;
+#  they gain heir_hidden_at_priory and cannot be targeted by
+#  assassination events.
+#
+#  Cost: −150 prestige (publicly the heirs "vanish" — looks weak).
+#
+#  If the emperor dies later:
+#    → oblivion_crisis.player_heir_succession fires; player
+#      transitions to the oldest surviving hidden heir.
+#
+#  If the emperor survives:
+#    → oblivion_crisis.delegate_paradise_retrieval lets the
+#      emperor choose to delegate, go personally, or send the heir.
+# ---------------------------------------------------------------
+hide_imperial_heirs_at_priory = {
+    picture = "gfx/interface/icons/decisions/decision_realm.dds"
+    desc    = hide_imperial_heirs_at_priory_desc
+
+    is_shown = {
+        is_player = yes
+        is_ruler  = yes
+        any_child = { is_heir = yes }
+        NOT = { has_character_flag = heirs_hidden }
+        # Only available while the Mythic Dawn crisis is building.
+        # (Removed once the assassination has already fired.)
+        NOT = { has_character_flag = oblivion_crisis_assassinations_complete }
+    }
+
+    is_valid = {
+        is_adult = yes
+        prestige >= 150
+        any_child = { is_heir = yes  is_alive = yes }
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        # Mark all living direct heirs as hidden at Weynon Priory.
+        every_child = {
+            limit = { is_heir = yes  is_alive = yes }
+            add_character_flag = heir_hidden_at_priory
+        }
+        add_character_flag = heirs_hidden
+        # Confirmation + flavour event fires after ~60 days (§26.5).
+        trigger_event = { id = oblivion_crisis.010  days = 60 }
+        # Prestige cost: heirs "disappear" from court (§26.5).
+        add_prestige = -150
+    }
+
+    ai_will_do = {
+        base = 0
+        # AI emperors do not use this decision; it is player-facing only.
+    }
+}
+
+# ---------------------------------------------------------------
+#  DELEGATE PARADISE RETRIEVAL
+#
+#  Available to a surviving player emperor after the Amulet of Kings
+#  has been stolen (amulet_stolen_in_sewers).  The emperor explicitly
+#  hands the crisis resolution to the Hero of Kvatch pool.
+#
+#  Taking this decision sets emperor_delegated_paradise and triggers
+#  the HoK paradise entry chain for the top surviving candidate.
+#
+#  If the emperor prefers to act personally or send their heir,
+#  those paths are handled inside oblivion_crisis.delegate_paradise_retrieval
+#  (Options B and C of that event).  This decision is the explicit
+#  "step aside" choice the emperor can take without waiting for the
+#  event to fire.
+# ---------------------------------------------------------------
+delegate_paradise_retrieval = {
+    picture = "gfx/interface/icons/decisions/decision_war.dds"
+    desc    = delegate_paradise_retrieval_desc
+
+    is_shown = {
+        is_player = yes
+        has_character_flag = survived_mythic_dawn_attempt
+        has_character_flag = amulet_stolen_in_sewers
+        NOT = { has_character_flag = emperor_entered_paradise }
+        NOT = { has_character_flag = emperor_delegated_paradise }
+        any_character = { has_character_flag = hok_candidate_valid }
+    }
+
+    is_valid = {
+        is_adult = yes
+    }
+
+    is_valid_showing_failures_only = {
+        is_adult = yes
+    }
+
+    effect = {
+        add_character_flag = emperor_delegated_paradise
+        # Fire the full delegate event so the player sees the narrative.
+        trigger_event = { id = oblivion_crisis.delegate_paradise_retrieval  days = 0 }
+    }
+
+    ai_will_do = {
+        base = 0
+    }
+}
