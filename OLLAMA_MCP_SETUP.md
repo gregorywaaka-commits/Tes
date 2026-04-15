@@ -1,11 +1,13 @@
 # Ollama + GitHub MCP Integration — Full Design & Implementation Document
 
-> **For the VS Code AI agent:** This document contains everything needed to set up a local Ollama AI assistant that is fully connected to this GitHub repository via the Model Context Protocol (MCP). Read every section, then create every file listed in the **Implementation Checklist** at the bottom. Do not skip any step.
+> **For the VS Code AI agent (Continue.dev / GitHub Copilot Agent):**
+> This document is your complete brief. Follow the **Clarification Protocol** in Section 0 before touching anything. Read every section in order. The Implementation Checklist at the bottom is your task list — work through it one item at a time, asking the owner for confirmation at each gate marked `🔐 GATE`. Do not batch-execute everything at once.
 
 ---
 
 ## Table of Contents
 
+0. [Clarification Protocol — Read This First](#0-clarification-protocol--read-this-first)
 1. [What We Are Building](#1-what-we-are-building)
 2. [Architecture Overview](#2-architecture-overview)
 3. [Component Explanations](#3-component-explanations)
@@ -23,6 +25,59 @@
 7. [Recommended Extras](#7-recommended-extras)
 8. [Troubleshooting](#8-troubleshooting)
 9. [Implementation Checklist](#9-implementation-checklist)
+
+---
+
+## 0. Clarification Protocol — Read This First
+
+> **Agent:** Before you do anything else, follow these steps exactly.
+
+### 0.1 — Announce Your Understanding
+
+Say out loud (in chat) before starting:
+> "I'm about to set up Ollama + GitHub MCP on this machine. Here's what I understand: [1-paragraph summary]. Is this correct?"
+
+Wait for confirmation before proceeding.
+
+### 0.2 — Ask Your Clarification Questions
+
+You **must** ask the following questions and wait for answers before running any install commands. Don't assume. Don't skip.
+
+**Questions you MUST ask:**
+
+1. **Model choice:** "What GPU/VRAM do you have available? I'll recommend a model based on this. (If you don't know, open Task Manager → Performance → GPU and tell me the Dedicated GPU Memory.)"
+
+2. **OS:** "Are you on Windows, macOS, or Linux? The install commands differ."
+
+3. **GitHub token scope:** "Do you want the AI to be able to **write** to this repository (create files, update files, open PRs), or should it be **read-only**? Read-only is safer; write access is more powerful."
+
+4. **Continue.dev vs Copilot Chat:** "Do you want to use Continue.dev (free, open-source, fully local) OR GitHub Copilot Chat (built into VS Code if you have a Copilot subscription)? We can set up both — should I?"
+
+5. **Filesystem access:** "What is the full local path to your cloned copy of this repo on your computer? (e.g., `C:\Users\YourName\Documents\Tes` or `/home/yourname/Tes`). I need this to configure the filesystem MCP server."
+
+6. **Token storage:** "How do you want to store your GitHub Personal Access Token? Options: (a) Environment variable — most secure, no file needed. (b) `.env` file — easy but must stay out of git. Which do you prefer?"
+
+### 0.3 — Give Your Recommendation
+
+After collecting answers, say:
+> "💡 Based on your setup, here's what I recommend: [tailored recommendation]. Shall I proceed with this plan?"
+
+### 0.4 — Work in Phases, Gate by Gate
+
+Each Phase in the Implementation Checklist ends with a `🔐 GATE`. At every gate:
+- Show the user what you just did
+- Show any output (version numbers, success messages)
+- Ask: "Phase [N] complete. Everything looks good. Should I continue to Phase [N+1]?"
+
+**Do not proceed past a gate without explicit confirmation.**
+
+### 0.5 — Flag Deviations and Recommendations
+
+Throughout implementation, when you encounter something unexpected:
+- `⚠️ UNEXPECTED:` — something doesn't match the doc
+- `💡 RECOMMENDATION:` — you have a better idea
+- `❓ AMBIGUITY:` — the doc doesn't specify something, you need a decision
+- `🔐 GATE:` — you need confirmation before continuing
 
 ---
 
