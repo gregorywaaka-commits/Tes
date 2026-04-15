@@ -11,8 +11,10 @@ jobs:
   dufus-proceed:
     # Only run if: comment is on an issue (not a PR), comment starts with /proceed,
     # AND the issue has one of the dufus labels (prevents firing on unrelated issues).
+    # Owner-only guard: only the repo owner can proceed.
     if: |
       github.event.issue != null &&
+      github.event.comment.user.login == github.repository_owner &&
       (startsWith(github.event.comment.body, '/proceed') ||
        startsWith(github.event.comment.body, '/approved') ||
        startsWith(github.event.comment.body, '/go')) &&
@@ -147,9 +149,16 @@ jobs:
               : 'standalone-new-task';
 
             // hey-dufus requests are ALWAYS design-doc-only — never direct implementation.
-            // Standard ai-request issues can opt into implementation via owner comments.
-            const skipToImpl = !isHeyDufus && ownerComments.some(c =>
-              /skip.*impl|straight to impl|implement.*directly|write.*code.*now/i.test(c.body)
+            // Standard ai-request issues can opt into implementation via:
+            //   a) owner comments containing implementation keywords
+            //   b) the shorthand: /proceed implement  (no need to type in answers)
+            const proceedBody = context.payload.comment.body.trim();
+            const proceedImplement = /^\/proceed\s+implement\b/i.test(proceedBody);
+            const skipToImpl = !isHeyDufus && (
+              proceedImplement ||
+              ownerComments.some(c =>
+                /skip.*impl|straight to impl|implement.*directly|write.*code.*now/i.test(c.body)
+              )
             );
 
             const outputInstructions = skipToImpl
@@ -329,3 +338,44 @@ ${isHeyDufus ? `\n> **Note:** hey-dufus requests always produce a design doc. To
               issue_number: issueNumber,
               labels: ['ready-for-vscode']
             });
+
+      - name: Write step summary
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.payload.issue.number;
+            const issue = context.payload.issue;
+            const isHeyDufus = issue.labels.some(l => l.name === 'hey-dufus-pending');
+            const proceedBody = context.payload.comment.body.trim();
+            const proceedImplement = /^\/proceed\s+implement\b/i.test(proceedBody);
+            const slug = issue.title
+              .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').substring(0, 50);
+            const filename = `issue-${issueNumber}-${slug}.md`;
+            const mode = (isHeyDufus || !proceedImplement) ? 'Design doc only' : 'Direct implementation';
+
+            const summary = [
+              `## ✅ Dufus — Prompt Delivered`,
+              ``,
+              `| Field | Value |`,
+              `|-------|-------|`,
+              `| Issue | [#${issueNumber}](${issue.html_url}) |`,
+              `| File  | \`.continue/prompts/incoming/${filename}\` |`,
+              `| Mode  | ${mode} |`,
+              `| Labels applied | \`ready-for-vscode\` |`,
+            ].join('\n');
+
+            await core.summary.addRaw(summary).write();
+
+      - name: Notify via ntfy.sh (optional — set NTFY_TOPIC secret to enable)
+        if: ${{ env.NTFY_TOPIC != '' }}
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          ISSUE_NUMBER="${{ github.event.issue.number }}"
+          ISSUE_TITLE=$(echo "${{ github.event.issue.title }}" | head -c 120)
+          curl -s -o /dev/null \
+            -H "Title: Dufus prompt ready — #${ISSUE_NUMBER}" \
+            -H "Tags: white_check_mark" \
+            -d "Prompt file committed for: ${ISSUE_TITLE}" \
+            "https://ntfy.sh/${NTFY_TOPIC}"

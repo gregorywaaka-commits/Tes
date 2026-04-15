@@ -19,8 +19,10 @@ jobs:
   hey-dufus:
     # Only fire on issue comments (not PRs) that start with "hey dufus"
     # Cover common phone autocapitalize variants: "Hey dufus", "Hey Dufus", "HEY DUFUS"
+    # Owner-only guard: only the repo owner can trigger the pipeline.
     if: |
       github.event.issue != null &&
+      github.event.comment.user.login == github.repository_owner &&
       (startsWith(github.event.comment.body, 'hey dufus') ||
        startsWith(github.event.comment.body, 'Hey dufus') ||
        startsWith(github.event.comment.body, 'Hey Dufus') ||
@@ -58,7 +60,54 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
-                body: `## 🤖 Dufus here!\n\nYou called me but didn't include a request. Try:\n\n\`\`\`\nhey dufus [your request in plain English]\nhey dufus context for #N [extra info to add]\n\`\`\``
+                body: `## 🤖 Dufus here!\n\nYou called me but didn't include a request. Try:\n\n\`\`\`\nhey dufus [your request in plain English]\nhey dufus status\nhey dufus context for #N [extra info to add]\n\`\`\``
+              });
+              return;
+            }
+
+            // ── hey dufus status ──────────────────────────────────────────────────
+            // Special meta-command: reply with a live dashboard of all open Dufus
+            // issues without starting a new request / Q&A loop.
+            if (/^status$/i.test(raw)) {
+              const [waiting, ready, aiOpen] = await Promise.all([
+                github.rest.issues.listForRepo({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  labels: 'waiting-for-clarification', state: 'open', per_page: 20
+                }),
+                github.rest.issues.listForRepo({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  labels: 'ready-for-vscode', state: 'open', per_page: 20
+                }),
+                github.rest.issues.listForRepo({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  labels: 'ai-request', state: 'open', per_page: 20
+                })
+              ]);
+
+              const fmt = list => list.data.length === 0
+                ? '_none_'
+                : list.data.map(i => `- #${i.number} — ${i.title}`).join('\n');
+
+              const replyBody = `## 📊 Dufus Status
+
+### ⏳ Waiting for your answers (${waiting.data.length})
+${fmt(waiting)}
+
+### ✅ Prompt delivered — waiting for VS Code (${ready.data.length})
+${fmt(ready)}
+
+### 📥 New ai-request (not yet clarified) (${aiOpen.data.length})
+${fmt(aiOpen)}
+
+---
+*To answer a waiting request: comment on that issue, then say \`/proceed\`.*
+*To cancel a request: comment \`/cancel\` on that issue.*`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: replyBody
               });
               return;
             }

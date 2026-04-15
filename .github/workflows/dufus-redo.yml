@@ -1,0 +1,111 @@
+name: Dufus — Redo (re-deliver prompt)
+# Triggered when the owner comments /redo on a ready-for-vscode issue.
+# Finds the existing prompt file in done/ (or re-generates the incoming/ file)
+# and re-commits it to incoming/ so the VS Code watcher picks it up again.
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  dufus-redo:
+    # Only fire if: issue comment, commenter is repo owner, comment starts with /redo,
+    # and the issue has ready-for-vscode label.
+    if: |
+      github.event.issue != null &&
+      github.event.comment.user.login == github.repository_owner &&
+      startsWith(github.event.comment.body, '/redo') &&
+      contains(join(github.event.issue.labels.*.name, ','), 'ready-for-vscode')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Re-deliver prompt file to incoming/
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const { execSync } = require('child_process');
+
+            const issueNumber = context.payload.issue.number;
+
+            const incomingDir = '.continue/prompts/incoming';
+            const doneDir     = '.continue/prompts/done';
+
+            // Find the prompt file for this issue in done/ first, then incoming/
+            let sourceFile = null;
+            let sourceName = null;
+
+            for (const dir of [doneDir, incomingDir]) {
+              if (!fs.existsSync(dir)) continue;
+              const match = fs.readdirSync(dir).find(f =>
+                f.startsWith(`issue-${issueNumber}-`) && f.endsWith('.md')
+              );
+              if (match) {
+                sourceFile = path.join(dir, match);
+                sourceName = match;
+                break;
+              }
+            }
+
+            if (!sourceFile) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `## ⚠️ /redo failed — prompt file not found
+
+Could not find a prompt file for issue #${issueNumber} in \`.continue/prompts/done/\` or \`.continue/prompts/incoming/\`.
+
+This can happen if the prompt file was never written or was manually deleted. To regenerate it, you can:\n1. Remove the \`ready-for-vscode\` label and add \`waiting-for-clarification\`.\n2. Comment \`/proceed\` again (or \`/proceed implement\` for direct implementation).`
+              });
+              return;
+            }
+
+            // Copy to incoming/ (overwrite if already there)
+            if (!fs.existsSync(incomingDir)) fs.mkdirSync(incomingDir, { recursive: true });
+            const destFile = path.join(incomingDir, sourceName);
+            fs.copyFileSync(sourceFile, destFile);
+
+            execSync('git config user.name "github-actions[bot]"');
+            execSync('git config user.email "github-actions[bot]@users.noreply.github.com"');
+            execSync('git pull --rebase');
+            execSync(`git add "${destFile}"`);
+
+            // If the file was already in incoming/ and unchanged, git will say nothing to commit.
+            try {
+              execSync(`git commit -m "dufus: redo issue #${issueNumber} — re-deliver prompt to incoming/"`);
+              for (let attempt = 1; attempt <= 3; attempt++) {
+                try { execSync('git push'); break; }
+                catch (e) {
+                  if (attempt < 3) execSync('git pull --rebase');
+                  else throw e;
+                }
+              }
+            } catch (e) {
+              if (!e.message.includes('nothing to commit')) throw e;
+              // File was already identical in incoming/ — still works, watcher just needs a push
+              execSync('git commit --allow-empty -m "dufus: redo issue #${issueNumber} — re-trigger watcher"');
+              execSync('git push');
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: `## 🔄 Prompt re-delivered
+
+The prompt file \`${destFile}\` has been re-committed to \`.continue/prompts/incoming/\`.
+
+The VS Code watcher will pick it up the next time VS Code is open. If it doesn't trigger automatically, paste this into a Continue.dev chat:
+
+\`\`\`
+@file ${destFile} — run this
+\`\`\``
+            });

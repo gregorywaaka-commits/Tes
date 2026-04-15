@@ -1,0 +1,112 @@
+name: Dufus — Stale Issue Reminder & Auto-close
+# Runs nightly. Finds open issues stuck on waiting-for-clarification,
+# posts a reminder after 48 hours, and auto-closes after 7 days.
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # 02:00 UTC daily
+  workflow_dispatch:        # Allow manual trigger for testing
+
+jobs:
+  stale-check:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Check for stale waiting-for-clarification issues
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const now = Date.now();
+            const REMIND_MS  = 48 * 60 * 60 * 1000;  // 48 hours
+            const CLOSE_MS   =  7 * 24 * 60 * 60 * 1000;  // 7 days
+
+            // Fetch all open issues with the waiting-for-clarification label
+            const resp = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'waiting-for-clarification',
+              state: 'open',
+              per_page: 100
+            });
+
+            for (const issue of resp.data) {
+              // Skip pull requests
+              if (issue.pull_request) continue;
+
+              const ageMs = now - new Date(issue.created_at).getTime();
+
+              if (ageMs >= CLOSE_MS) {
+                // ── Auto-close after 7 days ───────────────────────────────────
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `## ⏰ Auto-closed — no response for 7 days
+
+This Dufus request has been waiting for your answers for **7 days** and has been automatically closed to keep the backlog clean.
+
+To restart this request, create a new issue or comment \`hey dufus [your request]\` on any open issue.
+
+---
+*Labeled \`wont-do\`.*`
+                });
+
+                try {
+                  await github.rest.issues.addLabels({
+                    owner: context.repo.owner, repo: context.repo.repo,
+                    issue_number: issue.number, labels: ['wont-do']
+                  });
+                } catch (e) { /* label may not exist */ }
+
+                // Remove waiting-for-clarification
+                try {
+                  await github.rest.issues.removeLabel({
+                    owner: context.repo.owner, repo: context.repo.repo,
+                    issue_number: issue.number, name: 'waiting-for-clarification'
+                  });
+                } catch (e) {}
+
+                await github.rest.issues.update({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  issue_number: issue.number,
+                  state: 'closed',
+                  state_reason: 'not_planned'
+                });
+
+                core.info(`Auto-closed issue #${issue.number} (${Math.round(ageMs / 86400000)}d old)`);
+
+              } else if (ageMs >= REMIND_MS) {
+                // ── Send reminder after 48 hours (once only) ─────────────────
+                // Check if we already posted a stale reminder to avoid spamming.
+                const comments = await github.rest.issues.listComments({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  issue_number: issue.number, per_page: 50
+                });
+
+                const alreadyReminded = comments.data.some(c =>
+                  (c.user.type === 'Bot' || c.user.login.includes('[bot]')) &&
+                  c.body.includes('still waiting for your answers')
+                );
+
+                if (!alreadyReminded) {
+                  const daysLeft = Math.max(1, 7 - Math.floor(ageMs / 86400000));
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issue.number,
+                    body: `## ⏳ Dufus is still waiting for your answers
+
+This request has been waiting for your clarification for **${Math.round(ageMs / 3600000)} hours**.
+
+It will be automatically closed in **${daysLeft} day(s)** if no response is received.
+
+**To proceed:** Answer the questions above, then comment \`/proceed\`.
+**To cancel:** Comment \`/cancel\` to drop this request now.`
+                  });
+
+                  core.info(`Reminder posted on issue #${issue.number} (${Math.round(ageMs / 3600000)}h old)`);
+                }
+              }
+            }

@@ -49,6 +49,11 @@ jobs:
                 name: 'implemented',
                 color: '0e8a16',
                 description: 'Completed and committed to the repo'
+              },
+              {
+                name: 'wont-do',
+                color: 'cccccc',
+                description: 'Request cancelled or auto-closed without action'
               }
             ];
 

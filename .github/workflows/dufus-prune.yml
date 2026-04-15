@@ -1,0 +1,76 @@
+name: Dufus — Prune done/ Folder
+# Runs weekly. Deletes prompt files in .continue/prompts/done/ that are
+# older than 30 days, always keeping the 10 most recent regardless of age.
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'   # 03:00 UTC every Sunday
+  workflow_dispatch:        # Allow manual trigger for testing
+
+jobs:
+  prune-done:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Prune old prompt files from done/
+        run: |
+          set -e
+          DONE_DIR=".continue/prompts/done"
+
+          # Nothing to do if the folder doesn't exist or is empty
+          if [ ! -d "$DONE_DIR" ]; then
+            echo "done/ folder does not exist — nothing to prune."
+            exit 0
+          fi
+
+          # List all .md files (excluding .gitkeep) sorted newest-first by mtime
+          mapfile -t ALL_FILES < <(find "$DONE_DIR" -maxdepth 1 -name "*.md" ! -name ".gitkeep" \
+            -printf '%T@ %p\n' | sort -rn | awk '{print $2}')
+
+          TOTAL=${#ALL_FILES[@]}
+          echo "Found ${TOTAL} prompt file(s) in done/"
+
+          if [ "$TOTAL" -eq 0 ]; then
+            echo "Nothing to prune."
+            exit 0
+          fi
+
+          KEEP=10
+          MAX_AGE_DAYS=30
+          MAX_AGE_SECS=$((MAX_AGE_DAYS * 86400))
+          NOW=$(date +%s)
+          DELETED=0
+
+          for i in "${!ALL_FILES[@]}"; do
+            FILE="${ALL_FILES[$i]}"
+            # Always keep the 10 most recent (index 0–9)
+            if [ "$i" -lt "$KEEP" ]; then
+              echo "  KEEP (recent): $FILE"
+              continue
+            fi
+            # Check age
+            MTIME=$(stat -c %Y "$FILE")
+            AGE=$(( NOW - MTIME ))
+            if [ "$AGE" -gt "$MAX_AGE_SECS" ]; then
+              echo "  DELETE (${AGE}s old > ${MAX_AGE_SECS}s): $FILE"
+              git rm -f "$FILE"
+              DELETED=$((DELETED + 1))
+            else
+              echo "  KEEP (not old enough): $FILE"
+            fi
+          done
+
+          if [ "$DELETED" -gt 0 ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "dufus: prune ${DELETED} old prompt file(s) from done/"
+            git push
+            echo "Pruned ${DELETED} file(s)."
+          else
+            echo "No files needed pruning."
+          fi
