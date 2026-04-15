@@ -38,13 +38,12 @@ function printBanner(filename) {
     console.log('📬  DUFUS — NEW PROMPT ARRIVED');
     console.log(separator);
     console.log(`File: ${filename}`);
-    console.log(`Path: .continue/prompts/incoming/${filename}`);
     console.log('');
     console.log('To execute in Continue.dev:');
-    console.log(`  @file .continue/prompts/incoming/${filename} — run this`);
+    console.log(`  @file .continue/prompts/done/${filename} — run this`);
     console.log('');
     console.log('To execute in Copilot Chat:');
-    console.log(`  Read .continue/prompts/incoming/${filename} and run it`);
+    console.log(`  Read .continue/prompts/done/${filename} and run it`);
     console.log(separator + '\n');
 }
 
@@ -69,6 +68,17 @@ function tryOpenInEditor(filepath) {
     }
 }
 
+function archivePrompt(filepath) {
+    try {
+        const filename = path.basename(filepath);
+        const dest = path.join(doneDir, filename);
+        fs.renameSync(filepath, dest);
+        console.log(`📁  Archived to done/: ${filename}`);
+    } catch (e) {
+        // Non-fatal — file may have already moved or been deleted
+    }
+}
+
 // Check for files already present at startup
 const existing = fs.readdirSync(incomingDir).filter(isPromptFile);
 if (existing.length > 0) {
@@ -78,6 +88,7 @@ if (existing.length > 0) {
         printBanner(filename);
         showFilePreview(filepath);
         tryOpenInEditor(filepath);
+        archivePrompt(filepath);
     });
 } else {
     console.log('✅  Dufus inbox: empty. Watching for new prompts...');
@@ -98,6 +109,7 @@ fs.watch(incomingDir, (eventType, filename) => {
             printBanner(filename);
             showFilePreview(filepath);
             tryOpenInEditor(filepath);
+            archivePrompt(filepath);
         }
     }, 500);
 });

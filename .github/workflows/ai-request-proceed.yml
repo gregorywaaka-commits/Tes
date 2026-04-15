@@ -9,12 +9,16 @@ on:
 
 jobs:
   dufus-proceed:
-    # Only run if: comment is on an issue (not a PR), and comment starts with /proceed
+    # Only run if: comment is on an issue (not a PR), comment starts with /proceed,
+    # AND the issue has one of the dufus labels (prevents firing on unrelated issues).
     if: |
       github.event.issue != null &&
       (startsWith(github.event.comment.body, '/proceed') ||
        startsWith(github.event.comment.body, '/approved') ||
-       startsWith(github.event.comment.body, '/go'))
+       startsWith(github.event.comment.body, '/go')) &&
+      (contains(join(github.event.issue.labels.*.name, ','), 'ai-request') ||
+       contains(join(github.event.issue.labels.*.name, ','), 'hey-dufus-pending') ||
+       contains(join(github.event.issue.labels.*.name, ','), 'waiting-for-clarification'))
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -109,6 +113,17 @@ jobs:
 
             const filename = `issue-${issueNumber}-${slug}.md`;
             const filepath = `.continue/prompts/incoming/${filename}`;
+
+            // Idempotency: if prompt file already exists, skip to avoid duplicate commits
+            if (fs.existsSync(filepath)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `## ⚠️ Already sent\n\nPrompt file \`${filepath}\` already exists — VS Code should already have it.\n\nIf it didn't trigger, open Continue.dev and paste:\n\`\`\`\n@file ${filepath} — run this\n\`\`\``
+              });
+              return;
+            }
 
             // Detect if this is extra context for an existing issue
             const contextForMatch = (ownerComments.map(c => c.body).join('\n') + '\n' + body)
