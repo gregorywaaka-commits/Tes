@@ -1,0 +1,229 @@
+name: Hey Dufus — Instant Command
+# Triggered by any comment starting with "hey dufus" (case insensitive).
+# No /proceed required — "hey dufus" IS the approval. Fires immediately.
+#
+# Syntax:
+#   hey dufus [new request text]
+#     → Creates a new standalone prompt for VS Code (design doc output by default)
+#
+#   hey dufus context for #N [extra info]
+#   hey dufus add to #N [extra info]
+#     → Creates a context-for prompt that attaches to issue #N
+#
+#   hey dufus implement [request or #N]
+#     → Creates a prompt with direct implementation mode (skips design doc step)
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  hey-dufus:
+    # Only fire on issue comments (not PRs) that start with "hey dufus"
+    if: |
+      github.event.issue != null &&
+      startsWith(toLower(github.event.comment.body), 'hey dufus')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Parse command and write prompt
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const { execSync } = require('child_process');
+
+            const issue = context.payload.issue;
+            const comment = context.payload.comment;
+            const commentBody = comment.body.trim();
+
+            // Strip the "hey dufus" prefix (case insensitive)
+            const raw = commentBody.replace(/^hey\s+dufus\s*/i, '').trim();
+
+            if (!raw) {
+              // Empty command — post a help message and stop
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `## 🤖 Dufus here!\n\nYou called me but didn't give me anything to do. Try:\n\n\`\`\`\nhey dufus [your request]\nhey dufus context for #N [extra info]\nhey dufus implement [your request]\n\`\`\``
+              });
+              return;
+            }
+
+            // Parse intent
+            const contextMatch = raw.match(/^(?:context for|add to|for)\s+#?(\d+)\s*(.*)/is);
+            const implementMatch = raw.match(/^implement\s+(.*)/is);
+
+            let agentMode, requestText, contextForIssue, skipToImpl;
+
+            if (contextMatch) {
+              // "context for #N [text]"
+              contextForIssue = contextMatch[1];
+              requestText = contextMatch[2].trim() || '*(No additional text — see this comment)*';
+              agentMode = `context-for-issue: #${contextForIssue}`;
+              skipToImpl = false;
+            } else if (implementMatch) {
+              // "implement [request]" — skip design doc, write code directly
+              requestText = implementMatch[1].trim();
+              contextForIssue = null;
+              agentMode = 'standalone-new-task';
+              skipToImpl = true;
+            } else {
+              // Standard new request
+              requestText = raw;
+              contextForIssue = null;
+              agentMode = 'standalone-new-task';
+              skipToImpl = false;
+            }
+
+            // Build filename
+            const issueNumber = issue.number;
+            const slug = requestText
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-+|-+$/g, '')
+              .substring(0, 40);
+
+            const timestamp = Date.now();
+            const filename = contextForIssue
+              ? `issue-${issueNumber}-context-for-${contextForIssue}-${timestamp}.md`
+              : `issue-${issueNumber}-hey-dufus-${slug}.md`;
+            const filepath = `.continue/prompts/incoming/${filename}`;
+
+            // Output mode instructions
+            const outputInstructions = skipToImpl
+              ? `### Output Mode: DIRECT IMPLEMENTATION
+The owner used "hey dufus implement" — skip the design doc step and implement directly.
+Write PDXscript files in \`mod/\` following the PDXscript rules below.
+After finishing, update \`CHANGELOG.md\`.`
+              : `### Output Mode: DESIGN DOC ONLY — do NOT write PDXscript files
+Your job is to produce a **design doc section** — a new \`.md\` file in \`design_docs/pending/\`.
+Do NOT edit any files in \`mod/\`. Do NOT write PDXscript.
+
+The design doc you produce will be reviewed by the owner and merged into \`WALKING_WAYS_DESIGN.md\` when approved.
+
+**Format your output as a new section following the exact style of \`WALKING_WAYS_DESIGN.md\`:**
+- Give it the next available §XX number (read the doc to find the highest current §)
+- Write it in plain English with sub-sections: Overview, Triggers & Gates, Flags Introduced, Event Chain Outline, NPC Handling, Player-Emperor Edge Cases, Open Questions
+- Use pseudo-code blocks (\`\`\`pdx ... \`\`\`) for event sketches — not final code, just structure
+- Mark it \`STATUS: PENDING REVIEW\` at the top
+- Save as \`design_docs/pending/ISSUE-${issueNumber}-${slug}.md\`
+
+After writing the file, post a summary and flag any open design questions for the owner.`;
+
+            const promptContent = `# VS Code Agent Prompt — "Hey Dufus" command on Issue #${issueNumber}
+
+> **Triggered by:** "hey dufus" comment by @${comment.user.login}
+> **Source:** https://github.com/${context.repo.owner}/${context.repo.repo}/issues/${issueNumber}#issuecomment-${comment.id}
+> **Agent mode:** ${agentMode}
+> **Date:** ${new Date().toISOString()}
+
+---
+
+## Request
+
+${requestText}
+
+---
+
+## Agent Instructions
+
+You are a NEW, INDEPENDENT agent. This request was sent via the "hey dufus" shortcut — no clarification loop, just execute.
+
+${outputInstructions}
+
+---
+
+### Step 1 — Read context first
+Before doing anything, read:
+- \`WALKING_WAYS_DESIGN.md\` (find the relevant section if mentioned; note the highest §XX number)
+- \`HOK_DRAGONBORN_OBLIVION_DESIGN.md\` (if HoK/Dragonborn related)
+- \`CHANGELOG.md\` (check what's already implemented)
+${contextForIssue ? `- Any prompt files in \`.continue/prompts/\` for issue #${contextForIssue} — this is EXTRA CONTEXT for that task` : ''}
+
+### Step 2 — Announce your plan
+Say exactly:
+> "I'm about to work on: **[one-sentence description]**. Here's my plan: [numbered list]. Output will be: [design doc / implementation]."
+
+Do not write any files until you have stated your plan.
+
+### Step 3 — Flag ambiguities
+> "I have [N] questions: [list]. My assumptions: [list]. Proceeding with these."
+
+### Step 4 — Execute
+Report after each step: "Done: [what]. Moving to next."
+
+### Step 5 — Report completion
+> "✅ Complete. Output: [file(s)]. Open questions for owner: [list or 'none']."
+
+---
+
+## PDXscript Rules (apply if writing code)
+- 4-space indentation
+- Opening brace on same line: \`event = {\`
+- Event IDs: \`namespace.NNN\`
+- Localisation keys: \`namespace.NNN.t\`, \`.d\`, \`.a/.b/.c\`
+- Flags: snake_case, globally unique
+- Named NPCs: birth-window gated (§31.3)
+- Player emperor: never spawn bastard heir (§31.9)
+- Never hardcode dynasty to Septim — use \`root.dynasty\`
+`;
+
+            // Write the prompt file
+            const dir = '.continue/prompts/incoming';
+            if (!fs.existsSync(dir)) {
+              fs.mkdirSync(dir, { recursive: true });
+            }
+            fs.writeFileSync(filepath, promptContent);
+
+            // Commit and push
+            execSync('git config user.name "github-actions[bot]"');
+            execSync('git config user.email "github-actions[bot]@users.noreply.github.com"');
+            execSync(`git add "${filepath}"`);
+            execSync(`git commit -m "dufus: hey-dufus prompt from issue #${issueNumber}"`);
+            execSync('git push');
+
+            // Add label
+            try {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: ['ready-for-vscode']
+              });
+            } catch (e) { /* label may not exist yet */ }
+
+            // Reply on the issue
+            const outputMode = skipToImpl ? 'direct implementation' : 'design doc (no code changes yet)';
+            const confirmComment = `## ✅ Got it — prompt on its way to VS Code
+
+**Mode:** ${outputMode}
+${contextForIssue ? `**Extra context for:** Issue #${contextForIssue}` : '**Agent type:** Standalone new task'}
+**Prompt file:** \`${filepath}\`
+
+VS Code will pick it up automatically. The watcher will show a banner and open the file.
+
+If it doesn't auto-trigger, paste this into Continue.dev:
+\`\`\`
+@file ${filepath} — run this
+\`\`\`
+
+${skipToImpl
+  ? `The agent will implement directly — PDXscript files will be written.`
+  : `The agent will write a design doc section to \`design_docs/pending/\`. No code changes. Review and merge into \`WALKING_WAYS_DESIGN.md\` when happy.`
+}`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: confirmComment
+            });

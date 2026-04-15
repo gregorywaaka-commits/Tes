@@ -45,8 +45,48 @@ Before doing any implementation work, read these files:
 
 1. **GitHub Copilot Chat in VS Code** — Open the Chat panel (`Ctrl+Alt+I`), type `@workspace` to give it repo context, then ask me anything or give instructions.
 2. **GitHub Copilot agent mode** — In VS Code, open Chat, switch to **"Agent"** mode (click the dropdown next to the chat input). The agent can read/edit files and run terminal commands.
-3. **GitHub Issues** — I may create issues to give you work to do. Check open issues.
-4. **This file** — I update this file when my preferences change. Re-read it at the start of each session.
+3. **GitHub Issues + "hey dufus"** — The fastest way from your phone. Comment `hey dufus [request]` on any issue and it fires immediately — no form, no /proceed required. See below.
+4. **GitHub Issues (full flow)** — Create an issue with the "Ask Dufus" template for requests that need clarification before executing.
+5. **This file** — I update this file when my preferences change. Re-read it at the start of each session.
+
+---
+
+## The "Hey Dufus" Command (fastest path from phone)
+
+Comment this on **any** GitHub issue at any time:
+
+```
+hey dufus [your request in plain English]
+```
+
+VS Code picks it up immediately. No waiting, no form, no /proceed.
+
+### Variations:
+
+| What you type | What happens |
+|---|---|
+| `hey dufus [request]` | New standalone design doc task |
+| `hey dufus implement [request]` | New task, skips design doc, writes PDXscript directly |
+| `hey dufus context for #N [text]` | Attaches extra context to existing issue #N |
+| `hey dufus add to #N [text]` | Same — attaches context to issue #N |
+
+### Examples:
+```
+hey dufus add a Daedric siege escalation event for when Mehrunes Dagon has 3 active gates
+```
+```
+hey dufus implement fix the amulet_stolen_in_sewers flag so it only fires on the survival path
+```
+```
+hey dufus context for #14 the Nerevarine should already be active when this fires
+```
+
+### Notes:
+- Post the comment on any issue — it doesn't have to be a dedicated request issue. You can use a single pinned "Dufus inbox" issue if you want.
+- Dufus replies immediately confirming the prompt was sent to VS Code.
+- The full clarification flow (with Q&A) is still available via the "Ask Dufus" issue template if you want it.
+
+---
 
 ### Tone
 - Be direct and opinionated. Tell me what you'd actually do.
@@ -218,6 +258,19 @@ If you hit something you genuinely cannot figure out — lore contradiction, mis
 
 This repo has a fully automated pipeline for the owner to send requests from their phone:
 
+### Fast path ("hey dufus" command):
+```
+📱 Phone
+  → Comment "hey dufus [request]" on any GitHub issue
+  → GitHub Action fires immediately (no /proceed needed)
+  → Writes .continue/prompts/incoming/issue-NNN-hey-dufus-<slug>.md
+  → VS Code file watcher detects it instantly
+  → VS Code prints banner + opens the file
+  → VS Code agent runs as a NEW INDEPENDENT agent
+  → Default output: design_docs/pending/ (not code)
+```
+
+### Full flow (with clarification):
 ```
 📱 Phone
   → Create GitHub Issue using "Ask Dufus" template
@@ -235,15 +288,16 @@ This repo has a fully automated pipeline for the owner to send requests from the
 ```
 
 **Key rules:**
-- **No code without a design doc first** (unless owner says "implement directly")
+- **No code without a design doc first** (unless owner uses `hey dufus implement` or says "implement directly")
 - **Each request = new independent agent** (no state carryover between issues)
-- **Extra context for issue #N** = attach to existing task, not a new agent
-- **VS Code never acts without owner's `/proceed`** — the Dufus clarification loop is the approval gate
+- **Extra context for issue #N** = `hey dufus context for #N [text]` — attaches to that task
+- **VS Code is always on** — the file watcher catches new prompts the instant they land
 
 **Files involved:**
-- `.github/ISSUE_TEMPLATE/ai_request.yml` — mobile issue form
+- `.github/ISSUE_TEMPLATE/ai_request.yml` — mobile issue form (full flow)
 - `.github/workflows/ai-request-intake.yml` — posts contextual clarification Qs, waits for /proceed
 - `.github/workflows/ai-request-proceed.yml` — writes prompt file on /proceed
+- `.github/workflows/dufus-hey.yml` — "hey dufus" instant command handler
 - `.continue/prompts/incoming/` — Dufus drops prompt files here
 - `.continue/prompts/done/` — completed prompts are moved here
 - `.continue/prompts/startup.md` — auto-executes all pending prompts as independent agents
