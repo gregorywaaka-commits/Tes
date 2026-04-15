@@ -43,7 +43,8 @@ jobs:
               'waiting-for-clarification',
               'hey-dufus-pending',
               'ai-request',
-              'ready-for-vscode'
+              'ready-for-vscode',
+              'dufus-snoozed'
             ];
             for (const labelName of labelsToRemove) {
               try {

@@ -35,6 +35,12 @@ jobs:
               // Skip pull requests
               if (issue.pull_request) continue;
 
+              // Skip issues that have been snoozed by the owner
+              if (issue.labels.some(l => l.name === 'dufus-snoozed')) {
+                core.info(`Skipping snoozed issue #${issue.number}`);
+                continue;
+              }
+
               const ageMs = now - new Date(issue.created_at).getTime();
 
               if (ageMs >= CLOSE_MS) {

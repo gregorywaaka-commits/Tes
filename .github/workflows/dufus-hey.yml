@@ -28,6 +28,11 @@ jobs:
        startsWith(github.event.comment.body, 'Hey Dufus') ||
        startsWith(github.event.comment.body, 'HEY DUFUS'))
     runs-on: ubuntu-latest
+    # Deduplicate: if the same comment triggers twice (e.g. webhook retry),
+    # the second run is cancelled. Different comment IDs are always independent.
+    concurrency:
+      group: hey-dufus-comment-${{ github.event.comment.id }}
+      cancel-in-progress: true
     permissions:
       issues: write
       contents: read
@@ -108,6 +113,50 @@ ${fmt(aiOpen)}
                 repo: context.repo.repo,
                 issue_number: issue.number,
                 body: replyBody
+              });
+              return;
+            }
+
+            // ── hey dufus help ────────────────────────────────────────────────
+            if (/^help$/i.test(raw)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `## 🤖 Dufus — Command Reference
+
+### Starting a request
+| Command | What it does |
+|---------|-------------|
+| \`hey dufus [request]\` | Start a new design request — Dufus asks questions, then waits for \`/proceed\` |
+| \`hey dufus context for #N [text]\` | Attach extra context to existing issue #N |
+| \`hey dufus add to #N [text]\` | Same as above |
+
+### While waiting for clarification
+| Command | What it does |
+|---------|-------------|
+| \`/proceed\` | Write the prompt to VS Code and label \`ready-for-vscode\` |
+| \`/proceed skip-questions\` | Skip the Q&A and proceed with Dufus's best guesses |
+| \`/proceed implement\` | Skip design doc — implement directly in PDXscript |
+| \`/cancel\` | Drop this request, close the issue |
+| \`/snooze\` | Pause stale auto-close (use when you're away) |
+| \`/unsnooze\` | Resume stale auto-close |
+| \`/redo\` | Re-send the latest prompt to VS Code |
+
+### After VS Code finishes
+| Command | What it does |
+|---------|-------------|
+| \`/done\` | Mark issue as implemented, add \`implemented\` label, close |
+| \`/cancel\` | Cancel and close as \`wont-do\` |
+
+### Meta
+| Command | What it does |
+|---------|-------------|
+| \`hey dufus status\` | Show dashboard of all open pipeline issues |
+| \`hey dufus help\` | Show this help message |
+
+---
+*Pipeline docs: see \`OLLAMA_MCP_SETUP.md\` and the \`copilot-instructions.md\` file.*`
               });
               return;
             }

@@ -1,0 +1,94 @@
+name: Dufus — Mark Done
+# Triggered when the owner comments /done on a ready-for-vscode issue.
+# Marks the issue as implemented, applies the 'implemented' label, and closes it.
+#
+# Use this after VS Code has delivered the output and you're happy with it.
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  dufus-done:
+    if: |
+      github.event.issue != null &&
+      github.event.comment.user.login == github.repository_owner &&
+      startsWith(github.event.comment.body, '/done') &&
+      (contains(join(github.event.issue.labels.*.name, ','), 'ready-for-vscode') ||
+       contains(join(github.event.issue.labels.*.name, ','), 'waiting-for-clarification') ||
+       contains(join(github.event.issue.labels.*.name, ','), 'hey-dufus-pending'))
+    runs-on: ubuntu-latest
+    concurrency:
+      group: dufus-done-${{ github.event.issue.number }}
+      cancel-in-progress: true
+    permissions:
+      issues: write
+
+    steps:
+      - name: Mark issue as implemented and close
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.payload.issue.number;
+            const issue = context.payload.issue;
+
+            // Add 🎉 reaction to the /done comment
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'hooray'
+            });
+
+            // Remove all in-progress pipeline labels
+            const labelsToRemove = [
+              'ready-for-vscode',
+              'waiting-for-clarification',
+              'hey-dufus-pending',
+              'ai-request',
+              'dufus-snoozed'
+            ];
+            for (const labelName of labelsToRemove) {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  name: labelName
+                });
+              } catch (e) { /* label may not be present — ignore */ }
+            }
+
+            // Add 'implemented' label
+            try {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                labels: ['implemented']
+              });
+            } catch (e) { /* label may not exist yet */ }
+
+            // Post completion comment
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: `## ✅ Marked as implemented
+
+**${issue.title}** has been marked as done.
+
+Labeled \`implemented\`. Closing this issue.
+
+---
+*To update \`CHANGELOG.md\` with this change, commit a line under the relevant version section.*`
+            });
+
+            // Close the issue as completed
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              state: 'closed',
+              state_reason: 'completed'
+            });

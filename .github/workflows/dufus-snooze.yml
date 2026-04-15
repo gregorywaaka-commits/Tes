@@ -1,0 +1,95 @@
+name: Dufus — Snooze / Unsnooze
+# /snooze  — pauses stale auto-close on a waiting-for-clarification issue.
+# /unsnooze — resumes it.
+#
+# Use this when you're away and don't want a pending request to be auto-closed
+# before you have time to answer the clarification questions.
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  dufus-snooze:
+    if: |
+      github.event.issue != null &&
+      github.event.comment.user.login == github.repository_owner &&
+      (startsWith(github.event.comment.body, '/snooze') ||
+       startsWith(github.event.comment.body, '/unsnooze')) &&
+      (contains(join(github.event.issue.labels.*.name, ','), 'waiting-for-clarification') ||
+       contains(join(github.event.issue.labels.*.name, ','), 'hey-dufus-pending') ||
+       contains(join(github.event.issue.labels.*.name, ','), 'dufus-snoozed'))
+    runs-on: ubuntu-latest
+    concurrency:
+      group: dufus-snooze-${{ github.event.issue.number }}
+      cancel-in-progress: true
+    permissions:
+      issues: write
+
+    steps:
+      - name: Snooze or unsnooze issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.payload.issue.number;
+            const commentBody = context.payload.comment.body.trim();
+            const isUnsnooze = /^\/unsnooze/i.test(commentBody);
+
+            if (isUnsnooze) {
+              // Remove dufus-snoozed label
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  name: 'dufus-snoozed'
+                });
+              } catch (e) { /* label may not be present */ }
+
+              await github.rest.reactions.createForIssueComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: context.payload.comment.id,
+                content: '+1'
+              });
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `## ⏰ Unsnooze — stale auto-close resumed
+
+Stale detection is back on for this issue. The 7-day clock continues from where it left off.
+
+When you're ready, answer the questions above and comment \`/proceed\`.`
+              });
+
+            } else {
+              // Add dufus-snoozed label
+              try {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  labels: ['dufus-snoozed']
+                });
+              } catch (e) { /* label may not exist yet */ }
+
+              await github.rest.reactions.createForIssueComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: context.payload.comment.id,
+                content: 'eyes'
+              });
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `## 💤 Snoozed — stale auto-close paused
+
+This issue will no longer be auto-closed by the stale workflow while the \`dufus-snoozed\` label is present.
+
+When you're back and ready to answer, comment \`/unsnooze\` to resume — then answer Dufus's questions and say \`/proceed\`.`
+              });
+            }

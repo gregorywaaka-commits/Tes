@@ -51,6 +51,11 @@ jobs:
                 description: 'Completed and committed to the repo'
               },
               {
+                name: 'dufus-snoozed',
+                color: 'bfd4f2',
+                description: 'Stale auto-close is paused — owner snoozed this issue'
+              },
+              {
                 name: 'wont-do',
                 color: 'cccccc',
                 description: 'Request cancelled or auto-closed without action'
