@@ -1,0 +1,110 @@
+name: AI Request — Dufus Intake & Clarification
+# Triggered when a new issue is labeled 'ai-request'.
+# Posts a structured clarification comment and assigns the issue to Copilot.
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  dufus-intake:
+    if: github.event.label.name == 'ai-request'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Post clarification protocol comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title;
+            const body = issue.body || '*(no description provided)*';
+
+            const comment = `## 🤖 Dufus is on it!
+
+Hey @${issue.user.login}! I've picked up your request. Before I hand a refined prompt to VS Code, I need to make sure I understand exactly what you want.
+
+---
+
+### 📋 Here's what I understood from your request:
+
+> **"${title}"**
+
+${body}
+
+---
+
+### ❓ Clarification questions — please answer each one:
+
+I'll fill these in based on your issue, but I always need a human sign-off before doing anything. Answer directly in a comment below. You can answer on your phone.
+
+**Q1 — Scope:** Is this a brand-new feature/event chain, a fix/tweak to something existing, or a doc/design update?
+> *Your answer:*
+
+**Q2 — Which part of the mod?** (e.g. Oblivion Crisis, Akulakhan, Daedric Invasion, lore races, tooling/setup, or something else)
+> *Your answer:*
+
+**Q3 — Design doc reference:** Is there a specific section in \`WALKING_WAYS_DESIGN.md\` or \`HOK_DRAGONBORN_OBLIVION_DESIGN.md\` this relates to? (e.g. "§26", "§31.7", or "none")
+> *Your answer:*
+
+**Q4 — Priority / urgency:** Is this blocking something or just a next thing to do when time allows?
+> *Your answer:*
+
+**Q5 — Anything the VS Code agent must NOT change or touch?** (e.g. "don't touch akullakhan_events.txt", "read-only design doc pass")
+> *Your answer:*
+
+---
+
+### 💡 My initial recommendation:
+
+*(I'll fill this in once I read your full request. If you want my suggestion now, just say "give me your recommendation" in a comment.)*
+
+---
+
+### ✅ When you're ready to go:
+
+Once you've answered the questions above (or if the request is clear enough to proceed without them), comment:
+
+\`\`\`
+/proceed
+\`\`\`
+
+That will trigger me to write a clean, refined prompt to VS Code. You can also say \`/proceed skip-questions\` if you just want me to run with what you've given.
+
+---
+
+*This issue is now labeled \`waiting-for-clarification\`. Dufus will not send anything to VS Code until you say \`/proceed\`.*`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: comment
+            });
+
+      - name: Add waiting-for-clarification label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              labels: ['waiting-for-clarification']
+            });
+
+      - name: Assign to Copilot for awareness
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Assign to the repo owner so Copilot agent can be manually invoked
+            // GitHub Copilot agent is triggered when assigned — owner can re-assign to @copilot
+            await github.rest.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              assignees: [context.repo.owner]
+            });

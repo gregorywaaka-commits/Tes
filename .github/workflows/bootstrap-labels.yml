@@ -1,0 +1,67 @@
+name: Bootstrap Labels
+# Runs once when pushed — creates all labels needed for the Dufus pipeline.
+# Safe to re-run: skips labels that already exist.
+
+on:
+  push:
+    paths:
+      - '.github/workflows/bootstrap-labels.yml'
+  workflow_dispatch:
+
+jobs:
+  create-labels:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - name: Create Dufus pipeline labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = [
+              {
+                name: 'ai-request',
+                color: '7057ff',
+                description: 'Request sent to Dufus from phone — awaiting clarification'
+              },
+              {
+                name: 'waiting-for-clarification',
+                color: 'e4e669',
+                description: 'Dufus has posted questions — waiting for owner answers'
+              },
+              {
+                name: 'ready-for-vscode',
+                color: '0075ca',
+                description: 'Prompt written to repo — VS Code agent can execute'
+              },
+              {
+                name: 'needs-owner-input',
+                color: 'd93f0b',
+                description: 'Agent is blocked — owner decision required'
+              },
+              {
+                name: 'implemented',
+                color: '0e8a16',
+                description: 'Completed and committed to the repo'
+              }
+            ];
+
+            for (const label of labels) {
+              try {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label.name,
+                  color: label.color,
+                  description: label.description
+                });
+                console.log(`✅ Created label: ${label.name}`);
+              } catch (err) {
+                if (err.status === 422) {
+                  console.log(`⏭️  Label already exists: ${label.name}`);
+                } else {
+                  throw err;
+                }
+              }
+            }

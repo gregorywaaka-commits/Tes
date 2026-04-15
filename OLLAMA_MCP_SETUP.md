@@ -754,6 +754,135 @@ repo-root/
 
 ---
 
-*Document version: 1.0 — Written 2026-04-15*  
+*Document version: 2.0 — Updated 2026-04-15*  
 *Author: GitHub Copilot Task Agent*  
 *Target agent: Continue.dev + VS Code autonomous agent*
+
+---
+
+## 10. The Phone → Dufus → VS Code Pipeline
+
+This section explains the full mobile-to-local-agent communication system built into this repo.
+
+### 10.1 — What It Does
+
+You can send requests to your AI from your phone, have a clarification conversation entirely in GitHub (no laptop needed), and when you're happy, VS Code automatically picks up and executes the refined prompt — all without you being at your computer.
+
+```
+📱 YOUR PHONE
+  │
+  │  Create GitHub Issue
+  │  (using "Ask Dufus" template)
+  ▼
+🔵 GITHUB
+  │
+  │  Issue labeled: ai-request
+  │  → Workflow fires automatically
+  ▼
+🤖 DUFUS (GitHub Actions + Copilot)
+  │
+  │  Posts clarification questions as issue comments
+  │  You answer from your phone
+  │  You comment /proceed
+  ▼
+🔵 GITHUB ACTIONS
+  │
+  │  Collects full conversation
+  │  Writes refined prompt to:
+  │  .continue/prompts/incoming/issue-NNN.md
+  │  Commits + pushes to repo
+  ▼
+💻 YOUR PC (when you get home)
+  │
+  │  VS Code opens
+  │  startup.md detects the new prompt file
+  │  Announces: "📬 1 prompt waiting from Dufus"
+  ▼
+🖥️ VS CODE AGENT (Continue.dev / Copilot Chat)
+  │
+  │  Reads the prompt file
+  │  Implements it using CK3 scripting knowledge
+  │  Updates CHANGELOG.md
+  ▼
+✅ DONE
+```
+
+### 10.2 — How to Use It From Your Phone
+
+1. **Open GitHub on your phone** → go to `gregorywaaka-commits/Tes`
+2. Tap **Issues** → **New Issue**
+3. Choose the **"Ask Dufus"** template (it's the only one available)
+4. Fill in the form — just describe what you want in plain English
+5. Submit — Dufus will post clarification questions within seconds
+6. Answer the questions in the comments
+7. Comment `/proceed` when ready
+8. That's it — the prompt will be waiting for VS Code when you get home
+
+**You can also skip clarification** by commenting `/proceed skip-questions` — Dufus will use its best judgment.
+
+### 10.3 — GitHub Labels Used
+
+| Label | Meaning |
+|---|---|
+| `ai-request` | You just submitted a new request |
+| `waiting-for-clarification` | Dufus has asked questions, waiting for your answers |
+| `ready-for-vscode` | Prompt committed to repo, VS Code can execute |
+| `needs-owner-input` | Agent is blocked and needs a decision from you |
+| `implemented` | Work is complete and committed |
+
+### 10.4 — First-Time Setup (Labels)
+
+The required GitHub labels don't exist in the repo by default. Run the bootstrap workflow once:
+
+1. Go to **Actions** tab in GitHub
+2. Find **"Bootstrap Labels"**
+3. Click **Run workflow**
+
+Or push any change to `.github/workflows/bootstrap-labels.yml` — it runs automatically.
+
+### 10.5 — Reading Prompt Files in VS Code
+
+When VS Code opens and `startup.md` runs, it will automatically:
+- Detect any files in `.continue/prompts/incoming/`
+- Tell you what each one contains
+- Ask which to execute
+
+To manually execute one:
+
+**Copilot Chat:**
+```
+Read .continue/prompts/incoming/issue-42-my-request.md and implement it
+```
+
+**Continue.dev:**
+```
+@file .continue/prompts/incoming/issue-42-my-request.md — implement this request
+```
+
+### 10.6 — Communicating Directly With Copilot in VS Code
+
+Beyond the phone pipeline, you can talk to Copilot directly in VS Code:
+
+| How | When to use |
+|---|---|
+| `Ctrl+Alt+I` | Open Copilot Chat — for questions, explanations, quick edits |
+| Copilot Chat **Agent mode** | For autonomous multi-file implementation tasks |
+| Inline chat (`Ctrl+I` on selected code) | For editing a specific block of code |
+| `@workspace` prefix in chat | Gives Copilot access to all repo files |
+| `@github` prefix | Triggers GitHub MCP — reads issues, PRs, files live |
+
+**Agent mode** is the most powerful — switch to it by clicking the dropdown next to the chat input and selecting "Agent". It can read files, edit files, run terminal commands, and use all MCP tools.
+
+### 10.7 — Tips for Writing Good Phone Requests
+
+The issue template handles structure, but here's what makes Dufus most accurate:
+
+✅ **Good:** "Add events for the Shivering Isles content gate in §27 — the part where Haskill appears after the Hero closes enough Oblivion Gates"
+
+❌ **Vague:** "Add more Shivering Isles stuff"
+
+✅ **Good:** "Fix Martin spawn — it's firing for player emperors when it should only fire for NPC Septim emperors per §26.5a"
+
+❌ **Vague:** "Martin is wrong"
+
+The more specific you are, the fewer clarification rounds you need.
