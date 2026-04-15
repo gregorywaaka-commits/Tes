@@ -1,6 +1,144 @@
-name: Hey Dufus — Instant Command
-# Triggered by any comment starting with "hey dufus" (case insensitive).
-# No /proceed required — "hey dufus" IS the approval. Fires immediately.
+name: Hey Dufus — Receive Request & Ask Questions
+# Triggered by any comment starting with "hey dufus".
+# Does NOT execute immediately. Posts clarification questions, waits for /proceed.
+# The existing ai-request-proceed.yml then writes the design doc prompt.
+#
+# Syntax:
+#   hey dufus [new request text]
+#     → Asks clarifying questions; on /proceed, writes design doc prompt
+#
+#   hey dufus context for #N [extra info]
+#   hey dufus add to #N [extra info]
+#     → Attaches extra context to existing issue #N (same clarification loop)
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  hey-dufus:
+    # Only fire on issue comments (not PRs) that start with "hey dufus"
+    if: |
+      github.event.issue != null &&
+      startsWith(github.event.comment.body, 'hey dufus')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Parse request and post clarification questions
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const comment = context.payload.comment;
+            const commentBody = comment.body.trim();
+
+            // Strip the "hey dufus" prefix
+            const raw = commentBody.replace(/^hey\s+dufus\s*/i, '').trim();
+
+            if (!raw) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `## 🤖 Dufus here!\n\nYou called me but didn't include a request. Try:\n\n\`\`\`\nhey dufus [your request in plain English]\nhey dufus context for #N [extra info to add]\n\`\`\``
+              });
+              return;
+            }
+
+            // Detect "context for #N" variant
+            const contextMatch = raw.match(/^(?:context for|add to|for)\s+#?(\d+)\s*(.*)/is);
+            let requestText, contextForIssue;
+
+            if (contextMatch) {
+              contextForIssue = contextMatch[1];
+              requestText = contextMatch[2].trim() || '*(see original comment)*';
+            } else {
+              contextForIssue = null;
+              requestText = raw;
+            }
+
+            const extraContextNote = contextForIssue
+              ? `\n> 📎 **This is extra context for issue #${contextForIssue}.** I'll attach this to that task when you \`/proceed\`.`
+              : '';
+
+            const questionComment = `## 🤖 Dufus received your request — questions before I start
+
+Hey @${comment.user.login}! Got your request. Before I send anything to VS Code, I need to check I've understood you. **Nothing will happen until you say \`/proceed\`.**
+${extraContextNote}
+
+---
+
+### 📋 What I heard:
+
+<!-- hey-dufus-request-start -->
+${requestText}
+<!-- hey-dufus-request-end -->
+
+---
+
+### ❓ Quick questions:
+
+Answer below — brief is fine. I've given my best guess for each so you can just say "yes to all" or correct what's wrong.
+
+**Q1 — My interpretation:** You want a **new design doc section** describing this feature — not code yet, just a spec to be reviewed and merged into \`WALKING_WAYS_DESIGN.md\`. Is that right?
+> *Correct / No, I want: [your answer]*
+
+**Q2 — Scope:** Is this a brand-new feature, a tweak to something already in the design doc, or a fix to something already implemented?
+> *My guess: brand-new feature. Correct if wrong.*
+
+**Q3 — Are there lore constraints I should know?** (e.g. "only fire if dagoth_ur_awakened is set", "check §24 compatibility", "Nerevarine must already be active")
+> *Your answer (or "none"):*
+
+**Q4 — Anything VS Code must NOT touch?**
+> *Your answer (or "nothing"):*
+
+---
+
+### 💡 My initial take:
+
+I'll write a **new §XX design doc section** in \`WALKING_WAYS_DESIGN.md\` format, covering: triggers, flags, event chain outline, NPC handling, and player-emperor edge cases. VS Code writes the spec only — no PDXscript yet. You review and merge.
+
+---
+
+### ✅ When you're ready:
+
+Answer the questions above (or just correct what's wrong), then:
+
+\`\`\`
+/proceed
+\`\`\`
+
+Or skip questions with \`/proceed skip-questions\` — I'll use my guesses above.
+
+**Nothing will happen in VS Code until you say /proceed.**
+
+---
+
+*Labeled \`waiting-for-clarification\`. Dufus is waiting for you.*`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: questionComment
+            });
+
+      - name: Add waiting-for-clarification label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.issue.number,
+                labels: ['waiting-for-clarification', 'hey-dufus-pending']
+              });
+            } catch (e) { /* labels may not exist yet */ }
+
 #
 # Syntax:
 #   hey dufus [new request text]

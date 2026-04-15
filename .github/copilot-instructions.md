@@ -59,15 +59,14 @@ Comment this on **any** GitHub issue at any time:
 hey dufus [your request in plain English]
 ```
 
-VS Code picks it up immediately. No waiting, no form, no /proceed.
+Dufus will immediately ask you clarifying questions. You answer, then say `/proceed`. VS Code picks it up and writes a design doc. No forms, no templates.
 
 ### Variations:
 
 | What you type | What happens |
 |---|---|
-| `hey dufus [request]` | New standalone design doc task |
-| `hey dufus implement [request]` | New task, skips design doc, writes PDXscript directly |
-| `hey dufus context for #N [text]` | Attaches extra context to existing issue #N |
+| `hey dufus [request]` | Dufus asks questions → you answer → `/proceed` → design doc |
+| `hey dufus context for #N [text]` | Attaches extra context to existing issue #N (same Q&A loop) |
 | `hey dufus add to #N [text]` | Same — attaches context to issue #N |
 
 ### Examples:
@@ -75,16 +74,14 @@ VS Code picks it up immediately. No waiting, no form, no /proceed.
 hey dufus add a Daedric siege escalation event for when Mehrunes Dagon has 3 active gates
 ```
 ```
-hey dufus implement fix the amulet_stolen_in_sewers flag so it only fires on the survival path
-```
-```
 hey dufus context for #14 the Nerevarine should already be active when this fires
 ```
 
 ### Notes:
-- Post the comment on any issue — it doesn't have to be a dedicated request issue. You can use a single pinned "Dufus inbox" issue if you want.
-- Dufus replies immediately confirming the prompt was sent to VS Code.
-- The full clarification flow (with Q&A) is still available via the "Ask Dufus" issue template if you want it.
+- Post the comment on **any** issue — it doesn't have to be a dedicated request issue. You can use a single pinned "Dufus inbox" issue.
+- Dufus replies immediately with clarifying questions. Answer them (or just say `/proceed skip-questions`), then comment `/proceed`.
+- Output is **always a design doc** — never direct PDXscript. To get implementation output, use the full "Ask Dufus" issue template and say "implement directly" in your answers.
+- The full clarification flow (with issue templates) is still available via the "Ask Dufus" issue template if you prefer.
 
 ---
 
@@ -262,12 +259,15 @@ This repo has a fully automated pipeline for the owner to send requests from the
 ```
 📱 Phone
   → Comment "hey dufus [request]" on any GitHub issue
-  → GitHub Action fires immediately (no /proceed needed)
-  → Writes .continue/prompts/incoming/issue-NNN-hey-dufus-<slug>.md
+  → GitHub Action fires immediately
+  → Dufus posts clarifying questions on the issue
+  → Owner answers from phone (or says /proceed skip-questions)
+  → Owner comments /proceed
+  → GitHub Action writes .continue/prompts/incoming/issue-NNN-hey-dufus-<slug>.md
   → VS Code file watcher detects it instantly
   → VS Code prints banner + opens the file
   → VS Code agent runs as a NEW INDEPENDENT agent
-  → Default output: design_docs/pending/ (not code)
+  → Output: design_docs/pending/ (ALWAYS — hey-dufus never writes code directly)
 ```
 
 ### Full flow (with clarification):
@@ -297,7 +297,7 @@ This repo has a fully automated pipeline for the owner to send requests from the
 - `.github/ISSUE_TEMPLATE/ai_request.yml` — mobile issue form (full flow)
 - `.github/workflows/ai-request-intake.yml` — posts contextual clarification Qs, waits for /proceed
 - `.github/workflows/ai-request-proceed.yml` — writes prompt file on /proceed
-- `.github/workflows/dufus-hey.yml` — "hey dufus" instant command handler
+- `.github/workflows/dufus-hey.yml` — "hey dufus" command handler — asks questions, waits for /proceed
 - `.continue/prompts/incoming/` — Dufus drops prompt files here
 - `.continue/prompts/done/` — completed prompts are moved here
 - `.continue/prompts/startup.md` — auto-executes all pending prompts as independent agents

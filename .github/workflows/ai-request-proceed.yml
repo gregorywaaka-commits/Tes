@@ -33,9 +33,10 @@ jobs:
 
             const issue = context.payload.issue;
             const issueNumber = issue.number;
-            const title = issue.title;
-            const body = issue.body || '';
             const skipQuestions = context.payload.comment.body.includes('skip-questions');
+
+            // Detect if this was triggered by a "hey dufus" comment
+            const isHeyDufus = issue.labels.some(l => l.name === 'hey-dufus-pending');
 
             // Fetch all comments on the issue
             const commentsResp = await github.rest.issues.listComments({
@@ -56,6 +57,29 @@ jobs:
               !c.body.startsWith('/go')
             );
 
+            // For hey-dufus requests, extract the original request from the bot's
+            // clarification comment (the request is embedded between HTML marker comments).
+            // For standard ai-request issues, use the issue title/body as usual.
+            let title, body;
+            if (isHeyDufus) {
+              const botClarificationComment = botComments.find(c =>
+                c.body.includes('<!-- hey-dufus-request-start -->')
+              );
+              if (botClarificationComment) {
+                const match = botClarificationComment.body.match(
+                  /<!-- hey-dufus-request-start -->\n([\s\S]*?)\n<!-- hey-dufus-request-end -->/
+                );
+                body = match ? match[1].trim() : '*(request text not found — see issue comments)*';
+              } else {
+                body = '*(hey-dufus request — see issue comments)*';
+              }
+              // Use the extracted request as the title too (truncated)
+              title = body.length > 80 ? body.substring(0, 77) + '...' : body;
+            } else {
+              title = issue.title;
+              body = issue.body || '';
+            }
+
             // Build the clarification Q&A block
             let clarificationBlock = '';
             if (ownerComments.length > 0 && !skipQuestions) {
@@ -70,7 +94,7 @@ jobs:
             }
 
             // Get issue labels (excluding meta labels)
-            const metaLabels = ['ai-request', 'waiting-for-clarification', 'ready-for-vscode'];
+            const metaLabels = ['ai-request', 'waiting-for-clarification', 'ready-for-vscode', 'hey-dufus-pending'];
             const contentLabels = issue.labels
               .map(l => l.name)
               .filter(l => !metaLabels.includes(l))
@@ -89,14 +113,23 @@ jobs:
             // Detect if this is extra context for an existing issue
             const contextForMatch = (ownerComments.map(c => c.body).join('\n') + '\n' + body)
               .match(/(?:extra context|additional context|context for|this is for)\s+#?(\d+)/i);
-            const contextForIssue = contextForMatch ? contextForMatch[1] : null;
+
+            // Also check the bot's hey-dufus comment for "context for #N"
+            let contextForIssue = contextForMatch ? contextForMatch[1] : null;
+            if (!contextForIssue && isHeyDufus) {
+              const botContextMatch = botComments
+                .map(c => c.body).join('\n')
+                .match(/📎.*extra context for issue #(\d+)/i);
+              if (botContextMatch) contextForIssue = botContextMatch[1];
+            }
 
             const agentMode = contextForIssue
               ? `context-for-issue: #${contextForIssue}`
               : 'standalone-new-task';
 
-            // Check if owner explicitly asked to skip to implementation
-            const skipToImpl = ownerComments.some(c =>
+            // hey-dufus requests are ALWAYS design-doc-only — never direct implementation.
+            // Standard ai-request issues can opt into implementation via owner comments.
+            const skipToImpl = !isHeyDufus && ownerComments.some(c =>
               /skip.*impl|straight to impl|implement.*directly|write.*code.*now/i.test(c.body)
             );
 
@@ -224,8 +257,9 @@ VS Code will pick this up automatically from \`.continue/prompts/incoming/\`. If
 
 ${skipToImpl
   ? `The agent will **implement directly** (you asked to skip the design doc step).`
-  : `The agent will **write a design doc section** to \`design_docs/pending/\`. No PDXscript files will be changed. You review the output and merge it into \`WALKING_WAYS_DESIGN.md\` when happy.\n\nTo skip to direct implementation next time, include "implement directly" or "skip design doc" in your request or clarification answers.`
+  : `The agent will **write a design doc section** to \`design_docs/pending/\`. No PDXscript files will be changed. You review the output and merge it into \`WALKING_WAYS_DESIGN.md\` when happy.`
 }
+${isHeyDufus ? `\n> **Note:** hey-dufus requests always produce a design doc. To implement directly, use the full issue flow and say "implement directly" in your answers.` : !skipToImpl ? `\nTo skip to direct implementation next time, include "implement directly" or "skip design doc" in your request or clarification answers.` : ''}
 
 ---
 
@@ -243,15 +277,17 @@ ${skipToImpl
         with:
           script: |
             const issueNumber = context.payload.issue.number;
-            // Remove waiting-for-clarification, add ready-for-vscode
-            try {
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issueNumber,
-                name: 'waiting-for-clarification'
-              });
-            } catch (e) { /* label may not exist */ }
+            // Remove waiting-for-clarification and hey-dufus-pending, add ready-for-vscode
+            for (const labelName of ['waiting-for-clarification', 'hey-dufus-pending']) {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  name: labelName
+                });
+              } catch (e) { /* label may not exist */ }
+            }
 
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
