@@ -1,0 +1,392 @@
+name: AI Request — Dufus Proceed (Write Prompt to VS Code)
+# Triggered when the owner comments /proceed on an ai-request issue.
+# Collects the full conversation, formats a refined prompt file,
+# commits it to .continue/prompts/incoming/, and notifies on the issue.
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  dufus-proceed:
+    # Only run if: comment is on an issue (not a PR), comment starts with /proceed,
+    # AND the issue has one of the dufus labels (prevents firing on unrelated issues).
+    # Owner-only guard: only the repo owner can proceed.
+    if: |
+      github.event.issue != null &&
+      github.event.comment.user.login == github.repository_owner &&
+      (startsWith(github.event.comment.body, '/proceed') ||
+       startsWith(github.event.comment.body, '/approved') ||
+       startsWith(github.event.comment.body, '/go')) &&
+      (contains(join(github.event.issue.labels.*.name, ','), 'ai-request') ||
+       contains(join(github.event.issue.labels.*.name, ','), 'hey-dufus-pending') ||
+       contains(join(github.event.issue.labels.*.name, ','), 'waiting-for-clarification'))
+    runs-on: ubuntu-latest
+    # Prevent two /proceed taps on the same issue from racing and double-committing.
+    concurrency:
+      group: proceed-${{ github.event.issue.number }}
+      cancel-in-progress: true
+    permissions:
+      issues: write
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Acknowledge /proceed with 🚀 reaction
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'rocket'
+            });
+
+      - name: Collect issue + comments and write prompt file
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            const issue = context.payload.issue;
+            const issueNumber = issue.number;
+            const skipQuestions = context.payload.comment.body.includes('skip-questions');
+
+            // Detect if this was triggered by a "hey dufus" comment
+            const isHeyDufus = issue.labels.some(l => l.name === 'hey-dufus-pending');
+
+            // Fetch all comments on the issue
+            const commentsResp = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              per_page: 100
+            });
+
+            // Separate bot comments (clarification questions) from owner replies
+            const botComments = commentsResp.data.filter(c =>
+              c.user.type === 'Bot' || c.user.login.includes('[bot]')
+            );
+            const ownerComments = commentsResp.data.filter(c =>
+              c.user.login === context.repo.owner &&
+              !c.body.startsWith('/proceed') &&
+              !c.body.startsWith('/approved') &&
+              !c.body.startsWith('/go')
+            );
+
+            // For hey-dufus requests, extract the original request from the bot's
+            // clarification comment (the request is embedded between HTML marker comments).
+            // For standard ai-request issues, use the issue title/body as usual.
+            let title, body;
+            if (isHeyDufus) {
+              const botClarificationComment = botComments.find(c =>
+                c.body.includes('<!-- hey-dufus-request-start -->')
+              );
+              if (botClarificationComment) {
+                const match = botClarificationComment.body.match(
+                  /<!-- hey-dufus-request-start -->\n([\s\S]*?)\n<!-- hey-dufus-request-end -->/
+                );
+                body = match ? match[1].trim() : '*(request text not found — see issue comments)*';
+              } else {
+                body = '*(hey-dufus request — see issue comments)*';
+              }
+              // Use the extracted request as the title too (truncated)
+              title = body.length > 80 ? body.substring(0, 77) + '...' : body;
+            } else {
+              title = issue.title;
+              body = issue.body || '';
+            }
+
+            // Build the clarification Q&A block
+            let clarificationBlock = '';
+            if (ownerComments.length > 0 && !skipQuestions) {
+              clarificationBlock = `## Clarification Answers from Owner\n\n`;
+              for (const comment of ownerComments) {
+                clarificationBlock += `> ${comment.body.replace(/\n/g, '\n> ')}\n\n`;
+              }
+            } else if (skipQuestions) {
+              clarificationBlock = `*(Questions skipped — owner said to proceed with original request)*\n\n`;
+            } else {
+              clarificationBlock = `*(No clarification answers provided — proceed using best judgment from the original request)*\n\n`;
+            }
+
+            // Get issue labels (excluding meta labels)
+            const metaLabels = ['ai-request', 'waiting-for-clarification', 'ready-for-vscode', 'hey-dufus-pending'];
+            const contentLabels = issue.labels
+              .map(l => l.name)
+              .filter(l => !metaLabels.includes(l))
+              .join(', ') || 'none';
+
+            // Slugify the title for the filename
+            const slug = title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-+|-+$/g, '')
+              .substring(0, 50);
+
+            const filename = `issue-${issueNumber}-${slug}.md`;
+            const filepath = `.continue/prompts/incoming/${filename}`;
+
+            // Idempotency: if prompt file already exists, skip to avoid duplicate commits
+            if (fs.existsSync(filepath)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issueNumber,
+                body: `## ⚠️ Already sent\n\nPrompt file \`${filepath}\` already exists — VS Code should already have it.\n\nIf it didn't trigger, open Continue.dev and paste:\n\`\`\`\n@file ${filepath} — run this\n\`\`\``
+              });
+              return;
+            }
+
+            // Detect if this is extra context for an existing issue
+            const contextForMatch = (ownerComments.map(c => c.body).join('\n') + '\n' + body)
+              .match(/(?:extra context|additional context|context for|this is for)\s+#?(\d+)/i);
+
+            // Also check the bot's hey-dufus comment for "context for #N"
+            let contextForIssue = contextForMatch ? contextForMatch[1] : null;
+            if (!contextForIssue && isHeyDufus) {
+              const botContextMatch = botComments
+                .map(c => c.body).join('\n')
+                .match(/📎.*extra context for issue #(\d+)/i);
+              if (botContextMatch) contextForIssue = botContextMatch[1];
+            }
+
+            const agentMode = contextForIssue
+              ? `context-for-issue: #${contextForIssue}`
+              : 'standalone-new-task';
+
+            // hey-dufus requests are ALWAYS design-doc-only — never direct implementation.
+            // Standard ai-request issues can opt into implementation via:
+            //   a) owner comments containing implementation keywords
+            //   b) the shorthand: /proceed implement  (no need to type in answers)
+            const proceedBody = context.payload.comment.body.trim();
+            const proceedImplement = /^\/proceed\s+implement\b/i.test(proceedBody);
+            const skipToImpl = !isHeyDufus && (
+              proceedImplement ||
+              ownerComments.some(c =>
+                /skip.*impl|straight to impl|implement.*directly|write.*code.*now/i.test(c.body)
+              )
+            );
+
+            const outputInstructions = skipToImpl
+              ? `### Output Mode: DIRECT IMPLEMENTATION
+The owner explicitly asked to skip the design doc step and implement directly.
+Write PDXscript files in \`mod/\` following the PDXscript rules below.
+After finishing, update \`CHANGELOG.md\`.`
+              : `### Output Mode: DESIGN DOC ONLY — do NOT write PDXscript files
+Your job is to produce a **design doc section** — a new \`.md\` file in \`design_docs/pending/\`.
+Do NOT edit any files in \`mod/\`. Do NOT write PDXscript.
+
+The design doc you produce will be reviewed by the owner and merged into \`WALKING_WAYS_DESIGN.md\` when approved.
+
+**Format your output as a new section following the exact style of \`WALKING_WAYS_DESIGN.md\`:**
+- Give it the next available §XX number (read the doc to find the highest current §)
+- Write it in plain English with sub-sections: Overview, Triggers & Gates, Flags Introduced, Event Chain Outline, NPC Handling, Player-Emperor Edge Cases, Open Questions
+- Use pseudo-code blocks (\`\`\`pdx ... \`\`\`) for event sketches — not final code, just structure
+- Mark it \`STATUS: PENDING REVIEW\` at the top
+- Save as \`design_docs/pending/ISSUE-${issueNumber}-<slug>.md\`
+
+After writing the file, post a summary of what the section covers and flag any open design questions for the owner.`;
+
+            const promptContent = `# VS Code Agent Prompt — Issue #${issueNumber}
+
+> **Generated by Dufus from GitHub Issue #${issueNumber}**
+> **Source:** https://github.com/${context.repo.owner}/${context.repo.repo}/issues/${issueNumber}
+> **Agent mode:** ${agentMode}
+> **Labels:** ${contentLabels}
+> **Date:** ${new Date().toISOString()}
+
+---
+
+## Original Request
+
+**Title:** ${title}
+
+${body}
+
+---
+
+${clarificationBlock}
+---
+
+## Agent Instructions
+
+You are a NEW, INDEPENDENT agent handling a single request sent by the repository owner from their phone via GitHub. Do not carry state from previous tasks.
+
+${outputInstructions}
+
+---
+
+### Step 1 — Read context first
+Before doing anything, read:
+- \`WALKING_WAYS_DESIGN.md\` (find the relevant section if mentioned; note the highest §XX number)
+- \`HOK_DRAGONBORN_OBLIVION_DESIGN.md\` (if HoK/Dragonborn related)
+- \`CHANGELOG.md\` (check what's already implemented)
+${contextForIssue ? `- The prompt file for issue #${contextForIssue} (this task is extra context for that one — use it to inform your output, do not duplicate work)` : ''}
+
+### Step 2 — Announce your plan
+Say exactly:
+> "I'm about to work on: **[one-sentence description]**. Here's my plan: [numbered list]. Output will be: [design doc / implementation]."
+
+Do not write any files until you have stated your plan.
+
+### Step 3 — Flag ambiguities
+Before writing anything, list open questions:
+> "I have [N] questions: [list]. My assumptions: [list]. Proceeding with these."
+
+### Step 4 — Execute
+Work through the plan one step at a time. Report after each step:
+> "Done: [what]. Moving to next."
+
+### Step 5 — Report completion
+When done:
+> "✅ Complete. Output: [file(s) created/changed]. Open questions for owner: [list or 'none']."
+
+---
+
+## PDXscript Rules (apply if writing code)
+- 4-space indentation
+- Opening brace on same line: \`event = {\`
+- Event IDs: \`namespace.NNN\`
+- Localisation keys: \`namespace.NNN.t\`, \`.d\`, \`.a/.b/.c\`
+- Flags: snake_case, globally unique
+- Named NPCs: birth-window gated (§31.3)
+- Player emperor: never spawn bastard heir (§31.9)
+- Never hardcode dynasty to Septim — use \`root.dynasty\`
+`;
+
+            // Write the file
+            const dir = '.continue/prompts/incoming';
+            if (!fs.existsSync(dir)) {
+              fs.mkdirSync(dir, { recursive: true });
+            }
+            fs.writeFileSync(filepath, promptContent);
+
+            // Configure git and commit
+            const { execSync } = require('child_process');
+            execSync('git config user.name "github-actions[bot]"');
+            execSync('git config user.email "github-actions[bot]@users.noreply.github.com"');
+            // Pull latest before committing to avoid non-fast-forward errors if another
+            // run (or the VS Code watcher's git pull) has pushed since checkout.
+            execSync('git pull --rebase');
+            execSync(`git add "${filepath}"`);
+            execSync(`git commit -m "dufus: prompt for issue #${issueNumber} ready for VS Code"`);
+            // Push with retry — race conditions are common on shared repos.
+            for (let attempt = 1; attempt <= 3; attempt++) {
+              try {
+                execSync('git push');
+                break;
+              } catch (e) {
+                if (attempt < 3) {
+                  execSync('git pull --rebase');
+                } else {
+                  throw e;
+                }
+              }
+            }
+
+            // Post confirmation comment on the issue
+            const outputMode = skipToImpl ? 'direct implementation' : 'design doc (no code changes yet)';
+            const confirmComment = `## ✅ Prompt delivered to VS Code
+
+I've packaged your request into a clean prompt file.
+
+**Mode:** ${outputMode}
+**File committed:** \`${filepath}\`
+${contextForIssue ? `**Extra context for:** Issue #${contextForIssue}` : '**Agent type:** Standalone new task (independent agent)'}
+
+---
+
+VS Code will pick this up automatically from \`.continue/prompts/incoming/\`. If it doesn't trigger within a minute, open a Continue.dev chat and type:
+
+\`\`\`
+@file .continue/prompts/incoming/${filename} — run this
+\`\`\`
+
+---
+
+${skipToImpl
+  ? `The agent will **implement directly** (you asked to skip the design doc step).`
+  : `The agent will **write a design doc section** to \`design_docs/pending/\`. No PDXscript files will be changed. You review the output and merge it into \`WALKING_WAYS_DESIGN.md\` when happy.`
+}
+${isHeyDufus ? `\n> **Note:** hey-dufus requests always produce a design doc. To implement directly, use the full issue flow and say "implement directly" in your answers.` : !skipToImpl ? `\nTo skip to direct implementation next time, include "implement directly" or "skip design doc" in your request or clarification answers.` : ''}
+
+---
+
+*Issue labeled \`ready-for-vscode\`.*`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: confirmComment
+            });
+
+      - name: Update labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.payload.issue.number;
+            // Remove waiting-for-clarification and hey-dufus-pending, add ready-for-vscode
+            for (const labelName of ['waiting-for-clarification', 'hey-dufus-pending']) {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issueNumber,
+                  name: labelName
+                });
+              } catch (e) { /* label may not exist */ }
+            }
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: ['ready-for-vscode']
+            });
+
+      - name: Write step summary
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.payload.issue.number;
+            const issue = context.payload.issue;
+            const isHeyDufus = issue.labels.some(l => l.name === 'hey-dufus-pending');
+            const proceedBody = context.payload.comment.body.trim();
+            const proceedImplement = /^\/proceed\s+implement\b/i.test(proceedBody);
+            const slug = issue.title
+              .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').substring(0, 50);
+            const filename = `issue-${issueNumber}-${slug}.md`;
+            const mode = (isHeyDufus || !proceedImplement) ? 'Design doc only' : 'Direct implementation';
+
+            const summary = [
+              `## ✅ Dufus — Prompt Delivered`,
+              ``,
+              `| Field | Value |`,
+              `|-------|-------|`,
+              `| Issue | [#${issueNumber}](${issue.html_url}) |`,
+              `| File  | \`.continue/prompts/incoming/${filename}\` |`,
+              `| Mode  | ${mode} |`,
+              `| Labels applied | \`ready-for-vscode\` |`,
+            ].join('\n');
+
+            await core.summary.addRaw(summary).write();
+
+      - name: Notify via ntfy.sh (optional — set NTFY_TOPIC secret to enable)
+        if: ${{ env.NTFY_TOPIC != '' }}
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          ISSUE_NUMBER="${{ github.event.issue.number }}"
+          ISSUE_TITLE=$(echo "${{ github.event.issue.title }}" | head -c 120)
+          curl -s -o /dev/null \
+            -H "Title: Dufus prompt ready — #${ISSUE_NUMBER}" \
+            -H "Tags: white_check_mark" \
+            -d "Prompt file committed for: ${ISSUE_TITLE}" \
+            "https://ntfy.sh/${NTFY_TOPIC}"

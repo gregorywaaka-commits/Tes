@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "\U0001F4AC Ask Dufus a question"
+    url: https://github.com/gregorywaaka-commits/Tes/issues/new?template=ai_request.yml
+    about: Send a request to Dufus from your phone — Dufus will ask clarification questions, then send the refined prompt to VS Code automatically.

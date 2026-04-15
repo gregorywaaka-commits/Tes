@@ -1,0 +1,254 @@
+name: Hey Dufus — Receive Request & Ask Questions
+# Triggered by any comment starting with "hey dufus".
+# Does NOT execute immediately. Posts clarification questions, waits for /proceed.
+# The existing ai-request-proceed.yml then writes the design doc prompt.
+#
+# Syntax:
+#   hey dufus [new request text]
+#     → Asks clarifying questions; on /proceed, writes design doc prompt
+#
+#   hey dufus context for #N [extra info]
+#   hey dufus add to #N [extra info]
+#     → Attaches extra context to existing issue #N (same clarification loop)
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  hey-dufus:
+    # Only fire on issue comments (not PRs) that start with "hey dufus"
+    # Cover common phone autocapitalize variants: "Hey dufus", "Hey Dufus", "HEY DUFUS"
+    # Owner-only guard: only the repo owner can trigger the pipeline.
+    if: |
+      github.event.issue != null &&
+      github.event.comment.user.login == github.repository_owner &&
+      (startsWith(github.event.comment.body, 'hey dufus') ||
+       startsWith(github.event.comment.body, 'Hey dufus') ||
+       startsWith(github.event.comment.body, 'Hey Dufus') ||
+       startsWith(github.event.comment.body, 'HEY DUFUS'))
+    runs-on: ubuntu-latest
+    # Deduplicate: if the same comment triggers twice (e.g. webhook retry),
+    # the second run is cancelled. Different comment IDs are always independent.
+    concurrency:
+      group: hey-dufus-comment-${{ github.event.comment.id }}
+      cancel-in-progress: true
+    permissions:
+      issues: write
+      contents: read
+
+    steps:
+      - name: Acknowledge with 👀 reaction
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes'
+            });
+
+      - name: Parse request and post clarification questions
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const comment = context.payload.comment;
+            const commentBody = comment.body.trim();
+
+            // Strip the "hey dufus" prefix
+            const raw = commentBody.replace(/^hey\s+dufus\s*/i, '').trim();
+
+            if (!raw) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `## 🤖 Dufus here!\n\nYou called me but didn't include a request. Try:\n\n\`\`\`\nhey dufus [your request in plain English]\nhey dufus status\nhey dufus context for #N [extra info to add]\n\`\`\``
+              });
+              return;
+            }
+
+            // ── hey dufus status ──────────────────────────────────────────────────
+            // Special meta-command: reply with a live dashboard of all open Dufus
+            // issues without starting a new request / Q&A loop.
+            if (/^status$/i.test(raw)) {
+              const [waiting, ready, aiOpen] = await Promise.all([
+                github.rest.issues.listForRepo({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  labels: 'waiting-for-clarification', state: 'open', per_page: 20
+                }),
+                github.rest.issues.listForRepo({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  labels: 'ready-for-vscode', state: 'open', per_page: 20
+                }),
+                github.rest.issues.listForRepo({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  labels: 'ai-request', state: 'open', per_page: 20
+                })
+              ]);
+
+              const fmt = list => list.data.length === 0
+                ? '_none_'
+                : list.data.map(i => `- #${i.number} — ${i.title}`).join('\n');
+
+              const replyBody = `## 📊 Dufus Status
+
+### ⏳ Waiting for your answers (${waiting.data.length})
+${fmt(waiting)}
+
+### ✅ Prompt delivered — waiting for VS Code (${ready.data.length})
+${fmt(ready)}
+
+### 📥 New ai-request (not yet clarified) (${aiOpen.data.length})
+${fmt(aiOpen)}
+
+---
+*To answer a waiting request: comment on that issue, then say \`/proceed\`.*
+*To cancel a request: comment \`/cancel\` on that issue.*`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: replyBody
+              });
+              return;
+            }
+
+            // ── hey dufus help ────────────────────────────────────────────────
+            if (/^help$/i.test(raw)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `## 🤖 Dufus — Command Reference
+
+### Starting a request
+| Command | What it does |
+|---------|-------------|
+| \`hey dufus [request]\` | Start a new design request — Dufus asks questions, then waits for \`/proceed\` |
+| \`hey dufus context for #N [text]\` | Attach extra context to existing issue #N |
+| \`hey dufus add to #N [text]\` | Same as above |
+
+### While waiting for clarification
+| Command | What it does |
+|---------|-------------|
+| \`/proceed\` | Write the prompt to VS Code and label \`ready-for-vscode\` |
+| \`/proceed skip-questions\` | Skip the Q&A and proceed with Dufus's best guesses |
+| \`/proceed implement\` | Skip design doc — implement directly in PDXscript |
+| \`/cancel\` | Drop this request, close the issue |
+| \`/snooze\` | Pause stale auto-close (use when you're away) |
+| \`/unsnooze\` | Resume stale auto-close |
+| \`/redo\` | Re-send the latest prompt to VS Code |
+
+### After VS Code finishes
+| Command | What it does |
+|---------|-------------|
+| \`/done\` | Mark issue as implemented, add \`implemented\` label, close |
+| \`/cancel\` | Cancel and close as \`wont-do\` |
+
+### Meta
+| Command | What it does |
+|---------|-------------|
+| \`hey dufus status\` | Show dashboard of all open pipeline issues |
+| \`hey dufus help\` | Show this help message |
+
+---
+*Pipeline docs: see \`OLLAMA_MCP_SETUP.md\` and the \`copilot-instructions.md\` file.*`
+              });
+              return;
+            }
+
+            // Detect "context for #N" variant
+            const contextMatch = raw.match(/^(?:context for|add to|for)\s+#?(\d+)\s*(.*)/is);
+            let requestText, contextForIssue;
+
+            if (contextMatch) {
+              contextForIssue = contextMatch[1];
+              requestText = contextMatch[2].trim() || '*(see original comment)*';
+            } else {
+              contextForIssue = null;
+              requestText = raw;
+            }
+
+            const extraContextNote = contextForIssue
+              ? `\n> 📎 **This is extra context for issue #${contextForIssue}.** I'll attach this to that task when you \`/proceed\`.`
+              : '';
+
+            const questionComment = `## 🤖 Dufus received your request — questions before I start
+
+Hey @${comment.user.login}! Got your request. Before I send anything to VS Code, I need to check I've understood you. **Nothing will happen until you say \`/proceed\`.**
+${extraContextNote}
+
+---
+
+### 📋 What I heard:
+
+<!-- hey-dufus-request-start -->
+${requestText}
+<!-- hey-dufus-request-end -->
+
+---
+
+### ❓ Quick questions:
+
+Answer below — brief is fine. I've given my best guess for each so you can just say "yes to all" or correct what's wrong.
+
+**Q1 — My interpretation:** You want a **new design doc section** describing this feature — not code yet, just a spec to be reviewed and merged into \`WALKING_WAYS_DESIGN.md\`. Is that right?
+> *Correct / No, I want: [your answer]*
+
+**Q2 — Scope:** Is this a brand-new feature, a tweak to something already in the design doc, or a fix to something already implemented?
+> *My guess: brand-new feature. Correct if wrong.*
+
+**Q3 — Are there lore constraints I should know?** (e.g. "only fire if dagoth_ur_awakened is set", "check §24 compatibility", "Nerevarine must already be active")
+> *Your answer (or "none"):*
+
+**Q4 — Anything VS Code must NOT touch?**
+> *Your answer (or "nothing"):*
+
+---
+
+### 💡 My initial take:
+
+I'll write a **new §XX design doc section** in \`WALKING_WAYS_DESIGN.md\` format, covering: triggers, flags, event chain outline, NPC handling, and player-emperor edge cases. VS Code writes the spec only — no PDXscript yet. You review and merge.
+
+---
+
+### ✅ When you're ready:
+
+Answer the questions above (or just correct what's wrong), then:
+
+\`\`\`
+/proceed
+\`\`\`
+
+Or skip questions with \`/proceed skip-questions\` — I'll use my guesses above.
+
+**Nothing will happen in VS Code until you say /proceed.**
+
+---
+
+*Labeled \`waiting-for-clarification\`. Dufus is waiting for you.*`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: questionComment
+            });
+
+      - name: Add waiting-for-clarification label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.issue.number,
+                labels: ['waiting-for-clarification', 'hey-dufus-pending']
+              });
+            } catch (e) { /* labels may not exist yet */ }
+

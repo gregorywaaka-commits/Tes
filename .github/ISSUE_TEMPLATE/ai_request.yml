@@ -1,0 +1,86 @@
+name: "\U0001F916 Ask Dufus — Send Request to VS Code"
+description: "Send a request from your phone. Dufus will ask clarification questions, then automatically deliver a refined prompt to VS Code for execution."
+title: "[Dufus Request] "
+labels:
+  - ai-request
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 👋 Hey! This is how you talk to Dufus from your phone.
+
+        Fill in the form below and submit the issue. Dufus will post clarification questions in the comments. Answer them, then comment `/proceed` when you're ready. VS Code will automatically receive and execute the refined prompt.
+
+        **You don't need to be detailed here** — Dufus will ask follow-up questions. Just describe what you want in plain English.
+
+  - type: textarea
+    id: request
+    attributes:
+      label: "🎯 What do you want to happen?"
+      description: "Describe your request in plain English. Don't worry about technical details — Dufus will figure those out."
+      placeholder: |
+        Examples:
+        - "Add the Shivering Isles content trigger for the Hero of Kvatch storyline"
+        - "Fix the Martin spawn so it only fires for NPC emperors"
+        - "Write events for the Kamal seasonal invasion mechanic from the design doc"
+        - "I want a new trait called 'dreamsleeve_touched' with a custom modifier"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: "📁 Which area of the mod is this about?"
+      description: "Pick the closest match — or 'other' if unsure."
+      options:
+        - Oblivion Crisis / Walking Ways
+        - Hero of Kvatch / Dragonborn
+        - Akulakhan / Numidium
+        - Daedric Invasion system
+        - Lore races (Echmer, Maormer, Sload, etc.)
+        - Traits / Modifiers
+        - Decisions / Decisions UI
+        - Localisation / text only
+        - Tooling / Setup / CI
+        - Other / Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: design_section
+    attributes:
+      label: "📖 Design doc section (if known)"
+      description: "Optional — if you know which §XX section in WALKING_WAYS_DESIGN.md this relates to, put it here."
+      placeholder: "e.g. §27, §31.5, or 'not sure'"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "⚡ Priority"
+      options:
+        - Normal — do it when you get to it
+        - High — I want this done next session
+        - Urgent — blocking something
+    validations:
+      required: true
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: "🚫 Anything Dufus must NOT touch?"
+      description: "Optional — name specific files or features the agent should leave alone."
+      placeholder: "e.g. 'Don't touch akullakhan_events.txt' or 'Read-only, just give me a plan'"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: agree
+    attributes:
+      label: "✅ Checklist"
+      options:
+        - label: "I understand Dufus will ask me clarification questions before doing anything"
+          required: true
+        - label: "I will comment `/proceed` when I'm happy with the clarification"
+          required: true
