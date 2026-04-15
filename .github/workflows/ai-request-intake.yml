@@ -1,6 +1,7 @@
 name: AI Request — Dufus Intake & Clarification
 # Triggered when a new issue is labeled 'ai-request'.
-# Posts a structured clarification comment and assigns the issue to Copilot.
+# Posts contextual clarification questions based on the actual request content,
+# then waits for the owner to answer and comment /proceed before doing anything.
 
 on:
   issues:
@@ -15,68 +16,110 @@ jobs:
       contents: read
 
     steps:
-      - name: Post clarification protocol comment
+      - name: Post contextual clarification questions
         uses: actions/github-script@v7
         with:
           script: |
             const issue = context.payload.issue;
-            const title = issue.title;
+            const title = issue.title.replace(/^\[Dufus Request\]\s*/i, '').trim();
             const body = issue.body || '*(no description provided)*';
 
-            const comment = `## 🤖 Dufus is on it!
+            // Parse structured fields from the issue body (GitHub issue form format)
+            const requestMatch = body.match(/###\s+🎯 What do you want to happen\?\s*\n+([\s\S]*?)(?=\n###|$)/);
+            const areaMatch = body.match(/###\s+📁 Which area.*?\n+([\s\S]*?)(?=\n###|$)/);
+            const sectionMatch = body.match(/###\s+📖 Design doc section.*?\n+([\s\S]*?)(?=\n###|$)/);
+            const priorityMatch = body.match(/###\s+⚡ Priority\s*\n+([\s\S]*?)(?=\n###|$)/);
+            const constraintsMatch = body.match(/###\s+🚫 Anything Dufus must NOT touch\?\s*\n+([\s\S]*?)(?=\n###|$)/);
 
-Hey @${issue.user.login}! I've picked up your request. Before I hand a refined prompt to VS Code, I need to make sure I understand exactly what you want.
+            const requestText = requestMatch ? requestMatch[1].trim() : title;
+            const area = areaMatch ? areaMatch[1].trim() : 'not specified';
+            const section = sectionMatch ? sectionMatch[1].trim() : 'not specified';
+            const priority = priorityMatch ? priorityMatch[1].trim() : 'Normal';
+            const constraints = constraintsMatch ? constraintsMatch[1].trim() : '_none stated_';
+
+            // Determine if this looks like extra context for an existing request
+            const isExtraContext = /extra context|additional context|follow.?up|more info|adding to/i.test(requestText + title);
+            const extraContextNote = isExtraContext
+              ? `\n> ⚠️ **This looks like extra context for an existing request.** If so, tell me which issue number it relates to (e.g. "this is extra context for #12") — I'll attach it to that task instead of creating a new agent.`
+              : '';
+
+            // Build scope question based on area
+            const areaHint = area !== 'not specified'
+              ? `You said this is about **${area}**.`
+              : `You didn't specify an area.`;
+
+            // Build section question based on design_section field
+            const sectionHint = section && section !== 'not specified' && section !== 'not sure'
+              ? `You referenced **${section}** in the design doc.`
+              : `No design doc section was specified.`;
+
+            // Build constraints summary
+            const constraintsHint = constraints && constraints !== '_none stated_' && constraints.length > 3
+              ? `You said not to touch: **${constraints}**.`
+              : `No off-limits areas specified.`;
+
+            const comment = `## 🤖 Dufus here — I've read your request.
+
+Hey @${issue.user.login}! Before I send anything to VS Code, I need to make sure I've understood you correctly. **VS Code will not do anything until you say \`/proceed\`.**
+${extraContextNote}
 
 ---
 
-### 📋 Here's what I understood from your request:
+### 📋 My understanding of your request:
 
-> **"${title}"**
+> **"${requestText}"**
 
-${body}
-
----
-
-### ❓ Clarification questions — please answer each one:
-
-I'll fill these in based on your issue, but I always need a human sign-off before doing anything. Answer directly in a comment below. You can answer on your phone.
-
-**Q1 — Scope:** Is this a brand-new feature/event chain, a fix/tweak to something existing, or a doc/design update?
-> *Your answer:*
-
-**Q2 — Which part of the mod?** (e.g. Oblivion Crisis, Akulakhan, Daedric Invasion, lore races, tooling/setup, or something else)
-> *Your answer:*
-
-**Q3 — Design doc reference:** Is there a specific section in \`WALKING_WAYS_DESIGN.md\` or \`HOK_DRAGONBORN_OBLIVION_DESIGN.md\` this relates to? (e.g. "§26", "§31.7", or "none")
-> *Your answer:*
-
-**Q4 — Priority / urgency:** Is this blocking something or just a next thing to do when time allows?
-> *Your answer:*
-
-**Q5 — Anything the VS Code agent must NOT change or touch?** (e.g. "don't touch akullakhan_events.txt", "read-only design doc pass")
-> *Your answer:*
+- **Area:** ${area}
+- **Design doc section:** ${section}
+- **Priority:** ${priority}
+- **Do not touch:** ${constraints}
 
 ---
 
-### 💡 My initial recommendation:
+### ❓ Questions specific to your request:
 
-*(I'll fill this in once I read your full request. If you want my suggestion now, just say "give me your recommendation" in a comment.)*
+Answer in a single comment below — you can be brief. I've given my best guess for each so you can just say "yes to all" or correct what's wrong.
+
+**Q1 — What I think you want:** ${areaHint} ${sectionHint} My interpretation: you want a **new design doc section** describing this feature — not code yet, just a detailed spec to be reviewed and merged into the master design doc. Is that right?
+> *Correct / No, I want: [your answer]*
+
+**Q2 — Scope:** Is this a brand-new feature, a tweak to something already in the design doc, or a fix to something already implemented?
+> *My guess: brand-new feature. Correct if wrong.*
+
+**Q3 — Should VS Code work on this alone or is it extra context for an existing task?** ${isExtraContext ? '(You mentioned "extra context" — which issue number is this for?)' : 'If this is standalone, just say "standalone".'}
+> *My guess: standalone new task.*
+
+**Q4 — Are there any lore constraints I should know about?** (e.g. "the Nerevarine must already be active", "only fire if dagoth_ur_awakened is set", "check §24 compatibility")
+> *Your answer (or "none"):*
+
+**Q5 — ${constraintsHint} Anything else VS Code must not change or do?**
+> *Your answer (or "nothing else"):*
 
 ---
 
-### ✅ When you're ready to go:
+### 💡 My initial take:
 
-Once you've answered the questions above (or if the request is clear enough to proceed without them), comment:
+Based on what you've written, I'd approach this as a **new §XX design doc section** in \`WALKING_WAYS_DESIGN.md\` format, covering: triggers, flags, event chain outline, NPC handling, and player-emperor edge cases. VS Code will write the spec, not implement it yet — you review and merge.
+
+If you want me to skip straight to implementation, say so when you \`/proceed\`.
+
+---
+
+### ✅ When you're ready:
+
+Answer the questions above (or just correct what's wrong), then:
 
 \`\`\`
 /proceed
 \`\`\`
 
-That will trigger me to write a clean, refined prompt to VS Code. You can also say \`/proceed skip-questions\` if you just want me to run with what you've given.
+Or skip questions entirely with \`/proceed skip-questions\` — I'll use my guesses above.
+
+**Nothing will happen in VS Code until you say /proceed.**
 
 ---
 
-*This issue is now labeled \`waiting-for-clarification\`. Dufus will not send anything to VS Code until you say \`/proceed\`.*`;
+*Labeled \`waiting-for-clarification\`. Dufus is waiting for you.*`;
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,
@@ -96,12 +139,10 @@ That will trigger me to write a clean, refined prompt to VS Code. You can also s
               labels: ['waiting-for-clarification']
             });
 
-      - name: Assign to Copilot for awareness
+      - name: Assign to repo owner
         uses: actions/github-script@v7
         with:
           script: |
-            // Assign to the repo owner so Copilot agent can be manually invoked
-            // GitHub Copilot agent is triggered when assigned — owner can re-assign to @copilot
             await github.rest.issues.addAssignees({
               owner: context.repo.owner,
               repo: context.repo.repo,

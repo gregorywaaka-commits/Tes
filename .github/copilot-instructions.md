@@ -185,18 +185,26 @@ Answer these and then comment `/proceed` — or just comment `/proceed` if you'r
 - If the issue has `/proceed skip-questions` → implement immediately with best judgment
 - If no response after a reasonable time → proceed with stated assumptions, note them clearly
 
-### Step D — Implement
-Follow the standard 5-step implementation protocol (announce → implement → report).
+### Step D — Output: design doc first, not code
+**Default behaviour: write a design doc section, not PDXscript.**
+
+Unless the owner explicitly said "implement directly" or "skip design doc":
+- Create a new file in `design_docs/pending/` named `ISSUE-NNN-<slug>.md`
+- Format it as a new §XX section following the style of `WALKING_WAYS_DESIGN.md`
+- Include: Overview, Triggers & Gates, Flags Introduced, Event Chain Outline, NPC Handling, Player-Emperor Edge Cases, Open Questions
+- Mark it `STATUS: PENDING REVIEW` at the top
+- Do NOT write any files in `mod/`
+
+The owner reviews the design doc and merges it into `WALKING_WAYS_DESIGN.md`. PDXscript implementation happens in a separate session after review.
 
 ### Step E — Close the loop
 When done, comment on the issue:
 ```
-✅ Done. Here's what I implemented: [summary]
-Files changed: [list]
+✅ Done. Here's what I produced: [summary]
+Files created: [list]
+Open questions for you: [list or 'none']
 Want me to adjust anything?
 ```
-
-Then add the `implemented` label and close the issue.
 
 ---
 
@@ -214,17 +222,30 @@ This repo has a fully automated pipeline for the owner to send requests from the
 📱 Phone
   → Create GitHub Issue using "Ask Dufus" template
   → Label: ai-request
-  → GitHub Action posts clarification questions as comments
-  → Owner answers from phone
+  → GitHub Action reads your request and posts CONTEXTUAL clarification questions
+  → Owner answers from phone (or says /proceed skip-questions)
   → Owner comments /proceed
-  → GitHub Action writes .continue/prompts/incoming/issue-NNN.md to repo
-  → VS Code startup.md detects the file
-  → VS Code agent reads and executes it
+  → GitHub Action writes .continue/prompts/incoming/issue-NNN-slug.md
+  → VS Code file watcher (dufus-watcher.js) detects the new file immediately
+  → VS Code prints banner + opens the file
+  → VS Code agent reads it and executes as a NEW INDEPENDENT agent
+  → Default output: design_docs/pending/ISSUE-NNN-slug.md (not code)
+  → Owner reviews design doc, merges into WALKING_WAYS_DESIGN.md
+  → Separate session: owner says "implement §XX" → agent writes PDXscript
 ```
 
+**Key rules:**
+- **No code without a design doc first** (unless owner says "implement directly")
+- **Each request = new independent agent** (no state carryover between issues)
+- **Extra context for issue #N** = attach to existing task, not a new agent
+- **VS Code never acts without owner's `/proceed`** — the Dufus clarification loop is the approval gate
+
 **Files involved:**
-- `.github/ISSUE_TEMPLATE/ai_request.yml` — the mobile issue form
-- `.github/workflows/ai-request-intake.yml` — posts clarification questions
-- `.github/workflows/ai-request-proceed.yml` — writes prompt file on `/proceed`
-- `.continue/prompts/incoming/` — where prompt files land
-- `.continue/prompts/startup.md` — checks for pending prompts on VS Code open
+- `.github/ISSUE_TEMPLATE/ai_request.yml` — mobile issue form
+- `.github/workflows/ai-request-intake.yml` — posts contextual clarification Qs, waits for /proceed
+- `.github/workflows/ai-request-proceed.yml` — writes prompt file on /proceed
+- `.continue/prompts/incoming/` — Dufus drops prompt files here
+- `.continue/prompts/done/` — completed prompts are moved here
+- `.continue/prompts/startup.md` — auto-executes all pending prompts as independent agents
+- `.vscode/tasks.json` + `.vscode/dufus-watcher.js` — file watcher, alerts VS Code on new prompts
+- `design_docs/pending/` — where VS Code writes design doc output (not code)
