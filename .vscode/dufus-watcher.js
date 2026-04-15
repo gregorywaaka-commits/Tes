@@ -21,12 +21,24 @@ const { execSync } = require('child_process');
 
 const incomingDir = path.join(__dirname, '..', '.continue', 'prompts', 'incoming');
 const doneDir = path.join(__dirname, '..', '.continue', 'prompts', 'done');
+const repoRoot = path.join(__dirname, '..');
 const gitkeep = '.gitkeep';
 
 // Ensure done/ directory exists
 if (!fs.existsSync(doneDir)) {
     fs.mkdirSync(doneDir, { recursive: true });
 }
+
+// Pull latest so any prompts committed while VS Code was closed are visible immediately.
+try {
+    execSync('git pull --ff-only', { cwd: repoRoot, stdio: 'ignore' });
+} catch (e) {
+    // Silently ignore — offline, dirty working tree, etc.
+}
+
+// Dedup guard: fs.watch fires the callback twice on Linux (rename + change).
+// Track filenames currently being processed so the second callback is a no-op.
+const processing = new Set();
 
 function isPromptFile(filename) {
     return filename.endsWith('.md') && filename !== gitkeep;
@@ -98,13 +110,21 @@ if (existing.length > 0) {
 fs.watch(incomingDir, (eventType, filename) => {
     if (!filename || !isPromptFile(filename)) return;
 
+    // Dedup: skip if we're already handling this filename
+    if (processing.has(filename)) return;
+    processing.add(filename);
+
     const filepath = path.join(incomingDir, filename);
 
     // Only react to new files that actually exist (ignore delete events)
-    if (!fs.existsSync(filepath)) return;
+    if (!fs.existsSync(filepath)) {
+        processing.delete(filename);
+        return;
+    }
 
     // Small delay to ensure the file is fully written before reading
     setTimeout(() => {
+        processing.delete(filename);
         if (fs.existsSync(filepath)) {
             printBanner(filename);
             showFilePreview(filepath);

@@ -24,7 +24,19 @@ For each file:
 
 ---
 
-## Step 2 — Report mod implementation status
+## Step 2 — Summarise recent Dufus activity
+
+Look in `.continue/prompts/done/` for `.md` files (ignore `.gitkeep`).
+
+- List up to the 5 most recently modified files by filename (the filename encodes the issue number and slug)
+- For each, show just the filename — no need to re-read contents
+- Say: "📁 **Recent Dufus activity (done/):** [list, or 'none yet']"
+
+This is a summary only — do NOT re-execute any of these files.
+
+---
+
+## Step 3 — Report mod implementation status
 
 Read `WALKING_WAYS_DESIGN.md` and scan for sections.
 - Count sections marked as `IMPLEMENTED`
@@ -35,7 +47,7 @@ Read `WALKING_WAYS_DESIGN.md` and scan for sections.
 
 ---
 
-## Step 3 — Check for open `ai-request` issues
+## Step 4 — Check for open `ai-request` issues
 
 Using the GitHub MCP tool, check for open issues in `gregorywaaka-commits/Tes` with labels `ai-request`, `waiting-for-clarification`, or `ready-for-vscode`.
 
@@ -46,7 +58,7 @@ If any exist:
 
 ---
 
-## Step 4 — Ready message
+## Step 5 — Ready message
 
 Say:
 > "✅ Ready. Inbox clear. What would you like to work on?"

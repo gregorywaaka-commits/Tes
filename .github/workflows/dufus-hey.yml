@@ -18,15 +18,30 @@ on:
 jobs:
   hey-dufus:
     # Only fire on issue comments (not PRs) that start with "hey dufus"
+    # Cover common phone autocapitalize variants: "Hey dufus", "Hey Dufus", "HEY DUFUS"
     if: |
       github.event.issue != null &&
-      startsWith(github.event.comment.body, 'hey dufus')
+      (startsWith(github.event.comment.body, 'hey dufus') ||
+       startsWith(github.event.comment.body, 'Hey dufus') ||
+       startsWith(github.event.comment.body, 'Hey Dufus') ||
+       startsWith(github.event.comment.body, 'HEY DUFUS'))
     runs-on: ubuntu-latest
     permissions:
       issues: write
       contents: read
 
     steps:
+      - name: Acknowledge with 👀 reaction
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.reactions.createForIssueComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: context.payload.comment.id,
+              content: 'eyes'
+            });
+
       - name: Parse request and post clarification questions
         uses: actions/github-script@v7
         with:

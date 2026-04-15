@@ -20,6 +20,10 @@ jobs:
        contains(join(github.event.issue.labels.*.name, ','), 'hey-dufus-pending') ||
        contains(join(github.event.issue.labels.*.name, ','), 'waiting-for-clarification'))
     runs-on: ubuntu-latest
+    # Prevent two /proceed taps on the same issue from racing and double-committing.
+    concurrency:
+      group: proceed-${{ github.event.issue.number }}
+      cancel-in-progress: true
     permissions:
       issues: write
       contents: write
@@ -246,9 +250,24 @@ When done:
             const { execSync } = require('child_process');
             execSync('git config user.name "github-actions[bot]"');
             execSync('git config user.email "github-actions[bot]@users.noreply.github.com"');
+            // Pull latest before committing to avoid non-fast-forward errors if another
+            // run (or the VS Code watcher's git pull) has pushed since checkout.
+            execSync('git pull --rebase');
             execSync(`git add "${filepath}"`);
             execSync(`git commit -m "dufus: prompt for issue #${issueNumber} ready for VS Code"`);
-            execSync('git push');
+            // Push with retry — race conditions are common on shared repos.
+            for (let attempt = 1; attempt <= 3; attempt++) {
+              try {
+                execSync('git push');
+                break;
+              } catch (e) {
+                if (attempt < 3) {
+                  execSync('git pull --rebase');
+                } else {
+                  throw e;
+                }
+              }
+            }
 
             // Post confirmation comment on the issue
             const outputMode = skipToImpl ? 'direct implementation' : 'design doc (no code changes yet)';

@@ -31,6 +31,11 @@ jobs:
                 description: 'Dufus has posted questions — waiting for owner answers'
               },
               {
+                name: 'hey-dufus-pending',
+                color: 'fbca04',
+                description: 'Hey-dufus request received — waiting for /proceed'
+              },
+              {
                 name: 'ready-for-vscode',
                 color: '0075ca',
                 description: 'Prompt written to repo — VS Code agent can execute'
