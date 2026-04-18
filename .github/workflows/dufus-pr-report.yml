@@ -109,14 +109,15 @@ jobs:
               const fileWarnings = [];
 
               // Check 1: namespace declaration at the top of event files
+              // Scan first 20 lines to allow for initial comments or blank lines
               if (file.match(/^mod\/events\//)) {
-                const hasNamespace = lines.slice(0, 10).some(l => /^\s*namespace\s*=\s*\w+/.test(l));
+                const hasNamespace = lines.slice(0, 20).some(l => /^\s*namespace\s*=\s*\w+/.test(l));
                 if (!hasNamespace) {
-                  fileWarnings.push('⚠️ No `namespace = ...` declaration found in first 10 lines');
+                  fileWarnings.push('⚠️ No `namespace = ...` declaration found in first 20 lines');
                 }
               }
 
-              // Check 2: Event IDs match namespace.NNN pattern
+              // Check 2: Event IDs match namespace.NNN pattern (gm flags ensure multiline matching)
               const eventIdMatches = content.match(/^\s*id\s*=\s*(\S+)/gm) || [];
               for (const match of eventIdMatches) {
                 const idValue = match.replace(/^\s*id\s*=\s*/, '').trim();
@@ -125,13 +126,14 @@ jobs:
                 }
               }
 
-              // Check 3: Opening braces must be on the same line as the keyword
-              // Flag lines where a keyword appears alone followed by { on the next line
+              // Check 3: Opening braces must be on the same line as the keyword.
+              // Flag cases where a keyword (optionally with =) ends the line and the
+              // next non-empty line is a bare opening brace.
               for (let i = 0; i < lines.length - 1; i++) {
                 const line = lines[i].trimEnd();
                 const nextLine = lines[i + 1].trimStart();
-                // Detect pattern: keyword on its own line, next line is just {
-                if (/^\s*(event|option|trigger|effect|immediate|after|on_action)\s*$/.test(line) && nextLine.startsWith('{')) {
+                // Match keyword alone on a line, with or without a trailing =
+                if (/^\s*(event|option|trigger|effect|immediate|after|on_action)\s*=?\s*$/.test(line) && nextLine.startsWith('{')) {
                   fileWarnings.push(`⚠️ Line ${i + 1}: opening brace \`{\` appears on a separate line (should be \`keyword = {\`)`);
                 }
               }

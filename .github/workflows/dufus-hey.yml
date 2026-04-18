@@ -202,7 +202,7 @@ I've given my best guess for each. You only need to correct what's wrong.
 
 My guess: **design doc only** (no PDXscript files will be written yet).
 
-> *Why this matters:* The design-doc-first approach means VS Code writes a spec file in \`design_docs/pending/\` which you review and merge into \`WALKING_WAYS_DESIGN.md\`. Only after you approve the design does a separate session write the actual PDXscript. This keeps the mod stable — code never goes in until the logic has been reviewed. If you want to skip this step and jump straight to code (e.g. it's a small fix or you've already designed it in your head), say "implement directly" and VS Code will write PDXscript straight away.
+> *Why this matters:* The design-doc-first approach means GitHub Actions creates a prompt file that VS Code's Copilot agent picks up automatically. The agent then writes a spec file in \`design_docs/pending/\` for you to review and merge into \`WALKING_WAYS_DESIGN.md\`. Only after you approve the design does a separate session write the actual PDXscript. This keeps the mod stable — code never goes in until the logic has been reviewed. If you want to skip this step and jump straight to code (e.g. it's a small fix or you've already designed it in your head), say "implement directly" and the agent will write PDXscript straight away.
 >
 > *Answer:* **Design doc** (default) / **Implement directly** / **No, I want: [your answer]**
 
