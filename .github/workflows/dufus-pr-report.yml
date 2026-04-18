@@ -126,14 +126,14 @@ jobs:
                 }
               }
 
-              // Check 3: Opening braces must be on the same line as the keyword.
-              // Flag cases where a keyword (optionally with =) ends the line and the
-              // next non-empty line is a bare opening brace.
+              // Check 3: Opening braces must be on the same line as their declaration.
+              // PDXscript requires `keyword = {` — a keyword without `=` is not a valid
+              // block declaration, so only flag lines that end with `keyword =` (no brace).
               for (let i = 0; i < lines.length - 1; i++) {
                 const line = lines[i].trimEnd();
                 const nextLine = lines[i + 1].trimStart();
-                // Match keyword alone on a line, with or without a trailing =
-                if (/^\s*(event|option|trigger|effect|immediate|after|on_action)\s*=?\s*$/.test(line) && nextLine.startsWith('{')) {
+                // Only match lines that end with `keyword =` (the `=` must be present)
+                if (/^\s*(event|option|trigger|effect|immediate|after|on_action)\s*=\s*$/.test(line) && nextLine.startsWith('{')) {
                   fileWarnings.push(`⚠️ Line ${i + 1}: opening brace \`{\` appears on a separate line (should be \`keyword = {\`)`);
                 }
               }
