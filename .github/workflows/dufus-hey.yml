@@ -36,8 +36,19 @@ jobs:
     permissions:
       issues: write
       contents: read
+      pull-requests: read
 
     steps:
+      - name: Checkout repository (needed for status command to read design docs)
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            WALKING_WAYS_DESIGN.md
+            HOK_DRAGONBORN_OBLIVION_DESIGN.md
+            design_docs
+            CHANGELOG.md
+          sparse-checkout-cone-mode: false
+
       - name: Acknowledge with 👀 reaction
         uses: actions/github-script@v7
         with:
@@ -74,7 +85,11 @@ jobs:
             // Special meta-command: reply with a live dashboard of all open Dufus
             // issues without starting a new request / Q&A loop.
             if (/^status$/i.test(raw)) {
-              const [waiting, ready, aiOpen] = await Promise.all([
+              const fs = require('fs');
+              const path = require('path');
+
+              // ── 1. Pipeline issue queues ─────────────────────────────────────
+              const [waiting, ready, aiOpen, allPRs] = await Promise.all([
                 github.rest.issues.listForRepo({
                   owner: context.repo.owner, repo: context.repo.repo,
                   labels: 'waiting-for-clarification', state: 'open', per_page: 20
@@ -86,27 +101,161 @@ jobs:
                 github.rest.issues.listForRepo({
                   owner: context.repo.owner, repo: context.repo.repo,
                   labels: 'ai-request', state: 'open', per_page: 20
+                }),
+                github.rest.pulls.list({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  state: 'open', per_page: 30
                 })
               ]);
 
               const fmt = list => list.data.length === 0
                 ? '_none_'
-                : list.data.map(i => `- #${i.number} — ${i.title}`).join('\n');
+                : list.data.map(i => `- [#${i.number}](${i.html_url}) — ${i.title}`).join('\n');
 
-              const replyBody = `## 📊 Dufus Status
+              // ── 2. Open copilot/** PRs ────────────────────────────────────────
+              const copilotPRs = allPRs.data.filter(pr => pr.head.ref.startsWith('copilot/'));
+              const prSection = copilotPRs.length === 0
+                ? '_none_'
+                : copilotPRs.map(pr => {
+                    const age = Math.floor((Date.now() - new Date(pr.updated_at)) / 3600000);
+                    return `- [#${pr.number}](${pr.html_url}) \`${pr.head.ref}\` — ${pr.title} _(updated ${age}h ago)_`;
+                  }).join('\n');
 
-### ⏳ Waiting for your answers (${waiting.data.length})
-${fmt(waiting)}
+              // ── 3. Pending design docs ────────────────────────────────────────
+              let pendingDocsSection = '_none_';
+              const pendingDir = 'design_docs/pending';
+              if (fs.existsSync(pendingDir)) {
+                const pendingFiles = fs.readdirSync(pendingDir).filter(f => f.endsWith('.md'));
+                if (pendingFiles.length > 0) {
+                  pendingDocsSection = pendingFiles.map(f => {
+                    const content = fs.readFileSync(path.join(pendingDir, f), 'utf8');
+                    const statusMatch = content.match(/STATUS:\s*(.+)/i);
+                    const sectionMatch = content.match(/(§\d+[\w.]*)/);
+                    const status = statusMatch ? statusMatch[1].trim() : 'unknown';
+                    const section = sectionMatch ? sectionMatch[1] : '?';
+                    return `- \`${f}\` — ${section} — _${status}_`;
+                  }).join('\n');
+                }
+              }
 
-### ✅ Prompt delivered — waiting for VS Code (${ready.data.length})
-${fmt(ready)}
+              // ── 4. Scan WALKING_WAYS_DESIGN.md for §XX implementation status ─
+              let implementedSections = [];
+              let pendingSections = [];
+              let designScanError = null;
 
-### 📥 New ai-request (not yet clarified) (${aiOpen.data.length})
-${fmt(aiOpen)}
+              try {
+                const designContent = fs.readFileSync('WALKING_WAYS_DESIGN.md', 'utf8');
+
+                // Find all §XX headings and check if they have IMPLEMENTED nearby
+                // Pattern: a heading/line containing §NN followed optionally by a title
+                const sectionRegex = /^#{1,4}\s*(§\d+[\w.]*[^#\n]*)/gm;
+                let match;
+                const allSections = [];
+                while ((match = sectionRegex.exec(designContent)) !== null) {
+                  allSections.push({ heading: match[1].trim(), pos: match.index });
+                }
+
+                // For each section, look ahead ~500 chars for IMPLEMENTED marker
+                for (let i = 0; i < allSections.length; i++) {
+                  const { heading, pos } = allSections[i];
+                  const nextPos = i + 1 < allSections.length ? allSections[i + 1].pos : pos + 600;
+                  const window = designContent.slice(pos, Math.min(nextPos, pos + 600));
+                  // Also check for inline ✅ or [IMPLEMENTED] or STATUS: IMPLEMENTED
+                  const isImpl = /\bIMPLEMENTED\b/.test(window) || /✅/.test(heading);
+                  if (isImpl) {
+                    implementedSections.push(heading);
+                  } else {
+                    pendingSections.push(heading);
+                  }
+                }
+              } catch (e) {
+                designScanError = e.message;
+              }
+
+              const implList = implementedSections.length === 0
+                ? '_none found_'
+                : implementedSections.map(s => `- ✅ ${s}`).join('\n');
+
+              const pendingList = pendingSections.length === 0
+                ? '_none found_'
+                : pendingSections.slice(0, 20).map(s => `- 🔲 ${s}`).join('\n')
+                  + (pendingSections.length > 20 ? `\n- _…and ${pendingSections.length - 20} more_` : '');
+
+              const totalSections = implementedSections.length + pendingSections.length;
+              const pct = totalSections > 0
+                ? Math.round((implementedSections.length / totalSections) * 100)
+                : 0;
+
+              // ── 5. Read CHANGELOG tail for last few entries ───────────────────
+              let changelogSnippet = '_not found_';
+              try {
+                const changelog = fs.readFileSync('CHANGELOG.md', 'utf8');
+                // Get the first 1500 chars (top = most recent)
+                const lines = changelog.split('\n').slice(0, 40).join('\n');
+                changelogSnippet = lines.length > 0 ? lines : '_empty_';
+              } catch (e) { /* file may not exist */ }
+
+              // ── 6. Build the full status comment ─────────────────────────────
+              const designError = designScanError
+                ? `\n> ⚠️ Error scanning design doc: ${designScanError}\n`
+                : '';
+
+              const replyBody = `## 📊 Dufus — Full Status Report
 
 ---
+
+### 🚦 Pipeline Queue
+
+| State | Count |
+|-------|-------|
+| ⏳ Waiting for your answers | ${waiting.data.length} |
+| ✅ Prompt sent → VS Code | ${ready.data.length} |
+| 📥 New request (not clarified) | ${aiOpen.data.length} |
+| 🔀 Open copilot/** PRs | ${copilotPRs.length} |
+
+**⏳ Waiting for clarification (${waiting.data.length}):**
+${fmt(waiting)}
+
+**✅ Ready for VS Code (${ready.data.length}):**
+${fmt(ready)}
+
+**📥 New ai-requests (${aiOpen.data.length}):**
+${fmt(aiOpen)}
+
+**🔀 Open agent PRs (${copilotPRs.length}):**
+${prSection}
+
+---
+
+### 📋 Pending Design Docs (design_docs/pending/)
+
+${pendingDocsSection}
+
+---
+
+### 📖 Implementation Progress — WALKING_WAYS_DESIGN.md
+${designError}
+**${implementedSections.length} / ${totalSections} sections implemented (${pct}%)**
+
+**✅ Implemented (${implementedSections.length}):**
+${implList}
+
+**🔲 Pending (${pendingSections.length}):**
+${pendingList}
+
+---
+
+### 📝 CHANGELOG (recent entries)
+
+\`\`\`
+${changelogSnippet}
+\`\`\`
+
+---
+
 *To answer a waiting request: comment on that issue, then say \`/proceed\`.*
-*To cancel a request: comment \`/cancel\` on that issue.*`;
+*To cancel a request: comment \`/cancel\` on that issue.*
+*To trigger a new request: \`hey dufus [your request]\`*`;
 
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
