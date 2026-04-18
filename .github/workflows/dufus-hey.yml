@@ -192,21 +192,61 @@ ${requestText}
 
 ---
 
-### ❓ Quick questions:
+### ❓ Questions — answer briefly, or just say "yes to all":
 
-Answer below — brief is fine. I've given my best guess for each so you can just say "yes to all" or correct what's wrong.
+I've given my best guess for each. You only need to correct what's wrong.
 
-**Q1 — My interpretation:** You want a **new design doc section** describing this feature — not code yet, just a spec to be reviewed and merged into \`WALKING_WAYS_DESIGN.md\`. Is that right?
-> *Correct / No, I want: [your answer]*
+---
 
-**Q2 — Scope:** Is this a brand-new feature, a tweak to something already in the design doc, or a fix to something already implemented?
-> *My guess: brand-new feature. Correct if wrong.*
+**Q1 — Output type: Design doc or direct implementation?**
 
-**Q3 — Are there lore constraints I should know?** (e.g. "only fire if dagoth_ur_awakened is set", "check §24 compatibility", "Nerevarine must already be active")
-> *Your answer (or "none"):*
+My guess: **design doc only** (no PDXscript files will be written yet).
 
-**Q4 — Anything VS Code must NOT touch?**
-> *Your answer (or "nothing"):*
+> *Why this matters:* The design-doc-first approach means VS Code writes a spec file in \`design_docs/pending/\` which you review and merge into \`WALKING_WAYS_DESIGN.md\`. Only after you approve the design does a separate session write the actual PDXscript. This keeps the mod stable — code never goes in until the logic has been reviewed. If you want to skip this step and jump straight to code (e.g. it's a small fix or you've already designed it in your head), say "implement directly" and VS Code will write PDXscript straight away.
+>
+> *Answer:* **Design doc** (default) / **Implement directly** / **No, I want: [your answer]**
+
+---
+
+**Q2 — Scope: New feature, tweak to existing design, or fix to live code?**
+
+My guess: **brand-new feature**.
+
+> *Why this matters:* The scope tells VS Code how much of the codebase to read before writing. For a **new feature**, VS Code finds the next available §XX number in \`WALKING_WAYS_DESIGN.md\` and creates a fresh section — it doesn't need to touch any existing files. For a **tweak** (e.g. changing how an existing §XX section is structured or adding edge cases), VS Code reads that section first and writes a diff/amendment. For a **fix** to something already implemented (e.g. a bug in \`mod/events/\` or a broken flag), VS Code reads the live PDXscript file and edits it directly — skipping the design doc step entirely. Getting this wrong wastes a session round-trip, so correct my guess if it's off.
+>
+> *Answer:* **New feature** / **Tweak to existing §XX** (which section?) / **Fix to live code** (which file/flag?) / **Other: [your answer]**
+
+---
+
+**Q3 — Lore constraints and flag dependencies?**
+
+My guess: **none obvious** — but please check the examples below.
+
+> *Why this matters:* PDXscript events in this mod are gated behind global flags that track the current state of the world — e.g. you can't fire Oblivion Crisis events before \`dagoth_ur_awakened\` is set, or Dragonborn events before a certain year. If you know your feature depends on an existing flag or must NOT fire alongside another system, say so here. Common gates VS Code should know about:
+> - \`dagoth_ur_awakened\` — Sixth House / Nerevarine system is active
+> - \`kvatch_oblivion_gate_opened\` — Oblivion Crisis has started
+> - \`amulet_stolen_in_sewers\` — survival path only (emperor lived)
+> - \`tiber_septim_canonical\` — Tiber Septim NPC is the emperor
+> - \`heir_hidden_at_priory\` — player emperor has hidden heirs at Weynon Priory
+> - Year gates (e.g. "only fire after 3E 389") — important for named NPC spawning (§31.3)
+>
+> If this feature interacts with any of the above, or has its own prerequisite that isn't obvious, mention it. If unsure, say "check §XX compatibility" and VS Code will read that section first.
+>
+> *Answer:* **None** / **[flag or section name]**
+
+---
+
+**Q4 — What should VS Code NOT touch?**
+
+My guess: **nothing** — VS Code will only create new files or add to relevant existing ones.
+
+> *Why this matters:* VS Code agents sometimes "helpfully" edit adjacent files they think are related — refactoring an existing event chain to make room for a new one, or touching flags used by a system you're not currently working on. If there are files, flags, or event chains that are off-limits for this session, say so here. Common things people protect:
+> - A specific event file that's already implemented and working (\`mod/events/akullakhan_events.txt\`, \`mod/events/oblivion_crisis_events.txt\`, etc.)
+> - Global flags that other systems depend on (changing a flag name can silently break gating in a dozen places)
+> - The \`WALKING_WAYS_DESIGN.md\` main file (VS Code should only write to \`design_docs/pending/\`, not directly merge into the main design doc — that's your call)
+> - The \`CHANGELOG.md\` (you may want to write the changelog entry yourself)
+>
+> *Answer:* **Nothing** / **[file or flag name(s)]**
 
 ---
 

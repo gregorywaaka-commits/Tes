@@ -1,0 +1,394 @@
+name: Dufus — Session Completion Reporter
+# Triggers whenever a PR is opened or updated on any copilot/** branch.
+# Scans the changed files, validates PDXscript and design docs, then:
+#   1. Posts a detailed breakdown comment on the PR itself.
+#   2. Posts a shorter "session done" notification on the originating issue
+#      (found by scanning file names for ISSUE-NNN patterns or the PR body).
+#
+# This lets the owner know a VS Code agent session has finished and whether
+# the output looks correct — without needing to open VS Code or the repo.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches-ignore:
+      - main
+      - master
+
+jobs:
+  session-report:
+    # Only run on copilot/ branches (agent sessions)
+    if: startsWith(github.head_ref, 'copilot/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch base branch for diff
+        run: git fetch origin ${{ github.base_ref }}
+
+      - name: Run file checker and post reports
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { execSync } = require('child_process');
+            const fs = require('fs');
+            const path = require('path');
+
+            const pr = context.payload.pull_request;
+            const prNumber = pr.number;
+            const prTitle = pr.title || '(no title)';
+            const prBody = pr.body || '';
+            const branchName = pr.head.ref;
+
+            // ─────────────────────────────────────────────────────────────────
+            // 1. Get the list of files changed in this PR (vs base branch)
+            // ─────────────────────────────────────────────────────────────────
+            let diffOutput = '';
+            try {
+              diffOutput = execSync(
+                `git diff --name-status origin/${context.payload.pull_request.base.ref}...HEAD`,
+                { encoding: 'utf8' }
+              );
+            } catch (e) {
+              diffOutput = execSync('git diff --name-status HEAD~1', { encoding: 'utf8' });
+            }
+
+            // Parse into { status, file } pairs
+            const changedFiles = diffOutput.trim().split('\n')
+              .filter(Boolean)
+              .map(line => {
+                const parts = line.split('\t');
+                return { status: parts[0], file: parts[parts.length - 1] };
+              })
+              .filter(f => f.file);
+
+            // ─────────────────────────────────────────────────────────────────
+            // 2. Categorise each file
+            // ─────────────────────────────────────────────────────────────────
+            function categorise(filePath) {
+              if (filePath.match(/^mod\/events\//))            return '📜 PDXscript — Events';
+              if (filePath.match(/^mod\/common\/decisions\//)) return '🗳️  PDXscript — Decisions';
+              if (filePath.match(/^mod\/common\/scripted_effects\//)) return '⚙️  PDXscript — Scripted Effects';
+              if (filePath.match(/^mod\/common\/scripted_triggers\//)) return '🔍 PDXscript — Scripted Triggers';
+              if (filePath.match(/^mod\/common\/traits\//))   return '🧬 PDXscript — Traits';
+              if (filePath.match(/^mod\/common\//))           return '📦 PDXscript — Common (other)';
+              if (filePath.match(/^mod\/localization\//))     return '🌐 Localisation';
+              if (filePath.match(/^mod\//))                   return '📁 Mod file (other)';
+              if (filePath.match(/^design_docs\/pending\//))  return '📋 Design Doc (pending)';
+              if (filePath.match(/^design_docs\//))           return '📋 Design Doc';
+              if (filePath.match(/^\.continue\/prompts\/done\//)) return '✅ Prompt consumed';
+              if (filePath.match(/^\.continue\/prompts\//))   return '📨 Prompt file';
+              if (filePath.match(/^\.github\/workflows\//))   return '⚙️  GitHub Workflow';
+              if (filePath.match(/\.(md|txt)$/) && !filePath.match(/^mod\//)) return '📄 Documentation';
+              return '📁 Other';
+            }
+
+            const statusLabel = { A: 'Added', M: 'Modified', D: 'Deleted', R: 'Renamed' };
+
+            // ─────────────────────────────────────────────────────────────────
+            // 3. PDXscript validation for any .txt files under mod/
+            // ─────────────────────────────────────────────────────────────────
+            const pdxWarnings = [];
+            const pdxPassed = [];
+
+            for (const { status, file } of changedFiles) {
+              if (status === 'D') continue;
+              if (!file.match(/^mod\/.*\.txt$/)) continue;
+              if (!fs.existsSync(file)) continue;
+
+              const content = fs.readFileSync(file, 'utf8');
+              const lines = content.split('\n');
+              const fileWarnings = [];
+
+              // Check 1: namespace declaration at the top of event files
+              if (file.match(/^mod\/events\//)) {
+                const hasNamespace = lines.slice(0, 10).some(l => /^\s*namespace\s*=\s*\w+/.test(l));
+                if (!hasNamespace) {
+                  fileWarnings.push('⚠️ No `namespace = ...` declaration found in first 10 lines');
+                }
+              }
+
+              // Check 2: Event IDs match namespace.NNN pattern
+              const eventIdMatches = content.match(/^\s*id\s*=\s*(\S+)/gm) || [];
+              for (const match of eventIdMatches) {
+                const idValue = match.replace(/^\s*id\s*=\s*/, '').trim();
+                if (!idValue.match(/^\w+\.\d+$/)) {
+                  fileWarnings.push(`⚠️ Event ID \`${idValue}\` does not match \`namespace.NNN\` pattern`);
+                }
+              }
+
+              // Check 3: Opening braces must be on the same line as the keyword
+              // Flag lines where a keyword appears alone followed by { on the next line
+              for (let i = 0; i < lines.length - 1; i++) {
+                const line = lines[i].trimEnd();
+                const nextLine = lines[i + 1].trimStart();
+                // Detect pattern: keyword on its own line, next line is just {
+                if (/^\s*(event|option|trigger|effect|immediate|after|on_action)\s*$/.test(line) && nextLine.startsWith('{')) {
+                  fileWarnings.push(`⚠️ Line ${i + 1}: opening brace \`{\` appears on a separate line (should be \`keyword = {\`)`);
+                }
+              }
+
+              // Check 4: 4-space indentation (warn if tabs found)
+              const tabLines = lines
+                .map((l, i) => ({ line: i + 1, content: l }))
+                .filter(({ content }) => /^\t/.test(content));
+              if (tabLines.length > 0) {
+                fileWarnings.push(`⚠️ ${tabLines.length} line(s) use tab indentation (should be 4 spaces). First at line ${tabLines[0].line}`);
+              }
+
+              if (fileWarnings.length > 0) {
+                pdxWarnings.push({ file, warnings: fileWarnings });
+              } else {
+                pdxPassed.push(file);
+              }
+            }
+
+            // ─────────────────────────────────────────────────────────────────
+            // 4. Design doc validation for design_docs/pending/ISSUE-NNN-*.md
+            // ─────────────────────────────────────────────────────────────────
+            const designDocIssues = [];
+            const designDocsPassed = [];
+            const designDocFiles = changedFiles.filter(f =>
+              f.status !== 'D' && f.file.match(/^design_docs\/pending\/ISSUE-\d+-.*\.md$/)
+            );
+
+            const requiredSections = ['Overview', 'Triggers', 'Flags', 'Event Chain', 'NPC', 'Player-Emperor', 'Open Questions'];
+
+            for (const { file } of designDocFiles) {
+              if (!fs.existsSync(file)) continue;
+              const content = fs.readFileSync(file, 'utf8');
+              const fileIssues = [];
+
+              // Must have STATUS line
+              if (!/STATUS:/i.test(content)) {
+                fileIssues.push('⚠️ Missing `STATUS:` line at top of doc');
+              }
+
+              // Must have a §XX section number
+              if (!/§\d+/.test(content)) {
+                fileIssues.push('⚠️ No §XX section number found');
+              }
+
+              // Check for required sub-sections (flexible matching)
+              for (const section of requiredSections) {
+                if (!new RegExp(section, 'i').test(content)) {
+                  fileIssues.push(`⚠️ Missing required sub-section: **${section}**`);
+                }
+              }
+
+              if (fileIssues.length > 0) {
+                designDocIssues.push({ file, issues: fileIssues });
+              } else {
+                designDocsPassed.push(file);
+              }
+            }
+
+            // ─────────────────────────────────────────────────────────────────
+            // 5. Try to find the originating issue number
+            // ─────────────────────────────────────────────────────────────────
+            let originatingIssue = null;
+
+            // Method A: design doc file name ISSUE-NNN-*
+            const designDocMatch = changedFiles
+              .map(f => f.file.match(/ISSUE-(\d+)-/))
+              .find(m => m);
+            if (designDocMatch) originatingIssue = parseInt(designDocMatch[1]);
+
+            // Method B: prompt file consumed in .continue/prompts/done/
+            if (!originatingIssue) {
+              const promptMatch = changedFiles
+                .map(f => f.file.match(/\.continue\/prompts\/(?:done|incoming)\/issue-(\d+)-/))
+                .find(m => m);
+              if (promptMatch) originatingIssue = parseInt(promptMatch[1]);
+            }
+
+            // Method C: PR body mentions "Closes #N" or "issue #N" or "#N"
+            if (!originatingIssue) {
+              const bodyMatch = prBody.match(/(?:closes?|fixes?|resolves?|issue)\s+#(\d+)/i)
+                || prBody.match(/#(\d+)/);
+              if (bodyMatch) originatingIssue = parseInt(bodyMatch[1]);
+            }
+
+            // Method D: branch name copilot/NNN-* or copilot/fix-*
+            if (!originatingIssue) {
+              const branchMatch = branchName.match(/copilot\/(\d+)-/);
+              if (branchMatch) originatingIssue = parseInt(branchMatch[1]);
+            }
+
+            // ─────────────────────────────────────────────────────────────────
+            // 6. Build the PR comment (detailed breakdown)
+            // ─────────────────────────────────────────────────────────────────
+            const overallOk = pdxWarnings.length === 0 && designDocIssues.length === 0;
+            const statusIcon = overallOk ? '✅' : '⚠️';
+
+            // File table
+            const fileRows = changedFiles.map(({ status, file }) => {
+              const cat = categorise(file);
+              const st = statusLabel[status[0]] || status;
+              return `| ${st} | \`${file}\` | ${cat} |`;
+            }).join('\n');
+
+            // PDXscript section
+            let pdxSection = '';
+            if (pdxPassed.length === 0 && pdxWarnings.length === 0) {
+              pdxSection = '_No PDXscript files changed._';
+            } else {
+              if (pdxPassed.length > 0) {
+                pdxSection += `**✅ Clean files (${pdxPassed.length}):** ${pdxPassed.map(f => `\`${path.basename(f)}\``).join(', ')}\n\n`;
+              }
+              if (pdxWarnings.length > 0) {
+                for (const { file, warnings } of pdxWarnings) {
+                  pdxSection += `**⚠️ \`${file}\`**\n`;
+                  for (const w of warnings) {
+                    pdxSection += `- ${w}\n`;
+                  }
+                  pdxSection += '\n';
+                }
+              }
+            }
+
+            // Design doc section
+            let designSection = '';
+            if (designDocFiles.length === 0) {
+              designSection = '_No design docs created._';
+            } else {
+              if (designDocsPassed.length > 0) {
+                designSection += `**✅ Valid design docs:** ${designDocsPassed.map(f => `\`${path.basename(f)}\``).join(', ')}\n\n`;
+              }
+              if (designDocIssues.length > 0) {
+                for (const { file, issues } of designDocIssues) {
+                  designSection += `**⚠️ \`${file}\`**\n`;
+                  for (const issue of issues) {
+                    designSection += `- ${issue}\n`;
+                  }
+                  designSection += '\n';
+                }
+              }
+            }
+
+            const issueRef = originatingIssue
+              ? `[Issue #${originatingIssue}](https://github.com/${context.repo.owner}/${context.repo.repo}/issues/${originatingIssue})`
+              : '_Not found — check PR title/body_';
+
+            const prComment = `## ${statusIcon} Dufus — Session Completion Report
+
+**Branch:** \`${branchName}\`
+**Originating issue:** ${issueRef}
+**Files changed:** ${changedFiles.length}
+
+---
+
+### 📂 Changed Files
+
+| Change | File | Category |
+|--------|------|----------|
+${fileRows}
+
+---
+
+### 🔍 PDXscript Validation
+
+${pdxSection}
+
+---
+
+### 📋 Design Doc Validation
+
+${designSection}
+
+---
+
+### 🏁 Summary
+
+${overallOk
+  ? `✅ **All checks passed.** The session output looks correct. No issues found.`
+  : `⚠️ **Some checks need attention.** Review the warnings above before merging. These are soft warnings — the PR can still merge, but flag anything unexpected.`
+}
+
+${originatingIssue
+  ? `👉 A summary has been posted on [Issue #${originatingIssue}](https://github.com/${context.repo.owner}/${context.repo.repo}/issues/${originatingIssue}) for your phone.`
+  : `👉 Could not detect originating issue — mention \`#NNN\` in the PR body to link it next time.`
+}
+
+---
+*Generated automatically by Dufus Session Reporter on every \`copilot/**\` push.*`;
+
+            // Post to PR
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: prComment
+            });
+
+            // ─────────────────────────────────────────────────────────────────
+            // 7. Post a short notification on the originating issue (phone-friendly)
+            // ─────────────────────────────────────────────────────────────────
+            if (originatingIssue) {
+              const shortSummary = overallOk
+                ? `✅ All checks passed`
+                : `⚠️ ${pdxWarnings.length + designDocIssues.length} warning(s) — review before merging`;
+
+              const fileTypeSummary = [...new Set(changedFiles.map(f => categorise(f.file)))]
+                .join(', ');
+
+              const issueNotification = `## 🤖 VS Code session finished — PR #${prNumber} is ready for review
+
+**Status:** ${shortSummary}
+
+**What was changed (${changedFiles.length} files):**
+${fileTypeSummary || '_none_'}
+
+**Files:**
+${changedFiles.map(f => `- \`${f.file}\``).join('\n') || '_none_'}
+
+${pdxWarnings.length > 0 ? `**⚠️ PDXscript warnings (${pdxWarnings.length} file(s)):**\n${pdxWarnings.map(w => `- \`${w.file}\`: ${w.warnings.join('; ')}`).join('\n')}\n` : ''}
+${designDocIssues.length > 0 ? `**⚠️ Design doc warnings (${designDocIssues.length} file(s)):**\n${designDocIssues.map(d => `- \`${d.file}\`: ${d.issues.join('; ')}`).join('\n')}\n` : ''}
+
+👉 **[View the full PR #${prNumber} and diff](https://github.com/${context.repo.owner}/${context.repo.repo}/pull/${prNumber})**
+
+---
+*To close this issue as done: comment \`/done\` — or just close it manually.*`;
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: originatingIssue,
+                body: issueNotification
+              });
+
+              // Label the issue as ready-for-review if it isn't already
+              try {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: originatingIssue,
+                  labels: ['ready-for-review']
+                });
+              } catch (e) { /* label may not exist */ }
+            }
+
+      - name: Write step summary
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const summary = [
+              `## 🤖 Dufus Session Reporter`,
+              ``,
+              `| Field | Value |`,
+              `|-------|-------|`,
+              `| PR | [#${pr.number}](${pr.html_url}) |`,
+              `| Branch | \`${pr.head.ref}\` |`,
+              `| Status | Breakdown posted to PR + originating issue (if found) |`,
+            ].join('\n');
+            await core.summary.addRaw(summary).write();
